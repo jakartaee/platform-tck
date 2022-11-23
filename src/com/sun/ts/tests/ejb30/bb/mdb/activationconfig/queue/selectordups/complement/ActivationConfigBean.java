@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb30.bb.mdb.activationconfig.queue.selectordups.complement;
 
 import com.sun.ts.tests.ejb30.bb.mdb.activationconfig.common.ActivationConfigBeanBase;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.ActivationConfigProperty;
 import jakarta.ejb.EJBContext;
@@ -31,30 +30,31 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import jakarta.jms.MessageListener;
 
-//metadata are defined either here or in ejb-jar.xml
-//this bean doesn't implement MessageListener, and ejb-jar.xml does not specify
-//messaging-type.  It's annotated.
-@MessageDriven(name = "ActivationConfigBean", messageListenerInterface = MessageListener.class, activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue"),
-    @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Dups-ok-acknowledge")
-    // @ActivationConfigProperty(propertyName="messageSelector",
-    // propertyValue="COM_SUN_JMS_TESTNAME<>'test1' OR TestCaseNum >= 1")
-})
-
+// metadata are defined either here or in ejb-jar.xml
+// this bean doesn't implement MessageListener, and ejb-jar.xml does not specify
+// messaging-type.  It's annotated.
+@MessageDriven(
+        name = "ActivationConfigBean",
+        messageListenerInterface = MessageListener.class,
+        activationConfig = {
+            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue"),
+            @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Dups-ok-acknowledge")
+            // @ActivationConfigProperty(propertyName="messageSelector",
+            // propertyValue="COM_SUN_JMS_TESTNAME<>'test1' OR TestCaseNum >= 1")
+        })
 @TransactionManagement(TransactionManagementType.BEAN)
-
 public class ActivationConfigBean extends ActivationConfigBeanBase {
-  @Resource(name = "mdc")
-  private MessageDrivenContext mdc;
+    @Resource(name = "mdc")
+    private MessageDrivenContext mdc;
 
-  public ActivationConfigBean() {
-    super();
-  }
+    public ActivationConfigBean() {
+        super();
+    }
 
-  public EJBContext getEJBContext() {
-    return this.mdc;
-  }
+    public EJBContext getEJBContext() {
+        return this.mdc;
+    }
 
-  // ================== business methods ====================================
+    // ================== business methods ====================================
 
 }

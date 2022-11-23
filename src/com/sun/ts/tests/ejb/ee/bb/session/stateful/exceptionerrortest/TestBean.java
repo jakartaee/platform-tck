@@ -20,17 +20,15 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.exceptionerrortest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
-  public void throwMyApplicationException()
-      throws RemoteException, MyApplicationException;
+    public void throwMyApplicationException() throws RemoteException, MyApplicationException;
 
-  public void throwEJBException() throws RemoteException;
+    public void throwEJBException() throws RemoteException;
 
-  public void throwError() throws RemoteException;
+    public void throwError() throws RemoteException;
 
-  public void ping() throws RemoteException;
+    public void ping() throws RemoteException;
 }

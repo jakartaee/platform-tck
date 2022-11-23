@@ -23,5 +23,4 @@ package com.sun.ts.tests.jaxws.sharedclients;
 /**
  * Marker interface for secure (https) clients.
  */
-public interface SecureClient {
-}
+public interface SecureClient {}

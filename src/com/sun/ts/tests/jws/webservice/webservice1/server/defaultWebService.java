@@ -27,9 +27,8 @@ import jakarta.jws.WebService;
 @WebService(wsdlLocation = "WEB-INF/wsdl/DefaultWebServiceService.wsdl")
 public class defaultWebService {
 
-  @WebMethod
-  public String ping(String name) {
-    return "Hello " + name + " to Web Service";
-  }
-
+    @WebMethod
+    public String ping(String name) {
+        return "Hello " + name + " to Web Service";
+    }
 }

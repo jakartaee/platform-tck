@@ -20,18 +20,16 @@
 
 package com.sun.ts.tests.assembly.util.refbean;
 
-import java.rmi.RemoteException;
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
 public interface CMP11InternalHome extends EJBHome {
 
-  public CMP11Internal create(Properties props, int cofID, String cofName,
-      float cofPrice) throws RemoteException, CreateException;
+    public CMP11Internal create(Properties props, int cofID, String cofName, float cofPrice)
+            throws RemoteException, CreateException;
 
-  public CMP11Internal findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
+    public CMP11Internal findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 }

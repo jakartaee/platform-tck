@@ -20,13 +20,12 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.scope;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface Bean extends EJBObject {
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 
-  public boolean checkEntry(String name, String ref) throws RemoteException;
+    public boolean checkEntry(String name, String ref) throws RemoteException;
 }

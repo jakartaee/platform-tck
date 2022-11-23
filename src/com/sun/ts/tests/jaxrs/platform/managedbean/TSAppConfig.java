@@ -16,59 +16,57 @@
 
 package com.sun.ts.tests.jaxrs.platform.managedbean;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.sun.ts.tests.jaxrs.common.provider.PrintingErrorHandler;
-
 import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PostConstruct;
 import jakarta.ws.rs.core.Application;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.UriInfo;
+import java.util.HashSet;
+import java.util.Set;
 
 @ManagedBean("application")
 public class TSAppConfig extends Application {
 
-  private int value = 99;
+    private int value = 99;
 
-  public java.util.Set<java.lang.Class<?>> getClasses() {
-    Set<Class<?>> resources = new HashSet<Class<?>>();
-    resources.add(ManagedBeanRootResource.class);
-    resources.add(StringBuilderProvider.class);
-    resources.add(PrintingErrorHandler.class);
-    return resources;
-  }
+    public java.util.Set<java.lang.Class<?>> getClasses() {
+        Set<Class<?>> resources = new HashSet<Class<?>>();
+        resources.add(ManagedBeanRootResource.class);
+        resources.add(StringBuilderProvider.class);
+        resources.add(PrintingErrorHandler.class);
+        return resources;
+    }
 
-  @Override
-  public Set<Object> getSingletons() {
-    Set<Object> set = new HashSet<Object>();
-    set.add(new ApplicationHolderSingleton(this));
-    return set;
-  }
+    @Override
+    public Set<Object> getSingletons() {
+        Set<Object> set = new HashSet<Object>();
+        set.add(new ApplicationHolderSingleton(this));
+        return set;
+    }
 
-  public int getValue() {
-    return value;
-  }
+    public int getValue() {
+        return value;
+    }
 
-  public void setValue(int value) {
-    this.value = value;
-  }
+    public void setValue(int value) {
+        this.value = value;
+    }
 
-  // <JAXRS:SPEC:53.1 ----------------------------------------------->
-  @Context
-  private UriInfo info;
+    // <JAXRS:SPEC:53.1 ----------------------------------------------->
+    @Context
+    private UriInfo info;
 
-  private boolean isUriInfoInjectedBeforePostConstruct;
+    private boolean isUriInfoInjectedBeforePostConstruct;
 
-  public boolean isUriInfoInjectedBeforePostConstruct() {
-    return isUriInfoInjectedBeforePostConstruct;
-  }
+    public boolean isUriInfoInjectedBeforePostConstruct() {
+        return isUriInfoInjectedBeforePostConstruct;
+    }
 
-  @PostConstruct
-  public void postConstruct() {
-    value++;
-    isUriInfoInjectedBeforePostConstruct = info != null;
-  }
-  // </JAXRS:SPEC:53.1 ----------------------------------------------->
+    @PostConstruct
+    public void postConstruct() {
+        value++;
+        isUriInfoInjectedBeforePostConstruct = info != null;
+    }
+    // </JAXRS:SPEC:53.1 ----------------------------------------------->
 }

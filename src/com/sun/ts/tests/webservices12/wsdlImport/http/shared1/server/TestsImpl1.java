@@ -18,13 +18,17 @@ package com.sun.ts.tests.webservices12.wsdlImport.http.shared1.server;
 
 import jakarta.jws.WebService;
 
-@WebService(portName = "Tests1Port", serviceName = "Shared1HttpSvc1", targetNamespace = "http://Shared1HttpSvc1.org/wsdl", wsdlLocation = "WEB-INF/wsdl/Shared1HttpSvc1.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.http.shared1.server.Tests1")
-
+@WebService(
+        portName = "Tests1Port",
+        serviceName = "Shared1HttpSvc1",
+        targetNamespace = "http://Shared1HttpSvc1.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/Shared1HttpSvc1.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.http.shared1.server.Tests1")
 public class TestsImpl1 implements Tests1 {
-  public com.sun.ts.tests.webservices12.wsdlImport.http.shared1.server.Astring invokeTest1() {
-    com.sun.ts.tests.webservices12.wsdlImport.http.shared1.server.Astring result = new com.sun.ts.tests.webservices12.wsdlImport.http.shared1.server.Astring();
-    result.setResult("Hello");
-    return result;
-  }
-
+    public com.sun.ts.tests.webservices12.wsdlImport.http.shared1.server.Astring invokeTest1() {
+        com.sun.ts.tests.webservices12.wsdlImport.http.shared1.server.Astring result =
+                new com.sun.ts.tests.webservices12.wsdlImport.http.shared1.server.Astring();
+        result.setResult("Hello");
+        return result;
+    }
 }

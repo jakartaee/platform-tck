@@ -29,117 +29,112 @@ import jakarta.ejb.RemoveException;
  * instance variables, which are written to the database when the EJB Container
  * calls ejbStore().
  */
-
 public interface TxEPMBean extends EJBLocalObject {
 
-  /**
-   * Accessors methods for CMP bean fields.
-   *
-   */
+    /**
+     * Accessors methods for CMP bean fields.
+     *
+     */
+    public Integer getKeyId();
 
-  public Integer getKeyId();
+    public String getBrandName();
 
-  public String getBrandName();
+    public void setBrandName(String brand);
 
-  public void setBrandName(String brand);
+    public float getPrice();
 
-  public float getPrice();
+    public void setPrice(float price);
 
-  public void setPrice(float price);
+    /**
+     * change the brand name
+     *
+     * @param newBrandName
+     *          the name of the new brand
+     * @return void
+     */
+    public void updateBrandName(String newBrandName);
 
-  /**
-   * change the brand name
-   * 
-   * @param newBrandName
-   *          the name of the new brand
-   * @return void
-   */
-  public void updateBrandName(String newBrandName);
+    /**
+     * change the brand name and throw an Exception if indicated by the flag.
+     *
+     * @param newBrandName
+     *          the name of the new brand
+     * @param flag
+     *          corresponds to the intended exception.
+     * @return true if the transaction was rolled back; else false.
+     * @exception AppException
+     *              if triggered by the flag
+     */
+    public boolean updateBrandName(String newBrandName, int flag) throws AppException;
 
-  /**
-   * change the brand name and throw an Exception if indicated by the flag.
-   * 
-   * @param newBrandName
-   *          the name of the new brand
-   * @param flag
-   *          corresponds to the intended exception.
-   * @return true if the transaction was rolled back; else false.
-   * @exception AppException
-   *              if triggered by the flag
-   */
-  public boolean updateBrandName(String newBrandName, int flag)
-      throws AppException;
+    /**
+     * change the brand name and rollback if indicated by flag
+     *
+     * @param newBrandName
+     *          the name of the new brand
+     * @param flag
+     *          corresponds to the intended exception.
+     * @return true if the transaction was rolled back; else false.
+     * @exception AppException
+     *              - if triggered by the flag
+     */
+    public boolean updateBrandNameRB(String newBrandName, int flag) throws AppException;
 
-  /**
-   * change the brand name and rollback if indicated by flag
-   * 
-   * @param newBrandName
-   *          the name of the new brand
-   * @param flag
-   *          corresponds to the intended exception.
-   * @return true if the transaction was rolled back; else false.
-   * @exception AppException
-   *              - if triggered by the flag
-   */
+    /**
+     * change the price
+     *
+     * @param newPriceName
+     *          the new price
+     * @return void
+     */
+    public void updatePrice(float newPriceName);
 
-  public boolean updateBrandNameRB(String newBrandName, int flag)
-      throws AppException;
+    /**
+     * Throw AppException
+     *
+     * @return void
+     * @exception AppException
+     *              Throw the requested AppException.
+     */
+    public void throwAppException() throws AppException;
 
-  /**
-   * change the price
-   * 
-   * @param newPriceName
-   *          the new price
-   * @return void
-   */
-  public void updatePrice(float newPriceName);
+    /**
+     * Throw SysException
+     *
+     * @return void
+     * @exception SysException
+     *              Throw the requested SysException.
+     */
+    public void throwSysException();
 
-  /**
-   * Throw AppException
-   * 
-   * @return void
-   * @exception AppException
-   *              Throw the requested AppException.
-   */
-  public void throwAppException() throws AppException;
+    /**
+     * Throw EJBException
+     *
+     * @return void
+     * @exception If
+     *              an unexpected Exception occurs.
+     * @exception EJBException
+     *              Throw the requested EJBException.
+     */
+    public void throwEJBException();
 
-  /**
-   * Throw SysException
-   * 
-   * @return void
-   * @exception SysException
-   *              Throw the requested SysException.
-   */
-  public void throwSysException();
+    /**
+     * Throw Error
+     *
+     * @return void
+     * @exception Error
+     *              Throw the requested Error.
+     */
+    public void throwError();
 
-  /**
-   * Throw EJBException
-   * 
-   * @return void
-   * @exception If
-   *              an unexpected Exception occurs.
-   * @exception EJBException
-   *              Throw the requested EJBException.
-   */
-  public void throwEJBException();
-
-  /**
-   * Throw Error
-   * 
-   * @return void
-   * @exception Error
-   *              Throw the requested Error.
-   */
-  public void throwError();
-
-  /**
-   * This method throws a RemoveException
-   *
-   * @return void
-   * @exception Forces
-   *              a RemoveException.
-   * @exception Throws
-   *              the requested RemoveException
-   */
-  public void throwRemoveException() throws RemoveException;
+    /**
+     * This method throws a RemoveException
+     *
+     * @return void
+     * @exception Forces
+     *              a RemoveException.
+     * @exception Throws
+     *              the requested RemoveException
+     */
+    public void throwRemoveException() throws RemoveException;
 }

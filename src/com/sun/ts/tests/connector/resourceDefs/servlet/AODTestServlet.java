@@ -16,13 +16,9 @@
 
 package com.sun.ts.tests.connector.resourceDefs.servlet;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
-
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.resource.AdministeredObjectDefinition;
 import jakarta.resource.AdministeredObjectDefinitions;
@@ -34,230 +30,235 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /*
- * This is testing AdministeredObjectDefinition in the different environment 
+ * This is testing AdministeredObjectDefinition in the different environment
  * scopes (e.g. app-level, module-leve, component-level, and global.
  *
  */
 
-@DeclareRoles({ "Administrator", "Manager", "Employee" })
-@ServletSecurity(value = @HttpConstraint(rolesAllowed = {
-    "Administrator" }), httpMethodConstraints = {
-        @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
-        @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator") })
-@WebServlet(name = "AODTestServlet", urlPatterns = { "/AODTestServlet" })
+@DeclareRoles({"Administrator", "Manager", "Employee"})
+@ServletSecurity(
+        value = @HttpConstraint(rolesAllowed = {"Administrator"}),
+        httpMethodConstraints = {
+            @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
+            @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator")
+        })
+@WebServlet(
+        name = "AODTestServlet",
+        urlPatterns = {"/AODTestServlet"})
 @AdministeredObjectDefinitions({
-    @AdministeredObjectDefinition(name = "java:app/env/CTSAdminObjectForAppScope", description = "application scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
-
-    @AdministeredObjectDefinition(name = "java:comp/env/CTSAdminObjectForCompScope", description = "component scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
-
-    @AdministeredObjectDefinition(name = "java:module/env/CTSAdminObjectForModuleScope", description = "module scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
-
-    @AdministeredObjectDefinition(name = "java:global/env/CTSAdminObjectForGlobalScope", description = "globally scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd") })
+    @AdministeredObjectDefinition(
+            name = "java:app/env/CTSAdminObjectForAppScope",
+            description = "application scoped AdminObjectDefinition",
+            interfaceName = "jakarta.jms.Queue",
+            className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject",
+            resourceAdapter = "#whitebox-rd"),
+    @AdministeredObjectDefinition(
+            name = "java:comp/env/CTSAdminObjectForCompScope",
+            description = "component scoped AdminObjectDefinition",
+            interfaceName = "jakarta.jms.Queue",
+            className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject",
+            resourceAdapter = "#whitebox-rd"),
+    @AdministeredObjectDefinition(
+            name = "java:module/env/CTSAdminObjectForModuleScope",
+            description = "module scoped AdminObjectDefinition",
+            interfaceName = "jakarta.jms.Queue",
+            className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject",
+            resourceAdapter = "#whitebox-rd"),
+    @AdministeredObjectDefinition(
+            name = "java:global/env/CTSAdminObjectForGlobalScope",
+            description = "globally scoped AdminObjectDefinition",
+            interfaceName = "jakarta.jms.Queue",
+            className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject",
+            resourceAdapter = "#whitebox-rd")
+})
 public class AODTestServlet extends HttpServlet {
-  private String servletAppContext = null;
+    private String servletAppContext = null;
 
-  private String testMethod = null;
+    private String testMethod = null;
 
-  private String RARJndiScope = null;
+    private String RARJndiScope = null;
 
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    debug("in AODTestServlet.doGet()");
-    getPropsAndParams(request, response);
-    doPost(request, response);
-  }
-
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    debug("in AODTestServlet.doPost()");
-    getPropsAndParams(request, response);
-    doTests(request, response);
-  }
-
-  private void doTests(HttpServletRequest request,
-      HttpServletResponse response) {
-
-    debug("in AODTestServlet.doTests()");
-    PrintWriter out = null;
-    try {
-      out = response.getWriter();
-    } catch (Exception ex) {
-      debug("got exception in AODTestServlet");
-      ex.printStackTrace();
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        debug("in AODTestServlet.doGet()");
+        getPropsAndParams(request, response);
+        doPost(request, response);
     }
 
-    // get some common props
-    getPropsAndParams(request, response);
-
-    if (testMethod.equals("ValidateGlobalAdminObj")) {
-      debug("AODTestServlet.doTests(): testMethod == ValidateGlobalAdminObj");
-      validateGlobalAdminObj(request, response);
-
-    } else if (testMethod.equals("ValidateAppAdminObj")) {
-      debug("AODTestServlet.doTests(): testMethod == ValidateAppAdminObj");
-      validateAppAdminObj(request, response);
-
-    } else if (testMethod.equals("ValidateCompAdminObj")) {
-      debug("AODTestServlet.doTests(): testMethod == ValidateCompAdminObj");
-      validateCompAdminObj(request, response);
-
-    } else if (testMethod.equals("ValidateModuleAdminObj")) {
-      debug("AODTestServlet.doTests(): testMethod == ValidateModuleAdminObj");
-      validateModuleAdminObj(request, response);
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        debug("in AODTestServlet.doPost()");
+        getPropsAndParams(request, response);
+        doTests(request, response);
     }
 
-  }
+    private void doTests(HttpServletRequest request, HttpServletResponse response) {
 
-  private void getPropsAndParams(HttpServletRequest req,
-      HttpServletResponse response) {
-
-    // set testMethod
-    testMethod = req.getParameter("method.under.test");
-    RARJndiScope = req.getParameter("rar.jndi.scope");
-
-    debug("AODTestServlet.getPropsAndParams():  testMethod = " + testMethod);
-    debug(
-        "AODTestServlet.getPropsAndParams():  RARJndiScope = " + RARJndiScope);
-
-    return;
-  }
-
-  public void validateGlobalAdminObj(HttpServletRequest request,
-      HttpServletResponse response) {
-    try {
-      String jndiName = RARJndiScope;
-      PrintWriter out = response.getWriter();
-
-      debug("checking jndiName = " + jndiName);
-      if (validateConnectorResource(jndiName, true)) {
-        send_output(out, "ValidateGlobalAdminObj() passed.");
-      } else {
-        send_output(out,
-            "validateConnectorResource() failed for jndiName: " + jndiName);
-      }
-
-    } catch (Exception ex) {
-      System.out.println("AODTestServlet->ValidateGlobalAdminObj() failed");
-      ex.printStackTrace();
-    }
-  }
-
-  public void validateAppAdminObj(HttpServletRequest request,
-      HttpServletResponse response) {
-    try {
-      String jndiName = RARJndiScope;
-      PrintWriter out = response.getWriter();
-
-      debug("checking jndiName = " + jndiName);
-      if (validateConnectorResource(jndiName, true)) {
-        send_output(out, "ValidateAppAdminObj() passed.");
-      } else {
-        send_output(out,
-            "validateAppAdminObj() failed for jndiName: " + jndiName);
-      }
-
-    } catch (Exception ex) {
-      System.out.println("AODTestServlet->ValidateAppAdminObj() failed");
-      ex.printStackTrace();
-    }
-  }
-
-  public void validateCompAdminObj(HttpServletRequest request,
-      HttpServletResponse response) {
-    try {
-      String jndiName = RARJndiScope;
-      PrintWriter out = response.getWriter();
-
-      debug("checking jndiName = " + jndiName);
-      if (validateConnectorResource(jndiName, true)) {
-        send_output(out, "ValidateCompAdminObj() passed.");
-      } else {
-        send_output(out,
-            "validateCompAdminObj() failed for jndiName: " + jndiName);
-      }
-
-    } catch (Exception ex) {
-      System.out.println("AODTestServlet->ValidateCompAdminObj() failed");
-      ex.printStackTrace();
-    }
-  }
-
-  public void validateModuleAdminObj(HttpServletRequest request,
-      HttpServletResponse response) {
-    try {
-      String jndiName = RARJndiScope;
-      PrintWriter out = response.getWriter();
-
-      debug("checking jndiName = " + jndiName);
-      if (validateConnectorResource(jndiName, true)) {
-        send_output(out, "ValidateModuleAdminObj() passed.");
-      } else {
-        send_output(out,
-            "validateModuleAdminObj() failed for jndiName: " + jndiName);
-      }
-
-    } catch (Exception ex) {
-      System.out.println("AODTestServlet->ValidateModuleAdminObj() failed");
-      ex.printStackTrace();
-    }
-  }
-
-  /*
-   * returns true if success, else false.
-   */
-  private boolean validateConnectorResource(String jndiName,
-      boolean expectSuccess) {
-    TSConnection c = null;
-    boolean rval = false;
-
-    try {
-
-      debug("validateConnectorResource():  calling new TSNamingContext()");
-      TSNamingContext ic = new TSNamingContext();
-
-      debug("Doing lookup of jndiName = " + jndiName);
-      Object ds = ic.lookup(jndiName);
-      debug(
-          "validateConnectorResource(): Successfully did lookup of jndiName = "
-              + jndiName);
-
-      rval = true;
-    } catch (Exception e) {
-      debug("Fail to access connector resource: " + jndiName);
-      e.printStackTrace();
-    } finally {
-      try {
-        if (c != null) {
-          c.close();
+        debug("in AODTestServlet.doTests()");
+        PrintWriter out = null;
+        try {
+            out = response.getWriter();
+        } catch (Exception ex) {
+            debug("got exception in AODTestServlet");
+            ex.printStackTrace();
         }
-      } catch (Exception e) {
-      }
+
+        // get some common props
+        getPropsAndParams(request, response);
+
+        if (testMethod.equals("ValidateGlobalAdminObj")) {
+            debug("AODTestServlet.doTests(): testMethod == ValidateGlobalAdminObj");
+            validateGlobalAdminObj(request, response);
+
+        } else if (testMethod.equals("ValidateAppAdminObj")) {
+            debug("AODTestServlet.doTests(): testMethod == ValidateAppAdminObj");
+            validateAppAdminObj(request, response);
+
+        } else if (testMethod.equals("ValidateCompAdminObj")) {
+            debug("AODTestServlet.doTests(): testMethod == ValidateCompAdminObj");
+            validateCompAdminObj(request, response);
+
+        } else if (testMethod.equals("ValidateModuleAdminObj")) {
+            debug("AODTestServlet.doTests(): testMethod == ValidateModuleAdminObj");
+            validateModuleAdminObj(request, response);
+        }
     }
 
-    return rval;
-  }
+    private void getPropsAndParams(HttpServletRequest req, HttpServletResponse response) {
 
-  public void send_output(PrintWriter out, String str) {
-    if (out != null) {
-      out.println(str);
-      out.flush();
-      debug(str);
-    } else {
-      print_err("ERROR, Null PrintWriter:  can not properly send back message: "
-          + str);
+        // set testMethod
+        testMethod = req.getParameter("method.under.test");
+        RARJndiScope = req.getParameter("rar.jndi.scope");
+
+        debug("AODTestServlet.getPropsAndParams():  testMethod = " + testMethod);
+        debug("AODTestServlet.getPropsAndParams():  RARJndiScope = " + RARJndiScope);
+
+        return;
     }
-  }
 
-  public void print_err(String str) {
-    System.err.println(str);
-    debug(str);
-  }
+    public void validateGlobalAdminObj(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String jndiName = RARJndiScope;
+            PrintWriter out = response.getWriter();
 
-  public void debug(String str) {
-    TestUtil.logMsg(str);
-    System.out.println(str);
-  }
+            debug("checking jndiName = " + jndiName);
+            if (validateConnectorResource(jndiName, true)) {
+                send_output(out, "ValidateGlobalAdminObj() passed.");
+            } else {
+                send_output(out, "validateConnectorResource() failed for jndiName: " + jndiName);
+            }
 
+        } catch (Exception ex) {
+            System.out.println("AODTestServlet->ValidateGlobalAdminObj() failed");
+            ex.printStackTrace();
+        }
+    }
+
+    public void validateAppAdminObj(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String jndiName = RARJndiScope;
+            PrintWriter out = response.getWriter();
+
+            debug("checking jndiName = " + jndiName);
+            if (validateConnectorResource(jndiName, true)) {
+                send_output(out, "ValidateAppAdminObj() passed.");
+            } else {
+                send_output(out, "validateAppAdminObj() failed for jndiName: " + jndiName);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("AODTestServlet->ValidateAppAdminObj() failed");
+            ex.printStackTrace();
+        }
+    }
+
+    public void validateCompAdminObj(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String jndiName = RARJndiScope;
+            PrintWriter out = response.getWriter();
+
+            debug("checking jndiName = " + jndiName);
+            if (validateConnectorResource(jndiName, true)) {
+                send_output(out, "ValidateCompAdminObj() passed.");
+            } else {
+                send_output(out, "validateCompAdminObj() failed for jndiName: " + jndiName);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("AODTestServlet->ValidateCompAdminObj() failed");
+            ex.printStackTrace();
+        }
+    }
+
+    public void validateModuleAdminObj(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String jndiName = RARJndiScope;
+            PrintWriter out = response.getWriter();
+
+            debug("checking jndiName = " + jndiName);
+            if (validateConnectorResource(jndiName, true)) {
+                send_output(out, "ValidateModuleAdminObj() passed.");
+            } else {
+                send_output(out, "validateModuleAdminObj() failed for jndiName: " + jndiName);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("AODTestServlet->ValidateModuleAdminObj() failed");
+            ex.printStackTrace();
+        }
+    }
+
+    /*
+     * returns true if success, else false.
+     */
+    private boolean validateConnectorResource(String jndiName, boolean expectSuccess) {
+        TSConnection c = null;
+        boolean rval = false;
+
+        try {
+
+            debug("validateConnectorResource():  calling new TSNamingContext()");
+            TSNamingContext ic = new TSNamingContext();
+
+            debug("Doing lookup of jndiName = " + jndiName);
+            Object ds = ic.lookup(jndiName);
+            debug("validateConnectorResource(): Successfully did lookup of jndiName = " + jndiName);
+
+            rval = true;
+        } catch (Exception e) {
+            debug("Fail to access connector resource: " + jndiName);
+            e.printStackTrace();
+        } finally {
+            try {
+                if (c != null) {
+                    c.close();
+                }
+            } catch (Exception e) {
+            }
+        }
+
+        return rval;
+    }
+
+    public void send_output(PrintWriter out, String str) {
+        if (out != null) {
+            out.println(str);
+            out.flush();
+            debug(str);
+        } else {
+            print_err("ERROR, Null PrintWriter:  can not properly send back message: " + str);
+        }
+    }
+
+    public void print_err(String str) {
+        System.err.println(str);
+        debug(str);
+    }
+
+    public void debug(String str) {
+        TestUtil.logMsg(str);
+        System.out.println(str);
+    }
 }

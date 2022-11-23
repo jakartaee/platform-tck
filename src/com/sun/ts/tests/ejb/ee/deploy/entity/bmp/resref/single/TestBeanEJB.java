@@ -25,28 +25,27 @@ import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 
 public class TestBeanEJB extends BMPWrapper {
 
-  public boolean testDatasource() {
-    return TestCode.testDatasource(nctx);
-  }
+    public boolean testDatasource() {
+        return TestCode.testDatasource(nctx);
+    }
 
-  public boolean testSession() {
-    return TestCode.testSession(nctx);
-  }
+    public boolean testSession() {
+        return TestCode.testSession(nctx);
+    }
 
-  public boolean testURL() {
-    return TestCode.testURL(nctx);
-  }
+    public boolean testURL() {
+        return TestCode.testURL(nctx);
+    }
 
-  public boolean testQueue() {
-    return TestCode.testQueue(nctx);
-  }
+    public boolean testQueue() {
+        return TestCode.testQueue(nctx);
+    }
 
-  public boolean testTopic() {
-    return TestCode.testTopic(nctx);
-  }
+    public boolean testTopic() {
+        return TestCode.testTopic(nctx);
+    }
 
-  public boolean testAll() {
-    return TestCode.testAll(nctx);
-  }
-
+    public boolean testAll() {
+        return TestCode.testAll(nctx);
+    }
 }

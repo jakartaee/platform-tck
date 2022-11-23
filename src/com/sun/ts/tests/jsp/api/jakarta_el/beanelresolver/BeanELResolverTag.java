@@ -16,40 +16,36 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_el.beanelresolver;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.el.BeanELResolver;
 import jakarta.el.ELContext;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class BeanELResolverTag extends SimpleTagSupport {
 
-  public void doTag() throws JspException, IOException {
+    public void doTag() throws JspException, IOException {
 
-    StringBuffer buf = new StringBuffer();
-    String property = "intention";
+        StringBuffer buf = new StringBuffer();
+        String property = "intention";
 
-    SimpleBean bean = new SimpleBean();
-    bean.setIntention("bad");
+        SimpleBean bean = new SimpleBean();
+        bean.setIntention("bad");
 
-    JspWriter out = getJspContext().getOut();
-    ELContext context = getJspContext().getELContext();
-    BeanELResolver beanResolver = new BeanELResolver();
+        JspWriter out = getJspContext().getOut();
+        ELContext context = getJspContext().getELContext();
+        BeanELResolver beanResolver = new BeanELResolver();
 
-    try {
-      boolean pass = ResolverTest.testELResolver(context, beanResolver, bean,
-          property, "good", buf, false);
-      out.println(buf.toString());
-      if (pass == true)
-        out.println("Test PASSED");
-    } catch (Throwable t) {
-      out.println("contents of buffer:\n" + buf.toString());
-      JspTestUtil.handleThrowable(t, out, "BeanELResolverTag");
+        try {
+            boolean pass = ResolverTest.testELResolver(context, beanResolver, bean, property, "good", buf, false);
+            out.println(buf.toString());
+            if (pass == true) out.println("Test PASSED");
+        } catch (Throwable t) {
+            out.println("contents of buffer:\n" + buf.toString());
+            JspTestUtil.handleThrowable(t, out, "BeanELResolverTag");
+        }
     }
-  }
 }

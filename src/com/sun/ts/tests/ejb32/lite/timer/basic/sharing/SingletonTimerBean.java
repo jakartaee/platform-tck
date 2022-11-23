@@ -17,7 +17,6 @@
 package com.sun.ts.tests.ejb32.lite.timer.basic.sharing;
 
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.ejb.Singleton;
 import jakarta.ejb.TimedObject;
 import jakarta.ejb.TimerConfig;
@@ -29,40 +28,37 @@ import jakarta.ejb.TransactionManagementType;
 @Singleton
 @TransactionManagement(TransactionManagementType.CONTAINER)
 @TransactionAttribute(TransactionAttributeType.NEVER)
-public class SingletonTimerBean extends SharingTimerBeanBase
-    implements TimerIF, TimedObject {
+public class SingletonTimerBean extends SharingTimerBeanBase implements TimerIF, TimedObject {
 
-  // override business methods to apply tx attr NEVER
-  @Override
-  public String accessTimers() throws TestFailedException {
-    return super.accessTimers();
-  }
+    // override business methods to apply tx attr NEVER
+    @Override
+    public String accessTimers() throws TestFailedException {
+        return super.accessTimers();
+    }
 
-  // @Override
-  // public Timer createTimer(long duration, Serializable timerInfo) {
-  // // return super.createTimer(duration, timerInfo);
-  // return super.createTimer(duration, new TimerConfig(timerInfo, false));
-  // }
-  //
-  // @Override
-  // public Timer createTimer(Date expiration, long duration,
-  // Serializable timerInfo) {
-  // // return super.createTimer(expiration, duration, timerInfo);
-  // return super.createTimer(expiration, duration, new TimerConfig(timerInfo,
-  // false));
-  // }
+    // @Override
+    // public Timer createTimer(long duration, Serializable timerInfo) {
+    // // return super.createTimer(duration, timerInfo);
+    // return super.createTimer(duration, new TimerConfig(timerInfo, false));
+    // }
+    //
+    // @Override
+    // public Timer createTimer(Date expiration, long duration,
+    // Serializable timerInfo) {
+    // // return super.createTimer(expiration, duration, timerInfo);
+    // return super.createTimer(expiration, duration, new TimerConfig(timerInfo,
+    // false));
+    // }
 
-  @Override
-  public void cancelAllTimers() {
-    super.cancelAllTimers();
-  }
+    @Override
+    public void cancelAllTimers() {
+        super.cancelAllTimers();
+    }
 
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  public void createTimerRollback(long duration,
-      java.io.Serializable timerInfo) {
-    // timerService.createTimer(duration, timerInfo);
-    timerService.createSingleActionTimer(duration,
-        new TimerConfig(timerInfo, false));
-    ejbContext.setRollbackOnly();
-  }
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public void createTimerRollback(long duration, java.io.Serializable timerInfo) {
+        // timerService.createTimer(duration, timerInfo);
+        timerService.createSingleActionTimer(duration, new TimerConfig(timerInfo, false));
+        ejbContext.setRollbackOnly();
+    }
 }

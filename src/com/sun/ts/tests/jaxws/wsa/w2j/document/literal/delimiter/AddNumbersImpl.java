@@ -20,41 +20,43 @@
 
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.delimiter;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
 import jakarta.jws.WebService;
 
-@WebService(portName = "AddNumbersPort", serviceName = "AddNumbersService", targetNamespace = "urn:example.com", wsdlLocation = "WEB-INF/wsdl/WSAW2JDLDelimiterTest.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.delimiter.AddNumbersPortType")
+@WebService(
+        portName = "AddNumbersPort",
+        serviceName = "AddNumbersService",
+        targetNamespace = "urn:example.com",
+        wsdlLocation = "WEB-INF/wsdl/WSAW2JDLDelimiterTest.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.delimiter.AddNumbersPortType")
 public class AddNumbersImpl implements AddNumbersPortType {
 
-  public int addNumbers(int number1, int number2)
-      throws AddNumbersFault_Exception {
-    if (number1 < 0 || number2 < 0) {
-      AddNumbersFault faultInfo = createAddNumbersFault(number1, number2);
-      throw new AddNumbersFault_Exception(faultInfo.getMessage(), faultInfo);
+    public int addNumbers(int number1, int number2) throws AddNumbersFault_Exception {
+        if (number1 < 0 || number2 < 0) {
+            AddNumbersFault faultInfo = createAddNumbersFault(number1, number2);
+            throw new AddNumbersFault_Exception(faultInfo.getMessage(), faultInfo);
+        }
+
+        return number1 + number2;
     }
 
-    return number1 + number2;
-  }
+    public int addNumbers2(int number1, int number2) throws AddNumbersFault_Exception {
+        if (number1 < 0 || number2 < 0) {
+            AddNumbersFault faultInfo = createAddNumbersFault(number1, number2);
+            throw new AddNumbersFault_Exception(faultInfo.getMessage(), faultInfo);
+        }
 
-  public int addNumbers2(int number1, int number2)
-      throws AddNumbersFault_Exception {
-    if (number1 < 0 || number2 < 0) {
-      AddNumbersFault faultInfo = createAddNumbersFault(number1, number2);
-      throw new AddNumbersFault_Exception(faultInfo.getMessage(), faultInfo);
+        return number1 + number2;
     }
 
-    return number1 + number2;
-  }
+    AddNumbersFault createAddNumbersFault(int number1, int number2) {
+        ObjectFactory of = new ObjectFactory();
+        AddNumbersFault faultInfo = of.createAddNumbersFault();
+        faultInfo.setDetail("Negative numbers cant be added!");
+        faultInfo.setMessage("Numbers: " + number1 + ", " + number2);
 
-  AddNumbersFault createAddNumbersFault(int number1, int number2) {
-    ObjectFactory of = new ObjectFactory();
-    AddNumbersFault faultInfo = of.createAddNumbersFault();
-    faultInfo.setDetail("Negative numbers cant be added!");
-    faultInfo.setMessage("Numbers: " + number1 + ", " + number2);
-
-    return faultInfo;
-  }
+        return faultInfo;
+    }
 }

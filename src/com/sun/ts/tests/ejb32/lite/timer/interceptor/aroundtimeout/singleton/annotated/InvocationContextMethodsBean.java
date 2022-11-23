@@ -17,7 +17,6 @@
 package com.sun.ts.tests.ejb32.lite.timer.interceptor.aroundtimeout.singleton.annotated;
 
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeoutIF;
-
 import jakarta.ejb.Singleton;
 import jakarta.interceptor.AroundTimeout;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
@@ -25,13 +24,11 @@ import jakarta.interceptor.InvocationContext;
 
 @Singleton
 @ExcludeDefaultInterceptors
-public class InvocationContextMethodsBean extends AroundTimeoutBeanBase
-    implements AroundTimeoutIF {
+public class InvocationContextMethodsBean extends AroundTimeoutBeanBase implements AroundTimeoutIF {
 
-  @AroundTimeout
-  @Override
-  protected Object aroundTimeoutInAroundTimeoutBeanBase(InvocationContext inv)
-      throws Exception {
-    return invocationContextMethods(inv);
-  }
+    @AroundTimeout
+    @Override
+    protected Object aroundTimeoutInAroundTimeoutBeanBase(InvocationContext inv) throws Exception {
+        return invocationContextMethods(inv);
+    }
 }

@@ -22,36 +22,36 @@ package com.sun.ts.tests.ejb30.common.migration.twothree;
 
 import jakarta.ejb.EJBContext;
 
-abstract public class MigrationBeanBase implements ThreeIF {
-  abstract protected EJBContext getEJBContext();
+public abstract class MigrationBeanBase implements ThreeIF {
+    protected abstract EJBContext getEJBContext();
 
-  //////////////////////////////////////////////////////////////////////
-  // ThreeIF methods
-  //////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////
+    // ThreeIF methods
+    //////////////////////////////////////////////////////////////////////
 
-  public String from3Client() {
-    return "from3Client";
-  }
+    public String from3Client() {
+        return "from3Client";
+    }
 
-  //////////////////////////////////////////////////////////////////////
-  // TwoRemoteIF methods
-  //////////////////////////////////////////////////////////////////////
-  public String from2RemoteClient() {
-    return "from2RemoteClient";
-  }
+    //////////////////////////////////////////////////////////////////////
+    // TwoRemoteIF methods
+    //////////////////////////////////////////////////////////////////////
+    public String from2RemoteClient() {
+        return "from2RemoteClient";
+    }
 
-  public void remoteSameTxContext() {
-    getEJBContext().setRollbackOnly();
-  }
+    public void remoteSameTxContext() {
+        getEJBContext().setRollbackOnly();
+    }
 
-  //////////////////////////////////////////////////////////////////////
-  // TwoLocalIF methods
-  //////////////////////////////////////////////////////////////////////
-  public String from2LocalClient() {
-    return "from2LocalClient";
-  }
+    //////////////////////////////////////////////////////////////////////
+    // TwoLocalIF methods
+    //////////////////////////////////////////////////////////////////////
+    public String from2LocalClient() {
+        return "from2LocalClient";
+    }
 
-  public void localSameTxContext() {
-    getEJBContext().setRollbackOnly();
-  }
+    public void localSameTxContext() {
+        getEJBContext().setRollbackOnly();
+    }
 }

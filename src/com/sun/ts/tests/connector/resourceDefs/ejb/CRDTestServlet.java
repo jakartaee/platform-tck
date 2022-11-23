@@ -16,11 +16,7 @@
 
 package com.sun.ts.tests.connector.resourceDefs.ejb;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
@@ -31,6 +27,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /*
  * In order for these tests to pass, we must have whitebox-tx.rar configured & deployed.
@@ -41,212 +39,190 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  */
 
-@DeclareRoles({ "Administrator", "Manager", "Employee" })
-@ServletSecurity(value = @HttpConstraint(rolesAllowed = {
-    "Administrator" }), httpMethodConstraints = {
-        @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
-        @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator") })
-@WebServlet(name = "CRDTestServlet", urlPatterns = { "/CRDTestServlet" })
+@DeclareRoles({"Administrator", "Manager", "Employee"})
+@ServletSecurity(
+        value = @HttpConstraint(rolesAllowed = {"Administrator"}),
+        httpMethodConstraints = {
+            @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
+            @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator")
+        })
+@WebServlet(
+        name = "CRDTestServlet",
+        urlPatterns = {"/CRDTestServlet"})
 public class CRDTestServlet extends HttpServlet {
-  @EJB
-  private ITestStatelessEjb testStatelessEjb;
+    @EJB
+    private ITestStatelessEjb testStatelessEjb;
 
-  private String servletAppContext = null;
+    private String servletAppContext = null;
 
-  private String testMethod = null;
+    private String testMethod = null;
 
-  private String RARJndiScope = null;
+    private String RARJndiScope = null;
 
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    debug("in CRDTestServlet.doGet()");
-    getPropsAndParams(request, response);
-    doPost(request, response);
-  }
-
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    debug("in CRDTestServlet.doPost()");
-    getPropsAndParams(request, response);
-    doTests(request, response);
-  }
-
-  private void doTests(HttpServletRequest request,
-      HttpServletResponse response) {
-
-    debug("in CRDTestServlet.doTests()");
-    PrintWriter out = null;
-    try {
-      out = response.getWriter();
-    } catch (Exception ex) {
-      debug("got exception in CRDTestServlet");
-      ex.printStackTrace();
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        debug("in CRDTestServlet.doGet()");
+        getPropsAndParams(request, response);
+        doPost(request, response);
     }
 
-    // get some common props
-    getPropsAndParams(request, response);
-
-    if (testMethod.equals("ValidateGlobalResourceDef")) {
-      debug(
-          "CRDTestServlet.doTests(): testMethod == ValidateGlobalResourceDef");
-      validateGlobalResourceDef(request, response);
-
-    } else if (testMethod.equals("ValidateAppResourceDef")) {
-      debug("CRDTestServlet.doTests(): testMethod == ValidateAppResourceDef");
-      validateAppResourceDef(request, response);
-
-    } else if (testMethod.equals("ValidateCompResourceDef")) {
-      debug("CRDTestServlet.doTests(): testMethod == ValidateCompResourceDef");
-      validateCompResourceDef(request, response);
-
-    } else if (testMethod.equals("ValidateModuleResourceDef")) {
-      debug(
-          "CRDTestServlet.doTests(): testMethod == ValidateModuleResourceDef");
-      validateModuleResourceDef(request, response);
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        debug("in CRDTestServlet.doPost()");
+        getPropsAndParams(request, response);
+        doTests(request, response);
     }
 
-  }
+    private void doTests(HttpServletRequest request, HttpServletResponse response) {
 
-  private void getPropsAndParams(HttpServletRequest req,
-      HttpServletResponse response) {
+        debug("in CRDTestServlet.doTests()");
+        PrintWriter out = null;
+        try {
+            out = response.getWriter();
+        } catch (Exception ex) {
+            debug("got exception in CRDTestServlet");
+            ex.printStackTrace();
+        }
 
-    // set testMethod
-    testMethod = req.getParameter("method.under.test");
-    RARJndiScope = req.getParameter("rar.jndi.scope");
+        // get some common props
+        getPropsAndParams(request, response);
 
-    debug("CRDTestServlet.getPropsAndParams():  testMethod = " + testMethod);
-    debug(
-        "CRDTestServlet.getPropsAndParams():  RARJndiScope = " + RARJndiScope);
+        if (testMethod.equals("ValidateGlobalResourceDef")) {
+            debug("CRDTestServlet.doTests(): testMethod == ValidateGlobalResourceDef");
+            validateGlobalResourceDef(request, response);
 
-    return;
-  }
+        } else if (testMethod.equals("ValidateAppResourceDef")) {
+            debug("CRDTestServlet.doTests(): testMethod == ValidateAppResourceDef");
+            validateAppResourceDef(request, response);
 
-  public void validateGlobalResourceDef(HttpServletRequest request,
-      HttpServletResponse response) {
-    PrintWriter out;
+        } else if (testMethod.equals("ValidateCompResourceDef")) {
+            debug("CRDTestServlet.doTests(): testMethod == ValidateCompResourceDef");
+            validateCompResourceDef(request, response);
 
-    try {
-      out = response.getWriter();
-
-      System.out.println(
-          "TestServlet->validateGlobalResourceDef()  calling testStatefullEjb.validateGlobalResourceDef()");
-      if (testStatelessEjb == null) {
-        send_output(out,
-            "ERROR:  test will fail since testStatelessEjb == null");
-      }
-
-      boolean bval = testStatelessEjb.validateConnectorResource(RARJndiScope);
-      if (bval == true) {
-        send_output(out, "SUCCESS:  validateGlobalResourceDef passed.");
-      } else {
-        send_output(out,
-            "FAILURE:  validateGlobalResourceDef had unexpected exception.");
-      }
-    } catch (Exception ex) {
-      System.out.println("CRDTestServlet->validateGlobalResourceDef() failed");
-      ex.printStackTrace();
-      System.out.println(
-          "FAILURE:  validateGlobalResourceDef had unexpected exception.");
+        } else if (testMethod.equals("ValidateModuleResourceDef")) {
+            debug("CRDTestServlet.doTests(): testMethod == ValidateModuleResourceDef");
+            validateModuleResourceDef(request, response);
+        }
     }
-  }
 
-  public void validateAppResourceDef(HttpServletRequest request,
-      HttpServletResponse response) {
-    PrintWriter out;
-    try {
-      out = response.getWriter();
+    private void getPropsAndParams(HttpServletRequest req, HttpServletResponse response) {
 
-      if (testStatelessEjb == null) {
-        send_output(out,
-            "ERROR:  test will fail since testStatelessEjb == null");
-      }
+        // set testMethod
+        testMethod = req.getParameter("method.under.test");
+        RARJndiScope = req.getParameter("rar.jndi.scope");
 
-      boolean bval = testStatelessEjb.validateConnectorResource(RARJndiScope);
-      if (bval == true) {
-        send_output(out, "SUCCESS:  validateAppResourceDef passed.");
-      } else {
-        send_output(out,
-            "FAILURE:  validateAppResourceDef had unexpected exception.");
-      }
-    } catch (Exception ex) {
-      System.out.println("CRDTestServlet->validateAppResourceDef() failed");
-      ex.printStackTrace();
-      System.out.println(
-          "FAILURE:  validateAppResourceDef had unexpected exception.");
+        debug("CRDTestServlet.getPropsAndParams():  testMethod = " + testMethod);
+        debug("CRDTestServlet.getPropsAndParams():  RARJndiScope = " + RARJndiScope);
+
+        return;
     }
-  }
 
-  public void validateCompResourceDef(HttpServletRequest request,
-      HttpServletResponse response) {
-    PrintWriter out;
-    try {
-      out = response.getWriter();
+    public void validateGlobalResourceDef(HttpServletRequest request, HttpServletResponse response) {
+        PrintWriter out;
 
-      if (testStatelessEjb == null) {
-        send_output(out,
-            "ERROR:  test will fail since testStatelessEjb == null");
-      }
+        try {
+            out = response.getWriter();
 
-      boolean bval = testStatelessEjb.validateConnectorResource(RARJndiScope);
-      if (bval == true) {
-        send_output(out, "SUCCESS:  validateCompResourceDef passed.");
-      } else {
-        send_output(out,
-            "FAILURE:  validateCompResourceDef had unexpected exception.");
-      }
-    } catch (Exception ex) {
-      System.out.println("CRDTestServlet->validateCompResourceDef() failed");
-      ex.printStackTrace();
-      System.out.println(
-          "FAILURE:  validateCompResourceDef had unexpected exception.");
+            System.out.println(
+                    "TestServlet->validateGlobalResourceDef()  calling testStatefullEjb.validateGlobalResourceDef()");
+            if (testStatelessEjb == null) {
+                send_output(out, "ERROR:  test will fail since testStatelessEjb == null");
+            }
+
+            boolean bval = testStatelessEjb.validateConnectorResource(RARJndiScope);
+            if (bval == true) {
+                send_output(out, "SUCCESS:  validateGlobalResourceDef passed.");
+            } else {
+                send_output(out, "FAILURE:  validateGlobalResourceDef had unexpected exception.");
+            }
+        } catch (Exception ex) {
+            System.out.println("CRDTestServlet->validateGlobalResourceDef() failed");
+            ex.printStackTrace();
+            System.out.println("FAILURE:  validateGlobalResourceDef had unexpected exception.");
+        }
     }
-  }
 
-  public void validateModuleResourceDef(HttpServletRequest request,
-      HttpServletResponse response) {
-    PrintWriter out;
-    try {
-      out = response.getWriter();
+    public void validateAppResourceDef(HttpServletRequest request, HttpServletResponse response) {
+        PrintWriter out;
+        try {
+            out = response.getWriter();
 
-      if (testStatelessEjb == null) {
-        send_output(out,
-            "ERROR:  test will fail since testStatelessEjb == null");
-      }
+            if (testStatelessEjb == null) {
+                send_output(out, "ERROR:  test will fail since testStatelessEjb == null");
+            }
 
-      boolean bval = testStatelessEjb.validateConnectorResource(RARJndiScope);
-      if (bval == true) {
-        send_output(out, "SUCCESS:  validateModuleResourceDef passed.");
-      } else {
-        send_output(out,
-            "FAILURE:  validateModuleResourceDef had unexpected exception.");
-      }
-    } catch (Exception ex) {
-      System.out.println("CRDTestServlet->validateModuleResourceDef() failed");
-      ex.printStackTrace();
-      System.out.println(
-          "FAILURE:  validateModuleResourceDef had unexpected exception.");
+            boolean bval = testStatelessEjb.validateConnectorResource(RARJndiScope);
+            if (bval == true) {
+                send_output(out, "SUCCESS:  validateAppResourceDef passed.");
+            } else {
+                send_output(out, "FAILURE:  validateAppResourceDef had unexpected exception.");
+            }
+        } catch (Exception ex) {
+            System.out.println("CRDTestServlet->validateAppResourceDef() failed");
+            ex.printStackTrace();
+            System.out.println("FAILURE:  validateAppResourceDef had unexpected exception.");
+        }
     }
-  }
 
-  public void send_output(PrintWriter out, String str) {
-    if (out != null) {
-      out.println(str);
-      out.flush();
-      debug(str);
-    } else {
-      print_err("ERROR, Null PrintWriter:  can not properly send back message: "
-          + str);
+    public void validateCompResourceDef(HttpServletRequest request, HttpServletResponse response) {
+        PrintWriter out;
+        try {
+            out = response.getWriter();
+
+            if (testStatelessEjb == null) {
+                send_output(out, "ERROR:  test will fail since testStatelessEjb == null");
+            }
+
+            boolean bval = testStatelessEjb.validateConnectorResource(RARJndiScope);
+            if (bval == true) {
+                send_output(out, "SUCCESS:  validateCompResourceDef passed.");
+            } else {
+                send_output(out, "FAILURE:  validateCompResourceDef had unexpected exception.");
+            }
+        } catch (Exception ex) {
+            System.out.println("CRDTestServlet->validateCompResourceDef() failed");
+            ex.printStackTrace();
+            System.out.println("FAILURE:  validateCompResourceDef had unexpected exception.");
+        }
     }
-  }
 
-  public void print_err(String str) {
-    System.err.println(str);
-    debug(str);
-  }
+    public void validateModuleResourceDef(HttpServletRequest request, HttpServletResponse response) {
+        PrintWriter out;
+        try {
+            out = response.getWriter();
 
-  public void debug(String str) {
-    TestUtil.logMsg(str);
-    System.out.println(str);
-  }
+            if (testStatelessEjb == null) {
+                send_output(out, "ERROR:  test will fail since testStatelessEjb == null");
+            }
 
+            boolean bval = testStatelessEjb.validateConnectorResource(RARJndiScope);
+            if (bval == true) {
+                send_output(out, "SUCCESS:  validateModuleResourceDef passed.");
+            } else {
+                send_output(out, "FAILURE:  validateModuleResourceDef had unexpected exception.");
+            }
+        } catch (Exception ex) {
+            System.out.println("CRDTestServlet->validateModuleResourceDef() failed");
+            ex.printStackTrace();
+            System.out.println("FAILURE:  validateModuleResourceDef had unexpected exception.");
+        }
+    }
+
+    public void send_output(PrintWriter out, String str) {
+        if (out != null) {
+            out.println(str);
+            out.flush();
+            debug(str);
+        } else {
+            print_err("ERROR, Null PrintWriter:  can not properly send back message: " + str);
+        }
+    }
+
+    public void print_err(String str) {
+        System.err.println(str);
+        debug(str);
+    }
+
+    public void debug(String str) {
+        TestUtil.logMsg(str);
+        System.out.println(str);
+    }
 }

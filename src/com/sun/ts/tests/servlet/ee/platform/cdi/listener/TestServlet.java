@@ -16,30 +16,24 @@
 
 package com.sun.ts.tests.servlet.ee.platform.cdi.listener;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-@WebServlet(name = "TCKTestServlet", urlPatterns = { "/TCKTestServletURL" })
+@WebServlet(
+        name = "TCKTestServlet",
+        urlPatterns = {"/TCKTestServletURL"})
 public class TestServlet extends HttpTCKServlet {
 
-  public void srTest(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.getWriter()
-        .println(getServletContext().getAttribute("TEST_LOG_SR"));
+    public void srTest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.getWriter().println(getServletContext().getAttribute("TEST_LOG_SR"));
+    }
 
-  }
-
-  public void sarTest(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    request.setAttribute("abc", "xyz");
-    response.getWriter()
-        .println(getServletContext().getAttribute("TEST_LOG_SAR"));
-
-  }
+    public void sarTest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("abc", "xyz");
+        response.getWriter().println(getServletContext().getAttribute("TEST_LOG_SAR"));
+    }
 }

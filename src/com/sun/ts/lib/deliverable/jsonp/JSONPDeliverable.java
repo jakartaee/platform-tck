@@ -13,60 +13,51 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
- 
+
 package com.sun.ts.lib.deliverable.jsonp;
 
+import com.sun.javatest.TestEnvironment;
 import com.sun.ts.lib.deliverable.AbstractDeliverable;
 import com.sun.ts.lib.deliverable.PropertyManagerInterface;
-import com.sun.javatest.TestEnvironment;
-
 import java.util.Map;
 import java.util.Properties;
 
 /**
  * This class serves as a place for JSONP Deliverable specific info.
- *  
+ *
  * @author	Art Frechette
- */	
-public class JSONPDeliverable extends AbstractDeliverable
-{
-	public PropertyManagerInterface createPropertyManager(TestEnvironment te) throws Exception
-	{
-		return JSONPPropertyManager.getJSONPPropertyManager(te);
-	}
-	
-	public PropertyManagerInterface createPropertyManager(Properties p) throws Exception
-	{
-		return JSONPPropertyManager.getJSONPPropertyManager(p);
-	}
-	
-	public PropertyManagerInterface getPropertyManager() throws Exception
-	{
-		return JSONPPropertyManager.getJSONPPropertyManager();
-	}
-	
-	public boolean supportsAutoDeployment()
-	{
-		return false;
-	}
-	
-	public boolean supportsAutoJMSAdmin()
-	{
-		return false;
-	}
-	
-	public boolean supportsInterop()
-	{
-		return false;
-	}
-	
-	public Map getValidVehicles()
-	{
-		super.getValidVehicles();
-		
-		//add default values	
-		htTSValidVehicles.put("tests.service_eetest.vehicles", new String[]{"standalone"});
+ */
+public class JSONPDeliverable extends AbstractDeliverable {
+    public PropertyManagerInterface createPropertyManager(TestEnvironment te) throws Exception {
+        return JSONPPropertyManager.getJSONPPropertyManager(te);
+    }
 
-		return htTSValidVehicles;
-	}
+    public PropertyManagerInterface createPropertyManager(Properties p) throws Exception {
+        return JSONPPropertyManager.getJSONPPropertyManager(p);
+    }
+
+    public PropertyManagerInterface getPropertyManager() throws Exception {
+        return JSONPPropertyManager.getJSONPPropertyManager();
+    }
+
+    public boolean supportsAutoDeployment() {
+        return false;
+    }
+
+    public boolean supportsAutoJMSAdmin() {
+        return false;
+    }
+
+    public boolean supportsInterop() {
+        return false;
+    }
+
+    public Map getValidVehicles() {
+        super.getValidVehicles();
+
+        // add default values
+        htTSValidVehicles.put("tests.service_eetest.vehicles", new String[] {"standalone"});
+
+        return htTSValidVehicles;
+    }
 }

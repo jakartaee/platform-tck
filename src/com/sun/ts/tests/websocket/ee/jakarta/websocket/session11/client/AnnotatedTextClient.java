@@ -17,12 +17,9 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.client;
 
-import java.io.Reader;
-
 import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
 import com.sun.ts.tests.websocket.common.client.StringClientEndpoint;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.AlternativeReaderDecoder;
-
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -30,31 +27,31 @@ import jakarta.websocket.OnClose;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
+import java.io.Reader;
 
-@ClientEndpoint(decoders = { AlternativeReaderDecoder.class })
+@ClientEndpoint(decoders = {AlternativeReaderDecoder.class})
 public class AnnotatedTextClient extends AnnotatedClientEndpoint<String> {
 
-  public AnnotatedTextClient() {
-    super(new StringClientEndpoint());
-  }
+    public AnnotatedTextClient() {
+        super(new StringClientEndpoint());
+    }
 
-  @OnOpen
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    session.addMessageHandler(Reader.class,
-        new ReaderMessageHandler(clientEndpoint));
-    super.onOpen(session, config);
-  }
+    @OnOpen
+    @Override
+    public void onOpen(Session session, EndpointConfig config) {
+        session.addMessageHandler(Reader.class, new ReaderMessageHandler(clientEndpoint));
+        super.onOpen(session, config);
+    }
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+    @OnClose
+    @Override
+    public void onClose(Session session, CloseReason closeReason) {
+        super.onClose(session, closeReason);
+    }
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+    @OnError
+    @Override
+    public void onError(Session session, Throwable t) {
+        super.onError(session, t);
+    }
 }

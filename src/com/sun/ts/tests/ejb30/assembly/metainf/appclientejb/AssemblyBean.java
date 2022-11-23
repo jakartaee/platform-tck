@@ -26,24 +26,19 @@ import com.sun.ts.tests.ejb30.assembly.common.AssemblyLocalIF;
 import com.sun.ts.tests.ejb30.assembly.common.AssemblyRemoteIF;
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 
-//already declared in ejb-jar.xml.  Annotations not needed
-public class AssemblyBean extends AssemblyBeanBase
-    implements AssemblyRemoteIF, AssemblyLocalIF, AssemblyCommonIF {
+// already declared in ejb-jar.xml.  Annotations not needed
+public class AssemblyBean extends AssemblyBeanBase implements AssemblyRemoteIF, AssemblyLocalIF, AssemblyCommonIF {
 
-  public AssemblyBean() {
-  }
+    public AssemblyBean() {}
 
-  @Override
-  public String dirUsedInClassPath() {
-    CalculatorException e = new CalculatorException(
-        "Just to show CalculatorException.class can be loaded in EJB.");
-    String s = e.toString();
-    try {
-      s = s + ", Classloader info: "
-          + (e.getClass().getClassLoader().toString());
-    } catch (Exception ignore) {
+    @Override
+    public String dirUsedInClassPath() {
+        CalculatorException e = new CalculatorException("Just to show CalculatorException.class can be loaded in EJB.");
+        String s = e.toString();
+        try {
+            s = s + ", Classloader info: " + (e.getClass().getClassLoader().toString());
+        } catch (Exception ignore) {
+        }
+        return s;
     }
-    return s;
-  }
-
 }

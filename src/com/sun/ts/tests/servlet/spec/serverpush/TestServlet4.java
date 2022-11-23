@@ -16,9 +16,6 @@
 
 package com.sun.ts.tests.servlet.spec.serverpush;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
@@ -26,28 +23,29 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.PushBuilder;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet4 extends HttpServlet {
 
-  @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, IOException {
-    PrintWriter pw = resp.getWriter();
-    Cookie cookie1 = new Cookie("foo", "bar");
-    cookie1.setMaxAge(1000);
-    resp.addCookie(cookie1);
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        PrintWriter pw = resp.getWriter();
+        Cookie cookie1 = new Cookie("foo", "bar");
+        cookie1.setMaxAge(1000);
+        resp.addCookie(cookie1);
 
-    Cookie cookie2 = new Cookie("baz", "qux");
-    cookie2.setMaxAge(-1);
-    resp.addCookie(cookie2);
-    pw.println("add cookies [foo,bar] [baz,qux] to response");
+        Cookie cookie2 = new Cookie("baz", "qux");
+        cookie2.setMaxAge(-1);
+        resp.addCookie(cookie2);
+        pw.println("add cookies [foo,bar] [baz,qux] to response");
 
-    HttpSession session = req.getSession(true);
-    pw.println("create session: " + session);
+        HttpSession session = req.getSession(true);
+        pw.println("create session: " + session);
 
-    PushBuilder pb = req.newPushBuilder();
-    pw.println("Cookie header in PushBuilder: " + pb.getHeader("Cookie"));
-    pb.path("index.html");
-    pb.push();
-  }
+        PushBuilder pb = req.newPushBuilder();
+        pw.println("Cookie header in PushBuilder: " + pb.getHeader("Cookie"));
+        pb.path("index.html");
+        pb.push();
+    }
 }

@@ -17,14 +17,17 @@
 package com.sun.ts.tests.webservices13.servlet.WSAddressingFeaturesTestUsingAnnotations;
 
 import jakarta.jws.WebService;
-import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.Holder;
 
-@WebService(portName = "EchoPort", serviceName = "EchoService", targetNamespace = "http://Echo.org", wsdlLocation = "WEB-INF/wsdl/EchoService.wsdl", endpointInterface = "com.sun.ts.tests.webservices13.servlet.WSAddressingFeaturesTestUsingAnnotations.Echo")
-
+@WebService(
+        portName = "EchoPort",
+        serviceName = "EchoService",
+        targetNamespace = "http://Echo.org",
+        wsdlLocation = "WEB-INF/wsdl/EchoService.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices13.servlet.WSAddressingFeaturesTestUsingAnnotations.Echo")
 public class EchoImpl {
 
-  public String echo(String string, Holder<String> testName) {
-    return string;
-  }
+    public String echo(String string, Holder<String> testName) {
+        return string;
+    }
 }

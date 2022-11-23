@@ -19,36 +19,35 @@
  */
 package com.sun.ts.tests.servlet.spec.async;
 
-import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
-
 import jakarta.servlet.AsyncContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class TestServlet extends GenericTCKServlet {
 
-  public void test1(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    final AsyncContext ac = request.startAsync();
+    public void test1(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        final AsyncContext ac = request.startAsync();
 
-    Timer asyncTimer = new Timer("TestTimer", true);
-    asyncTimer.schedule(new TimerTask() {
+        Timer asyncTimer = new Timer("TestTimer", true);
+        asyncTimer.schedule(
+                new TimerTask() {
 
-      @Override
-      public void run() {
-        try {
-          ac.getResponse().getWriter().println("test1_INVOKED");
-          ac.getResponse().getWriter().flush();
-          ac.complete();
-        } catch (IOException ioe) {
-          ioe.printStackTrace();
-        }
-      }
-    }, 1000);
-  }
+                    @Override
+                    public void run() {
+                        try {
+                            ac.getResponse().getWriter().println("test1_INVOKED");
+                            ac.getResponse().getWriter().flush();
+                            ac.complete();
+                        } catch (IOException ioe) {
+                            ioe.printStackTrace();
+                        }
+                    }
+                },
+                1000);
+    }
 }

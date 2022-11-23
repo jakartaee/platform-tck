@@ -57,20 +57,18 @@
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpsessionbindinglistener;
 
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.http.HttpSessionBindingEvent;
 import jakarta.servlet.http.HttpSessionBindingListener;
 
 public final class HSBindingListener implements HttpSessionBindingListener {
 
-  // Public Methods
+    // Public Methods
 
-  public void valueBound(HttpSessionBindingEvent event) {
-    StaticLog.add("valueBound:" + event.getName());
-  }
+    public void valueBound(HttpSessionBindingEvent event) {
+        StaticLog.add("valueBound:" + event.getName());
+    }
 
-  public void valueUnbound(HttpSessionBindingEvent event) {
-    StaticLog.add("valueUnBound:" + event.getName());
-  }
-
+    public void valueUnbound(HttpSessionBindingEvent event) {
+        StaticLog.add("valueUnBound:" + event.getName());
+    }
 }

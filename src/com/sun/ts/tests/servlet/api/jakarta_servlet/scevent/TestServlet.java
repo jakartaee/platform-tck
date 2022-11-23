@@ -58,50 +58,44 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.scevent;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class TestServlet extends GenericTCKServlet {
 
-  public void constructorTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
+    public void constructorTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
-    ServletContextEvent sce = new ServletContextEvent(
-        this.getServletConfig().getServletContext());
-    if (sce != null) {
-      ServletTestUtil.printResult(pw, true);
-    } else {
-      ServletTestUtil.printResult(pw, false);
+        PrintWriter pw = response.getWriter();
+        ServletContextEvent sce =
+                new ServletContextEvent(this.getServletConfig().getServletContext());
+        if (sce != null) {
+            ServletTestUtil.printResult(pw, true);
+        } else {
+            ServletTestUtil.printResult(pw, false);
+        }
     }
 
-  }
+    public void getServletContextTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
 
-  public void getServletContextTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    PrintWriter pw = response.getWriter();
+        String[] expected = {"ServletContextEvent.getServletContext() returned instanceof ServletContext"};
 
-    String[] expected = {
-        "ServletContextEvent.getServletContext() returned instanceof ServletContext" };
-
-    // verify results
-    ArrayList result = StaticLog.getClear();
-    boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);
-    if (!b) {
-      ServletTestUtil.printFailureData(pw, result, expected);
+        // verify results
+        ArrayList result = StaticLog.getClear();
+        boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);
+        if (!b) {
+            ServletTestUtil.printFailureData(pw, result, expected);
+        }
+        ServletTestUtil.printResult(pw, b);
     }
-    ServletTestUtil.printResult(pw, b);
-
-  }
 }

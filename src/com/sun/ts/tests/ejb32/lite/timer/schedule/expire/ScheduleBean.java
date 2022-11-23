@@ -16,82 +16,76 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.schedule.expire;
 
-import java.util.Collection;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
-
 import jakarta.ejb.NoMoreTimeoutsException;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Timeout;
 import jakarta.ejb.Timer;
+import java.util.Collection;
 
 @Singleton
 public class ScheduleBean extends TimerBeanBaseWithoutTimeOutMethod {
-  @Override
-  @Timeout
-  protected void timeout(Timer timer) {
-    super.timeout(timer);
-    TimerInfo info = (TimerInfo) timer.getInfo();
-    String testName = info.getTestName();
-    if (testName.equals("timerAccessInTimeoutMethod")) {
-      timerAccessInTimeoutMethod(timer, testName);
-    } else if (testName.equals("cancelInTimeoutMethod")) {
-      timer.cancel();
-    } else if (testName.startsWith("incrementSecond")) {
-      final long margin = 10 * 1000; // generous 10 seconds
-      long timeRemaining = timer.getTimeRemaining();
-      long expectedTimeRemaining = info.getLongVar();
-      if (Math.abs(timeRemaining - expectedTimeRemaining) <= margin) {
-        Helper.getLogger()
-            .info("Expected timeRemaining: " + expectedTimeRemaining
-                + ", and actual " + timeRemaining
-                + " are close enough for test " + testName);
-      } else {
-        statusSingleton.setStatus(testName, false);
-        statusSingleton.addRecord(testName, "Expecting timeRemaining "
-            + expectedTimeRemaining + ", actual " + timeRemaining);
-      }
-    }
-  }
-
-  private void timerAccessInTimeoutMethod(Timer t, String testName) {
-    Collection<Timer> timers = timerService.getTimers();
-    if (timers.size() == 1) {
-      statusSingleton.addRecord(testName, "Found 1 timer, as expected.");
-    } else {
-      statusSingleton.setStatus(testName, false);
-      statusSingleton.addRecord(testName,
-          "Expecting 1 timer, but got " + timers.size());
-    }
-    if (t.isPersistent()) {
-      t.getHandle();
-    }
-    if (t.isCalendarTimer()) {
-      t.getSchedule();
-    }
-    t.isPersistent();
-    try {
-      t.getNextTimeout();
-      statusSingleton.setStatus(testName, false);
-      statusSingleton.addRecord(testName,
-          "Expecting NoMoreTimeoutsException, but got none.");
-    } catch (NoMoreTimeoutsException e) {
-      statusSingleton.addRecord(testName, "Got the expected " + e);
+    @Override
+    @Timeout
+    protected void timeout(Timer timer) {
+        super.timeout(timer);
+        TimerInfo info = (TimerInfo) timer.getInfo();
+        String testName = info.getTestName();
+        if (testName.equals("timerAccessInTimeoutMethod")) {
+            timerAccessInTimeoutMethod(timer, testName);
+        } else if (testName.equals("cancelInTimeoutMethod")) {
+            timer.cancel();
+        } else if (testName.startsWith("incrementSecond")) {
+            final long margin = 10 * 1000; // generous 10 seconds
+            long timeRemaining = timer.getTimeRemaining();
+            long expectedTimeRemaining = info.getLongVar();
+            if (Math.abs(timeRemaining - expectedTimeRemaining) <= margin) {
+                Helper.getLogger()
+                        .info("Expected timeRemaining: " + expectedTimeRemaining
+                                + ", and actual " + timeRemaining
+                                + " are close enough for test " + testName);
+            } else {
+                statusSingleton.setStatus(testName, false);
+                statusSingleton.addRecord(
+                        testName, "Expecting timeRemaining " + expectedTimeRemaining + ", actual " + timeRemaining);
+            }
+        }
     }
 
-    try {
-      t.getTimeRemaining();
-      statusSingleton.setStatus(testName, false);
-      statusSingleton.addRecord(testName,
-          "Expecting NoMoreTimeoutsException, but got none.");
-    } catch (NoMoreTimeoutsException e) {
-      statusSingleton.addRecord(testName, "Got the expected " + e);
-    }
+    private void timerAccessInTimeoutMethod(Timer t, String testName) {
+        Collection<Timer> timers = timerService.getTimers();
+        if (timers.size() == 1) {
+            statusSingleton.addRecord(testName, "Found 1 timer, as expected.");
+        } else {
+            statusSingleton.setStatus(testName, false);
+            statusSingleton.addRecord(testName, "Expecting 1 timer, but got " + timers.size());
+        }
+        if (t.isPersistent()) {
+            t.getHandle();
+        }
+        if (t.isCalendarTimer()) {
+            t.getSchedule();
+        }
+        t.isPersistent();
+        try {
+            t.getNextTimeout();
+            statusSingleton.setStatus(testName, false);
+            statusSingleton.addRecord(testName, "Expecting NoMoreTimeoutsException, but got none.");
+        } catch (NoMoreTimeoutsException e) {
+            statusSingleton.addRecord(testName, "Got the expected " + e);
+        }
 
-    t.cancel();
-    statusSingleton.addRecord(testName,
-        "Called various timer methods in timeout method.");
-  }
+        try {
+            t.getTimeRemaining();
+            statusSingleton.setStatus(testName, false);
+            statusSingleton.addRecord(testName, "Expecting NoMoreTimeoutsException, but got none.");
+        } catch (NoMoreTimeoutsException e) {
+            statusSingleton.addRecord(testName, "Got the expected " + e);
+        }
+
+        t.cancel();
+        statusSingleton.addRecord(testName, "Called various timer methods in timeout method.");
+    }
 }

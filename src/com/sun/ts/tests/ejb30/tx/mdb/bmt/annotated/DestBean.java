@@ -32,39 +32,39 @@ import jakarta.transaction.NotSupportedException;
 import jakarta.transaction.SystemException;
 import jakarta.transaction.UserTransaction;
 
-//This MDB implements jakarta.jms.MessageListener interface, so no need to
-//use annotation element messageListenerInterface, nor descritpor element
-//messaging-type
-@MessageDriven(name = "DestBean", activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue") })
+// This MDB implements jakarta.jms.MessageListener interface, so no need to
+// use annotation element messageListenerInterface, nor descritpor element
+// messaging-type
+@MessageDriven(
+        name = "DestBean",
+        activationConfig = {
+            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
+        })
 @TransactionManagement(TransactionManagementType.BEAN)
-public class DestBean
-    extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.DestBeanBase
-    implements MessageListener {
-  @Resource(name = "mdc")
-  private MessageDrivenContext mdc;
+public class DestBean extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.DestBeanBase implements MessageListener {
+    @Resource(name = "mdc")
+    private MessageDrivenContext mdc;
 
-  @Resource(name = "ut")
-  private UserTransaction ut;
+    @Resource(name = "ut")
+    private UserTransaction ut;
 
-  public DestBean() {
-    super();
-  }
-
-  public EJBContext getEJBContext() {
-    return this.mdc;
-  }
-
-  public void onMessage(jakarta.jms.Message msg) {
-    try {
-      ut.begin();
-      super.onMessage(msg);
-      ut.rollback();
-    } catch (NotSupportedException e) {
-      throw new IllegalStateException(e);
-    } catch (SystemException e) {
-      throw new IllegalStateException(e);
+    public DestBean() {
+        super();
     }
-  }
 
+    public EJBContext getEJBContext() {
+        return this.mdc;
+    }
+
+    public void onMessage(jakarta.jms.Message msg) {
+        try {
+            ut.begin();
+            super.onMessage(msg);
+            ut.rollback();
+        } catch (NotSupportedException e) {
+            throw new IllegalStateException(e);
+        } catch (SystemException e) {
+            throw new IllegalStateException(e);
+        }
+    }
 }

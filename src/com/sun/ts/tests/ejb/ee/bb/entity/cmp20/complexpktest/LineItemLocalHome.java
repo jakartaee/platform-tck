@@ -25,7 +25,7 @@ import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
 
 public interface LineItemLocalHome extends EJBLocalHome {
-  public LineItemLocal create(String id, int quantity) throws CreateException;
+    public LineItemLocal create(String id, int quantity) throws CreateException;
 
-  public LineItemLocal findByPrimaryKey(String id) throws FinderException;
+    public LineItemLocal findByPrimaryKey(String id) throws FinderException;
 }

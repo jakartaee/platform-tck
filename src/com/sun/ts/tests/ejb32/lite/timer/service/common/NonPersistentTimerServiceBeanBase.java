@@ -18,22 +18,17 @@ package com.sun.ts.tests.ejb32.lite.timer.service.common;
 
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBase;
 import com.sun.ts.tests.ejb32.timer.service.common.TimerIF;
-
 import jakarta.ejb.Schedule;
 import jakarta.ejb.Schedules;
 
-public class NonPersistentTimerServiceBeanBase extends TimerBeanBase
-    implements TimerIF {
+public class NonPersistentTimerServiceBeanBase extends TimerBeanBase implements TimerIF {
 
-  @Schedule(hour = "1", dayOfMonth = "1", persistent = false, info = "a0")
-  void singleAutoTimerCallbackNonPersistent() {
+    @Schedule(hour = "1", dayOfMonth = "1", persistent = false, info = "a0")
+    void singleAutoTimerCallbackNonPersistent() {}
 
-  }
-
-  @Schedules({
-      @Schedule(hour = "12", dayOfWeek = "Mon-Thu", persistent = false, info = "a1"),
-      @Schedule(hour = "11", dayOfWeek = "Fri", persistent = false, info = "a2") })
-  void doubleAutoTimersCallbackNonPersistent() {
-
-  }
+    @Schedules({
+        @Schedule(hour = "12", dayOfWeek = "Mon-Thu", persistent = false, info = "a1"),
+        @Schedule(hour = "11", dayOfWeek = "Fri", persistent = false, info = "a2")
+    })
+    void doubleAutoTimersCallbackNonPersistent() {}
 }

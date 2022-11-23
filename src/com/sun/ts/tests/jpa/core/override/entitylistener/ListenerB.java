@@ -17,20 +17,18 @@
 package com.sun.ts.tests.jpa.core.override.entitylistener;
 
 import com.sun.ts.tests.jpa.core.override.util.CallBackCounts;
-
 import jakarta.persistence.PostRemove;
 
 public class ListenerB {
 
-  public ListenerB() {
-  }
+    public ListenerB() {}
 
-  @PostRemove
-  public void postRemoveFromXML(Object obj) {
-    updateCallBackCount("postRemove");
-  }
+    @PostRemove
+    public void postRemoveFromXML(Object obj) {
+        updateCallBackCount("postRemove");
+    }
 
-  protected void updateCallBackCount(String callBackKeyName) {
-    CallBackCounts.updateCount(callBackKeyName);
-  }
+    protected void updateCallBackCount(String callBackKeyName) {
+        CallBackCounts.updateCount(callBackKeyName);
+    }
 }

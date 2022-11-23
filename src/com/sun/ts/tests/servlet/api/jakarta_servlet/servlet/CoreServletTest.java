@@ -58,52 +58,49 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servlet;
 
-import java.io.IOException;
-
 import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
 
 public abstract class CoreServletTest implements Servlet {
 
-  ServletConfig config;
+    ServletConfig config;
 
-  private boolean sawInit = false;
+    private boolean sawInit = false;
 
-  private boolean sawDestroy = false;
+    private boolean sawDestroy = false;
 
-  // for life cycle test
-  public boolean isInit() {
-    return sawInit;
-  }
+    // for life cycle test
+    public boolean isInit() {
+        return sawInit;
+    }
 
-  // for life cycle test
-  public boolean isDestroyed() {
-    return this.sawDestroy;
-  }
+    // for life cycle test
+    public boolean isDestroyed() {
+        return this.sawDestroy;
+    }
 
-  public void init(ServletConfig config) throws ServletException {
-    // set sawInit to true
-    this.sawInit = true;
-    this.config = config;
-  }
+    public void init(ServletConfig config) throws ServletException {
+        // set sawInit to true
+        this.sawInit = true;
+        this.config = config;
+    }
 
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-  }
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {}
 
-  public String getServletInfo() {
-    return "Servlet Info";
-  }
+    public String getServletInfo() {
+        return "Servlet Info";
+    }
 
-  public ServletConfig getServletConfig() {
-    return this.config;
-  }
+    public ServletConfig getServletConfig() {
+        return this.config;
+    }
 
-  public void destroy() {
-    // set sawDestroy to true
-    this.sawDestroy = true;
-  }
+    public void destroy() {
+        // set sawDestroy to true
+        this.sawDestroy = true;
+    }
 }

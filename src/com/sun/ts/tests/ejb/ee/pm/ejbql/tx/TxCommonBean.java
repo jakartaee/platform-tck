@@ -19,9 +19,8 @@
  */
 package com.sun.ts.tests.ejb.ee.pm.ejbql.tx;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.EJBObject;
+import java.rmi.RemoteException;
 
 /**
  * The TxCommonBean is an entity EJB. Most of the business methods of the
@@ -29,16 +28,15 @@ import jakarta.ejb.EJBObject;
  * methods update the instance variables, which are written to the database when
  * the EJB Container calls ejbStore().
  */
-
 public interface TxCommonBean extends EJBObject {
 
-  public String getBrandName() throws RemoteException;
+    public String getBrandName() throws RemoteException;
 
-  public void setBrandName(String bName) throws RemoteException;
+    public void setBrandName(String bName) throws RemoteException;
 
-  public float getPrice() throws RemoteException;
+    public float getPrice() throws RemoteException;
 
-  public void setPrice(float p) throws RemoteException;
+    public void setPrice(float p) throws RemoteException;
 
-  public void updateBrandName(String newBrandName) throws RemoteException;
+    public void updateBrandName(String newBrandName) throws RemoteException;
 }

@@ -22,30 +22,27 @@ package com.sun.ts.tests.ejb30.timer.schedule.descriptor.stateless;
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
 import com.sun.ts.tests.ejb30.timer.schedule.descriptor.common.TimeoutParamIF;
-
 import jakarta.ejb.Stateless;
 import jakarta.ejb.Timer;
 
 /**
  * timeout-method is only specified in ejb-jar.xml. The timeout-method (timeout)
  * is implemented in superclass TimerBeanBaseWithoutTimeOutMethod.
- * 
+ *
  * The timeout-method for both programmatic and auto timers are specified
  * without <method-params> element. Therefore, this bean class must not overload
  * any timeout method.
  */
 @Stateless
-public class NoParamTimeoutBean extends TimerBeanBaseWithoutTimeOutMethod
-    implements TimeoutParamIF {
+public class NoParamTimeoutBean extends TimerBeanBaseWithoutTimeOutMethod implements TimeoutParamIF {
 
-  public String getBeanName() {
-    return NoParamTimeoutBean;
-  }
+    public String getBeanName() {
+        return NoParamTimeoutBean;
+    }
 
-  // timeout method for auto timer declared in ejb-jar.xml
-  @SuppressWarnings("unused")
-  private void auto(Timer timer) {
-    timeoutAlias(TimerUtil.findTimer(timerService,
-        NoParamTimeoutBean + AUTO_TIMER_SUFFIX));
-  }
+    // timeout method for auto timer declared in ejb-jar.xml
+    @SuppressWarnings("unused")
+    private void auto(Timer timer) {
+        timeoutAlias(TimerUtil.findTimer(timerService, NoParamTimeoutBean + AUTO_TIMER_SUFFIX));
+    }
 }

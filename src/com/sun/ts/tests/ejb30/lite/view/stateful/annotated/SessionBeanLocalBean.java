@@ -22,13 +22,10 @@ package com.sun.ts.tests.ejb30.lite.view.stateful.annotated;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.common.busiface.SessionBeanLocalBeanBase;
-
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.Stateful;
 
 @Stateful
-public class SessionBeanLocalBean extends SessionBeanLocalBeanBase
-    implements BusinessLocalIF1, SessionBean {
-  public void remove() {
-  }
+public class SessionBeanLocalBean extends SessionBeanLocalBeanBase implements BusinessLocalIF1, SessionBean {
+    public void remove() {}
 }

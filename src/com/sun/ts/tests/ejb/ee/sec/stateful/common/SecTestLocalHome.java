@@ -24,5 +24,5 @@ import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBLocalHome;
 
 public interface SecTestLocalHome extends EJBLocalHome {
-  SecTestLocal create(java.util.Properties p) throws CreateException;
+    SecTestLocal create(java.util.Properties p) throws CreateException;
 }

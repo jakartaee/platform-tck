@@ -20,103 +20,99 @@
 
 package com.sun.ts.tests.ejb30.common.allowed;
 
-import java.util.Collection;
-import java.util.Iterator;
-
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Timer;
 import jakarta.ejb.TimerService;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
+import java.util.Collection;
+import java.util.Iterator;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
 public class CancelInterceptor {
-  private static CancelInterceptor instance = new CancelInterceptor();
+    private static CancelInterceptor instance = new CancelInterceptor();
 
-  public CancelInterceptor() {
-    super();
-  }
-
-  public static CancelInterceptor getInstance() {
-    return instance;
-  }
-
-  public void cancelTimers(SessionContext sctx) {
-    try {
-      if (sctx.getRollbackOnly()) {
-        // current tx has been marked to rollback, so do nothing to timer
-        return;
-      }
-      TimerService ts = sctx.getTimerService();
-      Collection ccol = ts.getTimers();
-      Iterator i = ccol.iterator();
-      while (i.hasNext()) {
-        Timer t = (jakarta.ejb.Timer) i.next();
-        t.cancel();
-      }
-    } catch (Exception e) {
-      // ignore
+    public CancelInterceptor() {
+        super();
     }
-  }
 
-  @AroundInvoke
-  public Object intercept(InvocationContext inv) throws Exception {
-    String methodName = inv.getMethod().getName();
-    TLogger.log("calling interceptor listener CancelInterceptor prior to "
-        + methodName);
-    try {
-      Object result = inv.proceed();
-      return result;
-    } catch (TestFailedException e) {
-      throw e;
-    } catch (RuntimeException e) {
-      throw e;
-    } catch (Exception e) {
-      throw new IllegalStateException(e);
-    } finally {
-      EJBContext ejbContext = getEJBContext();
-      SessionContext sctx = (SessionContext) ejbContext;
-
-      boolean isPostInvokeTest = false;
-      boolean isRemove = false;
-      if (methodName.equalsIgnoreCase("getResultsPostInvoke")) {
-        isPostInvokeTest = true;
-      } else if (methodName.equals("remove")) {
-        isRemove = true;
-      }
-      if (!isPostInvokeTest && !isRemove) {
-        cancelTimers(sctx);
-      }
+    public static CancelInterceptor getInstance() {
+        return instance;
     }
-  }
 
-  /**
-   * Looks up the EJBContext that is the current EJB's namespace, typically
-   * through injection into the bean class. A better way is to either directly
-   * inject EJBContext into the current interceptor class, or look up by the
-   * well-known name "java:comp/EJBContext" This method was written when the
-   * above 2 mechanisms have not been defined.
-   * 
-   * @return EJBContext
-   */
-  protected static EJBContext getEJBContext() {
-    EJBContext ec = null;
-    try {
-      InitialContext ic = new InitialContext();
-      Object ob = ic.lookup("java:comp/env/ejbContext");
-      ec = (EJBContext) ob;
-    } catch (NamingException e) {
-      throw new IllegalStateException(
-          "Make sure SessionContext or MessageDrivenContext with name "
-              + "ejbContext is injected into AroundInvoke bean.",
-          e);
+    public void cancelTimers(SessionContext sctx) {
+        try {
+            if (sctx.getRollbackOnly()) {
+                // current tx has been marked to rollback, so do nothing to timer
+                return;
+            }
+            TimerService ts = sctx.getTimerService();
+            Collection ccol = ts.getTimers();
+            Iterator i = ccol.iterator();
+            while (i.hasNext()) {
+                Timer t = (jakarta.ejb.Timer) i.next();
+                t.cancel();
+            }
+        } catch (Exception e) {
+            // ignore
+        }
     }
-    return ec;
-  }
+
+    @AroundInvoke
+    public Object intercept(InvocationContext inv) throws Exception {
+        String methodName = inv.getMethod().getName();
+        TLogger.log("calling interceptor listener CancelInterceptor prior to " + methodName);
+        try {
+            Object result = inv.proceed();
+            return result;
+        } catch (TestFailedException e) {
+            throw e;
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        } finally {
+            EJBContext ejbContext = getEJBContext();
+            SessionContext sctx = (SessionContext) ejbContext;
+
+            boolean isPostInvokeTest = false;
+            boolean isRemove = false;
+            if (methodName.equalsIgnoreCase("getResultsPostInvoke")) {
+                isPostInvokeTest = true;
+            } else if (methodName.equals("remove")) {
+                isRemove = true;
+            }
+            if (!isPostInvokeTest && !isRemove) {
+                cancelTimers(sctx);
+            }
+        }
+    }
+
+    /**
+     * Looks up the EJBContext that is the current EJB's namespace, typically
+     * through injection into the bean class. A better way is to either directly
+     * inject EJBContext into the current interceptor class, or look up by the
+     * well-known name "java:comp/EJBContext" This method was written when the
+     * above 2 mechanisms have not been defined.
+     *
+     * @return EJBContext
+     */
+    protected static EJBContext getEJBContext() {
+        EJBContext ec = null;
+        try {
+            InitialContext ic = new InitialContext();
+            Object ob = ic.lookup("java:comp/env/ejbContext");
+            ec = (EJBContext) ob;
+        } catch (NamingException e) {
+            throw new IllegalStateException(
+                    "Make sure SessionContext or MessageDrivenContext with name "
+                            + "ejbContext is injected into AroundInvoke bean.",
+                    e);
+        }
+        return ec;
+    }
 }

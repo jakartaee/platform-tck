@@ -20,10 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.single;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface Single extends EJBObject {
-  public String getIdString() throws RemoteException;
+    public String getIdString() throws RemoteException;
 }

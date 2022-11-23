@@ -19,15 +19,19 @@
  */
 package com.sun.ts.tests.webservices12.sec.descriptors.ejb.certificate;
 
-import jakarta.jws.WebService;
 import jakarta.ejb.Stateless;
+import jakarta.jws.WebService;
 
-@WebService(portName = "HelloCertificatePort", serviceName = "HelloCertificateService", targetNamespace = "http://HelloCertificate.org", wsdlLocation = "META-INF/wsdl/HelloCertificate.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.sec.descriptors.ejb.certificate.HelloCertificate")
+@WebService(
+        portName = "HelloCertificatePort",
+        serviceName = "HelloCertificateService",
+        targetNamespace = "http://HelloCertificate.org",
+        wsdlLocation = "META-INF/wsdl/HelloCertificate.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices12.sec.descriptors.ejb.certificate.HelloCertificate")
 @Stateless(name = "WSSecEjbHelloCertificate")
-
 public class HelloCertificateBean {
 
-  public String sayHelloCertificate(String input) {
-    return "'" + input + "' from HelloCertificateImpl!";
-  }
+    public String sayHelloCertificate(String input) {
+        return "'" + input + "' from HelloCertificateImpl!";
+    }
 }

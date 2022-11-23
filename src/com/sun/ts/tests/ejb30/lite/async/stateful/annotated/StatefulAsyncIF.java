@@ -20,9 +20,7 @@
 package com.sun.ts.tests.ejb30.lite.async.stateful.annotated;
 
 import com.sun.ts.tests.ejb30.lite.async.common.annotated.AsyncIF;
-
 import jakarta.ejb.Asynchronous;
 
 @Asynchronous
-public interface StatefulAsyncIF extends AsyncIF {
-}
+public interface StatefulAsyncIF extends AsyncIF {}

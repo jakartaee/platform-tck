@@ -20,136 +20,102 @@
 
 package com.sun.ts.tests.servlet.spec.requestdispatcher;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class HttpTestServlet extends HttpTCKServlet {
 
-  public void getRequestURIIncludeTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void getRequestURIIncludeTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    String expectValue = "/servlet_spec_requestdispatcher_web/TestServlet";
+        String expectValue = "/servlet_spec_requestdispatcher_web/TestServlet";
 
-    String actual = request.getRequestURI();
+        String actual = request.getRequestURI();
 
-    if (actual != null) {
-      if (actual.equals(expectValue))
-        pw.println(
-            "Test PASSED from getRequestURIIncludeTest in HttpTestServlet");
-      else
-        pw.println(
-            "Test FAILED - getRequestURI return incorrect value: " + actual);
-    } else
-      pw.println("Test FAILED - getRequestURI return incorrect null value");
-  }
+        if (actual != null) {
+            if (actual.equals(expectValue)) pw.println("Test PASSED from getRequestURIIncludeTest in HttpTestServlet");
+            else pw.println("Test FAILED - getRequestURI return incorrect value: " + actual);
+        } else pw.println("Test FAILED - getRequestURI return incorrect null value");
+    }
 
-  public void getRequestURIForwardTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void getRequestURIForwardTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    String expectValue = "/servlet_spec_requestdispatcher_web/other/HttpTestServlet";
+        String expectValue = "/servlet_spec_requestdispatcher_web/other/HttpTestServlet";
 
-    String actual = request.getRequestURI();
+        String actual = request.getRequestURI();
 
-    if (actual != null) {
-      if (actual.equals(expectValue))
-        pw.println(
-            "Test PASSED from getRequestURIForwardTest in HttpTestServlet");
-      else
-        pw.println(
-            "Test FAILED - getRequestURI return incorrect value: " + actual);
-    } else
-      pw.println("Test FAILED - getRequestURI return incorrect null value");
-  }
+        if (actual != null) {
+            if (actual.equals(expectValue)) pw.println("Test PASSED from getRequestURIForwardTest in HttpTestServlet");
+            else pw.println("Test FAILED - getRequestURI return incorrect value: " + actual);
+        } else pw.println("Test FAILED - getRequestURI return incorrect null value");
+    }
 
-  public void getRequestURLIncludeTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void getRequestURLIncludeTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    String expectValue = "/servlet_spec_requestdispatcher_web/TestServlet";
+        String expectValue = "/servlet_spec_requestdispatcher_web/TestServlet";
 
-    StringBuffer actual = request.getRequestURL();
+        StringBuffer actual = request.getRequestURL();
 
-    if (actual != null) {
-      if (actual.indexOf(expectValue) != -1)
-        if (actual.toString().toUpperCase().startsWith("HTTP://"))
-          pw.println(
-              "Test PASSED from getRequestURLIncludeTest in HttpTestServlet");
-        else
-          pw.println("Test FAILED - getRequestURL does not start with http://: "
-              + actual);
-      else
-        pw.println(
-            "Test FAILED - getRequestURL return incorrect value: " + actual);
-    } else
-      pw.println("Test FAILED - getRequestURL return incorrect null value");
-  }
+        if (actual != null) {
+            if (actual.indexOf(expectValue) != -1)
+                if (actual.toString().toUpperCase().startsWith("HTTP://"))
+                    pw.println("Test PASSED from getRequestURLIncludeTest in HttpTestServlet");
+                else pw.println("Test FAILED - getRequestURL does not start with http://: " + actual);
+            else pw.println("Test FAILED - getRequestURL return incorrect value: " + actual);
+        } else pw.println("Test FAILED - getRequestURL return incorrect null value");
+    }
 
-  public void getRequestURLForwardTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void getRequestURLForwardTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    String expectValue = "/servlet_spec_requestdispatcher_web/other/HttpTestServlet";
+        String expectValue = "/servlet_spec_requestdispatcher_web/other/HttpTestServlet";
 
-    StringBuffer actual = request.getRequestURL();
+        StringBuffer actual = request.getRequestURL();
 
-    if (actual != null) {
-      if (actual.indexOf(expectValue) != -1)
-        if (actual.toString().toUpperCase().startsWith("HTTP://"))
-          pw.println(
-              "Test PASSED from getRequestURLForwardTest in HttpTestServlet");
-        else
-          pw.println("Test FAILED - getRequestURL does not start with http://: "
-              + actual);
-      else
-        pw.println(
-            "Test FAILED - getRequestURL return incorrect value: " + actual);
-    } else
-      pw.println("Test FAILED - getRequestURL return incorrect null value");
-  }
+        if (actual != null) {
+            if (actual.indexOf(expectValue) != -1)
+                if (actual.toString().toUpperCase().startsWith("HTTP://"))
+                    pw.println("Test PASSED from getRequestURLForwardTest in HttpTestServlet");
+                else pw.println("Test FAILED - getRequestURL does not start with http://: " + actual);
+            else pw.println("Test FAILED - getRequestURL return incorrect value: " + actual);
+        } else pw.println("Test FAILED - getRequestURL return incorrect null value");
+    }
 
-  public void getQueryStringTestForward(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void getQueryStringTestForward(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    String expectValue = "testname=getQueryStringTestForward";
+        String expectValue = "testname=getQueryStringTestForward";
 
-    String actual = request.getQueryString();
+        String actual = request.getQueryString();
 
-    if (actual != null) {
-      if (actual.equals(expectValue))
-        pw.println(
-            "Test PASSED from getQueryStringForwardTest in HttpTestServlet");
-      else
-        pw.println(
-            "Test FAILED - getQueryString return incorrect value: " + actual);
-    } else
-      pw.println("Test FAILED - getQueryString return incorrect null value");
-  }
+        if (actual != null) {
+            if (actual.equals(expectValue)) pw.println("Test PASSED from getQueryStringForwardTest in HttpTestServlet");
+            else pw.println("Test FAILED - getQueryString return incorrect value: " + actual);
+        } else pw.println("Test FAILED - getQueryString return incorrect null value");
+    }
 
-  public void getQueryStringTestInclude(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void getQueryStringTestInclude(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    String expectValue = "testname=getQueryStringIncludeTest";
+        String expectValue = "testname=getQueryStringIncludeTest";
 
-    String actual = request.getQueryString();
+        String actual = request.getQueryString();
 
-    if (actual != null) {
-      if (actual.equals(expectValue))
-        pw.println(
-            "Test PASSED from getQueryStringIncludeTest in HttpTestServlet");
-      else
-        pw.println(
-            "Test FAILED - getQueryString return incorrect value: " + actual);
-    } else
-      pw.println("Test FAILED - getQueryString return incorrect null value");
-  }
+        if (actual != null) {
+            if (actual.equals(expectValue)) pw.println("Test PASSED from getQueryStringIncludeTest in HttpTestServlet");
+            else pw.println("Test FAILED - getQueryString return incorrect value: " + actual);
+        } else pw.println("Test FAILED - getQueryString return incorrect null value");
+    }
 }

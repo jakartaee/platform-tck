@@ -16,40 +16,37 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_el.mapelresolver;
 
-import java.io.IOException;
-import java.util.HashMap;
-
 import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.el.ELContext;
 import jakarta.el.MapELResolver;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
+import java.util.HashMap;
 
 public class MapELResolverTag extends SimpleTagSupport {
 
-  public void doTag() throws JspException, IOException {
+    public void doTag() throws JspException, IOException {
 
-    StringBuffer buf = new StringBuffer();
-    HashMap sportstars = new HashMap();
-    sportstars.put("baseball", "Barry Bonds");
-    sportstars.put("football", "Joe Montana");
-    sportstars.put("basketball", "Michael Jordan");
-    JspWriter out = getJspContext().getOut();
-    ELContext context = getJspContext().getELContext();
-    MapELResolver mapResolver = new MapELResolver();
+        StringBuffer buf = new StringBuffer();
+        HashMap sportstars = new HashMap();
+        sportstars.put("baseball", "Barry Bonds");
+        sportstars.put("football", "Joe Montana");
+        sportstars.put("basketball", "Michael Jordan");
+        JspWriter out = getJspContext().getOut();
+        ELContext context = getJspContext().getELContext();
+        MapELResolver mapResolver = new MapELResolver();
 
-    try {
-      boolean pass = ResolverTest.testELResolver(context, mapResolver,
-          sportstars, "football", "Steve Young", buf, false);
-      out.println(buf.toString());
-      if (pass == true)
-        out.println("Test PASSED");
-    } catch (Throwable t) {
-      out.println("buffer is " + buf.toString());
-      JspTestUtil.handleThrowable(t, out, "MapELResolverTag");
+        try {
+            boolean pass = ResolverTest.testELResolver(
+                    context, mapResolver, sportstars, "football", "Steve Young", buf, false);
+            out.println(buf.toString());
+            if (pass == true) out.println("Test PASSED");
+        } catch (Throwable t) {
+            out.println("buffer is " + buf.toString());
+            JspTestUtil.handleThrowable(t, out, "MapELResolverTag");
+        }
     }
-  }
 }

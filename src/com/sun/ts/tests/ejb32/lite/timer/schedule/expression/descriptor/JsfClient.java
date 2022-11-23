@@ -18,7 +18,6 @@ package com.sun.ts.tests.ejb32.lite.timer.schedule.expression.descriptor;
 
 import com.sun.ts.tests.ejb30.timer.common.JsfClientBase;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.ScheduleExpression;
 import jakarta.ejb.Timer;
@@ -26,56 +25,54 @@ import jakarta.ejb.Timer;
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends JsfClientBase {
-  @EJB(beanName = "ScheduleBean")
-  private ScheduleBean scheduleBean;
+    @EJB(beanName = "ScheduleBean")
+    private ScheduleBean scheduleBean;
 
-  private void schedule0() {
-    ScheduleExpression exp = scheduleBean
-        .getSchedule(scheduleBean.findTimer(getTestName()));
-    appendReason("Found auto timer with schedule " + exp);
-  }
+    private void schedule0() {
+        ScheduleExpression exp = scheduleBean.getSchedule(scheduleBean.findTimer(getTestName()));
+        appendReason("Found auto timer with schedule " + exp);
+    }
 
-  /*
-   * @testName: defaultSchedule
-   * 
-   * @test_Strategy: verify a auto timer declared in ejb-jar.xml with default
-   * values in schedule
-   */
-  public void defaultSchedule() {
-    Timer t = scheduleBean.findTimer(getTestName());
-    ScheduleExpression exp = scheduleBean.getSchedule(t);
-    TimerUtil.checkScheduleDefaults(exp, getReasonBuffer());
-  }
+    /*
+     * @testName: defaultSchedule
+     *
+     * @test_Strategy: verify a auto timer declared in ejb-jar.xml with default
+     * values in schedule
+     */
+    public void defaultSchedule() {
+        Timer t = scheduleBean.findTimer(getTestName());
+        ScheduleExpression exp = scheduleBean.getSchedule(t);
+        TimerUtil.checkScheduleDefaults(exp, getReasonBuffer());
+    }
 
-  /*
-   * @testName: schedule1
-   * 
-   * @test_Strategy: verify a auto timer declared in ejb-jar.xml with various
-   * values in schedule
-   */
-  public void schedule1() {
-    schedule0();
-  }
+    /*
+     * @testName: schedule1
+     *
+     * @test_Strategy: verify a auto timer declared in ejb-jar.xml with various
+     * values in schedule
+     */
+    public void schedule1() {
+        schedule0();
+    }
 
-  /*
-   * @testName: schedule2
-   */
-  public void schedule2() {
-    schedule0();
-  }
+    /*
+     * @testName: schedule2
+     */
+    public void schedule2() {
+        schedule0();
+    }
 
-  /*
-   * @testName: schedule3
-   */
-  public void schedule3() {
-    schedule0();
-  }
+    /*
+     * @testName: schedule3
+     */
+    public void schedule3() {
+        schedule0();
+    }
 
-  /*
-   * @testName: schedule4
-   */
-  public void schedule4() {
-    schedule0();
-  }
-
+    /*
+     * @testName: schedule4
+     */
+    public void schedule4() {
+        schedule0();
+    }
 }

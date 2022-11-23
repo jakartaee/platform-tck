@@ -20,38 +20,36 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.mdb.resref.single;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.assembly.util.shared.resref.single.TestCode;
 import com.sun.ts.tests.common.ejb.wrappers.MDBWrapper;
+import java.util.Properties;
 
 public class MsgBean extends MDBWrapper {
 
-  boolean pass;
+    boolean pass;
 
-  public Boolean testSession(Properties props) {
-    pass = TestCode.testSession(nctx);
-    return new Boolean(pass);
-  }
+    public Boolean testSession(Properties props) {
+        pass = TestCode.testSession(nctx);
+        return new Boolean(pass);
+    }
 
-  public Boolean testURL(Properties props) {
-    pass = TestCode.testURL(nctx);
-    return new Boolean(pass);
-  }
+    public Boolean testURL(Properties props) {
+        pass = TestCode.testURL(nctx);
+        return new Boolean(pass);
+    }
 
-  public Boolean testQueue(Properties props) {
-    pass = TestCode.testQueue(nctx);
-    return new Boolean(pass);
-  }
+    public Boolean testQueue(Properties props) {
+        pass = TestCode.testQueue(nctx);
+        return new Boolean(pass);
+    }
 
-  public Boolean testTopic(Properties props) {
-    pass = TestCode.testTopic(nctx);
-    return new Boolean(pass);
-  }
+    public Boolean testTopic(Properties props) {
+        pass = TestCode.testTopic(nctx);
+        return new Boolean(pass);
+    }
 
-  public Boolean testAll(Properties props) {
-    pass = TestCode.testAllButDataSource(nctx);
-    return new Boolean(pass);
-  }
-
+    public Boolean testAll(Properties props) {
+        pass = TestCode.testAllButDataSource(nctx);
+        return new Boolean(pass);
+    }
 }

@@ -19,7 +19,6 @@ package com.sun.ts.tests.connector.resourceDefs.ejb;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
 import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
-
 import jakarta.ejb.Stateless;
 import jakarta.resource.ConnectionFactoryDefinition;
 import jakarta.resource.ConnectionFactoryDefinitions;
@@ -28,54 +27,69 @@ import jakarta.resource.spi.TransactionSupport;
 /**
  * This is the impl for a stateless ejb.
  */
-
 @ConnectionFactoryDefinitions({
-    @ConnectionFactoryDefinition(name = "java:app/env/EJBTestServlet_App_ConnectorResource", description = "application scoped connector resource definition", interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory", resourceAdapter = "whitebox-tx", transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction),
-
-    @ConnectionFactoryDefinition(name = "java:comp/env/EJBTestServlet_Comp_ConnectorResource", description = "component scoped connector resource definition", interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory", resourceAdapter = "whitebox-tx", transactionSupport = TransactionSupport.TransactionSupportLevel.LocalTransaction),
+    @ConnectionFactoryDefinition(
+            name = "java:app/env/EJBTestServlet_App_ConnectorResource",
+            description = "application scoped connector resource definition",
+            interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory",
+            resourceAdapter = "whitebox-tx",
+            transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction),
+    @ConnectionFactoryDefinition(
+            name = "java:comp/env/EJBTestServlet_Comp_ConnectorResource",
+            description = "component scoped connector resource definition",
+            interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory",
+            resourceAdapter = "whitebox-tx",
+            transactionSupport = TransactionSupport.TransactionSupportLevel.LocalTransaction),
     // transactionSupport=TransactionSupport.TransactionSupportLevel.NoTransaction),
 
-    @ConnectionFactoryDefinition(name = "java:module/env/EJBTestServlet_Module_ConnectorResource", description = "module scoped connector resource definition", interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory", resourceAdapter = "whitebox-tx", transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction),
-
-    @ConnectionFactoryDefinition(name = "java:global/env/EJBTestServlet_Global_ConnectorResource", description = "globally scoped connector resource definition", interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory", resourceAdapter = "whitebox-xa", transactionSupport = TransactionSupport.TransactionSupportLevel.XATransaction) })
+    @ConnectionFactoryDefinition(
+            name = "java:module/env/EJBTestServlet_Module_ConnectorResource",
+            description = "module scoped connector resource definition",
+            interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory",
+            resourceAdapter = "whitebox-tx",
+            transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction),
+    @ConnectionFactoryDefinition(
+            name = "java:global/env/EJBTestServlet_Global_ConnectorResource",
+            description = "globally scoped connector resource definition",
+            interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory",
+            resourceAdapter = "whitebox-xa",
+            transactionSupport = TransactionSupport.TransactionSupportLevel.XATransaction)
+})
 @Stateless
 public class TestStatelessEjb implements ITestStatelessEjb {
 
-  public boolean validateConnectorResource(String jndiName) {
-    TSConnection c = null;
-    boolean rval = false;
+    public boolean validateConnectorResource(String jndiName) {
+        TSConnection c = null;
+        boolean rval = false;
 
-    try {
+        try {
 
-      debug("validateConnectorResource():  calling new TSNamingContext()");
-      TSNamingContext ic = new TSNamingContext();
+            debug("validateConnectorResource():  calling new TSNamingContext()");
+            TSNamingContext ic = new TSNamingContext();
 
-      debug("Doing lookup of jndiName = " + jndiName);
-      TSDataSource ds = (TSDataSource) (ic.lookup(jndiName));
-      debug(
-          "validateConnectorResource(): Successfully did lookup of jndiName = "
-              + jndiName);
+            debug("Doing lookup of jndiName = " + jndiName);
+            TSDataSource ds = (TSDataSource) (ic.lookup(jndiName));
+            debug("validateConnectorResource(): Successfully did lookup of jndiName = " + jndiName);
 
-      rval = true;
-    } catch (Exception e) {
-      debug("Fail to access connector resource: " + jndiName);
-      e.printStackTrace();
-    } finally {
-      debug("finally:  Fail to access connector resource: " + jndiName);
-      try {
-        if (c != null) {
-          c.close();
+            rval = true;
+        } catch (Exception e) {
+            debug("Fail to access connector resource: " + jndiName);
+            e.printStackTrace();
+        } finally {
+            debug("finally:  Fail to access connector resource: " + jndiName);
+            try {
+                if (c != null) {
+                    c.close();
+                }
+            } catch (Exception e) {
+                return false;
+            }
         }
-      } catch (Exception e) {
-        return false;
-      }
+
+        return rval;
     }
 
-    return rval;
-  }
-
-  private void debug(String str) {
-    System.out.println(str);
-  }
-
+    private void debug(String str) {
+        System.out.println(str);
+    }
 }

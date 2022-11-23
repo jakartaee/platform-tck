@@ -20,96 +20,93 @@
 
 package com.sun.ts.tests.appclient.deploy.compat13_50;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  private static final String prefix = "java:comp/env/ejb/";
+    private static final String prefix = "java:comp/env/ejb/";
 
-  /** Bean lookup */
-  private static final String beanLookup = prefix + "TestBean";
+    /** Bean lookup */
+    private static final String beanLookup = prefix + "TestBean";
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /**
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   */
-  public void setup(String[] args, Properties props) throws Fault {
-
-    try {
-      this.props = props;
-      nctx = new TSNamingContext();
-      logMsg("[Client] Setup succeed (got naming context).");
-    } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /**
-   * @testName: test13DD
-   *
-   * @assertion_ids: JavaEE:SPEC:283; JavaEE:SPEC:284; JavaEE:SPEC:10109;
-   *                 JavaEE:SPEC:10110; JavaEE:SPEC:10111
-   *
-   * @test_Strategy: Package an ejb-jar file using a JavaEE 1.5 DD
-   *
-   *                 Package an .ear file (JavaEE 1.5 DD's) including this
-   *                 ejb-jar and an application client (J2EE 1.3 DD's). This
-   *                 application client references a bean in this ejb-jar
-   *                 module.
-   *
-   *                 Deploy the .ear file.
-   *
-   *                 Run the client and check we can call a business method on
-   *                 the referenced bean at runtime.
-   */
-  public void test13DD() throws Fault {
-    TestBeanHome home = null;
-    TestBean bean = null;
-    String beanName;
-    boolean pass = false;
+    /**
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     */
+    public void setup(String[] args, Properties props) throws Fault {
 
-    try {
-      TestUtil.logTrace("[Client] Looking up '" + beanLookup + "'...");
-      home = (TestBeanHome) nctx.lookup(beanLookup, TestBeanHome.class);
-      bean = home.create();
-      bean.initLogging(props);
-      pass = bean.ping();
-
-      if (!pass) {
-        throw new Fault("appclient compat13_50 test failed!");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("appclient compat13_50 test failed: " + e);
-      throw new Fault("appclient compat13_50 test failed: ", e);
-    } finally {
-      try {
-        if (null != bean) {
-          TestUtil.logTrace("[Client] Removing bean...");
-          bean.remove();
+        try {
+            this.props = props;
+            nctx = new TSNamingContext();
+            logMsg("[Client] Setup succeed (got naming context).");
+        } catch (Exception e) {
+            throw new Fault("Setup failed:", e);
         }
-      } catch (Exception e) {
-        TestUtil.logErr("[Client] Ignoring Exception on " + "bean remove: " + e,
-            e);
-      }
     }
-  }
 
-  public void cleanup() throws Fault {
-    logMsg("[Client] cleanup()");
-  }
+    /**
+     * @testName: test13DD
+     *
+     * @assertion_ids: JavaEE:SPEC:283; JavaEE:SPEC:284; JavaEE:SPEC:10109;
+     *                 JavaEE:SPEC:10110; JavaEE:SPEC:10111
+     *
+     * @test_Strategy: Package an ejb-jar file using a JavaEE 1.5 DD
+     *
+     *                 Package an .ear file (JavaEE 1.5 DD's) including this
+     *                 ejb-jar and an application client (J2EE 1.3 DD's). This
+     *                 application client references a bean in this ejb-jar
+     *                 module.
+     *
+     *                 Deploy the .ear file.
+     *
+     *                 Run the client and check we can call a business method on
+     *                 the referenced bean at runtime.
+     */
+    public void test13DD() throws Fault {
+        TestBeanHome home = null;
+        TestBean bean = null;
+        String beanName;
+        boolean pass = false;
 
+        try {
+            TestUtil.logTrace("[Client] Looking up '" + beanLookup + "'...");
+            home = (TestBeanHome) nctx.lookup(beanLookup, TestBeanHome.class);
+            bean = home.create();
+            bean.initLogging(props);
+            pass = bean.ping();
+
+            if (!pass) {
+                throw new Fault("appclient compat13_50 test failed!");
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("appclient compat13_50 test failed: " + e);
+            throw new Fault("appclient compat13_50 test failed: ", e);
+        } finally {
+            try {
+                if (null != bean) {
+                    TestUtil.logTrace("[Client] Removing bean...");
+                    bean.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("[Client] Ignoring Exception on " + "bean remove: " + e, e);
+            }
+        }
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("[Client] cleanup()");
+    }
 }

@@ -20,19 +20,16 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.enventry.single;
 
-import java.rmi.RemoteException;
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
 public interface AllBeanHome extends EJBHome {
 
-  public AllBean create(Properties p, int cofID, String cofName, float cofPrice)
-      throws RemoteException, CreateException;
+    public AllBean create(Properties p, int cofID, String cofName, float cofPrice)
+            throws RemoteException, CreateException;
 
-  public AllBean findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
-
+    public AllBean findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 }

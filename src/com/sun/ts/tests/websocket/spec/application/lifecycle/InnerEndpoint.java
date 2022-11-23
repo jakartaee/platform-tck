@@ -17,59 +17,56 @@
 
 package com.sun.ts.tests.websocket.spec.application.lifecycle;
 
-import java.io.IOException;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-
 import jakarta.websocket.Endpoint;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
+import java.io.IOException;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
-public class InnerEndpoint extends Endpoint
-    implements MessageHandler.Whole<String> {
+public class InnerEndpoint extends Endpoint implements MessageHandler.Whole<String> {
 
-  protected String receivedMessage = "";
+    protected String receivedMessage = "";
 
-  protected CountDownLatch latch;
+    protected CountDownLatch latch;
 
-  private Session session;
+    private Session session;
 
-  public InnerEndpoint(CountDownLatch latch) {
-    super();
-    this.latch = latch;
-  }
-
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    session.addMessageHandler(this);
-    this.session = session;
-  }
-
-  @Override
-  public void onMessage(String message) {
-    this.receivedMessage += message;
-    latch.countDown();
-  }
-
-  public String getReceivedMessage() {
-    return receivedMessage;
-  }
-
-  public void sendMessage(String message) {
-    try {
-      session.getBasicRemote().sendText(message);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
+    public InnerEndpoint(CountDownLatch latch) {
+        super();
+        this.latch = latch;
     }
-  }
 
-  public void await(long seconds) {
-    try {
-      latch.await(seconds, TimeUnit.SECONDS);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
+    @Override
+    public void onOpen(Session session, EndpointConfig config) {
+        session.addMessageHandler(this);
+        this.session = session;
     }
-  }
 
+    @Override
+    public void onMessage(String message) {
+        this.receivedMessage += message;
+        latch.countDown();
+    }
+
+    public String getReceivedMessage() {
+        return receivedMessage;
+    }
+
+    public void sendMessage(String message) {
+        try {
+            session.getBasicRemote().sendText(message);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void await(long seconds) {
+        try {
+            latch.await(seconds, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

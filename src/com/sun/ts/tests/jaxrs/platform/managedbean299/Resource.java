@@ -34,79 +34,77 @@ import jakarta.ws.rs.ext.Providers;
 @RequestScoped
 public class Resource {
 
-  private int value = 0;
+    private int value = 0;
 
-  @Path("root")
-  @GET
-  public String root() {
-    return String.valueOf(value);
-  }
+    @Path("root")
+    @GET
+    public String root() {
+        return String.valueOf(value);
+    }
 
-  @Inject
-  private Provider<StringBuilderProvider> sbprovider;
+    @Inject
+    private Provider<StringBuilderProvider> sbprovider;
 
-  @Path("provider")
-  @POST
-  public String provider() {
-    return String.valueOf(sbprovider.get().getValue());
-  }
+    @Path("provider")
+    @POST
+    public String provider() {
+        return String.valueOf(sbprovider.get().getValue());
+    }
 
-  @Path("app")
-  @GET
-  public String app(@Context Application application) {
-    ApplicationHolderSingleton holder = (ApplicationHolderSingleton) application
-        .getSingletons().iterator().next();
-    return String.valueOf(holder.getValue());
-  }
+    @Path("app")
+    @GET
+    public String app(@Context Application application) {
+        ApplicationHolderSingleton holder = (ApplicationHolderSingleton)
+                application.getSingletons().iterator().next();
+        return String.valueOf(holder.getValue());
+    }
 
-  @PostConstruct
-  public void post() {
-    value = 999;
-    isJaxrsInjectedPriorToPostConstruct = injectedApplication != null;
-  }
+    @PostConstruct
+    public void post() {
+        value = 999;
+        isJaxrsInjectedPriorToPostConstruct = injectedApplication != null;
+    }
 
-  // <JAXRS:SPEC:53.1 ----------------------------------------------->
-  @Context
-  private Application injectedApplication;
+    // <JAXRS:SPEC:53.1 ----------------------------------------------->
+    @Context
+    private Application injectedApplication;
 
-  private boolean isJaxrsInjectedPriorToPostConstruct = false;
+    private boolean isJaxrsInjectedPriorToPostConstruct = false;
 
-  @Path("priorroot")
-  @GET
-  public String jaxrsInjectPriorPostConstructOnRootResource() {
-    return String.valueOf(isJaxrsInjectedPriorToPostConstruct);
-  }
+    @Path("priorroot")
+    @GET
+    public String jaxrsInjectPriorPostConstructOnRootResource() {
+        return String.valueOf(isJaxrsInjectedPriorToPostConstruct);
+    }
 
-  @Path("priorapp")
-  @GET
-  public String jaxrsInjectPriorPostConstructOnApplication() {
-    ApplicationHolderSingleton holder = (ApplicationHolderSingleton) injectedApplication
-        .getSingletons().iterator().next();
-    return String.valueOf(holder.isUriInfoInjectedBeforePostConstruct());
-  }
+    @Path("priorapp")
+    @GET
+    public String jaxrsInjectPriorPostConstructOnApplication() {
+        ApplicationHolderSingleton holder = (ApplicationHolderSingleton)
+                injectedApplication.getSingletons().iterator().next();
+        return String.valueOf(holder.isUriInfoInjectedBeforePostConstruct());
+    }
 
-  @Path("priorprovider")
-  @GET
-  public String jaxrsInjectPriorPostConstructOnProvider(
-      @Context Providers providers) {
-    MessageBodyWriter<StringBuilder> mbw;
-    mbw = providers.getMessageBodyWriter(StringBuilder.class, null, null,
-        MediaType.WILDCARD_TYPE);
-    StringBuilderProvider sbp = (StringBuilderProvider) mbw;
-    return String.valueOf(sbp.isApplicationInjectedBeforePostConstruct());
-  }
+    @Path("priorprovider")
+    @GET
+    public String jaxrsInjectPriorPostConstructOnProvider(@Context Providers providers) {
+        MessageBodyWriter<StringBuilder> mbw;
+        mbw = providers.getMessageBodyWriter(StringBuilder.class, null, null, MediaType.WILDCARD_TYPE);
+        StringBuilderProvider sbp = (StringBuilderProvider) mbw;
+        return String.valueOf(sbp.isApplicationInjectedBeforePostConstruct());
+    }
 
-  // </JAXRS:SPEC:53.1 ----------------------------------------------->
+    // </JAXRS:SPEC:53.1 ----------------------------------------------->
 
-  // <JAXRS:SPEC:53.3 ------------------------------------------------>
-  @MatrixParam(value = "matrix")
-  String matrix;
+    // <JAXRS:SPEC:53.3 ------------------------------------------------>
+    @MatrixParam(value = "matrix")
+    String matrix;
 
-  @Path("nokeyword")
-  @GET
-  public String noInjectOrResourceKeyword() {
-    return matrix;
-  }
-  // </JAXRS:SPEC:53.3 ----------------------------------------------->
+    @Path("nokeyword")
+    @GET
+    public String noInjectOrResourceKeyword() {
+        return matrix;
+    }
+    // </JAXRS:SPEC:53.3 ----------------------------------------------->
 
 }

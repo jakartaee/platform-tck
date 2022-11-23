@@ -20,16 +20,14 @@
 
 package com.sun.ts.tests.jsonp.provider;
 
-import java.io.OutputStream;
-import java.io.Writer;
-import java.nio.charset.Charset;
-
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonStructure;
 import jakarta.json.JsonWriter;
+import java.io.OutputStream;
+import java.io.Writer;
+import java.nio.charset.Charset;
 
 /*
  * MyJsonWriter is a Json Test Writer used by the pluggability tests
@@ -38,61 +36,60 @@ import jakarta.json.JsonWriter;
  */
 
 public class MyJsonWriter implements JsonWriter {
-  private OutputStream out = null;
+    private OutputStream out = null;
 
-  private Writer writer = null;
+    private Writer writer = null;
 
-  private Charset charset = Charset.forName("UTF-8");
+    private Charset charset = Charset.forName("UTF-8");
 
-  private void dumpInstanceVars() {
-    TestUtil.logTrace("writer=" + writer);
-    TestUtil.logTrace("out=" + out);
-    TestUtil.logTrace("charset=" + charset);
-  }
+    private void dumpInstanceVars() {
+        TestUtil.logTrace("writer=" + writer);
+        TestUtil.logTrace("out=" + out);
+        TestUtil.logTrace("charset=" + charset);
+    }
 
-  // call methods
-  private static StringBuilder calls = new StringBuilder();
+    // call methods
+    private static StringBuilder calls = new StringBuilder();
 
-  public static String getCalls() {
-    return calls.toString();
-  }
+    public static String getCalls() {
+        return calls.toString();
+    }
 
-  public static void clearCalls() {
-    calls.delete(0, calls.length());
-  }
+    public static void clearCalls() {
+        calls.delete(0, calls.length());
+    }
 
-  private static void addCalls(String s) {
-    calls.append(s);
-  }
+    private static void addCalls(String s) {
+        calls.append(s);
+    }
 
-  public MyJsonWriter() {
-  }
+    public MyJsonWriter() {}
 
-  public MyJsonWriter(OutputStream out) {
-    this.out = out;
-  }
+    public MyJsonWriter(OutputStream out) {
+        this.out = out;
+    }
 
-  public MyJsonWriter(Writer writer) {
-    this.writer = writer;
-  }
+    public MyJsonWriter(Writer writer) {
+        this.writer = writer;
+    }
 
-  public void close() {
-    TestUtil.logTrace("public void close()");
-    addCalls("public void close()");
-  }
+    public void close() {
+        TestUtil.logTrace("public void close()");
+        addCalls("public void close()");
+    }
 
-  public void write(JsonStructure value) {
-    TestUtil.logTrace("public void write(JsonStructure)");
-    addCalls("public void write(JsonStructure)");
-  }
+    public void write(JsonStructure value) {
+        TestUtil.logTrace("public void write(JsonStructure)");
+        addCalls("public void write(JsonStructure)");
+    }
 
-  public void writeArray(JsonArray array) {
-    TestUtil.logTrace("public void writeArray(JsonArray)");
-    addCalls("public void writeArray(JsonArray)");
-  }
+    public void writeArray(JsonArray array) {
+        TestUtil.logTrace("public void writeArray(JsonArray)");
+        addCalls("public void writeArray(JsonArray)");
+    }
 
-  public void writeObject(JsonObject object) {
-    TestUtil.logTrace("public void writeObject(JsonObject)");
-    addCalls("public void writeObject(JsonObject)");
-  }
+    public void writeObject(JsonObject object) {
+        TestUtil.logTrace("public void writeObject(JsonObject)");
+        addCalls("public void writeObject(JsonObject)");
+    }
 }

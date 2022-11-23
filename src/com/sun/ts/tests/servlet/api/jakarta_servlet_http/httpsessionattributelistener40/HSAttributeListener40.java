@@ -60,6 +60,4 @@ package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpsessionattributeli
 
 import jakarta.servlet.http.HttpSessionAttributeListener;
 
-public final class HSAttributeListener40
-    implements HttpSessionAttributeListener {
-}
+public final class HSAttributeListener40 implements HttpSessionAttributeListener {}

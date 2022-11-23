@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb30.bb.session.stateful.interceptor.listener.annotated;
 
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
-
 import jakarta.ejb.Remove;
 import jakarta.ejb.Stateful;
 import jakarta.interceptor.ExcludeClassInterceptors;
@@ -32,17 +31,16 @@ import jakarta.interceptor.Interceptors;
 @Interceptors(InterceptorInstanceInterceptor.class)
 public class InterceptorInstanceBean implements InterceptorInstanceIF {
 
-  public InterceptorInstanceBean() {
-    super();
-  }
+    public InterceptorInstanceBean() {
+        super();
+    }
 
-  public int[] count(int[] times) throws CalculatorException {
-    return times;
-  }
+    public int[] count(int[] times) throws CalculatorException {
+        return times;
+    }
 
-  @Remove
-  @ExcludeDefaultInterceptors
-  @ExcludeClassInterceptors
-  public void remove() {
-  }
+    @Remove
+    @ExcludeDefaultInterceptors
+    @ExcludeClassInterceptors
+    public void remove() {}
 }

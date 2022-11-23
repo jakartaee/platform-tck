@@ -16,19 +16,19 @@
 
 package com.sun.ts.tests.servlet.ee.platform.cdi.filter;
 
-import java.io.IOException;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-@WebServlet(name = "TCKTestServlet", urlPatterns = { "/TCKTestServletURL" })
+@WebServlet(
+        name = "TCKTestServlet",
+        urlPatterns = {"/TCKTestServletURL"})
 public class TestServlet extends HttpServlet {
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws IOException, ServletException {
-    response.getWriter().print(getServletContext().getAttribute("TEST_LOG"));
-  }
+    public void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        response.getWriter().print(getServletContext().getAttribute("TEST_LOG"));
+    }
 }

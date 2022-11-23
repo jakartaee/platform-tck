@@ -24,56 +24,56 @@ package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
 public class LineItemDVC implements java.io.Serializable {
 
-  // Instance variables
-  private String id;
+    // Instance variables
+    private String id;
 
-  private int quantity;
+    private int quantity;
 
-  private Order order;
+    private Order order;
 
-  private Product product;
+    private Product product;
 
-  public LineItemDVC(String v1, int v2, Order v3, Product v4) {
-    id = v1;
-    quantity = v2;
-    order = v3;
-    product = v4;
-  }
+    public LineItemDVC(String v1, int v2, Order v3, Product v4) {
+        id = v1;
+        quantity = v2;
+        order = v3;
+        product = v4;
+    }
 
-  public LineItemDVC(String v1, int v2) {
-    id = v1;
-    quantity = v2;
-  }
+    public LineItemDVC(String v1, int v2) {
+        id = v1;
+        quantity = v2;
+    }
 
-  public String getId() {
-    return id;
-  }
+    public String getId() {
+        return id;
+    }
 
-  public void setId(String v) {
-    id = v;
-  }
+    public void setId(String v) {
+        id = v;
+    }
 
-  public int getQuantity() {
-    return quantity;
-  }
+    public int getQuantity() {
+        return quantity;
+    }
 
-  public void setgetQuantity(int v) {
-    quantity = v;
-  }
+    public void setgetQuantity(int v) {
+        quantity = v;
+    }
 
-  public Order getOrder() {
-    return order;
-  }
+    public Order getOrder() {
+        return order;
+    }
 
-  public void setOrder(Order v) {
-    order = v;
-  }
+    public void setOrder(Order v) {
+        order = v;
+    }
 
-  public Product getProduct() {
-    return product;
-  }
+    public Product getProduct() {
+        return product;
+    }
 
-  public void setProduct(Product v) {
-    product = v;
-  }
+    public void setProduct(Product v) {
+        product = v;
+    }
 }

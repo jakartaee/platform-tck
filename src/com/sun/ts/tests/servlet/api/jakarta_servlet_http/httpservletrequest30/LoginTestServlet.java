@@ -19,38 +19,35 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpservletrequest30;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class LoginTestServlet extends HttpServlet {
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    Boolean passed = true;
-    String name = null;
-    String passwd = null;
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        Boolean passed = true;
+        String name = null;
+        String passwd = null;
 
-    try {
-      request.login(name, passwd);
-      passed = false;
-      pw.println("Test Failed. ");
-      pw.println("Expected ServletException not thrown");
-    } catch (ServletException ex) {
-      pw.println("Test Passed.");
-      pw.println("Expected ServletException thrown: " + ex.getMessage());
-    } catch (Exception oex) {
-      passed = false;
-      pw.println("Test Failed.");
-      pw.print("Unexpected Exception thrown: " + oex.getMessage());
+        try {
+            request.login(name, passwd);
+            passed = false;
+            pw.println("Test Failed. ");
+            pw.println("Expected ServletException not thrown");
+        } catch (ServletException ex) {
+            pw.println("Test Passed.");
+            pw.println("Expected ServletException thrown: " + ex.getMessage());
+        } catch (Exception oex) {
+            passed = false;
+            pw.println("Test Failed.");
+            pw.print("Unexpected Exception thrown: " + oex.getMessage());
+        }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
-  }
 }

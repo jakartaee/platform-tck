@@ -23,5 +23,5 @@ package com.sun.ts.tests.ejb.ee.bb.session.stateless.reentranttest;
 import jakarta.ejb.EJBLocalObject;
 
 public interface LoopBackLocal extends EJBLocalObject {
-  public boolean loopBackTestLocal();
+    public boolean loopBackTestLocal();
 }

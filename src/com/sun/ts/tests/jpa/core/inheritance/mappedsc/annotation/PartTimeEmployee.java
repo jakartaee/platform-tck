@@ -20,14 +20,13 @@
 
 package com.sun.ts.tests.jpa.core.inheritance.mappedsc.annotation;
 
-import java.sql.Date;
-
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import java.sql.Date;
 
 /*
  * PartTimeEmployee entity extends an MappedSuperClass while overriding
@@ -39,36 +38,34 @@ import jakarta.persistence.ManyToOne;
     @AttributeOverride(name = "id", column = @Column(name = "ID")),
     @AttributeOverride(name = "firstName", column = @Column(name = "FIRSTNAME")),
     @AttributeOverride(name = "lastName", column = @Column(name = "LASTNAME")),
-    @AttributeOverride(name = "hireDate", column = @Column(name = "HIREDATE")) })
+    @AttributeOverride(name = "hireDate", column = @Column(name = "HIREDATE"))
+})
 public class PartTimeEmployee extends Employee {
 
-  private float wage;
+    private float wage;
 
-  public PartTimeEmployee() {
-  }
+    public PartTimeEmployee() {}
 
-  public PartTimeEmployee(int id, String firstName, String lastName,
-      Date hireDate, float salary) {
-    super(id, firstName, lastName, hireDate);
-    this.wage = wage;
-  }
+    public PartTimeEmployee(int id, String firstName, String lastName, Date hireDate, float salary) {
+        super(id, firstName, lastName, hireDate);
+        this.wage = wage;
+    }
 
-  // ===========================================================
-  // getters and setters for the state fields
+    // ===========================================================
+    // getters and setters for the state fields
 
-  @ManyToOne
-  @JoinColumn(name = "FK_DEPT2")
-  public Department getDepartment() {
-    return department;
-  }
+    @ManyToOne
+    @JoinColumn(name = "FK_DEPT2")
+    public Department getDepartment() {
+        return department;
+    }
 
-  @Column(name = "SALARY")
-  public float getWage() {
-    return wage;
-  }
+    @Column(name = "SALARY")
+    public float getWage() {
+        return wage;
+    }
 
-  public void setWage(float wage) {
-    this.wage = wage;
-  }
-
+    public void setWage(float wage) {
+        this.wage = wage;
+    }
 }

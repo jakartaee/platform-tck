@@ -21,30 +21,26 @@
 package com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.descriptor;
 
 import com.sun.ts.tests.ejb30.common.sessioncontext.SessionContextBeanBase;
-
 import jakarta.ejb.SessionContext;
 
-//@Stateless(name="SessionContextBean")
-//@Remote({Three1IF.class, Three2IF.class})
-//@Local({ThreeLocal1IF.class, ThreeLocal2IF.class})
-//@RemoteHome(TwoRemoteHome.class)
-//@LocalHome(TwoLocalHome.class)
+// @Stateless(name="SessionContextBean")
+// @Remote({Three1IF.class, Three2IF.class})
+// @Local({ThreeLocal1IF.class, ThreeLocal2IF.class})
+// @RemoteHome(TwoRemoteHome.class)
+// @LocalHome(TwoLocalHome.class)
 public class SessionContextBean extends SessionContextBeanBase
 // implements Three1IF, Three2IF
 {
 
-  // @Resource(name="sessionContext")
-  private SessionContext sessionContext;
+    // @Resource(name="sessionContext")
+    private SessionContext sessionContext;
 
-  @Override
-  protected SessionContext getSessionContext() {
-    return sessionContext;
-  }
+    @Override
+    protected SessionContext getSessionContext() {
+        return sessionContext;
+    }
 
-  public SessionContextBean() {
-  }
+    public SessionContextBean() {}
 
-  public void remove() {
-  }
-
+    public void remove() {}
 }

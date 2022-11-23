@@ -24,32 +24,31 @@ import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-abstract public class CBeanBase extends TxBeanBase {
+public abstract class CBeanBase extends TxBeanBase {
 
-  public CBeanBase() {
-  }
+    public CBeanBase() {}
 
-  // @TransactionAttribute(TransactionAttributeType.NEVER)
-  // is annotated in super class method implementation. It
-  // must not be inherited for this method. This method has
-  // REQUIRES_NEW transaction attribute.
-  @Override()
-  public String foo() {
-    return super.foo();
-  }
+    // @TransactionAttribute(TransactionAttributeType.NEVER)
+    // is annotated in super class method implementation. It
+    // must not be inherited for this method. This method has
+    // REQUIRES_NEW transaction attribute.
+    @Override()
+    public String foo() {
+        return super.foo();
+    }
 
-  // This method has REQUIRES_NEW transaction attribute.
-  public String bar() {
-    return super.bar();
-  }
+    // This method has REQUIRES_NEW transaction attribute.
+    public String bar() {
+        return super.bar();
+    }
 
-  @Override()
-  protected void fooImpl() {
-    setRollbackOnly();
-  }
+    @Override()
+    protected void fooImpl() {
+        setRollbackOnly();
+    }
 
-  @Override()
-  protected void barImpl() {
-    setRollbackOnly();
-  }
+    @Override()
+    protected void barImpl() {
+        setRollbackOnly();
+    }
 }

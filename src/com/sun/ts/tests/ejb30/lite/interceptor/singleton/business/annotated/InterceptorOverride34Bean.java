@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.lite.interceptor.singleton.business.annotated;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBaseBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBeanBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorIF;
-
 import jakarta.ejb.Singleton;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
@@ -30,17 +29,15 @@ import jakarta.interceptor.InvocationContext;
 
 @Singleton
 @ExcludeDefaultInterceptors
-public class InterceptorOverride34Bean extends InterceptorBeanBase
-    implements InterceptorIF {
-  private static final String simpleName = "InterceptorOverride34Bean";
+public class InterceptorOverride34Bean extends InterceptorBeanBase implements InterceptorIF {
+    private static final String simpleName = "InterceptorOverride34Bean";
 
-  @Override // override the superclass' interceptor method with an interceptor
-            // method
-  @AroundInvoke
-  protected Object intercepInInterceptorBeanBase(InvocationContext inv)
-      throws Exception {
-    // do not call super
-    InterceptorBaseBase.addToHistory(inv, simpleName);
-    return inv.proceed();
-  }
+    @Override // override the superclass' interceptor method with an interceptor
+    // method
+    @AroundInvoke
+    protected Object intercepInInterceptorBeanBase(InvocationContext inv) throws Exception {
+        // do not call super
+        InterceptorBaseBase.addToHistory(inv, simpleName);
+        return inv.proceed();
+    }
 }

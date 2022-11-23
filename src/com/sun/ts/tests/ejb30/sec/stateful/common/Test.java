@@ -21,23 +21,23 @@
 package com.sun.ts.tests.ejb30.sec.stateful.common;
 
 public interface Test {
-  public boolean IsCallerB1(String caller);
+    public boolean IsCallerB1(String caller);
 
-  public boolean InRole(String role);
+    public boolean InRole(String role);
 
-  public boolean EjbNotAuthz();
+    public boolean EjbNotAuthz();
 
-  public boolean EjbIsAuthz();
+    public boolean EjbIsAuthz();
 
-  public boolean EjbSecRoleRef(String role);
+    public boolean EjbSecRoleRef(String role);
 
-  public boolean EjbSecRoleRef1(String role);
+    public boolean EjbSecRoleRef1(String role);
 
-  public boolean EjbOverloadedSecRoleRefs(String role1, String role2);
+    public boolean EjbOverloadedSecRoleRefs(String role1, String role2);
 
-  public boolean EjbSecRoleRefScope(String role);
+    public boolean EjbSecRoleRefScope(String role);
 
-  public boolean checktest1();
+    public boolean checktest1();
 
-  public boolean excludetest1();
+    public boolean excludetest1();
 }

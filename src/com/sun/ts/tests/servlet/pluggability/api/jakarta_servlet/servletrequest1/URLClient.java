@@ -19,56 +19,54 @@
  */
 package com.sun.ts.tests.servlet.pluggability.api.jakarta_servlet.servletrequest1;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.api.common.request.RequestClient;
+import java.io.PrintWriter;
 
 public class URLClient extends RequestClient {
 
-  private static final String CONTEXT_ROOT = "/servlet_plu_servletrequest1_web";
+    private static final String CONTEXT_ROOT = "/servlet_plu_servletrequest1_web";
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    setServletName("TestServlet");
-    setContextRoot(CONTEXT_ROOT);
+        setServletName("TestServlet");
+        setContextRoot(CONTEXT_ROOT);
 
-    return super.run(args, out, err);
-  }
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+        return super.run(args, out, err);
+    }
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /* Run test */
-  /*
-   * @testName: getLocalPortTest
-   *
-   * @assertion_ids: Servlet:JAVADOC:635
-   *
-   * @test_Strategy: Test servlet API SDervletRequest.getLocalPort()
-   */
+    /* Run test */
+    /*
+     * @testName: getLocalPortTest
+     *
+     * @assertion_ids: Servlet:JAVADOC:635
+     *
+     * @test_Strategy: Test servlet API SDervletRequest.getLocalPort()
+     */
 
-  /*
-   * @testName: getLocalNameTest
-   *
-   * @assertion_ids: Servlet:JAVADOC:632
-   *
-   * @test_Strategy: Test servlet API SDervletRequest.getLocalName()
-   */
+    /*
+     * @testName: getLocalNameTest
+     *
+     * @assertion_ids: Servlet:JAVADOC:632
+     *
+     * @test_Strategy: Test servlet API SDervletRequest.getLocalName()
+     */
 }

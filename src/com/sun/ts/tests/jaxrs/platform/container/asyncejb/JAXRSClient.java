@@ -17,7 +17,6 @@
 package com.sun.ts.tests.jaxrs.platform.container.asyncejb;
 
 import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
-
 import jakarta.ws.rs.core.MediaType;
 
 /*
@@ -26,41 +25,38 @@ import jakarta.ws.rs.core.MediaType;
  *                     ts_home;
  */
 /*
- * These test are in the platform package since async is not available in 
+ * These test are in the platform package since async is not available in
  * Servlet 2.5 spec by default
  */
 public class JAXRSClient extends JaxrsCommonClient {
 
-  private static final long serialVersionUID = 8849202370030024015L;
+    private static final long serialVersionUID = 8849202370030024015L;
 
-  public JAXRSClient() {
-    setContextRoot("/jaxrs_platform_container_asyncejb_web/resource");
-  }
+    public JAXRSClient() {
+        setContextRoot("/jaxrs_platform_container_asyncejb_web/resource");
+    }
 
-  public static void main(String[] args) {
-    new JAXRSClient().run(args);
-  }
+    public static void main(String[] args) {
+        new JAXRSClient().run(args);
+    }
 
-  /*
-   * @testName: asynchronousTest
-   * 
-   * @assertion_ids: JAXRS:SPEC:106;
-   * 
-   * @test_Strategy: When an EJB method is annotated with @Asynchronous, the EJB
-   * container automatically allocates the necessary resources for its
-   * execution.
-   * 
-   * //Check this does not break build
-   */
-  public void asynchronousTest() throws Fault {
-    setProperty(Property.REQUEST, buildRequest(Request.GET, "check"));
-    setProperty(Property.REQUEST_HEADERS,
-        buildAccept(MediaType.TEXT_PLAIN_TYPE));
-    invoke();
-    String response = getResponseBody();
-    Long milis = Long.parseLong(response);
-    logMsg(
-        "@Asynchronous did executued longTimeOperation asynchronously, response was",
-        milis, "milis");
-  }
+    /*
+     * @testName: asynchronousTest
+     *
+     * @assertion_ids: JAXRS:SPEC:106;
+     *
+     * @test_Strategy: When an EJB method is annotated with @Asynchronous, the EJB
+     * container automatically allocates the necessary resources for its
+     * execution.
+     *
+     * //Check this does not break build
+     */
+    public void asynchronousTest() throws Fault {
+        setProperty(Property.REQUEST, buildRequest(Request.GET, "check"));
+        setProperty(Property.REQUEST_HEADERS, buildAccept(MediaType.TEXT_PLAIN_TYPE));
+        invoke();
+        String response = getResponseBody();
+        Long milis = Long.parseLong(response);
+        logMsg("@Asynchronous did executued longTimeOperation asynchronously, response was", milis, "milis");
+    }
 }

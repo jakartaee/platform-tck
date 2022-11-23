@@ -16,13 +16,12 @@
 
 package com.sun.ts.tests.jpa.core.relationship.bidirmanyxone;
 
-import java.io.Serializable;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import java.io.Serializable;
 
 /**
  *
@@ -31,75 +30,72 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class BiDirMX1Person implements Serializable {
 
-  public BiDirMX1Person() {
-  }
+    public BiDirMX1Person() {}
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Id
-  private Long id;
+    @Id
+    private Long id;
 
-  private String name;
+    private String name;
 
-  // Many Persons One Project
-  @JoinColumn(name = "UNIMX1PROJECT_ID")
-  @ManyToOne(cascade = CascadeType.ALL)
-  private BiDirMX1Project project;
+    // Many Persons One Project
+    @JoinColumn(name = "UNIMX1PROJECT_ID")
+    @ManyToOne(cascade = CascadeType.ALL)
+    private BiDirMX1Project project;
 
-  public BiDirMX1Person(long l, String string) {
-    this.id = l;
-    this.name = string;
-  }
-
-  public BiDirMX1Project getProject() {
-    return project;
-  }
-
-  public void setProject(BiDirMX1Project project) {
-    this.project = project;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  @Override
-  public int hashCode() {
-    int hash = 0;
-    hash += (id != null ? id.hashCode() : 0);
-    return hash;
-  }
-
-  @Override
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof BiDirMX1Person)) {
-      return false;
+    public BiDirMX1Person(long l, String string) {
+        this.id = l;
+        this.name = string;
     }
-    BiDirMX1Person other = (BiDirMX1Person) object;
-    if ((this.id == null && other.id != null)
-        || (this.id != null && !this.id.equals(other.id))) {
-      return false;
+
+    public BiDirMX1Project getProject() {
+        return project;
     }
-    return true;
-  }
 
-  @Override
-  public String toString() {
-    return "bidirmanyxone.BiDirMX1Person[id=" + id + "]";
-  }
+    public void setProject(BiDirMX1Project project) {
+        this.project = project;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not
+        // set
+        if (!(object instanceof BiDirMX1Person)) {
+            return false;
+        }
+        BiDirMX1Person other = (BiDirMX1Person) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "bidirmanyxone.BiDirMX1Person[id=" + id + "]";
+    }
 }

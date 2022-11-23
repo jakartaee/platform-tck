@@ -23,5 +23,4 @@ package com.sun.ts.tests.ejb30.misc.nomethodbean;
 import jakarta.ejb.Local;
 
 @Local()
-public interface NoMethodLocalIF {
-}
+public interface NoMethodLocalIF {}

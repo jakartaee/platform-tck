@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
 
 public class ShortBeanEJB extends StatefulWrapper {
 
-  public boolean testShortEntry() {
-    return TestCode.testShortEntry(nctx);
-  }
-
+    public boolean testShortEntry() {
+        return TestCode.testShortEntry(nctx);
+    }
 }

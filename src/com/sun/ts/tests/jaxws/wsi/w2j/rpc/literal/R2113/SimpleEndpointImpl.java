@@ -20,25 +20,28 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2113;
 
-import jakarta.xml.ws.WebServiceException;
 import jakarta.jws.WebService;
 
-@WebService(portName = "SimpleEndpointPort", serviceName = "SimpleTest", targetNamespace = "http://simpletestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/W2JRLR2113TestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2113.SimpleEndpoint")
-
+@WebService(
+        portName = "SimpleEndpointPort",
+        serviceName = "SimpleTest",
+        targetNamespace = "http://simpletestservice.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/W2JRLR2113TestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2113.SimpleEndpoint")
 public class SimpleEndpointImpl implements SimpleEndpoint {
-  public String helloWorld() {
-    return "hello world";
-  }
+    public String helloWorld() {
+        return "hello world";
+    }
 
-  public StringArray arrayOperation() {
-    StringArray sa = new StringArray();
-    sa.getString().add("one");
-    sa.getString().add("two");
-    sa.getString().add("three");
-    return sa;
-  }
+    public StringArray arrayOperation() {
+        StringArray sa = new StringArray();
+        sa.getString().add("one");
+        sa.getString().add("two");
+        sa.getString().add("three");
+        return sa;
+    }
 
-  public String arrayOperationFromClient(StringArray array) {
-    return "success";
-  }
+    public String arrayOperationFromClient(StringArray array) {
+        return "success";
+    }
 }

@@ -20,13 +20,8 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourcenoat;
 
-import java.net.URL;
-
-import javax.sql.DataSource;
-
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceBeanBase;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
@@ -39,149 +34,148 @@ import jakarta.jms.QueueConnectionFactory;
 import jakarta.jms.Topic;
 import jakarta.jms.TopicConnectionFactory;
 import jakarta.transaction.UserTransaction;
+import java.net.URL;
+import javax.sql.DataSource;
 
 @Stateless(name = "ResourceFieldBean")
-@Remote({ ResourceIF.class })
+@Remote({ResourceIF.class})
 @TransactionManagement(TransactionManagementType.BEAN)
 public class ResourceFieldBean extends ResourceBeanBase implements ResourceIF {
 
-  @Resource(name = "sessionContext", description = "session context", type = SessionContext.class)
-  private SessionContext sessionContext;
+    @Resource(name = "sessionContext", description = "session context", type = SessionContext.class)
+    private SessionContext sessionContext;
 
-  // @Resource(description="user transaction", name="myUserTransaction",
-  // type=UserTransaction.class)
-  // already declared in ejb-jar.xml and sun-ejb-jar.xml. This is to test
-  // UserTransaction can be declared in descriptor as a <resource-env-ref>
-  // glassfish issue 1121
-  private UserTransaction userTransaction;
+    // @Resource(description="user transaction", name="myUserTransaction",
+    // type=UserTransaction.class)
+    // already declared in ejb-jar.xml and sun-ejb-jar.xml. This is to test
+    // UserTransaction can be declared in descriptor as a <resource-env-ref>
+    // glassfish issue 1121
+    private UserTransaction userTransaction;
 
-  protected String getUserTransactionName() {
-    return "myUserTransaction";
-  }
+    protected String getUserTransactionName() {
+        return "myUserTransaction";
+    }
 
-  // @Resource
-  private DataSource dataSource;
+    // @Resource
+    private DataSource dataSource;
 
-  protected String getDataSourceName() {
-    return "dataSource";
-  }
+    protected String getDataSourceName() {
+        return "dataSource";
+    }
 
-  // @Resource(name="myDataSource2", type=DataSource.class, shareable=true,
-  // authenticationType=AuthenticationType.CONTAINER)
-  private DataSource dataSource2;
+    // @Resource(name="myDataSource2", type=DataSource.class, shareable=true,
+    // authenticationType=AuthenticationType.CONTAINER)
+    private DataSource dataSource2;
 
-  protected String getDataSource2Name() {
-    return "myDataSource2";
-  }
+    protected String getDataSource2Name() {
+        return "myDataSource2";
+    }
 
-  // @Resource
-  private jakarta.mail.Session mailSession;
+    // @Resource
+    private jakarta.mail.Session mailSession;
 
-  protected String getMailSessionName() {
-    return "mailSession";
-  }
+    protected String getMailSessionName() {
+        return "mailSession";
+    }
 
-  // @Resource
-  private URL url;
+    // @Resource
+    private URL url;
 
-  protected String getUrlName() {
-    return "url";
-  }
+    protected String getUrlName() {
+        return "url";
+    }
 
-  // @Resource
-  private QueueConnectionFactory queueConnectionFactory;
+    // @Resource
+    private QueueConnectionFactory queueConnectionFactory;
 
-  protected String getQueueConnectionFactoryName() {
-    return "queueConnectionFactory";
-  }
+    protected String getQueueConnectionFactoryName() {
+        return "queueConnectionFactory";
+    }
 
-  // @Resource
-  private TopicConnectionFactory topicConnectionFactory;
+    // @Resource
+    private TopicConnectionFactory topicConnectionFactory;
 
-  protected String getTopicConnectionFactoryName() {
-    return "topicConnectionFactory";
-  }
+    protected String getTopicConnectionFactoryName() {
+        return "topicConnectionFactory";
+    }
 
-  // @Resource
-  private ConnectionFactory connectionFactoryQ;
+    // @Resource
+    private ConnectionFactory connectionFactoryQ;
 
-  protected String getConnectionFactoryQName() {
-    return "connectionFactoryQ";
-  }
+    protected String getConnectionFactoryQName() {
+        return "connectionFactoryQ";
+    }
 
-  protected ConnectionFactory getConnectionFactoryQ() {
-    return connectionFactoryQ;
-  }
+    protected ConnectionFactory getConnectionFactoryQ() {
+        return connectionFactoryQ;
+    }
 
-  // @Resource
-  private ConnectionFactory connectionFactoryT;
+    // @Resource
+    private ConnectionFactory connectionFactoryT;
 
-  protected String getConnectionFactoryTName() {
-    return "connectionFactoryT";
-  }
+    protected String getConnectionFactoryTName() {
+        return "connectionFactoryT";
+    }
 
-  protected ConnectionFactory getConnectionFactoryT() {
-    return connectionFactoryT;
-  }
+    protected ConnectionFactory getConnectionFactoryT() {
+        return connectionFactoryT;
+    }
 
-  // @Resource
-  private Topic topic;
+    // @Resource
+    private Topic topic;
 
-  protected String getTopicName() {
-    return "topic";
-  }
+    protected String getTopicName() {
+        return "topic";
+    }
 
-  // @Resource
-  private Queue queue;
+    // @Resource
+    private Queue queue;
 
-  protected String getQueueName() {
-    return "queue";
-  }
+    protected String getQueueName() {
+        return "queue";
+    }
 
-  public ResourceFieldBean() {
-  }
+    public ResourceFieldBean() {}
 
-  public void remove() {
-  }
+    public void remove() {}
 
-  protected jakarta.ejb.EJBContext getEJBContext() {
-    return sessionContext;
-  }
+    protected jakarta.ejb.EJBContext getEJBContext() {
+        return sessionContext;
+    }
 
-  protected DataSource getDataSource() {
-    return dataSource;
-  }
+    protected DataSource getDataSource() {
+        return dataSource;
+    }
 
-  protected DataSource getDataSource2() {
-    return dataSource2;
-  }
+    protected DataSource getDataSource2() {
+        return dataSource2;
+    }
 
-  protected jakarta.mail.Session getMailSession() {
-    return mailSession;
-  }
+    protected jakarta.mail.Session getMailSession() {
+        return mailSession;
+    }
 
-  protected URL getUrl() {
-    return url;
-  }
+    protected URL getUrl() {
+        return url;
+    }
 
-  protected QueueConnectionFactory getQueueConnectionFactory() {
-    return queueConnectionFactory;
-  }
+    protected QueueConnectionFactory getQueueConnectionFactory() {
+        return queueConnectionFactory;
+    }
 
-  protected Queue getQueue() {
-    return queue;
-  }
+    protected Queue getQueue() {
+        return queue;
+    }
 
-  protected TopicConnectionFactory getTopicConnectionFactory() {
-    return topicConnectionFactory;
-  }
+    protected TopicConnectionFactory getTopicConnectionFactory() {
+        return topicConnectionFactory;
+    }
 
-  protected Topic getTopic() {
-    return topic;
-  }
+    protected Topic getTopic() {
+        return topic;
+    }
 
-  protected UserTransaction getUserTransaction() {
-    return userTransaction;
-  }
-
+    protected UserTransaction getUserTransaction() {
+        return userTransaction;
+    }
 }

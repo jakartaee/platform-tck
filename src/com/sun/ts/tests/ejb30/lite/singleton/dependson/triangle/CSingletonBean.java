@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb30.lite.singleton.dependson.triangle;
 
 import com.sun.ts.tests.ejb30.lite.singleton.dependson.common.BeanBase;
-
 import jakarta.ejb.ConcurrencyManagement;
 import jakarta.ejb.ConcurrencyManagementType;
 import jakarta.ejb.Singleton;
@@ -31,8 +30,8 @@ import jakarta.ejb.Startup;
 @Singleton
 @ConcurrencyManagement(ConcurrencyManagementType.BEAN)
 public class CSingletonBean extends BeanBase {
-  @Override
-  protected String getBeanName() {
-    return "CSingletonBean";
-  }
+    @Override
+    protected String getBeanName() {
+        return "CSingletonBean";
+    }
 }

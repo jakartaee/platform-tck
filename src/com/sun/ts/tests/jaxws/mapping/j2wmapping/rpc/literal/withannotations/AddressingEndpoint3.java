@@ -20,16 +20,16 @@
 
 package com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations;
 
-import jakarta.xml.ws.WebServiceException;
-
 @jakarta.jws.WebService(name = "AddressingEndpoint3", targetNamespace = "http://rpclitservice.org/wsdl")
-@jakarta.jws.soap.SOAPBinding(style = jakarta.jws.soap.SOAPBinding.Style.RPC, use = jakarta.jws.soap.SOAPBinding.Use.LITERAL, parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
+@jakarta.jws.soap.SOAPBinding(
+        style = jakarta.jws.soap.SOAPBinding.Style.RPC,
+        use = jakarta.jws.soap.SOAPBinding.Use.LITERAL,
+        parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
 public interface AddressingEndpoint3 {
 
-  @jakarta.xml.ws.Action(input = "input1")
-  public void address1(String s);
+    @jakarta.xml.ws.Action(input = "input1")
+    public void address1(String s);
 
-  @jakarta.xml.ws.Action(output = "output2")
-  public String address2();
-
+    @jakarta.xml.ws.Action(output = "output2")
+    public String address2();
 }

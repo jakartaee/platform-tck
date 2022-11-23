@@ -23,7 +23,6 @@ package com.sun.ts.tests.ejb30.bb.mdb.interceptor.method.descriptor;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeBase;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeTestMDBImpl;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
@@ -38,55 +37,52 @@ import jakarta.jms.MessageListener;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
 
-@MessageDriven(name = "AroundInvokeBean", description = "a simple MDB AroundInvokeBean", activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue") })
+@MessageDriven(
+        name = "AroundInvokeBean",
+        description = "a simple MDB AroundInvokeBean",
+        activationConfig = {
+            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
+        })
 
 // This bean must use cmt, since it uses setRollbackOnly
 @TransactionManagement(TransactionManagementType.CONTAINER)
+public class AroundInvokeBean extends AroundInvokeBase implements MessageListener {
+    @Resource(name = "ejbContext")
+    private MessageDrivenContext ejbContext;
 
-public class AroundInvokeBean extends AroundInvokeBase
-    implements MessageListener {
-  @Resource(name = "ejbContext")
-  private MessageDrivenContext ejbContext;
+    @Resource(name = "qFactory")
+    private QueueConnectionFactory qFactory;
 
-  @Resource(name = "qFactory")
-  private QueueConnectionFactory qFactory;
+    @Resource(name = "replyQueue")
+    private Queue replyQueue;
 
-  @Resource(name = "replyQueue")
-  private Queue replyQueue;
+    public AroundInvokeBean() {
+        super();
+    }
 
-  public AroundInvokeBean() {
-    super();
-  }
+    public void onMessage(Message msg) {
+        AroundInvokeTestMDBImpl.ensureRollbackOnly(msg, getEJBContext());
+    }
 
-  public void onMessage(Message msg) {
-    AroundInvokeTestMDBImpl.ensureRollbackOnly(msg, getEJBContext());
-  }
+    // @AroundInvoke
+    public Object intercept(InvocationContext ctx) throws Exception {
+        TLogger.log("Creating AroundInvokeTestMDBImpl with: ejbContext="
+                + ejbContext + ";" + " bean=" + this + ", callerPrincipal="
+                + ejbContext.getCallerPrincipal());
+        AroundInvokeTestMDBImpl helper = new AroundInvokeTestMDBImpl(this, ejbContext.getCallerPrincipal());
+        return helper.intercept(ctx);
+    }
 
-  // @AroundInvoke
-  public Object intercept(InvocationContext ctx) throws Exception {
-    TLogger.log("Creating AroundInvokeTestMDBImpl with: ejbContext="
-        + ejbContext + ";" + " bean=" + this + ", callerPrincipal="
-        + ejbContext.getCallerPrincipal());
-    AroundInvokeTestMDBImpl helper = new AroundInvokeTestMDBImpl(this,
-        ejbContext.getCallerPrincipal());
-    return helper.intercept(ctx);
-  }
+    // also declared in ejb-jar.xml
+    @PostConstruct
+    private void postConstruct() {}
 
-  // also declared in ejb-jar.xml
-  @PostConstruct
-  private void postConstruct() {
+    // also declared in ejb-jar.xml
+    @PreDestroy
+    private void preDestroy() {}
 
-  }
-
-  // also declared in ejb-jar.xml
-  @PreDestroy
-  private void preDestroy() {
-
-  }
-
-  // ============ abstract methods from super ==========================
-  protected jakarta.ejb.EJBContext getEJBContext() {
-    return this.ejbContext;
-  }
+    // ============ abstract methods from super ==========================
+    protected jakarta.ejb.EJBContext getEJBContext() {
+        return this.ejbContext;
+    }
 }

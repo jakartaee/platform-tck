@@ -23,12 +23,9 @@ package com.sun.ts.tests.ejb30.lite.basic.singleton;
 import com.sun.ts.tests.ejb30.lite.basic.common.Basic1IF;
 import com.sun.ts.tests.ejb30.lite.basic.common.Basic2IF;
 import com.sun.ts.tests.ejb30.lite.basic.common.BasicBeanBase;
-
 import jakarta.ejb.Local;
 import jakarta.ejb.Singleton;
 
 @Singleton
-@Local({ Basic1IF.class, Basic2IF.class })
-public class TwoInterfacesBasicBean extends BasicBeanBase
-    implements Basic1IF, Basic2IF {
-}
+@Local({Basic1IF.class, Basic2IF.class})
+public class TwoInterfacesBasicBean extends BasicBeanBase implements Basic1IF, Basic2IF {}

@@ -24,6 +24,5 @@ import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBLocalHome;
 
 public interface TwoLocalHome extends EJBLocalHome {
-  public TwoLocalIF create() throws CreateException;
-
+    public TwoLocalIF create() throws CreateException;
 }

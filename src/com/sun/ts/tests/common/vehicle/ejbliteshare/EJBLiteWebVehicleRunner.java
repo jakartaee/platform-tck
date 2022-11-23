@@ -21,61 +21,60 @@ package com.sun.ts.tests.common.vehicle.ejbliteshare;
 
 import static com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF.TEST_PASSED;
 
+import com.sun.javatest.Status;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.vehicle.VehicleRunnable;
-
 public class EJBLiteWebVehicleRunner implements VehicleRunnable {
-  private final static Logger logger = Logger
-      .getLogger(EJBLiteWebVehicleRunner.class.getName());
+    private static final Logger logger = Logger.getLogger(EJBLiteWebVehicleRunner.class.getName());
 
-  protected String getServletPath(String vehicle) {
-    return "/" + vehicle + "_vehicle.jsp";
-  }
-
-  protected String getQueryString(Properties p) {
-    return "?testName=" + p.getProperty("testName");
-  }
-
-  public Status run(String[] argv, Properties p) {
-    String vehicle = p.getProperty("vehicle");
-    String contextRoot = p.getProperty("vehicle_archive_name");
-    String requestUrl = "/" + contextRoot + getServletPath(vehicle)
-        + getQueryString(p);
-
-    TSURL ctsURL = new TSURL();
-    URL url = null;
-    HttpURLConnection connection = null;
-    int statusCode = Status.NOT_RUN;
-    String response = null;
-    try {
-      url = ctsURL.getURL("http", p.getProperty("webServerHost"),
-          Integer.parseInt(p.getProperty("webServerPort")), requestUrl);
-
-      connection = (HttpURLConnection) url.openConnection();
-      connection.setRequestMethod("GET");
-      connection.setUseCaches(false);
-      logger.info("Connecting " + url.toExternalForm());
-      connection.connect();
-
-      response = TestUtil.getResponse(connection).trim();
-      if (response.indexOf(TEST_PASSED) >= 0) {
-        statusCode = Status.PASSED;
-      } else {
-        statusCode = Status.FAILED;
-      }
-    } catch (IOException e) {
-      statusCode = Status.FAILED;
-      response = "Failed to connect to the test webapp."
-          + TestUtil.printStackTraceToString(e);
+    protected String getServletPath(String vehicle) {
+        return "/" + vehicle + "_vehicle.jsp";
     }
-    return new ReasonableStatus(statusCode, response);
-  }
+
+    protected String getQueryString(Properties p) {
+        return "?testName=" + p.getProperty("testName");
+    }
+
+    public Status run(String[] argv, Properties p) {
+        String vehicle = p.getProperty("vehicle");
+        String contextRoot = p.getProperty("vehicle_archive_name");
+        String requestUrl = "/" + contextRoot + getServletPath(vehicle) + getQueryString(p);
+
+        TSURL ctsURL = new TSURL();
+        URL url = null;
+        HttpURLConnection connection = null;
+        int statusCode = Status.NOT_RUN;
+        String response = null;
+        try {
+            url = ctsURL.getURL(
+                    "http",
+                    p.getProperty("webServerHost"),
+                    Integer.parseInt(p.getProperty("webServerPort")),
+                    requestUrl);
+
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setUseCaches(false);
+            logger.info("Connecting " + url.toExternalForm());
+            connection.connect();
+
+            response = TestUtil.getResponse(connection).trim();
+            if (response.indexOf(TEST_PASSED) >= 0) {
+                statusCode = Status.PASSED;
+            } else {
+                statusCode = Status.FAILED;
+            }
+        } catch (IOException e) {
+            statusCode = Status.FAILED;
+            response = "Failed to connect to the test webapp." + TestUtil.printStackTraceToString(e);
+        }
+        return new ReasonableStatus(statusCode, response);
+    }
 }

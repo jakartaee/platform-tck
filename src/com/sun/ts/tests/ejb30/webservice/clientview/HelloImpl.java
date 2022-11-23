@@ -21,10 +21,9 @@ import jakarta.jws.WebService;
 
 @WebService(name = "Hello", serviceName = "HelloService")
 @Stateless
-
 public class HelloImpl {
-  public String sayHello(String param) {
+    public String sayHello(String param) {
 
-    return "Hello " + param;
-  }
+        return "Hello " + param;
+    }
 }

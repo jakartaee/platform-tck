@@ -15,42 +15,38 @@
  */
 
 /*
- * $Id$ 
+ * $Id$
  */
 
 package com.sun.ts.tests.jsp.spec.tagfiles.semantics;
-
-import java.io.IOException;
 
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.SkipPageException;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 import jakarta.servlet.jsp.tagext.TryCatchFinally;
+import java.io.IOException;
 
 public class MySimpleTag extends SimpleTagSupport implements TryCatchFinally {
 
-  public void doTag() throws JspException {
-    try {
-      JspWriter out = getJspContext().getOut();
-      out.println("Test PASSED. MySimpleTag.doTag");
-    } catch (IOException ioe) {
-      throw new JspException("Unexpected IOException!", ioe);
-    }
-    throw new SkipPageException("from MySimpleTag.doTag.");
-  }
-
-  public void doCatch(Throwable t) throws Throwable {
-    try {
-      JspWriter out = getJspContext().getOut();
-      out.println("MySimpleTag.doCatch");
-    } catch (IOException ioe) {
-      throw new JspException("Unexpected IOException!", ioe);
+    public void doTag() throws JspException {
+        try {
+            JspWriter out = getJspContext().getOut();
+            out.println("Test PASSED. MySimpleTag.doTag");
+        } catch (IOException ioe) {
+            throw new JspException("Unexpected IOException!", ioe);
+        }
+        throw new SkipPageException("from MySimpleTag.doTag.");
     }
 
-  }
+    public void doCatch(Throwable t) throws Throwable {
+        try {
+            JspWriter out = getJspContext().getOut();
+            out.println("MySimpleTag.doCatch");
+        } catch (IOException ioe) {
+            throw new JspException("Unexpected IOException!", ioe);
+        }
+    }
 
-  public void doFinally() {
-
-  }
+    public void doFinally() {}
 }

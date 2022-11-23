@@ -20,33 +20,30 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.marshalltest;
 
-import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
-
-import jakarta.xml.ws.WebServiceException;
-import jakarta.xml.soap.Name;
-import jakarta.xml.soap.SOAPElement;
-import jakarta.xml.soap.SOAPFactory;
-import jakarta.xml.soap.SOAPException;
-
+import com.sun.ts.lib.util.*;
 import jakarta.jws.WebService;
 
-@WebService(targetNamespace = "http://marshalltestservice.org/MarshallTestService.wsdl", portName = "MarshallTestPort3", serviceName = "MarshallTestService", wsdlLocation = "WEB-INF/wsdl/WSW2JDLMarshallTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.marshalltest.CompoundTest")
-
+@WebService(
+        targetNamespace = "http://marshalltestservice.org/MarshallTestService.wsdl",
+        portName = "MarshallTestPort3",
+        serviceName = "MarshallTestService",
+        wsdlLocation = "WEB-INF/wsdl/WSW2JDLMarshallTestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.marshalltest.CompoundTest")
 public class CompoundTestImpl implements CompoundTest {
-  public EchoEmployeeResponse echoEmployee(EchoEmployeeRequest employee) {
-    EchoEmployeeResponse employeeResp = new EchoEmployeeResponse();
-    employeeResp.setEmployee(employee.getEmployee());
-    return employeeResp;
-  }
+    public EchoEmployeeResponse echoEmployee(EchoEmployeeRequest employee) {
+        EchoEmployeeResponse employeeResp = new EchoEmployeeResponse();
+        employeeResp.setEmployee(employee.getEmployee());
+        return employeeResp;
+    }
 
-  public EchoPersonResponse echoPerson(EchoPersonRequest person) {
-    EchoPersonResponse personResp = new EchoPersonResponse();
-    personResp.setPerson(person.getPerson());
-    return personResp;
-  }
+    public EchoPersonResponse echoPerson(EchoPersonRequest person) {
+        EchoPersonResponse personResp = new EchoPersonResponse();
+        personResp.setPerson(person.getPerson());
+        return personResp;
+    }
 
-  public Document echoDocument(Document document) {
-    return document;
-  }
+    public Document echoDocument(Document document) {
+        return document;
+    }
 }

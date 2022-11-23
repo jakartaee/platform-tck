@@ -58,182 +58,200 @@
 
 package com.sun.ts.tests.servlet.spec.i18n.encoding;
 
+import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Locale;
 
-import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
-import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
 public class TestServlet extends HttpTCKServlet {
 
-  public void spec1Test(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    boolean passed = true;
+    public void spec1Test(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        boolean passed = true;
 
-    String[] call = { "setContentType", "setLocale", "setCharacterEncoding",
-        "getWriter", "setCharacterEncoding", "setLocale", };
-    String[] actual = new String[6];
-    String[] expected = { "utf-16le", "utf-16le", "utf-8", "utf-8", "utf-8",
-        "utf-8", };
+        String[] call = {
+            "setContentType", "setLocale", "setCharacterEncoding", "getWriter", "setCharacterEncoding", "setLocale",
+        };
+        String[] actual = new String[6];
+        String[] expected = {
+            "utf-16le", "utf-16le", "utf-8", "utf-8", "utf-8", "utf-8",
+        };
 
-    try {
-      // setContentType should set character encoding
-      response.setContentType("text/html;charset=utf-16le");
-      actual[0] = response.getCharacterEncoding();
+        try {
+            // setContentType should set character encoding
+            response.setContentType("text/html;charset=utf-16le");
+            actual[0] = response.getCharacterEncoding();
 
-      // setLocale should not override explicit character encoding request
-      response.setLocale(Locale.JAPAN);
-      actual[1] = response.getCharacterEncoding();
+            // setLocale should not override explicit character encoding request
+            response.setLocale(Locale.JAPAN);
+            actual[1] = response.getCharacterEncoding();
 
-      // setCharacterEncoding should still be able to change encoding
-      response.setCharacterEncoding("utf-8");
-      actual[2] = response.getCharacterEncoding();
+            // setCharacterEncoding should still be able to change encoding
+            response.setCharacterEncoding("utf-8");
+            actual[2] = response.getCharacterEncoding();
 
-      // getWriter should freeze the character encoding
-      PrintWriter pw = response.getWriter();
-      actual[3] = response.getCharacterEncoding();
+            // getWriter should freeze the character encoding
+            PrintWriter pw = response.getWriter();
+            actual[3] = response.getCharacterEncoding();
 
-      // setCharacterEncoding should no longer be able to change the encoding
-      response.setCharacterEncoding("iso-8859-1");
-      actual[4] = response.getCharacterEncoding();
+            // setCharacterEncoding should no longer be able to change the encoding
+            response.setCharacterEncoding("iso-8859-1");
+            actual[4] = response.getCharacterEncoding();
 
-      // setLocale should not override explicit character encoding request
-      response.setLocale(Locale.JAPAN);
-      actual[5] = response.getCharacterEncoding();
+            // setLocale should not override explicit character encoding request
+            response.setLocale(Locale.JAPAN);
+            actual[5] = response.getCharacterEncoding();
 
-      for (int i = 0; i < actual.length; i++) {
-        if (!(actual[i].toLowerCase(Locale.US)
-            .equals(expected[i].toLowerCase(Locale.US)))) {
-          passed = false;
-          pw.println("Error: Step:" + i + " - encoding after " + call[i]
-              + " is " + actual[i] + "; expected " + expected[i]);
+            for (int i = 0; i < actual.length; i++) {
+                if (!(actual[i].toLowerCase(Locale.US).equals(expected[i].toLowerCase(Locale.US)))) {
+                    passed = false;
+                    pw.println("Error: Step:" + i + " - encoding after " + call[i] + " is " + actual[i] + "; expected "
+                            + expected[i]);
+                }
+            }
+            ServletTestUtil.printResult(pw, passed);
+        } catch (Throwable t) {
+            throw new ServletException(t);
         }
-      }
-      ServletTestUtil.printResult(pw, passed);
-    } catch (Throwable t) {
-      throw new ServletException(t);
     }
-  }
 
-  public void spec2Test(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    boolean passed = true;
+    public void spec2Test(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        boolean passed = true;
 
-    String[] call = { "setContentType", "setLocale", "setLocale",
-        "setContentType", "setCharacterEncoding", "setLocale", "setContentType",
-        "setCharacterEncoding", "getWriter", "setCharacterEncoding",
-        "setLocale", };
-    String[] actual = new String[11];
-    String[] expected = { "iso-8859-1", "euc-jp", "gb18030", "gb18030", "utf-8",
-        "utf-8", "gb18030", "utf-8", "utf-8", "utf-8", "utf-8", };
+        String[] call = {
+            "setContentType",
+            "setLocale",
+            "setLocale",
+            "setContentType",
+            "setCharacterEncoding",
+            "setLocale",
+            "setContentType",
+            "setCharacterEncoding",
+            "getWriter",
+            "setCharacterEncoding",
+            "setLocale",
+        };
+        String[] actual = new String[11];
+        String[] expected = {
+            "iso-8859-1",
+            "euc-jp",
+            "gb18030",
+            "gb18030",
+            "utf-8",
+            "utf-8",
+            "gb18030",
+            "utf-8",
+            "utf-8",
+            "utf-8",
+            "utf-8",
+        };
 
-    try {
-      response.setContentType("text/html");
-      actual[0] = response.getCharacterEncoding();
+        try {
+            response.setContentType("text/html");
+            actual[0] = response.getCharacterEncoding();
 
-      // setLocale should change character encoding based on
-      // locale-encoding-mapping-list
-      response.setLocale(Locale.JAPAN);
-      actual[1] = response.getCharacterEncoding();
+            // setLocale should change character encoding based on
+            // locale-encoding-mapping-list
+            response.setLocale(Locale.JAPAN);
+            actual[1] = response.getCharacterEncoding();
 
-      // setLocale should change character encoding based on
-      // locale-encoding-mapping-list
-      response.setLocale(Locale.CHINA);
-      actual[2] = response.getCharacterEncoding();
+            // setLocale should change character encoding based on
+            // locale-encoding-mapping-list
+            response.setLocale(Locale.CHINA);
+            actual[2] = response.getCharacterEncoding();
 
-      // setContentType here doesn't define character encoding
-      response.setContentType("text/html");
-      actual[3] = response.getCharacterEncoding();
+            // setContentType here doesn't define character encoding
+            response.setContentType("text/html");
+            actual[3] = response.getCharacterEncoding();
 
-      // setCharacterEncoding should still be able to change encoding
-      response.setCharacterEncoding("utf-8");
-      actual[4] = response.getCharacterEncoding();
+            // setCharacterEncoding should still be able to change encoding
+            response.setCharacterEncoding("utf-8");
+            actual[4] = response.getCharacterEncoding();
 
-      // setLocale should not override explicit character encoding request
-      response.setLocale(Locale.JAPAN);
-      actual[5] = response.getCharacterEncoding();
+            // setLocale should not override explicit character encoding request
+            response.setLocale(Locale.JAPAN);
+            actual[5] = response.getCharacterEncoding();
 
-      // setContentType should still be able to change encoding
-      response.setContentType("text/html;charset=gb18030");
-      actual[6] = response.getCharacterEncoding();
+            // setContentType should still be able to change encoding
+            response.setContentType("text/html;charset=gb18030");
+            actual[6] = response.getCharacterEncoding();
 
-      // setCharacterEncoding should still be able to change encoding
-      response.setCharacterEncoding("utf-8");
-      actual[7] = response.getCharacterEncoding();
+            // setCharacterEncoding should still be able to change encoding
+            response.setCharacterEncoding("utf-8");
+            actual[7] = response.getCharacterEncoding();
 
-      // getWriter should freeze the character encoding
-      PrintWriter pw = response.getWriter();
-      actual[8] = response.getCharacterEncoding();
+            // getWriter should freeze the character encoding
+            PrintWriter pw = response.getWriter();
+            actual[8] = response.getCharacterEncoding();
 
-      // setCharacterEncoding should no longer be able to change the encoding
-      response.setCharacterEncoding("iso-8859-1");
-      actual[9] = response.getCharacterEncoding();
+            // setCharacterEncoding should no longer be able to change the encoding
+            response.setCharacterEncoding("iso-8859-1");
+            actual[9] = response.getCharacterEncoding();
 
-      // setLocale should not override explicit character encoding request
-      response.setLocale(Locale.JAPAN);
-      actual[10] = response.getCharacterEncoding();
+            // setLocale should not override explicit character encoding request
+            response.setLocale(Locale.JAPAN);
+            actual[10] = response.getCharacterEncoding();
 
-      for (int i = 0; i < actual.length; i++) {
-        if (!(actual[i].toLowerCase(Locale.US)
-            .equals(expected[i].toLowerCase(Locale.US)))) {
-          passed = false;
-          pw.println("Error: Step:" + (i + 1) + " - encoding after " + call[i]
-              + " is " + actual[i] + "; expected " + expected[i]);
+            for (int i = 0; i < actual.length; i++) {
+                if (!(actual[i].toLowerCase(Locale.US).equals(expected[i].toLowerCase(Locale.US)))) {
+                    passed = false;
+                    pw.println("Error: Step:" + (i + 1) + " - encoding after " + call[i] + " is " + actual[i]
+                            + "; expected " + expected[i]);
+                }
+            }
+            ServletTestUtil.printResult(pw, passed);
+        } catch (Throwable t) {
+            throw new ServletException(t);
         }
-      }
-      ServletTestUtil.printResult(pw, passed);
-    } catch (Throwable t) {
-      throw new ServletException(t);
     }
-  }
 
-  public void spec3Test(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    boolean passed = true;
+    public void spec3Test(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        boolean passed = true;
 
-    String[] call = { "setContentType", "flushBuffer", "setCharacterEncoding",
-        "setLocale", "getWriter", };
-    String[] actual = new String[5];
-    String[] expected = { "iso-8859-1", "iso-8859-1", "iso-8859-1",
-        "iso-8859-1", "iso-8859-1", };
-    try {
-      // setContentType should set character encoding
-      response.setContentType("text/html");
-      actual[0] = response.getCharacterEncoding();
+        String[] call = {
+            "setContentType", "flushBuffer", "setCharacterEncoding", "setLocale", "getWriter",
+        };
+        String[] actual = new String[5];
+        String[] expected = {
+            "iso-8859-1", "iso-8859-1", "iso-8859-1", "iso-8859-1", "iso-8859-1",
+        };
+        try {
+            // setContentType should set character encoding
+            response.setContentType("text/html");
+            actual[0] = response.getCharacterEncoding();
 
-      // committing should freeze the character encoding
-      response.flushBuffer();
-      actual[1] = response.getCharacterEncoding();
+            // committing should freeze the character encoding
+            response.flushBuffer();
+            actual[1] = response.getCharacterEncoding();
 
-      // setCharacterEncoding should no longer be able to change the encoding
-      response.setCharacterEncoding("utf-8");
-      actual[2] = response.getCharacterEncoding();
+            // setCharacterEncoding should no longer be able to change the encoding
+            response.setCharacterEncoding("utf-8");
+            actual[2] = response.getCharacterEncoding();
 
-      // setLocale should not override explicit character encoding request
-      response.setLocale(Locale.JAPAN);
-      actual[3] = response.getCharacterEncoding();
+            // setLocale should not override explicit character encoding request
+            response.setLocale(Locale.JAPAN);
+            actual[3] = response.getCharacterEncoding();
 
-      // getWriter should freeze the character encoding
-      PrintWriter pw = response.getWriter();
-      actual[4] = response.getCharacterEncoding();
+            // getWriter should freeze the character encoding
+            PrintWriter pw = response.getWriter();
+            actual[4] = response.getCharacterEncoding();
 
-      for (int i = 0; i < actual.length; i++) {
-        if (!(actual[i].toLowerCase(Locale.US)
-            .equals(expected[i].toLowerCase(Locale.US)))) {
-          passed = false;
-          pw.println("Error: Step:" + i + " - encoding after " + call[i]
-              + " is " + actual[i] + "; expected " + expected[i]);
+            for (int i = 0; i < actual.length; i++) {
+                if (!(actual[i].toLowerCase(Locale.US).equals(expected[i].toLowerCase(Locale.US)))) {
+                    passed = false;
+                    pw.println("Error: Step:" + i + " - encoding after " + call[i] + " is " + actual[i] + "; expected "
+                            + expected[i]);
+                }
+            }
+            ServletTestUtil.printResult(pw, passed);
+        } catch (Throwable t) {
+            throw new ServletException(t);
         }
-      }
-      ServletTestUtil.printResult(pw, passed);
-    } catch (Throwable t) {
-      throw new ServletException(t);
     }
-  }
-
 }

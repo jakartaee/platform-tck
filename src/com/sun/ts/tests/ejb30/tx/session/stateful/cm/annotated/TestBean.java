@@ -20,56 +20,51 @@
 
 package com.sun.ts.tests.ejb30.tx.session.stateful.cm.annotated;
 
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.tx.common.session.cm.LocalTxIF;
 import com.sun.ts.tests.ejb30.tx.common.session.cm.TestBeanBase;
 import com.sun.ts.tests.ejb30.tx.common.session.cm.TestIF;
-
 import jakarta.ejb.Remote;
 import jakarta.ejb.Remove;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import jakarta.transaction.UserTransaction;
+import java.util.logging.Level;
 
 @Stateful
-@Remote({ TestIF.class })
+@Remote({TestIF.class})
 @TransactionManagement(TransactionManagementType.BEAN)
 public class TestBean extends TestBeanBase implements TestIF {
-  @Override
-  public String localRequiresNewRemoveTest() throws TestFailedException {
-    String reason = null;
-    UserTransaction ut = getEJBContext().getUserTransaction();
-    LocalTxIF localTxBean0 = (LocalTxIF) getEJBContext().lookup("localTxBean");
-    try {
-      ut.begin();
-      try {
-        localTxBean0.requiresNewNoop();
-      } catch (TestFailedException e) {
-        Helper.getLogger().log(Level.FINE, "Got expected TestFailedException",
-            e);
-      }
-      localTxBean0.localRequiresNewRemoveTest();
-    } catch (jakarta.transaction.NotSupportedException e) {
-      throw new TestFailedException(e);
-    } catch (jakarta.transaction.SystemException e) {
-      throw new TestFailedException(e);
-    } finally {
-      try {
-        ut.rollback();
-      } catch (Exception e) {
-        // ignore
-      }
+    @Override
+    public String localRequiresNewRemoveTest() throws TestFailedException {
+        String reason = null;
+        UserTransaction ut = getEJBContext().getUserTransaction();
+        LocalTxIF localTxBean0 = (LocalTxIF) getEJBContext().lookup("localTxBean");
+        try {
+            ut.begin();
+            try {
+                localTxBean0.requiresNewNoop();
+            } catch (TestFailedException e) {
+                Helper.getLogger().log(Level.FINE, "Got expected TestFailedException", e);
+            }
+            localTxBean0.localRequiresNewRemoveTest();
+        } catch (jakarta.transaction.NotSupportedException e) {
+            throw new TestFailedException(e);
+        } catch (jakarta.transaction.SystemException e) {
+            throw new TestFailedException(e);
+        } finally {
+            try {
+                ut.rollback();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
+        return reason;
     }
-    return reason;
-  }
 
-  @Override
-  @Remove(retainIfException = false)
-  public void remove() {
-  }
-
+    @Override
+    @Remove(retainIfException = false)
+    public void remove() {}
 }

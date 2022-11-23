@@ -20,13 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.timer.session.stateless.bm;
 
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJBHome;
-
 public interface ProxyBeanHome extends EJBHome {
-  public ProxyBean create(Properties props)
-      throws RemoteException, CreateException;
+    public ProxyBean create(Properties props) throws RemoteException, CreateException;
 }

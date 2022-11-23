@@ -20,45 +20,40 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class AddServletNotFound extends GenericServlet {
 
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
+        PrintWriter pw = response.getWriter();
 
-    pw.println("AddServletNotFound is invoked");
-    ServletTestUtil.printResult(pw, true);
+        pw.println("AddServletNotFound is invoked");
+        ServletTestUtil.printResult(pw, true);
 
-    ArrayList result = (ArrayList) getServletContext()
-        .getAttribute("arraylist");
+        ArrayList result = (ArrayList) getServletContext().getAttribute("arraylist");
 
-    for (Object tmp : result) {
-      pw.println(tmp.toString());
-
-    }
-    getServletContext().removeAttribute("arraylist");
-
-    result = StaticLog.getClear();
-    if (result != null) {
-      for (Object tmp : result) {
-        if (tmp != null) {
-          pw.println(tmp.toString());
+        for (Object tmp : result) {
+            pw.println(tmp.toString());
         }
-      }
+        getServletContext().removeAttribute("arraylist");
+
+        result = StaticLog.getClear();
+        if (result != null) {
+            for (Object tmp : result) {
+                if (tmp != null) {
+                    pw.println(tmp.toString());
+                }
+            }
+        }
+        StaticLog.clear();
     }
-    StaticLog.clear();
-  }
 }

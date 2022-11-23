@@ -16,24 +16,20 @@
 
 package com.sun.ts.tests.jta.ee.transactional;
 
-import java.io.Serializable;
-
 import jakarta.enterprise.inject.spi.PassivationCapable;
 import jakarta.transaction.TransactionScoped;
+import java.io.Serializable;
 
 @TransactionScoped
 public class TransactionScopedBean implements PassivationCapable, Serializable {
-  public TransactionScopedBean() {
+    public TransactionScopedBean() {}
 
-  }
+    public String test() {
+        String result = "TransactionScopedBean.test called with active transaction";
+        return result;
+    }
 
-  public String test() {
-    String result = "TransactionScopedBean.test called with active transaction";
-    return result;
-  }
-
-  public String getId() {
-    return "com.sun.ts.tests.jta.ee.transactionl.TransactionScopedBean";
-  }
-
+    public String getId() {
+        return "com.sun.ts.tests.jta.ee.transactionl.TransactionScopedBean";
+    }
 }

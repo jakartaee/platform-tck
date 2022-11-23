@@ -21,12 +21,11 @@
 package com.sun.ts.tests.ejb30.tx.common.session.inheritance;
 
 public interface TxCommonIF {
-  String foo();
+    String foo();
 
-  String foo(String s);
+    String foo(String s);
 
-  String foo(String s, String ss);
+    String foo(String s, String ss);
 
-  String bar();
-
+    String bar();
 }

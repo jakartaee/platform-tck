@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>jakartaee</groupId>
+  <artifactId>tck</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <!--  pluginManagement  -->
+      <plugins>
+        <plugin>
+          <groupId>com.diffplug.spotless</groupId>
+          <artifactId>spotless-maven-plugin</artifactId>
+          <version>2.27.1</version>
+          <configuration>
+            <java>
+              <includes>
+                <include>src/**/*.java</include>
+              </includes>
+              <!--importOrder>
+                <file></file>
+              </importOrder-->
+              <removeUnusedImports />
+              <palantirJavaFormat />
+              <!--licenseHeader>
+                <file></file>
+              </licenseHeader-->
+            </java>
+            <pom>
+              <sortPom>
+                <expandEmptyElements>false</expandEmptyElements>
+              </sortPom>
+            </pom>
+            <!--upToDateChecking>
+              <enabled>true</enabled>
+            </upToDateChecking-->
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>check</goal>
+              </goals>
+              <phase>validate</phase>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    <!--  /pluginManagement -->
+  </build>
+</project>

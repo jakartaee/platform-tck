@@ -23,8 +23,7 @@ import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 
 public class TestBeanEJB extends StatelessWrapper {
 
-  public boolean ping() {
-    return true;
-  }
-
+    public boolean ping() {
+        return true;
+    }
 }

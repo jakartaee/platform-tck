@@ -20,77 +20,75 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.bodycontent;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.BodyContent;
 import jakarta.servlet.jsp.tagext.BodyTagSupport;
+import java.io.BufferedReader;
+import java.io.IOException;
 
 public class BodyContentReadWriteTag extends BodyTagSupport {
 
-  /**
-   * Default constructor.
-   */
-  public BodyContentReadWriteTag() {
-    super();
-  }
-
-  /**
-   * Validates the behavior of BodyContent.getReader() and
-   * BodyContent.getEnclosingWriter();
-   * 
-   * @return SKIP_BODY
-   * @throws JspException
-   *           - if an error occurs
-   */
-  public int doAfterBody() throws JspException {
-    JspTestUtil.debug("[BodyContentReadWriteTag] in doAfterBody()");
-
-    try {
-      BodyContent content = this.getBodyContent();
-      BufferedReader reader = new BufferedReader(content.getReader());
-      StringBuffer sb = new StringBuffer();
-      JspWriter writer = content.getEnclosingWriter();
-
-      try {
-        // add a little something to the body to show that it has
-        // been modified...
-        sb.append("#");
-
-        for (int i = reader.read(); i != -1; i = reader.read()) {
-          if (Character.isWhitespace((char) i)) {
-            continue;
-          }
-          sb.append((char) i);
-        }
-        sb.append("#");
-
-        writer = content.getEnclosingWriter();
-
-        if (writer != null) {
-          // validate that the enclosing writer is not the same
-          // JspWriter used at the page level.
-          if (writer == pageContext.getOut()) {
-            writer.println("Test FAILED.  Writer returned"
-                + " by BodyContent has the same address as the writer returned"
-                + " by pageContext.get().");
-          } else {
-            writer.println(sb.toString());
-          }
-        }
-      } finally {
-        writer.close();
-        reader.close();
-      }
-
-    } catch (IOException ioe) {
-      throw new JspException("Unexpected IOException!", ioe);
+    /**
+     * Default constructor.
+     */
+    public BodyContentReadWriteTag() {
+        super();
     }
 
-    return SKIP_BODY;
-  }
+    /**
+     * Validates the behavior of BodyContent.getReader() and
+     * BodyContent.getEnclosingWriter();
+     *
+     * @return SKIP_BODY
+     * @throws JspException
+     *           - if an error occurs
+     */
+    public int doAfterBody() throws JspException {
+        JspTestUtil.debug("[BodyContentReadWriteTag] in doAfterBody()");
+
+        try {
+            BodyContent content = this.getBodyContent();
+            BufferedReader reader = new BufferedReader(content.getReader());
+            StringBuffer sb = new StringBuffer();
+            JspWriter writer = content.getEnclosingWriter();
+
+            try {
+                // add a little something to the body to show that it has
+                // been modified...
+                sb.append("#");
+
+                for (int i = reader.read(); i != -1; i = reader.read()) {
+                    if (Character.isWhitespace((char) i)) {
+                        continue;
+                    }
+                    sb.append((char) i);
+                }
+                sb.append("#");
+
+                writer = content.getEnclosingWriter();
+
+                if (writer != null) {
+                    // validate that the enclosing writer is not the same
+                    // JspWriter used at the page level.
+                    if (writer == pageContext.getOut()) {
+                        writer.println("Test FAILED.  Writer returned"
+                                + " by BodyContent has the same address as the writer returned"
+                                + " by pageContext.get().");
+                    } else {
+                        writer.println(sb.toString());
+                    }
+                }
+            } finally {
+                writer.close();
+                reader.close();
+            }
+
+        } catch (IOException ioe) {
+            throw new JspException("Unexpected IOException!", ioe);
+        }
+
+        return SKIP_BODY;
+    }
 }

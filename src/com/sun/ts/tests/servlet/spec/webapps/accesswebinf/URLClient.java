@@ -20,57 +20,54 @@
 
 package com.sun.ts.tests.servlet.spec.webapps.accesswebinf;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    setContextRoot("/servlet_spec_webapps_accesswebinf_web");
+        setContextRoot("/servlet_spec_webapps_accesswebinf_web");
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   *
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     *
+     */
 
-  /* Run test */
+    /* Run test */
 
-  /*
-   * @testName: accessWebInfTest
-   * 
-   * @assertion_ids: Servlet:SPEC:89
-   * 
-   * @test_Strategy:
-   */
-  public void accessWebInfTest() throws Fault {
-    String testName = "accessWebInfTest";
-    TEST_PROPS.setProperty(TEST_NAME, testName);
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/"
-        + getServletName() + "/test.html HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, NOT_FOUND);
+    /*
+     * @testName: accessWebInfTest
+     *
+     * @assertion_ids: Servlet:SPEC:89
+     *
+     * @test_Strategy:
+     */
+    public void accessWebInfTest() throws Fault {
+        String testName = "accessWebInfTest";
+        TEST_PROPS.setProperty(TEST_NAME, testName);
+        TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/" + getServletName() + "/test.html HTTP/1.1");
+        TEST_PROPS.setProperty(STATUS_CODE, NOT_FOUND);
 
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "test html page");
-    invoke();
-  }
+        TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "test html page");
+        invoke();
+    }
 }

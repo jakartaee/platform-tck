@@ -19,71 +19,67 @@
  */
 package com.sun.ts.tests.ejb30.lite.stateful.concurrency.common;
 
-import java.util.List;
-import java.util.logging.Level;
+import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF.CONCURRENT_INVOCATION_TIMES;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase;
 import jakarta.ejb.ConcurrentAccessException;
+import java.util.List;
+import java.util.logging.Level;
 
-import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF.CONCURRENT_INVOCATION_TIMES;
+public abstract class StatefulConcurrencyJsfClientBase extends EJBLiteJsfClientBase {
 
-abstract public class StatefulConcurrencyJsfClientBase extends EJBLiteJsfClientBase {
-
-  protected List<Exception> concurrentPing(StatefulConcurrencyIF b)
-      throws InterruptedException {
-    Pinger[] pingers = new Pinger[CONCURRENT_INVOCATION_TIMES];
-    for (int i = 0; i < CONCURRENT_INVOCATION_TIMES; i++) {
-      pingers[i] = new Pinger(b);
+    protected List<Exception> concurrentPing(StatefulConcurrencyIF b) throws InterruptedException {
+        Pinger[] pingers = new Pinger[CONCURRENT_INVOCATION_TIMES];
+        for (int i = 0; i < CONCURRENT_INVOCATION_TIMES; i++) {
+            pingers[i] = new Pinger(b);
+        }
+        return concurrentPing0(pingers);
     }
-    return concurrentPing0(pingers);
-  }
 
-  protected List<Exception> concurrentPing(Runnable runnable)
-      throws InterruptedException {
-    Pinger[] pingers = new Pinger[CONCURRENT_INVOCATION_TIMES];
-    for (int i = 0; i < CONCURRENT_INVOCATION_TIMES; i++) {
-      pingers[i] = new Pinger(runnable);
+    protected List<Exception> concurrentPing(Runnable runnable) throws InterruptedException {
+        Pinger[] pingers = new Pinger[CONCURRENT_INVOCATION_TIMES];
+        for (int i = 0; i < CONCURRENT_INVOCATION_TIMES; i++) {
+            pingers[i] = new Pinger(runnable);
+        }
+        return concurrentPing0(pingers);
     }
-    return concurrentPing0(pingers);
-  }
 
-  private List<Exception> concurrentPing0(Pinger[] pingers)
-      throws InterruptedException {
-    for (Pinger p : pingers) {
-      p.start();
+    private List<Exception> concurrentPing0(Pinger[] pingers) throws InterruptedException {
+        for (Pinger p : pingers) {
+            p.start();
+        }
+        for (Pinger p : pingers) {
+            try {
+                p.join();
+            } catch (InterruptedException e) {
+                Helper.getLogger().log(Level.WARNING, null, e);
+            }
+        }
+        return Pinger.getExceptionAsList(pingers);
     }
-    for (Pinger p : pingers) {
-      try {
-        p.join();
-      } catch (InterruptedException e) {
-        Helper.getLogger().log(Level.WARNING, null, e);
-      }
-    }
-    return Pinger.getExceptionAsList(pingers);
-  }
 
-  protected void checkConcurrentAccessResult(List<Exception> exceptionList,
-      int nullCountExpected, int concurrentAccessExceptionCountExpected) {
-    int nullCount = 0;
-    int concurrentAccessExceptionCount = 0;
+    protected void checkConcurrentAccessResult(
+            List<Exception> exceptionList, int nullCountExpected, int concurrentAccessExceptionCountExpected) {
+        int nullCount = 0;
+        int concurrentAccessExceptionCount = 0;
 
-    Helper.getLogger().fine("exceptionList: " + exceptionList.toString());
-    for (Exception e : exceptionList) {
-      if (e == null) {
-        appendReason("Got no exception, which may be correct.");
-        nullCount++;
-      } else if (e instanceof ConcurrentAccessException) {
-        appendReason("Got ConcurrentAccessException, which may be correct: ",
-            e);
-        concurrentAccessExceptionCount++;
-      } else {
-        throw new RuntimeException(
-            "Expecting null or ConcurrentAccessException, but got ", e);
-      }
+        Helper.getLogger().fine("exceptionList: " + exceptionList.toString());
+        for (Exception e : exceptionList) {
+            if (e == null) {
+                appendReason("Got no exception, which may be correct.");
+                nullCount++;
+            } else if (e instanceof ConcurrentAccessException) {
+                appendReason("Got ConcurrentAccessException, which may be correct: ", e);
+                concurrentAccessExceptionCount++;
+            } else {
+                throw new RuntimeException("Expecting null or ConcurrentAccessException, but got ", e);
+            }
+        }
+        assertEquals("Check nullCount", nullCountExpected, nullCount);
+        assertEquals(
+                "Check concurrentAccessExceptionCount",
+                concurrentAccessExceptionCountExpected,
+                concurrentAccessExceptionCount);
     }
-    assertEquals("Check nullCount", nullCountExpected, nullCount);
-    assertEquals("Check concurrentAccessExceptionCount",
-        concurrentAccessExceptionCountExpected, concurrentAccessExceptionCount);
-  }
 }

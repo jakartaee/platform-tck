@@ -16,70 +16,68 @@
 
 package com.sun.ts.tests.jsp.spec.el.jsp;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.el.ELContext;
 import jakarta.el.ValueExpression;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class ELDeferredValueCoercionTag extends SimpleTagSupport {
 
-  private final static int EXPECTEDINTVAL = 8128;
+    private static final int EXPECTEDINTVAL = 8128;
 
-  private final static String EXPECTEDBOOKVAL = "Moby Dick";
+    private static final String EXPECTEDBOOKVAL = "Moby Dick";
 
-  private ValueExpression intExpr, bookExpr;
+    private ValueExpression intExpr, bookExpr;
 
-  public void setIntExpr(ValueExpression intExpr) {
-    this.intExpr = intExpr;
-  }
-
-  public void setBookExpr(ValueExpression bookExpr) {
-    this.bookExpr = bookExpr;
-  }
-
-  public void doTag() throws JspException, IOException {
-    ELContext elContext = getJspContext().getELContext();
-    JspWriter out = getJspContext().getOut();
-
-    try {
-      Class expectedIntClass = intExpr.getExpectedType();
-      if (!expectedIntClass.getName().equals("int")) {
-        out.println("Test FAILED. Expected type = int");
-        out.println("Got type = " + expectedIntClass.getName());
-        return;
-      }
-      Object intVal = intExpr.getValue(elContext);
-      int coercedIntVal = ((Integer) intVal).intValue();
-      if (coercedIntVal != EXPECTEDINTVAL) {
-        out.println("Test FAILED. Wrong value for int expression.");
-        out.println("Expected value: " + EXPECTEDINTVAL);
-        out.println("Got value: " + coercedIntVal);
-        return;
-      }
-
-      Class expectedBookClass = bookExpr.getExpectedType();
-      if (!expectedBookClass.getName().equals("java.lang.String")) {
-        out.println("Test FAILED. Expected type = java.lang.String");
-        out.println("Got type = " + expectedBookClass.getName());
-        return;
-      }
-      Object bookVal = bookExpr.getValue(elContext);
-      String coercedBookVal = (String) bookVal;
-      if (!coercedBookVal.equals(EXPECTEDBOOKVAL)) {
-        out.println("Test FAILED. Wrong value for book expression.");
-        out.println("Expected value: " + EXPECTEDBOOKVAL);
-        out.println("Got value: " + coercedBookVal);
-        return;
-      }
-
-      out.println("Test PASSED.");
-    } catch (Throwable t) {
-      JspTestUtil.handleThrowable(t, out, "ELDeferredValueCoercionTag");
+    public void setIntExpr(ValueExpression intExpr) {
+        this.intExpr = intExpr;
     }
-  }
+
+    public void setBookExpr(ValueExpression bookExpr) {
+        this.bookExpr = bookExpr;
+    }
+
+    public void doTag() throws JspException, IOException {
+        ELContext elContext = getJspContext().getELContext();
+        JspWriter out = getJspContext().getOut();
+
+        try {
+            Class expectedIntClass = intExpr.getExpectedType();
+            if (!expectedIntClass.getName().equals("int")) {
+                out.println("Test FAILED. Expected type = int");
+                out.println("Got type = " + expectedIntClass.getName());
+                return;
+            }
+            Object intVal = intExpr.getValue(elContext);
+            int coercedIntVal = ((Integer) intVal).intValue();
+            if (coercedIntVal != EXPECTEDINTVAL) {
+                out.println("Test FAILED. Wrong value for int expression.");
+                out.println("Expected value: " + EXPECTEDINTVAL);
+                out.println("Got value: " + coercedIntVal);
+                return;
+            }
+
+            Class expectedBookClass = bookExpr.getExpectedType();
+            if (!expectedBookClass.getName().equals("java.lang.String")) {
+                out.println("Test FAILED. Expected type = java.lang.String");
+                out.println("Got type = " + expectedBookClass.getName());
+                return;
+            }
+            Object bookVal = bookExpr.getValue(elContext);
+            String coercedBookVal = (String) bookVal;
+            if (!coercedBookVal.equals(EXPECTEDBOOKVAL)) {
+                out.println("Test FAILED. Wrong value for book expression.");
+                out.println("Expected value: " + EXPECTEDBOOKVAL);
+                out.println("Got value: " + coercedBookVal);
+                return;
+            }
+
+            out.println("Test PASSED.");
+        } catch (Throwable t) {
+            JspTestUtil.handleThrowable(t, out, "ELDeferredValueCoercionTag");
+        }
+    }
 }

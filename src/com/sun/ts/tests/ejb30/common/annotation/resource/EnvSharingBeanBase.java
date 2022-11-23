@@ -22,16 +22,8 @@ package com.sun.ts.tests.ejb30.common.annotation.resource;
 
 import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.PREFIX;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.jms.ConnectionFactory;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
@@ -39,157 +31,157 @@ import jakarta.jms.Topic;
 import jakarta.jms.TopicConnectionFactory;
 import jakarta.mail.Session;
 import jakarta.transaction.UserTransaction;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
-abstract public class EnvSharingBeanBase extends ResourceBeanBase
-    implements ResourceIF {
+public abstract class EnvSharingBeanBase extends ResourceBeanBase implements ResourceIF {
 
-  public static final int LOOKUP_TIMES = 100;
+    public static final int LOOKUP_TIMES = 100;
 
-  /////////////////////////////////////////////////////////////////////////
-  // business methods
-  /////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////
+    // business methods
+    /////////////////////////////////////////////////////////////////////////
 
-  public void testUrl() throws TestFailedException {
-    List list = new ArrayList();
-    URL url1 = getUrl();
-    verify(url1, "getUrl()", list);
+    public void testUrl() throws TestFailedException {
+        List list = new ArrayList();
+        URL url1 = getUrl();
+        verify(url1, "getUrl()", list);
 
-    for (int i = 0; i < LOOKUP_TIMES; i++) {
-      URL url2 = (URL) getEJBContext().lookup(getUrlName());
-      verify(url2, "EJBContext.lookup " + getUrlName(), list);
+        for (int i = 0; i < LOOKUP_TIMES; i++) {
+            URL url2 = (URL) getEJBContext().lookup(getUrlName());
+            verify(url2, "EJBContext.lookup " + getUrlName(), list);
+        }
+
+        for (int i = 0; i < LOOKUP_TIMES; i++) {
+            try {
+                URL url3 = (URL) ServiceLocator.lookup(PREFIX + getUrlName());
+                verify(url3, "JNDI lookup " + getUrlName(), list);
+            } catch (NamingException e) {
+                throw new TestFailedException(e);
+            }
+        }
     }
 
-    for (int i = 0; i < LOOKUP_TIMES; i++) {
-      try {
-        URL url3 = (URL) ServiceLocator.lookup(PREFIX + getUrlName());
-        verify(url3, "JNDI lookup " + getUrlName(), list);
-      } catch (NamingException e) {
-        throw new TestFailedException(e);
-      }
+    public void testMailSession() throws TestFailedException {
+        List list = new ArrayList();
+        Session session1 = getMailSession();
+        verify(session1, "getMailSession()", list);
+        session1 = null;
+
+        for (int i = 0; i < LOOKUP_TIMES; i++) {
+            Session session2 = (Session) getEJBContext().lookup(getMailSessionName());
+            verify(session2, "EJBContext.lookup" + getMailSessionName(), list);
+        }
+
+        for (int i = 0; i < LOOKUP_TIMES; i++) {
+            try {
+                Session session3 = (Session) ServiceLocator.lookup(PREFIX + getMailSessionName());
+                verify(session3, "Naming Context lookup" + getMailSessionName(), list);
+            } catch (NamingException e) {
+                throw new TestFailedException(e);
+            }
+        }
     }
-  }
 
-  public void testMailSession() throws TestFailedException {
-    List list = new ArrayList();
-    Session session1 = getMailSession();
-    verify(session1, "getMailSession()", list);
-    session1 = null;
+    //////////////////////////////////////////////////////////////////////////
 
-    for (int i = 0; i < LOOKUP_TIMES; i++) {
-      Session session2 = (Session) getEJBContext().lookup(getMailSessionName());
-      verify(session2, "EJBContext.lookup" + getMailSessionName(), list);
+    protected void verify(Object o, String description, List list) throws TestFailedException {
+        if (o == null) {
+            throw new TestFailedException("Lookup returned null");
+        }
+        if (description == null) {
+            description = "Lookup";
+        }
+        int n = list.size();
+        for (int i = 0; i < n; i++) {
+            if (list.get(i) == o) {
+                throw new TestFailedException(
+                        description + " returned the same instance as list[" + i + "]:" + o + " in class " + this);
+            }
+        }
+        list.add(o);
     }
 
-    for (int i = 0; i < LOOKUP_TIMES; i++) {
-      try {
-        Session session3 = (Session) ServiceLocator
-            .lookup(PREFIX + getMailSessionName());
-        verify(session3, "Naming Context lookup" + getMailSessionName(), list);
-      } catch (NamingException e) {
-        throw new TestFailedException(e);
-      }
+    //////////////////////////////////////////////////////////////////////
+
+    public void remove() {}
+
+    protected String getOrbName() {
+        return null;
     }
-  }
 
-  //////////////////////////////////////////////////////////////////////////
-
-  protected void verify(Object o, String description, List list)
-      throws TestFailedException {
-    if (o == null) {
-      throw new TestFailedException("Lookup returned null");
+    protected String getDataSourceName() {
+        return null;
     }
-    if (description == null) {
-      description = "Lookup";
+
+    protected String getDataSource2Name() {
+        return null;
     }
-    int n = list.size();
-    for (int i = 0; i < n; i++) {
-      if (list.get(i) == o) {
-        throw new TestFailedException(
-            description + " returned the same instance as list[" + i + "]:" + o
-                + " in class " + this);
-      }
+
+    protected DataSource getDataSource2() {
+        return null;
     }
-    list.add(o);
-  }
 
-  //////////////////////////////////////////////////////////////////////
+    protected DataSource getDataSource() {
+        return null;
+    }
 
-  public void remove() {
-  }
+    protected String getConnectionFactoryTName() {
+        return null;
+    }
 
-  protected String getOrbName() {
-    return null;
-  }
+    protected ConnectionFactory getConnectionFactoryT() {
+        return null;
+    }
 
-  protected String getDataSourceName() {
-    return null;
-  }
+    protected String getConnectionFactoryQName() {
+        return null;
+    }
 
-  protected String getDataSource2Name() {
-    return null;
-  }
+    protected ConnectionFactory getConnectionFactoryQ() {
+        return null;
+    }
 
-  protected DataSource getDataSource2() {
-    return null;
-  }
+    protected Queue getQueue() {
+        return null;
+    }
 
-  protected DataSource getDataSource() {
-    return null;
-  }
+    protected QueueConnectionFactory getQueueConnectionFactory() {
+        return null;
+    }
 
-  protected String getConnectionFactoryTName() {
-    return null;
-  }
+    protected String getQueueConnectionFactoryName() {
+        return null;
+    }
 
-  protected ConnectionFactory getConnectionFactoryT() {
-    return null;
-  }
+    protected String getQueueName() {
+        return null;
+    }
 
-  protected String getConnectionFactoryQName() {
-    return null;
-  }
+    protected Topic getTopic() {
+        return null;
+    }
 
-  protected ConnectionFactory getConnectionFactoryQ() {
-    return null;
-  }
+    protected TopicConnectionFactory getTopicConnectionFactory() {
+        return null;
+    }
 
-  protected Queue getQueue() {
-    return null;
-  }
+    protected String getTopicConnectionFactoryName() {
+        return null;
+    }
 
-  protected QueueConnectionFactory getQueueConnectionFactory() {
-    return null;
-  }
+    protected String getTopicName() {
+        return null;
+    }
 
-  protected String getQueueConnectionFactoryName() {
-    return null;
-  }
+    protected UserTransaction getUserTransaction() {
+        return null;
+    }
 
-  protected String getQueueName() {
-    return null;
-  }
-
-  protected Topic getTopic() {
-    return null;
-  }
-
-  protected TopicConnectionFactory getTopicConnectionFactory() {
-    return null;
-  }
-
-  protected String getTopicConnectionFactoryName() {
-    return null;
-  }
-
-  protected String getTopicName() {
-    return null;
-  }
-
-  protected UserTransaction getUserTransaction() {
-    return null;
-  }
-
-  protected String getUserTransactionName() {
-    return null;
-  }
+    protected String getUserTransactionName() {
+        return null;
+    }
 }

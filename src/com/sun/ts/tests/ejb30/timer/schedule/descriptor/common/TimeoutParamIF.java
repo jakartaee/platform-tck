@@ -24,26 +24,25 @@ import jakarta.ejb.TimerConfig;
 
 public interface TimeoutParamIF {
 
-  public static final String EmptyParamTimeoutBean = "EmptyParamTimeoutBean";
+    public static final String EmptyParamTimeoutBean = "EmptyParamTimeoutBean";
 
-  public static final String NoParamTimeoutBean = "NoParamTimeoutBean";
+    public static final String NoParamTimeoutBean = "NoParamTimeoutBean";
 
-  public static final String WithParamTimeoutBean = "WithParamTimeoutBean";
+    public static final String WithParamTimeoutBean = "WithParamTimeoutBean";
 
-  public static final String PROGRAMMATIC_TIMER_SUFFIX = ".programmatic";
+    public static final String PROGRAMMATIC_TIMER_SUFFIX = ".programmatic";
 
-  public static final String AUTO_TIMER_SUFFIX = ".auto";
+    public static final String AUTO_TIMER_SUFFIX = ".auto";
 
-  public Timer createSecondLaterTimer(String name);
+    public Timer createSecondLaterTimer(String name);
 
-  public Timer createSecondLaterTimer(String name, int seconds);
+    public Timer createSecondLaterTimer(String name, int seconds);
 
-  public Timer createSecondLaterTimer(TimerConfig timerConfig);
+    public Timer createSecondLaterTimer(TimerConfig timerConfig);
 
-  public Timer createSecondLaterTimer(TimerConfig timerConfig, int seconds);
+    public Timer createSecondLaterTimer(TimerConfig timerConfig, int seconds);
 
-  public void cancelAllTimers();
+    public void cancelAllTimers();
 
-  public String getBeanName();
-
+    public String getBeanName();
 }

@@ -20,106 +20,103 @@
 
 package com.sun.ts.tests.connector.localTx.transaction.conSharing2;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  private static final String testName = "connectortests";
+    private static final String testName = "connectortests";
 
-  private static final String testLookup = "java:comp/env/ejb/TestBean";
+    private static final String testLookup = "java:comp/env/ejb/TestBean";
 
-  private static final String envProps = "testbean.props";
+    private static final String envProps = "testbean.props";
 
-  private static final String testDir = System.getProperty("user.dir");
+    private static final String testDir = System.getProperty("user.dir");
 
-  private TestBeanHome beanHome = null;
+    private TestBeanHome beanHome = null;
 
-  private TestBean beanRef = null;
+    private TestBean beanRef = null;
 
-  private Properties testProps = new Properties();
+    private Properties testProps = new Properties();
 
-  private TSNamingContext jctx = null;
+    private TSNamingContext jctx = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup: */
-
-  /*
-   * @class.setup_props: java.naming.factory.initial;
-   *
-   * @class.testArgs: -ap tssql.stmt
-   */
-  public void setup(String[] args, Properties p) throws Fault {
-    logMsg("Setup tests");
-    this.testProps = p;
-
-    try {
-      logMsg("Get the naming context");
-      jctx = new TSNamingContext();
-
-      logMsg("Getting the EJB Home interface for " + testLookup);
-      beanHome = (TestBeanHome) jctx.lookup(testLookup, TestBeanHome.class);
-
-      logMsg("Setup ok");
-    } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /* Run test */
+    /* Test setup: */
 
-  /*
-   * @testName: testMultiComponentLocalTx
-   *
-   * @assertion_ids: Connector:SPEC:43; Connector:SPEC:44;
-   *
-   * @test_Strategy: Create a stateful session TX_BEAN_MANAGED bean. Perform a
-   * contanier managed transactions using BeanA. BeanA make a connection to
-   * database. BeanA calls BeanB to make another connection to the database.
-   * BeanA and BeanB are Container managed stateful session beans with
-   * transaction attribute TX_REQUIRED. Both BeanA and BeanB access a single EIS
-   * resource manager. BeanB closes the connection then BeanA closes the
-   * connection.
-   *
-   */
-  public void testMultiComponentLocalTx() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
-      beanRef = (TestBean) beanHome.create();
+    /*
+     * @class.setup_props: java.naming.factory.initial;
+     *
+     * @class.testArgs: -ap tssql.stmt
+     */
+    public void setup(String[] args, Properties p) throws Fault {
+        logMsg("Setup tests");
+        this.testProps = p;
 
-      logMsg("Logging data from server");
+        try {
+            logMsg("Get the naming context");
+            jctx = new TSNamingContext();
 
-      boolean testResult = false;
+            logMsg("Getting the EJB Home interface for " + testLookup);
+            beanHome = (TestBeanHome) jctx.lookup(testLookup, TestBeanHome.class);
 
-      logMsg("Execute TestBean:test1");
-      testResult = beanRef.test1();
-
-      if (!testResult)
-        throw new Fault("test1 failed");
-      else
-        logMsg("test1 passed");
-    } catch (Exception e) {
-      throw new Fault("test1 failed", e);
-    } finally {
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
+            logMsg("Setup ok");
+        } catch (Exception e) {
+            throw new Fault("Setup failed:", e);
+        }
     }
-  }
 
-  /* Test cleanup: */
-  public void cleanup() throws Fault {
-    logMsg("cleanup ok");
-  }
+    /* Run test */
+
+    /*
+     * @testName: testMultiComponentLocalTx
+     *
+     * @assertion_ids: Connector:SPEC:43; Connector:SPEC:44;
+     *
+     * @test_Strategy: Create a stateful session TX_BEAN_MANAGED bean. Perform a
+     * contanier managed transactions using BeanA. BeanA make a connection to
+     * database. BeanA calls BeanB to make another connection to the database.
+     * BeanA and BeanB are Container managed stateful session beans with
+     * transaction attribute TX_REQUIRED. Both BeanA and BeanB access a single EIS
+     * resource manager. BeanB closes the connection then BeanA closes the
+     * connection.
+     *
+     */
+    public void testMultiComponentLocalTx() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
+            beanRef = (TestBean) beanHome.create();
+
+            logMsg("Logging data from server");
+
+            boolean testResult = false;
+
+            logMsg("Execute TestBean:test1");
+            testResult = beanRef.test1();
+
+            if (!testResult) throw new Fault("test1 failed");
+            else logMsg("test1 passed");
+        } catch (Exception e) {
+            throw new Fault("test1 failed", e);
+        } finally {
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
+    }
+
+    /* Test cleanup: */
+    public void cleanup() throws Fault {
+        logMsg("cleanup ok");
+    }
 }

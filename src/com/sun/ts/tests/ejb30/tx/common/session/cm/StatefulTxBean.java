@@ -28,17 +28,13 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateful
-@Remote({ TxIF.class })
+@Remote({TxIF.class})
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class StatefulTxBean extends TxBeanBase implements TxIF {
-  @TransactionAttribute(TransactionAttributeType.MANDATORY)
-  public void mandatoryTest() {
+    @TransactionAttribute(TransactionAttributeType.MANDATORY)
+    public void mandatoryTest() {}
 
-  }
-
-  @TransactionAttribute(TransactionAttributeType.NEVER)
-  public void neverTest() {
-
-  }
+    @TransactionAttribute(TransactionAttributeType.NEVER)
+    public void neverTest() {}
 }

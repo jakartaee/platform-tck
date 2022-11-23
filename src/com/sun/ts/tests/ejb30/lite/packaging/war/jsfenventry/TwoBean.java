@@ -27,66 +27,64 @@ import jakarta.ejb.Singleton;
 import jakarta.interceptor.Interceptors;
 
 @Singleton
-@Interceptors({ Interceptor1.class, Interceptor2.class })
+@Interceptors({Interceptor1.class, Interceptor2.class})
 public class TwoBean extends BeanBase {
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.JsfClient/myShort", description = "declared in web.xml")
-  private short myShortFromWebXml;
+    @Resource(
+            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.JsfClient/myShort",
+            description = "declared in web.xml")
+    private short myShortFromWebXml;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.JsfClient/myLong")
-  private long myLongFromWebXml;
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.JsfClient/myLong")
+    private long myLongFromWebXml;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.OneBean/myShort", description = "declared in ejb-jar.xml#OneBean")
-  private short myShortFromOneBean;
+    @Resource(
+            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.OneBean/myShort",
+            description = "declared in ejb-jar.xml#OneBean")
+    private short myShortFromOneBean;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.OneBean/myLong")
-  private long myLongFromOneBean;
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.OneBean/myLong")
+    private long myLongFromOneBean;
 
-  @Resource(description = "declared in ejb-jar.xml#TwoBean")
-  private short myShort;
+    @Resource(description = "declared in ejb-jar.xml#TwoBean")
+    private short myShort;
 
-  @Resource(description = "declared in ejb-jar.xml#TwoBean")
-  private long myLong;
+    @Resource(description = "declared in ejb-jar.xml#TwoBean")
+    private long myLong;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.ThreeBean/myShort", description = "declared in ejb-jar.xml#ThreeBean")
-  private short myShortFromThreeBean;
+    @Resource(
+            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.ThreeBean/myShort",
+            description = "declared in ejb-jar.xml#ThreeBean")
+    private short myShortFromThreeBean;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.ThreeBean/myLong")
-  private long myLongFromThreeBean;
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.ThreeBean/myLong")
+    private long myLongFromThreeBean;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.OneBean/myBooleanTrue2")
-  private boolean myBooleanTrue2FromOneBean;
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.OneBean/myBooleanTrue2")
+    private boolean myBooleanTrue2FromOneBean;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.JsfClient/myBooleanTrue2")
-  private boolean myBooleanTrue2FromWebXml;
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.JsfClient/myBooleanTrue2")
+    private boolean myBooleanTrue2FromWebXml;
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    checkInjections(1);
-  }
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        checkInjections(1);
+    }
 
-  @Override
-  protected void verify(StringBuilder sb) throws RuntimeException {
-    assertEquals("Check myLongFromOneBean web.xml: ", 8L, myLongFromWebXml, sb);
-    assertEquals("Check myLongFromOneBean from OneBean", 1L, myLongFromOneBean,
-        sb);
-    assertEquals("Check myLongFromOneBean from TwoBean", 2L, myLong, sb);
-    assertEquals("Check myLongFromOneBean from ThreeBean", 3L,
-        myLongFromThreeBean, sb);
+    @Override
+    protected void verify(StringBuilder sb) throws RuntimeException {
+        assertEquals("Check myLongFromOneBean web.xml: ", 8L, myLongFromWebXml, sb);
+        assertEquals("Check myLongFromOneBean from OneBean", 1L, myLongFromOneBean, sb);
+        assertEquals("Check myLongFromOneBean from TwoBean", 2L, myLong, sb);
+        assertEquals("Check myLongFromOneBean from ThreeBean", 3L, myLongFromThreeBean, sb);
 
-    assertEquals("Check myShortFromOneBean from web.xml", (short) 8,
-        myShortFromWebXml, sb);
-    assertEquals("Check myShortFromOneBean from OneBean", (short) 1,
-        myShortFromOneBean, sb);
-    assertEquals("Check myShortFromOneBean from TwoBean", (short) 2, myShort,
-        sb);
-    assertEquals("Check myShortFromOneBean from ThreeBean", (short) 3,
-        myShortFromThreeBean, sb);
+        assertEquals("Check myShortFromOneBean from web.xml", (short) 8, myShortFromWebXml, sb);
+        assertEquals("Check myShortFromOneBean from OneBean", (short) 1, myShortFromOneBean, sb);
+        assertEquals("Check myShortFromOneBean from TwoBean", (short) 2, myShort, sb);
+        assertEquals("Check myShortFromOneBean from ThreeBean", (short) 3, myShortFromThreeBean, sb);
 
-    assertEquals("Check myBooleanTrue2FromOneBean", true,
-        myBooleanTrue2FromOneBean, sb);
-    assertEquals("Check myBooleanTrue2FromWebXml", true,
-        myBooleanTrue2FromWebXml, sb);
-  }
+        assertEquals("Check myBooleanTrue2FromOneBean", true, myBooleanTrue2FromOneBean, sb);
+        assertEquals("Check myBooleanTrue2FromWebXml", true, myBooleanTrue2FromWebXml, sb);
+    }
 }

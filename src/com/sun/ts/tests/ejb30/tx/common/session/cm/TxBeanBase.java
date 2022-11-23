@@ -21,39 +21,30 @@
 package com.sun.ts.tests.ejb30.tx.common.session.cm;
 
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 
-abstract public class TxBeanBase extends TxBeanBase0 implements TxIF {
-  public void mandatoryTest() {
+public abstract class TxBeanBase extends TxBeanBase0 implements TxIF {
+    public void mandatoryTest() {}
 
-  }
+    public void neverTest() {}
 
-  public void neverTest() {
-  }
+    public void neverTest(String s) {}
 
-  public void neverTest(String s) {
-  }
+    public void mandatoryTest(String s) {}
 
-  public void mandatoryTest(String s) {
-  }
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+    public String supportsTest() throws TestFailedException {
+        return illegalGetSetRollbackOnly(TransactionAttributeType.SUPPORTS);
+    }
 
-  @TransactionAttribute(TransactionAttributeType.SUPPORTS)
-  public String supportsTest() throws TestFailedException {
-    return illegalGetSetRollbackOnly(TransactionAttributeType.SUPPORTS);
-  }
+    @TransactionAttribute(TransactionAttributeType.NEVER)
+    public String illegalGetSetRollbackOnlyNeverTest() throws TestFailedException {
+        return illegalGetSetRollbackOnly(TransactionAttributeType.NEVER);
+    }
 
-  @TransactionAttribute(TransactionAttributeType.NEVER)
-  public String illegalGetSetRollbackOnlyNeverTest()
-      throws TestFailedException {
-    return illegalGetSetRollbackOnly(TransactionAttributeType.NEVER);
-  }
-
-  @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-  public String illegalGetSetRollbackOnlyNotSupportedTest()
-      throws TestFailedException {
-    return illegalGetSetRollbackOnly(TransactionAttributeType.NOT_SUPPORTED);
-  }
-
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+    public String illegalGetSetRollbackOnlyNotSupportedTest() throws TestFailedException {
+        return illegalGetSetRollbackOnly(TransactionAttributeType.NOT_SUPPORTED);
+    }
 }

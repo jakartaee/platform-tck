@@ -17,26 +17,22 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.async;
 
-import java.nio.ByteBuffer;
-
 import jakarta.websocket.EncodeException;
 import jakarta.websocket.Encoder;
 import jakarta.websocket.EndpointConfig;
+import java.nio.ByteBuffer;
 
 public class ThrowingBinaryCoder implements Encoder.Binary<ByteBuffer> {
-  public static final String ERROR = "TCK intended Exception on transmition";
+    public static final String ERROR = "TCK intended Exception on transmition";
 
-  @Override
-  public void init(EndpointConfig config) {
-  }
+    @Override
+    public void init(EndpointConfig config) {}
 
-  @Override
-  public void destroy() {
-  }
+    @Override
+    public void destroy() {}
 
-  @Override
-  public ByteBuffer encode(ByteBuffer object) throws EncodeException {
-    throw new EncodeException(object, ERROR);
-  }
-
+    @Override
+    public ByteBuffer encode(ByteBuffer object) throws EncodeException {
+        throw new EncodeException(object, ERROR);
+    }
 }

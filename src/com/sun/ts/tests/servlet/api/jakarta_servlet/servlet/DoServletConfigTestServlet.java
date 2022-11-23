@@ -60,54 +60,46 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servlet;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * A Test for getServletConfig method
  */
-
 public class DoServletConfigTestServlet extends CoreServletTest {
 
-  /**
-   * getServletConfig gives the ServletConfig object that is passed to the init
-   * method by the engine
-   */
+    /**
+     * getServletConfig gives the ServletConfig object that is passed to the init
+     * method by the engine
+     */
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
+        boolean passed = false;
+        PrintWriter pw = response.getWriter();
+        String expectedResult = "Java";
+        ServletConfig sc = getServletConfig();
 
-    boolean passed = false;
-    PrintWriter pw = response.getWriter();
-    String expectedResult = "Java";
-    ServletConfig sc = getServletConfig();
+        if (getServletConfig() != null) {
+            String result = sc.getInitParameter("Language");
 
-    if (getServletConfig() != null) {
-      String result = sc.getInitParameter("Language");
+            if (result.equals(expectedResult)) {
+                passed = true;
+            } else {
+                passed = false;
+                pw.println("getInitParameter(Language) did not return the correct parameter name");
+                pw.println("Expected result = " + expectedResult);
+                pw.println("Actual result = " + result);
+            }
 
-      if (result.equals(expectedResult)) {
-        passed = true;
-      } else {
-        passed = false;
-        pw.println(
-            "getInitParameter(Language) did not return the correct parameter name");
-        pw.println("Expected result = " + expectedResult);
-        pw.println("Actual result = " + result);
-      }
-
-    } else {
-      passed = false;
-      pw.println("getServletConfig returned null?");
-
+        } else {
+            passed = false;
+            pw.println("getServletConfig returned null?");
+        }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
-
-  }
 }

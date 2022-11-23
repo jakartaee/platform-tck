@@ -20,34 +20,32 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice;
 
-import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
-
+import com.sun.ts.lib.util.*;
 import com.sun.ts.tests.jaxws.common.*;
-
+import jakarta.jws.WebService;
 import jakarta.xml.ws.*;
 
-// Service Implementation Class - as outlined in JAX-WS Specification
-
-import jakarta.jws.WebService;
-
-@WebService(portName = "Hello3Port", targetNamespace = "http://helloservice.org/wsdl", serviceName = "HelloService", wsdlLocation = "WEB-INF/wsdl/WSDLHelloService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice.Hello3")
-
+@WebService(
+        portName = "Hello3Port",
+        targetNamespace = "http://helloservice.org/wsdl",
+        serviceName = "HelloService",
+        wsdlLocation = "WEB-INF/wsdl/WSDLHelloService.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice.Hello3")
 public class Hello3Impl implements Hello3 {
 
-  public Hello3Response hello(Hello3Request hreq) {
+    public Hello3Response hello(Hello3Request hreq) {
 
-    TestUtil.logTrace("*** in Hello3Impl ***");
-    String testName = hreq.getTestname();
-    TestUtil.logTrace("*** testName = " + testName + " ***");
-    String argument = hreq.getArgument();
-    TestUtil.logTrace("*** argument = " + argument + " ***");
+        TestUtil.logTrace("*** in Hello3Impl ***");
+        String testName = hreq.getTestname();
+        TestUtil.logTrace("*** testName = " + testName + " ***");
+        String argument = hreq.getArgument();
+        TestUtil.logTrace("*** argument = " + argument + " ***");
 
-    argument += ":Hello3Impl";
-    Hello3Response hres = new Hello3Response();
-    hres.setTestname(testName);
-    hres.setArgument(argument);
-    return hres;
-  }
-
+        argument += ":Hello3Impl";
+        Hello3Response hres = new Hello3Response();
+        hres.setTestname(testName);
+        hres.setArgument(argument);
+        return hres;
+    }
 }

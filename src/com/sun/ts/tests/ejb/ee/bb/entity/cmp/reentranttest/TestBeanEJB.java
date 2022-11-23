@@ -20,135 +20,131 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp.reentranttest;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
 import jakarta.ejb.RemoveException;
+import java.util.Properties;
 
 public class TestBeanEJB implements EntityBean {
-  private EntityContext ectx = null;
+    private EntityContext ectx = null;
 
-  // Entity instance data
-  public String BRAND_NAME;
+    // Entity instance data
+    public String BRAND_NAME;
 
-  public Integer KEY_ID;
+    public Integer KEY_ID;
 
-  public float PRICE;
+    public float PRICE;
 
-  public Integer ejbCreate(Properties p, int KEY_ID, String BRAND_NAME,
-      float PRICE) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    try {
-      TestUtil.logMsg("Initialize remote logging");
-      TestUtil.init(p);
-      TestUtil.logMsg("Obtain naming context");
-      this.KEY_ID = new Integer(KEY_ID);
-      this.BRAND_NAME = BRAND_NAME;
-      this.PRICE = PRICE;
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException(e.getMessage());
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    public Integer ejbCreate(Properties p, int KEY_ID, String BRAND_NAME, float PRICE) throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        try {
+            TestUtil.logMsg("Initialize remote logging");
+            TestUtil.init(p);
+            TestUtil.logMsg("Obtain naming context");
+            this.KEY_ID = new Integer(KEY_ID);
+            this.BRAND_NAME = BRAND_NAME;
+            this.PRICE = PRICE;
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException(e.getMessage());
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+        return this.KEY_ID;
     }
-    return this.KEY_ID;
-  }
 
-  public void ejbPostCreate(Properties p, int KEY_ID, String BRAND_NAME,
-      float PRICE) {
-    TestUtil.logTrace("ejbPostCreate");
-  }
-
-  public void setEntityContext(EntityContext c) {
-    TestUtil.logTrace("setEntityContext");
-    ectx = c;
-  }
-
-  public void unsetEntityContext() {
-    TestUtil.logTrace("unsetEntityContext");
-  }
-
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  public void ejbLoad() {
-    TestUtil.logTrace("ejbLoad");
-  }
-
-  public void ejbStore() {
-    TestUtil.logTrace("ejbStore");
-  }
-
-  // ===========================================================
-  // TestBean interface (our business methods)
-
-  public void ping() {
-    TestUtil.logTrace("ping");
-  }
-
-  public void sleep(int n) {
-    TestUtil.logTrace("sleep");
-    long t1, t2;
-    t1 = System.currentTimeMillis();
-    while ((t2 = System.currentTimeMillis()) < (t1 + n))
-      ;
-  }
-
-  public boolean loopBackSameBean() {
-    TestUtil.logTrace("loopBackSameBean");
-
-    boolean pass;
-
-    TestUtil.logMsg("Perform loopback test");
-    try {
-      TestUtil.logMsg("getPrimaryKey() object");
-      Object o = ectx.getPrimaryKey();
-      TestUtil.logMsg("getEJBObject() reference");
-      TestBean ref = (TestBean) ectx.getEJBObject();
-      TestUtil.logMsg("Performing self-referential loopback call test");
-      ref.ping();
-      TestUtil.logMsg("The loopback call test passed");
-      pass = true;
-    } catch (EJBException e) {
-      TestUtil.logErr("Caught unexpected EJBException: " + e, e);
-      pass = false;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected Exception: " + e);
-      TestUtil.printStackTrace(e);
-      pass = false;
+    public void ejbPostCreate(Properties p, int KEY_ID, String BRAND_NAME, float PRICE) {
+        TestUtil.logTrace("ejbPostCreate");
     }
-    return pass;
-  }
 
-  public boolean loopBackAnotherBean(LoopBack ref) {
-    TestUtil.logTrace("loopBackAnotherBean");
-
-    boolean pass;
-
-    try {
-      TestUtil.logMsg("Performing loopback call test");
-      pass = ref.loopBackTest();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      pass = false;
+    public void setEntityContext(EntityContext c) {
+        TestUtil.logTrace("setEntityContext");
+        ectx = c;
     }
-    return pass;
-  }
+
+    public void unsetEntityContext() {
+        TestUtil.logTrace("unsetEntityContext");
+    }
+
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("ejbRemove");
+    }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
+
+    public void ejbLoad() {
+        TestUtil.logTrace("ejbLoad");
+    }
+
+    public void ejbStore() {
+        TestUtil.logTrace("ejbStore");
+    }
+
+    // ===========================================================
+    // TestBean interface (our business methods)
+
+    public void ping() {
+        TestUtil.logTrace("ping");
+    }
+
+    public void sleep(int n) {
+        TestUtil.logTrace("sleep");
+        long t1, t2;
+        t1 = System.currentTimeMillis();
+        while ((t2 = System.currentTimeMillis()) < (t1 + n))
+            ;
+    }
+
+    public boolean loopBackSameBean() {
+        TestUtil.logTrace("loopBackSameBean");
+
+        boolean pass;
+
+        TestUtil.logMsg("Perform loopback test");
+        try {
+            TestUtil.logMsg("getPrimaryKey() object");
+            Object o = ectx.getPrimaryKey();
+            TestUtil.logMsg("getEJBObject() reference");
+            TestBean ref = (TestBean) ectx.getEJBObject();
+            TestUtil.logMsg("Performing self-referential loopback call test");
+            ref.ping();
+            TestUtil.logMsg("The loopback call test passed");
+            pass = true;
+        } catch (EJBException e) {
+            TestUtil.logErr("Caught unexpected EJBException: " + e, e);
+            pass = false;
+        } catch (Exception e) {
+            TestUtil.logErr("Caught unexpected Exception: " + e);
+            TestUtil.printStackTrace(e);
+            pass = false;
+        }
+        return pass;
+    }
+
+    public boolean loopBackAnotherBean(LoopBack ref) {
+        TestUtil.logTrace("loopBackAnotherBean");
+
+        boolean pass;
+
+        try {
+            TestUtil.logMsg("Performing loopback call test");
+            pass = ref.loopBackTest();
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+            pass = false;
+        }
+        return pass;
+    }
 }

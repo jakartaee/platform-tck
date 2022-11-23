@@ -20,35 +20,28 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp.clientviewtest;
 
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
+import jakarta.ejb.FinderException;
 import java.rmi.RemoteException;
 import java.util.Collection;
 import java.util.Properties;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJBHome;
-import jakarta.ejb.FinderException;
-
 public interface TestBeanHome extends EJBHome {
-  public TestBean create(Properties p, int KEY_ID, String BRAND_NAME,
-      float PRICE) throws RemoteException, CreateException;
+    public TestBean create(Properties p, int KEY_ID, String BRAND_NAME, float PRICE)
+            throws RemoteException, CreateException;
 
-  public TestBean findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
+    public TestBean findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 
-  public Collection findByName(String name)
-      throws RemoteException, FinderException;
+    public Collection findByName(String name) throws RemoteException, FinderException;
 
-  public TestBean findByNameSingle(String name)
-      throws RemoteException, FinderException;
+    public TestBean findByNameSingle(String name) throws RemoteException, FinderException;
 
-  public Collection findByPrice(float price)
-      throws RemoteException, FinderException;
+    public Collection findByPrice(float price) throws RemoteException, FinderException;
 
-  public Collection findWithinPriceRange(float pmin, float pmax)
-      throws RemoteException, FinderException;
+    public Collection findWithinPriceRange(float pmin, float pmax) throws RemoteException, FinderException;
 
-  public Collection findWithinPrimaryKeyRange(Integer kmin, Integer kmax)
-      throws RemoteException, FinderException;
+    public Collection findWithinPrimaryKeyRange(Integer kmin, Integer kmax) throws RemoteException, FinderException;
 
-  public Collection findAllBeans() throws RemoteException, FinderException;
+    public Collection findAllBeans() throws RemoteException, FinderException;
 }

@@ -20,9 +20,6 @@
 
 package com.sun.ts.tests.ejb.ee.tx.sessionLocal.stateful.cm.Tx_SetRollbackOnly;
 
-import java.util.Properties;
-import java.util.Vector;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
@@ -30,332 +27,312 @@ import com.sun.ts.tests.ejb.ee.tx.txbeanLocal.AppException;
 import com.sun.ts.tests.ejb.ee.tx.txbeanLocal.TxBean;
 import com.sun.ts.tests.ejb.ee.tx.txbeanLocal.TxBeanEJB;
 import com.sun.ts.tests.ejb.ee.tx.txbeanLocal.TxBeanHome;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
+import java.util.Properties;
+import java.util.Vector;
 
 public class TestBeanEJB implements SessionBean {
 
-  // testProps represent the test specific properties passed in
-  // from the test harness.
-  private Properties testProps = null;
+    // testProps represent the test specific properties passed in
+    // from the test harness.
+    private Properties testProps = null;
 
-  // The TSNamingContext abstracts away the underlying distribution protocol.
-  private TSNamingContext jctx = null;
+    // The TSNamingContext abstracts away the underlying distribution protocol.
+    private TSNamingContext jctx = null;
 
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  private String tName1 = null;
+    private String tName1 = null;
 
-  private Integer tSize = null;
+    private Integer tSize = null;
 
-  private Integer fromKey1 = null;
+    private Integer fromKey1 = null;
 
-  // The TxBean variables
-  private TxBeanHome beanHome = null;
+    // The TxBean variables
+    private TxBeanHome beanHome = null;
 
-  private TxBean beanRef = null;
+    private TxBean beanRef = null;
 
-  // The requiredEJB methods
-  public void ejbCreate() throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    try {
-      TestUtil.logMsg("Getting Naming Context");
-      jctx = new TSNamingContext();
+    // The requiredEJB methods
+    public void ejbCreate() throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        try {
+            TestUtil.logMsg("Getting Naming Context");
+            jctx = new TSNamingContext();
 
-      this.tSize = (Integer) jctx.lookup("java:comp/env/size");
-      TestUtil.logTrace("tSize: " + this.tSize);
-      this.fromKey1 = (Integer) jctx.lookup("java:comp/env/fromKey1");
-      TestUtil.logTrace("fromKey1: " + this.fromKey1);
+            this.tSize = (Integer) jctx.lookup("java:comp/env/size");
+            TestUtil.logTrace("tSize: " + this.tSize);
+            this.fromKey1 = (Integer) jctx.lookup("java:comp/env/fromKey1");
+            TestUtil.logTrace("fromKey1: " + this.fromKey1);
 
-    } catch (Exception e) {
-      TestUtil.logErr("Create exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-    }
-  }
-
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  // ===========================================================
-  // TestBean interface (our business methods)
-
-  public boolean test1() {
-
-    TestUtil.logTrace("test1");
-    TestUtil.logTrace("setRollbackOnly() - Required case");
-
-    Vector dbResults = new Vector();
-    boolean testResult = false;
-    boolean b1, b2, b3;
-    b1 = b2 = b3 = false;
-    String tName = this.tName1;
-    int size = this.tSize.intValue();
-    int tRng = this.fromKey1.intValue();
-    String txBeanRequired = "java:comp/env/ejb/TxRequired";
-
-    try {
-      TestUtil
-          .logMsg("Looking up the TxBean Home interface of " + txBeanRequired);
-      beanHome = (TxBeanHome) jctx.lookup(txBeanRequired);
-
-      TestUtil.logTrace("Creating EJB instance of " + txBeanRequired);
-      beanRef = (TxBean) beanHome.create();
-
-      TestUtil.logTrace("Logging data from server");
-      beanRef.initLogging(testProps);
-
-      beanRef.createData(tName);
-
-      try {
-        b1 = beanRef.delete(tName, tRng, tRng, TxBeanEJB.FLAGROLLBACK);
-        if (b1) {
-          TestUtil.logTrace("Tx was rolledback as expected");
-          b1 = true;
-        } else
-          TestUtil.logTrace("Tx was NOT rolledback as expected");
-      } catch (Exception rb) {
-        TestUtil.logTrace("Exception rolling back the transaction");
-        TestUtil.printStackTrace(rb);
-      }
-
-      TestUtil.logTrace("Getting the test results");
-      dbResults = beanRef.getResults(tName);
-      // beanRef.listTableData(dbResults);
-
-      TestUtil.logTrace("Verifying the test results");
-      if (dbResults.contains(new Integer(tRng)))
-        b2 = true;
-
-      for (int i = 1; i <= size; i++) {
-        if (i == tRng)
-          continue;
-        else {
-          if (dbResults.contains(new Integer(i)))
-            b3 = true;
-          else {
-            b3 = false;
-            break;
-          }
+        } catch (Exception e) {
+            TestUtil.logErr("Create exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
         }
-      }
-      beanRef.destroyData(tName);
-
-      if (b1 && b2 && b3)
-        testResult = true;
-
-    } catch (Exception e) {
-      beanRef.destroyData(tName);
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-    } finally {
-      // cleanup the bean
-      try {
-        beanRef.destroyData(tName);
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
     }
-    return testResult;
-  }
 
-  public boolean test2() {
+    public void setSessionContext(SessionContext sc) {
+        TestUtil.logTrace("setSessionContext");
+        this.sctx = sc;
+    }
 
-    TestUtil.logTrace("test2");
-    TestUtil.logTrace("setRollbackOnly() - RequiresNew case");
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
+    }
 
-    Vector dbResults = new Vector();
-    boolean testResult = false;
-    boolean b1, b2, b3;
-    b1 = b2 = b3 = false;
-    String tName = this.tName1;
-    int size = this.tSize.intValue();
-    int tRng = this.fromKey1.intValue();
-    String txBeanRequiresNew = "java:comp/env/ejb/TxRequiresNew";
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
 
-    try {
-      TestUtil.logMsg(
-          "Looking up the TxBean Home interface of " + txBeanRequiresNew);
-      beanHome = (TxBeanHome) jctx.lookup(txBeanRequiresNew);
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
 
-      TestUtil.logTrace("Creating EJB instance of " + txBeanRequiresNew);
-      beanRef = (TxBean) beanHome.create();
+    // ===========================================================
+    // TestBean interface (our business methods)
 
-      TestUtil.logTrace("Logging data from server");
-      beanRef.initLogging(testProps);
+    public boolean test1() {
 
-      beanRef.createData(tName);
+        TestUtil.logTrace("test1");
+        TestUtil.logTrace("setRollbackOnly() - Required case");
 
-      try {
-        b1 = beanRef.delete(tName, tRng, tRng, TxBeanEJB.FLAGROLLBACK);
-        if (b1) {
-          TestUtil.logTrace("Tx was rolledback as expected");
-          b1 = true;
-        } else
-          TestUtil.logTrace("Tx was NOT rolledback as expected");
-      } catch (Exception rb) {
-        TestUtil.logTrace("Exception rolling back the transaction");
-        TestUtil.printStackTrace(rb);
-      }
+        Vector dbResults = new Vector();
+        boolean testResult = false;
+        boolean b1, b2, b3;
+        b1 = b2 = b3 = false;
+        String tName = this.tName1;
+        int size = this.tSize.intValue();
+        int tRng = this.fromKey1.intValue();
+        String txBeanRequired = "java:comp/env/ejb/TxRequired";
 
-      TestUtil.logTrace("Getting the test results");
-      dbResults = beanRef.getResults(tName);
-      // beanRef.listTableData(dbResults);
+        try {
+            TestUtil.logMsg("Looking up the TxBean Home interface of " + txBeanRequired);
+            beanHome = (TxBeanHome) jctx.lookup(txBeanRequired);
 
-      TestUtil.logTrace("Verifying the test results");
-      if (dbResults.contains(new Integer(tRng)))
-        b2 = true;
+            TestUtil.logTrace("Creating EJB instance of " + txBeanRequired);
+            beanRef = (TxBean) beanHome.create();
 
-      for (int i = 1; i <= size; i++) {
-        if (i == tRng)
-          continue;
-        else {
-          if (dbResults.contains(new Integer(i)))
-            b3 = true;
-          else {
-            b3 = false;
-            break;
-          }
+            TestUtil.logTrace("Logging data from server");
+            beanRef.initLogging(testProps);
+
+            beanRef.createData(tName);
+
+            try {
+                b1 = beanRef.delete(tName, tRng, tRng, TxBeanEJB.FLAGROLLBACK);
+                if (b1) {
+                    TestUtil.logTrace("Tx was rolledback as expected");
+                    b1 = true;
+                } else TestUtil.logTrace("Tx was NOT rolledback as expected");
+            } catch (Exception rb) {
+                TestUtil.logTrace("Exception rolling back the transaction");
+                TestUtil.printStackTrace(rb);
+            }
+
+            TestUtil.logTrace("Getting the test results");
+            dbResults = beanRef.getResults(tName);
+            // beanRef.listTableData(dbResults);
+
+            TestUtil.logTrace("Verifying the test results");
+            if (dbResults.contains(new Integer(tRng))) b2 = true;
+
+            for (int i = 1; i <= size; i++) {
+                if (i == tRng) continue;
+                else {
+                    if (dbResults.contains(new Integer(i))) b3 = true;
+                    else {
+                        b3 = false;
+                        break;
+                    }
+                }
+            }
+            beanRef.destroyData(tName);
+
+            if (b1 && b2 && b3) testResult = true;
+
+        } catch (Exception e) {
+            beanRef.destroyData(tName);
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+        } finally {
+            // cleanup the bean
+            try {
+                beanRef.destroyData(tName);
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
         }
-      }
-      beanRef.destroyData(tName);
-
-      if (b1 && b2 && b3)
-        testResult = true;
-
-    } catch (Exception e) {
-      beanRef.destroyData(tName);
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-    } finally {
-      // cleanup the bean
-      try {
-        beanRef.destroyData(tName);
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
+        return testResult;
     }
-    return testResult;
-  }
 
-  public boolean test3() {
-    TestUtil.logTrace("test3");
-    TestUtil.logTrace("AppException with setRollbackOnly() - Required case");
+    public boolean test2() {
 
-    Vector dbResults = new Vector();
-    boolean testResult = false;
-    boolean b1, b2, b3, b4;
-    b1 = b2 = b3 = b4 = false;
-    String tName = this.tName1;
-    int size = this.tSize.intValue();
-    int tRng = this.fromKey1.intValue();
-    String txBeanRequired = "java:comp/env/ejb/TxRequired";
+        TestUtil.logTrace("test2");
+        TestUtil.logTrace("setRollbackOnly() - RequiresNew case");
 
-    try {
-      TestUtil
-          .logMsg("Looking up the TxBean Home interface of " + txBeanRequired);
-      beanHome = (TxBeanHome) jctx.lookup(txBeanRequired);
+        Vector dbResults = new Vector();
+        boolean testResult = false;
+        boolean b1, b2, b3;
+        b1 = b2 = b3 = false;
+        String tName = this.tName1;
+        int size = this.tSize.intValue();
+        int tRng = this.fromKey1.intValue();
+        String txBeanRequiresNew = "java:comp/env/ejb/TxRequiresNew";
 
-      TestUtil.logTrace("Creating EJB instance of " + txBeanRequired);
-      beanRef = (TxBean) beanHome.create();
+        try {
+            TestUtil.logMsg("Looking up the TxBean Home interface of " + txBeanRequiresNew);
+            beanHome = (TxBeanHome) jctx.lookup(txBeanRequiresNew);
 
-      TestUtil.logTrace("Logging data from server");
-      beanRef.initLogging(testProps);
+            TestUtil.logTrace("Creating EJB instance of " + txBeanRequiresNew);
+            beanRef = (TxBean) beanHome.create();
 
-      beanRef.createData(tName);
+            TestUtil.logTrace("Logging data from server");
+            beanRef.initLogging(testProps);
 
-      try {
-        b2 = beanRef.delete(tName, tRng, tRng,
-            TxBeanEJB.FLAGAPPEXCEPTIONWITHROLLBACK);
-        TestUtil.logTrace("Expected AppException did not occur");
-      } catch (AppException ae) {
-        TestUtil.logTrace("AppException received as expected");
-        b1 = true;
-      }
+            beanRef.createData(tName);
 
-      try {
-        if (b1) {
-          TestUtil.logTrace("Tx was rolledback as expected");
-          b2 = true;
-        } else
-          TestUtil.logTrace("Tx was NOT rolledback as expected");
-      } catch (Exception rb) {
-        TestUtil.logTrace("Exception rolling back the transaction");
-        TestUtil.printStackTrace(rb);
-      }
+            try {
+                b1 = beanRef.delete(tName, tRng, tRng, TxBeanEJB.FLAGROLLBACK);
+                if (b1) {
+                    TestUtil.logTrace("Tx was rolledback as expected");
+                    b1 = true;
+                } else TestUtil.logTrace("Tx was NOT rolledback as expected");
+            } catch (Exception rb) {
+                TestUtil.logTrace("Exception rolling back the transaction");
+                TestUtil.printStackTrace(rb);
+            }
 
-      TestUtil.logTrace("Getting the test results");
-      dbResults = beanRef.getResults(tName);
-      // beanRef.listTableData(dbResults);
+            TestUtil.logTrace("Getting the test results");
+            dbResults = beanRef.getResults(tName);
+            // beanRef.listTableData(dbResults);
 
-      TestUtil.logTrace("Verifying the test results");
-      if (dbResults.contains(new Integer(tRng)))
-        b3 = true;
+            TestUtil.logTrace("Verifying the test results");
+            if (dbResults.contains(new Integer(tRng))) b2 = true;
 
-      for (int i = 1; i <= size; i++) {
-        if (i == tRng)
-          continue;
-        else {
-          if (dbResults.contains(new Integer(i)))
-            b4 = true;
-          else {
-            b4 = false;
-            break;
-          }
+            for (int i = 1; i <= size; i++) {
+                if (i == tRng) continue;
+                else {
+                    if (dbResults.contains(new Integer(i))) b3 = true;
+                    else {
+                        b3 = false;
+                        break;
+                    }
+                }
+            }
+            beanRef.destroyData(tName);
+
+            if (b1 && b2 && b3) testResult = true;
+
+        } catch (Exception e) {
+            beanRef.destroyData(tName);
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+        } finally {
+            // cleanup the bean
+            try {
+                beanRef.destroyData(tName);
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
         }
-      }
-      beanRef.destroyData(tName);
-
-      if (b1 && b2 && b3 && b4)
-        testResult = true;
-
-    } catch (Exception e) {
-      beanRef.destroyData(tName);
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-    } finally {
-      // cleanup the bean
-      try {
-        beanRef.destroyData(tName);
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
+        return testResult;
     }
-    return testResult;
-  }
 
-  public void initLogging(Properties p) {
-    TestUtil.logTrace("initLogging");
-    this.testProps = p;
-    // Get the table names
-    this.tName1 = TestUtil
-        .getTableName(testProps.getProperty("TxBean_Tab1_Delete"));
-    TestUtil.logTrace("tName1: " + this.tName1);
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
+    public boolean test3() {
+        TestUtil.logTrace("test3");
+        TestUtil.logTrace("AppException with setRollbackOnly() - Required case");
+
+        Vector dbResults = new Vector();
+        boolean testResult = false;
+        boolean b1, b2, b3, b4;
+        b1 = b2 = b3 = b4 = false;
+        String tName = this.tName1;
+        int size = this.tSize.intValue();
+        int tRng = this.fromKey1.intValue();
+        String txBeanRequired = "java:comp/env/ejb/TxRequired";
+
+        try {
+            TestUtil.logMsg("Looking up the TxBean Home interface of " + txBeanRequired);
+            beanHome = (TxBeanHome) jctx.lookup(txBeanRequired);
+
+            TestUtil.logTrace("Creating EJB instance of " + txBeanRequired);
+            beanRef = (TxBean) beanHome.create();
+
+            TestUtil.logTrace("Logging data from server");
+            beanRef.initLogging(testProps);
+
+            beanRef.createData(tName);
+
+            try {
+                b2 = beanRef.delete(tName, tRng, tRng, TxBeanEJB.FLAGAPPEXCEPTIONWITHROLLBACK);
+                TestUtil.logTrace("Expected AppException did not occur");
+            } catch (AppException ae) {
+                TestUtil.logTrace("AppException received as expected");
+                b1 = true;
+            }
+
+            try {
+                if (b1) {
+                    TestUtil.logTrace("Tx was rolledback as expected");
+                    b2 = true;
+                } else TestUtil.logTrace("Tx was NOT rolledback as expected");
+            } catch (Exception rb) {
+                TestUtil.logTrace("Exception rolling back the transaction");
+                TestUtil.printStackTrace(rb);
+            }
+
+            TestUtil.logTrace("Getting the test results");
+            dbResults = beanRef.getResults(tName);
+            // beanRef.listTableData(dbResults);
+
+            TestUtil.logTrace("Verifying the test results");
+            if (dbResults.contains(new Integer(tRng))) b3 = true;
+
+            for (int i = 1; i <= size; i++) {
+                if (i == tRng) continue;
+                else {
+                    if (dbResults.contains(new Integer(i))) b4 = true;
+                    else {
+                        b4 = false;
+                        break;
+                    }
+                }
+            }
+            beanRef.destroyData(tName);
+
+            if (b1 && b2 && b3 && b4) testResult = true;
+
+        } catch (Exception e) {
+            beanRef.destroyData(tName);
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+        } finally {
+            // cleanup the bean
+            try {
+                beanRef.destroyData(tName);
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
+        return testResult;
     }
-  }
 
+    public void initLogging(Properties p) {
+        TestUtil.logTrace("initLogging");
+        this.testProps = p;
+        // Get the table names
+        this.tName1 = TestUtil.getTableName(testProps.getProperty("TxBean_Tab1_Delete"));
+        TestUtil.logTrace("tName1: " + this.tName1);
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
+        }
+    }
 }

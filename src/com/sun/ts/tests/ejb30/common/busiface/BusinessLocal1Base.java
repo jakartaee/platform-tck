@@ -20,15 +20,15 @@
 
 package com.sun.ts.tests.ejb30.common.busiface;
 
-abstract public class BusinessLocal1Base implements BusinessLocalIF1 {
+public abstract class BusinessLocal1Base implements BusinessLocalIF1 {
 
-  public String[] businessMethodLocal1(String[] s) {
+    public String[] businessMethodLocal1(String[] s) {
 
-    resetValue(s);
-    return s;
-  }
+        resetValue(s);
+        return s;
+    }
 
-  protected void resetValue(String[] s) {
-    s[0] = Constants.VALUE_RESET;
-  }
+    protected void resetValue(String[] s) {
+        s[0] = Constants.VALUE_RESET;
+    }
 }

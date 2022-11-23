@@ -20,35 +20,30 @@
 
 package com.sun.ts.tests.ejb30.common.allowed;
 
+import jakarta.ejb.SessionContext;
 import java.util.Properties;
 
-import jakarta.ejb.SessionContext;
+public abstract class CallbackAllowedBeanBase implements CallbackAllowedIF, CallbackAllowedLocalIF {
+    protected SessionContext sessionContext;
 
-public abstract class CallbackAllowedBeanBase
-    implements CallbackAllowedIF, CallbackAllowedLocalIF {
-  protected SessionContext sessionContext;
+    protected Properties results;
 
-  protected Properties results;
+    public abstract Properties runOperations(SessionContext sctx);
 
-  abstract public Properties runOperations(SessionContext sctx);
+    public void timeout(jakarta.ejb.Timer timer) {}
 
-  public void timeout(jakarta.ejb.Timer timer) {
-  }
+    public void ejbCreate() {
+        this.results = null;
+        this.results = runOperations(this.sessionContext);
+    }
 
-  public void ejbCreate() {
-    this.results = null;
-    this.results = runOperations(this.sessionContext);
-  }
+    public void setSessionContext(SessionContext sc) {
+        this.sessionContext = sc;
+    }
 
-  public void setSessionContext(SessionContext sc) {
-    this.sessionContext = sc;
-  }
+    public void remove() {}
 
-  public void remove() {
-  }
-
-  public Properties getResults() {
-    return this.results;
-  }
-
+    public Properties getResults() {
+        return this.results;
+    }
 }

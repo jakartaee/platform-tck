@@ -21,10 +21,7 @@
 package com.sun.ts.tests.ejb30.lite.packaging.war.servletcontextlistener;
 
 import com.sun.ts.tests.ejb30.lite.basic.common.BasicBeanBase;
-
 import jakarta.ejb.Singleton;
 
 @Singleton
-public class SingletonBean extends BasicBeanBase {
-
-}
+public class SingletonBean extends BasicBeanBase {}

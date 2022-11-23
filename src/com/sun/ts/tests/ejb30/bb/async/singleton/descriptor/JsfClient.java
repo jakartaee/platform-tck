@@ -18,59 +18,58 @@ package com.sun.ts.tests.ejb30.bb.async.singleton.descriptor;
 
 import com.sun.ts.tests.ejb30.bb.async.common.descriptor.DescriptorJsfClientBase;
 import com.sun.ts.tests.ejb30.bb.async.common.descriptor.TimeoutDescriptorBeanBase;
-
 import jakarta.ejb.EJB;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends DescriptorJsfClientBase {
-  @EJB(beanName = "TimeoutDescriptorBean")
-  private TimeoutDescriptorBean timeoutDescriptorBean;
+    @EJB(beanName = "TimeoutDescriptorBean")
+    private TimeoutDescriptorBean timeoutDescriptorBean;
 
-  @Override
-  protected TimeoutDescriptorBeanBase getTimeoutDescriptorBean() {
-    return timeoutDescriptorBean;
-  }
+    @Override
+    protected TimeoutDescriptorBeanBase getTimeoutDescriptorBean() {
+        return timeoutDescriptorBean;
+    }
 
-  /*
-   * @testName: allViews
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: localViews
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: remoteViews
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: allParams
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: noParams
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: intParams
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: intParamsLocalViews
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: timeoutDescriptorBean
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: allViews
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: localViews
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: remoteViews
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: allParams
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: noParams
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: intParams
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: intParamsLocalViews
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: timeoutDescriptorBean
+     *
+     * @test_Strategy:
+     */
 
 }

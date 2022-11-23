@@ -26,40 +26,36 @@ import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 
 public class SimpleTestClient extends SOAPClient {
 
-  public SimpleTestClient(String webServerHost, int webServerPort, int mode)
-      throws EETest.Fault {
-    this(webServerHost, webServerPort, mode, null);
-  }
+    public SimpleTestClient(String webServerHost, int webServerPort, int mode) throws EETest.Fault {
+        this(webServerHost, webServerPort, mode, null);
+    }
 
-  public SimpleTestClient(String webServerHost, int webServerPort, int mode,
-      jakarta.xml.ws.Service webServiceRef) throws EETest.Fault {
-    super(webServerHost, webServerPort, mode);
-    stubContext.setNamespace("http://simpletestservice.org/wsdl");
-    stubContext.setService("SimpleTest");
-    stubContext.setPort("SimpleEndpointPort");
-    stubContext.setEndpointInterface(SimpleEndpoint.class);
-    stubContext.setWebServiceRef(webServiceRef);
-  }
+    public SimpleTestClient(String webServerHost, int webServerPort, int mode, jakarta.xml.ws.Service webServiceRef)
+            throws EETest.Fault {
+        super(webServerHost, webServerPort, mode);
+        stubContext.setNamespace("http://simpletestservice.org/wsdl");
+        stubContext.setService("SimpleTest");
+        stubContext.setPort("SimpleEndpointPort");
+        stubContext.setEndpointInterface(SimpleEndpoint.class);
+        stubContext.setWebServiceRef(webServiceRef);
+    }
 
-  protected String getEndpointURLProperty() {
-    return "wsi.simple.endpoint.1";
-  }
+    protected String getEndpointURLProperty() {
+        return "wsi.simple.endpoint.1";
+    }
 
-  protected String getWSDLURLProperty() {
-    return "wsi.simple.wsdlloc.1";
-  }
+    protected String getWSDLURLProperty() {
+        return "wsi.simple.wsdlloc.1";
+    }
 
-  public String helloWorld() throws Exception {
-    TestUtil
-        .logMsg("STUB CLASS: " + stubContext.getStub().getClass().getName());
-    return ((SimpleEndpoint) stubContext.getStub()).helloWorld();
-  }
+    public String helloWorld() throws Exception {
+        TestUtil.logMsg("STUB CLASS: " + stubContext.getStub().getClass().getName());
+        return ((SimpleEndpoint) stubContext.getStub()).helloWorld();
+    }
 
-  public String arrayOperationFromClient(String[] array) throws Exception {
-    StringArray strArr = new StringArray();
-    for (int i = 0; i < array.length; i++)
-      strArr.getItem().add(array[i]);
-    return ((SimpleEndpoint) stubContext.getStub())
-        .arrayOperationFromClient(strArr);
-  }
+    public String arrayOperationFromClient(String[] array) throws Exception {
+        StringArray strArr = new StringArray();
+        for (int i = 0; i < array.length; i++) strArr.getItem().add(array[i]);
+        return ((SimpleEndpoint) stubContext.getStub()).arrayOperationFromClient(strArr);
+    }
 }

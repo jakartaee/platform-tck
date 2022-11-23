@@ -26,8 +26,8 @@ import jakarta.websocket.Session;
 
 public class TCKEndpoint extends Endpoint {
 
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    System.out.println("========TCKEndpoint");
-  }
+    @Override
+    public void onOpen(Session session, EndpointConfig config) {
+        System.out.println("========TCKEndpoint");
+    }
 }

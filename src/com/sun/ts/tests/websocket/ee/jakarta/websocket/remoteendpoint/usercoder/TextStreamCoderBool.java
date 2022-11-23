@@ -17,15 +17,14 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder;
 
+import jakarta.websocket.DecodeException;
 import java.io.IOException;
 import java.io.Reader;
 
-import jakarta.websocket.DecodeException;
-
 public class TextStreamCoderBool extends CoderSuperClassTextStream<Boolean> {
 
-  @Override
-  public Boolean decode(Reader reader) throws DecodeException, IOException {
-    return BOOL;
-  }
+    @Override
+    public Boolean decode(Reader reader) throws DecodeException, IOException {
+        return BOOL;
+    }
 }

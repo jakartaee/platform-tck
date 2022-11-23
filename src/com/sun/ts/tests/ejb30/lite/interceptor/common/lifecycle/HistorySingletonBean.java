@@ -19,15 +19,14 @@
  */
 package com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle;
 
+import jakarta.ejb.Singleton;
+import jakarta.ejb.Startup;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import jakarta.ejb.Singleton;
-import jakarta.ejb.Startup;
-import jakarta.interceptor.ExcludeDefaultInterceptors;
 
 /**
  * A no-interface singleton for storing the order in which lifcecycle
@@ -38,46 +37,46 @@ import jakarta.interceptor.ExcludeDefaultInterceptors;
 @ExcludeDefaultInterceptors
 // to avoid infinite loop (InterceptorBaseBase -> HistorySingletonBean)
 public class HistorySingletonBean {
-  /**
-   * This singleton stores PostConstruct records for multiple EJBs, and each may
-   * have multiple instances. Use a map to ensure each bean instance has its own
-   * slot. The map key is bean instance (this, if called inside a bean class or
-   * its superclass; or InvocationContext.getTarget if called from an
-   * interceptor class.
-   */
-  private Map<Object, List<String>> postConstructRecordsMap = new HashMap<Object, List<String>>();
+    /**
+     * This singleton stores PostConstruct records for multiple EJBs, and each may
+     * have multiple instances. Use a map to ensure each bean instance has its own
+     * slot. The map key is bean instance (this, if called inside a bean class or
+     * its superclass; or InvocationContext.getTarget if called from an
+     * interceptor class.
+     */
+    private Map<Object, List<String>> postConstructRecordsMap = new HashMap<Object, List<String>>();
 
-  private List<String> aroundInvokeRecords = new ArrayList<String>();
+    private List<String> aroundInvokeRecords = new ArrayList<String>();
 
-  public List<String> getPostConstructRecordsFor(Object beanInstance) {
-    List<String> rec = postConstructRecordsMap.get(beanInstance);
-    return Collections.unmodifiableList(rec);
-  }
-
-  public void addPostConstructRecordFor(Object beanInstance, String aEntry) {
-    List<String> rec = postConstructRecordsMap.get(beanInstance);
-    if (rec == null) {
-      rec = new ArrayList<String>();
-      postConstructRecordsMap.put(beanInstance, rec);
+    public List<String> getPostConstructRecordsFor(Object beanInstance) {
+        List<String> rec = postConstructRecordsMap.get(beanInstance);
+        return Collections.unmodifiableList(rec);
     }
-    rec.add(aEntry);
-  }
 
-  public List<String> getAroundInvokeRecords() {
-    return Collections.unmodifiableList(aroundInvokeRecords);
-  }
+    public void addPostConstructRecordFor(Object beanInstance, String aEntry) {
+        List<String> rec = postConstructRecordsMap.get(beanInstance);
+        if (rec == null) {
+            rec = new ArrayList<String>();
+            postConstructRecordsMap.put(beanInstance, rec);
+        }
+        rec.add(aEntry);
+    }
 
-  public void addAroundInvokeRecord(String aEntry) {
-    aroundInvokeRecords.add(aEntry);
-  }
+    public List<String> getAroundInvokeRecords() {
+        return Collections.unmodifiableList(aroundInvokeRecords);
+    }
 
-  public void clearAroundInvokeRecords() {
-    aroundInvokeRecords.clear();
-  }
+    public void addAroundInvokeRecord(String aEntry) {
+        aroundInvokeRecords.add(aEntry);
+    }
 
-  public List<String> getAndClearAroundInvokeRecords() {
-    List<String> result = new ArrayList<String>(aroundInvokeRecords);
-    clearAroundInvokeRecords();
-    return result;
-  }
+    public void clearAroundInvokeRecords() {
+        aroundInvokeRecords.clear();
+    }
+
+    public List<String> getAndClearAroundInvokeRecords() {
+        List<String> result = new ArrayList<String>(aroundInvokeRecords);
+        clearAroundInvokeRecords();
+        return result;
+    }
 }

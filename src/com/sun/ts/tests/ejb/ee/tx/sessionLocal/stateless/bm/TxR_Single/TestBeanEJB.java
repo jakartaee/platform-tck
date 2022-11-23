@@ -20,194 +20,182 @@
 
 package com.sun.ts.tests.ejb.ee.tx.sessionLocal.stateless.bm.TxR_Single;
 
-import java.util.Properties;
-import java.util.Vector;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb.ee.tx.txbeanLocal.TxBean;
 import com.sun.ts.tests.ejb.ee.tx.txbeanLocal.TxBeanHome;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
 import jakarta.transaction.UserTransaction;
+import java.util.Properties;
+import java.util.Vector;
 
 public class TestBeanEJB implements SessionBean {
 
-  // beanProps represent the bean specific properties of the TestBean
-  // testProps represent the test specific properties passed in
-  // from the test harness.
-  private Properties testProps = null;
+    // beanProps represent the bean specific properties of the TestBean
+    // testProps represent the test specific properties passed in
+    // from the test harness.
+    private Properties testProps = null;
 
-  // The TSNamingContext abstracts away the underlying distribution protocol.
-  private TSNamingContext jctx = null;
+    // The TSNamingContext abstracts away the underlying distribution protocol.
+    private TSNamingContext jctx = null;
 
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  private String tName1 = null;
+    private String tName1 = null;
 
-  private Integer tSize = null;
+    private Integer tSize = null;
 
-  private Integer fromKey1 = null;
+    private Integer fromKey1 = null;
 
-  // The TxBean variables
-  private static final String txBeanRequiredStateless = "java:comp/env/ejb/TxRequired.STATELESS";
+    // The TxBean variables
+    private static final String txBeanRequiredStateless = "java:comp/env/ejb/TxRequired.STATELESS";
 
-  private TxBeanHome beanHome = null;
+    private TxBeanHome beanHome = null;
 
-  private TxBean beanRef = null;
+    private TxBean beanRef = null;
 
-  private UserTransaction ut = null;
+    private UserTransaction ut = null;
 
-  // The requiredEJB methods
-  public void ejbCreate() throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    try {
-      TestUtil.logMsg("Getting Naming Context");
-      jctx = new TSNamingContext();
+    // The requiredEJB methods
+    public void ejbCreate() throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        try {
+            TestUtil.logMsg("Getting Naming Context");
+            jctx = new TSNamingContext();
 
-      this.tSize = (Integer) jctx.lookup("java:comp/env/size");
-      TestUtil.logTrace("tSize: " + this.tSize);
-      this.fromKey1 = (Integer) jctx.lookup("java:comp/env/fromKey1");
-      TestUtil.logTrace("fromKey1: " + this.fromKey1);
+            this.tSize = (Integer) jctx.lookup("java:comp/env/size");
+            TestUtil.logTrace("tSize: " + this.tSize);
+            this.fromKey1 = (Integer) jctx.lookup("java:comp/env/fromKey1");
+            TestUtil.logTrace("fromKey1: " + this.fromKey1);
 
-      TestUtil.logMsg(
-          "Looking up the TxBean Home interface of " + txBeanRequiredStateless);
-      beanHome = (TxBeanHome) jctx.lookup(txBeanRequiredStateless,
-          TxBeanHome.class);
+            TestUtil.logMsg("Looking up the TxBean Home interface of " + txBeanRequiredStateless);
+            beanHome = (TxBeanHome) jctx.lookup(txBeanRequiredStateless, TxBeanHome.class);
 
-    } catch (Exception e) {
-      TestUtil.logErr("Create exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
+        } catch (Exception e) {
+            TestUtil.logErr("Create exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+        }
     }
-  }
 
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  // ===========================================================
-  // TestBean interface (our business methods)
-
-  public boolean test1() {
-    TestUtil.logTrace("test1");
-    TestUtil.logTrace("Insert/Delete actions to a single table");
-
-    Vector dbResults = new Vector();
-    boolean testResult = false;
-    boolean b1, b2, b3;
-    b1 = b2 = b3 = false;
-    String tName = this.tName1;
-    int size = this.tSize.intValue();
-    int tRng = this.fromKey1.intValue();
-
-    try {
-      TestUtil.logTrace("Creating EJB instance of " + txBeanRequiredStateless);
-      beanRef = (TxBean) beanHome.create();
-      TestUtil.logTrace("beanRef=" + beanRef);
-
-      TestUtil.logTrace("Logging data from server");
-      beanRef.initLogging(testProps);
-
-      TestUtil.logTrace("Getting the UserTransaction interface");
-      ut = sctx.getUserTransaction();
-
-      ut.begin();
-      beanRef.createData(tName);
-      ut.commit();
-
-      TestUtil.logTrace("Insert and delete some rows");
-      ut.begin();
-      TestUtil.logTrace("Inserting a new row");
-      if (beanRef.insert(tName, size + 1))
-        size++;
-      ut.commit();
-
-      // Get the test results and check for auto commit
-      // from the Container.
-      TestUtil.logTrace("Getting the test results");
-      dbResults = beanRef.getResults(tName);
-      // beanRef.listTableData(dbResults);
-
-      // Check insert
-      if (dbResults.contains(new Integer(size)))
-        b1 = true;
-
-      // Insert another new row
-      TestUtil.logTrace("Inserting a new row");
-      if (beanRef.insert(tName, size + 1))
-        size++;
-
-      // Get the test results and check for auto commit
-      // from the Container.
-      TestUtil.logTrace("Getting the test results");
-      dbResults = beanRef.getResults(tName);
-      // Check insert
-      if (dbResults.contains(new Integer(size - 1)))
-        b2 = true;
-
-      // Delete a range of rows
-      TestUtil.logTrace("Deleting a row");
-      beanRef.delete(tName, tRng, tRng);
-
-      // Get the test results and check for auto commit
-      // from the Container.
-      TestUtil.logTrace("Getting the test results");
-      dbResults = beanRef.getResults(tName);
-      // Check delete
-      if (!dbResults.contains(new Integer(tRng)))
-        b3 = true;
-
-      beanRef.destroyData(tName);
-
-      // Final check and return result
-      if (b1 && b2 && b3)
-        testResult = true;
-
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-    } finally {
-      // cleanup the bean
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
-      ;
+    public void setSessionContext(SessionContext sc) {
+        TestUtil.logTrace("setSessionContext");
+        this.sctx = sc;
     }
-    return testResult;
-  }
 
-  public void initLogging(Properties p) {
-    TestUtil.logTrace("initLogging");
-    this.testProps = p;
-    // Get the table names
-    this.tName1 = TestUtil
-        .getTableName(testProps.getProperty("TxBean_Tab1_Delete"));
-    TestUtil.logTrace("tName1: " + this.tName1);
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
     }
-  }
 
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
+
+    // ===========================================================
+    // TestBean interface (our business methods)
+
+    public boolean test1() {
+        TestUtil.logTrace("test1");
+        TestUtil.logTrace("Insert/Delete actions to a single table");
+
+        Vector dbResults = new Vector();
+        boolean testResult = false;
+        boolean b1, b2, b3;
+        b1 = b2 = b3 = false;
+        String tName = this.tName1;
+        int size = this.tSize.intValue();
+        int tRng = this.fromKey1.intValue();
+
+        try {
+            TestUtil.logTrace("Creating EJB instance of " + txBeanRequiredStateless);
+            beanRef = (TxBean) beanHome.create();
+            TestUtil.logTrace("beanRef=" + beanRef);
+
+            TestUtil.logTrace("Logging data from server");
+            beanRef.initLogging(testProps);
+
+            TestUtil.logTrace("Getting the UserTransaction interface");
+            ut = sctx.getUserTransaction();
+
+            ut.begin();
+            beanRef.createData(tName);
+            ut.commit();
+
+            TestUtil.logTrace("Insert and delete some rows");
+            ut.begin();
+            TestUtil.logTrace("Inserting a new row");
+            if (beanRef.insert(tName, size + 1)) size++;
+            ut.commit();
+
+            // Get the test results and check for auto commit
+            // from the Container.
+            TestUtil.logTrace("Getting the test results");
+            dbResults = beanRef.getResults(tName);
+            // beanRef.listTableData(dbResults);
+
+            // Check insert
+            if (dbResults.contains(new Integer(size))) b1 = true;
+
+            // Insert another new row
+            TestUtil.logTrace("Inserting a new row");
+            if (beanRef.insert(tName, size + 1)) size++;
+
+            // Get the test results and check for auto commit
+            // from the Container.
+            TestUtil.logTrace("Getting the test results");
+            dbResults = beanRef.getResults(tName);
+            // Check insert
+            if (dbResults.contains(new Integer(size - 1))) b2 = true;
+
+            // Delete a range of rows
+            TestUtil.logTrace("Deleting a row");
+            beanRef.delete(tName, tRng, tRng);
+
+            // Get the test results and check for auto commit
+            // from the Container.
+            TestUtil.logTrace("Getting the test results");
+            dbResults = beanRef.getResults(tName);
+            // Check delete
+            if (!dbResults.contains(new Integer(tRng))) b3 = true;
+
+            beanRef.destroyData(tName);
+
+            // Final check and return result
+            if (b1 && b2 && b3) testResult = true;
+
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+        } finally {
+            // cleanup the bean
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+            ;
+        }
+        return testResult;
+    }
+
+    public void initLogging(Properties p) {
+        TestUtil.logTrace("initLogging");
+        this.testProps = p;
+        // Get the table names
+        this.tName1 = TestUtil.getTableName(testProps.getProperty("TxBean_Tab1_Delete"));
+        TestUtil.logTrace("tName1: " + this.tName1);
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
+        }
+    }
 }

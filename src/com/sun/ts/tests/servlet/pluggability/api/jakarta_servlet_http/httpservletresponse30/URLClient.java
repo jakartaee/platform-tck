@@ -19,83 +19,81 @@
  */
 package com.sun.ts.tests.servlet.pluggability.api.jakarta_servlet_http.httpservletresponse30;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.api.common.response.HttpResponseClient;
+import java.io.PrintWriter;
 
 public class URLClient extends HttpResponseClient {
 
-  private static final String CONTEXT_ROOT = "/servlet_pluh_httpservletresponse30_web";
+    private static final String CONTEXT_ROOT = "/servlet_pluh_httpservletresponse30_web";
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    setServletName("TestServlet");
-    setContextRoot(CONTEXT_ROOT);
+        setServletName("TestServlet");
+        setContextRoot(CONTEXT_ROOT);
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /* Run test */
-  /*
-   * @testName: getHeadersTest
-   *
-   * @assertion_ids: Servlet:JAVADOC:523; Servlet:JAVADOC:525;
-   * Servlet:JAVADOC:779;
-   *
-   * @test_Strategy: Create a Servlet, In the servlet, set a header value; then
-   * add multiple values to it; verify that getHeaders(String) works properly
-   */
+    /* Run test */
+    /*
+     * @testName: getHeadersTest
+     *
+     * @assertion_ids: Servlet:JAVADOC:523; Servlet:JAVADOC:525;
+     * Servlet:JAVADOC:779;
+     *
+     * @test_Strategy: Create a Servlet, In the servlet, set a header value; then
+     * add multiple values to it; verify that getHeaders(String) works properly
+     */
 
-  /*
-   * @testName: getHeaderTest
-   *
-   * @assertion_ids: Servlet:JAVADOC:523; Servlet:JAVADOC:523;
-   * Servlet:JAVADOC:777;
-   *
-   * @test_Strategy: Create a Servlet, In the servlet, set a header value; then
-   * add multiple values to it; verify that getHeader(String) works properly
-   */
+    /*
+     * @testName: getHeaderTest
+     *
+     * @assertion_ids: Servlet:JAVADOC:523; Servlet:JAVADOC:523;
+     * Servlet:JAVADOC:777;
+     *
+     * @test_Strategy: Create a Servlet, In the servlet, set a header value; then
+     * add multiple values to it; verify that getHeader(String) works properly
+     */
 
-  /*
-   * @testName: getHeaderNamesTest
-   *
-   * @assertion_ids: Servlet:JAVADOC:520; Servlet:JAVADOC:522;
-   * Servlet:JAVADOC:523; Servlet:JAVADOC:525; Servlet:JAVADOC:526;
-   * Servlet:JAVADOC:527; Servlet:JAVADOC:778;
-   *
-   * @test_Strategy: Create a Servlet, In the servlet, set multiuple header
-   * values using: #setHeader, #addHeader, #setDateHeader, #addDateHeader,
-   * #setIntHeader, and #addIntHeader, verify that getHeaderNames() works
-   * properly
-   */
+    /*
+     * @testName: getHeaderNamesTest
+     *
+     * @assertion_ids: Servlet:JAVADOC:520; Servlet:JAVADOC:522;
+     * Servlet:JAVADOC:523; Servlet:JAVADOC:525; Servlet:JAVADOC:526;
+     * Servlet:JAVADOC:527; Servlet:JAVADOC:778;
+     *
+     * @test_Strategy: Create a Servlet, In the servlet, set multiuple header
+     * values using: #setHeader, #addHeader, #setDateHeader, #addDateHeader,
+     * #setIntHeader, and #addIntHeader, verify that getHeaderNames() works
+     * properly
+     */
 
-  /*
-   * @testName: getStatusTest
-   *
-   * @assertion_ids: Servlet:JAVADOC:780;
-   *
-   * @test_Strategy: Create a Servlet, In the servlet, set a status value;
-   * verify that getStatus() works properly
-   */
+    /*
+     * @testName: getStatusTest
+     *
+     * @assertion_ids: Servlet:JAVADOC:780;
+     *
+     * @test_Strategy: Create a Servlet, In the servlet, set a status value;
+     * verify that getStatus() works properly
+     */
 }

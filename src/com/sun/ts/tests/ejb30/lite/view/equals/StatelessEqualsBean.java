@@ -23,7 +23,6 @@ package com.sun.ts.tests.ejb30.lite.view.equals;
 import com.sun.ts.tests.ejb30.common.busiface.AnnotatedLocalBusinessInterface1;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF2;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
 import jakarta.ejb.LocalBean;
@@ -32,25 +31,24 @@ import jakarta.ejb.Stateless;
 
 @Stateless
 @LocalBean
-@Local({ BusinessLocalIF1.class, BusinessLocalIF2.class,
-    AnnotatedLocalBusinessInterface1.class })
+@Local({BusinessLocalIF1.class, BusinessLocalIF2.class, AnnotatedLocalBusinessInterface1.class})
 public class StatelessEqualsBean implements BusinessLocalIF1, BusinessLocalIF2 {
-  @Resource
-  private SessionContext sctx;
+    @Resource
+    private SessionContext sctx;
 
-  public String[] businessMethodLocal1(String[] s) {
-    return null;
-  }
+    public String[] businessMethodLocal1(String[] s) {
+        return null;
+    }
 
-  public void remove() {
-    // do nothing
-  }
+    public void remove() {
+        // do nothing
+    }
 
-  public String[] businessMethodLocal2(String[] s) {
-    return null;
-  }
+    public String[] businessMethodLocal2(String[] s) {
+        return null;
+    }
 
-  public <T> T getBusinessObject(Class<T> t) {
-    return sctx.getBusinessObject(t);
-  }
+    public <T> T getBusinessObject(Class<T> t) {
+        return sctx.getBusinessObject(t);
+    }
 }

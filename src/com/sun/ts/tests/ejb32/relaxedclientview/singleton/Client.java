@@ -20,49 +20,49 @@ import com.sun.ts.tests.ejb32.relaxedclientview.common.ClientBase;
 
 public class Client extends ClientBase {
 
-  /*
-   * @testName: noAnnotationTest
-   * 
-   * @test_Strategy: 2 interfaces without any annotations
-   */
+    /*
+     * @testName: noAnnotationTest
+     *
+     * @test_Strategy: 2 interfaces without any annotations
+     */
 
-  /*
-   * @testName: localAnnotationTest
-   * 
-   * @test_Strategy: 2 interfaces with local annotation on ejb
-   */
+    /*
+     * @testName: localAnnotationTest
+     *
+     * @test_Strategy: 2 interfaces with local annotation on ejb
+     */
 
-  /*
-   * @testName: remoteAnnotationTest
-   * 
-   * @test_Strategy: 2 interfaces with remote annotation on ejb
-   */
+    /*
+     * @testName: remoteAnnotationTest
+     *
+     * @test_Strategy: 2 interfaces with remote annotation on ejb
+     */
 
-  /*
-   * @testName: oneRemoteAnnotationOnInterfaceTest
-   * 
-   * @test_Strategy: a remote annotation on one interface and another interface
-   * has nothing
-   */
+    /*
+     * @testName: oneRemoteAnnotationOnInterfaceTest
+     *
+     * @test_Strategy: a remote annotation on one interface and another interface
+     * has nothing
+     */
 
-  /*
-   * @testName: oneRemoteAnnotationOnEjbTest
-   * 
-   * @test_Strategy: a remote annotation on ejb for one interface and another
-   * interface has nothing
-   */
+    /*
+     * @testName: oneRemoteAnnotationOnEjbTest
+     *
+     * @test_Strategy: a remote annotation on ejb for one interface and another
+     * interface has nothing
+     */
 
-  /*
-   * @testName: noInterfaceViewTest
-   * 
-   * @test_Strategy: an ejb has no interface view, so all business interfaces
-   * must be explicitly designated
-   */
+    /*
+     * @testName: noInterfaceViewTest
+     *
+     * @test_Strategy: an ejb has no interface view, so all business interfaces
+     * must be explicitly designated
+     */
 
-  /*
-   * @testName: localDDTest
-   * 
-   * @test_Strategy: an ejb has dd local view
-   */
+    /*
+     * @testName: localDDTest
+     *
+     * @test_Strategy: an ejb has dd local view
+     */
 
 }

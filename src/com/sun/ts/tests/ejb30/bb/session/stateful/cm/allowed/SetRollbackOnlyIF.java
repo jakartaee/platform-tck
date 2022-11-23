@@ -21,19 +21,19 @@
 package com.sun.ts.tests.ejb30.bb.session.stateful.cm.allowed;
 
 public interface SetRollbackOnlyIF {
-  void remove();
+    void remove();
 
-  void businessSetRollbackOnlyTest();
+    void businessSetRollbackOnlyTest();
 
-  void afterBeginSetRollbackOnlyTest();
+    void afterBeginSetRollbackOnlyTest();
 
-  void beforeCompletionSetRollbackOnlyTest();
+    void beforeCompletionSetRollbackOnlyTest();
 
-  void afterCompletionSetRollbackOnlyTest();
-  // void preInvokeSetRollbackOnlyTest();
-  // void postInvokeSetRollbackOnlyTest();
+    void afterCompletionSetRollbackOnlyTest();
+    // void preInvokeSetRollbackOnlyTest();
+    // void postInvokeSetRollbackOnlyTest();
 
-  String getResultFor(String testMethod);
+    String getResultFor(String testMethod);
 
-  void setTestMethod(String testMethod);
+    void setTestMethod(String testMethod);
 }

@@ -27,9 +27,8 @@ import jakarta.jws.WebService;
 @WebService(targetNamespace = "http://bea/jsr181/tck/portType")
 public interface endpointInterface2WebServiceEI extends parentInterface {
 
-  @WebMethod
-  public String hello1(String myname);
+    @WebMethod
+    public String hello1(String myname);
 
-  public String hello2(String myname2);
-
+    public String hello2(String myname2);
 }

@@ -20,15 +20,13 @@
 
 package com.sun.ts.tests.jsonp.provider;
 
-import java.io.InputStream;
-import java.io.Reader;
-
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 import jakarta.json.JsonStructure;
+import java.io.InputStream;
+import java.io.Reader;
 
 /*
  * MyJsonReader is a Json Test Reader used by the pluggability tests
@@ -37,61 +35,60 @@ import jakarta.json.JsonStructure;
  */
 
 public class MyJsonReader implements JsonReader {
-  private InputStream in = null;
+    private InputStream in = null;
 
-  private Reader reader = null;
+    private Reader reader = null;
 
-  private void dumpInstanceVars() {
-    TestUtil.logTrace("reader=" + reader);
-    TestUtil.logTrace("in=" + in);
-  }
+    private void dumpInstanceVars() {
+        TestUtil.logTrace("reader=" + reader);
+        TestUtil.logTrace("in=" + in);
+    }
 
-  // call methods
-  private static StringBuilder calls = new StringBuilder();
+    // call methods
+    private static StringBuilder calls = new StringBuilder();
 
-  public static String getCalls() {
-    return calls.toString();
-  }
+    public static String getCalls() {
+        return calls.toString();
+    }
 
-  public static void clearCalls() {
-    calls.delete(0, calls.length());
-  }
+    public static void clearCalls() {
+        calls.delete(0, calls.length());
+    }
 
-  private static void addCalls(String s) {
-    calls.append(s);
-  }
+    private static void addCalls(String s) {
+        calls.append(s);
+    }
 
-  public MyJsonReader() {
-  }
+    public MyJsonReader() {}
 
-  public MyJsonReader(InputStream in) {
-    this.in = in;
-  }
+    public MyJsonReader(InputStream in) {
+        this.in = in;
+    }
 
-  public MyJsonReader(Reader reader) {
-    this.reader = reader;
-  }
+    public MyJsonReader(Reader reader) {
+        this.reader = reader;
+    }
 
-  public void close() {
-    TestUtil.logTrace("public void close()");
-    addCalls("public void close()");
-  }
+    public void close() {
+        TestUtil.logTrace("public void close()");
+        addCalls("public void close()");
+    }
 
-  public JsonStructure read() {
-    TestUtil.logTrace("public void read()");
-    addCalls("public void read()");
-    return null;
-  }
+    public JsonStructure read() {
+        TestUtil.logTrace("public void read()");
+        addCalls("public void read()");
+        return null;
+    }
 
-  public JsonArray readArray() {
-    TestUtil.logTrace("public void readArray()");
-    addCalls("public void readArray()");
-    return null;
-  }
+    public JsonArray readArray() {
+        TestUtil.logTrace("public void readArray()");
+        addCalls("public void readArray()");
+        return null;
+    }
 
-  public JsonObject readObject() {
-    TestUtil.logTrace("public void readObject()");
-    addCalls("public void readObject()");
-    return null;
-  }
+    public JsonObject readObject() {
+        TestUtil.logTrace("public void readObject()");
+        addCalls("public void readObject()");
+        return null;
+    }
 }

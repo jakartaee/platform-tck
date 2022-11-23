@@ -23,5 +23,4 @@ package com.sun.ts.tests.ejb30.misc.threebeans;
 import jakarta.ejb.Remote;
 
 @Remote
-public interface ThreeRemoteIF extends CommonIF {
-}
+public interface ThreeRemoteIF extends CommonIF {}

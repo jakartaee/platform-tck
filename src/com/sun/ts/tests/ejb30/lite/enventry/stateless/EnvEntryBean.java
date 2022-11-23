@@ -19,115 +19,112 @@
  */
 package com.sun.ts.tests.ejb30.lite.enventry.stateless;
 
-import java.util.concurrent.TimeUnit;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.lite.NumberEnum;
 import com.sun.ts.tests.ejb30.lite.enventry.common.EnvEntryBeanBase;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Singleton;
+import java.util.concurrent.TimeUnit;
 
 @Singleton
-@SuppressWarnings({ "unused", "unchecked" })
+@SuppressWarnings({"unused", "unchecked"})
 public class EnvEntryBean extends EnvEntryBeanBase {
 
-  @Resource(lookup = "java:app/env/myString")
-  private void setMyString(String myString) {
-    this.myString = myString;
-  }
-
-  @Resource(lookup = "java:comp/env/sameName2")
-  private void setCompSameName(String s) {
-    this.compSameName = s;
-  }
-
-  @Resource(lookup = "java:module/env/sameName")
-  private void setModuleSameName(String s) {
-    this.moduleSameName = s;
-  }
-
-  @Resource(lookup = "java:app/env/sameName")
-  private void setAppSameName(String s) {
-    this.appSameName = s;
-  }
-
-  @Resource(lookup = "java:app/env/myBoolean")
-  private void setMyBoolean(Boolean myBoolean) {
-    this.myBoolean = myBoolean;
-  }
-
-  @Resource(lookup = "java:app/env/myByte")
-  private void setMyByte(Byte myByte) {
-    this.myByte = myByte;
-  }
-
-  @Resource(lookup = "java:app/env/myShort")
-  private void setMyShort(Short myShort) {
-    this.myShort = myShort;
-  }
-
-  @Resource(lookup = "java:app/env/myInt")
-  private void setMyInt(Integer myInt) {
-    this.myInt = myInt;
-  }
-
-  @Resource(lookup = "java:app/env/myLong")
-  private void setMyLong(Long myLong) {
-    this.myLong = myLong;
-  }
-
-  @Resource(lookup = "java:app/env/myFloat")
-  private void setMyFloat(Float myFloat) {
-    this.myFloat = myFloat;
-  }
-
-  @Resource(lookup = "java:app/env/myDouble")
-  private void setMyDouble(Double d) {
-    myDouble = d;
-  }
-
-  @Resource(lookup = "java:app/env/myChar")
-  private void setMyChar(char myChar) {
-    this.myChar = myChar;
-  }
-
-  @Resource(lookup = "java:app/env/timeUnit")
-  private void setTimeUnit(TimeUnit t) {
-    this.timeUnit = t;
-  }
-
-  @Resource(lookup = "java:app/env/numberEnum")
-  private void setNumberEnum(NumberEnum e) {
-    this.numberEnum = e;
-  }
-
-  @Resource(lookup = "java:app/env/helperClass", type = java.lang.Class.class)
-  private void setHelperClass(Class<Helper> c) {
-    this.helperClass = c;
-  }
-
-  @Resource(lookup = "java:app/env/numberEnumClass", type = java.lang.Class.class)
-  private void setNumberEnumClass(Class<NumberEnum> c) {
-    this.numberEnumClass = c;
-  }
-
-  @Resource(lookup = "java:app/env/envEntryBeanBaseClass", type = java.lang.Class.class)
-  private void setEnvEntryBeanBaseClass(Class<?> c) {
-    this.envEntryBeanBaseClass = c;
-  }
-
-  @Resource(lookup = "java:app/env/testUtilClass", type = java.lang.Class.class)
-  private void setTestUtilClass(Class c) {
-    this.testUtilClass = c;
-  }
-
-  @Override
-  public String getLookupName(String s) {
-    if (s == null) {
-      return null;
+    @Resource(lookup = "java:app/env/myString")
+    private void setMyString(String myString) {
+        this.myString = myString;
     }
-    return "java:app/env/" + s;
-  }
 
+    @Resource(lookup = "java:comp/env/sameName2")
+    private void setCompSameName(String s) {
+        this.compSameName = s;
+    }
+
+    @Resource(lookup = "java:module/env/sameName")
+    private void setModuleSameName(String s) {
+        this.moduleSameName = s;
+    }
+
+    @Resource(lookup = "java:app/env/sameName")
+    private void setAppSameName(String s) {
+        this.appSameName = s;
+    }
+
+    @Resource(lookup = "java:app/env/myBoolean")
+    private void setMyBoolean(Boolean myBoolean) {
+        this.myBoolean = myBoolean;
+    }
+
+    @Resource(lookup = "java:app/env/myByte")
+    private void setMyByte(Byte myByte) {
+        this.myByte = myByte;
+    }
+
+    @Resource(lookup = "java:app/env/myShort")
+    private void setMyShort(Short myShort) {
+        this.myShort = myShort;
+    }
+
+    @Resource(lookup = "java:app/env/myInt")
+    private void setMyInt(Integer myInt) {
+        this.myInt = myInt;
+    }
+
+    @Resource(lookup = "java:app/env/myLong")
+    private void setMyLong(Long myLong) {
+        this.myLong = myLong;
+    }
+
+    @Resource(lookup = "java:app/env/myFloat")
+    private void setMyFloat(Float myFloat) {
+        this.myFloat = myFloat;
+    }
+
+    @Resource(lookup = "java:app/env/myDouble")
+    private void setMyDouble(Double d) {
+        myDouble = d;
+    }
+
+    @Resource(lookup = "java:app/env/myChar")
+    private void setMyChar(char myChar) {
+        this.myChar = myChar;
+    }
+
+    @Resource(lookup = "java:app/env/timeUnit")
+    private void setTimeUnit(TimeUnit t) {
+        this.timeUnit = t;
+    }
+
+    @Resource(lookup = "java:app/env/numberEnum")
+    private void setNumberEnum(NumberEnum e) {
+        this.numberEnum = e;
+    }
+
+    @Resource(lookup = "java:app/env/helperClass", type = java.lang.Class.class)
+    private void setHelperClass(Class<Helper> c) {
+        this.helperClass = c;
+    }
+
+    @Resource(lookup = "java:app/env/numberEnumClass", type = java.lang.Class.class)
+    private void setNumberEnumClass(Class<NumberEnum> c) {
+        this.numberEnumClass = c;
+    }
+
+    @Resource(lookup = "java:app/env/envEntryBeanBaseClass", type = java.lang.Class.class)
+    private void setEnvEntryBeanBaseClass(Class<?> c) {
+        this.envEntryBeanBaseClass = c;
+    }
+
+    @Resource(lookup = "java:app/env/testUtilClass", type = java.lang.Class.class)
+    private void setTestUtilClass(Class c) {
+        this.testUtilClass = c;
+    }
+
+    @Override
+    public String getLookupName(String s) {
+        if (s == null) {
+            return null;
+        }
+        return "java:app/env/" + s;
+    }
 }

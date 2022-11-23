@@ -23,7 +23,6 @@ import static com.sun.ts.tests.jsonp.api.common.SimpleValues.createSimpleObjectW
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jsonp.api.common.TestResult;
-
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
@@ -39,98 +38,98 @@ import jakarta.json.JsonValue;
  */
 public class PatchCreate {
 
-  /**
-   * Creates an instance of {@link JsonPatch} API factory methods added in
-   * JSON-P 1.1 test.
-   */
-  PatchCreate() {
-    super();
-  }
-
-  /**
-   * Test {@link JsonPatch} factory method added in JSON-P 1.1.
-   * 
-   * @return Result of all tests in this suite.
-   */
-  TestResult test() {
-    final TestResult result = new TestResult(
-        "JsonPatch API factory methods added in JSON-P 1.1.");
-    TestUtil.logMsg("JsonPatch API factory methods added in JSON-P 1.1.");
-    testCreateDiff(result);
-    testCreatePatch(result);
-    testCreatePatchBuilder(result);
-    return result;
-  }
-
-  /**
-   * Test {@link Json#createDiff(JsonStructure,JsonStructure)} method.
-   * 
-   * @param result
-   *          Test suite result.
-   */
-  private void testCreateDiff(final TestResult result) {
-    TestUtil.logMsg(" - Json#createDiff(JsonStructure,JsonStructure)");
-    final JsonObject src = createSimpleObject();
-    final JsonObject trg = createSimpleObjectWithStr();
-    final JsonPatch patch = Json.createDiff(src, trg);
-    final JsonObject out = patch.apply(src);
-    if (operationFailed(trg, out)) {
-      result.fail("createDiff(JsonStructure,JsonStructure)", "Builder output "
-          + valueToString(out) + " value shall be " + valueToString(trg));
+    /**
+     * Creates an instance of {@link JsonPatch} API factory methods added in
+     * JSON-P 1.1 test.
+     */
+    PatchCreate() {
+        super();
     }
-  }
 
-  /**
-   * Test {@link Json#createPatch(JsonArray)} method.
-   * 
-   * @param result
-   *          Test suite result.
-   */
-  private void testCreatePatch(final TestResult result) {
-    TestUtil.logMsg(" - Json#createPatch(JsonArray)");
-    final JsonObject src = createSimpleObject();
-    final JsonObject trg = createSimpleObjectWithStr();
-    final JsonArray patchArray = Json.createDiff(src, trg).toJsonArray();
-    final JsonPatch patch = Json.createPatch(patchArray);
-    final JsonObject out = patch.apply(src);
-    if (operationFailed(trg, out)) {
-      result.fail("createPatch(JsonArray)", "Builder output "
-          + valueToString(out) + " value shall be " + valueToString(trg));
+    /**
+     * Test {@link JsonPatch} factory method added in JSON-P 1.1.
+     *
+     * @return Result of all tests in this suite.
+     */
+    TestResult test() {
+        final TestResult result = new TestResult("JsonPatch API factory methods added in JSON-P 1.1.");
+        TestUtil.logMsg("JsonPatch API factory methods added in JSON-P 1.1.");
+        testCreateDiff(result);
+        testCreatePatch(result);
+        testCreatePatchBuilder(result);
+        return result;
     }
-  }
 
-  /**
-   * Test {@link Json#createPatchBuilder(JsonArray)} method.
-   * 
-   * @param result
-   *          Test suite result.
-   */
-  private void testCreatePatchBuilder(final TestResult result) {
-    TestUtil.logMsg(" - Json#createPatchBuilder(JsonArray)");
-    final JsonObject src = createSimpleObject();
-    final JsonObject trg = createSimpleObjectWithStr();
-    final JsonArray patchArray = Json.createDiff(src, trg).toJsonArray();
-    final JsonPatchBuilder patchBuilder = Json.createPatchBuilder(patchArray);
-    final JsonObject out = patchBuilder.build().apply(src);
-    if (operationFailed(trg, out)) {
-      result.fail("createPatchBuilder(JsonArray)", "Builder output "
-          + valueToString(out) + " value shall be " + valueToString(trg));
+    /**
+     * Test {@link Json#createDiff(JsonStructure,JsonStructure)} method.
+     *
+     * @param result
+     *          Test suite result.
+     */
+    private void testCreateDiff(final TestResult result) {
+        TestUtil.logMsg(" - Json#createDiff(JsonStructure,JsonStructure)");
+        final JsonObject src = createSimpleObject();
+        final JsonObject trg = createSimpleObjectWithStr();
+        final JsonPatch patch = Json.createDiff(src, trg);
+        final JsonObject out = patch.apply(src);
+        if (operationFailed(trg, out)) {
+            result.fail(
+                    "createDiff(JsonStructure,JsonStructure)",
+                    "Builder output " + valueToString(out) + " value shall be " + valueToString(trg));
+        }
     }
-  }
 
-  /**
-   * Operation result check.
-   * 
-   * @param check
-   *          Expected modified JSON value.
-   * @param out
-   *          Operation output.
-   * @return Value of {@code true} if operation passed or {@code false}
-   *         otherwise.
-   */
-  protected boolean operationFailed(final JsonValue check,
-      final JsonValue out) {
-    return out == null || !assertEquals(check, out);
-  }
+    /**
+     * Test {@link Json#createPatch(JsonArray)} method.
+     *
+     * @param result
+     *          Test suite result.
+     */
+    private void testCreatePatch(final TestResult result) {
+        TestUtil.logMsg(" - Json#createPatch(JsonArray)");
+        final JsonObject src = createSimpleObject();
+        final JsonObject trg = createSimpleObjectWithStr();
+        final JsonArray patchArray = Json.createDiff(src, trg).toJsonArray();
+        final JsonPatch patch = Json.createPatch(patchArray);
+        final JsonObject out = patch.apply(src);
+        if (operationFailed(trg, out)) {
+            result.fail(
+                    "createPatch(JsonArray)",
+                    "Builder output " + valueToString(out) + " value shall be " + valueToString(trg));
+        }
+    }
 
+    /**
+     * Test {@link Json#createPatchBuilder(JsonArray)} method.
+     *
+     * @param result
+     *          Test suite result.
+     */
+    private void testCreatePatchBuilder(final TestResult result) {
+        TestUtil.logMsg(" - Json#createPatchBuilder(JsonArray)");
+        final JsonObject src = createSimpleObject();
+        final JsonObject trg = createSimpleObjectWithStr();
+        final JsonArray patchArray = Json.createDiff(src, trg).toJsonArray();
+        final JsonPatchBuilder patchBuilder = Json.createPatchBuilder(patchArray);
+        final JsonObject out = patchBuilder.build().apply(src);
+        if (operationFailed(trg, out)) {
+            result.fail(
+                    "createPatchBuilder(JsonArray)",
+                    "Builder output " + valueToString(out) + " value shall be " + valueToString(trg));
+        }
+    }
+
+    /**
+     * Operation result check.
+     *
+     * @param check
+     *          Expected modified JSON value.
+     * @param out
+     *          Operation output.
+     * @return Value of {@code true} if operation passed or {@code false}
+     *         otherwise.
+     */
+    protected boolean operationFailed(final JsonValue check, final JsonValue out) {
+        return out == null || !assertEquals(check, out);
+    }
 }

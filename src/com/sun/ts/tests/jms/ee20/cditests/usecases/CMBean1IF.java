@@ -17,21 +17,21 @@
 package com.sun.ts.tests.jms.ee20.cditests.usecases;
 
 public interface CMBean1IF {
-  public void init(java.util.Properties p);
+    public void init(java.util.Properties p);
 
-  public boolean cleanupQueue(int numOfMsgs);
+    public boolean cleanupQueue(int numOfMsgs);
 
-  public void method1a();
+    public void method1a();
 
-  public void method1b();
+    public void method1b();
 
-  public void method2();
+    public void method2();
 
-  public void method3();
+    public void method3();
 
-  public void method4();
+    public void method4();
 
-  public void method5();
+    public void method5();
 
-  public void method6();
+    public void method6();
 }

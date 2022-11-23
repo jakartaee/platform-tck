@@ -20,48 +20,42 @@
 
 package com.sun.ts.tests.jaxws.common;
 
-import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
-
-import jakarta.xml.ws.handler.soap.SOAPMessageContext;
-import jakarta.xml.ws.handler.soap.SOAPHandler;
+import com.sun.ts.lib.util.*;
 import jakarta.xml.ws.handler.MessageContext;
-import javax.xml.namespace.QName;
+import jakarta.xml.ws.handler.soap.SOAPHandler;
+import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 import java.util.Set;
+import javax.xml.namespace.QName;
 
-public abstract class HTTPSOAPHandler
-    implements SOAPHandler<SOAPMessageContext> {
-  public boolean handleMessage(SOAPMessageContext context) {
-    System.out.println("entering HTTPSOAPHandler:handleMessage");
-    boolean outbound = (Boolean) context
-        .get(MessageContext.MESSAGE_OUTBOUND_PROPERTY);
+public abstract class HTTPSOAPHandler implements SOAPHandler<SOAPMessageContext> {
+    public boolean handleMessage(SOAPMessageContext context) {
+        System.out.println("entering HTTPSOAPHandler:handleMessage");
+        boolean outbound = (Boolean) context.get(MessageContext.MESSAGE_OUTBOUND_PROPERTY);
 
-    if (outbound) {
-      System.out.println("Direction=outbound");
-      processOutboundMessage(context);
-    } else {
-      System.out.println("Direction=inbound");
-      processInboundMessage(context);
+        if (outbound) {
+            System.out.println("Direction=outbound");
+            processOutboundMessage(context);
+        } else {
+            System.out.println("Direction=inbound");
+            processInboundMessage(context);
+        }
+
+        System.out.println("exiting HTTPSOAPHandler:handleMessage");
+        return true;
     }
 
-    System.out.println("exiting HTTPSOAPHandler:handleMessage");
-    return true;
-  }
+    public void close(MessageContext context) {}
 
-  public void close(MessageContext context) {
-  }
+    public boolean handleFault(SOAPMessageContext context) {
+        return true;
+    }
 
-  public boolean handleFault(SOAPMessageContext context) {
-    return true;
-  }
+    public Set<QName> getHeaders() {
+        return null;
+    }
 
-  public Set<QName> getHeaders() {
-    return null;
-  }
+    protected void processOutboundMessage(SOAPMessageContext context) {}
 
-  protected void processOutboundMessage(SOAPMessageContext context) {
-  }
-
-  protected void processInboundMessage(SOAPMessageContext context) {
-  }
+    protected void processInboundMessage(SOAPMessageContext context) {}
 }

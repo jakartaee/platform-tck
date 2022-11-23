@@ -19,15 +19,13 @@
  */
 package com.sun.ts.tests.ejb30.timer.schedule.auto.attr.singleton;
 
-import java.util.Collection;
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
 import jakarta.ejb.Timer;
+import java.util.Collection;
+import java.util.logging.Level;
 
 @Singleton
 @Startup
@@ -36,17 +34,14 @@ import jakarta.ejb.Timer;
 // when the test postConstruct runs, this bean may not been created yet. Use
 // Startup to force
 // eager creation.
-public class ScheduleBean extends
-    com.sun.ts.tests.ejb30.timer.schedule.auto.attr.stateless.ScheduleBeanBase3 {
-  @SuppressWarnings({ "unused" })
-  @PostConstruct
-  private void postConstruct() {
-    Helper.getLogger().logp(Level.FINE, "ScheduleBean", "postConstruct",
-        "Entering " + this);
-    Collection<Timer> timers = timerService.getTimers();
-    String countResult = Helper.assertEquals("Count auto timers", 5,
-        timers.size());
-    statusSingleton.setStatus("postConstruct", true);
-    statusSingleton.addRecord("postConstruct", countResult);
-  }
+public class ScheduleBean extends com.sun.ts.tests.ejb30.timer.schedule.auto.attr.stateless.ScheduleBeanBase3 {
+    @SuppressWarnings({"unused"})
+    @PostConstruct
+    private void postConstruct() {
+        Helper.getLogger().logp(Level.FINE, "ScheduleBean", "postConstruct", "Entering " + this);
+        Collection<Timer> timers = timerService.getTimers();
+        String countResult = Helper.assertEquals("Count auto timers", 5, timers.size());
+        statusSingleton.setStatus("postConstruct", true);
+        statusSingleton.addRecord("postConstruct", countResult);
+    }
 }

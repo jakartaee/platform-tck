@@ -24,40 +24,37 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.simpletagsupport;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.JspFragment;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class SimpleGetSetJspBody extends SimpleTagSupport {
 
-  /**
-   * Default constructor.
-   */
-  public SimpleGetSetJspBody() {
-    super();
-  }
-
-  /**
-   * Validate that getJspBody() returns a non null value. This indirectly
-   * ensures that the container properly called setJspBody().
-   * 
-   * @throws JspException
-   *           - if an unexpected error occurs
-   * @throws IOException
-   *           - if an unexpected I/O error occurs
-   */
-  public void doTag() throws JspException, IOException {
-    JspTestUtil.debug("[SimpleGetSetJspBody] in doGet()");
-    JspFragment fragment = this.getJspBody();
-    if (fragment != null) {
-      this.getJspContext().getOut().println("Test PASSED");
-    } else {
-      this.getJspContext().getOut().println(
-          "Test FAILED.  JspContext.getJspBody()" + " returned a null value.");
+    /**
+     * Default constructor.
+     */
+    public SimpleGetSetJspBody() {
+        super();
     }
-  }
+
+    /**
+     * Validate that getJspBody() returns a non null value. This indirectly
+     * ensures that the container properly called setJspBody().
+     *
+     * @throws JspException
+     *           - if an unexpected error occurs
+     * @throws IOException
+     *           - if an unexpected I/O error occurs
+     */
+    public void doTag() throws JspException, IOException {
+        JspTestUtil.debug("[SimpleGetSetJspBody] in doGet()");
+        JspFragment fragment = this.getJspBody();
+        if (fragment != null) {
+            this.getJspContext().getOut().println("Test PASSED");
+        } else {
+            this.getJspContext().getOut().println("Test FAILED.  JspContext.getJspBody()" + " returned a null value.");
+        }
+    }
 }

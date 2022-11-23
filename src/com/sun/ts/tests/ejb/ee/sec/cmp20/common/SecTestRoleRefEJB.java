@@ -23,7 +23,6 @@
 package com.sun.ts.tests.ejb.ee.sec.cmp20.common;
 
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
@@ -31,73 +30,72 @@ import jakarta.ejb.RemoveException;
 
 public abstract class SecTestRoleRefEJB implements EntityBean {
 
-  private EntityContext ectx = null;
+    private EntityContext ectx = null;
 
-  public void SecTestRoleRefEJB() throws CreateException {
-    TestUtil.logTrace("In constructor");
-  }
-
-  // Entity instance data
-  public abstract Integer getId();
-
-  public abstract void setId(Integer i);
-
-  public abstract String getBrandName();
-
-  public abstract void setBrandName(String s);
-
-  public abstract float getPrice();
-
-  public abstract void setPrice(float p);
-
-  public Integer ejbCreate(int id, String brandName, float price)
-      throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    Integer pk = new Integer(id);
-    try {
-      setId(pk);
-      setBrandName(brandName);
-      setPrice(price);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    public void SecTestRoleRefEJB() throws CreateException {
+        TestUtil.logTrace("In constructor");
     }
-    return null;
-  }
 
-  public void ejbPostCreate(int id, String brandName, float price) {
-    TestUtil.logTrace("ejbPostCreate");
-  }
+    // Entity instance data
+    public abstract Integer getId();
 
-  public boolean EjbSecRoleRefScope(String role) {
-    return ectx.isCallerInRole(role);
-  }
+    public abstract void setId(Integer i);
 
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("ejbRemove");
-  }
+    public abstract String getBrandName();
 
-  public void ejbLoad() {
-    TestUtil.logTrace("ejbLoad");
-  }
+    public abstract void setBrandName(String s);
 
-  public void ejbStore() {
-    TestUtil.logTrace("ejbStore");
-  }
+    public abstract float getPrice();
 
-  public void setEntityContext(EntityContext sc) {
-    ectx = sc;
-  }
+    public abstract void setPrice(float p);
 
-  public void unsetEntityContext() {
-    TestUtil.logTrace("ejb.unsetEntityContext");
-  }
+    public Integer ejbCreate(int id, String brandName, float price) throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        Integer pk = new Integer(id);
+        try {
+            setId(pk);
+            setBrandName(brandName);
+            setPrice(price);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+        return null;
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
+    public void ejbPostCreate(int id, String brandName, float price) {
+        TestUtil.logTrace("ejbPostCreate");
+    }
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
+    public boolean EjbSecRoleRefScope(String role) {
+        return ectx.isCallerInRole(role);
+    }
+
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("ejbRemove");
+    }
+
+    public void ejbLoad() {
+        TestUtil.logTrace("ejbLoad");
+    }
+
+    public void ejbStore() {
+        TestUtil.logTrace("ejbStore");
+    }
+
+    public void setEntityContext(EntityContext sc) {
+        ectx = sc;
+    }
+
+    public void unsetEntityContext() {
+        TestUtil.logTrace("ejb.unsetEntityContext");
+    }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
 }

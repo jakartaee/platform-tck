@@ -22,70 +22,68 @@ import java.security.Principal;
  * @author Raja Perumal
  */
 public class SimplePrincipal implements Principal, java.io.Serializable {
-  private String name = null; // username
+    private String name = null; // username
 
-  private String password = null; // password
+    private String password = null; // password
 
-  public SimplePrincipal(String val) {
-    name = val;
-  }
-
-  public SimplePrincipal(String val, String pwd) {
-    name = val;
-    password = pwd;
-  }
-
-  // required to satisfy Principal interface
-  @Override
-  public boolean equals(Object obj) {
-
-    if ((obj == null) || !(obj instanceof SimplePrincipal)) {
-      return false;
-    }
-    if (obj == this) {
-      return true;
+    public SimplePrincipal(String val) {
+        name = val;
     }
 
-    SimplePrincipal that = (SimplePrincipal) obj;
+    public SimplePrincipal(String val, String pwd) {
+        name = val;
+        password = pwd;
+    }
 
-    if (!Util.isEqual(this.password, that.getPassword()))
-      return false;
+    // required to satisfy Principal interface
+    @Override
+    public boolean equals(Object obj) {
 
-    if (!Util.isEqual(this.name, that.getName()))
-      return false;
+        if ((obj == null) || !(obj instanceof SimplePrincipal)) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
 
-    return true;
-  }
+        SimplePrincipal that = (SimplePrincipal) obj;
 
-  // required to satisfy Principal interface
-  @Override
-  public String getName() {
-    return name;
-  }
+        if (!Util.isEqual(this.password, that.getPassword())) return false;
 
-  public void setName(String val) {
-    name = val;
-  }
+        if (!Util.isEqual(this.name, that.getName())) return false;
 
-  public void setPassword(String val) {
-    password = val;
-  }
+        return true;
+    }
 
-  // required to satisfy Principal interface
-  @Override
-  public String toString() {
-    return name;
-  }
+    // required to satisfy Principal interface
+    @Override
+    public String getName() {
+        return name;
+    }
 
-  // required to satisfy Principal interface
-  @Override
-  public int hashCode() {
-    return this.getClass().getName().hashCode();
-  }
+    public void setName(String val) {
+        name = val;
+    }
 
-  // may want to change this later if tests call for it
-  // this is normally bad but for testing purposes we dont care
-  public String getPassword() {
-    return password;
-  }
+    public void setPassword(String val) {
+        password = val;
+    }
+
+    // required to satisfy Principal interface
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    // required to satisfy Principal interface
+    @Override
+    public int hashCode() {
+        return this.getClass().getName().hashCode();
+    }
+
+    // may want to change this later if tests call for it
+    // this is normally bad but for testing purposes we dont care
+    public String getPassword() {
+        return password;
+    }
 } // end of class SimulateRuntime

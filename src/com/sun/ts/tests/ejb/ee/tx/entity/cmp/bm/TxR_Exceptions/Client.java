@@ -20,350 +20,335 @@
 
 package com.sun.ts.tests.ejb.ee.tx.entity.cmp.bm.TxR_Exceptions;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  private static final String testName = "TxR_Exceptions";
+    private static final String testName = "TxR_Exceptions";
 
-  private static final String testLookup = "java:comp/env/ejb/TestBean";
+    private static final String testLookup = "java:comp/env/ejb/TestBean";
 
-  private static final String envProps = "testbean.props";
+    private static final String envProps = "testbean.props";
 
-  private static final String testDir = System.getProperty("user.dir");
+    private static final String testDir = System.getProperty("user.dir");
 
-  private TestBeanHome beanHome = null;
+    private TestBeanHome beanHome = null;
 
-  private TestBean beanRef = null;
+    private TestBean beanRef = null;
 
-  private Properties testProps = new Properties();
+    private Properties testProps = new Properties();
 
-  private TSNamingContext jctx = null;
+    private TSNamingContext jctx = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup: */
-
-  /*
-   * @class.setup_props: java.naming.factory.initial;
-   * 
-   * @class.testArgs: -ap tssql.stmt
-   *
-   */
-  public void setup(String[] args, Properties p) throws Fault {
-    logMsg("Setup tests");
-    this.testProps = p;
-
-    try {
-      logMsg("Get the naming context");
-      jctx = new TSNamingContext();
-
-      logMsg("Getting the EJB Home interface for " + testLookup);
-      beanHome = (TestBeanHome) jctx.lookup(testLookup, TestBeanHome.class);
-
-      logMsg("Setup ok");
-    } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /*
-   * @testName: test1
-   *
-   * @assertion_ids: EJB:SPEC:628.1
-   *
-   * @test_Strategy: AppException from Entity EJB. - Create an instance of a
-   * stateful session Testbean bean. - Create an instance of an Entity
-   * TxECMPBean(Required) bean. - Cause an AppException in the Entity bean. -
-   * Ensure that the client receives AppException.
-   */
+    /* Test setup: */
 
-  public void test1() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
-      beanRef = (TestBean) beanHome.create(testProps);
+    /*
+     * @class.setup_props: java.naming.factory.initial;
+     *
+     * @class.testArgs: -ap tssql.stmt
+     *
+     */
+    public void setup(String[] args, Properties p) throws Fault {
+        logMsg("Setup tests");
+        this.testProps = p;
 
-      beanRef.initLogging(testProps);
+        try {
+            logMsg("Get the naming context");
+            jctx = new TSNamingContext();
 
-      boolean testResult = false;
+            logMsg("Getting the EJB Home interface for " + testLookup);
+            beanHome = (TestBeanHome) jctx.lookup(testLookup, TestBeanHome.class);
 
-      logMsg("Execute TestBean:test1");
-      testResult = beanRef.test1();
-
-      if (!testResult)
-        throw new Fault("test1 failed");
-      else
-        logMsg("test1 passed");
-    } catch (Exception e) {
-      throw new Fault("test1 failed", e);
-    } finally {
-      try {
-        if (beanRef != null) {
-          beanRef.remove();
+            logMsg("Setup ok");
+        } catch (Exception e) {
+            throw new Fault("Setup failed:", e);
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
-      }
     }
-  }
 
-  /*
-   * @testName: test2
-   *
-   * @assertion_ids: EJB:SPEC:629.2; EJB:SPEC:629.4
-   *
-   * @test_Strategy: SysException from Entity EJB. - Create an instance of a
-   * stateful session Testbean bean. - Create an instance of an Entity
-   * TxECMPBean(Required) bean. - Cause a SysException in the Entity bean. -
-   * Ensure that the client receives TransactionRolledbackException. - Check
-   * that transaction was marked for rollback. - Verify the transaction did not
-   * commit.
-   */
+    /*
+     * @testName: test1
+     *
+     * @assertion_ids: EJB:SPEC:628.1
+     *
+     * @test_Strategy: AppException from Entity EJB. - Create an instance of a
+     * stateful session Testbean bean. - Create an instance of an Entity
+     * TxECMPBean(Required) bean. - Cause an AppException in the Entity bean. -
+     * Ensure that the client receives AppException.
+     */
 
-  public void test2() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
-      beanRef = (TestBean) beanHome.create(testProps);
+    public void test1() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
+            beanRef = (TestBean) beanHome.create(testProps);
 
-      beanRef.initLogging(testProps);
+            beanRef.initLogging(testProps);
 
-      boolean testResult = false;
+            boolean testResult = false;
 
-      logMsg("Execute TestBean:test2");
-      testResult = beanRef.test2();
+            logMsg("Execute TestBean:test1");
+            testResult = beanRef.test1();
 
-      if (!testResult)
-        throw new Fault("test2 failed");
-      else
-        logMsg("test2 passed");
-    } catch (Exception e) {
-      throw new Fault("test2 failed", e);
-    } finally {
-      try {
-        if (beanRef != null) {
-          beanRef.remove();
+            if (!testResult) throw new Fault("test1 failed");
+            else logMsg("test1 passed");
+        } catch (Exception e) {
+            throw new Fault("test1 failed", e);
+        } finally {
+            try {
+                if (beanRef != null) {
+                    beanRef.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
+            }
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
-      }
     }
-  }
 
-  /*
-   * @testName: test3
-   *
-   * @assertion_ids: EJB:SPEC:498; EJB:SPEC:628.1
-   *
-   * @test_Strategy: - Create 1 instance of a stateful session Testbean beans. -
-   * Create 3 instances of an Entity TxECMPBean(Required) bean. Ensure an
-   * Exception is thrown when attempting to create an entity bean with a
-   * duplicate primary key.
-   */
+    /*
+     * @testName: test2
+     *
+     * @assertion_ids: EJB:SPEC:629.2; EJB:SPEC:629.4
+     *
+     * @test_Strategy: SysException from Entity EJB. - Create an instance of a
+     * stateful session Testbean bean. - Create an instance of an Entity
+     * TxECMPBean(Required) bean. - Cause a SysException in the Entity bean. -
+     * Ensure that the client receives TransactionRolledbackException. - Check
+     * that transaction was marked for rollback. - Verify the transaction did not
+     * commit.
+     */
 
-  public void test3() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
-      beanRef = (TestBean) beanHome.create(testProps);
+    public void test2() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
+            beanRef = (TestBean) beanHome.create(testProps);
 
-      beanRef.initLogging(testProps);
+            beanRef.initLogging(testProps);
 
-      boolean testResult = false;
+            boolean testResult = false;
 
-      logMsg("Execute TestBean:test3");
-      testResult = beanRef.test3();
+            logMsg("Execute TestBean:test2");
+            testResult = beanRef.test2();
 
-      if (!testResult)
-        throw new Fault("test3 failed");
-      else
-        logMsg("test3 passed");
-    } catch (Exception e) {
-      throw new Fault("test3 failed", e);
-    } finally {
-      try {
-        if (beanRef != null) {
-          beanRef.remove();
+            if (!testResult) throw new Fault("test2 failed");
+            else logMsg("test2 passed");
+        } catch (Exception e) {
+            throw new Fault("test2 failed", e);
+        } finally {
+            try {
+                if (beanRef != null) {
+                    beanRef.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
+            }
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
-      }
     }
-  }
 
-  /*
-   * @testName: test6
-   *
-   * @assertion_ids: EJB:SPEC:10472; EJB:SPEC:10619
-   *
-   * @test_Strategy: ObjectNotFoundException from Entity EJB. - Create 1
-   * instance of a stateful session Testbean beans. - Create 1 instance of an
-   * Entity TxECMPBean(Required) bean, creating a fresh database table. - Use
-   * findByPrimaryKey(...) to find a record with a key that does not exist. Note
-   * that the programmer knows all the keys that exist (only "1") since it is a
-   * newly created table. - Catch ObjectNotFoundException
-   */
+    /*
+     * @testName: test3
+     *
+     * @assertion_ids: EJB:SPEC:498; EJB:SPEC:628.1
+     *
+     * @test_Strategy: - Create 1 instance of a stateful session Testbean beans. -
+     * Create 3 instances of an Entity TxECMPBean(Required) bean. Ensure an
+     * Exception is thrown when attempting to create an entity bean with a
+     * duplicate primary key.
+     */
 
-  public void test6() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
-      beanRef = (TestBean) beanHome.create(testProps);
+    public void test3() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
+            beanRef = (TestBean) beanHome.create(testProps);
 
-      beanRef.initLogging(testProps);
+            beanRef.initLogging(testProps);
 
-      boolean testResult = false;
+            boolean testResult = false;
 
-      logMsg("Execute TestBean:test6");
-      testResult = beanRef.test6();
+            logMsg("Execute TestBean:test3");
+            testResult = beanRef.test3();
 
-      if (!testResult)
-        throw new Fault("test6 failed");
-      else
-        logMsg("test6 passed");
-    } catch (Exception e) {
-      throw new Fault("test6 failed", e);
-    } finally {
-      try {
-        if (beanRef != null) {
-          beanRef.remove();
+            if (!testResult) throw new Fault("test3 failed");
+            else logMsg("test3 passed");
+        } catch (Exception e) {
+            throw new Fault("test3 failed", e);
+        } finally {
+            try {
+                if (beanRef != null) {
+                    beanRef.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
+            }
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
-      }
     }
-  }
 
-  /*
-   * @testName: test7
-   *
-   * @assertion_ids: EJB:SPEC:10619
-   *
-   * @test_Strategy: RemoveException from Entity EJB. - Create 1 instance of an
-   * Entity TxECMPBean(Required) bean. - Force a RemoveException. - Catch
-   * RemoveException
-   */
+    /*
+     * @testName: test6
+     *
+     * @assertion_ids: EJB:SPEC:10472; EJB:SPEC:10619
+     *
+     * @test_Strategy: ObjectNotFoundException from Entity EJB. - Create 1
+     * instance of a stateful session Testbean beans. - Create 1 instance of an
+     * Entity TxECMPBean(Required) bean, creating a fresh database table. - Use
+     * findByPrimaryKey(...) to find a record with a key that does not exist. Note
+     * that the programmer knows all the keys that exist (only "1") since it is a
+     * newly created table. - Catch ObjectNotFoundException
+     */
 
-  public void test7() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
-      beanRef = (TestBean) beanHome.create(testProps);
+    public void test6() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
+            beanRef = (TestBean) beanHome.create(testProps);
 
-      beanRef.initLogging(testProps);
+            beanRef.initLogging(testProps);
 
-      boolean testResult = false;
+            boolean testResult = false;
 
-      logMsg("Execute TestBean:test7");
-      testResult = beanRef.test7();
+            logMsg("Execute TestBean:test6");
+            testResult = beanRef.test6();
 
-      if (!testResult)
-        throw new Fault("test7 failed");
-      else
-        logMsg("test7 passed");
-    } catch (Exception e) {
-      throw new Fault("test7 failed", e);
-    } finally {
-      try {
-        if (beanRef != null) {
-          beanRef.remove();
+            if (!testResult) throw new Fault("test6 failed");
+            else logMsg("test6 passed");
+        } catch (Exception e) {
+            throw new Fault("test6 failed", e);
+        } finally {
+            try {
+                if (beanRef != null) {
+                    beanRef.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
+            }
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
-      }
     }
-  }
 
-  /*
-   * @testName: test8
-   *
-   * @assertion_ids: EJB:SPEC:629.2; EJB:SPEC:629.4
-   *
-   * @test_Strategy: EJBException from Entity EJB. - Create an instance of a
-   * stateful session Testbean bean. - Create an instance of an Entity
-   * TxECMPBean(Required) bean. - Cause a EJBException in the Entity bean. -
-   * Ensure that the client receives TransactionRolledbackException. - Check
-   * that the client transaction(t1) is still active. - Verify the transaction
-   * did not commit.
-   */
+    /*
+     * @testName: test7
+     *
+     * @assertion_ids: EJB:SPEC:10619
+     *
+     * @test_Strategy: RemoveException from Entity EJB. - Create 1 instance of an
+     * Entity TxECMPBean(Required) bean. - Force a RemoveException. - Catch
+     * RemoveException
+     */
 
-  public void test8() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
-      beanRef = (TestBean) beanHome.create(testProps);
+    public void test7() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
+            beanRef = (TestBean) beanHome.create(testProps);
 
-      beanRef.initLogging(testProps);
+            beanRef.initLogging(testProps);
 
-      boolean testResult = false;
+            boolean testResult = false;
 
-      logMsg("Execute TestBean:test8");
-      testResult = beanRef.test8();
+            logMsg("Execute TestBean:test7");
+            testResult = beanRef.test7();
 
-      if (!testResult)
-        throw new Fault("test8 failed");
-      else
-        logMsg("test8 passed");
-    } catch (Exception e) {
-      throw new Fault("test8 failed", e);
-    } finally {
-      try {
-        if (beanRef != null) {
-          beanRef.remove();
+            if (!testResult) throw new Fault("test7 failed");
+            else logMsg("test7 passed");
+        } catch (Exception e) {
+            throw new Fault("test7 failed", e);
+        } finally {
+            try {
+                if (beanRef != null) {
+                    beanRef.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
+            }
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
-      }
     }
-  }
 
-  /*
-   * @testName: test9
-   *
-   * @assertion_ids: EJB:SPEC:629.2; EJB:SPEC:629.4
-   *
-   * @test_Strategy: Error from Entity EJB. - Create an instance of a stateful
-   * session Testbean bean. - Create an instance of an Entity
-   * TxECMPBean(Required) bean. - Cause a Error in the Entity bean. - Ensure
-   * that the client receives TransactionRolledbackException. - Check that the
-   * client transaction(t1) is still active. - Verify the transaction did not
-   * commit.
-   */
+    /*
+     * @testName: test8
+     *
+     * @assertion_ids: EJB:SPEC:629.2; EJB:SPEC:629.4
+     *
+     * @test_Strategy: EJBException from Entity EJB. - Create an instance of a
+     * stateful session Testbean bean. - Create an instance of an Entity
+     * TxECMPBean(Required) bean. - Cause a EJBException in the Entity bean. -
+     * Ensure that the client receives TransactionRolledbackException. - Check
+     * that the client transaction(t1) is still active. - Verify the transaction
+     * did not commit.
+     */
 
-  public void test9() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
-      beanRef = (TestBean) beanHome.create(testProps);
+    public void test8() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
+            beanRef = (TestBean) beanHome.create(testProps);
 
-      beanRef.initLogging(testProps);
+            beanRef.initLogging(testProps);
 
-      boolean testResult = false;
+            boolean testResult = false;
 
-      logMsg("Execute TestBean:test9");
-      testResult = beanRef.test9();
+            logMsg("Execute TestBean:test8");
+            testResult = beanRef.test8();
 
-      if (!testResult)
-        throw new Fault("test9 failed");
-      else
-        logMsg("test9 passed");
-    } catch (Exception e) {
-      throw new Fault("test9 failed", e);
-    } finally {
-      try {
-        if (beanRef != null) {
-          beanRef.remove();
+            if (!testResult) throw new Fault("test8 failed");
+            else logMsg("test8 passed");
+        } catch (Exception e) {
+            throw new Fault("test8 failed", e);
+        } finally {
+            try {
+                if (beanRef != null) {
+                    beanRef.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
+            }
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
-      }
     }
-  }
 
-  public void cleanup() throws Fault {
-    logMsg("cleanup ok");
-  }
+    /*
+     * @testName: test9
+     *
+     * @assertion_ids: EJB:SPEC:629.2; EJB:SPEC:629.4
+     *
+     * @test_Strategy: Error from Entity EJB. - Create an instance of a stateful
+     * session Testbean bean. - Create an instance of an Entity
+     * TxECMPBean(Required) bean. - Cause a Error in the Entity bean. - Ensure
+     * that the client receives TransactionRolledbackException. - Check that the
+     * client transaction(t1) is still active. - Verify the transaction did not
+     * commit.
+     */
+
+    public void test9() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
+            beanRef = (TestBean) beanHome.create(testProps);
+
+            beanRef.initLogging(testProps);
+
+            boolean testResult = false;
+
+            logMsg("Execute TestBean:test9");
+            testResult = beanRef.test9();
+
+            if (!testResult) throw new Fault("test9 failed");
+            else logMsg("test9 passed");
+        } catch (Exception e) {
+            throw new Fault("test9 failed", e);
+        } finally {
+            try {
+                if (beanRef != null) {
+                    beanRef.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
+            }
+        }
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("cleanup ok");
+    }
 }

@@ -19,48 +19,46 @@
  */
 package com.sun.ts.tests.ejb30.lite.async.singleton.annotated;
 
-import java.util.concurrent.Future;
-
 import com.sun.ts.tests.ejb30.lite.async.common.annotated.Async2IF;
 import com.sun.ts.tests.ejb30.lite.async.common.annotated.AsyncBeanBase;
 import com.sun.ts.tests.ejb30.lite.async.common.annotated.AsyncIF;
-
 import jakarta.ejb.Asynchronous;
 import jakarta.ejb.Local;
 import jakarta.ejb.Singleton;
+import java.util.concurrent.Future;
 
 @Singleton
-@Local({ Async2IF.class, AsyncIF.class })
+@Local({Async2IF.class, AsyncIF.class})
 public class Async2Bean extends AsyncBeanBase implements AsyncIF {
-  // override all business methods to apply @Asynchronous on bean class
-  // business methods
-  @Override
-  @Asynchronous
-  public void addAway(int a, int b, int key) {
-    super.addAway(a, b, key);
-  }
+    // override all business methods to apply @Asynchronous on bean class
+    // business methods
+    @Override
+    @Asynchronous
+    public void addAway(int a, int b, int key) {
+        super.addAway(a, b, key);
+    }
 
-  @Override
-  @Asynchronous
-  public Future<Integer> addReturn(int a, int b) {
-    return super.addReturn(a, b);
-  }
+    @Override
+    @Asynchronous
+    public Future<Integer> addReturn(int a, int b) {
+        return super.addReturn(a, b);
+    }
 
-  @Asynchronous
-  @Override
-  public Future<Integer> futureRuntimeException() throws RuntimeException {
-    return super.futureRuntimeException();
-  }
+    @Asynchronous
+    @Override
+    public Future<Integer> futureRuntimeException() throws RuntimeException {
+        return super.futureRuntimeException();
+    }
 
-  @Asynchronous
-  @Override
-  public Future<Integer> identityHashCode() {
-    return super.identityHashCode();
-  }
+    @Asynchronous
+    @Override
+    public Future<Integer> identityHashCode() {
+        return super.identityHashCode();
+    }
 
-  @Asynchronous
-  @Override
-  public void voidRuntimeException(Integer key) throws RuntimeException {
-    super.voidRuntimeException(key);
-  }
+    @Asynchronous
+    @Override
+    public void voidRuntimeException(Integer key) throws RuntimeException {
+        super.voidRuntimeException(key);
+    }
 }

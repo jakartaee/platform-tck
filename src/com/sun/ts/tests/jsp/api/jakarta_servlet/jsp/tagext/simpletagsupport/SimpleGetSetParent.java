@@ -24,46 +24,45 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.simpletagsupport;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.JspTag;
 import jakarta.servlet.jsp.tagext.SimpleTag;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class SimpleGetSetParent extends SimpleTagSupport {
 
-  /**
-   * Default constructor.
-   */
-  public SimpleGetSetParent() {
-    super();
-  }
-
-  /**
-   * Validates that getParent() returns the expected result. This indirectly
-   * ensures that the container called setParent().
-   * 
-   * @throws JspException
-   * @throws IOException
-   */
-  public void doTag() throws JspException, IOException {
-    JspTestUtil.debug("[SimpleGetSetParent] in doTag()");
-    JspTag tag = this.getParent();
-    if (tag != null) {
-      if (tag instanceof SimpleTag) {
-        this.getJspContext().getOut().println("Test PASSED");
-      } else {
-        this.getJspContext().getOut().println("Test FAILED.  SimpleTagSupport"
-            + ".getParent() returned a non-null value, but was not an instance "
-            + "of the expected parent class.  Recieved: "
-            + tag.getClass().getName());
-      }
-    } else {
-      this.getJspContext().getOut().println(
-          "Test FAILED.  SimpleTagSupport" + ".getParent() returned null.");
+    /**
+     * Default constructor.
+     */
+    public SimpleGetSetParent() {
+        super();
     }
-  }
+
+    /**
+     * Validates that getParent() returns the expected result. This indirectly
+     * ensures that the container called setParent().
+     *
+     * @throws JspException
+     * @throws IOException
+     */
+    public void doTag() throws JspException, IOException {
+        JspTestUtil.debug("[SimpleGetSetParent] in doTag()");
+        JspTag tag = this.getParent();
+        if (tag != null) {
+            if (tag instanceof SimpleTag) {
+                this.getJspContext().getOut().println("Test PASSED");
+            } else {
+                this.getJspContext()
+                        .getOut()
+                        .println("Test FAILED.  SimpleTagSupport"
+                                + ".getParent() returned a non-null value, but was not an instance "
+                                + "of the expected parent class.  Recieved: "
+                                + tag.getClass().getName());
+            }
+        } else {
+            this.getJspContext().getOut().println("Test FAILED.  SimpleTagSupport" + ".getParent() returned null.");
+        }
+    }
 }

@@ -20,16 +20,12 @@
 
 package com.sun.ts.tests.ejb30.lite.basic.stateful;
 
-import java.util.concurrent.TimeUnit;
-
 import com.sun.ts.tests.ejb30.lite.basic.common.Basic1IF;
 import com.sun.ts.tests.ejb30.lite.basic.common.BasicBeanBase;
-
 import jakarta.ejb.AccessTimeout;
 import jakarta.ejb.Stateful;
+import java.util.concurrent.TimeUnit;
 
 @Stateful
 @AccessTimeout(unit = TimeUnit.SECONDS, value = 0)
-public class OneInterfaceBasicBean extends BasicBeanBase implements Basic1IF {
-
-}
+public class OneInterfaceBasicBean extends BasicBeanBase implements Basic1IF {}

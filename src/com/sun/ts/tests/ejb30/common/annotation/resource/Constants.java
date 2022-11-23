@@ -21,12 +21,12 @@
 package com.sun.ts.tests.ejb30.common.annotation.resource;
 
 public interface Constants {
-  public static final String PREFIX = "java:comp/env/";
+    public static final String PREFIX = "java:comp/env/";
 
-  public static final String USER_TRANSACTION_JNDI_NAME = "java:comp/UserTransaction";
+    public static final String USER_TRANSACTION_JNDI_NAME = "java:comp/UserTransaction";
 
-  public static final String TIMER_SERVICE_JNDI_NAME = "java:comp/TimerService";
+    public static final String TIMER_SERVICE_JNDI_NAME = "java:comp/TimerService";
 
-  public static final String TRANSACTION_SYNCHRONIZATION_REGISTRY_JNDI_NAME = "java:comp/TransactionSynchronizationRegistry";
-
+    public static final String TRANSACTION_SYNCHRONIZATION_REGISTRY_JNDI_NAME =
+            "java:comp/TransactionSynchronizationRegistry";
 }

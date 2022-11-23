@@ -20,33 +20,30 @@
 
 package com.sun.ts.tests.ejb30.lite.ejbcontext.common;
 
-import java.util.List;
-
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+import java.util.List;
 
 public interface EJBContextIF {
 
-  Class<?> getInvokedBusinessInterface();
+    Class<?> getInvokedBusinessInterface();
 
-  String getMessageContextIllegalStateException() throws TestFailedException;
+    String getMessageContextIllegalStateException() throws TestFailedException;
 
-  String lookupIllegalArgumentException() throws TestFailedException;
+    String lookupIllegalArgumentException() throws TestFailedException;
 
-  String getBusinessObjectIllegalStateException() throws TestFailedException;
+    String getBusinessObjectIllegalStateException() throws TestFailedException;
 
-  Integer add(int a, int b);
+    Integer add(int a, int b);
 
-  <T> T getBusinessObject(Class<T> businessInterface)
-      throws IllegalStateException;
+    <T> T getBusinessObject(Class<T> businessInterface) throws IllegalStateException;
 
-  List<String> getInjectionRecords();
+    List<String> getInjectionRecords();
 
-  String lookupEJBContext();
+    String lookupEJBContext();
 
-  List<String> getInjectionRecordsInInterceptor();
+    List<String> getInjectionRecordsInInterceptor();
 
-  String lookupEJBContextInInterceptor();
+    String lookupEJBContextInInterceptor();
 
-  String lookupPortableJNDINames();
-
+    String lookupPortableJNDINames();
 }

@@ -19,13 +19,18 @@ package com.sun.ts.tests.webservices12.deploy.jarDeploy;
 import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;
 
-@WebService(portName = "HelloWsPort", serviceName = "HelloWsService", targetNamespace = "http://JarDeploy.org/wsdl", wsdlLocation = "META-INF/wsdl/JarDeploy.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.deploy.jarDeploy.HelloWs")
+@WebService(
+        portName = "HelloWsPort",
+        serviceName = "HelloWsService",
+        targetNamespace = "http://JarDeploy.org/wsdl",
+        wsdlLocation = "META-INF/wsdl/JarDeploy.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices12.deploy.jarDeploy.HelloWs")
 @Stateless(name = "WSJarDeployApp")
 public class HelloWsBean implements HelloWs {
 
-  public HelloResponse sayHello(HelloRequest input) {
-    HelloResponse response = new HelloResponse();
-    response.setArgument("'" + input.getArgument() + "' to you too!");
-    return response;
-  }
+    public HelloResponse sayHello(HelloRequest input) {
+        HelloResponse response = new HelloResponse();
+        response.setArgument("'" + input.getArgument() + "' to you too!");
+        return response;
+    }
 }

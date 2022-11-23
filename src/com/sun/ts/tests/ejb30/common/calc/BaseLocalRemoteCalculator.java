@@ -25,42 +25,40 @@ package com.sun.ts.tests.ejb30.common.calc;
  * extended by session beans that provide both local and remote views. But from
  * the client view, it can only perform either local operations or remote
  * operations.
- * 
+ *
  * @author Cheng Fang
  */
-public class BaseLocalRemoteCalculator extends BaseLocalCalculator
-    implements RemoteCalculator {
+public class BaseLocalRemoteCalculator extends BaseLocalCalculator implements RemoteCalculator {
 
-  private BaseRemoteCalculator remoteCalc = new BaseRemoteCalculator();
+    private BaseRemoteCalculator remoteCalc = new BaseRemoteCalculator();
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.sun.ts.tests.ejb30.common.calc.RemoteCalculator#remoteAdd(int,
-   * int)
-   */
-  public int remoteAdd(int a, int b) {
-    return remoteCalc.remoteAdd(a, b);
-  }
+    /*
+     * (non-Javadoc)
+     *
+     * @see com.sun.ts.tests.ejb30.common.calc.RemoteCalculator#remoteAdd(int,
+     * int)
+     */
+    public int remoteAdd(int a, int b) {
+        return remoteCalc.remoteAdd(a, b);
+    }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * com.sun.ts.tests.ejb30.common.calc.RemoteCalculator#remoteSubtract(int,
-   * int)
-   */
-  public int remoteSubtract(int a, int b) {
-    return remoteCalc.remoteSubtract(a, b);
-  }
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * com.sun.ts.tests.ejb30.common.calc.RemoteCalculator#remoteSubtract(int,
+     * int)
+     */
+    public int remoteSubtract(int a, int b) {
+        return remoteCalc.remoteSubtract(a, b);
+    }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.sun.ts.tests.ejb30.common.calc.RemoteCalculator#remoteThrowIt()
-   */
-  public void remoteThrowIt() throws CalculatorException {
-    remoteCalc.remoteThrowIt();
-  }
-
+    /*
+     * (non-Javadoc)
+     *
+     * @see com.sun.ts.tests.ejb30.common.calc.RemoteCalculator#remoteThrowIt()
+     */
+    public void remoteThrowIt() throws CalculatorException {
+        remoteCalc.remoteThrowIt();
+    }
 }

@@ -20,12 +20,12 @@ import jakarta.servlet.http.HttpServletMapping;
 
 public class Utilities {
 
-  public static String toString(HttpServletMapping mapping) {
-    StringBuilder sb = new StringBuilder();
-    sb.append("matchValue=" + mapping.getMatchValue())
-        .append(", pattern=" + mapping.getPattern())
-        .append(", servletName=" + mapping.getServletName())
-        .append(", mappingMatch=" + mapping.getMappingMatch());
-    return sb.toString();
-  }
+    public static String toString(HttpServletMapping mapping) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("matchValue=" + mapping.getMatchValue())
+                .append(", pattern=" + mapping.getPattern())
+                .append(", servletName=" + mapping.getServletName())
+                .append(", mappingMatch=" + mapping.getMappingMatch());
+        return sb.toString();
+    }
 }

@@ -17,33 +17,30 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.server;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.PongMessage;
 import jakarta.websocket.Session;
+import java.io.IOException;
 
 public class PongMessageHandler implements MessageHandler.Whole<PongMessage> {
 
-  protected Session session;
+    protected Session session;
 
-  public static final String HANDLER_SAYS = "PongMessageHandler says: ";
+    public static final String HANDLER_SAYS = "PongMessageHandler says: ";
 
-  public PongMessageHandler(Session session) {
-    this.session = session;
-  }
-
-  @Override
-  public void onMessage(PongMessage pong) {
-    String msg = null;
-    try {
-      msg = IOUtil.byteBufferToString(pong.getApplicationData());
-      session.getBasicRemote().sendText(HANDLER_SAYS + msg);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
+    public PongMessageHandler(Session session) {
+        this.session = session;
     }
-  }
 
+    @Override
+    public void onMessage(PongMessage pong) {
+        String msg = null;
+        try {
+            msg = IOUtil.byteBufferToString(pong.getApplicationData());
+            session.getBasicRemote().sendText(HANDLER_SAYS + msg);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

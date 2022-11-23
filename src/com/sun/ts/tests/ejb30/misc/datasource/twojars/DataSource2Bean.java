@@ -19,41 +19,48 @@
  */
 package com.sun.ts.tests.ejb30.misc.datasource.twojars;
 
-import java.sql.Connection;
-
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest;
-
 import jakarta.annotation.sql.DataSourceDefinition;
 import jakarta.annotation.sql.DataSourceDefinitions;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Singleton;
+import java.sql.Connection;
 
 @Singleton
 @Remote(AppResRemoteIF.class)
 @DataSourceDefinitions({
-    @DataSourceDefinition(name = "java:global/datasource/twojars/2/globalds", description = "override it with <data-source> in ejb-jar.xml", className = "@className@", portNumber = 8080, serverName = "@serverName@", databaseName = "@databaseName@", user = "@user@", password = "@password@", isolationLevel = Connection.TRANSACTION_SERIALIZABLE) })
+    @DataSourceDefinition(
+            name = "java:global/datasource/twojars/2/globalds",
+            description = "override it with <data-source> in ejb-jar.xml",
+            className = "@className@",
+            portNumber = 8080,
+            serverName = "@serverName@",
+            databaseName = "@databaseName@",
+            user = "@user@",
+            password = "@password@",
+            isolationLevel = Connection.TRANSACTION_SERIALIZABLE)
+})
 public class DataSource2Bean extends AppResBeanBase {
 
-  private void nonPostConstruct() {
-    ServiceLocator.lookupShouldFail(
-        "java:app/datasource/twojars/appclient/appds", postConstructRecords);
-    Helper.getLogger().info(postConstructRecords.toString());
+    private void nonPostConstruct() {
+        ServiceLocator.lookupShouldFail("java:app/datasource/twojars/appclient/appds", postConstructRecords);
+        Helper.getLogger().info(postConstructRecords.toString());
 
-    DataSourceTest.verifyDataSource(postConstructRecords, false,
-        "java:global/datasource/twojars/appclient/globalds",
+        DataSourceTest.verifyDataSource(
+                postConstructRecords,
+                false,
+                "java:global/datasource/twojars/appclient/globalds",
+                "java:app/datasource/twojars/2/appds",
+                "java:global/datasource/twojars/2/globalds");
+    }
 
-        "java:app/datasource/twojars/2/appds",
-        "java:global/datasource/twojars/2/globalds");
-  }
-
-  @Override
-  public StringBuilder getPostConstructRecords() {
-    nonPostConstruct();
-    return super.getPostConstructRecords();
-  }
-
+    @Override
+    public StringBuilder getPostConstructRecords() {
+        nonPostConstruct();
+        return super.getPostConstructRecords();
+    }
 }

@@ -20,42 +20,43 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.simpleservice;
 
-import jakarta.xml.ws.WebServiceException;
-
-@jakarta.jws.WebService(targetNamespace = "http://simpletestservice.org/wsdl", serviceName = "SimpleTest", portName = "SimpleEndpointPort", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.simpleservice.SimpleEndpoint")
+@jakarta.jws.WebService(
+        targetNamespace = "http://simpletestservice.org/wsdl",
+        serviceName = "SimpleTest",
+        portName = "SimpleEndpointPort",
+        endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.simpleservice.SimpleEndpoint")
 public class SimpleEndpointImpl implements SimpleEndpoint {
-  public String helloWorld() {
-    return "hello world";
-  }
+    public String helloWorld() {
+        return "hello world";
+    }
 
-  public void oneWayOperation() {
-  }
+    public void oneWayOperation() {}
 
-  public String overloadedOperation(String param) {
-    return param;
-  }
+    public String overloadedOperation(String param) {
+        return param;
+    }
 
-  public String overloadedOperation(String param, String param2) {
-    return param + param2;
-  }
+    public String overloadedOperation(String param, String param2) {
+        return param + param2;
+    }
 
-  public String[] arrayOperation() {
-    return new String[] { "one", "two", "three" };
-  }
+    public String[] arrayOperation() {
+        return new String[] {"one", "two", "three"};
+    }
 
-  public SimpleBean getBean() {
-    SimpleBean sb = new SimpleBean();
-    sb.setMyInt(5);
-    sb.setMyString("A String");
-    return sb;
-  }
+    public SimpleBean getBean() {
+        SimpleBean sb = new SimpleBean();
+        sb.setMyInt(5);
+        sb.setMyString("A String");
+        return sb;
+    }
 
-  public String arrayOperationFromClient(String[] array) {
-    return "success";
-  }
+    public String arrayOperationFromClient(String[] array) {
+        return "success";
+    }
 
-  public String holderOperation(jakarta.xml.ws.Holder<java.lang.String> holder1,
-      jakarta.xml.ws.Holder<java.lang.String> holder2) {
-    return "success";
-  }
+    public String holderOperation(
+            jakarta.xml.ws.Holder<java.lang.String> holder1, jakarta.xml.ws.Holder<java.lang.String> holder2) {
+        return "success";
+    }
 }

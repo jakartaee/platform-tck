@@ -20,22 +20,21 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.sessionbeantest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface CallBack extends EJBObject {
-  public void reset() throws RemoteException;
+    public void reset() throws RemoteException;
 
-  public void setCreate(boolean b) throws RemoteException;
+    public void setCreate(boolean b) throws RemoteException;
 
-  public boolean isCreate() throws RemoteException;
+    public boolean isCreate() throws RemoteException;
 
-  public void setRemove(boolean b) throws RemoteException;
+    public void setRemove(boolean b) throws RemoteException;
 
-  public boolean isRemove() throws RemoteException;
+    public boolean isRemove() throws RemoteException;
 
-  public void setContext(boolean b) throws RemoteException;
+    public void setContext(boolean b) throws RemoteException;
 
-  public boolean isContext() throws RemoteException;
+    public boolean isContext() throws RemoteException;
 }

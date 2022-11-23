@@ -16,82 +16,81 @@
 
 package com.sun.ts.tests.jpa.core.override.mapkey;
 
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class RetailOrder implements Serializable {
 
-  @Id
-  private Long id;
+    @Id
+    private Long id;
 
-  private double cost;
+    private double cost;
 
-  @ManyToMany()
-  @JoinTable(name = "RETAILORDER_CONSUMER", joinColumns = @JoinColumn(name = "ORDERS_ID"), inverseJoinColumns = @JoinColumn(name = "CONSUMERS_ID"))
-  private Set<Consumer> consumers = new HashSet();
+    @ManyToMany()
+    @JoinTable(
+            name = "RETAILORDER_CONSUMER",
+            joinColumns = @JoinColumn(name = "ORDERS_ID"),
+            inverseJoinColumns = @JoinColumn(name = "CONSUMERS_ID"))
+    private Set<Consumer> consumers = new HashSet();
 
-  public RetailOrder() {
-  }
+    public RetailOrder() {}
 
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public int hashCode() {
-    int hash = 17;
-    hash += 37 * hash + Double.doubleToLongBits(cost);
-    return hash;
-  }
-
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof RetailOrder)) {
-      return false;
-    }
-    RetailOrder other = (RetailOrder) object;
-    if (Double.doubleToLongBits(this.cost) == Double
-        .doubleToLongBits(other.cost)) {
-      return true;
+    public Long getId() {
+        return id;
     }
 
-    return false;
-  }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.mapkey." + "RetailOrder[id="
-        + getId() + "]";
-  }
+    public int hashCode() {
+        int hash = 17;
+        hash += 37 * hash + Double.doubleToLongBits(cost);
+        return hash;
+    }
 
-  public Set<Consumer> getConsumers() {
-    return consumers;
-  }
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not
+        // set
+        if (!(object instanceof RetailOrder)) {
+            return false;
+        }
+        RetailOrder other = (RetailOrder) object;
+        if (Double.doubleToLongBits(this.cost) == Double.doubleToLongBits(other.cost)) {
+            return true;
+        }
 
-  public void setConsumers(Set<Consumer> consumers) {
-    this.consumers = consumers;
-  }
+        return false;
+    }
 
-  public void addConsumer(Consumer consumer) {
-    this.getConsumers().add(consumer);
-  }
+    public String toString() {
+        return "com.sun.ts.tests.jpa.core.override.mapkey." + "RetailOrder[id=" + getId() + "]";
+    }
 
-  public double getCost() {
-    return cost;
-  }
+    public Set<Consumer> getConsumers() {
+        return consumers;
+    }
 
-  public void setCost(double cost) {
-    this.cost = cost;
-  }
+    public void setConsumers(Set<Consumer> consumers) {
+        this.consumers = consumers;
+    }
+
+    public void addConsumer(Consumer consumer) {
+        this.getConsumers().add(consumer);
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
 }

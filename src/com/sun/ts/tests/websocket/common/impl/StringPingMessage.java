@@ -20,13 +20,13 @@ package com.sun.ts.tests.websocket.common.impl;
  * Nothing like Ping message exists in WebSocket Specs, but should the
  * SendMessageCallback know the type of message it is to sent, we need to
  * specify message type
- * 
+ *
  * We inherit PingMessage from PongMessage to do instanceOf as minimum as we can
  * in SendMessageCallback
  */
 public class StringPingMessage extends StringPongMessage {
 
-  public StringPingMessage(String message) {
-    super(message);
-  }
+    public StringPingMessage(String message) {
+        super(message);
+    }
 }

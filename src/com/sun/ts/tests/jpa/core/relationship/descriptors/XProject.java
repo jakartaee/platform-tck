@@ -20,10 +20,9 @@
 
 package com.sun.ts.tests.jpa.core.relationship.descriptors;
 
+import com.sun.ts.lib.util.TestUtil;
 import java.math.BigDecimal;
 import java.util.Collection;
-
-import com.sun.ts.lib.util.TestUtil;
 
 /*
  * XProject
@@ -31,73 +30,72 @@ import com.sun.ts.lib.util.TestUtil;
 
 public class XProject implements java.io.Serializable {
 
-  // Instance Variables
-  private long xProjId;
+    // Instance Variables
+    private long xProjId;
 
-  private String xName;
+    private String xName;
 
-  private BigDecimal xBudget;
+    private BigDecimal xBudget;
 
-  private XPerson xProjectLead;
+    private XPerson xProjectLead;
 
-  private Collection<XPerson> xPersons = new java.util.ArrayList<XPerson>();
+    private Collection<XPerson> xPersons = new java.util.ArrayList<XPerson>();
 
-  public XProject() {
-    TestUtil.logTrace("XProject no-arg constructor");
-  }
+    public XProject() {
+        TestUtil.logTrace("XProject no-arg constructor");
+    }
 
-  public XProject(long xProjId, String xName, BigDecimal xBudget) {
-    this.xProjId = xProjId;
-    this.xName = xName;
-    this.xBudget = xBudget;
-  }
+    public XProject(long xProjId, String xName, BigDecimal xBudget) {
+        this.xProjId = xProjId;
+        this.xName = xName;
+        this.xBudget = xBudget;
+    }
 
-  // ===========================================================
-  // getters and setters for the state fields
+    // ===========================================================
+    // getters and setters for the state fields
 
-  public long getXProjId() {
-    return xProjId;
-  }
+    public long getXProjId() {
+        return xProjId;
+    }
 
-  public void setXProjId(long xProjId) {
-    this.xProjId = xProjId;
-  }
+    public void setXProjId(long xProjId) {
+        this.xProjId = xProjId;
+    }
 
-  public String getXName() {
-    return xName;
-  }
+    public String getXName() {
+        return xName;
+    }
 
-  public void setXName(String xName) {
-    this.xName = xName;
-  }
+    public void setXName(String xName) {
+        this.xName = xName;
+    }
 
-  public BigDecimal getXBudget() {
-    return xBudget;
-  }
+    public BigDecimal getXBudget() {
+        return xBudget;
+    }
 
-  public void setXBudget(BigDecimal xBudget) {
-    this.xBudget = xBudget;
-  }
+    public void setXBudget(BigDecimal xBudget) {
+        this.xBudget = xBudget;
+    }
 
-  // ===========================================================
-  // getters and setters for the association fields
+    // ===========================================================
+    // getters and setters for the association fields
 
-  /* Bi-Directional OneProjectLeadToOnePerson */
-  public XPerson getXProjectLead() {
-    return xProjectLead;
-  }
+    /* Bi-Directional OneProjectLeadToOnePerson */
+    public XPerson getXProjectLead() {
+        return xProjectLead;
+    }
 
-  public void setXProjectLead(XPerson xProjectLead) {
-    this.xProjectLead = xProjectLead;
-  }
+    public void setXProjectLead(XPerson xProjectLead) {
+        this.xProjectLead = xProjectLead;
+    }
 
-  /* Bi-Directional ManyPersonsToManyProjects */
-  public Collection<XPerson> getXPersons() {
-    return xPersons;
-  }
+    /* Bi-Directional ManyPersonsToManyProjects */
+    public Collection<XPerson> getXPersons() {
+        return xPersons;
+    }
 
-  public void setXPersons(Collection<XPerson> xPersons) {
-    this.xPersons = xPersons;
-  }
-
+    public void setXPersons(Collection<XPerson> xPersons) {
+        this.xPersons = xPersons;
+    }
 }

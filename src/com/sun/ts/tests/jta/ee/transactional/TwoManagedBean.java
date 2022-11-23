@@ -19,11 +19,9 @@ package com.sun.ts.tests.jta.ee.transactional;
 @TwoManagedQualifier
 public class TwoManagedBean extends OneManagedBean {
 
-  public static final String NAME = "two-managed-bean";
+    public static final String NAME = "two-managed-bean";
 
-  public TwoManagedBean() {
-    super();
-
-  }
-
+    public TwoManagedBean() {
+        super();
+    }
 }

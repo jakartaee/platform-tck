@@ -25,11 +25,11 @@ import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 
 public class StatelessInternalEJB extends StatelessWrapper {
 
-  /**
-   * Method used to identify this bean (only available for this bean).
-   */
-  public boolean isTestStatelessInternal() {
-    TestUtil.logTrace("StatelessInternal: isStatelessInternal()");
-    return true;
-  }
+    /**
+     * Method used to identify this bean (only available for this bean).
+     */
+    public boolean isTestStatelessInternal() {
+        TestUtil.logTrace("StatelessInternal: isStatelessInternal()");
+        return true;
+    }
 }

@@ -25,101 +25,101 @@ import com.sun.ts.tests.ejb30.tx.common.session.cm.ClientBase;
 
 public class Client extends ClientBase {
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  @Override
-  public void cleanup() {
-    removeBeans();
-  }
+    @Override
+    public void cleanup() {
+        removeBeans();
+    }
 
-  /*
-   * @testName: mandatoryTest
-   * 
-   * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
-   * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
-   * 
-   * @test_Strategy: client -> remote bm slsb -> remote cm slsb
-   */
+    /*
+     * @testName: mandatoryTest
+     *
+     * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
+     * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
+     *
+     * @test_Strategy: client -> remote bm slsb -> remote cm slsb
+     */
 
-  /*
-   * @testName: localMandatoryTest
-   * 
-   * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
-   * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
-   * 
-   * @test_Strategy: client -> remote bm slsb -> local cm slsb
-   */
+    /*
+     * @testName: localMandatoryTest
+     *
+     * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
+     * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
+     *
+     * @test_Strategy: client -> remote bm slsb -> local cm slsb
+     */
 
-  /*
-   * @testName: neverTest
-   * 
-   * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
-   * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
-   * 
-   * @test_Strategy: client -> remote bm slsb -> remote cm slsb
-   */
+    /*
+     * @testName: neverTest
+     *
+     * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
+     * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
+     *
+     * @test_Strategy: client -> remote bm slsb -> remote cm slsb
+     */
 
-  /*
-   * @testName: localNeverTest
-   * 
-   * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
-   * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
-   * 
-   * @test_Strategy: client -> remote bm slsb -> local cm slsb
-   */
+    /*
+     * @testName: localNeverTest
+     *
+     * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
+     * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
+     *
+     * @test_Strategy: client -> remote bm slsb -> local cm slsb
+     */
 
-  /*
-   * @testName: localRequiresNewRemoveTest
-   * 
-   * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
-   * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
-   * 
-   * @test_Strategy: client -> remote bm slsb -> local cm sfsb
-   */
+    /*
+     * @testName: localRequiresNewRemoveTest
+     *
+     * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
+     * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
+     *
+     * @test_Strategy: client -> remote bm slsb -> local cm sfsb
+     */
 
-  /*
-   * @testName: supportsTest
-   * 
-   * @test_Strategy: client -> remote bm sfsb -> remote cm sfsb
-   */
+    /*
+     * @testName: supportsTest
+     *
+     * @test_Strategy: client -> remote bm sfsb -> remote cm sfsb
+     */
 
-  /*
-   * @testName: localSupportsTest
-   * 
-   * @test_Strategy: client -> remote bm sfsb -> local cm sfsb
-   */
+    /*
+     * @testName: localSupportsTest
+     *
+     * @test_Strategy: client -> remote bm sfsb -> local cm sfsb
+     */
 
-  /*
-   * @testName: illegalGetSetRollbackOnlyNeverTest
-   * 
-   * @test_Strategy: client -> remote bm bean -> local cm bean
-   */
+    /*
+     * @testName: illegalGetSetRollbackOnlyNeverTest
+     *
+     * @test_Strategy: client -> remote bm bean -> local cm bean
+     */
 
-  /*
-   * @testName: localIllegalGetSetRollbackOnlyNeverTest
-   * 
-   * @test_Strategy: client -> remote bm bean -> local cm bean
-   */
+    /*
+     * @testName: localIllegalGetSetRollbackOnlyNeverTest
+     *
+     * @test_Strategy: client -> remote bm bean -> local cm bean
+     */
 
-  /*
-   * @testName: illegalGetSetRollbackOnlyNotSupportedTest
-   * 
-   * @test_Strategy: client -> remote bm bean -> local cm bean
-   */
+    /*
+     * @testName: illegalGetSetRollbackOnlyNotSupportedTest
+     *
+     * @test_Strategy: client -> remote bm bean -> local cm bean
+     */
 
-  /*
-   * @testName: localIllegalGetSetRollbackOnlyNotSupportedTest
-   * 
-   * @test_Strategy: client -> remote bm bean -> local cm bean
-   */
+    /*
+     * @testName: localIllegalGetSetRollbackOnlyNotSupportedTest
+     *
+     * @test_Strategy: client -> remote bm bean -> local cm bean
+     */
 
-  /*
-   * @testName: systemExceptionTest
-   * 
-   * @test_Strategy: client -> remote bm bean -> local cm bean
-   */
+    /*
+     * @testName: systemExceptionTest
+     *
+     * @test_Strategy: client -> remote bm bean -> local cm bean
+     */
 }

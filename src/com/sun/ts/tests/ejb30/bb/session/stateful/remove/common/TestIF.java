@@ -23,31 +23,31 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.remove.common;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface TestIF {
-  void remove();
+    void remove();
 
-  //////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////
 
-  void removeBean() throws TestFailedException;
+    void removeBean() throws TestFailedException;
 
-  void removeBean2() throws TestFailedException;
+    void removeBean2() throws TestFailedException;
 
-  void removeBeanRemote() throws TestFailedException;
+    void removeBeanRemote() throws TestFailedException;
 
-  void removeBean2Remote() throws TestFailedException;
+    void removeBean2Remote() throws TestFailedException;
 
-  //////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////
 
-  void retainBean() throws TestFailedException;
+    void retainBean() throws TestFailedException;
 
-  void retainBeanOverloaded() throws TestFailedException;
+    void retainBeanOverloaded() throws TestFailedException;
 
-  void retainBean2() throws TestFailedException;
+    void retainBean2() throws TestFailedException;
 
-  void retainBeanRemote() throws TestFailedException;
+    void retainBeanRemote() throws TestFailedException;
 
-  void retainBean2Remote() throws TestFailedException;
+    void retainBean2Remote() throws TestFailedException;
 
-  //////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////
 
-  void removeTwoLocal() throws TestFailedException;
+    void removeTwoLocal() throws TestFailedException;
 }

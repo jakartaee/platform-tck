@@ -20,99 +20,97 @@
 
 package com.sun.ts.tests.ejb30.tx.session.stateless.cm.varargs;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class Client extends AbstractUrlClient {
-  public static final String CONTEXT_ROOT = "/tx_stateless_varargs_web";
+    public static final String CONTEXT_ROOT = "/tx_stateless_varargs_web";
 
-  public static final String SERVLET_NAME = "TestServlet";
+    public static final String SERVLET_NAME = "TestServlet";
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-    setServletName(SERVLET_NAME);
-    setContextRoot(CONTEXT_ROOT);
-    return super.run(args, out, err);
-  }
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
+        setServletName(SERVLET_NAME);
+        setContextRoot(CONTEXT_ROOT);
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /*
-   * @testName: formatLocal
-   * 
-   * @test_Strategy: httpclient -> servlet -> local VarargsBean
-   */
-  public void formatLocal() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "formatLocal");
-    invoke();
-  }
+    /*
+     * @testName: formatLocal
+     *
+     * @test_Strategy: httpclient -> servlet -> local VarargsBean
+     */
+    public void formatLocal() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "formatLocal");
+        invoke();
+    }
 
-  /*
-   * @testName: formatRemote
-   * 
-   * @test_Strategy: httpclient -> servlet -> remote VarargsBean
-   */
-  public void formatRemote() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "formatRemote");
-    invoke();
-  }
+    /*
+     * @testName: formatRemote
+     *
+     * @test_Strategy: httpclient -> servlet -> remote VarargsBean
+     */
+    public void formatRemote() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "formatRemote");
+        invoke();
+    }
 
-  /*
-   * @testName: addLocal
-   * 
-   * @test_Strategy: httpclient -> servlet -> local VarargsBean
-   */
-  public void addLocal() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "addLocal");
-    invoke();
-  }
+    /*
+     * @testName: addLocal
+     *
+     * @test_Strategy: httpclient -> servlet -> local VarargsBean
+     */
+    public void addLocal() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "addLocal");
+        invoke();
+    }
 
-  /*
-   * @testName: addRemote
-   * 
-   * @test_Strategy: httpclient -> servlet -> remote VarargsBean
-   */
-  public void addRemote() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "addRemote");
-    invoke();
-  }
+    /*
+     * @testName: addRemote
+     *
+     * @test_Strategy: httpclient -> servlet -> remote VarargsBean
+     */
+    public void addRemote() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "addRemote");
+        invoke();
+    }
 
-  /*
-   * @testName: listDogsLocal
-   * 
-   * @test_Strategy: httpclient -> servlet -> local VarargsBean
-   */
-  public void listDogsLocal() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "listDogsLocal");
-    invoke();
-  }
+    /*
+     * @testName: listDogsLocal
+     *
+     * @test_Strategy: httpclient -> servlet -> local VarargsBean
+     */
+    public void listDogsLocal() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "listDogsLocal");
+        invoke();
+    }
 
-  /*
-   * @testName: listDogsRemote
-   * 
-   * @test_Strategy: httpclient -> servlet -> remote VarargsBean
-   */
-  public void listDogsRemote() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "listDogsRemote");
-    invoke();
-  }
+    /*
+     * @testName: listDogsRemote
+     *
+     * @test_Strategy: httpclient -> servlet -> remote VarargsBean
+     */
+    public void listDogsRemote() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "listDogsRemote");
+        invoke();
+    }
 }

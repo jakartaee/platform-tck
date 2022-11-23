@@ -20,81 +20,72 @@
 
 package com.sun.ts.tests.ejb30.assembly.mbean.appclient;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResCommonIF;
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
+import java.util.Properties;
 
 public class Client extends EETest {
-  private static StringBuilder postConstructRecords = new StringBuilder();
+    private static StringBuilder postConstructRecords = new StringBuilder();
 
-  @Resource(type = OneManagedBean.class)
-  private static AppResCommonIF one;
+    @Resource(type = OneManagedBean.class)
+    private static AppResCommonIF one;
 
-  @Resource(lookup = "java:module/one-managed-bean")
-  private static OneManagedBean oneWithLookup;
+    @Resource(lookup = "java:module/one-managed-bean")
+    private static OneManagedBean oneWithLookup;
 
-  @Resource(name = "java:comp/env/two-managed-bean")
-  private static TwoManagedBean two;
+    @Resource(name = "java:comp/env/two-managed-bean")
+    private static TwoManagedBean two;
 
-  @Resource(lookup = "java:comp/env/two-managed-bean", type = TwoManagedBean.class)
-  private static AppResCommonIF twoWithLookup;
+    @Resource(lookup = "java:comp/env/two-managed-bean", type = TwoManagedBean.class)
+    private static AppResCommonIF twoWithLookup;
 
-  @EJB(lookup = "java:module/env/hello")
-  private static HelloRemoteIF hello;
+    @EJB(lookup = "java:module/env/hello")
+    private static HelloRemoteIF hello;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  public void setup(String[] args, Properties p) {
-  }
-
-  public void cleanup() {
-  }
-
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private static void postConstruct() {
-    Helper.assertEquals(null, OneManagedBean.NAME, one.getName(),
-        postConstructRecords);
-    Helper.assertEquals(null, OneManagedBean.NAME, oneWithLookup.getName(),
-        postConstructRecords);
-    Helper.assertEquals(null, TwoManagedBean.NAME, two.getName(),
-        postConstructRecords);
-
-    Helper.assertEquals("Check injected hello ejb", 1 + 1, hello.add(1, 1),
-        postConstructRecords);
-  }
-
-  /*
-   * @testName: clientPostConstruct
-   * 
-   * @test_Strategy: managed beans packaged inside application client jar
-   */
-  public void clientPostConstruct() {
-    Helper.getLogger().info(postConstructRecords.toString());
-  }
-
-  /*
-   * @testName: mbeanPostConstruct
-   * 
-   * @test_Strategy: managed beans packaged inside application client jar
-   */
-  public void mbeanPostConstruct() {
-    AppResCommonIF[] beans = { one, oneWithLookup, two, twoWithLookup };
-    for (AppResCommonIF b : beans) {
-      Helper.getLogger().info(b.getPostConstructRecords().toString());
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
+    public void setup(String[] args, Properties p) {}
+
+    public void cleanup() {}
+
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private static void postConstruct() {
+        Helper.assertEquals(null, OneManagedBean.NAME, one.getName(), postConstructRecords);
+        Helper.assertEquals(null, OneManagedBean.NAME, oneWithLookup.getName(), postConstructRecords);
+        Helper.assertEquals(null, TwoManagedBean.NAME, two.getName(), postConstructRecords);
+
+        Helper.assertEquals("Check injected hello ejb", 1 + 1, hello.add(1, 1), postConstructRecords);
+    }
+
+    /*
+     * @testName: clientPostConstruct
+     *
+     * @test_Strategy: managed beans packaged inside application client jar
+     */
+    public void clientPostConstruct() {
+        Helper.getLogger().info(postConstructRecords.toString());
+    }
+
+    /*
+     * @testName: mbeanPostConstruct
+     *
+     * @test_Strategy: managed beans packaged inside application client jar
+     */
+    public void mbeanPostConstruct() {
+        AppResCommonIF[] beans = {one, oneWithLookup, two, twoWithLookup};
+        for (AppResCommonIF b : beans) {
+            Helper.getLogger().info(b.getPostConstructRecords().toString());
+        }
+    }
 }

@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.callback.defaultinterceptor.
 
 import com.sun.ts.tests.ejb30.common.callback.Callback2BeanBase;
 import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.Remote;
@@ -31,22 +30,22 @@ import jakarta.ejb.Stateless;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
 
 @Stateless(name = "Callback3Bean")
-@Remote({ Callback2IF.class })
+@Remote({Callback2IF.class})
 @ExcludeDefaultInterceptors
 public class Callback3Bean extends Callback2BeanBase implements Callback2IF {
-  private boolean postConstructOrPreDestroyCalled;
+    private boolean postConstructOrPreDestroyCalled;
 
-  @Resource
-  private SessionContext sctx;
+    @Resource
+    private SessionContext sctx;
 
-  public Callback3Bean() {
-    super();
-  }
+    public Callback3Bean() {
+        super();
+    }
 
-  public EJBContext getEJBContext() {
-    return this.sctx;
-  }
+    public EJBContext getEJBContext() {
+        return this.sctx;
+    }
 
-  // ================== business methods ====================================
+    // ================== business methods ====================================
 
 }

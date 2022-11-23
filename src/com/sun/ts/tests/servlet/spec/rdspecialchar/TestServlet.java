@@ -20,42 +20,35 @@
 
 package com.sun.ts.tests.servlet.spec.rdspecialchar;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet extends HttpTCKServlet {
 
-  public void querySemicolonInclude(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void querySemicolonInclude(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    String path = "/include/IncludedServlet?querySemicolonIncludeQuebec;libre";
-    RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
+        String path = "/include/IncludedServlet?querySemicolonIncludeQuebec;libre";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
 
-    if (rd == null)
-      pw.println("Null RequestDispatcher got for path=" + path);
-    else
-      rd.include(request, response);
-  }
+        if (rd == null) pw.println("Null RequestDispatcher got for path=" + path);
+        else rd.include(request, response);
+    }
 
-  public void querySemicolonForward(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void querySemicolonForward(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    String path = "/include/IncludedServlet?querySemicolonForwardQuebec;libre";
-    RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
+        String path = "/include/IncludedServlet?querySemicolonForwardQuebec;libre";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
 
-    if (rd == null)
-      pw.println("Null RequestDispatcher got for path=" + path);
-    else
-      rd.forward(request, response);
-  }
-
+        if (rd == null) pw.println("Null RequestDispatcher got for path=" + path);
+        else rd.forward(request, response);
+    }
 }

@@ -17,48 +17,46 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
+import java.nio.ByteBuffer;
 
 @ServerEndpoint("/echo")
 public class WSCEchoServer implements MessageHandler.Whole<ByteBuffer> {
 
-  Session session;
+    Session session;
 
-  @OnOpen
-  public void onOpen(Session session) {
-    session.addMessageHandler(this);
-    this.session = session;
-  }
-
-  @OnMessage
-  public String onMessage(String msg) {
-    return msg;
-  }
-
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in " + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
-
-  @Override
-  public void onMessage(ByteBuffer message) {
-    try {
-      session.getBasicRemote().sendText(IOUtil.byteBufferToString(message));
-    } catch (IOException e) {
-      throw new RuntimeException(e); // call @OnError
+    @OnOpen
+    public void onOpen(Session session) {
+        session.addMessageHandler(this);
+        this.session = session;
     }
-  }
+
+    @OnMessage
+    public String onMessage(String msg) {
+        return msg;
+    }
+
+    @OnError
+    public void onError(Session session, Throwable t) throws IOException {
+        System.out.println("@OnError in " + getClass().getName());
+        t.printStackTrace(); // Write to error log, too
+        String message = "Exception: " + IOUtil.printStackTrace(t);
+        session.getBasicRemote().sendText(message);
+    }
+
+    @Override
+    public void onMessage(ByteBuffer message) {
+        try {
+            session.getBasicRemote().sendText(IOUtil.byteBufferToString(message));
+        } catch (IOException e) {
+            throw new RuntimeException(e); // call @OnError
+        }
+    }
 }

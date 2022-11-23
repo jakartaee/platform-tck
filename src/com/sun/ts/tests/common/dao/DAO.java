@@ -28,28 +28,27 @@ package com.sun.ts.tests.common.dao;
  */
 public interface DAO extends java.io.Serializable {
 
-  /** Strict mode attempting to detect mis-behaving client code (debug) */
-  public static final int STRICT_POLICY = 1;
+    /** Strict mode attempting to detect mis-behaving client code (debug) */
+    public static final int STRICT_POLICY = 1;
 
-  /** More permissive code more suitable for a production environment */
-  public static final int STANDARD_POLICY = 2;
+    /** More permissive code more suitable for a production environment */
+    public static final int STANDARD_POLICY = 2;
 
-  /**
-   * Initialize external resources. Must be called before calling calling any
-   * other method on a DAO.
-   */
-  public void startSession() throws DAOException;
+    /**
+     * Initialize external resources. Must be called before calling calling any
+     * other method on a DAO.
+     */
+    public void startSession() throws DAOException;
 
-  /**
-   * Release external resources (they can be reinitialized later by calling
-   * startSession()). If the DAO is used from an EJB, the EJB code must make
-   * sure to close the session before any serialization of the EJB occurs.
-   * Typically and EJB will start a new session when entering an EJB callback
-   * and close it before exiting the callback.
-   */
-  public void stopSession();
+    /**
+     * Release external resources (they can be reinitialized later by calling
+     * startSession()). If the DAO is used from an EJB, the EJB code must make
+     * sure to close the session before any serialization of the EJB occurs.
+     * Typically and EJB will start a new session when entering an EJB callback
+     * and close it before exiting the callback.
+     */
+    public void stopSession();
 
-  /** Set DAO policy (STRICY_POLICY or STANDARD_POLICY) */
-  public void setPolicy(int policy);
-
+    /** Set DAO policy (STRICY_POLICY or STANDARD_POLICY) */
+    public void setPolicy(int policy);
 }

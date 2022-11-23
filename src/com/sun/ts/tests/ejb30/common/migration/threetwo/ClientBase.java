@@ -20,93 +20,91 @@
 
 package com.sun.ts.tests.ejb30.common.migration.threetwo;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+import java.util.Properties;
 
-abstract public class ClientBase extends EETest {
-  protected Properties props;
+public abstract class ClientBase extends EETest {
+    protected Properties props;
 
-  private ThreeTestIF threeTestBean;
+    private ThreeTestIF threeTestBean;
 
-  abstract protected ThreeTestIF getTestBean();
+    protected abstract ThreeTestIF getTestBean();
 
-  public void setup(String[] args, Properties p) throws Fault {
-    props = p;
-    threeTestBean = getTestBean();
-  }
-
-  public void cleanup() throws Fault {
-  }
-
-  protected void removeBeans() {
-    if (threeTestBean != null) {
-      try {
-        threeTestBean.remove();
-        TLogger.log("Successfully removed threeTestBean.");
-      } catch (Exception e) {
-        TLogger.log("Exception while removing threeTestBean " + e);
-      }
+    public void setup(String[] args, Properties p) throws Fault {
+        props = p;
+        threeTestBean = getTestBean();
     }
-  }
 
-  //////////////////////////////////////////////////////////////////////
+    public void cleanup() throws Fault {}
 
-  /*
-   * testName: callRemoteTest
-   * 
-   * @test_Strategy:
-   *
-   */
-  public void callRemoteTest() throws Fault {
-    try {
-      threeTestBean.callRemote();
-    } catch (TestFailedException e) {
-      throw new Fault(e);
+    protected void removeBeans() {
+        if (threeTestBean != null) {
+            try {
+                threeTestBean.remove();
+                TLogger.log("Successfully removed threeTestBean.");
+            } catch (Exception e) {
+                TLogger.log("Exception while removing threeTestBean " + e);
+            }
+        }
     }
-  }
 
-  /*
-   * testName: callLocalTest
-   * 
-   * @test_Strategy:
-   *
-   */
-  public void callLocalTest() throws Fault {
-    try {
-      threeTestBean.callLocal();
-    } catch (TestFailedException e) {
-      throw new Fault(e);
-    }
-  }
+    //////////////////////////////////////////////////////////////////////
 
-  /*
-   * testName: callRemoteSameTxContextTest
-   * 
-   * @test_Strategy:
-   *
-   */
-  public void callRemoteSameTxContextTest() throws Fault {
-    try {
-      threeTestBean.callRemoteSameTxContext();
-    } catch (TestFailedException e) {
-      throw new Fault(e);
+    /*
+     * testName: callRemoteTest
+     *
+     * @test_Strategy:
+     *
+     */
+    public void callRemoteTest() throws Fault {
+        try {
+            threeTestBean.callRemote();
+        } catch (TestFailedException e) {
+            throw new Fault(e);
+        }
     }
-  }
 
-  /*
-   * testName: callLocalSameTxContextTest
-   * 
-   * @test_Strategy:
-   *
-   */
-  public void callLocalSameTxContextTest() throws Fault {
-    try {
-      threeTestBean.callLocalSameTxContext();
-    } catch (TestFailedException e) {
-      throw new Fault(e);
+    /*
+     * testName: callLocalTest
+     *
+     * @test_Strategy:
+     *
+     */
+    public void callLocalTest() throws Fault {
+        try {
+            threeTestBean.callLocal();
+        } catch (TestFailedException e) {
+            throw new Fault(e);
+        }
     }
-  }
+
+    /*
+     * testName: callRemoteSameTxContextTest
+     *
+     * @test_Strategy:
+     *
+     */
+    public void callRemoteSameTxContextTest() throws Fault {
+        try {
+            threeTestBean.callRemoteSameTxContext();
+        } catch (TestFailedException e) {
+            throw new Fault(e);
+        }
+    }
+
+    /*
+     * testName: callLocalSameTxContextTest
+     *
+     * @test_Strategy:
+     *
+     */
+    public void callLocalSameTxContextTest() throws Fault {
+        try {
+            threeTestBean.callLocalSameTxContext();
+        } catch (TestFailedException e) {
+            throw new Fault(e);
+        }
+    }
 }

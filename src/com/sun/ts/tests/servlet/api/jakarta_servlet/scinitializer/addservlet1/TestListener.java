@@ -25,40 +25,38 @@ import jakarta.servlet.ServletContextListener;
 
 public class TestListener implements ServletContextListener {
 
-  /**
-   * Receives notification that the web application initialization process is
-   * starting.
-   *
-   * @param sce
-   *          The ServletContextEvent
-   */
-  public void contextInitialized(ServletContextEvent sce) {
-    boolean passed = true;
-    ServletContext context = sce.getServletContext();
-    StringBuilder log = new StringBuilder();
+    /**
+     * Receives notification that the web application initialization process is
+     * starting.
+     *
+     * @param sce
+     *          The ServletContextEvent
+     */
+    public void contextInitialized(ServletContextEvent sce) {
+        boolean passed = true;
+        ServletContext context = sce.getServletContext();
+        StringBuilder log = new StringBuilder();
 
-    try {
-      context.addServlet("/testURL",
-          "com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addservlet1.DummyServlet");
-      passed = false;
-      log.append(
-          "Expected UnsupportedOperationException not thrown by addServlet(String, String).");
-    } catch (UnsupportedOperationException ex) {
-      log.append(
-          "Expected UnsupportedOperationException thrown by addServlet(String, String).");
+        try {
+            context.addServlet(
+                    "/testURL", "com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addservlet1.DummyServlet");
+            passed = false;
+            log.append("Expected UnsupportedOperationException not thrown by addServlet(String, String).");
+        } catch (UnsupportedOperationException ex) {
+            log.append("Expected UnsupportedOperationException thrown by addServlet(String, String).");
+        }
+
+        context.setAttribute("TCK_TEST_STATUS", log.toString());
+        context.setAttribute("TCK_TEST_PASS_STATUS", passed);
     }
 
-    context.setAttribute("TCK_TEST_STATUS", log.toString());
-    context.setAttribute("TCK_TEST_PASS_STATUS", passed);
-  }
-
-  /**
-   * Receives notification that the Servlet Context is about to be shut down.
-   *
-   * @param sce
-   *          The Servlet Context event
-   */
-  public void contextDestroyed(ServletContextEvent sce) {
-    // Do nothing
-  }
+    /**
+     * Receives notification that the Servlet Context is about to be shut down.
+     *
+     * @param sce
+     *          The Servlet Context event
+     */
+    public void contextDestroyed(ServletContextEvent sce) {
+        // Do nothing
+    }
 }

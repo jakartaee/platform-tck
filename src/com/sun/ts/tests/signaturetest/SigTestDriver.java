@@ -16,15 +16,14 @@
 
 package com.sun.ts.tests.signaturetest;
 
+import com.sun.javatest.Status;
+import com.sun.ts.lib.util.TestUtil;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
 
 /**
  * <p>
@@ -33,256 +32,241 @@ import com.sun.ts.lib.util.TestUtil;
  */
 public class SigTestDriver extends SignatureTestDriver {
 
-  private static final String CLASSPATH_FLAG = "-Classpath";
+    private static final String CLASSPATH_FLAG = "-Classpath";
 
-  private static final String FILENAME_FLAG = "-FileName";
+    private static final String FILENAME_FLAG = "-FileName";
 
-  private static final String PACKAGE_FLAG = "-Package";
+    private static final String PACKAGE_FLAG = "-Package";
 
-  private static final String PACKAGE_NO_SUBS_FLAG = "-PackageWithoutSubpackages";
+    private static final String PACKAGE_NO_SUBS_FLAG = "-PackageWithoutSubpackages";
 
-  private static final String API_VERSION_FLAG = "-ApiVersion";
+    private static final String API_VERSION_FLAG = "-ApiVersion";
 
-  private static final String EXCLUDE_FLAG = "-Exclude";
-  
-  private static final String STATIC_FLAG = "-Static";
+    private static final String EXCLUDE_FLAG = "-Exclude";
 
-  private static final String CHECKVALUE_FLAG = "-CheckValue"; // only valid w/
-                                                               // -static
+    private static final String STATIC_FLAG = "-Static";
 
-  private static final String NO_CHECKVALUE_FLAG = "-NoCheckValue";
+    private static final String CHECKVALUE_FLAG = "-CheckValue"; // only valid w/
+    // -static
 
-  private static final String SMODE_FLAG = "-mode"; // requires arg of bin or
-                                                    // src
+    private static final String NO_CHECKVALUE_FLAG = "-NoCheckValue";
 
-  private static final String DEBUG_FLAG = "-Debug";
+    private static final String SMODE_FLAG = "-mode"; // requires arg of bin or
+    // src
 
-  private static final String FORMATPLAIN_FLAG = "-FormatPlain";
-  
-  private static final String EXCLUDE_JDK_CLASS_FLAG = "-IgnoreJDKClass";
+    private static final String DEBUG_FLAG = "-Debug";
 
-  private static String[] excludeJdkClasses = {
-          "java.util.Map",
-          "java.lang.Object",
-          "java.io.ByteArrayInputStream",
-          "java.io.InputStream",
-          "java.lang.Deprecated",
-          "java.io.Writer",
-          "java.io.OutputStream",
-          "java.util.List",
-          "java.util.Collection",
-          "java.lang.instrument.IllegalClassFormatException",
-          "javax.transaction.xa.XAException",
-          "java.lang.annotation.Repeatable",
-          "java.lang.InterruptedException",
-          "java.lang.CloneNotSupportedException",
-          "java.lang.Throwable",
-          "java.lang.Thread",
-          "java.lang.Enum"
-  };
-          
-  // ---------------------------------------- Methods from SignatureTestDriver
+    private static final String FORMATPLAIN_FLAG = "-FormatPlain";
 
-  @Override
-  protected String normalizeFileName(File f) {
-    String sURL = null;
-    try {
-      sURL = f.toURI().toURL().toExternalForm();
-    } catch (Exception e) {
-      throw new RuntimeException(e);
-    }
-    return sURL;
-  }
+    private static final String EXCLUDE_JDK_CLASS_FLAG = "-IgnoreJDKClass";
 
-  @Override
-  protected String[] createTestArguments(String packageListFile, String mapFile,
-      String signatureRepositoryDir, String packageOrClassUnderTest,
-      String classpath, boolean bStaticMode) throws Exception {
+    private static String[] excludeJdkClasses = {
+        "java.util.Map",
+        "java.lang.Object",
+        "java.io.ByteArrayInputStream",
+        "java.io.InputStream",
+        "java.lang.Deprecated",
+        "java.io.Writer",
+        "java.io.OutputStream",
+        "java.util.List",
+        "java.util.Collection",
+        "java.lang.instrument.IllegalClassFormatException",
+        "javax.transaction.xa.XAException",
+        "java.lang.annotation.Repeatable",
+        "java.lang.InterruptedException",
+        "java.lang.CloneNotSupportedException",
+        "java.lang.Throwable",
+        "java.lang.Thread",
+        "java.lang.Enum"
+    };
 
-    SignatureFileInfo info = getSigFileInfo(packageOrClassUnderTest, mapFile,
-        signatureRepositoryDir);
+    // ---------------------------------------- Methods from SignatureTestDriver
 
-    PackageList packageList = new PackageList(packageListFile);
-    String[] subPackages = packageList.getSubPackages(packageOrClassUnderTest);
-
-    List command = new ArrayList();
-
-    if (bStaticMode) {
-      // static mode allows finer level of constants checking
-      // -CheckValue says to check the actual const values
-      TestUtil.logTrace("Setting static mode flag to allow constant checking.");
-      command.add(STATIC_FLAG);
-      command.add(CHECKVALUE_FLAG);
-
-      // specifying "-mode src" allows stricter 2 way verification of constant
-      // vals
-      // (note that using "-mode bin" mode is less strict)
-      command.add(SMODE_FLAG);
-      // command.add("bin");
-      command.add("src");
-    } else {
-      TestUtil
-          .logTrace("Not Setting static mode flag to allow constant checking.");
+    @Override
+    protected String normalizeFileName(File f) {
+        String sURL = null;
+        try {
+            sURL = f.toURI().toURL().toExternalForm();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return sURL;
     }
 
-    if (TestUtil.harnessDebug) {
-      command.add(DEBUG_FLAG);
-    }
-    command.add("-Verbose");
+    @Override
+    protected String[] createTestArguments(
+            String packageListFile,
+            String mapFile,
+            String signatureRepositoryDir,
+            String packageOrClassUnderTest,
+            String classpath,
+            boolean bStaticMode)
+            throws Exception {
 
-    command.add(FILENAME_FLAG);
-    command.add(info.getFile());
+        SignatureFileInfo info = getSigFileInfo(packageOrClassUnderTest, mapFile, signatureRepositoryDir);
 
-    command.add(CLASSPATH_FLAG);
-    command.add(classpath);
+        PackageList packageList = new PackageList(packageListFile);
+        String[] subPackages = packageList.getSubPackages(packageOrClassUnderTest);
 
-    command.add(PACKAGE_FLAG);
-    command.add(packageOrClassUnderTest);
+        List command = new ArrayList();
 
-    for (int i = 0; i < subPackages.length; i++) {
-      command.add(EXCLUDE_FLAG);
-      command.add(subPackages[i]);
-    }
+        if (bStaticMode) {
+            // static mode allows finer level of constants checking
+            // -CheckValue says to check the actual const values
+            TestUtil.logTrace("Setting static mode flag to allow constant checking.");
+            command.add(STATIC_FLAG);
+            command.add(CHECKVALUE_FLAG);
 
-    for(String jdkClassName:excludeJdkClasses) {
-      command.add(EXCLUDE_JDK_CLASS_FLAG);
-      command.add(jdkClassName);
-    }
-    
-            
-    command.add(API_VERSION_FLAG);
-    command.add(info.getVersion());
+            // specifying "-mode src" allows stricter 2 way verification of constant
+            // vals
+            // (note that using "-mode bin" mode is less strict)
+            command.add(SMODE_FLAG);
+            // command.add("bin");
+            command.add("src");
+        } else {
+            TestUtil.logTrace("Not Setting static mode flag to allow constant checking.");
+        }
 
-    return ((String[]) command.toArray(new String[command.size()]));
+        if (TestUtil.harnessDebug) {
+            command.add(DEBUG_FLAG);
+        }
+        command.add("-Verbose");
 
-  } // END createTestArguments
+        command.add(FILENAME_FLAG);
+        command.add(info.getFile());
 
-  @Override
-  protected boolean runSignatureTest(String packageOrClassName,
-      String[] testArguments) throws Exception {
+        command.add(CLASSPATH_FLAG);
+        command.add(classpath);
 
-    Class sigTestClass = Class
-        .forName("com.sun.tdk.signaturetest.SignatureTest");
-    Object sigTestInstance = sigTestClass.newInstance();
+        command.add(PACKAGE_FLAG);
+        command.add(packageOrClassUnderTest);
 
-    ByteArrayOutputStream output = new ByteArrayOutputStream();
+        for (int i = 0; i < subPackages.length; i++) {
+            command.add(EXCLUDE_FLAG);
+            command.add(subPackages[i]);
+        }
 
-    // do some logging to help with troubleshooting
-    TestUtil.logTrace(
-        "\nCalling:  com.sun.tdk.signaturetest.SignatureTest() with following args:");
-    for (int ii = 0; ii < testArguments.length; ii++) {
-      TestUtil.logTrace("   testArguments[" + ii + "] = " + testArguments[ii]);
-    }
+        for (String jdkClassName : excludeJdkClasses) {
+            command.add(EXCLUDE_JDK_CLASS_FLAG);
+            command.add(jdkClassName);
+        }
 
-    @SuppressWarnings("unchecked")
-    Method runMethod = sigTestClass.getDeclaredMethod("run",
-        new Class[] { String[].class, PrintWriter.class, PrintWriter.class });
-    runMethod.invoke(sigTestInstance,
-        new Object[] { testArguments, new PrintWriter(output, true), null });
+        command.add(API_VERSION_FLAG);
+        command.add(info.getVersion());
 
-    String rawMessages = output.toString();
+        return ((String[]) command.toArray(new String[command.size()]));
+    } // END createTestArguments
 
-    // currently, there is no way to determine if there are error msgs in
-    // the rawmessages, so we will always dump this and call it a status.
-    TestUtil.logMsg(
-        "********** Status Report '" + packageOrClassName + "' **********\n");
-    TestUtil.logMsg(rawMessages);
+    @Override
+    protected boolean runSignatureTest(String packageOrClassName, String[] testArguments) throws Exception {
 
-    return Status.parse(sigTestInstance.toString().substring(7)).isPassed();
+        Class sigTestClass = Class.forName("com.sun.tdk.signaturetest.SignatureTest");
+        Object sigTestInstance = sigTestClass.newInstance();
 
-  } // END runSignatureTest
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
 
-  /*
-   * 
-   * @return This returns true if the packageOrClassName is found in the impl.
-   */
-  @Override
-  protected boolean runPackageSearch(String packageOrClassName,
-      String[] testArguments) throws Exception {
+        // do some logging to help with troubleshooting
+        TestUtil.logTrace("\nCalling:  com.sun.tdk.signaturetest.SignatureTest() with following args:");
+        for (int ii = 0; ii < testArguments.length; ii++) {
+            TestUtil.logTrace("   testArguments[" + ii + "] = " + testArguments[ii]);
+        }
 
-    Class sigTestClass = Class
-        .forName("com.sun.tdk.signaturetest.SignatureTest");
-    Object sigTestInstance = sigTestClass.newInstance();
+        @SuppressWarnings("unchecked")
+        Method runMethod = sigTestClass.getDeclaredMethod(
+                "run", new Class[] {String[].class, PrintWriter.class, PrintWriter.class});
+        runMethod.invoke(sigTestInstance, new Object[] {testArguments, new PrintWriter(output, true), null});
 
-    ByteArrayOutputStream output = new ByteArrayOutputStream();
+        String rawMessages = output.toString();
 
-    // we want to replace the PACKAGE_FLAG with PACKAGE_NO_SUBS_FLAG
-    for (int ii = 0; ii < testArguments.length; ii++) {
-      if (testArguments[ii].equals(PACKAGE_FLAG)) {
-        testArguments[ii] = PACKAGE_NO_SUBS_FLAG;
-      }
-    }
+        // currently, there is no way to determine if there are error msgs in
+        // the rawmessages, so we will always dump this and call it a status.
+        TestUtil.logMsg("********** Status Report '" + packageOrClassName + "' **********\n");
+        TestUtil.logMsg(rawMessages);
 
-    // dump args for debugging aid
-    TestUtil.logTrace(
-        "\nCalling:  com.sun.tdk.signaturetest.SignatureTest() with following args:");
-    for (int ii = 0; ii < testArguments.length; ii++) {
-      TestUtil.logTrace("	  testArguments[" + ii + "] = " + testArguments[ii]);
-    }
+        return Status.parse(sigTestInstance.toString().substring(7)).isPassed();
+    } // END runSignatureTest
 
-    @SuppressWarnings("unchecked")
-    Method runMethod = sigTestClass.getDeclaredMethod("run",
-        new Class[] { String[].class, PrintWriter.class, PrintWriter.class });
-    runMethod.invoke(sigTestInstance,
-        new Object[] { testArguments, new PrintWriter(output, true), null });
+    /*
+     *
+     * @return This returns true if the packageOrClassName is found in the impl.
+     */
+    @Override
+    protected boolean runPackageSearch(String packageOrClassName, String[] testArguments) throws Exception {
 
-    String rawMessages = output.toString();
+        Class sigTestClass = Class.forName("com.sun.tdk.signaturetest.SignatureTest");
+        Object sigTestInstance = sigTestClass.newInstance();
 
-    // currently, there is no way to determine if there are error msgs in
-    // the rawmessages, so we will always dump this and call it a status.
-    TestUtil.logMsg(
-        "********** Status Report '" + packageOrClassName + "' **********\n");
-    TestUtil.logMsg(rawMessages);
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
 
-    return Status.parse(sigTestInstance.toString().substring(7)).isPassed();
-  }
+        // we want to replace the PACKAGE_FLAG with PACKAGE_NO_SUBS_FLAG
+        for (int ii = 0; ii < testArguments.length; ii++) {
+            if (testArguments[ii].equals(PACKAGE_FLAG)) {
+                testArguments[ii] = PACKAGE_NO_SUBS_FLAG;
+            }
+        }
 
-  /*
-   * @return This returns true if javax.transaction.xa is not found in the
-   * JTA API jar
-   */
-  protected boolean verifyJTAJarForNoXA(String classpath, String repositoryDir) throws Exception  {
+        // dump args for debugging aid
+        TestUtil.logTrace("\nCalling:  com.sun.tdk.signaturetest.SignatureTest() with following args:");
+        for (int ii = 0; ii < testArguments.length; ii++) {
+            TestUtil.logTrace("	  testArguments[" + ii + "] = " + testArguments[ii]);
+        }
 
-    TestUtil.logMsg("SigTestDriver#verifyJTAJarForNoXA - Starting:");
-    boolean result = false;
-    List command = new ArrayList();
+        @SuppressWarnings("unchecked")
+        Method runMethod = sigTestClass.getDeclaredMethod(
+                "run", new Class[] {String[].class, PrintWriter.class, PrintWriter.class});
+        runMethod.invoke(sigTestInstance, new Object[] {testArguments, new PrintWriter(output, true), null});
 
-    // Build Commandline for com.sun.tdk.signaturetest.SignatureTest
-    command.add(STATIC_FLAG);
-    command.add(FILENAME_FLAG);
-    command.add(repositoryDir  + "empty.sig");
-    command.add(PACKAGE_FLAG);
-    command.add("javax.transaction.xa");
-    command.add(CLASSPATH_FLAG);
-    command.add(classpath);
+        String rawMessages = output.toString();
 
-    String testArguments [] = (String[]) command.toArray(new String[command.size()]);
+        // currently, there is no way to determine if there are error msgs in
+        // the rawmessages, so we will always dump this and call it a status.
+        TestUtil.logMsg("********** Status Report '" + packageOrClassName + "' **********\n");
+        TestUtil.logMsg(rawMessages);
 
-    // do some logging to help with troubleshooting
-    TestUtil.logTrace("\nCalling:  com.sun.tdk.signaturetest.SignatureTest() with following args:");
-    for (int ii=0; ii < testArguments.length; ii++) {
-      TestUtil.logTrace("   testArguments[" +ii+ "] = " + testArguments[ii]);
+        return Status.parse(sigTestInstance.toString().substring(7)).isPassed();
     }
 
-    Class sigTestClass = Class.forName("com.sun.tdk.signaturetest.SignatureTest");
-    Object sigTestInstance = sigTestClass.newInstance();
-    ByteArrayOutputStream output = new ByteArrayOutputStream();
+    /*
+     * @return This returns true if javax.transaction.xa is not found in the
+     * JTA API jar
+     */
+    protected boolean verifyJTAJarForNoXA(String classpath, String repositoryDir) throws Exception {
 
-    @SuppressWarnings("unchecked")
-    Method runMethod = sigTestClass.getDeclaredMethod("run",
-                                           new Class[] { String[].class,
-                                                         PrintWriter.class,
-                                                         PrintWriter.class });
-    runMethod.invoke(sigTestInstance,
-                         new Object[] { testArguments, 
-                                        new PrintWriter(output, true), 
-                                        null });
-    String rawMessages = output.toString();
+        TestUtil.logMsg("SigTestDriver#verifyJTAJarForNoXA - Starting:");
+        boolean result = false;
+        List command = new ArrayList();
 
-    // currently, there is no way to determine if there are error msgs in 
-    // the rawmessages, so we will always dump this and call it a status.
-    TestUtil.logMsg("********** Status Report JTA JAR validation **********\n");
-    TestUtil.logMsg(rawMessages);
-    return Status.parse(sigTestInstance.toString().substring(7)).isPassed();
-  }
+        // Build Commandline for com.sun.tdk.signaturetest.SignatureTest
+        command.add(STATIC_FLAG);
+        command.add(FILENAME_FLAG);
+        command.add(repositoryDir + "empty.sig");
+        command.add(PACKAGE_FLAG);
+        command.add("javax.transaction.xa");
+        command.add(CLASSPATH_FLAG);
+        command.add(classpath);
+
+        String testArguments[] = (String[]) command.toArray(new String[command.size()]);
+
+        // do some logging to help with troubleshooting
+        TestUtil.logTrace("\nCalling:  com.sun.tdk.signaturetest.SignatureTest() with following args:");
+        for (int ii = 0; ii < testArguments.length; ii++) {
+            TestUtil.logTrace("   testArguments[" + ii + "] = " + testArguments[ii]);
+        }
+
+        Class sigTestClass = Class.forName("com.sun.tdk.signaturetest.SignatureTest");
+        Object sigTestInstance = sigTestClass.newInstance();
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+        @SuppressWarnings("unchecked")
+        Method runMethod = sigTestClass.getDeclaredMethod(
+                "run", new Class[] {String[].class, PrintWriter.class, PrintWriter.class});
+        runMethod.invoke(sigTestInstance, new Object[] {testArguments, new PrintWriter(output, true), null});
+        String rawMessages = output.toString();
+
+        // currently, there is no way to determine if there are error msgs in
+        // the rawmessages, so we will always dump this and call it a status.
+        TestUtil.logMsg("********** Status Report JTA JAR validation **********\n");
+        TestUtil.logMsg(rawMessages);
+        return Status.parse(sigTestInstance.toString().substring(7)).isPassed();
+    }
 }

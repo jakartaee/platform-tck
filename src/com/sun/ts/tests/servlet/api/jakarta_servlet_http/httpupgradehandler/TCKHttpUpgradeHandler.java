@@ -26,37 +26,35 @@ import jakarta.servlet.http.WebConnection;
 
 public class TCKHttpUpgradeHandler implements HttpUpgradeHandler {
 
-  private String delimiter = "/";
+    private String delimiter = "/";
 
-  public TCKHttpUpgradeHandler() {
-  }
+    public TCKHttpUpgradeHandler() {}
 
-  public void init(WebConnection wc) {
-    try {
-      ServletInputStream input = wc.getInputStream();
-      ServletOutputStream output = wc.getOutputStream();
-      TCKReadListener readListener = new TCKReadListener(delimiter, input,
-          output);
-      input.setReadListener(readListener);
-      output.println("===============TCKHttpUpgradeHandler.init");
-      output.flush();
-    } catch (Exception ex) {
-      throw new RuntimeException(ex);
+    public void init(WebConnection wc) {
+        try {
+            ServletInputStream input = wc.getInputStream();
+            ServletOutputStream output = wc.getOutputStream();
+            TCKReadListener readListener = new TCKReadListener(delimiter, input, output);
+            input.setReadListener(readListener);
+            output.println("===============TCKHttpUpgradeHandler.init");
+            output.flush();
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
     }
-  }
 
-  public void destroy() {
-    System.out.println("===============destroy");
-  }
+    public void destroy() {
+        System.out.println("===============destroy");
+    }
 
-  public void setDelimiter(String delimiter) {
-    System.out.print("=============== setDelimiter");
-    this.delimiter = delimiter;
-  }
+    public void setDelimiter(String delimiter) {
+        System.out.print("=============== setDelimiter");
+        this.delimiter = delimiter;
+    }
 
-  public String getDelimiter() {
-    System.out.print("=============== getDelimiter");
+    public String getDelimiter() {
+        System.out.print("=============== getDelimiter");
 
-    return delimiter;
-  }
+        return delimiter;
+    }
 }

@@ -24,19 +24,18 @@
 
 package com.sun.ts.tests.ejb.ee.timer.session.stateless.cm;
 
-import java.util.Properties;
-
 import jakarta.ejb.EJBLocalObject;
 import jakarta.ejb.TimerHandle;
+import java.util.Properties;
 
 public interface TestBeanLocal extends EJBLocalObject {
-  public TimerHandle initializeTimerHandle(int timerType, int timeoutAction);
+    public TimerHandle initializeTimerHandle(int timerType, int timeoutAction);
 
-  public boolean cancelAndRollback(TimerHandle handle);
+    public boolean cancelAndRollback(TimerHandle handle);
 
-  public boolean cancelTimer(TimerHandle handle);
+    public boolean cancelTimer(TimerHandle handle);
 
-  public void cancelAllTimers();
+    public void cancelAllTimers();
 
-  public void initLogging(Properties p);
+    public void initLogging(Properties p);
 }

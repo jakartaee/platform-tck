@@ -25,12 +25,13 @@ package com.sun.ts.tests.jws.handlerchain.server;
 import jakarta.jws.HandlerChain;
 import jakarta.jws.WebService;
 
-@WebService(endpointInterface = "com.sun.ts.tests.jws.handlerchain.server.HandlerChainWebServiceInterface", wsdlLocation = "WEB-INF/wsdl/HandlerChainWebServiceService.wsdl")
+@WebService(
+        endpointInterface = "com.sun.ts.tests.jws.handlerchain.server.HandlerChainWebServiceInterface",
+        wsdlLocation = "WEB-INF/wsdl/HandlerChainWebServiceService.wsdl")
 @HandlerChain(file = "HandlerChainWebService_handler.xml")
 public class HandlerChainWebService implements HandlerChainWebServiceInterface {
 
-  public String hello(String name) {
-    return name;
-  }
-
+    public String hello(String name) {
+        return name;
+    }
 }

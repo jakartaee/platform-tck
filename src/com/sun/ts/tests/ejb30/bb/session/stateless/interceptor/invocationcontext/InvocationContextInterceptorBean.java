@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.interceptor.invocationcontex
 
 import com.sun.ts.tests.ejb30.common.invocationcontext.InvocationContextBase;
 import com.sun.ts.tests.ejb30.common.invocationcontext.InvocationContextIF;
-
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 import jakarta.interceptor.Interceptors;
@@ -30,5 +29,4 @@ import jakarta.interceptor.Interceptors;
 @Stateless
 @Remote(InvocationContextIF.class)
 @Interceptors(com.sun.ts.tests.ejb30.common.invocationcontext.InterceptorForAll.class)
-public class InvocationContextInterceptorBean extends InvocationContextBase {
-}
+public class InvocationContextInterceptorBean extends InvocationContextBase {}

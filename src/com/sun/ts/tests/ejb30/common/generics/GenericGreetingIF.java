@@ -21,9 +21,9 @@
 package com.sun.ts.tests.ejb30.common.generics;
 
 public interface GenericGreetingIF<T> {
-  public T greet(T t);
+    public T greet(T t);
 
-  public T rolesAllowed(T t);
+    public T rolesAllowed(T t);
 
-  public T rolesAllowedNoArg();
+    public T rolesAllowedNoArg();
 }

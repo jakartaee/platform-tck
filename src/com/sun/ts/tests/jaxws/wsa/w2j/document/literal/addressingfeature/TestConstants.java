@@ -20,11 +20,13 @@
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.addressingfeature;
 
 public class TestConstants {
-  public static final String ADD_NUMBERS_IN_ACTION_URI = "http://addressingfeatureservice.org/AddNumbersPortType/addRequest";
+    public static final String ADD_NUMBERS_IN_ACTION_URI =
+            "http://addressingfeatureservice.org/AddNumbersPortType/addRequest";
 
-  public static final String ADD_NUMBERS_IN_ACTION = "inputAction";
+    public static final String ADD_NUMBERS_IN_ACTION = "inputAction";
 
-  public static final String ADD_NUMBERS_OUT_ACTION_URI = "http://addressingfeatureservice.org/AddNumbersPortType/addResponse";
+    public static final String ADD_NUMBERS_OUT_ACTION_URI =
+            "http://addressingfeatureservice.org/AddNumbersPortType/addResponse";
 
-  public static final String ADD_NUMBERS_OUT_ACTION = "outputAction";
+    public static final String ADD_NUMBERS_OUT_ACTION = "outputAction";
 }

@@ -17,34 +17,32 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.endpoint.server;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import jakarta.websocket.Endpoint;
 import jakarta.websocket.server.ServerApplicationConfig;
 import jakarta.websocket.server.ServerEndpointConfig;
+import java.util.HashSet;
+import java.util.Set;
 
 public class AppConfig implements ServerApplicationConfig {
 
-  @Override
-  public Set<ServerEndpointConfig> getEndpointConfigs(
-      Set<Class<? extends Endpoint>> endpointClasses) {
-    ServerEndpointConfig closeConfig = ServerEndpointConfig.Builder
-        .create(WSCCloseServerEndpoint.class, "/close").build();
+    @Override
+    public Set<ServerEndpointConfig> getEndpointConfigs(Set<Class<? extends Endpoint>> endpointClasses) {
+        ServerEndpointConfig closeConfig = ServerEndpointConfig.Builder.create(WSCCloseServerEndpoint.class, "/close")
+                .build();
 
-    ServerEndpointConfig errorConfig = ServerEndpointConfig.Builder
-        .create(WSCErrorServerEndpoint.class, "/error").build();
+        ServerEndpointConfig errorConfig = ServerEndpointConfig.Builder.create(WSCErrorServerEndpoint.class, "/error")
+                .build();
 
-    Set<ServerEndpointConfig> set = new HashSet<>();
-    set.add(closeConfig);
-    set.add(errorConfig);
-    return set;
-  }
+        Set<ServerEndpointConfig> set = new HashSet<>();
+        set.add(closeConfig);
+        set.add(errorConfig);
+        return set;
+    }
 
-  @Override
-  public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scanned) {
-    Set<Class<?>> set = new HashSet<>();
-    set.add(WSCMsgServer.class);
-    return set;
-  }
+    @Override
+    public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scanned) {
+        Set<Class<?>> set = new HashSet<>();
+        set.add(WSCMsgServer.class);
+        return set;
+    }
 }

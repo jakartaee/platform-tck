@@ -21,40 +21,39 @@
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.bodycontent;
 
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.BodyContent;
 import jakarta.servlet.jsp.tagext.BodyTagSupport;
 
 public class BodyContentClearBodyTag extends BodyTagSupport {
 
-  /**
-   * Default constructor.
-   */
-  public BodyContentClearBodyTag() {
-    super();
-  }
-
-  /**
-   * Validates the behavior of clearBody().
-   * 
-   * @return SKIP_BODY
-   * @throws JspException
-   *           - if an error occurs
-   */
-  public int doAfterBody() throws JspException {
-    JspTestUtil.debug("[BodyContentClearBodyTag] in doAfterBody()");
-    BodyContent content = this.getBodyContent();
-
-    try {
-      content.clearBody();
-      // write the body content -- should be empty.
-      content.writeOut(content.getEnclosingWriter());
-
-    } catch (Exception e) {
-      throw new JspException("Test FAILED. Unexpected Exception!", e);
+    /**
+     * Default constructor.
+     */
+    public BodyContentClearBodyTag() {
+        super();
     }
 
-    return SKIP_BODY;
-  }
+    /**
+     * Validates the behavior of clearBody().
+     *
+     * @return SKIP_BODY
+     * @throws JspException
+     *           - if an error occurs
+     */
+    public int doAfterBody() throws JspException {
+        JspTestUtil.debug("[BodyContentClearBodyTag] in doAfterBody()");
+        BodyContent content = this.getBodyContent();
+
+        try {
+            content.clearBody();
+            // write the body content -- should be empty.
+            content.writeOut(content.getEnclosingWriter());
+
+        } catch (Exception e) {
+            throw new JspException("Test FAILED. Unexpected Exception!", e);
+        }
+
+        return SKIP_BODY;
+    }
 }

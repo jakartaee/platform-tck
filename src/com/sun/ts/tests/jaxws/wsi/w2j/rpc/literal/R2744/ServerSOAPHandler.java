@@ -22,57 +22,51 @@ package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2744;
 
 import com.sun.ts.tests.jaxws.common.HTTPSOAPHandler;
 import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 import jakarta.xml.ws.handler.MessageContext;
-import jakarta.xml.ws.WebServiceException;
-
-import java.util.Map;
+import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 import java.util.List;
-import java.util.Iterator;
+import java.util.Map;
 
 public class ServerSOAPHandler extends HTTPSOAPHandler {
 
-  final String PASSED = "PASSED";
+    final String PASSED = "PASSED";
 
-  final String FAILED = "FAILED";
+    final String FAILED = "FAILED";
 
-  protected void processInboundMessage(SOAPMessageContext context) {
-    System.out.println("in ServerSOAPHandler:processInboundMessage");
-    JAXWS_Util.dumpHTTPHeaders(context);
-    Map<String, List<String>> map = (Map<String, List<String>>) context
-        .get(MessageContext.HTTP_REQUEST_HEADERS);
-    String result = verifySOAPActionHeader(map);
-    if (!result.equals(PASSED)) {
-      throw new RuntimeException(
-          "In ServerSOAPHandler:processInboundMessage: " + result);
+    protected void processInboundMessage(SOAPMessageContext context) {
+        System.out.println("in ServerSOAPHandler:processInboundMessage");
+        JAXWS_Util.dumpHTTPHeaders(context);
+        Map<String, List<String>> map = (Map<String, List<String>>) context.get(MessageContext.HTTP_REQUEST_HEADERS);
+        String result = verifySOAPActionHeader(map);
+        if (!result.equals(PASSED)) {
+            throw new RuntimeException("In ServerSOAPHandler:processInboundMessage: " + result);
+        }
     }
-  }
 
-  /**
-   * Verifies the contents of the Content-Type HTTP header
-   *
-   * @param request
-   *          the HTTP servlet request.
-   */
-  protected String verifySOAPActionHeader(Map<String, List<String>> m) {
-    System.out.println("in ServerSOAPHandler:verifySOAPActionHeader");
-    String result = FAILED;
-    Map<String, List<String>> map = JAXWS_Util.convertKeysToLowerCase(m);
-    List<String> values = map.get("soapaction");
-    System.out.println("HTTP Header soapAction=" + values);
-    String sValues = values.toString().toLowerCase();
-    if (sValues != null) {
-      int index = sValues.indexOf("foo");
-      if (index > 0) {
-        result = PASSED;
-      } else {
-        result = FAILED + ": foo not found in HTTP SOAPAction [" + sValues
-            + "]";
-      }
-    } else {
-      result = FAILED + ": the HTTP header SOAPAction was not found";
+    /**
+     * Verifies the contents of the Content-Type HTTP header
+     *
+     * @param request
+     *          the HTTP servlet request.
+     */
+    protected String verifySOAPActionHeader(Map<String, List<String>> m) {
+        System.out.println("in ServerSOAPHandler:verifySOAPActionHeader");
+        String result = FAILED;
+        Map<String, List<String>> map = JAXWS_Util.convertKeysToLowerCase(m);
+        List<String> values = map.get("soapaction");
+        System.out.println("HTTP Header soapAction=" + values);
+        String sValues = values.toString().toLowerCase();
+        if (sValues != null) {
+            int index = sValues.indexOf("foo");
+            if (index > 0) {
+                result = PASSED;
+            } else {
+                result = FAILED + ": foo not found in HTTP SOAPAction [" + sValues + "]";
+            }
+        } else {
+            result = FAILED + ": the HTTP header SOAPAction was not found";
+        }
+        System.out.println("result=" + result);
+        return result;
     }
-    System.out.println("result=" + result);
-    return result;
-  }
 }

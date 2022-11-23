@@ -20,38 +20,34 @@
 package com.sun.ts.tests.ejb30.lite.singleton.dependson.common;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @TransactionManagement(TransactionManagementType.BEAN)
-abstract public class BeanBase {
-  @EJB
-  private HistoryBean historyBean;
+public abstract class BeanBase {
+    @EJB
+    private HistoryBean historyBean;
 
-  abstract protected String getBeanName();
+    protected abstract String getBeanName();
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    long creationTimeMillis = System.currentTimeMillis();
-    int id = System.identityHashCode(this);
-    historyBean.addCreationTimeMillisForBeanName(getBeanName(),
-        creationTimeMillis, this);
-    historyBean.addInstanceIdForBeanName(getBeanName(), id, this);
-    Helper.busyWait(1);
-  }
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        long creationTimeMillis = System.currentTimeMillis();
+        int id = System.identityHashCode(this);
+        historyBean.addCreationTimeMillisForBeanName(getBeanName(), creationTimeMillis, this);
+        historyBean.addInstanceIdForBeanName(getBeanName(), id, this);
+        Helper.busyWait(1);
+    }
 
-  /**
-   * From an implementation perspective, a singleton bean class may have more
-   * than one instances. So we cannot count instance inside bean class
-   * constructor, which may record more than one instances of the bean class and
-   * some of them may be subclass instances. But PostConstruct is only invoked
-   * for the real singleton bean instance.
-   */
-
-  public void ping() {
-  }
+    /**
+     * From an implementation perspective, a singleton bean class may have more
+     * than one instances. So we cannot count instance inside bean class
+     * constructor, which may record more than one instances of the bean class and
+     * some of them may be subclass instances. But PostConstruct is only invoked
+     * for the real singleton bean instance.
+     */
+    public void ping() {}
 }

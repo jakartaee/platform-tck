@@ -16,29 +16,26 @@
 
 package com.sun.ts.tests.servlet.spec.defaultcontextpath;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet extends GenericTCKServlet {
-  private static final String EXPECTED = "/defaultContextPath";
+    private static final String EXPECTED = "/defaultContextPath";
 
-  public void getDefaultContextPathTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-    boolean passed = true;
-    PrintWriter pw = response.getWriter();
-    String result = this.getServletConfig().getServletContext()
-        .getContextPath();
-    if (!result.equals(EXPECTED)) {
-      passed = false;
-      pw.println("Unexpected context path exists: " + result);
+    public void getDefaultContextPathTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        boolean passed = true;
+        PrintWriter pw = response.getWriter();
+        String result = this.getServletConfig().getServletContext().getContextPath();
+        if (!result.equals(EXPECTED)) {
+            passed = false;
+            pw.println("Unexpected context path exists: " + result);
+        }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
-  }
 }

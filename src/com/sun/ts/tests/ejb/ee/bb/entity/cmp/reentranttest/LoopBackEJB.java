@@ -20,80 +20,77 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp.reentranttest;
 
-import java.rmi.RemoteException;
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
 public class LoopBackEJB implements SessionBean {
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  private Properties harnessProps = null;
+    private Properties harnessProps = null;
 
-  private TestBean ref = null;
+    private TestBean ref = null;
 
-  public void ejbCreate(TestBean r) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    ref = r;
-  }
-
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    sctx = sc;
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  // ===========================================================
-  // LoopBack interface (our business methods)
-
-  public boolean loopBackTest() {
-    boolean pass;
-
-    TestUtil.logTrace("loopBackTest");
-    TestUtil.logMsg("Perform loopback call test");
-    try {
-      ref.ping();
-      TestUtil.logMsg("The loopback call test passed");
-      pass = true;
-    } catch (RemoteException e) {
-      TestUtil.logErr(
-          "Caught RemoteException: the loopback call test failed: " + e, e);
-      pass = false;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught Exception: the loopback call test failed: " + e);
-      TestUtil.printStackTrace(e);
-      pass = false;
+    public void ejbCreate(TestBean r) throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        ref = r;
     }
-    return pass;
-  }
 
-  public void initLogging(Properties p) {
-    TestUtil.logTrace("initLogging");
-    harnessProps = p;
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
+    public void setSessionContext(SessionContext sc) {
+        TestUtil.logTrace("setSessionContext");
+        sctx = sc;
     }
-  }
 
-  // ===========================================================
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
+    }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
+
+    // ===========================================================
+    // LoopBack interface (our business methods)
+
+    public boolean loopBackTest() {
+        boolean pass;
+
+        TestUtil.logTrace("loopBackTest");
+        TestUtil.logMsg("Perform loopback call test");
+        try {
+            ref.ping();
+            TestUtil.logMsg("The loopback call test passed");
+            pass = true;
+        } catch (RemoteException e) {
+            TestUtil.logErr("Caught RemoteException: the loopback call test failed: " + e, e);
+            pass = false;
+        } catch (Exception e) {
+            TestUtil.logErr("Caught Exception: the loopback call test failed: " + e);
+            TestUtil.printStackTrace(e);
+            pass = false;
+        }
+        return pass;
+    }
+
+    public void initLogging(Properties p) {
+        TestUtil.logTrace("initLogging");
+        harnessProps = p;
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
+        }
+    }
+
+    // ===========================================================
 }

@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.callback.inheritance.descrip
 
 import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
 import com.sun.ts.tests.ejb30.common.callback.InterceptorH;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
@@ -36,29 +35,28 @@ import jakarta.interceptor.Interceptors;
  * overriding methods themselves are not lifecycle methods.
  */
 @Stateless(name = "CallbackBean")
-@Remote({ CallbackIF.class })
+@Remote({CallbackIF.class})
 @ExcludeDefaultInterceptors
-@Interceptors({ InterceptorH.class })
+@Interceptors({InterceptorH.class})
 public class CallbackBean extends CallbackBeanSuper {
-  public CallbackBean() {
-    super();
-  }
+    public CallbackBean() {
+        super();
+    }
 
-  @PostConstruct
-  @Override
-  protected void postConstructMethod() throws RuntimeException {
-    // addPostConstructCall(BEAN_SHORT_NAME);
-    super.postConstructMethod();
-  }
+    @PostConstruct
+    @Override
+    protected void postConstructMethod() throws RuntimeException {
+        // addPostConstructCall(BEAN_SHORT_NAME);
+        super.postConstructMethod();
+    }
 
-  @Override
-  protected void postConstructMethodInSuperSuper() throws RuntimeException {
-    throw new IllegalStateException("Should not get here.");
-  }
+    @Override
+    protected void postConstructMethodInSuperSuper() throws RuntimeException {
+        throw new IllegalStateException("Should not get here.");
+    }
 
-  @Override
-  protected void postConstructMethodInSuper() throws RuntimeException {
-    throw new IllegalStateException("Should not get here.");
-  }
-
+    @Override
+    protected void postConstructMethodInSuper() throws RuntimeException {
+        throw new IllegalStateException("Should not get here.");
+    }
 }

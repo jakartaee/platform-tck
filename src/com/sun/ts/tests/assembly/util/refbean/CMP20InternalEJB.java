@@ -25,10 +25,9 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 
 public abstract class CMP20InternalEJB extends CMP20Wrapper {
 
-  /** Method used to identify this bean */
-  public boolean isTestCMP20Internal() {
-    TestUtil.logTrace("CMP20Internal: isTestCMP20Internal()");
-    return true;
-  }
-
+    /** Method used to identify this bean */
+    public boolean isTestCMP20Internal() {
+        TestUtil.logTrace("CMP20Internal: isTestCMP20Internal()");
+        return true;
+    }
 }

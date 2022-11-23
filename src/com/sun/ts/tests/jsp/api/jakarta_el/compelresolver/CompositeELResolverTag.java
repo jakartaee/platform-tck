@@ -16,37 +16,32 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_el.compelresolver;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 import com.sun.ts.tests.jsp.common.util.InstallCompositeELResolverListener;
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.el.CompositeELResolver;
 import jakarta.el.ELContext;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class CompositeELResolverTag extends SimpleTagSupport {
 
-  public void doTag() throws JspException, IOException {
+    public void doTag() throws JspException, IOException {
 
-    StringBuffer buf = new StringBuffer("");
-    JspWriter out = getJspContext().getOut();
-    ELContext context = getJspContext().getELContext();
-    CompositeELResolver compResolver = InstallCompositeELResolverListener
-        .getCompositeELResolver();
+        StringBuffer buf = new StringBuffer("");
+        JspWriter out = getJspContext().getOut();
+        ELContext context = getJspContext().getELContext();
+        CompositeELResolver compResolver = InstallCompositeELResolverListener.getCompositeELResolver();
 
-    try {
-      boolean pass = ResolverTest.testCompositeELResolver(context, compResolver,
-          buf);
-      out.println(buf.toString());
-      if (pass == true)
-        out.println("Test PASSED");
-    } catch (Throwable t) {
-      out.println(buf.toString());
-      JspTestUtil.handleThrowable(t, out, "CompositeELResolverTag");
+        try {
+            boolean pass = ResolverTest.testCompositeELResolver(context, compResolver, buf);
+            out.println(buf.toString());
+            if (pass == true) out.println("Test PASSED");
+        } catch (Throwable t) {
+            out.println(buf.toString());
+            JspTestUtil.handleThrowable(t, out, "CompositeELResolverTag");
+        }
     }
-  }
 }

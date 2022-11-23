@@ -20,54 +20,52 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.scripting.escaping;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    setGeneralURI("/jsp/spec/core_syntax/scripting/escaping");
-    setContextRoot("/jsp_coresyntx_script_escape_web");
+        setGeneralURI("/jsp/spec/core_syntax/scripting/escaping");
+        setContextRoot("/jsp_coresyntx_script_escape_web");
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /* Run tests */
+    /* Run tests */
 
-  // ============================================ Tests ======
+    // ============================================ Tests ======
 
-  /*
-   * @testName: positiveEscapingTest
-   * 
-   * @assertion_ids: JSP:SPEC:7
-   * 
-   * @testStrategy: Validate handling of escaped entities.
-   */
-  public void positiveEscapingTest() throws Fault {
-    TEST_PROPS.setProperty(STANDARD, "positiveEscapingTest");
-    invoke();
-  }
+    /*
+     * @testName: positiveEscapingTest
+     *
+     * @assertion_ids: JSP:SPEC:7
+     *
+     * @testStrategy: Validate handling of escaped entities.
+     */
+    public void positiveEscapingTest() throws Fault {
+        TEST_PROPS.setProperty(STANDARD, "positiveEscapingTest");
+        invoke();
+    }
 }

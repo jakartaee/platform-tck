@@ -16,51 +16,50 @@
 
 package com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingAnnotations;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.tests.jaxws.common.AttachmentHelper;
 import jakarta.jws.WebService;
 import jakarta.xml.ws.BindingType;
 import jakarta.xml.ws.WebServiceException;
-import jakarta.xml.ws.soap.SOAPBinding;
 import jakarta.xml.ws.soap.MTOM;
-
-import com.sun.ts.tests.jaxws.common.AttachmentHelper;
+import jakarta.xml.ws.soap.SOAPBinding;
 import java.net.URL;
 import javax.xml.transform.Source;
 
-@WebService(portName = "MTOMTest1Port", serviceName = "MTOMTestService", targetNamespace = "http://mtomservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/MTOMTestService.wsdl", endpointInterface = "com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingAnnotations.MTOMTest1")
+@WebService(
+        portName = "MTOMTest1Port",
+        serviceName = "MTOMTestService",
+        targetNamespace = "http://mtomservice.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/MTOMTestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingAnnotations.MTOMTest1")
 @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)
 @MTOM(enabled = true)
-
 public class MTOMTestImpl1 implements MTOMTest1 {
 
-  public String mtomIn(
-      com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingAnnotations.DataType data) {
-    System.out.println("--------------------------");
-    System.out.println("In MTOMTestImpl1:mtomIn");
+    public String mtomIn(com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingAnnotations.DataType data) {
+        System.out.println("--------------------------");
+        System.out.println("In MTOMTestImpl1:mtomIn");
 
-    String result = "";
+        String result = "";
 
-    try {
+        try {
 
-      String docName = data.getDocName();
-      System.out.println("docName=" + docName);
+            String docName = data.getDocName();
+            System.out.println("docName=" + docName);
 
-      URL docURL = new URL(data.getDocUrl());
-      System.out.println("docURL=" + docURL.toString());
+            URL docURL = new URL(data.getDocUrl());
+            System.out.println("docURL=" + docURL.toString());
 
-      Source doc = AttachmentHelper.getSourceDoc(docURL);
-      String tmpRes = AttachmentHelper.validateAttachmentData(doc,
-          data.getDoc(), docName);
-      if (tmpRes != null) {
-        result = result + tmpRes;
-      }
-    } catch (Exception e) {
-      throw new WebServiceException(e.toString());
+            Source doc = AttachmentHelper.getSourceDoc(docURL);
+            String tmpRes = AttachmentHelper.validateAttachmentData(doc, data.getDoc(), docName);
+            if (tmpRes != null) {
+                result = result + tmpRes;
+            }
+        } catch (Exception e) {
+            throw new WebServiceException(e.toString());
+        }
+        return result;
     }
-    return result;
-  }
-
 }

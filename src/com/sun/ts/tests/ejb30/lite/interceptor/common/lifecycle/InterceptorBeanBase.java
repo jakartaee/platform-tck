@@ -19,31 +19,32 @@
  */
 package com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle;
 
-import java.util.List;
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.interceptor.Interceptors;
+import java.util.List;
+import java.util.logging.Level;
 
 public class InterceptorBeanBase implements InterceptorIF {
-  private static final String simpleName = "InterceptorBeanBase";
+    private static final String simpleName = "InterceptorBeanBase";
 
-  @EJB(name = "historySingletonBean")
-  protected HistorySingletonBean historySingletonBean;
+    @EJB(name = "historySingletonBean")
+    protected HistorySingletonBean historySingletonBean;
 
-  @PostConstruct
-  protected void postConstructInInterceptorBeanBase() {
-    Helper.getLogger().logp(Level.FINE, simpleName,
-        "postConstructInInterceptorBeanBase",
-        "Adding to postConstruct record: " + simpleName);
-    historySingletonBean.addPostConstructRecordFor(this, simpleName);
-  }
+    @PostConstruct
+    protected void postConstructInInterceptorBeanBase() {
+        Helper.getLogger()
+                .logp(
+                        Level.FINE,
+                        simpleName,
+                        "postConstructInInterceptorBeanBase",
+                        "Adding to postConstruct record: " + simpleName);
+        historySingletonBean.addPostConstructRecordFor(this, simpleName);
+    }
 
-  @Interceptors({ Interceptor7.class, Interceptor6.class })
-  public List<String> allInterceptors() {
-    return historySingletonBean.getPostConstructRecordsFor(this);
-  }
+    @Interceptors({Interceptor7.class, Interceptor6.class})
+    public List<String> allInterceptors() {
+        return historySingletonBean.getPostConstructRecordsFor(this);
+    }
 }

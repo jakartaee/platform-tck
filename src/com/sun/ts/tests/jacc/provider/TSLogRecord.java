@@ -20,7 +20,6 @@
  * @author Raja Perumal
  *         07/12/02
  */
-
 package com.sun.ts.tests.jacc.provider;
 
 import java.util.logging.Level;
@@ -35,61 +34,59 @@ import java.util.logging.LogRecord;
  **/
 public class TSLogRecord extends LogRecord {
 
-  /**
-   * @serial The logging context Id
-   */
-  private String contextId;
+    /**
+     * @serial The logging context Id
+     */
+    private String contextId;
 
-  /**
-   * Construct a LogRecord with the given level, message and context values.
-   * 
-   * @param level
-   *          a logging level value
-   * @param contextId
-   *          the logging contextId
-   * @param msg
-   *          the raw non-localized logging message
-   * 
-   */
-  TSLogRecord(Level level, String message, String contextId) {
-    // set the rest of the fields using parent constructor
-    super(level, message);
-    this.contextId = contextId;
+    /**
+     * Construct a LogRecord with the given level, message and context values.
+     *
+     * @param level
+     *          a logging level value
+     * @param contextId
+     *          the logging contextId
+     * @param msg
+     *          the raw non-localized logging message
+     *
+     */
+    TSLogRecord(Level level, String message, String contextId) {
+        // set the rest of the fields using parent constructor
+        super(level, message);
+        this.contextId = contextId;
+    }
 
-  }
+    /**
+     * Construct a LogRecord with the given level and message
+     *
+     * @param level
+     *          a logging level value
+     * @param msg
+     *          the raw non-localized logging message
+     *
+     */
+    TSLogRecord(Level level, String message) {
+        super(level, message);
+        // Add jacc_ctx for default contextId
+        this.contextId = "jacc_ctx";
+    }
 
-  /**
-   * Construct a LogRecord with the given level and message
-   *
-   * @param level
-   *          a logging level value
-   * @param msg
-   *          the raw non-localized logging message
-   *
-   */
-  TSLogRecord(Level level, String message) {
-    super(level, message);
-    // Add jacc_ctx for default contextId
-    this.contextId = "jacc_ctx";
-  }
+    /**
+     * Get the contextId
+     *
+     * @ return contextId
+     */
+    public String getContextId() {
+        return contextId;
+    }
 
-  /**
-   * Get the contextId
-   *
-   * @ return contextId
-   */
-  public String getContextId() {
-    return contextId;
-  }
-
-  /**
-   * Set the contextId
-   * 
-   * @param contextId
-   *          the logging context Id
-   */
-  public void setContextId(String cId) {
-    contextId = cId;
-  }
-
+    /**
+     * Set the contextId
+     *
+     * @param contextId
+     *          the logging context Id
+     */
+    public void setContextId(String cId) {
+        contextId = cId;
+    }
 }

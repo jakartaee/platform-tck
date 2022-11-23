@@ -19,55 +19,53 @@
  */
 package com.sun.ts.tests.servlet.pluggability.api.jakarta_servlet.srlistener;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    setServletName("TestServlet");
-    setContextRoot("/servlet_plu_srlistener_web");
+        setServletName("TestServlet");
+        setContextRoot("/servlet_plu_srlistener_web");
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /* Run test */
+    /* Run test */
 
-  /*
-   * @testName: initializeDestroyTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:167;Servlet:JAVADOC:168
-   * 
-   * @test_Strategy: Servlet calls a simple servlet then calls a second servlet
-   * to verify results
-   */
-  public void initializeDestroyTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "initializeDestroyTest");
-    invoke();
-    TEST_PROPS.setProperty(APITEST, "checkLog");
-    invoke();
-  }
+    /*
+     * @testName: initializeDestroyTest
+     *
+     * @assertion_ids: Servlet:JAVADOC:167;Servlet:JAVADOC:168
+     *
+     * @test_Strategy: Servlet calls a simple servlet then calls a second servlet
+     * to verify results
+     */
+    public void initializeDestroyTest() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "initializeDestroyTest");
+        invoke();
+        TEST_PROPS.setProperty(APITEST, "checkLog");
+        invoke();
+    }
 }

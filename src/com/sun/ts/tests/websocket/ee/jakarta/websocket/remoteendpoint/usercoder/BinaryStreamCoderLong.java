@@ -17,15 +17,14 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder;
 
+import jakarta.websocket.DecodeException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import jakarta.websocket.DecodeException;
-
 public class BinaryStreamCoderLong extends CoderSuperClassBinaryStream<Long> {
 
-  @Override
-  public Long decode(InputStream is) throws DecodeException, IOException {
-    return NUMERIC.longValue();
-  }
+    @Override
+    public Long decode(InputStream is) throws DecodeException, IOException {
+        return NUMERIC.longValue();
+    }
 }

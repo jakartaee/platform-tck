@@ -19,35 +19,34 @@
  */
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.bean;
 
-import java.io.Serializable;
-
-import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.JsfClientBase;
 import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ConcurrencyIF;
+import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.JsfClientBase;
 import jakarta.ejb.EJB;
+import java.io.Serializable;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends JsfClientBase implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @EJB(beanName = "SingletonBean")
-  public void setSingleton(ConcurrencyIF singleton) {
-    this.singleton = singleton;
-  }
+    @EJB(beanName = "SingletonBean")
+    public void setSingleton(ConcurrencyIF singleton) {
+        this.singleton = singleton;
+    }
 
-  /*
-   * @testName: lockedSum1
-   * 
-   * @test_Strategy: spawn multiple threads, invoke synchronized methods of a
-   * singleton with bean-managed concurrency. Expecting correct sum result.
-   */
+    /*
+     * @testName: lockedSum1
+     *
+     * @test_Strategy: spawn multiple threads, invoke synchronized methods of a
+     * singleton with bean-managed concurrency. Expecting correct sum result.
+     */
 
-  /*
-   * @testName: lockedLinkedList1
-   * 
-   * @test_Strategy: spawn multiple threads, invoke methods of a singleton with
-   * bean-managed concurrency. Expecting correct data in the LinkedList.
-   */
+    /*
+     * @testName: lockedLinkedList1
+     *
+     * @test_Strategy: spawn multiple threads, invoke methods of a singleton with
+     * bean-managed concurrency. Expecting correct data in the LinkedList.
+     */
 
 }

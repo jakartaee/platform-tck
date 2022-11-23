@@ -23,30 +23,30 @@ package com.sun.ts.tests.ejb30.timer.basic.mdb;
 import com.sun.javatest.Status;
 
 public class Client extends com.sun.ts.tests.ejb30.timer.common.MDBClientBase {
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
-   * harness.log.port;
-   */
+    /*
+     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
+     * harness.log.port;
+     */
 
-  /*
-   * @testName: test1
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: @TimeOut is at the superclass of MDB
-   */
-  /*
-   * @testName: getResourceInTimeOut
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: @TimeOut is at the superclass of MDB; access resource files
-   * from TimeOut method
-   */
+    /*
+     * @testName: test1
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: @TimeOut is at the superclass of MDB
+     */
+    /*
+     * @testName: getResourceInTimeOut
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: @TimeOut is at the superclass of MDB; access resource files
+     * from TimeOut method
+     */
 }

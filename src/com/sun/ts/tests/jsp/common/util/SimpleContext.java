@@ -20,9 +20,6 @@
 
 package com.sun.ts.tests.jsp.common.util;
 
-import java.io.IOException;
-import java.util.Enumeration;
-
 import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
@@ -34,290 +31,284 @@ import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.PageContext;
 import jakarta.servlet.jsp.el.ExpressionEvaluator;
 import jakarta.servlet.jsp.el.VariableResolver;
+import java.io.IOException;
+import java.util.Enumeration;
 
 /**
  * Simple class to validate release is called on the PageContext object provide
  * to JspFactory.release.
  */
-
 public class SimpleContext extends PageContext {
 
-  /**
-   * Flag to determine if release() has been called.
-   */
-  private boolean _releaseCalled = false;
+    /**
+     * Flag to determine if release() has been called.
+     */
+    private boolean _releaseCalled = false;
 
-  public SimpleContext() {
-  }
+    public SimpleContext() {}
 
-  /**
-   * No-op.
-   * 
-   * @param servlet
-   * @param servletRequest
-   * @param servletResponse
-   * @param s
-   * @param b
-   * @param i
-   * @param b1
-   * @throws IOException
-   * @throws IllegalStateException
-   * @throws IllegalArgumentException
-   */
-  public void initialize(Servlet servlet, ServletRequest servletRequest,
-      ServletResponse servletResponse, String s, boolean b, int i, boolean b1)
-      throws IOException, IllegalStateException, IllegalArgumentException {
-    return;
-  }
+    /**
+     * No-op.
+     *
+     * @param servlet
+     * @param servletRequest
+     * @param servletResponse
+     * @param s
+     * @param b
+     * @param i
+     * @param b1
+     * @throws IOException
+     * @throws IllegalStateException
+     * @throws IllegalArgumentException
+     */
+    public void initialize(
+            Servlet servlet,
+            ServletRequest servletRequest,
+            ServletResponse servletResponse,
+            String s,
+            boolean b,
+            int i,
+            boolean b1)
+            throws IOException, IllegalStateException, IllegalArgumentException {
+        return;
+    }
 
-  /**
-   * Returns null.
-   * 
-   * @return null
-   */
-  public ServletResponse getResponse() {
-    return null;
-  }
+    /**
+     * Returns null.
+     *
+     * @return null
+     */
+    public ServletResponse getResponse() {
+        return null;
+    }
 
-  /**
-   * Returns null.
-   * 
-   * @return null
-   */
-  public ServletRequest getRequest() {
-    return null;
-  }
+    /**
+     * Returns null.
+     *
+     * @return null
+     */
+    public ServletRequest getRequest() {
+        return null;
+    }
 
-  /**
-   * Returns null.
-   * 
-   * @return null
-   */
-  public jakarta.el.ELContext getELContext() {
-    return null;
-  }
+    /**
+     * Returns null.
+     *
+     * @return null
+     */
+    public jakarta.el.ELContext getELContext() {
+        return null;
+    }
 
-  /**
-   * Returns null.
-   * 
-   * @return null
-   */
-  public Object getPage() {
-    return null;
-  }
+    /**
+     * Returns null.
+     *
+     * @return null
+     */
+    public Object getPage() {
+        return null;
+    }
 
-  /**
-   * Returns null
-   * 
-   * @return null
-   */
-  public HttpSession getSession() {
-    return null;
-  }
+    /**
+     * Returns null
+     *
+     * @return null
+     */
+    public HttpSession getSession() {
+        return null;
+    }
 
-  /**
-   * Returns null.
-   * 
-   * @return null
-   */
-  public VariableResolver getVariableResolver() {
-    return null;
-  }
+    /**
+     * Returns null.
+     *
+     * @return null
+     */
+    public VariableResolver getVariableResolver() {
+        return null;
+    }
 
-  /**
-   * Returns null.
-   * 
-   * @return null
-   */
-  public ExpressionEvaluator getExpressionEvaluator() {
-    return null;
-  }
+    /**
+     * Returns null.
+     *
+     * @return null
+     */
+    public ExpressionEvaluator getExpressionEvaluator() {
+        return null;
+    }
 
-  /**
-   * Returns null.
-   * 
-   * @return null
-   */
-  public JspWriter getOut() {
-    return null;
-  }
+    /**
+     * Returns null.
+     *
+     * @return null
+     */
+    public JspWriter getOut() {
+        return null;
+    }
 
-  /**
-   * Returns null
-   * 
-   * @param i
-   * @return null
-   */
-  public Enumeration getAttributeNamesInScope(int i) {
-    return null;
-  }
+    /**
+     * Returns null
+     *
+     * @param i
+     * @return null
+     */
+    public Enumeration getAttributeNamesInScope(int i) {
+        return null;
+    }
 
-  /**
-   * Returns 0.
-   * 
-   * @param s
-   * @return 0
-   */
-  public int getAttributesScope(String s) {
-    return 0;
-  }
+    /**
+     * Returns 0.
+     *
+     * @param s
+     * @return 0
+     */
+    public int getAttributesScope(String s) {
+        return 0;
+    }
 
-  /**
-   * No-op.
-   * 
-   * @param s
-   * @param i
-   */
-  public void removeAttribute(String s, int i) {
-  }
+    /**
+     * No-op.
+     *
+     * @param s
+     * @param i
+     */
+    public void removeAttribute(String s, int i) {}
 
-  /**
-   * No-op.
-   * 
-   * @param s
-   */
-  public void removeAttribute(String s) {
-  }
+    /**
+     * No-op.
+     *
+     * @param s
+     */
+    public void removeAttribute(String s) {}
 
-  /**
-   * Returns null.
-   * 
-   * @param s
-   * @return null
-   */
-  public Object findAttribute(String s) {
-    return null;
-  }
+    /**
+     * Returns null.
+     *
+     * @param s
+     * @return null
+     */
+    public Object findAttribute(String s) {
+        return null;
+    }
 
-  /**
-   * Returns null.
-   * 
-   * @param s
-   * @param i
-   * @return null
-   */
-  public Object getAttribute(String s, int i) {
-    return null;
-  }
+    /**
+     * Returns null.
+     *
+     * @param s
+     * @param i
+     * @return null
+     */
+    public Object getAttribute(String s, int i) {
+        return null;
+    }
 
-  /**
-   * Returns null.
-   * 
-   * @param s
-   * @return null
-   */
-  public Object getAttribute(String s) {
-    return null;
-  }
+    /**
+     * Returns null.
+     *
+     * @param s
+     * @return null
+     */
+    public Object getAttribute(String s) {
+        return null;
+    }
 
-  /**
-   * No-op.
-   * 
-   * @param s
-   * @param o
-   * @param i
-   */
-  public void setAttribute(String s, Object o, int i) {
-  }
+    /**
+     * No-op.
+     *
+     * @param s
+     * @param o
+     * @param i
+     */
+    public void setAttribute(String s, Object o, int i) {}
 
-  /**
-   * No-op.
-   * 
-   * @param s
-   * @param o
-   */
-  public void setAttribute(String s, Object o) {
-  }
+    /**
+     * No-op.
+     *
+     * @param s
+     * @param o
+     */
+    public void setAttribute(String s, Object o) {}
 
-  /**
-   * No-op.
-   * 
-   * @param throwable
-   * @throws ServletException
-   * @throws IOException
-   */
-  public void handlePageException(Throwable throwable)
-      throws ServletException, IOException {
-  }
+    /**
+     * No-op.
+     *
+     * @param throwable
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void handlePageException(Throwable throwable) throws ServletException, IOException {}
 
-  /**
-   * No-op
-   * 
-   * @param e
-   * @throws ServletException
-   * @throws IOException
-   */
-  public void handlePageException(Exception e)
-      throws ServletException, IOException {
-  }
+    /**
+     * No-op
+     *
+     * @param e
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void handlePageException(Exception e) throws ServletException, IOException {}
 
-  /**
-   * No-op.
-   * 
-   * @param s
-   * @param b
-   * @throws ServletException
-   * @throws IOException
-   */
-  public void include(String s, boolean b)
-      throws ServletException, IOException {
-  }
+    /**
+     * No-op.
+     *
+     * @param s
+     * @param b
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void include(String s, boolean b) throws ServletException, IOException {}
 
-  /**
-   * No-op
-   * 
-   * @param s
-   * @throws ServletException
-   * @throws IOException
-   */
-  public void include(String s) throws ServletException, IOException {
-  }
+    /**
+     * No-op
+     *
+     * @param s
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void include(String s) throws ServletException, IOException {}
 
-  /**
-   * No-op
-   * 
-   * @param s
-   * @throws ServletException
-   * @throws IOException
-   */
-  public void forward(String s) throws ServletException, IOException {
-  }
+    /**
+     * No-op
+     *
+     * @param s
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void forward(String s) throws ServletException, IOException {}
 
-  /**
-   * Returns null.
-   * 
-   * @return null
-   */
-  public ServletContext getServletContext() {
-    return null;
-  }
+    /**
+     * Returns null.
+     *
+     * @return null
+     */
+    public ServletContext getServletContext() {
+        return null;
+    }
 
-  /**
-   * Returns null.
-   * 
-   * @return null
-   */
-  public ServletConfig getServletConfig() {
-    return null;
-  }
+    /**
+     * Returns null.
+     *
+     * @return null
+     */
+    public ServletConfig getServletConfig() {
+        return null;
+    }
 
-  /**
-   * Returns null.
-   * 
-   * @return null
-   */
-  public Exception getException() {
-    return null;
-  }
+    /**
+     * Returns null.
+     *
+     * @return null
+     */
+    public Exception getException() {
+        return null;
+    }
 
-  /**
-   * Performs cleanup of PageContext when called by JspFactory.
-   */
-  public void release() {
-    _releaseCalled = true;
-  }
+    /**
+     * Performs cleanup of PageContext when called by JspFactory.
+     */
+    public void release() {
+        _releaseCalled = true;
+    }
 
-  public boolean isReleased() {
-    return _releaseCalled;
-  }
+    public boolean isReleased() {
+        return _releaseCalled;
+    }
 }

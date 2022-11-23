@@ -21,45 +21,45 @@ import java.io.Serializable;
 
 public class SimpleBean implements Serializable, SimpleInterface {
 
-  private String fullName = "Doug Donahue"; // Default Setting
+    private String fullName = "Doug Donahue"; // Default Setting
 
-  private String intention;
+    private String intention;
 
-  public void setIntention(String s) {
-    intention = s;
-  }
-
-  public String getIntention() {
-    return intention;
-  }
-
-  /**
-   * Set full name using the pattern firstName + " " + lastName.
-   * 
-   * @param firstName
-   * @param lastName
-   */
-  public void setFullName(String firstName, String lastName) {
-    this.fullName = firstName + " " + lastName;
-  }
-
-  /**
-   *
-   * @param firstName
-   *          - first name @String
-   * @param lastName
-   *          - last Name
-   * @return true is full name matches the given firstName + " " + lastName
-   *         pattern.
-   */
-  public boolean isName(String firstName, String lastName) {
-    boolean result = Boolean.FALSE;
-    String testName = firstName + " " + lastName;
-
-    if (testName.equals(fullName)) {
-      result = true;
+    public void setIntention(String s) {
+        intention = s;
     }
 
-    return result;
-  }
+    public String getIntention() {
+        return intention;
+    }
+
+    /**
+     * Set full name using the pattern firstName + " " + lastName.
+     *
+     * @param firstName
+     * @param lastName
+     */
+    public void setFullName(String firstName, String lastName) {
+        this.fullName = firstName + " " + lastName;
+    }
+
+    /**
+     *
+     * @param firstName
+     *          - first name @String
+     * @param lastName
+     *          - last Name
+     * @return true is full name matches the given firstName + " " + lastName
+     *         pattern.
+     */
+    public boolean isName(String firstName, String lastName) {
+        boolean result = Boolean.FALSE;
+        String testName = firstName + " " + lastName;
+
+        if (testName.equals(fullName)) {
+            result = true;
+        }
+
+        return result;
+    }
 }

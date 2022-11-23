@@ -21,20 +21,19 @@ package com.sun.ts.tests.ejb30.lite.tx.bm.singleton.rw;
 
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWClientBase;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase;
-
 import jakarta.ejb.EJB;
 
 public class Client extends RWClientBase {
 
-  @SuppressWarnings("unused")
-  @EJB(beanInterface = TestBean.class, beanName = "TestBean")
-  private void setTestBean(RWTestBeanBase b) {
-    testBean = b;
-  }
+    @SuppressWarnings("unused")
+    @EJB(beanInterface = TestBean.class, beanName = "TestBean")
+    private void setTestBean(RWTestBeanBase b) {
+        testBean = b;
+    }
 
-  /*
-   * @testName: postConstructTransaction
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: postConstructTransaction
+     *
+     * @test_Strategy:
+     */
 }

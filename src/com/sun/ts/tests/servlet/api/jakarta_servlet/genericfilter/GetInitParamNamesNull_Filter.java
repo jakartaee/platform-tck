@@ -61,56 +61,50 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.genericfilter;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Enumeration;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.GenericFilter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
 
 public final class GetInitParamNamesNull_Filter extends GenericFilter {
 
-  public void doFilter(ServletRequest request, ServletResponse response,
-      FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-    boolean passed = false;
-    PrintWriter pw = response.getWriter();
-    pw.println(
-        "doFilter was successfully called in GetInitParamNamesNull_Filter");
+        boolean passed = false;
+        PrintWriter pw = response.getWriter();
+        pw.println("doFilter was successfully called in GetInitParamNamesNull_Filter");
 
-    if (getFilterConfig() == null) {
-      passed = false;
-      pw.println(
-          "doFilter of GetInitParamNamesNull_Filter was called but this filter instance is not currently configured ");
-    } else {
+        if (getFilterConfig() == null) {
+            passed = false;
+            pw.println(
+                    "doFilter of GetInitParamNamesNull_Filter was called but this filter instance is not currently configured ");
+        } else {
 
-      Object o = getInitParameterNames();
+            Object o = getInitParameterNames();
 
-      if (o == null) {
-        passed = true;
-      } else if (!((Enumeration) o).hasMoreElements()) {
-        passed = true;
-      } else {
-        passed = false;
-        pw.println("The following initialization parameters exist:");
+            if (o == null) {
+                passed = true;
+            } else if (!((Enumeration) o).hasMoreElements()) {
+                passed = true;
+            } else {
+                passed = false;
+                pw.println("The following initialization parameters exist:");
 
-        while (((Enumeration) o).hasMoreElements()) {
-          String name = (String) ((Enumeration) o).nextElement();
-          pw.println(name);
+                while (((Enumeration) o).hasMoreElements()) {
+                    String name = (String) ((Enumeration) o).nextElement();
+                    pw.println(name);
+                }
+            }
         }
-      }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
 
-  }
-
-  // remove the filter configuration object for this filter.
-  public void destroy() {
-  }
-
+    // remove the filter configuration object for this filter.
+    public void destroy() {}
 }

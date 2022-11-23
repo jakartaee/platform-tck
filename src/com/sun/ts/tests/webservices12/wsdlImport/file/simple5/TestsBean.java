@@ -19,12 +19,16 @@ package com.sun.ts.tests.webservices12.wsdlImport.file.simple5;
 import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;
 
-@WebService(portName = "TestsPort", serviceName = "Simple5FileSvc", targetNamespace = "http://Simple5FileSvc.org/wsdl", wsdlLocation = "META-INF/wsdl/Simple5FileSvc.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.file.simple5.Tests")
+@WebService(
+        portName = "TestsPort",
+        serviceName = "Simple5FileSvc",
+        targetNamespace = "http://Simple5FileSvc.org/wsdl",
+        wsdlLocation = "META-INF/wsdl/Simple5FileSvc.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.file.simple5.Tests")
 @Stateless(name = "WSSimple5File")
 public class TestsBean {
 
-  public String invokeTest1() {
-    return "Hello";
-  }
-
+    public String invokeTest1() {
+        return "Hello";
+    }
 }

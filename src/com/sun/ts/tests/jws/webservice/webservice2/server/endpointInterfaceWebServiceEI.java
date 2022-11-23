@@ -27,7 +27,6 @@ import jakarta.jws.WebService;
 @WebService
 public interface endpointInterfaceWebServiceEI {
 
-  @WebMethod
-  public String hello(String myname);
-
+    @WebMethod
+    public String hello(String myname);
 }

@@ -25,63 +25,60 @@ import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 
 public class TestBeanEJB extends StatelessWrapper {
 
-  private static final String prefix = "java:comp/env/ejb/";
+    private static final String prefix = "java:comp/env/ejb/";
 
-  /* These lookups differ only by case */
-  private static final String bean1Lookup = prefix + "Philosopher";
+    /* These lookups differ only by case */
+    private static final String bean1Lookup = prefix + "Philosopher";
 
-  private static final String bean2Lookup = prefix + "philosopher";
+    private static final String bean2Lookup = prefix + "philosopher";
 
-  private static final String bean1RefName = "Voltaire";
+    private static final String bean1RefName = "Voltaire";
 
-  private static final String bean2RefName = "Rousseau";
+    private static final String bean2RefName = "Rousseau";
 
-  /**
-   * Check that two ejbref entries whose names differ only by case are
-   * associated with different runtime values (as specified in DD).
-   */
-  public boolean testCaseSensitivity(java.util.Properties p) {
-    CaseBeanHome home1 = null;
-    CaseBeanHome home2 = null;
-    CaseBean bean1 = null;
-    CaseBean bean2 = null;
-    String bean1Name;
-    String bean2Name;
-    boolean pass = false;
+    /**
+     * Check that two ejbref entries whose names differ only by case are
+     * associated with different runtime values (as specified in DD).
+     */
+    public boolean testCaseSensitivity(java.util.Properties p) {
+        CaseBeanHome home1 = null;
+        CaseBeanHome home2 = null;
+        CaseBean bean1 = null;
+        CaseBean bean2 = null;
+        String bean1Name;
+        String bean2Name;
+        boolean pass = false;
 
-    try {
+        try {
 
-      TestUtil.logTrace("Looking up '" + bean1Lookup + "'...");
-      home1 = (CaseBeanHome) nctx.lookup(bean1Lookup, CaseBeanHome.class);
-      bean1 = home1.create();
-      bean1.initLogging(p);
-      bean1Name = bean1.whoAreYou();
-      TestUtil.logTrace(bean1Lookup + "name is '" + bean1Name + "'");
-      bean1.remove();
+            TestUtil.logTrace("Looking up '" + bean1Lookup + "'...");
+            home1 = (CaseBeanHome) nctx.lookup(bean1Lookup, CaseBeanHome.class);
+            bean1 = home1.create();
+            bean1.initLogging(p);
+            bean1Name = bean1.whoAreYou();
+            TestUtil.logTrace(bean1Lookup + "name is '" + bean1Name + "'");
+            bean1.remove();
 
-      TestUtil.logTrace("Looking up '" + bean2Lookup + "'...");
-      home2 = (CaseBeanHome) nctx.lookup(bean2Lookup, CaseBeanHome.class);
-      bean2 = home2.create();
-      bean2.initLogging(p);
-      bean2Name = bean2.whoAreYou();
-      TestUtil.logTrace(bean2Lookup + " name is '" + bean2Name + "'");
-      bean2.remove();
+            TestUtil.logTrace("Looking up '" + bean2Lookup + "'...");
+            home2 = (CaseBeanHome) nctx.lookup(bean2Lookup, CaseBeanHome.class);
+            bean2 = home2.create();
+            bean2.initLogging(p);
+            bean2Name = bean2.whoAreYou();
+            TestUtil.logTrace(bean2Lookup + " name is '" + bean2Name + "'");
+            bean2.remove();
 
-      pass = bean1Name.equals(bean1RefName) && bean2Name.equals(bean2RefName);
+            pass = bean1Name.equals(bean1RefName) && bean2Name.equals(bean2RefName);
 
-      if (!pass) {
-        TestUtil.logErr(bean1Lookup + "name is '" + bean1Name + "' expected '"
-            + bean1RefName + "'");
-        TestUtil.logErr(bean2Lookup + "name is '" + bean2Name + "' expected '"
-            + bean2RefName + "'");
-      }
+            if (!pass) {
+                TestUtil.logErr(bean1Lookup + "name is '" + bean1Name + "' expected '" + bean1RefName + "'");
+                TestUtil.logErr(bean2Lookup + "name is '" + bean2Name + "' expected '" + bean2RefName + "'");
+            }
 
-    } catch (Exception e) {
-      TestUtil.logErr("Got exception in " + "testCase(): " + e, e);
-      pass = false;
+        } catch (Exception e) {
+            TestUtil.logErr("Got exception in " + "testCase(): " + e, e);
+            pass = false;
+        }
+
+        return pass;
     }
-
-    return pass;
-  }
-
 }

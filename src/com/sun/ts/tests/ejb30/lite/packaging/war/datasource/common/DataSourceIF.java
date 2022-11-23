@@ -20,9 +20,9 @@
 package com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common;
 
 public interface DataSourceIF {
-  public StringBuilder getPostConstructRecords();
+    public StringBuilder getPostConstructRecords();
 
-  public StringBuilder getConnection();
+    public StringBuilder getConnection();
 
-  public StringBuilder getPostConstructRecordsFromInterceptor();
+    public StringBuilder getPostConstructRecordsFromInterceptor();
 }

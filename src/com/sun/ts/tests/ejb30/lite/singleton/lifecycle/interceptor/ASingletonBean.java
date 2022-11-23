@@ -31,7 +31,6 @@ import jakarta.interceptor.Interceptors;
  * used in the client to serve as a common type for A, B, and CSingletonBean.
  */
 @Singleton
-@Interceptors({ Interceptor1.class, Interceptor2.class })
+@Interceptors({Interceptor1.class, Interceptor2.class})
 @TransactionManagement(TransactionManagementType.BEAN)
-public class ASingletonBean extends BeanBase {
-}
+public class ASingletonBean extends BeanBase {}

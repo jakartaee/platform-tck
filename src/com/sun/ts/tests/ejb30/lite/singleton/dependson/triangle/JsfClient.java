@@ -19,64 +19,63 @@
  */
 package com.sun.ts.tests.ejb30.lite.singleton.dependson.triangle;
 
-import java.io.Serializable;
-
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase;
 import com.sun.ts.tests.ejb30.lite.singleton.dependson.common.HistoryBean;
 import jakarta.ejb.EJB;
+import java.io.Serializable;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @EJB(beanName = "HistoryBean")
-  private HistoryBean historyBean;
+    @EJB(beanName = "HistoryBean")
+    private HistoryBean historyBean;
 
-  @EJB(beanName = "StatelessBean")
-  private StatelessBean stateless; // to force bean instance creation by this
-                                   // ref
+    @EJB(beanName = "StatelessBean")
+    private StatelessBean stateless; // to force bean instance creation by this
+    // ref
 
-  // to force bean instance creation by this ref. X depends on Y Z, and this
-  // will
-  // also force Y Z to be instantiated.
-  @EJB(beanName = "XSingletonBean")
-  private XSingletonBean xSingleton;
+    // to force bean instance creation by this ref. X depends on Y Z, and this
+    // will
+    // also force Y Z to be instantiated.
+    @EJB(beanName = "XSingletonBean")
+    private XSingletonBean xSingleton;
 
-  /*
-   * @testName: triangleStartUp
-   * 
-   * @test_Strategy: A->C,B B->C expecting the exact order: C,B,A,S Although C
-   * appears twice, there must be only 1 C, and BeanBase verifies all beans'
-   * postConstruct method is only invoked once. A, B, C beans are annotated with
-   * StartUp, and mixed concurrency management types.
-   */
-  public void triangleStartUp() {
-    stateless.ping();
-    long a = historyBean.getCreationTimeMillisByBeanName("ASingletonBean");
-    long b = historyBean.getCreationTimeMillisByBeanName("BSingletonBean");
-    long c = historyBean.getCreationTimeMillisByBeanName("CSingletonBean");
-    long s = historyBean.getCreationTimeMillisByBeanName("StatelessBean");
-    assertGreaterThan("S-time > A-time?", s, a);
-    assertGreaterThan("A-time > B-time?", a, b);
-    assertGreaterThan("B-time > C-time?", b, c);
-  }
+    /*
+     * @testName: triangleStartUp
+     *
+     * @test_Strategy: A->C,B B->C expecting the exact order: C,B,A,S Although C
+     * appears twice, there must be only 1 C, and BeanBase verifies all beans'
+     * postConstruct method is only invoked once. A, B, C beans are annotated with
+     * StartUp, and mixed concurrency management types.
+     */
+    public void triangleStartUp() {
+        stateless.ping();
+        long a = historyBean.getCreationTimeMillisByBeanName("ASingletonBean");
+        long b = historyBean.getCreationTimeMillisByBeanName("BSingletonBean");
+        long c = historyBean.getCreationTimeMillisByBeanName("CSingletonBean");
+        long s = historyBean.getCreationTimeMillisByBeanName("StatelessBean");
+        assertGreaterThan("S-time > A-time?", s, a);
+        assertGreaterThan("A-time > B-time?", a, b);
+        assertGreaterThan("B-time > C-time?", b, c);
+    }
 
-  /*
-   * @testName: triangleNoStartUp
-   * 
-   * @test_Strategy: X->Z,Y Y->Z expecting the exact order: Z, Y, X Although Z
-   * appears twice, there must be only 1 Z, and BeanBase verifies all beans'
-   * postConstruct method is only invoked once. None is annotated with StartUp.
-   * They all use default (container) concurrency management
-   */
-  public void triangleNoStartUp() {
-    xSingleton.ping();
-    long x = historyBean.getCreationTimeMillisByBeanName("XSingletonBean");
-    long y = historyBean.getCreationTimeMillisByBeanName("YSingletonBean");
-    long z = historyBean.getCreationTimeMillisByBeanName("ZSingletonBean");
-    assertGreaterThan("X-time > Y-time?", x, y);
-    assertGreaterThan("Y-time > Z-time?", y, z);
-  }
+    /*
+     * @testName: triangleNoStartUp
+     *
+     * @test_Strategy: X->Z,Y Y->Z expecting the exact order: Z, Y, X Although Z
+     * appears twice, there must be only 1 Z, and BeanBase verifies all beans'
+     * postConstruct method is only invoked once. None is annotated with StartUp.
+     * They all use default (container) concurrency management
+     */
+    public void triangleNoStartUp() {
+        xSingleton.ping();
+        long x = historyBean.getCreationTimeMillisByBeanName("XSingletonBean");
+        long y = historyBean.getCreationTimeMillisByBeanName("YSingletonBean");
+        long z = historyBean.getCreationTimeMillisByBeanName("ZSingletonBean");
+        assertGreaterThan("X-time > Y-time?", x, y);
+        assertGreaterThan("Y-time > Z-time?", y, z);
+    }
 }

@@ -23,112 +23,99 @@ import static com.sun.ts.tests.ejb30.common.helper.Helper.assertEquals;
 import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupByShortNameNoTry;
 import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupNoTry;
 
+import com.sun.ts.tests.ejb30.lite.basic.common.GlobalJNDITest;
+import jakarta.annotation.PostConstruct;
+import jakarta.ejb.EJB;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import com.sun.ts.tests.ejb30.lite.basic.common.GlobalJNDITest;
+public abstract class BeanBase implements LocalIF {
 
-import jakarta.annotation.PostConstruct;
-import jakarta.ejb.EJB;
+    private StringBuilder postConstructRecords;
 
-abstract public class BeanBase implements LocalIF {
+    protected CopyOnWriteArrayList arrayList;
 
-  private StringBuilder postConstructRecords;
+    protected String databaseURL;
 
-  protected CopyOnWriteArrayList arrayList;
+    protected String databaseUser;
 
-  protected String databaseURL;
+    protected String databasePassword;
 
-  protected String databaseUser;
+    protected String driverClassName;
 
-  protected String databasePassword;
+    @EJB(name = "oneBean", beanName = "OneBean")
+    protected LocalIF oneBean;
 
-  protected String driverClassName;
+    @EJB(name = "twoBean", beanName = "TwoBean")
+    protected LocalIF twoBean;
 
-  @EJB(name = "oneBean", beanName = "OneBean")
-  protected LocalIF oneBean;
+    @EJB(name = "threeBean", beanName = "ThreeBean")
+    protected LocalIF threeBean;
 
-  @EJB(name = "twoBean", beanName = "TwoBean")
-  protected LocalIF twoBean;
+    public List<String> call123() {
+        if (postConstructRecords == null) {
+            throw new RuntimeException("postConstructRecords is null.");
+        }
 
-  @EJB(name = "threeBean", beanName = "ThreeBean")
-  protected LocalIF threeBean;
-
-  public List<String> call123() {
-    if (postConstructRecords == null) {
-      throw new RuntimeException("postConstructRecords is null.");
+        List<String> records = new ArrayList<String>();
+        records.add(oneBean.getName());
+        records.add(twoBean.getName());
+        records.add(threeBean.getName());
+        return records;
     }
 
-    List<String> records = new ArrayList<String>();
-    records.add(oneBean.getName());
-    records.add(twoBean.getName());
-    records.add(threeBean.getName());
-    return records;
-  }
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        postConstructRecords = new StringBuilder();
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    postConstructRecords = new StringBuilder();
+        LocalIF b1 = (LocalIF) lookupByShortNameNoTry("oneBean");
+        assertEquals(null, oneBean, b1, postConstructRecords);
+        LocalIF b2 = (LocalIF) lookupByShortNameNoTry("twoBean");
+        assertEquals(null, twoBean, b2, postConstructRecords);
+        LocalIF b3 = (LocalIF) lookupByShortNameNoTry("threeBean");
+        assertEquals(null, threeBean, b3, postConstructRecords);
+    }
 
-    LocalIF b1 = (LocalIF) lookupByShortNameNoTry("oneBean");
-    assertEquals(null, oneBean, b1, postConstructRecords);
-    LocalIF b2 = (LocalIF) lookupByShortNameNoTry("twoBean");
-    assertEquals(null, twoBean, b2, postConstructRecords);
-    LocalIF b3 = (LocalIF) lookupByShortNameNoTry("threeBean");
-    assertEquals(null, threeBean, b3, postConstructRecords);
-  }
+    public StringBuilder getPostConstructRecords() {
+        return postConstructRecords;
+    }
 
-  public StringBuilder getPostConstructRecords() {
-    return postConstructRecords;
-  }
+    public StringBuilder lookupJNDINames(String appName, String moduleName1, String moduleName2, String moduleName3) {
+        StringBuilder sb = new StringBuilder();
+        LocalIF b1 = (LocalIF) lookupNoTry(GlobalJNDITest.getGlobalJNDIName(appName, moduleName1, "OneBean"));
+        assertEquals(null, oneBean, b1, sb);
+        LocalIF b2 = (LocalIF) lookupNoTry(GlobalJNDITest.getGlobalJNDIName(appName, moduleName2, "TwoBean"));
+        assertEquals(null, twoBean, b2, sb);
+        LocalIF b3 = (LocalIF) lookupNoTry(GlobalJNDITest.getGlobalJNDIName(appName, moduleName3, "ThreeBean"));
+        assertEquals(null, threeBean, b3, sb);
 
-  public StringBuilder lookupJNDINames(String appName, String moduleName1,
-      String moduleName2, String moduleName3) {
-    StringBuilder sb = new StringBuilder();
-    LocalIF b1 = (LocalIF) lookupNoTry(
-        GlobalJNDITest.getGlobalJNDIName(appName, moduleName1, "OneBean"));
-    assertEquals(null, oneBean, b1, sb);
-    LocalIF b2 = (LocalIF) lookupNoTry(
-        GlobalJNDITest.getGlobalJNDIName(appName, moduleName2, "TwoBean"));
-    assertEquals(null, twoBean, b2, sb);
-    LocalIF b3 = (LocalIF) lookupNoTry(
-        GlobalJNDITest.getGlobalJNDIName(appName, moduleName3, "ThreeBean"));
-    assertEquals(null, threeBean, b3, sb);
+        b1 = (LocalIF) lookupNoTry(GlobalJNDITest.getAppJNDIName(moduleName1, "OneBean"));
+        assertEquals(null, oneBean, b1, sb);
+        b2 = (LocalIF) lookupNoTry(GlobalJNDITest.getAppJNDIName(moduleName2, "TwoBean"));
+        assertEquals(null, twoBean, b2, sb);
+        b3 = (LocalIF) lookupNoTry(GlobalJNDITest.getAppJNDIName(moduleName3, "ThreeBean"));
+        assertEquals(null, threeBean, b3, sb);
 
-    b1 = (LocalIF) lookupNoTry(
-        GlobalJNDITest.getAppJNDIName(moduleName1, "OneBean"));
-    assertEquals(null, oneBean, b1, sb);
-    b2 = (LocalIF) lookupNoTry(
-        GlobalJNDITest.getAppJNDIName(moduleName2, "TwoBean"));
-    assertEquals(null, twoBean, b2, sb);
-    b3 = (LocalIF) lookupNoTry(
-        GlobalJNDITest.getAppJNDIName(moduleName3, "ThreeBean"));
-    assertEquals(null, threeBean, b3, sb);
+        return sb;
+    }
 
-    return sb;
-  }
+    public List<String> setupOneBean(String url, String user, String password, String driverName) {
 
-  public List<String> setupOneBean(String url, String user, String password,
-      String driverName) {
+        databaseURL = url;
+        databaseUser = user;
+        databasePassword = password;
+        driverClassName = driverName;
 
-    databaseURL = url;
-    databaseUser = user;
-    databasePassword = password;
-    driverClassName = driverName;
+        return Arrays.asList("Setup called");
+    }
 
-    return Arrays.asList("Setup called");
+    public List<String> setupOneBeanWithArrayList(CopyOnWriteArrayList copyOnWriteArrayList) {
 
-  }
+        arrayList = copyOnWriteArrayList;
 
-  public List<String> setupOneBeanWithArrayList(
-      CopyOnWriteArrayList copyOnWriteArrayList) {
-
-    arrayList = copyOnWriteArrayList;
-
-    return Arrays.asList("setupOneBeanWithArrayList called");
-  }
-
+        return Arrays.asList("setupOneBeanWithArrayList called");
+    }
 }

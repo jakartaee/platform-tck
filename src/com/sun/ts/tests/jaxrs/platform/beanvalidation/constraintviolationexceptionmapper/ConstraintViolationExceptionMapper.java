@@ -20,14 +20,12 @@ import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 
-public class ConstraintViolationExceptionMapper
-    implements ExceptionMapper<ConstraintViolationException> {
+public class ConstraintViolationExceptionMapper implements ExceptionMapper<ConstraintViolationException> {
 
-  @Override
-  public Response toResponse(ConstraintViolationException exception) {
-    Response response = Response
-        .ok(ConstraintViolationException.class.getName()).build();
-    return response;
-  }
-
+    @Override
+    public Response toResponse(ConstraintViolationException exception) {
+        Response response =
+                Response.ok(ConstraintViolationException.class.getName()).build();
+        return response;
+    }
 }

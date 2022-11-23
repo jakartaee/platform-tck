@@ -25,7 +25,6 @@
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.simpletagsupport;
 
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.tagext.TagSupport;
 
 /**
@@ -33,44 +32,44 @@ import jakarta.servlet.jsp.tagext.TagSupport;
  */
 public class ClassicParent extends TagSupport {
 
-  /**
-   * The nested level.
-   */
-  private String _level = null;
+    /**
+     * The nested level.
+     */
+    private String _level = null;
 
-  /**
-   * Default constructor.
-   */
-  public ClassicParent() {
-    super();
-  }
+    /**
+     * Default constructor.
+     */
+    public ClassicParent() {
+        super();
+    }
 
-  /**
-   * Sets the nesting level.
-   * 
-   * @param level
-   *          - the nesting level
-   */
-  public void setLevel(String level) {
-    _level = level;
-  }
+    /**
+     * Sets the nesting level.
+     *
+     * @param level
+     *          - the nesting level
+     */
+    public void setLevel(String level) {
+        _level = level;
+    }
 
-  /**
-   * Gets the nesting level of this tag.
-   * 
-   * @return the defined nesting level
-   */
-  public String getLevel() {
-    return _level;
-  }
+    /**
+     * Gets the nesting level of this tag.
+     *
+     * @return the defined nesting level
+     */
+    public String getLevel() {
+        return _level;
+    }
 
-  /**
-   * Returns EVAL_BODY_INCLUDE.
-   * 
-   * @return Tag.EVAL_BODY_INCLUDE
-   */
-  public int doStartTag() {
-    JspTestUtil.debug("[ClassicParent] in doStartTag()");
-    return EVAL_BODY_INCLUDE;
-  }
+    /**
+     * Returns EVAL_BODY_INCLUDE.
+     *
+     * @return Tag.EVAL_BODY_INCLUDE
+     */
+    public int doStartTag() {
+        JspTestUtil.debug("[ClassicParent] in doStartTag()");
+        return EVAL_BODY_INCLUDE;
+    }
 }

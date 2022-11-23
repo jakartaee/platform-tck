@@ -16,20 +16,24 @@
 
 package com.sun.ts.tests.webservices12.ejb.annotations.WSEjbPkgEPAndClientInSameEarTest;
 
-import jakarta.ejb.Remote;
-import jakarta.ejb.Stateless;
-import jakarta.ejb.SessionContext;
-import jakarta.jws.WebService;
 import jakarta.annotation.Resource;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
+import jakarta.jws.WebService;
 
-@WebService(portName = "Hello", serviceName = "HelloService", targetNamespace = "http://Hello.org", wsdlLocation = "META-INF/wsdl/HelloService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.ejb.annotations.WSEjbPkgEPAndClientInSameEarTest.Hello")
+@WebService(
+        portName = "Hello",
+        serviceName = "HelloService",
+        targetNamespace = "http://Hello.org",
+        wsdlLocation = "META-INF/wsdl/HelloService.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices12.ejb.annotations.WSEjbPkgEPAndClientInSameEarTest.Hello")
 @Stateless(name = "WSEjbPkgEPAndClientInSameEarTest")
 public class HelloBean {
 
-  @Resource
-  private SessionContext sc;
+    @Resource
+    private SessionContext sc;
 
-  public String hello(String str) {
-    return str + " to you too!";
-  }
+    public String hello(String str) {
+        return str + " to you too!";
+    }
 }

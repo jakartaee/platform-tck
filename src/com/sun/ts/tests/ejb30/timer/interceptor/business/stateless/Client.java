@@ -20,23 +20,21 @@
 package com.sun.ts.tests.ejb30.timer.interceptor.business.stateless;
 
 import com.sun.ts.tests.ejb30.timer.interceptor.business.common.BusinessTimerBeanBase;
-
 import jakarta.ejb.EJB;
 
-public class Client extends
-    com.sun.ts.tests.ejb30.timer.interceptor.business.common.ClientBase {
+public class Client extends com.sun.ts.tests.ejb30.timer.interceptor.business.common.ClientBase {
 
-  @EJB(beanInterface = BusinessTimerBean.class, beanName = "BusinessTimerBean")
-  protected void setBusinessTimerBean(BusinessTimerBeanBase businessTimerBean) {
-    this.businessTimerBean = businessTimerBean;
-  }
+    @EJB(beanInterface = BusinessTimerBean.class, beanName = "BusinessTimerBean")
+    protected void setBusinessTimerBean(BusinessTimerBeanBase businessTimerBean) {
+        this.businessTimerBean = businessTimerBean;
+    }
 
-  /*
-   * @testName: aroundInvokeMethods
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: create a timer in all interceptor methods. Verify they
-   * expire as expected.
-   */
+    /*
+     * @testName: aroundInvokeMethods
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: create a timer in all interceptor methods. Verify they
+     * expire as expected.
+     */
 }

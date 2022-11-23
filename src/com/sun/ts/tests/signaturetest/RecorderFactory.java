@@ -35,7 +35,7 @@ package com.sun.ts.tests.signaturetest;
  * <li>sigtest</li>
  * </ul>
  * </p>
- * 
+ *
  * <p>
  * If the <code>recorder.type</code> property is not set, this factory will
  * return a <code>SignatureTestRecorder</code> using the SigTest framework.
@@ -43,45 +43,42 @@ package com.sun.ts.tests.signaturetest;
  */
 public class RecorderFactory {
 
-  public static final String API_CHECK_RECORDER = "apicheck";
+    public static final String API_CHECK_RECORDER = "apicheck";
 
-  public static final String SIG_TEST_RECORDER = "sigtest";
+    public static final String SIG_TEST_RECORDER = "sigtest";
 
-  // ---------------------------------------------------------- Public Methods
+    // ---------------------------------------------------------- Public Methods
 
-  /**
-   * Returns a {@link Recorder} instance to handle recording signatures based on
-   * the value specified via the <code>type</code> argument.
-   * 
-   * @param type
-   *          the type of {@link Recorder} to use
-   * @param args
-   *          the args to pass to the {@link Recorder}
-   * @return a {@link Recorder} instanced based on the <code>type</code>
-   *         provided
-   */
-  public static Recorder getRecorder(String type, String[] args) {
+    /**
+     * Returns a {@link Recorder} instance to handle recording signatures based on
+     * the value specified via the <code>type</code> argument.
+     *
+     * @param type
+     *          the type of {@link Recorder} to use
+     * @param args
+     *          the args to pass to the {@link Recorder}
+     * @return a {@link Recorder} instanced based on the <code>type</code>
+     *         provided
+     */
+    public static Recorder getRecorder(String type, String[] args) {
 
-    if (type == null) {
-      throw new IllegalArgumentException("'type' cannot be null");
-    }
+        if (type == null) {
+            throw new IllegalArgumentException("'type' cannot be null");
+        }
 
-    if (type.equals(API_CHECK_RECORDER)) {
-      return new ApiCheckRecorder(args);
-    } else if (type.equals(SIG_TEST_RECORDER)) {
-      return new SigTestRecorder(args);
-    } else {
-      throw new IllegalArgumentException("Unknown type: " + type);
-    }
+        if (type.equals(API_CHECK_RECORDER)) {
+            return new ApiCheckRecorder(args);
+        } else if (type.equals(SIG_TEST_RECORDER)) {
+            return new SigTestRecorder(args);
+        } else {
+            throw new IllegalArgumentException("Unknown type: " + type);
+        }
+    } // END getRecorder
 
-  } // END getRecorder
+    public static void main(String[] args) {
 
-  public static void main(String[] args) {
-
-    String type = System.getProperty("recorder.type", SIG_TEST_RECORDER);
-    Recorder recorder = getRecorder(type, args);
-    recorder.batchRecord();
-
-  } // END main
-
+        String type = System.getProperty("recorder.type", SIG_TEST_RECORDER);
+        Recorder recorder = getRecorder(type, args);
+        recorder.batchRecord();
+    } // END main
 }

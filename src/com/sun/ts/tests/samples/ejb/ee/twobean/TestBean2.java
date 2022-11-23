@@ -20,12 +20,11 @@
 
 package com.sun.ts.tests.samples.ejb.ee.twobean;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean2 extends EJBObject {
-  public void initLogging(java.util.Properties p) throws RemoteException;
+    public void initLogging(java.util.Properties p) throws RemoteException;
 
-  public void bean2Test() throws RemoteException;
+    public void bean2Test() throws RemoteException;
 }

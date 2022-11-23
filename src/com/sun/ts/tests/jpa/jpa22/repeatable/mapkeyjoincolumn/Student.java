@@ -16,86 +16,87 @@
 
 package com.sun.ts.tests.jpa.jpa22.repeatable.mapkeyjoincolumn;
 
-import java.util.Map;
-import java.util.Set;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.MapKeyJoinColumn;
+import java.util.Map;
+import java.util.Set;
 
 @Entity
 public class Student implements java.io.Serializable {
-  private static final long serialVersionUID = 22L;
+    private static final long serialVersionUID = 22L;
 
-  @Id
-  int id;
+    @Id
+    int id;
 
-  String studentName;
+    String studentName;
 
-  public Student() {
-  }
+    public Student() {}
 
-  public Student(int id) {
-    this.id = id;
-  }
-
-  public Student(int id, String name) {
-    this.id = id;
-    this.studentName = name;
-  }
-
-  /*
-   * students and semesters are many-many enrollment contains past and present
-   * student enrollments
-   */
-  @ManyToMany
-  @MapKeyJoinColumn(name = "ENROLLMENT_KEY", insertable = true, nullable = false, unique = true, updatable = false)
-  @JoinTable(name = "ENROLLMENTS", joinColumns = @JoinColumn(name = "STUDENT"), inverseJoinColumns = @JoinColumn(name = "SEMESTER"))
-  Map<Course, Semester> enrollment;
-
-  public Set<Course> getCourses() {
-    return enrollment.keySet();
-  }
-
-  public Map<Course, Semester> getEnrollment() {
-    return enrollment;
-  }
-
-  public void setEnrollment(Map<Course, Semester> enrollment) {
-    this.enrollment = enrollment;
-  }
-
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int studentId) {
-    this.id = studentId;
-  }
-
-  public String getStudentName() {
-    return studentName;
-  }
-
-  public void setStudentName(String studentName) {
-    this.studentName = studentName;
-  }
-
-  public int hashCode() {
-
-    return this.id;
-  }
-
-  public boolean equals(Object obj) {
-    boolean result = false;
-
-    if ((obj != null) && (obj instanceof Student)) {
-      Student student = (Student) obj;
-      result = (student.id == this.id);
+    public Student(int id) {
+        this.id = id;
     }
-    return result;
-  }
+
+    public Student(int id, String name) {
+        this.id = id;
+        this.studentName = name;
+    }
+
+    /*
+     * students and semesters are many-many enrollment contains past and present
+     * student enrollments
+     */
+    @ManyToMany
+    @MapKeyJoinColumn(name = "ENROLLMENT_KEY", insertable = true, nullable = false, unique = true, updatable = false)
+    @JoinTable(
+            name = "ENROLLMENTS",
+            joinColumns = @JoinColumn(name = "STUDENT"),
+            inverseJoinColumns = @JoinColumn(name = "SEMESTER"))
+    Map<Course, Semester> enrollment;
+
+    public Set<Course> getCourses() {
+        return enrollment.keySet();
+    }
+
+    public Map<Course, Semester> getEnrollment() {
+        return enrollment;
+    }
+
+    public void setEnrollment(Map<Course, Semester> enrollment) {
+        this.enrollment = enrollment;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int studentId) {
+        this.id = studentId;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public int hashCode() {
+
+        return this.id;
+    }
+
+    public boolean equals(Object obj) {
+        boolean result = false;
+
+        if ((obj != null) && (obj instanceof Student)) {
+            Student student = (Student) obj;
+            result = (student.id == this.id);
+        }
+        return result;
+    }
 }

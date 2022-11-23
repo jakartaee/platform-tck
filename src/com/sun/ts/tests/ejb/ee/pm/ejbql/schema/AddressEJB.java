@@ -20,164 +20,157 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
-import java.util.Collection;
-import java.util.Iterator;
-
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
 import jakarta.ejb.RemoveException;
+import java.util.Collection;
+import java.util.Iterator;
 
 // Lightweight Entity Bean
 
 public abstract class AddressEJB implements EntityBean {
 
-  // JNDI Names for Phone Local Home Interface
+    // JNDI Names for Phone Local Home Interface
 
-  private static final String PhoneLocal = "java:comp/env/ejb/PhoneLocal";
+    private static final String PhoneLocal = "java:comp/env/ejb/PhoneLocal";
 
-  private EntityContext context = null;
+    private EntityContext context = null;
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  // ===========================================================
-  // getters and setters for the CMP fields
+    // ===========================================================
+    // getters and setters for the CMP fields
 
-  public abstract String getId();
+    public abstract String getId();
 
-  public abstract void setId(String v);
+    public abstract void setId(String v);
 
-  public abstract String getStreet();
+    public abstract String getStreet();
 
-  public abstract void setStreet(String v);
+    public abstract void setStreet(String v);
 
-  public abstract String getCity();
+    public abstract String getCity();
 
-  public abstract void setCity(String v);
+    public abstract void setCity(String v);
 
-  public abstract String getState();
+    public abstract String getState();
 
-  public abstract void setState(String v);
+    public abstract void setState(String v);
 
-  public abstract String getZip();
+    public abstract String getZip();
 
-  public abstract void setZip(String v);
+    public abstract void setZip(String v);
 
-  // ===========================================================
-  // getters and setters for CMR fields
+    // ===========================================================
+    // getters and setters for CMR fields
 
-  // 1xMANY
-  public abstract Collection getPhones();
+    // 1xMANY
+    public abstract Collection getPhones();
 
-  public abstract void setPhones(Collection v);
+    public abstract void setPhones(Collection v);
 
-  // ===========================================================
-  // methods to create instances of lightweight entity beans
+    // ===========================================================
+    // methods to create instances of lightweight entity beans
 
-  private PhoneLocal createPhoneLocal(String id, String area, String number)
-      throws Exception {
-    TestUtil.logTrace("createPhoneLocal");
-    TSNamingContext nctx = new TSNamingContext();
-    PhoneLocalHome phoneLocalHome = (PhoneLocalHome) nctx.lookup(PhoneLocal);
-    PhoneLocal phoneLocal = phoneLocalHome.create(id, area, number);
-    return phoneLocal;
-  }
-
-  private PhoneLocal createPhoneLocal(String id, String area, String number,
-      AddressLocal addr) throws Exception {
-    TestUtil.logTrace("createPhoneLocal");
-    TSNamingContext nctx = new TSNamingContext();
-    PhoneLocalHome phoneLocalHome = (PhoneLocalHome) nctx.lookup(PhoneLocal);
-    PhoneLocal phoneLocal = phoneLocalHome.create(id, area, number, addr);
-    return phoneLocal;
-  }
-
-  // ===========================================================
-
-  public String ejbCreate(String id, String street, String city, String state,
-      String zip) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    try {
-      setId(id);
-      setStreet(street);
-      setCity(city);
-      setState(state);
-      setZip(zip);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    private PhoneLocal createPhoneLocal(String id, String area, String number) throws Exception {
+        TestUtil.logTrace("createPhoneLocal");
+        TSNamingContext nctx = new TSNamingContext();
+        PhoneLocalHome phoneLocalHome = (PhoneLocalHome) nctx.lookup(PhoneLocal);
+        PhoneLocal phoneLocal = phoneLocalHome.create(id, area, number);
+        return phoneLocal;
     }
-    return null;
-  }
 
-  public void ejbPostCreate(String id, String street, String city, String state,
-      String zip) throws CreateException {
-    TestUtil.logTrace("ejbPostCreate");
-  }
-
-  public String ejbCreate(String id, String street, String city, String state,
-      String zip, Collection phones) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    try {
-      setId(id);
-      setStreet(street);
-      setCity(city);
-      setState(state);
-      setZip(zip);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    private PhoneLocal createPhoneLocal(String id, String area, String number, AddressLocal addr) throws Exception {
+        TestUtil.logTrace("createPhoneLocal");
+        TSNamingContext nctx = new TSNamingContext();
+        PhoneLocalHome phoneLocalHome = (PhoneLocalHome) nctx.lookup(PhoneLocal);
+        PhoneLocal phoneLocal = phoneLocalHome.create(id, area, number, addr);
+        return phoneLocal;
     }
-    return null;
-  }
 
-  public void ejbPostCreate(String id, String street, String city, String state,
-      String zip, Collection phones) throws CreateException {
-    TestUtil.logTrace("ejbPostCreate");
-    try {
-      Collection pcol = getPhones();
-      Iterator iterator = phones.iterator();
-      while (iterator.hasNext()) {
-        PhoneDVC pDVC = (PhoneDVC) iterator.next();
-        PhoneLocal pLEB = createPhoneLocal(pDVC.getId(), pDVC.getArea(),
-            pDVC.getNumber());
-        pcol.add(pLEB);
-      }
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred; " + e);
+    // ===========================================================
+
+    public String ejbCreate(String id, String street, String city, String state, String zip) throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        try {
+            setId(id);
+            setStreet(street);
+            setCity(city);
+            setState(state);
+            setZip(zip);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+        return null;
     }
-  }
 
-  public void setEntityContext(EntityContext c) {
-    TestUtil.logTrace("setEntityContext");
-    context = c;
-  }
+    public void ejbPostCreate(String id, String street, String city, String state, String zip) throws CreateException {
+        TestUtil.logTrace("ejbPostCreate");
+    }
 
-  public void unsetEntityContext() {
-    TestUtil.logTrace("unsetEntityContext");
-  }
+    public String ejbCreate(String id, String street, String city, String state, String zip, Collection phones)
+            throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        try {
+            setId(id);
+            setStreet(street);
+            setCity(city);
+            setState(state);
+            setZip(zip);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+        return null;
+    }
 
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("ejbRemove");
-  }
+    public void ejbPostCreate(String id, String street, String city, String state, String zip, Collection phones)
+            throws CreateException {
+        TestUtil.logTrace("ejbPostCreate");
+        try {
+            Collection pcol = getPhones();
+            Iterator iterator = phones.iterator();
+            while (iterator.hasNext()) {
+                PhoneDVC pDVC = (PhoneDVC) iterator.next();
+                PhoneLocal pLEB = createPhoneLocal(pDVC.getId(), pDVC.getArea(), pDVC.getNumber());
+                pcol.add(pLEB);
+            }
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred; " + e);
+        }
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
+    public void setEntityContext(EntityContext c) {
+        TestUtil.logTrace("setEntityContext");
+        context = c;
+    }
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
+    public void unsetEntityContext() {
+        TestUtil.logTrace("unsetEntityContext");
+    }
 
-  public void ejbStore() {
-    TestUtil.logTrace("ejbStore");
-  }
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("ejbRemove");
+    }
 
-  public void ejbLoad() {
-    TestUtil.logTrace("ejbLoad");
-  }
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
+
+    public void ejbStore() {
+        TestUtil.logTrace("ejbStore");
+    }
+
+    public void ejbLoad() {
+        TestUtil.logTrace("ejbLoad");
+    }
 }

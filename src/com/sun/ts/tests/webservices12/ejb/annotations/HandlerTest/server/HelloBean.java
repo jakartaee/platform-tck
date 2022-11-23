@@ -16,20 +16,23 @@
 
 package com.sun.ts.tests.webservices12.ejb.annotations.HandlerTest.server;
 
-import jakarta.xml.ws.Holder;
-
 import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;
+import jakarta.xml.ws.Holder;
 
-@WebService(portName = "HelloPort", serviceName = "HandlerTestService", targetNamespace = "http://handlertestservice.org/wsdl", wsdlLocation = "META-INF/wsdl/HandlerTestService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.ejb.annotations.HandlerTest.server.Hello")
-
+@WebService(
+        portName = "HelloPort",
+        serviceName = "HandlerTestService",
+        targetNamespace = "http://handlertestservice.org/wsdl",
+        wsdlLocation = "META-INF/wsdl/HandlerTestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices12.ejb.annotations.HandlerTest.server.Hello")
 @Stateless(name = "WSHandlerTestEJB")
 public class HelloBean {
-  public String hello(String s) {
-    return s;
-  }
+    public String hello(String s) {
+        return s;
+    }
 
-  public String hello2(String s, Holder<HeaderType> theHeader) {
-    return s;
-  }
+    public String hello2(String s, Holder<HeaderType> theHeader) {
+        return s;
+    }
 }

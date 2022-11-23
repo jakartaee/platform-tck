@@ -25,26 +25,26 @@ import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 
 public class InterceptorInstanceInterceptor {
-  private int postConstructCount;
+    private int postConstructCount;
 
-  private int aroundInvokeCount;
+    private int aroundInvokeCount;
 
-  public InterceptorInstanceInterceptor() {
-    super();
-  }
+    public InterceptorInstanceInterceptor() {
+        super();
+    }
 
-  @AroundInvoke
-  public Object intercept1(InvocationContext ctx) throws Exception {
-    aroundInvokeCount++;
-    Object[] params = ctx.getParameters();
-    int[] initials = (int[]) (params[0]);
-    initials[0] = postConstructCount;
-    initials[1] = aroundInvokeCount;
-    return ctx.proceed();
-  }
+    @AroundInvoke
+    public Object intercept1(InvocationContext ctx) throws Exception {
+        aroundInvokeCount++;
+        Object[] params = ctx.getParameters();
+        int[] initials = (int[]) (params[0]);
+        initials[0] = postConstructCount;
+        initials[1] = aroundInvokeCount;
+        return ctx.proceed();
+    }
 
-  @PostConstruct
-  public void postConstruct(InvocationContext inv) {
-    postConstructCount++;
-  }
+    @PostConstruct
+    public void postConstruct(InvocationContext inv) {
+        postConstructCount++;
+    }
 }

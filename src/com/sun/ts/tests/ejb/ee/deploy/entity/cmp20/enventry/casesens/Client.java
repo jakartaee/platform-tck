@@ -20,79 +20,78 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.enventry.casesens;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  private static final String beanName = "java:comp/env/ejb/CaseBean";
+    private static final String beanName = "java:comp/env/ejb/CaseBean";
 
-  private TSNamingContext ctx = null;
+    private TSNamingContext ctx = null;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  private CaseBeanHome home = null;
+    private CaseBeanHome home = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /**
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   *                     generateSQL;
-   *
-   */
-  public void setup(String[] args, Properties props) throws Fault {
-
-    try {
-      this.props = props;
-      logTrace("Getting naming context...");
-      ctx = new TSNamingContext();
-      logTrace("Looking up home...");
-      home = (CaseBeanHome) ctx.lookup(beanName, CaseBeanHome.class);
-      logMsg("[Client] Setup OK!");
-    } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /**
-   * @testName: testCaseSensitivity
-   *
-   * @assertion_ids: EJB:SPEC:872
-   *
-   * @test_Strategy: Deploy a CMP 2.0 Entity bean with two String environment
-   *                 entries whose name differ only by case and are assigned to
-   *                 two distinct values. Check that we can lookup the two
-   *                 environment entries. Check that their runtime values are
-   *                 distinct and match the ones specified in the DD.
-   */
-  public void testCaseSensitivity() throws Fault {
-    boolean pass = true;
-    CaseBean bean;
+    /**
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     *                     generateSQL;
+     *
+     */
+    public void setup(String[] args, Properties props) throws Fault {
 
-    try {
-      logTrace("[Client] creating bean instance...");
-      bean = home.create(props, 1, "coffee-1", 1);
-      logTrace("[Client] Calling bean...");
-      pass = bean.testCaseSensitivity();
-      logTrace("[Client] Removing bean...");
-      bean.remove();
-
-      if (!pass) {
-        throw new Fault("Env entry casesens test failed");
-      }
-    } catch (Exception e) {
-      throw new Fault("Env entry casesens test failed: " + e, e);
+        try {
+            this.props = props;
+            logTrace("Getting naming context...");
+            ctx = new TSNamingContext();
+            logTrace("Looking up home...");
+            home = (CaseBeanHome) ctx.lookup(beanName, CaseBeanHome.class);
+            logMsg("[Client] Setup OK!");
+        } catch (Exception e) {
+            throw new Fault("Setup failed:", e);
+        }
     }
-  }
 
-  public void cleanup() throws Fault {
-    logMsg("[Client] cleanup()");
-  }
+    /**
+     * @testName: testCaseSensitivity
+     *
+     * @assertion_ids: EJB:SPEC:872
+     *
+     * @test_Strategy: Deploy a CMP 2.0 Entity bean with two String environment
+     *                 entries whose name differ only by case and are assigned to
+     *                 two distinct values. Check that we can lookup the two
+     *                 environment entries. Check that their runtime values are
+     *                 distinct and match the ones specified in the DD.
+     */
+    public void testCaseSensitivity() throws Fault {
+        boolean pass = true;
+        CaseBean bean;
+
+        try {
+            logTrace("[Client] creating bean instance...");
+            bean = home.create(props, 1, "coffee-1", 1);
+            logTrace("[Client] Calling bean...");
+            pass = bean.testCaseSensitivity();
+            logTrace("[Client] Removing bean...");
+            bean.remove();
+
+            if (!pass) {
+                throw new Fault("Env entry casesens test failed");
+            }
+        } catch (Exception e) {
+            throw new Fault("Env entry casesens test failed: " + e, e);
+        }
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("[Client] cleanup()");
+    }
 }

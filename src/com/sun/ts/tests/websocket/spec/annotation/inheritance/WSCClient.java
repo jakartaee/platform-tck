@@ -18,7 +18,6 @@
 package com.sun.ts.tests.websocket.spec.annotation.inheritance;
 
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
-
 import jakarta.websocket.DeploymentException;
 
 /*
@@ -49,146 +48,141 @@ import jakarta.websocket.DeploymentException;
  */
 public class WSCClient extends WebSocketCommonClient {
 
-  private static final long serialVersionUID = 3037319902828702665L;
+    private static final long serialVersionUID = 3037319902828702665L;
 
-  protected final static String MESSAGE = "message";
+    protected static final String MESSAGE = "message";
 
-  public WSCClient() {
-    setContextRoot("wsc_spec_annotation_inheritance_web");
-  }
-
-  public static void main(String[] args) {
-    new WSCClient().run(args);
-  }
-
-  /*
-   * @testName: annotationOnMethodIsInheritedTest
-   * 
-   * @assertion_ids: WebSocket:SPEC:WSC-4.8.1;
-   * 
-   * @test_Strategy: The subclass just inherits @OnMessage
-   */
-  public void annotationOnMethodIsInheritedTest() throws Fault {
-    setAnnotatedClientEndpoint(
-        new AnnotatedSubclassEndpointWithoutAnnotations());
-    invoke("echo", MESSAGE, MESSAGE);
-    logMsg("Annotations have been inherited as expected");
-  }
-
-  /*
-   * @testName: annotationOnMethodIsOverridenTest
-   * 
-   * @assertion_ids: WebSocket:SPEC:WSC-4.8.1;
-   * 
-   * @test_Strategy: The subclass overrides @OnMessage
-   */
-  public void annotationOnMethodIsOverridenTest() throws Fault {
-    setAnnotatedClientEndpoint(
-        new AnnotatedClientEndpointSubclassWithOverrideAndAnnotations());
-    invoke("echo", MESSAGE, MESSAGE);
-    logMsg("Annotations have been overriden as expected");
-  }
-
-  /*
-   * @testName: annotationOnMessageIsTwiceTest
-   * 
-   * @assertion_ids: WebSocket:SPEC:WSC-4.8.1;
-   * 
-   * @test_Strategy: The subclass defines its own @OnMessage
-   * 
-   * Implementations should not deploy Java classes that mistakenly mix Java
-   * inheritance with websocket annotations in these ways.
-   */
-  public void annotationOnMessageIsTwiceTest() throws Fault {
-    try {
-      setAnnotatedClientEndpoint(
-          new AnnotatedClientEndpointWithMultipleOnMessageAnnotations());
-      logExceptionOnInvocation(false);
-      invoke("echo", MESSAGE, MESSAGE);
-      fault(
-          "No exception has been thrown when multiple @OnMessage annotations defined");
-    } catch (Exception e) {
-      DeploymentException de = assertCause(e, DeploymentException.class,
-          "DeploymentException has not been thrown when multiple @OnMessage annotations");
-      logMsg("DeploymentException has been thrown as expected:",
-          de.getMessage());
+    public WSCClient() {
+        setContextRoot("wsc_spec_annotation_inheritance_web");
     }
-  }
 
-  /*
-   * @testName: annotationOnOpenIsTwiceTest
-   * 
-   * @assertion_ids: WebSocket:SPEC:WSC-4.8.1;
-   * 
-   * @test_Strategy: The subclass defines its own @OnOpen
-   * 
-   * Implementations should not deploy Java classes that mistakenly mix Java
-   * inheritance with websocket annotations in these ways.
-   */
-  public void annotationOnOpenIsTwiceTest() throws Fault {
-    try {
-      setAnnotatedClientEndpoint(
-          new AnnotatedClientEndpointWithMultipleOnOpenAnnotations());
-      logExceptionOnInvocation(false);
-      invoke("echo", MESSAGE, MESSAGE);
-      fault(
-          "No exception has been thrown when multiple @OnOpen annotations defined");
-    } catch (Exception e) {
-      DeploymentException de = assertCause(e, DeploymentException.class,
-          "DeploymentException has not been thrown when multiple @OnOpen annotations");
-      logMsg("DeploymentException has been thrown as expected:", de);
+    public static void main(String[] args) {
+        new WSCClient().run(args);
     }
-  }
 
-  /*
-   * @testName: annotationOnCloseIsTwiceTest
-   * 
-   * @assertion_ids: WebSocket:SPEC:WSC-4.8.1;
-   * 
-   * @test_Strategy: The subclass defines its own @OnClose
-   * 
-   * Implementations should not deploy Java classes that mistakenly mix Java
-   * inheritance with websocket annotations in these ways.
-   */
-  public void annotationOnCloseIsTwiceTest() throws Fault {
-    try {
-      setAnnotatedClientEndpoint(
-          new AnnotatedClientEndpointWithMultipleOnCloseAnnotations());
-      logExceptionOnInvocation(false);
-      invoke("echo", MESSAGE, MESSAGE);
-      fault(
-          "No exception has been thrown when multiple @OnClose annotations defined");
-    } catch (Exception e) {
-      DeploymentException de = assertCause(e, DeploymentException.class,
-          "DeploymentException has not been thrown when multiple @OnClose annotations");
-      logMsg("DeploymentException has been thrown as expected:",
-          de.getMessage());
+    /*
+     * @testName: annotationOnMethodIsInheritedTest
+     *
+     * @assertion_ids: WebSocket:SPEC:WSC-4.8.1;
+     *
+     * @test_Strategy: The subclass just inherits @OnMessage
+     */
+    public void annotationOnMethodIsInheritedTest() throws Fault {
+        setAnnotatedClientEndpoint(new AnnotatedSubclassEndpointWithoutAnnotations());
+        invoke("echo", MESSAGE, MESSAGE);
+        logMsg("Annotations have been inherited as expected");
     }
-  }
 
-  /*
-   * @testName: annotationOnErrorIsTwiceTest
-   * 
-   * @assertion_ids: WebSocket:SPEC:WSC-4.8.1;
-   * 
-   * @test_Strategy: The subclass defines its own @OnError
-   * 
-   * Implementations should not deploy Java classes that mistakenly mix Java
-   * inheritance with websocket annotations in these ways.
-   */
-  public void annotationOnErrorIsTwiceTest() throws Fault {
-    try {
-      setAnnotatedClientEndpoint(
-          new AnnotatedClientEndpointWithMultipleOnErrorAnnotations());
-      logExceptionOnInvocation(false);
-      invoke("echo", MESSAGE, MESSAGE);
-      fault(
-          "No exception has been thrown when multiple @OnError annotations defined");
-    } catch (Exception e) {
-      DeploymentException de = assertCause(e, DeploymentException.class,
-          "DeploymentException has not been thrown when multiple @OnError annotations");
-      logMsg("DeploymentException has been thrown as expected:",
-          de.getMessage());
+    /*
+     * @testName: annotationOnMethodIsOverridenTest
+     *
+     * @assertion_ids: WebSocket:SPEC:WSC-4.8.1;
+     *
+     * @test_Strategy: The subclass overrides @OnMessage
+     */
+    public void annotationOnMethodIsOverridenTest() throws Fault {
+        setAnnotatedClientEndpoint(new AnnotatedClientEndpointSubclassWithOverrideAndAnnotations());
+        invoke("echo", MESSAGE, MESSAGE);
+        logMsg("Annotations have been overriden as expected");
     }
-  }
+
+    /*
+     * @testName: annotationOnMessageIsTwiceTest
+     *
+     * @assertion_ids: WebSocket:SPEC:WSC-4.8.1;
+     *
+     * @test_Strategy: The subclass defines its own @OnMessage
+     *
+     * Implementations should not deploy Java classes that mistakenly mix Java
+     * inheritance with websocket annotations in these ways.
+     */
+    public void annotationOnMessageIsTwiceTest() throws Fault {
+        try {
+            setAnnotatedClientEndpoint(new AnnotatedClientEndpointWithMultipleOnMessageAnnotations());
+            logExceptionOnInvocation(false);
+            invoke("echo", MESSAGE, MESSAGE);
+            fault("No exception has been thrown when multiple @OnMessage annotations defined");
+        } catch (Exception e) {
+            DeploymentException de = assertCause(
+                    e,
+                    DeploymentException.class,
+                    "DeploymentException has not been thrown when multiple @OnMessage annotations");
+            logMsg("DeploymentException has been thrown as expected:", de.getMessage());
+        }
+    }
+
+    /*
+     * @testName: annotationOnOpenIsTwiceTest
+     *
+     * @assertion_ids: WebSocket:SPEC:WSC-4.8.1;
+     *
+     * @test_Strategy: The subclass defines its own @OnOpen
+     *
+     * Implementations should not deploy Java classes that mistakenly mix Java
+     * inheritance with websocket annotations in these ways.
+     */
+    public void annotationOnOpenIsTwiceTest() throws Fault {
+        try {
+            setAnnotatedClientEndpoint(new AnnotatedClientEndpointWithMultipleOnOpenAnnotations());
+            logExceptionOnInvocation(false);
+            invoke("echo", MESSAGE, MESSAGE);
+            fault("No exception has been thrown when multiple @OnOpen annotations defined");
+        } catch (Exception e) {
+            DeploymentException de = assertCause(
+                    e,
+                    DeploymentException.class,
+                    "DeploymentException has not been thrown when multiple @OnOpen annotations");
+            logMsg("DeploymentException has been thrown as expected:", de);
+        }
+    }
+
+    /*
+     * @testName: annotationOnCloseIsTwiceTest
+     *
+     * @assertion_ids: WebSocket:SPEC:WSC-4.8.1;
+     *
+     * @test_Strategy: The subclass defines its own @OnClose
+     *
+     * Implementations should not deploy Java classes that mistakenly mix Java
+     * inheritance with websocket annotations in these ways.
+     */
+    public void annotationOnCloseIsTwiceTest() throws Fault {
+        try {
+            setAnnotatedClientEndpoint(new AnnotatedClientEndpointWithMultipleOnCloseAnnotations());
+            logExceptionOnInvocation(false);
+            invoke("echo", MESSAGE, MESSAGE);
+            fault("No exception has been thrown when multiple @OnClose annotations defined");
+        } catch (Exception e) {
+            DeploymentException de = assertCause(
+                    e,
+                    DeploymentException.class,
+                    "DeploymentException has not been thrown when multiple @OnClose annotations");
+            logMsg("DeploymentException has been thrown as expected:", de.getMessage());
+        }
+    }
+
+    /*
+     * @testName: annotationOnErrorIsTwiceTest
+     *
+     * @assertion_ids: WebSocket:SPEC:WSC-4.8.1;
+     *
+     * @test_Strategy: The subclass defines its own @OnError
+     *
+     * Implementations should not deploy Java classes that mistakenly mix Java
+     * inheritance with websocket annotations in these ways.
+     */
+    public void annotationOnErrorIsTwiceTest() throws Fault {
+        try {
+            setAnnotatedClientEndpoint(new AnnotatedClientEndpointWithMultipleOnErrorAnnotations());
+            logExceptionOnInvocation(false);
+            invoke("echo", MESSAGE, MESSAGE);
+            fault("No exception has been thrown when multiple @OnError annotations defined");
+        } catch (Exception e) {
+            DeploymentException de = assertCause(
+                    e,
+                    DeploymentException.class,
+                    "DeploymentException has not been thrown when multiple @OnError annotations");
+            logMsg("DeploymentException has been thrown as expected:", de.getMessage());
+        }
+    }
 }

@@ -26,40 +26,38 @@ import jakarta.servlet.ServletException;
 
 public class TestListener implements ServletContextListener {
 
-  /**
-   * Receives notification that the web application initialization process is
-   * starting.
-   *
-   * @param sce
-   *          The servlet context event
-   */
-  public void contextInitialized(ServletContextEvent sce) {
-    ServletContext context = sce.getServletContext();
+    /**
+     * Receives notification that the web application initialization process is
+     * starting.
+     *
+     * @param sce
+     *          The servlet context event
+     */
+    public void contextInitialized(ServletContextEvent sce) {
+        ServletContext context = sce.getServletContext();
 
-    Boolean listener_test = false;
-    String LISTENER_TEST = "LISTENER_TEST";
+        Boolean listener_test = false;
+        String LISTENER_TEST = "LISTENER_TEST";
 
-    try {
-      context.createListener(
-          com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext304.CreateGenericEventListener.class);
-    } catch (java.lang.IllegalArgumentException ex) {
-      listener_test = true;
-      System.out.println("Error creating Listener CreateGenericEventListener: "
-          + ex.getMessage());
-    } catch (ServletException exs) {
-      System.out.println("Error creating Listener CreateGenericEventListener: "
-          + exs.getMessage());
+        try {
+            context.createListener(
+                    com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext304.CreateGenericEventListener.class);
+        } catch (java.lang.IllegalArgumentException ex) {
+            listener_test = true;
+            System.out.println("Error creating Listener CreateGenericEventListener: " + ex.getMessage());
+        } catch (ServletException exs) {
+            System.out.println("Error creating Listener CreateGenericEventListener: " + exs.getMessage());
+        }
+        context.setInitParameter(LISTENER_TEST, listener_test.toString());
     }
-    context.setInitParameter(LISTENER_TEST, listener_test.toString());
-  }
 
-  /**
-   * Receives notification that the servlet context is about to be shut down.
-   *
-   * @param sce
-   *          The servlet context event
-   */
-  public void contextDestroyed(ServletContextEvent sce) {
-    // Do nothing
-  }
+    /**
+     * Receives notification that the servlet context is about to be shut down.
+     *
+     * @param sce
+     *          The servlet context event
+     */
+    public void contextDestroyed(ServletContextEvent sce) {
+        // Do nothing
+    }
 }

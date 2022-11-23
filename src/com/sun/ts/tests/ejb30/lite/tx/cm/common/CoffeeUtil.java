@@ -19,63 +19,61 @@
  */
 package com.sun.ts.tests.ejb30.lite.tx.cm.common;
 
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.UserTransaction;
+import java.util.logging.Level;
 
 public class CoffeeUtil {
-  private CoffeeUtil() {
-  }
+    private CoffeeUtil() {}
 
-  public static void deleteCoffeeInNewUserTransaction(int id, EntityManager em,
-      UserTransaction ut) {
-    try {
-      ut.begin();
-      findDelete(id, false, em);
-      ut.commit();
-    } catch (RuntimeException e) {
-      throw e;
-    } catch (Exception e) {
-      throw new RuntimeException(e);
+    public static void deleteCoffeeInNewUserTransaction(int id, EntityManager em, UserTransaction ut) {
+        try {
+            ut.begin();
+            findDelete(id, false, em);
+            ut.commit();
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
-  }
 
-  public static void findDelete(int id, boolean existingDataExpected,
-      EntityManager em) {
-    CoffeeEJBLite coffeeFound = em.find(CoffeeEJBLite.class, id);
-    if (coffeeFound != null) {
-      Helper.getLogger().logp(Level.FINE, "RWTestBeanBase0", "findDelete",
-          "Current coffee bean already exists in db, need to delete it first: "
-              + coffeeFound);
-      em.remove(coffeeFound);
-      em.flush();
-    } else if (existingDataExpected) {
-      throw new IllegalStateException(
-          "Tried to find coffee but got null, id=" + id);
-    } else {
-      Helper.getLogger().logp(Level.FINE, "RWTestBeanBase0", "findDelete",
-          "Current coffee bean not in db, no need to delete it. id=" + id);
+    public static void findDelete(int id, boolean existingDataExpected, EntityManager em) {
+        CoffeeEJBLite coffeeFound = em.find(CoffeeEJBLite.class, id);
+        if (coffeeFound != null) {
+            Helper.getLogger()
+                    .logp(
+                            Level.FINE,
+                            "RWTestBeanBase0",
+                            "findDelete",
+                            "Current coffee bean already exists in db, need to delete it first: " + coffeeFound);
+            em.remove(coffeeFound);
+            em.flush();
+        } else if (existingDataExpected) {
+            throw new IllegalStateException("Tried to find coffee but got null, id=" + id);
+        } else {
+            Helper.getLogger()
+                    .logp(
+                            Level.FINE,
+                            "RWTestBeanBase0",
+                            "findDelete",
+                            "Current coffee bean not in db, no need to delete it. id=" + id);
+        }
     }
-  }
 
-  public static CoffeeEJBLite findDeletePersist(int id, String brandName,
-      EntityManager em) {
-    findDelete(id, false, em);
-    CoffeeEJBLite c = new CoffeeEJBLite(id, brandName, id);
-    em.persist(c);
-    return c;
-  }
-
-  public static String verifyCoffee(int id, String brandName, EntityManager em,
-      boolean expectingFound) {
-    CoffeeEJBLite coffeeFound = em.find(CoffeeEJBLite.class, id);
-    if (expectingFound) {
-      return Helper.assertEquals("verify coffee", brandName,
-          coffeeFound.getBrandName());
+    public static CoffeeEJBLite findDeletePersist(int id, String brandName, EntityManager em) {
+        findDelete(id, false, em);
+        CoffeeEJBLite c = new CoffeeEJBLite(id, brandName, id);
+        em.persist(c);
+        return c;
     }
-    return Helper.assertEquals("verify coffee", null, coffeeFound);
-  }
+
+    public static String verifyCoffee(int id, String brandName, EntityManager em, boolean expectingFound) {
+        CoffeeEJBLite coffeeFound = em.find(CoffeeEJBLite.class, id);
+        if (expectingFound) {
+            return Helper.assertEquals("verify coffee", brandName, coffeeFound.getBrandName());
+        }
+        return Helper.assertEquals("verify coffee", null, coffeeFound);
+    }
 }

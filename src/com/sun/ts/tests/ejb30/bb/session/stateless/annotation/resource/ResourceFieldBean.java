@@ -20,14 +20,9 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resource;
 
-import java.net.URL;
-
-import javax.sql.DataSource;
-
 import com.sun.ts.lib.deliverable.cts.resource.Dog;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceBeanBase;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF;
-
 import jakarta.annotation.Resource;
 import jakarta.annotation.Resource.AuthenticationType;
 import jakarta.ejb.Remote;
@@ -44,200 +39,205 @@ import jakarta.jms.Topic;
 import jakarta.jms.TopicConnectionFactory;
 import jakarta.transaction.TransactionSynchronizationRegistry;
 import jakarta.transaction.UserTransaction;
+import java.net.URL;
+import javax.sql.DataSource;
 
 @Stateless(name = "ResourceFieldBean")
-@Remote({ ResourceIF.class })
+@Remote({ResourceIF.class})
 @TransactionManagement(TransactionManagementType.BEAN)
 public class ResourceFieldBean extends ResourceBeanBase implements ResourceIF {
-  @Resource(name = "dog", description = "inject a custom jndi resource")
-  private Dog dog;
+    @Resource(name = "dog", description = "inject a custom jndi resource")
+    private Dog dog;
 
-  @Override
-  protected Object getCustomeResource() {
-    return dog;
-  }
+    @Override
+    protected Object getCustomeResource() {
+        return dog;
+    }
 
-  @Override
-  protected String getCustomeResourceName() {
-    return "dog2";
-  } // as defined in ejb-jar.xml
+    @Override
+    protected String getCustomeResourceName() {
+        return "dog2";
+    } // as defined in ejb-jar.xml
 
-  @Resource(name = "session", description = "session context", type = SessionContext.class)
-  private SessionContext sessionContext;
+    @Resource(name = "session", description = "session context", type = SessionContext.class)
+    private SessionContext sessionContext;
 
-  @Resource(description = "user transaction", name = "myUserTransaction", type = UserTransaction.class)
-  private UserTransaction ut;
+    @Resource(description = "user transaction", name = "myUserTransaction", type = UserTransaction.class)
+    private UserTransaction ut;
 
-  protected String getUserTransactionName() {
-    return "myUserTransaction";
-  }
+    protected String getUserTransactionName() {
+        return "myUserTransaction";
+    }
 
-  @Resource(name = "dataSource", description = "<resource-ref>")
-  private DataSource dataSource;
+    @Resource(name = "dataSource", description = "<resource-ref>")
+    private DataSource dataSource;
 
-  protected String getDataSourceName() {
-    return "dataSource";
-  }
+    protected String getDataSourceName() {
+        return "dataSource";
+    }
 
-  @Resource(name = "myDataSource2", type = DataSource.class, shareable = true, authenticationType = AuthenticationType.CONTAINER)
-  private DataSource dataSource2;
+    @Resource(
+            name = "myDataSource2",
+            type = DataSource.class,
+            shareable = true,
+            authenticationType = AuthenticationType.CONTAINER)
+    private DataSource dataSource2;
 
-  protected String getDataSource2Name() {
-    return "myDataSource2";
-  }
+    protected String getDataSource2Name() {
+        return "myDataSource2";
+    }
 
-  @Resource(name = "mailSession")
-  private jakarta.mail.Session mailSession;
+    @Resource(name = "mailSession")
+    private jakarta.mail.Session mailSession;
 
-  protected String getMailSessionName() {
-    return "mailSession";
-  }
+    protected String getMailSessionName() {
+        return "mailSession";
+    }
 
-  @Resource(name = "url")
-  private URL url;
+    @Resource(name = "url")
+    private URL url;
 
-  protected String getUrlName() {
-    return "url";
-  }
+    protected String getUrlName() {
+        return "url";
+    }
 
-  @Resource(name = "queueConnectionFactory")
-  private QueueConnectionFactory queueConnectionFactory;
+    @Resource(name = "queueConnectionFactory")
+    private QueueConnectionFactory queueConnectionFactory;
 
-  protected String getQueueConnectionFactoryName() {
-    return "queueConnectionFactory";
-  }
+    protected String getQueueConnectionFactoryName() {
+        return "queueConnectionFactory";
+    }
 
-  @Resource(name = "topicConnectionFactory")
-  private TopicConnectionFactory topicConnectionFactory;
+    @Resource(name = "topicConnectionFactory")
+    private TopicConnectionFactory topicConnectionFactory;
 
-  protected String getTopicConnectionFactoryName() {
-    return "topicConnectionFactory";
-  }
+    protected String getTopicConnectionFactoryName() {
+        return "topicConnectionFactory";
+    }
 
-  @Resource(name = "connectionFactoryQ")
-  private ConnectionFactory connectionFactoryQ;
+    @Resource(name = "connectionFactoryQ")
+    private ConnectionFactory connectionFactoryQ;
 
-  protected String getConnectionFactoryQName() {
-    return "connectionFactoryQ";
-  }
+    protected String getConnectionFactoryQName() {
+        return "connectionFactoryQ";
+    }
 
-  protected ConnectionFactory getConnectionFactoryQ() {
-    return connectionFactoryQ;
-  }
+    protected ConnectionFactory getConnectionFactoryQ() {
+        return connectionFactoryQ;
+    }
 
-  @Resource(name = "connectionFactoryT")
-  private ConnectionFactory connectionFactoryT;
+    @Resource(name = "connectionFactoryT")
+    private ConnectionFactory connectionFactoryT;
 
-  protected String getConnectionFactoryTName() {
-    return "connectionFactoryT";
-  }
+    protected String getConnectionFactoryTName() {
+        return "connectionFactoryT";
+    }
 
-  protected ConnectionFactory getConnectionFactoryT() {
-    return connectionFactoryT;
-  }
+    protected ConnectionFactory getConnectionFactoryT() {
+        return connectionFactoryT;
+    }
 
-  @Resource(name = "destinationQ", type = Queue.class)
-  private Destination destinationQ;
+    @Resource(name = "destinationQ", type = Queue.class)
+    private Destination destinationQ;
 
-  protected String getDestinationQName() {
-    return "destinationQ";
-  }
+    protected String getDestinationQName() {
+        return "destinationQ";
+    }
 
-  protected Destination getDestinationQ() {
-    return destinationQ;
-  }
+    protected Destination getDestinationQ() {
+        return destinationQ;
+    }
 
-  @Resource(name = "destinationT", type = Topic.class)
-  private Destination destinationT;
+    @Resource(name = "destinationT", type = Topic.class)
+    private Destination destinationT;
 
-  protected String getDestinationTName() {
-    return "destinationT";
-  }
+    protected String getDestinationTName() {
+        return "destinationT";
+    }
 
-  protected Destination getDestinationT() {
-    return destinationT;
-  }
+    protected Destination getDestinationT() {
+        return destinationT;
+    }
 
-  @Resource(name = "topic")
-  private Topic topic;
+    @Resource(name = "topic")
+    private Topic topic;
 
-  protected String getTopicName() {
-    return "topic";
-  }
+    protected String getTopicName() {
+        return "topic";
+    }
 
-  @Resource(name = "queue")
-  private Queue queue;
+    @Resource(name = "queue")
+    private Queue queue;
 
-  protected String getQueueName() {
-    return "queue";
-  }
+    protected String getQueueName() {
+        return "queue";
+    }
 
-  @Resource(name = "myTransactionSynchronizationRegistry", description = "TransactionSynchronizationRegistry injected")
-  private TransactionSynchronizationRegistry transactionSynchronizationRegistry;
+    @Resource(
+            name = "myTransactionSynchronizationRegistry",
+            description = "TransactionSynchronizationRegistry injected")
+    private TransactionSynchronizationRegistry transactionSynchronizationRegistry;
 
-  protected String getTransactionSynchronizationRegistryName() {
-    return "myTransactionSynchronizationRegistry";
-  }
+    protected String getTransactionSynchronizationRegistryName() {
+        return "myTransactionSynchronizationRegistry";
+    }
 
-  @Resource(name = "myTimerService", description = "TimerService injected")
-  private TimerService TimerService;
+    @Resource(name = "myTimerService", description = "TimerService injected")
+    private TimerService TimerService;
 
-  protected String getTimerServiceName() {
-    return "myTimerService";
-  }
+    protected String getTimerServiceName() {
+        return "myTimerService";
+    }
 
-  public ResourceFieldBean() {
-  }
+    public ResourceFieldBean() {}
 
-  public void remove() {
-  }
+    public void remove() {}
 
-  protected jakarta.ejb.EJBContext getEJBContext() {
-    return sessionContext;
-  }
+    protected jakarta.ejb.EJBContext getEJBContext() {
+        return sessionContext;
+    }
 
-  protected DataSource getDataSource() {
-    return dataSource;
-  }
+    protected DataSource getDataSource() {
+        return dataSource;
+    }
 
-  protected DataSource getDataSource2() {
-    return dataSource2;
-  }
+    protected DataSource getDataSource2() {
+        return dataSource2;
+    }
 
-  protected jakarta.mail.Session getMailSession() {
-    return mailSession;
-  }
+    protected jakarta.mail.Session getMailSession() {
+        return mailSession;
+    }
 
-  protected URL getUrl() {
-    return url;
-  }
+    protected URL getUrl() {
+        return url;
+    }
 
-  protected QueueConnectionFactory getQueueConnectionFactory() {
-    return queueConnectionFactory;
-  }
+    protected QueueConnectionFactory getQueueConnectionFactory() {
+        return queueConnectionFactory;
+    }
 
-  protected Queue getQueue() {
-    return queue;
-  }
+    protected Queue getQueue() {
+        return queue;
+    }
 
-  protected TopicConnectionFactory getTopicConnectionFactory() {
-    return topicConnectionFactory;
-  }
+    protected TopicConnectionFactory getTopicConnectionFactory() {
+        return topicConnectionFactory;
+    }
 
-  protected Topic getTopic() {
-    return topic;
-  }
+    protected Topic getTopic() {
+        return topic;
+    }
 
-  protected UserTransaction getUserTransaction() {
-    return ut;
-  }
+    protected UserTransaction getUserTransaction() {
+        return ut;
+    }
 
-  protected TransactionSynchronizationRegistry getTransactionSynchronizationRegistry() {
-    return transactionSynchronizationRegistry;
-  }
+    protected TransactionSynchronizationRegistry getTransactionSynchronizationRegistry() {
+        return transactionSynchronizationRegistry;
+    }
 
-  protected TimerService getTimerService() {
-    return TimerService;
-  }
-
+    protected TimerService getTimerService() {
+        return TimerService;
+    }
 }

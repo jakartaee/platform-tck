@@ -21,61 +21,60 @@ package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.annotated;
 
 import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ClientBase;
 import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ConcurrencyIF;
-
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
 
-  @EJB(beanName = "SingletonBean")
-  public void setSingleton(ConcurrencyIF singleton) {
-    this.singleton = singleton;
-  }
+    @EJB(beanName = "SingletonBean")
+    public void setSingleton(ConcurrencyIF singleton) {
+        this.singleton = singleton;
+    }
 
-  @EJB(beanName = "ReadSingletonBean")
-  public void setSingleton2(ConcurrencyIF singleton2) {
-    this.singleton2 = singleton2;
-  }
+    @EJB(beanName = "ReadSingletonBean")
+    public void setSingleton2(ConcurrencyIF singleton2) {
+        this.singleton2 = singleton2;
+    }
 
-  /*
-   * @testName: lockedSum1
-   * 
-   * @test_Strategy: spawn multiple threads, invoke synchronized methods of a
-   * singleton with container-managed concurrency. Expecting correct sum result.
-   */
-  /*
-   * @testName: lockedSumFromInterceptors1
-   * 
-   * @test_Strategy: spawn multiple threads, invoke synchronized methods of
-   * interceptors with container-managed concurrency. Expecting correct sum
-   * result.
-   */
+    /*
+     * @testName: lockedSum1
+     *
+     * @test_Strategy: spawn multiple threads, invoke synchronized methods of a
+     * singleton with container-managed concurrency. Expecting correct sum result.
+     */
+    /*
+     * @testName: lockedSumFromInterceptors1
+     *
+     * @test_Strategy: spawn multiple threads, invoke synchronized methods of
+     * interceptors with container-managed concurrency. Expecting correct sum
+     * result.
+     */
 
-  /*
-   * @testName: lockedLinkedList1
-   * 
-   * @test_Strategy: spawn multiple threads, invoke methods of a singleton with
-   * container-managed concurrency. Expecting correct data in the LinkedList.
-   */
+    /*
+     * @testName: lockedLinkedList1
+     *
+     * @test_Strategy: spawn multiple threads, invoke methods of a singleton with
+     * container-managed concurrency. Expecting correct data in the LinkedList.
+     */
 
-  /*
-   * @testName: lockedSum2
-   * 
-   * @test_Strategy: spawn multiple threads, invoke synchronized methods of a
-   * singleton with container-managed concurrency. Expecting correct sum result.
-   */
-  /*
-   * @testName: lockedSumFromInterceptors2
-   * 
-   * @test_Strategy: spawn multiple threads, invoke synchronized methods of
-   * interceptors with container-managed concurrency. Expecting correct sum
-   * result.
-   */
+    /*
+     * @testName: lockedSum2
+     *
+     * @test_Strategy: spawn multiple threads, invoke synchronized methods of a
+     * singleton with container-managed concurrency. Expecting correct sum result.
+     */
+    /*
+     * @testName: lockedSumFromInterceptors2
+     *
+     * @test_Strategy: spawn multiple threads, invoke synchronized methods of
+     * interceptors with container-managed concurrency. Expecting correct sum
+     * result.
+     */
 
-  /*
-   * @testName: lockedLinkedList2
-   * 
-   * @test_Strategy: spawn multiple threads, invoke methods of a singleton with
-   * container-managed concurrency. Expecting correct data in the LinkedList.
-   */
+    /*
+     * @testName: lockedLinkedList2
+     *
+     * @test_Strategy: spawn multiple threads, invoke methods of a singleton with
+     * container-managed concurrency. Expecting correct data in the LinkedList.
+     */
 
 }

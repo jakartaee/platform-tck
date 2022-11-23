@@ -16,66 +16,63 @@
 
 package com.sun.ts.tests.jpa.core.annotations.id;
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "DATATYPES3")
 public class PropertyBigDecimalId implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+    // ===========================================================
+    // instance variables
 
-  protected BigDecimal id;
+    protected BigDecimal id;
 
-  private BigDecimal bigDecimal;
+    private BigDecimal bigDecimal;
 
-  // ===========================================================
-  // constructors
-  public PropertyBigDecimalId() {
-  }
+    // ===========================================================
+    // constructors
+    public PropertyBigDecimalId() {}
 
-  public PropertyBigDecimalId(BigDecimal id, BigDecimal bigDecimal) {
+    public PropertyBigDecimalId(BigDecimal id, BigDecimal bigDecimal) {
 
-    this.id = id;
-    this.bigDecimal = bigDecimal;
-
-  }
-
-  @Id
-  @Column(name = "ID")
-  public BigDecimal getId() {
-    return id;
-  }
-
-  public void setId(BigDecimal id) {
-    this.id = id;
-  }
-
-  @Column(name = "THEVALUE")
-  public BigDecimal getBigDecimal() {
-    return this.bigDecimal;
-  }
-
-  public void setBigDecimal(BigDecimal bigDecimal) {
-    this.bigDecimal = bigDecimal;
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    if (getBigDecimal() != null) {
-      result.append(", BigDecimal: " + getBigDecimal());
-    } else {
-      result.append(", BigDecimal: null");
+        this.id = id;
+        this.bigDecimal = bigDecimal;
     }
-    result.append("]");
-    return result.toString();
-  }
+
+    @Id
+    @Column(name = "ID")
+    public BigDecimal getId() {
+        return id;
+    }
+
+    public void setId(BigDecimal id) {
+        this.id = id;
+    }
+
+    @Column(name = "THEVALUE")
+    public BigDecimal getBigDecimal() {
+        return this.bigDecimal;
+    }
+
+    public void setBigDecimal(BigDecimal bigDecimal) {
+        this.bigDecimal = bigDecimal;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getId());
+        if (getBigDecimal() != null) {
+            result.append(", BigDecimal: " + getBigDecimal());
+        } else {
+            result.append(", BigDecimal: null");
+        }
+        result.append("]");
+        return result.toString();
+    }
 }

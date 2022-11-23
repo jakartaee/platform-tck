@@ -25,49 +25,44 @@ import jakarta.ejb.EJBContext;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
 
-abstract public class MigrationBeanBase implements SessionBean {
-  private SessionContext sessionContext;
+public abstract class MigrationBeanBase implements SessionBean {
+    private SessionContext sessionContext;
 
-  protected EJBContext getEJBContext() {
-    return this.sessionContext;
-  }
+    protected EJBContext getEJBContext() {
+        return this.sessionContext;
+    }
 
-  public void ejbCreate() throws CreateException {
-  }
+    public void ejbCreate() throws CreateException {}
 
-  public void setSessionContext(jakarta.ejb.SessionContext sessionContext) {
-    this.sessionContext = sessionContext;
-  }
+    public void setSessionContext(jakarta.ejb.SessionContext sessionContext) {
+        this.sessionContext = sessionContext;
+    }
 
-  public void ejbRemove() {
-  }
+    public void ejbRemove() {}
 
-  public void ejbPassivate() {
-  }
+    public void ejbPassivate() {}
 
-  public void ejbActivate() {
-  }
+    public void ejbActivate() {}
 
-  //////////////////////////////////////////////////////////////////////
-  // TwoRemoteIF methods
-  //////////////////////////////////////////////////////////////////////
-  public String from2RemoteClient() {
-    return "from2RemoteClient";
-  }
+    //////////////////////////////////////////////////////////////////////
+    // TwoRemoteIF methods
+    //////////////////////////////////////////////////////////////////////
+    public String from2RemoteClient() {
+        return "from2RemoteClient";
+    }
 
-  public void remoteSameTxContext() {
-    getEJBContext().setRollbackOnly();
-  }
+    public void remoteSameTxContext() {
+        getEJBContext().setRollbackOnly();
+    }
 
-  //////////////////////////////////////////////////////////////////////
-  // TwoLocalIF methods
-  //////////////////////////////////////////////////////////////////////
-  public String from2LocalClient() {
-    return "from2LocalClient";
-  }
+    //////////////////////////////////////////////////////////////////////
+    // TwoLocalIF methods
+    //////////////////////////////////////////////////////////////////////
+    public String from2LocalClient() {
+        return "from2LocalClient";
+    }
 
-  public void localSameTxContext() {
-    getEJBContext().setRollbackOnly();
-  }
-
+    public void localSameTxContext() {
+        getEJBContext().setRollbackOnly();
+    }
 }

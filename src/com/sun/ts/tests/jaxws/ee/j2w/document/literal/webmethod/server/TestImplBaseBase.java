@@ -21,21 +21,20 @@
 package com.sun.ts.tests.jaxws.ee.j2w.document.literal.webmethod.server;
 
 import jakarta.jws.WebService;
-import jakarta.jws.WebMethod;
 
 @WebService
 public class TestImplBaseBase {
 
-  // This is also a WebMethod since declaring class
-  // has WebService
-  public String method1(String str) {
-    return str;
-  }
+    // This is also a WebMethod since declaring class
+    // has WebService
+    public String method1(String str) {
+        return str;
+    }
 
-  // This is also a WebMethod since declaring class
-  // has WebService
-  @Override
-  public String toString() {
-    return "TestImplBaseBase";
-  }
+    // This is also a WebMethod since declaring class
+    // has WebService
+    @Override
+    public String toString() {
+        return "TestImplBaseBase";
+    }
 }

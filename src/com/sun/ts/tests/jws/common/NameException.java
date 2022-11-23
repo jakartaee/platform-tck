@@ -24,23 +24,22 @@
 package com.sun.ts.tests.jws.common;
 
 public class NameException extends Exception {
-  private String first = "";
+    private String first = "";
 
-  public NameException(String first) {
-    super(first + " is an invalid first name.");
-    this.first = first;
-  }
+    public NameException(String first) {
+        super(first + " is an invalid first name.");
+        this.first = first;
+    }
 
-  public NameException() {
-    super();
-  }
+    public NameException() {
+        super();
+    }
 
-  public String getFirst() {
-    return first;
-  }
+    public String getFirst() {
+        return first;
+    }
 
-  public void setFirst(String first) {
-    this.first = first;
-  }
-
+    public void setFirst(String first) {
+        this.first = first;
+    }
 }

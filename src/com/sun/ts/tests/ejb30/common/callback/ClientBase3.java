@@ -27,14 +27,12 @@ import jakarta.annotation.PostConstruct;
  * PostConstruct and injection-complete, e.g.,
  * stateless/callback/method/annotated/Client.
  */
-abstract public class ClientBase3 extends ClientBase2 {
+public abstract class ClientBase3 extends ClientBase2 {
 
-  public ClientBase3() {
-  }
+    public ClientBase3() {}
 
-  @PostConstruct
-  private static void postConstructInBase3() {
-    addPostConstructCall(BASE3);
-  }
-
+    @PostConstruct
+    private static void postConstructInBase3() {
+        addPostConstructCall(BASE3);
+    }
 }

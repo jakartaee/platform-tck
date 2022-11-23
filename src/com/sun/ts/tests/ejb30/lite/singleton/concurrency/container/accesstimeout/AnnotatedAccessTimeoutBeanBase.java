@@ -19,11 +19,10 @@
  */
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout;
 
-import java.util.concurrent.TimeUnit;
-
 import jakarta.ejb.AccessTimeout;
 import jakarta.ejb.Lock;
 import jakarta.ejb.LockType;
+import java.util.concurrent.TimeUnit;
 
 /**
  * The purpose of this class is to verify its @AccessTimeout is inherited by its
@@ -32,18 +31,17 @@ import jakarta.ejb.LockType;
  * override class-level @AccessTimeout.
  */
 @AccessTimeout(unit = TimeUnit.DAYS, value = 1)
-abstract public class AnnotatedAccessTimeoutBeanBase
-    extends PlainAccessTimeoutBeanBase implements AccessTimeoutIF {
-  @Override
-  @Lock(LockType.READ)
-  @AccessTimeout(unit = TimeUnit.MILLISECONDS, value = 1000)
-  public int longRead(long waitTimeMillis, int readVal) {
-    return super.longRead(waitTimeMillis, readVal);
-  }
+public abstract class AnnotatedAccessTimeoutBeanBase extends PlainAccessTimeoutBeanBase implements AccessTimeoutIF {
+    @Override
+    @Lock(LockType.READ)
+    @AccessTimeout(unit = TimeUnit.MILLISECONDS, value = 1000)
+    public int longRead(long waitTimeMillis, int readVal) {
+        return super.longRead(waitTimeMillis, readVal);
+    }
 
-  @Override
-  @AccessTimeout(unit = TimeUnit.MILLISECONDS, value = 1000)
-  public void longWrite(long waitTimeMillis) {
-    super.longWrite(waitTimeMillis);
-  }
+    @Override
+    @AccessTimeout(unit = TimeUnit.MILLISECONDS, value = 1000)
+    public void longWrite(long waitTimeMillis) {
+        super.longWrite(waitTimeMillis);
+    }
 }

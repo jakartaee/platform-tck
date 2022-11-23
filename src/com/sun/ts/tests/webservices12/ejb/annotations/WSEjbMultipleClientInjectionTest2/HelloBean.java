@@ -19,15 +19,20 @@ package com.sun.ts.tests.webservices12.ejb.annotations.WSEjbMultipleClientInject
 import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;
 
-@WebService(portName = "Hello", serviceName = "HelloService", targetNamespace = "http://Hello.org", wsdlLocation = "META-INF/wsdl/HelloService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.ejb.annotations.WSEjbMultipleClientInjectionTest2.Hello")
+@WebService(
+        portName = "Hello",
+        serviceName = "HelloService",
+        targetNamespace = "http://Hello.org",
+        wsdlLocation = "META-INF/wsdl/HelloService.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices12.ejb.annotations.WSEjbMultipleClientInjectionTest2.Hello")
 @Stateless(name = "WSEjbMultipleClientInjectionTest2")
 public class HelloBean {
 
-  public String hello(String str) {
-    return str + " to you too!";
-  }
+    public String hello(String str) {
+        return str + " to you too!";
+    }
 
-  public String bye(String str) {
-    return str + " and take care!";
-  }
+    public String bye(String str) {
+        return str + " and take care!";
+    }
 }

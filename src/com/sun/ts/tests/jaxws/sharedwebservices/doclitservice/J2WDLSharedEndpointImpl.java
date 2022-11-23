@@ -20,29 +20,31 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.doclitservice;
 
-import jakarta.xml.ws.WebServiceException;
-
 import jakarta.jws.WebService;
 
-@WebService(portName = "J2WDLSharedEndpointPort", targetNamespace = "http://doclitservice.org/wsdl", serviceName = "J2WDLShared", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.doclitservice.J2WDLSharedEndpoint")
+@WebService(
+        portName = "J2WDLSharedEndpointPort",
+        targetNamespace = "http://doclitservice.org/wsdl",
+        serviceName = "J2WDLShared",
+        endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.doclitservice.J2WDLSharedEndpoint")
 public class J2WDLSharedEndpointImpl implements J2WDLSharedEndpoint {
-  public String helloWorld() {
-    return "hello world";
-  }
+    public String helloWorld() {
+        return "hello world";
+    }
 
-  public String stringOperation(String param) {
-    return param;
-  }
+    public String stringOperation(String param) {
+        return param;
+    }
 
-  public String[] arrayOperation() {
-    return new String[] { "one", "two", "three" };
-  }
+    public String[] arrayOperation() {
+        return new String[] {"one", "two", "three"};
+    }
 
-  public J2WDLSharedBean getBean() {
-    return new J2WDLSharedBean(5, "A String");
-  }
+    public J2WDLSharedBean getBean() {
+        return new J2WDLSharedBean(5, "A String");
+    }
 
-  public String arrayOperationFromClient(String[] array) {
-    return "success";
-  }
+    public String arrayOperationFromClient(String[] array) {
+        return "success";
+    }
 }

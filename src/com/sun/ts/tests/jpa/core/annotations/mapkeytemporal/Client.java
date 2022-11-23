@@ -19,7 +19,6 @@ package com.sun.ts.tests.jpa.core.annotations.mapkeytemporal;
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
-
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
@@ -36,8 +35,7 @@ public class Client extends PMClientBase {
     final Date d6 = getUtilDate("2000-10-14");
     final Date d7 = getUtilDate("2001-11-27");
 
-    public Client() {
-    }
+    public Client() {}
 
     private static Employee empRef[] = new Employee[5];
     private static Employee2 empRef2[] = new Employee2[5];
@@ -62,6 +60,7 @@ public class Client extends PMClientBase {
             throw new Fault("Setup failed:", e);
         }
     }
+
     public void setupCust(String[] args, Properties p) throws Fault {
         TestUtil.logTrace("setup");
         try {
@@ -70,16 +69,15 @@ public class Client extends PMClientBase {
         } catch (Exception e) {
             TestUtil.logErr("Exception: ", e);
             throw new Fault("Setup failed:", e);
-
         }
     }
     /*
-    * @testName: mapKeyTemporalTest
-    * @assertion_ids: PERSISTENCE:SPEC:2064; PERSISTENCE:SPEC:2065;
-    *                   PERSISTENCE:SPEC:2065.2;
-    * @test_Strategy:
-    *
-    */
+     * @testName: mapKeyTemporalTest
+     * @assertion_ids: PERSISTENCE:SPEC:2064; PERSISTENCE:SPEC:2065;
+     *                   PERSISTENCE:SPEC:2065.2;
+     * @test_Strategy:
+     *
+     */
     public void mapKeyTemporalTest() throws Fault {
 
         boolean pass1 = false;
@@ -92,14 +90,14 @@ public class Client extends PMClientBase {
         try {
             getEntityTransaction().begin();
             Employee emp = getEntityManager().find(Employee.class, 1);
-            TestUtil.logTrace("Name:"  + emp.getLastName());
+            TestUtil.logTrace("Name:" + emp.getLastName());
             Department dept = emp.getDepartment();
             TestUtil.logTrace("Dept=" + dept.getName());
             Map<Date, Employee> emps = dept.getLastNameEmployees();
             if (TestUtil.traceflag) {
                 for (Map.Entry<Date, Employee> entry : emps.entrySet()) {
-                    TestUtil.logTrace("map:" + entry.getKey() + ", " + entry.getValue().getId() + " "
-                            + entry.getValue().getLastName());
+                    TestUtil.logTrace("map:" + entry.getKey() + ", "
+                            + entry.getValue().getId() + " " + entry.getValue().getLastName());
                 }
             }
             Set<Date> keys = emps.keySet();
@@ -126,12 +124,13 @@ public class Client extends PMClientBase {
             sExpected.add(empRef[1]);
             sExpected.add(empRef[2]);
 
-
             Collection<Employee> employees = emps.values();
             for (Employee e : employees) {
                 TestUtil.logTrace("values:" + e.getId() + " " + e.getLastName());
             }
-            if (sExpected.containsAll(employees) && employees.containsAll(sExpected) && sExpected.size() == employees.size()) {
+            if (sExpected.containsAll(employees)
+                    && employees.containsAll(sExpected)
+                    && sExpected.size() == employees.size()) {
                 TestUtil.logTrace("Received expected values");
                 pass2 = true;
             } else {
@@ -157,12 +156,12 @@ public class Client extends PMClientBase {
     }
 
     /*
-    * @testName: mapKeyEnumeratedWithMayKeyClassAnnotationTest
-    * @assertion_ids: PERSISTENCE:SPEC:2066; PERSISTENCE:SPEC:2064;
-    *                  PERSISTENCE:SPEC:2065; PERSISTENCE:SPEC:2065.2;
-    * @test_Strategy:
-    *
-    */
+     * @testName: mapKeyEnumeratedWithMayKeyClassAnnotationTest
+     * @assertion_ids: PERSISTENCE:SPEC:2066; PERSISTENCE:SPEC:2064;
+     *                  PERSISTENCE:SPEC:2065; PERSISTENCE:SPEC:2065.2;
+     * @test_Strategy:
+     *
+     */
     public void mapKeyEnumeratedWithMayKeyClassAnnotationTest() throws Fault {
 
         boolean pass1 = false;
@@ -174,14 +173,14 @@ public class Client extends PMClientBase {
         try {
             getEntityTransaction().begin();
             Employee2 emp = getEntityManager().find(Employee2.class, 2);
-            TestUtil.logTrace("Name:" +  emp.getLastName());
+            TestUtil.logTrace("Name:" + emp.getLastName());
             Department2 dept = emp.getDepartment();
             TestUtil.logTrace("Dept=" + dept.getName());
             Map<Date, Employee2> emps = dept.getLastNameEmployees();
             if (TestUtil.traceflag) {
                 for (Map.Entry<Date, Employee2> entry : emps.entrySet()) {
-                    TestUtil.logTrace("map:" + entry.getKey() + ", " + entry.getValue().getId() + " "
-                            + entry.getValue().getLastName());
+                    TestUtil.logTrace("map:" + entry.getKey() + ", "
+                            + entry.getValue().getId() + " " + entry.getValue().getLastName());
                 }
             }
             Set<Date> keys = emps.keySet();
@@ -207,12 +206,13 @@ public class Client extends PMClientBase {
             sExpected.add(empRef2[0]);
             sExpected.add(empRef2[1]);
 
-
             Collection<Employee2> employees = emps.values();
             for (Employee2 e : employees) {
-                TestUtil.logTrace("values:" + e.getId() + " " +  e.getLastName());
+                TestUtil.logTrace("values:" + e.getId() + " " + e.getLastName());
             }
-            if (sExpected.containsAll(employees) && employees.containsAll(sExpected) && sExpected.size() == employees.size()) {
+            if (sExpected.containsAll(employees)
+                    && employees.containsAll(sExpected)
+                    && sExpected.size() == employees.size()) {
                 TestUtil.logTrace("Received expected values");
                 pass2 = true;
             } else {
@@ -223,7 +223,7 @@ public class Client extends PMClientBase {
                 }
                 TestUtil.logErr("Actual:");
                 for (Employee2 e : employees) {
-                    TestUtil.logTrace("Employee:" + e.getId() + " "  + e.getLastName());
+                    TestUtil.logTrace("Employee:" + e.getId() + " " + e.getLastName());
                 }
             }
             getEntityTransaction().commit();
@@ -236,13 +236,13 @@ public class Client extends PMClientBase {
             throw new Fault("mapKeyEnumeratedWithMayKeyClassAnnotationTest failed");
         }
     }
-   /*
-    * @testName: elementCollectionTest
-    * @assertion_ids: PERSISTENCE:SPEC:2064; PERSISTENCE:SPEC:2065;
-    *                   PERSISTENCE:SPEC:2065.1;
-    * @test_Strategy:
-    */
-   public void elementCollectionTest() throws Fault {
+    /*
+     * @testName: elementCollectionTest
+     * @assertion_ids: PERSISTENCE:SPEC:2064; PERSISTENCE:SPEC:2065;
+     *                   PERSISTENCE:SPEC:2065.1;
+     * @test_Strategy:
+     */
+    public void elementCollectionTest() throws Fault {
 
         boolean pass1 = false;
         boolean pass2 = false;
@@ -253,7 +253,7 @@ public class Client extends PMClientBase {
         try {
             getEntityTransaction().begin();
             Employee4 emp = getEntityManager().find(Employee4.class, 6);
-            TestUtil.logTrace("Name:" +  emp.getLastName());
+            TestUtil.logTrace("Name:" + emp.getLastName());
             Department4 dept = emp.getDepartment();
             TestUtil.logTrace("Dept=" + dept.getName());
             Map<Date, EmbeddedEmployee> emps = dept.getLastNameEmployees();
@@ -286,12 +286,15 @@ public class Client extends PMClientBase {
             sExpected.add(empRef3[0]);
             sExpected.add(empRef3[1]);
 
-
-            Collection<Employee4> employees = emps.values().stream().flatMap(a->Stream.of(new Employee4(a.employeeId, a.employeeName))).collect(Collectors.toList());
+            Collection<Employee4> employees = emps.values().stream()
+                    .flatMap(a -> Stream.of(new Employee4(a.employeeId, a.employeeName)))
+                    .collect(Collectors.toList());
             for (Employee4 e : employees) {
-                TestUtil.logTrace("values:" + e.getId() + " " +  e.getLastName());
+                TestUtil.logTrace("values:" + e.getId() + " " + e.getLastName());
             }
-            if (sExpected.containsAll(employees) && employees.containsAll(sExpected) && sExpected.size() == employees.size()) {
+            if (sExpected.containsAll(employees)
+                    && employees.containsAll(sExpected)
+                    && sExpected.size() == employees.size()) {
                 TestUtil.logTrace("Received expected values");
                 pass2 = true;
             } else {
@@ -302,7 +305,7 @@ public class Client extends PMClientBase {
                 }
                 TestUtil.logErr("Actual:");
                 for (Employee4 e : employees) {
-                    TestUtil.logTrace("Employee:" + e.getId() + " "  + e.getLastName());
+                    TestUtil.logTrace("Employee:" + e.getId() + " " + e.getLastName());
                 }
             }
             getEntityTransaction().commit();
@@ -316,13 +319,12 @@ public class Client extends PMClientBase {
         }
     }
     /*
-    *  Business Methods to set up data for Test Cases
-    */
+     *  Business Methods to set up data for Test Cases
+     */
     private void createTestData() throws Exception {
         TestUtil.logTrace("createTestData");
         try {
             getEntityTransaction().begin();
-
 
             TestUtil.logTrace("Create 2 - Departments");
             Department deptRef[] = new Department[2];
@@ -348,7 +350,6 @@ public class Client extends PMClientBase {
                     TestUtil.logTrace("persisted department2 " + dept.getName());
                 }
             }
-
 
             TestUtil.logTrace("Create 2 - Department3");
             Department4 deptRef3[] = new Department4[2];
@@ -385,7 +386,6 @@ public class Client extends PMClientBase {
             empRef3[1] = new Employee4(7, "Sanborn");
             empRef3[1].setDepartment(deptRef3[0]);
 
-
             Map<Date, Employee> link = new HashMap<Date, Employee>();
 
             link.put(d1, empRef[0]);
@@ -398,7 +398,7 @@ public class Client extends PMClientBase {
             link2.put(d5, empRef2[1]);
             deptRef2[0].setLastNameEmployees(link2);
 
-            Map<Date,EmbeddedEmployee> link3 = new HashMap<Date,EmbeddedEmployee>();
+            Map<Date, EmbeddedEmployee> link3 = new HashMap<Date, EmbeddedEmployee>();
             link3.put(d6, new EmbeddedEmployee(empRef3[0]));
             link3.put(d7, new EmbeddedEmployee(empRef3[1]));
             deptRef3[0].setLastNameEmployees(link3);
@@ -430,7 +430,6 @@ public class Client extends PMClientBase {
                 if (dept != null) {
                     getEntityManager().merge(dept);
                     TestUtil.logTrace("merged Department " + dept.getName());
-
                 }
             }
 
@@ -440,7 +439,6 @@ public class Client extends PMClientBase {
                 if (dept != null) {
                     getEntityManager().merge(dept);
                     TestUtil.logTrace("merged Department2 " + dept.getName());
-
                 }
             }
 
@@ -450,7 +448,6 @@ public class Client extends PMClientBase {
                 if (dept != null) {
                     getEntityManager().merge(dept);
                     TestUtil.logTrace("merged Department3 " + dept.getName());
-
                 }
             }
             getEntityTransaction().commit();
@@ -473,12 +470,14 @@ public class Client extends PMClientBase {
         TestUtil.logTrace("cleanup complete, calling super.cleanup");
         super.cleanup();
     }
+
     public void cleanupCust() throws Fault {
         TestUtil.logTrace("cleanup");
         removeCustTestData();
         TestUtil.logTrace("cleanup complete, calling super.cleanup");
         super.cleanup();
     }
+
     private void removeTestData() {
         TestUtil.logTrace("removeTestData");
 
@@ -502,26 +501,27 @@ public class Client extends PMClientBase {
             }
         }
     }
+
     private void removeCustTestData() {
-         TestUtil.logTrace("removeCustTestData");
-         if (getEntityTransaction().isActive()) {
-             getEntityTransaction().rollback();
-         }
-         try {
-             getEntityTransaction().begin();
-             getEntityManager().createNativeQuery("DELETE FROM CUST_TABLE").executeUpdate();
-             getEntityManager().createNativeQuery("DELETE FROM DATES_TABLE").executeUpdate();
-             getEntityTransaction().commit();
-         } catch (Exception e) {
-             TestUtil.logErr("Exception encountered while removing entities:", e);
-         } finally {
-             try {
-                 if (getEntityTransaction().isActive()) {
-                     getEntityTransaction().rollback();
-                 }
-             } catch (Exception re) {
-                 TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-             }
-         }
-     }
+        TestUtil.logTrace("removeCustTestData");
+        if (getEntityTransaction().isActive()) {
+            getEntityTransaction().rollback();
+        }
+        try {
+            getEntityTransaction().begin();
+            getEntityManager().createNativeQuery("DELETE FROM CUST_TABLE").executeUpdate();
+            getEntityManager().createNativeQuery("DELETE FROM DATES_TABLE").executeUpdate();
+            getEntityTransaction().commit();
+        } catch (Exception e) {
+            TestUtil.logErr("Exception encountered while removing entities:", e);
+        } finally {
+            try {
+                if (getEntityTransaction().isActive()) {
+                    getEntityTransaction().rollback();
+                }
+            } catch (Exception re) {
+                TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+            }
+        }
+    }
 }

@@ -19,18 +19,15 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.geteffectivemajorversion;
 
-import java.util.Set;
-
 import jakarta.servlet.ServletContainerInitializer;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
+import java.util.Set;
 
-public class TCKServletContainerInitializer
-    implements ServletContainerInitializer {
+public class TCKServletContainerInitializer implements ServletContainerInitializer {
 
-  public void onStartup(Set<Class<?>> arg0, ServletContext context)
-      throws ServletException {
-    context.addListener(
-        com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.geteffectivemajorversion.TestListener.class);
-  }
+    public void onStartup(Set<Class<?>> arg0, ServletContext context) throws ServletException {
+        context.addListener(
+                com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.geteffectivemajorversion.TestListener.class);
+    }
 }

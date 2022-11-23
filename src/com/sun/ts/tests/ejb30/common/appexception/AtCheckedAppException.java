@@ -20,37 +20,35 @@
 
 package com.sun.ts.tests.ejb30.common.appexception;
 
-import java.io.Serializable;
-
 import jakarta.ejb.ApplicationException;
+import java.io.Serializable;
 
 @ApplicationException
 public class AtCheckedAppException extends Exception implements Serializable {
 
-  public AtCheckedAppException() {
-    super();
-  }
+    public AtCheckedAppException() {
+        super();
+    }
 
-  /**
-   * @param message
-   */
-  public AtCheckedAppException(String message) {
-    super(message);
-  }
+    /**
+     * @param message
+     */
+    public AtCheckedAppException(String message) {
+        super(message);
+    }
 
-  /**
-   * @param message
-   * @param cause
-   */
-  public AtCheckedAppException(String message, Throwable cause) {
-    super(message, cause);
-  }
+    /**
+     * @param message
+     * @param cause
+     */
+    public AtCheckedAppException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-  /**
-   * @param cause
-   */
-  public AtCheckedAppException(Throwable cause) {
-    super(cause);
-  }
-
+    /**
+     * @param cause
+     */
+    public AtCheckedAppException(Throwable cause) {
+        super(cause);
+    }
 }

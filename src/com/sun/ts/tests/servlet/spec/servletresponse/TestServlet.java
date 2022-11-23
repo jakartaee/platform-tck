@@ -20,43 +20,39 @@
 
 package com.sun.ts.tests.servlet.spec.servletresponse;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet extends GenericServlet {
 
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-    response.setContentType("text/plain");
-    PrintWriter pw = response.getWriter();
+        response.setContentType("text/plain");
+        PrintWriter pw = response.getWriter();
 
-    pw.write("flushBufferTest for compatibility\n\r");
-    System.out.println("flushBufferTest for compatibility");
-    response.flushBuffer();
+        pw.write("flushBufferTest for compatibility\n\r");
+        System.out.println("flushBufferTest for compatibility");
+        response.flushBuffer();
 
-    try {
-      Thread.sleep(10000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // write the second part of the document and flush by exit method
+        pw.write("Test Failed\n\r");
     }
 
-    // write the second part of the document and flush by exit method
-    pw.write("Test Failed\n\r");
-  }
+    public void doGet(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        service(request, response);
+    }
 
-  public void doGet(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    service(request, response);
-  }
-
-  public void doPost(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    service(request, response);
-  }
+    public void doPost(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        service(request, response);
+    }
 }

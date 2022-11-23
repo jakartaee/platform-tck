@@ -24,7 +24,6 @@ import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest;
-
 import jakarta.ejb.Remote;
 import jakarta.ejb.Singleton;
 
@@ -32,21 +31,21 @@ import jakarta.ejb.Singleton;
 @Remote(AppResRemoteIF.class)
 public class DataSourceBean extends AppResBeanBase {
 
-  private void nonPostConstruct() {
-    ServiceLocator.lookupShouldFail("java:app/datasource/twojars/2/appds",
-        postConstructRecords);
-    Helper.getLogger().info(postConstructRecords.toString());
+    private void nonPostConstruct() {
+        ServiceLocator.lookupShouldFail("java:app/datasource/twojars/2/appds", postConstructRecords);
+        Helper.getLogger().info(postConstructRecords.toString());
 
-    DataSourceTest.verifyDataSource(postConstructRecords, false,
-        "java:global/datasource/twojars/appclient/globalds",
-        "java:app/datasource/twojars/appclient/appds",
+        DataSourceTest.verifyDataSource(
+                postConstructRecords,
+                false,
+                "java:global/datasource/twojars/appclient/globalds",
+                "java:app/datasource/twojars/appclient/appds",
+                "java:global/datasource/twojars/2/globalds");
+    }
 
-        "java:global/datasource/twojars/2/globalds");
-  }
-
-  @Override
-  public StringBuilder getPostConstructRecords() {
-    nonPostConstruct();
-    return super.getPostConstructRecords();
-  }
+    @Override
+    public StringBuilder getPostConstructRecords() {
+        nonPostConstruct();
+        return super.getPostConstructRecords();
+    }
 }

@@ -17,9 +17,9 @@
 package com.sun.ts.tests.jacc.ejb.methodperm;
 
 public interface MethodPermInterface {
-  public boolean protectedByRoleManager();
+    public boolean protectedByRoleManager();
 
-  public boolean protectedByRoleAdminAndManager();
+    public boolean protectedByRoleAdminAndManager();
 
-  public boolean protectedByAnyAuthUser();
+    public boolean protectedByAnyAuthUser();
 }

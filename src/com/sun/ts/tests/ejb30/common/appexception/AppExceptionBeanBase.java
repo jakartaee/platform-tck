@@ -22,46 +22,44 @@ package com.sun.ts.tests.ejb30.common.appexception;
 import jakarta.annotation.Resource;
 import jakarta.ejb.SessionContext;
 
-abstract public class AppExceptionBeanBase
-    implements AppExceptionIF, AppExceptionLocalIF {
-  @Resource(description = "just to see if descripton field works or not.  It should map to <resource-env-ref>/<description> xml element.")
-  private SessionContext sessionContext;
+public abstract class AppExceptionBeanBase implements AppExceptionIF, AppExceptionLocalIF {
+    @Resource(
+            description =
+                    "just to see if descripton field works or not.  It should map to <resource-env-ref>/<description> xml element.")
+    private SessionContext sessionContext;
 
-  public void checkedAppException() throws CheckedAppException {
-    throw new CheckedAppException();
-  }
+    public void checkedAppException() throws CheckedAppException {
+        throw new CheckedAppException();
+    }
 
-  public void uncheckedAppException() throws UncheckedAppException {
-    throw new UncheckedAppException();
-  }
+    public void uncheckedAppException() throws UncheckedAppException {
+        throw new UncheckedAppException();
+    }
 
-  public void uncheckedRollbackAppException()
-      throws UncheckedRollbackAppException {
-    throw new UncheckedRollbackAppException();
-  }
+    public void uncheckedRollbackAppException() throws UncheckedRollbackAppException {
+        throw new UncheckedRollbackAppException();
+    }
 
-  public void checkedRollbackAppException() throws CheckedRollbackAppException {
-    throw new CheckedRollbackAppException();
-  }
+    public void checkedRollbackAppException() throws CheckedRollbackAppException {
+        throw new CheckedRollbackAppException();
+    }
 
-  //////////////////////////////////////////////////////////////////////
-  // for /at/ and /override/ only
-  //////////////////////////////////////////////////////////////////////
-  public void atUncheckedAppException() throws AtUncheckedAppException {
-    throw new AtUncheckedAppException();
-  }
+    //////////////////////////////////////////////////////////////////////
+    // for /at/ and /override/ only
+    //////////////////////////////////////////////////////////////////////
+    public void atUncheckedAppException() throws AtUncheckedAppException {
+        throw new AtUncheckedAppException();
+    }
 
-  public void atCheckedAppException() throws AtCheckedAppException {
-    throw new AtCheckedAppException();
-  }
+    public void atCheckedAppException() throws AtCheckedAppException {
+        throw new AtCheckedAppException();
+    }
 
-  public void atUncheckedRollbackAppException()
-      throws AtUncheckedRollbackAppException {
-    throw new AtUncheckedRollbackAppException();
-  }
+    public void atUncheckedRollbackAppException() throws AtUncheckedRollbackAppException {
+        throw new AtUncheckedRollbackAppException();
+    }
 
-  public void atCheckedRollbackAppException()
-      throws AtCheckedRollbackAppException {
-    throw new AtCheckedRollbackAppException();
-  }
+    public void atCheckedRollbackAppException() throws AtCheckedRollbackAppException {
+        throw new AtCheckedRollbackAppException();
+    }
 }

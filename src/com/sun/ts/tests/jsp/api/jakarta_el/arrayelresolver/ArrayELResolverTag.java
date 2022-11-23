@@ -16,37 +16,34 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_el.arrayelresolver;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.el.ArrayELResolver;
 import jakarta.el.ELContext;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class ArrayELResolverTag extends SimpleTagSupport {
 
-  public void doTag() throws JspException, IOException {
+    public void doTag() throws JspException, IOException {
 
-    StringBuffer buf = new StringBuffer();
-    String[] colors = { "red", "blue", "green" };
-    JspWriter out = getJspContext().getOut();
-    ELContext context = getJspContext().getELContext();
-    ArrayELResolver arrayResolver = new ArrayELResolver();
+        StringBuffer buf = new StringBuffer();
+        String[] colors = {"red", "blue", "green"};
+        JspWriter out = getJspContext().getOut();
+        ELContext context = getJspContext().getELContext();
+        ArrayELResolver arrayResolver = new ArrayELResolver();
 
-    try {
-      boolean pass = ResolverTest.testELResolver(context, arrayResolver, colors,
-          Integer.valueOf(1), "yellow", buf, false);
-      out.println(buf.toString());
-      if (pass == true)
-        out.println("Test PASSED");
+        try {
+            boolean pass = ResolverTest.testELResolver(
+                    context, arrayResolver, colors, Integer.valueOf(1), "yellow", buf, false);
+            out.println(buf.toString());
+            if (pass == true) out.println("Test PASSED");
 
-    } catch (Throwable t) {
-      out.println("buffer is " + buf.toString());
-      JspTestUtil.handleThrowable(t, out, "ArrayELResolverTag");
+        } catch (Throwable t) {
+            out.println("buffer is " + buf.toString());
+            JspTestUtil.handleThrowable(t, out, "ArrayELResolverTag");
+        }
     }
-  }
 }

@@ -17,12 +17,9 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.client;
 
-import java.io.InputStream;
-
 import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
 import com.sun.ts.tests.websocket.common.client.StringClientEndpoint;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.AlternativeInputStreamDecoder;
-
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -30,32 +27,31 @@ import jakarta.websocket.OnClose;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
+import java.io.InputStream;
 
-@ClientEndpoint(decoders = { AlternativeInputStreamDecoder.class })
+@ClientEndpoint(decoders = {AlternativeInputStreamDecoder.class})
 public class AnnotatedBinaryClient extends AnnotatedClientEndpoint<String> {
 
-  public AnnotatedBinaryClient() {
-    super(new StringClientEndpoint());
-  }
+    public AnnotatedBinaryClient() {
+        super(new StringClientEndpoint());
+    }
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    session.addMessageHandler(InputStream.class,
-        new InputStreamMessageHandler(clientEndpoint));
-    super.onOpen(session, config);
-  }
+    @Override
+    @OnOpen
+    public void onOpen(Session session, EndpointConfig config) {
+        session.addMessageHandler(InputStream.class, new InputStreamMessageHandler(clientEndpoint));
+        super.onOpen(session, config);
+    }
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+    @OnClose
+    @Override
+    public void onClose(Session session, CloseReason closeReason) {
+        super.onClose(session, closeReason);
+    }
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
-
+    @OnError
+    @Override
+    public void onError(Session session, Throwable t) {
+        super.onError(session, t);
+    }
 }

@@ -20,25 +20,21 @@
 
 package com.sun.ts.tests.servlet.spec.security.secform;
 
-import java.io.IOException;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public class ControlServlet extends HttpServlet {
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    // Using RequestDispatcher's forward() method the request to
-    // to ControlServlet is forwarded to ForwardedServlet
-    String path = "/ForwardedServlet";
-    RequestDispatcher requestDispatcher = getServletContext()
-        .getRequestDispatcher(path);
-    requestDispatcher.forward(request, response);
-
-  }
+        // Using RequestDispatcher's forward() method the request to
+        // to ControlServlet is forwarded to ForwardedServlet
+        String path = "/ForwardedServlet";
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(path);
+        requestDispatcher.forward(request, response);
+    }
 }

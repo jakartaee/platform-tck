@@ -21,5 +21,4 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotate
 
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF;
 
-public interface StatefulConcurrencyRemoteIF extends StatefulConcurrencyIF {
-}
+public interface StatefulConcurrencyRemoteIF extends StatefulConcurrencyIF {}

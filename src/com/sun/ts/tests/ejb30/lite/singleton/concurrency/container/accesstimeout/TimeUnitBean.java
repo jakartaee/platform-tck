@@ -19,14 +19,12 @@
  */
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout;
 
-import java.util.concurrent.TimeUnit;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.ejb.AccessTimeout;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
 import jakarta.interceptor.Interceptors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * The purpose of this class is to verify various TimeUnit can be processed as
@@ -35,63 +33,63 @@ import jakarta.interceptor.Interceptors;
 @Singleton(name = "TimeUnit")
 @Startup
 public class TimeUnitBean {
-  // This method returns a resultVal immediately, but its interceptor around-
-  // invoke method waits for waitVal millis.
-  @AccessTimeout(value = 1000)
-  @Interceptors(Interceptor1.class)
-  public int timeoutInterceptor(long waitVal, int resultVal) {
-    return resultVal;
-  }
+    // This method returns a resultVal immediately, but its interceptor around-
+    // invoke method waits for waitVal millis.
+    @AccessTimeout(value = 1000)
+    @Interceptors(Interceptor1.class)
+    public int timeoutInterceptor(long waitVal, int resultVal) {
+        return resultVal;
+    }
 
-  @AccessTimeout(value = 0) // concurrent access not allowed
-  public int zero(long waitVal, int resultVal) {
-    return waitAndReturn(waitVal, resultVal);
-  }
+    @AccessTimeout(value = 0) // concurrent access not allowed
+    public int zero(long waitVal, int resultVal) {
+        return waitAndReturn(waitVal, resultVal);
+    }
 
-  @AccessTimeout(value = -1) // keep waiting
-  public int minus1(long waitVal, int resultVal) {
-    return waitAndReturn(waitVal, resultVal);
-  }
+    @AccessTimeout(value = -1) // keep waiting
+    public int minus1(long waitVal, int resultVal) {
+        return waitAndReturn(waitVal, resultVal);
+    }
 
-  @AccessTimeout(value = 1000)
-  public int defaults(long waitVal, int resultVal) {
-    return waitAndReturn(waitVal, resultVal);
-  }
+    @AccessTimeout(value = 1000)
+    public int defaults(long waitVal, int resultVal) {
+        return waitAndReturn(waitVal, resultVal);
+    }
 
-  // 1 billion nano is 1 second
-  @AccessTimeout(unit = TimeUnit.NANOSECONDS, value = 1000000000)
-  public int nanoseconds(long waitVal, int resultVal) {
-    return waitAndReturn(waitVal, resultVal);
-  }
+    // 1 billion nano is 1 second
+    @AccessTimeout(unit = TimeUnit.NANOSECONDS, value = 1000000000)
+    public int nanoseconds(long waitVal, int resultVal) {
+        return waitAndReturn(waitVal, resultVal);
+    }
 
-  // 1 million micro is 1 second
-  @AccessTimeout(unit = TimeUnit.MICROSECONDS, value = 1000000)
-  public int microseconds(long waitVal, int resultVal) {
-    return waitAndReturn(waitVal, resultVal);
-  }
+    // 1 million micro is 1 second
+    @AccessTimeout(unit = TimeUnit.MICROSECONDS, value = 1000000)
+    public int microseconds(long waitVal, int resultVal) {
+        return waitAndReturn(waitVal, resultVal);
+    }
 
-  @AccessTimeout(unit = TimeUnit.SECONDS, value = 1)
-  public int seconds(long waitVal, int resultVal) {
-    return waitAndReturn(waitVal, resultVal);
-  }
+    @AccessTimeout(unit = TimeUnit.SECONDS, value = 1)
+    public int seconds(long waitVal, int resultVal) {
+        return waitAndReturn(waitVal, resultVal);
+    }
 
-  @AccessTimeout(unit = TimeUnit.DAYS, value = 1)
-  public int days(long waitVal, int resultVal) {
-    return waitAndReturn(waitVal, resultVal);
-  }
+    @AccessTimeout(unit = TimeUnit.DAYS, value = 1)
+    public int days(long waitVal, int resultVal) {
+        return waitAndReturn(waitVal, resultVal);
+    }
 
-  @AccessTimeout(unit = TimeUnit.HOURS, value = 1)
-  public int hours(long waitVal, int resultVal) {
-    return waitAndReturn(waitVal, resultVal);
-  }
+    @AccessTimeout(unit = TimeUnit.HOURS, value = 1)
+    public int hours(long waitVal, int resultVal) {
+        return waitAndReturn(waitVal, resultVal);
+    }
 
-  @AccessTimeout(unit = TimeUnit.MINUTES, value = Integer.MAX_VALUE)
-  public int minutes(long waitVal, int resultVal) {
-    return waitAndReturn(waitVal, resultVal);
-  }
+    @AccessTimeout(unit = TimeUnit.MINUTES, value = Integer.MAX_VALUE)
+    public int minutes(long waitVal, int resultVal) {
+        return waitAndReturn(waitVal, resultVal);
+    }
 
-  private int waitAndReturn(long waitVal, int resultVal) {
-    Helper.busyWait(waitVal);
-    return resultVal;
-  }
+    private int waitAndReturn(long waitVal, int resultVal) {
+        Helper.busyWait(waitVal);
+        return resultVal;
+    }
 }

@@ -24,11 +24,11 @@ import jakarta.servlet.ServletContextListener;
 
 public class SCListener implements ServletContextListener {
 
-  public void contextDestroyed(ServletContextEvent event) {
-    System.out.print("SCListener Destroyed.");
-  }
+    public void contextDestroyed(ServletContextEvent event) {
+        System.out.print("SCListener Destroyed.");
+    }
 
-  public void contextInitialized(ServletContextEvent event) {
-    System.out.print("SCListener Initialized.");
-  }
+    public void contextInitialized(ServletContextEvent event) {
+        System.out.print("SCListener Initialized.");
+    }
 }

@@ -20,74 +20,70 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.exceptionerrortest;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
+import java.util.Properties;
 
 public class TestBeanEJB implements SessionBean {
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  private Properties harnessProps = null;
+    private Properties harnessProps = null;
 
-  public void ejbCreate(Properties p, boolean throwCreate)
-      throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    if (throwCreate)
-      throw new CreateException("a create exception");
-    harnessProps = p;
-    try {
-      TestUtil.logMsg("initialize remote logging");
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException(e.getMessage());
+    public void ejbCreate(Properties p, boolean throwCreate) throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        if (throwCreate) throw new CreateException("a create exception");
+        harnessProps = p;
+        try {
+            TestUtil.logMsg("initialize remote logging");
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException(e.getMessage());
+        }
     }
-  }
 
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-  }
+    public void setSessionContext(SessionContext sc) {
+        TestUtil.logTrace("setSessionContext");
+        this.sctx = sc;
+    }
 
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
 
-  // ===========================================================
-  // TestBean interface (our business methods)
+    // ===========================================================
+    // TestBean interface (our business methods)
 
-  public void throwMyApplicationException() throws MyApplicationException {
-    TestUtil.logTrace("throwMyApplicationException");
-    throw new MyApplicationException("an application exception");
-  }
+    public void throwMyApplicationException() throws MyApplicationException {
+        TestUtil.logTrace("throwMyApplicationException");
+        throw new MyApplicationException("an application exception");
+    }
 
-  public void throwEJBException() {
-    TestUtil.logTrace("throwEJBException");
-    throw new EJBException("an EJB exception");
-  }
+    public void throwEJBException() {
+        TestUtil.logTrace("throwEJBException");
+        throw new EJBException("an EJB exception");
+    }
 
-  public void throwError() {
-    TestUtil.logTrace("throwError");
-    throw new Error("an error");
-  }
+    public void throwError() {
+        TestUtil.logTrace("throwError");
+        throw new Error("an error");
+    }
 
-  public void ping() {
-    TestUtil.logTrace("ping");
-  }
+    public void ping() {
+        TestUtil.logTrace("ping");
+    }
 
-  // ===========================================================
+    // ===========================================================
 }

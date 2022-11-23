@@ -19,51 +19,47 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequest30;
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class AsyncTests extends GenericServlet {
 
-  private static final String TEST_HEADER = "testname";
+    private static final String TEST_HEADER = "testname";
 
-  private static final Class[] TEST_ARGS = { ServletRequest.class,
-      ServletResponse.class };
+    private static final Class[] TEST_ARGS = {ServletRequest.class, ServletResponse.class};
 
-  public void service(ServletRequest req, ServletResponse res)
-      throws ServletException, IOException {
-    String test = req.getParameter(TEST_HEADER);
-    try {
-      Method method = this.getClass().getMethod(test, TEST_ARGS);
-      method.invoke(this, new Object[] { req, res });
-    } catch (InvocationTargetException ite) {
-      throw new ServletException(ite.getTargetException());
-    } catch (NoSuchMethodException nsme) {
-      throw new ServletException("Test: " + test + " does not exist");
-    } catch (Throwable t) {
-      throw new ServletException("Error executing test: " + test, t);
+    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+        String test = req.getParameter(TEST_HEADER);
+        try {
+            Method method = this.getClass().getMethod(test, TEST_ARGS);
+            method.invoke(this, new Object[] {req, res});
+        } catch (InvocationTargetException ite) {
+            throw new ServletException(ite.getTargetException());
+        } catch (NoSuchMethodException nsme) {
+            throw new ServletException("Test: " + test + " does not exist");
+        } catch (Throwable t) {
+            throw new ServletException("Error executing test: " + test, t);
+        }
     }
-  }
 
-  public void getDispatcherTypeTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-    // Make sure that Asyn process last long enough for tesing purpose
-    try {
-      Thread.currentThread().sleep(5000);
-    } catch (InterruptedException ie) {
-      // do nothing, shouldn't fail
+    public void getDispatcherTypeTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        // Make sure that Asyn process last long enough for tesing purpose
+        try {
+            Thread.currentThread().sleep(5000);
+        } catch (InterruptedException ie) {
+            // do nothing, shouldn't fail
+        }
+        response.getWriter().println("DispatcherType=" + request.getDispatcherType());
     }
-    response.getWriter()
-        .println("DispatcherType=" + request.getDispatcherType());
-  }
 
-  public void isAsyncStartedTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-    response.getWriter().println("IsAsyncStarted=" + request.isAsyncStarted());
-  }
+    public void isAsyncStartedTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        response.getWriter().println("IsAsyncStarted=" + request.isAsyncStarted());
+    }
 }

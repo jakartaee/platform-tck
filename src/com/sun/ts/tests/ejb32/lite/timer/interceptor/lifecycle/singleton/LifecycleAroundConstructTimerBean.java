@@ -17,7 +17,6 @@
 package com.sun.ts.tests.ejb32.lite.timer.interceptor.lifecycle.singleton;
 
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.Singleton;
@@ -25,13 +24,12 @@ import jakarta.interceptor.Interceptors;
 
 @Singleton
 // Interceptor1 is also configured as the default interceptor
-@Interceptors({ Interceptor1.class, Interceptor10.class })
+@Interceptors({Interceptor1.class, Interceptor10.class})
 public class LifecycleAroundConstructTimerBean extends LifecycleTimerBeanBase {
-  @SuppressWarnings("unused")
-  @PreDestroy
-  @PostConstruct
-  private void postConstruct() {
-    TimerUtil.createMillisecondLaterTimer(timerService,
-        "LifecycleAroundConstructTimerBean.postConstruct", false);
-  }
+    @SuppressWarnings("unused")
+    @PreDestroy
+    @PostConstruct
+    private void postConstruct() {
+        TimerUtil.createMillisecondLaterTimer(timerService, "LifecycleAroundConstructTimerBean.postConstruct", false);
+    }
 }

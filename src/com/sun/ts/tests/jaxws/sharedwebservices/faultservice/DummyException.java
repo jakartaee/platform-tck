@@ -22,35 +22,35 @@ package com.sun.ts.tests.jaxws.sharedwebservices.faultservice;
 
 public class DummyException extends Exception {
 
-  /**
-   * These dummy fields exist to testMessage Java -> WSDL mapping for
-   * Exceptions. JAXWS spec says that fields map to extra elements in the
-   * soap:Fault. Basic Profile R1000 says extra fields aren't allowed in
-   * soap:Faults
-   */
-  private String dummyField1;
+    /**
+     * These dummy fields exist to testMessage Java -> WSDL mapping for
+     * Exceptions. JAXWS spec says that fields map to extra elements in the
+     * soap:Fault. Basic Profile R1000 says extra fields aren't allowed in
+     * soap:Faults
+     */
+    private String dummyField1;
 
-  private String dummyField2;
+    private String dummyField2;
 
-  public DummyException(String dummyField1, String dummyField2) {
-    super();
-    this.dummyField1 = dummyField1;
-    this.dummyField2 = dummyField2;
-  }
+    public DummyException(String dummyField1, String dummyField2) {
+        super();
+        this.dummyField1 = dummyField1;
+        this.dummyField2 = dummyField2;
+    }
 
-  public String getDummyField1() {
-    return dummyField1;
-  }
+    public String getDummyField1() {
+        return dummyField1;
+    }
 
-  public void setDummyField1(String dummyField1) {
-    this.dummyField1 = dummyField1;
-  }
+    public void setDummyField1(String dummyField1) {
+        this.dummyField1 = dummyField1;
+    }
 
-  public String getDummyField2() {
-    return dummyField2;
-  }
+    public String getDummyField2() {
+        return dummyField2;
+    }
 
-  public void setDummyField2(String dummyField2) {
-    this.dummyField2 = dummyField2;
-  }
+    public void setDummyField2(String dummyField2) {
+        this.dummyField2 = dummyField2;
+    }
 }

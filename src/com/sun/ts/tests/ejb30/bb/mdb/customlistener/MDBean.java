@@ -20,7 +20,6 @@ import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
 import com.sun.ts.tests.ejb30.common.callback.CallbackBeanBase;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.ActivationConfigProperty;
@@ -50,57 +49,60 @@ import jakarta.jms.QueueConnectionFactory;
  * Note: This MDB makes use of the whitebox-tx resource adapter from connector
  * test area.
  */
-
-@MessageDriven(name = "MDBean", messageListenerInterface = TSMessageListenerInterface.class, activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "java.lang.String") })
+@MessageDriven(
+        name = "MDBean",
+        messageListenerInterface = TSMessageListenerInterface.class,
+        activationConfig = {
+            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "java.lang.String")
+        })
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public class MDBean extends CallbackBeanBase
-    implements TSMessageListenerInterface {
-  @Resource(name = "mdc")
-  private MessageDrivenContext mdc;
+public class MDBean extends CallbackBeanBase implements TSMessageListenerInterface {
+    @Resource(name = "mdc")
+    private MessageDrivenContext mdc;
 
-  @Resource(name = "qFactory")
-  private QueueConnectionFactory qFactory;
+    @Resource(name = "qFactory")
+    private QueueConnectionFactory qFactory;
 
-  @Resource(name = "replyQueue")
-  private Queue replyQueue;
+    @Resource(name = "replyQueue")
+    private Queue replyQueue;
 
-  private static boolean replySent = false;
+    private static boolean replySent = false;
 
-  public MDBean() {
-    super();
-  }
-
-  public EJBContext getEJBContext() {
-    return this.mdc;
-  }
-
-  // This method should called during PostConstruct of this bean.
-  @PostConstruct
-  private void setValue() {
-    this.setPostConstructCalled(true);
-  }
-
-  @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-  public void onMessage(String msg) {
-    boolean status = false;
-    String reason = null;
-    String testname = "isPostConstructCalledTest";
-    TLogger.log("**** MDBean onMessage called with message = " + msg + " ****");
-
-    status = isPostConstructCalled();
-    reason = "isPostConstructCalled() in onMessage returns: " + status;
-    TLogger.log(reason);
-
-    // Send only one reply (This is to filter out all the unwanted messages
-    // from whitebox-tx resource adapter)
-    if (!replySent) {
-      StatusReporter.report(testname, status, reason,
-          (QueueConnectionFactory) getEJBContext().lookup("qFactory"),
-          (Queue) getEJBContext().lookup("replyQueue"));
-      replySent = true;
-
+    public MDBean() {
+        super();
     }
-  }
 
+    public EJBContext getEJBContext() {
+        return this.mdc;
+    }
+
+    // This method should called during PostConstruct of this bean.
+    @PostConstruct
+    private void setValue() {
+        this.setPostConstructCalled(true);
+    }
+
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+    public void onMessage(String msg) {
+        boolean status = false;
+        String reason = null;
+        String testname = "isPostConstructCalledTest";
+        TLogger.log("**** MDBean onMessage called with message = " + msg + " ****");
+
+        status = isPostConstructCalled();
+        reason = "isPostConstructCalled() in onMessage returns: " + status;
+        TLogger.log(reason);
+
+        // Send only one reply (This is to filter out all the unwanted messages
+        // from whitebox-tx resource adapter)
+        if (!replySent) {
+            StatusReporter.report(
+                    testname,
+                    status,
+                    reason,
+                    (QueueConnectionFactory) getEJBContext().lookup("qFactory"),
+                    (Queue) getEJBContext().lookup("replyQueue"));
+            replySent = true;
+        }
+    }
 }

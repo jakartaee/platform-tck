@@ -18,46 +18,46 @@
  * $Id$
  */
 
-/* 
- * Simple multi-member class to be used for type coercion tests. 
+/*
+ * Simple multi-member class to be used for type coercion tests.
  */
 
 package com.sun.ts.tests.common.el.spec;
 
 public class Book {
 
-  private String title;
+    private String title;
 
-  private String authors;
+    private String authors;
 
-  private String publisher;
+    private String publisher;
 
-  private int year;
+    private int year;
 
-  public Book(String title, String authors, String publisher, int year) {
-    this.title = title;
-    this.authors = authors;
-    this.publisher = publisher;
-    this.year = year;
-  }
+    public Book(String title, String authors, String publisher, int year) {
+        this.title = title;
+        this.authors = authors;
+        this.publisher = publisher;
+        this.year = year;
+    }
 
-  public String getTitle() {
-    return title;
-  }
+    public String getTitle() {
+        return title;
+    }
 
-  public String getAuthors() {
-    return authors;
-  }
+    public String getAuthors() {
+        return authors;
+    }
 
-  public String getPublisher() {
-    return publisher;
-  }
+    public String getPublisher() {
+        return publisher;
+    }
 
-  public int getYear() {
-    return year;
-  }
+    public int getYear() {
+        return year;
+    }
 
-  public String toString() {
-    return getTitle();
-  }
+    public String toString() {
+        return getTitle();
+    }
 }

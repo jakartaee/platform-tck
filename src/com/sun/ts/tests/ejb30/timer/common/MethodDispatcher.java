@@ -20,89 +20,83 @@
 
 package com.sun.ts.tests.ejb30.timer.common;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.messaging.StatusReporter;
-
 import jakarta.ejb.Timer;
 import jakarta.jms.Message;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * A class that reflectively dispatches to the method corresponding to the test
  * method, and sends the reply message.
  */
-abstract public class MethodDispatcher {
-  public static final String TIMEOUT_PREFIX = "timeOut_";
+public abstract class MethodDispatcher {
+    public static final String TIMEOUT_PREFIX = "timeOut_";
 
-  public static final String ONMESSAGE_PREFIX = "onMessage_";
+    public static final String ONMESSAGE_PREFIX = "onMessage_";
 
-  protected MethodDispatcher() {
-    super();
-  }
+    protected MethodDispatcher() {
+        super();
+    }
 
-  public static void dispatchTimeOut(Timer timer, Object target,
-      QueueConnectionFactory qfactory, Queue queue) {
-    // test method example: public void test1(Timer timer, TimerInfo ti)
-    TimerInfo ti = (TimerInfo) timer.getInfo();
-    final String testname = ti.getTestName();
-    if (testname == null) {
-      throw new IllegalStateException("testname is null in timer info: " + ti);
+    public static void dispatchTimeOut(Timer timer, Object target, QueueConnectionFactory qfactory, Queue queue) {
+        // test method example: public void test1(Timer timer, TimerInfo ti)
+        TimerInfo ti = (TimerInfo) timer.getInfo();
+        final String testname = ti.getTestName();
+        if (testname == null) {
+            throw new IllegalStateException("testname is null in timer info: " + ti);
+        }
+        String methodName = TIMEOUT_PREFIX + testname;
+        Method method = null;
+        Throwable exception = null;
+        boolean testResult = false;
+        String reason = null;
+        try {
+            method = target.getClass().getMethod(methodName, Timer.class, TimerInfo.class);
+            method.invoke(target, timer, ti);
+        } catch (SecurityException ex) {
+            exception = ex;
+        } catch (NoSuchMethodException ex) {
+            exception = ex;
+        } catch (IllegalAccessException ex) {
+            exception = ex;
+        } catch (InvocationTargetException ex) {
+            exception = ex.getTargetException();
+        }
+        if (exception == null) {
+            testResult = true;
+            reason = "TimeOut in " + target;
+        } else {
+            testResult = false;
+            reason = TestUtil.printStackTraceToString(exception);
+        }
+        StatusReporter.report(testname, testResult, reason, qfactory, queue);
     }
-    String methodName = TIMEOUT_PREFIX + testname;
-    Method method = null;
-    Throwable exception = null;
-    boolean testResult = false;
-    String reason = null;
-    try {
-      method = target.getClass().getMethod(methodName, Timer.class,
-          TimerInfo.class);
-      method.invoke(target, timer, ti);
-    } catch (SecurityException ex) {
-      exception = ex;
-    } catch (NoSuchMethodException ex) {
-      exception = ex;
-    } catch (IllegalAccessException ex) {
-      exception = ex;
-    } catch (InvocationTargetException ex) {
-      exception = ex.getTargetException();
-    }
-    if (exception == null) {
-      testResult = true;
-      reason = "TimeOut in " + target;
-    } else {
-      testResult = false;
-      reason = TestUtil.printStackTraceToString(exception);
-    }
-    StatusReporter.report(testname, testResult, reason, qfactory, queue);
-  }
 
-  public static void dispatchOnMessage(Message msg, Object target,
-      final String testname) {
-    if (testname == null) {
-      throw new IllegalStateException(
-          "testname is null when trying to dispatch to " + target);
+    public static void dispatchOnMessage(Message msg, Object target, final String testname) {
+        if (testname == null) {
+            throw new IllegalStateException("testname is null when trying to dispatch to " + target);
+        }
+        String methodName = ONMESSAGE_PREFIX + testname;
+        Method method = null;
+        Throwable exception = null;
+        try {
+            method = target.getClass().getMethod(methodName, Message.class);
+            method.invoke(target, msg);
+        } catch (SecurityException ex) {
+            exception = ex;
+        } catch (NoSuchMethodException ex) {
+            exception = ex;
+        } catch (IllegalAccessException ex) {
+            exception = ex;
+        } catch (InvocationTargetException ex) {
+            exception = ex.getTargetException();
+        }
+        if (exception != null) {
+            throw new IllegalStateException(exception);
+        }
     }
-    String methodName = ONMESSAGE_PREFIX + testname;
-    Method method = null;
-    Throwable exception = null;
-    try {
-      method = target.getClass().getMethod(methodName, Message.class);
-      method.invoke(target, msg);
-    } catch (SecurityException ex) {
-      exception = ex;
-    } catch (NoSuchMethodException ex) {
-      exception = ex;
-    } catch (IllegalAccessException ex) {
-      exception = ex;
-    } catch (InvocationTargetException ex) {
-      exception = ex.getTargetException();
-    }
-    if (exception != null) {
-      throw new IllegalStateException(exception);
-    }
-  }
 }

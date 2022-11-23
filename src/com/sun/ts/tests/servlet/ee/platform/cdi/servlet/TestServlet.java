@@ -16,11 +16,7 @@
 
 package com.sun.ts.tests.servlet.ee.platform.cdi.servlet;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.ee.platform.cdi.TCKTestBean;
-
 import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
@@ -28,27 +24,28 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
-@WebServlet(name = "TCKTestServlet", urlPatterns = { "/TCKTestServletURL" })
+@WebServlet(
+        name = "TCKTestServlet",
+        urlPatterns = {"/TCKTestServletURL"})
 public class TestServlet extends HttpServlet {
 
-  @Inject
-  TCKTestBean ttb;
+    @Inject
+    TCKTestBean ttb;
 
-  @Inject
-  BeanManager bm;
+    @Inject
+    BeanManager bm;
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws IOException, ServletException {
-    PrintWriter pw = response.getWriter();
-    if (ttb == null) {
-      throw new ServletException(
-          "Injection of TCKTestBean in TestServlet failed");
+    public void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        PrintWriter pw = response.getWriter();
+        if (ttb == null) {
+            throw new ServletException("Injection of TCKTestBean in TestServlet failed");
+        }
+        if (bm == null) {
+            throw new ServletException("Injection of BeanManager in TestServlet failed");
+        }
+        pw.print("Test PASSED from TestServlet");
     }
-    if (bm == null) {
-      throw new ServletException(
-          "Injection of BeanManager in TestServlet failed");
-    }
-    pw.print("Test PASSED from TestServlet");
-  }
 }

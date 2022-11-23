@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.nonreentranttest;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface LoopBackHome extends EJBHome {
-  public LoopBack create() throws RemoteException, CreateException;
+    public LoopBack create() throws RemoteException, CreateException;
 }

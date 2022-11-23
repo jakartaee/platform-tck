@@ -20,61 +20,54 @@
  */
 package com.sun.ts.tests.websocket.api.jakarta.websocket.deploymentException;
 
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import jakarta.websocket.DeploymentException;
 import java.io.PrintWriter;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-
-import jakarta.websocket.DeploymentException;
-
 public class WSClient extends ServiceEETest {
 
-  public static void main(String[] args) {
-    WSClient theTests = new WSClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    public static void main(String[] args) {
+        WSClient theTests = new WSClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ws_wait; ts_home;
-   */
-  @SuppressWarnings("unused")
-  public void setup(String[] args, Properties p) throws Fault {
-  }
-
-  /* Run test */
-  /*
-   * @testName: constructorTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:49;
-   *
-   * @test_Strategy: Test constructor DeploymentException(String)
-   */
-  public void constructorTest() throws Fault {
-    String reason = "TCK: testing the DeploymentException(String)";
-
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ws_wait; ts_home;
+     */
     @SuppressWarnings("unused")
-    DeploymentException dex = new DeploymentException(reason);
+    public void setup(String[] args, Properties p) throws Fault {}
 
-  }
+    /* Run test */
+    /*
+     * @testName: constructorTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:49;
+     *
+     * @test_Strategy: Test constructor DeploymentException(String)
+     */
+    public void constructorTest() throws Fault {
+        String reason = "TCK: testing the DeploymentException(String)";
 
-  /*
-   * @testName: constructorTest1
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:50;
-   *
-   * @test_Strategy: Test constructor DeploymentException(String, Throwable)
-   */
-  public void constructorTest1() throws Fault {
-    String reason = "TCK: testing the DeploymentException(String)";
+        @SuppressWarnings("unused")
+        DeploymentException dex = new DeploymentException(reason);
+    }
 
-    @SuppressWarnings("unused")
-    DeploymentException dex = new DeploymentException(reason,
-        new Throwable("TCK_Test"));
-  }
+    /*
+     * @testName: constructorTest1
+     *
+     * @assertion_ids: WebSocket:JAVADOC:50;
+     *
+     * @test_Strategy: Test constructor DeploymentException(String, Throwable)
+     */
+    public void constructorTest1() throws Fault {
+        String reason = "TCK: testing the DeploymentException(String)";
 
-  public void cleanup() {
-  }
+        @SuppressWarnings("unused")
+        DeploymentException dex = new DeploymentException(reason, new Throwable("TCK_Test"));
+    }
+
+    public void cleanup() {}
 }

@@ -20,67 +20,69 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagsupport;
 
-import java.io.IOException;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.PageContext;
 import jakarta.servlet.jsp.tagext.Tag;
 import jakarta.servlet.jsp.tagext.TagSupport;
+import java.io.IOException;
 
 /**
  * Simple tag to verify TagSupport.findAncestorWithClass().
  */
 public class FindAncestorTag extends TagSupport {
 
-  /**
-   * Default constructor.
-   */
-  public FindAncestorTag() {
-    super();
-  }
-
-  /**
-   * Validate the behavior of TagSupport.findAncestorWithClass() behaves as
-   * expected when test tag is nested within multiple parent tags.
-   * 
-   * @return Tag.EVAL_PAGE
-   * @throws JspException
-   *           if an error occurs
-   */
-  public int doEndTag() throws JspException {
-    Tag tag = findAncestorWithClass(this, ParentTag.class);
-    try {
-      if (tag != null) {
-        if (tag instanceof ParentTag) {
-          String result = ((ParentTag) tag).getResult();
-          if (result.equals("nested2")) {
-            pageContext.getOut().println("Test PASSED");
-          } else {
-            pageContext.getOut()
-                .println("Test FAILED.  Expected"
-                    + "the returned ParentTag instance to return 'nested2"
-                    + "after calling getResult() on the instance.  Received:"
-                    + "  " + result);
-          }
-        } else {
-          pageContext.getOut()
-              .println("Test FAILED.  findAncestor"
-                  + "WithClass() returned a non null value, but object returned"
-                  + "was not an instance of ParentTag.  Received: "
-                  + tag.getClass().getName());
-        }
-      } else {
-        pageContext.getOut()
-            .println("Test FAILED.  TagSupport.find"
-                + "AncestorWithClass returned null when is should have returned"
-                + "an actual Tag instance.");
-      }
-    } catch (IOException ioe) {
-      throw new JspException("Unexpected IOException!", ioe);
-    } finally {
-      pageContext.removeAttribute("nested1", PageContext.APPLICATION_SCOPE);
-      pageContext.removeAttribute("nested2", PageContext.APPLICATION_SCOPE);
+    /**
+     * Default constructor.
+     */
+    public FindAncestorTag() {
+        super();
     }
-    return EVAL_PAGE;
-  }
+
+    /**
+     * Validate the behavior of TagSupport.findAncestorWithClass() behaves as
+     * expected when test tag is nested within multiple parent tags.
+     *
+     * @return Tag.EVAL_PAGE
+     * @throws JspException
+     *           if an error occurs
+     */
+    public int doEndTag() throws JspException {
+        Tag tag = findAncestorWithClass(this, ParentTag.class);
+        try {
+            if (tag != null) {
+                if (tag instanceof ParentTag) {
+                    String result = ((ParentTag) tag).getResult();
+                    if (result.equals("nested2")) {
+                        pageContext.getOut().println("Test PASSED");
+                    } else {
+                        pageContext
+                                .getOut()
+                                .println("Test FAILED.  Expected"
+                                        + "the returned ParentTag instance to return 'nested2"
+                                        + "after calling getResult() on the instance.  Received:"
+                                        + "  " + result);
+                    }
+                } else {
+                    pageContext
+                            .getOut()
+                            .println("Test FAILED.  findAncestor"
+                                    + "WithClass() returned a non null value, but object returned"
+                                    + "was not an instance of ParentTag.  Received: "
+                                    + tag.getClass().getName());
+                }
+            } else {
+                pageContext
+                        .getOut()
+                        .println("Test FAILED.  TagSupport.find"
+                                + "AncestorWithClass returned null when is should have returned"
+                                + "an actual Tag instance.");
+            }
+        } catch (IOException ioe) {
+            throw new JspException("Unexpected IOException!", ioe);
+        } finally {
+            pageContext.removeAttribute("nested1", PageContext.APPLICATION_SCOPE);
+            pageContext.removeAttribute("nested2", PageContext.APPLICATION_SCOPE);
+        }
+        return EVAL_PAGE;
+    }
 }

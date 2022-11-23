@@ -29,36 +29,42 @@ import jakarta.interceptor.InvocationContext;
 
 public class Interceptor1 extends InterceptorBase {
 
-  @Resource // should be able to inject EJBContext
-  private EJBContext ejbContext;
+    @Resource // should be able to inject EJBContext
+    private EJBContext ejbContext;
 
-  // inject 3 float fields that are declared in ejb-jar.xml#OneBean, TwoBean,
-  // and ThreeBean
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.OneBean/myFloat", description = "declared in ejb-jar.xml#OneBean")
-  private float myFloatFromOne;
+    // inject 3 float fields that are declared in ejb-jar.xml#OneBean, TwoBean,
+    // and ThreeBean
+    @Resource(
+            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.OneBean/myFloat",
+            description = "declared in ejb-jar.xml#OneBean")
+    private float myFloatFromOne;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.TwoBean/myFloat", description = "declared in ejb-jar.xml#TwoBean")
-  private float myFloatFromTwo;
+    @Resource(
+            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.TwoBean/myFloat",
+            description = "declared in ejb-jar.xml#TwoBean")
+    private float myFloatFromTwo;
 
-  @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.ThreeBean/myFloat", description = "declared in ejb-jar.xml#ThreeBean")
-  private float myFloatFromThree;
+    @Resource(
+            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.ThreeBean/myFloat",
+            description = "declared in ejb-jar.xml#ThreeBean")
+    private float myFloatFromThree;
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct(InvocationContext inv) {
-    checkInjections(1);
-    try {
-      inv.proceed();
-    } catch (Exception ex) {
-      throw new RuntimeException(ex);
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct(InvocationContext inv) {
+        checkInjections(1);
+        try {
+            inv.proceed();
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
     }
-  }
 
-  @Override
-  final protected void verify(StringBuilder sb) throws RuntimeException {
-    assertNotEquals("Check injected EJBContext ", ejbContext, null);
-    assertEquals("Check myFloatFromOne ", (float) 1, myFloatFromOne, sb);
-    assertEquals("Check myFloatFromTwo ", (float) 2, myFloatFromTwo, sb);
-    assertEquals("Check myFloatFromThree ", (float) 3, myFloatFromThree, sb);
-  }
+    @Override
+    protected final void verify(StringBuilder sb) throws RuntimeException {
+        assertNotEquals("Check injected EJBContext ", ejbContext, null);
+        assertEquals("Check myFloatFromOne ", (float) 1, myFloatFromOne, sb);
+        assertEquals("Check myFloatFromTwo ", (float) 2, myFloatFromTwo, sb);
+        assertEquals("Check myFloatFromThree ", (float) 3, myFloatFromThree, sb);
+    }
 }

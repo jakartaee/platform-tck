@@ -19,11 +19,6 @@
  */
 package com.sun.ts.tests.ejb30.lite.stateful.concurrency.metadata.common;
 
-import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyJsfClientBase;
-import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF;
-import jakarta.ejb.EJB;
-import jakarta.ejb.EJBs;
-
 import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF.CONCURRENT_INVOCATION_TIMES;
 import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF.containerConcurrencyBeanLocal;
 import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF.containerConcurrencyBeanNoInterface;
@@ -35,97 +30,97 @@ import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulCo
 import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF.notAllowedConcurrencyBeanNoInterface;
 import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF.notAllowedConcurrencyBeanRemote;
 
+import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF;
+import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyJsfClientBase;
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBs;
+
 @EJBs({
-    @EJB(name = containerConcurrencyBeanLocal, beanName = "ContainerConcurrencyBean", beanInterface = StatefulConcurrencyIF.class),
-    @EJB(name = defaultConcurrencyBeanLocal, beanName = "DefaultConcurrencyBean", beanInterface = StatefulConcurrencyIF.class),
-    @EJB(name = notAllowedConcurrencyBeanLocal, beanName = "NotAllowedConcurrencyBean", beanInterface = StatefulConcurrencyIF.class) })
-abstract public class JsfClientBase extends StatefulConcurrencyJsfClientBase {
+    @EJB(
+            name = containerConcurrencyBeanLocal,
+            beanName = "ContainerConcurrencyBean",
+            beanInterface = StatefulConcurrencyIF.class),
+    @EJB(
+            name = defaultConcurrencyBeanLocal,
+            beanName = "DefaultConcurrencyBean",
+            beanInterface = StatefulConcurrencyIF.class),
+    @EJB(
+            name = notAllowedConcurrencyBeanLocal,
+            beanName = "NotAllowedConcurrencyBean",
+            beanInterface = StatefulConcurrencyIF.class)
+})
+public abstract class JsfClientBase extends StatefulConcurrencyJsfClientBase {
 
-  // remote view tests are only available in JavaEE profile
-  protected StatefulConcurrencyIF getContainerConcurrencyBeanLocal() {
-    return (StatefulConcurrencyIF) lookup(containerConcurrencyBeanLocal, null,
-        null);
-  }
-
-  protected StatefulConcurrencyIF getContainerConcurrencyBeanRemote() {
-    return (StatefulConcurrencyIF) lookup(containerConcurrencyBeanRemote, null,
-        null);
-  }
-
-  protected StatefulConcurrencyIF getContainerConcurrencyBeanNoInterface() {
-    return (StatefulConcurrencyIF) lookup(containerConcurrencyBeanNoInterface,
-        null, null);
-  }
-
-  protected StatefulConcurrencyIF getDefaultConcurrencyBeanLocal() {
-    return (StatefulConcurrencyIF) lookup(defaultConcurrencyBeanLocal, null,
-        null);
-  }
-
-  protected StatefulConcurrencyIF getDefaultConcurrencyBeanRemote() {
-    return (StatefulConcurrencyIF) lookup(defaultConcurrencyBeanRemote, null,
-        null);
-  }
-
-  protected StatefulConcurrencyIF getDefaultConcurrencyBeanNoInterface() {
-    return (StatefulConcurrencyIF) lookup(defaultConcurrencyBeanNoInterface,
-        null, null);
-  }
-
-  protected StatefulConcurrencyIF getNotAllowedConcurrencyBeanLocal() {
-    return (StatefulConcurrencyIF) lookup(notAllowedConcurrencyBeanLocal, null,
-        null);
-  }
-
-  protected StatefulConcurrencyIF getNotAllowedConcurrencyBeanRemote() {
-    return (StatefulConcurrencyIF) lookup(notAllowedConcurrencyBeanRemote, null,
-        null);
-  }
-
-  protected StatefulConcurrencyIF getNotAllowedConcurrencyBeanNoInterface() {
-    return (StatefulConcurrencyIF) lookup(notAllowedConcurrencyBeanNoInterface,
-        null, null);
-  }
-
-  /*
-   * testName: notAllowed
-   * 
-   * @test_Strategy:
-   */
-  public void notAllowed() throws InterruptedException {
-    StatefulConcurrencyIF[] bs = { getNotAllowedConcurrencyBeanLocal(),
-        getNotAllowedConcurrencyBeanNoInterface() };
-    for (StatefulConcurrencyIF b : bs) {
-      checkConcurrentAccessResult(concurrentPing(b), 1, 1);
+    // remote view tests are only available in JavaEE profile
+    protected StatefulConcurrencyIF getContainerConcurrencyBeanLocal() {
+        return (StatefulConcurrencyIF) lookup(containerConcurrencyBeanLocal, null, null);
     }
-  }
 
-  /*
-   * testName: containerConcurrent
-   * 
-   * @test_Strategy:
-   */
-  public void containerConcurrent() throws InterruptedException {
-    containerConcurrent(getContainerConcurrencyBeanLocal(),
-        getContainerConcurrencyBeanNoInterface());
-  }
-
-  /*
-   * testName: defaultConcurrent
-   * 
-   * @test_Strategy:
-   */
-  public void defaultConcurrent() throws InterruptedException {
-    containerConcurrent(getDefaultConcurrencyBeanLocal(),
-        getDefaultConcurrencyBeanNoInterface());
-  }
-
-  protected void containerConcurrent(StatefulConcurrencyIF... bs)
-      throws InterruptedException {
-    for (StatefulConcurrencyIF b : bs) {
-      checkConcurrentAccessResult(concurrentPing(b),
-          CONCURRENT_INVOCATION_TIMES, 0);
+    protected StatefulConcurrencyIF getContainerConcurrencyBeanRemote() {
+        return (StatefulConcurrencyIF) lookup(containerConcurrencyBeanRemote, null, null);
     }
-  }
 
+    protected StatefulConcurrencyIF getContainerConcurrencyBeanNoInterface() {
+        return (StatefulConcurrencyIF) lookup(containerConcurrencyBeanNoInterface, null, null);
+    }
+
+    protected StatefulConcurrencyIF getDefaultConcurrencyBeanLocal() {
+        return (StatefulConcurrencyIF) lookup(defaultConcurrencyBeanLocal, null, null);
+    }
+
+    protected StatefulConcurrencyIF getDefaultConcurrencyBeanRemote() {
+        return (StatefulConcurrencyIF) lookup(defaultConcurrencyBeanRemote, null, null);
+    }
+
+    protected StatefulConcurrencyIF getDefaultConcurrencyBeanNoInterface() {
+        return (StatefulConcurrencyIF) lookup(defaultConcurrencyBeanNoInterface, null, null);
+    }
+
+    protected StatefulConcurrencyIF getNotAllowedConcurrencyBeanLocal() {
+        return (StatefulConcurrencyIF) lookup(notAllowedConcurrencyBeanLocal, null, null);
+    }
+
+    protected StatefulConcurrencyIF getNotAllowedConcurrencyBeanRemote() {
+        return (StatefulConcurrencyIF) lookup(notAllowedConcurrencyBeanRemote, null, null);
+    }
+
+    protected StatefulConcurrencyIF getNotAllowedConcurrencyBeanNoInterface() {
+        return (StatefulConcurrencyIF) lookup(notAllowedConcurrencyBeanNoInterface, null, null);
+    }
+
+    /*
+     * testName: notAllowed
+     *
+     * @test_Strategy:
+     */
+    public void notAllowed() throws InterruptedException {
+        StatefulConcurrencyIF[] bs = {getNotAllowedConcurrencyBeanLocal(), getNotAllowedConcurrencyBeanNoInterface()};
+        for (StatefulConcurrencyIF b : bs) {
+            checkConcurrentAccessResult(concurrentPing(b), 1, 1);
+        }
+    }
+
+    /*
+     * testName: containerConcurrent
+     *
+     * @test_Strategy:
+     */
+    public void containerConcurrent() throws InterruptedException {
+        containerConcurrent(getContainerConcurrencyBeanLocal(), getContainerConcurrencyBeanNoInterface());
+    }
+
+    /*
+     * testName: defaultConcurrent
+     *
+     * @test_Strategy:
+     */
+    public void defaultConcurrent() throws InterruptedException {
+        containerConcurrent(getDefaultConcurrencyBeanLocal(), getDefaultConcurrencyBeanNoInterface());
+    }
+
+    protected void containerConcurrent(StatefulConcurrencyIF... bs) throws InterruptedException {
+        for (StatefulConcurrencyIF b : bs) {
+            checkConcurrentAccessResult(concurrentPing(b), CONCURRENT_INVOCATION_TIMES, 0);
+        }
+    }
 }

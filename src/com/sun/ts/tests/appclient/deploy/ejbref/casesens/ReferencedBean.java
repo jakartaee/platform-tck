@@ -20,13 +20,12 @@
 
 package com.sun.ts.tests.appclient.deploy.ejbref.casesens;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface ReferencedBean extends EJBObject {
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 
-  public String whoAreYou() throws RemoteException;
+    public String whoAreYou() throws RemoteException;
 }

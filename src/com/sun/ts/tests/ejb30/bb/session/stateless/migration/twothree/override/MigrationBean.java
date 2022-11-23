@@ -25,7 +25,6 @@ import com.sun.ts.tests.ejb30.common.migration.twothree.ThreeIF;
 import com.sun.ts.tests.ejb30.common.migration.twothree.ThreeLocalIF;
 import com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalHome;
 import com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.Local;
@@ -35,26 +34,23 @@ import jakarta.ejb.RemoteHome;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
-//meta data declared in descriptor, too
+// meta data declared in descriptor, too
 @Stateless(name = "MigrationBean")
-@Remote({ ThreeIF.class })
-@Local({ ThreeLocalIF.class })
+@Remote({ThreeIF.class})
+@Local({ThreeLocalIF.class})
 @RemoteHome(TwoRemoteHome.class)
 @LocalHome(TwoLocalHome.class)
 public class MigrationBean extends MigrationBeanBase implements ThreeIF {
 
-  // injection declared in descriptor, too
-  @Resource(name = "sessionContext")
-  private SessionContext sessionContext;
+    // injection declared in descriptor, too
+    @Resource(name = "sessionContext")
+    private SessionContext sessionContext;
 
-  protected EJBContext getEJBContext() {
-    return sessionContext;
-  }
+    protected EJBContext getEJBContext() {
+        return sessionContext;
+    }
 
-  public MigrationBean() {
-  }
+    public MigrationBean() {}
 
-  public void remove() {
-  }
-
+    public void remove() {}
 }

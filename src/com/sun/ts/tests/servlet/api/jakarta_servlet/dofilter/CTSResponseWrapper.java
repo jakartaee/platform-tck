@@ -20,17 +20,15 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.dofilter;
 
-import java.io.PrintWriter;
-
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.ServletResponseWrapper;
+import java.io.PrintWriter;
 
 public class CTSResponseWrapper extends ServletResponseWrapper {
 
-  public CTSResponseWrapper(ServletResponse response)
-      throws java.io.IOException {
-    super(response);
-    PrintWriter pw = response.getWriter();
-    pw.write("CTSResponseWrapper");
-  }
+    public CTSResponseWrapper(ServletResponse response) throws java.io.IOException {
+        super(response);
+        PrintWriter pw = response.getWriter();
+        pw.write("CTSResponseWrapper");
+    }
 }

@@ -20,10 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.enventry.single;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface ShortBean extends EJBObject {
-  public boolean testShortEntry() throws RemoteException;
+    public boolean testShortEntry() throws RemoteException;
 }

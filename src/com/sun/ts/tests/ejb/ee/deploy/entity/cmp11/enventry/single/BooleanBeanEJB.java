@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP11Wrapper;
 
 public class BooleanBeanEJB extends CMP11Wrapper {
 
-  public boolean testBooleanEntry() {
-    return TestCode.testBooleanEntry(nctx);
-  }
-
+    public boolean testBooleanEntry() {
+        return TestCode.testBooleanEntry(nctx);
+    }
 }

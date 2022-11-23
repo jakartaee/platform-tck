@@ -20,45 +20,44 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.unknownpktest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
-  // Business Methods for TestBean CMP Fields
-  public String getFirst() throws RemoteException;
+    // Business Methods for TestBean CMP Fields
+    public String getFirst() throws RemoteException;
 
-  public void setFirst(String s) throws RemoteException;
+    public void setFirst(String s) throws RemoteException;
 
-  public String getMiddle() throws RemoteException;
+    public String getMiddle() throws RemoteException;
 
-  public void setMiddle(String s) throws RemoteException;
+    public void setMiddle(String s) throws RemoteException;
 
-  public String getLast() throws RemoteException;
+    public String getLast() throws RemoteException;
 
-  public void setLast(String s) throws RemoteException;
+    public void setLast(String s) throws RemoteException;
 
-  public String getAccountNumber() throws RemoteException;
+    public String getAccountNumber() throws RemoteException;
 
-  public void setAccountNumber(String s) throws RemoteException;
+    public void setAccountNumber(String s) throws RemoteException;
 
-  public String getStreet() throws RemoteException;
+    public String getStreet() throws RemoteException;
 
-  public void setStreet(String s) throws RemoteException;
+    public void setStreet(String s) throws RemoteException;
 
-  public String getCity() throws RemoteException;
+    public String getCity() throws RemoteException;
 
-  public void setCity(String s) throws RemoteException;
+    public void setCity(String s) throws RemoteException;
 
-  public String getState() throws RemoteException;
+    public String getState() throws RemoteException;
 
-  public void setState(String s) throws RemoteException;
+    public void setState(String s) throws RemoteException;
 
-  public Integer getZip() throws RemoteException;
+    public Integer getZip() throws RemoteException;
 
-  public void setZip(Integer i) throws RemoteException;
+    public void setZip(Integer i) throws RemoteException;
 
-  // Miscellaneous Business Methods
-  public void initLogging(Properties p) throws RemoteException;
+    // Miscellaneous Business Methods
+    public void initLogging(Properties p) throws RemoteException;
 }

@@ -30,79 +30,77 @@ import com.sun.ts.tests.websocket.negdep.NegativeDeploymentClient;
  */
 public class WSCClient extends NegativeDeploymentClient {
 
-  private static final long serialVersionUID = 111L;
+    private static final long serialVersionUID = 111L;
 
-  public WSCClient() {
-    setContextRoot("wsc_negdep_onopen_srv_toomanyarguments_web");
-  }
-
-  public static void main(String[] args) {
-    new WSCClient().run(args);
-  }
-
-  /*
-   * @testName: tooManyArgumentsOnOpenUndeployOtherEndpointTest
-   * 
-   * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3;WebSocket:SPEC:WSC-4.4-3;
-   * 
-   * @test_Strategy: In both cases, a deployment error raised during the
-   * deployment process must halt the deployment of the application, any well
-   * formed endpoints deployed prior to the error being raised must be removed
-   * from service and no more websocket endpoints from that application may be
-   * deployed by the container, even if they are valid.
-   * 
-   * The value attribute of this annotation must be present otherwise the
-   * implementation must throw an error. [WSC-4.4-3]
-   * 
-   * To verify the test fails when the deployment was successful, remove the
-   * String value in @OnOpen of OnOpenServerEndpoint
-   */
-  public void tooManyArgumentsOnOpenUndeployOtherEndpointTest() throws Fault {
-    setProperty(Property.CONTENT, "anything");
-    setProperty(Property.REQUEST, buildRequest("echo"));
-    setProperty(Property.STATUS_CODE, "-1");
-    // logExceptionOnInvocation(false);
-    try {
-      invoke(false);
-    } catch (Fault tfe) {
-      // DeploymentException
+    public WSCClient() {
+        setContextRoot("wsc_negdep_onopen_srv_toomanyarguments_web");
     }
-    String response = getResponseAsString();
-    if ("anything".equals(response))
-      throwValidEndpointMustBeRemoved();
-  }
 
-  /*
-   * @testName: tooManyArgumentsOnOpenTest
-   * 
-   * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3;WebSocket:SPEC:WSC-4.4-3;
-   * 
-   * @test_Strategy: In both cases, a deployment error raised during the
-   * deployment process must halt the deployment of the application, any well
-   * formed endpoints deployed prior to the error being raised must be removed
-   * from service and no more websocket endpoints from that application may be
-   * deployed by the container, even if they are valid.
-   * 
-   * Any Java class using this annotation on a method that does not follow these
-   * rules, or that uses this annotation on more than one method may not be
-   * deployed by the implementation and the error reported to the deployer.
-   * [WSC-4.4-3]
-   * 
-   * To verify the test fails when the deployment was successful, remove the
-   * String value in @OnOpen of OnOpenServerEndpoint
-   */
-  public void tooManyArgumentsOnOpenTest() throws Fault {
-    setProperty(Property.CONTENT, "anything");
-    setProperty(Property.REQUEST, buildRequest("invalid"));
-    setProperty(Property.STATUS_CODE, "-1");
-    // logExceptionOnInvocation(false);
-    try {
-      invoke(false);
-    } catch (Fault tfe) {
-      // DeploymentException
+    public static void main(String[] args) {
+        new WSCClient().run(args);
     }
-    String response = getResponseAsString();
-    if (response != null && response.contains("anything"))
-      throwValidEndpointMustBeRemoved();
-  }
+
+    /*
+     * @testName: tooManyArgumentsOnOpenUndeployOtherEndpointTest
+     *
+     * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3;WebSocket:SPEC:WSC-4.4-3;
+     *
+     * @test_Strategy: In both cases, a deployment error raised during the
+     * deployment process must halt the deployment of the application, any well
+     * formed endpoints deployed prior to the error being raised must be removed
+     * from service and no more websocket endpoints from that application may be
+     * deployed by the container, even if they are valid.
+     *
+     * The value attribute of this annotation must be present otherwise the
+     * implementation must throw an error. [WSC-4.4-3]
+     *
+     * To verify the test fails when the deployment was successful, remove the
+     * String value in @OnOpen of OnOpenServerEndpoint
+     */
+    public void tooManyArgumentsOnOpenUndeployOtherEndpointTest() throws Fault {
+        setProperty(Property.CONTENT, "anything");
+        setProperty(Property.REQUEST, buildRequest("echo"));
+        setProperty(Property.STATUS_CODE, "-1");
+        // logExceptionOnInvocation(false);
+        try {
+            invoke(false);
+        } catch (Fault tfe) {
+            // DeploymentException
+        }
+        String response = getResponseAsString();
+        if ("anything".equals(response)) throwValidEndpointMustBeRemoved();
+    }
+
+    /*
+     * @testName: tooManyArgumentsOnOpenTest
+     *
+     * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3;WebSocket:SPEC:WSC-4.4-3;
+     *
+     * @test_Strategy: In both cases, a deployment error raised during the
+     * deployment process must halt the deployment of the application, any well
+     * formed endpoints deployed prior to the error being raised must be removed
+     * from service and no more websocket endpoints from that application may be
+     * deployed by the container, even if they are valid.
+     *
+     * Any Java class using this annotation on a method that does not follow these
+     * rules, or that uses this annotation on more than one method may not be
+     * deployed by the implementation and the error reported to the deployer.
+     * [WSC-4.4-3]
+     *
+     * To verify the test fails when the deployment was successful, remove the
+     * String value in @OnOpen of OnOpenServerEndpoint
+     */
+    public void tooManyArgumentsOnOpenTest() throws Fault {
+        setProperty(Property.CONTENT, "anything");
+        setProperty(Property.REQUEST, buildRequest("invalid"));
+        setProperty(Property.STATUS_CODE, "-1");
+        // logExceptionOnInvocation(false);
+        try {
+            invoke(false);
+        } catch (Fault tfe) {
+            // DeploymentException
+        }
+        String response = getResponseAsString();
+        if (response != null && response.contains("anything")) throwValidEndpointMustBeRemoved();
+    }
 }

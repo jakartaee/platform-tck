@@ -20,10 +20,9 @@
 
 package com.sun.ts.tests.assembly.util.refbean;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface BMPInternal extends EJBObject {
-  public boolean isTestBMPInternal() throws RemoteException;
+    public boolean isTestBMPInternal() throws RemoteException;
 }

@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.misc.threebeans;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
@@ -33,62 +32,61 @@ import jakarta.ejb.Stateless;
 @Remote(TwoRemoteIF.class)
 public class TwoBean extends CommonBeanBase {
 
-  @EJB(lookup = "java:comp/env/ejb/threeRemote")
-  private ThreeRemoteIF threeRemote2;
+    @EJB(lookup = "java:comp/env/ejb/threeRemote")
+    private ThreeRemoteIF threeRemote2;
 
-  @EJB(lookup = "java:comp/env/ejb/threeLocal")
-  private ThreeLocalIF threeLocal2;
+    @EJB(lookup = "java:comp/env/ejb/threeLocal")
+    private ThreeLocalIF threeLocal2;
 
-  @EJB(lookup = "java:comp/env/ejb/oneRemote")
-  private OneRemoteIF oneRemote2;
+    @EJB(lookup = "java:comp/env/ejb/oneRemote")
+    private OneRemoteIF oneRemote2;
 
-  @EJB(lookup = "java:comp/env/ejb/oneLocal")
-  private OneLocalIF oneLocal2;
+    @EJB(lookup = "java:comp/env/ejb/oneLocal")
+    private OneLocalIF oneLocal2;
 
-  @EJB(beanName = "ThreeBean", name = "ejb/threeRemote")
-  private ThreeRemoteIF threeRemote;
+    @EJB(beanName = "ThreeBean", name = "ejb/threeRemote")
+    private ThreeRemoteIF threeRemote;
 
-  @EJB(beanName = "ThreeBean", name = "ejb/threeLocal")
-  private ThreeLocalIF threeLocal;
+    @EJB(beanName = "ThreeBean", name = "ejb/threeLocal")
+    private ThreeLocalIF threeLocal;
 
-  @EJB(name = "ejb/oneRemote")
-  private OneRemoteIF oneRemote;
+    @EJB(name = "ejb/oneRemote")
+    private OneRemoteIF oneRemote;
 
-  @EJB(name = "ejb/oneLocal")
-  private OneLocalIF oneLocal;
+    @EJB(name = "ejb/oneLocal")
+    private OneLocalIF oneLocal;
 
-  @Override
-  protected void verifyInjectedEJB() {
-    if (oneRemote == null)
-      throw new IllegalStateException("oneRemote was not injected.");
-    if (oneLocal == null)
-      throw new IllegalStateException("oneLocal was not injected.");
-    if (threeRemote == null)
-      throw new IllegalStateException("threeRemote was not injected.");
-    if (threeLocal == null)
-      throw new IllegalStateException("threeLocal was not injected.");
+    @Override
+    protected void verifyInjectedEJB() {
+        if (oneRemote == null) throw new IllegalStateException("oneRemote was not injected.");
+        if (oneLocal == null) throw new IllegalStateException("oneLocal was not injected.");
+        if (threeRemote == null) throw new IllegalStateException("threeRemote was not injected.");
+        if (threeLocal == null) throw new IllegalStateException("threeLocal was not injected.");
 
-    if (oneRemote2 == null)
-      throw new IllegalStateException("oneRemote2 was not injected.");
-    if (oneLocal2 == null)
-      throw new IllegalStateException("oneLocal2 was not injected.");
-    if (threeRemote2 == null)
-      throw new IllegalStateException("threeRemote2 was not injected.");
-    if (threeLocal2 == null)
-      throw new IllegalStateException("threeLocal2 was not injected.");
+        if (oneRemote2 == null) throw new IllegalStateException("oneRemote2 was not injected.");
+        if (oneLocal2 == null) throw new IllegalStateException("oneLocal2 was not injected.");
+        if (threeRemote2 == null) throw new IllegalStateException("threeRemote2 was not injected.");
+        if (threeLocal2 == null) throw new IllegalStateException("threeLocal2 was not injected.");
 
-    Helper.getLogger().info(String.format(
-        "Got expected injection result: %s%n %s%n %s%n %s%n %s%n %s%n %s%n %s%n",
-        oneRemote, oneLocal, threeRemote, threeLocal, oneRemote2, oneLocal2,
-        threeRemote2, threeLocal2));
-  }
+        Helper.getLogger()
+                .info(String.format(
+                        "Got expected injection result: %s%n %s%n %s%n %s%n %s%n %s%n %s%n %s%n",
+                        oneRemote,
+                        oneLocal,
+                        threeRemote,
+                        threeLocal,
+                        oneRemote2,
+                        oneLocal2,
+                        threeRemote2,
+                        threeLocal2));
+    }
 
-  @Override
-  protected String getBeanName() {
-    return "TwoBean";
-  }
+    @Override
+    protected String getBeanName() {
+        return "TwoBean";
+    }
 
-  public String testException() throws TestFailedException {
-    return oneLocal.testException();
-  }
+    public String testException() throws TestFailedException {
+        return oneLocal.testException();
+    }
 }

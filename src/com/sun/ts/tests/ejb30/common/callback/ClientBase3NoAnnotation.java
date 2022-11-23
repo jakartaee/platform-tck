@@ -20,21 +20,17 @@
 
 package com.sun.ts.tests.ejb30.common.callback;
 
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 /**
  * the direct superclass of Client classes that test application client
  * PostConstruct and injection-complete, e.g.,
  * stateless/callback/method/descriptor/Client.
  */
-abstract public class ClientBase3NoAnnotation extends ClientBase2NoAnnotation {
+public abstract class ClientBase3NoAnnotation extends ClientBase2NoAnnotation {
 
-  public ClientBase3NoAnnotation() {
-  }
+    public ClientBase3NoAnnotation() {}
 
-  // @PostConstruct
-  private static void postConstructInBase3NoAnnotation() {
-    addPostConstructCall(BASE3);
-  }
-
+    // @PostConstruct
+    private static void postConstructInBase3NoAnnotation() {
+        addPostConstructCall(BASE3);
+    }
 }

@@ -23,11 +23,11 @@ package com.sun.ts.tests.ejb30.bb.localaccess.common;
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 
 public interface CommonIF {
-  public void passByReferenceTest(String[] args);
+    public void passByReferenceTest(String[] args);
 
-  public void exceptionTest() throws CalculatorException;
+    public void exceptionTest() throws CalculatorException;
 
-  public void runtimeExceptionTest();
+    public void runtimeExceptionTest();
 
-  public void remove();
+    public void remove();
 }

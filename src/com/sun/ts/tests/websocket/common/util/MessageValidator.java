@@ -26,52 +26,48 @@ import java.util.StringTokenizer;
 
 public class MessageValidator {
 
-  public static boolean checkSearchStrings(String expected, String actual)
-      throws IOException {
+    public static boolean checkSearchStrings(String expected, String actual) throws IOException {
 
-    List<String> list = new ArrayList<>();
-    StringTokenizer st = new StringTokenizer(expected, "|");
-    while (st.hasMoreTokens()) {
-      list.add(st.nextToken());
-    }
-
-    boolean found = true;
-    if (list != null && actual != null) {
-
-      String search = null;
-
-      for (int i = 0, n = list.size(), startIdx = 0, acLength = actual
-          .length(); i < n; i++) {
-
-        // set the startIdx to the same value as the actual message length
-        // and let the test fail (prevents index based runtime exceptions).
-        if (startIdx >= acLength) {
-          startIdx = acLength;
+        List<String> list = new ArrayList<>();
+        StringTokenizer st = new StringTokenizer(expected, "|");
+        while (st.hasMoreTokens()) {
+            list.add(st.nextToken());
         }
 
-        search = (String) list.get(i);
-        int searchIdx = actual.indexOf(search, startIdx);
-        System.out
-            .println("[MessageValidator] Scanning for " + "search string: '"
-                + search + "' starting at index " + "location: " + startIdx);
-        if (searchIdx < 0) {
-          found = false;
-          StringBuffer sb = new StringBuffer(1024);
-          sb.append("[MessageValidator] Unable to find the following ");
-          sb.append("search string");
-          sb.append(search).append("' at index: ");
-          sb.append(startIdx);
-          System.err.println(sb.toString());
-          break;
-        }
+        boolean found = true;
+        if (list != null && actual != null) {
 
-        System.out.println("[MessageValidator] Found search string: '" + search
-            + "' at index '" + searchIdx);
-        // the new searchIdx is the old index plus the lenght of the
-        // search string.
-        startIdx = searchIdx + search.length();
-      }
+            String search = null;
+
+            for (int i = 0, n = list.size(), startIdx = 0, acLength = actual.length(); i < n; i++) {
+
+                // set the startIdx to the same value as the actual message length
+                // and let the test fail (prevents index based runtime exceptions).
+                if (startIdx >= acLength) {
+                    startIdx = acLength;
+                }
+
+                search = (String) list.get(i);
+                int searchIdx = actual.indexOf(search, startIdx);
+                System.out.println("[MessageValidator] Scanning for " + "search string: '" + search
+                        + "' starting at index " + "location: " + startIdx);
+                if (searchIdx < 0) {
+                    found = false;
+                    StringBuffer sb = new StringBuffer(1024);
+                    sb.append("[MessageValidator] Unable to find the following ");
+                    sb.append("search string");
+                    sb.append(search).append("' at index: ");
+                    sb.append(startIdx);
+                    System.err.println(sb.toString());
+                    break;
+                }
+
+                System.out.println("[MessageValidator] Found search string: '" + search + "' at index '" + searchIdx);
+                // the new searchIdx is the old index plus the lenght of the
+                // search string.
+                startIdx = searchIdx + search.length();
+            }
+        }
+        return found;
     }
-    return found;
-  }
 }

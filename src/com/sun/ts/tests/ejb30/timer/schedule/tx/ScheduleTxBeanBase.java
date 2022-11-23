@@ -23,59 +23,53 @@ import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-
 import jakarta.ejb.Timeout;
 import jakarta.ejb.Timer;
 import jakarta.ejb.TimerConfig;
 
-abstract public class ScheduleTxBeanBase
-    extends TimerBeanBaseWithoutTimeOutMethod {
-  // not a business method
-  abstract protected void setRollbackOnly();
+public abstract class ScheduleTxBeanBase extends TimerBeanBaseWithoutTimeOutMethod {
+    // not a business method
+    protected abstract void setRollbackOnly();
 
-  abstract protected void beginTransaction();
+    protected abstract void beginTransaction();
 
-  abstract protected void commitTransaction();
+    protected abstract void commitTransaction();
 
-  @SuppressWarnings("unused")
-  @Timeout
-  private void ejbTimeout(Timer timer) {
-    beginTransaction();
-    super.timeout(timer);
-    Object o = timer.getInfo();
-    if (o != null) {
-      TimerInfo info = (TimerInfo) o;
-      String name = info.getTestName();
-      if ("timeoutRollback".equals(name)) {
-        Helper.getLogger()
-            .fine("About to setRollbackOnly for test timeoutRollback.");
-        setRollbackOnly();
-      } else if ("timeoutSystemException".equals(name)
-          || "timeoutSystemExceptionBMT".equals(name)) {
-        throw new RuntimeException("For test " + name
-            + ", transaction must fail in timeout method and retry at least once.");
-      }
+    @SuppressWarnings("unused")
+    @Timeout
+    private void ejbTimeout(Timer timer) {
+        beginTransaction();
+        super.timeout(timer);
+        Object o = timer.getInfo();
+        if (o != null) {
+            TimerInfo info = (TimerInfo) o;
+            String name = info.getTestName();
+            if ("timeoutRollback".equals(name)) {
+                Helper.getLogger().fine("About to setRollbackOnly for test timeoutRollback.");
+                setRollbackOnly();
+            } else if ("timeoutSystemException".equals(name) || "timeoutSystemExceptionBMT".equals(name)) {
+                throw new RuntimeException(
+                        "For test " + name + ", transaction must fail in timeout method and retry at least once.");
+            }
+        }
+        commitTransaction();
     }
-    commitTransaction();
-  }
 
-  public String createRollback(TimerConfig timerConfig) {
-    beginTransaction();
-    Timer timer = TimerUtil.createSecondLaterTimer(timerService, timerConfig);
-    Helper.busyWait(1500); // 1.5 seconds later, should timer expires? No
-    setRollbackOnly();
-    commitTransaction();
-    return "Created a timer within tx: " + timer + ". Set the tx to rollback.";
-  }
+    public String createRollback(TimerConfig timerConfig) {
+        beginTransaction();
+        Timer timer = TimerUtil.createSecondLaterTimer(timerService, timerConfig);
+        Helper.busyWait(1500); // 1.5 seconds later, should timer expires? No
+        setRollbackOnly();
+        commitTransaction();
+        return "Created a timer within tx: " + timer + ". Set the tx to rollback.";
+    }
 
-  public String cancelRollback(String name) {
-    beginTransaction();
-    Timer timer = TimerUtil.findTimer(timerService, name);
-    timer.cancel();
-    setRollbackOnly();
-    commitTransaction();
-    return "Cancelled a timer within tx: " + timer
-        + ". Set the tx to rollback.";
-  }
-
+    public String cancelRollback(String name) {
+        beginTransaction();
+        Timer timer = TimerUtil.findTimer(timerService, name);
+        timer.cancel();
+        setRollbackOnly();
+        commitTransaction();
+        return "Cancelled a timer within tx: " + timer + ". Set the tx to rollback.";
+    }
 }

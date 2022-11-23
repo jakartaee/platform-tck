@@ -20,93 +20,92 @@
 
 package com.sun.ts.tests.ejb30.misc.nomethodbean;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.naming.NamingException;
-
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.Data;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBs;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.naming.NamingException;
 
 @EJBs({
-    @EJB(name = "noMethodStatefulRemote", beanName = "NoMethodStatefulBean", beanInterface = NoMethodRemoteIF.class, description = "remote ejb3 stateful session bean with no business methods"),
-    @EJB(name = "noMethodStatefulLocal", beanName = "NoMethodStatefulBean", beanInterface = NoMethodLocalIF.class, description = "local ejb3 stateful session bean with no business methods") })
-
+    @EJB(
+            name = "noMethodStatefulRemote",
+            beanName = "NoMethodStatefulBean",
+            beanInterface = NoMethodRemoteIF.class,
+            description = "remote ejb3 stateful session bean with no business methods"),
+    @EJB(
+            name = "noMethodStatefulLocal",
+            beanName = "NoMethodStatefulBean",
+            beanInterface = NoMethodLocalIF.class,
+            description = "local ejb3 stateful session bean with no business methods")
+})
 @WebServlet(urlPatterns = "/TestServlet", loadOnStartup = 1)
 public class TestServlet extends HttpTCKServlet {
-  @EJB(name = "noMethodStatelessRemote", beanName = "NoMethodStatelessBean")
-  private NoMethodRemoteIF noMethodStatelessRemote;
+    @EJB(name = "noMethodStatelessRemote", beanName = "NoMethodStatelessBean")
+    private NoMethodRemoteIF noMethodStatelessRemote;
 
-  @EJB(name = "noMethodStatelessLocal", beanName = "NoMethodStatelessBean")
-  private NoMethodLocalIF noMethodStatelessLocal;
+    @EJB(name = "noMethodStatelessLocal", beanName = "NoMethodStatelessBean")
+    private NoMethodLocalIF noMethodStatelessLocal;
 
-  public void noMethodStateless(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    boolean pass1 = false;
-    boolean pass2 = false;
-    StringBuilder reason = new StringBuilder();
-    if (noMethodStatelessRemote != null) {
-      pass1 = true;
-      reason.append(
-          "A remote NoMethodStatelessBean has been injected correctly: ");
-      reason.append(noMethodStatelessRemote.toString());
-    } else {
-      reason.append("A remote NoMethodStatelessBean has not been injected: ");
-      // reason.append(noMethodStatelessRemote.toString());
+    public void noMethodStateless(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        boolean pass1 = false;
+        boolean pass2 = false;
+        StringBuilder reason = new StringBuilder();
+        if (noMethodStatelessRemote != null) {
+            pass1 = true;
+            reason.append("A remote NoMethodStatelessBean has been injected correctly: ");
+            reason.append(noMethodStatelessRemote.toString());
+        } else {
+            reason.append("A remote NoMethodStatelessBean has not been injected: ");
+            // reason.append(noMethodStatelessRemote.toString());
+        }
+        if (noMethodStatelessLocal != null) {
+            pass2 = true;
+            reason.append("A local NoMethodStatelessBean has been injected correctly: ");
+            reason.append(noMethodStatelessLocal.toString());
+        } else {
+            reason.append("A local NoMethodStatelessBean has not been injected: ");
+            // reason.append(noMethodStatelessLocal.toString());
+        }
+        pw.println((pass1 && pass2) ? Data.PASSED : Data.FAILED);
+        pw.println(reason.toString());
     }
-    if (noMethodStatelessLocal != null) {
-      pass2 = true;
-      reason.append(
-          "A local NoMethodStatelessBean has been injected correctly: ");
-      reason.append(noMethodStatelessLocal.toString());
-    } else {
-      reason.append("A local NoMethodStatelessBean has not been injected: ");
-      // reason.append(noMethodStatelessLocal.toString());
-    }
-    pw.println((pass1 && pass2) ? Data.PASSED : Data.FAILED);
-    pw.println(reason.toString());
-  }
 
-  public void noMethodStateful(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    boolean pass1 = false;
-    boolean pass2 = false;
-    StringBuilder reason = new StringBuilder();
-    NoMethodRemoteIF noMethodStatefulRemote = null;
-    NoMethodLocalIF noMethodStatefulLocal = null;
-    try {
-      noMethodStatefulRemote = (NoMethodRemoteIF) ServiceLocator
-          .lookupByShortName("noMethodStatefulRemote");
-      pass1 = true;
-      reason.append(
-          "A remote NoMethodStatefulBean has been injected correctly: ");
-      reason.append(noMethodStatefulRemote.toString());
-    } catch (NamingException ex) {
-      reason.append("A remote NoMethodStatefulBean has not been injected.");
-      reason.append(" Exception during lookup: ").append(ex);
+    public void noMethodStateful(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        boolean pass1 = false;
+        boolean pass2 = false;
+        StringBuilder reason = new StringBuilder();
+        NoMethodRemoteIF noMethodStatefulRemote = null;
+        NoMethodLocalIF noMethodStatefulLocal = null;
+        try {
+            noMethodStatefulRemote = (NoMethodRemoteIF) ServiceLocator.lookupByShortName("noMethodStatefulRemote");
+            pass1 = true;
+            reason.append("A remote NoMethodStatefulBean has been injected correctly: ");
+            reason.append(noMethodStatefulRemote.toString());
+        } catch (NamingException ex) {
+            reason.append("A remote NoMethodStatefulBean has not been injected.");
+            reason.append(" Exception during lookup: ").append(ex);
+        }
+        try {
+            noMethodStatefulLocal = (NoMethodLocalIF) ServiceLocator.lookupByShortName("noMethodStatefulLocal");
+            pass2 = true;
+            reason.append("A local NoMethodStatefulBean has been injected correctly: ");
+            reason.append(noMethodStatefulLocal.toString());
+        } catch (NamingException ex) {
+            reason.append("A local NoMethodStatefulBean has not been injected.");
+            reason.append(" Exception during lookup: ").append(ex);
+        }
+        pw.println((pass1 && pass2) ? Data.PASSED : Data.FAILED);
+        pw.println(reason.toString());
     }
-    try {
-      noMethodStatefulLocal = (NoMethodLocalIF) ServiceLocator
-          .lookupByShortName("noMethodStatefulLocal");
-      pass2 = true;
-      reason
-          .append("A local NoMethodStatefulBean has been injected correctly: ");
-      reason.append(noMethodStatefulLocal.toString());
-    } catch (NamingException ex) {
-      reason.append("A local NoMethodStatefulBean has not been injected.");
-      reason.append(" Exception during lookup: ").append(ex);
-    }
-    pw.println((pass1 && pass2) ? Data.PASSED : Data.FAILED);
-    pw.println(reason.toString());
-  }
 }

@@ -22,13 +22,11 @@ import jakarta.ws.rs.Produces;
 
 @Path(value = "/InheritanceTest1")
 public class ChildResource1 implements ParentResource1 {
-  static String html_content = "<html>"
-      + "<head><title>JAX-RS Test</title></head>"
-      + "<body>Second</body></html>";
+    static String html_content = "<html>" + "<head><title>JAX-RS Test</title></head>" + "<body>Second</body></html>";
 
-  @GET
-  @Produces("text/html")
-  public String secondtest() {
-    return html_content;
-  }
+    @GET
+    @Produces("text/html")
+    public String secondtest() {
+        return html_content;
+    }
 }

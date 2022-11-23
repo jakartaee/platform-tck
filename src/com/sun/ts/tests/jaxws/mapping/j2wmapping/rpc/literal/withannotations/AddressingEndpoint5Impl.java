@@ -20,23 +20,24 @@
 
 package com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations;
 
-import jakarta.xml.ws.WebServiceException;
 import jakarta.jws.WebService;
 import jakarta.xml.ws.BindingType;
-import jakarta.xml.ws.soap.SOAPBinding;
 import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.soap.AddressingFeature;
+import jakarta.xml.ws.soap.SOAPBinding;
 
-@WebService(portName = "AddressingEndpoint5Port", serviceName = "AddressingService5", targetNamespace = "http://rpclitservice.org/wsdl", endpointInterface = "com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations.AddressingEndpoint5")
+@WebService(
+        portName = "AddressingEndpoint5Port",
+        serviceName = "AddressingService5",
+        targetNamespace = "http://rpclitservice.org/wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations.AddressingEndpoint5")
 @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)
 @Addressing(enabled = true, required = true, responses = AddressingFeature.Responses.NON_ANONYMOUS)
 public class AddressingEndpoint5Impl implements AddressingEndpoint5 {
 
-  public void address1(String s) {
-  }
+    public void address1(String s) {}
 
-  public String address2() {
-    return "hello";
-  }
-
+    public String address2() {
+        return "hello";
+    }
 }

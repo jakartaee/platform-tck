@@ -26,10 +26,9 @@ import jakarta.jws.Oneway;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
 
-
 @WebService(wsdlLocation = "WEB-INF/wsdl/OnewayWebServiceService.wsdl")
 public interface OnewayWebServiceInterface {
-  @WebMethod
-  @Oneway
-  public void ping(String hello);
+    @WebMethod
+    @Oneway
+    public void ping(String hello);
 }

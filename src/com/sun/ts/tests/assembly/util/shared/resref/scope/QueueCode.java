@@ -22,41 +22,39 @@ package com.sun.ts.tests.assembly.util.shared.resref.scope;
 
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.jms.QueueConnection;
 import jakarta.jms.QueueConnectionFactory;
 
 public class QueueCode {
 
-  /** Prefix used for JNDI lookups */
-  private static final String prefix = "java:comp/env/jms/";
+    /** Prefix used for JNDI lookups */
+    private static final String prefix = "java:comp/env/jms/";
 
-  /*
-   * JNDI lookup names for resource manager connection factories. They differ
-   * only by case.
-   */
-  protected static final String resLookup = prefix + "myFactory";
+    /*
+     * JNDI lookup names for resource manager connection factories. They differ
+     * only by case.
+     */
+    protected static final String resLookup = prefix + "myFactory";
 
-  public static boolean checkYourQueue(TSNamingContext nctx) {
-    QueueConnectionFactory res;
-    QueueConnection conn;
-    boolean pass;
+    public static boolean checkYourQueue(TSNamingContext nctx) {
+        QueueConnectionFactory res;
+        QueueConnection conn;
+        boolean pass;
 
-    try {
-      TestUtil.logTrace("[QueueCode] Looking up " + resLookup);
-      res = (QueueConnectionFactory) nctx.lookup(resLookup);
-      TestUtil.logTrace("[QueueCode] Create QueueConnection");
-      conn = res.createQueueConnection();
-      conn.close();
+        try {
+            TestUtil.logTrace("[QueueCode] Looking up " + resLookup);
+            res = (QueueConnectionFactory) nctx.lookup(resLookup);
+            TestUtil.logTrace("[QueueCode] Create QueueConnection");
+            conn = res.createQueueConnection();
+            conn.close();
 
-      pass = true;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e);
-      TestUtil.printStackTrace(e);
-      pass = false;
+            pass = true;
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e);
+            TestUtil.printStackTrace(e);
+            pass = false;
+        }
+
+        return pass;
     }
-
-    return pass;
-  }
-
 }

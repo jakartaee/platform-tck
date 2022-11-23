@@ -21,132 +21,96 @@ package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.respectbindingfeature;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jaxws.common.*;
-import com.sun.ts.tests.jaxws.wsa.common.MapRequiredException;
-import com.sun.ts.tests.jaxws.wsa.common.MapException;
-
 import com.sun.ts.tests.jaxws.common.Handler_Util;
-import com.sun.ts.tests.jaxws.wsa.common.WsaBaseSOAPHandler;
-import com.sun.ts.tests.jaxws.wsa.common.W3CAddressingConstants;
 import com.sun.ts.tests.jaxws.wsa.common.ActionNotSupportedException;
-import com.sun.ts.tests.jaxws.wsa.common.AddressingPropertyException;
-import jakarta.xml.ws.handler.soap.SOAPMessageContext;
-import jakarta.xml.ws.WebServiceException;
-
-import jakarta.xml.soap.SOAPMessage;
-import jakarta.xml.soap.SOAPHeader;
-import jakarta.xml.soap.SOAPBody;
-import jakarta.xml.soap.SOAPElement;
+import com.sun.ts.tests.jaxws.wsa.common.WsaBaseSOAPHandler;
 import jakarta.xml.soap.SOAPException;
-import jakarta.xml.soap.Text;
-import javax.xml.namespace.QName;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Element;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.List;
-import java.util.Set;
+import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 
 public class ClientSOAPHandler extends WsaBaseSOAPHandler {
-  protected void checkInboundAction(SOAPMessageContext context, String oper,
-      String action) {
-    TestUtil.logMsg("ClientSOAPHandler.checkInboundAction: [operation=" + oper
-        + ", input action=" + action + "]");
-    // figure out which testname i'm checking for and call appropropriate
-    // verify*(...)
-    if (Handler_Util.checkForMsg(context,
-        "afCltEnabledNotREQSvrEnabledREQrbfSvrEnabledCltEnabledTest")) {
-      verifyCltEnabledNotREQSvrEnabledREQrbfSvrEnabledCltEnabled(context,
-          action);
-    } else if (Handler_Util.checkForMsg(context,
-        "afCltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabledTest")) {
-      verifyCltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabled(context, action);
-    } else if (Handler_Util.checkForMsg(context,
-        "afCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabledTest")) {
-      verifyCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabled(context, action);
-    } else if (Handler_Util.checkForMsg(context,
-        "afCltEnabledNotREQSvrNotEnabledrbfSvrEnabledCltEnabledTest")) {
-      verifyCltEnabledNotREQSvrNotEnabledrbfSvrEnabledCltEnabled(context,
-          action);
-    } else if (Handler_Util.checkForMsg(context,
-        "afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest")) {
-      verifyCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabled(context, action);
-    } else {
-      if (action.equals(TestConstants.ADD_NUMBERS_IN_ACTION_URI)) {
-        throw new ActionNotSupportedException("Expected:"
-            + TestConstants.ADD_NUMBERS_IN_ACTION_URI + ", Actual:" + action);
-      }
+    protected void checkInboundAction(SOAPMessageContext context, String oper, String action) {
+        TestUtil.logMsg("ClientSOAPHandler.checkInboundAction: [operation=" + oper + ", input action=" + action + "]");
+        // figure out which testname i'm checking for and call appropropriate
+        // verify*(...)
+        if (Handler_Util.checkForMsg(context, "afCltEnabledNotREQSvrEnabledREQrbfSvrEnabledCltEnabledTest")) {
+            verifyCltEnabledNotREQSvrEnabledREQrbfSvrEnabledCltEnabled(context, action);
+        } else if (Handler_Util.checkForMsg(context, "afCltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabledTest")) {
+            verifyCltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabled(context, action);
+        } else if (Handler_Util.checkForMsg(context, "afCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabledTest")) {
+            verifyCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabled(context, action);
+        } else if (Handler_Util.checkForMsg(context, "afCltEnabledNotREQSvrNotEnabledrbfSvrEnabledCltEnabledTest")) {
+            verifyCltEnabledNotREQSvrNotEnabledrbfSvrEnabledCltEnabled(context, action);
+        } else if (Handler_Util.checkForMsg(context, "afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest")) {
+            verifyCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabled(context, action);
+        } else {
+            if (action.equals(TestConstants.ADD_NUMBERS_IN_ACTION_URI)) {
+                throw new ActionNotSupportedException(
+                        "Expected:" + TestConstants.ADD_NUMBERS_IN_ACTION_URI + ", Actual:" + action);
+            }
+        }
     }
-  }
 
-  private void verifyCltEnabledNotREQSvrEnabledREQrbfSvrEnabledCltEnabled(
-      SOAPMessageContext context, String action) {
-    // verify specific headers for
-    // CltEnabledNotREQSvrEnabledREQrbfSvrEnabledCltEnabled here...
-    checkAddressingHeadersExist(context, action);
-  }
-
-  private void verifyCltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabled(
-      SOAPMessageContext context, String action) {
-    // verify specific headers for
-    // CltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabled here...
-    checkAddressingHeadersExist(context, action);
-  }
-
-  private void verifyCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabled(
-      SOAPMessageContext context, String action) {
-    // verify specific headers for
-    // CltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabled here...
-    checkAddressingHeadersExist(context, action);
-  }
-
-  private void verifyCltEnabledNotREQSvrNotEnabledrbfSvrEnabledCltEnabled(
-      SOAPMessageContext context, String action) {
-    // verify specific headers for
-    // CltEnabledNotREQSvrNotEnabledrbfSvrEnabledCltEnabled here...
-    checkAddressingHeadersDoNotExist(context, action);
-  }
-
-  private void verifyCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabled(
-      SOAPMessageContext context, String action) {
-    // verify specific headers for
-    // CltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabled here...
-    checkAddressingHeadersDoNotExist(context, action);
-  }
-
-  private void verifyAction(String action) {
-    TestUtil.logMsg("ClientSOAPHandler.verifyAction: [action=" + action + "]");
-    if (!TestConstants.ADD_NUMBERS_OUT_ACTION.equals(action)) {
-      throw new ActionNotSupportedException("Expected:"
-          + TestConstants.ADD_NUMBERS_OUT_ACTION + ", Actual:" + action);
+    private void verifyCltEnabledNotREQSvrEnabledREQrbfSvrEnabledCltEnabled(SOAPMessageContext context, String action) {
+        // verify specific headers for
+        // CltEnabledNotREQSvrEnabledREQrbfSvrEnabledCltEnabled here...
+        checkAddressingHeadersExist(context, action);
     }
-  }
 
-  private void checkAddressingHeadersExist(SOAPMessageContext context,
-      String action) {
-    TestUtil.logMsg("ClientSOAPHandler.checkAddressingHeadersExist");
-    verifyAction(action);
-    checkInboundToExist(context);
-    checkInboundRelatesToExist(context);
-  }
-
-  private void checkAddressingHeadersDoNotExist(SOAPMessageContext context,
-      String action) {
-    TestUtil.logMsg("ClientSOAPHandler.checkAddressingHeadersDoNotExist");
-    checkActionDoesNotExist(action);
-    checkInboundToDoesNotExist(context);
-    checkInboundRelatesToDoesNotExist(context);
-  }
-
-  protected String getAction(SOAPMessageContext context) throws SOAPException {
-    try {
-      return super.getAction(context);
-    } catch (Exception e) {
-      return null;
+    private void verifyCltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabled(SOAPMessageContext context, String action) {
+        // verify specific headers for
+        // CltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabled here...
+        checkAddressingHeadersExist(context, action);
     }
-  }
 
-  protected String whichHandler() {
-    return "ClientSOAPHandler";
-  }
+    private void verifyCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabled(SOAPMessageContext context, String action) {
+        // verify specific headers for
+        // CltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabled here...
+        checkAddressingHeadersExist(context, action);
+    }
+
+    private void verifyCltEnabledNotREQSvrNotEnabledrbfSvrEnabledCltEnabled(SOAPMessageContext context, String action) {
+        // verify specific headers for
+        // CltEnabledNotREQSvrNotEnabledrbfSvrEnabledCltEnabled here...
+        checkAddressingHeadersDoNotExist(context, action);
+    }
+
+    private void verifyCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabled(SOAPMessageContext context, String action) {
+        // verify specific headers for
+        // CltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabled here...
+        checkAddressingHeadersDoNotExist(context, action);
+    }
+
+    private void verifyAction(String action) {
+        TestUtil.logMsg("ClientSOAPHandler.verifyAction: [action=" + action + "]");
+        if (!TestConstants.ADD_NUMBERS_OUT_ACTION.equals(action)) {
+            throw new ActionNotSupportedException(
+                    "Expected:" + TestConstants.ADD_NUMBERS_OUT_ACTION + ", Actual:" + action);
+        }
+    }
+
+    private void checkAddressingHeadersExist(SOAPMessageContext context, String action) {
+        TestUtil.logMsg("ClientSOAPHandler.checkAddressingHeadersExist");
+        verifyAction(action);
+        checkInboundToExist(context);
+        checkInboundRelatesToExist(context);
+    }
+
+    private void checkAddressingHeadersDoNotExist(SOAPMessageContext context, String action) {
+        TestUtil.logMsg("ClientSOAPHandler.checkAddressingHeadersDoNotExist");
+        checkActionDoesNotExist(action);
+        checkInboundToDoesNotExist(context);
+        checkInboundRelatesToDoesNotExist(context);
+    }
+
+    protected String getAction(SOAPMessageContext context) throws SOAPException {
+        try {
+            return super.getAction(context);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    protected String whichHandler() {
+        return "ClientSOAPHandler";
+    }
 }

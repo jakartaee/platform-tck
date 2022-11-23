@@ -20,46 +20,40 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.filterrequestdispatcher;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public final class Test_Filter implements Filter {
 
-  // The filter configuration object we are associated with. If this value
-  // is null, this filter instance is not currently configured.
-  private FilterConfig filterConfig = null;
+    // The filter configuration object we are associated with. If this value
+    // is null, this filter instance is not currently configured.
+    private FilterConfig filterConfig = null;
 
-  public void doFilter(ServletRequest request, ServletResponse response,
-      FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-    PrintWriter pw = response.getWriter();
+        PrintWriter pw = response.getWriter();
 
-    if (filterConfig == null) {
-      ServletTestUtil.printResult(pw, "in Test_Filter");
-    } else {
-      ServletTestUtil.printResult(pw, true);
+        if (filterConfig == null) {
+            ServletTestUtil.printResult(pw, "in Test_Filter");
+        } else {
+            ServletTestUtil.printResult(pw, true);
+        }
     }
 
-  }
+    // Remove the filter configuration object for this filter.
+    public void destroy() {}
 
-  // Remove the filter configuration object for this filter.
-  public void destroy() {
-  }
+    // initialize the filter configuration object for this filter.
 
-  // initialize the filter configuration object for this filter.
-
-  public void init(FilterConfig filterConfig) {
-    this.filterConfig = filterConfig;
-
-  }
-
+    public void init(FilterConfig filterConfig) {
+        this.filterConfig = filterConfig;
+    }
 }

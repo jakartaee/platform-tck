@@ -20,6 +20,4 @@
 
 package com.sun.ts.tests.ejb30.tx.common.web;
 
-public interface LocalIF extends RemoteIF {
-
-}
+public interface LocalIF extends RemoteIF {}

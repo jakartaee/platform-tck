@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb30.tx.common.session.cm;
 
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.ejb.Local;
 import jakarta.ejb.Remove;
 import jakarta.ejb.Stateful;
@@ -31,35 +30,35 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateful
-@Local({ LocalTxIF.class })
+@Local({LocalTxIF.class})
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class StatefulLocalTxBean extends LocalTxBeanBase implements LocalTxIF {
-  @TransactionAttribute(TransactionAttributeType.MANDATORY)
-  public void localMandatoryTest() {
-    super.localMandatoryTest();
-  }
+    @TransactionAttribute(TransactionAttributeType.MANDATORY)
+    public void localMandatoryTest() {
+        super.localMandatoryTest();
+    }
 
-  @TransactionAttribute(TransactionAttributeType.NEVER)
-  public void neverTest() {
-    super.neverTest();
-  }
+    @TransactionAttribute(TransactionAttributeType.NEVER)
+    public void neverTest() {
+        super.neverTest();
+    }
 
-  @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-  public void requiresNewNoop() throws TestFailedException {
-    // super.requiresNewNoop();
-    throw new TestFailedException();
-  }
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public void requiresNewNoop() throws TestFailedException {
+        // super.requiresNewNoop();
+        throw new TestFailedException();
+    }
 
-  @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-  public void localRequiresNewTest() {
-    super.localRequiresNewTest();
-  }
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public void localRequiresNewTest() {
+        super.localRequiresNewTest();
+    }
 
-  // type-level REQUIRES_NEW
-  @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-  @Remove
-  public void localRequiresNewRemoveTest() {
-    super.localRequiresNewRemoveTest();
-  }
+    // type-level REQUIRES_NEW
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    @Remove
+    public void localRequiresNewRemoveTest() {
+        super.localRequiresNewRemoveTest();
+    }
 }

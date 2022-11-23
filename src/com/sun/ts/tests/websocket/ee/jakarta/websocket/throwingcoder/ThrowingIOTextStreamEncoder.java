@@ -17,19 +17,16 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder;
 
+import com.sun.ts.tests.websocket.common.stringbean.StringBean;
+import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextStreamEncoder;
+import jakarta.websocket.EncodeException;
 import java.io.IOException;
 import java.io.Writer;
 
-import com.sun.ts.tests.websocket.common.stringbean.StringBean;
-import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextStreamEncoder;
-
-import jakarta.websocket.EncodeException;
-
 public class ThrowingIOTextStreamEncoder extends StringBeanTextStreamEncoder {
 
-  @Override
-  public void encode(StringBean bean, Writer writer)
-      throws EncodeException, IOException {
-    throw new IOException(ThrowingTextDecoder.IO_ERR_MSG);
-  }
+    @Override
+    public void encode(StringBean bean, Writer writer) throws EncodeException, IOException {
+        throw new IOException(ThrowingTextDecoder.IO_ERR_MSG);
+    }
 }

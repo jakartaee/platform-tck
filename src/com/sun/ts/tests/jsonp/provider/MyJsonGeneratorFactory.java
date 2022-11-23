@@ -20,15 +20,13 @@
 
 package com.sun.ts.tests.jsonp.provider;
 
+import com.sun.ts.lib.util.TestUtil;
+import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonGeneratorFactory;
 import java.io.OutputStream;
 import java.io.Writer;
 import java.nio.charset.Charset;
 import java.util.Map;
-
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.json.stream.JsonGenerator;
-import jakarta.json.stream.JsonGeneratorFactory;
 
 /*
  * MyJsonGeneratorFactory is a Json Test GeneratorFactory used by the pluggability tests
@@ -37,66 +35,65 @@ import jakarta.json.stream.JsonGeneratorFactory;
  */
 
 public class MyJsonGeneratorFactory implements JsonGeneratorFactory {
-  private OutputStream out = null;
+    private OutputStream out = null;
 
-  private Writer writer = null;
+    private Writer writer = null;
 
-  private Charset charset = Charset.forName("UTF-8");
+    private Charset charset = Charset.forName("UTF-8");
 
-  private Map<String, ?> config = null;
+    private Map<String, ?> config = null;
 
-  private void dumpInstanceVars() {
-    TestUtil.logTrace("writer=" + writer);
-    TestUtil.logTrace("out=" + out);
-    TestUtil.logTrace("charset=" + charset);
-    TestUtil.logTrace("config=" + config);
-  }
+    private void dumpInstanceVars() {
+        TestUtil.logTrace("writer=" + writer);
+        TestUtil.logTrace("out=" + out);
+        TestUtil.logTrace("charset=" + charset);
+        TestUtil.logTrace("config=" + config);
+    }
 
-  // call methods
-  private static StringBuilder calls = new StringBuilder();
+    // call methods
+    private static StringBuilder calls = new StringBuilder();
 
-  public static String getCalls() {
-    return calls.toString();
-  }
+    public static String getCalls() {
+        return calls.toString();
+    }
 
-  public static void clearCalls() {
-    calls.delete(0, calls.length());
-  }
+    public static void clearCalls() {
+        calls.delete(0, calls.length());
+    }
 
-  private static void addCalls(String s) {
-    calls.append(s);
-  }
+    private static void addCalls(String s) {
+        calls.append(s);
+    }
 
-  public MyJsonGeneratorFactory(Map<String, ?> config) {
-    this.config = config;
-  }
+    public MyJsonGeneratorFactory(Map<String, ?> config) {
+        this.config = config;
+    }
 
-  public Map<String, ?> getConfigInUse() {
-    TestUtil.logTrace("public Map<String, ?> getConfigInUse()");
-    addCalls("public Map<String, ?> getConfigInUse()");
-    return config;
-  }
+    public Map<String, ?> getConfigInUse() {
+        TestUtil.logTrace("public Map<String, ?> getConfigInUse()");
+        addCalls("public Map<String, ?> getConfigInUse()");
+        return config;
+    }
 
-  public JsonGenerator createGenerator(OutputStream out) {
-    TestUtil.logTrace("public JsonGenerator createGenerator(OutputStream)");
-    addCalls("public JsonGenerator createGenerator(OutputStream)");
-    this.out = out;
-    return null;
-  }
+    public JsonGenerator createGenerator(OutputStream out) {
+        TestUtil.logTrace("public JsonGenerator createGenerator(OutputStream)");
+        addCalls("public JsonGenerator createGenerator(OutputStream)");
+        this.out = out;
+        return null;
+    }
 
-  public JsonGenerator createGenerator(OutputStream out, Charset charset) {
-    TestUtil.logTrace(
-        "public JsonGenerator createGenerator(OutputStream, Charset)");
-    addCalls("public JsonGenerator createGenerator(OutputStream, Charset)");
-    this.out = out;
-    this.charset = charset;
-    return null;
-  }
+    public JsonGenerator createGenerator(OutputStream out, Charset charset) {
+        TestUtil.logTrace("public JsonGenerator createGenerator(OutputStream, Charset)");
+        addCalls("public JsonGenerator createGenerator(OutputStream, Charset)");
+        this.out = out;
+        this.charset = charset;
+        return null;
+    }
 
-  public JsonGenerator createGenerator(Writer writer) {
-    TestUtil.logTrace("public JsonGenerator createGenerator(Writer)");
-    addCalls("public JsonGenerator createGenerator(Writer)");
-    this.writer = writer;
-    return null;
-  }
+    public JsonGenerator createGenerator(Writer writer) {
+        TestUtil.logTrace("public JsonGenerator createGenerator(Writer)");
+        addCalls("public JsonGenerator createGenerator(Writer)");
+        this.writer = writer;
+        return null;
+    }
 }

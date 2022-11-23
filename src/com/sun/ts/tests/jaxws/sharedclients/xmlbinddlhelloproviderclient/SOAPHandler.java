@@ -23,13 +23,13 @@ package com.sun.ts.tests.jaxws.sharedclients.xmlbinddlhelloproviderclient;
 import com.sun.ts.tests.jaxws.common.SOAPHandlerBase2;
 
 public class SOAPHandler extends SOAPHandlerBase2 {
-  private static final String WHICHHANDLERTYPE = "Client";
+    private static final String WHICHHANDLERTYPE = "Client";
 
-  private static final String HANDLERNAME = "SOAPHandler";
+    private static final String HANDLERNAME = "SOAPHandler";
 
-  public SOAPHandler() {
-    super();
-    super.setWhichHandlerType(WHICHHANDLERTYPE);
-    super.setHandlerName(HANDLERNAME);
-  }
+    public SOAPHandler() {
+        super();
+        super.setWhichHandlerType(WHICHHANDLERTYPE);
+        super.setHandlerName(HANDLERNAME);
+    }
 }

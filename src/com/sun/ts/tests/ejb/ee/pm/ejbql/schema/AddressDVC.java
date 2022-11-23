@@ -26,74 +26,73 @@ import java.util.Collection;
 
 public class AddressDVC implements java.io.Serializable {
 
-  // Instance variables
-  private String id;
+    // Instance variables
+    private String id;
 
-  private String street;
+    private String street;
 
-  private String city;
+    private String city;
 
-  private String state;
+    private String state;
 
-  private String zip;
+    private String zip;
 
-  private Collection phones;
+    private Collection phones;
 
-  public AddressDVC(String v1, String v2, String v3, String v4, String v5,
-      Collection c1) {
-    id = v1;
-    street = v2;
-    city = v3;
-    state = v4;
-    zip = v5;
-    phones = c1;
-  }
+    public AddressDVC(String v1, String v2, String v3, String v4, String v5, Collection c1) {
+        id = v1;
+        street = v2;
+        city = v3;
+        state = v4;
+        zip = v5;
+        phones = c1;
+    }
 
-  public String getId() {
-    return id;
-  }
+    public String getId() {
+        return id;
+    }
 
-  public void setId(String v) {
-    id = v;
-  }
+    public void setId(String v) {
+        id = v;
+    }
 
-  public String getStreet() {
-    return street;
-  }
+    public String getStreet() {
+        return street;
+    }
 
-  public void setStreet(String v) {
-    street = v;
-  }
+    public void setStreet(String v) {
+        street = v;
+    }
 
-  public String getCity() {
-    return city;
-  }
+    public String getCity() {
+        return city;
+    }
 
-  public void setCity(String v) {
-    city = v;
-  }
+    public void setCity(String v) {
+        city = v;
+    }
 
-  public String getState() {
-    return state;
-  }
+    public String getState() {
+        return state;
+    }
 
-  public void setState(String v) {
-    state = v;
-  }
+    public void setState(String v) {
+        state = v;
+    }
 
-  public String getZip() {
-    return zip;
-  }
+    public String getZip() {
+        return zip;
+    }
 
-  public void setZip(String v) {
-    zip = v;
-  }
+    public void setZip(String v) {
+        zip = v;
+    }
 
-  public Collection getPhones() {
-    return phones;
-  }
+    public Collection getPhones() {
+        return phones;
+    }
 
-  public void setPhones(Collection v) {
-    phones = v;
-  }
+    public void setPhones(Collection v) {
+        phones = v;
+    }
 }

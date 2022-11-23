@@ -16,35 +16,32 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.el.implicitobjelresolver;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspResolverTest;
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.el.ELContext;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.el.ImplicitObjectELResolver;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class ImplicitObjELResolverTag extends SimpleTagSupport {
 
-  public void doTag() throws JspException, IOException {
+    public void doTag() throws JspException, IOException {
 
-    StringBuffer buf = new StringBuffer();
-    JspWriter out = getJspContext().getOut();
-    ELContext context = getJspContext().getELContext();
-    ImplicitObjectELResolver implicitobjResolver = new ImplicitObjectELResolver();
+        StringBuffer buf = new StringBuffer();
+        JspWriter out = getJspContext().getOut();
+        ELContext context = getJspContext().getELContext();
+        ImplicitObjectELResolver implicitobjResolver = new ImplicitObjectELResolver();
 
-    try {
-      boolean pass = JspResolverTest.testImplicitObjELResolver(context,
-          implicitobjResolver, null, "pageContext", "foo", buf);
-      out.println(buf.toString());
-      if (pass == true)
-        out.println("Test PASSED");
-    } catch (Throwable t) {
-      out.println("contents of buffer:\n" + buf.toString());
-      JspTestUtil.handleThrowable(t, out, "ImplicitObjELResolverTag");
+        try {
+            boolean pass = JspResolverTest.testImplicitObjELResolver(
+                    context, implicitobjResolver, null, "pageContext", "foo", buf);
+            out.println(buf.toString());
+            if (pass == true) out.println("Test PASSED");
+        } catch (Throwable t) {
+            out.println("contents of buffer:\n" + buf.toString());
+            JspTestUtil.handleThrowable(t, out, "ImplicitObjELResolverTag");
+        }
     }
-  }
 }

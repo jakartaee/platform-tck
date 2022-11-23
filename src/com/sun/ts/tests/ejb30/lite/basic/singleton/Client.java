@@ -20,64 +20,63 @@
 package com.sun.ts.tests.ejb30.lite.basic.singleton;
 
 import com.sun.ts.tests.ejb30.lite.basic.common.ClientBase;
-
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
 
-  @SuppressWarnings("unused")
-  @EJB(beanInterface = BasicBean.class, beanName = "BasicBean")
-  private void setBasicBean(BasicBean b) {
-    basicBean = b;
-  }
+    @SuppressWarnings("unused")
+    @EJB(beanInterface = BasicBean.class, beanName = "BasicBean")
+    private void setBasicBean(BasicBean b) {
+        basicBean = b;
+    }
 
-  /*
-   * @testName: add
-   * 
-   * @test_Strategy: a simple no-interface local singleton bean. The bean field
-   * (basicBean, of type BasicBeanBase) is declared in superclass (ClientBase),
-   * and the setter injection is in subclass (Client). Besides, one-interface
-   * local singleton bean, accessed with Basic1IF; two-interface local singleton
-   * bean, accessed with Basic1IF; two-interface local singleton bean, accessed
-   * with Basic2IF.
-   */
-  /*
-   * @testName: globalJNDI
-   * 
-   * @test_Strategy: lookup portable global jndi names of various beans from web
-   * components or standalone client.
-   */
-  /*
-   * @testName: globalJNDI2
-   * 
-   * @test_Strategy: lookup portable global jndi names of various beans from ejb
-   * bean class
-   */
-  /*
-   * @testName: appJNDI
-   * 
-   * @test_Strategy: lookup portable app jndi names of various beans from web
-   * component client (not standalone client).
-   */
+    /*
+     * @testName: add
+     *
+     * @test_Strategy: a simple no-interface local singleton bean. The bean field
+     * (basicBean, of type BasicBeanBase) is declared in superclass (ClientBase),
+     * and the setter injection is in subclass (Client). Besides, one-interface
+     * local singleton bean, accessed with Basic1IF; two-interface local singleton
+     * bean, accessed with Basic1IF; two-interface local singleton bean, accessed
+     * with Basic2IF.
+     */
+    /*
+     * @testName: globalJNDI
+     *
+     * @test_Strategy: lookup portable global jndi names of various beans from web
+     * components or standalone client.
+     */
+    /*
+     * @testName: globalJNDI2
+     *
+     * @test_Strategy: lookup portable global jndi names of various beans from ejb
+     * bean class
+     */
+    /*
+     * @testName: appJNDI
+     *
+     * @test_Strategy: lookup portable app jndi names of various beans from web
+     * component client (not standalone client).
+     */
 
-  /*
-   * @testName: appJNDI2
-   * 
-   * @test_Strategy: lookup portable app jndi names of various beans from ejb
-   * bean class
-   */
+    /*
+     * @testName: appJNDI2
+     *
+     * @test_Strategy: lookup portable app jndi names of various beans from ejb
+     * bean class
+     */
 
-  /*
-   * @testName: moduleJNDI
-   * 
-   * @test_Strategy: lookup portable module jndi names of various beans from web
-   * component client (not standalone client).
-   */
+    /*
+     * @testName: moduleJNDI
+     *
+     * @test_Strategy: lookup portable module jndi names of various beans from web
+     * component client (not standalone client).
+     */
 
-  /*
-   * @testName: moduleJNDI2
-   * 
-   * @test_Strategy: lookup portable module jndi names of various beans from ejb
-   * bean class
-   */
+    /*
+     * @testName: moduleJNDI2
+     *
+     * @test_Strategy: lookup portable module jndi names of various beans from ejb
+     * bean class
+     */
 }

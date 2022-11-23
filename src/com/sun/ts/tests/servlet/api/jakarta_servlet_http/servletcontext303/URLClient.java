@@ -19,94 +19,92 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.servletcontext303;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    setContextRoot("/servlet_jsh_servletcontext303_web");
-    setServletName("TestServlet");
+        setContextRoot("/servlet_jsh_servletcontext303_web");
+        setServletName("TestServlet");
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
-  /* Run test */
-  /*
-   * @testName: negativeaddHListenerClassTest
-   *
-   * @assertion_ids: Servlet:JAVADOC:672.11; Servlet:JAVADOC:673.11;
-   *
-   * @test_Strategy: Create a Servlet, in which, a HttpSessionListener is added;
-   * Verify in servlet that java.lang.IllegalStateException is thrown.
-   */
-  public void negativeaddHListenerClassTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "negativeaddHListenerClassTest");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "HttpSessionListener");
-    invoke();
-  }
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
+    /* Run test */
+    /*
+     * @testName: negativeaddHListenerClassTest
+     *
+     * @assertion_ids: Servlet:JAVADOC:672.11; Servlet:JAVADOC:673.11;
+     *
+     * @test_Strategy: Create a Servlet, in which, a HttpSessionListener is added;
+     * Verify in servlet that java.lang.IllegalStateException is thrown.
+     */
+    public void negativeaddHListenerClassTest() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "negativeaddHListenerClassTest");
+        TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "HttpSessionListener");
+        invoke();
+    }
 
-  /*
-   * @testName: negativeaddHListenerStringTest
-   *
-   * @assertion_ids: Servlet:JAVADOC:671.11;
-   *
-   * @test_Strategy: Create a Servlet, in which, a HttpSessionListener is added;
-   * Verify in servlet that java.lang.IllegalStateException is thrown.
-   */
-  public void negativeaddHListenerStringTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "negativeaddHListenerStringTest");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "HttpSessionListener");
-    invoke();
-  }
+    /*
+     * @testName: negativeaddHListenerStringTest
+     *
+     * @assertion_ids: Servlet:JAVADOC:671.11;
+     *
+     * @test_Strategy: Create a Servlet, in which, a HttpSessionListener is added;
+     * Verify in servlet that java.lang.IllegalStateException is thrown.
+     */
+    public void negativeaddHListenerStringTest() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "negativeaddHListenerStringTest");
+        TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "HttpSessionListener");
+        invoke();
+    }
 
-  /*
-   * @testName: negativeaddHAListenerClassTest
-   *
-   * @assertion_ids: Servlet:JAVADOC:672.11; Servlet:JAVADOC:673.11;
-   *
-   * @test_Strategy: Create a Servlet, in which, a HttpSessionAttributeListener
-   * is added; Verify in servlet that java.lang.IllegalStateException is thrown.
-   */
-  public void negativeaddHAListenerClassTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "negativeaddHAListenerClassTest");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "HSessionAttribute");
-    invoke();
-  }
+    /*
+     * @testName: negativeaddHAListenerClassTest
+     *
+     * @assertion_ids: Servlet:JAVADOC:672.11; Servlet:JAVADOC:673.11;
+     *
+     * @test_Strategy: Create a Servlet, in which, a HttpSessionAttributeListener
+     * is added; Verify in servlet that java.lang.IllegalStateException is thrown.
+     */
+    public void negativeaddHAListenerClassTest() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "negativeaddHAListenerClassTest");
+        TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "HSessionAttribute");
+        invoke();
+    }
 
-  /*
-   * @testName: negativeaddHAListenerStringTest
-   *
-   * @assertion_ids: Servlet:JAVADOC:671.11;
-   *
-   * @test_Strategy: Create a Servlet, in which, a HttpSessionAttributeListener
-   * is added; Verify in servlet that java.lang.IllegalStateException is thrown.
-   */
-  public void negativeaddHAListenerStringTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "negativeaddHAListenerClassTest");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "HSessionAttribute");
-    invoke();
-  }
+    /*
+     * @testName: negativeaddHAListenerStringTest
+     *
+     * @assertion_ids: Servlet:JAVADOC:671.11;
+     *
+     * @test_Strategy: Create a Servlet, in which, a HttpSessionAttributeListener
+     * is added; Verify in servlet that java.lang.IllegalStateException is thrown.
+     */
+    public void negativeaddHAListenerStringTest() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "negativeaddHAListenerClassTest");
+        TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "HSessionAttribute");
+        invoke();
+    }
 }

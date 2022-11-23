@@ -25,7 +25,7 @@ package com.sun.ts.tests.ejb30.lite.appexception.common.inheritance;
  * disabled inheritance.
  */
 public class Exception4 extends Exception3 {
-  public Exception4(String message) {
-    super(message);
-  }
+    public Exception4(String message) {
+        super(message);
+    }
 }

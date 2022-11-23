@@ -30,13 +30,11 @@ import com.sun.ts.lib.util.TestUtil;
  */
 public class IndirectClassPathUtil {
 
-  /** No args constructor */
-  public IndirectClassPathUtil() {
-  }
+    /** No args constructor */
+    public IndirectClassPathUtil() {}
 
-  /** Check current instance is valid */
-  public void test() {
-    TestUtil.logTrace("[IndirectClassPathUtil] test()");
-  }
-
+    /** Check current instance is valid */
+    public void test() {
+        TestUtil.logTrace("[IndirectClassPathUtil] test()");
+    }
 }

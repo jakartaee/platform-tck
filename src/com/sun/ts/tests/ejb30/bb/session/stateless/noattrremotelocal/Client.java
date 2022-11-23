@@ -15,7 +15,7 @@
  */
 
 /*
-* $Id$
+ * $Id$
  */
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.noattrremotelocal;
@@ -25,88 +25,87 @@ import com.sun.ts.tests.ejb30.common.busiface.BusinessIF1;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessIF2;
 import com.sun.ts.tests.ejb30.common.busiface.ClientBase;
 import com.sun.ts.tests.ejb30.common.busiface.TestIF;
-
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
-  @EJB
-  private static BusinessIF1 bean1;
+    @EJB
+    private static BusinessIF1 bean1;
 
-  @EJB
-  private static BusinessIF2 bean2;
+    @EJB
+    private static BusinessIF2 bean2;
 
-  @EJB
-  private static TestIF testBean;
+    @EJB
+    private static TestIF testBean;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  protected TestIF getTestBean() {
-    return testBean;
-  }
+    protected TestIF getTestBean() {
+        return testBean;
+    }
 
-  protected BusinessIF2 getBean2() {
-    return bean2;
-  }
+    protected BusinessIF2 getBean2() {
+        return bean2;
+    }
 
-  protected BusinessIF1 getBean1() {
-    return bean1;
-  }
+    protected BusinessIF1 getBean1() {
+        return bean1;
+    }
 
-  /*
-   * @testName: multipleInterfacesTest1
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
+    /*
+     * @testName: multipleInterfacesTest1
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: multipleInterfacesTest2
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
+    /*
+     * @testName: multipleInterfacesTest2
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: multipleInterfacesLocalTest1
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
+    /*
+     * @testName: multipleInterfacesLocalTest1
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: singleInterfaceLocalSerializableTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
+    /*
+     * @testName: singleInterfaceLocalSerializableTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: singleInterfaceLocalExternalizableTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
+    /*
+     * @testName: singleInterfaceLocalExternalizableTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: singleInterfaceLocalSessionBeanTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
+    /*
+     * @testName: singleInterfaceLocalSessionBeanTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 }

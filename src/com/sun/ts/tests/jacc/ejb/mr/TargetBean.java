@@ -16,10 +16,7 @@
 
 package com.sun.ts.tests.jacc.ejb.mr;
 
-import java.util.logging.Logger;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.Resource;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.DenyAll;
@@ -29,61 +26,58 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
+import java.util.logging.Logger;
 
 @Stateless(name = "TargetBean")
 // @Remote({Target.class})
-@DeclareRoles({ "Administrator", "Manager", "Employee" })
-
+@DeclareRoles({"Administrator", "Manager", "Employee"})
 public class TargetBean implements Target {
 
-  private SessionContext sctx;
+    private SessionContext sctx;
 
-  private Logger logger = Helper.getLogger();
+    private Logger logger = Helper.getLogger();
 
-  @RolesAllowed({ "Administrator", "Manager", "Employee" })
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  public void initLogging(java.util.Properties p) {
-  }
+    @RolesAllowed({"Administrator", "Manager", "Employee"})
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public void initLogging(java.util.Properties p) {}
 
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  public boolean IsCaller(String caller) {
-    if (sctx.getCallerPrincipal().getName().indexOf(caller) < 0)
-      return false;
-    else
-      return true;
-  }
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public boolean IsCaller(String caller) {
+        if (sctx.getCallerPrincipal().getName().indexOf(caller) < 0) return false;
+        else return true;
+    }
 
-  @RolesAllowed({ "Administrator" })
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  public boolean EjbNotAuthz() {
-    return true;
-  }
+    @RolesAllowed({"Administrator"})
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public boolean EjbNotAuthz() {
+        return true;
+    }
 
-  @RolesAllowed({ "Administrator", "Manager", "Employee" })
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  public boolean EjbIsAuthz() {
-    return true;
-  }
+    @RolesAllowed({"Administrator", "Manager", "Employee"})
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public boolean EjbIsAuthz() {
+        return true;
+    }
 
-  @RolesAllowed({ "Manager", "Employee" })
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  public boolean EjbSecRoleRef(String role) {
-    return sctx.isCallerInRole(role);
-  }
+    @RolesAllowed({"Manager", "Employee"})
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public boolean EjbSecRoleRef(String role) {
+        return sctx.isCallerInRole(role);
+    }
 
-  @PermitAll
-  public boolean uncheckedTest() {
-    return true;
-  }
+    @PermitAll
+    public boolean uncheckedTest() {
+        return true;
+    }
 
-  @DenyAll
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  public boolean excludeTest() {
-    return true;
-  }
+    @DenyAll
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public boolean excludeTest() {
+        return true;
+    }
 
-  @Resource
-  public void setSessionContext(SessionContext sc) {
-    sctx = sc;
-  }
+    @Resource
+    public void setSessionContext(SessionContext sc) {
+        sctx = sc;
+    }
 }

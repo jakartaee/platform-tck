@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb30.bb.mdb.callback.method.ejbcreate;
 
 import com.sun.ts.tests.ejb30.common.callback.MDBCallbackBeanBase;
-
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
@@ -30,35 +29,32 @@ import jakarta.jms.MessageListener;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
 
-public class CallbackBean0 extends MDBCallbackBeanBase
-    implements MessageListener {
-  @Resource(name = "mdc")
-  private MessageDrivenContext mdc;
+public class CallbackBean0 extends MDBCallbackBeanBase implements MessageListener {
+    @Resource(name = "mdc")
+    private MessageDrivenContext mdc;
 
-  @Resource(name = "qFactory")
-  private QueueConnectionFactory qFactory;
+    @Resource(name = "qFactory")
+    private QueueConnectionFactory qFactory;
 
-  @Resource(name = "replyQueue")
-  private Queue replyQueue;
+    @Resource(name = "replyQueue")
+    private Queue replyQueue;
 
-  public EJBContext getEJBContext() {
-    return this.mdc;
-  }
-
-  // ================= callback methods ====================================
-  // @PostConstruct
-  // @PostConstruct not needed. ejbCreate is treated as PostConstruct method
-  public void ejbCreate() {
-    this.setPostConstructCalled(true);
-    if (this.getEJBContext() != null && qFactory != null
-        && replyQueue != null) {
-      this.setInjectionDone(true);
+    public EJBContext getEJBContext() {
+        return this.mdc;
     }
-  }
 
-  @PreDestroy
-  protected void ejbRemove() throws RuntimeException {
-    this.setPreDestroyCalled(true);
-  }
+    // ================= callback methods ====================================
+    // @PostConstruct
+    // @PostConstruct not needed. ejbCreate is treated as PostConstruct method
+    public void ejbCreate() {
+        this.setPostConstructCalled(true);
+        if (this.getEJBContext() != null && qFactory != null && replyQueue != null) {
+            this.setInjectionDone(true);
+        }
+    }
 
+    @PreDestroy
+    protected void ejbRemove() throws RuntimeException {
+        this.setPreDestroyCalled(true);
+    }
 }

@@ -16,92 +16,82 @@
 
 package com.sun.ts.tests.webservices12.deploy.warMirrorSEI;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
 import com.sun.javatest.Status;
-
-import java.util.Iterator;
-import jakarta.xml.ws.Service;
-import javax.xml.namespace.QName;
-import javax.naming.InitialContext;
+import com.sun.ts.lib.harness.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
 import java.util.Properties;
 
 public class Client extends EETest {
-  @jakarta.xml.ws.WebServiceRef(name = "service/WSwarMirrorSEI")
-  static HelloWsService svc;
+    @jakarta.xml.ws.WebServiceRef(name = "service/WSwarMirrorSEI")
+    static HelloWsService svc;
 
-  HelloWs port = null;
+    HelloWs port = null;
 
-  private void getStub() throws Exception {
-    TestUtil.logMsg("WebServiceRef for service/WSwarMirrorSEI");
-    TestUtil.logMsg("svc=" + svc);
-    TestUtil.logMsg("Get port from Service");
-    port = (HelloWs) svc.getPort(HelloWs.class);
-    TestUtil.logMsg("Port obtained");
-    TestUtil.logMsg("port=" + port);
-  }
-
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup */
-
-  /*
-   * @class.testArgs: -ap jaxws-url-props.dat
-   * 
-   * @class.setup_props: webServerHost; webServerPort;
-   */
-
-  public void setup(String[] args, Properties p) throws Fault {
-    try {
-      getStub();
-    } catch (Exception e) {
-      throw new Fault("setup failed:", e);
+    private void getStub() throws Exception {
+        TestUtil.logMsg("WebServiceRef for service/WSwarMirrorSEI");
+        TestUtil.logMsg("svc=" + svc);
+        TestUtil.logMsg("Get port from Service");
+        port = (HelloWs) svc.getPort(HelloWs.class);
+        TestUtil.logMsg("Port obtained");
+        TestUtil.logMsg("port=" + port);
     }
-    logMsg("setup ok");
-  }
 
-  public void cleanup() throws Fault {
-    logMsg("cleanup ok");
-  }
-
-  private void printSeperationLine() {
-    TestUtil.logMsg("---------------------------");
-  }
-
-  /*
-   * @testName: warMirrorSEICall
-   *
-   * @assertion_ids: WS4EE:SPEC:110; WS4EE:SPEC:184; WS4EE:SPEC:55;
-   *
-   * 
-   * @test_Strategy: call method on Java War that mirrors the methods of SEI,
-   * but does not implement SEI directly
-   */
-  public void warMirrorSEICall() throws Fault {
-    TestUtil.logMsg("WarMirrorSEICall");
-    try {
-      HelloRequest req = new HelloRequest();
-      req.setArgument("warMirrorSEI");
-      TestUtil.logMsg("Invoke sayHello method ...");
-      HelloResponse ret = port.sayHello(req);
-      if (!ret.getArgument().equals("'warMirrorSEI' to you too!")) {
-        TestUtil.logMsg(
-            "test WarMirrorSEICall failed: return value from server is: "
-                + ret.getArgument());
-        throw new Fault("WarMirrorSEICall failed");
-      } else
-        TestUtil.logMsg("WarMirrorSEICall passed");
-    } catch (Throwable t) {
-      TestUtil.logMsg(
-          "test WarMirrorSEICall failed: got exception " + t.toString());
-      throw new Fault("WarMirrorSEICall failed");
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-    return;
-  }
 
+    /* Test setup */
+
+    /*
+     * @class.testArgs: -ap jaxws-url-props.dat
+     *
+     * @class.setup_props: webServerHost; webServerPort;
+     */
+
+    public void setup(String[] args, Properties p) throws Fault {
+        try {
+            getStub();
+        } catch (Exception e) {
+            throw new Fault("setup failed:", e);
+        }
+        logMsg("setup ok");
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("cleanup ok");
+    }
+
+    private void printSeperationLine() {
+        TestUtil.logMsg("---------------------------");
+    }
+
+    /*
+     * @testName: warMirrorSEICall
+     *
+     * @assertion_ids: WS4EE:SPEC:110; WS4EE:SPEC:184; WS4EE:SPEC:55;
+     *
+     *
+     * @test_Strategy: call method on Java War that mirrors the methods of SEI,
+     * but does not implement SEI directly
+     */
+    public void warMirrorSEICall() throws Fault {
+        TestUtil.logMsg("WarMirrorSEICall");
+        try {
+            HelloRequest req = new HelloRequest();
+            req.setArgument("warMirrorSEI");
+            TestUtil.logMsg("Invoke sayHello method ...");
+            HelloResponse ret = port.sayHello(req);
+            if (!ret.getArgument().equals("'warMirrorSEI' to you too!")) {
+                TestUtil.logMsg("test WarMirrorSEICall failed: return value from server is: " + ret.getArgument());
+                throw new Fault("WarMirrorSEICall failed");
+            } else TestUtil.logMsg("WarMirrorSEICall passed");
+        } catch (Throwable t) {
+            TestUtil.logMsg("test WarMirrorSEICall failed: got exception " + t.toString());
+            throw new Fault("WarMirrorSEICall failed");
+        }
+        return;
+    }
 }

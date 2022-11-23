@@ -20,14 +20,12 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import java.io.Serializable;
-
 import jakarta.resource.Referenceable;
+import java.io.Serializable;
 
 public interface TSConnectionFactory extends Referenceable, Serializable {
 
-  public TSConnection getConnection() throws Exception;
+    public TSConnection getConnection() throws Exception;
 
-  public TSConnection getConnection(String usr, String passwd) throws Exception;
-
+    public TSConnection getConnection(String usr, String passwd) throws Exception;
 }

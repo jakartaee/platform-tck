@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrynoat;
 
 import com.sun.ts.tests.ejb30.common.annotation.enventry.EnvEntryBeanBase;
 import com.sun.ts.tests.ejb30.common.annotation.enventry.EnvEntryIF;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
@@ -31,345 +30,343 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateless(name = "EnvEntrySetterBean")
-@Remote({ EnvEntryIF.class })
+@Remote({EnvEntryIF.class})
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class EnvEntrySetterBean extends EnvEntryBeanBase implements EnvEntryIF {
 
-  @Resource(name = "sessionContext")
-  private SessionContext sessionContext;
+    @Resource(name = "sessionContext")
+    private SessionContext sessionContext;
 
-  public EnvEntrySetterBean() {
-  }
+    public EnvEntrySetterBean() {}
 
-  public void remove() {
-  }
+    public void remove() {}
 
-  protected jakarta.ejb.EJBContext getEJBContext() {
-    return sessionContext;
-  }
+    protected jakarta.ejb.EJBContext getEJBContext() {
+        return sessionContext;
+    }
 
-  private String myString = "XX";
+    private String myString = "XX";
 
-  private void setMyString(String myString) {
-    this.myString = myString;
-  }
+    private void setMyString(String myString) {
+        this.myString = myString;
+    }
 
-  protected String getString() {
-    return myString;
-  }
+    protected String getString() {
+        return myString;
+    }
 
-  protected String getStringExpected() {
-    return "EnvEntrySetterBean";
-  }
+    protected String getStringExpected() {
+        return "EnvEntrySetterBean";
+    }
 
-  protected String getStringName() {
-    return "myString";
-  }
+    protected String getStringName() {
+        return "myString";
+    }
 
-  private char myChar = 'X';
+    private char myChar = 'X';
 
-  private void setMyChar(char myChar) {
-    this.myChar = myChar;
-  }
+    private void setMyChar(char myChar) {
+        this.myChar = myChar;
+    }
 
-  protected char getChar() {
-    return myChar;
-  }
+    protected char getChar() {
+        return myChar;
+    }
 
-  protected char getCharExpected() {
-    return 's';
-  }
+    protected char getCharExpected() {
+        return 's';
+    }
 
-  protected String getCharName() {
-    return "myChar";
-  }
+    protected String getCharName() {
+        return "myChar";
+    }
 
-  private int myInt = 99;
+    private int myInt = 99;
 
-  private void setMyInt(int myInt) {
-    this.myInt = myInt;
-  }
+    private void setMyInt(int myInt) {
+        this.myInt = myInt;
+    }
 
-  protected int getInt() {
-    return myInt;
-  }
+    protected int getInt() {
+        return myInt;
+    }
 
-  protected int getIntExpected() {
-    return -1;
-  }
+    protected int getIntExpected() {
+        return -1;
+    }
 
-  protected String getIntName() {
-    return "myInt";
-  }
+    protected String getIntName() {
+        return "myInt";
+    }
 
-  private boolean myBoolean = false;
+    private boolean myBoolean = false;
 
-  private void setMyBoolean(boolean myBoolean) {
-    this.myBoolean = myBoolean;
-  }
+    private void setMyBoolean(boolean myBoolean) {
+        this.myBoolean = myBoolean;
+    }
 
-  protected boolean getBoolean() {
-    return myBoolean;
-  }
+    protected boolean getBoolean() {
+        return myBoolean;
+    }
 
-  protected boolean getBooleanExpected() {
-    return true;
-  }
+    protected boolean getBooleanExpected() {
+        return true;
+    }
 
-  protected String getBooleanName() {
-    return "myBoolean";
-  }
+    protected String getBooleanName() {
+        return "myBoolean";
+    }
 
-  private double myDouble = 999.99;
+    private double myDouble = 999.99;
 
-  private void setMyDouble(double myDouble) {
-    this.myDouble = myDouble;
-  }
+    private void setMyDouble(double myDouble) {
+        this.myDouble = myDouble;
+    }
 
-  protected double getDouble() {
-    return myDouble;
-  }
+    protected double getDouble() {
+        return myDouble;
+    }
 
-  protected double getDoubleExpected() {
-    return 1.11;
-  }
+    protected double getDoubleExpected() {
+        return 1.11;
+    }
 
-  protected String getDoubleName() {
-    return "myDouble";
-  }
+    protected String getDoubleName() {
+        return "myDouble";
+    }
 
-  private byte myByte = 99;
+    private byte myByte = 99;
 
-  private void setMyByte(byte myByte) {
-    this.myByte = myByte;
-  }
+    private void setMyByte(byte myByte) {
+        this.myByte = myByte;
+    }
 
-  protected byte getByte() {
-    return myByte;
-  }
+    protected byte getByte() {
+        return myByte;
+    }
 
-  protected byte getByteExpected() {
-    return 8;
-  }
+    protected byte getByteExpected() {
+        return 8;
+    }
 
-  protected String getByteName() {
-    return "myByte";
-  }
+    protected String getByteName() {
+        return "myByte";
+    }
 
-  private short myShort = 99;
+    private short myShort = 99;
 
-  private void setMyShort(short myShort) {
-    this.myShort = myShort;
-  }
+    private void setMyShort(short myShort) {
+        this.myShort = myShort;
+    }
 
-  protected short getShort() {
-    return myShort;
-  }
+    protected short getShort() {
+        return myShort;
+    }
 
-  protected short getShortExpected() {
-    return 1;
-  }
+    protected short getShortExpected() {
+        return 1;
+    }
 
-  protected String getShortName() {
-    return "myShort";
-  }
+    protected String getShortName() {
+        return "myShort";
+    }
 
-  private long myLong = 99999;
+    private long myLong = 99999;
 
-  private void setMyLong(long myLong) {
-    this.myLong = myLong;
-  }
+    private void setMyLong(long myLong) {
+        this.myLong = myLong;
+    }
 
-  protected long getLong() {
-    return myLong;
-  }
+    protected long getLong() {
+        return myLong;
+    }
 
-  protected long getLongExpected() {
-    return 100;
-  }
+    protected long getLongExpected() {
+        return 100;
+    }
 
-  protected String getLongName() {
-    return "myLong";
-  }
+    protected String getLongName() {
+        return "myLong";
+    }
 
-  private float myFloat = 99999.9F;
+    private float myFloat = 99999.9F;
 
-  private void setMyFloat(float myFloat) {
-    this.myFloat = myFloat;
-  }
+    private void setMyFloat(float myFloat) {
+        this.myFloat = myFloat;
+    }
 
-  protected float getFloat() {
-    return myFloat;
-  }
+    protected float getFloat() {
+        return myFloat;
+    }
 
-  protected float getFloatExpected() {
-    return (float) 1.1;
-  }
+    protected float getFloatExpected() {
+        return (float) 1.1;
+    }
 
-  protected String getFloatName() {
-    return "myFloat";
-  }
+    protected String getFloatName() {
+        return "myFloat";
+    }
 
-  // env-entries with subcontexts
-  private String myStringDeep = "XXXX";
+    // env-entries with subcontexts
+    private String myStringDeep = "XXXX";
 
-  private void setMyStringDeep(String myStringDeep) {
-    this.myStringDeep = myStringDeep;
-  }
+    private void setMyStringDeep(String myStringDeep) {
+        this.myStringDeep = myStringDeep;
+    }
 
-  protected String getStringDeep() {
-    return myStringDeep;
-  }
+    protected String getStringDeep() {
+        return myStringDeep;
+    }
 
-  protected String getStringDeepExpected() {
-    return "EnvEntrySetterBeanDeep";
-  }
+    protected String getStringDeepExpected() {
+        return "EnvEntrySetterBeanDeep";
+    }
 
-  protected String getStringDeepName() {
-    return "a/a/a/myString";
-  }
+    protected String getStringDeepName() {
+        return "a/a/a/myString";
+    }
 
-  private char myCharDeep = 'X';
+    private char myCharDeep = 'X';
 
-  private void setMyCharDeep(char myCharDeep) {
-    this.myCharDeep = myCharDeep;
-  }
+    private void setMyCharDeep(char myCharDeep) {
+        this.myCharDeep = myCharDeep;
+    }
 
-  protected char getCharDeep() {
-    return myCharDeep;
-  }
+    protected char getCharDeep() {
+        return myCharDeep;
+    }
 
-  protected char getCharDeepExpected() {
-    return 'S';
-  }
+    protected char getCharDeepExpected() {
+        return 'S';
+    }
 
-  protected String getCharDeepName() {
-    return "a/a/a/myChar";
-  }
+    protected String getCharDeepName() {
+        return "a/a/a/myChar";
+    }
 
-  private int myIntDeep = 99;
+    private int myIntDeep = 99;
 
-  private void setMyIntDeep(Integer myIntDeep) {
-    this.myIntDeep = myIntDeep;
-  }
+    private void setMyIntDeep(Integer myIntDeep) {
+        this.myIntDeep = myIntDeep;
+    }
 
-  protected int getIntDeep() {
-    return myIntDeep;
-  }
+    protected int getIntDeep() {
+        return myIntDeep;
+    }
 
-  protected int getIntDeepExpected() {
-    return -2;
-  }
+    protected int getIntDeepExpected() {
+        return -2;
+    }
 
-  protected String getIntDeepName() {
-    return "a/a/a/myInt";
-  }
+    protected String getIntDeepName() {
+        return "a/a/a/myInt";
+    }
 
-  private boolean myBooleanDeep = Boolean.TRUE;
+    private boolean myBooleanDeep = Boolean.TRUE;
 
-  private void setMyBooleanDeep(Boolean myBooleanDeep) {
-    this.myBooleanDeep = myBooleanDeep;
-  }
+    private void setMyBooleanDeep(Boolean myBooleanDeep) {
+        this.myBooleanDeep = myBooleanDeep;
+    }
 
-  protected boolean getBooleanDeep() {
-    return myBooleanDeep;
-  }
+    protected boolean getBooleanDeep() {
+        return myBooleanDeep;
+    }
 
-  protected boolean getBooleanDeepExpected() {
-    return false;
-  }
+    protected boolean getBooleanDeepExpected() {
+        return false;
+    }
 
-  protected String getBooleanDeepName() {
-    return "a/a/a/myBoolean";
-  }
+    protected String getBooleanDeepName() {
+        return "a/a/a/myBoolean";
+    }
 
-  private double myDoubleDeep = 9999999.99;
+    private double myDoubleDeep = 9999999.99;
 
-  private void setMyDoubleDeep(Double myDoubleDeep) {
-    this.myDoubleDeep = myDoubleDeep;
-  }
+    private void setMyDoubleDeep(Double myDoubleDeep) {
+        this.myDoubleDeep = myDoubleDeep;
+    }
 
-  protected double getDoubleDeep() {
-    return myDoubleDeep;
-  }
+    protected double getDoubleDeep() {
+        return myDoubleDeep;
+    }
 
-  protected double getDoubleDeepExpected() {
-    return 2.22;
-  }
+    protected double getDoubleDeepExpected() {
+        return 2.22;
+    }
 
-  protected String getDoubleDeepName() {
-    return "a/a/a/myDouble";
-  }
+    protected String getDoubleDeepName() {
+        return "a/a/a/myDouble";
+    }
 
-  private byte myByteDeep = 99;
+    private byte myByteDeep = 99;
 
-  private void setMyByteDeep(Byte myByteDeep) {
-    this.myByteDeep = myByteDeep;
-  }
+    private void setMyByteDeep(Byte myByteDeep) {
+        this.myByteDeep = myByteDeep;
+    }
 
-  protected byte getByteDeep() {
-    return myByteDeep;
-  }
+    protected byte getByteDeep() {
+        return myByteDeep;
+    }
 
-  protected byte getByteDeepExpected() {
-    return 16;
-  }
+    protected byte getByteDeepExpected() {
+        return 16;
+    }
 
-  protected String getByteDeepName() {
-    return "a/a/a/myByte";
-  }
+    protected String getByteDeepName() {
+        return "a/a/a/myByte";
+    }
 
-  private short myShortDeep = 99;
+    private short myShortDeep = 99;
 
-  private void setMyShortDeep(Short myShortDeep) {
-    this.myShortDeep = myShortDeep;
-  }
+    private void setMyShortDeep(Short myShortDeep) {
+        this.myShortDeep = myShortDeep;
+    }
 
-  protected short getShortDeep() {
-    return myShortDeep;
-  }
+    protected short getShortDeep() {
+        return myShortDeep;
+    }
 
-  protected short getShortDeepExpected() {
-    return 2;
-  }
+    protected short getShortDeepExpected() {
+        return 2;
+    }
 
-  protected String getShortDeepName() {
-    return "a/a/a/myShort";
-  }
+    protected String getShortDeepName() {
+        return "a/a/a/myShort";
+    }
 
-  private long myLongDeep = 9999999L;
+    private long myLongDeep = 9999999L;
 
-  private void setMyLongDeep(Long myLongDeep) {
-    this.myLongDeep = myLongDeep;
-  }
+    private void setMyLongDeep(Long myLongDeep) {
+        this.myLongDeep = myLongDeep;
+    }
 
-  protected long getLongDeep() {
-    return myLongDeep;
-  }
+    protected long getLongDeep() {
+        return myLongDeep;
+    }
 
-  protected long getLongDeepExpected() {
-    return 200;
-  }
+    protected long getLongDeepExpected() {
+        return 200;
+    }
 
-  protected String getLongDeepName() {
-    return "a/a/a/myLong";
-  }
+    protected String getLongDeepName() {
+        return "a/a/a/myLong";
+    }
 
-  private float myFloatDeep = 99999.9F;
+    private float myFloatDeep = 99999.9F;
 
-  private void setMyFloatDeep(Float myFloatDeep) {
-    this.myFloatDeep = myFloatDeep;
-  }
+    private void setMyFloatDeep(Float myFloatDeep) {
+        this.myFloatDeep = myFloatDeep;
+    }
 
-  protected float getFloatDeep() {
-    return myFloatDeep;
-  }
+    protected float getFloatDeep() {
+        return myFloatDeep;
+    }
 
-  protected float getFloatDeepExpected() {
-    return (float) 2.2;
-  }
+    protected float getFloatDeepExpected() {
+        return (float) 2.2;
+    }
 
-  protected String getFloatDeepName() {
-    return "a/a/a/myFloat";
-  }
+    protected String getFloatDeepName() {
+        return "a/a/a/myFloat";
+    }
 }

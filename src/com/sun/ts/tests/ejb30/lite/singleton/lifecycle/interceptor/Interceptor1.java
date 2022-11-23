@@ -21,8 +21,8 @@ package com.sun.ts.tests.ejb30.lite.singleton.lifecycle.interceptor;
 
 public class Interceptor1 extends InterceptorBase {
 
-  @Override
-  final protected String getSimpleName() {
-    return Interceptor1.class.getSimpleName();
-  }
+    @Override
+    protected final String getSimpleName() {
+        return Interceptor1.class.getSimpleName();
+    }
 }

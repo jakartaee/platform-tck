@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb30.bb.session.stateless.callback.listener.descriptor;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.interceptor.InvocationContext;
 
 /**
@@ -30,28 +29,27 @@ import jakarta.interceptor.InvocationContext;
  */
 public class StatelessCallbackListener2 {
 
-  public StatelessCallbackListener2() {
-    super();
-  }
-
-  // @PostConstruct
-  // @PreDestroy
-  private void sharedCallback(InvocationContext inv) {
-    Callback2Bean bean = (Callback2Bean) inv.getTarget();
-    bean.setPostConstructOrPreDestroyCalled(true);
-    TLogger.log("PostConstruct or PreDestroy method in " + this
-        + " called for bean " + bean);
-    try {
-      inv.proceed();
-    } catch (RuntimeException e) {
-      throw e;
-    } catch (Exception e) {
-      throw new IllegalStateException(e);
+    public StatelessCallbackListener2() {
+        super();
     }
-  }
 
-  // @AroundInvoke
-  private Object intercept(InvocationContext inv) throws Exception {
-    return inv.proceed();
-  }
+    // @PostConstruct
+    // @PreDestroy
+    private void sharedCallback(InvocationContext inv) {
+        Callback2Bean bean = (Callback2Bean) inv.getTarget();
+        bean.setPostConstructOrPreDestroyCalled(true);
+        TLogger.log("PostConstruct or PreDestroy method in " + this + " called for bean " + bean);
+        try {
+            inv.proceed();
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    // @AroundInvoke
+    private Object intercept(InvocationContext inv) throws Exception {
+        return inv.proceed();
+    }
 }

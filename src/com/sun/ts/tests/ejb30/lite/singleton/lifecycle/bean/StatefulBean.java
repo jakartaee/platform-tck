@@ -23,6 +23,4 @@ package com.sun.ts.tests.ejb30.lite.singleton.lifecycle.bean;
 import jakarta.ejb.Stateful;
 
 @Stateful
-public class StatefulBean extends BeanBase {
-
-}
+public class StatefulBean extends BeanBase {}

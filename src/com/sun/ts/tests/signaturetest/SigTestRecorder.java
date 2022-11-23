@@ -33,64 +33,58 @@ import java.util.List;
  */
 public class SigTestRecorder extends Recorder {
 
-  // ------------------------------------------------------------ Constructors
+    // ------------------------------------------------------------ Constructors
 
-  public SigTestRecorder(String[] args) {
+    public SigTestRecorder(String[] args) {
 
-    super(args);
+        super(args);
+    } // END SigTestRecorder
 
-  } // END SigTestRecorder
+    // ------------------------------------------------------- Protected Methods
 
-  // ------------------------------------------------------- Protected Methods
+    protected String[] createCommandLine(String version, String classpath, String outputFileName, String packageName) {
 
-  protected String[] createCommandLine(String version, String classpath,
-      String outputFileName, String packageName) {
+        List command = new ArrayList();
 
-    List command = new ArrayList();
+        // command.add("-xReflection");
+        command.add("-static");
+        command.add("-debug");
+        command.add("-verbose");
+        command.add("-classpath");
+        command.add(classpath);
 
-    // command.add("-xReflection");
-    command.add("-static");
-    command.add("-debug");
-    command.add("-verbose");
-    command.add("-classpath");
-    command.add(classpath);
+        command.add("-FileName");
+        try {
+            command.add(new File(outputFileName).toURI().toURL().toExternalForm());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
-    command.add("-FileName");
-    try {
-      command.add(new File(outputFileName).toURI().toURL().toExternalForm());
-    } catch (Exception e) {
-      throw new RuntimeException(e);
-    }
+        command.add("-package");
+        command.add(packageName);
 
-    command.add("-package");
-    command.add(packageName);
+        command.add("-apiVersion");
+        command.add(version);
 
-    command.add("-apiVersion");
-    command.add(version);
+        return ((String[]) command.toArray(new String[command.size()]));
+    } // END getCommandLine
 
-    return ((String[]) command.toArray(new String[command.size()]));
+    protected void writePackageListFile(String basePackageName, String signatureFile, String packageListFile)
+            throws Exception {
 
-  } // END getCommandLine
+        PackageList packageList = new PackageList(basePackageName, signatureFile, packageListFile);
+        packageList.writePkgListFile();
+    } // END writePackageListFile
 
-  protected void writePackageListFile(String basePackageName,
-      String signatureFile, String packageListFile) throws Exception {
+    protected void doRecord(String[] commandLine) throws Exception {
 
-    PackageList packageList = new PackageList(basePackageName, signatureFile,
-        packageListFile);
-    packageList.writePkgListFile();
+        Class batchSetup = Class.forName("com.sun.tdk.signaturetest.Setup");
+        Object batchSetupInstance = batchSetup.newInstance();
+        Method runMethod =
+                batchSetup.getDeclaredMethod("run", new Class[] {String[].class, PrintWriter.class, PrintWriter.class});
 
-  } // END writePackageListFile
-
-  protected void doRecord(String[] commandLine) throws Exception {
-
-    Class batchSetup = Class.forName("com.sun.tdk.signaturetest.Setup");
-    Object batchSetupInstance = batchSetup.newInstance();
-    Method runMethod = batchSetup.getDeclaredMethod("run",
-        new Class[] { String[].class, PrintWriter.class, PrintWriter.class });
-
-    runMethod.invoke(batchSetupInstance, new Object[] { commandLine,
-        new PrintWriter(System.out, true), new PrintWriter(System.err, true) });
-
-  } // END doRecord
-
+        runMethod.invoke(
+                batchSetupInstance,
+                new Object[] {commandLine, new PrintWriter(System.out, true), new PrintWriter(System.err, true)});
+    } // END doRecord
 } // END SigTestRecorder

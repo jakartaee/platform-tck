@@ -20,101 +20,98 @@
 
 package com.sun.ts.tests.ejb.ee.tx.entityLocal.bmp.cm.TxR_Diamond;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  private static final String testName = "TxR_Diamond";
+    private static final String testName = "TxR_Diamond";
 
-  private static final String testLookup = "java:comp/env/ejb/BeanA";
+    private static final String testLookup = "java:comp/env/ejb/BeanA";
 
-  private static final String envProps = "testbean.props";
+    private static final String envProps = "testbean.props";
 
-  private static final String testDir = System.getProperty("user.dir");
+    private static final String testDir = System.getProperty("user.dir");
 
-  private BeanAHome beanHome = null;
+    private BeanAHome beanHome = null;
 
-  private BeanA beanRef = null;
+    private BeanA beanRef = null;
 
-  private Properties testProps = new Properties();
+    private Properties testProps = new Properties();
 
-  private TSNamingContext jctx = null;
+    private TSNamingContext jctx = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup: */
-
-  /*
-   * @class.setup_props: java.naming.factory.initial;
-   *
-   * @class.testArgs: -ap tssql.stmt
-   *
-   */
-  public void setup(String[] args, Properties p) throws Fault {
-    logMsg("Setup tests");
-    this.testProps = p;
-
-    try {
-      logMsg("Get the naming context");
-      jctx = new TSNamingContext();
-
-      logMsg("Getting the EJB Home interface for " + testLookup);
-      beanHome = (BeanAHome) jctx.lookup(testLookup, BeanAHome.class);
-
-      logMsg("Setup ok");
-    } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /* Run test */
+    /* Test setup: */
 
-  /*
-   * @testName: test1
-   *
-   * @assertion_ids: EJB:SPEC:613
-   *
-   * @test_Strategy: Container managed Tx commit - Required Entity EJBs. Create
-   * Session EJBs A(NotSupported), B(Required),C (Required). Create Entity EJB D
-   * (Required). Initiate a transaction in Bean A, involving Beans B & C. Beans
-   * B & C update data in Bean D. Verify the tx commit occured back in BeanA.
-   */
-  public void test1() throws Fault {
-    try {
-      logMsg("Creating EJB BeanA instance");
-      beanRef = (BeanA) beanHome.create(testProps);
+    /*
+     * @class.setup_props: java.naming.factory.initial;
+     *
+     * @class.testArgs: -ap tssql.stmt
+     *
+     */
+    public void setup(String[] args, Properties p) throws Fault {
+        logMsg("Setup tests");
+        this.testProps = p;
 
-      boolean testResult = false;
-
-      logMsg("Execute BeanA:test1");
-      testResult = beanRef.test1();
-
-      if (!testResult)
-        throw new Fault("test1 failed");
-      else
-        logMsg("test1 passed");
-    } catch (Exception e) {
-      throw new Fault("test1 failed", e);
-    } finally {
-      if (beanRef != null)
         try {
-          beanRef.remove();
+            logMsg("Get the naming context");
+            jctx = new TSNamingContext();
+
+            logMsg("Getting the EJB Home interface for " + testLookup);
+            beanHome = (BeanAHome) jctx.lookup(testLookup, BeanAHome.class);
+
+            logMsg("Setup ok");
         } catch (Exception e) {
-          logErr("Exception removing bean", e);
+            throw new Fault("Setup failed:", e);
         }
     }
-  }
 
-  /* Test cleanup: */
-  public void cleanup() throws Fault {
-    logMsg("cleanup ok");
-  }
+    /* Run test */
+
+    /*
+     * @testName: test1
+     *
+     * @assertion_ids: EJB:SPEC:613
+     *
+     * @test_Strategy: Container managed Tx commit - Required Entity EJBs. Create
+     * Session EJBs A(NotSupported), B(Required),C (Required). Create Entity EJB D
+     * (Required). Initiate a transaction in Bean A, involving Beans B & C. Beans
+     * B & C update data in Bean D. Verify the tx commit occured back in BeanA.
+     */
+    public void test1() throws Fault {
+        try {
+            logMsg("Creating EJB BeanA instance");
+            beanRef = (BeanA) beanHome.create(testProps);
+
+            boolean testResult = false;
+
+            logMsg("Execute BeanA:test1");
+            testResult = beanRef.test1();
+
+            if (!testResult) throw new Fault("test1 failed");
+            else logMsg("test1 passed");
+        } catch (Exception e) {
+            throw new Fault("test1 failed", e);
+        } finally {
+            if (beanRef != null)
+                try {
+                    beanRef.remove();
+                } catch (Exception e) {
+                    logErr("Exception removing bean", e);
+                }
+        }
+    }
+
+    /* Test cleanup: */
+    public void cleanup() throws Fault {
+        logMsg("cleanup ok");
+    }
 }

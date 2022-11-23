@@ -16,29 +16,28 @@
 
 package com.sun.ts.tests.servlet.spec.async;
 
-import java.io.IOException;
-
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
 
 public class Filter5 implements Filter {
 
-  public void init(FilterConfig filterConfig) throws ServletException {
-    // do nothing
-  }
+    public void init(FilterConfig filterConfig) throws ServletException {
+        // do nothing
+    }
 
-  public void doFilter(ServletRequest request, ServletResponse response,
-      FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-    request.setAttribute("Filter5", "INVOKED");
-    chain.doFilter(request, response);
-  }
+        request.setAttribute("Filter5", "INVOKED");
+        chain.doFilter(request, response);
+    }
 
-  public void destroy() {
-    // do nothing
-  }
+    public void destroy() {
+        // do nothing
+    }
 }

@@ -20,21 +20,19 @@
 
 package com.sun.ts.tests.ejb.ee.pm.selfXself;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface Department extends EJBObject {
-  // Business Methods for CMP Fields
-  public Integer getId() throws RemoteException;
+    // Business Methods for CMP Fields
+    public Integer getId() throws RemoteException;
 
-  public String getName() throws RemoteException;
+    public String getName() throws RemoteException;
 
-  public void setName(String v) throws RemoteException;
+    public void setName(String v) throws RemoteException;
 
-  // Business Methods for Tests
+    // Business Methods for Tests
 
-  public void initLogging(Properties p) throws RemoteException;
-
+    public void initLogging(Properties p) throws RemoteException;
 }

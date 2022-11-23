@@ -20,94 +20,93 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.ejbref.casesens;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TSNamingContextInterface;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  private static final String testName = "com.sun.ts.tests.ejb.ee.deploy.session.stateful"
-      + ".ejbref.casesens.TestBean";
+    private static final String testName =
+            "com.sun.ts.tests.ejb.ee.deploy.session.stateful" + ".ejbref.casesens.TestBean";
 
-  private static final String testDir = System.getProperty("user.dir");
+    private static final String testDir = System.getProperty("user.dir");
 
-  private static final String testProps = "sessionbean.properties";
+    private static final String testProps = "sessionbean.properties";
 
-  private static final String beanName = "java:comp/env/ejb/TestBean";
+    private static final String beanName = "java:comp/env/ejb/TestBean";
 
-  private TSNamingContextInterface ctx = null;
+    private TSNamingContextInterface ctx = null;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  private TestBeanHome home = null;
+    private TestBeanHome home = null;
 
-  private TestBean bean = null;
+    private TestBean bean = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   *
-   */
-  public void setup(String[] args, Properties p) throws Fault {
-    props = p;
-
-    try {
-      logTrace("Client: Getting naming context...");
-      ctx = new TSNamingContext();
-      logTrace("Client: Looking up home...");
-      home = (TestBeanHome) ctx.lookup(beanName, TestBeanHome.class);
-      logMsg("Client: Setup OK!");
-    } catch (Exception e) {
-      throw new Fault("Client: Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /**
-   * @testName: testCaseSensitivity
-   *
-   * @assertion_ids: EJB:SPEC:872
-   *
-   * @test_Strategy: Deploy a Stateful Session bean (TestBean) with two EJB
-   *                 references whose name differ only by case and are assigned
-   *                 to two distinct beans (Same type of bean, but the two beans
-   *                 are packaged with different values for a String environment
-   *                 entry called 'myName').
-   *
-   *                 Check that TestBean can lookup the two beans. Check that
-   *                 their runtime values for the 'myName' env. entry are
-   *                 distinct and correspond the ones specified in the DD (to
-   *                 check that the EJB reference are resolved correctly).
-   */
-  public void testCaseSensitivity() throws Fault {
+    /*
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     *
+     */
+    public void setup(String[] args, Properties p) throws Fault {
+        props = p;
 
-    boolean pass = true;
-    TestBean bean = null;
-
-    try {
-      logTrace("Client: creating TestBean instance...");
-      bean = home.create(props);
-      logTrace("Client: Calling TestBean...");
-      pass = bean.testCaseSensitivity(props);
-      logTrace("Client: Removing TestBean...");
-      bean.remove();
-
-      if (!pass) {
-        throw new Fault("Client: ejb-ref case sensitivity test failed");
-      }
-    } catch (Exception e) {
-      throw new Fault("Client: ejb-ref case sensitivity test failed: ", e);
+        try {
+            logTrace("Client: Getting naming context...");
+            ctx = new TSNamingContext();
+            logTrace("Client: Looking up home...");
+            home = (TestBeanHome) ctx.lookup(beanName, TestBeanHome.class);
+            logMsg("Client: Setup OK!");
+        } catch (Exception e) {
+            throw new Fault("Client: Setup failed:", e);
+        }
     }
-  }
 
-  public void cleanup() throws Fault {
-    logMsg("Client: cleanup");
-  }
+    /**
+     * @testName: testCaseSensitivity
+     *
+     * @assertion_ids: EJB:SPEC:872
+     *
+     * @test_Strategy: Deploy a Stateful Session bean (TestBean) with two EJB
+     *                 references whose name differ only by case and are assigned
+     *                 to two distinct beans (Same type of bean, but the two beans
+     *                 are packaged with different values for a String environment
+     *                 entry called 'myName').
+     *
+     *                 Check that TestBean can lookup the two beans. Check that
+     *                 their runtime values for the 'myName' env. entry are
+     *                 distinct and correspond the ones specified in the DD (to
+     *                 check that the EJB reference are resolved correctly).
+     */
+    public void testCaseSensitivity() throws Fault {
+
+        boolean pass = true;
+        TestBean bean = null;
+
+        try {
+            logTrace("Client: creating TestBean instance...");
+            bean = home.create(props);
+            logTrace("Client: Calling TestBean...");
+            pass = bean.testCaseSensitivity(props);
+            logTrace("Client: Removing TestBean...");
+            bean.remove();
+
+            if (!pass) {
+                throw new Fault("Client: ejb-ref case sensitivity test failed");
+            }
+        } catch (Exception e) {
+            throw new Fault("Client: ejb-ref case sensitivity test failed: ", e);
+        }
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("Client: cleanup");
+    }
 }

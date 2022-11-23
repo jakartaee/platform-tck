@@ -23,35 +23,32 @@ package com.sun.ts.tests.ejb30.tx.session.stateless.cm.descriptor;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.tx.common.session.cm.LocalTxBeanBase;
 import com.sun.ts.tests.ejb30.tx.common.session.cm.LocalTxIF;
-
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 
 @Stateless()
-@Local({ LocalTxIF.class })
+@Local({LocalTxIF.class})
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class LocalTxBean extends LocalTxBeanBase implements LocalTxIF {
-  @TransactionAttribute(TransactionAttributeType.MANDATORY)
-  public void localMandatoryTest() {
-    super.localMandatoryTest();
-  }
+    @TransactionAttribute(TransactionAttributeType.MANDATORY)
+    public void localMandatoryTest() {
+        super.localMandatoryTest();
+    }
 
-  @TransactionAttribute(TransactionAttributeType.NEVER)
-  public void neverTest() {
-    super.neverTest();
-  }
+    @TransactionAttribute(TransactionAttributeType.NEVER)
+    public void neverTest() {
+        super.neverTest();
+    }
 
-  public void requiresNewNoop() throws TestFailedException {
-    super.requiresNewNoop();
-  }
+    public void requiresNewNoop() throws TestFailedException {
+        super.requiresNewNoop();
+    }
 
-  public void localRequiresNewTest() {
-    super.localRequiresNewTest();
-  }
+    public void localRequiresNewTest() {
+        super.localRequiresNewTest();
+    }
 
-  public void localRequiresNewRemoveTest() {
-  }
-
+    public void localRequiresNewRemoveTest() {}
 }

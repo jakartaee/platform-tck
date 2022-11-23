@@ -23,34 +23,29 @@ package com.sun.ts.tests.ejb30.common.busiface;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
 
-abstract public class SessionBeanLocalBeanBase extends BusinessLocal1Base
-    implements BusinessLocalIF1, SessionBean {
-  protected SessionContext sessionContext;
+public abstract class SessionBeanLocalBeanBase extends BusinessLocal1Base implements BusinessLocalIF1, SessionBean {
+    protected SessionContext sessionContext;
 
-  public void setSessionContext(SessionContext sessionContext) {
-    this.sessionContext = sessionContext;
-  }
-
-  public void ejbRemove() {
-  }
-
-  public void ejbPassivate() {
-  }
-
-  public void ejbActivate() {
-  }
-
-  // ////////////////////////////////////////////////////////////////////
-  @Override
-  public String[] businessMethodLocal1(String[] s) {
-    if (sessionContext == null) {
-      throw new IllegalStateException("SessionContext is null.");
+    public void setSessionContext(SessionContext sessionContext) {
+        this.sessionContext = sessionContext;
     }
 
-    String[] retValue;
+    public void ejbRemove() {}
 
-    retValue = super.businessMethodLocal1(s);
-    return retValue;
-  }
+    public void ejbPassivate() {}
 
+    public void ejbActivate() {}
+
+    // ////////////////////////////////////////////////////////////////////
+    @Override
+    public String[] businessMethodLocal1(String[] s) {
+        if (sessionContext == null) {
+            throw new IllegalStateException("SessionContext is null.");
+        }
+
+        String[] retValue;
+
+        retValue = super.businessMethodLocal1(s);
+        return retValue;
+    }
 }

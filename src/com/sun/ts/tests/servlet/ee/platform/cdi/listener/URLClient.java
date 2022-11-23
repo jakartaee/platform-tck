@@ -16,68 +16,62 @@
 
 package com.sun.ts.tests.servlet.ee.platform.cdi.listener;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
 
-  String CONTEXT_ROOT = "/servlet_ee_platform_cdi_listener_web";
+    String CONTEXT_ROOT = "/servlet_ee_platform_cdi_listener_web";
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-    return super.run(args, out, err);
-  }
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /* Run test */
-  /*
-   * @testName: sarTest
-   * 
-   * @assertion_ids:
-   *
-   * @test_Strategy:
-   */
-  public void sarTest() throws EETest.Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET " + CONTEXT_ROOT + "/TCKTestServletURL?testname=sarTest HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING,
-        "Test PASSED from ServletRequestAttributeListener");
-    invoke();
-  }
+    /* Run test */
+    /*
+     * @testName: sarTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void sarTest() throws EETest.Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET " + CONTEXT_ROOT + "/TCKTestServletURL?testname=sarTest HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED from ServletRequestAttributeListener");
+        invoke();
+    }
 
-  /*
-   * @testName: srTest
-   * 
-   * @assertion_ids:
-   *
-   * @test_Strategy:
-   */
-  public void srTest() throws EETest.Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET " + CONTEXT_ROOT + "/TCKTestServletURL?testname=srTest HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING,
-        "Test PASSED from ServletRequestListener");
-    invoke();
-  }
+    /*
+     * @testName: srTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void srTest() throws EETest.Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET " + CONTEXT_ROOT + "/TCKTestServletURL?testname=srTest HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED from ServletRequestListener");
+        invoke();
+    }
 }

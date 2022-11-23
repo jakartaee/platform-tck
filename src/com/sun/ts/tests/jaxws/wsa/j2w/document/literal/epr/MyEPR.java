@@ -20,12 +20,11 @@
 
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.epr;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
 
 public class MyEPR extends jakarta.xml.ws.EndpointReference {
 
-  public void writeTo(javax.xml.transform.Result result) {
-  }
+    public void writeTo(javax.xml.transform.Result result) {}
 }

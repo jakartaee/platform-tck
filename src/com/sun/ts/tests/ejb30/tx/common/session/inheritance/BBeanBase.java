@@ -23,23 +23,22 @@ package com.sun.ts.tests.ejb30.tx.common.session.inheritance;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 
-abstract public class BBeanBase extends TxBeanBase {
+public abstract class BBeanBase extends TxBeanBase {
 
-  public BBeanBase() {
-  }
+    public BBeanBase() {}
 
-  // @TransactionAttribute(TransactionAttributeType.NEVER)
-  // is annotated in super class method implementation. It
-  // must not be inherited for this method. This method has
-  // REQUIRES_NEW transaction attribute.
-  @Override()
-  @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-  public String foo() {
-    return super.foo();
-  }
+    // @TransactionAttribute(TransactionAttributeType.NEVER)
+    // is annotated in super class method implementation. It
+    // must not be inherited for this method. This method has
+    // REQUIRES_NEW transaction attribute.
+    @Override()
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public String foo() {
+        return super.foo();
+    }
 
-  @Override()
-  protected void fooImpl() {
-    setRollbackOnly();
-  }
+    @Override()
+    protected void fooImpl() {
+        setRollbackOnly();
+    }
 }

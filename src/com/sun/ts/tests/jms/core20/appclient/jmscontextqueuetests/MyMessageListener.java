@@ -19,150 +19,139 @@
  */
 package com.sun.ts.tests.jms.core20.appclient.jmscontextqueuetests;
 
-import java.util.ArrayList;
-
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.jms.IllegalStateRuntimeException;
 import jakarta.jms.JMSContext;
 import jakarta.jms.Message;
 import jakarta.jms.MessageListener;
 import jakarta.jms.TextMessage;
+import java.util.ArrayList;
 
 public class MyMessageListener implements MessageListener {
 
-  private String name = null;
+    private String name = null;
 
-  private Message message = null;
+    private Message message = null;
 
-  private JMSContext context = null;
+    private JMSContext context = null;
 
-  private ArrayList<Message> messages = new ArrayList<Message>();
+    private ArrayList<Message> messages = new ArrayList<Message>();
 
-  private Exception exception = null;
+    private Exception exception = null;
 
-  private int numMessages = 1;
+    private int numMessages = 1;
 
-  boolean complete = false;
+    boolean complete = false;
 
-  boolean gotCorrectException = false;
+    boolean gotCorrectException = false;
 
-  boolean gotException = false;
+    boolean gotException = false;
 
-  public MyMessageListener() {
-    this("MyMessageListener");
-  }
-
-  public MyMessageListener(String name) {
-    this.name = name;
-  }
-
-  public MyMessageListener(int numMessages) {
-    this.numMessages = numMessages;
-    messages.clear();
-  }
-
-  public MyMessageListener(JMSContext context) {
-    this.context = context;
-  }
-
-  // getters/setters
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public Message getMessage() {
-    return message;
-  }
-
-  public Message getMessage(int index) {
-    return messages.get(index);
-  }
-
-  public void setMessage(Message message) {
-    this.message = message;
-  }
-
-  public Exception getException() {
-    return exception;
-  }
-
-  public void setException(Exception exception) {
-    this.exception = exception;
-  }
-
-  public boolean isComplete() {
-    return complete;
-  }
-
-  public boolean gotCorrectException() {
-    return gotCorrectException;
-  }
-
-  public boolean gotException() {
-    return gotException;
-  }
-
-  public boolean gotAllMsgs() {
-    return (messages.size() == numMessages) ? true : false;
-  }
-
-  public boolean haveMsg(int i) {
-    return (messages.size() > i) ? true : false;
-  }
-
-  public void setComplete(boolean complete) {
-    this.complete = complete;
-  }
-
-  public void onMessage(Message message) {
-    try {
-      TestUtil.logMsg(
-          "onMessage(): Got Message: " + ((TextMessage) message).getText());
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception: " + e);
+    public MyMessageListener() {
+        this("MyMessageListener");
     }
-    this.message = message;
-    messages.add(message);
-    if (message instanceof TextMessage) {
-      TextMessage tMsg = (TextMessage) message;
-      try {
-        if (tMsg.getText().equals("Call close method")) {
-          TestUtil.logMsg(
-              "Calling JMSContext.close() MUST throw IllegalStateRuntimeException");
-          if (context != null)
-            context.close();
-        } else if (tMsg.getText().equals("Call stop method")) {
-          TestUtil.logMsg(
-              "Calling JMSContext.stop() MUST throw IllegalStateRuntimeException");
-          if (context != null)
-            context.stop();
-        } else if (tMsg.getText().equals("Call commit method")) {
-          TestUtil.logMsg(
-              "Calling JMSContext.commit() MUST throw IllegalStateRuntimeException");
-          if (context != null)
-            context.commit();
-        } else if (tMsg.getText().equals("Call rollback method")) {
-          TestUtil.logMsg(
-              "Calling JMSContext.rollback() MUST throw IllegalStateRuntimeException");
-          if (context != null)
-            context.rollback();
+
+    public MyMessageListener(String name) {
+        this.name = name;
+    }
+
+    public MyMessageListener(int numMessages) {
+        this.numMessages = numMessages;
+        messages.clear();
+    }
+
+    public MyMessageListener(JMSContext context) {
+        this.context = context;
+    }
+
+    // getters/setters
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Message getMessage() {
+        return message;
+    }
+
+    public Message getMessage(int index) {
+        return messages.get(index);
+    }
+
+    public void setMessage(Message message) {
+        this.message = message;
+    }
+
+    public Exception getException() {
+        return exception;
+    }
+
+    public void setException(Exception exception) {
+        this.exception = exception;
+    }
+
+    public boolean isComplete() {
+        return complete;
+    }
+
+    public boolean gotCorrectException() {
+        return gotCorrectException;
+    }
+
+    public boolean gotException() {
+        return gotException;
+    }
+
+    public boolean gotAllMsgs() {
+        return (messages.size() == numMessages) ? true : false;
+    }
+
+    public boolean haveMsg(int i) {
+        return (messages.size() > i) ? true : false;
+    }
+
+    public void setComplete(boolean complete) {
+        this.complete = complete;
+    }
+
+    public void onMessage(Message message) {
+        try {
+            TestUtil.logMsg("onMessage(): Got Message: " + ((TextMessage) message).getText());
+        } catch (Exception e) {
+            TestUtil.logErr("Caught unexpected exception: " + e);
         }
-      } catch (IllegalStateRuntimeException e) {
-        TestUtil.logMsg("Caught expected IllegalStateRuntimeException");
-        gotCorrectException = true;
-        gotException = true;
-      } catch (Exception e) {
-        TestUtil.logErr("Caught unexpected exception: " + e);
-        gotCorrectException = false;
-        gotException = true;
-        exception = e;
-      }
+        this.message = message;
+        messages.add(message);
+        if (message instanceof TextMessage) {
+            TextMessage tMsg = (TextMessage) message;
+            try {
+                if (tMsg.getText().equals("Call close method")) {
+                    TestUtil.logMsg("Calling JMSContext.close() MUST throw IllegalStateRuntimeException");
+                    if (context != null) context.close();
+                } else if (tMsg.getText().equals("Call stop method")) {
+                    TestUtil.logMsg("Calling JMSContext.stop() MUST throw IllegalStateRuntimeException");
+                    if (context != null) context.stop();
+                } else if (tMsg.getText().equals("Call commit method")) {
+                    TestUtil.logMsg("Calling JMSContext.commit() MUST throw IllegalStateRuntimeException");
+                    if (context != null) context.commit();
+                } else if (tMsg.getText().equals("Call rollback method")) {
+                    TestUtil.logMsg("Calling JMSContext.rollback() MUST throw IllegalStateRuntimeException");
+                    if (context != null) context.rollback();
+                }
+            } catch (IllegalStateRuntimeException e) {
+                TestUtil.logMsg("Caught expected IllegalStateRuntimeException");
+                gotCorrectException = true;
+                gotException = true;
+            } catch (Exception e) {
+                TestUtil.logErr("Caught unexpected exception: " + e);
+                gotCorrectException = false;
+                gotException = true;
+                exception = e;
+            }
+        }
+        complete = true;
     }
-    complete = true;
-  }
 }

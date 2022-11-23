@@ -25,36 +25,34 @@ package com.sun.ts.tests.jws.common;
 
 public class Department {
 
-  private String name = "Eng";
+    private String name = "Eng";
 
-  private String location = "S.F.";
+    private String location = "S.F.";
 
-  public Department(String name, String location) {
-    this.name = name;
-    this.location = location;
-  }
+    public Department(String name, String location) {
+        this.name = name;
+        this.location = location;
+    }
 
-  public Department() {
-  }
+    public Department() {}
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public String getLocation() {
-    return location;
-  }
+    public String getLocation() {
+        return location;
+    }
 
-  public void setLocation(String location) {
-    this.location = location;
-  }
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-  public String toString() {
-    return "Department Name:" + name + " Department Location:" + location;
-  }
-
+    public String toString() {
+        return "Department Name:" + name + " Department Location:" + location;
+    }
 }

@@ -21,14 +21,12 @@ package com.sun.ts.tests.ejb30.lite.lookup.annotated;
 
 import com.sun.ts.tests.ejb30.lite.lookup.common.LookupBeanBase;
 import com.sun.ts.tests.ejb30.lite.lookup.common.LookupIF;
-
 import jakarta.ejb.Singleton;
 
 @Singleton
 public class Lookup2Bean extends LookupBeanBase implements LookupIF {
-  @Override
-  public String getName() {
-    return LOOKUP2_BEAN;
-  }
-
+    @Override
+    public String getName() {
+        return LOOKUP2_BEAN;
+    }
 }

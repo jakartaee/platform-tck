@@ -21,37 +21,36 @@ package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.inheritance;
 
 import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ClientBase;
 import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ConcurrencyIF;
-
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
-  @EJB(beanName = "SingletonBean")
-  public void setSingleton(ConcurrencyIF singleton) {
-    this.singleton = singleton;
-  }
+    @EJB(beanName = "SingletonBean")
+    public void setSingleton(ConcurrencyIF singleton) {
+        this.singleton = singleton;
+    }
 
-  @EJB(beanName = "InverseLockSingletonBean")
-  public void setSingleton2(ConcurrencyIF singleton2) {
-    this.singleton2 = singleton2;
-  }
+    @EJB(beanName = "InverseLockSingletonBean")
+    public void setSingleton2(ConcurrencyIF singleton2) {
+        this.singleton2 = singleton2;
+    }
 
-  /*
-   * @testName: lockedSum1
-   * 
-   * @test_Strategy: spawn multiple threads, invoke synchronized methods of a
-   * singleton with container-managed concurrency. Expecting correct sum result.
-   */
+    /*
+     * @testName: lockedSum1
+     *
+     * @test_Strategy: spawn multiple threads, invoke synchronized methods of a
+     * singleton with container-managed concurrency. Expecting correct sum result.
+     */
 
-  /*
-   * @testName: lockedSum2
-   * 
-   * @test_Strategy: spawn multiple threads, invoke synchronized methods of a
-   * singleton with container-managed concurrency. Expecting correct sum result.
-   * Note: the business methods are getAndResetUnlockedSum and addUnlocked.
-   */
-  @Override
-  public void lockedSum2() {
-    concurrentWrites(singleton2, "addUnlocked", null);
-    assertEquals(null, CORRECT_SUM, singleton2.getAndResetUnlockedSum());
-  }
+    /*
+     * @testName: lockedSum2
+     *
+     * @test_Strategy: spawn multiple threads, invoke synchronized methods of a
+     * singleton with container-managed concurrency. Expecting correct sum result.
+     * Note: the business methods are getAndResetUnlockedSum and addUnlocked.
+     */
+    @Override
+    public void lockedSum2() {
+        concurrentWrites(singleton2, "addUnlocked", null);
+        assertEquals(null, CORRECT_SUM, singleton2.getAndResetUnlockedSum());
+    }
 }

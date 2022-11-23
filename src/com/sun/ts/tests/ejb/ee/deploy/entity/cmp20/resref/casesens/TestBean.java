@@ -20,13 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.resref.casesens;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
 
-  public boolean testCaseSensitivity(Properties p) throws RemoteException;
-
+    public boolean testCaseSensitivity(Properties p) throws RemoteException;
 }

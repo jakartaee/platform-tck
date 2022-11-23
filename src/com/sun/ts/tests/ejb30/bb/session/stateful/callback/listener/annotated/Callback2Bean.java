@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.callback.listener.annotated;
 
 import com.sun.ts.tests.ejb30.common.callback.Callback2BeanBase;
 import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.Remote;
@@ -32,26 +31,24 @@ import jakarta.ejb.Stateful;
 import jakarta.interceptor.Interceptors;
 
 @Stateful(name = "Callback2Bean")
-@Remote({ Callback2IF.class })
-@Interceptors({ StatefulCallbackListener2.class })
-public class Callback2Bean extends Callback2BeanBase
-    implements Callback2IF, java.io.Serializable {
-  @Resource
-  private SessionContext sctx;
+@Remote({Callback2IF.class})
+@Interceptors({StatefulCallbackListener2.class})
+public class Callback2Bean extends Callback2BeanBase implements Callback2IF, java.io.Serializable {
+    @Resource
+    private SessionContext sctx;
 
-  public Callback2Bean() {
-    super();
-  }
+    public Callback2Bean() {
+        super();
+    }
 
-  public EJBContext getEJBContext() {
-    return this.sctx;
-  }
+    public EJBContext getEJBContext() {
+        return this.sctx;
+    }
 
-  // ================= callback methods ===================================
+    // ================= callback methods ===================================
 
-  // ================== business methods ====================================
+    // ================== business methods ====================================
 
-  @Remove
-  public void removeFoo() {
-  }
+    @Remove
+    public void removeFoo() {}
 }

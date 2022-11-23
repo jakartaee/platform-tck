@@ -20,94 +20,91 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.resref.casesens;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  protected static final String lookupName = "java:comp/env/ejb/TestBean";
+    protected static final String lookupName = "java:comp/env/ejb/TestBean";
 
-  protected TestBeanHome home = null;
+    protected TestBeanHome home = null;
 
-  protected TSNamingContext nctx = null;
+    protected TSNamingContext nctx = null;
 
-  protected Properties props = null;
+    protected Properties props = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   * generateSQL;
-   *
-   */
-  public void setup(String[] args, Properties props) throws Fault {
-
-    try {
-      this.props = props;
-      logTrace("[Client] Getting naming context...");
-      nctx = new TSNamingContext();
-      logTrace("[Client] Looking up home...");
-      home = (TestBeanHome) nctx.lookup(lookupName, TestBeanHome.class);
-      logMsg("[Client] Setup OK!");
-    } catch (Exception e) {
-      throw new Fault("[Client] Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /**
-   * @testName: testCaseSensitivity
-   *
-   * @assertion_ids: EJB:SPEC:872
-   *
-   * @test_Strategy: Deploy a CMP 2.0 Entity bean (TestBean) with two resource
-   *                 references whose name differ only by case and are assigned
-   *                 to two distinct factory types: a
-   *                 jakarta.jms.QueueConnectionFactory and a
-   *                 jakarta.jms.TopicConnectionFactory.
-   *
-   *                 Check that TestBean can lookup the two factories, cast them
-   *                 to their respective Java types, and create a connection
-   *                 (corresponding to the factory type). This validates that
-   *                 the resource references were resolved correctly.
-   */
-  public void testCaseSensitivity() throws Fault {
-    TestBean bean = null;
-    boolean pass;
+    /*
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     * generateSQL;
+     *
+     */
+    public void setup(String[] args, Properties props) throws Fault {
 
-    try {
-      logTrace("[Client] creating TestBean instance...");
-      bean = home.create(props, 1, "cappuccino", 11);
-      logTrace("[Client] Calling TestBean...");
-      pass = bean.testCaseSensitivity(props);
-
-      if (!pass) {
-        throw new Fault("res-ref case sensitivity test failed");
-      }
-    } catch (Exception e) {
-      throw new Fault("res-ref case sens test failed: ", e);
-    } finally {
-      try {
-        if (null != bean) {
-          TestUtil.logTrace("[Client] Removing TestBean...");
-          bean.remove();
+        try {
+            this.props = props;
+            logTrace("[Client] Getting naming context...");
+            nctx = new TSNamingContext();
+            logTrace("[Client] Looking up home...");
+            home = (TestBeanHome) nctx.lookup(lookupName, TestBeanHome.class);
+            logMsg("[Client] Setup OK!");
+        } catch (Exception e) {
+            throw new Fault("[Client] Setup failed:", e);
         }
-      } catch (Exception e) {
-        TestUtil
-            .logTrace("[Client] Ignore exception on bean " + "remove: " + e);
-      }
     }
-  }
 
-  public void cleanup() throws Fault {
-    logMsg("[Client] cleanup()");
-  }
+    /**
+     * @testName: testCaseSensitivity
+     *
+     * @assertion_ids: EJB:SPEC:872
+     *
+     * @test_Strategy: Deploy a CMP 2.0 Entity bean (TestBean) with two resource
+     *                 references whose name differ only by case and are assigned
+     *                 to two distinct factory types: a
+     *                 jakarta.jms.QueueConnectionFactory and a
+     *                 jakarta.jms.TopicConnectionFactory.
+     *
+     *                 Check that TestBean can lookup the two factories, cast them
+     *                 to their respective Java types, and create a connection
+     *                 (corresponding to the factory type). This validates that
+     *                 the resource references were resolved correctly.
+     */
+    public void testCaseSensitivity() throws Fault {
+        TestBean bean = null;
+        boolean pass;
 
+        try {
+            logTrace("[Client] creating TestBean instance...");
+            bean = home.create(props, 1, "cappuccino", 11);
+            logTrace("[Client] Calling TestBean...");
+            pass = bean.testCaseSensitivity(props);
+
+            if (!pass) {
+                throw new Fault("res-ref case sensitivity test failed");
+            }
+        } catch (Exception e) {
+            throw new Fault("res-ref case sens test failed: ", e);
+        } finally {
+            try {
+                if (null != bean) {
+                    TestUtil.logTrace("[Client] Removing TestBean...");
+                    bean.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logTrace("[Client] Ignore exception on bean " + "remove: " + e);
+            }
+        }
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("[Client] cleanup()");
+    }
 }

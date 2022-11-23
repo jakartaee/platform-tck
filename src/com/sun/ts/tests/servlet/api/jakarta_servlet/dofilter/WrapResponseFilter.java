@@ -20,44 +20,41 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.dofilter;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public final class WrapResponseFilter implements Filter {
 
-  // The filter configuration object we are associated with. If this value
-  // is null, this filter instance is not currently configured.
-  private FilterConfig filterConfig = null;
+    // The filter configuration object we are associated with. If this value
+    // is null, this filter instance is not currently configured.
+    private FilterConfig filterConfig = null;
 
-  public void doFilter(ServletRequest request, ServletResponse response,
-      FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-    PrintWriter pw = response.getWriter();
+        PrintWriter pw = response.getWriter();
 
-    CTSResponseWrapper wrappedResponse = new CTSResponseWrapper(response);
-    ServletTestUtil.printResult(pw, "in WrapResponseFilter");
+        CTSResponseWrapper wrappedResponse = new CTSResponseWrapper(response);
+        ServletTestUtil.printResult(pw, "in WrapResponseFilter");
 
-    chain.doFilter(request, wrappedResponse);
-  }
+        chain.doFilter(request, wrappedResponse);
+    }
 
-  // Remove the filter configuration object for this filter.
-  public void destroy() {
-    this.filterConfig = null;
-  }
+    // Remove the filter configuration object for this filter.
+    public void destroy() {
+        this.filterConfig = null;
+    }
 
-  // initialize the filter configuration object for this filter.
+    // initialize the filter configuration object for this filter.
 
-  public void init(FilterConfig filterConfig) {
-    this.filterConfig = filterConfig;
-  }
-
+    public void init(FilterConfig filterConfig) {
+        this.filterConfig = filterConfig;
+    }
 }

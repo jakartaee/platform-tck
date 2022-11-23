@@ -22,24 +22,21 @@ package com.sun.ts.tests.ejb30.lite.view.singleton.annotated;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.common.busiface.SessionBeanLocalBeanBase;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
 // Singleton is not allowed to implement jakarta.ejb.SessionBean interface.
 // The easiest fix is to change it to Stateless.
-//@Singleton
+// @Singleton
 @Stateless
-public class SessionBeanLocalBean extends SessionBeanLocalBeanBase
-    implements BusinessLocalIF1 {
+public class SessionBeanLocalBean extends SessionBeanLocalBeanBase implements BusinessLocalIF1 {
 
-  @Override
-  @Resource
-  public void setSessionContext(SessionContext sessionContext) {
-    super.setSessionContext(sessionContext);
-  }
+    @Override
+    @Resource
+    public void setSessionContext(SessionContext sessionContext) {
+        super.setSessionContext(sessionContext);
+    }
 
-  public void remove() {
-  }
+    public void remove() {}
 }

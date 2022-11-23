@@ -22,31 +22,25 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.busifacedd;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocal1Base;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.SessionSynchronization;
 
-//@Stateful(name="SessionSynchronizationLocalBean")
+// @Stateful(name="SessionSynchronizationLocalBean")
 public class SessionSynchronizationLocalBean extends BusinessLocal1Base
-    implements BusinessLocalIF1, java.io.Serializable, SessionSynchronization {
-  @Resource
-  private SessionContext sessionContext;
+        implements BusinessLocalIF1, java.io.Serializable, SessionSynchronization {
+    @Resource
+    private SessionContext sessionContext;
 
-  public SessionSynchronizationLocalBean() {
-  }
+    public SessionSynchronizationLocalBean() {}
 
-  @Remove
-  public void remove() {
-  }
+    @Remove
+    public void remove() {}
 
-  public void afterCompletion(boolean param) {
-  }
+    public void afterCompletion(boolean param) {}
 
-  public void beforeCompletion() {
-  }
+    public void beforeCompletion() {}
 
-  public void afterBegin() {
-  }
+    public void afterBegin() {}
 }

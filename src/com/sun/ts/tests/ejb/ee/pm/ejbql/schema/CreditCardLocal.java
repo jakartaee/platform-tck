@@ -23,38 +23,37 @@ package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 import jakarta.ejb.EJBLocalObject;
 
 public interface CreditCardLocal extends EJBLocalObject {
-  // CMP fields
+    // CMP fields
 
-  public String getId();
+    public String getId();
 
-  public String getNumber();
+    public String getNumber();
 
-  public void setNumber(String v);
+    public void setNumber(String v);
 
-  public String getType();
+    public String getType();
 
-  public void setType(String v);
+    public void setType(String v);
 
-  public String getExpires();
+    public String getExpires();
 
-  public void setExpires(String v);
+    public void setExpires(String v);
 
-  public boolean getApproved();
+    public boolean getApproved();
 
-  public void setApproved(boolean v);
+    public void setApproved(boolean v);
 
-  public double getBalance();
+    public double getBalance();
 
-  public void setBalance(double v);
+    public void setBalance(double v);
 
-  // CMR fields
+    // CMR fields
 
-  public OrderLocal getOrder();
+    public OrderLocal getOrder();
 
-  public void setOrder(OrderLocal v);
+    public void setOrder(OrderLocal v);
 
-  public CustomerLocal getCustomer();
+    public CustomerLocal getCustomer();
 
-  public void setCustomer(CustomerLocal v);
-
+    public void setCustomer(CustomerLocal v);
 }

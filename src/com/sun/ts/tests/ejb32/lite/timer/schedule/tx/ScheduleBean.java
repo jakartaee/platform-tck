@@ -21,16 +21,14 @@ import jakarta.ejb.Stateless;
 @Stateless
 public class ScheduleBean extends ScheduleTxBeanBase {
 
-  @Override
-  public void setRollbackOnly() {
-    ejbContext.setRollbackOnly();
-  }
+    @Override
+    public void setRollbackOnly() {
+        ejbContext.setRollbackOnly();
+    }
 
-  @Override
-  protected void beginTransaction() {
-  }
+    @Override
+    protected void beginTransaction() {}
 
-  @Override
-  protected void commitTransaction() {
-  }
+    @Override
+    protected void commitTransaction() {}
 }

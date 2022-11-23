@@ -20,7 +20,6 @@ import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeo
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.Interceptor3;
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.Interceptor4;
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.InterceptorBase;
-
 import jakarta.ejb.Singleton;
 import jakarta.interceptor.AroundTimeout;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
@@ -29,16 +28,13 @@ import jakarta.interceptor.InvocationContext;
 
 @Singleton
 @ExcludeDefaultInterceptors
-@Interceptors({ Interceptor4.class, Interceptor3.class })
-public class AroundTimeoutComplementBean extends AroundTimeoutBeanBase
-    implements AroundTimeoutIF {
-  private static final String simpleName = "AroundTimeoutComplementBean";
+@Interceptors({Interceptor4.class, Interceptor3.class})
+public class AroundTimeoutComplementBean extends AroundTimeoutBeanBase implements AroundTimeoutIF {
+    private static final String simpleName = "AroundTimeoutComplementBean";
 
-  @SuppressWarnings("unused")
-  @AroundTimeout
-  private Object aroundTimeoutInAroundTimeoutComplementBean(
-      InvocationContext inv) throws Exception {
-    return InterceptorBase.handleAroundTimeout(inv, simpleName, this,
-        "aroundTimeoutInAroundTimeoutComplementBean");
-  }
+    @SuppressWarnings("unused")
+    @AroundTimeout
+    private Object aroundTimeoutInAroundTimeoutComplementBean(InvocationContext inv) throws Exception {
+        return InterceptorBase.handleAroundTimeout(inv, simpleName, this, "aroundTimeoutInAroundTimeoutComplementBean");
+    }
 }

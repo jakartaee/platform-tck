@@ -21,20 +21,18 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.jsfwebinflibonly;
 
 import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupByShortNameNoTry;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase;
 import com.sun.ts.tests.ejb30.lite.packaging.war.webinflib.BeanBase;
 import com.sun.ts.tests.ejb30.lite.packaging.war.webinflib.OneBean;
 import com.sun.ts.tests.ejb30.lite.packaging.war.webinflib.ThreeBean;
 import com.sun.ts.tests.ejb30.lite.packaging.war.webinflib.TwoBean;
-
 import jakarta.annotation.Resource;
 import jakarta.transaction.UserTransaction;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * See com.sun.ts.tests.ejb30.lite.packaging.war.webinflib.Client. All ejb
@@ -42,30 +40,28 @@ import jakarta.transaction.UserTransaction;
  */
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
-public class JsfClient
-    extends EJBLiteJsfClientBase implements Serializable {
+public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final String CLIENT_REF_NAME_PREFIX = JsfClient.class.getName();
     private BeanBase one;
     private BeanBase two;
     private BeanBase three;
+
     @Resource
     private UserTransaction ut;
+
     private List<BeanBase> beans;
 
     @Override
     public void setup(String[] args, Properties p) {
-      super.setup(args, p);
-      beans = new ArrayList<BeanBase>();
-      one = (BeanBase) ServiceLocator
-          .lookupNoTry("java:global/" + getModuleName() + "/OneBean");
-      two = (BeanBase) ServiceLocator
-          .lookupNoTry("java:global/" + getModuleName() + "/TwoBean");
-      three = (BeanBase) ServiceLocator
-          .lookupNoTry("java:global/" + getModuleName() + "/ThreeBean");
-      beans.add(one);
-      beans.add(two);
-      beans.add(three);
+        super.setup(args, p);
+        beans = new ArrayList<BeanBase>();
+        one = (BeanBase) ServiceLocator.lookupNoTry("java:global/" + getModuleName() + "/OneBean");
+        two = (BeanBase) ServiceLocator.lookupNoTry("java:global/" + getModuleName() + "/TwoBean");
+        three = (BeanBase) ServiceLocator.lookupNoTry("java:global/" + getModuleName() + "/ThreeBean");
+        beans.add(one);
+        beans.add(two);
+        beans.add(three);
     }
 
     /*
@@ -76,19 +72,15 @@ public class JsfClient
      * for standalone client.
      */
     public void clientToBeanClassLookup() {
-      for (BeanBase b : beans) {
-        OneBean b1 = (OneBean) lookupByShortNameNoTry(
-            b.getRefNamePrefix() + "/one");
-        TwoBean b2 = (TwoBean) lookupByShortNameNoTry(
-            b.getRefNamePrefix() + "/two");
-        ThreeBean b3 = (ThreeBean) lookupByShortNameNoTry(
-            b.getRefNamePrefix() + "/three");
-        verifyBeans(b1, b2, b3);
-      }
+        for (BeanBase b : beans) {
+            OneBean b1 = (OneBean) lookupByShortNameNoTry(b.getRefNamePrefix() + "/one");
+            TwoBean b2 = (TwoBean) lookupByShortNameNoTry(b.getRefNamePrefix() + "/two");
+            ThreeBean b3 = (ThreeBean) lookupByShortNameNoTry(b.getRefNamePrefix() + "/three");
+            verifyBeans(b1, b2, b3);
+        }
 
-      UserTransaction u = (UserTransaction) lookupByShortNameNoTry(
-          BeanBase.class.getName() + "/ut");
-      assertNotEquals(null, u, null);
+        UserTransaction u = (UserTransaction) lookupByShortNameNoTry(BeanBase.class.getName() + "/ut");
+        assertNotEquals(null, u, null);
     }
 
     /*
@@ -99,11 +91,10 @@ public class JsfClient
      * for standalone client.
      */
     public void beanClassToClientLookup() {
-      for (BeanBase b : beans) {
-        UserTransaction u = (UserTransaction) b
-            .beanClassToClientLookup(CLIENT_REF_NAME_PREFIX + "/ut");
-        assertNotEquals(null, u, null);
-      }
+        for (BeanBase b : beans) {
+            UserTransaction u = (UserTransaction) b.beanClassToClientLookup(CLIENT_REF_NAME_PREFIX + "/ut");
+            assertNotEquals(null, u, null);
+        }
     }
 
     /*
@@ -113,24 +104,21 @@ public class JsfClient
      * must succeed since ejbs packaged together share the same naming context.
      */
     public void crossEJBLookup() {
-      for (BeanBase lookupFrom : beans) {
-        for (BeanBase lookupDest : beans) {
-          // look up all the OneBeans injected into One, Two, and Three.
-          // A totoal of 27 lookups
-          OneBean b1 = (OneBean) lookupFrom
-              .lookupWithEJBContext(lookupDest.getRefNamePrefix() + "/one");
-          TwoBean b2 = (TwoBean) lookupFrom
-              .lookupWithEJBContext(lookupDest.getRefNamePrefix() + "/two");
-          ThreeBean b3 = (ThreeBean) lookupFrom
-              .lookupWithEJBContext(lookupDest.getRefNamePrefix() + "/three");
-          verifyBeans(b1, b2, b3);
+        for (BeanBase lookupFrom : beans) {
+            for (BeanBase lookupDest : beans) {
+                // look up all the OneBeans injected into One, Two, and Three.
+                // A totoal of 27 lookups
+                OneBean b1 = (OneBean) lookupFrom.lookupWithEJBContext(lookupDest.getRefNamePrefix() + "/one");
+                TwoBean b2 = (TwoBean) lookupFrom.lookupWithEJBContext(lookupDest.getRefNamePrefix() + "/two");
+                ThreeBean b3 = (ThreeBean) lookupFrom.lookupWithEJBContext(lookupDest.getRefNamePrefix() + "/three");
+                verifyBeans(b1, b2, b3);
+            }
         }
-      }
     }
 
     private void verifyBeans(Object b1, Object b2, Object b3) {
-      assertEquals(null, one, b1);
-      assertEquals(null, two, b2);
-      assertEquals(null, three, b3);
+        assertEquals(null, one, b1);
+        assertEquals(null, two, b2);
+        assertEquals(null, three, b3);
     }
 }

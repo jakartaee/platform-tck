@@ -17,32 +17,29 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.client;
 
+import com.sun.ts.tests.websocket.common.client.ClientEndpoint;
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+import jakarta.websocket.MessageHandler;
 import java.io.IOException;
 import java.io.Reader;
 
-import com.sun.ts.tests.websocket.common.client.ClientEndpoint;
-import com.sun.ts.tests.websocket.common.util.IOUtil;
-
-import jakarta.websocket.MessageHandler;
-
 public class ReaderMessageHandler implements MessageHandler.Whole<Reader> {
-  ClientEndpoint<String> endpoint;
+    ClientEndpoint<String> endpoint;
 
-  public static final String HANDLER_SAYS = "ReaderMessageHandler says: ";
+    public static final String HANDLER_SAYS = "ReaderMessageHandler says: ";
 
-  public ReaderMessageHandler(ClientEndpoint<String> endpoint) {
-    this.endpoint = endpoint;
-  }
-
-  @Override
-  public void onMessage(Reader message) {
-    String msg = null;
-    try {
-      msg = IOUtil.readFromReader(message);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
+    public ReaderMessageHandler(ClientEndpoint<String> endpoint) {
+        this.endpoint = endpoint;
     }
-    endpoint.onMessage(HANDLER_SAYS + msg);
-  }
 
+    @Override
+    public void onMessage(Reader message) {
+        String msg = null;
+        try {
+            msg = IOUtil.readFromReader(message);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        endpoint.onMessage(HANDLER_SAYS + msg);
+    }
 }

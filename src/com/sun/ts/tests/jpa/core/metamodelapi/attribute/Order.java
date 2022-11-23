@@ -16,64 +16,62 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.attribute;
 
-import java.util.Collection;
-import java.util.Vector;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.util.Collection;
+import java.util.Vector;
 
 @Entity
 @Table(name = "PURCHASE_ORDER")
 public class Order implements java.io.Serializable {
-  private int id;
+    private int id;
 
-  private int total;
+    private int total;
 
-  Collection itemNames = new Vector();
+    Collection itemNames = new Vector();
 
-  public Order() {
-  }
+    public Order() {}
 
-  public Order(int total) {
-    this.total = total;
-  }
+    public Order(int total) {
+        this.total = total;
+    }
 
-  public Order(int id, int total) {
-    this.id = id;
-    this.total = total;
-  }
+    public Order(int id, int total) {
+        this.id = id;
+        this.total = total;
+    }
 
-  @Id
-  public int getId() {
-    return id;
-  }
+    @Id
+    public int getId() {
+        return id;
+    }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  public int getTotal() {
-    return total;
-  }
+    public int getTotal() {
+        return total;
+    }
 
-  public void setTotal(int total) {
-    this.total = total;
-  }
+    public void setTotal(int total) {
+        this.total = total;
+    }
 
-  public String toString() {
-    return "Order id=" + getId() + ", total=" + getTotal();
-  }
+    public String toString() {
+        return "Order id=" + getId() + ", total=" + getTotal();
+    }
 
-  public boolean addItemNames(String name) {
-    boolean result = false;
-    result = itemNames.add(name);
-    return result;
-  }
+    public boolean addItemNames(String name) {
+        boolean result = false;
+        result = itemNames.add(name);
+        return result;
+    }
 
-  public boolean removeItemName(String name) {
-    boolean result = false;
-    result = itemNames.remove(name);
-    return result;
-  }
+    public boolean removeItemName(String name) {
+        boolean result = false;
+        result = itemNames.remove(name);
+        return result;
+    }
 }

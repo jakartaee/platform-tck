@@ -23,26 +23,31 @@ package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.typesubstitution;
 import java.util.ArrayList;
 import java.util.List;
 
-@jakarta.jws.WebService(portName = "CarDealerPort", serviceName = "CarDealerService", targetNamespace = "http://typesubstitution/wsdl", wsdlLocation = "WEB-INF/wsdl/WSAW2JDLTypeSubstitutionTest.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.typesubstitution.CarDealer")
+@jakarta.jws.WebService(
+        portName = "CarDealerPort",
+        serviceName = "CarDealerService",
+        targetNamespace = "http://typesubstitution/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/WSAW2JDLTypeSubstitutionTest.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.typesubstitution.CarDealer")
 public class CarDealerImpl {
-  public List<Car> getSedans() {
-    List<Car> cars = new ArrayList<Car>();
-    Toyota camry = new Toyota();
+    public List<Car> getSedans() {
+        List<Car> cars = new ArrayList<Car>();
+        Toyota camry = new Toyota();
 
-    camry.setMake("Toyota");
-    camry.setModel("Camry");
-    camry.setYear("1998");
-    camry.setColor("white");
+        camry.setMake("Toyota");
+        camry.setModel("Camry");
+        camry.setYear("1998");
+        camry.setColor("white");
 
-    cars.add(camry);
+        cars.add(camry);
 
-    Ford mustang = new Ford();
+        Ford mustang = new Ford();
 
-    mustang.setMake("Ford");
-    mustang.setModel("Mustang");
-    mustang.setYear("1999");
-    mustang.setColor("red");
-    cars.add(mustang);
-    return cars;
-  }
+        mustang.setMake("Ford");
+        mustang.setModel("Mustang");
+        mustang.setYear("1999");
+        mustang.setColor("red");
+        cars.add(mustang);
+        return cars;
+    }
 }

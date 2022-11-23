@@ -20,40 +20,35 @@
  * @author Raja Perumal
  *         08/22/02
  */
-
 package com.sun.ts.tests.jacc.util;
 
 public class JACCEntityKey implements java.io.Serializable {
-  public String arg1;
+    public String arg1;
 
-  public Integer arg2;
+    public Integer arg2;
 
-  public Long arg3;
+    public Long arg3;
 
-  public JACCEntityKey() {
-  }
+    public JACCEntityKey() {}
 
-  public JACCEntityKey(String arg1, int arg2, long arg3) {
-    this.arg1 = arg1;
-    this.arg2 = new Integer(arg2);
-    this.arg3 = new Long(arg3);
-  }
+    public JACCEntityKey(String arg1, int arg2, long arg3) {
+        this.arg1 = arg1;
+        this.arg2 = new Integer(arg2);
+        this.arg3 = new Long(arg3);
+    }
 
-  public boolean equals(Object newObject) {
-    if (!(newObject instanceof JACCEntityKey))
-      return false;
+    public boolean equals(Object newObject) {
+        if (!(newObject instanceof JACCEntityKey)) return false;
 
-    JACCEntityKey newJACCEntityKey = (JACCEntityKey) newObject;
+        JACCEntityKey newJACCEntityKey = (JACCEntityKey) newObject;
 
-    if ((arg1.equals(newJACCEntityKey.arg1))
-        && (arg2.intValue() == newJACCEntityKey.arg2.intValue())
-        && (arg3.longValue() == newJACCEntityKey.arg3.longValue()))
-      return true;
-    else
-      return false;
-  }
+        if ((arg1.equals(newJACCEntityKey.arg1))
+                && (arg2.intValue() == newJACCEntityKey.arg2.intValue())
+                && (arg3.longValue() == newJACCEntityKey.arg3.longValue())) return true;
+        else return false;
+    }
 
-  public int hashCode() {
-    return arg1.hashCode() / 3 + arg2.hashCode() / 3 + arg3.hashCode() / 3;
-  }
+    public int hashCode() {
+        return arg1.hashCode() / 3 + arg2.hashCode() / 3 + arg3.hashCode() / 3;
+    }
 }

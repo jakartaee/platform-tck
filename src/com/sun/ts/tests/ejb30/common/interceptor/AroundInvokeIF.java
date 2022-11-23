@@ -20,67 +20,62 @@
 
 package com.sun.ts.tests.ejb30.common.interceptor;
 
+import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 import java.util.ArrayList;
 
-import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
-
 public interface AroundInvokeIF {
-  public void remove(); // for sfsb only
+    public void remove(); // for sfsb only
 
-  public void getBeanTest() throws CalculatorException;
+    public void getBeanTest() throws CalculatorException;
 
-  public String getParametersTest(String param) throws CalculatorException;
+    public String getParametersTest(String param) throws CalculatorException;
 
-  public void getParametersEmptyTest() throws CalculatorException;
+    public void getParametersEmptyTest() throws CalculatorException;
 
-  public String setParametersTest(String param) throws CalculatorException;
+    public String setParametersTest(String param) throws CalculatorException;
 
-  public void getEJBContextTest() throws CalculatorException;
+    public void getEJBContextTest() throws CalculatorException;
 
-  public void getContextDataTest() throws CalculatorException;
+    public void getContextDataTest() throws CalculatorException;
 
-  public void getMethodTest() throws CalculatorException;
+    public void getMethodTest() throws CalculatorException;
 
-  public String exceptionTest() throws CalculatorException;
+    public String exceptionTest() throws CalculatorException;
 
-  public void suppressExceptionTest() throws CalculatorException;
+    public void suppressExceptionTest() throws CalculatorException;
 
-  public void txRollbackOnlyTest() throws CalculatorException;
+    public void txRollbackOnlyTest() throws CalculatorException;
 
-  public void txRollbackOnlyAfterTest() throws CalculatorException;
+    public void txRollbackOnlyAfterTest() throws CalculatorException;
 
-  public boolean sameSecContextTest() throws CalculatorException;
+    public boolean sameSecContextTest() throws CalculatorException;
 
-  public void runtimeExceptionTest() throws CalculatorException;
+    public void runtimeExceptionTest() throws CalculatorException;
 
-  public void runtimeExceptionAfterTest() throws CalculatorException;
+    public void runtimeExceptionAfterTest() throws CalculatorException;
 
-  // orderTest and sameInvocationContextTest are only used when interceptor
-  // classes
-  // are used, since they need multiple interceptors. They should not be tested
-  // in
-  // case of interceptor method. Kept here for simplicity.
+    // orderTest and sameInvocationContextTest are only used when interceptor
+    // classes
+    // are used, since they need multiple interceptors. They should not be tested
+    // in
+    // case of interceptor method. Kept here for simplicity.
 
-  public void orderTest() throws CalculatorException;
+    public void orderTest() throws CalculatorException;
 
-  public void sameInvocationContextTest() throws CalculatorException;
+    public void sameInvocationContextTest() throws CalculatorException;
 
-  // afterBeginTest and beforeCompletionTest can only be used with sfsb with
-  // SessionSynchronization
-  public void afterBeginTest() throws CalculatorException;
+    // afterBeginTest and beforeCompletionTest can only be used with sfsb with
+    // SessionSynchronization
+    public void afterBeginTest() throws CalculatorException;
 
-  public void beforeCompletionTest() throws CalculatorException;
+    public void beforeCompletionTest() throws CalculatorException;
 
-  public ArrayList<String> methodLevelInterceptorMixedTest(
-      ArrayList<String> alist) throws CalculatorException;
+    public ArrayList<String> methodLevelInterceptorMixedTest(ArrayList<String> alist) throws CalculatorException;
 
-  public ArrayList<String> methodLevelClassLevelInterceptorMixedTest(
-      ArrayList<String> alist) throws CalculatorException;
+    public ArrayList<String> methodLevelClassLevelInterceptorMixedTest(ArrayList<String> alist)
+            throws CalculatorException;
 
-  public ArrayList<String> repeatedInterceptors(ArrayList<String> alist)
-      throws CalculatorException;
+    public ArrayList<String> repeatedInterceptors(ArrayList<String> alist) throws CalculatorException;
 
-  public ArrayList<String> interceptorOrderingOverride(ArrayList<String> alist)
-      throws CalculatorException;
-
+    public ArrayList<String> interceptorOrderingOverride(ArrayList<String> alist) throws CalculatorException;
 }

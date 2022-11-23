@@ -16,12 +16,9 @@
 
 package com.sun.ts.tests.common.connector.whitebox.mixedmode;
 
-import javax.transaction.xa.XAResource;
-
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
 import com.sun.ts.tests.common.connector.whitebox.Debug;
 import com.sun.ts.tests.common.connector.whitebox.Util;
-
 import jakarta.resource.NotSupportedException;
 import jakarta.resource.ResourceException;
 import jakarta.resource.spi.ActivationSpec;
@@ -38,6 +35,7 @@ import jakarta.resource.spi.work.HintsContext;
 import jakarta.resource.spi.work.SecurityContext;
 import jakarta.resource.spi.work.Work;
 import jakarta.resource.spi.work.WorkManager;
+import javax.transaction.xa.XAResource;
 
 /**
  * This is a sample resource adapter that will use some ra.xml info. This RA is
@@ -45,185 +43,186 @@ import jakarta.resource.spi.work.WorkManager;
  * no ra.xml (Assertion 268) and the transaction support is Local.
  *
  */
+@Connector(
+        description = "CTS Test Resource Adapter with No DD",
+        licenseDescription = "CTS License Required",
+        licenseRequired = true,
+        authMechanisms =
+                @AuthenticationMechanism(
+                        credentialInterface = AuthenticationMechanism.CredentialInterface.PasswordCredential,
+                        authMechanism = "BasicPassword",
+                        description = "Basic Password Authentication"),
+        reauthenticationSupport = false,
+        securityPermissions = @SecurityPermission(),
+        transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction,
+        requiredWorkContexts = {HintsContext.class, SecurityContext.class})
+public class PMDResourceAdapterImpl implements ResourceAdapter, java.io.Serializable {
 
-@Connector(description = "CTS Test Resource Adapter with No DD", licenseDescription = "CTS License Required", licenseRequired = true, authMechanisms = @AuthenticationMechanism(credentialInterface = AuthenticationMechanism.CredentialInterface.PasswordCredential, authMechanism = "BasicPassword", description = "Basic Password Authentication"), reauthenticationSupport = false, securityPermissions = @SecurityPermission(), transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction, requiredWorkContexts = {
-    HintsContext.class, SecurityContext.class })
-public class PMDResourceAdapterImpl
-    implements ResourceAdapter, java.io.Serializable {
+    private transient BootstrapContext bsc;
 
-  private transient BootstrapContext bsc;
+    private transient PMDWorkManager pwm;
 
-  private transient PMDWorkManager pwm;
+    private transient WorkManager wm;
 
-  private transient WorkManager wm;
+    private transient Work work;
 
-  private transient Work work;
+    // this should cause the setter to get invoked
+    @ConfigProperty(defaultValue = "PartialMDResourceAdapter", description = "String value", ignore = false)
+    String raName;
 
-  // this should cause the setter to get invoked
-  @ConfigProperty(defaultValue = "PartialMDResourceAdapter", description = "String value", ignore = false)
-  String raName;
+    @ConfigProperty(defaultValue = "VAL_FROM_ANNOTATION", description = "String value", ignore = false)
+    String overRide;
 
-  @ConfigProperty(defaultValue = "VAL_FROM_ANNOTATION", description = "String value", ignore = false)
-  String overRide;
+    String mdPropOnly;
 
-  String mdPropOnly;
+    /**
+     * constructor
+     **/
+    public PMDResourceAdapterImpl() {
+        debug("enterred constructor...");
 
-  /**
-   * constructor
-   **/
-  public PMDResourceAdapterImpl() {
-    debug("enterred constructor...");
-
-    debug("leaving constructor...");
-  }
-
-  //
-  // Begin ResourceAdapter interface requirements
-  //
-
-  /* must implement for ResourceAdapter interface requirement */
-  public void start(BootstrapContext bsc)
-      throws ResourceAdapterInternalException {
-    debug("enterred start");
-    debug("PMDResourceAdapterImpl.start called");
-
-    this.bsc = bsc;
-    this.wm = bsc.getWorkManager();
-
-    this.pwm = new PMDWorkManager(bsc);
-    pwm.runTests();
-
-    debug("leaving start");
-  }
-
-  /* must implement for ResourceAdapter interface requirement */
-  public void stop() {
-    debug("entered stop");
-    debug("leaving stop");
-  }
-
-  /* must implement for ResourceAdapter interface requirement */
-  public void endpointActivation(MessageEndpointFactory factory,
-      ActivationSpec spec) throws NotSupportedException {
-
-    debug("enterred endpointActivation");
-    debug("leaving endpointActivation");
-  }
-
-  /* must implement for ResourceAdapter interface requirement */
-  public void endpointDeactivation(MessageEndpointFactory ep,
-      ActivationSpec spec) {
-    debug("enterred endpointDeactivation");
-    debug("leaving endpointDeactivation");
-  }
-
-  /* must implement for ResourceAdapter interface requirement */
-  public XAResource[] getXAResources(ActivationSpec[] specs)
-      throws ResourceException {
-
-    debug("enterred getXAResources");
-    debug("leaving getXAResources");
-
-    throw new UnsupportedOperationException();
-  }
-
-  //
-  // END ResourceAdapter interface requirements
-  //
-
-  /*
-   * this is the setter for the ConfigProperty annotation = raName. According to
-   * onnector 1.6 spec, section 18.5, this setter must be invoked since it
-   * belongs to a ConfigProperty annotation for the ResourceAdapter JavaBean.
-   */
-  public void setRaName(String name) {
-    this.raName = name;
-
-    // this helps verify assertion Connector:SPEC:279
-    String str = "setRAName called with raname=" + raName;
-    debug(str);
-    ConnectorStatus.getConnectorStatus().logState(str);
-  }
-
-  public String getRaName() {
-    return raName;
-  }
-
-  public void setOverRide(String name) {
-
-    // this is used to help test behavior is described in connector1.6
-    // spec in section 18.3.2 - where the ConfigProperty specified in the DD
-    // file
-    // should override the ConfigProperty in this file.
-    String str = "PMDResourceAdapterImpl overRide=" + name;
-    ConnectorStatus.getConnectorStatus().logState(str);
-    debug(str);
-
-    this.overRide = name;
-  }
-
-  public String getOverRide() {
-    return overRide;
-  }
-
-  public void setMdPropOnly(String name) {
-
-    // this is used to help test assertion Connector:SPEC:273
-    String str = "PMDResourceAdapterImpl mdPropOnly=" + name;
-    debug(str);
-
-    this.mdPropOnly = name;
-  }
-
-  public String getMdPropOnly() {
-    return mdPropOnly;
-  }
-
-  /*
-   * @name equals
-   * 
-   * @desc Compares the given object to the ManagedConnectionFactory instance.
-   * 
-   * @param Object
-   * 
-   * @return boolean
-   */
-  public boolean equals(Object obj) {
-
-    if ((obj == null) || !(obj instanceof PMDResourceAdapterImpl)) {
-      return false;
-    }
-    if (obj == this) {
-      return true;
+        debug("leaving constructor...");
     }
 
-    PMDResourceAdapterImpl that = (PMDResourceAdapterImpl) obj;
+    //
+    // Begin ResourceAdapter interface requirements
+    //
 
-    if (!Util.isEqual(this.mdPropOnly, that.getMdPropOnly()))
-      return false;
+    /* must implement for ResourceAdapter interface requirement */
+    public void start(BootstrapContext bsc) throws ResourceAdapterInternalException {
+        debug("enterred start");
+        debug("PMDResourceAdapterImpl.start called");
 
-    if (!Util.isEqual(this.overRide, that.getOverRide()))
-      return false;
+        this.bsc = bsc;
+        this.wm = bsc.getWorkManager();
 
-    if (!Util.isEqual(this.raName, that.getRaName()))
-      return false;
+        this.pwm = new PMDWorkManager(bsc);
+        pwm.runTests();
 
-    return true;
-  }
+        debug("leaving start");
+    }
 
-  /*
-   * @name hashCode
-   * 
-   * @desc Gives a hash value to a ManagedConnectionFactory Obejct.
-   * 
-   * @return int
-   */
-  public int hashCode() {
-    return this.getClass().getName().hashCode();
-  }
+    /* must implement for ResourceAdapter interface requirement */
+    public void stop() {
+        debug("entered stop");
+        debug("leaving stop");
+    }
 
-  public void debug(String out) {
-    Debug.trace("PMDResourceAdapterImpl:  " + out);
-  }
+    /* must implement for ResourceAdapter interface requirement */
+    public void endpointActivation(MessageEndpointFactory factory, ActivationSpec spec) throws NotSupportedException {
 
+        debug("enterred endpointActivation");
+        debug("leaving endpointActivation");
+    }
+
+    /* must implement for ResourceAdapter interface requirement */
+    public void endpointDeactivation(MessageEndpointFactory ep, ActivationSpec spec) {
+        debug("enterred endpointDeactivation");
+        debug("leaving endpointDeactivation");
+    }
+
+    /* must implement for ResourceAdapter interface requirement */
+    public XAResource[] getXAResources(ActivationSpec[] specs) throws ResourceException {
+
+        debug("enterred getXAResources");
+        debug("leaving getXAResources");
+
+        throw new UnsupportedOperationException();
+    }
+
+    //
+    // END ResourceAdapter interface requirements
+    //
+
+    /*
+     * this is the setter for the ConfigProperty annotation = raName. According to
+     * onnector 1.6 spec, section 18.5, this setter must be invoked since it
+     * belongs to a ConfigProperty annotation for the ResourceAdapter JavaBean.
+     */
+    public void setRaName(String name) {
+        this.raName = name;
+
+        // this helps verify assertion Connector:SPEC:279
+        String str = "setRAName called with raname=" + raName;
+        debug(str);
+        ConnectorStatus.getConnectorStatus().logState(str);
+    }
+
+    public String getRaName() {
+        return raName;
+    }
+
+    public void setOverRide(String name) {
+
+        // this is used to help test behavior is described in connector1.6
+        // spec in section 18.3.2 - where the ConfigProperty specified in the DD
+        // file
+        // should override the ConfigProperty in this file.
+        String str = "PMDResourceAdapterImpl overRide=" + name;
+        ConnectorStatus.getConnectorStatus().logState(str);
+        debug(str);
+
+        this.overRide = name;
+    }
+
+    public String getOverRide() {
+        return overRide;
+    }
+
+    public void setMdPropOnly(String name) {
+
+        // this is used to help test assertion Connector:SPEC:273
+        String str = "PMDResourceAdapterImpl mdPropOnly=" + name;
+        debug(str);
+
+        this.mdPropOnly = name;
+    }
+
+    public String getMdPropOnly() {
+        return mdPropOnly;
+    }
+
+    /*
+     * @name equals
+     *
+     * @desc Compares the given object to the ManagedConnectionFactory instance.
+     *
+     * @param Object
+     *
+     * @return boolean
+     */
+    public boolean equals(Object obj) {
+
+        if ((obj == null) || !(obj instanceof PMDResourceAdapterImpl)) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+
+        PMDResourceAdapterImpl that = (PMDResourceAdapterImpl) obj;
+
+        if (!Util.isEqual(this.mdPropOnly, that.getMdPropOnly())) return false;
+
+        if (!Util.isEqual(this.overRide, that.getOverRide())) return false;
+
+        if (!Util.isEqual(this.raName, that.getRaName())) return false;
+
+        return true;
+    }
+
+    /*
+     * @name hashCode
+     *
+     * @desc Gives a hash value to a ManagedConnectionFactory Obejct.
+     *
+     * @return int
+     */
+    public int hashCode() {
+        return this.getClass().getName().hashCode();
+    }
+
+    public void debug(String out) {
+        Debug.trace("PMDResourceAdapterImpl:  " + out);
+    }
 }

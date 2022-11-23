@@ -20,194 +20,184 @@
  */
 package com.sun.ts.tests.websocket.api.jakarta.websocket.decodeexception;
 
-import java.io.PrintWriter;
-import java.nio.ByteBuffer;
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.websocket.DecodeException;
+import java.io.PrintWriter;
+import java.nio.ByteBuffer;
+import java.util.Properties;
 
 public class WSClient extends ServiceEETest {
-  // properties read from ts.jte file
+    // properties read from ts.jte file
 
-  int ws_wait;
+    int ws_wait;
 
-  String webServerHost;
+    String webServerHost;
 
-  String webServerPort;
+    String webServerPort;
 
-  public static void main(String[] args) {
-    WSClient theTests = new WSClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ws_wait; ts_home;
-   */
-  @SuppressWarnings("unused")
-  public void setup(String[] args, Properties p) throws Fault {
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException rlex) {
-      System.err.println("Failed to initialize logging.");
+    public static void main(String[] args) {
+        WSClient theTests = new WSClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
     }
 
-    webServerHost = p.getProperty("webServerHost").trim();
-    webServerPort = p.getProperty("webServerPort").trim();
-    ws_wait = Integer.parseInt(p.getProperty("ws_wait"));
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ws_wait; ts_home;
+     */
+    @SuppressWarnings("unused")
+    public void setup(String[] args, Properties p) throws Fault {
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException rlex) {
+            System.err.println("Failed to initialize logging.");
+        }
 
-    // check props for errors
-    if (ws_wait < 1) {
-      throw new Fault("'ws_wait' (milliseconds) in ts.jte must be > 0");
-    }
-    if (webServerHost == null) {
-      throw new Fault("'webServerHost' in ts.jte must not be null ");
-    }
-    if (webServerPort == null) {
-      throw new Fault("'webServerPort' in ts.jte must not be null ");
-    }
-  }
+        webServerHost = p.getProperty("webServerHost").trim();
+        webServerPort = p.getProperty("webServerPort").trim();
+        ws_wait = Integer.parseInt(p.getProperty("ws_wait"));
 
-  /* Run test */
-  /*
-   * @testName: constructorTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:32; WebSocket:JAVADOC:33;
-   * WebSocket:JAVADOC:34;
-   *
-   * @test_Strategy: Test constructor DecodeException(String, String)
-   */
-  public void constructorTest() throws Fault {
-    boolean passed = true;
-    String reason = "TCK: Cannot decode the message";
-    String encoded_message = "xyz for now";
-    StringBuilder tmp = new StringBuilder();
-
-    DecodeException dex = new DecodeException(encoded_message, reason);
-
-    if (!encoded_message.equals(dex.getText())) {
-      passed = false;
-      tmp.append("Expected message ").append(encoded_message)
-          .append(", returned").append(dex.getText());
+        // check props for errors
+        if (ws_wait < 1) {
+            throw new Fault("'ws_wait' (milliseconds) in ts.jte must be > 0");
+        }
+        if (webServerHost == null) {
+            throw new Fault("'webServerHost' in ts.jte must not be null ");
+        }
+        if (webServerPort == null) {
+            throw new Fault("'webServerPort' in ts.jte must not be null ");
+        }
     }
 
-    if (dex.getBytes() != null) {
-      passed = false;
-      tmp.append("Expected ByteBuffer  to be null, returned")
-          .append(dex.getBytes());
+    /* Run test */
+    /*
+     * @testName: constructorTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:32; WebSocket:JAVADOC:33;
+     * WebSocket:JAVADOC:34;
+     *
+     * @test_Strategy: Test constructor DecodeException(String, String)
+     */
+    public void constructorTest() throws Fault {
+        boolean passed = true;
+        String reason = "TCK: Cannot decode the message";
+        String encoded_message = "xyz for now";
+        StringBuilder tmp = new StringBuilder();
+
+        DecodeException dex = new DecodeException(encoded_message, reason);
+
+        if (!encoded_message.equals(dex.getText())) {
+            passed = false;
+            tmp.append("Expected message ")
+                    .append(encoded_message)
+                    .append(", returned")
+                    .append(dex.getText());
+        }
+
+        if (dex.getBytes() != null) {
+            passed = false;
+            tmp.append("Expected ByteBuffer  to be null, returned").append(dex.getBytes());
+        }
+
+        if (passed == false) {
+            throw new Fault("Test failed: " + tmp.toString());
+        }
     }
 
-    if (passed == false) {
-      throw new Fault("Test failed: " + tmp.toString());
-    }
-  }
+    /*
+     * @testName: constructorTest1
+     *
+     * @assertion_ids: WebSocket:JAVADOC:31; WebSocket:JAVADOC:33;
+     * WebSocket:JAVADOC:34;
+     *
+     * @test_Strategy: Test constructor DecodeException(ByteBuffer, String)
+     */
+    public void constructorTest1() throws Fault {
+        boolean passed = true;
+        String reason = "TCK: Cannot decode the message";
+        ByteBuffer encoded_message = ByteBuffer.allocate(20);
+        encoded_message.put("xyz for now".getBytes());
 
-  /*
-   * @testName: constructorTest1
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:31; WebSocket:JAVADOC:33;
-   * WebSocket:JAVADOC:34;
-   *
-   * @test_Strategy: Test constructor DecodeException(ByteBuffer, String)
-   */
-  public void constructorTest1() throws Fault {
-    boolean passed = true;
-    String reason = "TCK: Cannot decode the message";
-    ByteBuffer encoded_message = ByteBuffer.allocate(20);
-    encoded_message.put("xyz for now".getBytes());
+        DecodeException dex = new DecodeException(encoded_message, reason);
 
-    DecodeException dex = new DecodeException(encoded_message, reason);
+        if (dex.getText() != null) {
+            passed = false;
+            TestUtil.logErr("Expected encoded_message null, returned" + dex.getText());
+        }
 
-    if (dex.getText() != null) {
-      passed = false;
-      TestUtil
-          .logErr("Expected encoded_message null, returned" + dex.getText());
-    }
+        if (!encoded_message.equals(dex.getBytes())) {
+            passed = false;
+            TestUtil.logErr("Expected ByteBuffer " + encoded_message + ", returned" + dex.getBytes());
+        }
 
-    if (!encoded_message.equals(dex.getBytes())) {
-      passed = false;
-      TestUtil.logErr("Expected ByteBuffer " + encoded_message + ", returned"
-          + dex.getBytes());
+        if (passed == false) {
+            throw new Fault("Test failed");
+        }
     }
 
-    if (passed == false) {
-      throw new Fault("Test failed");
-    }
-  }
+    /*
+     * @testName: constructorTest2
+     *
+     * @assertion_ids: WebSocket:JAVADOC:30; WebSocket:JAVADOC:33;
+     * WebSocket:JAVADOC:34;
+     *
+     * @test_Strategy: Test constructor DecodeException(String, String, Throwable)
+     */
+    public void constructorTest2() throws Fault {
+        boolean passed = true;
+        String reason = "TCK: Cannot decode the message";
+        String encoded_message = "xyz for now";
 
-  /*
-   * @testName: constructorTest2
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:30; WebSocket:JAVADOC:33;
-   * WebSocket:JAVADOC:34;
-   *
-   * @test_Strategy: Test constructor DecodeException(String, String, Throwable)
-   */
-  public void constructorTest2() throws Fault {
-    boolean passed = true;
-    String reason = "TCK: Cannot decode the message";
-    String encoded_message = "xyz for now";
+        DecodeException dex = new DecodeException(encoded_message, reason, new Throwable("CocntructorTest2"));
 
-    DecodeException dex = new DecodeException(encoded_message, reason,
-        new Throwable("CocntructorTest2"));
+        if (!encoded_message.equals(dex.getText())) {
+            passed = false;
+            TestUtil.logErr("Expected encoded_message " + encoded_message + ", returned" + dex.getText());
+        }
 
-    if (!encoded_message.equals(dex.getText())) {
-      passed = false;
-      TestUtil.logErr("Expected encoded_message " + encoded_message
-          + ", returned" + dex.getText());
-    }
+        if (dex.getBytes() != null) {
+            passed = false;
+            TestUtil.logErr("Expected ByteBuffer null, returned" + dex.getBytes());
+        }
 
-    if (dex.getBytes() != null) {
-      passed = false;
-      TestUtil.logErr("Expected ByteBuffer null, returned" + dex.getBytes());
+        if (passed == false) {
+            throw new Fault("Test failed");
+        }
     }
 
-    if (passed == false) {
-      throw new Fault("Test failed");
-    }
-  }
+    /*
+     * @testName: constructorTest3
+     *
+     * @assertion_ids: WebSocket:JAVADOC:29; WebSocket:JAVADOC:33;
+     * WebSocket:JAVADOC:34;
+     *
+     * @test_Strategy: Test constructor DecodeException(ByteBuffer, String,
+     * Throwable)
+     */
+    public void constructorTest3() throws Fault {
+        boolean passed = true;
+        String reason = "TCK: Cannot decode the message";
+        ByteBuffer encoded_message = ByteBuffer.allocate(20);
+        encoded_message.put("xyz for now".getBytes());
 
-  /*
-   * @testName: constructorTest3
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:29; WebSocket:JAVADOC:33;
-   * WebSocket:JAVADOC:34;
-   *
-   * @test_Strategy: Test constructor DecodeException(ByteBuffer, String,
-   * Throwable)
-   */
-  public void constructorTest3() throws Fault {
-    boolean passed = true;
-    String reason = "TCK: Cannot decode the message";
-    ByteBuffer encoded_message = ByteBuffer.allocate(20);
-    encoded_message.put("xyz for now".getBytes());
+        DecodeException dex = new DecodeException(encoded_message, reason, new Throwable("constructorTest3"));
 
-    DecodeException dex = new DecodeException(encoded_message, reason,
-        new Throwable("constructorTest3"));
+        if (dex.getText() != null) {
+            passed = false;
+            TestUtil.logErr("Expected encoded_message null, returned" + dex.getText());
+        }
 
-    if (dex.getText() != null) {
-      passed = false;
-      TestUtil
-          .logErr("Expected encoded_message null, returned" + dex.getText());
-    }
+        if (!encoded_message.equals(dex.getBytes())) {
+            passed = false;
+            TestUtil.logErr("Expected ByteBuffer " + encoded_message + ", returned" + dex.getBytes());
+        }
 
-    if (!encoded_message.equals(dex.getBytes())) {
-      passed = false;
-      TestUtil.logErr("Expected ByteBuffer " + encoded_message + ", returned"
-          + dex.getBytes());
+        if (passed == false) {
+            throw new Fault("Test failed");
+        }
     }
 
-    if (passed == false) {
-      throw new Fault("Test failed");
-    }
-  }
-
-  public void cleanup() {
-  }
+    public void cleanup() {}
 }

@@ -19,21 +19,28 @@
  */
 package com.sun.ts.tests.ejb30.lite.stateful.concurrency.metadata.annotated;
 
-import java.io.Serializable;
-
-import com.sun.ts.tests.ejb30.lite.stateful.concurrency.metadata.common.JsfClientBase;
-import jakarta.ejb.EJB;
-import jakarta.ejb.EJBs;
-
 import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF.containerConcurrencyBeanNoInterface;
 import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF.defaultConcurrencyBeanNoInterface;
 import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF.notAllowedConcurrencyBeanNoInterface;
 
-@EJBs({
-    @EJB(name = containerConcurrencyBeanNoInterface, beanName = "ContainerConcurrencyBean", beanInterface = ContainerConcurrencyBean.class),
-    @EJB(name = defaultConcurrencyBeanNoInterface, beanName = "DefaultConcurrencyBean", beanInterface = DefaultConcurrencyBean.class),
-    @EJB(name = notAllowedConcurrencyBeanNoInterface, beanName = "NotAllowedConcurrencyBean", beanInterface = NotAllowedConcurrencyBean.class)
+import com.sun.ts.tests.ejb30.lite.stateful.concurrency.metadata.common.JsfClientBase;
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBs;
+import java.io.Serializable;
 
+@EJBs({
+    @EJB(
+            name = containerConcurrencyBeanNoInterface,
+            beanName = "ContainerConcurrencyBean",
+            beanInterface = ContainerConcurrencyBean.class),
+    @EJB(
+            name = defaultConcurrencyBeanNoInterface,
+            beanName = "DefaultConcurrencyBean",
+            beanInterface = DefaultConcurrencyBean.class),
+    @EJB(
+            name = notAllowedConcurrencyBeanNoInterface,
+            beanName = "NotAllowedConcurrencyBean",
+            beanInterface = NotAllowedConcurrencyBean.class)
 })
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
@@ -41,19 +48,19 @@ public class JsfClient extends JsfClientBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-  /*
-   * @testName: notAllowed
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: containerConcurrent
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: defaultConcurrent
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: notAllowed
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: containerConcurrent
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: defaultConcurrent
+     *
+     * @test_Strategy:
+     */
 }

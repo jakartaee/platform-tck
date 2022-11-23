@@ -59,65 +59,54 @@
 package com.sun.ts.tests.servlet.api.jakarta_servlet.srattributeevent;
 
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.ServletRequestAttributeEvent;
 import jakarta.servlet.ServletRequestAttributeListener;
 
-public final class SRAttributeListener
-    implements ServletRequestAttributeListener, ServletContextListener {
+public final class SRAttributeListener implements ServletRequestAttributeListener, ServletContextListener {
 
-  static ServletContext savedSC = null;
+    static ServletContext savedSC = null;
 
-  // Public Methods
+    // Public Methods
 
-  public void contextInitialized(ServletContextEvent event) {
-    savedSC = event.getServletContext();
-  }
-
-  public void contextDestroyed(ServletContextEvent event) {
-  }
-
-  public void attributeAdded(ServletRequestAttributeEvent event) {
-    StaticLog.add("AttributeAdded:" + event.getName() + "," + event.getValue());
-    ServletContext sc = event.getServletContext();
-    if (!savedSC.equals(sc)) {
-      StaticLog.add(
-          "AttributeAdded: The context in the listener did not match the one initialized");
-      StaticLog.add("AttributeAdded: initialized context=" + savedSC);
-      StaticLog.add("AttributeAdded: getServletContext returned context=" + sc);
+    public void contextInitialized(ServletContextEvent event) {
+        savedSC = event.getServletContext();
     }
-    sc.setAttribute("testrequest", event.getServletRequest());
-  }
 
-  public void attributeRemoved(ServletRequestAttributeEvent event) {
-    StaticLog
-        .add("AttributeRemoved:" + event.getName() + "," + event.getValue());
-    ServletContext sc = event.getServletContext();
-    if (!savedSC.equals(sc)) {
-      StaticLog.add(
-          "AttributeRemoved: The context in the listener did not match the one initialized");
-      StaticLog.add("AttributeRemoved: initialized context=" + savedSC);
-      StaticLog
-          .add("AttributeRemoved: getServletContext returned context=" + sc);
+    public void contextDestroyed(ServletContextEvent event) {}
+
+    public void attributeAdded(ServletRequestAttributeEvent event) {
+        StaticLog.add("AttributeAdded:" + event.getName() + "," + event.getValue());
+        ServletContext sc = event.getServletContext();
+        if (!savedSC.equals(sc)) {
+            StaticLog.add("AttributeAdded: The context in the listener did not match the one initialized");
+            StaticLog.add("AttributeAdded: initialized context=" + savedSC);
+            StaticLog.add("AttributeAdded: getServletContext returned context=" + sc);
+        }
+        sc.setAttribute("testrequest", event.getServletRequest());
     }
-    sc.setAttribute("testrequest", event.getServletRequest());
-  }
 
-  public void attributeReplaced(ServletRequestAttributeEvent event) {
-    StaticLog
-        .add("AttributeReplaced:" + event.getName() + "," + event.getValue());
-    ServletContext sc = event.getServletContext();
-    if (!savedSC.equals(sc)) {
-      StaticLog.add(
-          "AttributeReplaced: The context in the listener did not match the one initialized");
-      StaticLog.add("AttributeReplaced: initialized context=" + savedSC);
-      StaticLog
-          .add("AttributeReplaced: getServletContext returned context=" + sc);
+    public void attributeRemoved(ServletRequestAttributeEvent event) {
+        StaticLog.add("AttributeRemoved:" + event.getName() + "," + event.getValue());
+        ServletContext sc = event.getServletContext();
+        if (!savedSC.equals(sc)) {
+            StaticLog.add("AttributeRemoved: The context in the listener did not match the one initialized");
+            StaticLog.add("AttributeRemoved: initialized context=" + savedSC);
+            StaticLog.add("AttributeRemoved: getServletContext returned context=" + sc);
+        }
+        sc.setAttribute("testrequest", event.getServletRequest());
     }
-    sc.setAttribute("testrequest", event.getServletRequest());
-  }
 
+    public void attributeReplaced(ServletRequestAttributeEvent event) {
+        StaticLog.add("AttributeReplaced:" + event.getName() + "," + event.getValue());
+        ServletContext sc = event.getServletContext();
+        if (!savedSC.equals(sc)) {
+            StaticLog.add("AttributeReplaced: The context in the listener did not match the one initialized");
+            StaticLog.add("AttributeReplaced: initialized context=" + savedSC);
+            StaticLog.add("AttributeReplaced: getServletContext returned context=" + sc);
+        }
+        sc.setAttribute("testrequest", event.getServletRequest());
+    }
 }

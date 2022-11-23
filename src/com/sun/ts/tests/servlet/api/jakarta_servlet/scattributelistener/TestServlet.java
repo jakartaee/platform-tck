@@ -58,113 +58,104 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.scattributelistener;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class TestServlet extends GenericTCKServlet {
 
-  public void addedTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
+    public void addedTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
-    ServletConfig config = this.getServletConfig();
-    ServletContext context = config.getServletContext();
+        PrintWriter pw = response.getWriter();
+        ServletConfig config = this.getServletConfig();
+        ServletContext context = config.getServletContext();
 
-    // cleanup context just to be sure
-    context.removeAttribute("addedTest");
-    context.removeAttribute("removedTest");
-    context.removeAttribute("replacedTest");
-    StaticLog.clear();
+        // cleanup context just to be sure
+        context.removeAttribute("addedTest");
+        context.removeAttribute("removedTest");
+        context.removeAttribute("replacedTest");
+        StaticLog.clear();
 
-    String[] expected = { "AttributeAdded:addedTest,Attribute1" };
+        String[] expected = {"AttributeAdded:addedTest,Attribute1"};
 
-    // the test
-    context.setAttribute("addedTest", "Attribute1");
+        // the test
+        context.setAttribute("addedTest", "Attribute1");
 
-    // verify results
-    ArrayList result = StaticLog.getClear();
-    boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);
-    if (!b) {
-      ServletTestUtil.printFailureData(pw, result, expected);
+        // verify results
+        ArrayList result = StaticLog.getClear();
+        boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);
+        if (!b) {
+            ServletTestUtil.printFailureData(pw, result, expected);
+        }
+        ServletTestUtil.printResult(pw, b);
+
+        // cleanup context
+        context.removeAttribute("addedTest");
     }
-    ServletTestUtil.printResult(pw, b);
 
-    // cleanup context
-    context.removeAttribute("addedTest");
+    public void removedTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-  }
+        PrintWriter pw = response.getWriter();
 
-  public void removedTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
+        ServletConfig config = this.getServletConfig();
+        ServletContext context = config.getServletContext();
 
-    PrintWriter pw = response.getWriter();
+        // cleanup context just to be sure
+        context.removeAttribute("addedTest");
+        context.removeAttribute("removedTest");
+        context.removeAttribute("replacedTest");
+        StaticLog.clear();
+        String[] expected = {"AttributeAdded:removedTest,Attribute1", "AttributeRemoved:removedTest,Attribute1"};
 
-    ServletConfig config = this.getServletConfig();
-    ServletContext context = config.getServletContext();
+        // the test
+        context.setAttribute("removedTest", "Attribute1");
+        context.removeAttribute("removedTest");
 
-    // cleanup context just to be sure
-    context.removeAttribute("addedTest");
-    context.removeAttribute("removedTest");
-    context.removeAttribute("replacedTest");
-    StaticLog.clear();
-    String[] expected = { "AttributeAdded:removedTest,Attribute1",
-        "AttributeRemoved:removedTest,Attribute1" };
-
-    // the test
-    context.setAttribute("removedTest", "Attribute1");
-    context.removeAttribute("removedTest");
-
-    // verify results
-    ArrayList result = StaticLog.getClear();
-    boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);
-    if (!b) {
-      ServletTestUtil.printFailureData(pw, result, expected);
+        // verify results
+        ArrayList result = StaticLog.getClear();
+        boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);
+        if (!b) {
+            ServletTestUtil.printFailureData(pw, result, expected);
+        }
+        ServletTestUtil.printResult(pw, b);
     }
-    ServletTestUtil.printResult(pw, b);
 
-  }
+    public void replacedTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-  public void replacedTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    PrintWriter pw = response.getWriter();
+        ServletConfig config = this.getServletConfig();
+        ServletContext context = config.getServletContext();
 
-    ServletConfig config = this.getServletConfig();
-    ServletContext context = config.getServletContext();
+        // cleanup context just to be sure
+        context.removeAttribute("addedTest");
+        context.removeAttribute("removedTest");
+        context.removeAttribute("replacedTest");
+        StaticLog.clear();
 
-    // cleanup context just to be sure
-    context.removeAttribute("addedTest");
-    context.removeAttribute("removedTest");
-    context.removeAttribute("replacedTest");
-    StaticLog.clear();
+        String[] expected = {"AttributeAdded:replacedTest,Attribute1", "AttributeReplaced:replacedTest,Attribute1"};
 
-    String[] expected = { "AttributeAdded:replacedTest,Attribute1",
-        "AttributeReplaced:replacedTest,Attribute1" };
+        // the test
+        context.setAttribute("replacedTest", "Attribute1");
+        context.setAttribute("replacedTest", "Attribute2");
 
-    // the test
-    context.setAttribute("replacedTest", "Attribute1");
-    context.setAttribute("replacedTest", "Attribute2");
+        // verify results
+        ArrayList result = StaticLog.getClear();
+        boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);
+        if (!b) {
+            ServletTestUtil.printFailureData(pw, result, expected);
+        }
+        ServletTestUtil.printResult(pw, b);
 
-    // verify results
-    ArrayList result = StaticLog.getClear();
-    boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);
-    if (!b) {
-      ServletTestUtil.printFailureData(pw, result, expected);
+        // cleanup context
+        context.removeAttribute("replacedTest");
     }
-    ServletTestUtil.printResult(pw, b);
-
-    // cleanup context
-    context.removeAttribute("replacedTest");
-  }
 }

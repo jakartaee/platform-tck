@@ -22,36 +22,34 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.callback.method.annotated;
 
 import com.sun.ts.tests.ejb30.common.callback.CallbackBeanBase;
 import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
-
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.SessionContext;
 
-public class EjbCreateCallbackBeanBase extends CallbackBeanBase
-    implements CallbackIF {
+public class EjbCreateCallbackBeanBase extends CallbackBeanBase implements CallbackIF {
 
-  @Resource
-  private SessionContext sctx;
+    @Resource
+    private SessionContext sctx;
 
-  public EJBContext getEJBContext() {
-    return this.sctx;
-  }
-
-  // ================= callback methods ====================================
-  // @PostConstruct
-  public void ejbCreate() {
-    this.setPostConstructCalled(true);
-    if (this.getEJBContext() != null) {
-      this.setInjectionDone(true);
+    public EJBContext getEJBContext() {
+        return this.sctx;
     }
-  }
 
-  @PreDestroy
-  protected void ejbRemove() throws RuntimeException {
-    this.setPreDestroyCalled(true);
-  }
+    // ================= callback methods ====================================
+    // @PostConstruct
+    public void ejbCreate() {
+        this.setPostConstructCalled(true);
+        if (this.getEJBContext() != null) {
+            this.setInjectionDone(true);
+        }
+    }
 
-  // ================== business methods ====================================
+    @PreDestroy
+    protected void ejbRemove() throws RuntimeException {
+        this.setPreDestroyCalled(true);
+    }
+
+    // ================== business methods ====================================
 
 }

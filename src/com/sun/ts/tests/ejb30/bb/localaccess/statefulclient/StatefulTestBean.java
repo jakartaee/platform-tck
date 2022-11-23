@@ -26,7 +26,6 @@ import com.sun.ts.tests.ejb30.bb.localaccess.common.StatefulDefaultLocalIF;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.StatefulLocalIF;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanBase;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanIF;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBContext;
@@ -39,25 +38,29 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateful
-@Remote({ TestBeanIF.class })
+@Remote({TestBeanIF.class})
 @EJBs({
     @EJB(name = "ejb/localStatelessRefName", beanName = "StatelessLocalBean", beanInterface = LocalIF.class),
     @EJB(name = "ejb/localStateless2RefName", beanName = "StatelessLocal2Bean", beanInterface = LocalIF.class),
-    @EJB(name = "ejb/defaultLocalStatelessRefName", beanName = "StatelessDefaultLocalBean", beanInterface = DefaultLocalIF.class),
+    @EJB(
+            name = "ejb/defaultLocalStatelessRefName",
+            beanName = "StatelessDefaultLocalBean",
+            beanInterface = DefaultLocalIF.class),
     @EJB(name = "ejb/localStatefulRefName", beanName = "StatefulLocalBean", beanInterface = StatefulLocalIF.class),
-    @EJB(name = "ejb/defaultLocalStatefulRefName", beanName = "StatefulDefaultLocalBean", beanInterface = StatefulDefaultLocalIF.class) })
+    @EJB(
+            name = "ejb/defaultLocalStatefulRefName",
+            beanName = "StatefulDefaultLocalBean",
+            beanInterface = StatefulDefaultLocalIF.class)
+})
 @TransactionManagement(TransactionManagementType.BEAN)
-public class StatefulTestBean extends TestBeanBase
-    implements TestBeanIF, java.io.Serializable {
-  @Resource
-  private SessionContext sessionContext;
+public class StatefulTestBean extends TestBeanBase implements TestBeanIF, java.io.Serializable {
+    @Resource
+    private SessionContext sessionContext;
 
-  public EJBContext getEJBContext() {
-    return sessionContext;
-  }
+    public EJBContext getEJBContext() {
+        return sessionContext;
+    }
 
-  @Remove
-  public void remove() {
-  }
-
+    @Remove
+    public void remove() {}
 }

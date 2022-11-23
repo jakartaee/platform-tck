@@ -23,16 +23,14 @@ import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 
 public class InterceptorOverrideBase extends InterceptorBaseBase {
-  @AroundInvoke
-  protected Object interceptInInterceptorOverrideBase(InvocationContext inv)
-      throws Exception {
-    throw new RuntimeException("Should not reach here.");
-  }
+    @AroundInvoke
+    protected Object interceptInInterceptorOverrideBase(InvocationContext inv) throws Exception {
+        throw new RuntimeException("Should not reach here.");
+    }
 
-  @Override // override superclass' interceptor method with a non-interceptor
-            // method
-  public Object interceptInInterceptorBaseBase(InvocationContext inv)
-      throws Exception {
-    throw new RuntimeException("Should not reach here.");
-  }
+    @Override // override superclass' interceptor method with a non-interceptor
+    // method
+    public Object interceptInInterceptorBaseBase(InvocationContext inv) throws Exception {
+        throw new RuntimeException("Should not reach here.");
+    }
 }

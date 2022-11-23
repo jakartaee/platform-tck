@@ -21,7 +21,7 @@ package com.sun.ts.tests.ejb30.lite.singleton.lifecycle.interceptor;
 
 public interface CommonSingletonIF {
 
-  public int identityHashCode(String interceptorName);
+    public int identityHashCode(String interceptorName);
 
-  public void error(String interceptorName);
+    public void error(String interceptorName);
 }

@@ -24,22 +24,20 @@ import com.sun.ts.tests.ejb30.lite.interceptor.common.business.Interceptor5;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBaseBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBeanBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorIF;
-
 import jakarta.ejb.Singleton;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.Interceptors;
 import jakarta.interceptor.InvocationContext;
 
 @Singleton
-@Interceptors({ Interceptor5.class, Interceptor4.class })
-public class InterceptorBean extends InterceptorBeanBase
-    implements InterceptorIF {
-  private static final String simpleName = "InterceptorBean";
+@Interceptors({Interceptor5.class, Interceptor4.class})
+public class InterceptorBean extends InterceptorBeanBase implements InterceptorIF {
+    private static final String simpleName = "InterceptorBean";
 
-  @SuppressWarnings("unused")
-  @AroundInvoke
-  private Object intercep(InvocationContext inv) throws Exception {
-    InterceptorBaseBase.addToHistory(inv, simpleName);
-    return inv.proceed();
-  }
+    @SuppressWarnings("unused")
+    @AroundInvoke
+    private Object intercep(InvocationContext inv) throws Exception {
+        InterceptorBaseBase.addToHistory(inv, simpleName);
+        return inv.proceed();
+    }
 }

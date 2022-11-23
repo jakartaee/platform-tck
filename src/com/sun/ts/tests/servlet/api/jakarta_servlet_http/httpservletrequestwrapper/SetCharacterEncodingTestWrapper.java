@@ -20,27 +20,24 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpservletrequestwrapper;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.api.common.request.RequestTests;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class SetCharacterEncodingTestWrapper extends GenericServlet {
 
-  public void init(ServletConfig servletConfig) throws ServletException {
-    super.init(servletConfig);
-  }
+    public void init(ServletConfig servletConfig) throws ServletException {
+        super.init(servletConfig);
+    }
 
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
-    RequestTests.setCharacterEncodingTest(pw, request, response);
-  }
+        PrintWriter pw = response.getWriter();
+        RequestTests.setCharacterEncodingTest(pw, request, response);
+    }
 }

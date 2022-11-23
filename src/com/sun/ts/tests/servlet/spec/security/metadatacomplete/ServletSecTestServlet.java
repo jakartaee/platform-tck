@@ -16,9 +16,6 @@
 
 package com.sun.ts.tests.servlet.spec.security.metadatacomplete;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.HttpConstraint;
 import jakarta.servlet.annotation.HttpMethodConstraint;
@@ -28,6 +25,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /*
  * The DD is using metadata-complete=true which means that the security
@@ -38,45 +37,43 @@ import jakarta.servlet.http.HttpServletResponse;
  * by role=Administrator but GET and POST are set to be denied all access.
  * REMEMBER:  these annotations will get ignored by DD since DD
  * has metadata-complete=true!
- * 
+ *
  * The DD will take precedence and sets GET accessible by role=Administrator(j2ee)
  * and sets POST accessible by role=Manager(javajoe)
  */
-@ServletSecurity(value = @HttpConstraint(rolesAllowed = {
-    "Administrator" }), httpMethodConstraints = {
-        @HttpMethodConstraint(value = "POST", emptyRoleSemantic = EmptyRoleSemantic.DENY),
-        @HttpMethodConstraint(value = "GET", emptyRoleSemantic = EmptyRoleSemantic.DENY) })
-@WebServlet(name = "ServletSecTestLogicalName", urlPatterns = {
-    "/ServletSecTest" })
+@ServletSecurity(
+        value = @HttpConstraint(rolesAllowed = {"Administrator"}),
+        httpMethodConstraints = {
+            @HttpMethodConstraint(value = "POST", emptyRoleSemantic = EmptyRoleSemantic.DENY),
+            @HttpMethodConstraint(value = "GET", emptyRoleSemantic = EmptyRoleSemantic.DENY)
+        })
+@WebServlet(
+        name = "ServletSecTestLogicalName",
+        urlPatterns = {"/ServletSecTest"})
 public class ServletSecTestServlet extends HttpServlet {
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter out = response.getWriter();
-    System.out
-        .println("Inside  ServletSecTestServlet.service()  ....." + "<BR>");
-  }
-
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, java.io.IOException {
-
-    PrintWriter out = response.getWriter();
-    System.out
-        .println("Inside  ServletSecTestServlet.doTrace() ....." + "<BR>");
-  }
-
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, java.io.IOException {
-
-    PrintWriter out = response.getWriter();
-    System.out.println("Inside  ServletSecTestServlet.doGet() ....." + "<BR>");
-
-    if ((request != null) && (request.getUserPrincipal() != null)) {
-      out.println("The user principal is: "
-          + request.getUserPrincipal().getName() + "<BR>");
-    } else {
-      out.println("The user principal is: Null." + "<BR>");
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
+        System.out.println("Inside  ServletSecTestServlet.service()  ....." + "<BR>");
     }
-  }
 
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, java.io.IOException {
+
+        PrintWriter out = response.getWriter();
+        System.out.println("Inside  ServletSecTestServlet.doTrace() ....." + "<BR>");
+    }
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, java.io.IOException {
+
+        PrintWriter out = response.getWriter();
+        System.out.println("Inside  ServletSecTestServlet.doGet() ....." + "<BR>");
+
+        if ((request != null) && (request.getUserPrincipal() != null)) {
+            out.println("The user principal is: " + request.getUserPrincipal().getName() + "<BR>");
+        } else {
+            out.println("The user principal is: Null." + "<BR>");
+        }
+    }
 }

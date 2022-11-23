@@ -22,11 +22,14 @@ package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2707;
 
 import jakarta.jws.WebService;
 
-@WebService(portName = "W2JRLR2707TestPort", serviceName = "W2JRLR2707TestService", targetNamespace = "http://w2jrlr2707testservice.org/W2JRLR2707TestService.wsdl", wsdlLocation = "WEB-INF/wsdl/W2JRLR2707TestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2707.W2JRLR2707Test")
-
+@WebService(
+        portName = "W2JRLR2707TestPort",
+        serviceName = "W2JRLR2707TestService",
+        targetNamespace = "http://w2jrlr2707testservice.org/W2JRLR2707TestService.wsdl",
+        wsdlLocation = "WEB-INF/wsdl/W2JRLR2707TestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2707.W2JRLR2707Test")
 public class W2JRLR2707TestImpl implements W2JRLR2707Test {
-  public NonNullString echoString(NonNullString str, Header hdr)
-      throws ServiceFault {
-    return str;
-  }
+    public NonNullString echoString(NonNullString str, Header hdr) throws ServiceFault {
+        return str;
+    }
 }

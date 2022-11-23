@@ -20,76 +20,75 @@
 
 package com.sun.ts.tests.appclient.deploy.enventry.scope;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.tests.assembly.util.shared.enventry.scope.TestCode;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  /** Env. entry name for JNDI lookup */
-  private static final String entryName = "Duende";
+    /** Env. entry name for JNDI lookup */
+    private static final String entryName = "Duende";
 
-  /** Reference value for the env. entry (as specified in DD). */
-  private static final String entryRef = "Paco de Lucia";
+    /** Reference value for the env. entry (as specified in DD). */
+    private static final String entryRef = "Paco de Lucia";
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   *
-   */
-  public void setup(String[] args, Properties props) throws Fault {
-    this.props = props;
-
-    try {
-      nctx = new TSNamingContext();
-      logMsg("[Client] Setup succeed (got naming context).");
-    } catch (Exception e) {
-      throw new Fault("[Client] Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /**
-   * @testName: testScope
-   *
-   * @assertion_ids: JavaEE:SPEC:102
-   *
-   * @test_Strategy: We package in the same .ear file 2 application clients
-   *                 (_client and _another_client). Both use the same
-   *                 env-entry-name to declare two distinct String environment
-   *                 entry values.
-   *
-   *                 We check that: - We can deploy the application. - One of
-   *                 the application clients (_client) can be run and can lookup
-   *                 its String environment entry. - The runtime value of this
-   *                 entry correspond to the one declared in the Deployment
-   *                 Descriptor.
-   */
-  public void testScope() throws Fault {
-    boolean pass;
+    /*
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     *
+     */
+    public void setup(String[] args, Properties props) throws Fault {
+        this.props = props;
 
-    try {
-      pass = TestCode.checkEntry(nctx, entryName, entryRef);
-      if (!pass) {
-        throw new Fault("Env entry scope test failed!");
-      }
-    } catch (Exception e) {
-      throw new Fault("Env entry scope test failed: " + e, e);
+        try {
+            nctx = new TSNamingContext();
+            logMsg("[Client] Setup succeed (got naming context).");
+        } catch (Exception e) {
+            throw new Fault("[Client] Setup failed:", e);
+        }
     }
-  }
 
-  public void cleanup() throws Fault {
-    logMsg("[Client] cleanup()");
-  }
+    /**
+     * @testName: testScope
+     *
+     * @assertion_ids: JavaEE:SPEC:102
+     *
+     * @test_Strategy: We package in the same .ear file 2 application clients
+     *                 (_client and _another_client). Both use the same
+     *                 env-entry-name to declare two distinct String environment
+     *                 entry values.
+     *
+     *                 We check that: - We can deploy the application. - One of
+     *                 the application clients (_client) can be run and can lookup
+     *                 its String environment entry. - The runtime value of this
+     *                 entry correspond to the one declared in the Deployment
+     *                 Descriptor.
+     */
+    public void testScope() throws Fault {
+        boolean pass;
+
+        try {
+            pass = TestCode.checkEntry(nctx, entryName, entryRef);
+            if (!pass) {
+                throw new Fault("Env entry scope test failed!");
+            }
+        } catch (Exception e) {
+            throw new Fault("Env entry scope test failed: " + e, e);
+        }
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("[Client] cleanup()");
+    }
 }

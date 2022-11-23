@@ -23,81 +23,86 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.ejblink.override;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.ejblink.ClientBase;
 import com.sun.ts.tests.ejb30.common.ejblink.EjbLinkIF;
-
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
-  // this ejb-ref is overridden in application-client.xml
-  @EJB(name = "ejb/EjbLink1Bean", beanName = "EjbLink2Bean", description = "should be overridden by application-client.xml")
-  private static EjbLinkIF bean1;
+    // this ejb-ref is overridden in application-client.xml
+    @EJB(
+            name = "ejb/EjbLink1Bean",
+            beanName = "EjbLink2Bean",
+            description = "should be overridden by application-client.xml")
+    private static EjbLinkIF bean1;
 
-  // this ejb-ref is overridden in application-client.xml
-  @EJB(name = "ejb/EjbLink2Bean", beanName = "EjbLink1Bean", description = "should be overridden by application-client.xml")
-  private static EjbLinkIF bean2;
+    // this ejb-ref is overridden in application-client.xml
+    @EJB(
+            name = "ejb/EjbLink2Bean",
+            beanName = "EjbLink1Bean",
+            description = "should be overridden by application-client.xml")
+    private static EjbLinkIF bean2;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * @testName: callBean1
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: callBean1
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: callBean2
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: callBean2
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: callBean1Bean2
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: callBean1Bean2
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: callBean2Bean1
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: callBean2Bean1
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: callBean2Bean3
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: callBean2Bean1Local
-   * 
-   * @test_Strategy: bean1 packaged in jar1, bean2 and bean3 packaged in jar2.
-   * Bean2 should be able to locally access bean1. <ejb-local-ref> is declared
-   * in two_ejb.xml
-   *
-   */
-  /*
-   * @testName: callInjectedBean1
-   * 
-   * @test_Strategy: inject bean1, using fully qualified bean name
-   * (<ejb-jar-name>#<bean-name>)
-   *
-   */
+    /*
+     * @testName: callBean2Bean3
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: callBean2Bean1Local
+     *
+     * @test_Strategy: bean1 packaged in jar1, bean2 and bean3 packaged in jar2.
+     * Bean2 should be able to locally access bean1. <ejb-local-ref> is declared
+     * in two_ejb.xml
+     *
+     */
+    /*
+     * @testName: callInjectedBean1
+     *
+     * @test_Strategy: inject bean1, using fully qualified bean name
+     * (<ejb-jar-name>#<bean-name>)
+     *
+     */
 }

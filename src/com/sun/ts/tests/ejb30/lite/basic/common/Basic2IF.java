@@ -20,6 +20,4 @@
 
 package com.sun.ts.tests.ejb30.lite.basic.common;
 
-public interface Basic2IF extends Basic1IF {
-
-}
+public interface Basic2IF extends Basic1IF {}

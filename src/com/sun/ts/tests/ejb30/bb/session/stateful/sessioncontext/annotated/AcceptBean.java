@@ -23,7 +23,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.sessioncontext.annotated;
 import com.sun.ts.tests.ejb30.common.sessioncontext.AcceptBeanBase;
 import com.sun.ts.tests.ejb30.common.sessioncontext.AcceptIF;
 import com.sun.ts.tests.ejb30.common.sessioncontext.AcceptLocalIF;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
@@ -34,23 +33,20 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateful(name = "AcceptBean")
-@Remote({ AcceptIF.class })
-@Local({ AcceptLocalIF.class })
+@Remote({AcceptIF.class})
+@Local({AcceptLocalIF.class})
 // use bmt so that it can be safely removed from the calling bean (TestBean)
 @TransactionManagement(TransactionManagementType.BEAN)
 public class AcceptBean extends AcceptBeanBase {
-  @Resource(name = "sessionContext")
-  private SessionContext sessionContext;
+    @Resource(name = "sessionContext")
+    private SessionContext sessionContext;
 
-  protected SessionContext getSessionContext() {
-    return sessionContext;
-  }
+    protected SessionContext getSessionContext() {
+        return sessionContext;
+    }
 
-  public AcceptBean() {
-  }
+    public AcceptBean() {}
 
-  @Remove
-  public void remove() {
-  }
-
+    @Remove
+    public void remove() {}
 }

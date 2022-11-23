@@ -16,8 +16,6 @@
 
 package com.sun.ts.tests.javaee.resource.servlet;
 
-import java.io.IOException;
-
 import jakarta.annotation.Resource;
 import jakarta.mail.MailSessionDefinition;
 import jakarta.mail.Session;
@@ -26,21 +24,22 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-@MailSessionDefinition(name = "java:comp/env/ResourceCompTestServlet_MailSession", properties = {
-    "test=ResourceCompTestServlet_MailSession" })
-@WebServlet(urlPatterns = { "/resourceCompTest" })
+@MailSessionDefinition(
+        name = "java:comp/env/ResourceCompTestServlet_MailSession",
+        properties = {"test=ResourceCompTestServlet_MailSession"})
+@WebServlet(urlPatterns = {"/resourceCompTest"})
 public class ResourceCompTestServlet extends HttpServlet {
 
-  // the value of the "test" property above
-  private static final String EXPECTED = "ResourceCompTestServlet_MailSession";
+    // the value of the "test" property above
+    private static final String EXPECTED = "ResourceCompTestServlet_MailSession";
 
-  @Resource(lookup = "java:comp/env/ResourceCompTestServlet_MailSession")
-  Session session;
+    @Resource(lookup = "java:comp/env/ResourceCompTestServlet_MailSession")
+    Session session;
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    ResourceUtil.test(response, session, EXPECTED);
-  }
+        ResourceUtil.test(response, session, EXPECTED);
+    }
 }

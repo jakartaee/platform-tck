@@ -16,39 +16,34 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext40;
 
-import java.util.List;
-
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.ServletRegistration;
+import java.util.List;
 
 public class AddListener implements ServletContextListener {
 
-  @Override
-  public void contextInitialized(ServletContextEvent sce) {
-    ServletContext context = sce.getServletContext();
-    List list = (List) context.getAttribute("arraylist");
-    try {
-      ServletRegistration registration = context.addJspFile("AddJspFile2",
-          "/addJspFile.jsp");
-      list.add("addJsp_addedListener");
-    } catch (UnsupportedOperationException e) {
-      list.add("UnsupportedOperationException_when_addJsp_addedListener");
+    @Override
+    public void contextInitialized(ServletContextEvent sce) {
+        ServletContext context = sce.getServletContext();
+        List list = (List) context.getAttribute("arraylist");
+        try {
+            ServletRegistration registration = context.addJspFile("AddJspFile2", "/addJspFile.jsp");
+            list.add("addJsp_addedListener");
+        } catch (UnsupportedOperationException e) {
+            list.add("UnsupportedOperationException_when_addJsp_addedListener");
+        }
+
+        try {
+            context.setSessionTimeout(2);
+            list.add("setSessionTimeout_addedListener");
+        } catch (UnsupportedOperationException e) {
+            list.add("UnsupportedOperationException_when_setSessionTimeout_addedListener");
+        }
+        context.setAttribute("arraylist", list);
     }
 
-    try {
-      context.setSessionTimeout(2);
-      list.add("setSessionTimeout_addedListener");
-    } catch (UnsupportedOperationException e) {
-      list.add(
-          "UnsupportedOperationException_when_setSessionTimeout_addedListener");
-    }
-    context.setAttribute("arraylist", list);
-  }
-
-  @Override
-  public void contextDestroyed(ServletContextEvent sce) {
-
-  }
+    @Override
+    public void contextDestroyed(ServletContextEvent sce) {}
 }

@@ -24,65 +24,64 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.simpletagsupport;
 
-import java.io.IOException;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 /**
  * SimpleTag to do nothing more than invoke its body.
  */
 public class SimpleParentTag extends SimpleTagSupport {
 
-  /**
-   * Nesting level
-   */
-  private String _level = null;
+    /**
+     * Nesting level
+     */
+    private String _level = null;
 
-  /**
-   * Default constructor
-   */
-  public SimpleParentTag() {
-    super();
-  }
+    /**
+     * Default constructor
+     */
+    public SimpleParentTag() {
+        super();
+    }
 
-  /**
-   * Returns the level set for this tag.
-   * 
-   * @return the nesting level defined by the tag
-   */
-  public String getLevel() {
-    return _level;
-  }
+    /**
+     * Returns the level set for this tag.
+     *
+     * @return the nesting level defined by the tag
+     */
+    public String getLevel() {
+        return _level;
+    }
 
-  /**
-   * Sets the level for this tag.
-   * 
-   * @param level
-   *          - the nesting level of the tag
-   */
-  public void setLevel(String level) {
-    _level = level;
-  }
+    /**
+     * Sets the level for this tag.
+     *
+     * @param level
+     *          - the nesting level of the tag
+     */
+    public void setLevel(String level) {
+        _level = level;
+    }
 
-  /**
-   * Does nothing more than invokes the body.
-   *
-   * @throws jakarta.servlet.jsp.JspException
-   *           Subclasses can throw JspException to indicate an error occurred
-   *           while processing this tag.
-   * @throws jakarta.servlet.jsp.SkipPageException
-   *           If the page that (either directly or indirectly) invoked this tag
-   *           is to cease evaluation. A Simple Tag Handler generated from a tag
-   *           file must throw this exception if an invoked Classic Tag Handler
-   *           returned SKIP_PAGE or if an invoked Simple Tag Handler threw
-   *           SkipPageException or if an invoked Jsp Fragment threw a
-   *           SkipPageException.
-   * @throws java.io.IOException
-   *           Subclasses can throw IOException if there was an error writing to
-   *           the output stream
-   */
-  public void doTag() throws JspException, IOException {
-    this.getJspBody().invoke(this.getJspContext().getOut());
-  }
+    /**
+     * Does nothing more than invokes the body.
+     *
+     * @throws jakarta.servlet.jsp.JspException
+     *           Subclasses can throw JspException to indicate an error occurred
+     *           while processing this tag.
+     * @throws jakarta.servlet.jsp.SkipPageException
+     *           If the page that (either directly or indirectly) invoked this tag
+     *           is to cease evaluation. A Simple Tag Handler generated from a tag
+     *           file must throw this exception if an invoked Classic Tag Handler
+     *           returned SKIP_PAGE or if an invoked Simple Tag Handler threw
+     *           SkipPageException or if an invoked Jsp Fragment threw a
+     *           SkipPageException.
+     * @throws java.io.IOException
+     *           Subclasses can throw IOException if there was an error writing to
+     *           the output stream
+     */
+    public void doTag() throws JspException, IOException {
+        this.getJspBody().invoke(this.getJspContext().getOut());
+    }
 }

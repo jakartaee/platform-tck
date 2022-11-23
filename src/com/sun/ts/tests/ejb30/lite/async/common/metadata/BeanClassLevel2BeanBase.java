@@ -20,50 +20,48 @@
 
 package com.sun.ts.tests.ejb30.lite.async.common.metadata;
 
+import com.sun.ts.tests.ejb30.common.statussingleton.StatusSingletonBean;
+import jakarta.ejb.AsyncResult;
+import jakarta.ejb.Asynchronous;
+import jakarta.ejb.EJB;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import com.sun.ts.tests.ejb30.common.statussingleton.StatusSingletonBean;
-
-import jakarta.ejb.AsyncResult;
-import jakarta.ejb.Asynchronous;
-import jakarta.ejb.EJB;
-
 @Asynchronous
-abstract public class BeanClassLevel2BeanBase extends BeanClassLevel1BeanBase {
-  @EJB
-  protected StatusSingletonBean statusSingleton;
+public abstract class BeanClassLevel2BeanBase extends BeanClassLevel1BeanBase {
+    @EJB
+    protected StatusSingletonBean statusSingleton;
 
-  @Override
-  public Future<Boolean> futureReturnType() {
-    return new AsyncResult<Boolean>(true);
-  }
+    @Override
+    public Future<Boolean> futureReturnType() {
+        return new AsyncResult<Boolean>(true);
+    }
 
-  public Future<TimeUnit> customFutureImpl(final TimeUnit timeUnit) {
-    return new Future<TimeUnit>() {
+    public Future<TimeUnit> customFutureImpl(final TimeUnit timeUnit) {
+        return new Future<TimeUnit>() {
 
-      public boolean cancel(boolean mayInterruptIfRunning) {
-        throw new UnsupportedOperationException("Not supported yet.");
-      }
+            public boolean cancel(boolean mayInterruptIfRunning) {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
 
-      public boolean isCancelled() {
-        throw new UnsupportedOperationException("Not supported yet.");
-      }
+            public boolean isCancelled() {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
 
-      public boolean isDone() {
-        throw new UnsupportedOperationException("Not supported yet.");
-      }
+            public boolean isDone() {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
 
-      public TimeUnit get() throws InterruptedException, ExecutionException {
-        return timeUnit;
-      }
+            public TimeUnit get() throws InterruptedException, ExecutionException {
+                return timeUnit;
+            }
 
-      public TimeUnit get(long timeout, TimeUnit unit)
-          throws InterruptedException, ExecutionException, TimeoutException {
-        return timeUnit;
-      }
-    };
-  }
+            public TimeUnit get(long timeout, TimeUnit unit)
+                    throws InterruptedException, ExecutionException, TimeoutException {
+                return timeUnit;
+            }
+        };
+    }
 }

@@ -23,14 +23,11 @@ import jakarta.interceptor.AroundTimeout;
 import jakarta.interceptor.InvocationContext;
 
 public class Interceptor5 extends InterceptorBase {
-  private static final String simpleName = "Interceptor5";
+    private static final String simpleName = "Interceptor5";
 
-  @SuppressWarnings("unused")
-  @AroundTimeout
-  private Object aroundTimeoutInInterceptor5(InvocationContext inv)
-      throws Exception {
-    return handleAroundTimeout(inv, simpleName, this,
-        "aroundTimeoutInInterceptor5");
-  }
-
+    @SuppressWarnings("unused")
+    @AroundTimeout
+    private Object aroundTimeoutInInterceptor5(InvocationContext inv) throws Exception {
+        return handleAroundTimeout(inv, simpleName, this, "aroundTimeoutInInterceptor5");
+    }
 }

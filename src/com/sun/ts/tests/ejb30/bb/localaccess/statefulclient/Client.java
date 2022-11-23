@@ -24,174 +24,173 @@ import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.ClientBase;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanIF;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
-  @EJB
-  private static TestBeanIF bean;
+    @EJB
+    private static TestBeanIF bean;
 
-  protected TestBeanIF getBean() {
-    return bean;
-  }
-
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  public void cleanup() {
-    if (getBean() != null) {
-      try {
-        getBean().remove();
-        TLogger.log("bean removed successfully.");
-      } catch (Exception e) {
-        TLogger.log("failed to remove bean, ignore exception.");
-      }
+    protected TestBeanIF getBean() {
+        return bean;
     }
-  }
 
-  /*
-   * @testName: passByValueTest
-   * 
-   * @assertion_ids: EJB:JAVADOC:84
-   * 
-   * @test_Strategy: the (remote) test bean modifies the value of String array.
-   * This change should not affect the value in Client.
-   */
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /////////////////////////////////////////////////////////////////////////
-  // 1 localStateless
-  /////////////////////////////////////////////////////////////////////////
-  /*
-   * @testName: passByReferenceTest1
-   * 
-   * @assertion_ids: EJB:JAVADOC:84
-   * 
-   * @test_Strategy:
-   */
+    public void cleanup() {
+        if (getBean() != null) {
+            try {
+                getBean().remove();
+                TLogger.log("bean removed successfully.");
+            } catch (Exception e) {
+                TLogger.log("failed to remove bean, ignore exception.");
+            }
+        }
+    }
 
-  /*
-   * @testName: exceptionTest1
-   * 
-   * @assertion_ids: EJB:JAVADOC:84
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: passByValueTest
+     *
+     * @assertion_ids: EJB:JAVADOC:84
+     *
+     * @test_Strategy: the (remote) test bean modifies the value of String array.
+     * This change should not affect the value in Client.
+     */
 
-  /*
-   * @testName: runtimeExceptionTest1
-   * 
-   * @assertion_ids: EJB:JAVADOC:84; EJB:JAVADOC:87; EJB:JAVADOC:88
-   * 
-   * @test_Strategy:
-   */
+    /////////////////////////////////////////////////////////////////////////
+    // 1 localStateless
+    /////////////////////////////////////////////////////////////////////////
+    /*
+     * @testName: passByReferenceTest1
+     *
+     * @assertion_ids: EJB:JAVADOC:84
+     *
+     * @test_Strategy:
+     */
 
-  /////////////////////////////////////////////////////////////////////////
-  // 2 defaultdefaultLocalStateless
-  /////////////////////////////////////////////////////////////////////////
-  /*
-   * @testName: passByReferenceTest2
-   * 
-   * @assertion_ids: EJB:JAVADOC:84
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: exceptionTest1
+     *
+     * @assertion_ids: EJB:JAVADOC:84
+     *
+     * @test_Strategy:
+     */
 
-  /*
-   * @testName: exceptionTest2
-   * 
-   * @assertion_ids: EJB:JAVADOC:84
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: runtimeExceptionTest1
+     *
+     * @assertion_ids: EJB:JAVADOC:84; EJB:JAVADOC:87; EJB:JAVADOC:88
+     *
+     * @test_Strategy:
+     */
 
-  /*
-   * @testName: runtimeExceptionTest2
-   * 
-   * @assertion_ids: EJB:JAVADOC:84; EJB:JAVADOC:87; EJB:JAVADOC:88
-   * 
-   * @test_Strategy:
-   */
+    /////////////////////////////////////////////////////////////////////////
+    // 2 defaultdefaultLocalStateless
+    /////////////////////////////////////////////////////////////////////////
+    /*
+     * @testName: passByReferenceTest2
+     *
+     * @assertion_ids: EJB:JAVADOC:84
+     *
+     * @test_Strategy:
+     */
 
-  /////////////////////////////////////////////////////////////////////////
-  // 3 localStateful
-  /////////////////////////////////////////////////////////////////////////
-  /*
-   * @testName: passByReferenceTest3
-   * 
-   * @assertion_ids: EJB:JAVADOC:84
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: exceptionTest2
+     *
+     * @assertion_ids: EJB:JAVADOC:84
+     *
+     * @test_Strategy:
+     */
 
-  /*
-   * @testName: exceptionTest3
-   * 
-   * @assertion_ids: EJB:JAVADOC:84
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: runtimeExceptionTest2
+     *
+     * @assertion_ids: EJB:JAVADOC:84; EJB:JAVADOC:87; EJB:JAVADOC:88
+     *
+     * @test_Strategy:
+     */
 
-  /*
-   * @testName: runtimeExceptionTest3
-   * 
-   * @assertion_ids: EJB:JAVADOC:84; EJB:JAVADOC:87; EJB:JAVADOC:88
-   * 
-   * @test_Strategy:
-   */
+    /////////////////////////////////////////////////////////////////////////
+    // 3 localStateful
+    /////////////////////////////////////////////////////////////////////////
+    /*
+     * @testName: passByReferenceTest3
+     *
+     * @assertion_ids: EJB:JAVADOC:84
+     *
+     * @test_Strategy:
+     */
 
-  /////////////////////////////////////////////////////////////////////////
-  // 4 defaultdefaultLocalStateful
-  /////////////////////////////////////////////////////////////////////////
-  /*
-   * @testName: passByReferenceTest4
-   * 
-   * @assertion_ids: EJB:JAVADOC:84
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: exceptionTest3
+     *
+     * @assertion_ids: EJB:JAVADOC:84
+     *
+     * @test_Strategy:
+     */
 
-  /*
-   * @testName: exceptionTest4
-   * 
-   * @assertion_ids: EJB:JAVADOC:84
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: runtimeExceptionTest3
+     *
+     * @assertion_ids: EJB:JAVADOC:84; EJB:JAVADOC:87; EJB:JAVADOC:88
+     *
+     * @test_Strategy:
+     */
 
-  /*
-   * @testName: runtimeExceptionTest4
-   * 
-   * @assertion_ids: EJB:JAVADOC:84; EJB:JAVADOC:87; EJB:JAVADOC:88
-   * 
-   * @test_Strategy:
-   */
+    /////////////////////////////////////////////////////////////////////////
+    // 4 defaultdefaultLocalStateful
+    /////////////////////////////////////////////////////////////////////////
+    /*
+     * @testName: passByReferenceTest4
+     *
+     * @assertion_ids: EJB:JAVADOC:84
+     *
+     * @test_Strategy:
+     */
 
-  //////////////////////////////////////////////////////////////////////
-  // localStateless2
-  //////////////////////////////////////////////////////////////////////
-  /*
-   * @testName: passByReferenceTest5
-   * 
-   * @assertion_ids: EJB:JAVADOC:84
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: exceptionTest5
-   * 
-   * @assertion_ids: EJB:JAVADOC:84
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: runtimeExceptionTest5
-   * 
-   * @assertion_ids: EJB:JAVADOC:84; EJB:JAVADOC:87; EJB:JAVADOC:88
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: exceptionTest4
+     *
+     * @assertion_ids: EJB:JAVADOC:84
+     *
+     * @test_Strategy:
+     */
+
+    /*
+     * @testName: runtimeExceptionTest4
+     *
+     * @assertion_ids: EJB:JAVADOC:84; EJB:JAVADOC:87; EJB:JAVADOC:88
+     *
+     * @test_Strategy:
+     */
+
+    //////////////////////////////////////////////////////////////////////
+    // localStateless2
+    //////////////////////////////////////////////////////////////////////
+    /*
+     * @testName: passByReferenceTest5
+     *
+     * @assertion_ids: EJB:JAVADOC:84
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: exceptionTest5
+     *
+     * @assertion_ids: EJB:JAVADOC:84
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: runtimeExceptionTest5
+     *
+     * @assertion_ids: EJB:JAVADOC:84; EJB:JAVADOC:87; EJB:JAVADOC:88
+     *
+     * @test_Strategy:
+     */
 
 }

@@ -23,7 +23,6 @@ import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
 import com.sun.ts.tests.ejb30.timer.interceptor.business.common.BusinessTimerBeanBase;
 import com.sun.ts.tests.ejb30.timer.interceptor.business.common.Interceptor2;
 import com.sun.ts.tests.ejb30.timer.interceptor.business.common.Interceptor3;
-
 import jakarta.ejb.Stateless;
 import jakarta.ejb.Timer;
 import jakarta.interceptor.AroundInvoke;
@@ -31,23 +30,22 @@ import jakarta.interceptor.Interceptors;
 import jakarta.interceptor.InvocationContext;
 
 @Stateless
-@Interceptors({ Interceptor2.class })
+@Interceptors({Interceptor2.class})
 public class BusinessTimerBean extends BusinessTimerBeanBase {
-  @SuppressWarnings("unused")
-  @AroundInvoke
-  private Object aroundInvoke(InvocationContext inv) throws Exception {
-    TimerUtil.createMillisecondLaterTimer(timerService,
-        "BusinessTimerBean.aroundInvoke");
-    return inv.proceed();
-  }
+    @SuppressWarnings("unused")
+    @AroundInvoke
+    private Object aroundInvoke(InvocationContext inv) throws Exception {
+        TimerUtil.createMillisecondLaterTimer(timerService, "BusinessTimerBean.aroundInvoke");
+        return inv.proceed();
+    }
 
-  @Interceptors(Interceptor3.class)
-  @Override
-  // So this method has 3 interceptors: 1, 2, 3
-  // The superclass is shared among stateless, singleton and mdb tests.
-  // The method-level interceptor doesn't apply in mdb. So we have to
-  // duplicate this method in both singleton and stateless.
-  public Timer createMillisecondLaterTimer(String name) {
-    return super.createMillisecondLaterTimer(name);
-  }
+    @Interceptors(Interceptor3.class)
+    @Override
+    // So this method has 3 interceptors: 1, 2, 3
+    // The superclass is shared among stateless, singleton and mdb tests.
+    // The method-level interceptor doesn't apply in mdb. So we have to
+    // duplicate this method in both singleton and stateless.
+    public Timer createMillisecondLaterTimer(String name) {
+        return super.createMillisecondLaterTimer(name);
+    }
 }

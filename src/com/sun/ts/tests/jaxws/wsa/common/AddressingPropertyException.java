@@ -23,18 +23,18 @@ package com.sun.ts.tests.jaxws.wsa.common;
 import jakarta.xml.ws.WebServiceException;
 
 public class AddressingPropertyException extends WebServiceException {
-  String detail;
+    String detail;
 
-  public AddressingPropertyException(String message) {
-    super(message);
-  }
+    public AddressingPropertyException(String message) {
+        super(message);
+    }
 
-  public AddressingPropertyException(String message, String detail) {
-    super(message);
-    this.detail = detail;
-  }
+    public AddressingPropertyException(String message, String detail) {
+        super(message);
+        this.detail = detail;
+    }
 
-  public String getDetail() {
-    return detail;
-  }
+    public String getDetail() {
+        return detail;
+    }
 }

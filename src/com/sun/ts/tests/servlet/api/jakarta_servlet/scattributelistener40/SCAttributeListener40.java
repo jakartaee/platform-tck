@@ -60,6 +60,4 @@ package com.sun.ts.tests.servlet.api.jakarta_servlet.scattributelistener40;
 
 import jakarta.servlet.ServletContextAttributeListener;
 
-public final class SCAttributeListener40
-    implements ServletContextAttributeListener {
-}
+public final class SCAttributeListener40 implements ServletContextAttributeListener {}

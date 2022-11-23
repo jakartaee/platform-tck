@@ -20,128 +20,122 @@
 
 package com.sun.ts.tests.ejb30.common.migration.threetwo;
 
-import java.rmi.RemoteException;
-
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBContext;
+import java.rmi.RemoteException;
 
-abstract public class ThreeTestBeanBase implements ThreeTestIF {
+public abstract class ThreeTestBeanBase implements ThreeTestIF {
 
-  abstract protected TwoLocalHome getTwoLocalHome();
+    protected abstract TwoLocalHome getTwoLocalHome();
 
-  abstract protected TwoRemoteHome getTwoRemoteHome();
+    protected abstract TwoRemoteHome getTwoRemoteHome();
 
-  abstract protected EJBContext getEJBContext();
+    protected abstract EJBContext getEJBContext();
 
-  //////////////////////////////////////////////////////////////////////
-  // business methods from ThreeTestIF
-  //////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////
+    // business methods from ThreeTestIF
+    //////////////////////////////////////////////////////////////////////
 
-  public void callRemote() throws TestFailedException {
-    TwoRemoteIF twoRemote = getTwoRemoteBean();
-    try {
-      String result = twoRemote.from2RemoteClient();
-      if ("from2RemoteClient".equals(result)) {
-        // good
-      } else {
-        throw new TestFailedException("Expected from2RemoteClient() to return"
-            + "from2RemoteClient, but actual '" + result + "'");
-      }
-    } catch (RemoteException e) {
-      throw new TestFailedException(e);
-    } finally {
-      try {
-        twoRemote.remove();
-      } catch (Exception e) {
-        // ignore
-      }
+    public void callRemote() throws TestFailedException {
+        TwoRemoteIF twoRemote = getTwoRemoteBean();
+        try {
+            String result = twoRemote.from2RemoteClient();
+            if ("from2RemoteClient".equals(result)) {
+                // good
+            } else {
+                throw new TestFailedException(
+                        "Expected from2RemoteClient() to return" + "from2RemoteClient, but actual '" + result + "'");
+            }
+        } catch (RemoteException e) {
+            throw new TestFailedException(e);
+        } finally {
+            try {
+                twoRemote.remove();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
 
-  }
-
-  public void callRemoteSameTxContext() throws TestFailedException {
-    TwoRemoteIF twoRemote = getTwoRemoteBean();
-    try {
-      twoRemote.remoteSameTxContext();
-      if (getEJBContext().getRollbackOnly()) {
-        // expected
-      } else {
-        throw new TestFailedException(
-            "Expected getRollbackOnly to return true," + " but got false.");
-      }
-    } catch (RemoteException e) {
-      throw new TestFailedException(e);
-    } finally {
-      try {
-        twoRemote.remove();
-      } catch (Exception e) {
-        // ignore
-      }
+    public void callRemoteSameTxContext() throws TestFailedException {
+        TwoRemoteIF twoRemote = getTwoRemoteBean();
+        try {
+            twoRemote.remoteSameTxContext();
+            if (getEJBContext().getRollbackOnly()) {
+                // expected
+            } else {
+                throw new TestFailedException("Expected getRollbackOnly to return true," + " but got false.");
+            }
+        } catch (RemoteException e) {
+            throw new TestFailedException(e);
+        } finally {
+            try {
+                twoRemote.remove();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  public void callLocal() throws TestFailedException {
-    TwoLocalIF twoLocal = getTwoLocalBean();
-    try {
-      String result = twoLocal.from2LocalClient();
-      if ("from2LocalClient".equals(result)) {
-        // good
-      } else {
-        throw new TestFailedException("Expected from2LocalClient() to return"
-            + "from2LocalClient, but actual '" + result + "'");
-      }
-    } finally {
-      try {
-        twoLocal.remove();
-      } catch (Exception e) {
-        // igore
-      }
+    public void callLocal() throws TestFailedException {
+        TwoLocalIF twoLocal = getTwoLocalBean();
+        try {
+            String result = twoLocal.from2LocalClient();
+            if ("from2LocalClient".equals(result)) {
+                // good
+            } else {
+                throw new TestFailedException(
+                        "Expected from2LocalClient() to return" + "from2LocalClient, but actual '" + result + "'");
+            }
+        } finally {
+            try {
+                twoLocal.remove();
+            } catch (Exception e) {
+                // igore
+            }
+        }
     }
-  }
 
-  public void callLocalSameTxContext() throws TestFailedException {
-    TwoLocalIF twoLocal = getTwoLocalBean();
-    try {
-      twoLocal.localSameTxContext();
-      if (getEJBContext().getRollbackOnly()) {
-        // expected
-      } else {
-        throw new TestFailedException(
-            "Expected getRollbackOnly to return true," + " but got false.");
-      }
-    } finally {
-      try {
-        twoLocal.remove();
-      } catch (Exception e) {
-        // ignore
-      }
+    public void callLocalSameTxContext() throws TestFailedException {
+        TwoLocalIF twoLocal = getTwoLocalBean();
+        try {
+            twoLocal.localSameTxContext();
+            if (getEJBContext().getRollbackOnly()) {
+                // expected
+            } else {
+                throw new TestFailedException("Expected getRollbackOnly to return true," + " but got false.");
+            }
+        } finally {
+            try {
+                twoLocal.remove();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  //////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////
 
-  protected TwoRemoteIF getTwoRemoteBean() throws TestFailedException {
-    TwoRemoteIF twoRemote = null;
-    try {
-      twoRemote = getTwoRemoteHome().create();
-    } catch (CreateException e) {
-      throw new TestFailedException(e);
-    } catch (RemoteException e) {
-      throw new TestFailedException(e);
+    protected TwoRemoteIF getTwoRemoteBean() throws TestFailedException {
+        TwoRemoteIF twoRemote = null;
+        try {
+            twoRemote = getTwoRemoteHome().create();
+        } catch (CreateException e) {
+            throw new TestFailedException(e);
+        } catch (RemoteException e) {
+            throw new TestFailedException(e);
+        }
+        return twoRemote;
     }
-    return twoRemote;
-  }
 
-  protected TwoLocalIF getTwoLocalBean() throws TestFailedException {
-    TwoLocalIF twoLocal = null;
-    try {
-      twoLocal = getTwoLocalHome().create();
-    } catch (CreateException e) {
-      throw new TestFailedException(e);
+    protected TwoLocalIF getTwoLocalBean() throws TestFailedException {
+        TwoLocalIF twoLocal = null;
+        try {
+            twoLocal = getTwoLocalHome().create();
+        } catch (CreateException e) {
+            throw new TestFailedException(e);
+        }
+        return twoLocal;
     }
-    return twoLocal;
-  }
-
 }

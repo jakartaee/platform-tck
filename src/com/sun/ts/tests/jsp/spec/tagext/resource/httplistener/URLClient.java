@@ -20,88 +20,86 @@
 
 package com.sun.ts.tests.jsp.spec.tagext.resource.httplistener;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    setServletName("TestServlet");
-    setContextRoot("/jsp_tagext_resource_httplistener_web");
+        setServletName("TestServlet");
+        setContextRoot("/jsp_tagext_resource_httplistener_web");
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /* Run test */
+    /* Run test */
 
-  /*
-   * @testName: testResourceSL
-   *
-   * @assertion_ids: JSP:SPEC:304;JSP:SPEC:305
-   *
-   * @test_Strategy: [EventListenerResourceInjection]
-   * [EventListenerResourceInjectionTiming] Create a SessionListener, Package
-   * the servlet in a WAR file without declaring serveral resources references
-   * in deployment descriptor - javax.sql.DataSource -
-   * jakarta.jms.QueueConnectionFactory - jakarta.jms.TopicConnectionFactory -
-   * jakarta.jms.ConnectionFactory - jakarta.jms.Queue - jakarta.jms.Topic -
-   * jakarta.mail.Session - java.net.URL
-   *
-   * Check that: - We can deploy the application. - We can lookup the all the
-   * above resource using annotation @Resource in the SessionListener
-   */
+    /*
+     * @testName: testResourceSL
+     *
+     * @assertion_ids: JSP:SPEC:304;JSP:SPEC:305
+     *
+     * @test_Strategy: [EventListenerResourceInjection]
+     * [EventListenerResourceInjectionTiming] Create a SessionListener, Package
+     * the servlet in a WAR file without declaring serveral resources references
+     * in deployment descriptor - javax.sql.DataSource -
+     * jakarta.jms.QueueConnectionFactory - jakarta.jms.TopicConnectionFactory -
+     * jakarta.jms.ConnectionFactory - jakarta.jms.Queue - jakarta.jms.Topic -
+     * jakarta.mail.Session - java.net.URL
+     *
+     * Check that: - We can deploy the application. - We can lookup the all the
+     * above resource using annotation @Resource in the SessionListener
+     */
 
-  public void testResourceSL() throws Fault {
-    String testName = "testResourceSL";
-    TEST_PROPS.setProperty(APITEST, testName);
+    public void testResourceSL() throws Fault {
+        String testName = "testResourceSL";
+        TEST_PROPS.setProperty(APITEST, testName);
 
-    invoke();
-  }
+        invoke();
+    }
 
-  /*
-   * @testName: testResourceSAL
-   *
-   * @assertion_ids: JSP:SPEC:304;JSP:SPEC:305
-   *
-   * @test_Strategy: [EventListenerResourceInjection]
-   * [EventListenerResourceInjectionTiming] Create a
-   * HttpSessionAttributeListener, Package all above in a WAR file without
-   * declaring serveral resources references in deployment descriptor -
-   * javax.sql.DataSource - jakarta.jms.QueueConnectionFactory -
-   * jakarta.jms.TopicConnectionFactory - jakarta.jms.ConnectionFactory -
-   * jakarta.jms.Queue - jakarta.jms.Topic - jakarta.mail.Session - java.net.URL
-   *
-   * Check that: - We can deploy the application. - We can lookup the all the
-   * above resource using annotation inside the HttpSessionAttributeListener
-   */
+    /*
+     * @testName: testResourceSAL
+     *
+     * @assertion_ids: JSP:SPEC:304;JSP:SPEC:305
+     *
+     * @test_Strategy: [EventListenerResourceInjection]
+     * [EventListenerResourceInjectionTiming] Create a
+     * HttpSessionAttributeListener, Package all above in a WAR file without
+     * declaring serveral resources references in deployment descriptor -
+     * javax.sql.DataSource - jakarta.jms.QueueConnectionFactory -
+     * jakarta.jms.TopicConnectionFactory - jakarta.jms.ConnectionFactory -
+     * jakarta.jms.Queue - jakarta.jms.Topic - jakarta.mail.Session - java.net.URL
+     *
+     * Check that: - We can deploy the application. - We can lookup the all the
+     * above resource using annotation inside the HttpSessionAttributeListener
+     */
 
-  public void testResourceSAL() throws Fault {
-    String testName = "testResourceSAL";
-    TEST_PROPS.setProperty(APITEST, testName);
+    public void testResourceSAL() throws Fault {
+        String testName = "testResourceSAL";
+        TEST_PROPS.setProperty(APITEST, testName);
 
-    invoke();
-  }
+        invoke();
+    }
 }

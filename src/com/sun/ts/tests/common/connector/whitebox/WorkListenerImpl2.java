@@ -17,7 +17,6 @@
 package com.sun.ts.tests.common.connector.whitebox;
 
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
-
 import jakarta.resource.spi.work.WorkEvent;
 import jakarta.resource.spi.work.WorkListener;
 
@@ -31,35 +30,32 @@ import jakarta.resource.spi.work.WorkListener;
  *
  */
 public class WorkListenerImpl2 implements WorkListener {
-  private Counter count = new Counter();
+    private Counter count = new Counter();
 
-  public void workAccepted(WorkEvent e) {
-    debug("WorkListenerImpl2.workAccepted");
-    String str = "notifications test: workAccepted(): count="
-        + count.getCount(Counter.Action.INCREMENT);
-    ConnectorStatus.getConnectorStatus().logState(str);
-    debug(str);
-  }
+    public void workAccepted(WorkEvent e) {
+        debug("WorkListenerImpl2.workAccepted");
+        String str = "notifications test: workAccepted(): count=" + count.getCount(Counter.Action.INCREMENT);
+        ConnectorStatus.getConnectorStatus().logState(str);
+        debug(str);
+    }
 
-  public void workRejected(WorkEvent e) {
-    debug("WorkListenerImpl2.workRejected");
-  }
+    public void workRejected(WorkEvent e) {
+        debug("WorkListenerImpl2.workRejected");
+    }
 
-  public void workStarted(WorkEvent e) {
-    String str = "notifications test: workStarted(): count="
-        + count.getCount(Counter.Action.INCREMENT);
-    ConnectorStatus.getConnectorStatus().logState(str);
-    debug(str);
-  }
+    public void workStarted(WorkEvent e) {
+        String str = "notifications test: workStarted(): count=" + count.getCount(Counter.Action.INCREMENT);
+        ConnectorStatus.getConnectorStatus().logState(str);
+        debug(str);
+    }
 
-  public void workCompleted(WorkEvent e) {
-    String str = "notifications test: workCompleted(): count="
-        + count.getCount(Counter.Action.INCREMENT);
-    ConnectorStatus.getConnectorStatus().logState(str);
-    debug(str);
-  }
+    public void workCompleted(WorkEvent e) {
+        String str = "notifications test: workCompleted(): count=" + count.getCount(Counter.Action.INCREMENT);
+        ConnectorStatus.getConnectorStatus().logState(str);
+        debug(str);
+    }
 
-  private void debug(String str) {
-    Debug.trace(str);
-  }
+    private void debug(String str) {
+        Debug.trace(str);
+    }
 }

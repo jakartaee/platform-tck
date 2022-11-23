@@ -27,5 +27,5 @@ import jakarta.jws.soap.SOAPBinding.Style;
 @WebService(targetNamespace = "http://helloservlet.org/wsdl")
 @SOAPBinding(style = Style.RPC)
 public interface WSHello1 {
-  public String sayServletHello(String who);
+    public String sayServletHello(String who);
 }

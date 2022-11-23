@@ -16,13 +16,13 @@
 
 package com.sun.ts.lib.implementation.sun.javaee;
 
-import java.util.*;
+import com.sun.javatest.*;
+import com.sun.ts.lib.deliverable.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
 import java.io.*;
 import java.net.*;
-import com.sun.javatest.*;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.deliverable.*;
+import java.util.*;
 
 /**
  * This is an implementation of the TSDeploymentInterface. An implementation of
@@ -32,28 +32,27 @@ import com.sun.ts.lib.deliverable.*;
  * test suite to be run without having to manually deploy/undeploy the Java EE
  * test applications prior to running the tests. This particular implementation
  * uses the deploy/undeploy semantics of Sun's Java EE reference implementation.
- * 
+ *
  * @author Kyle Grucci
  */
-public class SunRIDeployment extends SunRIDeployment14
-    implements TSDeploymentInterface {
-  /**
-   * Initializes a new TSDeployment instance. All output should be printed to
-   * this PrintWriter. All properties in the ts.jte file are accessible to this
-   * porting implementation class only via the PropertyManagerInterface. Please
-   * see Sun's implementation of this method (below) for an example.
-   *
-   * @param writer
-   *          The PrintWriter that should be used to log output.
-   */
-  public void init(PrintWriter out) {
-    try {
-      System.out.println("SunRIDeployment:  in init");
-      PropertyManagerInterface propMgr = DeliverableFactory
-          .getDeliverableInstance().getPropertyManager();
-      init(out, "", propMgr);
-    } catch (Exception e) {
-      e.printStackTrace();
+public class SunRIDeployment extends SunRIDeployment14 implements TSDeploymentInterface {
+    /**
+     * Initializes a new TSDeployment instance. All output should be printed to
+     * this PrintWriter. All properties in the ts.jte file are accessible to this
+     * porting implementation class only via the PropertyManagerInterface. Please
+     * see Sun's implementation of this method (below) for an example.
+     *
+     * @param writer
+     *          The PrintWriter that should be used to log output.
+     */
+    public void init(PrintWriter out) {
+        try {
+            System.out.println("SunRIDeployment:  in init");
+            PropertyManagerInterface propMgr =
+                    DeliverableFactory.getDeliverableInstance().getPropertyManager();
+            init(out, "", propMgr);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-  }
 }

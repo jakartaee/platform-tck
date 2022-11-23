@@ -16,34 +16,31 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpsessionx;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class InvalidateHttpSession extends HttpServlet {
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    boolean passed = false;
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        boolean passed = false;
 
-    PrintWriter pw = response.getWriter();
-    HttpSession session = request.getSession(false);
-    session.invalidate();
+        PrintWriter pw = response.getWriter();
+        HttpSession session = request.getSession(false);
+        session.invalidate();
 
-    // session is invalidated. The method should return false.
-    if (!request.isRequestedSessionIdValid()) {
-      passed = true;
-      pw.println("From invalidateHttpSession: Session is invalidated ");
-    } else {
-      pw.println("From invalidateHttpSession: Session is not invalidated ");
+        // session is invalidated. The method should return false.
+        if (!request.isRequestedSessionIdValid()) {
+            passed = true;
+            pw.println("From invalidateHttpSession: Session is invalidated ");
+        } else {
+            pw.println("From invalidateHttpSession: Session is not invalidated ");
+        }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
-  }
 }

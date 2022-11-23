@@ -20,29 +20,26 @@
 
 package com.sun.ts.tests.ejb.ee.timer.session.stateless.cm;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
-  public boolean getInfoStrAndCancel(int timerType) throws RemoteException;
+    public boolean getInfoStrAndCancel(int timerType) throws RemoteException;
 
-  public boolean getInfoClassAndCancel(int timerType) throws RemoteException;
+    public boolean getInfoClassAndCancel(int timerType) throws RemoteException;
 
-  public boolean initializeTimer(int timerType, int timeoutAction)
-      throws RemoteException;
+    public boolean initializeTimer(int timerType, int timeoutAction) throws RemoteException;
 
-  public boolean createAndRollback(int timerType) throws RemoteException;
+    public boolean createAndRollback(int timerType) throws RemoteException;
 
-  public boolean createFlagStoreAndTimer(int timerType, int timeoutAction)
-      throws RemoteException;
+    public boolean createFlagStoreAndTimer(int timerType, int timeoutAction) throws RemoteException;
 
-  public boolean isSerializable(int timerType) throws RemoteException;
+    public boolean isSerializable(int timerType) throws RemoteException;
 
-  public boolean verifyTimerIsGone() throws RemoteException;
+    public boolean verifyTimerIsGone() throws RemoteException;
 
-  public void cancelAllTimers() throws RemoteException;
+    public void cancelAllTimers() throws RemoteException;
 
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 }

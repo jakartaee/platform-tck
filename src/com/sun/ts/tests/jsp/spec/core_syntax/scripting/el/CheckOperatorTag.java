@@ -28,28 +28,26 @@ import jakarta.servlet.jsp.JspException;
  */
 public class CheckOperatorTag extends BaseCheckTag {
 
-  /**
-   * Validate the control and test objects using the following algorithm:
-   * <ul>
-   * <li>If either the control or test objects are null, FAIL.</li>
-   * <li>If both objects, converted to a String, are not equal, FAIL.</li>
-   * </ul>
-   * 
-   * @throws JspException
-   *           if an error occurs
-   */
-  protected void performCheck() throws JspException {
-    String message = null;
+    /**
+     * Validate the control and test objects using the following algorithm:
+     * <ul>
+     * <li>If either the control or test objects are null, FAIL.</li>
+     * <li>If both objects, converted to a String, are not equal, FAIL.</li>
+     * </ul>
+     *
+     * @throws JspException
+     *           if an error occurs
+     */
+    protected void performCheck() throws JspException {
+        String message = null;
 
-    if (_control == null || _object == null) {
-      message = "Test FAILED (" + _name + ").  Either the control or"
-          + " the object under test was null.";
-    } else {
-      if (!_control.toString().equals(_object.toString())) {
-        message = "Test FAILED (" + _name + ").  " + " Expected: " + _control
-            + ", Received: " + _object;
-      }
+        if (_control == null || _object == null) {
+            message = "Test FAILED (" + _name + ").  Either the control or" + " the object under test was null.";
+        } else {
+            if (!_control.toString().equals(_object.toString())) {
+                message = "Test FAILED (" + _name + ").  " + " Expected: " + _control + ", Received: " + _object;
+            }
+        }
+        displayTestStatus(message);
     }
-    displayTestStatus(message);
-  }
 }

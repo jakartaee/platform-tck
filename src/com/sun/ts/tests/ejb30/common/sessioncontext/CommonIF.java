@@ -23,23 +23,23 @@ package com.sun.ts.tests.ejb30.common.sessioncontext;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface CommonIF {
-  public void remove();
+    public void remove();
 
-  public void hi(String[] m);
+    public void hi(String[] m);
 
-  public Three1IF getBusinessObjectRemote1() throws TestFailedException;
+    public Three1IF getBusinessObjectRemote1() throws TestFailedException;
 
-  public Three2IF getBusinessObjectRemote2() throws TestFailedException;
+    public Three2IF getBusinessObjectRemote2() throws TestFailedException;
 
-  public ThreeLocal1IF getBusinessObjectLocal1() throws TestFailedException;
+    public ThreeLocal1IF getBusinessObjectLocal1() throws TestFailedException;
 
-  public ThreeLocal2IF getBusinessObjectLocal2() throws TestFailedException;
+    public ThreeLocal2IF getBusinessObjectLocal2() throws TestFailedException;
 
-  public Class getInvokedBusinessInterfaceRemote1() throws TestFailedException;
+    public Class getInvokedBusinessInterfaceRemote1() throws TestFailedException;
 
-  public Class getInvokedBusinessInterfaceRemote2() throws TestFailedException;
+    public Class getInvokedBusinessInterfaceRemote2() throws TestFailedException;
 
-  public Class getInvokedBusinessInterfaceLocal1() throws TestFailedException;
+    public Class getInvokedBusinessInterfaceLocal1() throws TestFailedException;
 
-  public Class getInvokedBusinessInterfaceLocal2() throws TestFailedException;
+    public Class getInvokedBusinessInterfaceLocal2() throws TestFailedException;
 }

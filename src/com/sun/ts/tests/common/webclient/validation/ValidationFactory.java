@@ -31,37 +31,37 @@ import com.sun.ts.lib.util.TestUtil;
  */
 public class ValidationFactory {
 
-  /**
-   * Private constructor as all interaction with the class is through the
-   * getInstance() method.
-   */
-  private ValidationFactory() {
-  }
+    /**
+     * Private constructor as all interaction with the class is through the
+     * getInstance() method.
+     */
+    private ValidationFactory() {}
 
-  /*
-   * public methods
-   * ========================================================================
-   */
+    /*
+     * public methods
+     * ========================================================================
+     */
 
-  /**
-   * Returns a ValidationStrategy instance based on the available factory types.
-   *
-   * @param validator
-   *          Validator instance to obtain
-   * @return a ValidationStrategy instance or null if the instance could not be
-   *         obtained.
-   */
-  public static ValidationStrategy getInstance(String validator) {
-    try {
-      Object o = Thread.currentThread().getContextClassLoader()
-          .loadClass(validator).newInstance();
-      if (o instanceof ValidationStrategy) {
-        return (ValidationStrategy) o;
-      }
-    } catch (Throwable t) {
-      TestUtil.logMsg("[ValidationFactory] Unable to obtain "
-          + "ValidationStrategy instance: " + validator);
+    /**
+     * Returns a ValidationStrategy instance based on the available factory types.
+     *
+     * @param validator
+     *          Validator instance to obtain
+     * @return a ValidationStrategy instance or null if the instance could not be
+     *         obtained.
+     */
+    public static ValidationStrategy getInstance(String validator) {
+        try {
+            Object o = Thread.currentThread()
+                    .getContextClassLoader()
+                    .loadClass(validator)
+                    .newInstance();
+            if (o instanceof ValidationStrategy) {
+                return (ValidationStrategy) o;
+            }
+        } catch (Throwable t) {
+            TestUtil.logMsg("[ValidationFactory] Unable to obtain " + "ValidationStrategy instance: " + validator);
+        }
+        return null;
     }
-    return null;
-  }
 }

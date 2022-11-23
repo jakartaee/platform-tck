@@ -16,11 +16,9 @@
 
 package com.sun.ts.lib.deliverable.servlet;
 
-import com.sun.ts.lib.deliverable.AbstractDeliverable;
-import com.sun.ts.lib.deliverable.PropertyManagerInterface;
 import com.sun.javatest.TestEnvironment;
+import com.sun.ts.lib.deliverable.PropertyManagerInterface;
 import com.sun.ts.lib.deliverable.tck.TCKDeliverable;
-
 import java.util.Map;
 import java.util.Properties;
 
@@ -28,43 +26,40 @@ import java.util.Properties;
  * This class serves as a default implementation of the Deliverable interface
  * for a generic TCK. TCKs are free to use this impl if it suits their needs.
  * Otherwise, it should be extended.
- * 
+ *
  * @author
  */
 public class ServletDeliverable extends TCKDeliverable {
-  public PropertyManagerInterface createPropertyManager(TestEnvironment te)
-      throws Exception {
-    return ServletPropertyManager.getServletPropertyManager(te);
-  }
+    public PropertyManagerInterface createPropertyManager(TestEnvironment te) throws Exception {
+        return ServletPropertyManager.getServletPropertyManager(te);
+    }
 
-  public PropertyManagerInterface createPropertyManager(Properties p)
-      throws Exception {
-    return ServletPropertyManager.getServletPropertyManager(p);
-  }
+    public PropertyManagerInterface createPropertyManager(Properties p) throws Exception {
+        return ServletPropertyManager.getServletPropertyManager(p);
+    }
 
-  public PropertyManagerInterface getPropertyManager() throws Exception {
-    return ServletPropertyManager.getServletPropertyManager();
-  }
+    public PropertyManagerInterface getPropertyManager() throws Exception {
+        return ServletPropertyManager.getServletPropertyManager();
+    }
 
-  public boolean supportsAutoDeployment() {
-    return false;
-  }
+    public boolean supportsAutoDeployment() {
+        return false;
+    }
 
-  public boolean supportsAutoJMSAdmin() {
-    return false;
-  }
+    public boolean supportsAutoJMSAdmin() {
+        return false;
+    }
 
-  public boolean supportsInterop() {
-    return false;
-  }
+    public boolean supportsInterop() {
+        return false;
+    }
 
-  public Map getValidVehicles() {
-    super.getValidVehicles();
+    public Map getValidVehicles() {
+        super.getValidVehicles();
 
-    // add default values
-    htTSValidVehicles.put("tests.service_eetest.vehicles",
-        new String[] { "standalone" });
+        // add default values
+        htTSValidVehicles.put("tests.service_eetest.vehicles", new String[] {"standalone"});
 
-    return htTSValidVehicles;
-  }
+        return htTSValidVehicles;
+    }
 }

@@ -27,59 +27,57 @@ import jakarta.persistence.Table;
 @Table(name = "DATATYPES")
 public class DataTypes implements java.io.Serializable {
 
-  @Id
-  protected int id;
+    @Id
+    protected int id;
 
-  @Lob
-  @Basic
-  @Column(name = "BYTEARRAYDATA")
-  protected Byte[] byteArrayData;
+    @Lob
+    @Basic
+    @Column(name = "BYTEARRAYDATA")
+    protected Byte[] byteArrayData;
 
-  public DataTypes() {
-  }
+    public DataTypes() {}
 
-  public DataTypes(int id) {
-    this.id = id;
-  }
-
-  public DataTypes(int id, Byte[] byteArrayData) {
-    this.id = id;
-    this.byteArrayData = byteArrayData;
-
-  }
-
-  public Integer getIdData() {
-    return id;
-  }
-
-  public Byte[] getByteArrayData() {
-    return byteArrayData;
-  }
-
-  public void setByteArrayData(Byte[] byteArrayData) {
-    this.byteArrayData = byteArrayData;
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getIdData());
-
-    if (getByteArrayData() != null && getByteArrayData().length > 0) {
-      StringBuilder sb = new StringBuilder(", ByteData: [");
-      for (int i = 0; i < byteArrayData.length; i++) {
-        sb.append(byteArrayData[i]);
-        if (i < byteArrayData.length - 1) {
-          sb.append(", ");
-        }
-      }
-      sb.append("],");
-      result.append(sb.toString());
-    } else {
-      result.append(", ByteData: null");
+    public DataTypes(int id) {
+        this.id = id;
     }
-    result.append("]");
-    return result.toString();
-  }
+
+    public DataTypes(int id, Byte[] byteArrayData) {
+        this.id = id;
+        this.byteArrayData = byteArrayData;
+    }
+
+    public Integer getIdData() {
+        return id;
+    }
+
+    public Byte[] getByteArrayData() {
+        return byteArrayData;
+    }
+
+    public void setByteArrayData(Byte[] byteArrayData) {
+        this.byteArrayData = byteArrayData;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getIdData());
+
+        if (getByteArrayData() != null && getByteArrayData().length > 0) {
+            StringBuilder sb = new StringBuilder(", ByteData: [");
+            for (int i = 0; i < byteArrayData.length; i++) {
+                sb.append(byteArrayData[i]);
+                if (i < byteArrayData.length - 1) {
+                    sb.append(", ");
+                }
+            }
+            sb.append("],");
+            result.append(sb.toString());
+        } else {
+            result.append(", ByteData: null");
+        }
+        result.append("]");
+        return result.toString();
+    }
 }

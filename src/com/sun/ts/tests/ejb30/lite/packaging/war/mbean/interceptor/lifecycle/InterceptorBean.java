@@ -19,8 +19,6 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.lifecycle;
 
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor1;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor2;
@@ -30,26 +28,31 @@ import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor5;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor8;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorBeanBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorIF;
-
 import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PostConstruct;
 import jakarta.interceptor.Interceptors;
+import java.util.logging.Level;
 
-//2, 1 & 3 are prepended here to replace default interceptors.  In other
-//test directories (e.g., lite/interceptor/singleton/lifecycle/annotated,
-//2, 1 & 3 are specified as default interceptors.
+// 2, 1 & 3 are prepended here to replace default interceptors.  In other
+// test directories (e.g., lite/interceptor/singleton/lifecycle/annotated,
+// 2, 1 & 3 are specified as default interceptors.
 @ManagedBean("InterceptorBean")
-@Interceptors({ Interceptor2.class, Interceptor1.class, Interceptor3.class,
-    Interceptor5.class, Interceptor4.class, Interceptor8.class })
-public class InterceptorBean extends InterceptorBeanBase
-    implements InterceptorIF {
-  private static final String simpleName = "InterceptorBean";
+@Interceptors({
+    Interceptor2.class,
+    Interceptor1.class,
+    Interceptor3.class,
+    Interceptor5.class,
+    Interceptor4.class,
+    Interceptor8.class
+})
+public class InterceptorBean extends InterceptorBeanBase implements InterceptorIF {
+    private static final String simpleName = "InterceptorBean";
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    Helper.getLogger().logp(Level.FINE, simpleName, "postConstruct",
-        "Adding to postConstruct record: " + simpleName);
-    historySingletonBean.addPostConstructRecordFor(this, simpleName);
-  }
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        Helper.getLogger()
+                .logp(Level.FINE, simpleName, "postConstruct", "Adding to postConstruct record: " + simpleName);
+        historySingletonBean.addPostConstructRecordFor(this, simpleName);
+    }
 }

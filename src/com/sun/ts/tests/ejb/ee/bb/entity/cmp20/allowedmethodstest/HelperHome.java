@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.allowedmethodstest;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface HelperHome extends EJBHome {
-  public Helper create() throws RemoteException, CreateException;
+    public Helper create() throws RemoteException, CreateException;
 }

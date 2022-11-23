@@ -19,69 +19,67 @@ package com.sun.ts.tests.ejb30.lite.tx.cm.stateful.rw;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWJsfClientBase;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase0;
-
 import jakarta.ejb.EJB;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends RWJsfClientBase {
-  private static final String STATEFUL_TEST_BEAN_NAME = "statefulTestBean";
+    private static final String STATEFUL_TEST_BEAN_NAME = "statefulTestBean";
 
-  @EJB(beanName = "TestBean")
-  private TestBean statefulTestBean;
+    @EJB(beanName = "TestBean")
+    private TestBean statefulTestBean;
 
-  @SuppressWarnings("unused")
-  @EJB(beanInterface = TestBean.class, name = STATEFUL_TEST_BEAN_NAME, beanName = "TestBean")
-  private void setTestBean(RWTestBeanBase b) {
-    testBean = b;
-  }
+    @SuppressWarnings("unused")
+    @EJB(beanInterface = TestBean.class, name = STATEFUL_TEST_BEAN_NAME, beanName = "TestBean")
+    private void setTestBean(RWTestBeanBase b) {
+        testBean = b;
+    }
 
-  @Override
-  protected RWTestBeanBase0 getTestBean() {
-    return (RWTestBeanBase0) lookup(STATEFUL_TEST_BEAN_NAME, "TestBean",
-        TestBean.class);
-  }
+    @Override
+    protected RWTestBeanBase0 getTestBean() {
+        return (RWTestBeanBase0) lookup(STATEFUL_TEST_BEAN_NAME, "TestBean", TestBean.class);
+    }
 
-  /*
-   * @testName: mandatory
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: required
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: requiredNoExistingTransaction
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: supports
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: requiresNew
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: mandatory
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: required
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: requiredNoExistingTransaction
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: supports
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: requiresNew
+     *
+     * @test_Strategy:
+     */
 
-  /*
-   * @testName: invokeAsBusinessMethod
-   * 
-   * @test_Strategy:
-   */
-  public void invokeAsBusinessMethod() {
-    appendReason(statefulTestBean.invokeAsBusinessMethod());
-  }
+    /*
+     * @testName: invokeAsBusinessMethod
+     *
+     * @test_Strategy:
+     */
+    public void invokeAsBusinessMethod() {
+        appendReason(statefulTestBean.invokeAsBusinessMethod());
+    }
 
-  /*
-   * @testName: postConstructTransaction
-   *
-   * @test_Strategy: insert CoffeeEJBLite records in TestBean & TxBean's
-   * postConstruct methods, respectively using BMT & CMT, then check the
-   * existence of the records in test method postConstructTransaction
-   */
+    /*
+     * @testName: postConstructTransaction
+     *
+     * @test_Strategy: insert CoffeeEJBLite records in TestBean & TxBean's
+     * postConstruct methods, respectively using BMT & CMT, then check the
+     * existence of the records in test method postConstructTransaction
+     */
 }

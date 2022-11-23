@@ -16,13 +16,11 @@
 
 package com.sun.ts.tests.ejb30.webservice.interceptor;
 
-import java.lang.reflect.Method;
-import java.util.Map;
-
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
+import java.lang.reflect.Method;
+import java.util.Map;
 
 /**
  * A business method interceptor for EJB based WebService.
@@ -46,66 +44,57 @@ import jakarta.interceptor.InvocationContext;
  */
 public class WebServiceInterceptor {
 
-  public WebServiceInterceptor() {
-    super();
-  }
-
-  @AroundInvoke
-  public Object intercept(InvocationContext ctx) throws Exception {
-    Method method = ctx.getMethod();
-    TLogger.log("Interceptor invoked for method " + method.toString());
-
-    // Get MessageContext from InvocationContext
-    Map contextDataMap = ctx.getContextData();
-    TLogger.log("InvocationContext.getContextData() type: "
-        + contextDataMap.getClass());
-
-    if (contextDataMap instanceof jakarta.xml.ws.handler.MessageContext) {
-      TLogger.log(
-          "ContextDataMap is an instance of jakarta.xml.ws.handler.MessageContext ");
-
-      Object target = ctx.getTarget();
-      if (target instanceof com.sun.ts.tests.ejb30.webservice.interceptor.HelloImpl) {
-
-        TLogger.log("getTarget() returned an instance of HelloImpl ");
-
-      } else {
-        TLogger.log(
-            "InvocationContext.getTarget() didn't return an instance of HelloImpl");
-        throw new RuntimeException(
-            "InvocationContext.getTarget() didn't return an instance of HelloImpl");
-
-      }
-
-      Object[] parameters = ctx.getParameters();
-      if (parameters != null) {
-        if (parameters[0].equals("Raja")) {
-          TLogger.log("parameters = " + parameters[0]);
-        } else {
-          throw new RuntimeException(
-              "Wrong webservice invocation Parameters passed");
-        }
-      }
-
-      return ctx.proceed();
-    } else {
-      TLogger.log(
-          "ContextDataMap is not an instance of jakarta.xml.ws.handler.MessageContext ");
-      throw new RuntimeException(
-          "ContextDataMap is not an instance of jakarta.xml.ws.handler.MessageContext");
-
+    public WebServiceInterceptor() {
+        super();
     }
 
-    // Map processing.
-    /*
-     * if(contextDataMap!=null){
-     * 
-     * // Iterate through the map Set entries = contextDataMap.entrySet();
-     * Iterator iterator = entries.iterator(); while (iterator.hasNext()) {
-     * Map.Entry entry = (Map.Entry)iterator.next(); String KeyName =
-     * entry.getKey().toString(); TLogger.log(KeyName + " : " +
-     * entry.getValue()); } }
-     */
+    @AroundInvoke
+    public Object intercept(InvocationContext ctx) throws Exception {
+        Method method = ctx.getMethod();
+        TLogger.log("Interceptor invoked for method " + method.toString());
 
-  }
+        // Get MessageContext from InvocationContext
+        Map contextDataMap = ctx.getContextData();
+        TLogger.log("InvocationContext.getContextData() type: " + contextDataMap.getClass());
+
+        if (contextDataMap instanceof jakarta.xml.ws.handler.MessageContext) {
+            TLogger.log("ContextDataMap is an instance of jakarta.xml.ws.handler.MessageContext ");
+
+            Object target = ctx.getTarget();
+            if (target instanceof com.sun.ts.tests.ejb30.webservice.interceptor.HelloImpl) {
+
+                TLogger.log("getTarget() returned an instance of HelloImpl ");
+
+            } else {
+                TLogger.log("InvocationContext.getTarget() didn't return an instance of HelloImpl");
+                throw new RuntimeException("InvocationContext.getTarget() didn't return an instance of HelloImpl");
+            }
+
+            Object[] parameters = ctx.getParameters();
+            if (parameters != null) {
+                if (parameters[0].equals("Raja")) {
+                    TLogger.log("parameters = " + parameters[0]);
+                } else {
+                    throw new RuntimeException("Wrong webservice invocation Parameters passed");
+                }
+            }
+
+            return ctx.proceed();
+        } else {
+            TLogger.log("ContextDataMap is not an instance of jakarta.xml.ws.handler.MessageContext ");
+            throw new RuntimeException("ContextDataMap is not an instance of jakarta.xml.ws.handler.MessageContext");
+        }
+
+        // Map processing.
+        /*
+         * if(contextDataMap!=null){
+         *
+         * // Iterate through the map Set entries = contextDataMap.entrySet();
+         * Iterator iterator = entries.iterator(); while (iterator.hasNext()) {
+         * Map.Entry entry = (Map.Entry)iterator.next(); String KeyName =
+         * entry.getKey().toString(); TLogger.log(KeyName + " : " +
+         * entry.getValue()); } }
+         */
+
+    }
 }

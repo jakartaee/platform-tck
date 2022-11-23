@@ -19,56 +19,53 @@
  */
 package com.sun.ts.tests.servlet.spec.pluggability.ordering.test1;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String[] args, PrintWriter out, PrintWriter err) {
-    setContextRoot("/servlet_spec_ordering1_web");
-    return super.run(args, out, err);
-  }
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String[] args, PrintWriter out, PrintWriter err) {
+        setContextRoot("/servlet_spec_ordering1_web");
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
-  /*
-   * @testName: initParamTest
-   *
-   * @assertion_ids: Servlet:SPEC:232; Servlet:SPEC:241; Servlet:SPEC:242;
-   * Servlet:SPEC:244; Servlet:SPEC:245; Servlet:SPEC:258.1;
-   * Servlet:SPEC:258.5.1; Servlet:SPEC:258.6.1; Servlet:SPEC:258.7.1;
-   *
-   * @test_Strategy: 1. Define servlet TestServlet4 in web.xml as well as three
-   * web-fragment.xml; 2. Send request to /TestServlet4, verify TestServlet4 is
-   * invoked 3. Also verify that <init-param> defined in web.xml and all
-   * web-fragment.xml are considered, and the one defined in web.xml take
-   * precedence.
-   */
-  public void initParamTest() throws Fault {
-    TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet4|"
-        + "msg1=first|msg2=second|msg3=third|msg4=fourth|" + "RequestListener");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "ignore");
-    TEST_PROPS.setProperty(REQUEST,
-        "GET " + getContextRoot() + "/TestServlet4" + " HTTP/1.1");
-    invoke();
-  }
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
+    /*
+     * @testName: initParamTest
+     *
+     * @assertion_ids: Servlet:SPEC:232; Servlet:SPEC:241; Servlet:SPEC:242;
+     * Servlet:SPEC:244; Servlet:SPEC:245; Servlet:SPEC:258.1;
+     * Servlet:SPEC:258.5.1; Servlet:SPEC:258.6.1; Servlet:SPEC:258.7.1;
+     *
+     * @test_Strategy: 1. Define servlet TestServlet4 in web.xml as well as three
+     * web-fragment.xml; 2. Send request to /TestServlet4, verify TestServlet4 is
+     * invoked 3. Also verify that <init-param> defined in web.xml and all
+     * web-fragment.xml are considered, and the one defined in web.xml take
+     * precedence.
+     */
+    public void initParamTest() throws Fault {
+        TEST_PROPS.setProperty(
+                SEARCH_STRING, "TestServlet4|" + "msg1=first|msg2=second|msg3=third|msg4=fourth|" + "RequestListener");
+        TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "ignore");
+        TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/TestServlet4" + " HTTP/1.1");
+        invoke();
+    }
 }

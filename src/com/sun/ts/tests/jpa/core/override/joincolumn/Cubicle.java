@@ -16,87 +16,84 @@
 
 package com.sun.ts.tests.jpa.core.override.joincolumn;
 
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.OneToMany;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @IdClass(com.sun.ts.tests.jpa.core.override.joincolumn.CubiclePK.class)
 @Entity
 public class Cubicle implements Serializable {
 
-  @Id
-  private Integer id;
+    @Id
+    private Integer id;
 
-  @Id
-  private String location;
+    @Id
+    private String location;
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "cubicle")
-  private Set<Hardware> equipment = new HashSet();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cubicle")
+    private Set<Hardware> equipment = new HashSet();
 
-  public Cubicle() {
-  }
+    public Cubicle() {}
 
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.getId() != null ? this.getId().hashCode() : 0);
-    hash += (this.getLocation() != null ? this.getLocation().hashCode() : 0);
-    return hash;
-  }
-
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof Cubicle)) {
-      return false;
+    public Integer getId() {
+        return id;
     }
-    Cubicle other = (Cubicle) object;
-    if (this.getId() != other.getId()
-        && (this.getId() == null || !this.getId().equals(other.getId()))) {
-      return false;
+
+    public void setId(Integer id) {
+        this.id = id;
     }
-    if (this.getLocation() != other.getLocation() && (this.getLocation() == null
-        || !this.getLocation().equals(other.getLocation()))) {
-      return false;
+
+    public int hashCode() {
+        int hash = 0;
+        hash += (this.getId() != null ? this.getId().hashCode() : 0);
+        hash += (this.getLocation() != null ? this.getLocation().hashCode() : 0);
+        return hash;
     }
-    return true;
-  }
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.joincolumn." + "Cubicle[id="
-        + getId() + " - " + getLocation() + "]";
-  }
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not
+        // set
+        if (!(object instanceof Cubicle)) {
+            return false;
+        }
+        Cubicle other = (Cubicle) object;
+        if (this.getId() != other.getId()
+                && (this.getId() == null || !this.getId().equals(other.getId()))) {
+            return false;
+        }
+        if (this.getLocation() != other.getLocation()
+                && (this.getLocation() == null || !this.getLocation().equals(other.getLocation()))) {
+            return false;
+        }
+        return true;
+    }
 
-  public Set<Hardware> getEquipment() {
-    return equipment;
-  }
+    public String toString() {
+        return "com.sun.ts.tests.jpa.core.override.joincolumn." + "Cubicle[id=" + getId() + " - " + getLocation() + "]";
+    }
 
-  public void setEquipment(Set<Hardware> equipment) {
-    this.equipment = equipment;
-  }
+    public Set<Hardware> getEquipment() {
+        return equipment;
+    }
 
-  public void addEquipment(Hardware equipment) {
-    this.equipment.add(equipment);
-  }
+    public void setEquipment(Set<Hardware> equipment) {
+        this.equipment = equipment;
+    }
 
-  public String getLocation() {
-    return location;
-  }
+    public void addEquipment(Hardware equipment) {
+        this.equipment.add(equipment);
+    }
 
-  public void setLocation(String location) {
-    this.location = location;
-  }
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 }

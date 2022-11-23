@@ -20,63 +20,59 @@
 
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.requiredfalse;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
 import jakarta.jws.WebService;
 
-@WebService(portName = "AddNumbersPort", serviceName = "AddNumbersService", targetNamespace = "http://example.com/", wsdlLocation = "WEB-INF/wsdl/WSAW2JDLRequiredFalseTest.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.requiredfalse.AddNumbersPortType")
+@WebService(
+        portName = "AddNumbersPort",
+        serviceName = "AddNumbersService",
+        targetNamespace = "http://example.com/",
+        wsdlLocation = "WEB-INF/wsdl/WSAW2JDLRequiredFalseTest.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.requiredfalse.AddNumbersPortType")
 public class AddNumbersImpl {
 
-  public int addNumbers(int number1, int number2)
-      throws AddNumbersFault_Exception {
-    return doStuff(number1, number2);
-  }
-
-  public int addNumbers2(int number1, int number2)
-      throws AddNumbersFault_Exception {
-    return doStuff(number1, number2);
-  }
-
-  public int addNumbers3(int number1, int number2)
-      throws AddNumbersFault_Exception {
-    return doStuff(number1, number2);
-  }
-
-  public int addNumbers4(int number1, int number2)
-      throws AddNumbersFault_Exception {
-    return doStuff(number1, number2);
-  }
-
-  public int addNumbers5(int number1, int number2)
-      throws AddNumbersFault_Exception {
-    return doStuff(number1, number2);
-  }
-
-  public int addNumbers6(int number1, int number2)
-      throws AddNumbersFault_Exception {
-    return doStuff(number1, number2);
-  }
-
-  public int addNumbers7(int number1, int number2)
-      throws AddNumbersFault_Exception {
-    return doStuff(number1, number2);
-  }
-
-  public int addNumbers8(int number1, int number2)
-      throws AddNumbersFault_Exception {
-    return doStuff(number1, number2);
-  }
-
-  int doStuff(int number1, int number2) throws AddNumbersFault_Exception {
-    if (number1 < 0 || number2 < 0) {
-      ObjectFactory of = new ObjectFactory();
-      AddNumbersFault fb = of.createAddNumbersFault();
-      fb.setDetail("Negative numbers cant be added!");
-      fb.setMessage("Numbers: " + number1 + ", " + number2);
-      throw new AddNumbersFault_Exception(fb.getMessage(), fb);
+    public int addNumbers(int number1, int number2) throws AddNumbersFault_Exception {
+        return doStuff(number1, number2);
     }
-    return number1 + number2;
-  }
+
+    public int addNumbers2(int number1, int number2) throws AddNumbersFault_Exception {
+        return doStuff(number1, number2);
+    }
+
+    public int addNumbers3(int number1, int number2) throws AddNumbersFault_Exception {
+        return doStuff(number1, number2);
+    }
+
+    public int addNumbers4(int number1, int number2) throws AddNumbersFault_Exception {
+        return doStuff(number1, number2);
+    }
+
+    public int addNumbers5(int number1, int number2) throws AddNumbersFault_Exception {
+        return doStuff(number1, number2);
+    }
+
+    public int addNumbers6(int number1, int number2) throws AddNumbersFault_Exception {
+        return doStuff(number1, number2);
+    }
+
+    public int addNumbers7(int number1, int number2) throws AddNumbersFault_Exception {
+        return doStuff(number1, number2);
+    }
+
+    public int addNumbers8(int number1, int number2) throws AddNumbersFault_Exception {
+        return doStuff(number1, number2);
+    }
+
+    int doStuff(int number1, int number2) throws AddNumbersFault_Exception {
+        if (number1 < 0 || number2 < 0) {
+            ObjectFactory of = new ObjectFactory();
+            AddNumbersFault fb = of.createAddNumbersFault();
+            fb.setDetail("Negative numbers cant be added!");
+            fb.setMessage("Numbers: " + number1 + ", " + number2);
+            throw new AddNumbersFault_Exception(fb.getMessage(), fb);
+        }
+        return number1 + number2;
+    }
 }

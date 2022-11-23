@@ -20,5 +20,4 @@
 
 package com.sun.ts.tests.ejb30.assembly.metainfandlibdir;
 
-public class TestServlet extends TestServletBase {
-}
+public class TestServlet extends TestServletBase {}

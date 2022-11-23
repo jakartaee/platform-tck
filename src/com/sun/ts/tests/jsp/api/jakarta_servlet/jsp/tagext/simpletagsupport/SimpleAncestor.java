@@ -24,65 +24,69 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.simpletagsupport;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.JspTag;
 import jakarta.servlet.jsp.tagext.SimpleTag;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class SimpleAncestor extends SimpleTagSupport {
 
-  /**
-   * Default constructor.
-   */
-  public SimpleAncestor() {
-    super();
-  }
-
-  /**
-   * Validates the behavior of getAncestorWithClass().
-   * 
-   * @throws JspException
-   *           - not thrown by this test
-   * @throws IOException
-   *           - not thrown by this test
-   */
-  public void doTag() throws JspException, IOException {
-    JspTestUtil.debug("[SimpleAncestor] in doTag()");
-    JspTag tag = SimpleTagSupport.findAncestorWithClass(this, SimpleTag.class);
-    if (tag != null) {
-      String lvl = ((SimpleParentTag) tag).getLevel();
-      if ("nested3".equals(lvl)) {
-        JspTag tag2 = SimpleTagSupport.findAncestorWithClass(this,
-            ClassicParent.class);
-        if (tag2 != null) {
-          String lvl2 = ((ClassicParent) tag2).getLevel();
-          if ("nested2".equals(lvl2)) {
-            this.getJspContext().getOut().println("Test PASSED");
-          } else {
-            this.getJspContext().getOut()
-                .println("Test FAILED.  The appropriate"
-                    + "ancestor type was returned, but the actual instance returned was"
-                    + "incorrect.  The attribute 'level' for the expected instance was "
-                    + "'nested2', received: " + lvl2);
-          }
-        } else {
-          this.getJspContext().getOut().println("Test FAILED.  Unabled to find"
-              + " ancestor with class 'com.sun.ts.tests.jsp.api.jakarta_servlet"
-              + ".jsp.tagext.simpletagsupport.ClassicParent'.");
-        }
-      } else {
-        this.getJspContext().getOut().println("Test FAILED.  The appropriate"
-            + "ancestor type was returned, but the actual instance returned was"
-            + "incorrect.  The attribute 'level' for the expected instance was "
-            + "'nested3', received: " + lvl);
-      }
-    } else {
-      this.getJspContext().getOut().println("Test FAILED.  Unable to find"
-          + " ancestor with class 'jakarta.servlet.jsp.tagext.SimpleTag',");
+    /**
+     * Default constructor.
+     */
+    public SimpleAncestor() {
+        super();
     }
-  }
+
+    /**
+     * Validates the behavior of getAncestorWithClass().
+     *
+     * @throws JspException
+     *           - not thrown by this test
+     * @throws IOException
+     *           - not thrown by this test
+     */
+    public void doTag() throws JspException, IOException {
+        JspTestUtil.debug("[SimpleAncestor] in doTag()");
+        JspTag tag = SimpleTagSupport.findAncestorWithClass(this, SimpleTag.class);
+        if (tag != null) {
+            String lvl = ((SimpleParentTag) tag).getLevel();
+            if ("nested3".equals(lvl)) {
+                JspTag tag2 = SimpleTagSupport.findAncestorWithClass(this, ClassicParent.class);
+                if (tag2 != null) {
+                    String lvl2 = ((ClassicParent) tag2).getLevel();
+                    if ("nested2".equals(lvl2)) {
+                        this.getJspContext().getOut().println("Test PASSED");
+                    } else {
+                        this.getJspContext()
+                                .getOut()
+                                .println("Test FAILED.  The appropriate"
+                                        + "ancestor type was returned, but the actual instance returned was"
+                                        + "incorrect.  The attribute 'level' for the expected instance was "
+                                        + "'nested2', received: " + lvl2);
+                    }
+                } else {
+                    this.getJspContext()
+                            .getOut()
+                            .println("Test FAILED.  Unabled to find"
+                                    + " ancestor with class 'com.sun.ts.tests.jsp.api.jakarta_servlet"
+                                    + ".jsp.tagext.simpletagsupport.ClassicParent'.");
+                }
+            } else {
+                this.getJspContext()
+                        .getOut()
+                        .println("Test FAILED.  The appropriate"
+                                + "ancestor type was returned, but the actual instance returned was"
+                                + "incorrect.  The attribute 'level' for the expected instance was "
+                                + "'nested3', received: " + lvl);
+            }
+        } else {
+            this.getJspContext()
+                    .getOut()
+                    .println("Test FAILED.  Unable to find"
+                            + " ancestor with class 'jakarta.servlet.jsp.tagext.SimpleTag',");
+        }
+    }
 }

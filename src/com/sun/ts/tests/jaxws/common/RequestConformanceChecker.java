@@ -21,109 +21,99 @@
 package com.sun.ts.tests.jaxws.common;
 
 import com.sun.ts.tests.jaxws.wsi.constants.WSIConstants;
-
+import jakarta.xml.soap.*;
+import jakarta.xml.ws.handler.MessageContext;
 import jakarta.xml.ws.handler.soap.SOAPHandler;
 import jakarta.xml.ws.handler.soap.SOAPMessageContext;
-import jakarta.xml.ws.handler.MessageContext;
-import javax.xml.namespace.QName;
-import jakarta.xml.soap.*;
-import java.util.Iterator;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
+import javax.xml.namespace.QName;
 
-import com.sun.ts.tests.jaxws.common.Handler_Util;
+public abstract class RequestConformanceChecker implements SOAPHandler<SOAPMessageContext>, WSIConstants {
 
-public abstract class RequestConformanceChecker
-    implements SOAPHandler<SOAPMessageContext>, WSIConstants {
+    // this is not threadsafe
+    protected String response;
 
-  // this is not threadsafe
-  protected String response;
-
-  public Set<QName> getHeaders() {
-    return new HashSet<QName>();
-  }
-
-  public void init(java.util.Map<String, Object> config) {
-  };
-
-  public boolean handleFault(SOAPMessageContext context) {
-    return true;
-  };
-
-  public void destroy() {
-  };
-
-  public void close(MessageContext context) {
-  };
-
-  public abstract void test(SOAPMessageContext context) throws SOAPException;
-
-  public boolean handleMessage(SOAPMessageContext context) {
-    System.out
-        .println("HANDLER: RequestConformanceChecker.handleMessage() BEGIN");
-    try {
-      if (Handler_Util.getDirection(context).equals(Constants.INBOUND)) {
-        if (isRequestTest((context))) {
-          System.out.println(
-              "HANDLER: RequestConformanceChecker.handleMessage() HANDLING REQUEST");
-          test(context);
-        }
-      } else {
-        if (response != null) {
-          System.out.println(
-              "HANDLER: RequestConformanceChecker.handleMessage() HANDLING RESPONSE");
-          setResponse(context);
-          response = null;
-        }
-      }
-    } catch (SOAPException se) {
-      com.sun.ts.lib.util.TestUtil.printStackTrace(se);
+    public Set<QName> getHeaders() {
+        return new HashSet<QName>();
     }
-    System.out
-        .println("HANDLER: RequestConformanceChecker.handleMessage() END");
-    return true;
-  }
 
-  private void setResponse(SOAPMessageContext context) throws SOAPException {
-    SOAPBody body = context.getMessage().getSOAPPart().getEnvelope().getBody();
-    SOAPElement responseElement = getResponseElement(body);
-    Iterator children = responseElement.getChildElements();
-    ((Text) children.next()).detachNode();
-    responseElement.addTextNode(response);
-    context.getMessage().saveChanges();
-  }
+    public void init(java.util.Map<String, Object> config) {}
+    ;
 
-  private SOAPElement getResponseElement(SOAPBody body) {
-    return getResponseElement((SOAPElement) body.getChildElements().next());
-  }
-
-  private SOAPElement getResponseElement(SOAPElement elem) {
-    if (elem.getChildElements().next() instanceof Text) {
-      return elem;
-    } else {
-      return getResponseElement((SOAPElement) elem.getChildElements().next());
+    public boolean handleFault(SOAPMessageContext context) {
+        return true;
     }
-  }
+    ;
 
-  private boolean isRequestTest(SOAPMessageContext context)
-      throws SOAPException {
-    SOAPHeader header = context.getMessage().getSOAPPart().getEnvelope()
-        .getHeader();
-    if (header != null) {
-      Iterator headers = header
-          .examineHeaderElements("http://conformance-checker.org");
-      SOAPHeaderElement headerElement;
-      while (headers.hasNext()) {
-        headerElement = (SOAPHeaderElement) headers.next();
-        if (headerElement.getElementName().getLocalName().equals("test")) {
-          if (headerElement.getValue().equals("request")) {
-            return true;
-          } else if (headerElement.getValue().equals("response")) {
-            return false;
-          }
+    public void destroy() {}
+    ;
+
+    public void close(MessageContext context) {}
+    ;
+
+    public abstract void test(SOAPMessageContext context) throws SOAPException;
+
+    public boolean handleMessage(SOAPMessageContext context) {
+        System.out.println("HANDLER: RequestConformanceChecker.handleMessage() BEGIN");
+        try {
+            if (Handler_Util.getDirection(context).equals(Constants.INBOUND)) {
+                if (isRequestTest((context))) {
+                    System.out.println("HANDLER: RequestConformanceChecker.handleMessage() HANDLING REQUEST");
+                    test(context);
+                }
+            } else {
+                if (response != null) {
+                    System.out.println("HANDLER: RequestConformanceChecker.handleMessage() HANDLING RESPONSE");
+                    setResponse(context);
+                    response = null;
+                }
+            }
+        } catch (SOAPException se) {
+            com.sun.ts.lib.util.TestUtil.printStackTrace(se);
         }
-      }
+        System.out.println("HANDLER: RequestConformanceChecker.handleMessage() END");
+        return true;
     }
-    return true;
-  }
+
+    private void setResponse(SOAPMessageContext context) throws SOAPException {
+        SOAPBody body = context.getMessage().getSOAPPart().getEnvelope().getBody();
+        SOAPElement responseElement = getResponseElement(body);
+        Iterator children = responseElement.getChildElements();
+        ((Text) children.next()).detachNode();
+        responseElement.addTextNode(response);
+        context.getMessage().saveChanges();
+    }
+
+    private SOAPElement getResponseElement(SOAPBody body) {
+        return getResponseElement((SOAPElement) body.getChildElements().next());
+    }
+
+    private SOAPElement getResponseElement(SOAPElement elem) {
+        if (elem.getChildElements().next() instanceof Text) {
+            return elem;
+        } else {
+            return getResponseElement((SOAPElement) elem.getChildElements().next());
+        }
+    }
+
+    private boolean isRequestTest(SOAPMessageContext context) throws SOAPException {
+        SOAPHeader header = context.getMessage().getSOAPPart().getEnvelope().getHeader();
+        if (header != null) {
+            Iterator headers = header.examineHeaderElements("http://conformance-checker.org");
+            SOAPHeaderElement headerElement;
+            while (headers.hasNext()) {
+                headerElement = (SOAPHeaderElement) headers.next();
+                if (headerElement.getElementName().getLocalName().equals("test")) {
+                    if (headerElement.getValue().equals("request")) {
+                        return true;
+                    } else if (headerElement.getValue().equals("response")) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
 }

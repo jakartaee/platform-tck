@@ -21,61 +21,58 @@
 
 package com.sun.ts.tests.webservices12.sec.annotations.ejb.clientcert;
 
-import jakarta.annotation.security.DeclareRoles;
-import jakarta.annotation.security.RolesAllowed;
-import jakarta.annotation.security.PermitAll;
-import jakarta.annotation.security.DenyAll;
-
-import jakarta.ejb.Stateless;
-import jakarta.jws.WebService;
-import jakarta.jws.WebMethod;
-import jakarta.xml.ws.WebServiceContext;
 import jakarta.annotation.Resource;
+import jakarta.annotation.security.DeclareRoles;
+import jakarta.annotation.security.DenyAll;
+import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.ejb.Stateless;
+import jakarta.jws.WebMethod;
+import jakarta.jws.WebService;
+import jakarta.xml.ws.WebServiceContext;
 
 @WebService
 @Stateless
-
-@DeclareRoles({ "Administrator", "Manager" })
+@DeclareRoles({"Administrator", "Manager"})
 public class Hello {
 
-  @Resource
-  private WebServiceContext context;
+    @Resource
+    private WebServiceContext context;
 
-  String certname = null;
+    String certname = null;
 
-  boolean isUserInRoleAdministrator = false;
+    boolean isUserInRoleAdministrator = false;
 
-  @WebMethod
-  @RolesAllowed("Administrator")
-  public String sayHelloProtected(String param) {
+    @WebMethod
+    @RolesAllowed("Administrator")
+    public String sayHelloProtected(String param) {
 
-    if (context.getUserPrincipal() != null)
-      certname = context.getUserPrincipal().getName();
-    isUserInRoleAdministrator = context.isUserInRole("Administrator");
+        if (context.getUserPrincipal() != null)
+            certname = context.getUserPrincipal().getName();
+        isUserInRoleAdministrator = context.isUserInRole("Administrator");
 
-    return "Invoked with client certificate :" + certname
-        + " : isUserInRoleAdministrator =" + isUserInRoleAdministrator
-        + " : Hello " + param;
-  }
+        return "Invoked with client certificate :" + certname
+                + " : isUserInRoleAdministrator =" + isUserInRoleAdministrator
+                + " : Hello " + param;
+    }
 
-  @WebMethod
-  @PermitAll
-  public String sayHelloPermitAll(String param) {
+    @WebMethod
+    @PermitAll
+    public String sayHelloPermitAll(String param) {
 
-    if (context.getUserPrincipal() != null)
-      certname = context.getUserPrincipal().getName();
-    isUserInRoleAdministrator = context.isUserInRole("Administrator");
+        if (context.getUserPrincipal() != null)
+            certname = context.getUserPrincipal().getName();
+        isUserInRoleAdministrator = context.isUserInRole("Administrator");
 
-    return "Invoked with client certificate :" + certname
-        + " : isUserInRoleAdministrator =" + isUserInRoleAdministrator
-        + " : Hello " + param;
-  }
+        return "Invoked with client certificate :" + certname
+                + " : isUserInRoleAdministrator =" + isUserInRoleAdministrator
+                + " : Hello " + param;
+    }
 
-  @WebMethod
-  @DenyAll
-  public String sayHelloDenyAll(String param) {
+    @WebMethod
+    @DenyAll
+    public String sayHelloDenyAll(String param) {
 
-    return "Hello " + param;
-  }
-
+        return "Hello " + param;
+    }
 }

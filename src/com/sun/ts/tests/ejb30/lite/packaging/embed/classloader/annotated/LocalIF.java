@@ -19,24 +19,21 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.embed.classloader.annotated;
 
+import jakarta.ejb.Local;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import jakarta.ejb.Local;
-
 @Local
 public interface LocalIF {
-  public String getName();
+    public String getName();
 
-  public List<String> call123();
+    public List<String> call123();
 
-  public StringBuilder getPostConstructRecords();
+    public StringBuilder getPostConstructRecords();
 
-  public StringBuilder lookupJNDINames(String appName, String moduleName1,
-      String moduleName2, String moduleName3);
+    public StringBuilder lookupJNDINames(String appName, String moduleName1, String moduleName2, String moduleName3);
 
-  public List<String> setupOneBean(String url, String user, String password,
-      String driverName);
+    public List<String> setupOneBean(String url, String user, String password, String driverName);
 
-  public List<String> setupOneBeanWithArrayList(CopyOnWriteArrayList arrayList);
+    public List<String> setupOneBeanWithArrayList(CopyOnWriteArrayList arrayList);
 }

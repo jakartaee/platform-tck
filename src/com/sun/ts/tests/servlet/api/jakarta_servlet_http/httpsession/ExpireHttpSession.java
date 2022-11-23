@@ -16,29 +16,26 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpsession;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class ExpireHttpSession extends HttpServlet {
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    HttpSession session = request.getSession(false);
-    if (session == null) {
-      pw.println("Session expired as expected.");
-      ServletTestUtil.printResult(pw, true);
-    } else {
-      pw.println("Test Failed. Session didnot expire as expected.");
-      ServletTestUtil.printResult(pw, false);
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            pw.println("Session expired as expected.");
+            ServletTestUtil.printResult(pw, true);
+        } else {
+            pw.println("Test Failed. Session didnot expire as expected.");
+            ServletTestUtil.printResult(pw, false);
+        }
     }
-  }
 }

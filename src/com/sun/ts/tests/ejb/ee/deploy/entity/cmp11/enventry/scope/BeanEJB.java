@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP11Wrapper;
 
 public class BeanEJB extends CMP11Wrapper {
 
-  public boolean checkEntry(String name, String ref) {
-    return TestCode.checkEntry(nctx, name, ref);
-  }
-
+    public boolean checkEntry(String name, String ref) {
+        return TestCode.checkEntry(nctx, name, ref);
+    }
 }

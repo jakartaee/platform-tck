@@ -19,7 +19,6 @@ package com.sun.ts.tests.websocket.negdep.onmessage.client.pongduplicate;
 
 import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.OnError;
@@ -31,34 +30,32 @@ import jakarta.websocket.Session;
 @ClientEndpoint
 public class OnMessageClientEndpoint extends AnnotatedStringClientEndpoint {
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) {
-    clientEndpoint.onError(session, t);
-  }
+    @Override
+    @OnError
+    public void onError(Session session, Throwable t) {
+        clientEndpoint.onError(session, t);
+    }
 
-  @OnMessage
-  public void onMessage(PongMessage msg) {
-    clientEndpoint
-        .onMessage(IOUtil.byteBufferToString(msg.getApplicationData()));
-  }
+    @OnMessage
+    public void onMessage(PongMessage msg) {
+        clientEndpoint.onMessage(IOUtil.byteBufferToString(msg.getApplicationData()));
+    }
 
-  @SuppressWarnings("unused")
-  @OnMessage
-  public void onMessage(PongMessage msg, Session session) {
-    clientEndpoint
-        .onMessage(IOUtil.byteBufferToString(msg.getApplicationData()));
-  }
+    @SuppressWarnings("unused")
+    @OnMessage
+    public void onMessage(PongMessage msg, Session session) {
+        clientEndpoint.onMessage(IOUtil.byteBufferToString(msg.getApplicationData()));
+    }
 
-  @Override
-  @OnMessage
-  public void onMessage(String msg) {
-    clientEndpoint.onMessage(msg);
-  }
+    @Override
+    @OnMessage
+    public void onMessage(String msg) {
+        clientEndpoint.onMessage(msg);
+    }
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    clientEndpoint.onOpen(session, config, false);
-  }
+    @Override
+    @OnOpen
+    public void onOpen(Session session, EndpointConfig config) {
+        clientEndpoint.onOpen(session, config, false);
+    }
 }

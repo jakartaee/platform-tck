@@ -17,7 +17,7 @@
 package com.sun.ts.tests.jms.ee20.cditests.usecases;
 
 public interface BMBean2IF {
-  public void init(java.util.Properties p);
+    public void init(java.util.Properties p);
 
-  public void method2();
+    public void method2();
 }

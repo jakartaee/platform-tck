@@ -58,30 +58,25 @@
 
 package com.sun.ts.tests.servlet.common.servlets;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class HttpCheckTestResultServlet extends HttpServlet {
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
-    String result = (String) getServletContext().getAttribute("testresult");
-    if (result != null) {
-      pw.println(result);
-    } else {
-      pw.println(
-          "CheckTestResultServlet could not access the testresult attribute from the context");
-      ServletTestUtil.printResult(pw, false);
-
+        PrintWriter pw = response.getWriter();
+        String result = (String) getServletContext().getAttribute("testresult");
+        if (result != null) {
+            pw.println(result);
+        } else {
+            pw.println("CheckTestResultServlet could not access the testresult attribute from the context");
+            ServletTestUtil.printResult(pw, false);
+        }
     }
-  }
 }

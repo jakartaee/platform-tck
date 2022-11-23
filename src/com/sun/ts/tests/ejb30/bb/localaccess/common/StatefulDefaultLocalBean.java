@@ -25,24 +25,23 @@ import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 
-//@Stateful(name="StatefulDefaultLocalBean")
+// @Stateful(name="StatefulDefaultLocalBean")
 @Stateful
 // @Local({StatefulDefaultLocalIF.class})
 // only one interface is implemented. Serializable is excluded from business
 // interface searching. local by default.
-public class StatefulDefaultLocalBean extends CommonBase
-    implements StatefulDefaultLocalIF, java.io.Serializable {
+public class StatefulDefaultLocalBean extends CommonBase implements StatefulDefaultLocalIF, java.io.Serializable {
 
-  @Resource
-  private SessionContext sessionContext;
+    @Resource
+    private SessionContext sessionContext;
 
-  public StatefulDefaultLocalBean() {
-    super();
-  }
+    public StatefulDefaultLocalBean() {
+        super();
+    }
 
-  // ================== business methods ====================================
-  @Remove
-  public void remove() {
-    super.remove();
-  }
+    // ================== business methods ====================================
+    @Remove
+    public void remove() {
+        super.remove();
+    }
 }

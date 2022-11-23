@@ -21,9 +21,7 @@
 package com.sun.ts.tests.ejb30.lite.packaging.war.servletcontextlistener;
 
 import com.sun.ts.tests.ejb30.lite.basic.common.BasicBeanBase;
-
 import jakarta.ejb.Stateless;
 
 @Stateless
-public class StatelessBean extends BasicBeanBase {
-}
+public class StatelessBean extends BasicBeanBase {}

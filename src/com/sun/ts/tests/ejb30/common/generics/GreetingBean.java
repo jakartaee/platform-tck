@@ -25,32 +25,31 @@ import jakarta.ejb.Stateless;
 
 @Stateless
 public class GreetingBean extends GreetingBeanBase
-    implements RemoteIntGreetingIF, LocalIntGreetingIF, RemoteParameterizedIF,
-    LocalParameterizedIF {
+        implements RemoteIntGreetingIF, LocalIntGreetingIF, RemoteParameterizedIF, LocalParameterizedIF {
 
-  // inherit business methods from GreetingBeanBase, along with their
-  // @TransactionAttribute
+    // inherit business methods from GreetingBeanBase, along with their
+    // @TransactionAttribute
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * com.sun.ts.tests.ejb30.common.generics.GenericGreetingIF#rolesAllowed()
-   */
-  @RolesAllowed("Administrator")
-  public Integer rolesAllowed(Integer i) {
-    return i;
-  }
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * com.sun.ts.tests.ejb30.common.generics.GenericGreetingIF#rolesAllowed()
+     */
+    @RolesAllowed("Administrator")
+    public Integer rolesAllowed(Integer i) {
+        return i;
+    }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * com.sun.ts.tests.ejb30.common.generics.GenericGreetingIF#rolesAllowedNoArg(
-   * )
-   */
-  @RolesAllowed("Manager")
-  public Integer rolesAllowedNoArg() {
-    return 0;
-  }
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * com.sun.ts.tests.ejb30.common.generics.GenericGreetingIF#rolesAllowedNoArg(
+     * )
+     */
+    @RolesAllowed("Manager")
+    public Integer rolesAllowedNoArg() {
+        return 0;
+    }
 }

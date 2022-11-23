@@ -21,77 +21,73 @@ package com.sun.ts.tests.ejb30.lite.tx.cm.common;
 
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 
-abstract public class RWClientBase extends EJBLiteClientBase {
-  protected RWTestBeanBase0 testBean; // injected in subclass
+public abstract class RWClientBase extends EJBLiteClientBase {
+    protected RWTestBeanBase0 testBean; // injected in subclass
 
-  // overridden in stateful to use lookup
-  protected RWTestBeanBase0 getTestBean() {
-    return testBean;
-  }
+    // overridden in stateful to use lookup
+    protected RWTestBeanBase0 getTestBean() {
+        return testBean;
+    }
 
-  /*
-   * testName: mandatory
-   * 
-   * @test_Strategy:
-   */
-  public void mandatory() {
-    appendReason("Persist and flush:", getTestBean().mandatory(true));
-    appendReason("Persist without flush:", getTestBean().mandatory(false));
-  }
+    /*
+     * testName: mandatory
+     *
+     * @test_Strategy:
+     */
+    public void mandatory() {
+        appendReason("Persist and flush:", getTestBean().mandatory(true));
+        appendReason("Persist without flush:", getTestBean().mandatory(false));
+    }
 
-  /*
-   * testName: required
-   * 
-   * @test_Strategy:
-   */
-  public void required() {
-    appendReason("Persist without flush:", getTestBean().required(false));
-    appendReason("Persist and flush:", getTestBean().required(true));
+    /*
+     * testName: required
+     *
+     * @test_Strategy:
+     */
+    public void required() {
+        appendReason("Persist without flush:", getTestBean().required(false));
+        appendReason("Persist and flush:", getTestBean().required(true));
 
-    appendReason("Persist without flush:",
-        getTestBean().requiredNoExistingTransaction(false));
-    appendReason("Persist and flush:",
-        getTestBean().requiredNoExistingTransaction(true));
-  }
+        appendReason("Persist without flush:", getTestBean().requiredNoExistingTransaction(false));
+        appendReason("Persist and flush:", getTestBean().requiredNoExistingTransaction(true));
+    }
 
-  /*
-   * testName: requiredNoExistingTransaction
-   * 
-   * @test_Strategy:
-   */
-  public void requiredNoExistingTransaction() {
-    appendReason("Persist without flush:",
-        getTestBean().requiredNoExistingTransaction(false));
-    appendReason("Persist and flush:",
-        getTestBean().requiredNoExistingTransaction(true));
-  }
+    /*
+     * testName: requiredNoExistingTransaction
+     *
+     * @test_Strategy:
+     */
+    public void requiredNoExistingTransaction() {
+        appendReason("Persist without flush:", getTestBean().requiredNoExistingTransaction(false));
+        appendReason("Persist and flush:", getTestBean().requiredNoExistingTransaction(true));
+    }
 
-  /*
-   * testName: supports
-   * 
-   * @test_Strategy:
-   */
-  public void supports() {
-    appendReason("Persist without flush:", getTestBean().supports(false));
-    appendReason("Persist and flush:", getTestBean().supports(true));
-  }
+    /*
+     * testName: supports
+     *
+     * @test_Strategy:
+     */
+    public void supports() {
+        appendReason("Persist without flush:", getTestBean().supports(false));
+        appendReason("Persist and flush:", getTestBean().supports(true));
+    }
 
-  /*
-   * testName: requiresNew
-   * 
-   * @test_Strategy:
-   */
-  public void requiresNew() {
-    appendReason("Persist without flush:", getTestBean().requiresNew(false));
-    appendReason("Persist and flush:", getTestBean().requiresNew(true));
-  }
+    /*
+     * testName: requiresNew
+     *
+     * @test_Strategy:
+     */
+    public void requiresNew() {
+        appendReason("Persist without flush:", getTestBean().requiresNew(false));
+        appendReason("Persist and flush:", getTestBean().requiresNew(true));
+    }
 
-  /*
-   * testName: postConstructTransaction
-   * 
-   * @test_Strategy:
-   */
-  public void postConstructTransaction() {
-    getTestBean().postConstructTransaction(getReasonBuffer());
-  }
+    /*
+     * testName: postConstructTransaction
+     *
+     * @test_Strategy:
+     */
+    public void postConstructTransaction() {
+        getTestBean().postConstructTransaction(getReasonBuffer());
+    }
 }

@@ -26,83 +26,85 @@ import com.sun.ts.tests.ejb30.assembly.common.Util;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public class Client extends ClientBase {
-  private static final String RESOURCE_NAME = "foo.txt";
+    private static final String RESOURCE_NAME = "foo.txt";
 
-  private static final String RESOURCE_NAME_AT_ROOT = "/foo.txt";
+    private static final String RESOURCE_NAME_AT_ROOT = "/foo.txt";
 
-  private static final String RESOURCE_NAME_AT_COMMON_DIR = "/com/sun/ts/tests/ejb30/assembly/common/foo.txt";
+    private static final String RESOURCE_NAME_AT_COMMON_DIR = "/com/sun/ts/tests/ejb30/assembly/common/foo.txt";
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * @testName: libDirDisabled
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: EAR/lib/*.jar are not included in classpath
-   */
-  public void libDirDisabled() throws TestFailedException {
-    Util.verifyGetResource(getClass(), RESOURCE_NAME, null);
-    Util.verifyGetResource(getClass(), RESOURCE_NAME_AT_ROOT, null);
-    Util.verifyGetResource(getClass(), RESOURCE_NAME_AT_COMMON_DIR, null);
-  }
+    /*
+     * @testName: libDirDisabled
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: EAR/lib/*.jar are not included in classpath
+     */
+    public void libDirDisabled() throws TestFailedException {
+        Util.verifyGetResource(getClass(), RESOURCE_NAME, null);
+        Util.verifyGetResource(getClass(), RESOURCE_NAME_AT_ROOT, null);
+        Util.verifyGetResource(getClass(), RESOURCE_NAME_AT_COMMON_DIR, null);
+    }
 
-  /*
-   * @testName: libDirDisabledEJB
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: EAR/lib/*.jar are not included in classpath
-   */
-  public void libDirDisabledEJB() throws TestFailedException {
-    Util.verifyResource(remoteAssemblyBean, RESOURCE_NAME, null,
-        remoteAssemblyBean.getResource(RESOURCE_NAME));
-    Util.verifyResource(remoteAssemblyBean, RESOURCE_NAME_AT_ROOT, null,
-        remoteAssemblyBean.getResource(RESOURCE_NAME_AT_ROOT));
-    Util.verifyResource(remoteAssemblyBean, RESOURCE_NAME_AT_COMMON_DIR, null,
-        remoteAssemblyBean.getResource(RESOURCE_NAME_AT_COMMON_DIR));
-  }
+    /*
+     * @testName: libDirDisabledEJB
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: EAR/lib/*.jar are not included in classpath
+     */
+    public void libDirDisabledEJB() throws TestFailedException {
+        Util.verifyResource(remoteAssemblyBean, RESOURCE_NAME, null, remoteAssemblyBean.getResource(RESOURCE_NAME));
+        Util.verifyResource(
+                remoteAssemblyBean, RESOURCE_NAME_AT_ROOT, null, remoteAssemblyBean.getResource(RESOURCE_NAME_AT_ROOT));
+        Util.verifyResource(
+                remoteAssemblyBean,
+                RESOURCE_NAME_AT_COMMON_DIR,
+                null,
+                remoteAssemblyBean.getResource(RESOURCE_NAME_AT_COMMON_DIR));
+    }
 
-  /*
-   * @testName: postConstructInvokedInSuperElseWhere
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: PostConstruct method must be invoked even when it's in a
-   * superclass not packaged in appclient-client.jar
-   */
+    /*
+     * @testName: postConstructInvokedInSuperElseWhere
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: PostConstruct method must be invoked even when it's in a
+     * superclass not packaged in appclient-client.jar
+     */
 
-  /*
-   * @testName: remoteAdd
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: remoteAdd
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
 
-  /*
-   * @testName: remoteAddByHelloEJB
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: hello ejb is packaged as a standalone ejb module and
-   * deployed separately. It client view jar is packaged inside current ear and
-   * referenced by both appclient and ejb jar thru MANIFEST.MF appclient ->
-   * helloBean
-   */
+    /*
+     * @testName: remoteAddByHelloEJB
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: hello ejb is packaged as a standalone ejb module and
+     * deployed separately. It client view jar is packaged inside current ear and
+     * referenced by both appclient and ejb jar thru MANIFEST.MF appclient ->
+     * helloBean
+     */
 
-  /*
-   * @testName: remoteAddByHelloEJBFromAssemblyBean
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: hello ejb is packaged as a standalone ejb module and
-   * deployed separately. It client view jar is packaged inside current ear and
-   * referenced by both appclient and ejb jar thru MANIFEST.MF appclient ->
-   * assemblyBean -> helloBean
-   */
+    /*
+     * @testName: remoteAddByHelloEJBFromAssemblyBean
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: hello ejb is packaged as a standalone ejb module and
+     * deployed separately. It client view jar is packaged inside current ear and
+     * referenced by both appclient and ejb jar thru MANIFEST.MF appclient ->
+     * assemblyBean -> helloBean
+     */
 }

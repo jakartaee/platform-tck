@@ -17,38 +17,33 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+import jakarta.websocket.DecodeException;
+import jakarta.websocket.Decoder;
+import jakarta.websocket.EndpointConfig;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 
-import com.sun.ts.tests.websocket.common.util.IOUtil;
+public class AlternativeInputStreamDecoder implements Decoder.Binary<InputStream> {
 
-import jakarta.websocket.DecodeException;
-import jakarta.websocket.Decoder;
-import jakarta.websocket.EndpointConfig;
+    public static final String DECODER_SAYS = "InputStream decoder";
 
-public class AlternativeInputStreamDecoder
-    implements Decoder.Binary<InputStream> {
+    @Override
+    public void init(EndpointConfig config) {}
 
-  public static final String DECODER_SAYS = "InputStream decoder";
+    @Override
+    public void destroy() {}
 
-  @Override
-  public void init(EndpointConfig config) {
-  }
+    @Override
+    public boolean willDecode(ByteBuffer bytes) {
+        return true;
+    }
 
-  @Override
-  public void destroy() {
-  }
-
-  @Override
-  public boolean willDecode(ByteBuffer bytes) {
-    return true;
-  }
-
-  @Override
-  public InputStream decode(ByteBuffer bytes) throws DecodeException {
-    String s = DECODER_SAYS + IOUtil.byteBufferToString(bytes);
-    ByteArrayInputStream bais = new ByteArrayInputStream(s.getBytes());
-    return bais;
-  }
+    @Override
+    public InputStream decode(ByteBuffer bytes) throws DecodeException {
+        String s = DECODER_SAYS + IOUtil.byteBufferToString(bytes);
+        ByteArrayInputStream bais = new ByteArrayInputStream(s.getBytes());
+        return bais;
+    }
 }

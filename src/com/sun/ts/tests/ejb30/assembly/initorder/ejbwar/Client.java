@@ -20,56 +20,53 @@
 
 package com.sun.ts.tests.ejb30.assembly.initorder.ejbwar;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class Client extends AbstractUrlClient {
 
-  public static final String CONTEXT_ROOT = "/ejb3_assembly_initorder_ejbwar"; // see
-                                                                               // application.xml
+    public static final String CONTEXT_ROOT = "/ejb3_assembly_initorder_ejbwar"; // see
+    // application.xml
 
-  public static final String SERVLET_NAME = "TestServlet";
+    public static final String SERVLET_NAME = "TestServlet";
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  @Override
-  public Status run(String args[], PrintWriter out, PrintWriter pw) {
-    setServletName(SERVLET_NAME);
-    setContextRoot(CONTEXT_ROOT);
-    return super.run(args, out, pw);
-  }
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    @Override
+    public Status run(String args[], PrintWriter out, PrintWriter pw) {
+        setServletName(SERVLET_NAME);
+        setContextRoot(CONTEXT_ROOT);
+        return super.run(args, out, pw);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /*
-   * @testName: initOrder
-   * 
-   * @test_Strategy: verify <initialize-in-order> set to true. The web module is
-   * initialized before ejb module. The ejb module contains a singleton ejb with
-   * 
-   * @Startup set to true.
-   */
-  public void initOrder() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "initOrder");
-    invoke();
-  }
-
+    /*
+     * @testName: initOrder
+     *
+     * @test_Strategy: verify <initialize-in-order> set to true. The web module is
+     * initialized before ejb module. The ejb module contains a singleton ejb with
+     *
+     * @Startup set to true.
+     */
+    public void initOrder() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "initOrder");
+        invoke();
+    }
 }

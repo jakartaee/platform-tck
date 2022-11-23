@@ -18,7 +18,6 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpointreturntype;
 
 import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
-
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -30,27 +29,27 @@ import jakarta.websocket.Session;
 
 @ClientEndpoint
 public class WSCFullDoubleClientEndpoint extends AnnotatedStringClientEndpoint {
-  @OnMessage
-  public Double echo(String data) {
-    super.onMessage(data);
-    return Double.valueOf(data);
-  }
+    @OnMessage
+    public Double echo(String data) {
+        super.onMessage(data);
+        return Double.valueOf(data);
+    }
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+    @OnError
+    @Override
+    public void onError(Session session, Throwable t) {
+        super.onError(session, t);
+    }
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+    @OnClose
+    @Override
+    public void onClose(Session session, CloseReason closeReason) {
+        super.onClose(session, closeReason);
+    }
 
-  @OnOpen
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+    @OnOpen
+    @Override
+    public void onOpen(Session session, EndpointConfig config) {
+        super.onOpen(session, config);
+    }
 }

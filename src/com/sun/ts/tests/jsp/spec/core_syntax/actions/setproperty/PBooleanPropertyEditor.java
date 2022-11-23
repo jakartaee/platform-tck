@@ -23,23 +23,20 @@ package com.sun.ts.tests.jsp.spec.core_syntax.actions.setproperty;
 import java.beans.PropertyEditorSupport;
 
 public class PBooleanPropertyEditor extends PropertyEditorSupport {
-  public PBooleanPropertyEditor() {
+    public PBooleanPropertyEditor() {}
 
-  }
-
-  /**
-   *
-   * @param param1
-   *          String value of "true" or "false"
-   * @exception java.lang.IllegalArgumentException
-   *              if unable to set the property.
-   */
-  public void setAsText(String param1) throws IllegalArgumentException {
-    if (param1.equals("true")) {
-      setValue(Boolean.FALSE);
-    } else {
-      setValue(Boolean.TRUE);
+    /**
+     *
+     * @param param1
+     *          String value of "true" or "false"
+     * @exception java.lang.IllegalArgumentException
+     *              if unable to set the property.
+     */
+    public void setAsText(String param1) throws IllegalArgumentException {
+        if (param1.equals("true")) {
+            setValue(Boolean.FALSE);
+        } else {
+            setValue(Boolean.TRUE);
+        }
     }
-  }
-
-}// PBooleanPropertyEditor
+} // PBooleanPropertyEditor

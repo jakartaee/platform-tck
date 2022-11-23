@@ -20,75 +20,73 @@
 
 package com.sun.ts.tests.servlet.ee.platform.deploy.enventry.single;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.assembly.util.shared.enventry.single.TestCode;
 import com.sun.ts.tests.common.web.ServletWrapper;
+import java.util.Properties;
 
 /** Servlet test driver */
 public class ServletTest extends ServletWrapper {
 
-  public Boolean testCharacterEntry(Properties props) {
-    boolean pass;
+    public Boolean testCharacterEntry(Properties props) {
+        boolean pass;
 
-    pass = TestCode.testCharacterEntry(nctx);
-    return Boolean.valueOf(pass);
-  }
+        pass = TestCode.testCharacterEntry(nctx);
+        return Boolean.valueOf(pass);
+    }
 
-  public Boolean testStringEntry(Properties props) {
-    boolean pass;
+    public Boolean testStringEntry(Properties props) {
+        boolean pass;
 
-    pass = TestCode.testStringEntry(nctx);
-    return Boolean.valueOf(pass);
-  }
+        pass = TestCode.testStringEntry(nctx);
+        return Boolean.valueOf(pass);
+    }
 
-  public Boolean testBooleanEntry(Properties props) {
-    boolean pass;
+    public Boolean testBooleanEntry(Properties props) {
+        boolean pass;
 
-    pass = TestCode.testBooleanEntry(nctx);
-    return Boolean.valueOf(pass);
-  }
+        pass = TestCode.testBooleanEntry(nctx);
+        return Boolean.valueOf(pass);
+    }
 
-  public Boolean testByteEntry(Properties props) {
-    boolean pass;
+    public Boolean testByteEntry(Properties props) {
+        boolean pass;
 
-    pass = TestCode.testByteEntry(nctx);
-    return Boolean.valueOf(pass);
-  }
+        pass = TestCode.testByteEntry(nctx);
+        return Boolean.valueOf(pass);
+    }
 
-  public Boolean testShortEntry(Properties props) {
-    boolean pass;
+    public Boolean testShortEntry(Properties props) {
+        boolean pass;
 
-    pass = TestCode.testShortEntry(nctx);
-    return Boolean.valueOf(pass);
-  }
+        pass = TestCode.testShortEntry(nctx);
+        return Boolean.valueOf(pass);
+    }
 
-  public Boolean testIntegerEntry(Properties props) {
-    boolean pass;
+    public Boolean testIntegerEntry(Properties props) {
+        boolean pass;
 
-    pass = TestCode.testIntegerEntry(nctx);
-    return Boolean.valueOf(pass);
-  }
+        pass = TestCode.testIntegerEntry(nctx);
+        return Boolean.valueOf(pass);
+    }
 
-  public Boolean testLongEntry(Properties props) {
-    boolean pass;
+    public Boolean testLongEntry(Properties props) {
+        boolean pass;
 
-    pass = TestCode.testLongEntry(nctx);
-    return Boolean.valueOf(pass);
-  }
+        pass = TestCode.testLongEntry(nctx);
+        return Boolean.valueOf(pass);
+    }
 
-  public Boolean testFloatEntry(Properties props) {
-    boolean pass;
+    public Boolean testFloatEntry(Properties props) {
+        boolean pass;
 
-    pass = TestCode.testFloatEntry(nctx);
-    return Boolean.valueOf(pass);
-  }
+        pass = TestCode.testFloatEntry(nctx);
+        return Boolean.valueOf(pass);
+    }
 
-  public Boolean testDoubleEntry(Properties props) {
-    boolean pass;
+    public Boolean testDoubleEntry(Properties props) {
+        boolean pass;
 
-    pass = TestCode.testDoubleEntry(nctx);
-    return Boolean.valueOf(pass);
-  }
-
+        pass = TestCode.testDoubleEntry(nctx);
+        return Boolean.valueOf(pass);
+    }
 }

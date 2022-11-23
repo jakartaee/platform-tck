@@ -24,13 +24,13 @@ import jakarta.jws.WebService;
 
 @WebService(targetNamespace = "http://doclitservice.org/wsdl")
 public interface J2WDLSharedEndpoint {
-  public String helloWorld();
+    public String helloWorld();
 
-  public String stringOperation(String param);
+    public String stringOperation(String param);
 
-  public String[] arrayOperation();
+    public String[] arrayOperation();
 
-  public J2WDLSharedBean getBean();
+    public J2WDLSharedBean getBean();
 
-  public String arrayOperationFromClient(String[] array);
+    public String arrayOperationFromClient(String[] array);
 }

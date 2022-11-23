@@ -20,17 +20,13 @@
 
 package com.sun.ts.tests.ejb.ee.sec.cmp20.common;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
 
 public interface TestHome extends EJBHome {
-  public Test create(int cofID, String cofName, float cofPrice)
-      throws RemoteException, CreateException;
+    public Test create(int cofID, String cofName, float cofPrice) throws RemoteException, CreateException;
 
-  public Test findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
-
+    public Test findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 }

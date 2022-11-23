@@ -24,18 +24,17 @@ import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-abstract public class DBeanBase extends TxBeanBase {
+public abstract class DBeanBase extends TxBeanBase {
 
-  public DBeanBase() {
-  }
+    public DBeanBase() {}
 
-  // This method has REQUIRES_NEW transaction attribute.
-  public String bar() {
-    return super.bar();
-  }
+    // This method has REQUIRES_NEW transaction attribute.
+    public String bar() {
+        return super.bar();
+    }
 
-  @Override()
-  protected void barImpl() {
-    setRollbackOnly();
-  }
+    @Override()
+    protected void barImpl() {
+        setRollbackOnly();
+    }
 }

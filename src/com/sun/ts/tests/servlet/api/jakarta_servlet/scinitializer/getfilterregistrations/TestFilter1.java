@@ -19,40 +19,38 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.getfilterregistrations;
 
-import java.io.IOException;
-
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
 
 public final class TestFilter1 implements Filter {
 
-  // The filter configuration object we are associated with. If this value
-  // is null, this filter instance is not currently configured.
-  private FilterConfig filterConfig;
+    // The filter configuration object we are associated with. If this value
+    // is null, this filter instance is not currently configured.
+    private FilterConfig filterConfig;
 
-  public void doFilter(ServletRequest request, ServletResponse response,
-      FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-    if (filterConfig == null) {
-      System.out.println(
-          "doFilter of TestFilter1 was called but this filter instance is not currently configured");
-    } else {
-      System.out.println("TEST_FILTER1_INVOKED");
+        if (filterConfig == null) {
+            System.out.println(
+                    "doFilter of TestFilter1 was called but this filter instance is not currently configured");
+        } else {
+            System.out.println("TEST_FILTER1_INVOKED");
+        }
+
+        chain.doFilter(request, response);
     }
 
-    chain.doFilter(request, response);
-  }
+    // Remove the filter configuration object for this filter.
+    public void destroy() {}
 
-  // Remove the filter configuration object for this filter.
-  public void destroy() {
-  }
-
-  // initialize the filter configuration object for this filter.
-  public void init(FilterConfig filterConfig) {
-    this.filterConfig = filterConfig;
-  }
+    // initialize the filter configuration object for this filter.
+    public void init(FilterConfig filterConfig) {
+        this.filterConfig = filterConfig;
+    }
 }

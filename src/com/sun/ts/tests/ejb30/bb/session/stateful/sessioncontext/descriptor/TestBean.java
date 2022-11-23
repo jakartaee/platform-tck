@@ -27,7 +27,6 @@ import com.sun.ts.tests.ejb30.common.sessioncontext.ThreeLocal1IF;
 import com.sun.ts.tests.ejb30.common.sessioncontext.ThreeLocal2IF;
 import com.sun.ts.tests.ejb30.common.sessioncontext.TwoLocalHome;
 import com.sun.ts.tests.ejb30.common.sessioncontext.TwoLocalIF;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Remove;
@@ -35,69 +34,67 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
-//@Stateful(name="TestBean")
-//@Remote({TestIF.class})
-//use bmt
-//assembler not permitted to override transaction management type.
+// @Stateful(name="TestBean")
+// @Remote({TestIF.class})
+// use bmt
+// assembler not permitted to override transaction management type.
 @TransactionManagement(TransactionManagementType.BEAN)
 public class TestBean extends TestBeanBase {
-  // @Resource (name="sessionContext")
-  private SessionContext sessionContext;
+    // @Resource (name="sessionContext")
+    private SessionContext sessionContext;
 
-  // @EJB(name="local1")
-  private ThreeLocal1IF local1;
+    // @EJB(name="local1")
+    private ThreeLocal1IF local1;
 
-  // @EJB(name="local2")
-  private ThreeLocal2IF local2;
+    // @EJB(name="local2")
+    private ThreeLocal2IF local2;
 
-  // @EJB(name="acceptLocal")
-  private AcceptLocalIF acceptLocal;
+    // @EJB(name="acceptLocal")
+    private AcceptLocalIF acceptLocal;
 
-  @EJB(name = "twoSessionContextBeanHome")
-  private TwoLocalHome twoSessionContextBeanLocalHome;
+    @EJB(name = "twoSessionContextBeanHome")
+    private TwoLocalHome twoSessionContextBeanLocalHome;
 
-  protected TwoLocalIF getTwoLocal() throws TestFailedException {
-    Object obj = null;
-    try {
-      obj = twoSessionContextBeanLocalHome.create();
-    } catch (CreateException e) {
-      throw new TestFailedException(e);
+    protected TwoLocalIF getTwoLocal() throws TestFailedException {
+        Object obj = null;
+        try {
+            obj = twoSessionContextBeanLocalHome.create();
+        } catch (CreateException e) {
+            throw new TestFailedException(e);
+        }
+        return (TwoLocalIF) obj;
     }
-    return (TwoLocalIF) obj;
-  }
 
-  protected SessionContext getSessionContext() {
-    return sessionContext;
-  }
-
-  protected AcceptLocalIF getAcceptLocalBean() {
-    return (AcceptLocalIF) (sessionContext.lookup("acceptLocal"));
-  }
-
-  protected ThreeLocal1IF getLocal1() {
-    return (ThreeLocal1IF) (sessionContext.lookup("local1"));
-  }
-
-  protected ThreeLocal2IF getLocal2() {
-    return (ThreeLocal2IF) (sessionContext.lookup("local2"));
-  }
-
-  public TestBean() {
-  }
-
-  @Remove(retainIfException = false)
-  public void remove() {
-    // these beans are injected by not used.
-    // tests use the beans by lookup.
-    if (local1 != null) {
-      local1.remove();
+    protected SessionContext getSessionContext() {
+        return sessionContext;
     }
-    if (local2 != null) {
-      local2.remove();
-    }
-    if (acceptLocal != null) {
-      acceptLocal.remove();
-    }
-  }
 
+    protected AcceptLocalIF getAcceptLocalBean() {
+        return (AcceptLocalIF) (sessionContext.lookup("acceptLocal"));
+    }
+
+    protected ThreeLocal1IF getLocal1() {
+        return (ThreeLocal1IF) (sessionContext.lookup("local1"));
+    }
+
+    protected ThreeLocal2IF getLocal2() {
+        return (ThreeLocal2IF) (sessionContext.lookup("local2"));
+    }
+
+    public TestBean() {}
+
+    @Remove(retainIfException = false)
+    public void remove() {
+        // these beans are injected by not used.
+        // tests use the beans by lookup.
+        if (local1 != null) {
+            local1.remove();
+        }
+        if (local2 != null) {
+            local2.remove();
+        }
+        if (acceptLocal != null) {
+            acceptLocal.remove();
+        }
+    }
 }

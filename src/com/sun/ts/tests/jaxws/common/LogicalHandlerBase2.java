@@ -20,129 +20,115 @@
 
 package com.sun.ts.tests.jaxws.common;
 
-import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
-
-import java.util.Iterator;
-import java.util.Map;
-import java.util.List;
-import jakarta.xml.soap.*;
-import jakarta.xml.ws.soap.*;
-import jakarta.xml.ws.handler.*;
-import jakarta.xml.ws.LogicalMessage;
-import jakarta.xml.ws.WebServiceContext;
-import jakarta.xml.ws.WebServiceException;
-
-import jakarta.activation.DataHandler;
-
-import jakarta.annotation.PreDestroy;
+import com.sun.ts.lib.util.*;
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.xml.soap.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.soap.*;
 
-import com.sun.ts.tests.jaxws.common.Handler_Util;
+public class LogicalHandlerBase2 implements jakarta.xml.ws.handler.LogicalHandler<LogicalMessageContext> {
+    private int destroyCalled = 0;
 
-public class LogicalHandlerBase2
-    implements jakarta.xml.ws.handler.LogicalHandler<LogicalMessageContext> {
-  private int destroyCalled = 0;
+    private int doingHandlerWork = 0;
 
-  private int doingHandlerWork = 0;
+    private String whichHandlerType = null;
 
-  private String whichHandlerType = null;
+    private String handlerName = null;
 
-  private String handlerName = null;
-
-  public void setWhichHandlerType(String w) {
-    this.whichHandlerType = w;
-  }
-
-  public String getWhichHandlerType() {
-    return this.whichHandlerType;
-  }
-
-  public void setHandlerName(String h) {
-    this.handlerName = h;
-  }
-
-  public String getHandlerName() {
-    return this.handlerName;
-  }
-
-  public void preinvoke() {
-    doingHandlerWork++;
-    if (destroyCalled > 0)
-      HandlerTracker.reportThrowable(this, new Exception(
-          "Violation of Handler Lifecycle - Handler used after destroy called"));
-  }
-
-  public void postinvoke() {
-    doingHandlerWork = 0;
-  }
-
-  @PostConstruct
-  public void myInit() {
-    System.out.println("in " + this + ":myInit");
-    HandlerTracker.reportInit(this, "myInit");
-  }
-
-  @PreDestroy
-  public void myDestroy() {
-    System.out.println("in " + this + ":myDestroy");
-    if (doingHandlerWork > 0)
-      HandlerTracker.reportThrowable(this, new Exception(
-          "Violation of Handler Lifecycle - destroy called during handler usage"));
-
-    destroyCalled++;
-    HandlerTracker.reportDestroy(this, "myDestroy");
-  }
-
-  public boolean handleMessage(LogicalMessageContext context) {
-    System.out.println("in " + this + ":handleMessage");
-    TestUtil.logTrace("in " + this + ":handleMessage");
-    try {
-      preinvoke();
-      Handler_Util.setTraceFlag(
-          Handler_Util.getValueFromMsg(this, context, "harnesslogtraceflag"));
-
-      Handler_Util.initTestUtil(this,
-          Handler_Util.getValueFromMsg(this, context, "harnessloghost"),
-          Handler_Util.getValueFromMsg(this, context, "harnesslogport"),
-          Handler_Util.getValueFromMsg(this, context, "harnesslogtraceflag"));
-
-      if (!Handler_Util.checkForMsg(this, context, "GetTrackerData")) {
-        String direction = Handler_Util.getDirection(context);
-        HandlerTracker.reportHandleMessage(this, direction);
-      } else {
-        TestUtil.logTrace("found GetTrackerData message, handler will ignore");
-      }
-    } finally {
-      postinvoke();
+    public void setWhichHandlerType(String w) {
+        this.whichHandlerType = w;
     }
-    System.out.println("exiting " + this + ":handleMessage");
-    TestUtil.logTrace("exiting " + this + ":handleMessage");
-    return true;
-  }
 
-  public void close(MessageContext context) {
-    TestUtil.logTrace("in " + this + ":close");
-    try {
-      preinvoke();
-      HandlerTracker.reportClose(this);
-    } finally {
-      postinvoke();
+    public String getWhichHandlerType() {
+        return this.whichHandlerType;
     }
-  }
 
-  public boolean handleFault(LogicalMessageContext context) {
-    System.out.println("in " + this + ":handleFault");
-    TestUtil.logTrace("in " + this + ":handleFault");
-    try {
-      preinvoke();
-      HandlerTracker.reportHandleFault(this);
-    } finally {
-      postinvoke();
+    public void setHandlerName(String h) {
+        this.handlerName = h;
     }
-    TestUtil.logTrace("exiting " + this + ":handleFault");
-    System.out.println("exiting " + this + ":handleFault");
-    return true;
-  }
 
+    public String getHandlerName() {
+        return this.handlerName;
+    }
+
+    public void preinvoke() {
+        doingHandlerWork++;
+        if (destroyCalled > 0)
+            HandlerTracker.reportThrowable(
+                    this, new Exception("Violation of Handler Lifecycle - Handler used after destroy called"));
+    }
+
+    public void postinvoke() {
+        doingHandlerWork = 0;
+    }
+
+    @PostConstruct
+    public void myInit() {
+        System.out.println("in " + this + ":myInit");
+        HandlerTracker.reportInit(this, "myInit");
+    }
+
+    @PreDestroy
+    public void myDestroy() {
+        System.out.println("in " + this + ":myDestroy");
+        if (doingHandlerWork > 0)
+            HandlerTracker.reportThrowable(
+                    this, new Exception("Violation of Handler Lifecycle - destroy called during handler usage"));
+
+        destroyCalled++;
+        HandlerTracker.reportDestroy(this, "myDestroy");
+    }
+
+    public boolean handleMessage(LogicalMessageContext context) {
+        System.out.println("in " + this + ":handleMessage");
+        TestUtil.logTrace("in " + this + ":handleMessage");
+        try {
+            preinvoke();
+            Handler_Util.setTraceFlag(Handler_Util.getValueFromMsg(this, context, "harnesslogtraceflag"));
+
+            Handler_Util.initTestUtil(
+                    this,
+                    Handler_Util.getValueFromMsg(this, context, "harnessloghost"),
+                    Handler_Util.getValueFromMsg(this, context, "harnesslogport"),
+                    Handler_Util.getValueFromMsg(this, context, "harnesslogtraceflag"));
+
+            if (!Handler_Util.checkForMsg(this, context, "GetTrackerData")) {
+                String direction = Handler_Util.getDirection(context);
+                HandlerTracker.reportHandleMessage(this, direction);
+            } else {
+                TestUtil.logTrace("found GetTrackerData message, handler will ignore");
+            }
+        } finally {
+            postinvoke();
+        }
+        System.out.println("exiting " + this + ":handleMessage");
+        TestUtil.logTrace("exiting " + this + ":handleMessage");
+        return true;
+    }
+
+    public void close(MessageContext context) {
+        TestUtil.logTrace("in " + this + ":close");
+        try {
+            preinvoke();
+            HandlerTracker.reportClose(this);
+        } finally {
+            postinvoke();
+        }
+    }
+
+    public boolean handleFault(LogicalMessageContext context) {
+        System.out.println("in " + this + ":handleFault");
+        TestUtil.logTrace("in " + this + ":handleFault");
+        try {
+            preinvoke();
+            HandlerTracker.reportHandleFault(this);
+        } finally {
+            postinvoke();
+        }
+        TestUtil.logTrace("exiting " + this + ":handleFault");
+        System.out.println("exiting " + this + ":handleFault");
+        return true;
+    }
 }

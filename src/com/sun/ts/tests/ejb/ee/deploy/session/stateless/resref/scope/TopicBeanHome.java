@@ -20,13 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateless.resref.scope;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface TopicBeanHome extends EJBHome {
 
-  public TopicBean create() throws RemoteException, CreateException;
-
+    public TopicBean create() throws RemoteException, CreateException;
 }

@@ -19,28 +19,29 @@
  */
 package com.sun.ts.tests.ejb30.lite.interceptor.common.business;
 
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.appexception.AtCheckedRollbackAppException;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
+import java.util.logging.Level;
 
 public class Interceptor9 {
-  private static final String simpleName = "Interceptor9";
+    private static final String simpleName = "Interceptor9";
 
-  @AroundInvoke
-  protected Object interceptInInterceptor9(InvocationContext inv)
-      throws Exception {
-    Helper.getLogger().logp(Level.FINE, simpleName, "interceptInInterceptor9",
-        "In interceptInInterceptor9, business method: "
-            + inv.getMethod().getName());
-    try {
-      return inv.proceed();
-    } finally {
-      throw new AtCheckedRollbackAppException(
-          "The transaction should roll back after this application exception.");
+    @AroundInvoke
+    protected Object interceptInInterceptor9(InvocationContext inv) throws Exception {
+        Helper.getLogger()
+                .logp(
+                        Level.FINE,
+                        simpleName,
+                        "interceptInInterceptor9",
+                        "In interceptInInterceptor9, business method: "
+                                + inv.getMethod().getName());
+        try {
+            return inv.proceed();
+        } finally {
+            throw new AtCheckedRollbackAppException(
+                    "The transaction should roll back after this application exception.");
+        }
     }
-  }
 }

@@ -23,13 +23,10 @@ package com.sun.ts.tests.ejb30.tx.session.stateless.cm.inheritance.annotated;
 import com.sun.ts.tests.ejb30.tx.common.session.inheritance.CBeanBase;
 import com.sun.ts.tests.ejb30.tx.common.session.inheritance.TxLocalIF;
 import com.sun.ts.tests.ejb30.tx.common.session.inheritance.TxRemoteIF;
-
 import jakarta.ejb.Stateless;
 
 @Stateless()
 public class CBean extends CBeanBase implements TxRemoteIF, TxLocalIF {
 
-  public CBean() {
-  }
-
+    public CBean() {}
 }

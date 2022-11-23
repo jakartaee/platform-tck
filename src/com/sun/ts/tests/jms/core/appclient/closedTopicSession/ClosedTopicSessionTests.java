@@ -19,211 +19,204 @@
  */
 package com.sun.ts.tests.jms.core.appclient.closedTopicSession;
 
-import java.util.ArrayList;
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.common.JmsTool;
-
 import jakarta.jms.Message;
 import jakarta.jms.MessageListener;
+import java.util.ArrayList;
+import java.util.Properties;
 
 public class ClosedTopicSessionTests extends ServiceEETest {
-  private static final String testName = "com.sun.ts.tests.jms.ee.ejbjspservlet.closedTopicSession.ClosedTopicSessionTests";
+    private static final String testName =
+            "com.sun.ts.tests.jms.ee.ejbjspservlet.closedTopicSession.ClosedTopicSessionTests";
 
-  private static final String testDir = System.getProperty("user.dir");
+    private static final String testDir = System.getProperty("user.dir");
 
-  // Harness req's
-  private Properties props = null;
+    // Harness req's
+    private Properties props = null;
 
-  // JMS object
-  private static JmsTool tool = null;
+    // JMS object
+    private static JmsTool tool = null;
 
-  // properties read from ts.jte file
-  long timeout;
+    // properties read from ts.jte file
+    long timeout;
 
-  private String jmsUser;
+    private String jmsUser;
 
-  private String jmsPassword;
+    private String jmsPassword;
 
-  private String mode;
+    private String mode;
 
-  ArrayList connections = null;
+    ArrayList connections = null;
 
-  /* Run test in standalone mode */
+    /* Run test in standalone mode */
 
-  /**
-   * Main method is used when not run from the JavaTest GUI.
-   * 
-   * @param args
-   */
-  public static void main(String[] args) {
-    ClosedTopicSessionTests theTests = new ClosedTopicSessionTests();
-    Status s = theTests.run(args, System.out, System.err);
+    /**
+     * Main method is used when not run from the JavaTest GUI.
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        ClosedTopicSessionTests theTests = new ClosedTopicSessionTests();
+        Status s = theTests.run(args, System.out, System.err);
 
-    s.exit();
-  }
-
-  /* Utility methods for tests */
-
-  /**
-   * Used by tests that need a closed session for testing. Passes any exceptions
-   * up to caller.
-   * 
-   * @param int
-   *          The type of session that needs to be created and closed
-   */
-  private void createAndCloseSession(int type) throws Exception {
-    if ((type == JmsTool.TOPIC) || (type == JmsTool.TX_TOPIC)) {
-      tool = new JmsTool(type, jmsUser, jmsPassword, mode);
-      tool.getDefaultTopicConnection().start();
-      logMsg("Closing topic session");
-      tool.getDefaultTopicSession().close();
+        s.exit();
     }
-    logMsg("Session closed");
-  }
 
-  /*
-   * Checks passed flag for negative tests and throws exception back to caller
-   * which passes ot to harness.
-   * 
-   * @param boolean Pass/Fail flag
-   */
-  private void checkExceptionPass(boolean passed) throws Exception {
-    if (passed == false) {
-      logMsg("Didn't get expected exception");
-      throw new Exception("Didn't catch expected exception");
+    /* Utility methods for tests */
+
+    /**
+     * Used by tests that need a closed session for testing. Passes any exceptions
+     * up to caller.
+     *
+     * @param int
+     *          The type of session that needs to be created and closed
+     */
+    private void createAndCloseSession(int type) throws Exception {
+        if ((type == JmsTool.TOPIC) || (type == JmsTool.TX_TOPIC)) {
+            tool = new JmsTool(type, jmsUser, jmsPassword, mode);
+            tool.getDefaultTopicConnection().start();
+            logMsg("Closing topic session");
+            tool.getDefaultTopicSession().close();
+        }
+        logMsg("Session closed");
     }
-  }
 
-  /* Test setup: */
-
-  /*
-   * setup() is called before each test
-   * 
-   * @class.setup_props: jms_timeout;user; password; platform.mode;
-   * 
-   * @exception Fault
-   */
-  public void setup(String[] args, Properties p) throws Fault {
-    try {
-      logTrace("In setup");
-      // get props
-      jmsUser = p.getProperty("user");
-      jmsPassword = p.getProperty("password");
-      timeout = Long.parseLong(p.getProperty("jms_timeout"));
-      mode = p.getProperty("platform.mode");
-      if (timeout < 1) {
-        throw new Exception("'timeout' (milliseconds) in ts.jte must be > 0");
-      }
-
-      // get ready for new test
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Fault("Setup failed!", e);
+    /*
+     * Checks passed flag for negative tests and throws exception back to caller
+     * which passes ot to harness.
+     *
+     * @param boolean Pass/Fail flag
+     */
+    private void checkExceptionPass(boolean passed) throws Exception {
+        if (passed == false) {
+            logMsg("Didn't get expected exception");
+            throw new Exception("Didn't catch expected exception");
+        }
     }
-  }
 
-  /* cleanup */
+    /* Test setup: */
 
-  /*
-   * cleanup() is called after each test
-   * 
-   * Closes the default connections that are created by setup(). Any separate
-   * connections made by individual tests should be closed by that test.
-   * 
-   * @exception Fault
-   */
-  public void cleanup() throws Fault {
-    try {
-      if (tool != null) {
-        logMsg("Cleanup: Closing Queue and Topic Connections");
-        tool.closeAllConnections(connections);
-      }
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      logErr("An error occurred while cleaning");
-      throw new Fault("Cleanup failed!", e);
+    /*
+     * setup() is called before each test
+     *
+     * @class.setup_props: jms_timeout;user; password; platform.mode;
+     *
+     * @exception Fault
+     */
+    public void setup(String[] args, Properties p) throws Fault {
+        try {
+            logTrace("In setup");
+            // get props
+            jmsUser = p.getProperty("user");
+            jmsPassword = p.getProperty("password");
+            timeout = Long.parseLong(p.getProperty("jms_timeout"));
+            mode = p.getProperty("platform.mode");
+            if (timeout < 1) {
+                throw new Exception("'timeout' (milliseconds) in ts.jte must be > 0");
+            }
+
+            // get ready for new test
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new Fault("Setup failed!", e);
+        }
     }
-  }
 
-  /* Tests */
+    /* cleanup */
 
-  /*
-   * @testName: closedTopicSessionSetMessageListenerTest
-   *
-   * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:330; JMS:JAVADOC:325;
-   * 
-   * @test_Strategy: Close default subscriber and call method on it. Check for
-   * IllegalStateException.
-   */
-  public void closedTopicSessionSetMessageListenerTest() throws Fault {
-    boolean passed = false;
-
-    try {
-      createAndCloseSession(JmsTool.TOPIC);
-      logTrace("Try to call setMessageListener");
-      try {
-        MessageListener foo = new MessageListener() {
-          public void onMessage(Message m) {
-          }
-
-        };
-
-        tool.getDefaultTopicSubscriber().setMessageListener(foo);
-        logTrace("Fail: Exception was not thrown!");
-      } catch (jakarta.jms.IllegalStateException ise) {
-        logTrace("Pass: threw expected error");
-        passed = true;
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        logTrace("Fail: wrong exception: " + e.getClass().getName()
-            + " was returned");
-      }
-      if (!passed) {
-        throw new Fault("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      throw new Fault("closedTopicSessionSetMessageListenerTest", e);
+    /*
+     * cleanup() is called after each test
+     *
+     * Closes the default connections that are created by setup(). Any separate
+     * connections made by individual tests should be closed by that test.
+     *
+     * @exception Fault
+     */
+    public void cleanup() throws Fault {
+        try {
+            if (tool != null) {
+                logMsg("Cleanup: Closing Queue and Topic Connections");
+                tool.closeAllConnections(connections);
+            }
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            logErr("An error occurred while cleaning");
+            throw new Fault("Cleanup failed!", e);
+        }
     }
-  }
 
-  /*
-   * @testName: closedTopicSessionGetMessageListenerTest
-   *
-   * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:328;
-   *
-   * @test_Strategy: Close default subscriber and call method on it. Check for
-   * IllegalStateException.
-   */
+    /* Tests */
 
-  public void closedTopicSessionGetMessageListenerTest() throws Fault {
-    boolean passed = false;
+    /*
+     * @testName: closedTopicSessionSetMessageListenerTest
+     *
+     * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:330; JMS:JAVADOC:325;
+     *
+     * @test_Strategy: Close default subscriber and call method on it. Check for
+     * IllegalStateException.
+     */
+    public void closedTopicSessionSetMessageListenerTest() throws Fault {
+        boolean passed = false;
 
-    try {
-      createAndCloseSession(JmsTool.TOPIC);
-      logTrace("Try to call getMessageListener");
-      try {
-        MessageListener foo = tool.getDefaultTopicSubscriber()
-            .getMessageListener();
+        try {
+            createAndCloseSession(JmsTool.TOPIC);
+            logTrace("Try to call setMessageListener");
+            try {
+                MessageListener foo = new MessageListener() {
+                    public void onMessage(Message m) {}
+                };
 
-        logTrace("Fail: Exception was not thrown!");
-      } catch (jakarta.jms.IllegalStateException ise) {
-        logTrace("Pass: threw expected error");
-        passed = true;
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        logTrace("Fail: wrong exception: " + e.getClass().getName()
-            + " was returned");
-      }
-      if (!passed) {
-        throw new Fault("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      throw new Fault("closedTopicSessionGetMessageListenerTest", e);
+                tool.getDefaultTopicSubscriber().setMessageListener(foo);
+                logTrace("Fail: Exception was not thrown!");
+            } catch (jakarta.jms.IllegalStateException ise) {
+                logTrace("Pass: threw expected error");
+                passed = true;
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+                logTrace("Fail: wrong exception: " + e.getClass().getName() + " was returned");
+            }
+            if (!passed) {
+                throw new Fault("Error: failures occurred during tests");
+            }
+        } catch (Exception e) {
+            throw new Fault("closedTopicSessionSetMessageListenerTest", e);
+        }
     }
-  }
 
+    /*
+     * @testName: closedTopicSessionGetMessageListenerTest
+     *
+     * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:328;
+     *
+     * @test_Strategy: Close default subscriber and call method on it. Check for
+     * IllegalStateException.
+     */
+
+    public void closedTopicSessionGetMessageListenerTest() throws Fault {
+        boolean passed = false;
+
+        try {
+            createAndCloseSession(JmsTool.TOPIC);
+            logTrace("Try to call getMessageListener");
+            try {
+                MessageListener foo = tool.getDefaultTopicSubscriber().getMessageListener();
+
+                logTrace("Fail: Exception was not thrown!");
+            } catch (jakarta.jms.IllegalStateException ise) {
+                logTrace("Pass: threw expected error");
+                passed = true;
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+                logTrace("Fail: wrong exception: " + e.getClass().getName() + " was returned");
+            }
+            if (!passed) {
+                throw new Fault("Error: failures occurred during tests");
+            }
+        } catch (Exception e) {
+            throw new Fault("closedTopicSessionGetMessageListenerTest", e);
+        }
+    }
 }

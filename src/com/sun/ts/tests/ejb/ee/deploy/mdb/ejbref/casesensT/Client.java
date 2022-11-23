@@ -20,73 +20,70 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.casesensT;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.jms.Topic;
+import java.util.Properties;
 
 public class Client extends com.sun.ts.tests.jms.commonee.Client {
 
-  private Topic mdbT;
+    private Topic mdbT;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /**
-   * @class.setup_props: jms_timeout; user; password;
-   *
-   */
-  public void setup(String[] args, Properties props) throws Fault {
-
-    try {
-      this.props = props;
-      super.setup(args, props);
-
-      mdbT = (Topic) context.lookup("java:comp/env/jms/MDBTest");
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] Setup failed! ", e);
-      throw new Fault("Setup Failed!", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /**
-   * @testName: testEjbRefCaseSensitivity
-   *
-   * @assertion_ids: EJB:SPEC:872
-   *
-   * @test_Strategy: Deploy a Message-Driven Topic bean with two EJB references
-   *                 whose name differ only by case and are assigned to two
-   *                 distinct beans (Same type of bean, but the two beans are
-   *                 packaged with different values for a String environment
-   *                 entry called 'myName'). Check that MDB can lookup the two
-   *                 beans. Check that their runtime value for the 'myName' env
-   *                 entry are distinct and correspond the ones specified in the
-   *                 DD (in an attempt to verify that the EJB reference are
-   *                 resolved correctly).
-   */
-  public void testEjbRefCaseSensitivity() throws Fault {
+    /**
+     * @class.setup_props: jms_timeout; user; password;
+     *
+     */
+    public void setup(String[] args, Properties props) throws Fault {
 
-    String testCase = "testEjbRefCaseSensitivity";
-    int testNum = 1;
+        try {
+            this.props = props;
+            super.setup(args, props);
 
-    try {
-      tPub = tSession.createPublisher(mdbT);
-      createTestMessage(testCase, testNum);
-      tPub.publish(msg);
-
-      if (!checkOnResponse(testCase)) {
-        TestUtil.logErr("[Client] " + testCase + " failed");
-        throw new Exception(testCase + " Failed");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] " + testCase + " failed: ", e);
-      throw new Fault(testCase + " failed!", e);
+            mdbT = (Topic) context.lookup("java:comp/env/jms/MDBTest");
+        } catch (Exception e) {
+            TestUtil.logErr("[Client] Setup failed! ", e);
+            throw new Fault("Setup Failed!", e);
+        }
     }
-  }
 
+    /**
+     * @testName: testEjbRefCaseSensitivity
+     *
+     * @assertion_ids: EJB:SPEC:872
+     *
+     * @test_Strategy: Deploy a Message-Driven Topic bean with two EJB references
+     *                 whose name differ only by case and are assigned to two
+     *                 distinct beans (Same type of bean, but the two beans are
+     *                 packaged with different values for a String environment
+     *                 entry called 'myName'). Check that MDB can lookup the two
+     *                 beans. Check that their runtime value for the 'myName' env
+     *                 entry are distinct and correspond the ones specified in the
+     *                 DD (in an attempt to verify that the EJB reference are
+     *                 resolved correctly).
+     */
+    public void testEjbRefCaseSensitivity() throws Fault {
+
+        String testCase = "testEjbRefCaseSensitivity";
+        int testNum = 1;
+
+        try {
+            tPub = tSession.createPublisher(mdbT);
+            createTestMessage(testCase, testNum);
+            tPub.publish(msg);
+
+            if (!checkOnResponse(testCase)) {
+                TestUtil.logErr("[Client] " + testCase + " failed");
+                throw new Exception(testCase + " Failed");
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("[Client] " + testCase + " failed: ", e);
+            throw new Fault(testCase + " failed!", e);
+        }
+    }
 }

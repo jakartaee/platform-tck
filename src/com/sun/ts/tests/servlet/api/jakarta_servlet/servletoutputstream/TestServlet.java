@@ -20,299 +20,288 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletoutputstream;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
 
 public class TestServlet extends GenericTCKServlet {
 
-  /**
-   * Test for println (java.lang.String) method
-   **/
+    /**
+     * Test for println (java.lang.String) method
+     **/
+    public void print_StringTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        ServletOutputStream sos = null;
 
-  public void print_StringTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    ServletOutputStream sos = null;
+        try {
+            sos = response.getOutputStream();
 
-    try {
-      sos = response.getOutputStream();
-
-      sos.print("some ");
-      sos.print("text");
-      sos.print("\n");
-    } catch (Throwable t) {
-      ServletTestUtil.printResult(sos, false);
-      throw new ServletException(t);
+            sos.print("some ");
+            sos.print("text");
+            sos.print("\n");
+        } catch (Throwable t) {
+            ServletTestUtil.printResult(sos, false);
+            throw new ServletException(t);
+        }
     }
-  }
 
-  /* print(boolean) */
+    /* print(boolean) */
 
-  public void print_booleanTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-    ServletOutputStream sos = null;
+    public void print_booleanTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        ServletOutputStream sos = null;
 
-    try {
-      sos = response.getOutputStream();
-      sos.print(true);
-      sos.print(true);
-      sos.print("\n");
+        try {
+            sos = response.getOutputStream();
+            sos.print(true);
+            sos.print(true);
+            sos.print("\n");
 
-    } catch (Throwable t) {
-      ServletTestUtil.printResult(sos, false);
-      throw new ServletException(t);
+        } catch (Throwable t) {
+            ServletTestUtil.printResult(sos, false);
+            throw new ServletException(t);
+        }
     }
-  }
 
-  /* print(char) */
+    /* print(char) */
 
-  public void print_charTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    ServletOutputStream sos = null;
+    public void print_charTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        ServletOutputStream sos = null;
 
-    try {
-      sos = response.getOutputStream();
-      sos.print('T');
-      sos.print('E');
-      sos.print('X');
-      sos.print('T');
-      sos.print("\n");
+        try {
+            sos = response.getOutputStream();
+            sos.print('T');
+            sos.print('E');
+            sos.print('X');
+            sos.print('T');
+            sos.print("\n");
 
-    } catch (Throwable t) {
-      ServletTestUtil.printResult(sos, false);
-      throw new ServletException(t);
+        } catch (Throwable t) {
+            ServletTestUtil.printResult(sos, false);
+            throw new ServletException(t);
+        }
     }
-  }
 
-  /* print(double) */
+    /* print(double) */
 
-  public void print_doubleTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    ServletOutputStream sos = null;
-    double doubleval = 12345.6;
+    public void print_doubleTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        ServletOutputStream sos = null;
+        double doubleval = 12345.6;
 
-    try {
-      sos = response.getOutputStream();
-      sos.print(doubleval);
-      sos.print(doubleval);
-      sos.print("\n");
+        try {
+            sos = response.getOutputStream();
+            sos.print(doubleval);
+            sos.print(doubleval);
+            sos.print("\n");
 
-    } catch (Throwable t) {
-      ServletTestUtil.printResult(sos, false);
-      throw new ServletException(t);
+        } catch (Throwable t) {
+            ServletTestUtil.printResult(sos, false);
+            throw new ServletException(t);
+        }
     }
-  }
 
-  /* print(float) */
+    /* print(float) */
 
-  public void print_floatTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    ServletOutputStream sos = null;
-    float floatval = 1234.5f;
+    public void print_floatTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        ServletOutputStream sos = null;
+        float floatval = 1234.5f;
 
-    try {
-      sos = response.getOutputStream();
-      sos.print(floatval);
-      sos.print(floatval);
-      sos.print("\n");
+        try {
+            sos = response.getOutputStream();
+            sos.print(floatval);
+            sos.print(floatval);
+            sos.print("\n");
 
-    } catch (Throwable t) {
-      ServletTestUtil.printResult(sos, false);
-      throw new ServletException(t);
+        } catch (Throwable t) {
+            ServletTestUtil.printResult(sos, false);
+            throw new ServletException(t);
+        }
     }
-  }
 
-  /* print(int) */
+    /* print(int) */
 
-  public void print_intTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    ServletOutputStream sos = null;
-    int num = 1;
+    public void print_intTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        ServletOutputStream sos = null;
+        int num = 1;
 
-    try {
-      sos = response.getOutputStream();
-      sos.print(num);
-      sos.print(num);
-      sos.print("\n");
+        try {
+            sos = response.getOutputStream();
+            sos.print(num);
+            sos.print(num);
+            sos.print("\n");
 
-    } catch (Throwable t) {
-      ServletTestUtil.printResult(sos, false);
-      throw new ServletException(t);
+        } catch (Throwable t) {
+            ServletTestUtil.printResult(sos, false);
+            throw new ServletException(t);
+        }
     }
-  }
 
-  /* print(long) */
+    /* print(long) */
 
-  public void print_longTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    ServletOutputStream sos = null;
-    long ago = 1234567890;
+    public void print_longTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        ServletOutputStream sos = null;
+        long ago = 1234567890;
 
-    try {
-      sos = response.getOutputStream();
-      sos.print(ago);
-      sos.print(ago);
-      sos.print("\n");
+        try {
+            sos = response.getOutputStream();
+            sos.print(ago);
+            sos.print(ago);
+            sos.print("\n");
 
-    } catch (Throwable t) {
-      ServletTestUtil.printResult(sos, false);
-      throw new ServletException(t);
+        } catch (Throwable t) {
+            ServletTestUtil.printResult(sos, false);
+            throw new ServletException(t);
+        }
     }
-  }
 
-  /**
-   * Test for println () method
-   **/
+    /**
+     * Test for println () method
+     **/
+    public void printlnTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        ServletOutputStream sos = null;
 
-  public void printlnTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    ServletOutputStream sos = null;
+        try {
+            sos = response.getOutputStream();
 
-    try {
-      sos = response.getOutputStream();
+            sos.print("some test ");
+            sos.println();
+            sos.print("text");
+            sos.println();
 
-      sos.print("some test ");
-      sos.println();
-      sos.print("text");
-      sos.println();
-
-    } catch (Throwable t) {
-      ServletTestUtil.printResult(sos, false);
-      throw new ServletException(t);
+        } catch (Throwable t) {
+            ServletTestUtil.printResult(sos, false);
+            throw new ServletException(t);
+        }
     }
-  }
 
-  /**
-   * Test for println (java.lang.String) method
-   **/
+    /**
+     * Test for println (java.lang.String) method
+     **/
+    public void println_StringTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        ServletOutputStream sos = null;
 
-  public void println_StringTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-    ServletOutputStream sos = null;
+        try {
+            sos = response.getOutputStream();
 
-    try {
-      sos = response.getOutputStream();
+            sos.println("some");
+            sos.println("text");
 
-      sos.println("some");
-      sos.println("text");
-
-    } catch (Throwable t) {
-      ServletTestUtil.printResult(sos, false);
-      throw new ServletException(t);
+        } catch (Throwable t) {
+            ServletTestUtil.printResult(sos, false);
+            throw new ServletException(t);
+        }
     }
-  }
 
-  /* println(boolean) */
+    /* println(boolean) */
 
-  public void println_booleanTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-    ServletOutputStream sos = null;
+    public void println_booleanTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        ServletOutputStream sos = null;
 
-    try {
-      sos = response.getOutputStream();
-      sos.println(true);
-      sos.println(true);
+        try {
+            sos = response.getOutputStream();
+            sos.println(true);
+            sos.println(true);
 
-    } catch (Throwable t) {
-      ServletTestUtil.printResult(sos, false);
-      throw new ServletException(t);
+        } catch (Throwable t) {
+            ServletTestUtil.printResult(sos, false);
+            throw new ServletException(t);
+        }
     }
-  }
 
-  /* println(char) */
+    /* println(char) */
 
-  public void println_charTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    ServletOutputStream sos = null;
+    public void println_charTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        ServletOutputStream sos = null;
 
-    try {
-      sos = response.getOutputStream();
-      sos.println('T');
-      sos.println('E');
-      sos.println('X');
-      sos.println('T');
+        try {
+            sos = response.getOutputStream();
+            sos.println('T');
+            sos.println('E');
+            sos.println('X');
+            sos.println('T');
 
-    } catch (Throwable t) {
-      ServletTestUtil.printResult(sos, false);
-      throw new ServletException(t);
+        } catch (Throwable t) {
+            ServletTestUtil.printResult(sos, false);
+            throw new ServletException(t);
+        }
     }
-  }
 
-  /* println(double) */
+    /* println(double) */
 
-  public void println_doubleTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-    ServletOutputStream sos = null;
-    double doubleval = 12345.6;
+    public void println_doubleTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        ServletOutputStream sos = null;
+        double doubleval = 12345.6;
 
-    try {
-      sos = response.getOutputStream();
-      sos.println(doubleval);
-      sos.println(doubleval);
+        try {
+            sos = response.getOutputStream();
+            sos.println(doubleval);
+            sos.println(doubleval);
 
-    } catch (Throwable t) {
-      ServletTestUtil.printResult(sos, false);
-      throw new ServletException(t);
+        } catch (Throwable t) {
+            ServletTestUtil.printResult(sos, false);
+            throw new ServletException(t);
+        }
     }
-  }
 
-  /* println(float) */
+    /* println(float) */
 
-  public void println_floatTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-    ServletOutputStream sos = null;
-    float floatval = 1234.5f;
+    public void println_floatTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        ServletOutputStream sos = null;
+        float floatval = 1234.5f;
 
-    try {
-      sos = response.getOutputStream();
-      sos.println(floatval);
-      sos.println(floatval);
+        try {
+            sos = response.getOutputStream();
+            sos.println(floatval);
+            sos.println(floatval);
 
-    } catch (Throwable t) {
-      ServletTestUtil.printResult(sos, false);
-      throw new ServletException(t);
+        } catch (Throwable t) {
+            ServletTestUtil.printResult(sos, false);
+            throw new ServletException(t);
+        }
     }
-  }
 
-  /* println(int) */
+    /* println(int) */
 
-  public void println_intTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    ServletOutputStream sos = null;
-    int num = 1;
+    public void println_intTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        ServletOutputStream sos = null;
+        int num = 1;
 
-    try {
-      sos = response.getOutputStream();
-      sos.println(num);
-      sos.println(num);
+        try {
+            sos = response.getOutputStream();
+            sos.println(num);
+            sos.println(num);
 
-    } catch (Throwable t) {
-      ServletTestUtil.printResult(sos, false);
-      throw new ServletException(t);
+        } catch (Throwable t) {
+            ServletTestUtil.printResult(sos, false);
+            throw new ServletException(t);
+        }
     }
-  }
 
-  /* println(long) */
+    /* println(long) */
 
-  public void println_longTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    ServletOutputStream sos = null;
-    long ago = 1234567890;
+    public void println_longTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        ServletOutputStream sos = null;
+        long ago = 1234567890;
 
-    try {
-      sos = response.getOutputStream();
-      sos.println(ago);
-      sos.println(ago);
+        try {
+            sos = response.getOutputStream();
+            sos.println(ago);
+            sos.println(ago);
 
-    } catch (Throwable t) {
-      ServletTestUtil.printResult(sos, false);
-      throw new ServletException(t);
+        } catch (Throwable t) {
+            ServletTestUtil.printResult(sos, false);
+            throw new ServletException(t);
+        }
     }
-  }
 }

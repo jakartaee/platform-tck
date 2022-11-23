@@ -20,13 +20,13 @@
 
 package com.sun.ts.tests.webservices13.servlet.WSWebServiceRefLookupDDs.server;
 
-import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
+import jakarta.jws.WebService;
 
 @WebService(name = "Echo", serviceName = "EchoService", targetNamespace = "http://echo.org/wsdl")
 public class EchoImpl {
-  @WebMethod
-  public String echoString(String str) {
-    return str;
-  }
+    @WebMethod
+    public String echoString(String str) {
+        return str;
+    }
 }

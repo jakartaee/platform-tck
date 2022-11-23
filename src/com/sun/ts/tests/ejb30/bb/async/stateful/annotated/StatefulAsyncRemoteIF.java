@@ -18,6 +18,5 @@ package com.sun.ts.tests.ejb30.bb.async.stateful.annotated;
 
 import com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncRemoteIF;
 
-//@Remote not needed, since it's specified as @Remote on the bean class
-public interface StatefulAsyncRemoteIF extends AsyncRemoteIF {
-}
+// @Remote not needed, since it's specified as @Remote on the bean class
+public interface StatefulAsyncRemoteIF extends AsyncRemoteIF {}

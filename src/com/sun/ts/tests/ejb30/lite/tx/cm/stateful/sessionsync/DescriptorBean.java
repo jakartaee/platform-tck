@@ -28,22 +28,20 @@ import jakarta.ejb.Stateful;
  * afterCompletion.
  */
 @Stateful
-public class DescriptorBean extends SessionSyncBeanBase
-    implements SessionSyncIF {
+public class DescriptorBean extends SessionSyncBeanBase implements SessionSyncIF {
 
-  @SuppressWarnings("unused")
-  private void afterBeginAnnotated() {
-    super.afterBegin();
-  }
+    @SuppressWarnings("unused")
+    private void afterBeginAnnotated() {
+        super.afterBegin();
+    }
 
-  @SuppressWarnings("unused")
-  private void afterCompletionAnnotated(boolean arg0) {
-    super.afterCompletion(arg0);
-  }
+    @SuppressWarnings("unused")
+    private void afterCompletionAnnotated(boolean arg0) {
+        super.afterCompletion(arg0);
+    }
 
-  @SuppressWarnings("unused")
-  private void beforeCompletionAnnotated() {
-    super.beforeCompletion();
-  }
-
+    @SuppressWarnings("unused")
+    private void beforeCompletionAnnotated() {
+        super.beforeCompletion();
+    }
 }

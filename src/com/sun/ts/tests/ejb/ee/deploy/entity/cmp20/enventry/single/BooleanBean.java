@@ -20,12 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.enventry.single;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.EJBObject;
+import java.rmi.RemoteException;
 
 public interface BooleanBean extends EJBObject {
 
-  public boolean testBooleanEntry() throws RemoteException;
-
+    public boolean testBooleanEntry() throws RemoteException;
 }

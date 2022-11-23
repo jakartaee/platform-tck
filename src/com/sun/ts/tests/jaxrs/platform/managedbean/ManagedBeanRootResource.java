@@ -16,11 +16,6 @@
 
 package com.sun.ts.tests.jaxrs.platform.managedbean;
 
-import java.lang.annotation.Annotation;
-
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-
 import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
@@ -32,132 +27,130 @@ import jakarta.ws.rs.core.Application;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.ext.Providers;
+import java.lang.annotation.Annotation;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
 @Path("/managedbean")
 @RequestScoped // TODO: remove in MR when cdi bean manager is available even
-               // without this
+// without this
 // either GLASSFISH-19944 or GLASSFISH-19916
 @ManagedBean("root")
 public class ManagedBeanRootResource {
 
-  private int value = 999;
+    private int value = 999;
 
-  @Context
-  Providers providers;
+    @Context
+    Providers providers;
 
-  @Context
-  Application application;
+    @Context
+    Application application;
 
-  @GET
-  @Path("resourcevalue")
-  public String intValue() {
-    return String.valueOf(value);
-  }
+    @GET
+    @Path("resourcevalue")
+    public String intValue() {
+        return String.valueOf(value);
+    }
 
-  @GET
-  @Path("providervalue")
-  public String providerValue() {
-    StringBuilderProvider provider = getStringBuilderProvider();
-    return String.valueOf(provider.getValue());
-  }
+    @GET
+    @Path("providervalue")
+    public String providerValue() {
+        StringBuilderProvider provider = getStringBuilderProvider();
+        return String.valueOf(provider.getValue());
+    }
 
-  @GET
-  @Path("applicationvalue")
-  public String applicationValue() {
-    ApplicationHolderSingleton singleton = getAppHolderSingleton();
-    return String.valueOf(singleton.getValue());
-  }
+    @GET
+    @Path("applicationvalue")
+    public String applicationValue() {
+        ApplicationHolderSingleton singleton = getAppHolderSingleton();
+        return String.valueOf(singleton.getValue());
+    }
 
-  @GET
-  @Path("interceptedprovidervalue")
-  public String interceptedProviderValue() {
-    StringBuilderProvider provider = getStringBuilderProvider();
-    return provider.getInterceptedValue();
-  }
+    @GET
+    @Path("interceptedprovidervalue")
+    public String interceptedProviderValue() {
+        StringBuilderProvider provider = getStringBuilderProvider();
+        return provider.getInterceptedValue();
+    }
 
-  @GET
-  @Path("interceptedresourcevalue")
-  @Interceptors(InterceptorSingleton.class)
-  public String interceptedResourceValue() {
-    return String.valueOf(value);
-  }
+    @GET
+    @Path("interceptedresourcevalue")
+    @Interceptors(InterceptorSingleton.class)
+    public String interceptedResourceValue() {
+        return String.valueOf(value);
+    }
 
-  @GET
-  @Path("lookup")
-  public String lookup() throws NamingException {
-    ManagedBeanRootResource resource = (ManagedBeanRootResource) lookup(
-        "java:module/root");
-    return resource.intValue();
-  }
+    @GET
+    @Path("lookup")
+    public String lookup() throws NamingException {
+        ManagedBeanRootResource resource = (ManagedBeanRootResource) lookup("java:module/root");
+        return resource.intValue();
+    }
 
-  @GET
-  @Path("sb")
-  public StringBuilder stringbuilder() {
-    return new StringBuilder().append("stringbuilder");
-  }
+    @GET
+    @Path("sb")
+    public StringBuilder stringbuilder() {
+        return new StringBuilder().append("stringbuilder");
+    }
 
-  @PostConstruct
-  public void postConstruct() {
-    value++;
-    isJaxrsInjectedPriorToPostConstruct = injectedApplication != null;
-  }
+    @PostConstruct
+    public void postConstruct() {
+        value++;
+        isJaxrsInjectedPriorToPostConstruct = injectedApplication != null;
+    }
 
-  // <JAXRS:SPEC:53.1 ----------------------------------------------->
-  @Context
-  private Application injectedApplication;
+    // <JAXRS:SPEC:53.1 ----------------------------------------------->
+    @Context
+    private Application injectedApplication;
 
-  private boolean isJaxrsInjectedPriorToPostConstruct = false;
+    private boolean isJaxrsInjectedPriorToPostConstruct = false;
 
-  @Path("priorroot")
-  @GET
-  public String injectPriorPostConstructOnRootResource() {
-    return String.valueOf(isJaxrsInjectedPriorToPostConstruct);
-  }
+    @Path("priorroot")
+    @GET
+    public String injectPriorPostConstructOnRootResource() {
+        return String.valueOf(isJaxrsInjectedPriorToPostConstruct);
+    }
 
-  @Path("priorapp")
-  @GET
-  public String injectPriorPostConstructOnApplication() {
-    return String.valueOf(
-        getAppHolderSingleton().isUriInfoInjectedBeforePostConstruct());
-  }
+    @Path("priorapp")
+    @GET
+    public String injectPriorPostConstructOnApplication() {
+        return String.valueOf(getAppHolderSingleton().isUriInfoInjectedBeforePostConstruct());
+    }
 
-  @Path("priorprovider")
-  @GET
-  public String injectPriorPostConstructOnProvider(
-      @Context Providers providers) {
-    StringBuilderProvider sbp = getStringBuilderProvider();
-    return String.valueOf(sbp.isApplicationInjectedBeforePostConstruct());
-  }
+    @Path("priorprovider")
+    @GET
+    public String injectPriorPostConstructOnProvider(@Context Providers providers) {
+        StringBuilderProvider sbp = getStringBuilderProvider();
+        return String.valueOf(sbp.isApplicationInjectedBeforePostConstruct());
+    }
 
-  // </JAXRS:SPEC:53.1 ----------------------------------------------->
+    // </JAXRS:SPEC:53.1 ----------------------------------------------->
 
-  // <JAXRS:SPEC:53.3 ------------------------------------------------>
-  @MatrixParam(value = "matrix")
-  String matrix;
+    // <JAXRS:SPEC:53.3 ------------------------------------------------>
+    @MatrixParam(value = "matrix")
+    String matrix;
 
-  @Path("nokeyword")
-  @GET
-  public String noInjectOrResourceKeyword() {
-    return matrix;
-  }
+    @Path("nokeyword")
+    @GET
+    public String noInjectOrResourceKeyword() {
+        return matrix;
+    }
 
-  // </JAXRS:SPEC:53.3 ----------------------------------------------->
+    // </JAXRS:SPEC:53.3 ----------------------------------------------->
 
-  // //////////////////////////////////////////////////////////////////
-  private static Object lookup(String name) throws NamingException {
-    InitialContext ic = new InitialContext();
-    return ic.lookup(name);
-  }
+    // //////////////////////////////////////////////////////////////////
+    private static Object lookup(String name) throws NamingException {
+        InitialContext ic = new InitialContext();
+        return ic.lookup(name);
+    }
 
-  private StringBuilderProvider getStringBuilderProvider() {
-    return (StringBuilderProvider) providers.getMessageBodyWriter(
-        StringBuilder.class, StringBuilder.class, (Annotation[]) null,
-        MediaType.WILDCARD_TYPE);
-  }
+    private StringBuilderProvider getStringBuilderProvider() {
+        return (StringBuilderProvider) providers.getMessageBodyWriter(
+                StringBuilder.class, StringBuilder.class, (Annotation[]) null, MediaType.WILDCARD_TYPE);
+    }
 
-  private ApplicationHolderSingleton getAppHolderSingleton() {
-    return (ApplicationHolderSingleton) application.getSingletons().iterator()
-        .next();
-  }
-
+    private ApplicationHolderSingleton getAppHolderSingleton() {
+        return (ApplicationHolderSingleton)
+                application.getSingletons().iterator().next();
+    }
 }

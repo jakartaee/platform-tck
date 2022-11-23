@@ -16,9 +16,6 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.metamodel;
 
-import java.io.Serializable;
-import java.sql.Date;
-
 import jakarta.persistence.Access;
 import jakarta.persistence.AccessType;
 import jakarta.persistence.AttributeOverride;
@@ -26,6 +23,8 @@ import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import java.io.Serializable;
+import java.sql.Date;
 
 /*
  * FullTimeEmployee entity extends an MappedSuperClass while overriding
@@ -38,31 +37,29 @@ import jakarta.persistence.Table;
     @AttributeOverride(name = "id", column = @Column(name = "ID")),
     @AttributeOverride(name = "firstName", column = @Column(name = "FIRSTNAME")),
     @AttributeOverride(name = "lastName", column = @Column(name = "LASTNAME")),
-    @AttributeOverride(name = "hireDate", column = @Column(name = "HIREDATE")) })
+    @AttributeOverride(name = "hireDate", column = @Column(name = "HIREDATE"))
+})
 @Access(AccessType.PROPERTY)
 public class FullTimeEmployee extends Employee implements Serializable {
 
-  private float salary;
+    private float salary;
 
-  public FullTimeEmployee() {
-  }
+    public FullTimeEmployee() {}
 
-  public FullTimeEmployee(int id, String firstName, String lastName,
-      Date hireDate, float salary) {
-    super(id, firstName, lastName, hireDate);
-    this.salary = salary;
-  }
+    public FullTimeEmployee(int id, String firstName, String lastName, Date hireDate, float salary) {
+        super(id, firstName, lastName, hireDate);
+        this.salary = salary;
+    }
 
-  // ===========================================================
-  // getters and setters for the state fields
+    // ===========================================================
+    // getters and setters for the state fields
 
-  @Column(name = "SALARY")
-  public float getSalary() {
-    return salary;
-  }
+    @Column(name = "SALARY")
+    public float getSalary() {
+        return salary;
+    }
 
-  public void setSalary(float salary) {
-    this.salary = salary;
-  }
-
+    public void setSalary(float salary) {
+        this.salary = salary;
+    }
 }

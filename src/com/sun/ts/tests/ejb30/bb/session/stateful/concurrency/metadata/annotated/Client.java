@@ -27,86 +27,101 @@ import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulCo
 import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF.notAllowedConcurrencyBeanNoInterface;
 import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF.notAllowedConcurrencyBeanRemote;
 
+import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF;
+import com.sun.ts.tests.ejb30.lite.stateful.concurrency.metadata.common.ClientBase;
+import jakarta.ejb.ConcurrentAccessException;
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBs;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF;
-import com.sun.ts.tests.ejb30.lite.stateful.concurrency.metadata.common.ClientBase;
-
-import jakarta.ejb.ConcurrentAccessException;
-import jakarta.ejb.EJB;
-import jakarta.ejb.EJBs;
-
 @EJBs({
-    @EJB(name = containerConcurrencyBeanNoInterface, beanName = "ContainerConcurrencyBean", beanInterface = ContainerConcurrencyBean.class),
-    @EJB(name = defaultConcurrencyBeanNoInterface, beanName = "DefaultConcurrencyBean", beanInterface = DefaultConcurrencyBean.class),
-    @EJB(name = notAllowedConcurrencyBeanNoInterface, beanName = "NotAllowedConcurrencyBean", beanInterface = NotAllowedConcurrencyBean.class),
-
-    @EJB(name = containerConcurrencyBeanRemote, beanName = "ContainerConcurrencyBean", beanInterface = StatefulConcurrencyRemoteIF.class),
-    @EJB(name = defaultConcurrencyBeanRemote, beanName = "DefaultConcurrencyBean", beanInterface = StatefulConcurrencyRemoteIF.class),
-    @EJB(name = notAllowedConcurrencyBeanRemote, beanName = "NotAllowedConcurrencyBean", beanInterface = StatefulConcurrencyRemoteIF.class) })
+    @EJB(
+            name = containerConcurrencyBeanNoInterface,
+            beanName = "ContainerConcurrencyBean",
+            beanInterface = ContainerConcurrencyBean.class),
+    @EJB(
+            name = defaultConcurrencyBeanNoInterface,
+            beanName = "DefaultConcurrencyBean",
+            beanInterface = DefaultConcurrencyBean.class),
+    @EJB(
+            name = notAllowedConcurrencyBeanNoInterface,
+            beanName = "NotAllowedConcurrencyBean",
+            beanInterface = NotAllowedConcurrencyBean.class),
+    @EJB(
+            name = containerConcurrencyBeanRemote,
+            beanName = "ContainerConcurrencyBean",
+            beanInterface = StatefulConcurrencyRemoteIF.class),
+    @EJB(
+            name = defaultConcurrencyBeanRemote,
+            beanName = "DefaultConcurrencyBean",
+            beanInterface = StatefulConcurrencyRemoteIF.class),
+    @EJB(
+            name = notAllowedConcurrencyBeanRemote,
+            beanName = "NotAllowedConcurrencyBean",
+            beanInterface = StatefulConcurrencyRemoteIF.class)
+})
 public class Client extends ClientBase {
 
-  /*
-   * @testName: notAllowed
-   * 
-   * @test_Strategy:
-   */
-  @Override
-  public void notAllowed() throws InterruptedException {
-    StatefulConcurrencyIF[] bs = { getNotAllowedConcurrencyBeanNoInterface(),
-        getNotAllowedConcurrencyBeanRemote() };
-    for (StatefulConcurrencyIF b : bs) {
-      checkConcurrentAccessResult(concurrentPing(b), 1, 1);
+    /*
+     * @testName: notAllowed
+     *
+     * @test_Strategy:
+     */
+    @Override
+    public void notAllowed() throws InterruptedException {
+        StatefulConcurrencyIF[] bs = {getNotAllowedConcurrencyBeanNoInterface(), getNotAllowedConcurrencyBeanRemote()};
+        for (StatefulConcurrencyIF b : bs) {
+            checkConcurrentAccessResult(concurrentPing(b), 1, 1);
+        }
     }
-  }
 
-  /*
-   * @testName: containerConcurrent
-   * 
-   * @test_Strategy:
-   */
-  @Override
-  public void containerConcurrent() throws InterruptedException {
-    containerConcurrent(getContainerConcurrencyBeanLocal(),
-        getContainerConcurrencyBeanNoInterface(),
-        getContainerConcurrencyBeanRemote());
-  }
-
-  /*
-   * @testName: defaultConcurrent
-   * 
-   * @test_Strategy:
-   */
-  @Override
-  public void defaultConcurrent() throws InterruptedException {
-    containerConcurrent(getDefaultConcurrencyBeanLocal(),
-        getDefaultConcurrencyBeanNoInterface(),
-        getDefaultConcurrencyBeanRemote());
-  }
-
-  @Override
-  protected List<Exception> concurrentPing(StatefulConcurrencyIF b)
-      throws InterruptedException {
-    List<Future<String>> futureList = new ArrayList<Future<String>>();
-    List<Exception> exceptionList = new ArrayList<Exception>();
-    for (int i = 0; i < CONCURRENT_INVOCATION_TIMES; i++) {
-      futureList.add(b.ping());
+    /*
+     * @testName: containerConcurrent
+     *
+     * @test_Strategy:
+     */
+    @Override
+    public void containerConcurrent() throws InterruptedException {
+        containerConcurrent(
+                getContainerConcurrencyBeanLocal(),
+                getContainerConcurrencyBeanNoInterface(),
+                getContainerConcurrencyBeanRemote());
     }
-    for (Future<String> f : futureList) {
-      ConcurrentAccessException e = null;
-      String targetBeanHash = null;
-      try {
-        targetBeanHash = f.get();
-        appendReason("The identityHashCode of the target bean instance: "
-            + targetBeanHash);
-      } catch (ExecutionException ee) {
-        e = (ConcurrentAccessException) ee.getCause();
-      }
-      exceptionList.add(e);
+
+    /*
+     * @testName: defaultConcurrent
+     *
+     * @test_Strategy:
+     */
+    @Override
+    public void defaultConcurrent() throws InterruptedException {
+        containerConcurrent(
+                getDefaultConcurrencyBeanLocal(),
+                getDefaultConcurrencyBeanNoInterface(),
+                getDefaultConcurrencyBeanRemote());
     }
-    return exceptionList;
-  }
+
+    @Override
+    protected List<Exception> concurrentPing(StatefulConcurrencyIF b) throws InterruptedException {
+        List<Future<String>> futureList = new ArrayList<Future<String>>();
+        List<Exception> exceptionList = new ArrayList<Exception>();
+        for (int i = 0; i < CONCURRENT_INVOCATION_TIMES; i++) {
+            futureList.add(b.ping());
+        }
+        for (Future<String> f : futureList) {
+            ConcurrentAccessException e = null;
+            String targetBeanHash = null;
+            try {
+                targetBeanHash = f.get();
+                appendReason("The identityHashCode of the target bean instance: " + targetBeanHash);
+            } catch (ExecutionException ee) {
+                e = (ConcurrentAccessException) ee.getCause();
+            }
+            exceptionList.add(e);
+        }
+        return exceptionList;
+    }
 }

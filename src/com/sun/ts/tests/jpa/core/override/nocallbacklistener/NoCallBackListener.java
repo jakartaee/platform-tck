@@ -17,7 +17,6 @@
 package com.sun.ts.tests.jpa.core.override.nocallbacklistener;
 
 import com.sun.ts.tests.jpa.core.override.util.CallBackCounts;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -28,64 +27,63 @@ import jakarta.persistence.Table;
 @Table(name = "NOENTITYLISTENER_TABLE")
 public class NoCallBackListener implements java.io.Serializable {
 
-  private Long id;
+    private Long id;
 
-  public NoCallBackListener() {
-  }
+    public NoCallBackListener() {}
 
-  @Id
-  @Column(name = "ID")
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public void prePersistFromXML() {
-    updateCallBackCount("prePersistFromXML");
-  }
-
-  public void preRemoveFromXML() {
-    updateCallBackCount("preRemoveFromXML");
-  }
-
-  public void postRemoveFromXML() {
-    updateCallBackCount("postRemoveFromXML");
-  }
-
-  @PostPersist
-  public void postPersistFromXML() {
-    updateCallBackCount("postPersist");
-  }
-
-  public void postLoadFromXML() {
-    updateCallBackCount("postLoadFromXML");
-  }
-
-  protected void updateCallBackCount(String callBackKeyName) {
-    CallBackCounts.updateCount(callBackKeyName);
-  }
-
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.id != null ? this.id.hashCode() : 0);
-    return hash;
-  }
-
-  public boolean equals(Object object) {
-    if (!(object instanceof NoCallBackListener)) {
-      return false;
+    @Id
+    @Column(name = "ID")
+    public Long getId() {
+        return id;
     }
-    NoCallBackListener other = (NoCallBackListener) object;
-    if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
-      return false;
-    }
-    return true;
-  }
 
-  public String toString() {
-    return "override.nocallbacklistener.NoCallBackListener id=" + id;
-  }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void prePersistFromXML() {
+        updateCallBackCount("prePersistFromXML");
+    }
+
+    public void preRemoveFromXML() {
+        updateCallBackCount("preRemoveFromXML");
+    }
+
+    public void postRemoveFromXML() {
+        updateCallBackCount("postRemoveFromXML");
+    }
+
+    @PostPersist
+    public void postPersistFromXML() {
+        updateCallBackCount("postPersist");
+    }
+
+    public void postLoadFromXML() {
+        updateCallBackCount("postLoadFromXML");
+    }
+
+    protected void updateCallBackCount(String callBackKeyName) {
+        CallBackCounts.updateCount(callBackKeyName);
+    }
+
+    public int hashCode() {
+        int hash = 0;
+        hash += (this.id != null ? this.id.hashCode() : 0);
+        return hash;
+    }
+
+    public boolean equals(Object object) {
+        if (!(object instanceof NoCallBackListener)) {
+            return false;
+        }
+        NoCallBackListener other = (NoCallBackListener) object;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    public String toString() {
+        return "override.nocallbacklistener.NoCallBackListener id=" + id;
+    }
 }

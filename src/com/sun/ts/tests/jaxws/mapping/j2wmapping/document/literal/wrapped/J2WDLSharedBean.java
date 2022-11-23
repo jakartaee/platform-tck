@@ -22,31 +22,30 @@ package com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped;
 
 public class J2WDLSharedBean {
 
-  private int myInt;
+    private int myInt;
 
-  private String myString;
+    private String myString;
 
-  public J2WDLSharedBean() {
-  }
+    public J2WDLSharedBean() {}
 
-  public J2WDLSharedBean(int i, String s) {
-    setMyInt(i);
-    setMyString(s);
-  }
+    public J2WDLSharedBean(int i, String s) {
+        setMyInt(i);
+        setMyString(s);
+    }
 
-  public int getMyInt() {
-    return myInt;
-  }
+    public int getMyInt() {
+        return myInt;
+    }
 
-  public void setMyInt(int myInt) {
-    this.myInt = myInt;
-  }
+    public void setMyInt(int myInt) {
+        this.myInt = myInt;
+    }
 
-  public String getMyString() {
-    return myString;
-  }
+    public String getMyString() {
+        return myString;
+    }
 
-  public void setMyString(String myString) {
-    this.myString = myString;
-  }
+    public void setMyString(String myString) {
+        this.myString = myString;
+    }
 }

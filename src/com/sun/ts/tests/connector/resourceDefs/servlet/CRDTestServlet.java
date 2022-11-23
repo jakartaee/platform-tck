@@ -16,14 +16,10 @@
 
 package com.sun.ts.tests.connector.resourceDefs.servlet;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
 import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
-
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.resource.ConnectionFactoryDefinition;
 import jakarta.resource.ConnectionFactoryDefinitions;
@@ -36,6 +32,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /*
  * In order for these tests to pass, we must have whitebox-tx.rar configured & deployed.
@@ -47,7 +45,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * Also, be sure to specify the correct className that matches our connection factory
  * type (which for cts rar's is com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory)
  *
- * WARNING:  XXXX:  Current issue: 
+ * WARNING:  XXXX:  Current issue:
  *           @ConnectionFactoryDefinition seems to currently (1/9/2013) depend
  *           on proprietary properties to tie the definition to a rar.
  *
@@ -57,234 +55,227 @@ import jakarta.servlet.http.HttpServletResponse;
 //  XXXX:  try using transactionSupport=TransactionSupport.TransactionSupportLevel.XATransaction),
 //
 
-@DeclareRoles({ "Administrator", "Manager", "Employee" })
-@ServletSecurity(value = @HttpConstraint(rolesAllowed = {
-    "Administrator" }), httpMethodConstraints = {
-        @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
-        @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator") })
-@WebServlet(name = "CRDTestServlet", urlPatterns = { "/CRDTestServlet" })
+@DeclareRoles({"Administrator", "Manager", "Employee"})
+@ServletSecurity(
+        value = @HttpConstraint(rolesAllowed = {"Administrator"}),
+        httpMethodConstraints = {
+            @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
+            @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator")
+        })
+@WebServlet(
+        name = "CRDTestServlet",
+        urlPatterns = {"/CRDTestServlet"})
 @ConnectionFactoryDefinitions({
-    @ConnectionFactoryDefinition(name = "java:app/env/CRDTestServlet_App_ConnectorResource", description = "application scoped connector resource definition", interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory", resourceAdapter = "whitebox-tx", transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction),
-
-    @ConnectionFactoryDefinition(name = "java:comp/env/CRDTestServlet_Comp_ConnectorResource", description = "component scoped connector resource definition", interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory", resourceAdapter = "whitebox-tx", transactionSupport = TransactionSupport.TransactionSupportLevel.LocalTransaction),
-
-    @ConnectionFactoryDefinition(name = "java:module/env/CRDTestServlet_Module_ConnectorResource", description = "module scoped connector resource definition", interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory", resourceAdapter = "whitebox-tx", transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction),
-
-    @ConnectionFactoryDefinition(name = "java:global/env/CRDTestServlet_Global_ConnectorResource", description = "globally scoped connector resource definition", interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory", resourceAdapter = "whitebox-xa", transactionSupport = TransactionSupport.TransactionSupportLevel.XATransaction) })
+    @ConnectionFactoryDefinition(
+            name = "java:app/env/CRDTestServlet_App_ConnectorResource",
+            description = "application scoped connector resource definition",
+            interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory",
+            resourceAdapter = "whitebox-tx",
+            transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction),
+    @ConnectionFactoryDefinition(
+            name = "java:comp/env/CRDTestServlet_Comp_ConnectorResource",
+            description = "component scoped connector resource definition",
+            interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory",
+            resourceAdapter = "whitebox-tx",
+            transactionSupport = TransactionSupport.TransactionSupportLevel.LocalTransaction),
+    @ConnectionFactoryDefinition(
+            name = "java:module/env/CRDTestServlet_Module_ConnectorResource",
+            description = "module scoped connector resource definition",
+            interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory",
+            resourceAdapter = "whitebox-tx",
+            transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction),
+    @ConnectionFactoryDefinition(
+            name = "java:global/env/CRDTestServlet_Global_ConnectorResource",
+            description = "globally scoped connector resource definition",
+            interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory",
+            resourceAdapter = "whitebox-xa",
+            transactionSupport = TransactionSupport.TransactionSupportLevel.XATransaction)
+})
 public class CRDTestServlet extends HttpServlet {
-  private String servletAppContext = null;
+    private String servletAppContext = null;
 
-  private String testMethod = null;
+    private String testMethod = null;
 
-  private String RARJndiScope = null;
+    private String RARJndiScope = null;
 
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    debug("in CRDTestServlet.doGet()");
-    getPropsAndParams(request, response);
-    doPost(request, response);
-  }
-
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    debug("in CRDTestServlet.doPost()");
-    getPropsAndParams(request, response);
-    doTests(request, response);
-  }
-
-  private void doTests(HttpServletRequest request,
-      HttpServletResponse response) {
-
-    debug("in CRDTestServlet.doTests()");
-    PrintWriter out = null;
-    try {
-      out = response.getWriter();
-    } catch (Exception ex) {
-      debug("got exception in CRDTestServlet");
-      ex.printStackTrace();
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        debug("in CRDTestServlet.doGet()");
+        getPropsAndParams(request, response);
+        doPost(request, response);
     }
 
-    // get some common props
-    getPropsAndParams(request, response);
-
-    if (testMethod.equals("ValidateGlobalResourceDef")) {
-      debug(
-          "CRDTestServlet.doTests(): testMethod == ValidateGlobalResourceDef");
-      validateGlobalResourceDef(request, response);
-
-    } else if (testMethod.equals("ValidateAppResourceDef")) {
-      debug("CRDTestServlet.doTests(): testMethod == ValidateAppResourceDef");
-      validateAppResourceDef(request, response);
-
-    } else if (testMethod.equals("ValidateCompResourceDef")) {
-      debug("CRDTestServlet.doTests(): testMethod == ValidateCompResourceDef");
-      validateCompResourceDef(request, response);
-
-    } else if (testMethod.equals("ValidateModuleResourceDef")) {
-      debug(
-          "CRDTestServlet.doTests(): testMethod == ValidateModuleResourceDef");
-      validateModuleResourceDef(request, response);
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        debug("in CRDTestServlet.doPost()");
+        getPropsAndParams(request, response);
+        doTests(request, response);
     }
 
-  }
+    private void doTests(HttpServletRequest request, HttpServletResponse response) {
 
-  private void getPropsAndParams(HttpServletRequest req,
-      HttpServletResponse response) {
-
-    // set testMethod
-    testMethod = req.getParameter("method.under.test");
-    RARJndiScope = req.getParameter("rar.jndi.scope");
-
-    debug("CRDTestServlet.getPropsAndParams():  testMethod = " + testMethod);
-    debug(
-        "CRDTestServlet.getPropsAndParams():  RARJndiScope = " + RARJndiScope);
-
-    return;
-  }
-
-  public void validateGlobalResourceDef(HttpServletRequest request,
-      HttpServletResponse response) {
-    try {
-      String jndiName = RARJndiScope;
-      PrintWriter out = response.getWriter();
-
-      debug("checking jndiName = " + jndiName);
-      if (validateConnectorResource(jndiName, true)) {
-        send_output(out,
-            "CRDTestServlet->ValidateGlobalResourceDef() passed for jndiName="
-                + jndiName);
-      } else {
-        send_output(out,
-            "validateConnectorResource() failed for jndiName: " + jndiName);
-      }
-
-    } catch (Exception ex) {
-      System.out.println("CRDTestServlet->ValidateGlobalResourceDef() failed");
-      ex.printStackTrace();
-    }
-  }
-
-  public void validateAppResourceDef(HttpServletRequest request,
-      HttpServletResponse response) {
-    try {
-      String jndiName = RARJndiScope;
-      PrintWriter out = response.getWriter();
-
-      debug("checking jndiName = " + jndiName);
-      if (validateConnectorResource(jndiName, true)) {
-        send_output(out,
-            "CRDTestServlet->ValidateAppResourceDef() passed for jndiName="
-                + jndiName);
-      } else {
-        send_output(out,
-            "validateAppResourceDef() failed for jndiName: " + jndiName);
-      }
-
-    } catch (Exception ex) {
-      System.out.println("CRDTestServlet->ValidateAppResourceDef() failed");
-      ex.printStackTrace();
-    }
-  }
-
-  public void validateCompResourceDef(HttpServletRequest request,
-      HttpServletResponse response) {
-    try {
-      String jndiName = RARJndiScope;
-      PrintWriter out = response.getWriter();
-
-      debug("checking jndiName = " + jndiName);
-      if (validateConnectorResource(jndiName, true)) {
-        send_output(out,
-            "CRDTestServlet->ValidateCompResourceDef() passed for jndiName="
-                + jndiName);
-      } else {
-        send_output(out,
-            "validateCompResourceDef() failed for jndiName: " + jndiName);
-      }
-
-    } catch (Exception ex) {
-      System.out.println("CRDTestServlet->ValidateCompResourceDef() failed");
-      ex.printStackTrace();
-    }
-  }
-
-  public void validateModuleResourceDef(HttpServletRequest request,
-      HttpServletResponse response) {
-    try {
-      String jndiName = RARJndiScope;
-      PrintWriter out = response.getWriter();
-
-      debug("checking jndiName = " + jndiName);
-      if (validateConnectorResource(jndiName, true)) {
-        send_output(out,
-            "CRDTestServlet->ValidateModuleResourceDef() passed for jndiName="
-                + jndiName);
-      } else {
-        send_output(out,
-            "validateModuleResourceDef() failed for jndiName: " + jndiName);
-      }
-
-    } catch (Exception ex) {
-      System.out.println("CRDTestServlet->ValidateModuleResourceDef() failed");
-      ex.printStackTrace();
-    }
-  }
-
-  /*
-   * returns true if success, else false.
-   */
-  private boolean validateConnectorResource(String jndiName,
-      boolean expectSuccess) {
-    TSConnection c = null;
-    boolean rval = false;
-
-    try {
-
-      debug("validateConnectorResource():  calling new TSNamingContext()");
-      TSNamingContext ic = new TSNamingContext();
-
-      debug("Doing lookup of jndiName = " + jndiName);
-      TSDataSource ds = (TSDataSource) (ic.lookup(jndiName));
-      debug(
-          "validateConnectorResource(): Successfully did lookup of jndiName = "
-              + jndiName);
-
-      rval = true;
-    } catch (Exception e) {
-      debug("Fail to access connector resource: " + jndiName);
-      e.printStackTrace();
-    } finally {
-      debug("finally:  Fail to access connector resource: " + jndiName);
-      try {
-        if (c != null) {
-          c.close();
+        debug("in CRDTestServlet.doTests()");
+        PrintWriter out = null;
+        try {
+            out = response.getWriter();
+        } catch (Exception ex) {
+            debug("got exception in CRDTestServlet");
+            ex.printStackTrace();
         }
-      } catch (Exception e) {
-      }
+
+        // get some common props
+        getPropsAndParams(request, response);
+
+        if (testMethod.equals("ValidateGlobalResourceDef")) {
+            debug("CRDTestServlet.doTests(): testMethod == ValidateGlobalResourceDef");
+            validateGlobalResourceDef(request, response);
+
+        } else if (testMethod.equals("ValidateAppResourceDef")) {
+            debug("CRDTestServlet.doTests(): testMethod == ValidateAppResourceDef");
+            validateAppResourceDef(request, response);
+
+        } else if (testMethod.equals("ValidateCompResourceDef")) {
+            debug("CRDTestServlet.doTests(): testMethod == ValidateCompResourceDef");
+            validateCompResourceDef(request, response);
+
+        } else if (testMethod.equals("ValidateModuleResourceDef")) {
+            debug("CRDTestServlet.doTests(): testMethod == ValidateModuleResourceDef");
+            validateModuleResourceDef(request, response);
+        }
     }
 
-    return rval;
-  }
+    private void getPropsAndParams(HttpServletRequest req, HttpServletResponse response) {
 
-  public void send_output(PrintWriter out, String str) {
-    if (out != null) {
-      out.println(str);
-      out.flush();
-      debug(str);
-    } else {
-      print_err("ERROR, Null PrintWriter:  can not properly send back message: "
-          + str);
+        // set testMethod
+        testMethod = req.getParameter("method.under.test");
+        RARJndiScope = req.getParameter("rar.jndi.scope");
+
+        debug("CRDTestServlet.getPropsAndParams():  testMethod = " + testMethod);
+        debug("CRDTestServlet.getPropsAndParams():  RARJndiScope = " + RARJndiScope);
+
+        return;
     }
-  }
 
-  public void print_err(String str) {
-    System.err.println(str);
-    debug(str);
-  }
+    public void validateGlobalResourceDef(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String jndiName = RARJndiScope;
+            PrintWriter out = response.getWriter();
 
-  public void debug(String str) {
-    TestUtil.logMsg(str);
-    System.out.println(str);
-  }
+            debug("checking jndiName = " + jndiName);
+            if (validateConnectorResource(jndiName, true)) {
+                send_output(out, "CRDTestServlet->ValidateGlobalResourceDef() passed for jndiName=" + jndiName);
+            } else {
+                send_output(out, "validateConnectorResource() failed for jndiName: " + jndiName);
+            }
 
+        } catch (Exception ex) {
+            System.out.println("CRDTestServlet->ValidateGlobalResourceDef() failed");
+            ex.printStackTrace();
+        }
+    }
+
+    public void validateAppResourceDef(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String jndiName = RARJndiScope;
+            PrintWriter out = response.getWriter();
+
+            debug("checking jndiName = " + jndiName);
+            if (validateConnectorResource(jndiName, true)) {
+                send_output(out, "CRDTestServlet->ValidateAppResourceDef() passed for jndiName=" + jndiName);
+            } else {
+                send_output(out, "validateAppResourceDef() failed for jndiName: " + jndiName);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("CRDTestServlet->ValidateAppResourceDef() failed");
+            ex.printStackTrace();
+        }
+    }
+
+    public void validateCompResourceDef(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String jndiName = RARJndiScope;
+            PrintWriter out = response.getWriter();
+
+            debug("checking jndiName = " + jndiName);
+            if (validateConnectorResource(jndiName, true)) {
+                send_output(out, "CRDTestServlet->ValidateCompResourceDef() passed for jndiName=" + jndiName);
+            } else {
+                send_output(out, "validateCompResourceDef() failed for jndiName: " + jndiName);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("CRDTestServlet->ValidateCompResourceDef() failed");
+            ex.printStackTrace();
+        }
+    }
+
+    public void validateModuleResourceDef(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String jndiName = RARJndiScope;
+            PrintWriter out = response.getWriter();
+
+            debug("checking jndiName = " + jndiName);
+            if (validateConnectorResource(jndiName, true)) {
+                send_output(out, "CRDTestServlet->ValidateModuleResourceDef() passed for jndiName=" + jndiName);
+            } else {
+                send_output(out, "validateModuleResourceDef() failed for jndiName: " + jndiName);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("CRDTestServlet->ValidateModuleResourceDef() failed");
+            ex.printStackTrace();
+        }
+    }
+
+    /*
+     * returns true if success, else false.
+     */
+    private boolean validateConnectorResource(String jndiName, boolean expectSuccess) {
+        TSConnection c = null;
+        boolean rval = false;
+
+        try {
+
+            debug("validateConnectorResource():  calling new TSNamingContext()");
+            TSNamingContext ic = new TSNamingContext();
+
+            debug("Doing lookup of jndiName = " + jndiName);
+            TSDataSource ds = (TSDataSource) (ic.lookup(jndiName));
+            debug("validateConnectorResource(): Successfully did lookup of jndiName = " + jndiName);
+
+            rval = true;
+        } catch (Exception e) {
+            debug("Fail to access connector resource: " + jndiName);
+            e.printStackTrace();
+        } finally {
+            debug("finally:  Fail to access connector resource: " + jndiName);
+            try {
+                if (c != null) {
+                    c.close();
+                }
+            } catch (Exception e) {
+            }
+        }
+
+        return rval;
+    }
+
+    public void send_output(PrintWriter out, String str) {
+        if (out != null) {
+            out.println(str);
+            out.flush();
+            debug(str);
+        } else {
+            print_err("ERROR, Null PrintWriter:  can not properly send back message: " + str);
+        }
+    }
+
+    public void print_err(String str) {
+        System.err.println(str);
+        debug(str);
+    }
+
+    public void debug(String str) {
+        TestUtil.logMsg(str);
+        System.out.println(str);
+    }
 }

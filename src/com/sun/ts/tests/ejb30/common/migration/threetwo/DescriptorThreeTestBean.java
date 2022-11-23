@@ -20,66 +20,58 @@
 
 package com.sun.ts.tests.ejb30.common.migration.threetwo;
 
+import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
+import jakarta.ejb.SessionContext;
 import javax.naming.NamingException;
 import javax.rmi.PortableRemoteObject;
 
-import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
+// @Stateless(name="ThreeTestBean")
+// @Remote(ThreeTestIF.class)
+public class DescriptorThreeTestBean extends ThreeTestBeanBase implements ThreeTestIF {
+    private static final String TWO_REMOTE_HOME_NAME = "java:comp/env/twoRemoteHome";
 
-import jakarta.ejb.SessionContext;
+    private static final String TWO_LOCAL_HOME_NAME = "java:comp/env/twoLocalHome";
 
-//@Stateless(name="ThreeTestBean")
-//@Remote(ThreeTestIF.class)
-public class DescriptorThreeTestBean extends ThreeTestBeanBase
-    implements ThreeTestIF {
-  private static final String TWO_REMOTE_HOME_NAME = "java:comp/env/twoRemoteHome";
+    // @EJB(name="twoRemoteHome")
+    // ejb-ref declared in descriptor, but not injected
+    private TwoRemoteHome twoRemoteHome;
 
-  private static final String TWO_LOCAL_HOME_NAME = "java:comp/env/twoLocalHome";
+    // @EJB(name="twoLocalHome")
+    // ejb-ref declared in descriptor, but not injected
+    private TwoLocalHome twoLocalHome;
 
-  // @EJB(name="twoRemoteHome")
-  // ejb-ref declared in descriptor, but not injected
-  private TwoRemoteHome twoRemoteHome;
+    // @Resource
+    private SessionContext sctx;
 
-  // @EJB(name="twoLocalHome")
-  // ejb-ref declared in descriptor, but not injected
-  private TwoLocalHome twoLocalHome;
+    public DescriptorThreeTestBean() {}
 
-  // @Resource
-  private SessionContext sctx;
+    public void remove() {}
 
-  public DescriptorThreeTestBean() {
-  }
-
-  public void remove() {
-  }
-
-  protected TwoRemoteHome getTwoRemoteHome() {
-    if (twoRemoteHome == null) {
-      try {
-        Object obj = ServiceLocator.lookup(TWO_REMOTE_HOME_NAME);
-        twoRemoteHome = (TwoRemoteHome) PortableRemoteObject.narrow(obj,
-            TwoRemoteHome.class);
-      } catch (NamingException e) {
-        throw new IllegalStateException(e);
-      }
+    protected TwoRemoteHome getTwoRemoteHome() {
+        if (twoRemoteHome == null) {
+            try {
+                Object obj = ServiceLocator.lookup(TWO_REMOTE_HOME_NAME);
+                twoRemoteHome = (TwoRemoteHome) PortableRemoteObject.narrow(obj, TwoRemoteHome.class);
+            } catch (NamingException e) {
+                throw new IllegalStateException(e);
+            }
+        }
+        return twoRemoteHome;
     }
-    return twoRemoteHome;
-  }
 
-  protected TwoLocalHome getTwoLocalHome() {
-    if (twoLocalHome == null) {
-      try {
-        Object obj = ServiceLocator.lookup(TWO_LOCAL_HOME_NAME);
-        twoLocalHome = (TwoLocalHome) PortableRemoteObject.narrow(obj,
-            TwoLocalHome.class);
-      } catch (NamingException e) {
-        throw new IllegalStateException(e);
-      }
+    protected TwoLocalHome getTwoLocalHome() {
+        if (twoLocalHome == null) {
+            try {
+                Object obj = ServiceLocator.lookup(TWO_LOCAL_HOME_NAME);
+                twoLocalHome = (TwoLocalHome) PortableRemoteObject.narrow(obj, TwoLocalHome.class);
+            } catch (NamingException e) {
+                throw new IllegalStateException(e);
+            }
+        }
+        return twoLocalHome;
     }
-    return twoLocalHome;
-  }
 
-  protected jakarta.ejb.EJBContext getEJBContext() {
-    return sctx;
-  }
-
+    protected jakarta.ejb.EJBContext getEJBContext() {
+        return sctx;
+    }
 }

@@ -21,36 +21,36 @@
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.epr;
 
 import jakarta.annotation.Resource;
-import jakarta.jws.HandlerChain;
 import jakarta.jws.WebService;
-import jakarta.xml.ws.WebServiceContext;
-import jakarta.xml.ws.Action;
-import jakarta.xml.ws.FaultAction;
 import jakarta.xml.ws.BindingType;
+import jakarta.xml.ws.WebServiceContext;
 import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.soap.SOAPBinding;
 import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
 
-@WebService(name = "AddNumbers", portName = "AddNumbersPort", targetNamespace = "http://foobar.org/", serviceName = "AddNumbersService")
+@WebService(
+        name = "AddNumbers",
+        portName = "AddNumbersPort",
+        targetNamespace = "http://foobar.org/",
+        serviceName = "AddNumbersService")
 @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)
 @Addressing(enabled = true, required = true)
 public class AddNumbersImpl {
 
-  @Resource
-  WebServiceContext wsc;
+    @Resource
+    WebServiceContext wsc;
 
-  public W3CEndpointReference getW3CEPR1() {
-    System.out.println("wsc=" + wsc);
-    return (W3CEndpointReference) wsc.getEndpointReference();
-  }
+    public W3CEndpointReference getW3CEPR1() {
+        System.out.println("wsc=" + wsc);
+        return (W3CEndpointReference) wsc.getEndpointReference();
+    }
 
-  public W3CEndpointReference getW3CEPR2() {
-    System.out.println("wsc=" + wsc);
-    return (W3CEndpointReference) wsc.getEndpointReference(
-        jakarta.xml.ws.wsaddressing.W3CEndpointReference.class);
-  }
+    public W3CEndpointReference getW3CEPR2() {
+        System.out.println("wsc=" + wsc);
+        return (W3CEndpointReference) wsc.getEndpointReference(jakarta.xml.ws.wsaddressing.W3CEndpointReference.class);
+    }
 
-  public int doAddNumbers(int number1, int number2) {
-    return number1 + number2;
-  }
+    public int doAddNumbers(int number1, int number2) {
+        return number1 + number2;
+    }
 }

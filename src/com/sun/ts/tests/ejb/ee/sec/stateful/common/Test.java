@@ -20,29 +20,27 @@
 
 package com.sun.ts.tests.ejb.ee.sec.stateful.common;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface Test extends EJBObject {
-  public boolean IsCallerB1(String caller) throws RemoteException;
+    public boolean IsCallerB1(String caller) throws RemoteException;
 
-  public boolean InRole(String role) throws RemoteException;
+    public boolean InRole(String role) throws RemoteException;
 
-  public boolean EjbNotAuthz() throws RemoteException;
+    public boolean EjbNotAuthz() throws RemoteException;
 
-  public boolean EjbIsAuthz() throws RemoteException;
+    public boolean EjbIsAuthz() throws RemoteException;
 
-  public boolean EjbSecRoleRef(String role) throws RemoteException;
+    public boolean EjbSecRoleRef(String role) throws RemoteException;
 
-  public boolean EjbSecRoleRef1(String role) throws RemoteException;
+    public boolean EjbSecRoleRef1(String role) throws RemoteException;
 
-  public boolean EjbOverloadedSecRoleRefs(String role1, String role2)
-      throws RemoteException;
+    public boolean EjbOverloadedSecRoleRefs(String role1, String role2) throws RemoteException;
 
-  public boolean EjbSecRoleRefScope(String role) throws RemoteException;
+    public boolean EjbSecRoleRefScope(String role) throws RemoteException;
 
-  public boolean checktest1() throws RemoteException;
+    public boolean checktest1() throws RemoteException;
 
-  public boolean excludetest1() throws RemoteException;
+    public boolean excludetest1() throws RemoteException;
 }

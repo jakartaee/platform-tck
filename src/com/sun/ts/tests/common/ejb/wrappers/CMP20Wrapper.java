@@ -20,106 +20,100 @@
 
 package com.sun.ts.tests.common.ejb.wrappers;
 
-import java.util.Properties;
-
-import javax.naming.NamingException;
-
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
 import jakarta.ejb.RemoveException;
+import java.util.Properties;
+import javax.naming.NamingException;
 
 public abstract class CMP20Wrapper implements EntityBean {
 
-  /* Entity instance data */
-  public abstract Integer getId();
+    /* Entity instance data */
+    public abstract Integer getId();
 
-  public abstract void setId(Integer i);
+    public abstract void setId(Integer i);
 
-  public abstract String getBrandName();
+    public abstract String getBrandName();
 
-  public abstract void setBrandName(String s);
+    public abstract void setBrandName(String s);
 
-  public abstract float getPrice();
+    public abstract float getPrice();
 
-  public abstract void setPrice(float p);
+    public abstract void setPrice(float p);
 
-  protected EntityContext ectx = null;
+    protected EntityContext ectx = null;
 
-  protected TSNamingContext nctx = null;
+    protected TSNamingContext nctx = null;
 
-  /*
-   * Bean life cycle.
-   */
+    /*
+     * Bean life cycle.
+     */
 
-  public Integer ejbCreate(Properties props, int id, String brandName,
-      float price) throws CreateException {
+    public Integer ejbCreate(Properties props, int id, String brandName, float price) throws CreateException {
 
-    TestUtil.logTrace("[CMP20Wrapper] ejbCreate()");
-    Integer pk = new Integer(id);
+        TestUtil.logTrace("[CMP20Wrapper] ejbCreate()");
+        Integer pk = new Integer(id);
 
-    try {
-      TestUtil.logTrace("[CMP20Wrapper] initialize logging...");
-      TestUtil.init(props);
-      setId(pk);
-      setBrandName(brandName);
-      setPrice(price);
-    } catch (Exception e) {
-      TestUtil.logErr("[CMP20Wrapper] Caught exception: " + e);
-      throw new CreateException("Exception occurred: " + e);
+        try {
+            TestUtil.logTrace("[CMP20Wrapper] initialize logging...");
+            TestUtil.init(props);
+            setId(pk);
+            setBrandName(brandName);
+            setPrice(price);
+        } catch (Exception e) {
+            TestUtil.logErr("[CMP20Wrapper] Caught exception: " + e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+
+        return null;
     }
 
-    return null;
-  }
+    public void ejbPostCreate(Properties props, int id, String brandName, float price) {
 
-  public void ejbPostCreate(Properties props, int id, String brandName,
-      float price) {
-
-    TestUtil.logTrace("[CMP20Wrapper] ejbPostCreate()");
-  }
-
-  public void setEntityContext(EntityContext c) {
-    try {
-      TestUtil.logTrace("[CMP20Wrapper] setEntityContext()");
-      ectx = c;
-
-      TestUtil.logMsg("[CMP20Wrapper] Obtaining TS Naming Context...");
-      nctx = new TSNamingContext();
-    } catch (NamingException e) {
-      TestUtil.logErr("[CMP20Wrapper] Naming Exception : " + e);
-      throw new EJBException("Cannot obtain Naming Context" + e);
-    } catch (Exception e) {
-      TestUtil.logErr("[CMP20Wrapper] Caught exception: " + e);
-      throw new EJBException("Caught exception: " + e);
+        TestUtil.logTrace("[CMP20Wrapper] ejbPostCreate()");
     }
-  }
 
-  public void unsetEntityContext() {
-    TestUtil.logTrace("[CMP20Wrapper] unsetEntityContext()");
-  }
+    public void setEntityContext(EntityContext c) {
+        try {
+            TestUtil.logTrace("[CMP20Wrapper] setEntityContext()");
+            ectx = c;
 
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("[CMP20Wrapper] ejbRemove()");
-  }
+            TestUtil.logMsg("[CMP20Wrapper] Obtaining TS Naming Context...");
+            nctx = new TSNamingContext();
+        } catch (NamingException e) {
+            TestUtil.logErr("[CMP20Wrapper] Naming Exception : " + e);
+            throw new EJBException("Cannot obtain Naming Context" + e);
+        } catch (Exception e) {
+            TestUtil.logErr("[CMP20Wrapper] Caught exception: " + e);
+            throw new EJBException("Caught exception: " + e);
+        }
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("[CMP20Wrapper] ejbActivate()");
-  }
+    public void unsetEntityContext() {
+        TestUtil.logTrace("[CMP20Wrapper] unsetEntityContext()");
+    }
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("[CMP20Wrapper] ejbPassivate()");
-  }
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("[CMP20Wrapper] ejbRemove()");
+    }
 
-  public void ejbLoad() {
-    TestUtil.logTrace("[CMP20Wrapper] ejbLoad()");
-  }
+    public void ejbActivate() {
+        TestUtil.logTrace("[CMP20Wrapper] ejbActivate()");
+    }
 
-  public void ejbStore() {
-    TestUtil.logTrace("[CMP20Wrapper] ejbStore()");
-  }
+    public void ejbPassivate() {
+        TestUtil.logTrace("[CMP20Wrapper] ejbPassivate()");
+    }
 
+    public void ejbLoad() {
+        TestUtil.logTrace("[CMP20Wrapper] ejbLoad()");
+    }
+
+    public void ejbStore() {
+        TestUtil.logTrace("[CMP20Wrapper] ejbStore()");
+    }
 }

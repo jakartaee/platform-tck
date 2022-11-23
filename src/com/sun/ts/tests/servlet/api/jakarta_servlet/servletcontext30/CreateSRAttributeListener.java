@@ -21,29 +21,22 @@
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30;
 
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.ServletRequestAttributeEvent;
 import jakarta.servlet.ServletRequestAttributeListener;
 
-public final class CreateSRAttributeListener
-    implements ServletRequestAttributeListener {
+public final class CreateSRAttributeListener implements ServletRequestAttributeListener {
 
-  // Public Methods
+    // Public Methods
 
-  public void attributeAdded(ServletRequestAttributeEvent event) {
-    StaticLog
-        .add("SRAttributeAdded:" + event.getName() + "," + event.getValue());
+    public void attributeAdded(ServletRequestAttributeEvent event) {
+        StaticLog.add("SRAttributeAdded:" + event.getName() + "," + event.getValue());
+    }
 
-  }
+    public void attributeRemoved(ServletRequestAttributeEvent event) {
+        StaticLog.add("SRAttributeRemoved:" + event.getName() + "," + event.getValue());
+    }
 
-  public void attributeRemoved(ServletRequestAttributeEvent event) {
-    StaticLog
-        .add("SRAttributeRemoved:" + event.getName() + "," + event.getValue());
-  }
-
-  public void attributeReplaced(ServletRequestAttributeEvent event) {
-    StaticLog
-        .add("SRAttributeReplaced:" + event.getName() + "," + event.getValue());
-  }
-
+    public void attributeReplaced(ServletRequestAttributeEvent event) {
+        StaticLog.add("SRAttributeReplaced:" + event.getName() + "," + event.getValue());
+    }
 }

@@ -20,181 +20,174 @@
 
 package com.sun.ts.tests.ejb.ee.tx.entity.cmp.cm.Tx_Single;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  private static final String testName = "Tx_Single";
+    private static final String testName = "Tx_Single";
 
-  private static final String testLookup = "java:comp/env/ejb/TestBean";
+    private static final String testLookup = "java:comp/env/ejb/TestBean";
 
-  private static final String envProps = "testbean.props";
+    private static final String envProps = "testbean.props";
 
-  private static final String testDir = System.getProperty("user.dir");
+    private static final String testDir = System.getProperty("user.dir");
 
-  private TestBeanHome beanHome = null;
+    private TestBeanHome beanHome = null;
 
-  private TestBean beanRef = null;
+    private TestBean beanRef = null;
 
-  private Properties testProps = new Properties();
+    private Properties testProps = new Properties();
 
-  private TSNamingContext jctx = null;
+    private TSNamingContext jctx = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup: */
-
-  /*
-   * @class.setup_props: java.naming.factory.initial;
-   * 
-   * @class.testArgs: -ap tssql.stmt
-   */
-  public void setup(String[] args, Properties p) throws Fault {
-    logMsg("Setup tests");
-    this.testProps = p;
-
-    try {
-      logMsg("Get the naming context");
-      jctx = new TSNamingContext();
-
-      logMsg("Getting the EJB Home interface for " + testLookup);
-      beanHome = (TestBeanHome) jctx.lookup(testLookup, TestBeanHome.class);
-
-      logMsg("Setup ok");
-    } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /* Run test */
+    /* Test setup: */
 
-  /*
-   * @testName: test1
-   *
-   * @assertion_ids: EJB:SPEC:583.3.1; EJB:SPEC:583.3.2; EJB:SPEC:583.3.4
-   *
-   * @test_Strategy: Container managed Tx commit - Required Entity EJBs. Create
-   * a few instances of an Entity EJB (TxEBean) bean. Perform updates to the
-   * Entity EJB's instance data. Ensure that the instance data is updated on
-   * method return. Ensure that the database fields are updated on method
-   * return.
-   *
-   */
-  public void test1() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
-      beanRef = (TestBean) beanHome.create(testProps);
+    /*
+     * @class.setup_props: java.naming.factory.initial;
+     *
+     * @class.testArgs: -ap tssql.stmt
+     */
+    public void setup(String[] args, Properties p) throws Fault {
+        logMsg("Setup tests");
+        this.testProps = p;
 
-      boolean testResult = false;
+        try {
+            logMsg("Get the naming context");
+            jctx = new TSNamingContext();
 
-      logMsg("Execute TestBean:test1");
-      testResult = beanRef.test1();
+            logMsg("Getting the EJB Home interface for " + testLookup);
+            beanHome = (TestBeanHome) jctx.lookup(testLookup, TestBeanHome.class);
 
-      if (!testResult)
-        throw new Fault("test1 failed");
-      else
-        logMsg("test1 passed");
-    } catch (Exception e) {
-      throw new Fault("test1 failed", e);
-    } finally {
-      try {
-        if (beanRef != null) {
-          beanRef.remove();
+            logMsg("Setup ok");
+        } catch (Exception e) {
+            throw new Fault("Setup failed:", e);
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
-      }
     }
-  }
 
-  /*
-   * @testName: test2
-   *
-   * @assertion_ids: EJB:SPEC:583.3.1; EJB:SPEC:583.3.2; EJB:SPEC:583.3.4
-   *
-   * @test_Strategy: Container managed Tx commit - Required Entity EJBs.
-   * FindByPrimaryKey an instance of an Entity EJB (TxEBean) bean. Perform
-   * updates to the Entity EJB's instance data. Ensure that the instance data is
-   * updated on method return. Ensure that the database fields are updated on
-   * method return.
-   *
-   */
-  public void test2() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
-      beanRef = (TestBean) beanHome.create(testProps);
+    /* Run test */
 
-      boolean testResult = false;
+    /*
+     * @testName: test1
+     *
+     * @assertion_ids: EJB:SPEC:583.3.1; EJB:SPEC:583.3.2; EJB:SPEC:583.3.4
+     *
+     * @test_Strategy: Container managed Tx commit - Required Entity EJBs. Create
+     * a few instances of an Entity EJB (TxEBean) bean. Perform updates to the
+     * Entity EJB's instance data. Ensure that the instance data is updated on
+     * method return. Ensure that the database fields are updated on method
+     * return.
+     *
+     */
+    public void test1() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
+            beanRef = (TestBean) beanHome.create(testProps);
 
-      logMsg("Execute TestBean:test2");
-      testResult = beanRef.test2();
+            boolean testResult = false;
 
-      if (!testResult)
-        throw new Fault("test2 failed");
-      else
-        logMsg("test2 passed");
-    } catch (Exception e) {
-      throw new Fault("test2 failed", e);
-    } finally {
-      try {
-        if (beanRef != null) {
-          beanRef.remove();
+            logMsg("Execute TestBean:test1");
+            testResult = beanRef.test1();
+
+            if (!testResult) throw new Fault("test1 failed");
+            else logMsg("test1 passed");
+        } catch (Exception e) {
+            throw new Fault("test1 failed", e);
+        } finally {
+            try {
+                if (beanRef != null) {
+                    beanRef.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
+            }
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
-      }
     }
-  }
 
-  /*
-   * @testName: test4
-   *
-   * @assertion_ids: EJB:SPEC:587.1; EJB:SPEC:587.3
-   *
-   * @test_Strategy: Container managed Tx - Mandatory Entity EJBs. Attempt to
-   * create an instance of an Entity EJB (TxEBean) bean, without a transaction
-   * context. Ensure that javax.transacton.TransactionRequiredException
-   * exception is thrown.
-   *
-   */
-  public void test4() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
-      beanRef = (TestBean) beanHome.create(testProps);
+    /*
+     * @testName: test2
+     *
+     * @assertion_ids: EJB:SPEC:583.3.1; EJB:SPEC:583.3.2; EJB:SPEC:583.3.4
+     *
+     * @test_Strategy: Container managed Tx commit - Required Entity EJBs.
+     * FindByPrimaryKey an instance of an Entity EJB (TxEBean) bean. Perform
+     * updates to the Entity EJB's instance data. Ensure that the instance data is
+     * updated on method return. Ensure that the database fields are updated on
+     * method return.
+     *
+     */
+    public void test2() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
+            beanRef = (TestBean) beanHome.create(testProps);
 
-      boolean testResult = false;
+            boolean testResult = false;
 
-      logMsg("Execute TestBean:test4");
-      testResult = beanRef.test4();
+            logMsg("Execute TestBean:test2");
+            testResult = beanRef.test2();
 
-      if (!testResult)
-        throw new Fault("test4 failed");
-      else
-        logMsg("test4 passed");
-    } catch (Exception e) {
-      throw new Fault("test4 failed", e);
-    } finally {
-      try {
-        if (beanRef != null) {
-          beanRef.remove();
+            if (!testResult) throw new Fault("test2 failed");
+            else logMsg("test2 passed");
+        } catch (Exception e) {
+            throw new Fault("test2 failed", e);
+        } finally {
+            try {
+                if (beanRef != null) {
+                    beanRef.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
+            }
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
-      }
     }
-  }
 
-  /* Test cleanup: */
-  public void cleanup() throws Fault {
-    logMsg("cleanup ok");
-  }
+    /*
+     * @testName: test4
+     *
+     * @assertion_ids: EJB:SPEC:587.1; EJB:SPEC:587.3
+     *
+     * @test_Strategy: Container managed Tx - Mandatory Entity EJBs. Attempt to
+     * create an instance of an Entity EJB (TxEBean) bean, without a transaction
+     * context. Ensure that javax.transacton.TransactionRequiredException
+     * exception is thrown.
+     *
+     */
+    public void test4() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
+            beanRef = (TestBean) beanHome.create(testProps);
+
+            boolean testResult = false;
+
+            logMsg("Execute TestBean:test4");
+            testResult = beanRef.test4();
+
+            if (!testResult) throw new Fault("test4 failed");
+            else logMsg("test4 passed");
+        } catch (Exception e) {
+            throw new Fault("test4 failed", e);
+        } finally {
+            try {
+                if (beanRef != null) {
+                    beanRef.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
+            }
+        }
+    }
+
+    /* Test cleanup: */
+    public void cleanup() throws Fault {
+        logMsg("cleanup ok");
+    }
 }

@@ -59,53 +59,47 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servlet;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * A Test for service(ServletRequest,ServletResponse) method
  */
-
 public class DoServiceTestServlet extends CoreServletTest {
 
-  /**
-   * We1'll override init method and assign some value to the String We'll check
-   * for that value in the service method
-   */
+    /**
+     * We1'll override init method and assign some value to the String We'll check
+     * for that value in the service method
+     */
+    String precedence = "starting";
 
-  String precedence = "starting";
+    public void init(ServletConfig sc) throws ServletException {
 
-  public void init(ServletConfig sc) throws ServletException {
-
-    super.init(sc);
-    precedence = "init is called";
-  }
-
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-
-    boolean passed = false;
-    PrintWriter pw = response.getWriter();
-    String expectedResult = "init is called";
-    String result = precedence;
-
-    if (result.equals(expectedResult)) {
-      passed = true;
-    } else {
-      passed = false;
-      pw.println("Problem with Servlet life cycle");
-      pw.println("init is not called before service");
-      pw.println("Expected precedence = " + expectedResult);
-      pw.println("Actual precedence = " + result);
+        super.init(sc);
+        precedence = "init is called";
     }
-    ServletTestUtil.printResult(pw, passed);
 
-  }
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+
+        boolean passed = false;
+        PrintWriter pw = response.getWriter();
+        String expectedResult = "init is called";
+        String result = precedence;
+
+        if (result.equals(expectedResult)) {
+            passed = true;
+        } else {
+            passed = false;
+            pw.println("Problem with Servlet life cycle");
+            pw.println("init is not called before service");
+            pw.println("Expected precedence = " + expectedResult);
+            pw.println("Actual precedence = " + result);
+        }
+        ServletTestUtil.printResult(pw, passed);
+    }
 }

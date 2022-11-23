@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault;
 
 import com.sun.ts.tests.ejb30.common.annotation.enventry.EnvEntryIF;
 import com.sun.ts.tests.ejb30.common.annotation.enventry.EnvEntryLookupFailBeanBase;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
@@ -31,294 +30,291 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateless(name = "EnvEntryFieldBean")
-@Remote({ EnvEntryIF.class })
+@Remote({EnvEntryIF.class})
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public class EnvEntryFieldBean extends EnvEntryLookupFailBeanBase
-    implements EnvEntryIF {
+public class EnvEntryFieldBean extends EnvEntryLookupFailBeanBase implements EnvEntryIF {
 
-  @Resource(name = "sessionContext")
-  private SessionContext sessionContext;
+    @Resource(name = "sessionContext")
+    private SessionContext sessionContext;
 
-  public EnvEntryFieldBean() {
-  }
+    public EnvEntryFieldBean() {}
 
-  public void remove() {
-  }
+    public void remove() {}
 
-  protected jakarta.ejb.EJBContext getEJBContext() {
-    return sessionContext;
-  }
+    protected jakarta.ejb.EJBContext getEJBContext() {
+        return sessionContext;
+    }
 
-  // This annotation is overridden in ejb-jar.xml to not inject anything.
-  // This env-entry must not be placed into naming context.
-  @Resource(name = "myString")
-  private String myString = "EnvEntryFieldBean";
+    // This annotation is overridden in ejb-jar.xml to not inject anything.
+    // This env-entry must not be placed into naming context.
+    @Resource(name = "myString")
+    private String myString = "EnvEntryFieldBean";
 
-  protected String getString() {
-    return myString;
-  }
+    protected String getString() {
+        return myString;
+    }
 
-  protected String getStringExpected() {
-    return "EnvEntryFieldBean";
-  }
+    protected String getStringExpected() {
+        return "EnvEntryFieldBean";
+    }
 
-  protected String getStringName() {
-    return "myString";
-  }
+    protected String getStringName() {
+        return "myString";
+    }
 
-  // @Resource
-  private char myChar = 'f';
+    // @Resource
+    private char myChar = 'f';
 
-  protected char getChar() {
-    return myChar;
-  }
+    protected char getChar() {
+        return myChar;
+    }
 
-  protected char getCharExpected() {
-    return 'f';
-  }
+    protected char getCharExpected() {
+        return 'f';
+    }
 
-  protected String getCharName() {
-    return "myChar";
-  }
+    protected String getCharName() {
+        return "myChar";
+    }
 
-  // @Resource(description="<env-entry> integer")
-  private int myInt = -1;
+    // @Resource(description="<env-entry> integer")
+    private int myInt = -1;
 
-  protected int getInt() {
-    return myInt;
-  }
+    protected int getInt() {
+        return myInt;
+    }
 
-  protected int getIntExpected() {
-    return -1;
-  }
+    protected int getIntExpected() {
+        return -1;
+    }
 
-  protected String getIntName() {
-    return "myInt";
-  }
+    protected String getIntName() {
+        return "myInt";
+    }
 
-  // @Resource
-  private boolean myBoolean = true;
+    // @Resource
+    private boolean myBoolean = true;
 
-  protected boolean getBoolean() {
-    return myBoolean;
-  }
+    protected boolean getBoolean() {
+        return myBoolean;
+    }
 
-  protected boolean getBooleanExpected() {
-    return true;
-  }
+    protected boolean getBooleanExpected() {
+        return true;
+    }
 
-  protected String getBooleanName() {
-    return "myBoolean";
-  }
+    protected String getBooleanName() {
+        return "myBoolean";
+    }
 
-  // @Resource
-  private double myDouble = 1.11;
+    // @Resource
+    private double myDouble = 1.11;
 
-  protected double getDouble() {
-    return myDouble;
-  }
+    protected double getDouble() {
+        return myDouble;
+    }
 
-  protected double getDoubleExpected() {
-    return 1.11;
-  }
+    protected double getDoubleExpected() {
+        return 1.11;
+    }
 
-  protected String getDoubleName() {
-    return "myDouble";
-  }
+    protected String getDoubleName() {
+        return "myDouble";
+    }
 
-  // @Resource
-  private byte myByte = 8;
+    // @Resource
+    private byte myByte = 8;
 
-  protected byte getByte() {
-    return myByte;
-  }
+    protected byte getByte() {
+        return myByte;
+    }
 
-  protected byte getByteExpected() {
-    return 8;
-  }
+    protected byte getByteExpected() {
+        return 8;
+    }
 
-  protected String getByteName() {
-    return "myByte";
-  }
+    protected String getByteName() {
+        return "myByte";
+    }
 
-  // @Resource
-  private short myShort = 1;
+    // @Resource
+    private short myShort = 1;
 
-  protected short getShort() {
-    return myShort;
-  }
+    protected short getShort() {
+        return myShort;
+    }
 
-  protected short getShortExpected() {
-    return 1;
-  }
+    protected short getShortExpected() {
+        return 1;
+    }
 
-  protected String getShortName() {
-    return "myShort";
-  }
+    protected String getShortName() {
+        return "myShort";
+    }
 
-  // @Resource
-  private long myLong = 100L;
+    // @Resource
+    private long myLong = 100L;
 
-  protected long getLong() {
-    return myLong;
-  }
+    protected long getLong() {
+        return myLong;
+    }
 
-  protected long getLongExpected() {
-    return 100;
-  }
+    protected long getLongExpected() {
+        return 100;
+    }
 
-  protected String getLongName() {
-    return "myLong";
-  }
+    protected String getLongName() {
+        return "myLong";
+    }
 
-  // @Resource
-  private float myFloat = 1.1F;
+    // @Resource
+    private float myFloat = 1.1F;
 
-  protected float getFloat() {
-    return myFloat;
-  }
+    protected float getFloat() {
+        return myFloat;
+    }
 
-  protected float getFloatExpected() {
-    return (float) 1.1;
-  }
+    protected float getFloatExpected() {
+        return (float) 1.1;
+    }
 
-  protected String getFloatName() {
-    return "myFloat";
-  }
+    protected String getFloatName() {
+        return "myFloat";
+    }
 
-  // env-entries with subcontexts
-  // @Resource(name="a/a/a/myString")
-  private String myStringDeep = "EnvEntryFieldBeanDeep";
+    // env-entries with subcontexts
+    // @Resource(name="a/a/a/myString")
+    private String myStringDeep = "EnvEntryFieldBeanDeep";
 
-  protected String getStringDeep() {
-    return myStringDeep;
-  }
+    protected String getStringDeep() {
+        return myStringDeep;
+    }
 
-  protected String getStringDeepExpected() {
-    return "EnvEntryFieldBeanDeep";
-  }
+    protected String getStringDeepExpected() {
+        return "EnvEntryFieldBeanDeep";
+    }
 
-  protected String getStringDeepName() {
-    return "a/a/a/myString";
-  }
+    protected String getStringDeepName() {
+        return "a/a/a/myString";
+    }
 
-  // @Resource(name="a/a/a/myChar")
-  private char myCharDeep = 'F';
+    // @Resource(name="a/a/a/myChar")
+    private char myCharDeep = 'F';
 
-  protected char getCharDeep() {
-    return myCharDeep;
-  }
+    protected char getCharDeep() {
+        return myCharDeep;
+    }
 
-  protected char getCharDeepExpected() {
-    return 'F';
-  }
+    protected char getCharDeepExpected() {
+        return 'F';
+    }
 
-  protected String getCharDeepName() {
-    return "a/a/a/myChar";
-  }
+    protected String getCharDeepName() {
+        return "a/a/a/myChar";
+    }
 
-  // @Resource(name="a/a/a/myInt")
-  private int myIntDeep = -2;
+    // @Resource(name="a/a/a/myInt")
+    private int myIntDeep = -2;
 
-  protected int getIntDeep() {
-    return myIntDeep;
-  }
+    protected int getIntDeep() {
+        return myIntDeep;
+    }
 
-  protected int getIntDeepExpected() {
-    return -2;
-  }
+    protected int getIntDeepExpected() {
+        return -2;
+    }
 
-  protected String getIntDeepName() {
-    return "a/a/a/myInt";
-  }
+    protected String getIntDeepName() {
+        return "a/a/a/myInt";
+    }
 
-  // @Resource(name="a/a/a/myBoolean")
-  private boolean myBooleanDeep = false;
+    // @Resource(name="a/a/a/myBoolean")
+    private boolean myBooleanDeep = false;
 
-  protected boolean getBooleanDeep() {
-    return myBooleanDeep;
-  }
+    protected boolean getBooleanDeep() {
+        return myBooleanDeep;
+    }
 
-  protected boolean getBooleanDeepExpected() {
-    return false;
-  }
+    protected boolean getBooleanDeepExpected() {
+        return false;
+    }
 
-  protected String getBooleanDeepName() {
-    return "a/a/a/myBoolean";
-  }
+    protected String getBooleanDeepName() {
+        return "a/a/a/myBoolean";
+    }
 
-  // @Resource(name="a/a/a/myDouble")
-  private double myDoubleDeep = 2.22;
+    // @Resource(name="a/a/a/myDouble")
+    private double myDoubleDeep = 2.22;
 
-  protected double getDoubleDeep() {
-    return myDoubleDeep;
-  }
+    protected double getDoubleDeep() {
+        return myDoubleDeep;
+    }
 
-  protected double getDoubleDeepExpected() {
-    return 2.22;
-  }
+    protected double getDoubleDeepExpected() {
+        return 2.22;
+    }
 
-  protected String getDoubleDeepName() {
-    return "a/a/a/myDouble";
-  }
+    protected String getDoubleDeepName() {
+        return "a/a/a/myDouble";
+    }
 
-  // @Resource(name="a/a/a/myByte")
-  private byte myByteDeep = 16;
+    // @Resource(name="a/a/a/myByte")
+    private byte myByteDeep = 16;
 
-  protected byte getByteDeep() {
-    return myByteDeep;
-  }
+    protected byte getByteDeep() {
+        return myByteDeep;
+    }
 
-  protected byte getByteDeepExpected() {
-    return 16;
-  }
+    protected byte getByteDeepExpected() {
+        return 16;
+    }
 
-  protected String getByteDeepName() {
-    return "a/a/a/myByte";
-  }
+    protected String getByteDeepName() {
+        return "a/a/a/myByte";
+    }
 
-  // @Resource(name="a/a/a/myShort")
-  private short myShortDeep = 2;
+    // @Resource(name="a/a/a/myShort")
+    private short myShortDeep = 2;
 
-  protected short getShortDeep() {
-    return myShortDeep;
-  }
+    protected short getShortDeep() {
+        return myShortDeep;
+    }
 
-  protected short getShortDeepExpected() {
-    return 2;
-  }
+    protected short getShortDeepExpected() {
+        return 2;
+    }
 
-  protected String getShortDeepName() {
-    return "a/a/a/myShort";
-  }
+    protected String getShortDeepName() {
+        return "a/a/a/myShort";
+    }
 
-  // @Resource(name="a/a/a/myLong")
-  private long myLongDeep = 200L;
+    // @Resource(name="a/a/a/myLong")
+    private long myLongDeep = 200L;
 
-  protected long getLongDeep() {
-    return myLongDeep;
-  }
+    protected long getLongDeep() {
+        return myLongDeep;
+    }
 
-  protected long getLongDeepExpected() {
-    return 200;
-  }
+    protected long getLongDeepExpected() {
+        return 200;
+    }
 
-  protected String getLongDeepName() {
-    return "a/a/a/myLong";
-  }
+    protected String getLongDeepName() {
+        return "a/a/a/myLong";
+    }
 
-  // @Resource(name="a/a/a/myFloat")
-  private float myFloatDeep = 2.2F;
+    // @Resource(name="a/a/a/myFloat")
+    private float myFloatDeep = 2.2F;
 
-  protected float getFloatDeep() {
-    return myFloatDeep;
-  }
+    protected float getFloatDeep() {
+        return myFloatDeep;
+    }
 
-  protected float getFloatDeepExpected() {
-    return (float) 2.2;
-  }
+    protected float getFloatDeepExpected() {
+        return (float) 2.2;
+    }
 
-  protected String getFloatDeepName() {
-    return "a/a/a/myFloat";
-  }
+    protected String getFloatDeepName() {
+        return "a/a/a/myFloat";
+    }
 }

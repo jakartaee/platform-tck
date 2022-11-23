@@ -16,16 +16,11 @@
 
 package com.sun.ts.tests.common.connector.embedded.adapter1;
 
-import java.lang.reflect.Method;
-
-import javax.transaction.xa.XAResource;
-
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
 import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
 import com.sun.ts.tests.common.connector.whitebox.Debug;
 import com.sun.ts.tests.common.connector.whitebox.Util;
 import com.sun.ts.tests.common.connector.whitebox.XidImpl;
-
 import jakarta.resource.NotSupportedException;
 import jakarta.resource.ResourceException;
 import jakarta.resource.spi.ActivationSpec;
@@ -42,6 +37,8 @@ import jakarta.resource.spi.work.ExecutionContext;
 import jakarta.resource.spi.work.TransactionContext;
 import jakarta.resource.spi.work.Work;
 import jakarta.resource.spi.work.WorkManager;
+import java.lang.reflect.Method;
+import javax.transaction.xa.XAResource;
 
 /**
  * This is a sample resource adapter that will use no ra.xml info. This RA is
@@ -49,218 +46,220 @@ import jakarta.resource.spi.work.WorkManager;
  * no ra.xml (Assertion 268) and the transaction support is Local.
  *
  */
+@Connector(
+        description = "CTS Test Resource Adapter with No DD",
+        displayName = "whitebox-rd.rar",
+        vendorName = "Java Software",
+        eisType = "TS EIS",
+        version = "1.7",
+        licenseDescription = "CTS License Required",
+        licenseRequired = true,
+        authMechanisms =
+                @AuthenticationMechanism(
+                        credentialInterface = AuthenticationMechanism.CredentialInterface.PasswordCredential,
+                        authMechanism = "BasicPassword",
+                        description = "Basic Password Authentication"),
+        reauthenticationSupport = false,
+        securityPermissions = @SecurityPermission(description = "Security Perm description", permissionSpec = ""),
+        transactionSupport = TransactionSupport.TransactionSupportLevel.XATransaction,
+        requiredWorkContexts = {TransactionContext.class})
+public class CRDResourceAdapterImpl implements ResourceAdapter, java.io.Serializable {
 
-@Connector(description = "CTS Test Resource Adapter with No DD", displayName = "whitebox-rd.rar", vendorName = "Java Software", eisType = "TS EIS", version = "1.7", licenseDescription = "CTS License Required", licenseRequired = true, authMechanisms = @AuthenticationMechanism(credentialInterface = AuthenticationMechanism.CredentialInterface.PasswordCredential, authMechanism = "BasicPassword", description = "Basic Password Authentication"), reauthenticationSupport = false, securityPermissions = @SecurityPermission(description = "Security Perm description", permissionSpec = ""), transactionSupport = TransactionSupport.TransactionSupportLevel.XATransaction, requiredWorkContexts = {
-    TransactionContext.class })
-public class CRDResourceAdapterImpl
-    implements ResourceAdapter, java.io.Serializable {
+    private transient BootstrapContext bsc;
 
-  private transient BootstrapContext bsc;
+    private transient CRDWorkManager awm;
 
-  private transient CRDWorkManager awm;
+    private transient WorkManager wm;
 
-  private transient WorkManager wm;
+    private transient Work work;
 
-  private transient Work work;
+    private transient CRDMessageListener ml;
 
-  private transient CRDMessageListener ml;
+    private transient MessageEndpointFactory mef;
 
-  private transient MessageEndpointFactory mef;
+    private String eisUser = ""; // corresponds to ts.jte's 'user1' property
 
-  private String eisUser = ""; // corresponds to ts.jte's 'user1' property
+    private String eisPwd = ""; // corresponds to ts.jte's 'password' property
 
-  private String eisPwd = ""; // corresponds to ts.jte's 'password' property
+    @ConfigProperty(defaultValue = "CRDResourceAdapterImpl")
+    private String raName;
 
-  @ConfigProperty(defaultValue = "CRDResourceAdapterImpl")
-  private String raName;
+    /**
+     * constructor
+     **/
+    public CRDResourceAdapterImpl() {
+        debug("enterred constructor...");
 
-  /**
-   * constructor
-   **/
-  public CRDResourceAdapterImpl() {
-    debug("enterred constructor...");
+        this.eisUser = System.getProperty("eislogin.name");
+        this.eisPwd = System.getProperty("eislogin.password");
 
-    this.eisUser = System.getProperty("eislogin.name");
-    this.eisPwd = System.getProperty("eislogin.password");
-
-    debug("leaving constructor...");
-  }
-
-  //
-  // Begin ResourceAdapter interface requirements
-  //
-
-  /* must implement for ResourceAdapter interface requirement */
-  public void start(BootstrapContext bsc)
-      throws ResourceAdapterInternalException {
-    debug("enterred start");
-
-    ConnectorStatus.getConnectorStatus()
-        .logState("CRDResourceAdapterImpl.start called");
-
-    this.bsc = bsc;
-    this.wm = bsc.getWorkManager();
-
-    this.awm = new CRDWorkManager(bsc);
-    awm.runTests();
-
-    debug("leaving start");
-  }
-
-  /* must implement for ResourceAdapter interface requirement */
-  public void stop() {
-    debug("entered stop");
-    debug("leaving stop");
-  }
-
-  /* must implement for ResourceAdapter interface requirement */
-  public void endpointActivation(MessageEndpointFactory factory,
-      ActivationSpec as) throws NotSupportedException {
-
-    debug("enterred endpointActivation");
-    try {
-      // check if endpointActivation has been called
-      Method onMessagexa = getOnMessageMethod();
-      boolean isDelivered = mef.isDeliveryTransacted(onMessagexa);
-
-      if (!isDelivered) {
-        debug(
-            "should NOT have found mdb with unsupported transaction attribute!");
-      } else {
-        // our MDB should have 'required transaction attribute' set
-        mef = factory;
-        String destinationName = ((CRDActivationSpec) as)
-            .getAnnoDestinationName();
-
-        // now setup work inst
-        work = new CRDMessageWork(destinationName, mef);
-        wm.scheduleWork(work, wm.INDEFINITE, null, null);
-
-        // setup incoming transaction
-        XidImpl myid = new XidImpl();
-        ExecutionContext ec = new ExecutionContext();
-        int idcount = myid.getFormatId();
-        ec.setXid(myid);
-        ml = new CRDMessageListener(myid, this.bsc);
-        wm.scheduleWork(work, wm.INDEFINITE, ec, ml);
-      }
-    } catch (Throwable ex) {
-      ex.printStackTrace();
+        debug("leaving constructor...");
     }
 
-    debug("leaving endpointActivation");
-  }
+    //
+    // Begin ResourceAdapter interface requirements
+    //
 
-  /* must implement for ResourceAdapter interface requirement */
-  public void endpointDeactivation(MessageEndpointFactory ep,
-      ActivationSpec spec) {
-    debug("enterred endpointDeactivation");
-    debug("leaving endpointDeactivation");
-  }
+    /* must implement for ResourceAdapter interface requirement */
+    public void start(BootstrapContext bsc) throws ResourceAdapterInternalException {
+        debug("enterred start");
 
-  private Method getOnMessageMethod() {
+        ConnectorStatus.getConnectorStatus().logState("CRDResourceAdapterImpl.start called");
 
-    Method onMessageMethod = null;
-    try {
-      Class msgListenerClass = TSMessageListenerInterface.class;
-      Class[] paramTypes = { java.lang.String.class };
-      onMessageMethod = msgListenerClass.getMethod("onMessage", paramTypes);
+        this.bsc = bsc;
+        this.wm = bsc.getWorkManager();
 
-    } catch (NoSuchMethodException ex) {
-      ex.printStackTrace();
-    }
-    return onMessageMethod;
-  }
+        this.awm = new CRDWorkManager(bsc);
+        awm.runTests();
 
-  /* must implement for ResourceAdapter interface requirement */
-  public XAResource[] getXAResources(ActivationSpec[] specs)
-      throws ResourceException {
-
-    debug("enterred getXAResources");
-    debug("leaving getXAResources");
-
-    throw new UnsupportedOperationException();
-  }
-
-  //
-  // END ResourceAdapter interface requirements
-  //
-
-  /*
-   * @name equals
-   * 
-   * @desc compares this object with the given object.
-   * 
-   * @param Object obj
-   * 
-   * @return boolean
-   */
-  public boolean equals(Object obj) {
-
-    if ((obj == null) || !(obj instanceof CRDResourceAdapterImpl)) {
-      return false;
-    }
-    if (obj == this) {
-      return true;
+        debug("leaving start");
     }
 
-    CRDResourceAdapterImpl that = (CRDResourceAdapterImpl) obj;
+    /* must implement for ResourceAdapter interface requirement */
+    public void stop() {
+        debug("entered stop");
+        debug("leaving stop");
+    }
 
-    if (!Util.isEqual(this.eisUser, that.getEisUser()))
-      return false;
+    /* must implement for ResourceAdapter interface requirement */
+    public void endpointActivation(MessageEndpointFactory factory, ActivationSpec as) throws NotSupportedException {
 
-    if (!Util.isEqual(this.eisPwd, that.getEisPwd()))
-      return false;
+        debug("enterred endpointActivation");
+        try {
+            // check if endpointActivation has been called
+            Method onMessagexa = getOnMessageMethod();
+            boolean isDelivered = mef.isDeliveryTransacted(onMessagexa);
 
-    if (!Util.isEqual(this.raName, that.getRaName()))
-      return false;
+            if (!isDelivered) {
+                debug("should NOT have found mdb with unsupported transaction attribute!");
+            } else {
+                // our MDB should have 'required transaction attribute' set
+                mef = factory;
+                String destinationName = ((CRDActivationSpec) as).getAnnoDestinationName();
 
-    return true;
-  }
+                // now setup work inst
+                work = new CRDMessageWork(destinationName, mef);
+                wm.scheduleWork(work, wm.INDEFINITE, null, null);
 
-  /*
-   * @name hashCode
-   * 
-   * @desc gets the hashcode for this object.
-   * 
-   * @return int
-   */
-  public int hashCode() {
-    return this.getClass().getName().hashCode();
-  }
+                // setup incoming transaction
+                XidImpl myid = new XidImpl();
+                ExecutionContext ec = new ExecutionContext();
+                int idcount = myid.getFormatId();
+                ec.setXid(myid);
+                ml = new CRDMessageListener(myid, this.bsc);
+                wm.scheduleWork(work, wm.INDEFINITE, ec, ml);
+            }
+        } catch (Throwable ex) {
+            ex.printStackTrace();
+        }
 
-  public void setRaName(String name) {
-    this.raName = name;
+        debug("leaving endpointActivation");
+    }
 
-    // this helps verify assertion Connector:SPEC:279
-    String str = "setRAName called with raname=" + raName;
-    ConnectorStatus.getConnectorStatus().logState(str);
-    debug(str);
-  }
+    /* must implement for ResourceAdapter interface requirement */
+    public void endpointDeactivation(MessageEndpointFactory ep, ActivationSpec spec) {
+        debug("enterred endpointDeactivation");
+        debug("leaving endpointDeactivation");
+    }
 
-  public String getRaName() {
-    debug("CRDResourceAdapterImpl.getRAName");
-    return raName;
-  }
+    private Method getOnMessageMethod() {
 
-  public void debug(String out) {
-    Debug.trace("CRDResourceAdapterImpl:  " + out);
-  }
+        Method onMessageMethod = null;
+        try {
+            Class msgListenerClass = TSMessageListenerInterface.class;
+            Class[] paramTypes = {java.lang.String.class};
+            onMessageMethod = msgListenerClass.getMethod("onMessage", paramTypes);
 
-  public void setEisUser(String val) {
-    this.eisUser = val;
-  }
+        } catch (NoSuchMethodException ex) {
+            ex.printStackTrace();
+        }
+        return onMessageMethod;
+    }
 
-  public String getEisUser() {
-    return this.eisUser;
-  }
+    /* must implement for ResourceAdapter interface requirement */
+    public XAResource[] getXAResources(ActivationSpec[] specs) throws ResourceException {
 
-  public void setEisPwd(String val) {
-    this.eisUser = val;
-  }
+        debug("enterred getXAResources");
+        debug("leaving getXAResources");
 
-  public String getEisPwd() {
-    return this.eisPwd;
-  }
+        throw new UnsupportedOperationException();
+    }
 
+    //
+    // END ResourceAdapter interface requirements
+    //
+
+    /*
+     * @name equals
+     *
+     * @desc compares this object with the given object.
+     *
+     * @param Object obj
+     *
+     * @return boolean
+     */
+    public boolean equals(Object obj) {
+
+        if ((obj == null) || !(obj instanceof CRDResourceAdapterImpl)) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+
+        CRDResourceAdapterImpl that = (CRDResourceAdapterImpl) obj;
+
+        if (!Util.isEqual(this.eisUser, that.getEisUser())) return false;
+
+        if (!Util.isEqual(this.eisPwd, that.getEisPwd())) return false;
+
+        if (!Util.isEqual(this.raName, that.getRaName())) return false;
+
+        return true;
+    }
+
+    /*
+     * @name hashCode
+     *
+     * @desc gets the hashcode for this object.
+     *
+     * @return int
+     */
+    public int hashCode() {
+        return this.getClass().getName().hashCode();
+    }
+
+    public void setRaName(String name) {
+        this.raName = name;
+
+        // this helps verify assertion Connector:SPEC:279
+        String str = "setRAName called with raname=" + raName;
+        ConnectorStatus.getConnectorStatus().logState(str);
+        debug(str);
+    }
+
+    public String getRaName() {
+        debug("CRDResourceAdapterImpl.getRAName");
+        return raName;
+    }
+
+    public void debug(String out) {
+        Debug.trace("CRDResourceAdapterImpl:  " + out);
+    }
+
+    public void setEisUser(String val) {
+        this.eisUser = val;
+    }
+
+    public String getEisUser() {
+        return this.eisUser;
+    }
+
+    public void setEisPwd(String val) {
+        this.eisUser = val;
+    }
+
+    public String getEisPwd() {
+        return this.eisPwd;
+    }
 }

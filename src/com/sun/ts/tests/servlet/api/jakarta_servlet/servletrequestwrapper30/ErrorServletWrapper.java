@@ -20,25 +20,22 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequestwrapper30;
 
-import java.io.IOException;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletRequestWrapper;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
 
-public class ErrorServletWrapper extends
-    com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequest30.SecondServlet {
+public class ErrorServletWrapper extends com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequest30.SecondServlet {
 
-  public void init(ServletConfig servletConfig) throws ServletException {
-    super.init(servletConfig);
-  }
+    public void init(ServletConfig servletConfig) throws ServletException {
+        super.init(servletConfig);
+    }
 
-  public void service(ServletRequest servletRequest,
-      ServletResponse servletResponse) throws ServletException, IOException {
-    ServletRequestWrapper wrapper = new ServletRequestWrapper(servletRequest);
-    super.service(wrapper, servletResponse);
-  }
-
+    public void service(ServletRequest servletRequest, ServletResponse servletResponse)
+            throws ServletException, IOException {
+        ServletRequestWrapper wrapper = new ServletRequestWrapper(servletRequest);
+        super.service(wrapper, servletResponse);
+    }
 }

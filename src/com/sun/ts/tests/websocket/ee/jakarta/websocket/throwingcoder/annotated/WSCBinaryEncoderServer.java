@@ -17,32 +17,29 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder.annotated;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder.ThrowingBinaryEncoder;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder.ThrowingTextDecoder;
-
 import jakarta.websocket.EncodeException;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
-@ServerEndpoint(value = "/binaryencoder", encoders = {
-    ThrowingBinaryEncoder.class })
+@ServerEndpoint(
+        value = "/binaryencoder",
+        encoders = {ThrowingBinaryEncoder.class})
 public class WSCBinaryEncoderServer {
 
-  @OnMessage
-  public void echo(String data, Session session)
-      throws IOException, EncodeException {
-    session.getBasicRemote().sendObject(new StringBean(data));
-  }
+    @OnMessage
+    public void echo(String data, Session session) throws IOException, EncodeException {
+        session.getBasicRemote().sendObject(new StringBean(data));
+    }
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    String message = ThrowingTextDecoder.getCauseMessage(t);
-    session.getBasicRemote().sendText(message);
-  }
-
+    @OnError
+    public void onError(Session session, Throwable t) throws IOException {
+        String message = ThrowingTextDecoder.getCauseMessage(t);
+        session.getBasicRemote().sendText(message);
+    }
 }

@@ -22,185 +22,182 @@ package com.sun.ts.tests.ejb30.common.sessioncontext;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionContext;
 
-abstract public class TestBeanBase implements TestIF {
-  abstract protected SessionContext getSessionContext();
+public abstract class TestBeanBase implements TestIF {
+    protected abstract SessionContext getSessionContext();
 
-  abstract protected ThreeLocal1IF getLocal1();
+    protected abstract ThreeLocal1IF getLocal1();
 
-  abstract protected ThreeLocal2IF getLocal2();
+    protected abstract ThreeLocal2IF getLocal2();
 
-  abstract protected TwoLocalIF getTwoLocal() throws TestFailedException;
+    protected abstract TwoLocalIF getTwoLocal() throws TestFailedException;
 
-  abstract protected AcceptLocalIF getAcceptLocalBean();
+    protected abstract AcceptLocalIF getAcceptLocalBean();
 
-  public void getBusinessObjectLocal1() throws TestFailedException {
-    ThreeLocal1IF local = getLocal1();
-    try {
-      ThreeLocal1IF bob = local.getBusinessObjectLocal1();
-    } finally {
-      // The bean local has REQUIRES_NEW, so it's safe to remove inside
-      // the calling bean.
-      try {
-        local.remove();
-      } catch (Exception e) {
-        // ignore
-      }
+    public void getBusinessObjectLocal1() throws TestFailedException {
+        ThreeLocal1IF local = getLocal1();
+        try {
+            ThreeLocal1IF bob = local.getBusinessObjectLocal1();
+        } finally {
+            // The bean local has REQUIRES_NEW, so it's safe to remove inside
+            // the calling bean.
+            try {
+                local.remove();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  public void getInvokedBusinessInterfaceLocal1() throws TestFailedException {
-    ThreeLocal1IF local = getLocal1();
-    String expected = ThreeLocal1IF.class.getName();
-    String actual = null;
-    try {
-      Class intf = local.getInvokedBusinessInterfaceLocal1();
-      actual = intf.getName();
-      if (expected.equals(actual)) {
-        // good
-      } else {
-        throw new TestFailedException("Expecting " + expected
-            + " from calling getInvokedBusinessInterface(), but actual:"
-            + actual + ". Bean instance: " + local);
-      }
-    } finally {
-      // The bean local has REQUIRES_NEW, so it's safe to remove inside
-      // the calling bean.
-      try {
-        local.remove();
-      } catch (Exception e) {
-        // ignore
-      }
+    public void getInvokedBusinessInterfaceLocal1() throws TestFailedException {
+        ThreeLocal1IF local = getLocal1();
+        String expected = ThreeLocal1IF.class.getName();
+        String actual = null;
+        try {
+            Class intf = local.getInvokedBusinessInterfaceLocal1();
+            actual = intf.getName();
+            if (expected.equals(actual)) {
+                // good
+            } else {
+                throw new TestFailedException("Expecting " + expected
+                        + " from calling getInvokedBusinessInterface(), but actual:"
+                        + actual + ". Bean instance: " + local);
+            }
+        } finally {
+            // The bean local has REQUIRES_NEW, so it's safe to remove inside
+            // the calling bean.
+            try {
+                local.remove();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  public void getBusinessObjectLocal1Illegal() throws TestFailedException {
-    ThreeLocal1IF local = getLocal1();
-    try {
-      local.getBusinessObjectLocal1Illegal();
-    } finally {
-      // The bean local has REQUIRES_NEW, so it's safe to remove inside
-      // the calling bean.
-      try {
-        local.remove();
-      } catch (Exception e) {
-        // ignore
-      }
+    public void getBusinessObjectLocal1Illegal() throws TestFailedException {
+        ThreeLocal1IF local = getLocal1();
+        try {
+            local.getBusinessObjectLocal1Illegal();
+        } finally {
+            // The bean local has REQUIRES_NEW, so it's safe to remove inside
+            // the calling bean.
+            try {
+                local.remove();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  public void getBusinessObjectLocal2() throws TestFailedException {
-    ThreeLocal2IF local = getLocal2();
-    try {
-      ThreeLocal2IF bob = local.getBusinessObjectLocal2();
-    } finally {
-      try {
-        local.remove();
-      } catch (Exception e) {
-        // ignore
-      }
+    public void getBusinessObjectLocal2() throws TestFailedException {
+        ThreeLocal2IF local = getLocal2();
+        try {
+            ThreeLocal2IF bob = local.getBusinessObjectLocal2();
+        } finally {
+            try {
+                local.remove();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  public void getInvokedBusinessInterfaceLocal2() throws TestFailedException {
-    ThreeLocal2IF local = getLocal2();
-    String expected = ThreeLocal2IF.class.getName();
-    String actual = null;
-    try {
-      Class intf = local.getInvokedBusinessInterfaceLocal2();
-      actual = intf.getName();
-      if (expected.equals(actual)) {
-        // good
-      } else {
-        throw new TestFailedException("Expecting " + expected
-            + " from calling getInvokedBusinessInterface(), but actual:"
-            + actual + ". bean instance: " + local);
-      }
-    } finally {
-      // The bean local has REQUIRES_NEW, so it's safe to remove inside
-      // the calling bean.
-      try {
-        local.remove();
-      } catch (Exception e) {
-        // ignore
-      }
+    public void getInvokedBusinessInterfaceLocal2() throws TestFailedException {
+        ThreeLocal2IF local = getLocal2();
+        String expected = ThreeLocal2IF.class.getName();
+        String actual = null;
+        try {
+            Class intf = local.getInvokedBusinessInterfaceLocal2();
+            actual = intf.getName();
+            if (expected.equals(actual)) {
+                // good
+            } else {
+                throw new TestFailedException("Expecting " + expected
+                        + " from calling getInvokedBusinessInterface(), but actual:"
+                        + actual + ". bean instance: " + local);
+            }
+        } finally {
+            // The bean local has REQUIRES_NEW, so it's safe to remove inside
+            // the calling bean.
+            try {
+                local.remove();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  public void passBusinessObjectLocal2() throws TestFailedException {
-    ThreeLocal2IF local = getLocal2();
-    AcceptLocalIF accept = getAcceptLocalBean();
-    try {
-      ThreeLocal2IF bob = local.getBusinessObjectLocal2();
-      accept.accept(bob);
-    } finally {
-      try {
-        local.remove();
-      } catch (Exception e) {
-        // ignore
-      }
-      try {
-        accept.remove();
-      } catch (Exception e) {
-        // ignore
-      }
+    public void passBusinessObjectLocal2() throws TestFailedException {
+        ThreeLocal2IF local = getLocal2();
+        AcceptLocalIF accept = getAcceptLocalBean();
+        try {
+            ThreeLocal2IF bob = local.getBusinessObjectLocal2();
+            accept.accept(bob);
+        } finally {
+            try {
+                local.remove();
+            } catch (Exception e) {
+                // ignore
+            }
+            try {
+                accept.remove();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
+    }
 
+    public void passBusinessObjectLocal1() throws TestFailedException {
+        ThreeLocal1IF local = getLocal1();
+        AcceptLocalIF accept = getAcceptLocalBean();
+        try {
+            ThreeLocal1IF bob = local.getBusinessObjectLocal1();
+            accept.accept(bob);
+        } finally {
+            try {
+                local.remove();
+            } catch (Exception e) {
+                // ignore
+            }
+            try {
+                accept.remove();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  public void passBusinessObjectLocal1() throws TestFailedException {
-    ThreeLocal1IF local = getLocal1();
-    AcceptLocalIF accept = getAcceptLocalBean();
-    try {
-      ThreeLocal1IF bob = local.getBusinessObjectLocal1();
-      accept.accept(bob);
-    } finally {
-      try {
-        local.remove();
-      } catch (Exception e) {
-        // ignore
-      }
-      try {
-        accept.remove();
-      } catch (Exception e) {
-        // ignore
-      }
+    public void lookupIllegalArgumentException() throws TestFailedException {
+        String lookupName = null;
+        try {
+            Object obj = getSessionContext().lookup(lookupName);
+            throw new TestFailedException("Expecting IllegalArgumentException"
+                    + " when looking up non-existent resource: " + lookupName
+                    + ", but the lookup result is: " + obj);
+        } catch (IllegalArgumentException e) {
+            TLogger.log(
+                    "Got expected IllegalArgumentException when looking up " + "a non-existent name: " + lookupName);
+        }
+        try {
+            lookupName = "no" + System.currentTimeMillis();
+            Object obj = getSessionContext().lookup(lookupName);
+            throw new TestFailedException("Expecting IllegalArgumentException"
+                    + " when looking up non-existent resource:" + lookupName
+                    + ", but the lookup result is: " + obj);
+        } catch (IllegalArgumentException e) {
+            TLogger.log(
+                    "Got expected IllegalArgumentException when looking up " + "a non-existent name: " + lookupName);
+        }
     }
-  }
 
-  public void lookupIllegalArgumentException() throws TestFailedException {
-    String lookupName = null;
-    try {
-      Object obj = getSessionContext().lookup(lookupName);
-      throw new TestFailedException("Expecting IllegalArgumentException"
-          + " when looking up non-existent resource: " + lookupName
-          + ", but the lookup result is: " + obj);
-    } catch (IllegalArgumentException e) {
-      TLogger.log("Got expected IllegalArgumentException when looking up "
-          + "a non-existent name: " + lookupName);
+    public void getInvokedBusinessInterfaceLocalIllegal() throws TestFailedException {
+        TwoLocalIF twoSessionContextBean = getTwoLocal();
+        try {
+            twoSessionContextBean.getInvokedBusinessInterfaceLocalIllegal();
+        } catch (EJBException e) {
+            throw new TestFailedException(e);
+        }
     }
-    try {
-      lookupName = "no" + System.currentTimeMillis();
-      Object obj = getSessionContext().lookup(lookupName);
-      throw new TestFailedException("Expecting IllegalArgumentException"
-          + " when looking up non-existent resource:" + lookupName
-          + ", but the lookup result is: " + obj);
-    } catch (IllegalArgumentException e) {
-      TLogger.log("Got expected IllegalArgumentException when looking up "
-          + "a non-existent name: " + lookupName);
-    }
-  }
-
-  public void getInvokedBusinessInterfaceLocalIllegal()
-      throws TestFailedException {
-    TwoLocalIF twoSessionContextBean = getTwoLocal();
-    try {
-      twoSessionContextBean.getInvokedBusinessInterfaceLocalIllegal();
-    } catch (EJBException e) {
-      throw new TestFailedException(e);
-    }
-  }
 }

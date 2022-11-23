@@ -22,15 +22,13 @@ package com.sun.ts.tests.ejb30.lite.appexception.stateless.annotated;
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionBeanBase;
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionIF;
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionLocalIF;
-
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateless;
 
 @Stateless
-@Local({ AppExceptionLocalIF.class, AppExceptionIF.class })
+@Local({AppExceptionLocalIF.class, AppExceptionIF.class})
 // this bean must be CMT. Otherwise, tx would not be propagated from
 // RollbackBean.
 // Stateless BMT and MDB BMT beans cannot have an active transaction when their
 // business method completes.
-public class AppExceptionBean extends AppExceptionBeanBase {
-}
+public class AppExceptionBean extends AppExceptionBeanBase {}

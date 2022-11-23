@@ -19,56 +19,49 @@
  */
 package com.sun.ts.tests.ejb30.lite.nointerface.annotated;
 
-import java.util.Arrays;
-
 import com.sun.ts.tests.ejb30.common.lite.NumberEnum;
 import com.sun.ts.tests.ejb30.common.lite.NumberIF;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.SessionContext;
+import java.util.Arrays;
 
-abstract public class BeanBase {
-  @Resource
-  protected SessionContext sessionContext;
+public abstract class BeanBase {
+    @Resource
+    protected SessionContext sessionContext;
 
-  abstract public BeanBase passAsReturn();
+    public abstract BeanBase passAsReturn();
 
-  // declared or annotated as remove-method in stateful subclass
-  public void remove() {
-  }
+    // declared or annotated as remove-method in stateful subclass
+    public void remove() {}
 
-  // just a regular method
-  public void remove(boolean notRemoveMethod) {
-  }
+    // just a regular method
+    public void remove(boolean notRemoveMethod) {}
 
-  protected String nonBusinessMethod() {
-    // throw new IllegalStateException("Not a business method.");
-    // the above exception will cause the client to receive an EJBException,
-    // thus making the test pass. So return the warning instead.
-    return "This is a protected method and must not be invoked by client: "
-        + this;
-  }
+    protected String nonBusinessMethod() {
+        // throw new IllegalStateException("Not a business method.");
+        // the above exception will cause the client to receive an EJBException,
+        // thus making the test pass. So return the warning instead.
+        return "This is a protected method and must not be invoked by client: " + this;
+    }
 
-  protected String nonBusinessMethod2() {
-    return "This is a package-default-access method and must not be invoked by client: "
-        + this;
-  }
+    protected String nonBusinessMethod2() {
+        return "This is a package-default-access method and must not be invoked by client: " + this;
+    }
 
-  public String passAsParam(BeanBase b) {
-    return "Invoked passAsParam, param=" + b + ", target=" + this;
-  }
+    public String passAsParam(BeanBase b) {
+        return "Invoked passAsParam, param=" + b + ", target=" + this;
+    }
 
-  // should be available to coexist with passAsParam(BeanBase b)
-  public String passAsParam(BeanBase... b) {
-    return "Invoked passAsParam..., param=" + Arrays.asList(b) + ", target="
-        + this;
-  }
+    // should be available to coexist with passAsParam(BeanBase b)
+    public String passAsParam(BeanBase... b) {
+        return "Invoked passAsParam..., param=" + Arrays.asList(b) + ", target=" + this;
+    }
 
-  public int passEnumAsParams(NumberEnum e1, NumberIF e2) {
-    return e2.add(e1.getNumber());
-  }
+    public int passEnumAsParams(NumberEnum e1, NumberIF e2) {
+        return e2.add(e1.getNumber());
+    }
 
-  public NumberEnum passEnumAsReturn(int n) {
-    return NumberEnum.getEnumFor(n);
-  }
+    public NumberEnum passEnumAsReturn(int n) {
+        return NumberEnum.getEnumFor(n);
+    }
 }

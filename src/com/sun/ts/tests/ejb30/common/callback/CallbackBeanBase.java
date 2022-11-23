@@ -20,28 +20,25 @@
 
 package com.sun.ts.tests.ejb30.common.callback;
 
-abstract public class CallbackBeanBase extends SharedCallbackBeanBase
-    implements CallbackIF, java.io.Serializable {
-  public static final String isPostConstructCalledTest = "isPostConstructCalledTest";
+public abstract class CallbackBeanBase extends SharedCallbackBeanBase implements CallbackIF, java.io.Serializable {
+    public static final String isPostConstructCalledTest = "isPostConstructCalledTest";
 
-  public static final String isInjectionDoneTest = "isInjectionDoneTest";
+    public static final String isInjectionDoneTest = "isInjectionDoneTest";
 
-  public static final String isPostConstructOrPreDestroyCalledTest = "isPostConstructOrPreDestroyCalledTest";
+    public static final String isPostConstructOrPreDestroyCalledTest = "isPostConstructOrPreDestroyCalledTest";
 
-  // ================== business methods ====================================
-  public void removeFoo() {
-  }
+    // ================== business methods ====================================
+    public void removeFoo() {}
 
-  public boolean isPostConstructCalledTest() {
-    return isPostConstructCalled();
-  }
+    public boolean isPostConstructCalledTest() {
+        return isPostConstructCalled();
+    }
 
-  public boolean isInjectionDoneTest() {
-    return isInjectionDone();
-  }
+    public boolean isInjectionDoneTest() {
+        return isInjectionDone();
+    }
 
-  public boolean runtimeExceptionTest() {
-    return true;
-  }
-
+    public boolean runtimeExceptionTest() {
+        return true;
+    }
 }

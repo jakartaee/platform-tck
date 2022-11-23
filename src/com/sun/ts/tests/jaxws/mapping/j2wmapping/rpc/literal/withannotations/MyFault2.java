@@ -22,11 +22,11 @@ package com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations;
 
 public class MyFault2 extends Exception {
 
-  public MyFault2(String message) {
-    super(message);
-  }
+    public MyFault2(String message) {
+        super(message);
+    }
 
-  public MyFault2(String message, Throwable cause) {
-    super(message, cause);
-  }
+    public MyFault2(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

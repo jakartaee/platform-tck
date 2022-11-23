@@ -18,7 +18,6 @@ package com.sun.ts.tests.ejb30.bb.mdb.customlistener;
 
 import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.callback.MDBClientBase;
-
 import jakarta.annotation.Resource;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
@@ -43,55 +42,54 @@ import jakarta.jms.QueueConnectionFactory;
  * test area.
  */
 public class Client extends MDBClientBase {
-  @Resource(name = "sendQueue")
-  private static Queue sendQueue;
+    @Resource(name = "sendQueue")
+    private static Queue sendQueue;
 
-  @Resource(name = "receiveQueue")
-  private static Queue receiveQueue;
+    @Resource(name = "receiveQueue")
+    private static Queue receiveQueue;
 
-  @Resource(name = "queueConnectionFactory")
-  private static QueueConnectionFactory queueConnectionFactory;
+    @Resource(name = "queueConnectionFactory")
+    private static QueueConnectionFactory queueConnectionFactory;
 
-  protected void initSendQueue() {
-    setSendQueue(sendQueue);
-  }
+    protected void initSendQueue() {
+        setSendQueue(sendQueue);
+    }
 
-  protected void initReceiveQueue() {
-    setReceiveQueue(receiveQueue);
-  }
+    protected void initReceiveQueue() {
+        setReceiveQueue(receiveQueue);
+    }
 
-  protected void initQueueConnectionFactory() {
-    setQueueConnectionFactory(queueConnectionFactory);
-  }
+    protected void initQueueConnectionFactory() {
+        setQueueConnectionFactory(queueConnectionFactory);
+    }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
-   * harness.log.port;
-   */
-  public void setup(String[] args, java.util.Properties p)
-      throws com.sun.ts.lib.harness.EETest.Fault {
-    super.setup(args, p);
-  }
+    /*
+     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
+     * harness.log.port;
+     */
+    public void setup(String[] args, java.util.Properties p) throws com.sun.ts.lib.harness.EETest.Fault {
+        super.setup(args, p);
+    }
 
-  /*
-   * @testName: isPostConstructCalledTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: The test client verifies that the annotated PostConstruct
-   * method is called during the PostConstruct stage of the message driven
-   * bean(MDBean).
-   * 
-   * This test also indirectly verifies the custom Message Listener interface is
-   * not required to be packaged along with ejb jar files, since the custom
-   * Message Listener interface(TSMessageListenerInterface) is already packaged
-   * in the resource adapter, it should be available for the MDB.
-   */
+    /*
+     * @testName: isPostConstructCalledTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: The test client verifies that the annotated PostConstruct
+     * method is called during the PostConstruct stage of the message driven
+     * bean(MDBean).
+     *
+     * This test also indirectly verifies the custom Message Listener interface is
+     * not required to be packaged along with ejb jar files, since the custom
+     * Message Listener interface(TSMessageListenerInterface) is already packaged
+     * in the resource adapter, it should be available for the MDB.
+     */
 
 }

@@ -19,29 +19,29 @@
  */
 package com.sun.ts.tests.ejb30.lite.interceptor.singleton.lifecycle.annotated;
 
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorBeanBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorIF;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.Singleton;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
+import java.util.logging.Level;
 
 @Singleton
 @ExcludeDefaultInterceptors
-public class InterceptorOverride34Bean extends InterceptorBeanBase
-    implements InterceptorIF {
-  private static final String simpleName = "InterceptorOverride34Bean";
+public class InterceptorOverride34Bean extends InterceptorBeanBase implements InterceptorIF {
+    private static final String simpleName = "InterceptorOverride34Bean";
 
-  @Override // override superclass' PostConstruct method with a PostConstruct
-            // method
-  @PostConstruct
-  protected void postConstructInInterceptorBeanBase() {
-    Helper.getLogger().logp(Level.FINE, simpleName,
-        "postConstructInInterceptorBeanBase",
-        "Adding to postConstruct record: " + simpleName);
-    historySingletonBean.addPostConstructRecordFor(this, simpleName);
-  }
+    @Override // override superclass' PostConstruct method with a PostConstruct
+    // method
+    @PostConstruct
+    protected void postConstructInInterceptorBeanBase() {
+        Helper.getLogger()
+                .logp(
+                        Level.FINE,
+                        simpleName,
+                        "postConstructInInterceptorBeanBase",
+                        "Adding to postConstruct record: " + simpleName);
+        historySingletonBean.addPostConstructRecordFor(this, simpleName);
+    }
 }

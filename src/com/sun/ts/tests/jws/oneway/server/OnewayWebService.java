@@ -22,13 +22,14 @@
 
 package com.sun.ts.tests.jws.oneway.server;
 
-import jakarta.jws.Oneway;
 import jakarta.jws.WebService;
 
-@WebService(endpointInterface = "com.sun.ts.tests.jws.oneway.server.OnewayWebServiceInterface", wsdlLocation = "WEB-INF/wsdl/OnewayWebServiceService.wsdl")
+@WebService(
+        endpointInterface = "com.sun.ts.tests.jws.oneway.server.OnewayWebServiceInterface",
+        wsdlLocation = "WEB-INF/wsdl/OnewayWebServiceService.wsdl")
 public class OnewayWebService implements OnewayWebServiceInterface {
 
-  public void ping(String hello) {
-    System.out.println("ping request received");
-  }
+    public void ping(String hello) {
+        System.out.println("ping request received");
+    }
 }

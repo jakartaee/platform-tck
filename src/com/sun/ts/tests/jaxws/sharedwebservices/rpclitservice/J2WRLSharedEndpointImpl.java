@@ -20,29 +20,31 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.rpclitservice;
 
-import jakarta.xml.ws.WebServiceException;
-
 import jakarta.jws.WebService;
 
-@WebService(portName = "J2WRLSharedEndpointPort", serviceName = "J2WRLShared", targetNamespace = "http://rpclitservice.org/wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.rpclitservice.J2WRLSharedEndpoint")
+@WebService(
+        portName = "J2WRLSharedEndpointPort",
+        serviceName = "J2WRLShared",
+        targetNamespace = "http://rpclitservice.org/wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.rpclitservice.J2WRLSharedEndpoint")
 public class J2WRLSharedEndpointImpl implements J2WRLSharedEndpoint {
-  public String helloWorld() {
-    return "hello world";
-  }
+    public String helloWorld() {
+        return "hello world";
+    }
 
-  public String stringOperation(String param) {
-    return param;
-  }
+    public String stringOperation(String param) {
+        return param;
+    }
 
-  public String[] arrayOperation() {
-    return new String[] { "one", "two", "three" };
-  }
+    public String[] arrayOperation() {
+        return new String[] {"one", "two", "three"};
+    }
 
-  public J2WRLSharedBean getBean() {
-    return new J2WRLSharedBean(5, "A String");
-  }
+    public J2WRLSharedBean getBean() {
+        return new J2WRLSharedBean(5, "A String");
+    }
 
-  public String arrayOperationFromClient(String[] array) {
-    return "success";
-  }
+    public String arrayOperationFromClient(String[] array) {
+        return "success";
+    }
 }

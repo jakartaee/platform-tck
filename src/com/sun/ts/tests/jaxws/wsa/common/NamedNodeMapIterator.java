@@ -21,34 +21,31 @@
 package com.sun.ts.tests.jaxws.wsa.common;
 
 import java.util.Iterator;
-
 import org.w3c.dom.NamedNodeMap;
 
 public class NamedNodeMapIterator implements Iterator {
 
-  protected NamedNodeMap _map;
+    protected NamedNodeMap _map;
 
-  protected int _index;
+    protected int _index;
 
-  public NamedNodeMapIterator(NamedNodeMap map) {
-    _map = map;
-    _index = 0;
-  }
+    public NamedNodeMapIterator(NamedNodeMap map) {
+        _map = map;
+        _index = 0;
+    }
 
-  public boolean hasNext() {
-    if (_map == null)
-      return false;
-    return _index < _map.getLength();
-  }
+    public boolean hasNext() {
+        if (_map == null) return false;
+        return _index < _map.getLength();
+    }
 
-  public Object next() {
-    Object obj = _map.item(_index);
-    if (obj != null)
-      ++_index;
-    return obj;
-  }
+    public Object next() {
+        Object obj = _map.item(_index);
+        if (obj != null) ++_index;
+        return obj;
+    }
 
-  public void remove() {
-    throw new UnsupportedOperationException();
-  }
+    public void remove() {
+        throw new UnsupportedOperationException();
+    }
 }

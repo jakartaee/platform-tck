@@ -27,116 +27,115 @@ import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveIF;
 import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveNotRetainIF;
 import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.TestIF;
 import com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome;
-
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
-  // @EJB(name="removeBean")
-  private static RemoveIF removeBean;
+    // @EJB(name="removeBean")
+    private static RemoveIF removeBean;
 
-  // @EJB(name="removeBean2")
-  private static Remove2IF removeBean2;
+    // @EJB(name="removeBean2")
+    private static Remove2IF removeBean2;
 
-  // @EJB(name="removeNotRetainBean")
-  private static RemoveNotRetainIF removeNotRetainBean;
+    // @EJB(name="removeNotRetainBean")
+    private static RemoveNotRetainIF removeNotRetainBean;
 
-  // @EJB(name="testBean")
-  private static TestIF testBean;
+    // @EJB(name="testBean")
+    private static TestIF testBean;
 
-  @EJB(name = "twoRemoteHome")
-  private static TwoRemoteHome twoRemoteHome;
+    @EJB(name = "twoRemoteHome")
+    private static TwoRemoteHome twoRemoteHome;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  protected TestIF getTestBean() {
-    return testBean;
-  }
+    protected TestIF getTestBean() {
+        return testBean;
+    }
 
-  protected RemoveIF getRemoveBean() {
-    return removeBean;
-  }
+    protected RemoveIF getRemoveBean() {
+        return removeBean;
+    }
 
-  protected Remove2IF getRemoveBean2() {
-    return removeBean2;
-  }
+    protected Remove2IF getRemoveBean2() {
+        return removeBean2;
+    }
 
-  protected RemoveNotRetainIF getRemoveNotRetainBean() {
-    return removeNotRetainBean;
-  }
+    protected RemoveNotRetainIF getRemoveNotRetainBean() {
+        return removeNotRetainBean;
+    }
 
-  protected TwoRemoteHome getTwoRemoteHome() {
-    return twoRemoteHome;
-  }
+    protected TwoRemoteHome getTwoRemoteHome() {
+        return twoRemoteHome;
+    }
 
-  /*
-   * @testName: retainBean
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: retainBean2
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: testBeanretainBean
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: testBeanretainBean2
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: removeNotRetainBean
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: removeNotRetainBean2
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: testBeanretainBeanRemote
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: client remotely invokes testBean, which remotely invokes
-   * RemoveBean via RemoteIF.
-   *
-   */
-  /*
-   * @testName: testBeanretainBean2Remote
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: client remotely invokes testBean, which remotely invokes
-   * RemoveBean via RemoteIF2.
-   *
-   */
+    /*
+     * @testName: retainBean
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: retainBean2
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: testBeanretainBean
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: testBeanretainBean2
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: removeNotRetainBean
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: removeNotRetainBean2
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: testBeanretainBeanRemote
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: client remotely invokes testBean, which remotely invokes
+     * RemoveBean via RemoteIF.
+     *
+     */
+    /*
+     * @testName: testBeanretainBean2Remote
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: client remotely invokes testBean, which remotely invokes
+     * RemoveBean via RemoteIF2.
+     *
+     */
 
 }

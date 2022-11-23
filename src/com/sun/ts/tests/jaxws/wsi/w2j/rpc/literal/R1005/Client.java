@@ -20,155 +20,144 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1005;
 
+import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.*;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
 import com.sun.ts.tests.jaxws.wsi.constants.WSIConstants;
 import com.sun.ts.tests.jaxws.wsi.requests.SOAPRequests;
-import com.sun.javatest.Status;
-
 import jakarta.xml.soap.*;
-import java.util.Properties;
 import java.util.Iterator;
+import java.util.Properties;
 
-public class Client extends ServiceEETest
-    implements WSIConstants, SOAPRequests {
+public class Client extends ServiceEETest implements WSIConstants, SOAPRequests {
 
-  private W2JRLR1005Client client;
+    private W2JRLR1005Client client;
 
-  static SimpleTest service = null;
+    static SimpleTest service = null;
 
-  /**
-   * Test entry point.
-   *
-   * @param args
-   *          the command-line arguments.
-   */
-  public static void main(String[] args) {
-    Client tests = new Client();
-    Status status = tests.run(args, System.out, System.err);
-    status.exit();
-  }
-
-  /**
-   * @class.testArgs: -ap jaxws-url-props.dat
-   * @class.setup_props: webServerHost; webServerPort; platform.mode;
-   *
-   * @param args
-   * @param properties
-   *
-   * @throws com.sun.ts.lib.harness.EETest.Fault
-   */
-  public void setup(String[] args, Properties properties) throws EETest.Fault {
-    client = (W2JRLR1005Client) ClientFactory.getClient(W2JRLR1005Client.class,
-        properties, this, service);
-    logMsg("setup ok");
-  }
-
-  public void cleanup() {
-    logMsg("cleanup");
-  }
-
-  /**
-   * @testName: testNoEncodingStyleOnResponseEnvelopeElements
-   *
-   * @assertion_ids: WSI:SPEC:R1005
-   *
-   * @test_Strategy: Make a request and inspect response elements with a
-   *                 namespace of "http://schemas.xmlsoap.org/soap/envelope/" to
-   *                 ensure they don't have soap:encodingStyle attribute.
-   *
-   * @throws com.sun.ts.lib.harness.EETest.Fault
-   */
-  public void testNoEncodingStyleOnResponseEnvelopeElements()
-      throws EETest.Fault {
-    SOAPMessage response = null;
-    try {
-      response = client.makeSaajRequest(HELLOWORLD_WITH_HANDLER);
-    } catch (Exception e) {
-      throw new EETest.Fault("Test didn't complete properly: ", e);
+    /**
+     * Test entry point.
+     *
+     * @param args
+     *          the command-line arguments.
+     */
+    public static void main(String[] args) {
+        Client tests = new Client();
+        Status status = tests.run(args, System.out, System.err);
+        status.exit();
     }
-    try {
-      validateNoEncodingStyleOnEnvelopeElements(response);
-    } catch (SOAPException se) {
-      throw new EETest.Fault("Error creating response object", se);
-    }
-    client.logMessageInHarness(response);
-  }
 
-  /**
-   * @testName: testNoEncodingStyleOnRequestEnvelopeElements
-   *
-   * @assertion_ids: WSI:SPEC:R1005
-   *
-   * @test_Strategy: Make a request and inspect its elements on the server with
-   *                 a namespace of "http://schemas.xmlsoap.org/soap/envelope/"
-   *                 to ensure they don't have soap:encodingStyle attribute.
-   *
-   * @throws com.sun.ts.lib.harness.EETest.Fault
-   */
-  public void testNoEncodingStyleOnRequestEnvelopeElements()
-      throws EETest.Fault {
-    String response = null;
-    try {
-      response = client.helloWorld();
-      TestUtil.logMsg("response=" + response);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EETest.Fault("Test didn't complete properly: ", e);
+    /**
+     * @class.testArgs: -ap jaxws-url-props.dat
+     * @class.setup_props: webServerHost; webServerPort; platform.mode;
+     *
+     * @param args
+     * @param properties
+     *
+     * @throws com.sun.ts.lib.harness.EETest.Fault
+     */
+    public void setup(String[] args, Properties properties) throws EETest.Fault {
+        client = (W2JRLR1005Client) ClientFactory.getClient(W2JRLR1005Client.class, properties, this, service);
+        logMsg("setup ok");
     }
-    if (response.startsWith("failed")) {
-      throw new EETest.Fault(response);
-    }
-  }
 
-  private void validateNoEncodingStyleOnEnvelopeElements(SOAPMessage response)
-      throws EETest.Fault, SOAPException {
-    validateNoEncodingStyleOnEnvelopeElements(
-        response.getSOAPPart().getEnvelope(), response);
-  }
-
-  private void validateNoEncodingStyleOnEnvelopeElements(Iterator soapElements,
-      SOAPMessage response) throws EETest.Fault {
-    Node n;
-    while (soapElements.hasNext()) {
-      n = (Node) soapElements.next();
-      if (n instanceof SOAPElement) {
-        validateNoEncodingStyleOnEnvelopeElements((SOAPElement) n, response);
-      }
+    public void cleanup() {
+        logMsg("cleanup");
     }
-  }
 
-  private void validateNoEncodingStyleOnEnvelopeElements(SOAPElement element,
-      SOAPMessage response) throws EETest.Fault {
-    boolean fails = hasEncodingStyleAttr(element);
-    if (fails) {
-      client.logMessageInHarness(response);
-      throw new EETest.Fault(
-          "Invalid element: elements with namespace http://schemas.xmlsoap.org/soap/envelope/"
-              + " cannot have soap:encodingStyle attribute (BP-R1005):  "
-              + element.getElementName().getQualifiedName());
+    /**
+     * @testName: testNoEncodingStyleOnResponseEnvelopeElements
+     *
+     * @assertion_ids: WSI:SPEC:R1005
+     *
+     * @test_Strategy: Make a request and inspect response elements with a
+     *                 namespace of "http://schemas.xmlsoap.org/soap/envelope/" to
+     *                 ensure they don't have soap:encodingStyle attribute.
+     *
+     * @throws com.sun.ts.lib.harness.EETest.Fault
+     */
+    public void testNoEncodingStyleOnResponseEnvelopeElements() throws EETest.Fault {
+        SOAPMessage response = null;
+        try {
+            response = client.makeSaajRequest(HELLOWORLD_WITH_HANDLER);
+        } catch (Exception e) {
+            throw new EETest.Fault("Test didn't complete properly: ", e);
+        }
+        try {
+            validateNoEncodingStyleOnEnvelopeElements(response);
+        } catch (SOAPException se) {
+            throw new EETest.Fault("Error creating response object", se);
+        }
+        client.logMessageInHarness(response);
     }
-    validateNoEncodingStyleOnEnvelopeElements(element.getChildElements(),
-        response);
-  }
 
-  private boolean hasEncodingStyleAttr(SOAPElement elem) {
-    Iterator attrs = elem.getAllAttributes();
-    Name name;
-    String uri;
-    while (attrs.hasNext()) {
-      name = (Name) attrs.next();
-      uri = name.getURI();
-      if (uri == null) {
-        uri = "";
-      }
-      if (name.getLocalName().equals(SOAP_ENC_STYLE)
-          && uri.equals(SOAP_ENV_NS)) {
-        return true;
-      }
+    /**
+     * @testName: testNoEncodingStyleOnRequestEnvelopeElements
+     *
+     * @assertion_ids: WSI:SPEC:R1005
+     *
+     * @test_Strategy: Make a request and inspect its elements on the server with
+     *                 a namespace of "http://schemas.xmlsoap.org/soap/envelope/"
+     *                 to ensure they don't have soap:encodingStyle attribute.
+     *
+     * @throws com.sun.ts.lib.harness.EETest.Fault
+     */
+    public void testNoEncodingStyleOnRequestEnvelopeElements() throws EETest.Fault {
+        String response = null;
+        try {
+            response = client.helloWorld();
+            TestUtil.logMsg("response=" + response);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new EETest.Fault("Test didn't complete properly: ", e);
+        }
+        if (response.startsWith("failed")) {
+            throw new EETest.Fault(response);
+        }
     }
-    return false;
-  }
+
+    private void validateNoEncodingStyleOnEnvelopeElements(SOAPMessage response) throws EETest.Fault, SOAPException {
+        validateNoEncodingStyleOnEnvelopeElements(response.getSOAPPart().getEnvelope(), response);
+    }
+
+    private void validateNoEncodingStyleOnEnvelopeElements(Iterator soapElements, SOAPMessage response)
+            throws EETest.Fault {
+        Node n;
+        while (soapElements.hasNext()) {
+            n = (Node) soapElements.next();
+            if (n instanceof SOAPElement) {
+                validateNoEncodingStyleOnEnvelopeElements((SOAPElement) n, response);
+            }
+        }
+    }
+
+    private void validateNoEncodingStyleOnEnvelopeElements(SOAPElement element, SOAPMessage response)
+            throws EETest.Fault {
+        boolean fails = hasEncodingStyleAttr(element);
+        if (fails) {
+            client.logMessageInHarness(response);
+            throw new EETest.Fault("Invalid element: elements with namespace http://schemas.xmlsoap.org/soap/envelope/"
+                    + " cannot have soap:encodingStyle attribute (BP-R1005):  "
+                    + element.getElementName().getQualifiedName());
+        }
+        validateNoEncodingStyleOnEnvelopeElements(element.getChildElements(), response);
+    }
+
+    private boolean hasEncodingStyleAttr(SOAPElement elem) {
+        Iterator attrs = elem.getAllAttributes();
+        Name name;
+        String uri;
+        while (attrs.hasNext()) {
+            name = (Name) attrs.next();
+            uri = name.getURI();
+            if (uri == null) {
+                uri = "";
+            }
+            if (name.getLocalName().equals(SOAP_ENC_STYLE) && uri.equals(SOAP_ENV_NS)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

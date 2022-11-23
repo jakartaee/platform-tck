@@ -23,23 +23,20 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.equals.descriptor;
 import jakarta.annotation.Resource;
 import jakarta.ejb.SessionContext;
 
-//@Stateless(name="shopping-cart-bean")
-//@Remote({ShoppingCartIF.class})
-//@Local({LocalShoppingCartIF.class})
+// @Stateless(name="shopping-cart-bean")
+// @Remote({ShoppingCartIF.class})
+// @Local({LocalShoppingCartIF.class})
 public class ShoppingCartBean
 // implements CartIF, ShoppingCartIF, LocalCartIF, LocalShoppingCartIF
 {
-  @Resource(name = "sessionContext")
-  private SessionContext sessionContext;
+    @Resource(name = "sessionContext")
+    private SessionContext sessionContext;
 
-  protected SessionContext getSessionContext() {
-    return sessionContext;
-  }
+    protected SessionContext getSessionContext() {
+        return sessionContext;
+    }
 
-  public ShoppingCartBean() {
-  }
+    public ShoppingCartBean() {}
 
-  public void remove() {
-  }
-
+    public void remove() {}
 }

@@ -17,32 +17,31 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.websocketmessage;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryStreamDecoder;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
-@ServerEndpoint(value = "/binarystreamdecoderpathparam/{param}", decoders = {
-    StringBeanBinaryStreamDecoder.class })
+@ServerEndpoint(
+        value = "/binarystreamdecoderpathparam/{param}",
+        decoders = {StringBeanBinaryStreamDecoder.class})
 public class WSBinaryStreamDecoderAndPathParamServer {
 
-  @OnMessage
-  public String echo(StringBean bean, @PathParam("param") String param) {
-    return bean.get() + param;
-  }
+    @OnMessage
+    public String echo(StringBean bean, @PathParam("param") String param) {
+        return bean.get() + param;
+    }
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in" + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+    @OnError
+    public void onError(Session session, Throwable t) throws IOException {
+        System.out.println("@OnError in" + getClass().getName());
+        t.printStackTrace(); // Write to error log, too
+        String message = "Exception: " + IOUtil.printStackTrace(t);
+        session.getBasicRemote().sendText(message);
+    }
 }

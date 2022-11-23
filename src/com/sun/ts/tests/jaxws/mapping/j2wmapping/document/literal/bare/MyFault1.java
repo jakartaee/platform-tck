@@ -22,11 +22,11 @@ package com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.bare;
 
 public class MyFault1 extends Exception {
 
-  public MyFault1(String message) {
-    super(message);
-  }
+    public MyFault1(String message) {
+        super(message);
+    }
 
-  public MyFault1(String message, Throwable cause) {
-    super(message, cause);
-  }
+    public MyFault1(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

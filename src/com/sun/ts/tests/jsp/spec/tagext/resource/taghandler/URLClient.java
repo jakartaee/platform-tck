@@ -20,124 +20,121 @@
 
 package com.sun.ts.tests.jsp.spec.tagext.resource.taghandler;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /* Run test */
+    /* Run test */
 
-  /*
-   * @testName: ResourceTagHandlerTest
-   *
-   * @assertion_ids: JSP:SPEC:302
-   *
-   * @test_Strategy: [TagHandlerResourceInjection] Create a tag handler that
-   * implements the Tag interface. Package the tag handler in a WAR file without
-   * declaring several resource references in the deployment descriptor -
-   * javax.sql.DataSource - jakarta.jms.QueueConnectionFactory -
-   * jakarta.jms.TopicConnectionFactory - jakarta.jms.ConnectionFactory -
-   * jakarta.jms.Queue - jakarta.jms.Topic - jakarta.mail.Session - java.net.URL
-   *
-   * Check that: - We can deploy the application. - We can lookup the all the
-   * above resources using annotations in a tag handler.
-   */
+    /*
+     * @testName: ResourceTagHandlerTest
+     *
+     * @assertion_ids: JSP:SPEC:302
+     *
+     * @test_Strategy: [TagHandlerResourceInjection] Create a tag handler that
+     * implements the Tag interface. Package the tag handler in a WAR file without
+     * declaring several resource references in the deployment descriptor -
+     * javax.sql.DataSource - jakarta.jms.QueueConnectionFactory -
+     * jakarta.jms.TopicConnectionFactory - jakarta.jms.ConnectionFactory -
+     * jakarta.jms.Queue - jakarta.jms.Topic - jakarta.mail.Session - java.net.URL
+     *
+     * Check that: - We can deploy the application. - We can lookup the all the
+     * above resources using annotations in a tag handler.
+     */
 
-  public void ResourceTagHandlerTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagext_resource_taghandler_web/ResourceTagHandlerTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    invoke();
-  }
+    public void ResourceTagHandlerTest() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagext_resource_taghandler_web/ResourceTagHandlerTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
+        invoke();
+    }
 
-  /*
-   * @testName: ResourceSimpleTagHandlerTest
-   *
-   * @assertion_ids: JSP:SPEC:302
-   *
-   * @test_Strategy: [TagHandlerResourceInjection] Create a tag handler that
-   * implements the SimpleTag interface. Package the tag handler in a WAR file
-   * without declaring several resource references in the deployment descriptor
-   * - javax.sql.DataSource - jakarta.jms.QueueConnectionFactory -
-   * jakarta.jms.TopicConnectionFactory - jakarta.jms.ConnectionFactory -
-   * jakarta.jms.Queue - jakarta.jms.Topic - jakarta.mail.Session - java.net.URL
-   *
-   * Check that: - We can deploy the application. - We can lookup the all the
-   * above resources using annotations in a tag handler.
-   */
+    /*
+     * @testName: ResourceSimpleTagHandlerTest
+     *
+     * @assertion_ids: JSP:SPEC:302
+     *
+     * @test_Strategy: [TagHandlerResourceInjection] Create a tag handler that
+     * implements the SimpleTag interface. Package the tag handler in a WAR file
+     * without declaring several resource references in the deployment descriptor
+     * - javax.sql.DataSource - jakarta.jms.QueueConnectionFactory -
+     * jakarta.jms.TopicConnectionFactory - jakarta.jms.ConnectionFactory -
+     * jakarta.jms.Queue - jakarta.jms.Topic - jakarta.mail.Session - java.net.URL
+     *
+     * Check that: - We can deploy the application. - We can lookup the all the
+     * above resources using annotations in a tag handler.
+     */
 
-  public void ResourceSimpleTagHandlerTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagext_resource_taghandler_web/ResourceSimpleTagHandlerTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    invoke();
-  }
+    public void ResourceSimpleTagHandlerTest() throws Fault {
+        TEST_PROPS.setProperty(
+                REQUEST, "GET /jsp_tagext_resource_taghandler_web/ResourceSimpleTagHandlerTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
+        invoke();
+    }
 
-  /*
-   * @testName: ResourceTagHandlerTimingTest
-   *
-   * @assertion_ids: JSP:SPEC:303
-   *
-   * @test_Strategy: [TagHandlerResourceInjectionTiming] Create a tag handler
-   * that implements the Tag interface. Package the tag handler in a WAR file
-   * without declaring a reference for a resource in the deployment descriptor.
-   * Show that injection occurs immediately after an instance of the tag handler
-   * is constructed, and before any of the tag properties are initialized, by
-   * using a value derived from an injected resource in a setter method.
-   */
+    /*
+     * @testName: ResourceTagHandlerTimingTest
+     *
+     * @assertion_ids: JSP:SPEC:303
+     *
+     * @test_Strategy: [TagHandlerResourceInjectionTiming] Create a tag handler
+     * that implements the Tag interface. Package the tag handler in a WAR file
+     * without declaring a reference for a resource in the deployment descriptor.
+     * Show that injection occurs immediately after an instance of the tag handler
+     * is constructed, and before any of the tag properties are initialized, by
+     * using a value derived from an injected resource in a setter method.
+     */
 
-  public void ResourceTagHandlerTimingTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagext_resource_taghandler_web/ResourceTagHandlerTimingTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    invoke();
-  }
+    public void ResourceTagHandlerTimingTest() throws Fault {
+        TEST_PROPS.setProperty(
+                REQUEST, "GET /jsp_tagext_resource_taghandler_web/ResourceTagHandlerTimingTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
+        invoke();
+    }
 
-  /*
-   * @testName: ResourceSimpleTagHandlerTimingTest
-   *
-   * @assertion_ids: JSP:SPEC:303
-   *
-   * @test_Strategy: [TagHandlerResourceInjectionTiming] Create a tag handler
-   * that implements the SimpleTag interface. Package the tag handler in a WAR
-   * file without declaring a reference for a resource in the deployment
-   * descriptor. Show that injection occurs immediately after an instance of the
-   * tag handler is constructed, and before any of the tag properties are
-   * initialized, by using a value derived from an injected resource in a setter
-   * method.
-   */
+    /*
+     * @testName: ResourceSimpleTagHandlerTimingTest
+     *
+     * @assertion_ids: JSP:SPEC:303
+     *
+     * @test_Strategy: [TagHandlerResourceInjectionTiming] Create a tag handler
+     * that implements the SimpleTag interface. Package the tag handler in a WAR
+     * file without declaring a reference for a resource in the deployment
+     * descriptor. Show that injection occurs immediately after an instance of the
+     * tag handler is constructed, and before any of the tag properties are
+     * initialized, by using a value derived from an injected resource in a setter
+     * method.
+     */
 
-  public void ResourceSimpleTagHandlerTimingTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagext_resource_taghandler_web/ResourceSimpleTagHandlerTimingTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    invoke();
-  }
+    public void ResourceSimpleTagHandlerTimingTest() throws Fault {
+        TEST_PROPS.setProperty(
+                REQUEST, "GET /jsp_tagext_resource_taghandler_web/ResourceSimpleTagHandlerTimingTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
+        invoke();
+    }
 }

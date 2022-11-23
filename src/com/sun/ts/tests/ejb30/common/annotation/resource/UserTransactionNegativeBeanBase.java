@@ -25,24 +25,21 @@ import static com.sun.ts.tests.ejb30.common.annotation.resource.Constants.USER_T
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
-abstract public class UserTransactionNegativeBeanBase
-    implements UserTransactionNegativeIF {
+public abstract class UserTransactionNegativeBeanBase implements UserTransactionNegativeIF {
 
-  /////////////////////////////////////////////////////////////////////////
-  // business methods
-  /////////////////////////////////////////////////////////////////////////
-  public void testUserTransactionNegativeLookup() throws TestFailedException {
-    // See glassfish issue 1538, EJB 3.0 spec page 448
-    try {
-      Object obj = ServiceLocator.lookup(USER_TRANSACTION_JNDI_NAME);
-      if (obj != null) {
-        throw new TestFailedException(
-            "lookup of UserTransaction must not succeed for CMT beans.  Unexpectedly returned "
-                + obj);
-      }
-    } catch (Exception e) {
-      // should throw NameNotFoundException, but also ok for other exceptions.
+    /////////////////////////////////////////////////////////////////////////
+    // business methods
+    /////////////////////////////////////////////////////////////////////////
+    public void testUserTransactionNegativeLookup() throws TestFailedException {
+        // See glassfish issue 1538, EJB 3.0 spec page 448
+        try {
+            Object obj = ServiceLocator.lookup(USER_TRANSACTION_JNDI_NAME);
+            if (obj != null) {
+                throw new TestFailedException(
+                        "lookup of UserTransaction must not succeed for CMT beans.  Unexpectedly returned " + obj);
+            }
+        } catch (Exception e) {
+            // should throw NameNotFoundException, but also ok for other exceptions.
+        }
     }
-  }
-
 }

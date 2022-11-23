@@ -25,7 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP11Wrapper;
 
 public class DoubleBeanEJB extends CMP11Wrapper {
 
-  public boolean testDoubleEntry() {
-    return TestCode.testDoubleEntry(nctx);
-  }
+    public boolean testDoubleEntry() {
+        return TestCode.testDoubleEntry(nctx);
+    }
 }

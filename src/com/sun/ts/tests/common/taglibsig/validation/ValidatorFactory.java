@@ -24,30 +24,31 @@ import com.sun.ts.lib.util.TestUtil;
 
 public class ValidatorFactory {
 
-  // No instances of Factory
-  private ValidatorFactory() {
-  }
+    // No instances of Factory
+    private ValidatorFactory() {}
 
-  /**
-   * <p>
-   * Returns an instance of a {@link Validator} based on the provided class
-   * name.
-   * </p>
-   * 
-   * @param className
-   *          - The name of the Validator's implementation class
-   * @return a Validator instance of the class exists, otherwise null
-   */
-  public static Validator getValidator(String className) {
-    Validator v = null;
-    try {
-      v = (Validator) Thread.currentThread().getContextClassLoader()
-          .loadClass(className).newInstance();
-    } catch (Throwable t) {
-      // XXX Enhance this section
-      System.out.println(t.toString());
-      TestUtil.logMsg(t.toString());
+    /**
+     * <p>
+     * Returns an instance of a {@link Validator} based on the provided class
+     * name.
+     * </p>
+     *
+     * @param className
+     *          - The name of the Validator's implementation class
+     * @return a Validator instance of the class exists, otherwise null
+     */
+    public static Validator getValidator(String className) {
+        Validator v = null;
+        try {
+            v = (Validator) Thread.currentThread()
+                    .getContextClassLoader()
+                    .loadClass(className)
+                    .newInstance();
+        } catch (Throwable t) {
+            // XXX Enhance this section
+            System.out.println(t.toString());
+            TestUtil.logMsg(t.toString());
+        }
+        return v;
     }
-    return v;
-  }
 }

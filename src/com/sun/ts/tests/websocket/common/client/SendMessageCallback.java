@@ -20,113 +20,101 @@ package com.sun.ts.tests.websocket.common.client;
 import static com.sun.ts.tests.websocket.common.client.WebSocketCommonClient.logMsg;
 import static com.sun.ts.tests.websocket.common.client.WebSocketCommonClient.logTrace;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient.Entity;
 import com.sun.ts.tests.websocket.common.impl.StringPingMessage;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.PongMessage;
 import jakarta.websocket.RemoteEndpoint;
 import jakarta.websocket.Session;
+import java.io.IOException;
+import java.nio.ByteBuffer;
 
 /**
  * The default {@link EndpointCallback} that is used in tests. This callback
  * sends an entity on onOpen to a server endpoint set by
  * {@link WebSocketCommonClient#setEntity(Object...)} or by
- * 
+ *
  * <pre>
  * setProperty(Property.CONTENT, ...)
  * </pre>
- * 
+ *
  * </p>
  * Note that no callback is used when no entity is defined to be sent to a
  * server side
  */
 public class SendMessageCallback extends EndpointCallback {
-  protected Entity entity;
+    protected Entity entity;
 
-  public SendMessageCallback(Entity entity) {
-    super();
-    this.entity = entity;
-  }
-
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-    logMsg("Sending entity", entity);
-    RemoteEndpoint.Basic endpoint = session.getBasicRemote();
-    try {
-      if (entity.isInstance(String.class))
-        sendString(endpoint, entity, 0);
-      else if (entity.isInstance(ByteBuffer.class))
-        sendBytes(endpoint, entity, 0);
-      else if (entity.isInstance(PongMessage.class))
-        sendPingPong(endpoint, entity.getEntityAt(PongMessage.class, 0));
-      else
-        sendObject(endpoint, entity.getEntityAt(Object.class, 0));
-    } catch (Exception i) {
-      throw new RuntimeException(i);
+    public SendMessageCallback(Entity entity) {
+        super();
+        this.entity = entity;
     }
-  }
 
-  protected void sendString(RemoteEndpoint.Basic endpoint, Entity entity,
-      int index) throws IOException {
-    String message = entity.getEntityAt(String.class, index);
-    if (entity.length() - 1 > index) {
-      endpoint.sendText(message, false);
-      logTrace("RemoteEndpoint.Basic.sendText(", message, ", false)");
-      sendString(endpoint, entity, index + 1);
-    } else if (index > 0) {
-      endpoint.sendText(message, true);
-      logTrace("RemoteEndpoint.Basic.sendText(", message, ", true)");
-    } else {
-      endpoint.sendText(message);
-      logTrace("RemoteEndpoint.Basic.sendText(", message, ")");
+    @Override
+    public void onOpen(Session session, EndpointConfig config) {
+        super.onOpen(session, config);
+        logMsg("Sending entity", entity);
+        RemoteEndpoint.Basic endpoint = session.getBasicRemote();
+        try {
+            if (entity.isInstance(String.class)) sendString(endpoint, entity, 0);
+            else if (entity.isInstance(ByteBuffer.class)) sendBytes(endpoint, entity, 0);
+            else if (entity.isInstance(PongMessage.class))
+                sendPingPong(endpoint, entity.getEntityAt(PongMessage.class, 0));
+            else sendObject(endpoint, entity.getEntityAt(Object.class, 0));
+        } catch (Exception i) {
+            throw new RuntimeException(i);
+        }
     }
-  }
 
-  protected void sendBytes(RemoteEndpoint.Basic endpoint, Entity entity,
-      int index) throws IOException {
-    ByteBuffer msg = entity.getEntityAt(ByteBuffer.class, index);
-    String bytes = new String(msg.array());
-    if (entity.length() - 1 > index) {
-      endpoint.sendBinary(msg, false);
-      logTrace("RemoteEndpoint.Basic.sendBinary(", bytes, ", false)");
-      sendBytes(endpoint, entity, index + 1);
-    } else if (index > 0) {
-      endpoint.sendBinary(msg, true);
-      logTrace("RemoteEndpoint.Basic.sendBinary(", bytes, ", true)");
-    } else {
-      endpoint.sendBinary(msg);
-      logTrace("RemoteEndpoint.Basic.sendBinary(", bytes, ")");
+    protected void sendString(RemoteEndpoint.Basic endpoint, Entity entity, int index) throws IOException {
+        String message = entity.getEntityAt(String.class, index);
+        if (entity.length() - 1 > index) {
+            endpoint.sendText(message, false);
+            logTrace("RemoteEndpoint.Basic.sendText(", message, ", false)");
+            sendString(endpoint, entity, index + 1);
+        } else if (index > 0) {
+            endpoint.sendText(message, true);
+            logTrace("RemoteEndpoint.Basic.sendText(", message, ", true)");
+        } else {
+            endpoint.sendText(message);
+            logTrace("RemoteEndpoint.Basic.sendText(", message, ")");
+        }
     }
-  }
 
-  protected void sendPingPong(RemoteEndpoint.Basic endpoint, PongMessage pong)
-      throws Exception {
-    ByteBuffer buffer = pong.getApplicationData();
-    String msg = IOUtil.byteBufferToString(buffer);
-    if (StringPingMessage.class.isInstance(pong)) {
-      endpoint.sendPing(buffer);
-      logTrace("RemoteEndpoint.Basic.sendPing(", msg, ")");
-    } else {
-      endpoint.sendPong(buffer);
-      logTrace("RemoteEndpoint.Basic.sendPong(", msg, ")");
+    protected void sendBytes(RemoteEndpoint.Basic endpoint, Entity entity, int index) throws IOException {
+        ByteBuffer msg = entity.getEntityAt(ByteBuffer.class, index);
+        String bytes = new String(msg.array());
+        if (entity.length() - 1 > index) {
+            endpoint.sendBinary(msg, false);
+            logTrace("RemoteEndpoint.Basic.sendBinary(", bytes, ", false)");
+            sendBytes(endpoint, entity, index + 1);
+        } else if (index > 0) {
+            endpoint.sendBinary(msg, true);
+            logTrace("RemoteEndpoint.Basic.sendBinary(", bytes, ", true)");
+        } else {
+            endpoint.sendBinary(msg);
+            logTrace("RemoteEndpoint.Basic.sendBinary(", bytes, ")");
+        }
     }
-  }
 
-  protected void sendObject(RemoteEndpoint.Basic endpoint, Object message)
-      throws Exception {
-    String entity = null;
-    if (message.getClass().getName().equals("[B"))
-      entity = new String((byte[]) message);
-    else
-      entity = message.toString();
-    logTrace("RemoteEndpoint.Basic.sendObject(", entity, ")");
-    endpoint.sendObject(message);
-  }
+    protected void sendPingPong(RemoteEndpoint.Basic endpoint, PongMessage pong) throws Exception {
+        ByteBuffer buffer = pong.getApplicationData();
+        String msg = IOUtil.byteBufferToString(buffer);
+        if (StringPingMessage.class.isInstance(pong)) {
+            endpoint.sendPing(buffer);
+            logTrace("RemoteEndpoint.Basic.sendPing(", msg, ")");
+        } else {
+            endpoint.sendPong(buffer);
+            logTrace("RemoteEndpoint.Basic.sendPong(", msg, ")");
+        }
+    }
 
+    protected void sendObject(RemoteEndpoint.Basic endpoint, Object message) throws Exception {
+        String entity = null;
+        if (message.getClass().getName().equals("[B")) entity = new String((byte[]) message);
+        else entity = message.toString();
+        logTrace("RemoteEndpoint.Basic.sendObject(", entity, ")");
+        endpoint.sendObject(message);
+    }
 }

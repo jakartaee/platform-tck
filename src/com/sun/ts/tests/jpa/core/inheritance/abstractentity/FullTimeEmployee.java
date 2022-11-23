@@ -20,12 +20,11 @@
 
 package com.sun.ts.tests.jpa.core.inheritance.abstractentity;
 
-import java.sql.Date;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import java.sql.Date;
 
 /*
  * FullTimeEmployee
@@ -36,30 +35,27 @@ import jakarta.persistence.Table;
 @DiscriminatorValue("EXEMPT")
 public class FullTimeEmployee extends Employee {
 
-  private float salary;
+    private float salary;
 
-  public FullTimeEmployee() {
-  }
+    public FullTimeEmployee() {}
 
-  public FullTimeEmployee(int id, String firstName, String lastName,
-      Date hireDate, float salary) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.hireDate = hireDate;
-    this.salary = salary;
-  }
+    public FullTimeEmployee(int id, String firstName, String lastName, Date hireDate, float salary) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.hireDate = hireDate;
+        this.salary = salary;
+    }
 
-  // ===========================================================
-  // getters and setters for the state fields
+    // ===========================================================
+    // getters and setters for the state fields
 
-  @Column(name = "SALARY")
-  public float getSalary() {
-    return salary;
-  }
+    @Column(name = "SALARY")
+    public float getSalary() {
+        return salary;
+    }
 
-  public void setSalary(float salary) {
-    this.salary = salary;
-  }
-
+    public void setSalary(float salary) {
+        this.salary = salary;
+    }
 }

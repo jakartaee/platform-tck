@@ -20,23 +20,22 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateless.cm.allowedmethodstest;
 
+import jakarta.ejb.EJBLocalObject;
 import java.util.Hashtable;
 import java.util.Properties;
 
-import jakarta.ejb.EJBLocalObject;
-
 public interface TestBeanLocal extends EJBLocalObject {
-  public Hashtable getResults();
+    public Hashtable getResults();
 
-  public void businessMethod(Helper ref);
+    public void businessMethod(Helper ref);
 
-  public void setHelper(Helper ref);
+    public void setHelper(Helper ref);
 
-  public void txNotSupported(Helper ref);
+    public void txNotSupported(Helper ref);
 
-  public void txSupports(Helper ref);
+    public void txSupports(Helper ref);
 
-  public void txNever(Helper ref);
+    public void txNever(Helper ref);
 
-  public void initLogging(Properties p);
+    public void initLogging(Properties p);
 }

@@ -19,46 +19,46 @@
  */
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.requestresponse;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-
-import jakarta.jws.WebService;
-import jakarta.jws.WebParam;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.tests.jaxws.wsa.common.AddressingHeaderException;
 import jakarta.jws.HandlerChain;
-import jakarta.xml.ws.soap.Addressing;
+import jakarta.jws.WebParam;
+import jakarta.jws.WebService;
 import jakarta.xml.ws.Action;
 import jakarta.xml.ws.Holder;
+import jakarta.xml.ws.soap.Addressing;
 
-import com.sun.ts.tests.jaxws.wsa.common.AddressingHeaderException;
-
-@WebService(name = "AddNumbersPortType", portName = "AddNumbersPort", serviceName = "AddNumbersService", targetNamespace = "http://example.com")
+@WebService(
+        name = "AddNumbersPortType",
+        portName = "AddNumbersPort",
+        serviceName = "AddNumbersService",
+        targetNamespace = "http://example.com")
 @HandlerChain(file = "server-handler.xml")
 @Addressing(enabled = true, required = true)
 public class AddNumbersImpl {
 
-  public int addNumbers(@WebParam(name = "number1") int number1,
-      @WebParam(name = "number2") int number2,
-      @WebParam(name = "testName", mode = WebParam.Mode.INOUT) Holder<String> testName) {
-    if (number1 < 0 || number2 < 0) {
-      throw new AddressingHeaderException(
-          "One of the numbers received was negative:" + number1 + ", "
-              + number2);
+    public int addNumbers(
+            @WebParam(name = "number1") int number1,
+            @WebParam(name = "number2") int number2,
+            @WebParam(name = "testName", mode = WebParam.Mode.INOUT) Holder<String> testName) {
+        if (number1 < 0 || number2 < 0) {
+            throw new AddressingHeaderException("One of the numbers received was negative:" + number1 + ", " + number2);
+        }
+        System.out.printf("Adding %s and %s\n", number1, number2);
+        return number1 + number2;
     }
-    System.out.printf("Adding %s and %s\n", number1, number2);
-    return number1 + number2;
-  }
 
-  @Action(input = "inputAction", output = "outputAction")
-  public int addNumbers2(@WebParam(name = "number1") int number1,
-      @WebParam(name = "number2") int number2,
-      @WebParam(name = "testName", mode = WebParam.Mode.INOUT) Holder<String> testName) {
-    if (number1 < 0 || number2 < 0) {
-      throw new AddressingHeaderException(
-          "One of the numbers received was negative:" + number1 + ", "
-              + number2);
+    @Action(input = "inputAction", output = "outputAction")
+    public int addNumbers2(
+            @WebParam(name = "number1") int number1,
+            @WebParam(name = "number2") int number2,
+            @WebParam(name = "testName", mode = WebParam.Mode.INOUT) Holder<String> testName) {
+        if (number1 < 0 || number2 < 0) {
+            throw new AddressingHeaderException("One of the numbers received was negative:" + number1 + ", " + number2);
+        }
+        System.out.printf("Adding %s and %s\n", number1, number2);
+        return number1 + number2;
     }
-    System.out.printf("Adding %s and %s\n", number1, number2);
-    return number1 + number2;
-  }
 }

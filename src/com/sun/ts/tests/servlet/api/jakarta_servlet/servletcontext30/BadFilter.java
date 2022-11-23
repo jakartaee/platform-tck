@@ -19,47 +19,44 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
 
 public final class BadFilter implements Filter {
 
-  // The filter configuration object we are associated with. If this value
-  // is null, this filter instance is not currently configured.
-  private FilterConfig filterConfig = null;
+    // The filter configuration object we are associated with. If this value
+    // is null, this filter instance is not currently configured.
+    private FilterConfig filterConfig = null;
 
-  // Non-zero argument constructor
-  public BadFilter(String x) throws ServletException {
-    throw new ServletException("Negative Test for createFilter");
-  }
-
-  public void doFilter(ServletRequest request, ServletResponse response,
-      FilterChain chain) throws IOException, ServletException {
-    boolean passed = true;
-
-    if (filterConfig == null) {
-      StaticLog.add("FAILED_CREATE_FILTER_INVOKED");
-    } else {
-      StaticLog.add("CREATE_FILTER_INVOKED");
+    // Non-zero argument constructor
+    public BadFilter(String x) throws ServletException {
+        throw new ServletException("Negative Test for createFilter");
     }
-    StaticLog.add("Negative Test for createFilter Failed");
-    chain.doFilter(request, response);
-  }
 
-  // Remove the filter configuration object for this filter.
-  public void destroy() {
-  }
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        boolean passed = true;
 
-  // initialize the filter configuration object for this filter.
-  public void init(FilterConfig filterConfig) {
-    this.filterConfig = filterConfig;
-  }
+        if (filterConfig == null) {
+            StaticLog.add("FAILED_CREATE_FILTER_INVOKED");
+        } else {
+            StaticLog.add("CREATE_FILTER_INVOKED");
+        }
+        StaticLog.add("Negative Test for createFilter Failed");
+        chain.doFilter(request, response);
+    }
+
+    // Remove the filter configuration object for this filter.
+    public void destroy() {}
+
+    // initialize the filter configuration object for this filter.
+    public void init(FilterConfig filterConfig) {
+        this.filterConfig = filterConfig;
+    }
 }

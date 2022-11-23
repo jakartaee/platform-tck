@@ -17,5 +17,5 @@
 package com.sun.ts.tests.webservices12.wsdlImport.http.simple5;
 
 public interface Simple5HttpSvc extends jakarta.xml.ws.Service {
-  public Tests getTestsPort() throws jakarta.xml.ws.WebServiceException;
+    public Tests getTestsPort() throws jakarta.xml.ws.WebServiceException;
 }

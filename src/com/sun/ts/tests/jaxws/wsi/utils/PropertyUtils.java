@@ -20,92 +20,86 @@
 
 package com.sun.ts.tests.jaxws.wsi.utils;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.harness.EETest;
+import java.util.Properties;
 
 /**
  */
 public class PropertyUtils {
-  /**
-   * Returns the property with the specified name. If the property does not
-   * exist, an EETest.Fault exception is thrown.
-   * 
-   * @param properties
-   *          the properties.
-   * @param key
-   *          the key.
-   * 
-   * @return the value.
-   * 
-   * @throws EETest.Fault
-   */
-  public static String getProperty(Properties properties, String key)
-      throws EETest.Fault {
-    String value = properties.getProperty(key);
-    if (value != null) {
-      return value;
+    /**
+     * Returns the property with the specified name. If the property does not
+     * exist, an EETest.Fault exception is thrown.
+     *
+     * @param properties
+     *          the properties.
+     * @param key
+     *          the key.
+     *
+     * @return the value.
+     *
+     * @throws EETest.Fault
+     */
+    public static String getProperty(Properties properties, String key) throws EETest.Fault {
+        String value = properties.getProperty(key);
+        if (value != null) {
+            return value;
+        }
+        throw new EETest.Fault("Required property '" + key + "' not present.");
     }
-    throw new EETest.Fault("Required property '" + key + "' not present.");
-  }
 
-  /**
-   * Returns the property, with the specified name, as an integer. If the
-   * property does not exist or cannot be converted to an integer, an
-   * EETest.Fault exception is thrown.
-   * 
-   * @param properties
-   *          the properties.
-   * @param key
-   *          the key.
-   * 
-   * @return the value.
-   * 
-   * @throws EETest.Fault
-   */
-  public static int getIntegerProperty(Properties properties, String key)
-      throws EETest.Fault {
-    String value = getProperty(properties, key);
-    try {
-      int i = Integer.parseInt(value);
-      return i;
-    } catch (NumberFormatException e) {
-      throw new EETest.Fault("Property '" + key + "' value '" + value
-          + "' is not a valid integer.", e);
+    /**
+     * Returns the property, with the specified name, as an integer. If the
+     * property does not exist or cannot be converted to an integer, an
+     * EETest.Fault exception is thrown.
+     *
+     * @param properties
+     *          the properties.
+     * @param key
+     *          the key.
+     *
+     * @return the value.
+     *
+     * @throws EETest.Fault
+     */
+    public static int getIntegerProperty(Properties properties, String key) throws EETest.Fault {
+        String value = getProperty(properties, key);
+        try {
+            int i = Integer.parseInt(value);
+            return i;
+        } catch (NumberFormatException e) {
+            throw new EETest.Fault("Property '" + key + "' value '" + value + "' is not a valid integer.", e);
+        }
     }
-  }
 
-  /**
-   * Returns the property, with the specified name, as a boolean. If the
-   * property does not exist or cannot be converted to a boolean, an
-   * EETest.Fault exception is thrown.
-   * 
-   * @param properties
-   *          the properties.
-   * @param key
-   *          the key.
-   * 
-   * @return the value.
-   * 
-   * @throws EETest.Fault
-   */
-  public static boolean getBooleanProperty(Properties properties, String key)
-      throws EETest.Fault {
-    String value = getProperty(properties, key);
-    if (value.equalsIgnoreCase("true")) {
-      return true;
+    /**
+     * Returns the property, with the specified name, as a boolean. If the
+     * property does not exist or cannot be converted to a boolean, an
+     * EETest.Fault exception is thrown.
+     *
+     * @param properties
+     *          the properties.
+     * @param key
+     *          the key.
+     *
+     * @return the value.
+     *
+     * @throws EETest.Fault
+     */
+    public static boolean getBooleanProperty(Properties properties, String key) throws EETest.Fault {
+        String value = getProperty(properties, key);
+        if (value.equalsIgnoreCase("true")) {
+            return true;
+        }
+        if (value.equalsIgnoreCase("false")) {
+            return false;
+        }
+        throw new EETest.Fault("Property '" + key + "' value '" + value + "' is not a valid boolean.");
     }
-    if (value.equalsIgnoreCase("false")) {
-      return false;
-    }
-    throw new EETest.Fault(
-        "Property '" + key + "' value '" + value + "' is not a valid boolean.");
-  }
 
-  /**
-   * Private to prevent instantiation.
-   */
-  private PropertyUtils() {
-    super();
-  }
+    /**
+     * Private to prevent instantiation.
+     */
+    private PropertyUtils() {
+        super();
+    }
 }

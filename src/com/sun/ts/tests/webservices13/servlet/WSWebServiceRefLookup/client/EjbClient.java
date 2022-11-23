@@ -16,111 +16,106 @@
 
 package com.sun.ts.tests.webservices13.servlet.WSWebServiceRefLookup.client;
 
-import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
-
-import java.util.*;
-import jakarta.xml.ws.*;
-import jakarta.xml.ws.soap.*;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.tests.jaxws.common.*;
+import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateful;
-import jakarta.ejb.SessionContext;
-import jakarta.annotation.Resource;
-import jakarta.annotation.PostConstruct;
-
-import com.sun.ts.tests.jaxws.common.*;
+import jakarta.xml.ws.*;
+import jakarta.xml.ws.soap.*;
+import java.util.*;
 
 @Stateful(name = "WSWebServiceRefLookupClntBean")
-@Remote({ EjbClientIF.class })
+@Remote({EjbClientIF.class})
 public class EjbClient implements EjbClientIF {
 
-  private Properties harnessProps = null;
+    private Properties harnessProps = null;
 
-  private static final boolean debug = false;
+    private static final boolean debug = false;
 
-  private String urlString;
+    private String urlString;
 
-  @WebServiceRef(name = "service/wswsreflookupservice")
-  EchoService service = null;
+    @WebServiceRef(name = "service/wswsreflookupservice")
+    EchoService service = null;
 
-  Echo port = null;
+    Echo port = null;
 
-  @WebServiceRef(lookup = "java:comp/env/service/wswsreflookupservice")
-  EchoService service2 = null;
+    @WebServiceRef(lookup = "java:comp/env/service/wswsreflookupservice")
+    EchoService service2 = null;
 
-  Echo port2 = null;
+    Echo port2 = null;
 
-  private void getPort() throws Exception {
-    TestUtil.logMsg("EjbClient DEBUG: service=" + service);
-    port = (Echo) service.getPort(Echo.class);
-    TestUtil.logMsg("EjbClient DEBUG: Obtained port");
-    TestUtil.logMsg("EjbClient DEBUG: port=" + port);
-    getTargetEndpointAddress(port);
-    TestUtil.logMsg("EjbClient DEBUG: service2=" + service2);
-    TestUtil.logMsg("EjbClient DEBUG: Obtained port");
-    port2 = (Echo) service2.getPort(Echo.class);
-    TestUtil.logMsg("EjbClient DEBUG: port2=" + port2);
-  }
-
-  private void getTargetEndpointAddress(Object port) throws Exception {
-    TestUtil.logMsg("Get Target Endpoint Address for port=" + port);
-    String urlString = JAXWS_Util.getTargetEndpointAddress(port);
-    TestUtil.logMsg("Target Endpoint Address=" + urlString);
-  }
-
-  @PostConstruct
-  public void postConstruct() {
-    try {
-      getPort();
-    } catch (Exception e) {
+    private void getPort() throws Exception {
+        TestUtil.logMsg("EjbClient DEBUG: service=" + service);
+        port = (Echo) service.getPort(Echo.class);
+        TestUtil.logMsg("EjbClient DEBUG: Obtained port");
+        TestUtil.logMsg("EjbClient DEBUG: port=" + port);
+        getTargetEndpointAddress(port);
+        TestUtil.logMsg("EjbClient DEBUG: service2=" + service2);
+        TestUtil.logMsg("EjbClient DEBUG: Obtained port");
+        port2 = (Echo) service2.getPort(Echo.class);
+        TestUtil.logMsg("EjbClient DEBUG: port2=" + port2);
     }
-    System.out.println("DEBUG postConstruct()");
-    System.out.println("EjbClient DEBUG: service=" + service);
-    System.out.println("EjbClient DEBUG: port=" + port);
-    System.out.println("EjbClient DEBUG: service2=" + service2);
-    System.out.println("EjbClient DEBUG: port2=" + port2);
-    if (service == null || service2 == null || port == null || port2 == null) {
-      throw new EJBException("postConstruct failed: injection failure");
+
+    private void getTargetEndpointAddress(Object port) throws Exception {
+        TestUtil.logMsg("Get Target Endpoint Address for port=" + port);
+        String urlString = JAXWS_Util.getTargetEndpointAddress(port);
+        TestUtil.logMsg("Target Endpoint Address=" + urlString);
     }
-  }
 
-  public void init(Properties p) {
-    harnessProps = p;
-    try {
-      TestUtil.init(p);
-      urlString = harnessProps.getProperty("ENDPOINTURL");
-      JAXWS_Util.setTargetEndpointAddress(port2, urlString);
-      getTargetEndpointAddress(port2);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("init: failed");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("init: failed");
+    @PostConstruct
+    public void postConstruct() {
+        try {
+            getPort();
+        } catch (Exception e) {
+        }
+        System.out.println("DEBUG postConstruct()");
+        System.out.println("EjbClient DEBUG: service=" + service);
+        System.out.println("EjbClient DEBUG: port=" + port);
+        System.out.println("EjbClient DEBUG: service2=" + service2);
+        System.out.println("EjbClient DEBUG: port2=" + port2);
+        if (service == null || service2 == null || port == null || port2 == null) {
+            throw new EJBException("postConstruct failed: injection failure");
+        }
     }
-  }
 
-  public boolean testwsreflookup() {
-    TestUtil.logMsg("testwsreflookup");
-    boolean pass = true;
-    return stringTest();
-  }
-
-  private boolean stringTest() {
-    TestUtil.logMsg("stringTest");
-    boolean pass = true;
-    String request = "Mary";
-
-    try {
-      String response = port2.echoString(request);
-      if (!JAXWS_Data.compareValues(request, response, "String"))
-        pass = false;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      pass = false;
+    public void init(Properties p) {
+        harnessProps = p;
+        try {
+            TestUtil.init(p);
+            urlString = harnessProps.getProperty("ENDPOINTURL");
+            JAXWS_Util.setTargetEndpointAddress(port2, urlString);
+            getTargetEndpointAddress(port2);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("init: failed");
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("init: failed");
+        }
     }
-    return pass;
-  }
+
+    public boolean testwsreflookup() {
+        TestUtil.logMsg("testwsreflookup");
+        boolean pass = true;
+        return stringTest();
+    }
+
+    private boolean stringTest() {
+        TestUtil.logMsg("stringTest");
+        boolean pass = true;
+        String request = "Mary";
+
+        try {
+            String response = port2.echoString(request);
+            if (!JAXWS_Data.compareValues(request, response, "String")) pass = false;
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+            pass = false;
+        }
+        return pass;
+    }
 }

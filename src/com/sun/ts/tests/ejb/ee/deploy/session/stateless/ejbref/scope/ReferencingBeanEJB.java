@@ -20,44 +20,38 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateless.ejbref.scope;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
-
 import jakarta.ejb.EJBException;
+import java.util.Properties;
 
 public class ReferencingBeanEJB extends StatelessWrapper {
 
-  private static final String lookupName = "java:comp/env/ejb/Partner";
+    private static final String lookupName = "java:comp/env/ejb/Partner";
 
-  /*
-   * Business methods.
-   */
+    /*
+     * Business methods.
+     */
 
-  public String whoIsYourPartner(Properties p) throws EJBException {
+    public String whoIsYourPartner(Properties p) throws EJBException {
 
-    ReferencedBeanHome home = null;
-    ReferencedBean bean = null;
-    String partnerName;
+        ReferencedBeanHome home = null;
+        ReferencedBean bean = null;
+        String partnerName;
 
-    try {
-      TestUtil.logTrace("ReferencingBean: looking up " + lookupName);
-      home = (ReferencedBeanHome) nctx.lookup(lookupName,
-          ReferencedBeanHome.class);
-      bean = home.create();
-      bean.initLogging(p);
-      partnerName = bean.whoAreYou();
-      TestUtil.logTrace("ReferencingBean: my partner is " + partnerName);
-      bean.remove();
-    } catch (Exception e) {
-      TestUtil.logErr(
-          "ReferencingBean: Caught exception in " + "whoIsYourPartner(): " + e,
-          e);
-      throw new EJBException(e.getMessage());
+        try {
+            TestUtil.logTrace("ReferencingBean: looking up " + lookupName);
+            home = (ReferencedBeanHome) nctx.lookup(lookupName, ReferencedBeanHome.class);
+            bean = home.create();
+            bean.initLogging(p);
+            partnerName = bean.whoAreYou();
+            TestUtil.logTrace("ReferencingBean: my partner is " + partnerName);
+            bean.remove();
+        } catch (Exception e) {
+            TestUtil.logErr("ReferencingBean: Caught exception in " + "whoIsYourPartner(): " + e, e);
+            throw new EJBException(e.getMessage());
+        }
+
+        return partnerName;
     }
-
-    return partnerName;
-  }
-
 }

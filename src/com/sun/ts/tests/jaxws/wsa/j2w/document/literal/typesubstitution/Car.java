@@ -22,36 +22,35 @@ package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.typesubstitution;
 
 import jakarta.xml.bind.annotation.XmlSeeAlso;
 
-@XmlSeeAlso({ Toyota.class, Ford.class })
-
+@XmlSeeAlso({Toyota.class, Ford.class})
 public abstract class Car {
-  private String model;
+    private String model;
 
-  private String year;
+    private String year;
 
-  private String make;
+    private String make;
 
-  public String getModel() {
-    return model;
-  }
+    public String getModel() {
+        return model;
+    }
 
-  public void setModel(String model) {
-    this.model = model;
-  }
+    public void setModel(String model) {
+        this.model = model;
+    }
 
-  public String getYear() {
-    return year;
-  }
+    public String getYear() {
+        return year;
+    }
 
-  public void setYear(String year) {
-    this.year = year;
-  }
+    public void setYear(String year) {
+        this.year = year;
+    }
 
-  public String getMake() {
-    return make;
-  }
+    public String getMake() {
+        return make;
+    }
 
-  public void setMake(String make) {
-    this.make = make;
-  }
+    public void setMake(String make) {
+        this.make = make;
+    }
 }

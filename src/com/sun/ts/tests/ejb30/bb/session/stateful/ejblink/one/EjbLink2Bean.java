@@ -20,70 +20,65 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.ejblink.one;
 
-import javax.naming.NamingException;
-
 import com.sun.ts.tests.ejb30.common.ejblink.Constants;
 import com.sun.ts.tests.ejb30.common.ejblink.EjbLinkBeanBase;
 import com.sun.ts.tests.ejb30.common.ejblink.EjbLinkIF;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
+import javax.naming.NamingException;
 
 @Stateful(name = "EjbLink2Bean")
-@Remote({ EjbLinkIF.class })
-public class EjbLink2Bean extends EjbLinkBeanBase
-    implements EjbLinkIF, Constants {
+@Remote({EjbLinkIF.class})
+public class EjbLink2Bean extends EjbLinkBeanBase implements EjbLinkIF, Constants {
 
-  @Resource
-  private SessionContext sessionContext;
+    @Resource
+    private SessionContext sessionContext;
 
-  public EjbLink2Bean() {
-  }
+    public EjbLink2Bean() {}
 
-  @Remove
-  public void remove() {
-  }
+    @Remove
+    public void remove() {}
 
-  //////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////
 
-  public void callTwo() throws TestFailedException {
-    throw new IllegalStateException("Cannot call bean2 from bean2");
-  }
-
-  public void callOne() throws TestFailedException {
-    Object obj = null;
-    EjbLinkIF bean1 = null;
-    try {
-      obj = ServiceLocator.lookup(BEAN1_REF_NAME);
-      bean1 = (EjbLinkIF) obj;
-      bean1.call();
-    } catch (NamingException e) {
-      throw new TestFailedException(e);
-    } finally {
-      if (bean1 != null) {
-        bean1.remove();
-      }
+    public void callTwo() throws TestFailedException {
+        throw new IllegalStateException("Cannot call bean2 from bean2");
     }
-  }
 
-  public void callThree() throws TestFailedException {
-    Object obj = null;
-    EjbLinkIF bean3 = null;
-    try {
-      obj = ServiceLocator.lookup(BEAN3_REF_NAME);
-      bean3 = (EjbLinkIF) obj;
-      bean3.call();
-    } catch (NamingException e) {
-      throw new TestFailedException(e);
-    } finally {
-      if (bean3 != null) {
-        bean3.remove();
-      }
+    public void callOne() throws TestFailedException {
+        Object obj = null;
+        EjbLinkIF bean1 = null;
+        try {
+            obj = ServiceLocator.lookup(BEAN1_REF_NAME);
+            bean1 = (EjbLinkIF) obj;
+            bean1.call();
+        } catch (NamingException e) {
+            throw new TestFailedException(e);
+        } finally {
+            if (bean1 != null) {
+                bean1.remove();
+            }
+        }
     }
-  }
+
+    public void callThree() throws TestFailedException {
+        Object obj = null;
+        EjbLinkIF bean3 = null;
+        try {
+            obj = ServiceLocator.lookup(BEAN3_REF_NAME);
+            bean3 = (EjbLinkIF) obj;
+            bean3.call();
+        } catch (NamingException e) {
+            throw new TestFailedException(e);
+        } finally {
+            if (bean3 != null) {
+                bean3.remove();
+            }
+        }
+    }
 }

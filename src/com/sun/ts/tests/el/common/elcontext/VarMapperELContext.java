@@ -20,16 +20,14 @@
  */
 package com.sun.ts.tests.el.common.elcontext;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.elresolver.VariableELResolver;
-
 import jakarta.el.CompositeELResolver;
 import jakarta.el.ELContext;
 import jakarta.el.ELResolver;
 import jakarta.el.FunctionMapper;
 import jakarta.el.VariableMapper;
+import java.util.Properties;
 
 /**
  * This ELContext provides a VariableELResolver to enable the setting and
@@ -39,61 +37,60 @@ import jakarta.el.VariableMapper;
  */
 public class VarMapperELContext extends ELContext {
 
-  private final VariableMapper varMapper;
+    private final VariableMapper varMapper;
 
-  private final CompositeELResolver compResolver;
+    private final CompositeELResolver compResolver;
 
-  /*
-   * Constructor.
-   */
-  public VarMapperELContext(Properties testProps) {
-    this.compResolver = new CompositeELResolver();
-    varMapper = this.getVariableMapperImpl(testProps);
-  }
-
-  public ELResolver getELResolver() {
-    ELResolver elResolver;
-    this.compResolver.add(new VariableELResolver());
-    this.compResolver.add(new jakarta.el.BeanELResolver());
-    elResolver = (ELResolver) compResolver;
-
-    return elResolver;
-  }
-
-  public ELContext getELContext() {
-    return (ELContext) (this);
-  }
-
-  public VariableMapper getVariableMapper() {
-    return varMapper;
-  }
-
-  public FunctionMapper getFunctionMapper() {
-    return null;
-  }
-
-  private Object getImplSpecificInstance(String classname) {
-
-    Class clazz;
-    Object instance = null;
-
-    try {
-      clazz = Class.forName(classname);
-      instance = clazz.newInstance();
-    } catch (ClassNotFoundException cnfe) {
-      TestUtil.logErr("ClassNotFoundException: " + cnfe.getMessage());
-    } catch (InstantiationException ie) {
-      TestUtil.logErr("InstantiationException: " + ie.getMessage());
-    } catch (IllegalAccessException iae) {
-      TestUtil.logErr("IllegalAccessException: " + iae.getMessage());
+    /*
+     * Constructor.
+     */
+    public VarMapperELContext(Properties testProps) {
+        this.compResolver = new CompositeELResolver();
+        varMapper = this.getVariableMapperImpl(testProps);
     }
-    return instance;
-  }
 
-  private VariableMapper getVariableMapperImpl(Properties testProps) {
-    String implSpecificClassName = testProps.getProperty("variable.mapper");
+    public ELResolver getELResolver() {
+        ELResolver elResolver;
+        this.compResolver.add(new VariableELResolver());
+        this.compResolver.add(new jakarta.el.BeanELResolver());
+        elResolver = (ELResolver) compResolver;
 
-    return (implSpecificClassName == null) ? null
-        : (VariableMapper) getImplSpecificInstance(implSpecificClassName);
-  }
+        return elResolver;
+    }
+
+    public ELContext getELContext() {
+        return (ELContext) (this);
+    }
+
+    public VariableMapper getVariableMapper() {
+        return varMapper;
+    }
+
+    public FunctionMapper getFunctionMapper() {
+        return null;
+    }
+
+    private Object getImplSpecificInstance(String classname) {
+
+        Class clazz;
+        Object instance = null;
+
+        try {
+            clazz = Class.forName(classname);
+            instance = clazz.newInstance();
+        } catch (ClassNotFoundException cnfe) {
+            TestUtil.logErr("ClassNotFoundException: " + cnfe.getMessage());
+        } catch (InstantiationException ie) {
+            TestUtil.logErr("InstantiationException: " + ie.getMessage());
+        } catch (IllegalAccessException iae) {
+            TestUtil.logErr("IllegalAccessException: " + iae.getMessage());
+        }
+        return instance;
+    }
+
+    private VariableMapper getVariableMapperImpl(Properties testProps) {
+        String implSpecificClassName = testProps.getProperty("variable.mapper");
+
+        return (implSpecificClassName == null) ? null : (VariableMapper) getImplSpecificInstance(implSpecificClassName);
+    }
 }

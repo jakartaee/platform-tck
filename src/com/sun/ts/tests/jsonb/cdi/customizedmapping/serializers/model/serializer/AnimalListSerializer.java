@@ -20,23 +20,21 @@
 
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer;
 
-import java.util.List;
-
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Animal;
-
 import jakarta.json.bind.serializer.JsonbSerializer;
 import jakarta.json.bind.serializer.SerializationContext;
 import jakarta.json.stream.JsonGenerator;
+import java.util.List;
 
 public class AnimalListSerializer implements JsonbSerializer<List<Animal>> {
-  private AnimalSerializer animalSerializer = new AnimalSerializer();
+    private AnimalSerializer animalSerializer = new AnimalSerializer();
 
-  public void serialize(List<Animal> animals, JsonGenerator jsonGenerator,
-      SerializationContext serializationContext) {
-    jsonGenerator.writeStartArray();
-    for (Animal animal : animals) {
-      animalSerializer.serialize(animal, jsonGenerator, serializationContext);
+    public void serialize(
+            List<Animal> animals, JsonGenerator jsonGenerator, SerializationContext serializationContext) {
+        jsonGenerator.writeStartArray();
+        for (Animal animal : animals) {
+            animalSerializer.serialize(animal, jsonGenerator, serializationContext);
+        }
+        jsonGenerator.writeEnd();
     }
-    jsonGenerator.writeEnd();
-  }
 }

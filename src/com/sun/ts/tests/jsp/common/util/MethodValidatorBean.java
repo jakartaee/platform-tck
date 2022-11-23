@@ -20,12 +20,11 @@
 
 package com.sun.ts.tests.jsp.common.util;
 
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.PageContext;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
-
-import jakarta.servlet.jsp.JspException;
-import jakarta.servlet.jsp.PageContext;
 
 /**
  * Simple bean to validate a set of values passed in via the PageContext against
@@ -33,148 +32,144 @@ import jakarta.servlet.jsp.PageContext;
  */
 public class MethodValidatorBean {
 
-  private String _methods = null;
+    private String _methods = null;
 
-  private PageContext _context = null;
+    private PageContext _context = null;
 
-  private String _name = null;
+    private String _name = null;
 
-  /**
-   * Default constructor.
-   */
-  public MethodValidatorBean() {
-  }
+    /**
+     * Default constructor.
+     */
+    public MethodValidatorBean() {}
 
-  /**
-   * Gets the methods used to validated against the methods added to the
-   * PageContext.
-   * 
-   * @return - a comma separated list of methods
-   */
-  public String getMethods() {
-    return _methods;
-  }
+    /**
+     * Gets the methods used to validated against the methods added to the
+     * PageContext.
+     *
+     * @return - a comma separated list of methods
+     */
+    public String getMethods() {
+        return _methods;
+    }
 
-  /**
-   * Sets the methods used to validated against the methods added to the
-   * PageContext.
-   * 
-   * @param methods
-   *          - the methods to validate
-   */
-  public void setMethods(String methods) {
-    this._methods = methods;
-  }
+    /**
+     * Sets the methods used to validated against the methods added to the
+     * PageContext.
+     *
+     * @param methods
+     *          - the methods to validate
+     */
+    public void setMethods(String methods) {
+        this._methods = methods;
+    }
 
-  /**
-   * Gets the PageContext for this bean.
-   * 
-   * @return this bean's PageContext
-   */
-  public PageContext getContext() {
-    return _context;
-  }
+    /**
+     * Gets the PageContext for this bean.
+     *
+     * @return this bean's PageContext
+     */
+    public PageContext getContext() {
+        return _context;
+    }
 
-  /**
-   * Sets this bean's PageContext.
-   * 
-   * @param context
-   *          - the PageContext for this bean
-   */
-  public void setContext(PageContext context) {
-    this._context = context;
-  }
+    /**
+     * Sets this bean's PageContext.
+     *
+     * @param context
+     *          - the PageContext for this bean
+     */
+    public void setContext(PageContext context) {
+        this._context = context;
+    }
 
-  public String getName() {
-    return _name;
-  }
+    public String getName() {
+        return _name;
+    }
 
-  public void setName(String name) {
-    _name = name;
-  }
+    public void setName(String name) {
+        _name = name;
+    }
 
-  /**
-   * Obtains a page scoped List object from the PageContext that obtains a list
-   * of methods that have been called by a particular tag handler. This List
-   * will be compared with the methods passed to this handler via the methods
-   * attribute.
-   * 
-   * @return a String representing the result of the check.
-   * @throws jakarta.servlet.jsp.JspException
-   */
-  public String getResult() throws JspException {
-    String message = null;
-    List list = (List) _context.getAttribute(_name,
-        PageContext.APPLICATION_SCOPE);
+    /**
+     * Obtains a page scoped List object from the PageContext that obtains a list
+     * of methods that have been called by a particular tag handler. This List
+     * will be compared with the methods passed to this handler via the methods
+     * attribute.
+     *
+     * @return a String representing the result of the check.
+     * @throws jakarta.servlet.jsp.JspException
+     */
+    public String getResult() throws JspException {
+        String message = null;
+        List list = (List) _context.getAttribute(_name, PageContext.APPLICATION_SCOPE);
 
-    if (list != null) {
-      String[] calledMethods = getMethodsFromList(list);
-      String[] expectedMethods = getMethodsAsArray();
+        if (list != null) {
+            String[] calledMethods = getMethodsFromList(list);
+            String[] expectedMethods = getMethodsAsArray();
 
-      // arrays should be of equal length elements common
-      // between the two arrays have the same index.
-      if (calledMethods.length == expectedMethods.length) {
-        for (int i = 0; i < expectedMethods.length; i++) {
-          if (calledMethods[i].equals(expectedMethods[i])) {
-            message = "Test PASSED";
-          } else {
-            message = "Test FAILED.  Expected the following method "
-                + "method sequence to be called against the tag handler"
-                + " by the container: [ " + _methods + " ]\n"
-                + "Actual sequence: " + JspTestUtil.getAsString(calledMethods);
-          }
-        }
-      } else {
-        if (calledMethods.length > expectedMethods.length) {
-          message = "Test FAILED.  The container called more methods"
-              + " against the tag handler than expected. " + "Expected: [ "
-              + _methods + " ]\n" + "Actual: "
-              + JspTestUtil.getAsString(calledMethods);
+            // arrays should be of equal length elements common
+            // between the two arrays have the same index.
+            if (calledMethods.length == expectedMethods.length) {
+                for (int i = 0; i < expectedMethods.length; i++) {
+                    if (calledMethods[i].equals(expectedMethods[i])) {
+                        message = "Test PASSED";
+                    } else {
+                        message = "Test FAILED.  Expected the following method "
+                                + "method sequence to be called against the tag handler"
+                                + " by the container: [ " + _methods + " ]\n"
+                                + "Actual sequence: " + JspTestUtil.getAsString(calledMethods);
+                    }
+                }
+            } else {
+                if (calledMethods.length > expectedMethods.length) {
+                    message = "Test FAILED.  The container called more methods"
+                            + " against the tag handler than expected. " + "Expected: [ "
+                            + _methods + " ]\n" + "Actual: "
+                            + JspTestUtil.getAsString(calledMethods);
+                } else {
+                    message = "Test FAILED.  The container called fewer methods"
+                            + " against the tag handler than expected. " + "Expected: [ "
+                            + _methods + " ]\n" + "Actual: "
+                            + JspTestUtil.getAsString(calledMethods);
+                }
+            }
         } else {
-          message = "Test FAILED.  The container called fewer methods"
-              + " against the tag handler than expected. " + "Expected: [ "
-              + _methods + " ]\n" + "Actual: "
-              + JspTestUtil.getAsString(calledMethods);
+            message = "Test FAILED.  Unable to obtain List of methods from " + "the PageContext.";
         }
-      }
-    } else {
-      message = "Test FAILED.  Unable to obtain List of methods from "
-          + "the PageContext.";
+
+        // reset for the next test run
+        _context.removeAttribute(_name, PageContext.APPLICATION_SCOPE);
+        return message;
     }
 
-    // reset for the next test run
-    _context.removeAttribute(_name, PageContext.APPLICATION_SCOPE);
-    return message;
-  }
+    /**
+     * Returns the current value of _methods as a String array.
+     *
+     * @return a String array of values based on _methods
+     */
+    private String[] getMethodsAsArray() {
+        if (_methods == null) {
+            return new String[0];
+        }
+        List list = new ArrayList();
+        for (StringTokenizer st = new StringTokenizer(_methods, ","); st.hasMoreTokens(); ) {
+            list.add(st.nextToken());
+        }
+        return getMethodsFromList(list);
+    }
 
-  /**
-   * Returns the current value of _methods as a String array.
-   * 
-   * @return a String array of values based on _methods
-   */
-  private String[] getMethodsAsArray() {
-    if (_methods == null) {
-      return new String[0];
+    /**
+     * Returns an array of String values based on values in a List.
+     *
+     * @param list
+     *          - List to extract the String values from
+     * @return a String array of values
+     */
+    private static String[] getMethodsFromList(List list) {
+        if (list == null) {
+            return new String[0];
+        }
+        return (String[]) list.toArray(new String[list.size()]);
     }
-    List list = new ArrayList();
-    for (StringTokenizer st = new StringTokenizer(_methods, ","); st
-        .hasMoreTokens();) {
-      list.add(st.nextToken());
-    }
-    return getMethodsFromList(list);
-  }
-
-  /**
-   * Returns an array of String values based on values in a List.
-   * 
-   * @param list
-   *          - List to extract the String values from
-   * @return a String array of values
-   */
-  private static String[] getMethodsFromList(List list) {
-    if (list == null) {
-      return new String[0];
-    }
-    return (String[]) list.toArray(new String[list.size()]);
-  }
 }

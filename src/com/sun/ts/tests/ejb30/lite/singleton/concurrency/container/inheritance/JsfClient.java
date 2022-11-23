@@ -19,45 +19,44 @@
  */
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.inheritance;
 
-import java.io.Serializable;
-
-import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.JsfClientBase;
 import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ConcurrencyIF;
+import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.JsfClientBase;
 import jakarta.ejb.EJB;
+import java.io.Serializable;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends JsfClientBase implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @EJB(beanName = "SingletonBean")
-  public void setSingleton(ConcurrencyIF singleton) {
-    this.singleton = singleton;
-  }
+    @EJB(beanName = "SingletonBean")
+    public void setSingleton(ConcurrencyIF singleton) {
+        this.singleton = singleton;
+    }
 
-  @EJB(beanName = "InverseLockSingletonBean")
-  public void setSingleton2(ConcurrencyIF singleton2) {
-    this.singleton2 = singleton2;
-  }
+    @EJB(beanName = "InverseLockSingletonBean")
+    public void setSingleton2(ConcurrencyIF singleton2) {
+        this.singleton2 = singleton2;
+    }
 
-  /*
-   * @testName: lockedSum1
-   * 
-   * @test_Strategy: spawn multiple threads, invoke synchronized methods of a
-   * singleton with container-managed concurrency. Expecting correct sum result.
-   */
+    /*
+     * @testName: lockedSum1
+     *
+     * @test_Strategy: spawn multiple threads, invoke synchronized methods of a
+     * singleton with container-managed concurrency. Expecting correct sum result.
+     */
 
-  /*
-   * @testName: lockedSum2
-   * 
-   * @test_Strategy: spawn multiple threads, invoke synchronized methods of a
-   * singleton with container-managed concurrency. Expecting correct sum result.
-   * Note: the business methods are getAndResetUnlockedSum and addUnlocked.
-   */
-  @Override
-  public void lockedSum2() {
-    concurrentWrites(singleton2, "addUnlocked", null);
-    assertEquals(null, CORRECT_SUM, singleton2.getAndResetUnlockedSum());
-  }
+    /*
+     * @testName: lockedSum2
+     *
+     * @test_Strategy: spawn multiple threads, invoke synchronized methods of a
+     * singleton with container-managed concurrency. Expecting correct sum result.
+     * Note: the business methods are getAndResetUnlockedSum and addUnlocked.
+     */
+    @Override
+    public void lockedSum2() {
+        concurrentWrites(singleton2, "addUnlocked", null);
+        assertEquals(null, CORRECT_SUM, singleton2.getAndResetUnlockedSum());
+    }
 }

@@ -20,13 +20,16 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1007;
 
-import jakarta.xml.ws.WebServiceException;
 import jakarta.jws.WebService;
 
-@WebService(portName = "SimpleEndpointPort", serviceName = "SimpleTest", targetNamespace = "http://simpletestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/W2JRLR1007TestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1007.SimpleEndpoint")
-
+@WebService(
+        portName = "SimpleEndpointPort",
+        serviceName = "SimpleTest",
+        targetNamespace = "http://simpletestservice.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/W2JRLR1007TestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1007.SimpleEndpoint")
 public class SimpleEndpointImpl implements SimpleEndpoint {
-  public String helloWorld() {
-    return "hello world";
-  }
+    public String helloWorld() {
+        return "hello world";
+    }
 }

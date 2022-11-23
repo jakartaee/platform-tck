@@ -16,14 +16,8 @@
 
 package com.sun.ts.tests.common.connector.whitebox.multianno;
 
-import java.io.Serializable;
-import java.lang.reflect.Method;
-
-import javax.transaction.xa.XAResource;
-
 import com.sun.ts.tests.common.connector.whitebox.Debug;
 import com.sun.ts.tests.common.connector.whitebox.Util;
-
 import jakarta.resource.spi.ActivationSpec;
 import jakarta.resource.spi.BootstrapContext;
 import jakarta.resource.spi.Connector;
@@ -35,6 +29,9 @@ import jakarta.resource.spi.work.HintsContext;
 import jakarta.resource.spi.work.SecurityContext;
 import jakarta.resource.spi.work.Work;
 import jakarta.resource.spi.work.WorkManager;
+import java.io.Serializable;
+import java.lang.reflect.Method;
+import javax.transaction.xa.XAResource;
 
 /*
  * This class shouldnt really get used.  The ra.xml should be specifying to
@@ -42,138 +39,134 @@ import jakarta.resource.spi.work.WorkManager;
  * assertions Connector:SPEC:272, Connector:SPEC:310, and Connector:SPEC:312.
  *
  */
-@Connector(description = "CTS test RA specified in DD is used", displayName = "OtherRAImpl", vendorName = "Java Software", eisType = "TS EIS", version = "1.0", licenseDescription = "CTS License Required", licenseRequired = true, reauthenticationSupport = false, transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction, requiredWorkContexts = {
-    HintsContext.class, SecurityContext.class })
-
+@Connector(
+        description = "CTS test RA specified in DD is used",
+        displayName = "OtherRAImpl",
+        vendorName = "Java Software",
+        eisType = "TS EIS",
+        version = "1.0",
+        licenseDescription = "CTS License Required",
+        licenseRequired = true,
+        reauthenticationSupport = false,
+        transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction,
+        requiredWorkContexts = {HintsContext.class, SecurityContext.class})
 public class OtherRAImpl implements ResourceAdapter, Serializable {
-  private String raName;
+    private String raName;
 
-  private int counter = 0;
+    private int counter = 0;
 
-  private transient WorkManager wm;
+    private transient WorkManager wm;
 
-  private transient BootstrapContext bsc;
+    private transient BootstrapContext bsc;
 
-  public OtherRAImpl() {
-    Debug.trace("OtherRAImpl Constructor ");
-  }
+    public OtherRAImpl() {
+        Debug.trace("OtherRAImpl Constructor ");
+    }
 
-  public void start(final BootstrapContext bsc)
-      throws ResourceAdapterInternalException {
-    // setup network endpoints
-    counter++;
-    this.bsc = bsc;
-    String str1 = new String("OtherRAImpl Started " + counter);
-    Debug.trace(str1);
+    public void start(final BootstrapContext bsc) throws ResourceAdapterInternalException {
+        // setup network endpoints
+        counter++;
+        this.bsc = bsc;
+        String str1 = new String("OtherRAImpl Started " + counter);
+        Debug.trace(str1);
 
-    // get WorkManager reference
+        // get WorkManager reference
 
-    wm = bsc.getWorkManager();
+        wm = bsc.getWorkManager();
 
-    try {
-      checkAssociation();
-      bsc.getWorkManager().startWork(new Work() {
-        public void run() {
-          myStart(bsc);
+        try {
+            checkAssociation();
+            bsc.getWorkManager().startWork(new Work() {
+                public void run() {
+                    myStart(bsc);
+                }
+
+                public void release() {}
+            });
+        } catch (jakarta.resource.spi.work.WorkException we) {
+            throw new ResourceAdapterInternalException();
+        }
+    }
+
+    private void myStart(final BootstrapContext ctx) {
+        Debug.trace("OtherRAImpl.myStart ");
+    }
+
+    public void stop() {
+        Debug.trace("OtherRAImpl.stop ");
+    }
+
+    public void endpointActivation(MessageEndpointFactory mef, ActivationSpec as) {}
+
+    public XAResource[] getXAResources(ActivationSpec[] as) {
+        Debug.trace("OtherRAImpl.getXAResources ");
+        return null;
+    }
+
+    private Method getOnMessageMethod() {
+        Method onMessageMethod = null;
+        return onMessageMethod;
+    }
+
+    private void chkUniqueMessageEndpointFactory() {}
+
+    public void checkAssociation() {}
+
+    public void endpointDeactivation(MessageEndpointFactory mef, ActivationSpec as) {}
+
+    /*
+     * @name equals
+     *
+     * @desc compares this object with the given object.
+     *
+     * @param Object obj
+     *
+     * @return boolean
+     */
+    public boolean equals(Object obj) {
+
+        if ((obj == null) || !(obj instanceof OtherRAImpl)) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
         }
 
-        public void release() {
+        OtherRAImpl that = (OtherRAImpl) obj;
+
+        if (this.counter != that.getCounter()) {
+            return false;
         }
 
-      });
-    } catch (jakarta.resource.spi.work.WorkException we) {
-      throw new ResourceAdapterInternalException();
+        if (!Util.isEqual(this.raName, that.getRaName())) return false;
+
+        return true;
     }
 
-  }
-
-  private void myStart(final BootstrapContext ctx) {
-    Debug.trace("OtherRAImpl.myStart ");
-  }
-
-  public void stop() {
-    Debug.trace("OtherRAImpl.stop ");
-  }
-
-  public void endpointActivation(MessageEndpointFactory mef,
-      ActivationSpec as) {
-  }
-
-  public XAResource[] getXAResources(ActivationSpec[] as) {
-    Debug.trace("OtherRAImpl.getXAResources ");
-    return null;
-  }
-
-  private Method getOnMessageMethod() {
-    Method onMessageMethod = null;
-    return onMessageMethod;
-  }
-
-  private void chkUniqueMessageEndpointFactory() {
-  }
-
-  public void checkAssociation() {
-  }
-
-  public void endpointDeactivation(MessageEndpointFactory mef,
-      ActivationSpec as) {
-  }
-
-  /*
-   * @name equals
-   * 
-   * @desc compares this object with the given object.
-   * 
-   * @param Object obj
-   * 
-   * @return boolean
-   */
-  public boolean equals(Object obj) {
-
-    if ((obj == null) || !(obj instanceof OtherRAImpl)) {
-      return false;
-    }
-    if (obj == this) {
-      return true;
+    /*
+     * @name hashCode
+     *
+     * @desc gets the hashcode for this object.
+     *
+     * @return int
+     */
+    public int hashCode() {
+        return this.getClass().getName().hashCode();
     }
 
-    OtherRAImpl that = (OtherRAImpl) obj;
-
-    if (this.counter != that.getCounter()) {
-      return false;
+    public void setRaName(String name) {
+        this.raName = name;
     }
 
-    if (!Util.isEqual(this.raName, that.getRaName()))
-      return false;
+    public String getRaName() {
+        return raName;
+    }
 
-    return true;
-  }
+    public void setCounter(int val) {
+        this.counter = val;
+    }
 
-  /*
-   * @name hashCode
-   * 
-   * @desc gets the hashcode for this object.
-   * 
-   * @return int
-   */
-  public int hashCode() {
-    return this.getClass().getName().hashCode();
-  }
-
-  public void setRaName(String name) {
-    this.raName = name;
-  }
-
-  public String getRaName() {
-    return raName;
-  }
-
-  public void setCounter(int val) {
-    this.counter = val;
-  }
-
-  public int getCounter() {
-    return this.counter;
-  }
-
+    public int getCounter() {
+        return this.counter;
+    }
 }

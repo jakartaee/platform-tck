@@ -23,34 +23,30 @@ package com.sun.ts.tests.ejb30.tx.session.stateless.cm.covariant;
 import com.sun.ts.tests.ejb30.common.covariant.FuzzyBeanBase;
 import com.sun.ts.tests.ejb30.common.covariant.FuzzyLocalIF;
 import com.sun.ts.tests.ejb30.common.covariant.FuzzyRemoteIF;
-
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 
 @Stateless()
-public class FuzzyBean extends FuzzyBeanBase
-    implements FuzzyRemoteIF, FuzzyLocalIF {
+public class FuzzyBean extends FuzzyBeanBase implements FuzzyRemoteIF, FuzzyLocalIF {
 
-  public FuzzyBean() {
-  }
+    public FuzzyBean() {}
 
-  @Override()
-  @TransactionAttribute(TransactionAttributeType.MANDATORY)
-  public Double[] getNumbers() {
-    return (Double[]) super.getNumbers();
-  }
+    @Override()
+    @TransactionAttribute(TransactionAttributeType.MANDATORY)
+    public Double[] getNumbers() {
+        return (Double[]) super.getNumbers();
+    }
 
-  @Override()
-  @TransactionAttribute(TransactionAttributeType.MANDATORY)
-  public String[] getMessages() {
-    return super.getMessages();
-  }
+    @Override()
+    @TransactionAttribute(TransactionAttributeType.MANDATORY)
+    public String[] getMessages() {
+        return super.getMessages();
+    }
 
-  @Override()
-  @TransactionAttribute(TransactionAttributeType.MANDATORY)
-  public String getMessage() {
-    return super.getMessage();
-  }
-
+    @Override()
+    @TransactionAttribute(TransactionAttributeType.MANDATORY)
+    public String getMessage() {
+        return super.getMessage();
+    }
 }

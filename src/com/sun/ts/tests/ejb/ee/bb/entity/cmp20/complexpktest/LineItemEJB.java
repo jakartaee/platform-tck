@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.complexpktest;
 
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
@@ -31,90 +30,89 @@ import jakarta.ejb.RemoveException;
 
 public abstract class LineItemEJB implements EntityBean {
 
-  private EntityContext context = null;
+    private EntityContext context = null;
 
-  private static final String TestBeanLocal = "java:comp/env/ejb/TestBeanLocal";
+    private static final String TestBeanLocal = "java:comp/env/ejb/TestBeanLocal";
 
-  // ===========================================================
-  // getters and setters for CMP fields
+    // ===========================================================
+    // getters and setters for CMP fields
 
-  public abstract String getId();
+    public abstract String getId();
 
-  public abstract void setId(String v);
+    public abstract void setId(String v);
 
-  public abstract int getQuantity();
+    public abstract int getQuantity();
 
-  public abstract void setQuantity(int v);
+    public abstract void setQuantity(int v);
 
-  // ===========================================================
-  // getters and setters for CMR fields
+    // ===========================================================
+    // getters and setters for CMR fields
 
-  // ManyX1
-  public abstract TestBeanLocal getTestBean();
+    // ManyX1
+    public abstract TestBeanLocal getTestBean();
 
-  public abstract void setTestBean(TestBeanLocal v);
+    public abstract void setTestBean(TestBeanLocal v);
 
-  // ===========================================================
-  // ejbSelect Methods
+    // ===========================================================
+    // ejbSelect Methods
 
-  public abstract int ejbSelectCountByBrandName() throws FinderException;
+    public abstract int ejbSelectCountByBrandName() throws FinderException;
 
-  // ===========================================================
+    // ===========================================================
 
-  public String ejbCreate(String id, int quantity) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    try {
-      setId(id);
-      setQuantity(quantity);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    public String ejbCreate(String id, int quantity) throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        try {
+            setId(id);
+            setQuantity(quantity);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+        return null;
     }
-    return null;
-  }
 
-  public void ejbPostCreate(String id, int quantity) throws CreateException {
-    TestUtil.logTrace("ejbPostCreate");
-  }
-
-  public void setEntityContext(EntityContext c) {
-    TestUtil.logTrace("setEntityContext");
-    context = c;
-  }
-
-  public void unsetEntityContext() {
-    TestUtil.logTrace("unsetEntityContext");
-  }
-
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  public void ejbStore() {
-    TestUtil.logTrace("ejbStore");
-  }
-
-  public void ejbLoad() {
-    TestUtil.logTrace("ejbLoad");
-  }
-
-  public int ejbHomeSelectCountByBrandName() {
-    TestUtil.logTrace("ejbHomeSelectCountByBrandName");
-    try {
-      int i = ejbSelectCountByBrandName();
-      return i;
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("ejbHomeSelectCountByBrandName: " + e);
+    public void ejbPostCreate(String id, int quantity) throws CreateException {
+        TestUtil.logTrace("ejbPostCreate");
     }
-  }
 
+    public void setEntityContext(EntityContext c) {
+        TestUtil.logTrace("setEntityContext");
+        context = c;
+    }
+
+    public void unsetEntityContext() {
+        TestUtil.logTrace("unsetEntityContext");
+    }
+
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("ejbRemove");
+    }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
+
+    public void ejbStore() {
+        TestUtil.logTrace("ejbStore");
+    }
+
+    public void ejbLoad() {
+        TestUtil.logTrace("ejbLoad");
+    }
+
+    public int ejbHomeSelectCountByBrandName() {
+        TestUtil.logTrace("ejbHomeSelectCountByBrandName");
+        try {
+            int i = ejbSelectCountByBrandName();
+            return i;
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("ejbHomeSelectCountByBrandName: " + e);
+        }
+    }
 }

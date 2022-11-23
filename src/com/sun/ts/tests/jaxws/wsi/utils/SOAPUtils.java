@@ -20,70 +20,64 @@
 
 package com.sun.ts.tests.jaxws.wsi.utils;
 
-import jakarta.xml.soap.SOAPElement;
-import jakarta.xml.soap.SOAPMessage;
-import jakarta.xml.soap.SOAPException;
 import jakarta.xml.soap.SOAPBody;
+import jakarta.xml.soap.SOAPElement;
+import jakarta.xml.soap.SOAPException;
+import jakarta.xml.soap.SOAPMessage;
 import jakarta.xml.ws.soap.SOAPFaultException;
 
 public class SOAPUtils implements jakarta.xml.soap.SOAPConstants {
-  public static final String FAULT_DETAIL = "detail";
+    public static final String FAULT_DETAIL = "detail";
 
-  public static final String FAULT_ACTOR = "faultactor";
+    public static final String FAULT_ACTOR = "faultactor";
 
-  public static final String FAULT_STRING = "faultstring";
+    public static final String FAULT_STRING = "faultstring";
 
-  public static final String FAULT_CODE = "faultcode";
+    public static final String FAULT_CODE = "faultcode";
 
-  public static final String VERSION_MISMATCH = "VersionMismatch";
+    public static final String VERSION_MISMATCH = "VersionMismatch";
 
-  public static final String CLIENT = "Client";
+    public static final String CLIENT = "Client";
 
-  public static final String MUST_UNDERSTAND = "MustUnderstand";
+    public static final String MUST_UNDERSTAND = "MustUnderstand";
 
-  public static final String[] FAULT_CHILDREN = { FAULT_ACTOR, FAULT_CODE,
-      FAULT_DETAIL, FAULT_STRING };
+    public static final String[] FAULT_CHILDREN = {FAULT_ACTOR, FAULT_CODE, FAULT_DETAIL, FAULT_STRING};
 
-  public static boolean isValidSoapFaultChildName(SOAPElement element) {
-    for (int i = 0; i < FAULT_CHILDREN.length; i++) {
-      if (FAULT_CHILDREN[i].equals(element.getElementName().getLocalName())) {
-        return true;
-      }
+    public static boolean isValidSoapFaultChildName(SOAPElement element) {
+        for (int i = 0; i < FAULT_CHILDREN.length; i++) {
+            if (FAULT_CHILDREN[i].equals(element.getElementName().getLocalName())) {
+                return true;
+            }
+        }
+        return false;
     }
-    return false;
-  }
 
-  public static boolean isVersionMismatchFaultcode(SOAPMessage message)
-      throws SOAPException {
-    return isFaultcode(message, VERSION_MISMATCH);
-  }
-
-  public static boolean isMustUnderstandFaultcode(SOAPMessage message)
-      throws SOAPException {
-    return isFaultcode(message, MUST_UNDERSTAND);
-  }
-
-  public static boolean isClientFaultcode(SOAPMessage message)
-      throws SOAPException {
-    return isFaultcode(message, CLIENT);
-  }
-
-  public static boolean isMustUnderstandFaultcode(SOAPFaultException se) {
-    return isFaultcode(se, MUST_UNDERSTAND);
-  }
-
-  private static boolean isFaultcode(SOAPFaultException se, String faultcode) {
-    return se.getFault().getFaultCode().endsWith(faultcode);
-  }
-
-  private static boolean isFaultcode(SOAPMessage message, String faultcode)
-      throws SOAPException {
-    SOAPBody body = message.getSOAPPart().getEnvelope().getBody();
-    if (body.hasFault()) {
-      return body.getFault().getFaultCode().endsWith(faultcode);
-    } else {
-      return false;
+    public static boolean isVersionMismatchFaultcode(SOAPMessage message) throws SOAPException {
+        return isFaultcode(message, VERSION_MISMATCH);
     }
-  }
 
+    public static boolean isMustUnderstandFaultcode(SOAPMessage message) throws SOAPException {
+        return isFaultcode(message, MUST_UNDERSTAND);
+    }
+
+    public static boolean isClientFaultcode(SOAPMessage message) throws SOAPException {
+        return isFaultcode(message, CLIENT);
+    }
+
+    public static boolean isMustUnderstandFaultcode(SOAPFaultException se) {
+        return isFaultcode(se, MUST_UNDERSTAND);
+    }
+
+    private static boolean isFaultcode(SOAPFaultException se, String faultcode) {
+        return se.getFault().getFaultCode().endsWith(faultcode);
+    }
+
+    private static boolean isFaultcode(SOAPMessage message, String faultcode) throws SOAPException {
+        SOAPBody body = message.getSOAPPart().getEnvelope().getBody();
+        if (body.hasFault()) {
+            return body.getFault().getFaultCode().endsWith(faultcode);
+        } else {
+            return false;
+        }
+    }
 }

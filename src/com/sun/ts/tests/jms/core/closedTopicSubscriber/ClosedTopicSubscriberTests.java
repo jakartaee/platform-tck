@@ -19,363 +19,354 @@
  */
 package com.sun.ts.tests.jms.core.closedTopicSubscriber;
 
-import java.util.ArrayList;
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.common.JmsTool;
-
 import jakarta.jms.Message;
 import jakarta.jms.Topic;
+import java.util.ArrayList;
+import java.util.Properties;
 
 public class ClosedTopicSubscriberTests extends ServiceEETest {
-  private static final String testName = "com.sun.ts.tests.jms.core.closedTopicSubscriber.ClosedTopicSubscriberTests";
+    private static final String testName = "com.sun.ts.tests.jms.core.closedTopicSubscriber.ClosedTopicSubscriberTests";
 
-  private static final String testDir = System.getProperty("user.dir");
+    private static final String testDir = System.getProperty("user.dir");
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  // Harness req's
-  private Properties props = null;
+    // Harness req's
+    private Properties props = null;
 
-  // JMS object
-  private transient JmsTool tool = null;
+    // JMS object
+    private transient JmsTool tool = null;
 
-  // properties read from ts.jte file
-  long timeout;
+    // properties read from ts.jte file
+    long timeout;
 
-  private String jmsUser;
+    private String jmsUser;
 
-  private String jmsPassword;
+    private String jmsPassword;
 
-  private String mode;
+    private String mode;
 
-  ArrayList connections = null;
+    ArrayList connections = null;
 
-  /* Run test in standalone mode */
+    /* Run test in standalone mode */
 
-  /**
-   * Main method is used when not run from the JavaTest GUI.
-   * 
-   * @param args
-   */
-  public static void main(String[] args) {
-    ClosedTopicSubscriberTests theTests = new ClosedTopicSubscriberTests();
-    Status s = theTests.run(args, System.out, System.err);
+    /**
+     * Main method is used when not run from the JavaTest GUI.
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        ClosedTopicSubscriberTests theTests = new ClosedTopicSubscriberTests();
+        Status s = theTests.run(args, System.out, System.err);
 
-    s.exit();
-  }
-
-  /* Utility methods for tests */
-
-  /*
-   * Checks passed flag for negative tests and throws exception back to caller
-   * which passes ot to harness.
-   * 
-   * @param boolean Pass/Fail flag
-   */
-  private void checkExceptionPass(boolean passed) throws Exception {
-    if (passed == false) {
-      logMsg("Didn't get expected exception");
-      throw new Exception("Didn't catch expected exception");
+        s.exit();
     }
-  }
 
-  /* Test setup: */
+    /* Utility methods for tests */
 
-  /*
-   * setup() is called before each test
-   * 
-   * @class.setup_props: jms_timeout; user; password; platform.mode;
-   * 
-   * @exception Fault
-   */
-  public void setup(String[] args, Properties p) throws Fault {
-    try {
-      // get props
-      jmsUser = p.getProperty("user");
-      jmsPassword = p.getProperty("password");
-      mode = p.getProperty("platform.mode");
-      timeout = Long.parseLong(p.getProperty("jms_timeout"));
-      if (timeout < 1) {
-        throw new Exception("'timeout' (milliseconds) in ts.jte must be > 0");
-      }
-
-      // get ready for new test
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Fault("Setup failed!", e);
+    /*
+     * Checks passed flag for negative tests and throws exception back to caller
+     * which passes ot to harness.
+     *
+     * @param boolean Pass/Fail flag
+     */
+    private void checkExceptionPass(boolean passed) throws Exception {
+        if (passed == false) {
+            logMsg("Didn't get expected exception");
+            throw new Exception("Didn't catch expected exception");
+        }
     }
-  }
 
-  /* cleanup */
-  /* Utility methods for tests */
+    /* Test setup: */
 
-  /**
-   * Used by tests that need a closed subscriber for testing. Passes any
-   * exceptions up to caller.
-   * 
-   * @param int
-   *          The type of session that needs to be created and closed
-   */
-  private void createAndCloseSubscriber() throws Exception {
-    tool = new JmsTool(JmsTool.TOPIC, jmsUser, jmsPassword, mode);
-    tool.getDefaultTopicConnection().start();
+    /*
+     * setup() is called before each test
+     *
+     * @class.setup_props: jms_timeout; user; password; platform.mode;
+     *
+     * @exception Fault
+     */
+    public void setup(String[] args, Properties p) throws Fault {
+        try {
+            // get props
+            jmsUser = p.getProperty("user");
+            jmsPassword = p.getProperty("password");
+            mode = p.getProperty("platform.mode");
+            timeout = Long.parseLong(p.getProperty("jms_timeout"));
+            if (timeout < 1) {
+                throw new Exception("'timeout' (milliseconds) in ts.jte must be > 0");
+            }
 
-    logTrace("Closing topic subscriber");
-    tool.getDefaultTopicSubscriber().close();
-    logTrace("Subscriber closed");
-  }
-
-  /*
-   * cleanup() is called after each test
-   * 
-   * Closes the default connections that are created by setup(). Any separate
-   * connections made by individual tests should be closed by that test.
-   * 
-   * @exception Fault
-   */
-  public void cleanup() throws Fault {
-    try {
-      if (tool != null) {
-        logMsg("Cleanup: Closing Queue and Topic Connections");
-        tool.closeAllConnections(connections);
-      }
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      logErr("An error occurred while cleaning");
-      throw new Fault("Cleanup failed!", e);
+            // get ready for new test
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new Fault("Setup failed!", e);
+        }
     }
-  }
 
-  /* Tests */
+    /* cleanup */
+    /* Utility methods for tests */
 
-  /*
-   * @testName: closedTopicSubscriberCloseTest
-   * 
-   * @assertion_ids: JMS:SPEC:201; JMS:JAVADOC:338;
-   * 
-   * @test_Strategy: Close default subscriber and call method on it.
-   */
-  public void closedTopicSubscriberCloseTest() throws Fault {
-    try {
-      createAndCloseSubscriber();
-      logTrace("Try to call close again");
-      tool.getDefaultTopicSubscriber().close();
-    } catch (Exception e) {
-      throw new Fault("closedTopicSubscriberCloseTest", e);
+    /**
+     * Used by tests that need a closed subscriber for testing. Passes any
+     * exceptions up to caller.
+     *
+     * @param int
+     *          The type of session that needs to be created and closed
+     */
+    private void createAndCloseSubscriber() throws Exception {
+        tool = new JmsTool(JmsTool.TOPIC, jmsUser, jmsPassword, mode);
+        tool.getDefaultTopicConnection().start();
+
+        logTrace("Closing topic subscriber");
+        tool.getDefaultTopicSubscriber().close();
+        logTrace("Subscriber closed");
     }
-  }
 
-  /*
-   * @testName: closedTopicSubscriberGetMessageSelectorTest
-   * 
-   * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:326;
-   * 
-   * @test_Strategy: Close default subscriber and call method on it. Check for
-   * IllegalStateException.
-   */
-
-  public void closedTopicSubscriberGetMessageSelectorTest() throws Fault {
-    boolean passed = false;
-
-    try {
-      createAndCloseSubscriber();
-      logTrace("Try to call getMessageSelector");
-      try {
-        String foo = tool.getDefaultTopicSubscriber().getMessageSelector();
-
-        logTrace("Fail: Exception was not thrown!");
-      } catch (jakarta.jms.IllegalStateException ise) {
-        logTrace("Pass: threw expected error");
-        passed = true;
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        logTrace("Fail: wrong exception: " + e.getClass().getName()
-            + " was returned");
-      }
-      if (!passed) {
-        throw new Fault("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      throw new Fault("closedTopicSubscriberGetMessageSelectorTest", e);
+    /*
+     * cleanup() is called after each test
+     *
+     * Closes the default connections that are created by setup(). Any separate
+     * connections made by individual tests should be closed by that test.
+     *
+     * @exception Fault
+     */
+    public void cleanup() throws Fault {
+        try {
+            if (tool != null) {
+                logMsg("Cleanup: Closing Queue and Topic Connections");
+                tool.closeAllConnections(connections);
+            }
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            logErr("An error occurred while cleaning");
+            throw new Fault("Cleanup failed!", e);
+        }
     }
-  }
 
-  /*
-   * @testName: closedTopicSubscriberReceiveTest
-   * 
-   * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:332;
-   * 
-   * @test_Strategy: Close default subscriber and call method on it. Check for
-   * IllegalStateException.
-   */
+    /* Tests */
 
-  public void closedTopicSubscriberReceiveTest() throws Fault {
-    boolean passed = false;
-
-    try {
-      createAndCloseSubscriber();
-      logTrace("Try to call receive");
-      try {
-        Message foo = tool.getDefaultTopicSubscriber().receive();
-
-        logTrace("Fail: Exception was not thrown!");
-      } catch (jakarta.jms.IllegalStateException ise) {
-        logTrace("Pass: threw expected error");
-        passed = true;
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        logTrace("Fail: wrong exception: " + e.getClass().getName()
-            + " was returned");
-      }
-      if (!passed) {
-        throw new Fault("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      throw new Fault("closedTopicSubscriberReceiveTest", e);
+    /*
+     * @testName: closedTopicSubscriberCloseTest
+     *
+     * @assertion_ids: JMS:SPEC:201; JMS:JAVADOC:338;
+     *
+     * @test_Strategy: Close default subscriber and call method on it.
+     */
+    public void closedTopicSubscriberCloseTest() throws Fault {
+        try {
+            createAndCloseSubscriber();
+            logTrace("Try to call close again");
+            tool.getDefaultTopicSubscriber().close();
+        } catch (Exception e) {
+            throw new Fault("closedTopicSubscriberCloseTest", e);
+        }
     }
-  }
 
-  /*
-   * @testName: closedTopicSubscriberReceiveTimeoutTest
-   * 
-   * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:334;
-   * 
-   * @test_Strategy: Close default subscriber and call method on it. Check for
-   * IllegalStateException.
-   */
+    /*
+     * @testName: closedTopicSubscriberGetMessageSelectorTest
+     *
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:326;
+     *
+     * @test_Strategy: Close default subscriber and call method on it. Check for
+     * IllegalStateException.
+     */
 
-  public void closedTopicSubscriberReceiveTimeoutTest() throws Fault {
-    boolean passed = false;
+    public void closedTopicSubscriberGetMessageSelectorTest() throws Fault {
+        boolean passed = false;
 
-    try {
-      createAndCloseSubscriber();
-      logTrace("Try to call receive(timeout)");
-      try {
-        Message foo = tool.getDefaultTopicSubscriber().receive(timeout);
+        try {
+            createAndCloseSubscriber();
+            logTrace("Try to call getMessageSelector");
+            try {
+                String foo = tool.getDefaultTopicSubscriber().getMessageSelector();
 
-        logTrace("Fail: Exception was not thrown!");
-      } catch (jakarta.jms.IllegalStateException ise) {
-        logTrace("Pass: threw expected error");
-        passed = true;
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        logTrace("Fail: wrong exception: " + e.getClass().getName()
-            + " was returned");
-      }
-      if (!passed) {
-        throw new Fault("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      throw new Fault("closedTopicSubscriberReceiveTimeoutTest", e);
+                logTrace("Fail: Exception was not thrown!");
+            } catch (jakarta.jms.IllegalStateException ise) {
+                logTrace("Pass: threw expected error");
+                passed = true;
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+                logTrace("Fail: wrong exception: " + e.getClass().getName() + " was returned");
+            }
+            if (!passed) {
+                throw new Fault("Error: failures occurred during tests");
+            }
+        } catch (Exception e) {
+            throw new Fault("closedTopicSubscriberGetMessageSelectorTest", e);
+        }
     }
-  }
 
-  /*
-   * @testName: closedTopicSubscriberReceiveNoWaitTest
-   * 
-   * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:336;
-   * 
-   * @test_Strategy: Close default subscriber and call method on it. Check for
-   * IllegalStateException.
-   */
+    /*
+     * @testName: closedTopicSubscriberReceiveTest
+     *
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:332;
+     *
+     * @test_Strategy: Close default subscriber and call method on it. Check for
+     * IllegalStateException.
+     */
 
-  public void closedTopicSubscriberReceiveNoWaitTest() throws Fault {
-    boolean passed = false;
+    public void closedTopicSubscriberReceiveTest() throws Fault {
+        boolean passed = false;
 
-    try {
-      createAndCloseSubscriber();
-      logTrace("Try to call receiveNoWait");
-      try {
-        Message foo = tool.getDefaultTopicSubscriber().receiveNoWait();
+        try {
+            createAndCloseSubscriber();
+            logTrace("Try to call receive");
+            try {
+                Message foo = tool.getDefaultTopicSubscriber().receive();
 
-        logTrace("Fail: Exception was not thrown!");
-      } catch (jakarta.jms.IllegalStateException ise) {
-        logTrace("Pass: threw expected error");
-        passed = true;
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        logTrace("Fail: wrong exception: " + e.getClass().getName()
-            + " was returned");
-      }
-      if (!passed) {
-        throw new Fault("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      throw new Fault("closedTopicSubscriberReceiveNoWaitTest", e);
+                logTrace("Fail: Exception was not thrown!");
+            } catch (jakarta.jms.IllegalStateException ise) {
+                logTrace("Pass: threw expected error");
+                passed = true;
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+                logTrace("Fail: wrong exception: " + e.getClass().getName() + " was returned");
+            }
+            if (!passed) {
+                throw new Fault("Error: failures occurred during tests");
+            }
+        } catch (Exception e) {
+            throw new Fault("closedTopicSubscriberReceiveTest", e);
+        }
     }
-  }
 
-  /*
-   * @testName: closedTopicSubscriberGetNoLocalTest
-   * 
-   * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:79;
-   * 
-   * @test_Strategy: Close default subscriber and call method on it. Check for
-   * IllegalStateException.
-   */
-  public void closedTopicSubscriberGetNoLocalTest() throws Fault {
-    boolean passed = false;
+    /*
+     * @testName: closedTopicSubscriberReceiveTimeoutTest
+     *
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:334;
+     *
+     * @test_Strategy: Close default subscriber and call method on it. Check for
+     * IllegalStateException.
+     */
 
-    try {
-      createAndCloseSubscriber();
-      logTrace("Try to call getNoLocal");
-      try {
-        boolean foo = tool.getDefaultTopicSubscriber().getNoLocal();
+    public void closedTopicSubscriberReceiveTimeoutTest() throws Fault {
+        boolean passed = false;
 
-        logTrace("Fail: Exception was not thrown!");
-      } catch (jakarta.jms.IllegalStateException ise) {
-        logTrace("Pass: threw expected error");
-        passed = true;
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        logTrace("Fail: wrong exception: " + e.getClass().getName()
-            + " was returned");
-      }
-      if (!passed) {
-        throw new Fault("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      throw new Fault("closedTopicSubscriberGetNoLocalTest", e);
+        try {
+            createAndCloseSubscriber();
+            logTrace("Try to call receive(timeout)");
+            try {
+                Message foo = tool.getDefaultTopicSubscriber().receive(timeout);
+
+                logTrace("Fail: Exception was not thrown!");
+            } catch (jakarta.jms.IllegalStateException ise) {
+                logTrace("Pass: threw expected error");
+                passed = true;
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+                logTrace("Fail: wrong exception: " + e.getClass().getName() + " was returned");
+            }
+            if (!passed) {
+                throw new Fault("Error: failures occurred during tests");
+            }
+        } catch (Exception e) {
+            throw new Fault("closedTopicSubscriberReceiveTimeoutTest", e);
+        }
     }
-  }
 
-  /*
-   * @testName: closedTopicSubscriberGetTopicTest
-   * 
-   * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:77;
-   * 
-   * @test_Strategy: Close default subscriber and call method on it. Check for
-   * IllegalStateException.
-   */
+    /*
+     * @testName: closedTopicSubscriberReceiveNoWaitTest
+     *
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:336;
+     *
+     * @test_Strategy: Close default subscriber and call method on it. Check for
+     * IllegalStateException.
+     */
 
-  public void closedTopicSubscriberGetTopicTest() throws Fault {
-    boolean passed = false;
+    public void closedTopicSubscriberReceiveNoWaitTest() throws Fault {
+        boolean passed = false;
 
-    try {
-      createAndCloseSubscriber();
-      logTrace("Try to call getTopic");
-      try {
-        Topic foo = tool.getDefaultTopicSubscriber().getTopic();
+        try {
+            createAndCloseSubscriber();
+            logTrace("Try to call receiveNoWait");
+            try {
+                Message foo = tool.getDefaultTopicSubscriber().receiveNoWait();
 
-        logTrace("Fail: Exception was not thrown!");
-      } catch (jakarta.jms.IllegalStateException ise) {
-        logTrace("Pass: threw expected error");
-        passed = true;
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        logTrace("Fail: wrong exception: " + e.getClass().getName()
-            + " was returned");
-      }
-      if (!passed) {
-        throw new Fault("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      throw new Fault("closedTopicSubscriberGetTopicTest", e);
+                logTrace("Fail: Exception was not thrown!");
+            } catch (jakarta.jms.IllegalStateException ise) {
+                logTrace("Pass: threw expected error");
+                passed = true;
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+                logTrace("Fail: wrong exception: " + e.getClass().getName() + " was returned");
+            }
+            if (!passed) {
+                throw new Fault("Error: failures occurred during tests");
+            }
+        } catch (Exception e) {
+            throw new Fault("closedTopicSubscriberReceiveNoWaitTest", e);
+        }
     }
-  }
 
+    /*
+     * @testName: closedTopicSubscriberGetNoLocalTest
+     *
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:79;
+     *
+     * @test_Strategy: Close default subscriber and call method on it. Check for
+     * IllegalStateException.
+     */
+    public void closedTopicSubscriberGetNoLocalTest() throws Fault {
+        boolean passed = false;
+
+        try {
+            createAndCloseSubscriber();
+            logTrace("Try to call getNoLocal");
+            try {
+                boolean foo = tool.getDefaultTopicSubscriber().getNoLocal();
+
+                logTrace("Fail: Exception was not thrown!");
+            } catch (jakarta.jms.IllegalStateException ise) {
+                logTrace("Pass: threw expected error");
+                passed = true;
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+                logTrace("Fail: wrong exception: " + e.getClass().getName() + " was returned");
+            }
+            if (!passed) {
+                throw new Fault("Error: failures occurred during tests");
+            }
+        } catch (Exception e) {
+            throw new Fault("closedTopicSubscriberGetNoLocalTest", e);
+        }
+    }
+
+    /*
+     * @testName: closedTopicSubscriberGetTopicTest
+     *
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:77;
+     *
+     * @test_Strategy: Close default subscriber and call method on it. Check for
+     * IllegalStateException.
+     */
+
+    public void closedTopicSubscriberGetTopicTest() throws Fault {
+        boolean passed = false;
+
+        try {
+            createAndCloseSubscriber();
+            logTrace("Try to call getTopic");
+            try {
+                Topic foo = tool.getDefaultTopicSubscriber().getTopic();
+
+                logTrace("Fail: Exception was not thrown!");
+            } catch (jakarta.jms.IllegalStateException ise) {
+                logTrace("Pass: threw expected error");
+                passed = true;
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+                logTrace("Fail: wrong exception: " + e.getClass().getName() + " was returned");
+            }
+            if (!passed) {
+                throw new Fault("Error: failures occurred during tests");
+            }
+        } catch (Exception e) {
+            throw new Fault("closedTopicSubscriberGetTopicTest", e);
+        }
+    }
 }

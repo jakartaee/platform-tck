@@ -33,24 +33,24 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateful(name = "SecTestRoleRefEJB")
-@Remote({ SecTestRoleRef.class })
-@Local({ SecTestRoleRefLocal.class })
+@Remote({SecTestRoleRef.class})
+@Local({SecTestRoleRefLocal.class})
 @TransactionManagement(TransactionManagementType.CONTAINER)
 // @RolesReferenced({"EMP=Administrator"})
 
 public class SecTestRoleRefEJB implements SecTestRoleRef {
 
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  @RolesAllowed({ "Manager", "Employee" })
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  @Remove
-  public boolean EjbSecRoleRefScope(String role) {
-    return sctx.isCallerInRole(role);
-  }
+    @RolesAllowed({"Manager", "Employee"})
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    @Remove
+    public boolean EjbSecRoleRefScope(String role) {
+        return sctx.isCallerInRole(role);
+    }
 
-  @Resource
-  public void setSessionContext(SessionContext sc) {
-    sctx = sc;
-  }
+    @Resource
+    public void setSessionContext(SessionContext sc) {
+        sctx = sc;
+    }
 }

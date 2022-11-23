@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.jsonp.common;
 
+import com.sun.ts.lib.util.TestUtil;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.Writer;
-
-import com.sun.ts.lib.util.TestUtil;
 
 // A wrapper class to BufferedWriter class used to inject IOException errors
 // when the throwIOException instance variable is set. All methods delegate
@@ -33,64 +32,64 @@ import com.sun.ts.lib.util.TestUtil;
 
 public class MyBufferedWriter extends BufferedWriter {
 
-  private boolean throwIOException;
+    private boolean throwIOException;
 
-  public MyBufferedWriter(Writer out) {
-    super(out);
-  }
-
-  public MyBufferedWriter(Writer out, int sz) {
-    super(out, sz);
-  }
-
-  public MyBufferedWriter(Writer out, int sz, boolean throwIOException) {
-    super(out, sz);
-    this.throwIOException = throwIOException;
-  }
-
-  private void checkToTripIOException() throws IOException {
-    if (throwIOException) {
-      TestUtil.logMsg("*** tripping an IOException ***");
-      throw new IOException("tripping an IOException");
+    public MyBufferedWriter(Writer out) {
+        super(out);
     }
-  }
 
-  public void setThrowIOException(boolean throwIOException) {
-    this.throwIOException = throwIOException;
-  }
+    public MyBufferedWriter(Writer out, int sz) {
+        super(out, sz);
+    }
 
-  public void write(int c) throws IOException {
-    checkToTripIOException();
-    super.write(c);
-  }
+    public MyBufferedWriter(Writer out, int sz, boolean throwIOException) {
+        super(out, sz);
+        this.throwIOException = throwIOException;
+    }
 
-  public void write(char[] cbuf) throws IOException {
-    checkToTripIOException();
-    super.write(cbuf);
-  }
+    private void checkToTripIOException() throws IOException {
+        if (throwIOException) {
+            TestUtil.logMsg("*** tripping an IOException ***");
+            throw new IOException("tripping an IOException");
+        }
+    }
 
-  public void write(char[] cbuf, int offset, int length) throws IOException {
-    checkToTripIOException();
-    super.write(cbuf, offset, length);
-  }
+    public void setThrowIOException(boolean throwIOException) {
+        this.throwIOException = throwIOException;
+    }
 
-  public void write(String str) throws IOException {
-    checkToTripIOException();
-    super.write(str);
-  }
+    public void write(int c) throws IOException {
+        checkToTripIOException();
+        super.write(c);
+    }
 
-  public void write(String str, int offset, int length) throws IOException {
-    checkToTripIOException();
-    super.write(str, offset, length);
-  }
+    public void write(char[] cbuf) throws IOException {
+        checkToTripIOException();
+        super.write(cbuf);
+    }
 
-  public void close() throws IOException {
-    checkToTripIOException();
-    super.close();
-  }
+    public void write(char[] cbuf, int offset, int length) throws IOException {
+        checkToTripIOException();
+        super.write(cbuf, offset, length);
+    }
 
-  public void flush() throws IOException {
-    checkToTripIOException();
-    super.flush();
-  }
+    public void write(String str) throws IOException {
+        checkToTripIOException();
+        super.write(str);
+    }
+
+    public void write(String str, int offset, int length) throws IOException {
+        checkToTripIOException();
+        super.write(str, offset, length);
+    }
+
+    public void close() throws IOException {
+        checkToTripIOException();
+        super.close();
+    }
+
+    public void flush() throws IOException {
+        checkToTripIOException();
+        super.flush();
+    }
 }

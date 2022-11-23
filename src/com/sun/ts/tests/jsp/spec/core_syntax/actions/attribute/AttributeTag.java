@@ -20,65 +20,64 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.actions.attribute;
 
-import java.io.IOException;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.TagSupport;
+import java.io.IOException;
 
 public class AttributeTag extends TagSupport {
-  private static final String NL = System.getProperty("line.separator", "\n");
+    private static final String NL = System.getProperty("line.separator", "\n");
 
-  /**
-   * The attribute as evaluated by the container.
-   */
-  private String _attribute = null;
+    /**
+     * The attribute as evaluated by the container.
+     */
+    private String _attribute = null;
 
-  /**
-   * What the test expects to be the result of the evaluation by the container.
-   */
-  private String _expected = null;
+    /**
+     * What the test expects to be the result of the evaluation by the container.
+     */
+    private String _expected = null;
 
-  /**
-   * Sets the attribute as evaluated by the container.
-   * 
-   * @param attribute
-   *          - the evaluated attribute value
-   */
-  public void setAttribute(String attribute) {
-    _attribute = attribute;
-  }
-
-  /**
-   * Sets the expected result of the attribute evaluation.
-   * 
-   * @param expected
-   *          - the result the test expects
-   */
-  public void setExpected(String expected) {
-    _expected = expected;
-  }
-
-  /**
-   * Prints 'Test PASSED' if the evaluated result is the same as the expected
-   * result, otherwise 'Test FAILED' will be printed along with an explanation.
-   * 
-   * @return EVAL_PAGE
-   * @throws JspException
-   *           if an unexpected error occurs
-   */
-  public int doEndTag() throws JspException {
-    JspWriter out = pageContext.getOut();
-    try {
-      if (_expected.equals(_attribute)) {
-        out.println("Test PASSED");
-      } else {
-        out.println("Test FAILED.  Expected the attribute value to be:" + " '"
-            + _expected + "'." + NL + "Received: '" + _attribute + "'.");
-      }
-    } catch (IOException ioe) {
-      throw new JspException("Unexpected IOException!", ioe);
+    /**
+     * Sets the attribute as evaluated by the container.
+     *
+     * @param attribute
+     *          - the evaluated attribute value
+     */
+    public void setAttribute(String attribute) {
+        _attribute = attribute;
     }
-    return EVAL_PAGE;
-  }
+
+    /**
+     * Sets the expected result of the attribute evaluation.
+     *
+     * @param expected
+     *          - the result the test expects
+     */
+    public void setExpected(String expected) {
+        _expected = expected;
+    }
+
+    /**
+     * Prints 'Test PASSED' if the evaluated result is the same as the expected
+     * result, otherwise 'Test FAILED' will be printed along with an explanation.
+     *
+     * @return EVAL_PAGE
+     * @throws JspException
+     *           if an unexpected error occurs
+     */
+    public int doEndTag() throws JspException {
+        JspWriter out = pageContext.getOut();
+        try {
+            if (_expected.equals(_attribute)) {
+                out.println("Test PASSED");
+            } else {
+                out.println("Test FAILED.  Expected the attribute value to be:" + " '" + _expected + "'." + NL
+                        + "Received: '" + _attribute + "'.");
+            }
+        } catch (IOException ioe) {
+            throw new JspException("Unexpected IOException!", ioe);
+        }
+        return EVAL_PAGE;
+    }
 }

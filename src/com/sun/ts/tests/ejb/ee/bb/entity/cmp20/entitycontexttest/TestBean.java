@@ -20,41 +20,40 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.entitycontexttest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
-  // Business Methods for TestBean CMP Fields
-  public String getId() throws RemoteException;
+    // Business Methods for TestBean CMP Fields
+    public String getId() throws RemoteException;
 
-  public String getBrandName() throws RemoteException;
+    public String getBrandName() throws RemoteException;
 
-  public void setBrandName(String s) throws RemoteException;
+    public void setBrandName(String s) throws RemoteException;
 
-  // Miscellaneous Methods for Tests
-  public boolean getEJBObjectTest() throws RemoteException;
+    // Miscellaneous Methods for Tests
+    public boolean getEJBObjectTest() throws RemoteException;
 
-  public boolean getEJBHomeTest() throws RemoteException;
+    public boolean getEJBHomeTest() throws RemoteException;
 
-  public boolean getEJBLocalObjectTest() throws RemoteException;
+    public boolean getEJBLocalObjectTest() throws RemoteException;
 
-  public boolean getEJBLocalHomeTest() throws RemoteException;
+    public boolean getEJBLocalHomeTest() throws RemoteException;
 
-  public boolean getCallerPrincipalTest(String s) throws RemoteException;
+    public boolean getCallerPrincipalTest(String s) throws RemoteException;
 
-  public boolean isCallerInRoleTest(String s) throws RemoteException;
+    public boolean isCallerInRoleTest(String s) throws RemoteException;
 
-  public boolean getUserTransactionTest() throws RemoteException;
+    public boolean getUserTransactionTest() throws RemoteException;
 
-  public boolean setRollbackOnlyTest() throws RemoteException;
+    public boolean setRollbackOnlyTest() throws RemoteException;
 
-  public boolean getRollbackOnlyTest() throws RemoteException;
+    public boolean getRollbackOnlyTest() throws RemoteException;
 
-  public boolean getPrimaryKeyTest(String pk) throws RemoteException;
+    public boolean getPrimaryKeyTest(String pk) throws RemoteException;
 
-  public boolean getTimerServiceTest() throws RemoteException;
+    public boolean getTimerServiceTest() throws RemoteException;
 
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 }

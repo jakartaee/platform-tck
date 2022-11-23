@@ -19,50 +19,50 @@
  */
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.refps;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
+import jakarta.jws.HandlerChain;
+import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
 import jakarta.xml.ws.Action;
-import jakarta.jws.WebParam;
 import jakarta.xml.ws.BindingType;
 import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.soap.SOAPBinding;
-import jakarta.jws.HandlerChain;
 
-@WebService(name = "AddNumbersPortType", portName = "AddNumbersPort", serviceName = "AddNumbersService", targetNamespace = "http://example.com")
+@WebService(
+        name = "AddNumbersPortType",
+        portName = "AddNumbersPort",
+        serviceName = "AddNumbersService",
+        targetNamespace = "http://example.com")
 @HandlerChain(name = "", file = "server-handler.xml")
 @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)
 @Addressing(enabled = true, required = true)
-
 public class AddNumbersImpl {
-  @Action(input = "addInAction", output = "addOutAction")
-  public int addNumbers(
-      @WebParam(name = "number1", targetNamespace = "http://example.com") int number1,
-      @WebParam(name = "number2", targetNamespace = "http://example.com") int number2)
-      throws AddNumbersException {
-    System.out
-        .println("In addNumbers: number1=" + number1 + ", number2=" + number2);
-    return doStuff(number1, number2);
-  }
-
-  public int addNumbersAndPassString(
-      @WebParam(name = "number1", targetNamespace = "http://example.com") int number1,
-      @WebParam(name = "number2", targetNamespace = "http://example.com") int number2,
-      @WebParam(name = "testString", targetNamespace = "http://example.com") String testString)
-      throws AddNumbersException {
-    System.out.println("In addNumbersAndPassString: number1=" + number1
-        + ", number2=" + number2 + ", testString=" + testString);
-    return doStuff(number1, number2);
-  }
-
-  int doStuff(int number1, int number2) throws AddNumbersException {
-    if (number1 < 0 || number2 < 0) {
-      System.out.println("a negative number, throw AddNumbersException ...");
-      throw new AddNumbersException("Negative numbers can't be added!",
-          "Numbers: " + number1 + ", " + number2);
+    @Action(input = "addInAction", output = "addOutAction")
+    public int addNumbers(
+            @WebParam(name = "number1", targetNamespace = "http://example.com") int number1,
+            @WebParam(name = "number2", targetNamespace = "http://example.com") int number2)
+            throws AddNumbersException {
+        System.out.println("In addNumbers: number1=" + number1 + ", number2=" + number2);
+        return doStuff(number1, number2);
     }
-    return number1 + number2;
-  }
+
+    public int addNumbersAndPassString(
+            @WebParam(name = "number1", targetNamespace = "http://example.com") int number1,
+            @WebParam(name = "number2", targetNamespace = "http://example.com") int number2,
+            @WebParam(name = "testString", targetNamespace = "http://example.com") String testString)
+            throws AddNumbersException {
+        System.out.println("In addNumbersAndPassString: number1=" + number1 + ", number2=" + number2 + ", testString="
+                + testString);
+        return doStuff(number1, number2);
+    }
+
+    int doStuff(int number1, int number2) throws AddNumbersException {
+        if (number1 < 0 || number2 < 0) {
+            System.out.println("a negative number, throw AddNumbersException ...");
+            throw new AddNumbersException("Negative numbers can't be added!", "Numbers: " + number1 + ", " + number2);
+        }
+        return number1 + number2;
+    }
 }

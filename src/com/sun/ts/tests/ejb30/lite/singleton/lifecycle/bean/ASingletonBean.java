@@ -30,5 +30,4 @@ import jakarta.ejb.Startup;
  */
 @Startup
 @Singleton
-public class ASingletonBean extends BeanBase {
-}
+public class ASingletonBean extends BeanBase {}

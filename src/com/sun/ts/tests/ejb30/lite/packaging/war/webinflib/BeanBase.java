@@ -20,68 +20,64 @@
 package com.sun.ts.tests.ejb30.lite.packaging.war.webinflib;
 
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.transaction.UserTransaction;
 
-abstract public class BeanBase {
+public abstract class BeanBase {
 
-  @Resource
-  private EJBContext ejbContext;
+    @Resource
+    private EJBContext ejbContext;
 
-  @Resource
-  private UserTransaction ut;
+    @Resource
+    private UserTransaction ut;
 
-  /**
-   * @EJB injects of OneBean, TwoBean, and ThreeBeans into all 3 bean classes to
-   *      ensure the 9 ejb-refs are all scoped to the entire .war, not just each
-   *      EJB.
-   */
-  protected OneBean one;
+    /**
+     * @EJB injects of OneBean, TwoBean, and ThreeBeans into all 3 bean classes to
+     *      ensure the 9 ejb-refs are all scoped to the entire .war, not just each
+     *      EJB.
+     */
+    protected OneBean one;
 
-  protected TwoBean two;
+    protected TwoBean two;
 
-  protected ThreeBean three;
+    protected ThreeBean three;
 
-  protected boolean injectionStatus;
+    protected boolean injectionStatus;
 
-  protected String injectionRecords;
+    protected String injectionRecords;
 
-  abstract public String getRefNamePrefix();
+    public abstract String getRefNamePrefix();
 
-  public String getInjectionRecords() {
-    return injectionRecords;
-  }
-
-  public boolean getInjectionStatus() {
-    return injectionStatus;
-  }
-
-  public Object beanClassToClientLookup(String shortName) {
-    return ServiceLocator.lookupByShortNameNoTry(shortName);
-  }
-
-  public Object lookupWithEJBContext(String shortName) {
-    return ejbContext.lookup(shortName);
-  }
-
-  public int getClassLoaderId() {
-    return System.identityHashCode(getClass().getClassLoader());
-  }
-
-  @PostConstruct
-  private void postConstruct() {
-    if (one != null && two != null && three != null) {
-      injectionStatus = true;
-      injectionRecords = String
-          .format("Successfully injected 3 beans: %s, %s, %s", one, two, three);
-    } else {
-      injectionStatus = false;
-      injectionRecords = String
-          .format("Some or all injections failed: %s, %s, %s", one, two, three);
+    public String getInjectionRecords() {
+        return injectionRecords;
     }
-  }
 
+    public boolean getInjectionStatus() {
+        return injectionStatus;
+    }
+
+    public Object beanClassToClientLookup(String shortName) {
+        return ServiceLocator.lookupByShortNameNoTry(shortName);
+    }
+
+    public Object lookupWithEJBContext(String shortName) {
+        return ejbContext.lookup(shortName);
+    }
+
+    public int getClassLoaderId() {
+        return System.identityHashCode(getClass().getClassLoader());
+    }
+
+    @PostConstruct
+    private void postConstruct() {
+        if (one != null && two != null && three != null) {
+            injectionStatus = true;
+            injectionRecords = String.format("Successfully injected 3 beans: %s, %s, %s", one, two, three);
+        } else {
+            injectionStatus = false;
+            injectionRecords = String.format("Some or all injections failed: %s, %s, %s", one, two, three);
+        }
+    }
 }

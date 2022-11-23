@@ -27,14 +27,12 @@ import javax.naming.spi.ObjectFactory;
  */
 public class DogFactory implements ObjectFactory {
 
-  public DogFactory() {
-  }
+    public DogFactory() {}
 
-  public Object getObjectInstance(Object obj, Name name, Context nameCtx,
-      Hashtable<?, ?> environment) throws Exception {
-    Dog dog = Dog.getInstance();
-    System.out.println("Creating a dog whose name is " + dog.getName()
-        + ", and age is " + dog.getAge());
-    return dog;
-  }
+    public Object getObjectInstance(Object obj, Name name, Context nameCtx, Hashtable<?, ?> environment)
+            throws Exception {
+        Dog dog = Dog.getInstance();
+        System.out.println("Creating a dog whose name is " + dog.getName() + ", and age is " + dog.getAge());
+        return dog;
+    }
 }

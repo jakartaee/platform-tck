@@ -23,6 +23,5 @@ package com.sun.ts.tests.ejb.ee.sec.bmp.common;
 import jakarta.ejb.EJBLocalObject;
 
 public interface SecTestRoleRefLocal extends EJBLocalObject {
-  public boolean EjbSecRoleRefScope(String role);
-
+    public boolean EjbSecRoleRefScope(String role);
 }

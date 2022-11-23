@@ -25,30 +25,37 @@ import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulCo
 
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.metadata.common.ClientBase;
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.metadata.common.StatefulConcurrencyBeanBase;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBs;
 
 @EJBs({
-    @EJB(name = containerConcurrencyBeanNoInterface, beanName = "ContainerConcurrencyBean", beanInterface = StatefulConcurrencyBeanBase.class),
-    @EJB(name = defaultConcurrencyBeanNoInterface, beanName = "DefaultConcurrencyBean", beanInterface = StatefulConcurrencyBeanBase.class),
-    @EJB(name = notAllowedConcurrencyBeanNoInterface, beanName = "NotAllowedConcurrencyBean", beanInterface = StatefulConcurrencyBeanBase.class)
-
+    @EJB(
+            name = containerConcurrencyBeanNoInterface,
+            beanName = "ContainerConcurrencyBean",
+            beanInterface = StatefulConcurrencyBeanBase.class),
+    @EJB(
+            name = defaultConcurrencyBeanNoInterface,
+            beanName = "DefaultConcurrencyBean",
+            beanInterface = StatefulConcurrencyBeanBase.class),
+    @EJB(
+            name = notAllowedConcurrencyBeanNoInterface,
+            beanName = "NotAllowedConcurrencyBean",
+            beanInterface = StatefulConcurrencyBeanBase.class)
 })
 public class Client extends ClientBase {
-  /*
-   * @testName: notAllowed
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: containerConcurrent
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: defaultConcurrent
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: notAllowed
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: containerConcurrent
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: defaultConcurrent
+     *
+     * @test_Strategy:
+     */
 }

@@ -21,329 +21,330 @@
 
 package com.sun.ts.tests.el.api.jakarta_el.staticfieldelresolver;
 
-import java.util.Iterator;
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
-
 import jakarta.el.ELClass;
 import jakarta.el.ELContext;
 import jakarta.el.ELManager;
 import jakarta.el.PropertyNotFoundException;
 import jakarta.el.PropertyNotWritableException;
 import jakarta.el.StaticFieldELResolver;
+import java.util.Iterator;
+import java.util.Properties;
 
 public class ELClient extends ServiceEETest {
 
-  private Properties testProps;
+    private Properties testProps;
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  public void setup(String[] args, Properties p) throws Fault {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
-  }
-
-  public void cleanup() throws Fault {
-    TestUtil.logTrace("Cleanup method called");
-  }
-
-  /**
-   * @testName: staticFieldELResolverTest
-   * 
-   * @assertion_ids: EL:JAVADOC:330; EL:JAVADOC:331; EL:JAVADOC:332;
-   *                 EL:JAVADOC:335; EL:JAVADOC:338; EL:JAVADOC:341;
-   *                 EL:JAVADOC:343; EL:JAVADOC:346; EL:JAVADOC:189;
-   *                 EL:JAVADOC:204
-   * 
-   * 
-   * @test_Strategy: Verify the following method calls work as expected:
-   *                 getValue() getType() setValue() isReadOnly()
-   *                 getCommonPropertyType() getFeatureDescriptors()
-   */
-  public void staticFieldELResolverTest() throws Fault {
-    StringBuffer buf = new StringBuffer();
-    boolean pass = true;
-
-    ELManager elm = new ELManager();
-    StaticFieldELResolver resolver = new StaticFieldELResolver();
-    elm.addELResolver(resolver);
-    ELContext context = elm.getELContext();
-
-    Object base = new ELClass(TCKELClass.class);
-    Object property = "firstName";
-    Object value = "Ender";
-
-    // setValue()
-    context.setPropertyResolved(false);
-    try {
-      resolver.setValue(context, base, property, value);
-      buf.append(ELTestUtil.FAIL + TestUtil.NEW_LINE
-          + "Expected PropertyNotWritableException to be "
-          + "thrown when calling setValue()!" + TestUtil.NEW_LINE
-          + "No exception was thown!" + TestUtil.NEW_LINE);
-      pass = false;
-
-    } catch (PropertyNotWritableException pnwe) {
-      buf.append(ELTestUtil.PASS + TestUtil.NEW_LINE
-          + "PropertyNotWritableException Thrown as expected for "
-          + "setValue()!" + TestUtil.NEW_LINE);
-    } catch (Exception e) {
-      buf.append(ELTestUtil.FAIL + TestUtil.NEW_LINE
-          + "Wrong Exception Thrownfor setValue()!" + TestUtil.NEW_LINE
-          + "Expected: PropertyNotWritableException" + TestUtil.NEW_LINE
-          + "Received: " + e.getClass().getSimpleName() + TestUtil.NEW_LINE);
+    public static void main(String[] args) {
+        ELClient theTests = new ELClient();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
 
-    // getValue()
-    context.setPropertyResolved(false);
-    Object valueRetrieved = resolver.getValue(context, base, property);
-    if (!context.isPropertyResolved()) {
-      buf.append("getValue() did not resolve" + TestUtil.NEW_LINE);
-      pass = false;
+    public void setup(String[] args, Properties p) throws Fault {
+        TestUtil.logTrace("Setup method called");
+        this.testProps = p;
     }
 
-    if (valueRetrieved != value) {
-      buf.append("Invalid value from getValue():" + TestUtil.NEW_LINE
-          + "Value expected: " + value.toString() + TestUtil.NEW_LINE
-          + "Value retrieved: " + valueRetrieved.toString()
-          + TestUtil.NEW_LINE);
-      pass = false;
+    public void cleanup() throws Fault {
+        TestUtil.logTrace("Cleanup method called");
     }
 
-    // getType()
-    context.setPropertyResolved(false);
-    Class<?> type = resolver.getType(context, base, property);
-    if (!context.isPropertyResolved()) {
-      buf.append("getType() did not resolve" + TestUtil.NEW_LINE);
-      pass = false;
-    } else if (type != null) {
-      buf.append("getType() returns " + type.getName() + " rather than null" + TestUtil.NEW_LINE);
-      pass = false;
-    } else {
-      buf.append("getType() returns null" + TestUtil.NEW_LINE + "as expected." + TestUtil.NEW_LINE);
-    }
+    /**
+     * @testName: staticFieldELResolverTest
+     *
+     * @assertion_ids: EL:JAVADOC:330; EL:JAVADOC:331; EL:JAVADOC:332;
+     *                 EL:JAVADOC:335; EL:JAVADOC:338; EL:JAVADOC:341;
+     *                 EL:JAVADOC:343; EL:JAVADOC:346; EL:JAVADOC:189;
+     *                 EL:JAVADOC:204
+     *
+     *
+     * @test_Strategy: Verify the following method calls work as expected:
+     *                 getValue() getType() setValue() isReadOnly()
+     *                 getCommonPropertyType() getFeatureDescriptors()
+     */
+    public void staticFieldELResolverTest() throws Fault {
+        StringBuffer buf = new StringBuffer();
+        boolean pass = true;
 
-    // isReadOnly
-    context.setPropertyResolved(false);
-    boolean nonWritable = resolver.isReadOnly(context, base, property);
-    if (!context.isPropertyResolved()) {
-      buf.append("isReadOnly() did not resolve" + TestUtil.NEW_LINE);
-      pass = false;
+        ELManager elm = new ELManager();
+        StaticFieldELResolver resolver = new StaticFieldELResolver();
+        elm.addELResolver(resolver);
+        ELContext context = elm.getELContext();
 
-    } else if (!nonWritable) {
-      buf.append("isReadOnly() returned unexpected value: " + TestUtil.NEW_LINE
-          + "Expected: false" + TestUtil.NEW_LINE + "Received: " + nonWritable
-          + TestUtil.NEW_LINE);
-      pass = false;
+        Object base = new ELClass(TCKELClass.class);
+        Object property = "firstName";
+        Object value = "Ender";
 
-    } else {
-      buf.append("isReadOnly() returns false as expected" + TestUtil.NEW_LINE);
-    }
+        // setValue()
+        context.setPropertyResolved(false);
+        try {
+            resolver.setValue(context, base, property, value);
+            buf.append(ELTestUtil.FAIL + TestUtil.NEW_LINE
+                    + "Expected PropertyNotWritableException to be "
+                    + "thrown when calling setValue()!" + TestUtil.NEW_LINE
+                    + "No exception was thown!" + TestUtil.NEW_LINE);
+            pass = false;
 
-    // getCommonPropertyType()
-    context.setPropertyResolved(false);
-    Class<?> commonPropertyType = (resolver.getCommonPropertyType(context,
-        base));
-    buf.append("getCommonPropertyType() returns " + commonPropertyType.getName()
-        + TestUtil.NEW_LINE);
+        } catch (PropertyNotWritableException pnwe) {
+            buf.append(ELTestUtil.PASS + TestUtil.NEW_LINE
+                    + "PropertyNotWritableException Thrown as expected for "
+                    + "setValue()!" + TestUtil.NEW_LINE);
+        } catch (Exception e) {
+            buf.append(ELTestUtil.FAIL + TestUtil.NEW_LINE
+                    + "Wrong Exception Thrownfor setValue()!" + TestUtil.NEW_LINE
+                    + "Expected: PropertyNotWritableException" + TestUtil.NEW_LINE
+                    + "Received: " + e.getClass().getSimpleName() + TestUtil.NEW_LINE);
+        }
 
-    // getFeatureDescriptors()
-    context.setPropertyResolved(false);
-    Iterator<?> i = resolver.getFeatureDescriptors(context, base);
+        // getValue()
+        context.setPropertyResolved(false);
+        Object valueRetrieved = resolver.getValue(context, base, property);
+        if (!context.isPropertyResolved()) {
+            buf.append("getValue() did not resolve" + TestUtil.NEW_LINE);
+            pass = false;
+        }
 
-    if (i == null) {
-      buf.append("getFeatureDescriptors() returns null" + TestUtil.NEW_LINE);
-    }
+        if (valueRetrieved != value) {
+            buf.append("Invalid value from getValue():" + TestUtil.NEW_LINE
+                    + "Value expected: " + value.toString() + TestUtil.NEW_LINE
+                    + "Value retrieved: " + valueRetrieved.toString()
+                    + TestUtil.NEW_LINE);
+            pass = false;
+        }
 
-    if (!pass) {
-      throw new Fault(ELTestUtil.FAIL + TestUtil.NEW_LINE + buf.toString());
-    }
+        // getType()
+        context.setPropertyResolved(false);
+        Class<?> type = resolver.getType(context, base, property);
+        if (!context.isPropertyResolved()) {
+            buf.append("getType() did not resolve" + TestUtil.NEW_LINE);
+            pass = false;
+        } else if (type != null) {
+            buf.append("getType() returns " + type.getName() + " rather than null" + TestUtil.NEW_LINE);
+            pass = false;
+        } else {
+            buf.append("getType() returns null" + TestUtil.NEW_LINE + "as expected." + TestUtil.NEW_LINE);
+        }
 
-  } // End staticFieldELResolverTest
+        // isReadOnly
+        context.setPropertyResolved(false);
+        boolean nonWritable = resolver.isReadOnly(context, base, property);
+        if (!context.isPropertyResolved()) {
+            buf.append("isReadOnly() did not resolve" + TestUtil.NEW_LINE);
+            pass = false;
 
-  /**
-   * @testName: staticFieldResolverInvokeMNFETest
-   * 
-   * @assertion_ids: EL:JAVADOC:339; EL:JAVADOC:189; EL:JAVADOC:204
-   * 
-   * @test_Strategy: Verify that the invoke() method throws
-   *                 MethodNotFoundException if no suitable method can be found.
-   */
-  public void staticFieldResolverInvokeMNFETest() throws Fault {
-    StringBuffer buf = new StringBuffer();
-    boolean pass = false;
+        } else if (!nonWritable) {
+            buf.append("isReadOnly() returned unexpected value: " + TestUtil.NEW_LINE
+                    + "Expected: false" + TestUtil.NEW_LINE + "Received: " + nonWritable
+                    + TestUtil.NEW_LINE);
+            pass = false;
 
-    ELManager elm = new ELManager();
-    StaticFieldELResolver resolver = new StaticFieldELResolver();
-    elm.addELResolver(resolver);
-    ELContext context = elm.getELContext();
+        } else {
+            buf.append("isReadOnly() returns false as expected" + TestUtil.NEW_LINE);
+        }
 
-    Class<?>[] types = { String.class, String.class };
-    String[] values = { "Doug", "Donahue" };
+        // getCommonPropertyType()
+        context.setPropertyResolved(false);
+        Class<?> commonPropertyType = (resolver.getCommonPropertyType(context, base));
+        buf.append("getCommonPropertyType() returns " + commonPropertyType.getName() + TestUtil.NEW_LINE);
 
-    try {
-      pass = ResolverTest.testELResolverInvoke(context, context.getELResolver(),
-          new ELClass(TCKELClass.class), "bogue_method", types, values, true,
-          buf);
+        // getFeatureDescriptors()
+        context.setPropertyResolved(false);
+        Iterator<?> i = resolver.getFeatureDescriptors(context, base);
 
-    } catch (Exception ex) {
-      throw new Fault(ex);
-    }
+        if (i == null) {
+            buf.append("getFeatureDescriptors() returns null" + TestUtil.NEW_LINE);
+        }
 
-    if (!pass) {
-      throw new Fault(ELTestUtil.FAIL + buf.toString());
-    }
-    TestUtil.logMsg(buf.toString());
+        if (!pass) {
+            throw new Fault(ELTestUtil.FAIL + TestUtil.NEW_LINE + buf.toString());
+        }
+    } // End staticFieldELResolverTest
 
-  }// End staticFieldResolverInvokeMNFETest
+    /**
+     * @testName: staticFieldResolverInvokeMNFETest
+     *
+     * @assertion_ids: EL:JAVADOC:339; EL:JAVADOC:189; EL:JAVADOC:204
+     *
+     * @test_Strategy: Verify that the invoke() method throws
+     *                 MethodNotFoundException if no suitable method can be found.
+     */
+    public void staticFieldResolverInvokeMNFETest() throws Fault {
+        StringBuffer buf = new StringBuffer();
+        boolean pass = false;
 
-  /**
-   * @testName: staticFieldELResolverInvokeTest
-   * 
-   * @assertion_ids: EL:JAVADOC:338; EL:JAVADOC:189; EL:JAVADOC:204
-   * 
-   * @test_Strategy: Verify that API calls work as expected for
-   *                 BeanNameELResolver.invoke().
-   */
-  public void staticFieldELResolverInvokeTest() throws Fault {
-    StringBuffer buf = new StringBuffer();
-    boolean pass = false;
+        ELManager elm = new ELManager();
+        StaticFieldELResolver resolver = new StaticFieldELResolver();
+        elm.addELResolver(resolver);
+        ELContext context = elm.getELContext();
 
-    ELManager elm = new ELManager();
-    StaticFieldELResolver resolver = new StaticFieldELResolver();
-    elm.addELResolver(resolver);
-    ELContext context = elm.getELContext();
+        Class<?>[] types = {String.class, String.class};
+        String[] values = {"Doug", "Donahue"};
 
-    Class<?>[] types = { String.class };
-    String[] values = { "Ender" };
+        try {
+            pass = ResolverTest.testELResolverInvoke(
+                    context,
+                    context.getELResolver(),
+                    new ELClass(TCKELClass.class),
+                    "bogue_method",
+                    types,
+                    values,
+                    true,
+                    buf);
 
-    try {
-      pass = ResolverTest.testELResolverInvoke(context, context.getELResolver(),
-          new ELClass(TCKELClass.class), "isName", types, values, false, buf);
+        } catch (Exception ex) {
+            throw new Fault(ex);
+        }
 
-    } catch (Exception ex) {
-      throw new Fault(ex);
-    }
+        if (!pass) {
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
+        }
+        TestUtil.logMsg(buf.toString());
+    } // End staticFieldResolverInvokeMNFETest
 
-    if (!pass) {
-      throw new Fault(ELTestUtil.FAIL + buf.toString());
-    }
+    /**
+     * @testName: staticFieldELResolverInvokeTest
+     *
+     * @assertion_ids: EL:JAVADOC:338; EL:JAVADOC:189; EL:JAVADOC:204
+     *
+     * @test_Strategy: Verify that API calls work as expected for
+     *                 BeanNameELResolver.invoke().
+     */
+    public void staticFieldELResolverInvokeTest() throws Fault {
+        StringBuffer buf = new StringBuffer();
+        boolean pass = false;
 
-    TestUtil.logMsg(buf.toString());
+        ELManager elm = new ELManager();
+        StaticFieldELResolver resolver = new StaticFieldELResolver();
+        elm.addELResolver(resolver);
+        ELContext context = elm.getELContext();
 
-  }// End staticFieldELResolverInvokeTest
+        Class<?>[] types = {String.class};
+        String[] values = {"Ender"};
 
-  /**
-   * @testName: staticFieldELResolverNPETest
-   * 
-   * @assertion_ids: EL:JAVADOC:333; EL:JAVADOC:336; EL:JAVADOC:342;
-   *                 EL:JAVADOC:344; EL:JAVADOC:189
-   * 
-   * @test_Strategy: Verify that the following methods throw a
-   *                 NullPointerException, if context is null:
-   * 
-   *                 getType() getValue() isReadOnly() setValue()
-   */
-  public void staticFieldELResolverNPETest() throws Fault {
-    boolean pass = false;
-    StringBuffer buf = new StringBuffer();
+        try {
+            pass = ResolverTest.testELResolverInvoke(
+                    context,
+                    context.getELResolver(),
+                    new ELClass(TCKELClass.class),
+                    "isName",
+                    types,
+                    values,
+                    false,
+                    buf);
 
-    ELManager elm = new ELManager();
-    StaticFieldELResolver resolver = new StaticFieldELResolver();
-    elm.addELResolver(resolver);
+        } catch (Exception ex) {
+            throw new Fault(ex);
+        }
 
-    try {
-      pass = ResolverTest.testELResolverNPE(resolver,
-          new ELClass(TCKELClass.class), "intention", "billy", buf);
+        if (!pass) {
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
+        }
 
-    } catch (Exception ex) {
-      throw new Fault(ex);
-    }
+        TestUtil.logMsg(buf.toString());
+    } // End staticFieldELResolverInvokeTest
 
-    if (!pass) {
-      throw new Fault(ELTestUtil.FAIL + buf.toString());
-    }
+    /**
+     * @testName: staticFieldELResolverNPETest
+     *
+     * @assertion_ids: EL:JAVADOC:333; EL:JAVADOC:336; EL:JAVADOC:342;
+     *                 EL:JAVADOC:344; EL:JAVADOC:189
+     *
+     * @test_Strategy: Verify that the following methods throw a
+     *                 NullPointerException, if context is null:
+     *
+     *                 getType() getValue() isReadOnly() setValue()
+     */
+    public void staticFieldELResolverNPETest() throws Fault {
+        boolean pass = false;
+        StringBuffer buf = new StringBuffer();
 
-    TestUtil.logTrace(buf.toString());
+        ELManager elm = new ELManager();
+        StaticFieldELResolver resolver = new StaticFieldELResolver();
+        elm.addELResolver(resolver);
 
-  } // End staticFieldELResolverNPETest
+        try {
+            pass = ResolverTest.testELResolverNPE(resolver, new ELClass(TCKELClass.class), "intention", "billy", buf);
 
-  /**
-   * @testName: staticFieldResolverInvokePNFETest
-   * 
-   * @assertion_ids: EL:JAVADOC:334; EL:JAVADOC:337
-   * 
-   * @test_Strategy: Verify that the invoke() method throws
-   *                 PropertyNotFoundException the specified class does not
-   *                 exist, or if the field is not a public static filed of the
-   *                 class, or if the field is inaccessible.
-   */
-  public void staticFieldResolverInvokePNFETest() throws Fault {
+        } catch (Exception ex) {
+            throw new Fault(ex);
+        }
 
-    Object base = new ELClass(TCKELClass.class);
+        if (!pass) {
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
+        }
 
-    // Test for non static field
-    testForPNFE("notStatic", base);
+        TestUtil.logTrace(buf.toString());
+    } // End staticFieldELResolverNPETest
 
-    // Test for Private static field
-    testForPNFE("privStatic", base);
+    /**
+     * @testName: staticFieldResolverInvokePNFETest
+     *
+     * @assertion_ids: EL:JAVADOC:334; EL:JAVADOC:337
+     *
+     * @test_Strategy: Verify that the invoke() method throws
+     *                 PropertyNotFoundException the specified class does not
+     *                 exist, or if the field is not a public static filed of the
+     *                 class, or if the field is inaccessible.
+     */
+    public void staticFieldResolverInvokePNFETest() throws Fault {
 
-    // Test for non existent Class
-    testForPNFE("privStatic", "bogus");
+        Object base = new ELClass(TCKELClass.class);
 
-  }// End staticFieldResolverInvokePNFETest
+        // Test for non static field
+        testForPNFE("notStatic", base);
 
-  // ------------------------- private methods
+        // Test for Private static field
+        testForPNFE("privStatic", base);
 
-  private void testForPNFE(String property, Object base) {
-    StringBuffer buf = new StringBuffer();
+        // Test for non existent Class
+        testForPNFE("privStatic", "bogus");
+    } // End staticFieldResolverInvokePNFETest
 
-    ELManager elm = new ELManager();
-    StaticFieldELResolver resolver = new StaticFieldELResolver();
-    elm.addELResolver(resolver);
-    ELContext context = elm.getELContext();
+    // ------------------------- private methods
 
-    // getType()
-    try {
-      resolver.getType(context, base, property);
-      buf.append(ELTestUtil.FAIL + " getType() did not throw any exception."
-          + TestUtil.NEW_LINE + "Expected: PropertyNotFoundException "
-          + TestUtil.NEW_LINE);
+    private void testForPNFE(String property, Object base) {
+        StringBuffer buf = new StringBuffer();
 
-    } catch (PropertyNotFoundException pnfe) {
-      buf.append(ELTestUtil.PASS);
+        ELManager elm = new ELManager();
+        StaticFieldELResolver resolver = new StaticFieldELResolver();
+        elm.addELResolver(resolver);
+        ELContext context = elm.getELContext();
 
-    } catch (Exception e) {
-      buf.append(ELTestUtil.FAIL + "Wrong Exception thrown for getType()!"
-          + TestUtil.NEW_LINE + " Expected: PropertyNotFoundException"
-          + TestUtil.NEW_LINE + "Received: " + e.getClass().getSimpleName());
-    }
+        // getType()
+        try {
+            resolver.getType(context, base, property);
+            buf.append(ELTestUtil.FAIL + " getType() did not throw any exception."
+                    + TestUtil.NEW_LINE + "Expected: PropertyNotFoundException "
+                    + TestUtil.NEW_LINE);
 
-    // getValue()
-    try {
-      resolver.getValue(context, base, property);
-      buf.append(ELTestUtil.FAIL + " getValue() did not throw any exception."
-          + TestUtil.NEW_LINE + "Expected: PropertyNotFoundException "
-          + TestUtil.NEW_LINE);
+        } catch (PropertyNotFoundException pnfe) {
+            buf.append(ELTestUtil.PASS);
 
-    } catch (PropertyNotFoundException pnfe) {
-      buf.append(ELTestUtil.PASS);
+        } catch (Exception e) {
+            buf.append(ELTestUtil.FAIL + "Wrong Exception thrown for getType()!"
+                    + TestUtil.NEW_LINE + " Expected: PropertyNotFoundException"
+                    + TestUtil.NEW_LINE + "Received: " + e.getClass().getSimpleName());
+        }
 
-    } catch (Exception e) {
-      buf.append(ELTestUtil.FAIL + "Wrong Exception thrown getValue()!"
-          + TestUtil.NEW_LINE + " Expected: PropertyNotFoundException"
-          + TestUtil.NEW_LINE + "Received: " + e.getClass().getSimpleName());
-    }
+        // getValue()
+        try {
+            resolver.getValue(context, base, property);
+            buf.append(ELTestUtil.FAIL + " getValue() did not throw any exception."
+                    + TestUtil.NEW_LINE + "Expected: PropertyNotFoundException "
+                    + TestUtil.NEW_LINE);
 
-  }// End testForPNFE
+        } catch (PropertyNotFoundException pnfe) {
+            buf.append(ELTestUtil.PASS);
 
+        } catch (Exception e) {
+            buf.append(ELTestUtil.FAIL + "Wrong Exception thrown getValue()!"
+                    + TestUtil.NEW_LINE + " Expected: PropertyNotFoundException"
+                    + TestUtil.NEW_LINE + "Received: " + e.getClass().getSimpleName());
+        }
+    } // End testForPNFE
 }

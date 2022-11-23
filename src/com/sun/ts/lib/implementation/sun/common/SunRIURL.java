@@ -16,9 +16,9 @@
 
 package com.sun.ts.lib.implementation.sun.common;
 
-import java.net.*;
-import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
+import java.net.*;
 
 /**
  * This is a J2EE Reference specific implementation of the TSURLInterface which
@@ -30,64 +30,60 @@ import com.sun.ts.lib.porting.*;
  * @author Kyle Grucci
  */
 public class SunRIURL implements TSURLInterface {
-  private URL url = null;
+    private URL url = null;
 
-  /**
-   * This method is called by TS tests to get the URL to use to access a given
-   * web component.
-   *
-   * @param protocol
-   *          - the name of the protocol.
-   * @param host
-   *          - the name of the host.
-   * @param port
-   *          - the port number.
-   * @param file
-   *          - the host file.
-   * @return a valid URL object.
-   */
-  public URL getURL(String protocol, String host, int port, String file)
-      throws MalformedURLException {
-    try {
-      url = new URL(protocol, host, port, file);
-    } catch (MalformedURLException e) {
-      TestUtil.logErr("Failed during URL creation", e);
-      throw e;
+    /**
+     * This method is called by TS tests to get the URL to use to access a given
+     * web component.
+     *
+     * @param protocol
+     *          - the name of the protocol.
+     * @param host
+     *          - the name of the host.
+     * @param port
+     *          - the port number.
+     * @param file
+     *          - the host file.
+     * @return a valid URL object.
+     */
+    public URL getURL(String protocol, String host, int port, String file) throws MalformedURLException {
+        try {
+            url = new URL(protocol, host, port, file);
+        } catch (MalformedURLException e) {
+            TestUtil.logErr("Failed during URL creation", e);
+            throw e;
+        }
+        return url;
     }
-    return url;
-  }
 
-  /**
-   * This method is called by TS tests to get the URL to use to access a given
-   * web component.
-   *
-   * @param protocol
-   *          - the name of the protocol.
-   * @param host
-   *          - the name of the host.
-   * @param port
-   *          - the port number.
-   * @param file
-   *          - the host file.
-   * @return a valid URL as a String.
-   */
-  public String getURLString(String protocol, String host, int port,
-      String file) {
-    if (file.startsWith("/"))
-      return protocol + "://" + host + ":" + port + file;
-    else
-      return protocol + "://" + host + ":" + port + "/" + file;
-  }
+    /**
+     * This method is called by TS tests to get the URL to use to access a given
+     * web component.
+     *
+     * @param protocol
+     *          - the name of the protocol.
+     * @param host
+     *          - the name of the host.
+     * @param port
+     *          - the port number.
+     * @param file
+     *          - the host file.
+     * @return a valid URL as a String.
+     */
+    public String getURLString(String protocol, String host, int port, String file) {
+        if (file.startsWith("/")) return protocol + "://" + host + ":" + port + file;
+        else return protocol + "://" + host + ":" + port + "/" + file;
+    }
 
-  /**
-   * This method is called by TS tests to get the request string to use to
-   * access a given web component.
-   *
-   * @param request
-   *          - the request file.
-   * @return a valid String object.
-   */
-  public String getRequest(String request) {
-    return request;
-  }
+    /**
+     * This method is called by TS tests to get the request string to use to
+     * access a given web component.
+     *
+     * @param request
+     *          - the request file.
+     * @return a valid String object.
+     */
+    public String getRequest(String request) {
+        return request;
+    }
 }

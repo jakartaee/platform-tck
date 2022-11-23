@@ -20,7 +20,6 @@
 package com.sun.ts.tests.ejb30.tx.session.stateless.cm.varargs;
 
 import com.sun.ts.lib.deliverable.cts.resource.Dog;
-
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
@@ -28,30 +27,30 @@ import jakarta.ejb.TransactionAttributeType;
 @Stateless
 public class VarargsBean implements VarargsLocalIF, VarargsRemoteIF {
 
-  @TransactionAttribute(TransactionAttributeType.NEVER)
-  public String listDogs(Dog... dogs) {
-    String result = "";
-    for (Dog dog : dogs) {
-      result += dog.toString();
+    @TransactionAttribute(TransactionAttributeType.NEVER)
+    public String listDogs(Dog... dogs) {
+        String result = "";
+        for (Dog dog : dogs) {
+            result += dog.toString();
+        }
+        return result;
     }
-    return result;
-  }
 
-  @TransactionAttribute(TransactionAttributeType.NEVER)
-  public String format(String s, Object... o) {
-    String result = s;
-    for (Object item : o) {
-      result += item;
+    @TransactionAttribute(TransactionAttributeType.NEVER)
+    public String format(String s, Object... o) {
+        String result = s;
+        for (Object item : o) {
+            result += item;
+        }
+        return result;
     }
-    return result;
-  }
 
-  @TransactionAttribute(TransactionAttributeType.NEVER)
-  public int add(int... i) {
-    int result = 0;
-    for (int j : i) {
-      result += j;
+    @TransactionAttribute(TransactionAttributeType.NEVER)
+    public int add(int... i) {
+        int result = 0;
+        for (int j : i) {
+            result += j;
+        }
+        return result;
     }
-    return result;
-  }
 }

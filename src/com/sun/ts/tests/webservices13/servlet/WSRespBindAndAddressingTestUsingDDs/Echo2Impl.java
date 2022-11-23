@@ -17,19 +17,23 @@
 package com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs;
 
 import jakarta.jws.WebService;
-import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.Holder;
 import jakarta.xml.ws.RespectBinding;
+import jakarta.xml.ws.soap.Addressing;
 
-@WebService(portName = "Echo2Port", serviceName = "EchoService", targetNamespace = "http://Echo.org", wsdlLocation = "WEB-INF/wsdl/EchoService.wsdl", endpointInterface = "com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.Echo2")
+@WebService(
+        portName = "Echo2Port",
+        serviceName = "EchoService",
+        targetNamespace = "http://Echo.org",
+        wsdlLocation = "WEB-INF/wsdl/EchoService.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.Echo2")
 
 // Impl overrides WSDL to turn addressing off
 @Addressing(enabled = false)
 @RespectBinding(enabled = true)
-
 public class Echo2Impl {
 
-  public String echo(String string, Holder<String> testName) {
-    return string;
-  }
+    public String echo(String string, Holder<String> testName) {
+        return string;
+    }
 }

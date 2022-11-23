@@ -20,41 +20,40 @@
 
 package com.sun.ts.tests.ejb30.common.generics;
 
-import java.util.Date;
-
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
+import java.util.Date;
 
 @Stateless()
 public class DateGreetingBean implements GenericGreetingIF<java.util.Date> {
 
-  @TransactionAttribute(TransactionAttributeType.MANDATORY)
-  public java.util.Date greet(java.util.Date date) {
-    return date;
-  }
+    @TransactionAttribute(TransactionAttributeType.MANDATORY)
+    public java.util.Date greet(java.util.Date date) {
+        return date;
+    }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * com.sun.ts.tests.ejb30.common.generics.GenericGreetingIF#rolesAllowed()
-   */
-  @RolesAllowed("Administrator")
-  public Date rolesAllowed(Date d) {
-    return d;
-  }
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * com.sun.ts.tests.ejb30.common.generics.GenericGreetingIF#rolesAllowed()
+     */
+    @RolesAllowed("Administrator")
+    public Date rolesAllowed(Date d) {
+        return d;
+    }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * com.sun.ts.tests.ejb30.common.generics.GenericGreetingIF#rolesAllowedNoArg(
-   * )
-   */
-  @RolesAllowed("Manager")
-  public Date rolesAllowedNoArg() {
-    return new Date();
-  }
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * com.sun.ts.tests.ejb30.common.generics.GenericGreetingIF#rolesAllowedNoArg(
+     * )
+     */
+    @RolesAllowed("Manager")
+    public Date rolesAllowedNoArg() {
+        return new Date();
+    }
 }

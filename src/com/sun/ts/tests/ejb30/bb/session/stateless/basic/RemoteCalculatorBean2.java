@@ -35,24 +35,21 @@ import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
 // @Stateless(name="RemoteCalculatorBean2",
 // description="a simple stateless session bean")
 // @Remote({RemoteCalculator.class})
-public class RemoteCalculatorBean2 extends BaseRemoteCalculator
-    implements RemoteCalculator {
+public class RemoteCalculatorBean2 extends BaseRemoteCalculator implements RemoteCalculator {
 
-  private int postConstructCallsCount;
+    private int postConstructCallsCount;
 
-  public RemoteCalculatorBean2() {
-  }
+    public RemoteCalculatorBean2() {}
 
-  // @PostConstruct
-  private void postConstruct() {
-    postConstructCallsCount++;
-  }
+    // @PostConstruct
+    private void postConstruct() {
+        postConstructCallsCount++;
+    }
 
-  @Override
-  public int remoteAdd(int a, int b) {
-    int retValue;
-    retValue = super.remoteAdd(a, b);
-    return retValue + postConstructCallsCount;
-  }
-
+    @Override
+    public int remoteAdd(int a, int b) {
+        int retValue;
+        retValue = super.remoteAdd(a, b);
+        return retValue + postConstructCallsCount;
+    }
 }

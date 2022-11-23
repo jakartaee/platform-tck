@@ -17,7 +17,7 @@
 package com.sun.ts.tests.webservices13.servlet.WSAddressingFeaturesTestUsingAnnotations;
 
 public class TestConstants {
-  public static final String ECHO_INPUT_ACTION = "EchoInputAction";
+    public static final String ECHO_INPUT_ACTION = "EchoInputAction";
 
-  public static final String ECHO_OUTPUT_ACTION = "EchoOutputAction";
+    public static final String ECHO_OUTPUT_ACTION = "EchoOutputAction";
 }

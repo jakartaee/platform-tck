@@ -36,228 +36,217 @@ import com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverendpointconf
  */
 public class WSClient extends WebSocketCommonClient {
 
-  private static final long serialVersionUID = 1217261514689339373L;
+    private static final long serialVersionUID = 1217261514689339373L;
 
-  public WSClient() {
-    setContextRoot(
-        "wsc_ee_jakarta_websocket_server_serverendpointconfig_builder_web");
-
-  }
-
-  public static void main(String[] args) {
-    new WSClient().run(args);
-  }
-
-  static String[] endpoints = new String[] { "builder/configurator",
-      "builder/decoders", "builder/encoders", "builder/extensions",
-      "builder/subprotocols" };
-
-  /* Run test */
-
-  /*
-   * @testName: getConfiguratorTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:199; WebSocket:JAVADOC:198;
-   * WebSocket:JAVADOC:200; WebSocket:JAVADOC:193; WebSocket:JAVADOC:69;
-   * WebSocket:JAVADOC:79;
-   * 
-   * @test_Strategy:
-   * jakarta.websocket.server.ServerEndpointConfig.Builder.configurator
-   * jakarta.websocket.server.ServerEndpointConfig.Builder.build
-   * jakarta.websocket.server.ServerEndpointConfig.Builder.create
-   * jakarta.websocket.server.ServerEndpointConfig.getConfigurator
-   * jakarta.websocket.Endpoint.onOpen;
-   * jakarta.websocket.MessageHandler.Whole.onMessage
-   */
-  public void getConfiguratorTest() throws Fault {
-    String name = AppConfig.CONFIG.getClass().getName();
-    String[] responses = new String[] {
-        ServerEndpointConfigConfigurator.class.getName(), name, name, name,
-        name };
-    for (int i = 0; i != endpoints.length; i++) {
-      setProperty(Property.REQUEST, buildRequest(endpoints[i]));
-      setProperty(Property.CONTENT, "configurator");
-      setProperty(Property.SEARCH_STRING, responses[i]);
-      invoke();
+    public WSClient() {
+        setContextRoot("wsc_ee_jakarta_websocket_server_serverendpointconfig_builder_web");
     }
-  }
 
-  /*
-   * @testName: getExtensionsTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:203; WebSocket:JAVADOC:198;
-   * WebSocket:JAVADOC:200; WebSocket:JAVADOC:195; WebSocket:JAVADOC:69;
-   * WebSocket:JAVADOC:79;
-   * 
-   * @test_Strategy:
-   * jakarta.websocket.server.ServerEndpointConfig.Builder.extensions
-   * jakarta.websocket.server.ServerEndpointConfig.Builder.build
-   * jakarta.websocket.server.ServerEndpointConfig.Builder.create
-   * jakarta.websocket.server.ServerEndpointConfig.getExtensions
-   * jakarta.websocket.Endpoint.onOpen;
-   * jakarta.websocket.MessageHandler.Whole.onMessage
-   */
-  public void getExtensionsTest() throws Fault {
-    String[] responses = new String[] { "[]", "[]", "[]",
-        AppConfig.EXT_NAMES[0] + "|" + AppConfig.EXT_NAMES[1], "[]" };
-    for (int i = 0; i != endpoints.length; i++) {
-      setProperty(Property.REQUEST, buildRequest(endpoints[i]));
-      setProperty(Property.CONTENT, "extensions");
-      setProperty(Property.UNORDERED_SEARCH_STRING, responses[i]);
-      invoke();
+    public static void main(String[] args) {
+        new WSClient().run(args);
     }
-  }
 
-  /*
-   * @testName: getPathTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:196; WebSocket:JAVADOC:69;
-   * WebSocket:JAVADOC:79;
-   * 
-   * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getPath
-   * jakarta.websocket.Endpoint.onOpen;
-   * jakarta.websocket.MessageHandler.Whole.onMessage
-   */
-  public void getPathTest() throws Fault {
-    for (String endpoint : endpoints) {
-      setProperty(Property.REQUEST, buildRequest(endpoint));
-      setProperty(Property.CONTENT, "path");
-      setProperty(Property.SEARCH_STRING, endpoint);
-      invoke();
+    static String[] endpoints = new String[] {
+        "builder/configurator", "builder/decoders", "builder/encoders", "builder/extensions", "builder/subprotocols"
+    };
+
+    /* Run test */
+
+    /*
+     * @testName: getConfiguratorTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:199; WebSocket:JAVADOC:198;
+     * WebSocket:JAVADOC:200; WebSocket:JAVADOC:193; WebSocket:JAVADOC:69;
+     * WebSocket:JAVADOC:79;
+     *
+     * @test_Strategy:
+     * jakarta.websocket.server.ServerEndpointConfig.Builder.configurator
+     * jakarta.websocket.server.ServerEndpointConfig.Builder.build
+     * jakarta.websocket.server.ServerEndpointConfig.Builder.create
+     * jakarta.websocket.server.ServerEndpointConfig.getConfigurator
+     * jakarta.websocket.Endpoint.onOpen;
+     * jakarta.websocket.MessageHandler.Whole.onMessage
+     */
+    public void getConfiguratorTest() throws Fault {
+        String name = AppConfig.CONFIG.getClass().getName();
+        String[] responses = new String[] {ServerEndpointConfigConfigurator.class.getName(), name, name, name, name};
+        for (int i = 0; i != endpoints.length; i++) {
+            setProperty(Property.REQUEST, buildRequest(endpoints[i]));
+            setProperty(Property.CONTENT, "configurator");
+            setProperty(Property.SEARCH_STRING, responses[i]);
+            invoke();
+        }
     }
-  }
 
-  /*
-   * @testName: getSubprotocolsTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:204; WebSocket:JAVADOC:198;
-   * WebSocket:JAVADOC:200; WebSocket:JAVADOC:197; WebSocket:JAVADOC:69;
-   * WebSocket:JAVADOC:79;
-   * 
-   * @test_Strategy:
-   * jakarta.websocket.server.ServerEndpointConfig.Builder.subprotocols
-   * jakarta.websocket.server.ServerEndpointConfig.Builder.build
-   * jakarta.websocket.server.ServerEndpointConfig.Builder.create
-   * jakarta.websocket.server.ServerEndpointConfig.getSubprotocols Return the
-   * websocket subprotocols configured. jakarta.websocket.Endpoint.onOpen;
-   * jakarta.websocket.MessageHandler.Whole.onMessage
-   */
-  public void getSubprotocolsTest() throws Fault {
-    setProperty(Property.REQUEST,
-        buildRequest(endpoints[endpoints.length - 1]));
-    setProperty(Property.CONTENT, "subprotocols");
-    setProperty(Property.UNORDERED_SEARCH_STRING, "abc");
-    setProperty(Property.UNORDERED_SEARCH_STRING, "def");
-    invoke();
-  }
-
-  /*
-   * @testName: getEmptySubprotocolsTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:197; WebSocket:JAVADOC:69;
-   * WebSocket:JAVADOC:79;
-   * 
-   * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getSubprotocols
-   * Return the websocket subprotocols configured.
-   * jakarta.websocket.Endpoint.onOpen;
-   * jakarta.websocket.MessageHandler.Whole.onMessage
-   */
-  public void getEmptySubprotocolsTest() throws Fault {
-    for (int i = 0; i != endpoints.length - 1; i++) {
-      setProperty(Property.REQUEST, buildRequest(endpoints[i]));
-      setProperty(Property.CONTENT, "subprotocols");
-      invoke(false);
-      String response = getResponseAsString();
-      assertEqualsInt(0,
-          response.replace("[", "").replace("]", "").trim().length(),
-          "Unexpected subprotocol list received", response);
-      cleanup();
+    /*
+     * @testName: getExtensionsTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:203; WebSocket:JAVADOC:198;
+     * WebSocket:JAVADOC:200; WebSocket:JAVADOC:195; WebSocket:JAVADOC:69;
+     * WebSocket:JAVADOC:79;
+     *
+     * @test_Strategy:
+     * jakarta.websocket.server.ServerEndpointConfig.Builder.extensions
+     * jakarta.websocket.server.ServerEndpointConfig.Builder.build
+     * jakarta.websocket.server.ServerEndpointConfig.Builder.create
+     * jakarta.websocket.server.ServerEndpointConfig.getExtensions
+     * jakarta.websocket.Endpoint.onOpen;
+     * jakarta.websocket.MessageHandler.Whole.onMessage
+     */
+    public void getExtensionsTest() throws Fault {
+        String[] responses =
+                new String[] {"[]", "[]", "[]", AppConfig.EXT_NAMES[0] + "|" + AppConfig.EXT_NAMES[1], "[]"};
+        for (int i = 0; i != endpoints.length; i++) {
+            setProperty(Property.REQUEST, buildRequest(endpoints[i]));
+            setProperty(Property.CONTENT, "extensions");
+            setProperty(Property.UNORDERED_SEARCH_STRING, responses[i]);
+            invoke();
+        }
     }
-  }
 
-  /*
-   * @testName: getEncodersTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:202; WebSocket:JAVADOC:200;
-   * WebSocket:JAVADOC:198;
-   * 
-   * @test_Strategy:
-   * jakarta.websocket.server.ServerEndpointConfig.Builder.encoders
-   * jakarta.websocket.server.ServerEndpointConfig.Builder.create
-   * jakarta.websocket.server.ServerEndpointConfig.Builder.build
-   */
-  public void getEncodersTest() throws Fault {
-    setProperty(Property.REQUEST, buildRequest("builder/encoders"));
-    setProperty(Property.CONTENT, "encoders");
-    setProperty(Property.UNORDERED_SEARCH_STRING,
-        StringBeanBinaryEncoder.class.getName());
-    setProperty(Property.UNORDERED_SEARCH_STRING,
-        StringBeanBinaryStreamEncoder.class.getName());
-    setProperty(Property.UNORDERED_SEARCH_STRING,
-        StringBeanTextEncoder.class.getName());
-    setProperty(Property.UNORDERED_SEARCH_STRING,
-        StringBeanTextStreamEncoder.class.getName());
-    invoke();
-  }
+    /*
+     * @testName: getPathTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:196; WebSocket:JAVADOC:69;
+     * WebSocket:JAVADOC:79;
+     *
+     * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getPath
+     * jakarta.websocket.Endpoint.onOpen;
+     * jakarta.websocket.MessageHandler.Whole.onMessage
+     */
+    public void getPathTest() throws Fault {
+        for (String endpoint : endpoints) {
+            setProperty(Property.REQUEST, buildRequest(endpoint));
+            setProperty(Property.CONTENT, "path");
+            setProperty(Property.SEARCH_STRING, endpoint);
+            invoke();
+        }
+    }
 
-  /*
-   * @testName: getDecodersTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:201; WebSocket:JAVADOC:200;
-   * WebSocket:JAVADOC:198;
-   * 
-   * @test_Strategy:
-   * jakarta.websocket.server.ServerEndpointConfig.Builder.decoders
-   * jakarta.websocket.server.ServerEndpointConfig.Builder.create
-   * jakarta.websocket.server.ServerEndpointConfig.Builder.build
-   */
-  public void getDecodersTest() throws Fault {
-    setProperty(Property.REQUEST, buildRequest("builder/decoders"));
-    setProperty(Property.CONTENT, "decoders");
-    setProperty(Property.UNORDERED_SEARCH_STRING,
-        StringBeanBinaryDecoder.class.getName());
-    setProperty(Property.UNORDERED_SEARCH_STRING,
-        StringBeanBinaryStreamDecoder.class.getName());
-    setProperty(Property.UNORDERED_SEARCH_STRING,
-        StringBeanTextDecoder.class.getName());
-    setProperty(Property.UNORDERED_SEARCH_STRING,
-        StringBeanTextStreamDecoder.class.getName());
-    invoke();
-  }
+    /*
+     * @testName: getSubprotocolsTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:204; WebSocket:JAVADOC:198;
+     * WebSocket:JAVADOC:200; WebSocket:JAVADOC:197; WebSocket:JAVADOC:69;
+     * WebSocket:JAVADOC:79;
+     *
+     * @test_Strategy:
+     * jakarta.websocket.server.ServerEndpointConfig.Builder.subprotocols
+     * jakarta.websocket.server.ServerEndpointConfig.Builder.build
+     * jakarta.websocket.server.ServerEndpointConfig.Builder.create
+     * jakarta.websocket.server.ServerEndpointConfig.getSubprotocols Return the
+     * websocket subprotocols configured. jakarta.websocket.Endpoint.onOpen;
+     * jakarta.websocket.MessageHandler.Whole.onMessage
+     */
+    public void getSubprotocolsTest() throws Fault {
+        setProperty(Property.REQUEST, buildRequest(endpoints[endpoints.length - 1]));
+        setProperty(Property.CONTENT, "subprotocols");
+        setProperty(Property.UNORDERED_SEARCH_STRING, "abc");
+        setProperty(Property.UNORDERED_SEARCH_STRING, "def");
+        invoke();
+    }
 
-  /*
-   * @testName: getDefaultEncodersTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:202;
-   * 
-   * @test_Strategy: Default: {}
-   * jakarta.websocket.server.ServerEndpointConfig.Builder.encoders
-   */
-  public void getDefaultEncodersTest() throws Fault {
-    for (int i = 0; i != endpoints.length; i++)
-      if (i != 2) {
-        setProperty(Property.REQUEST, buildRequest(endpoints[i]));
+    /*
+     * @testName: getEmptySubprotocolsTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:197; WebSocket:JAVADOC:69;
+     * WebSocket:JAVADOC:79;
+     *
+     * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getSubprotocols
+     * Return the websocket subprotocols configured.
+     * jakarta.websocket.Endpoint.onOpen;
+     * jakarta.websocket.MessageHandler.Whole.onMessage
+     */
+    public void getEmptySubprotocolsTest() throws Fault {
+        for (int i = 0; i != endpoints.length - 1; i++) {
+            setProperty(Property.REQUEST, buildRequest(endpoints[i]));
+            setProperty(Property.CONTENT, "subprotocols");
+            invoke(false);
+            String response = getResponseAsString();
+            assertEqualsInt(
+                    0,
+                    response.replace("[", "").replace("]", "").trim().length(),
+                    "Unexpected subprotocol list received",
+                    response);
+            cleanup();
+        }
+    }
+
+    /*
+     * @testName: getEncodersTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:202; WebSocket:JAVADOC:200;
+     * WebSocket:JAVADOC:198;
+     *
+     * @test_Strategy:
+     * jakarta.websocket.server.ServerEndpointConfig.Builder.encoders
+     * jakarta.websocket.server.ServerEndpointConfig.Builder.create
+     * jakarta.websocket.server.ServerEndpointConfig.Builder.build
+     */
+    public void getEncodersTest() throws Fault {
+        setProperty(Property.REQUEST, buildRequest("builder/encoders"));
         setProperty(Property.CONTENT, "encoders");
-        setProperty(Property.SEARCH_STRING, "{}");
+        setProperty(Property.UNORDERED_SEARCH_STRING, StringBeanBinaryEncoder.class.getName());
+        setProperty(Property.UNORDERED_SEARCH_STRING, StringBeanBinaryStreamEncoder.class.getName());
+        setProperty(Property.UNORDERED_SEARCH_STRING, StringBeanTextEncoder.class.getName());
+        setProperty(Property.UNORDERED_SEARCH_STRING, StringBeanTextStreamEncoder.class.getName());
         invoke();
-      }
-  }
+    }
 
-  /*
-   * @testName: getDefaultDecodersTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:201;
-   * 
-   * @test_Strategy: Default: {}
-   * jakarta.websocket.server.ServerEndpointConfig.Builder.decoders
-   */
-  public void getDefaultDecodersTest() throws Fault {
-    for (int i = 0; i != endpoints.length; i++)
-      if (i != 1) {
-        setProperty(Property.REQUEST, buildRequest(endpoints[i]));
+    /*
+     * @testName: getDecodersTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:201; WebSocket:JAVADOC:200;
+     * WebSocket:JAVADOC:198;
+     *
+     * @test_Strategy:
+     * jakarta.websocket.server.ServerEndpointConfig.Builder.decoders
+     * jakarta.websocket.server.ServerEndpointConfig.Builder.create
+     * jakarta.websocket.server.ServerEndpointConfig.Builder.build
+     */
+    public void getDecodersTest() throws Fault {
+        setProperty(Property.REQUEST, buildRequest("builder/decoders"));
         setProperty(Property.CONTENT, "decoders");
-        setProperty(Property.SEARCH_STRING, "{}");
+        setProperty(Property.UNORDERED_SEARCH_STRING, StringBeanBinaryDecoder.class.getName());
+        setProperty(Property.UNORDERED_SEARCH_STRING, StringBeanBinaryStreamDecoder.class.getName());
+        setProperty(Property.UNORDERED_SEARCH_STRING, StringBeanTextDecoder.class.getName());
+        setProperty(Property.UNORDERED_SEARCH_STRING, StringBeanTextStreamDecoder.class.getName());
         invoke();
-      }
-  }
+    }
+
+    /*
+     * @testName: getDefaultEncodersTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:202;
+     *
+     * @test_Strategy: Default: {}
+     * jakarta.websocket.server.ServerEndpointConfig.Builder.encoders
+     */
+    public void getDefaultEncodersTest() throws Fault {
+        for (int i = 0; i != endpoints.length; i++)
+            if (i != 2) {
+                setProperty(Property.REQUEST, buildRequest(endpoints[i]));
+                setProperty(Property.CONTENT, "encoders");
+                setProperty(Property.SEARCH_STRING, "{}");
+                invoke();
+            }
+    }
+
+    /*
+     * @testName: getDefaultDecodersTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:201;
+     *
+     * @test_Strategy: Default: {}
+     * jakarta.websocket.server.ServerEndpointConfig.Builder.decoders
+     */
+    public void getDefaultDecodersTest() throws Fault {
+        for (int i = 0; i != endpoints.length; i++)
+            if (i != 1) {
+                setProperty(Property.REQUEST, buildRequest(endpoints[i]));
+                setProperty(Property.CONTENT, "decoders");
+                setProperty(Property.SEARCH_STRING, "{}");
+                invoke();
+            }
+    }
 }

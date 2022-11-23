@@ -23,22 +23,22 @@ package com.sun.ts.tests.ejb.ee.pm.oneXmany.bi.btob;
 import jakarta.ejb.EJBLocalObject;
 
 public interface BLocal extends EJBLocalObject {
-  // Business Methods for BLocal CMP Fields
-  public String getId();
+    // Business Methods for BLocal CMP Fields
+    public String getId();
 
-  public String getName();
+    public String getName();
 
-  public void setName(String v);
+    public void setName(String v);
 
-  public int getValue();
+    public int getValue();
 
-  public void setValue(int v);
+    public void setValue(int v);
 
-  // Business Methods for A CMR Fields
-  public ALocal getA();
+    // Business Methods for A CMR Fields
+    public ALocal getA();
 
-  public void setA(ALocal v);
+    public void setA(ALocal v);
 
-  // Business method to return A relationship info as DVC
-  public ADVC getAInfo();
+    // Business method to return A relationship info as DVC
+    public ADVC getAInfo();
 }

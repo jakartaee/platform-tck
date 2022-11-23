@@ -20,9 +20,6 @@
 
 package com.sun.ts.tests.ejb.ee.tx.sessionLocal.stateless.bm.TxRN_Exceptions;
 
-import java.util.Properties;
-import java.util.Vector;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
@@ -30,459 +27,447 @@ import com.sun.ts.tests.ejb.ee.tx.txbeanLocal.AppException;
 import com.sun.ts.tests.ejb.ee.tx.txbeanLocal.TxBean;
 import com.sun.ts.tests.ejb.ee.tx.txbeanLocal.TxBeanEJB;
 import com.sun.ts.tests.ejb.ee.tx.txbeanLocal.TxBeanHome;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
 import jakarta.transaction.UserTransaction;
+import java.util.Properties;
+import java.util.Vector;
 
 public class TestBeanEJB implements SessionBean {
 
-  // beanProps represent the bean specific properties of the TestBean
-  // testProps represent the test specific properties passed in
-  // from the test harness.
-  private Properties testProps = null;
+    // beanProps represent the bean specific properties of the TestBean
+    // testProps represent the test specific properties passed in
+    // from the test harness.
+    private Properties testProps = null;
 
-  // The TSNamingContext abstracts away the underlying distribution protocol.
-  private TSNamingContext jctx = null;
+    // The TSNamingContext abstracts away the underlying distribution protocol.
+    private TSNamingContext jctx = null;
 
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  private String tName1 = null;
+    private String tName1 = null;
 
-  private Integer tSize = null;
+    private Integer tSize = null;
 
-  private Integer fromKey1 = null;
+    private Integer fromKey1 = null;
 
-  private Integer fromKey2 = null;
+    private Integer fromKey2 = null;
 
-  private Integer toKey2 = null;
+    private Integer toKey2 = null;
 
-  // The TxBean variables
-  private static final String txBeanRequiresNew = "java:comp/env/ejb/TxRequiresNew.STATELESS";
+    // The TxBean variables
+    private static final String txBeanRequiresNew = "java:comp/env/ejb/TxRequiresNew.STATELESS";
 
-  private TxBeanHome beanHome = null;
+    private TxBeanHome beanHome = null;
 
-  private TxBean beanRef = null;
+    private TxBean beanRef = null;
 
-  private TxBean beanRef2 = null;
+    private TxBean beanRef2 = null;
 
-  // The requiredEJB methods
-  public void ejbCreate() throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    try {
-      TestUtil.logMsg("Getting Naming Context");
-      jctx = new TSNamingContext();
+    // The requiredEJB methods
+    public void ejbCreate() throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        try {
+            TestUtil.logMsg("Getting Naming Context");
+            jctx = new TSNamingContext();
 
-      // Get the table sizes
-      this.tSize = (Integer) jctx.lookup("java:comp/env/size");
-      TestUtil.logTrace("tSize: " + this.tSize);
+            // Get the table sizes
+            this.tSize = (Integer) jctx.lookup("java:comp/env/size");
+            TestUtil.logTrace("tSize: " + this.tSize);
 
-      this.fromKey1 = (Integer) jctx.lookup("java:comp/env/fromKey1");
-      TestUtil.logTrace("fromKey1: " + this.fromKey1);
+            this.fromKey1 = (Integer) jctx.lookup("java:comp/env/fromKey1");
+            TestUtil.logTrace("fromKey1: " + this.fromKey1);
 
-      this.fromKey2 = (Integer) jctx.lookup("java:comp/env/fromKey2");
-      TestUtil.logTrace("fromKey2: " + this.fromKey2);
+            this.fromKey2 = (Integer) jctx.lookup("java:comp/env/fromKey2");
+            TestUtil.logTrace("fromKey2: " + this.fromKey2);
 
-      this.toKey2 = (Integer) jctx.lookup("java:comp/env/toKey2");
-      TestUtil.logTrace("toKey2: " + this.toKey2);
+            this.toKey2 = (Integer) jctx.lookup("java:comp/env/toKey2");
+            TestUtil.logTrace("toKey2: " + this.toKey2);
 
-      TestUtil.logMsg(
-          "Looking up the TxBean Home interface of " + txBeanRequiresNew);
-      beanHome = (TxBeanHome) jctx.lookup(txBeanRequiresNew, TxBeanHome.class);
+            TestUtil.logMsg("Looking up the TxBean Home interface of " + txBeanRequiresNew);
+            beanHome = (TxBeanHome) jctx.lookup(txBeanRequiresNew, TxBeanHome.class);
 
-    } catch (Exception e) {
-      TestUtil.logErr("Create exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-    }
-  }
-
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  // ===========================================================
-  // TestBean interface (our business methods)
-
-  public boolean test1() {
-    TestUtil.logTrace("test1");
-    TestUtil.logTrace("AppException from EJB");
-
-    Vector dbResults = new Vector();
-    boolean testResult = false;
-    boolean b1, b2, b3;
-    b1 = b2 = b3 = false;
-    String tName = this.tName1;
-    int size = this.tSize.intValue();
-    int tRng = this.fromKey1.intValue();
-    UserTransaction ut = null;
-
-    try {
-      TestUtil.logTrace("Creating EJB instance of " + txBeanRequiresNew);
-      beanRef = (TxBean) beanHome.create();
-
-      TestUtil.logTrace("Logging data from server");
-      beanRef.initLogging(testProps);
-
-      TestUtil.logTrace("Getting the UserTransaction interface");
-      ut = sctx.getUserTransaction();
-
-      TestUtil.logTrace("Creating the table");
-      ut.begin();
-      beanRef.createData(tName);
-      ut.commit();
-
-      TestUtil.logTrace("Delete a row and throw AppException");
-      ut.begin();
-
-      try {
-        beanRef.delete(tName, tRng, tRng, TxBeanEJB.FLAGAPPEXCEPTION);
-        TestUtil.logTrace("Expected AppException did not occur");
-      } catch (AppException ae) {
-        TestUtil.logTrace("AppException received as expected");
-        b1 = true;
-      }
-
-      ut.commit();
-
-      TestUtil.logTrace("Getting the test results");
-      dbResults = beanRef.getResults(tName);
-
-      TestUtil.logTrace("Verifying the test results");
-      if (!dbResults.contains(new Integer(tRng)))
-        b2 = true;
-
-      for (int i = 1; i <= size; i++) {
-        if (i == tRng)
-          continue;
-        else {
-          if (dbResults.contains(new Integer(i)))
-            b3 = true;
-          else {
-            b3 = false;
-            break;
-          }
+        } catch (Exception e) {
+            TestUtil.logErr("Create exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
         }
-      }
-      beanRef.destroyData(tName);
-
-      if (b1 && b2 && b3)
-        testResult = true;
-
-    } catch (Exception e) {
-      beanRef.destroyData(tName);
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-    } finally {
-      // cleanup the bean
-      try {
-        beanRef.destroyData(tName);
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
-      ;
     }
-    return testResult;
-  }
 
-  public boolean test2() {
-    TestUtil.logTrace("test2");
-    TestUtil.logTrace("SystemException from EJB");
+    public void setSessionContext(SessionContext sc) {
+        TestUtil.logTrace("setSessionContext");
+        this.sctx = sc;
+    }
 
-    Vector dbResults = new Vector();
-    boolean testResult = false;
-    boolean b1, b3;
-    b1 = b3 = false;
-    String tName = this.tName1;
-    int size = this.tSize.intValue();
-    int tRng = this.fromKey1.intValue();
-    UserTransaction ut = null;
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
+    }
 
-    try {
-      TestUtil.logTrace("Creating EJB instance of " + txBeanRequiresNew);
-      beanRef = (TxBean) beanHome.create();
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
 
-      TestUtil.logTrace("Logging data from server");
-      beanRef.initLogging(testProps);
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
 
-      TestUtil.logTrace("Getting the UserTransaction interface");
-      ut = sctx.getUserTransaction();
+    // ===========================================================
+    // TestBean interface (our business methods)
 
-      TestUtil.logTrace("Creating the table");
-      ut.begin();
-      beanRef.createData(tName);
-      ut.commit();
+    public boolean test1() {
+        TestUtil.logTrace("test1");
+        TestUtil.logTrace("AppException from EJB");
 
-      TestUtil.logTrace("Delete a row and throw SystemException");
-      ut.begin();
+        Vector dbResults = new Vector();
+        boolean testResult = false;
+        boolean b1, b2, b3;
+        b1 = b2 = b3 = false;
+        String tName = this.tName1;
+        int size = this.tSize.intValue();
+        int tRng = this.fromKey1.intValue();
+        UserTransaction ut = null;
 
-      try {
-        beanRef.delete(tName, tRng, tRng, TxBeanEJB.FLAGSYSEXCEPTION);
-        TestUtil.logTrace("Expected EJBException did not occur");
-      } catch (EJBException ee) {
-        TestUtil.logTrace("EJBException received as expected");
-        b1 = true;
-      }
+        try {
+            TestUtil.logTrace("Creating EJB instance of " + txBeanRequiresNew);
+            beanRef = (TxBean) beanHome.create();
 
-      // Unlike stateful EJBs, there is no 1 to 1 correspondance
-      // with clients and stateless EJBs. Thus when the stateless EJB
-      // is discarded, there is no way for the client to check for the
-      // discarded EJB. This was designed to be transparent to the client.
-      // TestUtil.logTrace("Check that bean instance was discarded");
+            TestUtil.logTrace("Logging data from server");
+            beanRef.initLogging(testProps);
 
-      // Rollback the transaction
-      ut.rollback();
+            TestUtil.logTrace("Getting the UserTransaction interface");
+            ut = sctx.getUserTransaction();
 
-      // beanRef is now gone
-      // Check the table results for the rollback && Clean up the table
-      beanRef2 = (TxBean) beanHome.create();
-      beanRef2.initLogging(testProps);
+            TestUtil.logTrace("Creating the table");
+            ut.begin();
+            beanRef.createData(tName);
+            ut.commit();
 
-      TestUtil.logTrace("Checking table results for actual rollback occurance");
-      // Check the table results, did the rollback really occur?
-      ut.begin();
-      dbResults = beanRef2.getResults(tName);
+            TestUtil.logTrace("Delete a row and throw AppException");
+            ut.begin();
 
-      TestUtil.logTrace("Verifying the test results");
-      for (int i = 1; i <= size; i++) {
-        if (dbResults.contains(new Integer(i)))
-          b3 = true;
-        else {
-          b3 = false;
-          break;
+            try {
+                beanRef.delete(tName, tRng, tRng, TxBeanEJB.FLAGAPPEXCEPTION);
+                TestUtil.logTrace("Expected AppException did not occur");
+            } catch (AppException ae) {
+                TestUtil.logTrace("AppException received as expected");
+                b1 = true;
+            }
+
+            ut.commit();
+
+            TestUtil.logTrace("Getting the test results");
+            dbResults = beanRef.getResults(tName);
+
+            TestUtil.logTrace("Verifying the test results");
+            if (!dbResults.contains(new Integer(tRng))) b2 = true;
+
+            for (int i = 1; i <= size; i++) {
+                if (i == tRng) continue;
+                else {
+                    if (dbResults.contains(new Integer(i))) b3 = true;
+                    else {
+                        b3 = false;
+                        break;
+                    }
+                }
+            }
+            beanRef.destroyData(tName);
+
+            if (b1 && b2 && b3) testResult = true;
+
+        } catch (Exception e) {
+            beanRef.destroyData(tName);
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+        } finally {
+            // cleanup the bean
+            try {
+                beanRef.destroyData(tName);
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+            ;
         }
-      }
-      TestUtil.logTrace("Cleaning up the table");
-      beanRef2.destroyData(tName);
-      ut.commit();
-
-      if (b1 && b3)
-        testResult = true;
-
-    } catch (Exception e) {
-      beanRef.destroyData(tName);
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-    } finally {
-      // cleanup the bean
-      try {
-        beanRef2.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
-      ;
+        return testResult;
     }
-    return testResult;
-  }
 
-  public boolean test3() {
-    TestUtil.logTrace("test3");
-    TestUtil.logTrace("EJBException from EJB");
+    public boolean test2() {
+        TestUtil.logTrace("test2");
+        TestUtil.logTrace("SystemException from EJB");
 
-    Vector dbResults = new Vector();
-    boolean testResult = false;
-    boolean b1, b3;
-    b1 = b3 = false;
-    String tName = this.tName1;
-    int size = this.tSize.intValue();
-    int tRng = this.fromKey1.intValue();
-    UserTransaction ut = null;
+        Vector dbResults = new Vector();
+        boolean testResult = false;
+        boolean b1, b3;
+        b1 = b3 = false;
+        String tName = this.tName1;
+        int size = this.tSize.intValue();
+        int tRng = this.fromKey1.intValue();
+        UserTransaction ut = null;
 
-    try {
-      TestUtil.logTrace("Creating EJB instance of " + txBeanRequiresNew);
-      beanRef = (TxBean) beanHome.create();
+        try {
+            TestUtil.logTrace("Creating EJB instance of " + txBeanRequiresNew);
+            beanRef = (TxBean) beanHome.create();
 
-      TestUtil.logTrace("Logging data from server");
-      beanRef.initLogging(testProps);
+            TestUtil.logTrace("Logging data from server");
+            beanRef.initLogging(testProps);
 
-      TestUtil.logTrace("Getting the UserTransaction interface");
-      ut = sctx.getUserTransaction();
+            TestUtil.logTrace("Getting the UserTransaction interface");
+            ut = sctx.getUserTransaction();
 
-      TestUtil.logTrace("Creating the table");
-      ut.begin();
-      beanRef.createData(tName);
-      ut.commit();
+            TestUtil.logTrace("Creating the table");
+            ut.begin();
+            beanRef.createData(tName);
+            ut.commit();
 
-      TestUtil.logTrace("Delete a row and throw EJBException");
-      ut.begin();
+            TestUtil.logTrace("Delete a row and throw SystemException");
+            ut.begin();
 
-      try {
-        beanRef.delete(tName, tRng, tRng, TxBeanEJB.FLAGEJBEXCEPTION);
-        TestUtil.logTrace("Expected EJBException did not occur");
-      } catch (EJBException ee) {
-        TestUtil.logTrace("EJBException received as expected");
-        b1 = true;
-      }
+            try {
+                beanRef.delete(tName, tRng, tRng, TxBeanEJB.FLAGSYSEXCEPTION);
+                TestUtil.logTrace("Expected EJBException did not occur");
+            } catch (EJBException ee) {
+                TestUtil.logTrace("EJBException received as expected");
+                b1 = true;
+            }
 
-      // Unlike stateful EJBs, there is no 1 to 1 correspondance
-      // with clients and stateless EJBs. Thus when the stateless EJB
-      // is discarded, there is no way for the client to check for the
-      // discarded EJB. This was designed to be transparent to the client.
-      // TestUtil.logTrace("Check that bean instance was discarded");
+            // Unlike stateful EJBs, there is no 1 to 1 correspondance
+            // with clients and stateless EJBs. Thus when the stateless EJB
+            // is discarded, there is no way for the client to check for the
+            // discarded EJB. This was designed to be transparent to the client.
+            // TestUtil.logTrace("Check that bean instance was discarded");
 
-      // Rollback the transaction
-      ut.rollback();
+            // Rollback the transaction
+            ut.rollback();
 
-      // beanRef is now gone
-      // Check the table results for the rollback && Clean up the table
-      beanRef2 = (TxBean) beanHome.create();
-      beanRef2.initLogging(testProps);
+            // beanRef is now gone
+            // Check the table results for the rollback && Clean up the table
+            beanRef2 = (TxBean) beanHome.create();
+            beanRef2.initLogging(testProps);
 
-      TestUtil.logTrace("Checking table results for actual rollback occurance");
-      // Check the table results, did the rollback really occur?
-      ut.begin();
-      dbResults = beanRef2.getResults(tName);
+            TestUtil.logTrace("Checking table results for actual rollback occurance");
+            // Check the table results, did the rollback really occur?
+            ut.begin();
+            dbResults = beanRef2.getResults(tName);
 
-      TestUtil.logTrace("Verifying the test results");
-      for (int i = 1; i <= size; i++) {
-        if (dbResults.contains(new Integer(i)))
-          b3 = true;
-        else {
-          b3 = false;
-          break;
+            TestUtil.logTrace("Verifying the test results");
+            for (int i = 1; i <= size; i++) {
+                if (dbResults.contains(new Integer(i))) b3 = true;
+                else {
+                    b3 = false;
+                    break;
+                }
+            }
+            TestUtil.logTrace("Cleaning up the table");
+            beanRef2.destroyData(tName);
+            ut.commit();
+
+            if (b1 && b3) testResult = true;
+
+        } catch (Exception e) {
+            beanRef.destroyData(tName);
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+        } finally {
+            // cleanup the bean
+            try {
+                beanRef2.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+            ;
         }
-      }
-      TestUtil.logTrace("Cleaning up the table");
-      beanRef2.destroyData(tName);
-      ut.commit();
-
-      if (b1 && b3)
-        testResult = true;
-
-    } catch (Exception e) {
-      beanRef.destroyData(tName);
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-    } finally {
-      // cleanup the bean
-      try {
-        beanRef2.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
-      ;
+        return testResult;
     }
-    return testResult;
-  }
 
-  public boolean test4() {
-    TestUtil.logTrace("test4");
-    TestUtil.logTrace("Error from EJB");
+    public boolean test3() {
+        TestUtil.logTrace("test3");
+        TestUtil.logTrace("EJBException from EJB");
 
-    Vector dbResults = new Vector();
-    boolean testResult = false;
-    boolean b1, b3;
-    b1 = b3 = false;
-    String tName = this.tName1;
-    int size = this.tSize.intValue();
-    int tRng = this.fromKey1.intValue();
-    UserTransaction ut = null;
+        Vector dbResults = new Vector();
+        boolean testResult = false;
+        boolean b1, b3;
+        b1 = b3 = false;
+        String tName = this.tName1;
+        int size = this.tSize.intValue();
+        int tRng = this.fromKey1.intValue();
+        UserTransaction ut = null;
 
-    try {
-      TestUtil.logTrace("Creating EJB instance of " + txBeanRequiresNew);
-      beanRef = (TxBean) beanHome.create();
+        try {
+            TestUtil.logTrace("Creating EJB instance of " + txBeanRequiresNew);
+            beanRef = (TxBean) beanHome.create();
 
-      TestUtil.logTrace("Logging data from server");
-      beanRef.initLogging(testProps);
+            TestUtil.logTrace("Logging data from server");
+            beanRef.initLogging(testProps);
 
-      TestUtil.logTrace("Getting the UserTransaction interface");
-      ut = sctx.getUserTransaction();
+            TestUtil.logTrace("Getting the UserTransaction interface");
+            ut = sctx.getUserTransaction();
 
-      TestUtil.logTrace("Creating the table");
-      ut.begin();
-      beanRef.createData(tName);
-      ut.commit();
+            TestUtil.logTrace("Creating the table");
+            ut.begin();
+            beanRef.createData(tName);
+            ut.commit();
 
-      TestUtil.logTrace("Delete a row and throw Error");
-      ut.begin();
+            TestUtil.logTrace("Delete a row and throw EJBException");
+            ut.begin();
 
-      try {
-        beanRef.delete(tName, tRng, tRng, TxBeanEJB.FLAGERROR);
-        TestUtil.logTrace("Expected EJBException did not occur");
-      } catch (EJBException ee) {
-        TestUtil.logTrace("EJBException received as expected");
-        b1 = true;
-      }
+            try {
+                beanRef.delete(tName, tRng, tRng, TxBeanEJB.FLAGEJBEXCEPTION);
+                TestUtil.logTrace("Expected EJBException did not occur");
+            } catch (EJBException ee) {
+                TestUtil.logTrace("EJBException received as expected");
+                b1 = true;
+            }
 
-      // Unlike stateful EJBs, there is no 1 to 1 correspondance
-      // with clients and stateless EJBs. Thus when the stateless EJB
-      // is discarded, there is no way for the client to check for the
-      // discarded EJB. This was designed to be transparent to the client.
-      // TestUtil.logTrace("Check that bean instance was discarded");
+            // Unlike stateful EJBs, there is no 1 to 1 correspondance
+            // with clients and stateless EJBs. Thus when the stateless EJB
+            // is discarded, there is no way for the client to check for the
+            // discarded EJB. This was designed to be transparent to the client.
+            // TestUtil.logTrace("Check that bean instance was discarded");
 
-      // Rollback the transaction
-      ut.rollback();
+            // Rollback the transaction
+            ut.rollback();
 
-      // beanRef is now gone
-      // Check the table results for the rollback && Clean up the table
-      beanRef2 = (TxBean) beanHome.create();
-      beanRef2.initLogging(testProps);
+            // beanRef is now gone
+            // Check the table results for the rollback && Clean up the table
+            beanRef2 = (TxBean) beanHome.create();
+            beanRef2.initLogging(testProps);
 
-      TestUtil.logTrace("Checking table results for actual rollback occurance");
-      // Check the table results, did the rollback really occur?
-      ut.begin();
-      dbResults = beanRef2.getResults(tName);
+            TestUtil.logTrace("Checking table results for actual rollback occurance");
+            // Check the table results, did the rollback really occur?
+            ut.begin();
+            dbResults = beanRef2.getResults(tName);
 
-      TestUtil.logTrace("Verifying the test results");
-      for (int i = 1; i <= size; i++) {
-        if (dbResults.contains(new Integer(i)))
-          b3 = true;
-        else {
-          b3 = false;
-          break;
+            TestUtil.logTrace("Verifying the test results");
+            for (int i = 1; i <= size; i++) {
+                if (dbResults.contains(new Integer(i))) b3 = true;
+                else {
+                    b3 = false;
+                    break;
+                }
+            }
+            TestUtil.logTrace("Cleaning up the table");
+            beanRef2.destroyData(tName);
+            ut.commit();
+
+            if (b1 && b3) testResult = true;
+
+        } catch (Exception e) {
+            beanRef.destroyData(tName);
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+        } finally {
+            // cleanup the bean
+            try {
+                beanRef2.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+            ;
         }
-      }
-      TestUtil.logTrace("Cleaning up the table");
-      beanRef2.destroyData(tName);
-      ut.commit();
-
-      if (b1 && b3)
-        testResult = true;
-
-    } catch (Exception e) {
-      beanRef.destroyData(tName);
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-    } finally {
-      // cleanup the bean
-      try {
-        beanRef2.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
-      ;
+        return testResult;
     }
-    return testResult;
-  }
 
-  public void initLogging(Properties p) {
-    TestUtil.logTrace("initLogging");
-    this.testProps = p;
-    // Get the table names
-    this.tName1 = TestUtil
-        .getTableName(testProps.getProperty("TxBean_Tab1_Delete"));
-    TestUtil.logTrace("tName1: " + this.tName1);
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
+    public boolean test4() {
+        TestUtil.logTrace("test4");
+        TestUtil.logTrace("Error from EJB");
+
+        Vector dbResults = new Vector();
+        boolean testResult = false;
+        boolean b1, b3;
+        b1 = b3 = false;
+        String tName = this.tName1;
+        int size = this.tSize.intValue();
+        int tRng = this.fromKey1.intValue();
+        UserTransaction ut = null;
+
+        try {
+            TestUtil.logTrace("Creating EJB instance of " + txBeanRequiresNew);
+            beanRef = (TxBean) beanHome.create();
+
+            TestUtil.logTrace("Logging data from server");
+            beanRef.initLogging(testProps);
+
+            TestUtil.logTrace("Getting the UserTransaction interface");
+            ut = sctx.getUserTransaction();
+
+            TestUtil.logTrace("Creating the table");
+            ut.begin();
+            beanRef.createData(tName);
+            ut.commit();
+
+            TestUtil.logTrace("Delete a row and throw Error");
+            ut.begin();
+
+            try {
+                beanRef.delete(tName, tRng, tRng, TxBeanEJB.FLAGERROR);
+                TestUtil.logTrace("Expected EJBException did not occur");
+            } catch (EJBException ee) {
+                TestUtil.logTrace("EJBException received as expected");
+                b1 = true;
+            }
+
+            // Unlike stateful EJBs, there is no 1 to 1 correspondance
+            // with clients and stateless EJBs. Thus when the stateless EJB
+            // is discarded, there is no way for the client to check for the
+            // discarded EJB. This was designed to be transparent to the client.
+            // TestUtil.logTrace("Check that bean instance was discarded");
+
+            // Rollback the transaction
+            ut.rollback();
+
+            // beanRef is now gone
+            // Check the table results for the rollback && Clean up the table
+            beanRef2 = (TxBean) beanHome.create();
+            beanRef2.initLogging(testProps);
+
+            TestUtil.logTrace("Checking table results for actual rollback occurance");
+            // Check the table results, did the rollback really occur?
+            ut.begin();
+            dbResults = beanRef2.getResults(tName);
+
+            TestUtil.logTrace("Verifying the test results");
+            for (int i = 1; i <= size; i++) {
+                if (dbResults.contains(new Integer(i))) b3 = true;
+                else {
+                    b3 = false;
+                    break;
+                }
+            }
+            TestUtil.logTrace("Cleaning up the table");
+            beanRef2.destroyData(tName);
+            ut.commit();
+
+            if (b1 && b3) testResult = true;
+
+        } catch (Exception e) {
+            beanRef.destroyData(tName);
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+        } finally {
+            // cleanup the bean
+            try {
+                beanRef2.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+            ;
+        }
+        return testResult;
     }
-  }
 
+    public void initLogging(Properties p) {
+        TestUtil.logTrace("initLogging");
+        this.testProps = p;
+        // Get the table names
+        this.tName1 = TestUtil.getTableName(testProps.getProperty("TxBean_Tab1_Delete"));
+        TestUtil.logTrace("tName1: " + this.tName1);
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
+        }
+    }
 }

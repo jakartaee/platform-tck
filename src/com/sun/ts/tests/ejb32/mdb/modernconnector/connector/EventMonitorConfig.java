@@ -22,26 +22,25 @@ import jakarta.resource.spi.ResourceAdapter;
 
 public class EventMonitorConfig implements ActivationSpec {
 
-  private ResourceAdapter resourceAdapter;
+    private ResourceAdapter resourceAdapter;
 
-  private String category;
+    private String category;
 
-  public String getCategory() {
-    return category;
-  }
+    public String getCategory() {
+        return category;
+    }
 
-  public void setCategory(String category) {
-    this.category = category;
-  }
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
-  public void validate() throws InvalidPropertyException {
-  }
+    public void validate() throws InvalidPropertyException {}
 
-  public ResourceAdapter getResourceAdapter() {
-    return resourceAdapter;
-  }
+    public ResourceAdapter getResourceAdapter() {
+        return resourceAdapter;
+    }
 
-  public void setResourceAdapter(ResourceAdapter resourceAdapter) {
-    this.resourceAdapter = resourceAdapter;
-  }
+    public void setResourceAdapter(ResourceAdapter resourceAdapter) {
+        this.resourceAdapter = resourceAdapter;
+    }
 }

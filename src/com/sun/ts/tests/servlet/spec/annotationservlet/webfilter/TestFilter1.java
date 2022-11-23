@@ -19,10 +19,7 @@
  */
 package com.sun.ts.tests.servlet.spec.annotationservlet.webfilter;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.DispatcherType;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
@@ -31,30 +28,31 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
+import java.io.IOException;
 
-@WebFilter(dispatcherTypes = DispatcherType.REQUEST, urlPatterns = {
-    "/Servlet1" })
+@WebFilter(
+        dispatcherTypes = DispatcherType.REQUEST,
+        urlPatterns = {"/Servlet1"})
 public final class TestFilter1 implements Filter {
 
-  private FilterConfig filterConfig = null;
+    private FilterConfig filterConfig = null;
 
-  public void doFilter(ServletRequest request, ServletResponse response,
-      FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-    if (filterConfig == null) {
-      StaticLog.add("FAILED_FILTER1_INVOKED");
-    } else {
-      StaticLog.add("FILTER1_INVOKED");
+        if (filterConfig == null) {
+            StaticLog.add("FAILED_FILTER1_INVOKED");
+        } else {
+            StaticLog.add("FILTER1_INVOKED");
+        }
+        chain.doFilter(request, response);
     }
-    chain.doFilter(request, response);
-  }
 
-  // Remove the filter configuration object for this filter.
-  public void destroy() {
-  }
+    // Remove the filter configuration object for this filter.
+    public void destroy() {}
 
-  // initialize the filter configuration object for this filter.
-  public void init(FilterConfig filterConfig) {
-    this.filterConfig = filterConfig;
-  }
+    // initialize the filter configuration object for this filter.
+    public void init(FilterConfig filterConfig) {
+        this.filterConfig = filterConfig;
+    }
 }

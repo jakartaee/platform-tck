@@ -20,38 +20,35 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.simpletagsupport;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.JspFragment;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class SimpleEmptyBody extends SimpleTagSupport {
-  private boolean called;
+    private boolean called;
 
-  public SimpleEmptyBody() {
-    super();
-  }
-
-  public void setJspBody(JspFragment jspBody) {
-    this.called = true;
-    super.setJspBody(jspBody);
-  }
-
-  public void doTag() throws JspException, IOException {
-    JspTestUtil.debug("[SimpleEmptyBody] in doTag()");
-    this.getJspBody();
-    JspWriter out = this.getJspContext().getOut();
-
-    if (called) {
-      out.println(
-          "Test FAILED. setJspBody() unexpectedly called for empty body");
-    } else {
-      out.println("Test PASSED. setJspBody() not called");
+    public SimpleEmptyBody() {
+        super();
     }
-    this.called = false;
-  }
+
+    public void setJspBody(JspFragment jspBody) {
+        this.called = true;
+        super.setJspBody(jspBody);
+    }
+
+    public void doTag() throws JspException, IOException {
+        JspTestUtil.debug("[SimpleEmptyBody] in doTag()");
+        this.getJspBody();
+        JspWriter out = this.getJspContext().getOut();
+
+        if (called) {
+            out.println("Test FAILED. setJspBody() unexpectedly called for empty body");
+        } else {
+            out.println("Test PASSED. setJspBody() not called");
+        }
+        this.called = false;
+    }
 }

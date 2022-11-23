@@ -29,23 +29,22 @@ import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 
 @Stateless(name = "SecTestEJB")
-@Remote({ SecTest.class })
-
+@Remote({SecTest.class})
 public class SecTestEJB implements SecTest {
 
-  private SessionContext sessionContext;
+    private SessionContext sessionContext;
 
-  @RolesAllowed({ "Manager" })
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  /**
-   * Returns the name of the caller principal
-   */
-  public String getCallerPrincipalName() {
-    return sessionContext.getCallerPrincipal().getName();
-  }
+    @RolesAllowed({"Manager"})
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    /**
+     * Returns the name of the caller principal
+     */
+    public String getCallerPrincipalName() {
+        return sessionContext.getCallerPrincipal().getName();
+    }
 
-  @Resource
-  public void setSessionContext(SessionContext sc) {
-    sessionContext = sc;
-  }
+    @Resource
+    public void setSessionContext(SessionContext sc) {
+        sessionContext = sc;
+    }
 }

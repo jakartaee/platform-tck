@@ -23,17 +23,16 @@ package com.sun.ts.tests.ejb.ee.sec.cmp20.common;
 import jakarta.ejb.EJBLocalObject;
 
 public interface SecTestRoleRefLocal extends EJBLocalObject {
-  public boolean EjbSecRoleRefScope(String role);
+    public boolean EjbSecRoleRefScope(String role);
 
-  // Business Methods for CMP Fields
-  public Integer getId();
+    // Business Methods for CMP Fields
+    public Integer getId();
 
-  public String getBrandName();
+    public String getBrandName();
 
-  public void setBrandName(String s);
+    public void setBrandName(String s);
 
-  public float getPrice();
+    public float getPrice();
 
-  public void setPrice(float p);
-
+    public void setPrice(float p);
 }

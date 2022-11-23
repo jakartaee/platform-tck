@@ -16,68 +16,66 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverendpointconfig;
 
+import jakarta.websocket.Decoder;
+import jakarta.websocket.Encoder;
+import jakarta.websocket.Extension;
+import jakarta.websocket.server.ServerEndpointConfig;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import jakarta.websocket.Decoder;
-import jakarta.websocket.Encoder;
-import jakarta.websocket.Extension;
-import jakarta.websocket.server.ServerEndpointConfig;
-
 public class UserPropertiesServerEndpointConfig implements ServerEndpointConfig {
 
-  public static final String KEY_1 = "SEC-1";
-  public static final String KEY_2 = "SEC-2";
-  
-  private static final Map<String, Object> SEC_USER_PROPERTIES = new HashMap<>();
-  
-  static {
-    SEC_USER_PROPERTIES.put(KEY_1, new Object());
-    SEC_USER_PROPERTIES.put(KEY_2, new Object());
-  }
-  
-  @Override
-  public Map<String, Object> getUserProperties() {
-    // Need to always return the same object to test that the user properties
-    // exposed to modifyHandshake() are a shallow copy
-    return SEC_USER_PROPERTIES;
-  }
+    public static final String KEY_1 = "SEC-1";
+    public static final String KEY_2 = "SEC-2";
 
-  @Override
-  public Class<?> getEndpointClass() {
-    return WSProgramaticUserPropertiesServer.class;
-  }
+    private static final Map<String, Object> SEC_USER_PROPERTIES = new HashMap<>();
 
-  @Override
-  public String getPath() {
-    return "/programatic/userproperties";
-  }
+    static {
+        SEC_USER_PROPERTIES.put(KEY_1, new Object());
+        SEC_USER_PROPERTIES.put(KEY_2, new Object());
+    }
 
-  @Override
-  public List<String> getSubprotocols() {
-    return Collections.emptyList();
-  }
+    @Override
+    public Map<String, Object> getUserProperties() {
+        // Need to always return the same object to test that the user properties
+        // exposed to modifyHandshake() are a shallow copy
+        return SEC_USER_PROPERTIES;
+    }
 
-  @Override
-  public List<Extension> getExtensions() {
-    return Collections.emptyList();
-  }
+    @Override
+    public Class<?> getEndpointClass() {
+        return WSProgramaticUserPropertiesServer.class;
+    }
 
-  @Override
-  public Configurator getConfigurator() {
-    return new UserPropertiesConfigurator();
-  }
+    @Override
+    public String getPath() {
+        return "/programatic/userproperties";
+    }
 
-  @Override
-  public List<Class<? extends Encoder>> getEncoders() {
-    return Collections.emptyList();
-  }
+    @Override
+    public List<String> getSubprotocols() {
+        return Collections.emptyList();
+    }
 
-  @Override
-  public List<Class<? extends Decoder>> getDecoders() {
-    return Collections.emptyList();
-  }
+    @Override
+    public List<Extension> getExtensions() {
+        return Collections.emptyList();
+    }
 
+    @Override
+    public Configurator getConfigurator() {
+        return new UserPropertiesConfigurator();
+    }
+
+    @Override
+    public List<Class<? extends Encoder>> getEncoders() {
+        return Collections.emptyList();
+    }
+
+    @Override
+    public List<Class<? extends Decoder>> getDecoders() {
+        return Collections.emptyList();
+    }
 }

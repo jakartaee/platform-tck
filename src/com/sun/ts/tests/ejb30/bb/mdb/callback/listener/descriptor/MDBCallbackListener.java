@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb30.bb.mdb.callback.listener.descriptor;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.interceptor.InvocationContext;
 
 /**
@@ -30,46 +29,46 @@ import jakarta.interceptor.InvocationContext;
  */
 public class MDBCallbackListener {
 
-  public MDBCallbackListener() {
-    super();
-  }
+    public MDBCallbackListener() {
+        super();
+    }
 
-  // @PostConstruct
-  private void myCreate(InvocationContext inv) throws RuntimeException {
-    CallbackBean bean = (CallbackBean) inv.getTarget();
-    bean.setPostConstructCalled(true);
-    TLogger.log("PostConstruct method in " + this + " called for bean " + bean);
-    if (bean.getEJBContext() != null) {
-      bean.setInjectionDone(true);
+    // @PostConstruct
+    private void myCreate(InvocationContext inv) throws RuntimeException {
+        CallbackBean bean = (CallbackBean) inv.getTarget();
+        bean.setPostConstructCalled(true);
+        TLogger.log("PostConstruct method in " + this + " called for bean " + bean);
+        if (bean.getEJBContext() != null) {
+            bean.setInjectionDone(true);
+        }
+        try {
+            inv.proceed();
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        }
     }
-    try {
-      inv.proceed();
-    } catch (RuntimeException e) {
-      throw e;
-    } catch (Exception e) {
-      throw new IllegalStateException(e);
-    }
-  }
 
-  // @PreDestroy
-  private void myRemove(InvocationContext inv) throws RuntimeException {
-    Object bean = inv.getTarget();
-    if (bean instanceof CallbackBean) {
-      CallbackBean b = (CallbackBean) bean;
-      b.setPreDestroyCalled(true);
-      TLogger.log("PreDestroy method in " + this + " called for bean " + bean);
+    // @PreDestroy
+    private void myRemove(InvocationContext inv) throws RuntimeException {
+        Object bean = inv.getTarget();
+        if (bean instanceof CallbackBean) {
+            CallbackBean b = (CallbackBean) bean;
+            b.setPreDestroyCalled(true);
+            TLogger.log("PreDestroy method in " + this + " called for bean " + bean);
+        }
+        try {
+            inv.proceed();
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        }
     }
-    try {
-      inv.proceed();
-    } catch (RuntimeException e) {
-      throw e;
-    } catch (Exception e) {
-      throw new IllegalStateException(e);
-    }
-  }
 
-  // @AroundInvoke
-  private Object intercept(InvocationContext inv) throws Exception {
-    return inv.proceed();
-  }
+    // @AroundInvoke
+    private Object intercept(InvocationContext inv) throws Exception {
+        return inv.proceed();
+    }
 }

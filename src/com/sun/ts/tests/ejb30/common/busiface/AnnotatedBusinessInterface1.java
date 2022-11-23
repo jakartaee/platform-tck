@@ -28,7 +28,7 @@ import jakarta.ejb.Remote;
  */
 @Remote
 public interface AnnotatedBusinessInterface1 {
-  public void remove(); // for sfsb only
+    public void remove(); // for sfsb only
 
-  public boolean annotatedBusinessInterfaceMethod(String[] s);
+    public boolean annotatedBusinessInterfaceMethod(String[] s);
 }

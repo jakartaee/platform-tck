@@ -17,68 +17,67 @@
 package com.sun.ts.tests.webservices12.ejb.annotations.WSEjbWebServiceProviderTest;
 
 import jakarta.ejb.Stateless;
-import jakarta.jws.WebService;
-import jakarta.xml.ws.Provider;
-import jakarta.xml.ws.WebServiceProvider;
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBElement;
 import jakarta.xml.bind.Marshaller;
-import jakarta.xml.bind.Unmarshaller;
+import jakarta.xml.ws.Provider;
 import jakarta.xml.ws.WebServiceException;
-import java.io.ByteArrayOutputStream;
+import jakarta.xml.ws.WebServiceProvider;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
 
-@WebServiceProvider(portName = "HelloPort", serviceName = "HelloService", targetNamespace = "http://hello.org/wsdl", wsdlLocation = "META-INF/wsdl/HelloService.wsdl")
+@WebServiceProvider(
+        portName = "HelloPort",
+        serviceName = "HelloService",
+        targetNamespace = "http://hello.org/wsdl",
+        wsdlLocation = "META-INF/wsdl/HelloService.wsdl")
 @Stateless(name = "WSEjbWebServiceProviderTest")
 public class HelloBean implements Provider<Source> {
-  private static final JAXBContext jaxbContext = createJAXBContext();
+    private static final JAXBContext jaxbContext = createJAXBContext();
 
-  public jakarta.xml.bind.JAXBContext getJAXBContext() {
-    return jaxbContext;
-  }
-
-  private static jakarta.xml.bind.JAXBContext createJAXBContext() {
-    try {
-      return jakarta.xml.bind.JAXBContext.newInstance(ObjectFactory.class);
-    } catch (jakarta.xml.bind.JAXBException e) {
-      throw new WebServiceException(e.getMessage(), e);
-    }
-  }
-
-  public Source invoke(Source request) {
-    try {
-      recvBean(request);
-      return sendBean();
-    } catch (Exception e) {
-      e.printStackTrace();
-      throw new WebServiceException("Provider endpoint failed", e);
-    }
-  }
-
-  private void recvBean(Source source) throws Exception {
-    System.out.println("**** recvBean ******");
-    JAXBElement element = (JAXBElement) jaxbContext.createUnmarshaller()
-        .unmarshal(source);
-    System.out
-        .println("name=" + element.getName() + " value=" + element.getValue());
-    if (element.getValue() instanceof SayHello) {
-      SayHello hello = (SayHello) element.getValue();
-      System.out.println("Say Hello from " + hello.getArg0());
+    public jakarta.xml.bind.JAXBContext getJAXBContext() {
+        return jaxbContext;
     }
 
-  }
+    private static jakarta.xml.bind.JAXBContext createJAXBContext() {
+        try {
+            return jakarta.xml.bind.JAXBContext.newInstance(ObjectFactory.class);
+        } catch (jakarta.xml.bind.JAXBException e) {
+            throw new WebServiceException(e.getMessage(), e);
+        }
+    }
 
-  private Source sendBean() throws Exception {
-    System.out.println("**** sendBean ******");
-    SayHelloResponse resp = new SayHelloResponse();
-    resp.setReturn("WSEjbWebServiceProvider-SayHello");
-    ByteArrayOutputStream bout = new ByteArrayOutputStream();
-    ObjectFactory factory = new ObjectFactory();
-    Marshaller m = jaxbContext.createMarshaller();
-    m.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
-    m.marshal(factory.createSayHelloResponse(resp), bout);
-    return new StreamSource(new ByteArrayInputStream(bout.toByteArray()));
-  }
+    public Source invoke(Source request) {
+        try {
+            recvBean(request);
+            return sendBean();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new WebServiceException("Provider endpoint failed", e);
+        }
+    }
+
+    private void recvBean(Source source) throws Exception {
+        System.out.println("**** recvBean ******");
+        JAXBElement element = (JAXBElement) jaxbContext.createUnmarshaller().unmarshal(source);
+        System.out.println("name=" + element.getName() + " value=" + element.getValue());
+        if (element.getValue() instanceof SayHello) {
+            SayHello hello = (SayHello) element.getValue();
+            System.out.println("Say Hello from " + hello.getArg0());
+        }
+    }
+
+    private Source sendBean() throws Exception {
+        System.out.println("**** sendBean ******");
+        SayHelloResponse resp = new SayHelloResponse();
+        resp.setReturn("WSEjbWebServiceProvider-SayHello");
+        ByteArrayOutputStream bout = new ByteArrayOutputStream();
+        ObjectFactory factory = new ObjectFactory();
+        Marshaller m = jaxbContext.createMarshaller();
+        m.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
+        m.marshal(factory.createSayHelloResponse(resp), bout);
+        return new StreamSource(new ByteArrayInputStream(bout.toByteArray()));
+    }
 }

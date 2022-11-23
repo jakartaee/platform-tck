@@ -20,65 +20,60 @@
 
 package com.sun.ts.tests.servlet.ee.spec.crosscontext;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class ForwardedServlet extends HttpServlet {
 
-  private static final String TEST_HEADER = "testname";
+    private static final String TEST_HEADER = "testname";
 
-  private static final Class[] TEST_ARGS = { HttpServletRequest.class,
-      HttpServletResponse.class };
+    private static final Class[] TEST_ARGS = {HttpServletRequest.class, HttpServletResponse.class};
 
-  public void service(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
+    public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-    String test = (String) req.getParameter(TEST_HEADER);
-    if (test == null)
-      test = (String) req.getAttribute(TEST_HEADER);
+        String test = (String) req.getParameter(TEST_HEADER);
+        if (test == null) test = (String) req.getAttribute(TEST_HEADER);
 
-    try {
-      Method method = this.getClass().getMethod(test, TEST_ARGS);
-      method.invoke(this, new Object[] { req, res });
-    } catch (InvocationTargetException ite) {
-      throw new ServletException(ite.getTargetException());
-    } catch (NoSuchMethodException nsme) {
-      throw new ServletException("Test: " + test + " does not exist");
-    } catch (Throwable t) {
-      throw new ServletException("Error executing test: " + test, t);
+        try {
+            Method method = this.getClass().getMethod(test, TEST_ARGS);
+            method.invoke(this, new Object[] {req, res});
+        } catch (InvocationTargetException ite) {
+            throw new ServletException(ite.getTargetException());
+        } catch (NoSuchMethodException nsme) {
+            throw new ServletException("Test: " + test + " does not exist");
+        } catch (Throwable t) {
+            throw new ServletException("Error executing test: " + test, t);
+        }
     }
-  }
 
-  public void session(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    public void session(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
-    String aname = "crosscontext_cts";
-    String status = "FAIL";
+        PrintWriter pw = response.getWriter();
+        String aname = "crosscontext_cts";
+        String status = "FAIL";
 
-    HttpSession ses = request.getSession();
+        HttpSession ses = request.getSession();
 
-    Object o = ses.getAttribute(aname);
+        Object o = ses.getAttribute(aname);
 
-    if (o != null) {
-      if (o instanceof String) {
-        String attr = (String) o;
-        pw.println("attribute " + aname + " set with incorrect value=" + attr);
-      } else {
-        pw.println("attribute " + aname + " set to non-String type");
-      }
-      pw.println("Forward Test FAILED");
-    } else {
-      pw.println("attribute " + aname + " not set");
-      pw.println("Forward Test PASSED");
+        if (o != null) {
+            if (o instanceof String) {
+                String attr = (String) o;
+                pw.println("attribute " + aname + " set with incorrect value=" + attr);
+            } else {
+                pw.println("attribute " + aname + " set to non-String type");
+            }
+            pw.println("Forward Test FAILED");
+        } else {
+            pw.println("attribute " + aname + " not set");
+            pw.println("Forward Test PASSED");
+        }
     }
-  }
 }

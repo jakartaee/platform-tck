@@ -24,20 +24,19 @@ import jakarta.ejb.EJBLocalObject;
 
 public interface LineItemLocal extends EJBLocalObject {
 
-  // Methods for LineItemLocal CMP Fields
-  public String getId();
+    // Methods for LineItemLocal CMP Fields
+    public String getId();
 
-  public int getQuantity();
+    public int getQuantity();
 
-  public void setQuantity(int v);
+    public void setQuantity(int v);
 
-  // Methods for LineItemLocal CMR Fields
-  public OrderLocal getOrder();
+    // Methods for LineItemLocal CMR Fields
+    public OrderLocal getOrder();
 
-  public void setOrder(OrderLocal v);
+    public void setOrder(OrderLocal v);
 
-  public ProductLocal getProduct();
+    public ProductLocal getProduct();
 
-  public void setProduct(ProductLocal v);
-
+    public void setProduct(ProductLocal v);
 }

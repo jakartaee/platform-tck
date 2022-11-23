@@ -23,13 +23,15 @@ package com.sun.ts.tests.internal.implementation.sjsas.saaj.com.sun.xml.messagin
 import java.util.ListResourceBundle;
 
 public class LocalStrings extends ListResourceBundle {
-  public Object[][] getContents() {
-    return contents;
-  }
+    public Object[][] getContents() {
+        return contents;
+    }
 
-  static final Object[][] contents = { { "message1", "This is message1." },
-      { "message2", "This is message2 [{0} {1} {2} {3}]." },
-      { "message3", "This is message3 with arg {0} and arg {1}." },
-      { "message4", "This is message4 with just arg {0}." },
-      { "message5", "This is message5 [{0} {1} {2}]." } };
+    static final Object[][] contents = {
+        {"message1", "This is message1."},
+        {"message2", "This is message2 [{0} {1} {2} {3}]."},
+        {"message3", "This is message3 with arg {0} and arg {1}."},
+        {"message4", "This is message4 with just arg {0}."},
+        {"message5", "This is message5 [{0} {1} {2}]."}
+    };
 }

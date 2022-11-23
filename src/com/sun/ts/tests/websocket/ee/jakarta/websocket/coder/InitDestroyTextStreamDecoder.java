@@ -17,29 +17,28 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.coder;
 
+import com.sun.ts.tests.websocket.common.stringbean.StringBean;
+import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextStreamDecoder;
+import jakarta.websocket.DecodeException;
+import jakarta.websocket.EndpointConfig;
 import java.io.IOException;
 import java.io.Reader;
 
-import com.sun.ts.tests.websocket.common.stringbean.StringBean;
-import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextStreamDecoder;
-
-import jakarta.websocket.DecodeException;
-import jakarta.websocket.EndpointConfig;
-
 public class InitDestroyTextStreamDecoder extends StringBeanTextStreamDecoder {
-  @Override
-  public void init(EndpointConfig config) {
-    Logger.onInit(getClass());
-  }
+    @Override
+    public void init(EndpointConfig config) {
+        Logger.onInit(getClass());
+    }
 
-  @Override
-  public void destroy() {
-    Logger.onDestroy(getClass());
-  }
+    @Override
+    public void destroy() {
+        Logger.onDestroy(getClass());
+    }
 
-  @Override
-  public StringBean decode(Reader r) throws DecodeException, IOException {
-    Logger.onCode(getClass());
-    return super.decode(r);
-  };
+    @Override
+    public StringBean decode(Reader r) throws DecodeException, IOException {
+        Logger.onCode(getClass());
+        return super.decode(r);
+    }
+    ;
 }

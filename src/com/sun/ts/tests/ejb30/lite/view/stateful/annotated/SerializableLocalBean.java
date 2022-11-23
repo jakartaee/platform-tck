@@ -22,12 +22,9 @@ package com.sun.ts.tests.ejb30.lite.view.stateful.annotated;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocal1Base;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
-
 import jakarta.ejb.Stateful;
 
 @Stateful
-public class SerializableLocalBean extends BusinessLocal1Base
-    implements java.io.Serializable, BusinessLocalIF1 {
-  public void remove() {
-  }
+public class SerializableLocalBean extends BusinessLocal1Base implements java.io.Serializable, BusinessLocalIF1 {
+    public void remove() {}
 }

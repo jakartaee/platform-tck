@@ -23,5 +23,4 @@ package com.sun.ts.tests.ejb30.tx.session.stateless.cm.varargs;
 import jakarta.ejb.Remote;
 
 @Remote
-public interface VarargsRemoteIF extends VarargsCommonIF {
-}
+public interface VarargsRemoteIF extends VarargsCommonIF {}

@@ -20,6 +20,13 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.util;
 
+import com.sun.ts.lib.util.TSNamingContext;
+import com.sun.ts.lib.util.TestUtil;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.EntityContext;
+import jakarta.ejb.SessionContext;
+import jakarta.transaction.UserTransaction;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,558 +35,508 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Properties;
-
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import com.sun.ts.lib.util.TSNamingContext;
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJBException;
-import jakarta.ejb.EntityContext;
-import jakarta.ejb.SessionContext;
-import jakarta.transaction.UserTransaction;
-
 public class DBSupport implements java.io.Serializable {
 
-  private static final String DATASOURCE1 = "java:comp/env/jdbc/DB1";
+    private static final String DATASOURCE1 = "java:comp/env/jdbc/DB1";
 
-  private transient Connection dbConnection = null;
+    private transient Connection dbConnection = null;
 
-  private EntityContext ectx = null;
+    private EntityContext ectx = null;
 
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  private UserTransaction ut = null;
+    private UserTransaction ut = null;
 
-  private String user1 = null; // TS1 username
+    private String user1 = null; // TS1 username
 
-  private String password1 = null; // TS1 password
+    private String password1 = null; // TS1 password
 
-  private String dsname1 = null; // TS1 dataSourcename
+    private String dsname1 = null; // TS1 dataSourcename
 
-  private DataSource ds1 = null; // TS1 dataSource
+    private DataSource ds1 = null; // TS1 dataSource
 
-  private int cofID = 0; // Coffee ID (Primary Key)
+    private int cofID = 0; // Coffee ID (Primary Key)
 
-  private String cofName = null; // Coffee Name
+    private String cofName = null; // Coffee Name
 
-  private float cofPrice = 0; // Coffee Price
+    private float cofPrice = 0; // Coffee Price
 
-  private boolean debug = true; // For debug
+    private boolean debug = true; // For debug
 
-  public DBSupport(EntityContext ectx) throws Exception {
-    this(ectx, null);
-  }
-
-  public DBSupport(EntityContext ectx, Properties p) throws Exception {
-
-    TestUtil.logTrace("DBSupport");
-
-    this.ectx = ectx;
-    if (debug)
-      TestUtil.logMsg("Initializing DBSupport for an Entity Bean");
-
-    try {
-      if (debug)
-        TestUtil.logMsg("Get naming context");
-      this.nctx = new TSNamingContext();
-    } catch (NamingException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("Unable to get naming context");
+    public DBSupport(EntityContext ectx) throws Exception {
+        this(ectx, null);
     }
 
-    // Lookup DataSource DB1 from JNDI
-    if (debug)
-      TestUtil.logMsg("Lookup DataSource DB1 from JNDI : " + DATASOURCE1);
-    try {
-      this.dsname1 = DATASOURCE1;
-      this.ds1 = (DataSource) nctx.lookup(this.dsname1);
-      if (debug)
-        TestUtil.logMsg("dsname1=" + this.dsname1);
-      if (debug)
-        TestUtil.logMsg("ds1=" + this.ds1);
-    } catch (NamingException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("Unable to lookup " + DATASOURCE1);
-    }
-  } /* end DBSupport */
+    public DBSupport(EntityContext ectx, Properties p) throws Exception {
 
-  public DBSupport(SessionContext sctx) throws Exception {
-    this(sctx, null);
-  }
+        TestUtil.logTrace("DBSupport");
 
-  public DBSupport(SessionContext sctx, Properties p) throws Exception {
+        this.ectx = ectx;
+        if (debug) TestUtil.logMsg("Initializing DBSupport for an Entity Bean");
 
-    TestUtil.logTrace("DBSupport");
-    TestUtil.logMsg("DBSupport");
-
-    this.sctx = sctx;
-    if (debug)
-      TestUtil.logMsg("Initializing DBSupport for an Session Bean");
-
-    try {
-      if (debug)
-        TestUtil.logMsg("Get naming context");
-      this.nctx = new TSNamingContext();
-    } catch (NamingException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("Unable to get naming context");
-    }
-
-    // Lookup DataSource DB1 from JNDI
-    if (debug)
-      TestUtil.logMsg("Lookup DataSource DB1 from JNDI : " + DATASOURCE1);
-    try {
-      this.dsname1 = DATASOURCE1;
-      this.ds1 = (DataSource) nctx.lookup(DATASOURCE1);
-      if (debug)
-        TestUtil.logMsg("dsname1=" + this.dsname1);
-      if (debug)
-        TestUtil.logMsg("ds1=" + this.ds1);
-    } catch (NamingException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("Unable to lookup " + DATASOURCE1);
-    }
-  } /* end DBSupport */
-
-  public void tableInit() throws SQLException {
-    Statement stmt = null;
-
-    TestUtil.logTrace("tableInit");
-
-    getDBConnection();
-
-    try {
-      stmt = dbConnection.createStatement();
-      String sqlStr = TestUtil.getProperty("BB_Tab_Delete");
-      stmt.executeUpdate(sqlStr);
-      TestUtil.logMsg(
-          "Deleted all rows from table " + TestUtil.getTableName(sqlStr));
-    } catch (SQLException s) {
-      TestUtil.printStackTrace(s);
-      throw new SQLException("SQL Exception in tableInit:" + s.getMessage());
-    } finally {
-      try {
-        if (stmt != null)
-          stmt.close();
-        closeDBConnection();
-      } catch (SQLException e) {
-        TestUtil.printStackTrace(e);
-      }
-    }
-  } /* end tableInit */
-
-  public void tableDrop() throws SQLException {
-    Statement stmt = null;
-
-    TestUtil.logTrace("tableDrop");
-
-    getDBConnection();
-
-    try {
-      stmt = dbConnection.createStatement();
-      String sqlStr = TestUtil.getProperty("BB_Tab_Delete");
-      stmt.executeUpdate(sqlStr);
-      TestUtil.logMsg(
-          "Deleted all rows from table " + TestUtil.getTableName(sqlStr));
-    } catch (SQLException s) {
-      TestUtil.printStackTrace(s);
-      throw new SQLException("SQL Exception in tableDrop:" + s.getMessage());
-    } finally {
-      try {
-        if (stmt != null)
-          stmt.close();
-        closeDBConnection();
-      } catch (SQLException e) {
-        TestUtil.printStackTrace(e);
-      }
-    }
-
-  } /* end tableDrop */
-
-  public void tablePopulate(int cofID[], String cofName[], float cofPrice[])
-      throws SQLException {
-    PreparedStatement pStmt = null;
-
-    TestUtil.logTrace("tablePopulate");
-
-    tableInit();
-
-    getDBConnection();
-
-    TestUtil.logMsg("Inserting " + cofID.length + " rows of data into table");
-
-    try {
-      String sqlStr = TestUtil.getProperty("BB_Insert1");
-      TestUtil.logMsg(sqlStr);
-      pStmt = dbConnection.prepareStatement(sqlStr);
-      for (int i = 0; i < cofID.length; i++) {
-        pStmt.setInt(1, cofID[i]);
-        pStmt.setString(2, cofName[i]);
-        pStmt.setFloat(3, cofPrice[i]);
-        if (pStmt.executeUpdate() != 1) {
-          throw new SQLException("SQL INSERT failed in tablePopulate");
+        try {
+            if (debug) TestUtil.logMsg("Get naming context");
+            this.nctx = new TSNamingContext();
+        } catch (NamingException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("Unable to get naming context");
         }
-      }
-    } catch (SQLException e) {
-      TestUtil.printStackTrace(e);
-      throw new SQLException("SQL Exception in tablePopulate" + e.getMessage());
-    } finally {
-      try {
-        if (pStmt != null)
-          pStmt.close();
-        closeDBConnection();
-      } catch (SQLException e) {
-        TestUtil.printStackTrace(e);
-      }
+
+        // Lookup DataSource DB1 from JNDI
+        if (debug) TestUtil.logMsg("Lookup DataSource DB1 from JNDI : " + DATASOURCE1);
+        try {
+            this.dsname1 = DATASOURCE1;
+            this.ds1 = (DataSource) nctx.lookup(this.dsname1);
+            if (debug) TestUtil.logMsg("dsname1=" + this.dsname1);
+            if (debug) TestUtil.logMsg("ds1=" + this.ds1);
+        } catch (NamingException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("Unable to lookup " + DATASOURCE1);
+        }
+    } /* end DBSupport */
+
+    public DBSupport(SessionContext sctx) throws Exception {
+        this(sctx, null);
     }
-  } /* end tablePopulate */
 
-  public boolean keyExists(int pkey) throws SQLException {
-    PreparedStatement pStmt = null;
-    ResultSet result = null;
+    public DBSupport(SessionContext sctx, Properties p) throws Exception {
 
-    TestUtil.logTrace("keyExists");
+        TestUtil.logTrace("DBSupport");
+        TestUtil.logMsg("DBSupport");
 
-    getDBConnection();
+        this.sctx = sctx;
+        if (debug) TestUtil.logMsg("Initializing DBSupport for an Session Bean");
 
-    try {
-      String sqlStr = TestUtil.getProperty("BB_Select1");
-      TestUtil.logMsg(sqlStr);
-      pStmt = dbConnection.prepareStatement(sqlStr);
-      pStmt.setInt(1, pkey);
-      result = pStmt.executeQuery();
-      if (!result.next())
-        return false;
-      else
-        return true;
-    } catch (SQLException e) {
-      TestUtil.printStackTrace(e);
-      throw new SQLException("SQL Exception in keyExists");
-    } finally {
-      try {
-        if (result != null)
-          result.close();
-        if (pStmt != null)
-          pStmt.close();
-        closeDBConnection();
-      } catch (SQLException e) {
-        TestUtil.printStackTrace(e);
-      }
-    }
-  } /* end keyExists */
+        try {
+            if (debug) TestUtil.logMsg("Get naming context");
+            this.nctx = new TSNamingContext();
+        } catch (NamingException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("Unable to get naming context");
+        }
 
-  public Collection nameToKeyCollection(String name) throws SQLException {
-    PreparedStatement pStmt = null;
-    ResultSet result = null;
+        // Lookup DataSource DB1 from JNDI
+        if (debug) TestUtil.logMsg("Lookup DataSource DB1 from JNDI : " + DATASOURCE1);
+        try {
+            this.dsname1 = DATASOURCE1;
+            this.ds1 = (DataSource) nctx.lookup(DATASOURCE1);
+            if (debug) TestUtil.logMsg("dsname1=" + this.dsname1);
+            if (debug) TestUtil.logMsg("ds1=" + this.ds1);
+        } catch (NamingException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("Unable to lookup " + DATASOURCE1);
+        }
+    } /* end DBSupport */
 
-    TestUtil.logTrace("nameToKey");
+    public void tableInit() throws SQLException {
+        Statement stmt = null;
 
-    getDBConnection();
+        TestUtil.logTrace("tableInit");
 
-    try {
-      String sqlStr = TestUtil.getProperty("BB_Select2");
-      TestUtil.logMsg(sqlStr);
-      pStmt = dbConnection.prepareStatement(sqlStr);
-      pStmt.setString(1, name);
-      result = pStmt.executeQuery();
-      ArrayList a = new ArrayList();
-      while (result.next()) {
-        Integer pkey = new Integer(result.getInt(1));
-        a.add(pkey);
-      }
-      return a;
-    } catch (SQLException e) {
-      TestUtil.printStackTrace(e);
-      throw new SQLException("SQL Exception in nameToKey: " + e.getMessage());
-    } finally {
-      try {
-        if (result != null)
-          result.close();
-        if (pStmt != null)
-          pStmt.close();
-        closeDBConnection();
-      } catch (SQLException e) {
-        TestUtil.printStackTrace(e);
-      }
-    }
-  } /* end nameToKey */
+        getDBConnection();
 
-  public Collection priceToKeyCollection(float price) throws SQLException {
-    PreparedStatement pStmt = null;
-    ResultSet result = null;
+        try {
+            stmt = dbConnection.createStatement();
+            String sqlStr = TestUtil.getProperty("BB_Tab_Delete");
+            stmt.executeUpdate(sqlStr);
+            TestUtil.logMsg("Deleted all rows from table " + TestUtil.getTableName(sqlStr));
+        } catch (SQLException s) {
+            TestUtil.printStackTrace(s);
+            throw new SQLException("SQL Exception in tableInit:" + s.getMessage());
+        } finally {
+            try {
+                if (stmt != null) stmt.close();
+                closeDBConnection();
+            } catch (SQLException e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
+    } /* end tableInit */
 
-    TestUtil.logTrace("priceToKey");
+    public void tableDrop() throws SQLException {
+        Statement stmt = null;
 
-    getDBConnection();
+        TestUtil.logTrace("tableDrop");
 
-    try {
-      String sqlStr = TestUtil.getProperty("BB_Select3");
-      TestUtil.logMsg(sqlStr);
-      pStmt = dbConnection.prepareStatement(sqlStr);
-      pStmt.setFloat(1, price);
-      result = pStmt.executeQuery();
-      ArrayList a = new ArrayList();
-      while (result.next()) {
-        Integer pkey = new Integer(result.getInt(1));
-        a.add(pkey);
-      }
-      return a;
-    } catch (SQLException e) {
-      TestUtil.printStackTrace(e);
-      throw new SQLException("SQL Exception in priceToKey" + e.getMessage());
-    } finally {
-      try {
-        if (result != null)
-          result.close();
-        if (pStmt != null)
-          pStmt.close();
-        closeDBConnection();
-      } catch (SQLException e) {
-        TestUtil.printStackTrace(e);
-      }
-    }
-  } /* end priceToKey */
+        getDBConnection();
 
-  public Collection priceRangeToCollection(float min, float max)
-      throws SQLException {
-    PreparedStatement pStmt = null;
-    ResultSet result = null;
+        try {
+            stmt = dbConnection.createStatement();
+            String sqlStr = TestUtil.getProperty("BB_Tab_Delete");
+            stmt.executeUpdate(sqlStr);
+            TestUtil.logMsg("Deleted all rows from table " + TestUtil.getTableName(sqlStr));
+        } catch (SQLException s) {
+            TestUtil.printStackTrace(s);
+            throw new SQLException("SQL Exception in tableDrop:" + s.getMessage());
+        } finally {
+            try {
+                if (stmt != null) stmt.close();
+                closeDBConnection();
+            } catch (SQLException e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
+    } /* end tableDrop */
 
-    TestUtil.logTrace("priceRangeToCollection");
+    public void tablePopulate(int cofID[], String cofName[], float cofPrice[]) throws SQLException {
+        PreparedStatement pStmt = null;
 
-    getDBConnection();
+        TestUtil.logTrace("tablePopulate");
 
-    try {
-      String sqlStr = TestUtil.getProperty("BB_Select4");
-      TestUtil.logMsg(sqlStr);
-      pStmt = dbConnection.prepareStatement(sqlStr);
-      pStmt.setFloat(1, min);
-      pStmt.setFloat(2, max);
-      result = pStmt.executeQuery();
-      ArrayList a = new ArrayList();
-      while (result.next()) {
-        Integer pkey = new Integer(result.getInt(1));
-        a.add(pkey);
-      }
-      return a;
-    } catch (SQLException e) {
-      TestUtil.printStackTrace(e);
-      throw new SQLException(
-          "SQL Exception in priceRangeToCollection" + e.getMessage());
-    } finally {
-      try {
-        if (result != null)
-          result.close();
-        if (pStmt != null)
-          pStmt.close();
-        closeDBConnection();
-      } catch (SQLException e) {
-        TestUtil.printStackTrace(e);
-      }
-    }
-  } /* end priceRangeToCollection */
+        tableInit();
 
-  public Collection primaryKeyRangeToCollection(Integer min, Integer max)
-      throws SQLException {
-    PreparedStatement pStmt = null;
-    ResultSet result = null;
+        getDBConnection();
 
-    TestUtil.logTrace("primaryKeyRangeToCollection");
+        TestUtil.logMsg("Inserting " + cofID.length + " rows of data into table");
 
-    getDBConnection();
+        try {
+            String sqlStr = TestUtil.getProperty("BB_Insert1");
+            TestUtil.logMsg(sqlStr);
+            pStmt = dbConnection.prepareStatement(sqlStr);
+            for (int i = 0; i < cofID.length; i++) {
+                pStmt.setInt(1, cofID[i]);
+                pStmt.setString(2, cofName[i]);
+                pStmt.setFloat(3, cofPrice[i]);
+                if (pStmt.executeUpdate() != 1) {
+                    throw new SQLException("SQL INSERT failed in tablePopulate");
+                }
+            }
+        } catch (SQLException e) {
+            TestUtil.printStackTrace(e);
+            throw new SQLException("SQL Exception in tablePopulate" + e.getMessage());
+        } finally {
+            try {
+                if (pStmt != null) pStmt.close();
+                closeDBConnection();
+            } catch (SQLException e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
+    } /* end tablePopulate */
 
-    try {
-      String sqlStr = TestUtil.getProperty("BB_Select5");
-      TestUtil.logMsg(sqlStr);
-      pStmt = dbConnection.prepareStatement(sqlStr);
-      pStmt.setInt(1, min.intValue());
-      pStmt.setInt(2, max.intValue());
-      result = pStmt.executeQuery();
-      ArrayList a = new ArrayList();
-      while (result.next()) {
-        Integer pkey = new Integer(result.getInt(1));
-        a.add(pkey);
-      }
-      return a;
-    } catch (SQLException e) {
-      TestUtil.printStackTrace(e);
-      throw new SQLException(
-          "SQL Exception in primaryKeyRangeToCollection: " + e.getMessage());
-    } finally {
-      try {
-        if (result != null)
-          result.close();
-        if (pStmt != null)
-          pStmt.close();
-        closeDBConnection();
-      } catch (SQLException e) {
-        TestUtil.printStackTrace(e);
-      }
-    }
-  } /* end primaryKeyRangeToCollection */
+    public boolean keyExists(int pkey) throws SQLException {
+        PreparedStatement pStmt = null;
+        ResultSet result = null;
 
-  public void createNewRow(int cofID, String cofName, float cofPrice)
-      throws CreateException, SQLException {
-    PreparedStatement pStmt = null;
+        TestUtil.logTrace("keyExists");
 
-    TestUtil.logTrace("createNewRow");
+        getDBConnection();
 
-    getDBConnection();
+        try {
+            String sqlStr = TestUtil.getProperty("BB_Select1");
+            TestUtil.logMsg(sqlStr);
+            pStmt = dbConnection.prepareStatement(sqlStr);
+            pStmt.setInt(1, pkey);
+            result = pStmt.executeQuery();
+            if (!result.next()) return false;
+            else return true;
+        } catch (SQLException e) {
+            TestUtil.printStackTrace(e);
+            throw new SQLException("SQL Exception in keyExists");
+        } finally {
+            try {
+                if (result != null) result.close();
+                if (pStmt != null) pStmt.close();
+                closeDBConnection();
+            } catch (SQLException e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
+    } /* end keyExists */
 
-    try {
-      String sqlStr = TestUtil.getProperty("BB_Insert1");
-      TestUtil.logMsg(sqlStr);
-      pStmt = dbConnection.prepareStatement(sqlStr);
-      pStmt.setInt(1, cofID);
-      pStmt.setString(2, cofName);
-      pStmt.setFloat(3, cofPrice);
-      if (pStmt.executeUpdate() != 1) {
-        throw new CreateException("SQL INSERT failed in createNewRow");
-      } else {
-        this.cofID = cofID;
-        this.cofName = cofName;
-        this.cofPrice = cofPrice;
-      }
-    } catch (SQLException e) {
-      TestUtil.printStackTrace(e);
-      throw new SQLException("SQL Exception in createNewRow" + e.getMessage());
-    } finally {
-      try {
-        if (pStmt != null)
-          pStmt.close();
-        closeDBConnection();
-      } catch (SQLException e) {
-        TestUtil.printStackTrace(e);
-      }
-    }
-  } /* end createNewRow */
+    public Collection nameToKeyCollection(String name) throws SQLException {
+        PreparedStatement pStmt = null;
+        ResultSet result = null;
 
-  public float loadPrice(int pkey) throws SQLException {
-    PreparedStatement pStmt = null;
-    ResultSet result = null;
+        TestUtil.logTrace("nameToKey");
 
-    TestUtil.logTrace("loadPrice");
+        getDBConnection();
 
-    getDBConnection();
+        try {
+            String sqlStr = TestUtil.getProperty("BB_Select2");
+            TestUtil.logMsg(sqlStr);
+            pStmt = dbConnection.prepareStatement(sqlStr);
+            pStmt.setString(1, name);
+            result = pStmt.executeQuery();
+            ArrayList a = new ArrayList();
+            while (result.next()) {
+                Integer pkey = new Integer(result.getInt(1));
+                a.add(pkey);
+            }
+            return a;
+        } catch (SQLException e) {
+            TestUtil.printStackTrace(e);
+            throw new SQLException("SQL Exception in nameToKey: " + e.getMessage());
+        } finally {
+            try {
+                if (result != null) result.close();
+                if (pStmt != null) pStmt.close();
+                closeDBConnection();
+            } catch (SQLException e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
+    } /* end nameToKey */
 
-    try {
-      String sqlStr = TestUtil.getProperty("BB_Select6");
-      TestUtil.logMsg(sqlStr);
-      pStmt = dbConnection.prepareStatement(sqlStr);
-      pStmt.setInt(1, pkey);
-      result = pStmt.executeQuery();
-      if (!result.next()) {
-        throw new SQLException(
-            "SQL SELECT failed: no record for primary key = " + pkey);
-      }
-      return result.getFloat(1);
-    } catch (SQLException e) {
-      TestUtil.printStackTrace(e);
-      throw new SQLException("SQL Exception in loadPrice: " + e.getMessage());
-    } finally {
-      try {
-        if (result != null)
-          result.close();
-        if (pStmt != null)
-          pStmt.close();
-        closeDBConnection();
-      } catch (SQLException e) {
-        TestUtil.printStackTrace(e);
-      }
-    }
-  } /* loadPrice */
+    public Collection priceToKeyCollection(float price) throws SQLException {
+        PreparedStatement pStmt = null;
+        ResultSet result = null;
 
-  public void storePrice(int pkey, float cofPrice) throws SQLException {
-    PreparedStatement pStmt = null;
+        TestUtil.logTrace("priceToKey");
 
-    TestUtil.logTrace("storePrice");
+        getDBConnection();
 
-    getDBConnection();
+        try {
+            String sqlStr = TestUtil.getProperty("BB_Select3");
+            TestUtil.logMsg(sqlStr);
+            pStmt = dbConnection.prepareStatement(sqlStr);
+            pStmt.setFloat(1, price);
+            result = pStmt.executeQuery();
+            ArrayList a = new ArrayList();
+            while (result.next()) {
+                Integer pkey = new Integer(result.getInt(1));
+                a.add(pkey);
+            }
+            return a;
+        } catch (SQLException e) {
+            TestUtil.printStackTrace(e);
+            throw new SQLException("SQL Exception in priceToKey" + e.getMessage());
+        } finally {
+            try {
+                if (result != null) result.close();
+                if (pStmt != null) pStmt.close();
+                closeDBConnection();
+            } catch (SQLException e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
+    } /* end priceToKey */
 
-    try {
-      String sqlStr = TestUtil.getProperty("BB_Update1");
-      TestUtil.logMsg(sqlStr);
-      pStmt = dbConnection.prepareStatement(sqlStr);
-      pStmt.setFloat(1, cofPrice);
-      pStmt.setInt(2, pkey);
-      if (pStmt.executeUpdate() != 1) {
-        throw new SQLException("SQL UPDATE failed in storePrice");
-      } else {
-        this.cofPrice = cofPrice;
-      }
-    } catch (SQLException e) {
-      TestUtil.printStackTrace(e);
-      throw new SQLException("SQL Exception in storePrice: " + e.getMessage());
-    } finally {
-      try {
-        if (pStmt != null)
-          pStmt.close();
-        closeDBConnection();
-      } catch (SQLException e) {
-        TestUtil.printStackTrace(e);
-      }
-    }
-  } /* storePrice */
+    public Collection priceRangeToCollection(float min, float max) throws SQLException {
+        PreparedStatement pStmt = null;
+        ResultSet result = null;
 
-  public void removeRow(int pkey) throws SQLException {
-    PreparedStatement pStmt = null;
+        TestUtil.logTrace("priceRangeToCollection");
 
-    TestUtil.logTrace("removeRow");
+        getDBConnection();
 
-    getDBConnection();
+        try {
+            String sqlStr = TestUtil.getProperty("BB_Select4");
+            TestUtil.logMsg(sqlStr);
+            pStmt = dbConnection.prepareStatement(sqlStr);
+            pStmt.setFloat(1, min);
+            pStmt.setFloat(2, max);
+            result = pStmt.executeQuery();
+            ArrayList a = new ArrayList();
+            while (result.next()) {
+                Integer pkey = new Integer(result.getInt(1));
+                a.add(pkey);
+            }
+            return a;
+        } catch (SQLException e) {
+            TestUtil.printStackTrace(e);
+            throw new SQLException("SQL Exception in priceRangeToCollection" + e.getMessage());
+        } finally {
+            try {
+                if (result != null) result.close();
+                if (pStmt != null) pStmt.close();
+                closeDBConnection();
+            } catch (SQLException e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
+    } /* end priceRangeToCollection */
 
-    try {
-      String sqlStr = TestUtil.getProperty("BB_Delete1");
-      TestUtil.logMsg(sqlStr);
-      pStmt = dbConnection.prepareStatement(sqlStr);
-      pStmt.setInt(1, pkey);
-      if (pStmt.executeUpdate() != 1) {
-        throw new SQLException("SQL DELETE failed in removeRow");
-      }
-    } catch (SQLException e) {
-      TestUtil.printStackTrace(e);
-      throw new SQLException("SQL Exception in removeRow: " + e.getMessage());
-    } finally {
-      try {
-        if (pStmt != null)
-          pStmt.close();
-        closeDBConnection();
-      } catch (SQLException e) {
-        TestUtil.printStackTrace(e);
-      }
-    }
-  } /* removeRow */
+    public Collection primaryKeyRangeToCollection(Integer min, Integer max) throws SQLException {
+        PreparedStatement pStmt = null;
+        ResultSet result = null;
 
-  public void getDBConnection() throws SQLException {
-    TestUtil.logTrace("getDBConnection");
-    if (dbConnection != null) {
-      try {
-        closeDBConnection();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
-    }
-    dbConnection = ds1.getConnection();
-  } // end getDBConnection
+        TestUtil.logTrace("primaryKeyRangeToCollection");
 
-  public void closeDBConnection() throws SQLException {
-    TestUtil.logTrace("closeDBConnection");
-    if (dbConnection != null) {
-      dbConnection.close();
-      dbConnection = null;
-    }
-  } // end closeDBConnection
+        getDBConnection();
 
-  public void beginUserTransaction() throws Exception {
-    ut.begin();
-  } // end beginUserTransaction
+        try {
+            String sqlStr = TestUtil.getProperty("BB_Select5");
+            TestUtil.logMsg(sqlStr);
+            pStmt = dbConnection.prepareStatement(sqlStr);
+            pStmt.setInt(1, min.intValue());
+            pStmt.setInt(2, max.intValue());
+            result = pStmt.executeQuery();
+            ArrayList a = new ArrayList();
+            while (result.next()) {
+                Integer pkey = new Integer(result.getInt(1));
+                a.add(pkey);
+            }
+            return a;
+        } catch (SQLException e) {
+            TestUtil.printStackTrace(e);
+            throw new SQLException("SQL Exception in primaryKeyRangeToCollection: " + e.getMessage());
+        } finally {
+            try {
+                if (result != null) result.close();
+                if (pStmt != null) pStmt.close();
+                closeDBConnection();
+            } catch (SQLException e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
+    } /* end primaryKeyRangeToCollection */
 
-  public void commitUserTransaction() throws Exception {
-    ut.commit();
-  } // end commitUserTransaction
+    public void createNewRow(int cofID, String cofName, float cofPrice) throws CreateException, SQLException {
+        PreparedStatement pStmt = null;
+
+        TestUtil.logTrace("createNewRow");
+
+        getDBConnection();
+
+        try {
+            String sqlStr = TestUtil.getProperty("BB_Insert1");
+            TestUtil.logMsg(sqlStr);
+            pStmt = dbConnection.prepareStatement(sqlStr);
+            pStmt.setInt(1, cofID);
+            pStmt.setString(2, cofName);
+            pStmt.setFloat(3, cofPrice);
+            if (pStmt.executeUpdate() != 1) {
+                throw new CreateException("SQL INSERT failed in createNewRow");
+            } else {
+                this.cofID = cofID;
+                this.cofName = cofName;
+                this.cofPrice = cofPrice;
+            }
+        } catch (SQLException e) {
+            TestUtil.printStackTrace(e);
+            throw new SQLException("SQL Exception in createNewRow" + e.getMessage());
+        } finally {
+            try {
+                if (pStmt != null) pStmt.close();
+                closeDBConnection();
+            } catch (SQLException e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
+    } /* end createNewRow */
+
+    public float loadPrice(int pkey) throws SQLException {
+        PreparedStatement pStmt = null;
+        ResultSet result = null;
+
+        TestUtil.logTrace("loadPrice");
+
+        getDBConnection();
+
+        try {
+            String sqlStr = TestUtil.getProperty("BB_Select6");
+            TestUtil.logMsg(sqlStr);
+            pStmt = dbConnection.prepareStatement(sqlStr);
+            pStmt.setInt(1, pkey);
+            result = pStmt.executeQuery();
+            if (!result.next()) {
+                throw new SQLException("SQL SELECT failed: no record for primary key = " + pkey);
+            }
+            return result.getFloat(1);
+        } catch (SQLException e) {
+            TestUtil.printStackTrace(e);
+            throw new SQLException("SQL Exception in loadPrice: " + e.getMessage());
+        } finally {
+            try {
+                if (result != null) result.close();
+                if (pStmt != null) pStmt.close();
+                closeDBConnection();
+            } catch (SQLException e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
+    } /* loadPrice */
+
+    public void storePrice(int pkey, float cofPrice) throws SQLException {
+        PreparedStatement pStmt = null;
+
+        TestUtil.logTrace("storePrice");
+
+        getDBConnection();
+
+        try {
+            String sqlStr = TestUtil.getProperty("BB_Update1");
+            TestUtil.logMsg(sqlStr);
+            pStmt = dbConnection.prepareStatement(sqlStr);
+            pStmt.setFloat(1, cofPrice);
+            pStmt.setInt(2, pkey);
+            if (pStmt.executeUpdate() != 1) {
+                throw new SQLException("SQL UPDATE failed in storePrice");
+            } else {
+                this.cofPrice = cofPrice;
+            }
+        } catch (SQLException e) {
+            TestUtil.printStackTrace(e);
+            throw new SQLException("SQL Exception in storePrice: " + e.getMessage());
+        } finally {
+            try {
+                if (pStmt != null) pStmt.close();
+                closeDBConnection();
+            } catch (SQLException e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
+    } /* storePrice */
+
+    public void removeRow(int pkey) throws SQLException {
+        PreparedStatement pStmt = null;
+
+        TestUtil.logTrace("removeRow");
+
+        getDBConnection();
+
+        try {
+            String sqlStr = TestUtil.getProperty("BB_Delete1");
+            TestUtil.logMsg(sqlStr);
+            pStmt = dbConnection.prepareStatement(sqlStr);
+            pStmt.setInt(1, pkey);
+            if (pStmt.executeUpdate() != 1) {
+                throw new SQLException("SQL DELETE failed in removeRow");
+            }
+        } catch (SQLException e) {
+            TestUtil.printStackTrace(e);
+            throw new SQLException("SQL Exception in removeRow: " + e.getMessage());
+        } finally {
+            try {
+                if (pStmt != null) pStmt.close();
+                closeDBConnection();
+            } catch (SQLException e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
+    } /* removeRow */
+
+    public void getDBConnection() throws SQLException {
+        TestUtil.logTrace("getDBConnection");
+        if (dbConnection != null) {
+            try {
+                closeDBConnection();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
+        dbConnection = ds1.getConnection();
+    } // end getDBConnection
+
+    public void closeDBConnection() throws SQLException {
+        TestUtil.logTrace("closeDBConnection");
+        if (dbConnection != null) {
+            dbConnection.close();
+            dbConnection = null;
+        }
+    } // end closeDBConnection
+
+    public void beginUserTransaction() throws Exception {
+        ut.begin();
+    } // end beginUserTransaction
+
+    public void commitUserTransaction() throws Exception {
+        ut.commit();
+    } // end commitUserTransaction
 }

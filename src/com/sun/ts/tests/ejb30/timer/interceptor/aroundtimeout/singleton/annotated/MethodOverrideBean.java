@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.singleton.annotat
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeoutIF;
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.InterceptorBase;
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.MethodOverrideBeanBase;
-
 import jakarta.ejb.Singleton;
 import jakarta.interceptor.AroundTimeout;
 import jakarta.interceptor.InvocationContext;
@@ -33,15 +32,12 @@ import jakarta.interceptor.InvocationContext;
  * that the superclass' @AroundTimeout is disabled.
  */
 @Singleton
-public class MethodOverrideBean extends MethodOverrideBeanBase
-    implements AroundTimeoutIF {
-  private static final String simpleName = "MethodOverrideBean";
+public class MethodOverrideBean extends MethodOverrideBeanBase implements AroundTimeoutIF {
+    private static final String simpleName = "MethodOverrideBean";
 
-  @AroundTimeout
-  @Override
-  protected Object aroundTimeoutInMethodOverrideBeanBase(InvocationContext inv)
-      throws Exception {
-    return InterceptorBase.handleAroundTimeout(inv, simpleName, this,
-        "aroundTimeoutInMethodOverrideBean");
-  }
+    @AroundTimeout
+    @Override
+    protected Object aroundTimeoutInMethodOverrideBeanBase(InvocationContext inv) throws Exception {
+        return InterceptorBase.handleAroundTimeout(inv, simpleName, this, "aroundTimeoutInMethodOverrideBean");
+    }
 }

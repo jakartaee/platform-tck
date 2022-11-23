@@ -19,62 +19,56 @@
  */
 package com.sun.ts.tests.ejb30.timer.interceptor.business.mdb;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.ejb30.timer.common.MessageSenderBean;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
+import java.util.Properties;
 
-public class Client extends
-    com.sun.ts.tests.ejb30.timer.interceptor.business.common.ClientBase {
+public class Client extends com.sun.ts.tests.ejb30.timer.interceptor.business.common.ClientBase {
 
-  @Resource(name = "sendQueue")
-  private Queue sendQueue;
+    @Resource(name = "sendQueue")
+    private Queue sendQueue;
 
-  @Resource(name = "queueConnectionFactory")
-  private QueueConnectionFactory queueConnectionFactory;
+    @Resource(name = "queueConnectionFactory")
+    private QueueConnectionFactory queueConnectionFactory;
 
-  @EJB(beanInterface = TestBean.class, beanName = "TestBean")
-  private TestBean testBean;
+    @EJB(beanInterface = TestBean.class, beanName = "TestBean")
+    private TestBean testBean;
 
-  @Override
-  public void setup(String[] args, Properties p) {
-    super.setup(args, p);
+    @Override
+    public void setup(String[] args, Properties p) {
+        super.setup(args, p);
 
-    // instantiate a dummy instance to satisfy super.aroundInvokeMethods
-    this.businessTimerBean = new BusinessTimerBean();
+        // instantiate a dummy instance to satisfy super.aroundInvokeMethods
+        this.businessTimerBean = new BusinessTimerBean();
+    }
 
-  }
+    /*
+     * @testName: aroundInvokeMethods
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: create a timer in all interceptor methods. Verify they
+     * expire as expected.
+     */
+    @Override
+    public void aroundInvokeMethods() {
+        MessageSenderBean.sendMessage(queueConnectionFactory, sendQueue, getTestName(), 0);
+        super.aroundInvokeMethods();
+    }
 
-  /*
-   * @testName: aroundInvokeMethods
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: create a timer in all interceptor methods. Verify they
-   * expire as expected.
-   */
-  @Override
-  public void aroundInvokeMethods() {
-    MessageSenderBean.sendMessage(queueConnectionFactory, sendQueue,
-        getTestName(), 0);
-    super.aroundInvokeMethods();
-  }
-
-  /*
-   * @testName: messageFromSingletonBeanToMDB
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: This test is not necessarily related to timer. It verifies
-   * that a Singleton bean can send a message to the queue bound to the MDB.
-   */
-  public void messageFromSingletonBeanToMDB() throws InterruptedException {
-    testBean.messageFromSingletonBeanToMDB(getTestName());
-    assertEquals("Check the reply message from BusinessTimerBean.",
-        getTestName(), testBean.getReplyFromMDB());
-  }
+    /*
+     * @testName: messageFromSingletonBeanToMDB
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: This test is not necessarily related to timer. It verifies
+     * that a Singleton bean can send a message to the queue bound to the MDB.
+     */
+    public void messageFromSingletonBeanToMDB() throws InterruptedException {
+        testBean.messageFromSingletonBeanToMDB(getTestName());
+        assertEquals("Check the reply message from BusinessTimerBean.", getTestName(), testBean.getReplyFromMDB());
+    }
 }

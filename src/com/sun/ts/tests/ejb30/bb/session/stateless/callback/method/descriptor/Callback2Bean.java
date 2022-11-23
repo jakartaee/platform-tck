@@ -23,7 +23,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.callback.method.descriptor;
 import com.sun.ts.tests.ejb30.common.callback.Callback2BeanBase;
 import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.Remote;
@@ -31,31 +30,31 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
 @Stateless(name = "Callback2Bean")
-@Remote({ Callback2IF.class })
+@Remote({Callback2IF.class})
 public class Callback2Bean extends Callback2BeanBase implements Callback2IF {
 
-  @Resource
-  private SessionContext sctx;
+    @Resource
+    private SessionContext sctx;
 
-  public Callback2Bean() {
-    super();
-  }
+    public Callback2Bean() {
+        super();
+    }
 
-  public EJBContext getEJBContext() {
-    return this.sctx;
-  }
+    public EJBContext getEJBContext() {
+        return this.sctx;
+    }
 
-  // ================= callback methods ===================================
-  /**
-   * 2 callback annotations are applied on the same method
-   */
-  // @PostConstruct
-  // @PreDestroy
-  private void sharedCallback() throws RuntimeException {
-    this.setPostConstructOrPreDestroyCalled(true);
-    TLogger.log("PostConstruct or PreDestroy method called:" + this);
-  }
+    // ================= callback methods ===================================
+    /**
+     * 2 callback annotations are applied on the same method
+     */
+    // @PostConstruct
+    // @PreDestroy
+    private void sharedCallback() throws RuntimeException {
+        this.setPostConstructOrPreDestroyCalled(true);
+        TLogger.log("PostConstruct or PreDestroy method called:" + this);
+    }
 
-  // ================== business methods ====================================
+    // ================== business methods ====================================
 
 }

@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.jpa.core.inheritance.nonentity;
 
-import java.sql.Date;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import java.sql.Date;
 
 /*
  * PartTimeEmployee
@@ -34,36 +33,33 @@ import jakarta.persistence.Entity;
 @DiscriminatorValue("NONEXEMPT")
 public class PartTimeEmployee extends Employee {
 
-  private float wage;
+    private float wage;
 
-  public PartTimeEmployee() {
-  }
+    public PartTimeEmployee() {}
 
-  public PartTimeEmployee(int id, String firstName, String lastName,
-      Date hireDate, float wage) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.hireDate = hireDate;
-    this.wage = wage;
-  }
+    public PartTimeEmployee(int id, String firstName, String lastName, Date hireDate, float wage) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.hireDate = hireDate;
+        this.wage = wage;
+    }
 
-  public PartTimeEmployee(int id, String firstName, String lastName) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
+    public PartTimeEmployee(int id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
-  // ===========================================================
-  // getters and setters for the state fields
+    // ===========================================================
+    // getters and setters for the state fields
 
-  @Column(name = "SALARY")
-  public float getWage() {
-    return wage;
-  }
+    @Column(name = "SALARY")
+    public float getWage() {
+        return wage;
+    }
 
-  public void setWage(float wage) {
-    this.wage = wage;
-  }
-
+    public void setWage(float wage) {
+        this.wage = wage;
+    }
 }

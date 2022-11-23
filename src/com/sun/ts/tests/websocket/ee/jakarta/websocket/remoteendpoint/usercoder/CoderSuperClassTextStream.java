@@ -17,24 +17,22 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder;
 
-import java.io.IOException;
-import java.io.Writer;
-
 import jakarta.websocket.Decoder;
 import jakarta.websocket.EncodeException;
 import jakarta.websocket.Encoder;
+import java.io.IOException;
+import java.io.Writer;
 
 public abstract class CoderSuperClassTextStream<T> extends CoderSuperClass
-    implements Encoder.TextStream<T>, Decoder.TextStream<T> {
+        implements Encoder.TextStream<T>, Decoder.TextStream<T> {
 
-  @Override
-  public void encode(T object, Writer writer) throws EncodeException {
-    try {
-      writer.write(COMMON_CODED_STRING);
-      writer.close();
-    } catch (IOException e) {
-      throw new EncodeException(object, COMMON_CODED_STRING, e);
+    @Override
+    public void encode(T object, Writer writer) throws EncodeException {
+        try {
+            writer.write(COMMON_CODED_STRING);
+            writer.close();
+        } catch (IOException e) {
+            throw new EncodeException(object, COMMON_CODED_STRING, e);
+        }
     }
-  }
-
 }

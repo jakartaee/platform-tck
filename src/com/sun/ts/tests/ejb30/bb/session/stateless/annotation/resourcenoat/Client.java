@@ -25,153 +25,152 @@ import com.sun.ts.tests.ejb30.common.annotation.resource.ClientBase;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceNoop;
 import com.sun.ts.tests.ejb30.common.annotation.resource.UserTransactionNegativeIF;
-
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
-  @EJB(beanName = "ResourceSetterBean")
-  private static ResourceIF resourceSetterBean;
+    @EJB(beanName = "ResourceSetterBean")
+    private static ResourceIF resourceSetterBean;
 
-  @EJB(beanName = "ResourceFieldBean")
-  private static ResourceIF resourceFieldBean;
+    @EJB(beanName = "ResourceFieldBean")
+    private static ResourceIF resourceFieldBean;
 
-  private ResourceIF resourceTypeBean = new ResourceNoop();
+    private ResourceIF resourceTypeBean = new ResourceNoop();
 
-  // @EJB(beanName="ResourceTypeBean")
-  // private static ResourceIF resourceTypeBean;
+    // @EJB(beanName="ResourceTypeBean")
+    // private static ResourceIF resourceTypeBean;
 
-  // @EJB(beanName="UserTransactionNegativeBean")
-  // private static UserTransactionNegativeIF userTransactionNegativeBean;
+    // @EJB(beanName="UserTransactionNegativeBean")
+    // private static UserTransactionNegativeIF userTransactionNegativeBean;
 
-  protected ResourceIF getResourceSetterBean() {
-    return resourceSetterBean;
-  }
+    protected ResourceIF getResourceSetterBean() {
+        return resourceSetterBean;
+    }
 
-  protected ResourceIF getResourceFieldBean() {
-    return resourceFieldBean;
-  }
+    protected ResourceIF getResourceFieldBean() {
+        return resourceFieldBean;
+    }
 
-  protected ResourceIF getResourceTypeBean() {
-    return resourceTypeBean;
-  }
+    protected ResourceIF getResourceTypeBean() {
+        return resourceTypeBean;
+    }
 
-  protected UserTransactionNegativeIF getUserTransactionNegativeBean() {
-    return null;
-  }
+    protected UserTransactionNegativeIF getUserTransactionNegativeBean() {
+        return null;
+    }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * @testName: ejbContextTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
+    /*
+     * @testName: ejbContextTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: dataSourceTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
+    /*
+     * @testName: dataSourceTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: dataSource2Test
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
+    /*
+     * @testName: dataSource2Test
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: urlTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
+    /*
+     * @testName: urlTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: mailSessionTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
+    /*
+     * @testName: mailSessionTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: queueConnectionFactoryTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
+    /*
+     * @testName: queueConnectionFactoryTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: topicConnectionFactoryTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
+    /*
+     * @testName: topicConnectionFactoryTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: connectionFactoryQTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
+    /*
+     * @testName: connectionFactoryQTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: connectionFactoryTTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
+    /*
+     * @testName: connectionFactoryTTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: userTransactionTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: declare and inject a reference to UserTransaction in
-   * ejb-jar.xml with <resource-env-ref> element.
-   * 
-   */
+    /*
+     * @testName: userTransactionTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: declare and inject a reference to UserTransaction in
+     * ejb-jar.xml with <resource-env-ref> element.
+     *
+     */
 
-  /*
-   * @testName: topicTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
+    /*
+     * @testName: topicTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: queueTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
+    /*
+     * @testName: queueTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
 }

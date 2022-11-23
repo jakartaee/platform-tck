@@ -17,12 +17,9 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpointonmessage;
 
-import java.lang.reflect.Method;
-
 import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
 import com.sun.ts.tests.websocket.common.client.StringClientEndpoint;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -31,45 +28,45 @@ import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
+import java.lang.reflect.Method;
 
 @ClientEndpoint()
-public class WSDefaultMaxLengthClientEndpoint
-    extends AnnotatedClientEndpoint<String> {
+public class WSDefaultMaxLengthClientEndpoint extends AnnotatedClientEndpoint<String> {
 
-  public WSDefaultMaxLengthClientEndpoint() {
-    super(new StringClientEndpoint());
-  }
-
-  @SuppressWarnings("unused")
-  @OnMessage
-  public String echo(String echo) {
-    try {
-      Method m = getClass().getMethod("echo", String.class);
-      OnMessage onm = m.getAnnotation(OnMessage.class);
-      long size = onm.maxMessageSize();
-      String msg = String.valueOf(size);
-      super.onMessage(msg);
-      return msg;
-    } catch (Exception e) {
-      return IOUtil.printStackTrace(e);
+    public WSDefaultMaxLengthClientEndpoint() {
+        super(new StringClientEndpoint());
     }
-  }
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+    @SuppressWarnings("unused")
+    @OnMessage
+    public String echo(String echo) {
+        try {
+            Method m = getClass().getMethod("echo", String.class);
+            OnMessage onm = m.getAnnotation(OnMessage.class);
+            long size = onm.maxMessageSize();
+            String msg = String.valueOf(size);
+            super.onMessage(msg);
+            return msg;
+        } catch (Exception e) {
+            return IOUtil.printStackTrace(e);
+        }
+    }
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+    @OnError
+    @Override
+    public void onError(Session session, Throwable t) {
+        super.onError(session, t);
+    }
 
-  @OnOpen
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+    @OnClose
+    @Override
+    public void onClose(Session session, CloseReason closeReason) {
+        super.onClose(session, closeReason);
+    }
+
+    @OnOpen
+    @Override
+    public void onOpen(Session session, EndpointConfig config) {
+        super.onOpen(session, config);
+    }
 }

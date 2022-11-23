@@ -29,90 +29,88 @@ import jakarta.persistence.Version;
 @Access(AccessType.FIELD)
 public class Int_Field implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+    // ===========================================================
+    // instance variables
 
-  @Id
-  protected String id;
+    @Id
+    protected String id;
 
-  @Version
-  protected int value;
+    @Version
+    protected int value;
 
-  @Basic
-  protected String name;
+    @Basic
+    protected String name;
 
-  // ===========================================================
-  // constructors
-  public Int_Field() {
-  }
+    // ===========================================================
+    // constructors
+    public Int_Field() {}
 
-  public Int_Field(String id) {
-    this.id = id;
-  }
-
-  public Int_Field(String id, int value) {
-
-    this.id = id;
-    this.value = value;
-  }
-
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return this.name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public int getVersion() {
-    return this.value;
-  }
-
-  public void setVersion(int value) {
-    this.value = value;
-  }
-
-  public boolean equals(Object o) {
-    Int_Field other;
-    boolean result = false;
-
-    if (!(o instanceof Int_Field)) {
-      return result;
-    }
-    other = (Int_Field) o;
-
-    if (this.getId().equals(other.getId()) && this.value == (other.value)
-        && this.name.equals(other.getName())) {
-      result = true;
+    public Int_Field(String id) {
+        this.id = id;
     }
 
-    return result;
-  }
+    public Int_Field(String id, int value) {
 
-  public int hashCode() {
-    int myHash;
+        this.id = id;
+        this.value = value;
+    }
 
-    myHash = this.getId().hashCode() + this.value + this.name.hashCode();
+    public String getId() {
+        return id;
+    }
 
-    return myHash;
-  }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", version: " + value);
-    result.append(", name: " + name);
-    result.append("]");
-    return result.toString();
-  }
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getVersion() {
+        return this.value;
+    }
+
+    public void setVersion(int value) {
+        this.value = value;
+    }
+
+    public boolean equals(Object o) {
+        Int_Field other;
+        boolean result = false;
+
+        if (!(o instanceof Int_Field)) {
+            return result;
+        }
+        other = (Int_Field) o;
+
+        if (this.getId().equals(other.getId()) && this.value == (other.value) && this.name.equals(other.getName())) {
+            result = true;
+        }
+
+        return result;
+    }
+
+    public int hashCode() {
+        int myHash;
+
+        myHash = this.getId().hashCode() + this.value + this.name.hashCode();
+
+        return myHash;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getId());
+        result.append(", version: " + value);
+        result.append(", name: " + name);
+        result.append("]");
+        return result.toString();
+    }
 }

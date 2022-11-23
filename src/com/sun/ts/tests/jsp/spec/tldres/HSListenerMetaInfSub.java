@@ -25,15 +25,13 @@ import jakarta.servlet.http.HttpSessionEvent;
 import jakarta.servlet.http.HttpSessionListener;
 
 public final class HSListenerMetaInfSub implements HttpSessionListener {
-  public void sessionCreated(HttpSessionEvent event) {
-    HttpSession session = event.getSession();
-    session.setAttribute("session.created.meta.inf.sub",
-        "session created meta inf sub.");
-  }
+    public void sessionCreated(HttpSessionEvent event) {
+        HttpSession session = event.getSession();
+        session.setAttribute("session.created.meta.inf.sub", "session created meta inf sub.");
+    }
 
-  public void sessionDestroyed(HttpSessionEvent event) {
-    HttpSession session = event.getSession();
-    session.setAttribute("session.destroyed.meta.inf.sub",
-        "session about to be destroyed meta inf sub.");
-  }
+    public void sessionDestroyed(HttpSessionEvent event) {
+        HttpSession session = event.getSession();
+        session.setAttribute("session.destroyed.meta.inf.sub", "session about to be destroyed meta inf sub.");
+    }
 }

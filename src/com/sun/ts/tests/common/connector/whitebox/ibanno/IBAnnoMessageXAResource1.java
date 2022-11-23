@@ -16,90 +16,87 @@
 
 package com.sun.ts.tests.common.connector.whitebox.ibanno;
 
+import com.sun.ts.tests.common.connector.util.ConnectorStatus;
+import com.sun.ts.tests.common.connector.whitebox.Debug;
 import javax.transaction.xa.XAException;
 import javax.transaction.xa.XAResource;
 import javax.transaction.xa.Xid;
 
-import com.sun.ts.tests.common.connector.util.ConnectorStatus;
-import com.sun.ts.tests.common.connector.whitebox.Debug;
-
 public class IBAnnoMessageXAResource1 implements XAResource {
 
-  public IBAnnoMessageXAResource1() {
-    Debug.trace("IBAnnoMessageXAResource1 constructor");
-  }
-
-  private void handleResourceException(Exception ex) throws XAException {
-
-    XAException xae = new XAException(ex.toString());
-    xae.errorCode = XAException.XAER_RMERR;
-    throw xae;
-  }
-
-  public void commit(Xid xid, boolean onePhase) throws XAException {
-    try {
-      Debug.trace("IBAnnoMessageXAResource1.commit");
-    } catch (Exception ex) {
-      handleResourceException(ex);
+    public IBAnnoMessageXAResource1() {
+        Debug.trace("IBAnnoMessageXAResource1 constructor");
     }
-  }
 
-  public void start(Xid xid, int flags) throws XAException {
-    try {
-      Debug.trace("IBAnnoMessageXAResource1.start");
-    } catch (Exception ex) {
-      handleResourceException(ex);
+    private void handleResourceException(Exception ex) throws XAException {
+
+        XAException xae = new XAException(ex.toString());
+        xae.errorCode = XAException.XAER_RMERR;
+        throw xae;
     }
-  }
 
-  public void end(Xid xid, int flags) throws XAException {
-    try {
-      Debug.trace("IBAnnoMessageXAResource1.end");
-    } catch (Exception ex) {
-      handleResourceException(ex);
+    public void commit(Xid xid, boolean onePhase) throws XAException {
+        try {
+            Debug.trace("IBAnnoMessageXAResource1.commit");
+        } catch (Exception ex) {
+            handleResourceException(ex);
+        }
     }
-  }
 
-  public void forget(Xid xid) throws XAException {
-    Debug.trace("IBAnnoMessageXAResource1.forget");
-  }
-
-  public int getTransactionTimeout() throws XAException {
-    return 1;
-  }
-
-  public boolean isSameRM(XAResource other) throws XAException {
-    Debug.trace("IBAnnoMessageXAResource1.isSameRM");
-    return false;
-  }
-
-  public int prepare(Xid xid) throws XAException {
-    ConnectorStatus.getConnectorStatus()
-        .logAPI("IBAnnoMessageXAResource1.prepare", "", "");
-    Debug.trace("IBAnnoMessageXAResource1.prepare");
-    try {
-      return XAResource.XA_OK;
-    } catch (Exception ex) {
-      handleResourceException(ex);
-      return XAException.XAER_RMERR;
+    public void start(Xid xid, int flags) throws XAException {
+        try {
+            Debug.trace("IBAnnoMessageXAResource1.start");
+        } catch (Exception ex) {
+            handleResourceException(ex);
+        }
     }
-  }
 
-  public Xid[] recover(int flag) throws XAException {
-    Debug.trace("IBAnnoMessageXAResource1.recover");
-    return null;
-  }
-
-  public void rollback(Xid xid) throws XAException {
-    try {
-      Debug.trace("IBAnnoMessageXAResource1.rollback");
-    } catch (Exception ex) {
-      handleResourceException(ex);
+    public void end(Xid xid, int flags) throws XAException {
+        try {
+            Debug.trace("IBAnnoMessageXAResource1.end");
+        } catch (Exception ex) {
+            handleResourceException(ex);
+        }
     }
-  }
 
-  public boolean setTransactionTimeout(int seconds) throws XAException {
-    return true;
-  }
+    public void forget(Xid xid) throws XAException {
+        Debug.trace("IBAnnoMessageXAResource1.forget");
+    }
 
+    public int getTransactionTimeout() throws XAException {
+        return 1;
+    }
+
+    public boolean isSameRM(XAResource other) throws XAException {
+        Debug.trace("IBAnnoMessageXAResource1.isSameRM");
+        return false;
+    }
+
+    public int prepare(Xid xid) throws XAException {
+        ConnectorStatus.getConnectorStatus().logAPI("IBAnnoMessageXAResource1.prepare", "", "");
+        Debug.trace("IBAnnoMessageXAResource1.prepare");
+        try {
+            return XAResource.XA_OK;
+        } catch (Exception ex) {
+            handleResourceException(ex);
+            return XAException.XAER_RMERR;
+        }
+    }
+
+    public Xid[] recover(int flag) throws XAException {
+        Debug.trace("IBAnnoMessageXAResource1.recover");
+        return null;
+    }
+
+    public void rollback(Xid xid) throws XAException {
+        try {
+            Debug.trace("IBAnnoMessageXAResource1.rollback");
+        } catch (Exception ex) {
+            handleResourceException(ex);
+        }
+    }
+
+    public boolean setTransactionTimeout(int seconds) throws XAException {
+        return true;
+    }
 }

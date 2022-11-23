@@ -20,16 +20,14 @@
 package com.sun.ts.tests.ejb30.timer.interceptor.business.common;
 
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 
 public class Interceptor2 extends InterceptorBase {
-  @SuppressWarnings("unused")
-  @AroundInvoke
-  private Object aroundInvoke(InvocationContext inv) throws Exception {
-    TimerUtil.createMillisecondLaterTimer(timerService,
-        "Interceptor2.aroundInvoke");
-    return inv.proceed();
-  }
+    @SuppressWarnings("unused")
+    @AroundInvoke
+    private Object aroundInvoke(InvocationContext inv) throws Exception {
+        TimerUtil.createMillisecondLaterTimer(timerService, "Interceptor2.aroundInvoke");
+        return inv.proceed();
+    }
 }

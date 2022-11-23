@@ -16,9 +16,6 @@
 
 package com.sun.ts.tests.servlet.spec.security.secbasic;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.HttpConstraint;
@@ -29,52 +26,51 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /*
  * This should allow the Aministrator role perms to access any of the servlet
- * methods.  This is an annotation based equivalent of ServletSecTestServlet 
+ * methods.  This is an annotation based equivalent of ServletSecTestServlet
  * with the main difference being that this uses Servlet based annotations whereas
  * ServletSecTestServlet uses DD for configuring its security constraints.
  */
 
-@DeclareRoles({ "Administrator", "Manager", "Employee" })
-@ServletSecurity(value = @HttpConstraint(EmptyRoleSemantic.DENY), httpMethodConstraints = {
-    @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
-    @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator") })
-@WebServlet(name = "ServletSecAnnoTestLogicalName", urlPatterns = {
-    "/ServletSecAnnoTest" })
+@DeclareRoles({"Administrator", "Manager", "Employee"})
+@ServletSecurity(
+        value = @HttpConstraint(EmptyRoleSemantic.DENY),
+        httpMethodConstraints = {
+            @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
+            @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator")
+        })
+@WebServlet(
+        name = "ServletSecAnnoTestLogicalName",
+        urlPatterns = {"/ServletSecAnnoTest"})
 public class ServletSecAnnoTestServlet extends HttpServlet {
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    PrintWriter out = response.getWriter();
+        PrintWriter out = response.getWriter();
 
-    System.out.println("Inside  ServletSecAnnoTestServlet ....." + "<BR>");
-    System.out.println("The user principal is: "
-        + request.getUserPrincipal().getName() + "<BR>");
-    System.err.println("The user principal is: "
-        + request.getUserPrincipal().getName() + "<BR>");
+        System.out.println("Inside  ServletSecAnnoTestServlet ....." + "<BR>");
+        System.out.println(
+                "The user principal is: " + request.getUserPrincipal().getName() + "<BR>");
+        System.err.println(
+                "The user principal is: " + request.getUserPrincipal().getName() + "<BR>");
 
-    out.println("The user principal is: " + request.getUserPrincipal().getName()
-        + "<BR>");
-    out.println("getRemoteUser(): " + request.getRemoteUser() + "<BR>");
+        out.println("The user principal is: " + request.getUserPrincipal().getName() + "<BR>");
+        out.println("getRemoteUser(): " + request.getRemoteUser() + "<BR>");
 
-    out.println("Inside  ServletSecAnnoTestServlet ....." + "<BR>"); // used for
-                                                                     // validating
-                                                                     // test7
+        out.println("Inside  ServletSecAnnoTestServlet ....." + "<BR>"); // used for
+        // validating
+        // test7
 
-    // Surround these with !'s so they are easier to search for.
-    // (i.e. we can search for !true! or !false!)
-    out.println(
-        "isUserInRole(\"ADM\"): !" + request.isUserInRole("ADM") + "!<BR>");
-    out.println(
-        "isUserInRole(\"MGR\"): !" + request.isUserInRole("MGR") + "!<BR>");
-    out.println(
-        "isUserInRole(\"VP\"): !" + request.isUserInRole("VP") + "!<BR>");
-    out.println(
-        "isUserInRole(\"EMP\"): !" + request.isUserInRole("EMP") + "!<BR>");
-    out.println("isUserInRole(\"Administrator\"): !"
-        + request.isUserInRole("Administrator") + "!<BR>");
-  }
+        // Surround these with !'s so they are easier to search for.
+        // (i.e. we can search for !true! or !false!)
+        out.println("isUserInRole(\"ADM\"): !" + request.isUserInRole("ADM") + "!<BR>");
+        out.println("isUserInRole(\"MGR\"): !" + request.isUserInRole("MGR") + "!<BR>");
+        out.println("isUserInRole(\"VP\"): !" + request.isUserInRole("VP") + "!<BR>");
+        out.println("isUserInRole(\"EMP\"): !" + request.isUserInRole("EMP") + "!<BR>");
+        out.println("isUserInRole(\"Administrator\"): !" + request.isUserInRole("Administrator") + "!<BR>");
+    }
 }

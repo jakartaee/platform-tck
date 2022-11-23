@@ -20,12 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.reentranttest;
 
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJBHome;
-
 public interface SBeanHome extends EJBHome {
-  public SBean create(Properties p) throws RemoteException, CreateException;
+    public SBean create(Properties p) throws RemoteException, CreateException;
 }

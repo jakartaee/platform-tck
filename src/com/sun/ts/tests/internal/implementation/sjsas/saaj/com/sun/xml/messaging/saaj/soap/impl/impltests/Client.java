@@ -20,117 +20,113 @@
 
 package com.sun.ts.tests.internal.implementation.sjsas.saaj.com.sun.xml.messaging.saaj.soap.impl.impltests;
 
-import java.io.ByteArrayOutputStream;
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TestUtil;
 // Import implementation specific classes to test
 import com.sun.xml.messaging.saaj.soap.*;
 import com.sun.xml.messaging.saaj.soap.impl.*;
-
 import jakarta.xml.soap.MessageFactory;
 import jakarta.xml.soap.SOAPElement;
 import jakarta.xml.soap.SOAPMessage;
+import java.io.ByteArrayOutputStream;
+import java.util.Properties;
 
 public class Client extends EETest {
-  private Properties props = null;
+    private Properties props = null;
 
-  private String srcDir = "src/com/sun/ts/tests/internal/implementation/sjsas/saaj/com/sun/xml/messaging/saaj/soap/impl/impltests";
+    private String srcDir =
+            "src/com/sun/ts/tests/internal/implementation/sjsas/saaj/com/sun/xml/messaging/saaj/soap/impl/impltests";
 
-  private String testDir = null;
+    private String testDir = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup */
-
-  /*
-   * @class.setup_props: ts_home;
-   */
-
-  public void setup(String[] args, Properties p) throws Fault {
-    props = p;
-    String tsHome = p.getProperty("ts_home");
-    testDir = tsHome + "/" + srcDir;
-    TestUtil.logMsg("setup ok");
-  }
-
-  public void cleanup() throws Fault {
-    TestUtil.logMsg("cleanup ok");
-  }
-
-  /*
-   * @testName: CDATAImplTest
-   *
-   * @assertion_ids:
-   *
-   * @test_Strategy:
-   */
-  public void CDATAImplTest() throws Fault {
-    TestUtil.logTrace("CDATAImplTest");
-    boolean pass = true;
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    try {
-      org.w3c.dom.Node node = null;
-      SOAPMessage msg = MessageFactory.newInstance().createMessage();
-      SOAPDocumentImpl sdi = new SOAPDocumentImpl(
-          (SOAPPartImpl) msg.getSOAPPart());
-      TestUtil.logMsg("Call CDATAImpl(SOAPDocumentImpl, String) constructor");
-      CDATAImpl cdata = new CDATAImpl(sdi, "This is my text string 1");
-      TestUtil.logMsg("Call CDATAImpl.getValue() method");
-      String value = cdata.getValue();
-      TestUtil.logMsg("Call CDATAImpl.setValue(String) method");
-      cdata.setValue("This is my test string 2");
-      TestUtil.logMsg("Call CDATAImpl.setParentElement(SOAPElement) method");
-      SOAPElement p = cdata.getParentElement();
-      try {
-        cdata.setParentElement(p);
-      } catch (Exception e) {
-      }
-      TestUtil.logMsg("Call CDATAImpl.getParentElement() method");
-      p = cdata.getParentElement();
-      TestUtil.logMsg("Call CDATAImpl.detachNode() method");
-      cdata.detachNode();
-      TestUtil.logMsg("Call CDATAImpl.recycleNode() method");
-      cdata.recycleNode();
-      TestUtil.logMsg("Call CDATAImpl.isComment() method");
-      boolean b = cdata.isComment();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      throw new Fault("CDATAImplTest failed", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
 
-    if (!pass)
-      throw new Fault("CDATAImplTest failed");
-  }
+    /* Test setup */
 
-  /*
-   * @testName: TreeExceptionTest
-   *
-   * @assertion_ids:
-   *
-   * @test_Strategy:
-   */
-  public void TreeExceptionTest() throws Fault {
-    TestUtil.logTrace("TreeExceptionTest");
-    boolean pass = true;
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    try {
-      TestUtil.logMsg("Call TreeException(String) constructor");
-      TreeException tx = new TreeException("This is my TreeException!");
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      throw new Fault("TreeExceptionTest failed", e);
+    /*
+     * @class.setup_props: ts_home;
+     */
+
+    public void setup(String[] args, Properties p) throws Fault {
+        props = p;
+        String tsHome = p.getProperty("ts_home");
+        testDir = tsHome + "/" + srcDir;
+        TestUtil.logMsg("setup ok");
     }
 
-    if (!pass)
-      throw new Fault("TreeExceptionTest failed");
-  }
+    public void cleanup() throws Fault {
+        TestUtil.logMsg("cleanup ok");
+    }
+
+    /*
+     * @testName: CDATAImplTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void CDATAImplTest() throws Fault {
+        TestUtil.logTrace("CDATAImplTest");
+        boolean pass = true;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try {
+            org.w3c.dom.Node node = null;
+            SOAPMessage msg = MessageFactory.newInstance().createMessage();
+            SOAPDocumentImpl sdi = new SOAPDocumentImpl((SOAPPartImpl) msg.getSOAPPart());
+            TestUtil.logMsg("Call CDATAImpl(SOAPDocumentImpl, String) constructor");
+            CDATAImpl cdata = new CDATAImpl(sdi, "This is my text string 1");
+            TestUtil.logMsg("Call CDATAImpl.getValue() method");
+            String value = cdata.getValue();
+            TestUtil.logMsg("Call CDATAImpl.setValue(String) method");
+            cdata.setValue("This is my test string 2");
+            TestUtil.logMsg("Call CDATAImpl.setParentElement(SOAPElement) method");
+            SOAPElement p = cdata.getParentElement();
+            try {
+                cdata.setParentElement(p);
+            } catch (Exception e) {
+            }
+            TestUtil.logMsg("Call CDATAImpl.getParentElement() method");
+            p = cdata.getParentElement();
+            TestUtil.logMsg("Call CDATAImpl.detachNode() method");
+            cdata.detachNode();
+            TestUtil.logMsg("Call CDATAImpl.recycleNode() method");
+            cdata.recycleNode();
+            TestUtil.logMsg("Call CDATAImpl.isComment() method");
+            boolean b = cdata.isComment();
+        } catch (Exception e) {
+            TestUtil.logErr("Caught unexpected exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+            throw new Fault("CDATAImplTest failed", e);
+        }
+
+        if (!pass) throw new Fault("CDATAImplTest failed");
+    }
+
+    /*
+     * @testName: TreeExceptionTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void TreeExceptionTest() throws Fault {
+        TestUtil.logTrace("TreeExceptionTest");
+        boolean pass = true;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try {
+            TestUtil.logMsg("Call TreeException(String) constructor");
+            TreeException tx = new TreeException("This is my TreeException!");
+        } catch (Exception e) {
+            TestUtil.logErr("Caught unexpected exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+            throw new Fault("TreeExceptionTest failed", e);
+        }
+
+        if (!pass) throw new Fault("TreeExceptionTest failed");
+    }
 }

@@ -20,76 +20,74 @@
 
 package com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync;
 
+import jakarta.interceptor.Interceptors;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import jakarta.interceptor.Interceptors;
+public abstract class SessionSyncBeanBase implements SessionSyncIF {
 
-abstract public class SessionSyncBeanBase implements SessionSyncIF {
+    private List<String> history = new ArrayList<String>();
 
-  private List<String> history = new ArrayList<String>();
+    /*
+     * (non-Javadoc)
+     *
+     * @see jakarta.ejb.SessionSynchronization#afterBegin()
+     */
+    public void afterBegin() {
+        // This should be the very first entry point of any business method
+        // invocation. So clear all items in history from previous invocations.
+        history.clear();
+        history.add(afterBegin);
+    }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see jakarta.ejb.SessionSynchronization#afterBegin()
-   */
-  public void afterBegin() {
-    // This should be the very first entry point of any business method
-    // invocation. So clear all items in history from previous invocations.
-    history.clear();
-    history.add(afterBegin);
-  }
+    /*
+     * (non-Javadoc)
+     *
+     * @see jakarta.ejb.SessionSynchronization#afterCompletion(boolean)
+     */
+    public void afterCompletion(boolean arg0) {
+        history.add(afterCompletion);
+    }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see jakarta.ejb.SessionSynchronization#afterCompletion(boolean)
-   */
-  public void afterCompletion(boolean arg0) {
-    history.add(afterCompletion);
-  }
+    /*
+     * (non-Javadoc)
+     *
+     * @see jakarta.ejb.SessionSynchronization#beforeCompletion()
+     */
+    public void beforeCompletion() {
+        history.add(beforeCompletion);
+    }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see jakarta.ejb.SessionSynchronization#beforeCompletion()
-   */
-  public void beforeCompletion() {
-    history.add(beforeCompletion);
-  }
+    /*
+     * (non-Javadoc)
+     *
+     * @see com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync.SessionSyncIF#
+     * getHistory()
+     */
+    @Interceptors(Interceptor1.class)
+    public List<String> getHistory() {
+        history.add(getHistory);
+        return Collections.unmodifiableList(history);
+    }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync.SessionSyncIF#
-   * getHistory()
-   */
-  @Interceptors(Interceptor1.class)
-  public List<String> getHistory() {
-    history.add(getHistory);
-    return Collections.unmodifiableList(history);
-  }
+    /*
+     * (non-Javadoc)
+     *
+     * @see com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync.SessionSyncIF#
+     * resetHistory()
+     */
+    public void resetHistory() {
+        history.clear();
+    }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync.SessionSyncIF#
-   * resetHistory()
-   */
-  public void resetHistory() {
-    history.clear();
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync.SessionSyncIF#
-   * addToHistory(java.lang.String)
-   */
-  public void addToHistory(String s) {
-    history.add(s);
-  }
-
+    /*
+     * (non-Javadoc)
+     *
+     * @see com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync.SessionSyncIF#
+     * addToHistory(java.lang.String)
+     */
+    public void addToHistory(String s) {
+        history.add(s);
+    }
 }

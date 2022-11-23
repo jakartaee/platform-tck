@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb.ee.sec.cmp20.common;
 
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
@@ -29,106 +28,99 @@ import jakarta.ejb.RemoveException;
 
 public abstract class SecTestEJB implements EntityBean {
 
-  private EntityContext ectx = null;
+    private EntityContext ectx = null;
 
-  // Entity instance data
-  public abstract Integer getId();
+    // Entity instance data
+    public abstract Integer getId();
 
-  public abstract void setId(Integer i);
+    public abstract void setId(Integer i);
 
-  public abstract String getBrandName();
+    public abstract String getBrandName();
 
-  public abstract void setBrandName(String s);
+    public abstract void setBrandName(String s);
 
-  public abstract float getPrice();
+    public abstract float getPrice();
 
-  public abstract void setPrice(float p);
+    public abstract void setPrice(float p);
 
-  public Integer ejbCreate(int id, String brandName, float price)
-      throws CreateException {
+    public Integer ejbCreate(int id, String brandName, float price) throws CreateException {
 
-    TestUtil.logTrace("ejbCreate");
-    Integer pk = new Integer(id);
-    try {
-      TestUtil.logMsg("Obtain naming context");
-      setId(pk);
-      setBrandName(brandName);
-      setPrice(price);
+        TestUtil.logTrace("ejbCreate");
+        Integer pk = new Integer(id);
+        try {
+            TestUtil.logMsg("Obtain naming context");
+            setId(pk);
+            setBrandName(brandName);
+            setPrice(price);
 
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+        return null;
     }
-    return null;
-  }
 
-  public void ejbPostCreate(int id, String brandName, float price) {
-    TestUtil.logTrace("ejbPostCreate");
-  }
+    public void ejbPostCreate(int id, String brandName, float price) {
+        TestUtil.logTrace("ejbPostCreate");
+    }
 
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("ejbRemove");
-  }
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("ejbRemove");
+    }
 
-  public void ejbStore() {
-    TestUtil.logTrace("ejbStore");
-  }
+    public void ejbStore() {
+        TestUtil.logTrace("ejbStore");
+    }
 
-  public boolean IsCaller(String caller) {
-    if (ectx.getCallerPrincipal().getName().indexOf(caller) < 0)
-      return false;
-    else
-      return true;
-  }
+    public boolean IsCaller(String caller) {
+        if (ectx.getCallerPrincipal().getName().indexOf(caller) < 0) return false;
+        else return true;
+    }
 
-  public boolean EjbNotAuthz() {
-    return true;
-  }
+    public boolean EjbNotAuthz() {
+        return true;
+    }
 
-  public boolean EjbIsAuthz() {
-    return true;
-  }
+    public boolean EjbIsAuthz() {
+        return true;
+    }
 
-  public boolean EjbSecRoleRef(String role) {
-    return ectx.isCallerInRole(role);
-  }
+    public boolean EjbSecRoleRef(String role) {
+        return ectx.isCallerInRole(role);
+    }
 
-  public boolean EjbOverloadedSecRoleRefs(String role1) {
-    TestUtil.logMsg(
-        "isCallerInRole(" + role1 + ") = " + ectx.isCallerInRole(role1));
-    return ectx.isCallerInRole(role1);
-  }
+    public boolean EjbOverloadedSecRoleRefs(String role1) {
+        TestUtil.logMsg("isCallerInRole(" + role1 + ") = " + ectx.isCallerInRole(role1));
+        return ectx.isCallerInRole(role1);
+    }
 
-  public boolean EjbOverloadedSecRoleRefs(String role1, String role2) {
-    TestUtil
-        .logMsg("isCallerInRole(" + role1 + ")= " + ectx.isCallerInRole(role1)
-            + "isCallerInRole(" + role2 + ")= " + ectx.isCallerInRole(role2));
-    return ectx.isCallerInRole(role1) && ectx.isCallerInRole(role2);
-  }
+    public boolean EjbOverloadedSecRoleRefs(String role1, String role2) {
+        TestUtil.logMsg("isCallerInRole(" + role1 + ")= " + ectx.isCallerInRole(role1) + "isCallerInRole(" + role2
+                + ")= " + ectx.isCallerInRole(role2));
+        return ectx.isCallerInRole(role1) && ectx.isCallerInRole(role2);
+    }
 
-  public boolean checktest1() {
-    return true;
-  }
+    public boolean checktest1() {
+        return true;
+    }
 
-  public boolean excludetest1() {
-    return true;
-  }
+    public boolean excludetest1() {
+        return true;
+    }
 
-  public void setEntityContext(EntityContext sc) {
-    ectx = sc;
-  }
+    public void setEntityContext(EntityContext sc) {
+        ectx = sc;
+    }
 
-  public void unsetEntityContext() {
-    TestUtil.logTrace("unsetEntityContext");
-  }
+    public void unsetEntityContext() {
+        TestUtil.logTrace("unsetEntityContext");
+    }
 
-  public void ejbLoad() {
-    TestUtil.logTrace("ejbLoad");
-  }
+    public void ejbLoad() {
+        TestUtil.logTrace("ejbLoad");
+    }
 
-  public void ejbActivate() {
-  }
+    public void ejbActivate() {}
 
-  public void ejbPassivate() {
-  }
+    public void ejbPassivate() {}
 }

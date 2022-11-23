@@ -25,35 +25,37 @@ import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
  *                     ws_wait;
  */
 public class WSClient extends WebSocketCommonClient {
-  private static final long serialVersionUID = -2942255764587010746L;
+    private static final long serialVersionUID = -2942255764587010746L;
 
-  public WSClient() {
-    setContextRoot("wsc_spec_application_containers_web");
-  }
+    public WSClient() {
+        setContextRoot("wsc_spec_application_containers_web");
+    }
 
-  public static void main(String[] args) {
-    new WSClient().run(args);
-  }
+    public static void main(String[] args) {
+        new WSClient().run(args);
+    }
 
-  /*
-   * @testName: webSocketContainerIsOnePerVMTest
-   * 
-   * @assertion_ids: WebSocket:SPEC:WSC-2.1.7-1;
-   * 
-   * @test_Strategy: In server deployments of websocket implementations, there
-   * is one unique WebSocketContainer instance per application per Java VM
-   */
-  public void webSocketContainerIsOnePerVMTest() throws Fault {
-    invoke("srv", "anything", "", false);
-    String address = getResponseAsString();
-    invokeAgain("anything", "", false);
-    String address2 = getResponseAsString().substring(address.length());
-    cleanup();
-    assertEquals(address, address2,
-        "There are is not just one WebSocketContainer instance per application per VM); hashCode of first",
-        address, "hasCode of the second", address2);
-    logMsg(
-        "session#getContainer returns only one instance of WebSocketContainer as expected");
-  }
-
+    /*
+     * @testName: webSocketContainerIsOnePerVMTest
+     *
+     * @assertion_ids: WebSocket:SPEC:WSC-2.1.7-1;
+     *
+     * @test_Strategy: In server deployments of websocket implementations, there
+     * is one unique WebSocketContainer instance per application per Java VM
+     */
+    public void webSocketContainerIsOnePerVMTest() throws Fault {
+        invoke("srv", "anything", "", false);
+        String address = getResponseAsString();
+        invokeAgain("anything", "", false);
+        String address2 = getResponseAsString().substring(address.length());
+        cleanup();
+        assertEquals(
+                address,
+                address2,
+                "There are is not just one WebSocketContainer instance per application per VM); hashCode of first",
+                address,
+                "hasCode of the second",
+                address2);
+        logMsg("session#getContainer returns only one instance of WebSocketContainer as expected");
+    }
 }

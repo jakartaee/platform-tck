@@ -19,42 +19,41 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.embed.provider;
 
+import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+import jakarta.ejb.embeddable.EJBContainer;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
-
-import jakarta.ejb.embeddable.EJBContainer;
-
 public final class Client extends EJBLiteClientBase {
-  private Map<String, Object> containerInitProps = new HashMap<String, Object>();
+    private Map<String, Object> containerInitProps = new HashMap<String, Object>();
 
-  /*
-   * @class.testArgs:
-   * 
-   * @class.setup_props:
-   */
+    /*
+     * @class.testArgs:
+     *
+     * @class.setup_props:
+     */
 
-  @Override
-  public Map<String, Object> getContainerInitProperties() {
-    containerInitProps.put(EJBContainer.PROVIDER,
-        TSEJBContainerImpl.class.getName());
-    return containerInitProps;
-  }
+    @Override
+    public Map<String, Object> getContainerInitProperties() {
+        containerInitProps.put(EJBContainer.PROVIDER, TSEJBContainerImpl.class.getName());
+        return containerInitProps;
+    }
 
-  /*
-   * @testName: customProvider
-   * 
-   * @test_Strategy: load a custom provider TSEJBContainerImpl, which is
-   * packaged in the jar along with test classes. This jar file also contains a
-   * META-INF/services entry for this custom provider
-   */
-  public void customProvider() {
-    TSEJBContainerImpl container = (TSEJBContainerImpl) getContainer();
-    appendReason("Created EJBContainer provider ", getContainer(),
-        " with init properties: ", getContainerInitProperties());
+    /*
+     * @testName: customProvider
+     *
+     * @test_Strategy: load a custom provider TSEJBContainerImpl, which is
+     * packaged in the jar along with test classes. This jar file also contains a
+     * META-INF/services entry for this custom provider
+     */
+    public void customProvider() {
+        TSEJBContainerImpl container = (TSEJBContainerImpl) getContainer();
+        appendReason(
+                "Created EJBContainer provider ",
+                getContainer(),
+                " with init properties: ",
+                getContainerInitProperties());
 
-    assertEquals(null, null, container.getContext());
-  }
-
+        assertEquals(null, null, container.getContext());
+    }
 }

@@ -21,8 +21,7 @@
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.oneway;
 
 public class TestConstants {
-  public static final String ADD_NUMBERS_IN_ACTION = "http://example.com/AddNumbersPortType/add";
+    public static final String ADD_NUMBERS_IN_ACTION = "http://example.com/AddNumbersPortType/add";
 
-  public static final String ADD_NUMBERS2_IN_ACTION = "inputAction";
-
+    public static final String ADD_NUMBERS2_IN_ACTION = "inputAction";
 }

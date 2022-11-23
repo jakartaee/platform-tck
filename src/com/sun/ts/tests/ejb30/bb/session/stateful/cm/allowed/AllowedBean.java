@@ -20,13 +20,10 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.cm.allowed;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.ejb30.common.allowed.AllowedIF;
 import com.sun.ts.tests.ejb30.common.allowed.AllowedLocalIF;
 import com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulOperations;
 import com.sun.ts.tests.ejb30.common.allowed.stateful.TimerLocalIF;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Local;
@@ -37,44 +34,43 @@ import jakarta.ejb.Stateful;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.Interceptors;
 import jakarta.interceptor.InvocationContext;
+import java.util.Properties;
 
 @Stateful(name = "AllowedBean")
-@Remote({ AllowedIF.class })
-@Local({ AllowedLocalIF.class })
-@Interceptors({
-    com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulCancelInterceptor.class })
-
+@Remote({AllowedIF.class})
+@Local({AllowedLocalIF.class})
+@Interceptors({com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulCancelInterceptor.class})
 @EJB(name = "ejb/TimerEJB", beanName = "TimerEJB", beanInterface = TimerLocalIF.class)
 
 // implements SessionSynchronization indirectly
 public class AllowedBean extends AllowedBeanSessionSynchronizationBase
-    implements AllowedIF, AllowedLocalIF, java.io.Serializable {
+        implements AllowedIF, AllowedLocalIF, java.io.Serializable {
 
-  @Resource(name = "ejbContext")
-  public void setSessionContext(SessionContext sc) {
-    super.setSessionContext(sc);
-  }
+    @Resource(name = "ejbContext")
+    public void setSessionContext(SessionContext sc) {
+        super.setSessionContext(sc);
+    }
 
-  @AroundInvoke
-  public Object intercept(InvocationContext inv) throws Exception {
-    return super.intercept(inv);
-  }
+    @AroundInvoke
+    public Object intercept(InvocationContext inv) throws Exception {
+        return super.intercept(inv);
+    }
 
-  @Override
-  public Properties runOperations(SessionContext sctx) {
-    return StatefulOperations.getInstance().run2(sctx, AllowedIF.class);
-  }
+    @Override
+    public Properties runOperations(SessionContext sctx) {
+        return StatefulOperations.getInstance().run2(sctx, AllowedIF.class);
+    }
 
-  // ===================== business methods ===========================
-  @Remove
-  public void remove() {
-    super.remove();
-  }
+    // ===================== business methods ===========================
+    @Remove
+    public void remove() {
+        super.remove();
+    }
 
-  // @Override
-  // @TransactionAttribute(TransactionAttributeType.NEVER)
-  // public void afterCompletionTest() {
-  // super.afterCompletionTest();
-  // }
+    // @Override
+    // @TransactionAttribute(TransactionAttributeType.NEVER)
+    // public void afterCompletionTest() {
+    // super.afterCompletionTest();
+    // }
 
 }

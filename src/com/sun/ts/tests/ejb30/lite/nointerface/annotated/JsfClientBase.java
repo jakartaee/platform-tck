@@ -29,140 +29,128 @@ import jakarta.ejb.NoSuchEJBException;
  * directory covers uncommon requirements.
  */
 public class JsfClientBase extends EJBLiteJsfClientBase {
-  protected BeanBase stateless;
+    protected BeanBase stateless;
 
-  protected BeanBase stateful;
+    protected BeanBase stateful;
 
-  protected BeanBase statefulToBeRemoved;
+    protected BeanBase statefulToBeRemoved;
 
-  protected BeanBase singleton;
+    protected BeanBase singleton;
 
-  protected HasInterface hasInterfaceSingleton;
+    protected HasInterface hasInterfaceSingleton;
 
-  private String nonBusinessMethods(BeanBase b) throws RuntimeException {
-    String result = "";
-    try {
-      throw new RuntimeException(b.nonBusinessMethod());
-    } catch (EJBException expected) {
-      result += " Got expected when invoking a protected method on no interface bean:"
-          + expected;
+    private String nonBusinessMethods(BeanBase b) throws RuntimeException {
+        String result = "";
+        try {
+            throw new RuntimeException(b.nonBusinessMethod());
+        } catch (EJBException expected) {
+            result += " Got expected when invoking a protected method on no interface bean:" + expected;
+        }
+        try {
+            throw new RuntimeException(b.nonBusinessMethod2());
+        } catch (EJBException expected) {
+            result += " Got expected when invoking a package-default-access method on no interface bean:" + expected;
+        }
+        return result;
     }
-    try {
-      throw new RuntimeException(b.nonBusinessMethod2());
-    } catch (EJBException expected) {
-      result += " Got expected when invoking a package-default-access method on no interface bean:"
-          + expected;
+
+    /*
+     * testName: nonBusinessMethods
+     *
+     * @test_Strategy: Invoking non-public methods results in EJBException.
+     */
+    public void nonBusinessMethods() {
+        appendReason(nonBusinessMethods(stateless), nonBusinessMethods(stateful), nonBusinessMethods(singleton));
     }
-    return result;
-  }
 
-  /*
-   * testName: nonBusinessMethods
-   * 
-   * @test_Strategy: Invoking non-public methods results in EJBException.
-   */
-  public void nonBusinessMethods() {
-    appendReason(nonBusinessMethods(stateless), nonBusinessMethods(stateful),
-        nonBusinessMethods(singleton));
-  }
-
-  /*
-   * testName: invokeRemovedStateful
-   * 
-   * @test_Strategy: Invoking a removed stateful no-interface bean results in
-   * jakarta.ejb.NoSuchEJBException. Also verify the overloaded method with same
-   * method name but different params is not considered a remove-method.
-   */
-  public void invokeRemovedStateful() {
-    statefulToBeRemoved.remove(false);
-    statefulToBeRemoved.remove(false);
-    statefulToBeRemoved.remove();
-    try {
-      String result = statefulToBeRemoved.passAsParam(singleton);
-      throw new RuntimeException(
-          "Expected jakarta.ejb.NoSuchEJBException when invoking a removed stateful no-interface bean, but got "
-              + result);
-    } catch (NoSuchEJBException expected) {
-      appendReason(
-          "Got expected when invoking a removed stateful no-interface bean",
-          expected);
+    /*
+     * testName: invokeRemovedStateful
+     *
+     * @test_Strategy: Invoking a removed stateful no-interface bean results in
+     * jakarta.ejb.NoSuchEJBException. Also verify the overloaded method with same
+     * method name but different params is not considered a remove-method.
+     */
+    public void invokeRemovedStateful() {
+        statefulToBeRemoved.remove(false);
+        statefulToBeRemoved.remove(false);
+        statefulToBeRemoved.remove();
+        try {
+            String result = statefulToBeRemoved.passAsParam(singleton);
+            throw new RuntimeException(
+                    "Expected jakarta.ejb.NoSuchEJBException when invoking a removed stateful no-interface bean, but got "
+                            + result);
+        } catch (NoSuchEJBException expected) {
+            appendReason("Got expected when invoking a removed stateful no-interface bean", expected);
+        }
     }
-  }
 
-  /*
-   * testName: passAsParam
-   * 
-   * @test_Strategy: no-interface view bean reference can be passed by param of
-   * any local business interface or no-interface method. Using varargs...
-   */
-  public void passAsParam() {
-    appendReason(stateless.passAsParam(stateless),
-        stateless.passAsParam(stateful), stateless.passAsParam(singleton),
-        stateless.passAsParam(stateless, stateful, singleton),
-        stateful.passAsParam(stateless), stateful.passAsParam(stateful),
-        stateful.passAsParam(singleton),
-        stateful.passAsParam(stateless, stateful, singleton),
-        singleton.passAsParam(stateless), singleton.passAsParam(stateful),
-        singleton.passAsParam(singleton),
-        singleton.passAsParam(stateless, stateful, singleton),
-        hasInterfaceSingleton.passAsParam(stateless),
-        hasInterfaceSingleton.passAsParam(stateful),
-        hasInterfaceSingleton.passAsParam(singleton),
-        hasInterfaceSingleton.passAsParam(stateless, stateful, singleton));
-  }
+    /*
+     * testName: passAsParam
+     *
+     * @test_Strategy: no-interface view bean reference can be passed by param of
+     * any local business interface or no-interface method. Using varargs...
+     */
+    public void passAsParam() {
+        appendReason(
+                stateless.passAsParam(stateless),
+                stateless.passAsParam(stateful),
+                stateless.passAsParam(singleton),
+                stateless.passAsParam(stateless, stateful, singleton),
+                stateful.passAsParam(stateless),
+                stateful.passAsParam(stateful),
+                stateful.passAsParam(singleton),
+                stateful.passAsParam(stateless, stateful, singleton),
+                singleton.passAsParam(stateless),
+                singleton.passAsParam(stateful),
+                singleton.passAsParam(singleton),
+                singleton.passAsParam(stateless, stateful, singleton),
+                hasInterfaceSingleton.passAsParam(stateless),
+                hasInterfaceSingleton.passAsParam(stateful),
+                hasInterfaceSingleton.passAsParam(singleton),
+                hasInterfaceSingleton.passAsParam(stateless, stateful, singleton));
+    }
 
-  /*
-   * testName: passAsReturn
-   * 
-   * @test_Strategy: no-interface view bean reference can be passed by param of
-   * any local business interface or no-interface method. Using covariant return
-   * types. Also tests that injected no-interface beans can be looked up via
-   * jndi.
-   */
-  public void passAsReturn() {
-    BeanBase less = (BeanBase) lookup("ejb/stateless",
-        "NoInterfaceStatelessBean", null);
-    BeanBase ful = (BeanBase) lookup("ejb/stateful", "NoInterfaceStatefulBean",
-        null);
-    BeanBase sing = (BeanBase) lookup("ejb/singleton",
-        "NoInterfaceSingletonBean", null);
-    appendReason(less.passAsReturn(), ful.passAsReturn(), sing.passAsReturn(),
-        hasInterfaceSingleton.passAsReturn());
-  }
+    /*
+     * testName: passAsReturn
+     *
+     * @test_Strategy: no-interface view bean reference can be passed by param of
+     * any local business interface or no-interface method. Using covariant return
+     * types. Also tests that injected no-interface beans can be looked up via
+     * jndi.
+     */
+    public void passAsReturn() {
+        BeanBase less = (BeanBase) lookup("ejb/stateless", "NoInterfaceStatelessBean", null);
+        BeanBase ful = (BeanBase) lookup("ejb/stateful", "NoInterfaceStatefulBean", null);
+        BeanBase sing = (BeanBase) lookup("ejb/singleton", "NoInterfaceSingletonBean", null);
+        appendReason(
+                less.passAsReturn(), ful.passAsReturn(), sing.passAsReturn(), hasInterfaceSingleton.passAsReturn());
+    }
 
-  /*
-   * testName: passEnumAsParams
-   * 
-   * @test_Strategy: pass (NumberEnum, NumberIF) to each bean, which returns the
-   * sum.
-   */
-  public void passEnumAsParams() {
-    int expected = NumberEnum.ONE.add(NumberEnum.TWO.getNumber());
-    assertEquals(null, expected,
-        stateless.passEnumAsParams(NumberEnum.ONE, NumberEnum.TWO));
-    assertEquals(null, expected,
-        stateful.passEnumAsParams(NumberEnum.ONE, NumberEnum.TWO));
-    assertEquals(null, expected,
-        singleton.passEnumAsParams(NumberEnum.ONE, NumberEnum.TWO));
-    assertEquals(null, expected,
-        hasInterfaceSingleton.passEnumAsParams(NumberEnum.ONE, NumberEnum.TWO));
-  }
+    /*
+     * testName: passEnumAsParams
+     *
+     * @test_Strategy: pass (NumberEnum, NumberIF) to each bean, which returns the
+     * sum.
+     */
+    public void passEnumAsParams() {
+        int expected = NumberEnum.ONE.add(NumberEnum.TWO.getNumber());
+        assertEquals(null, expected, stateless.passEnumAsParams(NumberEnum.ONE, NumberEnum.TWO));
+        assertEquals(null, expected, stateful.passEnumAsParams(NumberEnum.ONE, NumberEnum.TWO));
+        assertEquals(null, expected, singleton.passEnumAsParams(NumberEnum.ONE, NumberEnum.TWO));
+        assertEquals(null, expected, hasInterfaceSingleton.passEnumAsParams(NumberEnum.ONE, NumberEnum.TWO));
+    }
 
-  /*
-   * testName: passEnumAsReturn
-   * 
-   * @test_Strategy: pass (NumberEnum, NumberIF) to each bean, which returns the
-   * sum.
-   */
-  public void passEnumAsReturn() {
-    NumberEnum expected = NumberEnum.THREE;
-    assertEquals(null, expected,
-        stateless.passEnumAsReturn(expected.getNumber()));
-    assertEquals(null, expected,
-        stateful.passEnumAsReturn(expected.getNumber()));
-    assertEquals(null, expected,
-        singleton.passEnumAsReturn(expected.getNumber()));
-    assertEquals(null, expected,
-        hasInterfaceSingleton.passEnumAsReturn(expected.getNumber()));
-  }
+    /*
+     * testName: passEnumAsReturn
+     *
+     * @test_Strategy: pass (NumberEnum, NumberIF) to each bean, which returns the
+     * sum.
+     */
+    public void passEnumAsReturn() {
+        NumberEnum expected = NumberEnum.THREE;
+        assertEquals(null, expected, stateless.passEnumAsReturn(expected.getNumber()));
+        assertEquals(null, expected, stateful.passEnumAsReturn(expected.getNumber()));
+        assertEquals(null, expected, singleton.passEnumAsReturn(expected.getNumber()));
+        assertEquals(null, expected, hasInterfaceSingleton.passEnumAsReturn(expected.getNumber()));
+    }
 }

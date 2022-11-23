@@ -20,116 +20,112 @@
 
 package com.sun.ts.tests.appclient.deploy.ejbref.casesens;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  private static final String prefix = "java:comp/env/ejb/";
+    private static final String prefix = "java:comp/env/ejb/";
 
-  /* These lookups differ only by case */
-  private static final String bean1Lookup = prefix + "Philosopher";
+    /* These lookups differ only by case */
+    private static final String bean1Lookup = prefix + "Philosopher";
 
-  private static final String bean2Lookup = prefix + "philosopher";
+    private static final String bean2Lookup = prefix + "philosopher";
 
-  /* Expected values for the bean name */
-  private static final String bean1RefName = "Voltaire";
+    /* Expected values for the bean name */
+    private static final String bean1RefName = "Voltaire";
 
-  private static final String bean2RefName = "Rousseau";
+    private static final String bean2RefName = "Rousseau";
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /**
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   *                     generateSQL;
-   *
-   * @class.testArgs: -ap tssql.stmt
-   *
-   */
-  public void setup(String[] args, Properties props) throws Fault {
-    this.props = props;
-
-    try {
-      nctx = new TSNamingContext();
-      logMsg("[Client] Setup succeed (got naming context).");
-    } catch (Exception e) {
-      throw new Fault("[Client] Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /**
-   * @testName: testCaseSensitivity
-   *
-   * @assertion_ids: JavaEE:SPEC:279
-   *
-   * @test_Strategy: Deploy an application client referencing two beans whose
-   *                 name differ only by case. Each referenced bean is packaged
-   *                 with a different values for a String environment entry
-   *                 called 'myName'.
-   *
-   *                 Check that the application client can lookup the two beans.
-   *                 Check that their runtime value for the 'myName' env. entry
-   *                 are distinct and match the ones specified in the DD
-   *                 (validates that the EJB reference are resolved correctly).
-   */
-  public void testCaseSensitivity() throws Fault {
-    ReferencedBeanHome home1 = null;
-    ReferencedBeanHome home2 = null;
-    ReferencedBean bean1 = null;
-    ReferencedBean bean2 = null;
-    String bean1Name;
-    String bean2Name;
-    boolean pass = false;
+    /**
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     *                     generateSQL;
+     *
+     * @class.testArgs: -ap tssql.stmt
+     *
+     */
+    public void setup(String[] args, Properties props) throws Fault {
+        this.props = props;
 
-    try {
-      TestUtil.logTrace("[Client] Looking up '" + bean1Lookup + "'...");
-      home1 = (ReferencedBeanHome) nctx.lookup(bean1Lookup,
-          ReferencedBeanHome.class);
-      bean1 = home1.create();
-      bean1.initLogging(props);
-      bean1Name = bean1.whoAreYou();
-      TestUtil.logTrace(bean1Lookup + "name is '" + bean1Name + "'");
-      bean1.remove();
-
-      TestUtil.logTrace("[Client] Looking up '" + bean2Lookup + "'...");
-      home2 = (ReferencedBeanHome) nctx.lookup(bean2Lookup,
-          ReferencedBeanHome.class);
-      bean2 = home2.create();
-      bean2.initLogging(props);
-      bean2Name = bean2.whoAreYou();
-      TestUtil.logTrace(bean2Lookup + " name is '" + bean2Name + "'");
-      bean2.remove();
-
-      pass = bean1Name.equals(bean1RefName) && bean2Name.equals(bean2RefName);
-
-      if (!pass) {
-        TestUtil.logErr("[Client] " + bean1Lookup + "name is '" + bean1Name
-            + "' expected '" + bean1RefName + "'");
-
-        TestUtil.logErr("[Client] " + bean2Lookup + "name is '" + bean2Name
-            + "' expected '" + bean2RefName + "'");
-
-        throw new Fault("ejb-ref casesens test failed!");
-      }
-    } catch (Exception e) {
-      throw new Fault("ejb-ref casesens test failed: " + e, e);
+        try {
+            nctx = new TSNamingContext();
+            logMsg("[Client] Setup succeed (got naming context).");
+        } catch (Exception e) {
+            throw new Fault("[Client] Setup failed:", e);
+        }
     }
-  }
 
-  public void cleanup() throws Fault {
-    logMsg("[Client] cleanup()");
-  }
+    /**
+     * @testName: testCaseSensitivity
+     *
+     * @assertion_ids: JavaEE:SPEC:279
+     *
+     * @test_Strategy: Deploy an application client referencing two beans whose
+     *                 name differ only by case. Each referenced bean is packaged
+     *                 with a different values for a String environment entry
+     *                 called 'myName'.
+     *
+     *                 Check that the application client can lookup the two beans.
+     *                 Check that their runtime value for the 'myName' env. entry
+     *                 are distinct and match the ones specified in the DD
+     *                 (validates that the EJB reference are resolved correctly).
+     */
+    public void testCaseSensitivity() throws Fault {
+        ReferencedBeanHome home1 = null;
+        ReferencedBeanHome home2 = null;
+        ReferencedBean bean1 = null;
+        ReferencedBean bean2 = null;
+        String bean1Name;
+        String bean2Name;
+        boolean pass = false;
 
+        try {
+            TestUtil.logTrace("[Client] Looking up '" + bean1Lookup + "'...");
+            home1 = (ReferencedBeanHome) nctx.lookup(bean1Lookup, ReferencedBeanHome.class);
+            bean1 = home1.create();
+            bean1.initLogging(props);
+            bean1Name = bean1.whoAreYou();
+            TestUtil.logTrace(bean1Lookup + "name is '" + bean1Name + "'");
+            bean1.remove();
+
+            TestUtil.logTrace("[Client] Looking up '" + bean2Lookup + "'...");
+            home2 = (ReferencedBeanHome) nctx.lookup(bean2Lookup, ReferencedBeanHome.class);
+            bean2 = home2.create();
+            bean2.initLogging(props);
+            bean2Name = bean2.whoAreYou();
+            TestUtil.logTrace(bean2Lookup + " name is '" + bean2Name + "'");
+            bean2.remove();
+
+            pass = bean1Name.equals(bean1RefName) && bean2Name.equals(bean2RefName);
+
+            if (!pass) {
+                TestUtil.logErr(
+                        "[Client] " + bean1Lookup + "name is '" + bean1Name + "' expected '" + bean1RefName + "'");
+
+                TestUtil.logErr(
+                        "[Client] " + bean2Lookup + "name is '" + bean2Name + "' expected '" + bean2RefName + "'");
+
+                throw new Fault("ejb-ref casesens test failed!");
+            }
+        } catch (Exception e) {
+            throw new Fault("ejb-ref casesens test failed: " + e, e);
+        }
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("[Client] cleanup()");
+    }
 }

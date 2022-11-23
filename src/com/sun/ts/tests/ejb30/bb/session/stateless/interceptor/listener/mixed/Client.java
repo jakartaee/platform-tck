@@ -23,58 +23,57 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.interceptor.listener.mixed;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeIF;
 import com.sun.ts.tests.ejb30.common.interceptor.ClientBase;
-
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
-  @EJB(name = "AroundInvokeBean")
-  static private AroundInvokeIF bean;
+    @EJB(name = "AroundInvokeBean")
+    private static AroundInvokeIF bean;
 
-  protected AroundInvokeIF getBean() {
-    return bean;
-  }
+    protected AroundInvokeIF getBean() {
+        return bean;
+    }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * @class.setup_props:
-   */
+    /*
+     * @class.setup_props:
+     */
 
-  /*
-   * @testName: methodLevelInterceptorMixedTest
-   * 
-   * @test_Strategy: o method level interceptors may be specified
-   * with @Interceptors or in descriptor. The one specified in descriptor is
-   * invoked after the ones specified with annotations. Both default
-   * interceptors and class level interceptors are excluded.
-   */
+    /*
+     * @testName: methodLevelInterceptorMixedTest
+     *
+     * @test_Strategy: o method level interceptors may be specified
+     * with @Interceptors or in descriptor. The one specified in descriptor is
+     * invoked after the ones specified with annotations. Both default
+     * interceptors and class level interceptors are excluded.
+     */
 
-  /*
-   * @testName: methodLevelClassLevelInterceptorMixedTest
-   * 
-   * @test_Strategy: o method level interceptors may be specified
-   * with @Interceptors or in descriptor. The one specified in descriptor is
-   * invoked after the ones specified with annotations. Default interceptors are
-   * excluded, but class level interceptors are included.
-   */
+    /*
+     * @testName: methodLevelClassLevelInterceptorMixedTest
+     *
+     * @test_Strategy: o method level interceptors may be specified
+     * with @Interceptors or in descriptor. The one specified in descriptor is
+     * invoked after the ones specified with annotations. Default interceptors are
+     * excluded, but class level interceptors are included.
+     */
 
-  /*
-   * @testName: repeatedInterceptors
-   * 
-   * @test_Strategy: o method level interceptors may be specified
-   * with @Interceptors or in descriptor. Interceptors are additive.
-   */
+    /*
+     * @testName: repeatedInterceptors
+     *
+     * @test_Strategy: o method level interceptors may be specified
+     * with @Interceptors or in descriptor. Interceptors are additive.
+     */
 
-  /*
-   * @testName: interceptorOrderingOverride
-   * 
-   * @test_Strategy: o method level interceptors may be specified
-   * with @Interceptors or in descriptor. Interceptor order may be overridden
-   * with <interceptor-order>
-   */
+    /*
+     * @testName: interceptorOrderingOverride
+     *
+     * @test_Strategy: o method level interceptors may be specified
+     * with @Interceptors or in descriptor. Interceptor order may be overridden
+     * with <interceptor-order>
+     */
 
 }

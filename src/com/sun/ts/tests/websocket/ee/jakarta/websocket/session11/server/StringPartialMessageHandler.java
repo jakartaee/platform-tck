@@ -17,34 +17,30 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.server;
 
-import java.io.IOException;
-
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
+import java.io.IOException;
 
-public class StringPartialMessageHandler
-    implements MessageHandler.Partial<String> {
+public class StringPartialMessageHandler implements MessageHandler.Partial<String> {
 
-  protected Session session;
+    protected Session session;
 
-  public static final String HANDLER_SAYS = "StringPartialMessageHandler says: ";
+    public static final String HANDLER_SAYS = "StringPartialMessageHandler says: ";
 
-  StringBuilder sb = new StringBuilder();
+    StringBuilder sb = new StringBuilder();
 
-  public StringPartialMessageHandler(Session session) {
-    super();
-    this.session = session;
-  }
-
-  @Override
-  public void onMessage(String message, boolean finite) {
-    sb.append(message);
-    try {
-      if (finite)
-        session.getBasicRemote().sendText(HANDLER_SAYS + sb.toString());
-    } catch (IOException e) {
-      throw new RuntimeException(e);
+    public StringPartialMessageHandler(Session session) {
+        super();
+        this.session = session;
     }
-  }
 
+    @Override
+    public void onMessage(String message, boolean finite) {
+        sb.append(message);
+        try {
+            if (finite) session.getBasicRemote().sendText(HANDLER_SAYS + sb.toString());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

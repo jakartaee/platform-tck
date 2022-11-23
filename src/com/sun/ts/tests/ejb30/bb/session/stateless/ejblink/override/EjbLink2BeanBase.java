@@ -23,28 +23,29 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.ejblink.override;
 import com.sun.ts.tests.ejb30.common.ejblink.EjbLinkBeanBase;
 import com.sun.ts.tests.ejb30.common.ejblink.EjbLinkIF;
 import com.sun.ts.tests.ejb30.common.ejblink.EjbLinkLocalIF;
-
 import jakarta.ejb.EJB;
 
 /**
  * Adding this superclass to verify that injections on superclass can also be
  * overridden with descriptors.
  */
-abstract public class EjbLink2BeanBase extends EjbLinkBeanBase {
+public abstract class EjbLink2BeanBase extends EjbLinkBeanBase {
 
-  // this ejb-ref is overridden in two_ejb.xml
-  @EJB(name = "ejb/EjbLink1Bean", beanName = "no-such-bean-name", description = "should be overridden by ejb-jar.xml")
-  private EjbLinkIF bean1;
+    // this ejb-ref is overridden in two_ejb.xml
+    @EJB(name = "ejb/EjbLink1Bean", beanName = "no-such-bean-name", description = "should be overridden by ejb-jar.xml")
+    private EjbLinkIF bean1;
 
-  // this ejb-ref is overridden in two_ejb.xml
-  // beanName is overridden in two_ejb.xml to be two_ejb.jar#EjbLink3Bean. The
-  // value here EjbLink3Bean
-  // is ambiguous since there are two beans with this name inside this EAR.
-  @EJB(name = "ejb/EjbLink3Bean", beanName = "EjbLink3Bean", description = "should be overridden by ejb-jar.xml")
-  private EjbLinkIF bean3;
+    // this ejb-ref is overridden in two_ejb.xml
+    // beanName is overridden in two_ejb.xml to be two_ejb.jar#EjbLink3Bean. The
+    // value here EjbLink3Bean
+    // is ambiguous since there are two beans with this name inside this EAR.
+    @EJB(name = "ejb/EjbLink3Bean", beanName = "EjbLink3Bean", description = "should be overridden by ejb-jar.xml")
+    private EjbLinkIF bean3;
 
-  // this ejb-ref is overridden in two_ejb.xml
-  @EJB(name = "ejb/EjbLink1BeanLocal", beanName = "no-such-bean-name", description = "should be overridden by ejb-jar.xml")
-  private EjbLinkLocalIF localBean1;
-
+    // this ejb-ref is overridden in two_ejb.xml
+    @EJB(
+            name = "ejb/EjbLink1BeanLocal",
+            beanName = "no-such-bean-name",
+            description = "should be overridden by ejb-jar.xml")
+    private EjbLinkLocalIF localBean1;
 }

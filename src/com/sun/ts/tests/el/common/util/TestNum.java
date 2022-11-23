@@ -29,59 +29,56 @@ import java.util.ArrayList;
  */
 public final class TestNum {
 
-  private static final String COMPARATOR = "1";
+    private static final String COMPARATOR = "1";
 
-  private static ArrayList<Float> floatList;
+    private static ArrayList<Float> floatList;
 
-  private static ArrayList<Object> numberList;
+    private static ArrayList<Object> numberList;
 
-  /**
-   * Private as this class will only have static methods and members.
-   */
-  private TestNum() {
-  }
+    /**
+     * Private as this class will only have static methods and members.
+     */
+    private TestNum() {}
 
-  /**
-   * Used for a common list of Float values when testing.
-   * 
-   * @return - A set list of common Floats that we use as test values.
-   */
-  public static ArrayList getFloatList() {
+    /**
+     * Used for a common list of Float values when testing.
+     *
+     * @return - A set list of common Floats that we use as test values.
+     */
+    public static ArrayList getFloatList() {
 
-    floatList = new ArrayList<Float>();
+        floatList = new ArrayList<Float>();
 
-    floatList.add(Float.valueOf("1.00005f"));
-    floatList.add(Float.valueOf("1.5E-4d"));
-    floatList.add(Float.valueOf("1.5E+4"));
-    floatList.add(Float.valueOf("1.5e+4"));
+        floatList.add(Float.valueOf("1.00005f"));
+        floatList.add(Float.valueOf("1.5E-4d"));
+        floatList.add(Float.valueOf("1.5E+4"));
+        floatList.add(Float.valueOf("1.5e+4"));
 
-    return floatList;
+        return floatList;
+    }
 
-  }
+    /**
+     * Used a common reference point for Number types and a common value is
+     * assigned (1).
+     *
+     * @return - A common List of Number types with a constant value.
+     */
+    public static ArrayList getNumberList() {
 
-  /**
-   * Used a common reference point for Number types and a common value is
-   * assigned (1).
-   *
-   * @return - A common List of Number types with a constant value.
-   */
-  public static ArrayList getNumberList() {
+        numberList = new ArrayList<Object>();
 
-    numberList = new ArrayList<Object>();
+        numberList.add(BigDecimal.valueOf(Long.valueOf(COMPARATOR)));
+        numberList.add(Double.valueOf(COMPARATOR));
+        numberList.add(Float.valueOf(COMPARATOR));
+        numberList.add(COMPARATOR + ".0");
+        numberList.add(COMPARATOR + "e0");
+        numberList.add(COMPARATOR + "E0");
+        numberList.add(BigInteger.valueOf(Long.valueOf(COMPARATOR)));
+        numberList.add(Long.valueOf(COMPARATOR));
+        numberList.add(Integer.valueOf(COMPARATOR));
+        numberList.add(Short.valueOf(COMPARATOR));
+        numberList.add(Byte.valueOf(COMPARATOR));
 
-    numberList.add(BigDecimal.valueOf(Long.valueOf(COMPARATOR)));
-    numberList.add(Double.valueOf(COMPARATOR));
-    numberList.add(Float.valueOf(COMPARATOR));
-    numberList.add(COMPARATOR + ".0");
-    numberList.add(COMPARATOR + "e0");
-    numberList.add(COMPARATOR + "E0");
-    numberList.add(BigInteger.valueOf(Long.valueOf(COMPARATOR)));
-    numberList.add(Long.valueOf(COMPARATOR));
-    numberList.add(Integer.valueOf(COMPARATOR));
-    numberList.add(Short.valueOf(COMPARATOR));
-    numberList.add(Byte.valueOf(COMPARATOR));
-
-    return numberList;
-
-  }
+        return numberList;
+    }
 }

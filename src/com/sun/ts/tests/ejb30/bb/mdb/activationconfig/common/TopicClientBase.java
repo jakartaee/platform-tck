@@ -26,73 +26,72 @@ import jakarta.jms.QueueConnectionFactory;
 import jakarta.jms.Topic;
 import jakarta.jms.TopicConnectionFactory;
 
-abstract public class TopicClientBase
-    extends com.sun.ts.tests.ejb30.common.messaging.TopicClientBase
-    implements com.sun.ts.tests.ejb30.common.messaging.Constants {
+public abstract class TopicClientBase extends com.sun.ts.tests.ejb30.common.messaging.TopicClientBase
+        implements com.sun.ts.tests.ejb30.common.messaging.Constants {
 
-  @Resource(name = "sendTopic")
-  private static Topic sendTopic;
+    @Resource(name = "sendTopic")
+    private static Topic sendTopic;
 
-  @Resource(name = "receiveQueue")
-  private static Queue receiveQueue;
+    @Resource(name = "receiveQueue")
+    private static Queue receiveQueue;
 
-  @Resource(name = "topicConnectionFactory")
-  private static TopicConnectionFactory topicConnectionFactory;
+    @Resource(name = "topicConnectionFactory")
+    private static TopicConnectionFactory topicConnectionFactory;
 
-  @Resource(name = "queueConnectionFactory")
-  private static QueueConnectionFactory queueConnectionFactory;
+    @Resource(name = "queueConnectionFactory")
+    private static QueueConnectionFactory queueConnectionFactory;
 
-  protected void initSendTopic() {
-    setSendTopic(sendTopic);
-  }
+    protected void initSendTopic() {
+        setSendTopic(sendTopic);
+    }
 
-  protected void initReceiveQueue() {
-    setReceiveQueue(receiveQueue);
-  }
+    protected void initReceiveQueue() {
+        setReceiveQueue(receiveQueue);
+    }
 
-  protected void initTopicConnectionFactory() {
-    setTopicConnectionFactory(topicConnectionFactory);
-  }
+    protected void initTopicConnectionFactory() {
+        setTopicConnectionFactory(topicConnectionFactory);
+    }
 
-  protected void initQueueConnectionFactory() {
-    setQueueConnectionFactory(queueConnectionFactory);
-  }
+    protected void initQueueConnectionFactory() {
+        setQueueConnectionFactory(queueConnectionFactory);
+    }
 
-  /*
-   * testName: test1
-   * 
-   * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524
-   * 
-   * @test_Strategy: test activation-config related elements in deployment
-   * descriptors, and their annotation counterparts.
-   */
-  public void test1() throws Fault {
-    sendReceive();
-  }
+    /*
+     * testName: test1
+     *
+     * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524
+     *
+     * @test_Strategy: test activation-config related elements in deployment
+     * descriptors, and their annotation counterparts.
+     */
+    public void test1() throws Fault {
+        sendReceive();
+    }
 
-  /*
-   * testName: negativeTest1
-   * 
-   * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524
-   * 
-   * @test_Strategy: test activation-config related elements in deployment
-   * descriptors, and their annotation counterparts.
-   */
-  public void negativeTest1() throws Fault {
-    // the next messages should be filtered out by the ActivationConfigBean
-    sendReceiveNegative("test1", 1);
-  }
+    /*
+     * testName: negativeTest1
+     *
+     * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524
+     *
+     * @test_Strategy: test activation-config related elements in deployment
+     * descriptors, and their annotation counterparts.
+     */
+    public void negativeTest1() throws Fault {
+        // the next messages should be filtered out by the ActivationConfigBean
+        sendReceiveNegative("test1", 1);
+    }
 
-  /*
-   * testName: negativeTest2
-   * 
-   * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524
-   * 
-   * @test_Strategy: test activation-config related elements in deployment
-   * descriptors, and their annotation counterparts.
-   */
-  public void negativeTest2() throws Fault {
-    // the next messages should be filtered out by the ActivationConfigBean
-    sendReceiveNegative("negativeTest2", 0);
-  }
+    /*
+     * testName: negativeTest2
+     *
+     * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524
+     *
+     * @test_Strategy: test activation-config related elements in deployment
+     * descriptors, and their annotation counterparts.
+     */
+    public void negativeTest2() throws Fault {
+        // the next messages should be filtered out by the ActivationConfigBean
+        sendReceiveNegative("negativeTest2", 0);
+    }
 }

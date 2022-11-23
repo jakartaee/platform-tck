@@ -17,40 +17,36 @@
 
 package com.sun.ts.tests.websocket.platform.cdi;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
 @ServerEndpoint("/method")
 @ApplicationScoped
 public class WSMethodServer {
-  WSInjectableServer injectableServer;
+    WSInjectableServer injectableServer;
 
-  @OnMessage
-  public String inject(String echo) {
-    if (injectableServer == null)
-      return "Nothing injected using CDI";
-    return injectableServer.getName(echo);
-  }
+    @OnMessage
+    public String inject(String echo) {
+        if (injectableServer == null) return "Nothing injected using CDI";
+        return injectableServer.getName(echo);
+    }
 
-  @Inject
-  private void setInjectableServer(WSInjectableServer injectableServer) {
-    this.injectableServer = injectableServer;
-  }
+    @Inject
+    private void setInjectableServer(WSInjectableServer injectableServer) {
+        this.injectableServer = injectableServer;
+    }
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in " + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
-
+    @OnError
+    public void onError(Session session, Throwable t) throws IOException {
+        System.out.println("@OnError in " + getClass().getName());
+        t.printStackTrace(); // Write to error log, too
+        String message = IOUtil.printStackTrace(t);
+        session.getBasicRemote().sendText(message);
+    }
 }

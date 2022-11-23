@@ -20,15 +20,12 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.enventry.single;
 
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJBHome;
-
 public interface BooleanBeanHome extends EJBHome {
 
-  public BooleanBean create(Properties props)
-      throws RemoteException, CreateException;
-
+    public BooleanBean create(Properties props) throws RemoteException, CreateException;
 }

@@ -16,123 +16,112 @@
 
 package com.sun.ts.tests.webservices12.ejb.annotations.WSEjbPortMethodInjectionTest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.tests.jaxws.common.*;
 import com.sun.javatest.Status;
-
+import com.sun.ts.lib.harness.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.tests.jaxws.common.*;
 import jakarta.xml.ws.*;
-import javax.xml.namespace.QName;
-import javax.naming.InitialContext;
 import java.util.Properties;
-import java.util.Iterator;
 
 public class Client extends EETest {
 
-  // The webserver defaults (overidden by harness properties)
-  private static final String PROTOCOL = "http";
+    // The webserver defaults (overidden by harness properties)
+    private static final String PROTOCOL = "http";
 
-  private static final String HOSTNAME = "localhost";
+    private static final String HOSTNAME = "localhost";
 
-  private static final int PORTNUM = 8000;
+    private static final int PORTNUM = 8000;
 
-  // The webserver host and port property names (harness properties)
-  private static final String WEBSERVERHOSTPROP = "webServerHost";
+    // The webserver host and port property names (harness properties)
+    private static final String WEBSERVERHOSTPROP = "webServerHost";
 
-  private static final String WEBSERVERPORTPROP = "webServerPort";
+    private static final String WEBSERVERPORTPROP = "webServerPort";
 
-  private Properties props = null;
+    private Properties props = null;
 
-  private String hostname = HOSTNAME;
+    private String hostname = HOSTNAME;
 
-  private int portnum = PORTNUM;
+    private int portnum = PORTNUM;
 
-  @WebServiceRef(name = "service/wsejbportmethodinjectiontest", value = HelloService.class)
-  static void setPort(Hello s) {
-    port = s;
-  }
-
-  static Hello port = null;
-
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup */
-
-  /*
-   * @class.testArgs: -ap webservices-url-props.dat
-   * 
-   * @class.setup_props: webServerHost; webServerPort;
-   */
-
-  public void setup(String[] args, Properties p) throws Fault {
-    props = p;
-    boolean pass = true;
-    try {
-      hostname = p.getProperty(WEBSERVERHOSTPROP);
-      if (hostname == null)
-        pass = false;
-      else if (hostname.equals(""))
-        pass = false;
-      try {
-        portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        pass = false;
-      }
-      if (pass) {
-        TestUtil.logMsg("Test port method injection");
-        TestUtil.logMsg("port=" + port);
-        if (port != null)
-          JAXWS_Util.dumpTargetEndpointAddress(port);
-      }
-    } catch (Exception e) {
-      throw new Fault("setup failed:", e);
+    @WebServiceRef(name = "service/wsejbportmethodinjectiontest", value = HelloService.class)
+    static void setPort(Hello s) {
+        port = s;
     }
-    if (!pass) {
-      TestUtil.logErr(
-          "Please specify host & port of web server " + "in config properties: "
-              + WEBSERVERHOSTPROP + ", " + WEBSERVERPORTPROP);
-      throw new Fault("setup failed:");
+
+    static Hello port = null;
+
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-    logMsg("setup ok");
-  }
 
-  public void cleanup() throws Fault {
-    logMsg("cleanup ok");
-  }
+    /* Test setup */
 
-  private void printSeperationLine() {
-    TestUtil.logMsg("---------------------------");
-  }
+    /*
+     * @class.testArgs: -ap webservices-url-props.dat
+     *
+     * @class.setup_props: webServerHost; webServerPort;
+     */
 
-  /*
-   * @testName: WSEjbPortMethodInjectionTest
-   *
-   * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42;
-   * WS4EE:SPEC:43; WS4EE:SPEC:44; WS4EE:SPEC:51; WS4EE:SPEC:109;
-   * WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155;
-   * WS4EE:SPEC:171; WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4002;
-   * WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187;
-   *
-   * @test_Strategy: Test that port method injection works.
-   */
-  public void WSEjbPortMethodInjectionTest() throws Fault {
-    TestUtil.logMsg("WSEjbPortMethodInjectionTest");
-    try {
-      if (port == null)
-        throw new RuntimeException("Port method injection failed: port=null");
-      String txt = port.hello("Hello There!");
-      if (txt.equals("WebSvcTest-Hello Hello There!"))
-        TestUtil.logMsg("WSEjbPortMethodInjectionTest passed");
-      else
-        throw new RuntimeException("Msg returned from hello() incorrect");
-    } catch (Throwable t) {
-      throw new Fault("WSEjbPortMethodInjectionTest failed");
+    public void setup(String[] args, Properties p) throws Fault {
+        props = p;
+        boolean pass = true;
+        try {
+            hostname = p.getProperty(WEBSERVERHOSTPROP);
+            if (hostname == null) pass = false;
+            else if (hostname.equals("")) pass = false;
+            try {
+                portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+                pass = false;
+            }
+            if (pass) {
+                TestUtil.logMsg("Test port method injection");
+                TestUtil.logMsg("port=" + port);
+                if (port != null) JAXWS_Util.dumpTargetEndpointAddress(port);
+            }
+        } catch (Exception e) {
+            throw new Fault("setup failed:", e);
+        }
+        if (!pass) {
+            TestUtil.logErr("Please specify host & port of web server " + "in config properties: " + WEBSERVERHOSTPROP
+                    + ", " + WEBSERVERPORTPROP);
+            throw new Fault("setup failed:");
+        }
+        logMsg("setup ok");
     }
-  }
+
+    public void cleanup() throws Fault {
+        logMsg("cleanup ok");
+    }
+
+    private void printSeperationLine() {
+        TestUtil.logMsg("---------------------------");
+    }
+
+    /*
+     * @testName: WSEjbPortMethodInjectionTest
+     *
+     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42;
+     * WS4EE:SPEC:43; WS4EE:SPEC:44; WS4EE:SPEC:51; WS4EE:SPEC:109;
+     * WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155;
+     * WS4EE:SPEC:171; WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4002;
+     * WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187;
+     *
+     * @test_Strategy: Test that port method injection works.
+     */
+    public void WSEjbPortMethodInjectionTest() throws Fault {
+        TestUtil.logMsg("WSEjbPortMethodInjectionTest");
+        try {
+            if (port == null) throw new RuntimeException("Port method injection failed: port=null");
+            String txt = port.hello("Hello There!");
+            if (txt.equals("WebSvcTest-Hello Hello There!")) TestUtil.logMsg("WSEjbPortMethodInjectionTest passed");
+            else throw new RuntimeException("Msg returned from hello() incorrect");
+        } catch (Throwable t) {
+            throw new Fault("WSEjbPortMethodInjectionTest failed");
+        }
+    }
 }

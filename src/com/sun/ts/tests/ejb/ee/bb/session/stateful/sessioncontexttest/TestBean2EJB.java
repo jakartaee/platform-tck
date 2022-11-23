@@ -20,128 +20,126 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.sessioncontexttest;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
 import jakarta.transaction.UserTransaction;
+import java.util.Properties;
 
 public class TestBean2EJB implements SessionBean {
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  private Properties harnessProps = null;
+    private Properties harnessProps = null;
 
-  public void ejbCreate(Properties p) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    harnessProps = p;
-    try {
-      TestUtil.logMsg("initialize remote logging");
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException(e.getMessage());
+    public void ejbCreate(Properties p) throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        harnessProps = p;
+        try {
+            TestUtil.logMsg("initialize remote logging");
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException(e.getMessage());
+        }
     }
-  }
 
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  // ===========================================================
-  // TestBean2EJB interface (our business methods)
-
-  public boolean getUserTransactionTest() {
-    TestUtil.logTrace("getUserTransactionTest");
-
-    boolean pass = true;
-
-    TestUtil.logMsg("invoke SessionContext.getUserTransaction() method");
-    try {
-      UserTransaction ut = sctx.getUserTransaction();
-      TestUtil.logErr("IllegalStateException not received - unexpected");
-      pass = false;
-    } catch (IllegalStateException e) {
-      TestUtil.logMsg("IllegalStateException received - expected");
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      pass = false;
+    public void setSessionContext(SessionContext sc) {
+        TestUtil.logTrace("setSessionContext");
+        this.sctx = sc;
     }
-    return pass;
-  }
 
-  public boolean setRollbackOnlyTest() {
-    TestUtil.logTrace("setRollbackOnlyTest");
-    boolean pass = true;
-    try {
-      TestUtil.logMsg("get rollback status");
-      if (!sctx.getRollbackOnly()) {
-        TestUtil.logMsg("transaction not marked for rollback - expected");
-      } else {
-        TestUtil.logMsg("transaction marked for rollback - unexpected");
-        return false;
-      }
-      TestUtil.logMsg("mark transaction for rollback");
-      sctx.setRollbackOnly();
-      TestUtil.logMsg("get rollback status");
-      if (sctx.getRollbackOnly()) {
-        TestUtil.logMsg("transaction marked for rollback - expected");
-      } else {
-        TestUtil.logMsg("transaction not marked for rollback - unexpected");
-        pass = false;
-      }
-      return pass;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      return false;
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
     }
-  }
 
-  public boolean getRollbackOnlyTest() {
-    TestUtil.logTrace("getRollbackOnlyTest");
-    boolean pass = true;
-    try {
-      TestUtil.logMsg("get rollback status");
-      if (!sctx.getRollbackOnly()) {
-        TestUtil.logMsg("transaction not marked for rollback - expected");
-      } else {
-        TestUtil.logMsg("transaction marked for rollback - unexpected");
-        return false;
-      }
-      TestUtil.logMsg("mark transaction for rollback");
-      sctx.setRollbackOnly();
-      TestUtil.logMsg("get rollback status");
-      if (sctx.getRollbackOnly()) {
-        TestUtil.logMsg("transaction marked for rollback - expected");
-      } else {
-        TestUtil.logMsg("transaction not marked for rollback - unexpected");
-        pass = false;
-      }
-      return pass;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      return false;
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
     }
-  }
 
-  // ===========================================================
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
+
+    // ===========================================================
+    // TestBean2EJB interface (our business methods)
+
+    public boolean getUserTransactionTest() {
+        TestUtil.logTrace("getUserTransactionTest");
+
+        boolean pass = true;
+
+        TestUtil.logMsg("invoke SessionContext.getUserTransaction() method");
+        try {
+            UserTransaction ut = sctx.getUserTransaction();
+            TestUtil.logErr("IllegalStateException not received - unexpected");
+            pass = false;
+        } catch (IllegalStateException e) {
+            TestUtil.logMsg("IllegalStateException received - expected");
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+            pass = false;
+        }
+        return pass;
+    }
+
+    public boolean setRollbackOnlyTest() {
+        TestUtil.logTrace("setRollbackOnlyTest");
+        boolean pass = true;
+        try {
+            TestUtil.logMsg("get rollback status");
+            if (!sctx.getRollbackOnly()) {
+                TestUtil.logMsg("transaction not marked for rollback - expected");
+            } else {
+                TestUtil.logMsg("transaction marked for rollback - unexpected");
+                return false;
+            }
+            TestUtil.logMsg("mark transaction for rollback");
+            sctx.setRollbackOnly();
+            TestUtil.logMsg("get rollback status");
+            if (sctx.getRollbackOnly()) {
+                TestUtil.logMsg("transaction marked for rollback - expected");
+            } else {
+                TestUtil.logMsg("transaction not marked for rollback - unexpected");
+                pass = false;
+            }
+            return pass;
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+            return false;
+        }
+    }
+
+    public boolean getRollbackOnlyTest() {
+        TestUtil.logTrace("getRollbackOnlyTest");
+        boolean pass = true;
+        try {
+            TestUtil.logMsg("get rollback status");
+            if (!sctx.getRollbackOnly()) {
+                TestUtil.logMsg("transaction not marked for rollback - expected");
+            } else {
+                TestUtil.logMsg("transaction marked for rollback - unexpected");
+                return false;
+            }
+            TestUtil.logMsg("mark transaction for rollback");
+            sctx.setRollbackOnly();
+            TestUtil.logMsg("get rollback status");
+            if (sctx.getRollbackOnly()) {
+                TestUtil.logMsg("transaction marked for rollback - expected");
+            } else {
+                TestUtil.logMsg("transaction not marked for rollback - unexpected");
+                pass = false;
+            }
+            return pass;
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+            return false;
+        }
+    }
+
+    // ===========================================================
 }

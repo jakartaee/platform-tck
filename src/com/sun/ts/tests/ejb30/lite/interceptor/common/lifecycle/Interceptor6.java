@@ -19,27 +19,23 @@
  */
 package com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle;
 
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.interceptor.InvocationContext;
+import java.util.logging.Level;
 
 public class Interceptor6 extends InterceptorBase {
-  private static final String simpleName = "Interceptor6";
+    private static final String simpleName = "Interceptor6";
 
-  @PostConstruct
-  private void postConstruct(InvocationContext inv) {
-    Helper.getLogger().logp(Level.FINE, simpleName, "postConstruct",
-        "Adding postConstruct record: " + simpleName);
-    historySingletonBean.addPostConstructRecordFor(inv.getTarget(), simpleName);
-    try {
-      inv.proceed();
-    } catch (Exception ex) {
-      Helper.getLogger().log(Level.SEVERE, simpleName, ex);
-      historySingletonBean.addPostConstructRecordFor(inv.getTarget(),
-          ex.toString());
+    @PostConstruct
+    private void postConstruct(InvocationContext inv) {
+        Helper.getLogger().logp(Level.FINE, simpleName, "postConstruct", "Adding postConstruct record: " + simpleName);
+        historySingletonBean.addPostConstructRecordFor(inv.getTarget(), simpleName);
+        try {
+            inv.proceed();
+        } catch (Exception ex) {
+            Helper.getLogger().log(Level.SEVERE, simpleName, ex);
+            historySingletonBean.addPostConstructRecordFor(inv.getTarget(), ex.toString());
+        }
     }
-  }
 }

@@ -17,11 +17,8 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverendpointconfig;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 import com.sun.ts.tests.websocket.common.util.StringUtil;
-
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.Extension;
 import jakarta.websocket.OnError;
@@ -30,56 +27,55 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 import jakarta.websocket.server.ServerEndpointConfig;
+import java.io.IOException;
 
 @ServerEndpoint(value = "/annotated/configurator", configurator = ServerEndpointConfigConfigurator.class)
 public class WSAnnotatedConfiguratorServer {
 
-  Session session;
+    Session session;
 
-  ServerEndpointConfig config;
+    ServerEndpointConfig config;
 
-  @OnMessage
-  public void onMessage(String msg) {
-    try {
-      if (msg.equals("subprotocols"))
-        session.getBasicRemote().sendText(
-            StringUtil.objectsToString(config.getSubprotocols().toArray()));
-      else if (msg.equals("path"))
-        session.getBasicRemote().sendText(config.getPath());
-      else if (msg.equals("endpoint"))
-        session.getBasicRemote().sendText(config.getEndpointClass().getName());
-      else if (msg.equals("configurator"))
-        session.getBasicRemote()
-            .sendText(config.getConfigurator().getClass().getName());
-      else if (msg.equals("extensions")) {
-        StringBuilder sb = new StringBuilder().append("[");
-        Extension[] ext = config.getExtensions().toArray(new Extension[0]);
-        for (Extension e : ext)
-          sb.append(e.getName()).append(" ");
-        sb.append("]");
-        session.getBasicRemote().sendText(sb.toString());
-      }
-    } catch (IOException e) {
-      e.printStackTrace();
-      try {
-        session.getBasicRemote().sendText(IOUtil.printStackTrace(e));
-      } catch (IOException e1) {
-        e1.printStackTrace();
-      }
+    @OnMessage
+    public void onMessage(String msg) {
+        try {
+            if (msg.equals("subprotocols"))
+                session.getBasicRemote()
+                        .sendText(StringUtil.objectsToString(
+                                config.getSubprotocols().toArray()));
+            else if (msg.equals("path")) session.getBasicRemote().sendText(config.getPath());
+            else if (msg.equals("endpoint"))
+                session.getBasicRemote().sendText(config.getEndpointClass().getName());
+            else if (msg.equals("configurator"))
+                session.getBasicRemote()
+                        .sendText(config.getConfigurator().getClass().getName());
+            else if (msg.equals("extensions")) {
+                StringBuilder sb = new StringBuilder().append("[");
+                Extension[] ext = config.getExtensions().toArray(new Extension[0]);
+                for (Extension e : ext) sb.append(e.getName()).append(" ");
+                sb.append("]");
+                session.getBasicRemote().sendText(sb.toString());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            try {
+                session.getBasicRemote().sendText(IOUtil.printStackTrace(e));
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
     }
-  }
 
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    this.session = session;
-    this.config = (ServerEndpointConfig) config;
-  }
+    @OnOpen
+    public void onOpen(Session session, EndpointConfig config) {
+        this.session = session;
+        this.config = (ServerEndpointConfig) config;
+    }
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
-
+    @OnError
+    public void onError(Session session, Throwable thr) throws IOException {
+        thr.printStackTrace(); // Write to error log, too
+        String message = IOUtil.printStackTrace(thr);
+        session.getBasicRemote().sendText(message);
+    }
 }

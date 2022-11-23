@@ -17,26 +17,22 @@
 
 package com.sun.ts.tests.websocket.common.stringbean;
 
-import java.io.IOException;
-import java.io.Writer;
-
 import jakarta.websocket.EncodeException;
 import jakarta.websocket.Encoder.TextStream;
 import jakarta.websocket.EndpointConfig;
+import java.io.IOException;
+import java.io.Writer;
 
 public class StringBeanTextStreamEncoder implements TextStream<StringBean> {
 
-  @Override
-  public void init(EndpointConfig config) {
-  }
+    @Override
+    public void init(EndpointConfig config) {}
 
-  @Override
-  public void encode(StringBean bean, Writer writer)
-      throws EncodeException, IOException {
-    writer.append(bean.get());
-  }
+    @Override
+    public void encode(StringBean bean, Writer writer) throws EncodeException, IOException {
+        writer.append(bean.get());
+    }
 
-  @Override
-  public void destroy() {
-  }
+    @Override
+    public void destroy() {}
 }

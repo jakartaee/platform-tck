@@ -25,6 +25,5 @@ package com.sun.ts.tests.jsp.spec.core_syntax.scripting.el;
  */
 public class TypeBeanChild extends TypeBean {
 
-  public TypeBeanChild() {
-  }
+    public TypeBeanChild() {}
 }

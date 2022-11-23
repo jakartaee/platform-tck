@@ -19,53 +19,52 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.sessiontrackingmode4;
 
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletContextEvent;
+import jakarta.servlet.ServletContextListener;
+import jakarta.servlet.SessionTrackingMode;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.ServletContextEvent;
-import jakarta.servlet.ServletContextListener;
-import jakarta.servlet.SessionTrackingMode;
-
 public class TestListener implements ServletContextListener {
 
-  /**
-   * Receives notification that the web application initialization process is
-   * starting.
-   *
-   * @param sce
-   *          The ServletContextEvent
-   */
-  public void contextInitialized(ServletContextEvent sce) {
-    ServletContext context = sce.getServletContext();
-    StringBuilder log = new StringBuilder();
+    /**
+     * Receives notification that the web application initialization process is
+     * starting.
+     *
+     * @param sce
+     *          The ServletContextEvent
+     */
+    public void contextInitialized(ServletContextEvent sce) {
+        ServletContext context = sce.getServletContext();
+        StringBuilder log = new StringBuilder();
 
-    List<SessionTrackingMode> complete = new CopyOnWriteArrayList<SessionTrackingMode>();
-    complete.add(SessionTrackingMode.COOKIE);
-    complete.add(SessionTrackingMode.SSL);
-    complete.add(SessionTrackingMode.URL);
+        List<SessionTrackingMode> complete = new CopyOnWriteArrayList<SessionTrackingMode>();
+        complete.add(SessionTrackingMode.COOKIE);
+        complete.add(SessionTrackingMode.SSL);
+        complete.add(SessionTrackingMode.URL);
 
-    Set<SessionTrackingMode> complete_set = new HashSet(complete);
+        Set<SessionTrackingMode> complete_set = new HashSet(complete);
 
-    try {
-      context.setSessionTrackingModes(complete_set);
-      log.append("Expected IllegalArgumentException not thrown.");
-    } catch (IllegalArgumentException ex) {
-      log.append("Expected IllegalArgumentException thrown.");
+        try {
+            context.setSessionTrackingModes(complete_set);
+            log.append("Expected IllegalArgumentException not thrown.");
+        } catch (IllegalArgumentException ex) {
+            log.append("Expected IllegalArgumentException thrown.");
+        }
+
+        context.setAttribute("TCK_TEST_STATUS", log.toString());
     }
 
-    context.setAttribute("TCK_TEST_STATUS", log.toString());
-  }
-
-  /**
-   * Receives notification that the servlet context is about to be shut down.
-   *
-   * @param sce
-   *          The servlet context event
-   */
-  public void contextDestroyed(ServletContextEvent sce) {
-    // Do nothing
-  }
+    /**
+     * Receives notification that the servlet context is about to be shut down.
+     *
+     * @param sce
+     *          The servlet context event
+     */
+    public void contextDestroyed(ServletContextEvent sce) {
+        // Do nothing
+    }
 }

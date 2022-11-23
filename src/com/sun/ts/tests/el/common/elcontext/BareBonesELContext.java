@@ -33,29 +33,28 @@ import jakarta.el.VariableMapper;
 
 public class BareBonesELContext extends ELContext {
 
-  private final ELResolver elResolver;
+    private final ELResolver elResolver;
 
-  /*
-   * Constructor.
-   */
-  public BareBonesELContext() {
-    this.elResolver = new CompositeELResolver();
-  }
+    /*
+     * Constructor.
+     */
+    public BareBonesELContext() {
+        this.elResolver = new CompositeELResolver();
+    }
 
-  public ELResolver getELResolver() {
-    return (ELResolver) elResolver;
-  }
+    public ELResolver getELResolver() {
+        return (ELResolver) elResolver;
+    }
 
-  public ELContext getELContext() {
-    return (ELContext) (this);
-  }
+    public ELContext getELContext() {
+        return (ELContext) (this);
+    }
 
-  public VariableMapper getVariableMapper() {
-    return null;
-  }
+    public VariableMapper getVariableMapper() {
+        return null;
+    }
 
-  public FunctionMapper getFunctionMapper() {
-    return null;
-  }
-
+    public FunctionMapper getFunctionMapper() {
+        return null;
+    }
 }

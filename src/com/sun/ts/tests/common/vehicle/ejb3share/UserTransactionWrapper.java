@@ -21,7 +21,6 @@
 package com.sun.ts.tests.common.vehicle.ejb3share;
 
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceException;
 import jakarta.transaction.NotSupportedException;
@@ -29,102 +28,97 @@ import jakarta.transaction.Status;
 import jakarta.transaction.SystemException;
 import jakarta.transaction.UserTransaction;
 
-final public class UserTransactionWrapper implements EntityTransaction {
-  private UserTransaction delegate;
+public final class UserTransactionWrapper implements EntityTransaction {
+    private UserTransaction delegate;
 
-  /**
-   * These are the various status and values for a transaction STATUS_ACTIVE:0
-   * STATUS_COMMITTED:3 STATUS_COMMITTING:8 STATUS_MARKED_ROLLBACK:1
-   * STATUS_NO_TRANSACTION:6 STATUS_PREPARED:2 STATUS_PREPARING:7
-   * STATUS_ROLLEDBACK:4 STATUS_ROLLING_BACK:9 STATUS_UNKNOWN:5 *
-   */
-  public UserTransactionWrapper() {
-  }
+    /**
+     * These are the various status and values for a transaction STATUS_ACTIVE:0
+     * STATUS_COMMITTED:3 STATUS_COMMITTING:8 STATUS_MARKED_ROLLBACK:1
+     * STATUS_NO_TRANSACTION:6 STATUS_PREPARED:2 STATUS_PREPARING:7
+     * STATUS_ROLLEDBACK:4 STATUS_ROLLING_BACK:9 STATUS_UNKNOWN:5 *
+     */
+    public UserTransactionWrapper() {}
 
-  public UserTransactionWrapper(UserTransaction delegate) {
-    this.delegate = delegate;
-  }
+    public UserTransactionWrapper(UserTransaction delegate) {
+        this.delegate = delegate;
+    }
 
-  public void setDelegate(UserTransaction delegate) {
-    this.delegate = delegate;
-  }
+    public void setDelegate(UserTransaction delegate) {
+        this.delegate = delegate;
+    }
 
-  public void rollback() {
-    TestUtil.logTrace("in UserTransactionWrapper.rollback()");
-    if (!isActive()) {
-      throw new IllegalStateException("Transaction is not active.");
+    public void rollback() {
+        TestUtil.logTrace("in UserTransactionWrapper.rollback()");
+        if (!isActive()) {
+            throw new IllegalStateException("Transaction is not active.");
+        }
+        try {
+            delegate.rollback();
+        } catch (SystemException e) {
+            throw new PersistenceException(e);
+        }
     }
-    try {
-      delegate.rollback();
-    } catch (SystemException e) {
-      throw new PersistenceException(e);
-    }
-  }
 
-  public boolean isActive() {
-    boolean active = false;
-    try {
-      int txStatus = delegate.getStatus();
-      TestUtil.logTrace(
-          "UserTransactionWrapper.isActive().getStatus():" + txStatus);
-      if ((txStatus == Status.STATUS_ACTIVE)
-          || (txStatus == Status.STATUS_MARKED_ROLLBACK)) {
-        active = true;
-      }
-    } catch (SystemException e) {
-      throw new PersistenceException(e);
+    public boolean isActive() {
+        boolean active = false;
+        try {
+            int txStatus = delegate.getStatus();
+            TestUtil.logTrace("UserTransactionWrapper.isActive().getStatus():" + txStatus);
+            if ((txStatus == Status.STATUS_ACTIVE) || (txStatus == Status.STATUS_MARKED_ROLLBACK)) {
+                active = true;
+            }
+        } catch (SystemException e) {
+            throw new PersistenceException(e);
+        }
+        return active;
     }
-    return active;
-  }
 
-  public void commit() {
-    TestUtil.logTrace("in UserTransactionWrapper.commit()");
+    public void commit() {
+        TestUtil.logTrace("in UserTransactionWrapper.commit()");
 
-    if (!isActive()) {
-      throw new IllegalStateException("Transaction is not active.");
+        if (!isActive()) {
+            throw new IllegalStateException("Transaction is not active.");
+        }
+        try {
+            delegate.commit();
+        } catch (Exception e) {
+            throw new jakarta.persistence.RollbackException(e);
+        }
     }
-    try {
-      delegate.commit();
-    } catch (Exception e) {
-      throw new jakarta.persistence.RollbackException(e);
-    }
-  }
 
-  public void begin() {
-    TestUtil.logTrace("in UserTransactionWrapper.begin()");
-    if (isActive()) {
-      throw new IllegalStateException("Transaction is already active.");
+    public void begin() {
+        TestUtil.logTrace("in UserTransactionWrapper.begin()");
+        if (isActive()) {
+            throw new IllegalStateException("Transaction is already active.");
+        }
+        try {
+            delegate.begin();
+            TestUtil.logTrace("UserTransactionWrapper.begin().getStatus():" + delegate.getStatus());
+        } catch (SystemException e) {
+            throw new PersistenceException(e);
+        } catch (NotSupportedException e) {
+            throw new PersistenceException(e);
+        }
     }
-    try {
-      delegate.begin();
-      TestUtil.logTrace(
-          "UserTransactionWrapper.begin().getStatus():" + delegate.getStatus());
-    } catch (SystemException e) {
-      throw new PersistenceException(e);
-    } catch (NotSupportedException e) {
-      throw new PersistenceException(e);
-    }
-  }
 
-  public void setRollbackOnly() {
-    TestUtil.logTrace("in UserTransactionWrapper.setRollbackOnly()");
-    if (!isActive()) {
-      throw new IllegalStateException("Transaction is not active.");
+    public void setRollbackOnly() {
+        TestUtil.logTrace("in UserTransactionWrapper.setRollbackOnly()");
+        if (!isActive()) {
+            throw new IllegalStateException("Transaction is not active.");
+        }
     }
-  }
 
-  public boolean getRollbackOnly() {
-    TestUtil.logTrace("in UserTransactionWrapper.getRollbackOnly()");
-    if (!isActive()) {
-      throw new IllegalStateException("Transaction is not active.");
+    public boolean getRollbackOnly() {
+        TestUtil.logTrace("in UserTransactionWrapper.getRollbackOnly()");
+        if (!isActive()) {
+            throw new IllegalStateException("Transaction is not active.");
+        }
+        try {
+            int txStatus = delegate.getStatus();
+            TestUtil.logTrace("UserTransactionWrapper.getRollbackOnly().getStatus():" + txStatus);
+            return txStatus == Status.STATUS_MARKED_ROLLBACK;
+        } catch (SystemException e) {
+            throw new PersistenceException(e);
+        }
     }
-    try {
-      int txStatus = delegate.getStatus();
-      TestUtil.logTrace(
-          "UserTransactionWrapper.getRollbackOnly().getStatus():" + txStatus);
-      return txStatus == Status.STATUS_MARKED_ROLLBACK;
-    } catch (SystemException e) {
-      throw new PersistenceException(e);
-    }
-  }
 }

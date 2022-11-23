@@ -20,24 +20,17 @@ import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
 
 public class ChokeBean implements SessionBean {
-  public void ejbCreate() {
-  }
+    public void ejbCreate() {}
 
-  public void ejbActivate() {
-  }
+    public void ejbActivate() {}
 
-  public void ejbRemove() {
-  }
+    public void ejbRemove() {}
 
-  public void ejbPassivate() {
-  }
+    public void ejbPassivate() {}
 
-  public void setSessionContext(SessionContext sc) {
-  }
+    public void setSessionContext(SessionContext sc) {}
 
-  public void chokeMandatory() {
-  }
+    public void chokeMandatory() {}
 
-  public void chokeNever() {
-  }
+    public void chokeNever() {}
 }

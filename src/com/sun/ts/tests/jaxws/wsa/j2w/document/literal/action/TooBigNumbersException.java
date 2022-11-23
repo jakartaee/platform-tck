@@ -21,14 +21,14 @@
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.action;
 
 public class TooBigNumbersException extends Exception {
-  String detail;
+    String detail;
 
-  public TooBigNumbersException(String message, String detail) {
-    super(message);
-    this.detail = detail;
-  }
+    public TooBigNumbersException(String message, String detail) {
+        super(message);
+        this.detail = detail;
+    }
 
-  public String getDetail() {
-    return detail;
-  }
+    public String getDetail() {
+        return detail;
+    }
 }

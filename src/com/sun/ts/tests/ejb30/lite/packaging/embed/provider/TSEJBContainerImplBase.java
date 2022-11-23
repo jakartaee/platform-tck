@@ -19,29 +19,26 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.embed.provider;
 
-import javax.naming.Context;
-
 import jakarta.ejb.embeddable.EJBContainer;
+import javax.naming.Context;
 
 public class TSEJBContainerImplBase extends EJBContainer {
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see jakarta.ejb.embeddable.EJBContainer#close()
-   */
-  @Override
-  public void close() {
-  }
+    /*
+     * (non-Javadoc)
+     *
+     * @see jakarta.ejb.embeddable.EJBContainer#close()
+     */
+    @Override
+    public void close() {}
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see jakarta.ejb.embeddable.EJBContainer#getContext()
-   */
-  @Override
-  public Context getContext() {
-    return null;
-  }
-
+    /*
+     * (non-Javadoc)
+     *
+     * @see jakarta.ejb.embeddable.EJBContainer#getContext()
+     */
+    @Override
+    public Context getContext() {
+        return null;
+    }
 }

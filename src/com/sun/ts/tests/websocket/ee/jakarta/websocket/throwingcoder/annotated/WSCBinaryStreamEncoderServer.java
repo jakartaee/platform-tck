@@ -17,35 +17,31 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder.annotated;
 
-import java.io.IOException;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder.ThrowingBinaryStreamEncoder;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder.ThrowingTextDecoder;
-
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
-@ServerEndpoint(value = "/binarystreamencoder", encoders = {
-    ThrowingBinaryStreamEncoder.class })
+@ServerEndpoint(
+        value = "/binarystreamencoder",
+        encoders = {ThrowingBinaryStreamEncoder.class})
 public class WSCBinaryStreamEncoderServer {
 
-  @OnMessage
-  public void echo(String data, Session session)
-      throws InterruptedException, ExecutionException {
-    Future<Void> future = session.getAsyncRemote()
-        .sendObject(new StringBean(data));
-    future.get();
-  }
+    @OnMessage
+    public void echo(String data, Session session) throws InterruptedException, ExecutionException {
+        Future<Void> future = session.getAsyncRemote().sendObject(new StringBean(data));
+        future.get();
+    }
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    String message = ThrowingTextDecoder.getCauseMessage(t);
-    session.getBasicRemote().sendText(message);
-  }
-
+    @OnError
+    public void onError(Session session, Throwable t) throws IOException {
+        String message = ThrowingTextDecoder.getCauseMessage(t);
+        session.getBasicRemote().sendText(message);
+    }
 }

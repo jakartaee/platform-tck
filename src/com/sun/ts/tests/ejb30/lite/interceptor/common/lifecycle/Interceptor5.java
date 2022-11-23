@@ -23,5 +23,4 @@ package com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle;
  * All interceptor methods for this interceptor are in super and super-super
  * classes.
  */
-public class Interceptor5 extends InterceptorBase {
-}
+public class Interceptor5 extends InterceptorBase {}

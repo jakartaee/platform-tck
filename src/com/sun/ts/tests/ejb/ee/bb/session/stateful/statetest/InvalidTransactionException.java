@@ -21,10 +21,9 @@
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.statetest;
 
 public class InvalidTransactionException extends Exception {
-  public InvalidTransactionException() {
-  }
+    public InvalidTransactionException() {}
 
-  public InvalidTransactionException(String msg) {
-    super(msg);
-  }
+    public InvalidTransactionException(String msg) {
+        super(msg);
+    }
 }

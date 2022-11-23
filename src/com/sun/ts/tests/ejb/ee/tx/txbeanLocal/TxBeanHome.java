@@ -24,5 +24,5 @@ import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBLocalHome;
 
 public interface TxBeanHome extends EJBLocalHome {
-  public TxBean create() throws CreateException;
+    public TxBean create() throws CreateException;
 }

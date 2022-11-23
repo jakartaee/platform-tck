@@ -24,13 +24,13 @@ import jakarta.ejb.Remote;
 
 @Remote
 public interface OneRemoteIF extends CommonIF {
-  public String testNumber(int n);
+    public String testNumber(int n);
 
-  public String testNumber(Integer n);
+    public String testNumber(Integer n);
 
-  public String testNumber(double n);
+    public String testNumber(double n);
 
-  public String testNumber(Double n);
+    public String testNumber(Double n);
 
-  public String testException();
+    public String testException();
 }

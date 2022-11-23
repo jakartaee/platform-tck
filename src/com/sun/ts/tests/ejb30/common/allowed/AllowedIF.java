@@ -20,35 +20,33 @@
 
 package com.sun.ts.tests.ejb30.common.allowed;
 
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.util.Properties;
 
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 public interface AllowedIF extends NoTxAllowedIF {
-  Properties business();
+    Properties business();
 
-  Properties preInvokeTest();
+    Properties preInvokeTest();
 
-  void postInvokeTest();
+    void postInvokeTest();
 
-  Properties getResultsPostInvoke();
+    Properties getResultsPostInvoke();
 
-  /////////////////////////////////////////////////////////////////////////
-  // for sfsb only
-  /////////////////////////////////////////////////////////////////////////
-  void setTestMethod(String testMethod);
+    /////////////////////////////////////////////////////////////////////////
+    // for sfsb only
+    /////////////////////////////////////////////////////////////////////////
+    void setTestMethod(String testMethod);
 
-  Properties afterBeginTest();
+    Properties afterBeginTest();
 
-  Properties beforeCompletionTest();
+    Properties beforeCompletionTest();
 
-  void afterCompletionTest();
+    void afterCompletionTest();
 
-  Properties getResultsAfterCompletion();
+    Properties getResultsAfterCompletion();
 
-  /////////////////////////////////////////////////////////////////////////
-  // for stateful/bm/allowed
-  /////////////////////////////////////////////////////////////////////////
-  void utBeginTest() throws TestFailedException;
-
+    /////////////////////////////////////////////////////////////////////////
+    // for stateful/bm/allowed
+    /////////////////////////////////////////////////////////////////////////
+    void utBeginTest() throws TestFailedException;
 }

@@ -16,17 +16,16 @@
 
 package com.sun.ts.tests.ejb32.mdb.modernconnector.ejb;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Lock;
 import jakarta.ejb.LockType;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 @Startup
 @Singleton
@@ -34,25 +33,25 @@ import jakarta.ejb.Startup;
 @Lock(LockType.READ)
 public class EventLoggerBean implements EventLoggerRemote {
 
-  private final CountDownLatch expected = new CountDownLatch(6);
+    private final CountDownLatch expected = new CountDownLatch(6);
 
-  private final List<String> eventRecords = new ArrayList<String>();
+    private final List<String> eventRecords = new ArrayList<String>();
 
-  public List<String> getEventRecords() {
-    return Collections.unmodifiableList(eventRecords);
-  }
-
-  public void logEvent(String event) {
-    eventRecords.add(event);
-    expected.countDown();
-  }
-
-  public boolean awaitInvocations() {
-    try {
-      return expected.await(1, TimeUnit.MINUTES);
-    } catch (InterruptedException e) {
-      Thread.interrupted();
-      return false;
+    public List<String> getEventRecords() {
+        return Collections.unmodifiableList(eventRecords);
     }
-  }
+
+    public void logEvent(String event) {
+        eventRecords.add(event);
+        expected.countDown();
+    }
+
+    public boolean awaitInvocations() {
+        try {
+            return expected.await(1, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            Thread.interrupted();
+            return false;
+        }
+    }
 }

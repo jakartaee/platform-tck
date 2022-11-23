@@ -58,112 +58,97 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.scattributeevent;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextAttributeEvent;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class TestServlet extends GenericTCKServlet {
 
-  public void constructorTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
+    public void constructorTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
-    ServletContextAttributeEvent scae = new ServletContextAttributeEvent(
-        getServletContext(), "test", "value");
-    if (scae == null) {
-      passed = false;
-      pw.println("The constructor for ServletContextEvent returned a null");
-    } else {
-      passed = true;
+        PrintWriter pw = response.getWriter();
+        boolean passed = false;
+        ServletContextAttributeEvent scae = new ServletContextAttributeEvent(getServletContext(), "test", "value");
+        if (scae == null) {
+            passed = false;
+            pw.println("The constructor for ServletContextEvent returned a null");
+        } else {
+            passed = true;
+        }
+        StaticLog.clear();
+        ServletTestUtil.printResult(pw, passed);
     }
-    StaticLog.clear();
-    ServletTestUtil.printResult(pw, passed);
-  }
 
-  public void addedTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
+    public void addedTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
+        PrintWriter pw = response.getWriter();
 
-    StaticLog.clear();
+        StaticLog.clear();
 
-    String[] expected = { "AttributeAdded:addTest,Attribute1" };
+        String[] expected = {"AttributeAdded:addTest,Attribute1"};
 
-    // the test
-    ServletContext context = getServletContext();
-    context.setAttribute("addTest", "Attribute1");
+        // the test
+        ServletContext context = getServletContext();
+        context.setAttribute("addTest", "Attribute1");
 
-    // verify results
-    ArrayList result = StaticLog.getClear();
-    boolean passed = ServletTestUtil.checkArrayList(result, expected, true,
-        false);
-    if (!passed) {
-      ServletTestUtil.printFailureData(pw, result, expected);
+        // verify results
+        ArrayList result = StaticLog.getClear();
+        boolean passed = ServletTestUtil.checkArrayList(result, expected, true, false);
+        if (!passed) {
+            ServletTestUtil.printFailureData(pw, result, expected);
+        }
+        context.removeAttribute("addTest");
+        ServletTestUtil.printResult(pw, passed);
     }
-    context.removeAttribute("addTest");
-    ServletTestUtil.printResult(pw, passed);
 
-  }
+    public void removedTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-  public void removedTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+        StaticLog.clear();
 
-    StaticLog.clear();
+        String[] expected = {"AttributeAdded:removeTest,Attribute1", "AttributeRemoved:removeTest,Attribute1"};
 
-    String[] expected = { "AttributeAdded:removeTest,Attribute1",
-        "AttributeRemoved:removeTest,Attribute1" };
+        // the test
+        ServletContext context = getServletContext();
+        context.setAttribute("removeTest", "Attribute1");
+        context.removeAttribute("removeTest");
 
-    // the test
-    ServletContext context = getServletContext();
-    context.setAttribute("removeTest", "Attribute1");
-    context.removeAttribute("removeTest");
-
-    // verify results
-    ArrayList result = StaticLog.getClear();
-    boolean passed = ServletTestUtil.checkArrayList(result, expected, true,
-        false);
-    if (!passed) {
-      ServletTestUtil.printFailureData(pw, result, expected);
+        // verify results
+        ArrayList result = StaticLog.getClear();
+        boolean passed = ServletTestUtil.checkArrayList(result, expected, true, false);
+        if (!passed) {
+            ServletTestUtil.printFailureData(pw, result, expected);
+        }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
 
-  }
+    public void replacedTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-  public void replacedTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+        StaticLog.clear();
 
-    StaticLog.clear();
+        String[] expected = {"AttributeAdded:replacedTest,Attribute1", "AttributeReplaced:replacedTest,Attribute1"};
 
-    String[] expected = { "AttributeAdded:replacedTest,Attribute1",
-        "AttributeReplaced:replacedTest,Attribute1" };
+        // the test
+        ServletContext context = getServletContext();
+        context.setAttribute("replacedTest", "Attribute1");
+        context.setAttribute("replacedTest", "Attribute2");
 
-    // the test
-    ServletContext context = getServletContext();
-    context.setAttribute("replacedTest", "Attribute1");
-    context.setAttribute("replacedTest", "Attribute2");
-
-    // verify results
-    ArrayList result = StaticLog.getClear();
-    boolean passed = ServletTestUtil.checkArrayList(result, expected, true,
-        false);
-    if (!passed) {
-      ServletTestUtil.printFailureData(pw, result, expected);
+        // verify results
+        ArrayList result = StaticLog.getClear();
+        boolean passed = ServletTestUtil.checkArrayList(result, expected, true, false);
+        if (!passed) {
+            ServletTestUtil.printFailureData(pw, result, expected);
+        }
+        context.removeAttribute("replacedTest");
+        ServletTestUtil.printResult(pw, passed);
     }
-    context.removeAttribute("replacedTest");
-    ServletTestUtil.printResult(pw, passed);
-
-  }
 }

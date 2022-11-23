@@ -23,19 +23,19 @@ package com.sun.ts.tests.ejb.ee.sec.bmp.common;
 import jakarta.ejb.EJBLocalObject;
 
 public interface SecTestLocal extends EJBLocalObject {
-  public boolean IsCaller(String caller);
+    public boolean IsCaller(String caller);
 
-  public boolean EjbNotAuthz();
+    public boolean EjbNotAuthz();
 
-  public boolean EjbIsAuthz();
+    public boolean EjbIsAuthz();
 
-  public boolean EjbSecRoleRef(String role);
+    public boolean EjbSecRoleRef(String role);
 
-  public boolean EjbOverloadedSecRoleRefs(String role1);
+    public boolean EjbOverloadedSecRoleRefs(String role1);
 
-  public boolean EjbOverloadedSecRoleRefs(String role1, String role2);
+    public boolean EjbOverloadedSecRoleRefs(String role1, String role2);
 
-  public boolean checktest1();
+    public boolean checktest1();
 
-  public boolean excludetest1();
+    public boolean excludetest1();
 }

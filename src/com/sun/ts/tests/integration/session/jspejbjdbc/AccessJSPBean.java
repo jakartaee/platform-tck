@@ -20,80 +20,78 @@
 
 package com.sun.ts.tests.integration.session.jspejbjdbc;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
+import java.util.Properties;
 
 public class AccessJSPBean {
 
-  private static final int ACCOUNT = 1075;
+    private static final int ACCOUNT = 1075;
 
-  private static final String TELLERNAME = "joe";
+    private static final String TELLERNAME = "joe";
 
-  private static final String ejbRef = "java:comp/env/ejb/TellerBean";
+    private static final String ejbRef = "java:comp/env/ejb/TellerBean";
 
-  private TellerHome beanHome = null;
+    private TellerHome beanHome = null;
 
-  private Teller beanRef = null;
+    private Teller beanRef = null;
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  public AccessJSPBean() throws Exception {
-    nctx = new TSNamingContext();
-    beanHome = (TellerHome) nctx.lookup(ejbRef, TellerHome.class);
-  }
-
-  public void setup(Properties p) {
-    TestUtil.logTrace("setup");
-    try {
-      if (p != null)
-        TestUtil.init(p);
-      beanRef = beanHome.create(TELLERNAME, p);
-    } catch (Exception e) {
-      TestUtil.logErr("AccessJSPBean: Exception occurred - " + e, e);
+    public AccessJSPBean() throws Exception {
+        nctx = new TSNamingContext();
+        beanHome = (TellerHome) nctx.lookup(ejbRef, TellerHome.class);
     }
-  }
 
-  public String getMsg() {
-    try {
-      if (beanRef == null) {
-        return "could not talk to the EJB in method getMsg -> " + ejbRef;
-      } else {
-        return beanRef.sayHello();
-      }
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      return "Got Exception : " + e.getMessage();
+    public void setup(Properties p) {
+        TestUtil.logTrace("setup");
+        try {
+            if (p != null) TestUtil.init(p);
+            beanRef = beanHome.create(TELLERNAME, p);
+        } catch (Exception e) {
+            TestUtil.logErr("AccessJSPBean: Exception occurred - " + e, e);
+        }
     }
-  }
 
-  public Properties getTransactionProps() {
-    TestUtil.logTrace("getTransactionProps");
-    double balance;
+    public String getMsg() {
+        try {
+            if (beanRef == null) {
+                return "could not talk to the EJB in method getMsg -> " + ejbRef;
+            } else {
+                return beanRef.sayHello();
+            }
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            return "Got Exception : " + e.getMessage();
+        }
+    }
 
-    Properties p = new Properties();
+    public Properties getTransactionProps() {
+        TestUtil.logTrace("getTransactionProps");
+        double balance;
 
-    try {
-      if (beanRef == null) {
+        Properties p = new Properties();
+
+        try {
+            if (beanRef == null) {
+                return p;
+            } else {
+                TestUtil.logTrace("Perform database transactions");
+                balance = beanRef.balance(ACCOUNT);
+                p.setProperty("Balance", "" + balance);
+                TestUtil.logTrace("Balance is " + balance);
+
+                balance = beanRef.deposit(ACCOUNT, 100.0);
+                p.setProperty("Deposit", "" + balance);
+                TestUtil.logTrace("Deposit 100, balance is " + balance);
+
+                balance = beanRef.withdraw(ACCOUNT, 50.0);
+                p.setProperty("Withdraw", "" + balance);
+                TestUtil.logTrace("Withdraw 50, balance is " + balance);
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("Exception occurred: " + e, e);
+        }
         return p;
-      } else {
-        TestUtil.logTrace("Perform database transactions");
-        balance = beanRef.balance(ACCOUNT);
-        p.setProperty("Balance", "" + balance);
-        TestUtil.logTrace("Balance is " + balance);
-
-        balance = beanRef.deposit(ACCOUNT, 100.0);
-        p.setProperty("Deposit", "" + balance);
-        TestUtil.logTrace("Deposit 100, balance is " + balance);
-
-        balance = beanRef.withdraw(ACCOUNT, 50.0);
-        p.setProperty("Withdraw", "" + balance);
-        TestUtil.logTrace("Withdraw 50, balance is " + balance);
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Exception occurred: " + e, e);
     }
-    return p;
-  }
 }

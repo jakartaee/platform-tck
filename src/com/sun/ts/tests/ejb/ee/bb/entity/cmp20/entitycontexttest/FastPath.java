@@ -20,17 +20,15 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.entitycontexttest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface FastPath extends EJBObject {
-  public String getIt(String envEntryName) throws RemoteException;
+    public String getIt(String envEntryName) throws RemoteException;
 
-  public String setIt(String envEntryName) throws RemoteException;
+    public String setIt(String envEntryName) throws RemoteException;
 
-  public String getCoffeeId(String coffeeId) throws RemoteException;
+    public String getCoffeeId(String coffeeId) throws RemoteException;
 
-  public String setCoffeeBrand(String oldBrand, String newBrand)
-      throws RemoteException;
+    public String setCoffeeBrand(String oldBrand, String newBrand) throws RemoteException;
 }

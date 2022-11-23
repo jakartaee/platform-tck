@@ -21,75 +21,61 @@
 
 package com.sun.ts.tests.el.common.elresolver;
 
-import java.util.Iterator;
-
 import com.sun.ts.tests.el.common.functionmapper.TCKFunctionMapper;
-
 import jakarta.el.ELContext;
 import jakarta.el.ELException;
 import jakarta.el.ELResolver;
+import java.util.Iterator;
 
 /* This ELResolver resolves only functions mapped by the TCKFunctionMapper.
  * It does not allow variables to be set.
-*/
+ */
 
 public class FunctionELResolver extends ELResolver {
 
-  public Object getValue(ELContext context, Object base, Object property)
-      throws ELException {
-    if (context == null)
-      throw new NullPointerException();
+    public Object getValue(ELContext context, Object base, Object property) throws ELException {
+        if (context == null) throw new NullPointerException();
 
-    Object result = null;
-    if (base == null) {
-      context.setPropertyResolved(true);
-      String[] function = property.toString().split(":", 2);
+        Object result = null;
+        if (base == null) {
+            context.setPropertyResolved(true);
+            String[] function = property.toString().split(":", 2);
 
-      // Strip off parentheses
-      String localname = function[1].substring(0, function[1].length() - 3);
-      result = new TCKFunctionMapper().resolveFunction(function[0], localname);
+            // Strip off parentheses
+            String localname = function[1].substring(0, function[1].length() - 3);
+            result = new TCKFunctionMapper().resolveFunction(function[0], localname);
+        }
+
+        return result;
     }
 
-    return result;
-  }
+    public Class getType(ELContext context, Object base, Object property) throws ELException {
+        if (context == null) throw new NullPointerException();
 
-  public Class getType(ELContext context, Object base, Object property)
-      throws ELException {
-    if (context == null)
-      throw new NullPointerException();
+        if (base == null) context.setPropertyResolved(true);
 
-    if (base == null)
-      context.setPropertyResolved(true);
+        return null;
+    }
 
-    return null;
-  }
+    public void setValue(ELContext context, Object base, Object property, Object value) {
+        if (context == null) throw new NullPointerException();
 
-  public void setValue(ELContext context, Object base, Object property,
-      Object value) {
-    if (context == null)
-      throw new NullPointerException();
+        if (base == null) context.setPropertyResolved(true);
+    }
 
-    if (base == null)
-      context.setPropertyResolved(true);
-  }
+    public boolean isReadOnly(ELContext context, Object base, Object property) {
+        if (context == null) throw new NullPointerException();
 
-  public boolean isReadOnly(ELContext context, Object base, Object property) {
-    if (context == null)
-      throw new NullPointerException();
+        if (base == null) context.setPropertyResolved(true);
+        return false;
+    }
 
-    if (base == null)
-      context.setPropertyResolved(true);
-    return false;
-  }
+    public Iterator getFeatureDescriptors(ELContext context, Object base) {
+        return null;
+    }
 
-  public Iterator getFeatureDescriptors(ELContext context, Object base) {
-    return null;
-  }
-
-  public Class getCommonPropertyType(ELContext context, Object base) {
-    if (base == null)
-      return Object.class;
-    return null;
-  }
-
+    public Class getCommonPropertyType(ELContext context, Object base) {
+        if (base == null) return Object.class;
+        return null;
+    }
 }

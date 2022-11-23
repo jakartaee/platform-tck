@@ -17,31 +17,27 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.server;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
-
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
+import java.io.IOException;
 
-public class StringBeanMessageHandler
-    implements MessageHandler.Whole<StringBean> {
+public class StringBeanMessageHandler implements MessageHandler.Whole<StringBean> {
 
-  private Session session;
+    private Session session;
 
-  public static final String HANDLER_SAYS = "StringBeanMessageHandler says: ";
+    public static final String HANDLER_SAYS = "StringBeanMessageHandler says: ";
 
-  public StringBeanMessageHandler(Session session) {
-    this.session = session;
-  }
-
-  @Override
-  public void onMessage(StringBean message) {
-    try {
-      session.getBasicRemote().sendText(HANDLER_SAYS + message.get());
-    } catch (IOException e) {
-      throw new RuntimeException(e);
+    public StringBeanMessageHandler(Session session) {
+        this.session = session;
     }
-  }
 
+    @Override
+    public void onMessage(StringBean message) {
+        try {
+            session.getBasicRemote().sendText(HANDLER_SAYS + message.get());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

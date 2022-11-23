@@ -27,7 +27,7 @@ package com.sun.ts.tests.ejb30.lite.appexception.common.inheritance;
  * superclass, Exception1, contains no annotations.
  */
 public class Exception2 extends Exception1 {
-  public Exception2(String message) {
-    super(message);
-  }
+    public Exception2(String message) {
+        super(message);
+    }
 }

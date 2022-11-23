@@ -23,10 +23,10 @@ package com.sun.ts.tests.ejb.ee.pm.selfXself;
 import jakarta.ejb.EJBLocalObject;
 
 public interface DepartmentLocal extends EJBLocalObject {
-  // Business Methods for CMP Fields
-  public Integer getId();
+    // Business Methods for CMP Fields
+    public Integer getId();
 
-  public String getName();
+    public String getName();
 
-  public void setName(String v);
+    public void setName(String v);
 }

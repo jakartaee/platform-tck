@@ -21,7 +21,6 @@
 package com.sun.ts.tests.jpa.core.types.primarykey.compound;
 
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -33,76 +32,73 @@ import jakarta.persistence.Table;
 @Table(name = "PKEY")
 public class TestBean2 implements java.io.Serializable {
 
-  private Integer pmIDInteger;
+    private Integer pmIDInteger;
 
-  private String pmIDString;
+    private String pmIDString;
 
-  private Float pmIDFloat;
+    private Float pmIDFloat;
 
-  private String brandName;
+    private String brandName;
 
-  private float price;
+    private float price;
 
-  public TestBean2() {
-  }
+    public TestBean2() {}
 
-  public TestBean2(Integer pmIDInteger, String pmIDString, Float pmIDFloat,
-      String brandName, float price) {
-    this.pmIDInteger = pmIDInteger;
-    this.pmIDString = pmIDString;
-    this.pmIDFloat = pmIDFloat;
-    this.brandName = brandName;
-    this.price = price;
-  }
+    public TestBean2(Integer pmIDInteger, String pmIDString, Float pmIDFloat, String brandName, float price) {
+        this.pmIDInteger = pmIDInteger;
+        this.pmIDString = pmIDString;
+        this.pmIDFloat = pmIDFloat;
+        this.brandName = brandName;
+        this.price = price;
+    }
 
-  @Id
-  public Integer getPmIDInteger() {
-    return pmIDInteger;
-  }
+    @Id
+    public Integer getPmIDInteger() {
+        return pmIDInteger;
+    }
 
-  public void setPmIDInteger(Integer intID) {
+    public void setPmIDInteger(Integer intID) {
 
-    this.pmIDInteger = intID;
-  }
+        this.pmIDInteger = intID;
+    }
 
-  @Id
-  public String getPmIDString() {
-    return pmIDString;
-  }
+    @Id
+    public String getPmIDString() {
+        return pmIDString;
+    }
 
-  public void setPmIDString(String stringID) {
-    this.pmIDString = stringID;
-  }
+    public void setPmIDString(String stringID) {
+        this.pmIDString = stringID;
+    }
 
-  @Id
-  public Float getPmIDFloat() {
-    return pmIDFloat;
-  }
+    @Id
+    public Float getPmIDFloat() {
+        return pmIDFloat;
+    }
 
-  public void setPmIDFloat(Float floatID) {
-    this.pmIDFloat = floatID;
-  }
+    public void setPmIDFloat(Float floatID) {
+        this.pmIDFloat = floatID;
+    }
 
-  @Basic
-  public String getBrandName() {
-    return brandName;
-  }
+    @Basic
+    public String getBrandName() {
+        return brandName;
+    }
 
-  public void setBrandName(String v) {
-    this.brandName = v;
-  }
+    public void setBrandName(String v) {
+        this.brandName = v;
+    }
 
-  @Basic
-  public float getPrice() {
-    return price;
-  }
+    @Basic
+    public float getPrice() {
+        return price;
+    }
 
-  public void setPrice(float v) {
-    this.price = v;
-  }
+    public void setPrice(float v) {
+        this.price = v;
+    }
 
-  public void ping() {
-    TestUtil.logTrace("[TestBean] ping()");
-  }
-
+    public void ping() {
+        TestUtil.logTrace("[TestBean] ping()");
+    }
 }

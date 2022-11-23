@@ -24,7 +24,6 @@ import com.sun.ts.tests.ejb30.assembly.common.AssemblyBeanBase;
 import com.sun.ts.tests.ejb30.assembly.common.AssemblyInterceptor;
 import com.sun.ts.tests.ejb30.assembly.common.AssemblyLocalIF;
 import com.sun.ts.tests.ejb30.assembly.common.AssemblyRemoteIF;
-
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Stateless;
 import jakarta.interceptor.Interceptors;
@@ -37,28 +36,25 @@ import jakarta.interceptor.Interceptors;
  * in application.xml
  */
 @Stateless(name = "AssemblyBean")
-@Interceptors({ AssemblyInterceptor.class })
-public class AssemblyBean extends AssemblyBeanBase
-    implements AssemblyRemoteIF, AssemblyLocalIF {
+@Interceptors({AssemblyInterceptor.class})
+public class AssemblyBean extends AssemblyBeanBase implements AssemblyRemoteIF, AssemblyLocalIF {
 
-  public AssemblyBean() {
-  }
+    public AssemblyBean() {}
 
-  @Override
-  public int remoteAdd(int a, int b) {
-    fail();
-    return 9999999;
-  }
+    @Override
+    public int remoteAdd(int a, int b) {
+        fail();
+        return 9999999;
+    }
 
-  private void fail() throws EJBException {
-    throw new EJBException("Should not get here since this bean is packaged "
-        + "in a library jar that has been disabled in application.xml");
-  }
+    private void fail() throws EJBException {
+        throw new EJBException("Should not get here since this bean is packaged "
+                + "in a library jar that has been disabled in application.xml");
+    }
 
-  @Override
-  public int getPostConstructCalls() {
-    fail();
-    return 999999;
-  }
-
+    @Override
+    public int getPostConstructCalls() {
+        fail();
+        return 999999;
+    }
 }

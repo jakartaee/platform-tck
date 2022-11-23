@@ -24,7 +24,7 @@ import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
 
 public class SingleEJB extends StatefulWrapper {
 
-  /*
-   * Simplistic Stateful Session bean. See Wrapper code for more details.
-   */
+    /*
+     * Simplistic Stateful Session bean. See Wrapper code for more details.
+     */
 }

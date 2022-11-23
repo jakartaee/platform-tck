@@ -16,74 +16,71 @@
 
 package com.sun.ts.tests.jpa.core.override.manytomany;
 
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "COURSE_2")
 public class Course implements Serializable {
 
-  @Id
-  private Integer id;
+    @Id
+    private Integer id;
 
-  private String name;
+    private String name;
 
-  private Set<Student> students = new HashSet();
+    private Set<Student> students = new HashSet();
 
-  public Course() {
-  }
+    public Course() {}
 
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.getId() != null ? this.getId().hashCode() : 0);
-    return hash;
-  }
-
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields
-    // are not set
-    if (!(object instanceof Course)) {
-      return false;
+    public Integer getId() {
+        return id;
     }
-    Course other = (Course) object;
-    if (this.getId() != other.getId()
-        && (this.getId() == null || !this.getId().equals(other.getId()))) {
-      return false;
+
+    public void setId(Integer id) {
+        this.id = id;
     }
-    return true;
-  }
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.manytomany." + "Course[id="
-        + getId() + "]";
-  }
+    public int hashCode() {
+        int hash = 0;
+        hash += (this.getId() != null ? this.getId().hashCode() : 0);
+        return hash;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields
+        // are not set
+        if (!(object instanceof Course)) {
+            return false;
+        }
+        Course other = (Course) object;
+        if (this.getId() != other.getId()
+                && (this.getId() == null || !this.getId().equals(other.getId()))) {
+            return false;
+        }
+        return true;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public String toString() {
+        return "com.sun.ts.tests.jpa.core.override.manytomany." + "Course[id=" + getId() + "]";
+    }
 
-  public Set<Student> getStudents() {
-    return students;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setStudents(Set<Student> students) {
-    this.students = students;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
+    }
 }

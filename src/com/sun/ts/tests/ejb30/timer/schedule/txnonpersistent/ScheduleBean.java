@@ -22,6 +22,4 @@ package com.sun.ts.tests.ejb30.timer.schedule.txnonpersistent;
 import jakarta.ejb.Singleton;
 
 @Singleton(name = "txnonpersistent-ScheduleBean")
-public class ScheduleBean
-    extends com.sun.ts.tests.ejb30.timer.schedule.tx.ScheduleBean {
-}
+public class ScheduleBean extends com.sun.ts.tests.ejb30.timer.schedule.tx.ScheduleBean {}

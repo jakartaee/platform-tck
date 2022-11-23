@@ -20,95 +20,90 @@
 
 package com.sun.ts.tests.jsp.common.util;
 
-import java.lang.reflect.Method;
-
 import jakarta.servlet.jsp.el.FunctionMapper;
+import java.lang.reflect.Method;
 
 /**
  * Simple Function mapper.
  */
-
 public class TSFunctionMapper implements FunctionMapper {
 
-  private boolean _resolveCalled = false;
+    private boolean _resolveCalled = false;
 
-  private String _prefixUsed = null;
+    private String _prefixUsed = null;
 
-  private String _methodCalled = null;
+    private String _methodCalled = null;
 
-  private static final Class FUNCTIONS = com.sun.ts.tests.jsp.common.util.JspFunctions.class;
+    private static final Class FUNCTIONS = com.sun.ts.tests.jsp.common.util.JspFunctions.class;
 
-  /**
-   * Creates a new FuntionMapper instance.
-   */
-  public TSFunctionMapper() {
-  }
+    /**
+     * Creates a new FuntionMapper instance.
+     */
+    public TSFunctionMapper() {}
 
-  /**
-   * Resolves the specified local name and prefix into a java.lang.Method.
-   * Returns null if the prefix and local name are not found.
-   *
-   * This class does nothing more than perform refection against the
-   * JspFunctions class and return the methods.
-   *
-   * @param prefix
-   *          - method refernce prefix
-   * @param localName
-   *          - local name to identify the method
-   * @return - Resolve function as a java.lang.Method or null if unresolvable.
-   */
-  public Method resolveFunction(String prefix, String localName) {
-    System.out.println("FUNCTION MAPPER CALLED");
-    _resolveCalled = true;
-    _prefixUsed = prefix;
-    _methodCalled = localName;
-    if (prefix != null || localName != null) {
-      try {
-        System.out.println("RETURNING METHOD");
-        Method meth = FUNCTIONS.getMethod(localName,
-            new Class[] { java.lang.String.class });
-        return meth;
-      } catch (Throwable t) {
+    /**
+     * Resolves the specified local name and prefix into a java.lang.Method.
+     * Returns null if the prefix and local name are not found.
+     *
+     * This class does nothing more than perform refection against the
+     * JspFunctions class and return the methods.
+     *
+     * @param prefix
+     *          - method refernce prefix
+     * @param localName
+     *          - local name to identify the method
+     * @return - Resolve function as a java.lang.Method or null if unresolvable.
+     */
+    public Method resolveFunction(String prefix, String localName) {
+        System.out.println("FUNCTION MAPPER CALLED");
+        _resolveCalled = true;
+        _prefixUsed = prefix;
+        _methodCalled = localName;
+        if (prefix != null || localName != null) {
+            try {
+                System.out.println("RETURNING METHOD");
+                Method meth = FUNCTIONS.getMethod(localName, new Class[] {java.lang.String.class});
+                return meth;
+            } catch (Throwable t) {
+                return null;
+            }
+        }
         return null;
-      }
     }
-    return null;
-  }
 
-  /**
-   * Has the resolveFunction method been called?
-   * 
-   * @return - true if resolveFunction has been called otherwise false.
-   */
-  public boolean hasResolved() {
-    return _resolveCalled;
-  }
+    /**
+     * Has the resolveFunction method been called?
+     *
+     * @return - true if resolveFunction has been called otherwise false.
+     */
+    public boolean hasResolved() {
+        return _resolveCalled;
+    }
 
-  /**
-   * Returns the prefix provided to the resolveFunction call.
-   * 
-   * @return the prefix of the most recent resolveFunction call
-   */
-  public String getPrefixUsed() {
-    return _prefixUsed;
-  }
+    /**
+     * Returns the prefix provided to the resolveFunction call.
+     *
+     * @return the prefix of the most recent resolveFunction call
+     */
+    public String getPrefixUsed() {
+        return _prefixUsed;
+    }
 
-  /**
-   * Returns the method provided to the resolveFunction call.
-   * 
-   * @return the method of the most recent resolveFunction call
-   */
-  public String getMethodCalled() {
-    return _methodCalled;
-  }
+    /**
+     * Returns the method provided to the resolveFunction call.
+     *
+     * @return the method of the most recent resolveFunction call
+     */
+    public String getMethodCalled() {
+        return _methodCalled;
+    }
 
-  /**
-   * Resets the state of this FunctionMapper
-   */
-  public void reset() {
-    _resolveCalled = false;
-    _prefixUsed = null;
-    _methodCalled = null;
-  }
-
+    /**
+     * Resets the state of this FunctionMapper
+     */
+    public void reset() {
+        _resolveCalled = false;
+        _prefixUsed = null;
+        _methodCalled = null;
+    }
 }

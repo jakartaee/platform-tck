@@ -23,22 +23,21 @@ package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 import jakarta.ejb.EJBLocalObject;
 
 public interface PhoneLocal extends EJBLocalObject {
-  // Business Methods for PhoneLocal CMP Fields
+    // Business Methods for PhoneLocal CMP Fields
 
-  public String getId();
+    public String getId();
 
-  public String getArea();
+    public String getArea();
 
-  public void setArea(String v);
+    public void setArea(String v);
 
-  public String getNumber();
+    public String getNumber();
 
-  public void setNumber(String v);
+    public void setNumber(String v);
 
-  // Business Methods for PhoneLocal CMR Fields
+    // Business Methods for PhoneLocal CMR Fields
 
-  public AddressLocal getAddress();
+    public AddressLocal getAddress();
 
-  public void setAddress(AddressLocal v);
-
+    public void setAddress(AddressLocal v);
 }

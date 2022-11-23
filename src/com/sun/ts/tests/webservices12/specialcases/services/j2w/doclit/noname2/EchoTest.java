@@ -19,21 +19,25 @@
  */
 package com.sun.ts.tests.webservices12.specialcases.services.j2w.doclit.noname2;
 
-import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
+import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
 import jakarta.jws.soap.SOAPBinding.Style;
 
-@WebService(name = "EchoTest", portName = "EchoTest", serviceName = "MyEchoWebService", targetNamespace = "http://echo.org/wsdl")
+@WebService(
+        name = "EchoTest",
+        portName = "EchoTest",
+        serviceName = "MyEchoWebService",
+        targetNamespace = "http://echo.org/wsdl")
 @SOAPBinding(style = Style.DOCUMENT)
 public class EchoTest {
-  @WebMethod
-  public String echoString(String str) {
-    return str;
-  }
+    @WebMethod
+    public String echoString(String str) {
+        return str;
+    }
 
-  @WebMethod
-  public String[] echoStringArray(String[] str) {
-    return str;
-  }
+    @WebMethod
+    public String[] echoStringArray(String[] str) {
+        return str;
+    }
 }

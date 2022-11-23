@@ -21,12 +21,9 @@ package com.sun.ts.tests.ejb30.lite.interceptor.singleton.invocationcontext;
 
 import com.sun.ts.tests.ejb30.common.invocationcontext.InvocationContextBase;
 import com.sun.ts.tests.ejb30.common.invocationcontext.InvocationContextIF;
-
 import jakarta.ejb.Singleton;
 import jakarta.interceptor.Interceptors;
 
 @Singleton
 @Interceptors(com.sun.ts.tests.ejb30.common.invocationcontext.InterceptorForAll.class)
-public class InvocationContextInterceptorBean extends InvocationContextBase
-    implements InvocationContextIF {
-}
+public class InvocationContextInterceptorBean extends InvocationContextBase implements InvocationContextIF {}

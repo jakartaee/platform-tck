@@ -17,88 +17,89 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.async;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-
 import com.sun.ts.tests.websocket.common.impl.WaitingSendHandler;
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextEncoder;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.RemoteEndpoint.Async;
 import jakarta.websocket.SendResult;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
-@ServerEndpoint(value = "/throwing", encoders = { ThrowingBinaryCoder.class,
-    ThrowingTextCoder.class, StringBeanTextEncoder.class,
-    ThrowingStringBeanEncoder.class })
+@ServerEndpoint(
+        value = "/throwing",
+        encoders = {
+            ThrowingBinaryCoder.class,
+            ThrowingTextCoder.class,
+            StringBeanTextEncoder.class,
+            ThrowingStringBeanEncoder.class
+        })
 public class WSCThrowingServerSideServer {
-  static final String[] RESPONSE = { "OK", "FAIL" };
+    static final String[] RESPONSE = {"OK", "FAIL"};
 
-  @OnMessage
-  public StringBean onMessage(String msg, Session session) {
-    Async asyncRemote = session.getAsyncRemote();
-    OPS op = OPS.valueOf(msg.toUpperCase());
-    switch (op) {
-    case SENDBINARYEXECUTIONEXCEPTION:
-      msg = sendBinaryHasExecutionException(asyncRemote);
-      break;
-    case SENDOBJECTEXECUTIONEXCEPTION:
-      msg = sendObjectHasExecutionException(asyncRemote);
-      break;
-    case SENDOBJECTHANDLEREXECUTIONEXCEPTION:
-      msg = sendObjectWithSendHandlerHasExecutionException(asyncRemote);
-      break;
-    default:
-      throw new IllegalArgumentException("Method " + msg + " not implemented");
+    @OnMessage
+    public StringBean onMessage(String msg, Session session) {
+        Async asyncRemote = session.getAsyncRemote();
+        OPS op = OPS.valueOf(msg.toUpperCase());
+        switch (op) {
+            case SENDBINARYEXECUTIONEXCEPTION:
+                msg = sendBinaryHasExecutionException(asyncRemote);
+                break;
+            case SENDOBJECTEXECUTIONEXCEPTION:
+                msg = sendObjectHasExecutionException(asyncRemote);
+                break;
+            case SENDOBJECTHANDLEREXECUTIONEXCEPTION:
+                msg = sendObjectWithSendHandlerHasExecutionException(asyncRemote);
+                break;
+            default:
+                throw new IllegalArgumentException("Method " + msg + " not implemented");
+        }
+        return new StringBean(msg);
     }
-    return new StringBean(msg);
-  }
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in " + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
-
-  public static String sendBinaryHasExecutionException(Async asyncRemote) {
-    Future<Void> future = asyncRemote.sendBinary(
-        ByteBuffer.wrap(OPS.SENDBINARYEXECUTIONEXCEPTION.name().getBytes()));
-    try {
-      future.get();
-      return RESPONSE[1];
-    } catch (ExecutionException e) {
-      return RESPONSE[0];
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
+    @OnError
+    public void onError(Session session, Throwable t) throws IOException {
+        System.out.println("@OnError in " + getClass().getName());
+        t.printStackTrace(); // Write to error log, too
+        String message = "Exception: " + IOUtil.printStackTrace(t);
+        session.getBasicRemote().sendText(message);
     }
-  }
 
-  public static String sendObjectHasExecutionException(Async asyncRemote) {
-    Future<Void> future = asyncRemote.sendObject(new ThrowingStringBean());
-    try {
-      future.get();
-      return RESPONSE[1];
-    } catch (ExecutionException e) {
-      return RESPONSE[0];
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
+    public static String sendBinaryHasExecutionException(Async asyncRemote) {
+        Future<Void> future = asyncRemote.sendBinary(
+                ByteBuffer.wrap(OPS.SENDBINARYEXECUTIONEXCEPTION.name().getBytes()));
+        try {
+            future.get();
+            return RESPONSE[1];
+        } catch (ExecutionException e) {
+            return RESPONSE[0];
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
-  }
 
-  public static String sendObjectWithSendHandlerHasExecutionException(
-      Async asyncRemote) {
-    WaitingSendHandler handler = new WaitingSendHandler();
-    asyncRemote.sendObject(new ThrowingStringBean(), handler);
-    SendResult result = handler.waitForResult(WSCServerSideServer.SECONDS);
-    return !result.isOK() && result.getException() != null ? RESPONSE[0]
-        : RESPONSE[1];
-  }
+    public static String sendObjectHasExecutionException(Async asyncRemote) {
+        Future<Void> future = asyncRemote.sendObject(new ThrowingStringBean());
+        try {
+            future.get();
+            return RESPONSE[1];
+        } catch (ExecutionException e) {
+            return RESPONSE[0];
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String sendObjectWithSendHandlerHasExecutionException(Async asyncRemote) {
+        WaitingSendHandler handler = new WaitingSendHandler();
+        asyncRemote.sendObject(new ThrowingStringBean(), handler);
+        SendResult result = handler.waitForResult(WSCServerSideServer.SECONDS);
+        return !result.isOK() && result.getException() != null ? RESPONSE[0] : RESPONSE[1];
+    }
 }

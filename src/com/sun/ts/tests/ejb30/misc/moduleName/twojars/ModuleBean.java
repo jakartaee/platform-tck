@@ -25,71 +25,69 @@ import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupShouldFa
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Singleton;
 
 @Singleton
 public class ModuleBean extends AppResBeanBase implements AppResRemoteIF {
-  @EJB
-  private AppResRemoteIF moduleBean;
+    @EJB
+    private AppResRemoteIF moduleBean;
 
-  @Resource
-  private ModuleMBean moduleMBean;
+    @Resource
+    private ModuleMBean moduleMBean;
 
-  @Resource(lookup = "java:module/ModuleName")
-  private String moduleName;
+    @Resource(lookup = "java:module/ModuleName")
+    private String moduleName;
 
-  @Resource(lookup = "java:app/AppName")
-  private String appName;
+    @Resource(lookup = "java:app/AppName")
+    private String appName;
 
-  private void nonPostConstruct() {
-    lookupShouldFail("java:app/ejb3_misc_moduleName_twojars_client/ModuleMBean",
-        postConstructRecords);
-    lookupShouldFail("java:app/ejb3_misc_moduleName_twojars_ejb/ModuleMBean",
-        postConstructRecords);
+    private void nonPostConstruct() {
+        lookupShouldFail("java:app/ejb3_misc_moduleName_twojars_client/ModuleMBean", postConstructRecords);
+        lookupShouldFail("java:app/ejb3_misc_moduleName_twojars_ejb/ModuleMBean", postConstructRecords);
 
-    lookupShouldFail("java:app/ejb3_misc_moduleName_twojars_client/ModuleBean",
-        postConstructRecords);
-    lookupShouldFail("java:app/ejb3_misc_moduleName_twojars_ejb/ModuleBean",
-        postConstructRecords);
-    lookupShouldFail(
-        "java:global/ejb3_misc_moduleName_twojars/ejb3_misc_moduleName_twojars_ejb/ModuleBean",
-        postConstructRecords);
+        lookupShouldFail("java:app/ejb3_misc_moduleName_twojars_client/ModuleBean", postConstructRecords);
+        lookupShouldFail("java:app/ejb3_misc_moduleName_twojars_ejb/ModuleBean", postConstructRecords);
+        lookupShouldFail(
+                "java:global/ejb3_misc_moduleName_twojars/ejb3_misc_moduleName_twojars_ejb/ModuleBean",
+                postConstructRecords);
 
-    lookupShouldFail("java:global/two_standalone_component_ejb/Module2Bean",
-        postConstructRecords);
+        lookupShouldFail("java:global/two_standalone_component_ejb/Module2Bean", postConstructRecords);
 
-    Helper.getLogger().info(postConstructRecords.toString());
+        Helper.getLogger().info(postConstructRecords.toString());
 
-    Helper.assertNotEquals(null, null, moduleBean, postConstructRecords);
-    Helper.assertNotEquals(null, null, moduleMBean, postConstructRecords);
+        Helper.assertNotEquals(null, null, moduleBean, postConstructRecords);
+        Helper.assertNotEquals(null, null, moduleMBean, postConstructRecords);
 
-    AppResRemoteIF lookupResult = null;
-    String[] names = { "java:module/ModuleMBean", "java:module/ModuleBean",
-        "java:app/renamed_twojars_ejb/ModuleMBean",
-        "java:app/renamed_twojars_ejb/ModuleBean",
-        "java:global/ejb3_misc_moduleName_twojars/renamed_twojars_ejb/ModuleBean",
+        AppResRemoteIF lookupResult = null;
+        String[] names = {
+            "java:module/ModuleMBean",
+            "java:module/ModuleBean",
+            "java:app/renamed_twojars_ejb/ModuleMBean",
+            "java:app/renamed_twojars_ejb/ModuleBean",
+            "java:global/ejb3_misc_moduleName_twojars/renamed_twojars_ejb/ModuleBean",
+            "java:global/renamed2_twojars_ejb/Module2Bean"
+        };
+        for (String name : names) {
+            postConstructRecords.append("About to look up " + name);
+            lookupResult = (AppResRemoteIF) lookupNoTry(name);
+            Helper.assertNotEquals(null, null, lookupResult, postConstructRecords);
+            lookupResult = null;
+        }
 
-        "java:global/renamed2_twojars_ejb/Module2Bean" };
-    for (String name : names) {
-      postConstructRecords.append("About to look up " + name);
-      lookupResult = (AppResRemoteIF) lookupNoTry(name);
-      Helper.assertNotEquals(null, null, lookupResult, postConstructRecords);
-      lookupResult = null;
+        Helper.assertEquals(
+                "Compare to ModuleName from ModuleMBean",
+                moduleName,
+                moduleMBean.getModuleName(),
+                postConstructRecords);
+        Helper.assertEquals(
+                "Compare to AppName from ModuleMBean", appName, moduleMBean.getAppName(), postConstructRecords);
     }
 
-    Helper.assertEquals("Compare to ModuleName from ModuleMBean", moduleName,
-        moduleMBean.getModuleName(), postConstructRecords);
-    Helper.assertEquals("Compare to AppName from ModuleMBean", appName,
-        moduleMBean.getAppName(), postConstructRecords);
-  }
-
-  @Override
-  public StringBuilder getPostConstructRecords() {
-    nonPostConstruct();
-    return super.getPostConstructRecords();
-  }
-
+    @Override
+    public StringBuilder getPostConstructRecords() {
+        nonPostConstruct();
+        return super.getPostConstructRecords();
+    }
 }

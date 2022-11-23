@@ -25,45 +25,45 @@ import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ConcurrencyIF;
  * This class has no class-level @Lock, hence the default WRITE for all business
  * methods in this class.
  */
-abstract public class DefaultLockBeanBase implements ConcurrencyIF {
-  protected long unlockedSum;
+public abstract class DefaultLockBeanBase implements ConcurrencyIF {
+    protected long unlockedSum;
 
-  protected long lockedSum;
+    protected long lockedSum;
 
-  public long getAndResetLockedSum() {
-    long result = lockedSum;
-    lockedSum = 0;
-    return result;
-  }
-
-  public void addLocked(int num) {
-    for (int i = 0; i < num; i++) {
-      lockedSum++;
+    public long getAndResetLockedSum() {
+        long result = lockedSum;
+        lockedSum = 0;
+        return result;
     }
-  }
 
-  // dummy impl for other methods in interface
-  public void addLockedFromInterceptor(String interceptorName, int num) {
-    throw new UnsupportedOperationException("Not supported yet.");
-  }
+    public void addLocked(int num) {
+        for (int i = 0; i < num; i++) {
+            lockedSum++;
+        }
+    }
 
-  public void addToLinkedList(Integer i) {
-    throw new UnsupportedOperationException("Not supported yet.");
-  }
+    // dummy impl for other methods in interface
+    public void addLockedFromInterceptor(String interceptorName, int num) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
-  public void addUnlockedFromInterceptor(String interceptorName, int num) {
-    throw new UnsupportedOperationException("Not supported yet.");
-  }
+    public void addToLinkedList(Integer i) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
-  public long getAndResetLockedSumFromInterceptor(String interceptorName) {
-    throw new UnsupportedOperationException("Not supported yet.");
-  }
+    public void addUnlockedFromInterceptor(String interceptorName, int num) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
-  public long getAndResetUnlockedSumFromInterceptor(String interceptorName) {
-    throw new UnsupportedOperationException("Not supported yet.");
-  }
+    public long getAndResetLockedSumFromInterceptor(String interceptorName) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
-  public int getLinkedListSizeAndClear() {
-    throw new UnsupportedOperationException("Not supported yet.");
-  }
+    public long getAndResetUnlockedSumFromInterceptor(String interceptorName) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public int getLinkedListSizeAndClear() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

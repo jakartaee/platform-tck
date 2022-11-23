@@ -25,17 +25,15 @@ import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
 import jakarta.annotation.Resource;
 import jakarta.ejb.SessionContext;
 
-abstract public class RemoteCalculatorBean4Super extends BaseRemoteCalculator
-    implements RemoteCalculator {
+public abstract class RemoteCalculatorBean4Super extends BaseRemoteCalculator implements RemoteCalculator {
 
-  @Resource
-  private SessionContext sctx;
+    @Resource
+    private SessionContext sctx;
 
-  @Override
-  public int remoteAdd(int a, int b) {
-    int retValue;
-    retValue = super.remoteAdd(a, b);
-    return retValue + (sctx == null ? 0 : sctx.toString().length());
+    @Override
+    public int remoteAdd(int a, int b) {
+        int retValue;
+        retValue = super.remoteAdd(a, b);
+        return retValue + (sctx == null ? 0 : sctx.toString().length());
     }
-  
 }

@@ -20,22 +20,26 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httptest;
 
-import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
-
+import com.sun.ts.lib.util.*;
 import jakarta.jws.WebService;
 
-@WebService(portName = "HelloPort", serviceName = "HttpTestService", targetNamespace = "http://httptestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JRLHttpTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httptest.Hello")
+@WebService(
+        portName = "HelloPort",
+        serviceName = "HttpTestService",
+        targetNamespace = "http://httptestservice.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/WSW2JRLHttpTestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httptest.Hello")
 public class HelloImpl implements Hello {
 
-  public HelloResponse hello(HelloRequest req) {
-    System.out.println("Hello, " + req.getString() + "!");
-    HelloResponse resp = new HelloResponse();
-    resp.setString("Hello, " + req.getString() + "!");
-    return resp;
-  }
+    public HelloResponse hello(HelloRequest req) {
+        System.out.println("Hello, " + req.getString() + "!");
+        HelloResponse resp = new HelloResponse();
+        resp.setString("Hello, " + req.getString() + "!");
+        return resp;
+    }
 
-  public void helloOneWay(HelloOneWay req) {
-    System.out.println("Hello OneWay, " + req.getString() + "!");
-  }
+    public void helloOneWay(HelloOneWay req) {
+        System.out.println("Hello OneWay, " + req.getString() + "!");
+    }
 }

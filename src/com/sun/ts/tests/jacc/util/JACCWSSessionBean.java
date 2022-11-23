@@ -20,33 +20,25 @@
  * @author Raja Perumal
  *         03/13/03
  */
-
 package com.sun.ts.tests.jacc.util;
-
-import java.rmi.RemoteException;
 
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
+import java.rmi.RemoteException;
 
 public class JACCWSSessionBean implements SessionBean {
 
-  public void ejbCreate() {
-  }
+    public void ejbCreate() {}
 
-  public void ejbActivate() {
-  }
+    public void ejbActivate() {}
 
-  public void ejbRemove() {
-  }
+    public void ejbRemove() {}
 
-  public void ejbPassivate() {
-  }
+    public void ejbPassivate() {}
 
-  public void setSessionContext(SessionContext sc) {
-  }
+    public void setSessionContext(SessionContext sc) {}
 
-  public String hello(String str) throws RemoteException {
-    return "Welcome to " + str;
-  }
-
+    public String hello(String str) throws RemoteException {
+        return "Welcome to " + str;
+    }
 }

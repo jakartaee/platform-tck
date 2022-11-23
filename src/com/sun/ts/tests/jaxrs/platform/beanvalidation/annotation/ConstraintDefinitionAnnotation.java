@@ -16,16 +16,13 @@
 
 package com.sun.ts.tests.jaxrs.platform.beanvalidation.annotation;
 
+import jakarta.validation.Constraint;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import jakarta.validation.Constraint;
-
-@Target({ ElementType.FIELD, ElementType.TYPE, ElementType.CONSTRUCTOR,
-    ElementType.PARAMETER, ElementType.METHOD })
+@Target({ElementType.FIELD, ElementType.TYPE, ElementType.CONSTRUCTOR, ElementType.PARAMETER, ElementType.METHOD})
 @Retention(value = RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = ConstraintDefinitionValidator.class)
-public @interface ConstraintDefinitionAnnotation {
-}
+public @interface ConstraintDefinitionAnnotation {}

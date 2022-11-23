@@ -20,16 +20,13 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.entitycontexttest;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
 
 public interface TestBeanHome extends EJBHome {
-  public TestBean create(String id, String brandName)
-      throws RemoteException, CreateException;
+    public TestBean create(String id, String brandName) throws RemoteException, CreateException;
 
-  public TestBean findByPrimaryKey(String key)
-      throws RemoteException, FinderException;
+    public TestBean findByPrimaryKey(String key) throws RemoteException, FinderException;
 }

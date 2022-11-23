@@ -26,40 +26,40 @@ import jakarta.servlet.jsp.tagext.BodyTagSupport;
 
 public class BodyContentGetStringTag extends BodyTagSupport {
 
-  /**
-   * Default constructor.
-   */
-  public BodyContentGetStringTag() {
-    super();
-  }
-
-  /**
-   * Validates BodyContent.getString()
-   * 
-   * @return SKIP_BODY
-   * @throws JspException
-   *           if an error occurs
-   */
-  public int doAfterBody() throws JspException {
-    BodyContent content = this.getBodyContent();
-
-    try {
-      String body = content.getString().trim();
-
-      if (body.equals("body content")) {
-        content.getEnclosingWriter().println("Test PASSED");
-
-      } else {
-        content.getEnclosingWriter()
-            .println("Test FAILED.  Expected "
-                + "BodyContent.getString() to return 'body content'.  "
-                + "Received: " + body);
-      }
-
-    } catch (Exception e) {
-      throw new JspException("Test FAILED. Unexpected Exception", e);
+    /**
+     * Default constructor.
+     */
+    public BodyContentGetStringTag() {
+        super();
     }
 
-    return SKIP_BODY;
-  }
+    /**
+     * Validates BodyContent.getString()
+     *
+     * @return SKIP_BODY
+     * @throws JspException
+     *           if an error occurs
+     */
+    public int doAfterBody() throws JspException {
+        BodyContent content = this.getBodyContent();
+
+        try {
+            String body = content.getString().trim();
+
+            if (body.equals("body content")) {
+                content.getEnclosingWriter().println("Test PASSED");
+
+            } else {
+                content.getEnclosingWriter()
+                        .println("Test FAILED.  Expected "
+                                + "BodyContent.getString() to return 'body content'.  "
+                                + "Received: " + body);
+            }
+
+        } catch (Exception e) {
+            throw new JspException("Test FAILED. Unexpected Exception", e);
+        }
+
+        return SKIP_BODY;
+    }
 }

@@ -20,24 +20,25 @@
 
 package com.sun.ts.tests.webservices12.narrow;
 
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.xml.ws.WebServiceException;
 import jakarta.jws.WebService;
 
-@WebService(portName = "InterfaceTest2Port", serviceName = "InterfaceTestService", targetNamespace = "http://interfacetestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/InterfaceTestService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.narrow.InterfaceTest2")
-
+@WebService(
+        portName = "InterfaceTest2Port",
+        serviceName = "InterfaceTestService",
+        targetNamespace = "http://interfacetestservice.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/InterfaceTestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices12.narrow.InterfaceTest2")
 public class InterfaceTest2Impl implements InterfaceTest2 {
 
-  public String hello1(String v) {
-    System.out.println("hello1");
-    System.out.println("String=" + v);
-    return "interface2:" + v;
-  }
+    public String hello1(String v) {
+        System.out.println("hello1");
+        System.out.println("String=" + v);
+        return "interface2:" + v;
+    }
 
-  public String hello2(String v) {
-    System.out.println("hello2");
-    System.out.println("String=" + v);
-    return "interface2:" + v;
-  }
+    public String hello2(String v) {
+        System.out.println("hello2");
+        System.out.println("String=" + v);
+        return "interface2:" + v;
+    }
 }

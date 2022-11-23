@@ -60,51 +60,45 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.genericfilter;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.GenericFilter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public final class GetInitParamNull_Filter extends GenericFilter {
 
-  public void doFilter(ServletRequest request, ServletResponse response,
-      FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-    boolean passed = false;
-    PrintWriter pw = response.getWriter();
-    pw.println("doFilter was successfully called in GetInitParamNull_Filter");
+        boolean passed = false;
+        PrintWriter pw = response.getWriter();
+        pw.println("doFilter was successfully called in GetInitParamNull_Filter");
 
-    if (getFilterConfig() == null) {
-      passed = false;
-      pw.println(
-          "doFilter of GetInitParamNull_Filter was called but this filter instance is not currently configured ");
-    } else {
+        if (getFilterConfig() == null) {
+            passed = false;
+            pw.println(
+                    "doFilter of GetInitParamNull_Filter was called but this filter instance is not currently configured ");
+        } else {
 
-      String param = "GetInitParamNull_Filter_attribute1";
-      String result = getInitParameter(param);
+            String param = "GetInitParamNull_Filter_attribute1";
+            String result = getInitParameter(param);
 
-      if (result == null) {
-        passed = true;
-      } else {
-        passed = false;
-        pw.println("getInitParameter(" + param + ") returned the wrong result");
-        pw.println(
-            "Expected result = null for the following parameter " + param);
-        pw.println("     Actual result = " + result);
-      }
+            if (result == null) {
+                passed = true;
+            } else {
+                passed = false;
+                pw.println("getInitParameter(" + param + ") returned the wrong result");
+                pw.println("Expected result = null for the following parameter " + param);
+                pw.println("     Actual result = " + result);
+            }
+        }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
 
-  }
-
-  // remove the filter configuration object for this filter.
-  public void destroy() {
-  }
-
+    // remove the filter configuration object for this filter.
+    public void destroy() {}
 }

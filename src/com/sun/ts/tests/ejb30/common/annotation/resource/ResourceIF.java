@@ -23,49 +23,46 @@ package com.sun.ts.tests.ejb30.common.annotation.resource;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface ResourceIF {
-  public void remove(); // for sfsb only
+    public void remove(); // for sfsb only
 
-  public void testEJBContext() throws TestFailedException;
+    public void testEJBContext() throws TestFailedException;
 
-  public void testUserTransaction() throws TestFailedException;
+    public void testUserTransaction() throws TestFailedException;
 
-  public void testDataSource() throws TestFailedException;
+    public void testDataSource() throws TestFailedException;
 
-  public void testDataSource2() throws TestFailedException;
+    public void testDataSource2() throws TestFailedException;
 
-  public void testMailSession() throws TestFailedException;
+    public void testMailSession() throws TestFailedException;
 
-  public void testUrl() throws TestFailedException;
+    public void testUrl() throws TestFailedException;
 
-  public void testTopicConnectionFactory() throws TestFailedException;
+    public void testTopicConnectionFactory() throws TestFailedException;
 
-  public void testQueueConnectionFactory() throws TestFailedException;
+    public void testQueueConnectionFactory() throws TestFailedException;
 
-  public void testConnectionFactoryQ() throws TestFailedException;
+    public void testConnectionFactoryQ() throws TestFailedException;
 
-  public void testConnectionFactoryT() throws TestFailedException;
+    public void testConnectionFactoryT() throws TestFailedException;
 
-  public void testDestinationQ() throws TestFailedException;
+    public void testDestinationQ() throws TestFailedException;
 
-  public void testDestinationT() throws TestFailedException;
+    public void testDestinationT() throws TestFailedException;
 
-  public void testQueue() throws TestFailedException;
+    public void testQueue() throws TestFailedException;
 
-  public void testTopic() throws TestFailedException;
+    public void testTopic() throws TestFailedException;
 
-  public void testCustomResourceInjected() throws TestFailedException;
+    public void testCustomResourceInjected() throws TestFailedException;
 
-  public void testCustomResourceLookup() throws TestFailedException;
+    public void testCustomResourceLookup() throws TestFailedException;
 
-  public void testTransactionSynchronizationRegistryInjected()
-      throws TestFailedException;
+    public void testTransactionSynchronizationRegistryInjected() throws TestFailedException;
 
-  public void testTransactionSynchronizationRegistryLookup()
-      throws TestFailedException;
+    public void testTransactionSynchronizationRegistryLookup() throws TestFailedException;
 
-  // not valid for stateful beans
-  public void testTimerServiceInjected() throws TestFailedException;
+    // not valid for stateful beans
+    public void testTimerServiceInjected() throws TestFailedException;
 
-  public void testTimerServiceLookup() throws TestFailedException;
-
+    public void testTimerServiceLookup() throws TestFailedException;
 }

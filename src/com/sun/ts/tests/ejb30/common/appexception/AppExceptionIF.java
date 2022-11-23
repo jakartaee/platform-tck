@@ -20,6 +20,4 @@
 
 package com.sun.ts.tests.ejb30.common.appexception;
 
-public interface AppExceptionIF extends CommonIF {
-
-}
+public interface AppExceptionIF extends CommonIF {}

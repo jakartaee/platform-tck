@@ -23,19 +23,22 @@ package com.sun.ts.tests.jaxws.sharedwebservices.faultservice;
 import java.rmi.ServerException;
 
 @jakarta.jws.WebService(targetNamespace = "http://faulttestservice.org/wsdl")
-@jakarta.jws.soap.SOAPBinding(style = jakarta.jws.soap.SOAPBinding.Style.RPC, use = jakarta.jws.soap.SOAPBinding.Use.LITERAL, parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
+@jakarta.jws.soap.SOAPBinding(
+        style = jakarta.jws.soap.SOAPBinding.Style.RPC,
+        use = jakarta.jws.soap.SOAPBinding.Use.LITERAL,
+        parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
 public interface SoapFaultTest {
-  public String alwaysThrowsException() throws DummyException;
+    public String alwaysThrowsException() throws DummyException;
 
-  public String alwaysThrowsServerException() throws ServerException;
+    public String alwaysThrowsServerException() throws ServerException;
 
-  public String alwaysThrowsSOAPFaultExceptionDetailNoChildren();
+    public String alwaysThrowsSOAPFaultExceptionDetailNoChildren();
 
-  public String alwaysThrowsSOAPFaultExceptionDetailUnqualifiedChildren();
+    public String alwaysThrowsSOAPFaultExceptionDetailUnqualifiedChildren();
 
-  public String alwaysThrowsSOAPFaultExceptionDetailQualifiedChildren();
+    public String alwaysThrowsSOAPFaultExceptionDetailQualifiedChildren();
 
-  public String alwaysThrowsSOAPFaultExceptionDetailNoAttributes();
+    public String alwaysThrowsSOAPFaultExceptionDetailNoAttributes();
 
-  public String alwaysThrowsSOAPFaultExceptionDetailQualifiedAttributes();
+    public String alwaysThrowsSOAPFaultExceptionDetailQualifiedAttributes();
 }

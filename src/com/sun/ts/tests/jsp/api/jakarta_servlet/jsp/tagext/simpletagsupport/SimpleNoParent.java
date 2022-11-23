@@ -20,35 +20,31 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.simpletagsupport;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.JspTag;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class SimpleNoParent extends SimpleTagSupport {
-  private boolean called;
+    private boolean called;
 
-  public SimpleNoParent() {
-    super();
-  }
-
-  public void setParent(JspTag parent) {
-    this.called = true;
-    super.setParent(parent);
-  }
-
-  public void doTag() throws JspException, IOException {
-    JspTestUtil.debug("[SimpleNoParent] in doTag()");
-    if (this.called) {
-      this.getJspContext().getOut()
-          .println("Test FAILED. setParent() is unexpectedly called.");
-    } else {
-      this.getJspContext().getOut()
-          .println("Test PASSED. setParent() is not called.");
+    public SimpleNoParent() {
+        super();
     }
-    this.called = false;
-  }
+
+    public void setParent(JspTag parent) {
+        this.called = true;
+        super.setParent(parent);
+    }
+
+    public void doTag() throws JspException, IOException {
+        JspTestUtil.debug("[SimpleNoParent] in doTag()");
+        if (this.called) {
+            this.getJspContext().getOut().println("Test FAILED. setParent() is unexpectedly called.");
+        } else {
+            this.getJspContext().getOut().println("Test PASSED. setParent() is not called.");
+        }
+        this.called = false;
+    }
 }

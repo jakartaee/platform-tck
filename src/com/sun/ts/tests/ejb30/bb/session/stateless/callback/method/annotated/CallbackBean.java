@@ -23,7 +23,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.callback.method.annotated;
 import com.sun.ts.tests.ejb30.common.callback.CallbackBeanBase;
 import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
@@ -33,36 +32,36 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
 @Stateless(name = "CallbackBean")
-@Remote({ CallbackIF.class })
+@Remote({CallbackIF.class})
 public class CallbackBean extends CallbackBeanBase implements CallbackIF {
 
-  @Resource
-  private SessionContext sctx;
+    @Resource
+    private SessionContext sctx;
 
-  public CallbackBean() {
-    super();
-  }
-
-  public EJBContext getEJBContext() {
-    return this.sctx;
-  }
-
-  // ================= callback methods ====================================
-  @PostConstruct
-  private void ejbCreate() throws RuntimeException {
-    this.setPostConstructCalled(true);
-    TLogger.log("PostConstruct method called.");
-    if (this.getEJBContext() != null) {
-      this.setInjectionDone(true);
+    public CallbackBean() {
+        super();
     }
-  }
 
-  @PreDestroy
-  private void ejbRemove() throws RuntimeException {
-    this.setPreDestroyCalled(true);
-    TLogger.log("PreDestroy method called.");
-  }
+    public EJBContext getEJBContext() {
+        return this.sctx;
+    }
 
-  // ================== business methods ====================================
+    // ================= callback methods ====================================
+    @PostConstruct
+    private void ejbCreate() throws RuntimeException {
+        this.setPostConstructCalled(true);
+        TLogger.log("PostConstruct method called.");
+        if (this.getEJBContext() != null) {
+            this.setInjectionDone(true);
+        }
+    }
+
+    @PreDestroy
+    private void ejbRemove() throws RuntimeException {
+        this.setPreDestroyCalled(true);
+        TLogger.log("PreDestroy method called.");
+    }
+
+    // ================== business methods ====================================
 
 }

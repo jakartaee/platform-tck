@@ -25,14 +25,13 @@ import jakarta.servlet.http.HttpSessionEvent;
 import jakarta.servlet.http.HttpSessionListener;
 
 public final class HSListenerWebInf implements HttpSessionListener {
-  public void sessionCreated(HttpSessionEvent event) {
-    HttpSession session = event.getSession();
-    session.setAttribute("session.created.web.inf", "session created web inf.");
-  }
+    public void sessionCreated(HttpSessionEvent event) {
+        HttpSession session = event.getSession();
+        session.setAttribute("session.created.web.inf", "session created web inf.");
+    }
 
-  public void sessionDestroyed(HttpSessionEvent event) {
-    HttpSession session = event.getSession();
-    session.setAttribute("session.destroyed.web.inf",
-        "session about to be destroyed web inf.");
-  }
+    public void sessionDestroyed(HttpSessionEvent event) {
+        HttpSession session = event.getSession();
+        session.setAttribute("session.destroyed.web.inf", "session about to be destroyed web inf.");
+    }
 }

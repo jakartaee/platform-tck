@@ -26,7 +26,7 @@ package com.sun.ts.tests.ejb30.lite.appexception.common.inheritance;
  */
 // declared in ejb-jar.xml to be ApplicationException (inherited=false)
 public class Exception3 extends Exception2 {
-  public Exception3(String message) {
-    super(message);
-  }
+    public Exception3(String message) {
+        super(message);
+    }
 }

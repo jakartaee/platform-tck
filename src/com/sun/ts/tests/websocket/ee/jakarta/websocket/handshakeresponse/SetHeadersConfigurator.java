@@ -17,26 +17,25 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.handshakeresponse;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
 import jakarta.websocket.HandshakeResponse;
 import jakarta.websocket.server.HandshakeRequest;
 import jakarta.websocket.server.ServerEndpointConfig;
 import jakarta.websocket.server.ServerEndpointConfig.Configurator;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 public class SetHeadersConfigurator extends Configurator {
-  static final String KEY = "aFirstKey";
+    static final String KEY = "aFirstKey";
 
-  static final String[] HEADERS = { "header1", "header2", "header3", "header4",
-      "header5", "header6", "header7", "header8" };
+    static final String[] HEADERS = {
+        "header1", "header2", "header3", "header4", "header5", "header6", "header7", "header8"
+    };
 
-  @Override
-  public void modifyHandshake(ServerEndpointConfig sec,
-      HandshakeRequest request, HandshakeResponse response) {
-    Map<String, List<String>> map = request.getHeaders();
-    response.getHeaders().putAll(map);
-    response.getHeaders().put(KEY, Arrays.asList(HEADERS));
-  }
+    @Override
+    public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
+        Map<String, List<String>> map = request.getHeaders();
+        response.getHeaders().putAll(map);
+        response.getHeaders().put(KEY, Arrays.asList(HEADERS));
+    }
 }

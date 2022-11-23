@@ -25,13 +25,13 @@ import jakarta.interceptor.InvocationContext;
 
 public class BusinessInterceptorNotUsed {
 
-  public BusinessInterceptorNotUsed() {
-    super();
-  }
+    public BusinessInterceptorNotUsed() {
+        super();
+    }
 
-  @AroundInvoke
-  protected Object intercept(InvocationContext inv) throws Exception {
-    throw new IllegalStateException("Should not get here since the business "
-        + "method remoteAdd(int, int) disables clas-level interceptor.");
-  }
+    @AroundInvoke
+    protected Object intercept(InvocationContext inv) throws Exception {
+        throw new IllegalStateException("Should not get here since the business "
+                + "method remoteAdd(int, int) disables clas-level interceptor.");
+    }
 }

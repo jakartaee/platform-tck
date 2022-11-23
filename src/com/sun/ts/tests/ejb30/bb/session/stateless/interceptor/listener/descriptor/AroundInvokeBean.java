@@ -23,7 +23,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.interceptor.listener.descrip
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeBase;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeIF;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeTestImpl;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
@@ -33,7 +32,7 @@ import jakarta.ejb.TransactionManagementType;
 import jakarta.interceptor.InvocationContext;
 
 @Stateless(name = "AroundInvokeBean")
-@Remote({ AroundInvokeIF.class })
+@Remote({AroundInvokeIF.class})
 // This bean must use cmt, since it uses setRollbackOnly
 @TransactionManagement(TransactionManagementType.CONTAINER)
 // @Interceptors({
@@ -42,30 +41,29 @@ import jakarta.interceptor.InvocationContext;
 // })
 // @todo redundant implements
 
-public class AroundInvokeBean extends AroundInvokeBase
-    implements AroundInvokeIF {
-  @Resource(name = "ejbContext")
-  private SessionContext ejbContext;
+public class AroundInvokeBean extends AroundInvokeBase implements AroundInvokeIF {
+    @Resource(name = "ejbContext")
+    private SessionContext ejbContext;
 
-  public AroundInvokeBean() {
-    super();
-  }
+    public AroundInvokeBean() {
+        super();
+    }
 
-  // ============ abstract methods from super ==========================
-  protected jakarta.ejb.EJBContext getEJBContext() {
-    return this.ejbContext;
-  }
+    // ============ abstract methods from super ==========================
+    protected jakarta.ejb.EJBContext getEJBContext() {
+        return this.ejbContext;
+    }
 
-  // @AroundInvoke
-  public Object intercept(InvocationContext ctx) throws Exception {
-    // this interceptor should be invoked last, unless overrid by deployment
-    // descriptor.
-    Object result = null;
-    int orderInChain = 3;
-    result = AroundInvokeTestImpl.intercept2(ctx, orderInChain);
-    return result;
-  }
+    // @AroundInvoke
+    public Object intercept(InvocationContext ctx) throws Exception {
+        // this interceptor should be invoked last, unless overrid by deployment
+        // descriptor.
+        Object result = null;
+        int orderInChain = 3;
+        result = AroundInvokeTestImpl.intercept2(ctx, orderInChain);
+        return result;
+    }
 
-  // ============= override business methods from super ================
+    // ============= override business methods from super ================
 
 }

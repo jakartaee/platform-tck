@@ -22,7 +22,6 @@
 package com.sun.ts.tests.el.common.elcontext;
 
 import com.sun.ts.tests.common.el.api.resolver.BarELResolver;
-
 import jakarta.el.ELContext;
 import jakarta.el.ELResolver;
 import jakarta.el.FunctionMapper;
@@ -34,29 +33,28 @@ import jakarta.el.VariableMapper;
 
 public class BarELContext extends ELContext {
 
-  private final ELResolver elResolver;
+    private final ELResolver elResolver;
 
-  /*
-   * Constructor.
-   */
-  public BarELContext() {
-    this.elResolver = new BarELResolver();
-  }
+    /*
+     * Constructor.
+     */
+    public BarELContext() {
+        this.elResolver = new BarELResolver();
+    }
 
-  public ELResolver getELResolver() {
-    return (ELResolver) elResolver;
-  }
+    public ELResolver getELResolver() {
+        return (ELResolver) elResolver;
+    }
 
-  public ELContext getELContext() {
-    return (ELContext) (this);
-  }
+    public ELContext getELContext() {
+        return (ELContext) (this);
+    }
 
-  public VariableMapper getVariableMapper() {
-    return null;
-  }
+    public VariableMapper getVariableMapper() {
+        return null;
+    }
 
-  public FunctionMapper getFunctionMapper() {
-    return null;
-  }
-
+    public FunctionMapper getFunctionMapper() {
+        return null;
+    }
 }

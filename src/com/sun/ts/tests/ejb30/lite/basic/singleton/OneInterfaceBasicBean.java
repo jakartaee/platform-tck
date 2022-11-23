@@ -22,11 +22,9 @@ package com.sun.ts.tests.ejb30.lite.basic.singleton;
 
 import com.sun.ts.tests.ejb30.lite.basic.common.Basic1IF;
 import com.sun.ts.tests.ejb30.lite.basic.common.BasicBeanBase;
-
 import jakarta.ejb.Local;
 import jakarta.ejb.Singleton;
 
 @Singleton
 @Local
-public class OneInterfaceBasicBean extends BasicBeanBase implements Basic1IF {
-}
+public class OneInterfaceBasicBean extends BasicBeanBase implements Basic1IF {}

@@ -22,33 +22,31 @@ package com.sun.ts.tests.ejb30.common.appexception;
 
 import java.io.Serializable;
 
-public class CheckedRollbackAppException extends Exception
-    implements Serializable {
+public class CheckedRollbackAppException extends Exception implements Serializable {
 
-  public CheckedRollbackAppException() {
-    super();
-  }
+    public CheckedRollbackAppException() {
+        super();
+    }
 
-  /**
-   * @param message
-   */
-  public CheckedRollbackAppException(String message) {
-    super(message);
-  }
+    /**
+     * @param message
+     */
+    public CheckedRollbackAppException(String message) {
+        super(message);
+    }
 
-  /**
-   * @param message
-   * @param cause
-   */
-  public CheckedRollbackAppException(String message, Throwable cause) {
-    super(message, cause);
-  }
+    /**
+     * @param message
+     * @param cause
+     */
+    public CheckedRollbackAppException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-  /**
-   * @param cause
-   */
-  public CheckedRollbackAppException(Throwable cause) {
-    super(cause);
-  }
-
+    /**
+     * @param cause
+     */
+    public CheckedRollbackAppException(Throwable cause) {
+        super(cause);
+    }
 }

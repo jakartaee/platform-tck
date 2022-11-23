@@ -21,27 +21,22 @@
 package com.sun.ts.tests.ejb30.bb.session.stateful.busifacedd;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessBeanBase;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
 
-//@Stateful(name="BusinessBean")
-//@Remote({BusinessIF1.class, BusinessIF2.class})
-//@Local({BusinessLocalIF1.class, BusinessLocalIF2.class})
-public class BusinessBean extends BusinessBeanBase
-    implements java.io.Serializable {
-  @Resource
-  private SessionContext sessionContext;
+// @Stateful(name="BusinessBean")
+// @Remote({BusinessIF1.class, BusinessIF2.class})
+// @Local({BusinessLocalIF1.class, BusinessLocalIF2.class})
+public class BusinessBean extends BusinessBeanBase implements java.io.Serializable {
+    @Resource
+    private SessionContext sessionContext;
 
-  public BusinessBean() {
-  }
+    public BusinessBean() {}
 
-  @Remove
-  public void remove() {
-  }
+    @Remove
+    public void remove() {}
 
-  @Remove
-  public void remove2() {
-  }
+    @Remove
+    public void remove2() {}
 }

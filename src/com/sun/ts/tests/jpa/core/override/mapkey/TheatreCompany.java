@@ -16,76 +16,73 @@
 
 package com.sun.ts.tests.jpa.core.override.mapkey;
 
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.MapKey;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 public class TheatreCompany implements Serializable {
 
-  @Id
-  private Long id;
+    @Id
+    private Long id;
 
-  private String name;
+    private String name;
 
-  @ManyToMany(mappedBy = "company")
-  @MapKey(name = "id")
-  private Map<String, TheatreLocation> locations = new HashMap<String, TheatreLocation>();
+    @ManyToMany(mappedBy = "company")
+    @MapKey(name = "id")
+    private Map<String, TheatreLocation> locations = new HashMap<String, TheatreLocation>();
 
-  public TheatreCompany() {
-  }
+    public TheatreCompany() {}
 
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.getId() != null ? this.getId().hashCode() : 0);
-    return hash;
-  }
-
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof TheatreCompany)) {
-      return false;
+    public Long getId() {
+        return id;
     }
-    TheatreCompany other = (TheatreCompany) object;
-    if (this.getId() != other.getId()
-        && (this.getId() == null || !this.getId().equals(other.getId()))) {
-      return false;
+
+    public void setId(Long id) {
+        this.id = id;
     }
-    return true;
-  }
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.mapkey." + "TheatreCompany[id="
-        + getId() + "]";
-  }
+    public int hashCode() {
+        int hash = 0;
+        hash += (this.getId() != null ? this.getId().hashCode() : 0);
+        return hash;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not
+        // set
+        if (!(object instanceof TheatreCompany)) {
+            return false;
+        }
+        TheatreCompany other = (TheatreCompany) object;
+        if (this.getId() != other.getId()
+                && (this.getId() == null || !this.getId().equals(other.getId()))) {
+            return false;
+        }
+        return true;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public String toString() {
+        return "com.sun.ts.tests.jpa.core.override.mapkey." + "TheatreCompany[id=" + getId() + "]";
+    }
 
-  public Map<String, TheatreLocation> getLocations() {
-    return locations;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setLocations(Map<String, TheatreLocation> locations) {
-    this.locations = locations;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Map<String, TheatreLocation> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(Map<String, TheatreLocation> locations) {
+        this.locations = locations;
+    }
 }

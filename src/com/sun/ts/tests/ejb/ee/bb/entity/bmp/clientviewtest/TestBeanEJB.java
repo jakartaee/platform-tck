@@ -20,11 +20,6 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.bmp.clientviewtest;
 
-import java.util.Collection;
-import java.util.Properties;
-
-import javax.naming.NamingException;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
@@ -32,7 +27,6 @@ import com.sun.ts.tests.common.dao.DAOException;
 import com.sun.ts.tests.common.dao.DAOFactory;
 import com.sun.ts.tests.common.dao.coffee.CoffeeBean;
 import com.sun.ts.tests.common.dao.coffee.CoffeeDAO;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
@@ -40,328 +34,310 @@ import jakarta.ejb.EntityContext;
 import jakarta.ejb.FinderException;
 import jakarta.ejb.NoSuchEntityException;
 import jakarta.ejb.RemoveException;
+import java.util.Collection;
+import java.util.Properties;
+import javax.naming.NamingException;
 
 public class TestBeanEJB implements EntityBean {
-  /** Cached instance state */
-  private CoffeeBean cache;
+    /** Cached instance state */
+    private CoffeeBean cache;
 
-  private EntityContext ectx = null;
+    private EntityContext ectx = null;
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  private float cofPrice; // cached instance state
+    private float cofPrice; // cached instance state
 
-  private CoffeeDAO dao = null;
+    private CoffeeDAO dao = null;
 
-  public Integer ejbCreate(Properties p, boolean newTable, int cofID,
-      String cofName, float cofPrice) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    try {
-      TestUtil.logMsg("Initialize remote logging");
-      TestUtil.init(p);
-      TestUtil.logMsg("DAO Init");
-      if (null == dao) {
-        dao = DAOFactory.getInstance().getCoffeeDAO();
-      }
-      dao.startSession();
+    public Integer ejbCreate(Properties p, boolean newTable, int cofID, String cofName, float cofPrice)
+            throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        try {
+            TestUtil.logMsg("Initialize remote logging");
+            TestUtil.init(p);
+            TestUtil.logMsg("DAO Init");
+            if (null == dao) {
+                dao = DAOFactory.getInstance().getCoffeeDAO();
+            }
+            dao.startSession();
 
-      TestUtil.logTrace("DAO: Create new row...");
-      dao.create(cofID, cofName, cofPrice);
-      this.cache = new CoffeeBean(cofID, cofName, cofPrice);
+            TestUtil.logTrace("DAO: Create new row...");
+            dao.create(cofID, cofName, cofPrice);
+            this.cache = new CoffeeBean(cofID, cofName, cofPrice);
 
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
-    } finally {
-      if (null != dao) {
-        dao.stopSession();
-      }
-    }
-    return new Integer(cofID);
-  }
-
-  public void ejbPostCreate(Properties p, boolean newTable, int cofID,
-      String cofName, float cofPrice) {
-    TestUtil.logTrace("ejbPostCreate");
-  }
-
-  public void setEntityContext(EntityContext c) {
-    TestUtil.logTrace("setEntityContext");
-    ectx = c;
-
-    try {
-      TestUtil.logMsg("Obtaining TS Naming Context...");
-      nctx = new TSNamingContext();
-    } catch (NamingException e) {
-      TestUtil.logErr("Naming Exception : " + e);
-      throw new EJBException("Cannot obtain Naming Context" + e);
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e);
-      throw new EJBException("Caught exception: " + e);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        } finally {
+            if (null != dao) {
+                dao.stopSession();
+            }
+        }
+        return new Integer(cofID);
     }
 
-  }
-
-  public void unsetEntityContext() {
-    TestUtil.logTrace("unsetEntityContext");
-  }
-
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("ejbRemove");
-    try {
-      if (null == dao) {
-        TestUtil.logMsg("get DAO...");
-        dao = DAOFactory.getInstance().getCoffeeDAO();
-      }
-      TestUtil.logTrace("Start DAO session...");
-      dao.startSession();
-      TestUtil.logTrace("Remove row...");
-      dao.delete(((Integer) ectx.getPrimaryKey()).intValue());
-    } catch (DAOException e) {
-      throw new RemoveException("Caught DAOException" + e);
-    } catch (Exception e) {
-      throw new RemoveException("Caught exception: " + e);
-    } finally {
-      if (null != dao) {
-        dao.stopSession();
-      }
+    public void ejbPostCreate(Properties p, boolean newTable, int cofID, String cofName, float cofPrice) {
+        TestUtil.logTrace("ejbPostCreate");
     }
 
-  }
+    public void setEntityContext(EntityContext c) {
+        TestUtil.logTrace("setEntityContext");
+        ectx = c;
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  public void ejbLoad() {
-    TestUtil.logTrace("ejbLoad");
-    try {
-      if (null == dao) {
-        TestUtil.logMsg("Get DAO");
-        dao = DAOFactory.getInstance().getCoffeeDAO();
-      }
-      TestUtil.logTrace("Start DAO session...");
-      dao.startSession();
-      TestUtil.logTrace("Load row...");
-      this.cache = dao.load(((Integer) ectx.getPrimaryKey()).intValue());
-    } catch (DAOException e) {
-      TestUtil.logErr("No such entity exists: " + e);
-      throw new NoSuchEntityException("[ejbload] DAOException" + e);
-    } catch (Exception e) {
-      throw new EJBException("[ejbload] Unable to init DAO " + e);
-    } finally {
-      if (null != dao) {
-        dao.stopSession();
-      }
+        try {
+            TestUtil.logMsg("Obtaining TS Naming Context...");
+            nctx = new TSNamingContext();
+        } catch (NamingException e) {
+            TestUtil.logErr("Naming Exception : " + e);
+            throw new EJBException("Cannot obtain Naming Context" + e);
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e);
+            throw new EJBException("Caught exception: " + e);
+        }
     }
 
-  }
-
-  public void ejbStore() {
-    TestUtil.logTrace("ejbStore");
-    try {
-      if (null == dao) {
-        TestUtil.logMsg("Get DAO...");
-        dao = DAOFactory.getInstance().getCoffeeDAO();
-      }
-      TestUtil.logTrace("Start DAO session...");
-      dao.startSession();
-      TestUtil.logTrace("Store row...");
-      dao.store(cache);
-    } catch (DAOException de) {
-      TestUtil.logErr("No such entity: " + de);
-      throw new NoSuchEntityException("[ejbStore] DAOException" + de);
-    } catch (Exception e) {
-      throw new EJBException("[ejbStore] Unable to init DAO");
-    } finally {
-      if (null != dao) {
-        dao.stopSession();
-      }
-      dao = null;
+    public void unsetEntityContext() {
+        TestUtil.logTrace("unsetEntityContext");
     }
 
-  }
-
-  public Integer ejbFindTheBean(Properties p, Integer key)
-      throws FinderException {
-    TestUtil.logTrace("ejbFindTheBean");
-    try {
-      if (null == dao) {
-        TestUtil.logMsg("Get DAO...");
-        dao = DAOFactory.getInstance().getCoffeeDAO();
-      }
-      dao.startSession();
-      if (dao.exists(key.intValue())) {
-        return key;
-      } else {
-        throw new FinderException("Key not found: " + key);
-      }
-    } catch (DAOException de) {
-      throw new FinderException("DAOException " + de);
-    } catch (Exception e) {
-      throw new FinderException("Exception occurred: " + e);
-    } finally {
-      if (null != dao) {
-        dao.stopSession();
-      }
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("ejbRemove");
+        try {
+            if (null == dao) {
+                TestUtil.logMsg("get DAO...");
+                dao = DAOFactory.getInstance().getCoffeeDAO();
+            }
+            TestUtil.logTrace("Start DAO session...");
+            dao.startSession();
+            TestUtil.logTrace("Remove row...");
+            dao.delete(((Integer) ectx.getPrimaryKey()).intValue());
+        } catch (DAOException e) {
+            throw new RemoveException("Caught DAOException" + e);
+        } catch (Exception e) {
+            throw new RemoveException("Caught exception: " + e);
+        } finally {
+            if (null != dao) {
+                dao.stopSession();
+            }
+        }
     }
 
-  }
-
-  public Integer ejbFindByPrimaryKey(Integer key) throws FinderException {
-    TestUtil.logTrace("ejbFindByPrimaryKey");
-
-    try {
-      if (null == dao) {
-        TestUtil.logMsg("Get DAO...");
-        dao = DAOFactory.getInstance().getCoffeeDAO();
-      }
-      dao.startSession();
-      if (dao.exists(key.intValue())) {
-        return key;
-      } else {
-        throw new FinderException("Key not found: " + key);
-      }
-    } catch (DAOException de) {
-      throw new FinderException("DAOException " + de);
-    } catch (Exception e) {
-      throw new FinderException("Exception occurred: " + e);
-    } finally {
-      if (null != dao) {
-        dao.stopSession();
-      }
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
     }
 
-  }
-
-  public Collection ejbFindByName(Properties p, String name)
-      throws FinderException {
-    TestUtil.logTrace("ejbFindByName");
-    try {
-      if (null == dao) {
-        TestUtil.logMsg("Get DAO...");
-        dao = DAOFactory.getInstance().getCoffeeDAO();
-      }
-      dao.startSession();
-      Collection c = dao.nameToKeyCollection(name);
-      if (c.size() > 0)
-        return c;
-      else
-        throw new FinderException("Name not found: " + name);
-    } catch (DAOException de) {
-      TestUtil.printStackTrace(de);
-      throw new FinderException("DAOException " + de);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new FinderException("Exception occurred: " + e);
-    } finally {
-      if (null != dao) {
-        dao.stopSession();
-      }
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
     }
-  }
 
-  public Collection ejbFindByPrice(Properties p, float price)
-      throws FinderException {
-    TestUtil.logTrace("ejbFindByPrice");
-    try {
-      if (null == dao) {
-        TestUtil.logMsg("Get DAO...");
-        dao = DAOFactory.getInstance().getCoffeeDAO();
-      }
-      dao.startSession();
-      Collection c = dao.priceToKeyCollection(price);
-      if (c.size() > 0)
-        return c;
-      throw new FinderException("Price not found: " + price);
-    } catch (DAOException e) {
-      TestUtil.printStackTrace(e);
-      throw new FinderException("DAOException in price finder");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new FinderException("Exception occurred: " + e);
-    } finally {
-      if (null != dao) {
-        dao.stopSession();
-      }
+    public void ejbLoad() {
+        TestUtil.logTrace("ejbLoad");
+        try {
+            if (null == dao) {
+                TestUtil.logMsg("Get DAO");
+                dao = DAOFactory.getInstance().getCoffeeDAO();
+            }
+            TestUtil.logTrace("Start DAO session...");
+            dao.startSession();
+            TestUtil.logTrace("Load row...");
+            this.cache = dao.load(((Integer) ectx.getPrimaryKey()).intValue());
+        } catch (DAOException e) {
+            TestUtil.logErr("No such entity exists: " + e);
+            throw new NoSuchEntityException("[ejbload] DAOException" + e);
+        } catch (Exception e) {
+            throw new EJBException("[ejbload] Unable to init DAO " + e);
+        } finally {
+            if (null != dao) {
+                dao.stopSession();
+            }
+        }
     }
-  }
 
-  public Collection ejbFindWithinPriceRange(Properties p, float pmin,
-      float pmax) throws FinderException {
-    TestUtil.logTrace("ejbFindWithinPriceRange");
-    try {
-      if (null == dao) {
-        TestUtil.logMsg("Get DAO...");
-        dao = DAOFactory.getInstance().getCoffeeDAO();
-      }
-      dao.startSession();
-      Collection c = dao.priceRangeToCollection(pmin, pmax);
-      if (c.size() > 0)
-        return c;
-      else
-        throw new FinderException(
-            "Price Range not found: [" + pmin + "-" + pmax + "]");
-    } catch (DAOException de) {
-      TestUtil.printStackTrace(de);
-      throw new FinderException("DAOException in price range finder");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new FinderException("Exception occurred: " + e);
-    } finally {
-      if (null != dao) {
-        dao.stopSession();
-      }
+    public void ejbStore() {
+        TestUtil.logTrace("ejbStore");
+        try {
+            if (null == dao) {
+                TestUtil.logMsg("Get DAO...");
+                dao = DAOFactory.getInstance().getCoffeeDAO();
+            }
+            TestUtil.logTrace("Start DAO session...");
+            dao.startSession();
+            TestUtil.logTrace("Store row...");
+            dao.store(cache);
+        } catch (DAOException de) {
+            TestUtil.logErr("No such entity: " + de);
+            throw new NoSuchEntityException("[ejbStore] DAOException" + de);
+        } catch (Exception e) {
+            throw new EJBException("[ejbStore] Unable to init DAO");
+        } finally {
+            if (null != dao) {
+                dao.stopSession();
+            }
+            dao = null;
+        }
     }
-  }
 
-  public Collection ejbFindWithinPrimaryKeyRange(Properties p, Integer kmin,
-      Integer kmax) throws FinderException {
-    TestUtil.logTrace("ejbFindWithinPrimaryKeyRange");
-    try {
-      if (null == dao) {
-        TestUtil.logMsg("Get DAO...");
-        dao = DAOFactory.getInstance().getCoffeeDAO();
-      }
-      dao.startSession();
-      Collection c = dao.primaryKeyRangeToCollection(kmin, kmax);
-      if (c.size() > 0)
-        return c;
-      else
-        throw new FinderException(
-            "Primary Key Range not found: [" + kmin + "-" + kmax + "]");
-    } catch (DAOException de) {
-      TestUtil.printStackTrace(de);
-      throw new FinderException("DAOException in primary key range finder");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new FinderException("Exception occurred: " + e);
-    } finally {
-      if (null != dao) {
-        dao.stopSession();
-      }
+    public Integer ejbFindTheBean(Properties p, Integer key) throws FinderException {
+        TestUtil.logTrace("ejbFindTheBean");
+        try {
+            if (null == dao) {
+                TestUtil.logMsg("Get DAO...");
+                dao = DAOFactory.getInstance().getCoffeeDAO();
+            }
+            dao.startSession();
+            if (dao.exists(key.intValue())) {
+                return key;
+            } else {
+                throw new FinderException("Key not found: " + key);
+            }
+        } catch (DAOException de) {
+            throw new FinderException("DAOException " + de);
+        } catch (Exception e) {
+            throw new FinderException("Exception occurred: " + e);
+        } finally {
+            if (null != dao) {
+                dao.stopSession();
+            }
+        }
     }
-  }
 
-  // ===========================================================
-  // TestBean interface (our business methods)
+    public Integer ejbFindByPrimaryKey(Integer key) throws FinderException {
+        TestUtil.logTrace("ejbFindByPrimaryKey");
 
-  public String ping(String s) {
-    TestUtil.logTrace("ping : " + s);
-    return "ping: " + s;
-  }
-
-  public void initLogging(Properties p) {
-    TestUtil.logTrace("initLogging");
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
+        try {
+            if (null == dao) {
+                TestUtil.logMsg("Get DAO...");
+                dao = DAOFactory.getInstance().getCoffeeDAO();
+            }
+            dao.startSession();
+            if (dao.exists(key.intValue())) {
+                return key;
+            } else {
+                throw new FinderException("Key not found: " + key);
+            }
+        } catch (DAOException de) {
+            throw new FinderException("DAOException " + de);
+        } catch (Exception e) {
+            throw new FinderException("Exception occurred: " + e);
+        } finally {
+            if (null != dao) {
+                dao.stopSession();
+            }
+        }
     }
-  }
+
+    public Collection ejbFindByName(Properties p, String name) throws FinderException {
+        TestUtil.logTrace("ejbFindByName");
+        try {
+            if (null == dao) {
+                TestUtil.logMsg("Get DAO...");
+                dao = DAOFactory.getInstance().getCoffeeDAO();
+            }
+            dao.startSession();
+            Collection c = dao.nameToKeyCollection(name);
+            if (c.size() > 0) return c;
+            else throw new FinderException("Name not found: " + name);
+        } catch (DAOException de) {
+            TestUtil.printStackTrace(de);
+            throw new FinderException("DAOException " + de);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new FinderException("Exception occurred: " + e);
+        } finally {
+            if (null != dao) {
+                dao.stopSession();
+            }
+        }
+    }
+
+    public Collection ejbFindByPrice(Properties p, float price) throws FinderException {
+        TestUtil.logTrace("ejbFindByPrice");
+        try {
+            if (null == dao) {
+                TestUtil.logMsg("Get DAO...");
+                dao = DAOFactory.getInstance().getCoffeeDAO();
+            }
+            dao.startSession();
+            Collection c = dao.priceToKeyCollection(price);
+            if (c.size() > 0) return c;
+            throw new FinderException("Price not found: " + price);
+        } catch (DAOException e) {
+            TestUtil.printStackTrace(e);
+            throw new FinderException("DAOException in price finder");
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new FinderException("Exception occurred: " + e);
+        } finally {
+            if (null != dao) {
+                dao.stopSession();
+            }
+        }
+    }
+
+    public Collection ejbFindWithinPriceRange(Properties p, float pmin, float pmax) throws FinderException {
+        TestUtil.logTrace("ejbFindWithinPriceRange");
+        try {
+            if (null == dao) {
+                TestUtil.logMsg("Get DAO...");
+                dao = DAOFactory.getInstance().getCoffeeDAO();
+            }
+            dao.startSession();
+            Collection c = dao.priceRangeToCollection(pmin, pmax);
+            if (c.size() > 0) return c;
+            else throw new FinderException("Price Range not found: [" + pmin + "-" + pmax + "]");
+        } catch (DAOException de) {
+            TestUtil.printStackTrace(de);
+            throw new FinderException("DAOException in price range finder");
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new FinderException("Exception occurred: " + e);
+        } finally {
+            if (null != dao) {
+                dao.stopSession();
+            }
+        }
+    }
+
+    public Collection ejbFindWithinPrimaryKeyRange(Properties p, Integer kmin, Integer kmax) throws FinderException {
+        TestUtil.logTrace("ejbFindWithinPrimaryKeyRange");
+        try {
+            if (null == dao) {
+                TestUtil.logMsg("Get DAO...");
+                dao = DAOFactory.getInstance().getCoffeeDAO();
+            }
+            dao.startSession();
+            Collection c = dao.primaryKeyRangeToCollection(kmin, kmax);
+            if (c.size() > 0) return c;
+            else throw new FinderException("Primary Key Range not found: [" + kmin + "-" + kmax + "]");
+        } catch (DAOException de) {
+            TestUtil.printStackTrace(de);
+            throw new FinderException("DAOException in primary key range finder");
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new FinderException("Exception occurred: " + e);
+        } finally {
+            if (null != dao) {
+                dao.stopSession();
+            }
+        }
+    }
+
+    // ===========================================================
+    // TestBean interface (our business methods)
+
+    public String ping(String s) {
+        TestUtil.logTrace("ping : " + s);
+        return "ping: " + s;
+    }
+
+    public void initLogging(Properties p) {
+        TestUtil.logTrace("initLogging");
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
+        }
+    }
 }

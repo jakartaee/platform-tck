@@ -16,8 +16,6 @@
 
 package com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation;
 
-import java.util.Map;
-
 import jakarta.persistence.Cache;
 import jakarta.persistence.EntityGraph;
 import jakarta.persistence.EntityManager;
@@ -26,126 +24,119 @@ import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.metamodel.Metamodel;
 import jakarta.persistence.spi.PersistenceUnitInfo;
+import java.util.Map;
 
-public class EntityManagerFactoryImpl
-    implements jakarta.persistence.EntityManagerFactory {
+public class EntityManagerFactoryImpl implements jakarta.persistence.EntityManagerFactory {
 
-  public Map properties;
+    public Map properties;
 
-  public boolean isOpen;
+    public boolean isOpen;
 
-  public PersistenceUnitInfo puInfo;
+    public PersistenceUnitInfo puInfo;
 
-  public boolean containerFactory = false;
+    public boolean containerFactory = false;
 
-  public ClassTransformerImpl transformer;
+    public ClassTransformerImpl transformer;
 
-  public ClassLoader newTempClassloader;
+    public ClassLoader newTempClassloader;
 
-  protected TSLogger logger;
+    protected TSLogger logger;
 
-  public EntityManagerFactoryImpl() {
-    isOpen = true;
-    logger = TSLogger.getInstance();
-    logger.log("Called EntityManagerFactoryImpl()");
-  }
-
-  public EntityManagerFactoryImpl(boolean containerFactory) {
-    super();
-    logger = TSLogger.getInstance();
-    logger.log("Called EntityManagerFactoryImpl(boolean)");
-
-    isOpen = true;
-    this.containerFactory = containerFactory;
-  }
-
-  public void addNamedQuery(String s, Query q) {
-  }
-
-  public void close() {
-    verifyOpen();
-    isOpen = false;
-  }
-
-  public EntityManager createEntityManager() {
-    logger.log("Called EntityManagerFactoryImpl.createEntityManager()");
-    verifyOpen();
-    EntityManagerImpl em = new EntityManagerImpl();
-    em.emf = this;
-
-    return em;
-  }
-
-  public EntityManager createEntityManager(Map properties) {
-    logger.log("Called EntityManagerFactoryImpl.createEntityManager(Map)");
-    verifyOpen();
-    EntityManagerImpl em = new EntityManagerImpl();
-    em.emf = this;
-    em.properties = new java.util.HashMap(properties);
-    return em;
-  }
-
-  public EntityManager createEntityManager(
-      jakarta.persistence.SynchronizationType st) {
-    logger.log("Called EntityManagerFactoryImpl.createEntityManager(Map)");
-    verifyOpen();
-    EntityManagerImpl em = new EntityManagerImpl();
-    em.emf = this;
-    em.properties = new java.util.HashMap(properties);
-    return em;
-  }
-
-  public EntityManager createEntityManager(
-      jakarta.persistence.SynchronizationType st, Map map) {
-    logger.log("Called EntityManagerFactoryImpl.createEntityManager(Map)");
-    verifyOpen();
-    EntityManagerImpl em = new EntityManagerImpl();
-    em.emf = this;
-    em.properties = new java.util.HashMap(properties);
-    return em;
-  }
-
-  public Cache getCache() {
-    return new CacheImpl();
-  }
-
-  public CriteriaBuilder getCriteriaBuilder() {
-    return null;
-  }
-
-  public Metamodel getMetamodel() {
-    return null;
-  }
-
-  public PersistenceUnitUtil getPersistenceUnitUtil() {
-    return null;
-  }
-
-  public Map<String, Object> getProperties() {
-    return null;
-  }
-
-  public <T> T unwrap(Class<T> arg0) {
-    if (EntityManagerImpl.class == arg0) {
-      return (T) this;
+    public EntityManagerFactoryImpl() {
+        isOpen = true;
+        logger = TSLogger.getInstance();
+        logger.log("Called EntityManagerFactoryImpl()");
     }
-    return null;
-  }
 
-  public <T> void addNamedEntityGraph(String graphName,
-      EntityGraph<T> entityGraph) {
+    public EntityManagerFactoryImpl(boolean containerFactory) {
+        super();
+        logger = TSLogger.getInstance();
+        logger.log("Called EntityManagerFactoryImpl(boolean)");
 
-  }
-
-  public boolean isOpen() {
-    return isOpen;
-  }
-
-  // added to check isOpen/closed etc
-  protected void verifyOpen() {
-    if (!this.isOpen) {
-      throw new IllegalStateException(
-          "operation_on_closed_entity_manager_factory");
+        isOpen = true;
+        this.containerFactory = containerFactory;
     }
-  }
+
+    public void addNamedQuery(String s, Query q) {}
+
+    public void close() {
+        verifyOpen();
+        isOpen = false;
+    }
+
+    public EntityManager createEntityManager() {
+        logger.log("Called EntityManagerFactoryImpl.createEntityManager()");
+        verifyOpen();
+        EntityManagerImpl em = new EntityManagerImpl();
+        em.emf = this;
+
+        return em;
+    }
+
+    public EntityManager createEntityManager(Map properties) {
+        logger.log("Called EntityManagerFactoryImpl.createEntityManager(Map)");
+        verifyOpen();
+        EntityManagerImpl em = new EntityManagerImpl();
+        em.emf = this;
+        em.properties = new java.util.HashMap(properties);
+        return em;
+    }
+
+    public EntityManager createEntityManager(jakarta.persistence.SynchronizationType st) {
+        logger.log("Called EntityManagerFactoryImpl.createEntityManager(Map)");
+        verifyOpen();
+        EntityManagerImpl em = new EntityManagerImpl();
+        em.emf = this;
+        em.properties = new java.util.HashMap(properties);
+        return em;
+    }
+
+    public EntityManager createEntityManager(jakarta.persistence.SynchronizationType st, Map map) {
+        logger.log("Called EntityManagerFactoryImpl.createEntityManager(Map)");
+        verifyOpen();
+        EntityManagerImpl em = new EntityManagerImpl();
+        em.emf = this;
+        em.properties = new java.util.HashMap(properties);
+        return em;
+    }
+
+    public Cache getCache() {
+        return new CacheImpl();
+    }
+
+    public CriteriaBuilder getCriteriaBuilder() {
+        return null;
+    }
+
+    public Metamodel getMetamodel() {
+        return null;
+    }
+
+    public PersistenceUnitUtil getPersistenceUnitUtil() {
+        return null;
+    }
+
+    public Map<String, Object> getProperties() {
+        return null;
+    }
+
+    public <T> T unwrap(Class<T> arg0) {
+        if (EntityManagerImpl.class == arg0) {
+            return (T) this;
+        }
+        return null;
+    }
+
+    public <T> void addNamedEntityGraph(String graphName, EntityGraph<T> entityGraph) {}
+
+    public boolean isOpen() {
+        return isOpen;
+    }
+
+    // added to check isOpen/closed etc
+    protected void verifyOpen() {
+        if (!this.isOpen) {
+            throw new IllegalStateException("operation_on_closed_entity_manager_factory");
+        }
+    }
 }

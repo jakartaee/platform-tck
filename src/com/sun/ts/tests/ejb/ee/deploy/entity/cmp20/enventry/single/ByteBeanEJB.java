@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 
 public abstract class ByteBeanEJB extends CMP20Wrapper {
 
-  public boolean testByteEntry() {
-    return TestCode.testByteEntry(nctx);
-  }
-
+    public boolean testByteEntry() {
+        return TestCode.testByteEntry(nctx);
+    }
 }

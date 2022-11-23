@@ -20,24 +20,24 @@
 package com.sun.ts.tests.ejb30.timer.interceptor.business.common;
 
 public class ClientBase extends com.sun.ts.tests.ejb30.timer.common.ClientBase {
-  protected BusinessTimerBeanBase businessTimerBean;
+    protected BusinessTimerBeanBase businessTimerBean;
 
-  /*
-   * testName: aroundInvokeMethods
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: create a timer in all interceptor methods. Verify they
-   * expire as expected.
-   */
-  public void aroundInvokeMethods() {
-    businessTimerBean.createMillisecondLaterTimer(getTestName());
-    passIfTimeout("BusinessTimerBeanBase.aroundInvoke"); // expire once
-    passIfTimeout("BusinessTimerBean.aroundInvoke"); // expire once
-    passIfTimeout("Interceptor1.aroundInvoke"); // expire once
-    passIfTimeout("Interceptor2.aroundInvoke"); // expire once
-    passIfTimeout("Interceptor3.aroundInvoke"); // expire once
-    passIfTimeout("InterceptorBase.aroundInvoke"); // expire 3 times
-    passIfTimeout(); // expire once
-  }
+    /*
+     * testName: aroundInvokeMethods
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: create a timer in all interceptor methods. Verify they
+     * expire as expected.
+     */
+    public void aroundInvokeMethods() {
+        businessTimerBean.createMillisecondLaterTimer(getTestName());
+        passIfTimeout("BusinessTimerBeanBase.aroundInvoke"); // expire once
+        passIfTimeout("BusinessTimerBean.aroundInvoke"); // expire once
+        passIfTimeout("Interceptor1.aroundInvoke"); // expire once
+        passIfTimeout("Interceptor2.aroundInvoke"); // expire once
+        passIfTimeout("Interceptor3.aroundInvoke"); // expire once
+        passIfTimeout("InterceptorBase.aroundInvoke"); // expire 3 times
+        passIfTimeout(); // expire once
+    }
 }

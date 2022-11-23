@@ -24,11 +24,10 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 
 public abstract class SingleEJB extends CMP20Wrapper {
 
-  /* String identifying bean remote interface */
-  private static final String idString = "Entity CMP 2.0 Single Remote";
+    /* String identifying bean remote interface */
+    private static final String idString = "Entity CMP 2.0 Single Remote";
 
-  public String getIdString() {
-    return idString;
-  }
-
+    public String getIdString() {
+        return idString;
+    }
 }

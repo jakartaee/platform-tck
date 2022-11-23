@@ -20,53 +20,51 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.filterchain;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    setContextRoot("/servlet_js_filterchain_web");
+        setContextRoot("/servlet_js_filterchain_web");
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /* Run test */
-  /*
-   * @testName: filterChainTest
-   *
-   * @assertion_ids: Servlet:SPEC:48; Servlet:SPEC:50; Servlet:SPEC:52;
-   * Servlet:JAVADOC:287; Servlet:JAVADOC:293;
-   *
-   * @test_Strategy: Client attempts to access a servlet and both filters
-   * configured for that servlet should be invoked.
-   */
+    /* Run test */
+    /*
+     * @testName: filterChainTest
+     *
+     * @assertion_ids: Servlet:SPEC:48; Servlet:SPEC:50; Servlet:SPEC:52;
+     * Servlet:JAVADOC:287; Servlet:JAVADOC:293;
+     *
+     * @test_Strategy: Client attempts to access a servlet and both filters
+     * configured for that servlet should be invoked.
+     */
 
-  public void filterChainTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "FilterChainTest");
-    invoke();
-  }
+    public void filterChainTest() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "FilterChainTest");
+        invoke();
+    }
 }

@@ -20,13 +20,12 @@
 
 package com.sun.ts.tests.connector.util;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
+import java.util.Properties;
 
-/* 
- * This class serves as a Database access utility for the Connector tests. 
+/*
+ * This class serves as a Database access utility for the Connector tests.
  *
  * This class is useful for being used in some transaction tests, or in validating
  * connection tests, to assure that you have a valid Connection object returned.
@@ -35,45 +34,44 @@ import com.sun.ts.tests.common.connector.whitebox.TSConnection;
 
 public class DBSupport {
 
-  private Properties props = null;
+    private Properties props = null;
 
-  private String updateString = null;
+    private String updateString = null;
 
-  private String removeString = null;
+    private String removeString = null;
 
-  private String str1;
+    private String str1;
 
-  private int count;
+    private int count;
 
-  public DBSupport() throws Exception {
-    count = 0;
-  }
+    public DBSupport() throws Exception {
+        count = 0;
+    }
 
-  /*
-   * Insert into the above table with the provided TSConnection object.
-   */
-  public void insertIntoTable(TSConnection conn) throws Exception {
-    TestUtil.logTrace("DBSupport.insertIntoTable(con)");
-    String tempStr = String.valueOf(count);
-    str1 = new String(tempStr);
-    conn.insert(str1, "Hello");
-    count++;
-  }
+    /*
+     * Insert into the above table with the provided TSConnection object.
+     */
+    public void insertIntoTable(TSConnection conn) throws Exception {
+        TestUtil.logTrace("DBSupport.insertIntoTable(con)");
+        String tempStr = String.valueOf(count);
+        str1 = new String(tempStr);
+        conn.insert(str1, "Hello");
+        count++;
+    }
 
-  /*
-   * Drop the above table.
-   */
-  public void dropTable(TSConnection conn) throws Exception {
-    clearTable(conn);
-  }
+    /*
+     * Drop the above table.
+     */
+    public void dropTable(TSConnection conn) throws Exception {
+        clearTable(conn);
+    }
 
-  /*
-   * New private class for dropTable(conn) and createTable(conn). See the
-   * constructor comments.
-   *
-   */
-  private void clearTable(TSConnection conn) throws Exception {
-    conn.dropTable();
-
-  }
+    /*
+     * New private class for dropTable(conn) and createTable(conn). See the
+     * constructor comments.
+     *
+     */
+    private void clearTable(TSConnection conn) throws Exception {
+        conn.dropTable();
+    }
 }

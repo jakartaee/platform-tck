@@ -23,32 +23,31 @@ package com.sun.ts.tests.ejb30.common.calc;
 /**
  * An implementation class of <code>Calculator</code> interface. It forwards to
  * an instance of <code>NoInterfaceCalculator</code> for all operations.
- * 
+ *
  * @author Cheng Fang
  */
 public class BaseCalculator implements Calculator {
 
-  private NoInterfaceCalculator calc = new NoInterfaceCalculator();
+    private NoInterfaceCalculator calc = new NoInterfaceCalculator();
 
-  /** Creates a new instance of BaseCalculator */
-  public BaseCalculator() {
-  }
+    /** Creates a new instance of BaseCalculator */
+    public BaseCalculator() {}
 
-  public int subtract(int a, int b) {
-    return calc.subtract(a, b);
-  }
+    public int subtract(int a, int b) {
+        return calc.subtract(a, b);
+    }
 
-  public int add(int a, int b) {
-    return calc.add(a, b);
-  }
+    public int add(int a, int b) {
+        return calc.add(a, b);
+    }
 
-  /*
-   * Tests that the methods in business interface may throw arbitrary
-   * application exceptions.
-   * 
-   * @see com.sun.ts.tests.ejb30.common.calc.Calculator#throwIt()
-   */
-  public void throwIt() throws CalculatorException {
-    calc.throwIt();
-  }
+    /*
+     * Tests that the methods in business interface may throw arbitrary
+     * application exceptions.
+     *
+     * @see com.sun.ts.tests.ejb30.common.calc.Calculator#throwIt()
+     */
+    public void throwIt() throws CalculatorException {
+        calc.throwIt();
+    }
 }

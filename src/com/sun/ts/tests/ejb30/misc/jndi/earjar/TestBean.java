@@ -25,60 +25,58 @@ import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.lite.basic.common.GlobalJNDITest;
 import com.sun.ts.tests.ejb30.lite.basic.stateless.BasicBean;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Singleton;
 
 @Singleton
 public class TestBean implements TestIF {
-  @Resource(lookup = "java:module/ModuleName")
-  private String moduleNameInjected;
+    @Resource(lookup = "java:module/ModuleName")
+    private String moduleNameInjected;
 
-  @Resource(lookup = "java:app/AppName")
-  private String appNameInjected;
+    @Resource(lookup = "java:app/AppName")
+    private String appNameInjected;
 
-  @EJB(lookup = "java:global/misc_jndi_earjar/misc_jndi_earjar_ejb/BasicBean!com.sun.ts.tests.ejb30.lite.basic.stateless.BasicBean")
-  private BasicBean basicBean;
+    @EJB(
+            lookup =
+                    "java:global/misc_jndi_earjar/misc_jndi_earjar_ejb/BasicBean!com.sun.ts.tests.ejb30.lite.basic.stateless.BasicBean")
+    private BasicBean basicBean;
 
-  public String globalJNDI(String appName, String moduleName) {
-    return basicBean.globalJNDI(appName, moduleName);
-  }
+    public String globalJNDI(String appName, String moduleName) {
+        return basicBean.globalJNDI(appName, moduleName);
+    }
 
-  public String appJNDI(String moduleName) {
-    return basicBean.appJNDI(moduleName);
-  }
+    public String appJNDI(String moduleName) {
+        return basicBean.appJNDI(moduleName);
+    }
 
-  public String moduleJNDI() {
-    return basicBean.moduleJNDI();
-  }
+    public String moduleJNDI() {
+        return basicBean.moduleJNDI();
+    }
 
-  public int add(int a, int b) {
-    return a + b;
-  }
+    public int add(int a, int b) {
+        return a + b;
+    }
 
-  public String globalJNDIHelloEJB(String appName, String moduleName,
-      String beanName, Class<?> intf) {
-    String lookupName = GlobalJNDITest.getGlobalJNDIName(appName, moduleName,
-        beanName, intf);
-    HelloRemoteIF h = (HelloRemoteIF) ServiceLocator.lookupNoTry(lookupName);
-    return h.getMessage().toString();
-  }
+    public String globalJNDIHelloEJB(String appName, String moduleName, String beanName, Class<?> intf) {
+        String lookupName = GlobalJNDITest.getGlobalJNDIName(appName, moduleName, beanName, intf);
+        HelloRemoteIF h = (HelloRemoteIF) ServiceLocator.lookupNoTry(lookupName);
+        return h.getMessage().toString();
+    }
 
-  public String appNameModuleName() {
-    StringBuilder sb = new StringBuilder();
-    String lookup = "java:module/ModuleName";
-    String expected = TestIF.EJB_MODULE_NAME;
-    String actual = (String) ServiceLocator.lookupNoTry(lookup);
-    assertEquals("Check " + lookup, expected, actual, sb);
-    assertEquals("Check injected value ", expected, moduleNameInjected, sb);
+    public String appNameModuleName() {
+        StringBuilder sb = new StringBuilder();
+        String lookup = "java:module/ModuleName";
+        String expected = TestIF.EJB_MODULE_NAME;
+        String actual = (String) ServiceLocator.lookupNoTry(lookup);
+        assertEquals("Check " + lookup, expected, actual, sb);
+        assertEquals("Check injected value ", expected, moduleNameInjected, sb);
 
-    lookup = "java:app/AppName";
-    expected = TestIF.APP_NAME;
-    actual = (String) ServiceLocator.lookupNoTry(lookup);
-    assertEquals("Check " + lookup, expected, actual, sb);
-    assertEquals("Check injected value ", expected, appNameInjected, sb);
-    return sb.toString();
-  }
-
+        lookup = "java:app/AppName";
+        expected = TestIF.APP_NAME;
+        actual = (String) ServiceLocator.lookupNoTry(lookup);
+        assertEquals("Check " + lookup, expected, actual, sb);
+        assertEquals("Check injected value ", expected, appNameInjected, sb);
+        return sb.toString();
+    }
 }

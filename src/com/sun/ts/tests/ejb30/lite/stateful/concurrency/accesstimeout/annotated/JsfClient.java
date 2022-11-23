@@ -19,58 +19,70 @@
  */
 package com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.annotated;
 
-import java.io.Serializable;
-
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.AccessTimeoutIF;
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.JsfClientBase;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBs;
+import java.io.Serializable;
 
 @EJBs({
-    @EJB(name = AccessTimeoutIF.beanClassMethodLevelOverrideAccessTimeoutBeanLocal, beanName = "BeanClassMethodLevelOverrideAccessTimeoutBean", beanInterface = AccessTimeoutIF.class),
-    @EJB(name = AccessTimeoutIF.beanClassMethodLevelAccessTimeoutBeanLocal, beanName = "BeanClassMethodLevelAccessTimeoutBean", beanInterface = AccessTimeoutIF.class),
-    @EJB(name = AccessTimeoutIF.beanClassLevelAccessTimeoutBeanLocal, beanName = "BeanClassLevelAccessTimeoutBean", beanInterface = AccessTimeoutIF.class),
-    @EJB(name = AccessTimeoutIF.annotatedSuperClassAccessTimeoutBeanLocal, beanName = "AnnotatedSuperClassAccessTimeoutBean", beanInterface = AccessTimeoutIF.class) })
+    @EJB(
+            name = AccessTimeoutIF.beanClassMethodLevelOverrideAccessTimeoutBeanLocal,
+            beanName = "BeanClassMethodLevelOverrideAccessTimeoutBean",
+            beanInterface = AccessTimeoutIF.class),
+    @EJB(
+            name = AccessTimeoutIF.beanClassMethodLevelAccessTimeoutBeanLocal,
+            beanName = "BeanClassMethodLevelAccessTimeoutBean",
+            beanInterface = AccessTimeoutIF.class),
+    @EJB(
+            name = AccessTimeoutIF.beanClassLevelAccessTimeoutBeanLocal,
+            beanName = "BeanClassLevelAccessTimeoutBean",
+            beanInterface = AccessTimeoutIF.class),
+    @EJB(
+            name = AccessTimeoutIF.annotatedSuperClassAccessTimeoutBeanLocal,
+            beanName = "AnnotatedSuperClassAccessTimeoutBean",
+            beanInterface = AccessTimeoutIF.class)
+})
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends JsfClientBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-  /*
-   * @testName: beanClassLevel
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: beanClassLevel2
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: beanSuperClassLevel
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: beanSuperClassMethodLevel
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: beanSuperClassMethodLevelOverride
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: beanClassMethodLevel
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: beanClassMethodLevelOverride
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: beanClassLevel
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: beanClassLevel2
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: beanSuperClassLevel
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: beanSuperClassMethodLevel
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: beanSuperClassMethodLevelOverride
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: beanClassMethodLevel
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: beanClassMethodLevelOverride
+     *
+     * @test_Strategy:
+     */
 
 }

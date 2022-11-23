@@ -19,99 +19,68 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.dispatchtest;
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class DispatchTests extends GenericServlet {
 
-  private static final String TEST_HEADER = "testname";
+    private static final String TEST_HEADER = "testname";
 
-  private static final Class[] TEST_ARGS = { ServletRequest.class,
-      ServletResponse.class };
+    private static final Class[] TEST_ARGS = {ServletRequest.class, ServletResponse.class};
 
-  public void service(ServletRequest req, ServletResponse res)
-      throws ServletException, IOException {
-    String test = req.getParameter(TEST_HEADER);
-    try {
-      Method method = this.getClass().getMethod(test, TEST_ARGS);
-      method.invoke(this, new Object[] { req, res });
-    } catch (InvocationTargetException ite) {
-      throw new ServletException(ite.getTargetException());
-    } catch (NoSuchMethodException nsme) {
-      throw new ServletException("Test: " + test + " does not exist");
-    } catch (Throwable t) {
-      throw new ServletException("Error executing test: " + test, t);
+    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+        String test = req.getParameter(TEST_HEADER);
+        try {
+            Method method = this.getClass().getMethod(test, TEST_ARGS);
+            method.invoke(this, new Object[] {req, res});
+        } catch (InvocationTargetException ite) {
+            throw new ServletException(ite.getTargetException());
+        } catch (NoSuchMethodException nsme) {
+            throw new ServletException("Test: " + test + " does not exist");
+        } catch (Throwable t) {
+            throw new ServletException("Error executing test: " + test, t);
+        }
     }
-  }
 
-  public void dispatchTest(ServletRequest request, ServletResponse response)
-      throws IOException {
-    response.getWriter()
-        .println("After dispatch=" + System.currentTimeMillis());
-    response.getWriter().println("ASYNC_STARTED_dispatchTest");
-    response.getWriter()
-        .println("IsAsyncSupported=" + request.isAsyncSupported());
-    response.getWriter().println("IsAsyncStarted=" + request.isAsyncStarted());
-    response.getWriter()
-        .println("DispatcherType=" + request.getDispatcherType());
-    response.getWriter()
-        .println("REQUEST_URI=" + request.getAttribute("REQUEST_URI"));
-    response.getWriter()
-        .println("CONTEXT_PATH=" + request.getAttribute("CONTEXT_PATH"));
-    response.getWriter()
-        .println("PATH_INFO=" + request.getAttribute("PATH_INFO"));
-    response.getWriter()
-        .println("SERVLET_PATH=" + request.getAttribute("SERVLET_PATH"));
-    response.getWriter()
-        .println("QUERY_STRING=" + request.getAttribute("QUERY_STRING"));
-    response.getWriter().println(
-        "ASYNC_REQUEST_URI=" + request.getAttribute("ASYNC_REQUEST_URI"));
-    response.getWriter().println(
-        "ASYNC_CONTEXT_PATH=" + request.getAttribute("ASYNC_CONTEXT_PATH"));
-    response.getWriter()
-        .println("ASYNC_PATH_INFO=" + request.getAttribute("ASYNC_PATH_INFO"));
-    response.getWriter().println(
-        "ASYNC_SERVLET_PATH=" + request.getAttribute("ASYNC_SERVLET_PATH"));
-    response.getWriter().println(
-        "ASYNC_QUERY_STRING=" + request.getAttribute("ASYNC_QUERY_STRING"));
-  }
+    public void dispatchTest(ServletRequest request, ServletResponse response) throws IOException {
+        response.getWriter().println("After dispatch=" + System.currentTimeMillis());
+        response.getWriter().println("ASYNC_STARTED_dispatchTest");
+        response.getWriter().println("IsAsyncSupported=" + request.isAsyncSupported());
+        response.getWriter().println("IsAsyncStarted=" + request.isAsyncStarted());
+        response.getWriter().println("DispatcherType=" + request.getDispatcherType());
+        response.getWriter().println("REQUEST_URI=" + request.getAttribute("REQUEST_URI"));
+        response.getWriter().println("CONTEXT_PATH=" + request.getAttribute("CONTEXT_PATH"));
+        response.getWriter().println("PATH_INFO=" + request.getAttribute("PATH_INFO"));
+        response.getWriter().println("SERVLET_PATH=" + request.getAttribute("SERVLET_PATH"));
+        response.getWriter().println("QUERY_STRING=" + request.getAttribute("QUERY_STRING"));
+        response.getWriter().println("ASYNC_REQUEST_URI=" + request.getAttribute("ASYNC_REQUEST_URI"));
+        response.getWriter().println("ASYNC_CONTEXT_PATH=" + request.getAttribute("ASYNC_CONTEXT_PATH"));
+        response.getWriter().println("ASYNC_PATH_INFO=" + request.getAttribute("ASYNC_PATH_INFO"));
+        response.getWriter().println("ASYNC_SERVLET_PATH=" + request.getAttribute("ASYNC_SERVLET_PATH"));
+        response.getWriter().println("ASYNC_QUERY_STRING=" + request.getAttribute("ASYNC_QUERY_STRING"));
+    }
 
-  public void dispatchTest1(ServletRequest request, ServletResponse response)
-      throws IOException {
-    response.getWriter()
-        .println("After dispatch=" + System.currentTimeMillis());
-    response.getWriter().println("ASYNC_STARTED_dispatchTest1");
-    response.getWriter()
-        .println("IsAsyncSupported=" + request.isAsyncSupported());
-    response.getWriter().println("IsAsyncStarted=" + request.isAsyncStarted());
-    response.getWriter()
-        .println("DispatcherType=" + request.getDispatcherType());
-    response.getWriter()
-        .println("REQUEST_URI=" + request.getAttribute("REQUEST_URI"));
-    response.getWriter()
-        .println("CONTEXT_PATH=" + request.getAttribute("CONTEXT_PATH"));
-    response.getWriter()
-        .println("PATH_INFO=" + request.getAttribute("PATH_INFO"));
-    response.getWriter()
-        .println("SERVLET_PATH=" + request.getAttribute("SERVLET_PATH"));
-    response.getWriter()
-        .println("QUERY_STRING=" + request.getAttribute("QUERY_STRING"));
-    response.getWriter().println(
-        "ASYNC_REQUEST_URI=" + request.getAttribute("ASYNC_REQUEST_URI"));
-    response.getWriter().println(
-        "ASYNC_CONTEXT_PATH=" + request.getAttribute("ASYNC_CONTEXT_PATH"));
-    response.getWriter()
-        .println("ASYNC_PATH_INFO=" + request.getAttribute("ASYNC_PATH_INFO"));
-    response.getWriter().println(
-        "ASYNC_SERVLET_PATH=" + request.getAttribute("ASYNC_SERVLET_PATH"));
-    response.getWriter().println(
-        "ASYNC_QUERY_STRING=" + request.getAttribute("ASYNC_QUERY_STRING"));
-    throw new IOException("A_UNIQUE_EXCEPTION_MESSAGE_TO_CHECK_LATER");
-  }
+    public void dispatchTest1(ServletRequest request, ServletResponse response) throws IOException {
+        response.getWriter().println("After dispatch=" + System.currentTimeMillis());
+        response.getWriter().println("ASYNC_STARTED_dispatchTest1");
+        response.getWriter().println("IsAsyncSupported=" + request.isAsyncSupported());
+        response.getWriter().println("IsAsyncStarted=" + request.isAsyncStarted());
+        response.getWriter().println("DispatcherType=" + request.getDispatcherType());
+        response.getWriter().println("REQUEST_URI=" + request.getAttribute("REQUEST_URI"));
+        response.getWriter().println("CONTEXT_PATH=" + request.getAttribute("CONTEXT_PATH"));
+        response.getWriter().println("PATH_INFO=" + request.getAttribute("PATH_INFO"));
+        response.getWriter().println("SERVLET_PATH=" + request.getAttribute("SERVLET_PATH"));
+        response.getWriter().println("QUERY_STRING=" + request.getAttribute("QUERY_STRING"));
+        response.getWriter().println("ASYNC_REQUEST_URI=" + request.getAttribute("ASYNC_REQUEST_URI"));
+        response.getWriter().println("ASYNC_CONTEXT_PATH=" + request.getAttribute("ASYNC_CONTEXT_PATH"));
+        response.getWriter().println("ASYNC_PATH_INFO=" + request.getAttribute("ASYNC_PATH_INFO"));
+        response.getWriter().println("ASYNC_SERVLET_PATH=" + request.getAttribute("ASYNC_SERVLET_PATH"));
+        response.getWriter().println("ASYNC_QUERY_STRING=" + request.getAttribute("ASYNC_QUERY_STRING"));
+        throw new IOException("A_UNIQUE_EXCEPTION_MESSAGE_TO_CHECK_LATER");
+    }
 }

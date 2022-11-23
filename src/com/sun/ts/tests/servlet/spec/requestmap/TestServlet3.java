@@ -20,20 +20,18 @@
 
 package com.sun.ts.tests.servlet.spec.requestmap;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet3 extends GenericServlet {
 
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    pw.println("TestServlet3 is invoked");
-    pw.println("TestServlet3's URL /TestServlet3");
-  }
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        pw.println("TestServlet3 is invoked");
+        pw.println("TestServlet3's URL /TestServlet3");
+    }
 }

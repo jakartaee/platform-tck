@@ -18,7 +18,6 @@
 package com.sun.ts.tests.websocket.negdep.onmessage.pasrv.nomoreendpoints;
 
 import com.sun.ts.tests.websocket.negdep.EchoServerEndpoint;
-
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
@@ -28,36 +27,36 @@ import jakarta.websocket.server.ServerContainer;
 @WebListener
 public class TestListener implements ServletContextListener {
 
-  /**
-   * Receives notification that the web application initialization process is
-   * starting.
-   *
-   * @param sce
-   *          The ServletContextEvent
-   */
-  @Override
-  public void contextInitialized(ServletContextEvent sce) {
-    ServletContext context = sce.getServletContext();
-    try {
-      final ServerContainer serverContainer = (ServerContainer) context
-          .getAttribute("jakarta.websocket.server.ServerContainer");
-      serverContainer.addEndpoint(EchoServerEndpoint.class);
-    } catch (Exception ex) {
-      // The DeploymentException can be thrown here, since no
-      // more endpoit can be deployed when there was invalid
-      // endpoint in the app
-      ex.printStackTrace();
+    /**
+     * Receives notification that the web application initialization process is
+     * starting.
+     *
+     * @param sce
+     *          The ServletContextEvent
+     */
+    @Override
+    public void contextInitialized(ServletContextEvent sce) {
+        ServletContext context = sce.getServletContext();
+        try {
+            final ServerContainer serverContainer =
+                    (ServerContainer) context.getAttribute("jakarta.websocket.server.ServerContainer");
+            serverContainer.addEndpoint(EchoServerEndpoint.class);
+        } catch (Exception ex) {
+            // The DeploymentException can be thrown here, since no
+            // more endpoit can be deployed when there was invalid
+            // endpoint in the app
+            ex.printStackTrace();
+        }
     }
-  }
 
-  /**
-   * Receives notification that the servlet context is about to be shut down.
-   * 
-   * @param sce
-   *          The servlet context event
-   */
-  @Override
-  public void contextDestroyed(ServletContextEvent sce) {
-    // Do nothing
-  }
+    /**
+     * Receives notification that the servlet context is about to be shut down.
+     *
+     * @param sce
+     *          The servlet context event
+     */
+    @Override
+    public void contextDestroyed(ServletContextEvent sce) {
+        // Do nothing
+    }
 }

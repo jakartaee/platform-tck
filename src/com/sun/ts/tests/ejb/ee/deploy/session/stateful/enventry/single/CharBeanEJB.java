@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
 
 public class CharBeanEJB extends StatefulWrapper {
 
-  public boolean testCharacterEntry() {
-    return TestCode.testCharacterEntry(nctx);
-  }
-
+    public boolean testCharacterEntry() {
+        return TestCode.testCharacterEntry(nctx);
+    }
 }

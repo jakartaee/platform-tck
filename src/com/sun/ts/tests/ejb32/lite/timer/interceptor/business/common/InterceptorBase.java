@@ -17,21 +17,19 @@
 package com.sun.ts.tests.ejb32.lite.timer.interceptor.business.common;
 
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.TimerService;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 
 public class InterceptorBase {
-  @Resource
-  protected TimerService timerService;
+    @Resource
+    protected TimerService timerService;
 
-  @SuppressWarnings("unused")
-  @AroundInvoke
-  private Object aroundInvoke(InvocationContext inv) throws Exception {
-    TimerUtil.createMillisecondLaterTimer(timerService,
-        "InterceptorBase.aroundInvoke", false);
-    return inv.proceed();
-  }
+    @SuppressWarnings("unused")
+    @AroundInvoke
+    private Object aroundInvoke(InvocationContext inv) throws Exception {
+        TimerUtil.createMillisecondLaterTimer(timerService, "InterceptorBase.aroundInvoke", false);
+        return inv.proceed();
+    }
 }

@@ -18,7 +18,7 @@ package com.sun.ts.tests.webservices13.servlet.WSWebServiceRefLookupDDs.client;
 
 public interface EjbClientIF {
 
-  public void init(java.util.Properties p);
+    public void init(java.util.Properties p);
 
-  public boolean testwsreflookup(java.util.Properties p);
+    public boolean testwsreflookup(java.util.Properties p);
 }

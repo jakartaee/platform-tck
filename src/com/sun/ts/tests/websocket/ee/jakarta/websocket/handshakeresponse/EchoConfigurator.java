@@ -17,29 +17,27 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.handshakeresponse;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
 import jakarta.websocket.HandshakeResponse;
 import jakarta.websocket.server.HandshakeRequest;
 import jakarta.websocket.server.ServerEndpointConfig;
 import jakarta.websocket.server.ServerEndpointConfig.Configurator;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 public class EchoConfigurator extends Configurator {
-  static final String KEY = "ReadOnlyKey";
+    static final String KEY = "ReadOnlyKey";
 
-  static final String[] VALUES = { "ReadOnlyValue1", "ReadOnlyValue2" };
+    static final String[] VALUES = {"ReadOnlyValue1", "ReadOnlyValue2"};
 
-  @Override
-  public void modifyHandshake(ServerEndpointConfig sec,
-      HandshakeRequest request, HandshakeResponse response) {
-    Map<String, List<String>> map = request.getHeaders();
-    try {
-      map.put(KEY, Arrays.asList(VALUES));
-    } catch (Exception e) {
-      // possible, but not mandatory
+    @Override
+    public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
+        Map<String, List<String>> map = request.getHeaders();
+        try {
+            map.put(KEY, Arrays.asList(VALUES));
+        } catch (Exception e) {
+            // possible, but not mandatory
+        }
+        response.getHeaders().putAll(map);
     }
-    response.getHeaders().putAll(map);
-  }
 }

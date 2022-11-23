@@ -16,37 +16,32 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.dispatchtest;
 
-import java.io.IOException;
-
 import jakarta.servlet.AsyncEvent;
 import jakarta.servlet.AsyncListener;
 import jakarta.servlet.RequestDispatcher;
+import java.io.IOException;
 
 public final class TestListener1 implements AsyncListener {
 
-  public TestListener1() throws IOException {
-  }
+    public TestListener1() throws IOException {}
 
-  public void onError(AsyncEvent event) throws IOException {
-    event.getSuppliedResponse().getWriter()
-        .println("in onError method of TestListener1");
-    event.getSuppliedResponse().getWriter()
-        .println(event.getThrowable().getMessage());
-    event.getSuppliedResponse().getWriter().println(event.getSuppliedRequest()
-        .getAttribute(RequestDispatcher.ERROR_EXCEPTION));
-  }
+    public void onError(AsyncEvent event) throws IOException {
+        event.getSuppliedResponse().getWriter().println("in onError method of TestListener1");
+        event.getSuppliedResponse().getWriter().println(event.getThrowable().getMessage());
+        event.getSuppliedResponse()
+                .getWriter()
+                .println(event.getSuppliedRequest().getAttribute(RequestDispatcher.ERROR_EXCEPTION));
+    }
 
-  public void onStartAsync(AsyncEvent event) throws IOException {
-    event.getSuppliedResponse().getWriter()
-        .println("in onStartAsync method of TestListener1");
-  }
+    public void onStartAsync(AsyncEvent event) throws IOException {
+        event.getSuppliedResponse().getWriter().println("in onStartAsync method of TestListener1");
+    }
 
-  public void onComplete(AsyncEvent event) throws IOException {
-    throw new IOException("in onComplete method of TestListener1");
-  }
+    public void onComplete(AsyncEvent event) throws IOException {
+        throw new IOException("in onComplete method of TestListener1");
+    }
 
-  public void onTimeout(AsyncEvent event) throws IOException {
-    event.getSuppliedResponse().getWriter()
-        .println("in onTimeout method of TestListener1");
-  }
+    public void onTimeout(AsyncEvent event) throws IOException {
+        event.getSuppliedResponse().getWriter().println("in onTimeout method of TestListener1");
+    }
 }

@@ -27,11 +27,11 @@ import jakarta.servlet.http.HttpSessionIdListener;
 @WebListener
 public class TCKHttpSessionIDListener implements HttpSessionIdListener {
 
-  public void sessionIdChanged(HttpSessionEvent event, String oldId) {
-    HttpSession session = event.getSession();
-    String sessionId = session.getId();
+    public void sessionIdChanged(HttpSessionEvent event, String oldId) {
+        HttpSession session = event.getSession();
+        String sessionId = session.getId();
 
-    session.setAttribute("OLD", oldId);
-    session.setAttribute("NEW", sessionId);
-  }
+        session.setAttribute("OLD", oldId);
+        session.setAttribute("NEW", sessionId);
+    }
 }

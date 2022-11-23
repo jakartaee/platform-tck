@@ -20,19 +20,16 @@
 
 package com.sun.ts.tests.common.ejb.wrappers;
 
-import java.util.Properties;
-
-import javax.naming.NamingException;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
 import jakarta.ejb.RemoveException;
+import java.util.Properties;
+import javax.naming.NamingException;
 
 /**
  * CMP 1.1 wrapper that provide the bean life cycle methods for a CMP 1.1 bean.
@@ -41,82 +38,79 @@ import jakarta.ejb.RemoveException;
  */
 public class CMP11Wrapper implements EntityBean {
 
-  /* CMP fields */
-  public String BRAND_NAME;
+    /* CMP fields */
+    public String BRAND_NAME;
 
-  public Integer KEY_ID;
+    public Integer KEY_ID;
 
-  public float PRICE;
+    public float PRICE;
 
-  protected EntityContext ectx = null;
+    protected EntityContext ectx = null;
 
-  protected TSNamingContext nctx = null;
+    protected TSNamingContext nctx = null;
 
-  public Integer ejbCreate(Properties props, int KEY_ID, String BRAND_NAME,
-      float PRICE) throws CreateException {
+    public Integer ejbCreate(Properties props, int KEY_ID, String BRAND_NAME, float PRICE) throws CreateException {
 
-    try {
-      TestUtil.logTrace("[CMP11Wrapper] ejbCreate()");
+        try {
+            TestUtil.logTrace("[CMP11Wrapper] ejbCreate()");
 
-      TestUtil.init(props);
+            TestUtil.init(props);
 
-      this.KEY_ID = new Integer(KEY_ID);
-      this.BRAND_NAME = BRAND_NAME;
-      this.PRICE = PRICE;
+            this.KEY_ID = new Integer(KEY_ID);
+            this.BRAND_NAME = BRAND_NAME;
+            this.PRICE = PRICE;
 
-    } catch (RemoteLoggingInitException e) {
-      throw new CreateException(e.getMessage());
-    } catch (Exception e) {
-      throw new CreateException("Exception occurred: " + e);
+        } catch (RemoteLoggingInitException e) {
+            throw new CreateException(e.getMessage());
+        } catch (Exception e) {
+            throw new CreateException("Exception occurred: " + e);
+        }
+
+        return this.KEY_ID;
     }
 
-    return this.KEY_ID;
-  }
+    public void ejbPostCreate(Properties props, int KEY_ID, String BRAND_NAME, float PRICE) {
 
-  public void ejbPostCreate(Properties props, int KEY_ID, String BRAND_NAME,
-      float PRICE) {
-
-    TestUtil.logTrace("[CMP11Wrapper] ejbPostCreate()");
-  }
-
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("[CMP11Wrapper] ejbRemove()");
-  }
-
-  public void setEntityContext(EntityContext x) throws EJBException {
-
-    TestUtil.logTrace("[CMP11Wrapper] setEntityContext()");
-    ectx = x;
-    try {
-      TestUtil.logMsg("[CMP11Wrapper] Obtaining TS Naming Context...");
-      nctx = new TSNamingContext();
-    } catch (NamingException e) {
-      TestUtil.logErr("[CMP11Wrapper] Naming Exception : " + e);
-      throw new EJBException("Cannot obtain Naming Context" + e);
-    } catch (Exception e) {
-      TestUtil.logErr("[CMP11Wrapper] Caught exception: " + e);
-      throw new EJBException("Caught exception: " + e);
+        TestUtil.logTrace("[CMP11Wrapper] ejbPostCreate()");
     }
-  }
 
-  public void unsetEntityContext() {
-    TestUtil.logTrace("[CMP11Wrapper] unsetEntityContext()");
-  }
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("[CMP11Wrapper] ejbRemove()");
+    }
 
-  public void ejbStore() {
-    TestUtil.logTrace("[CMP11Wrapper] ejbStore()");
-  }
+    public void setEntityContext(EntityContext x) throws EJBException {
 
-  public void ejbLoad() {
-    TestUtil.logTrace("[CMP11Wrapper] ejbLoad()");
-  }
+        TestUtil.logTrace("[CMP11Wrapper] setEntityContext()");
+        ectx = x;
+        try {
+            TestUtil.logMsg("[CMP11Wrapper] Obtaining TS Naming Context...");
+            nctx = new TSNamingContext();
+        } catch (NamingException e) {
+            TestUtil.logErr("[CMP11Wrapper] Naming Exception : " + e);
+            throw new EJBException("Cannot obtain Naming Context" + e);
+        } catch (Exception e) {
+            TestUtil.logErr("[CMP11Wrapper] Caught exception: " + e);
+            throw new EJBException("Caught exception: " + e);
+        }
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("[CMP11Wrapper] ejbActivate()");
-  }
+    public void unsetEntityContext() {
+        TestUtil.logTrace("[CMP11Wrapper] unsetEntityContext()");
+    }
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("[CMP11Wrapper] ejbPassivate()");
-  }
+    public void ejbStore() {
+        TestUtil.logTrace("[CMP11Wrapper] ejbStore()");
+    }
 
+    public void ejbLoad() {
+        TestUtil.logTrace("[CMP11Wrapper] ejbLoad()");
+    }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("[CMP11Wrapper] ejbActivate()");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("[CMP11Wrapper] ejbPassivate()");
+    }
 }

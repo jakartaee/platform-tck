@@ -20,14 +20,11 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.cm.allowed;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.ejb30.common.allowed.SessionContextAllowedBeanBase;
 import com.sun.ts.tests.ejb30.common.allowed.SessionContextAllowedIF;
 import com.sun.ts.tests.ejb30.common.allowed.SessionContextAllowedLocalIF;
 import com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulOperations;
 import com.sun.ts.tests.ejb30.common.allowed.stateful.TimerLocalIF;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Local;
@@ -36,31 +33,28 @@ import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 import jakarta.interceptor.Interceptors;
+import java.util.Properties;
 
 @Stateful(name = "SessionContextAllowedBean")
-@Remote({ SessionContextAllowedIF.class })
-@Local({ SessionContextAllowedLocalIF.class })
-@Interceptors({
-    com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulCancelInterceptor.class })
-
+@Remote({SessionContextAllowedIF.class})
+@Local({SessionContextAllowedLocalIF.class})
+@Interceptors({com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulCancelInterceptor.class})
 @EJB(name = "ejb/TimerEJB", beanName = "TimerEJB", beanInterface = TimerLocalIF.class)
 public class SessionContextAllowedBean extends SessionContextAllowedBeanBase
-    implements SessionContextAllowedIF, SessionContextAllowedLocalIF,
-    java.io.Serializable {
+        implements SessionContextAllowedIF, SessionContextAllowedLocalIF, java.io.Serializable {
 
-  @Resource(name = "ejbContext")
-  public void setSessionContext(SessionContext sc) {
-    super.setSessionContext(sc);
-  }
+    @Resource(name = "ejbContext")
+    public void setSessionContext(SessionContext sc) {
+        super.setSessionContext(sc);
+    }
 
-  @Remove
-  public void remove() {
-    super.remove();
-  }
+    @Remove
+    public void remove() {
+        super.remove();
+    }
 
-  @Override
-  public Properties runOperations(SessionContext sctx) {
-    return StatefulOperations.getInstance().run(sctx);
-  }
-
+    @Override
+    public Properties runOperations(SessionContext sctx) {
+        return StatefulOperations.getInstance().run(sctx);
+    }
 }

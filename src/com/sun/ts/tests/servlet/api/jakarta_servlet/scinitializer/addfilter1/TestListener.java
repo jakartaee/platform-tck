@@ -25,39 +25,39 @@ import jakarta.servlet.ServletContextListener;
 
 public class TestListener implements ServletContextListener {
 
-  /**
-   * Receives notification that the web application initialization process is
-   * starting.
-   *
-   * @param sce
-   *          The ServletContextEvent
-   */
-  public void contextInitialized(ServletContextEvent sce) {
-    boolean passed = true;
-    ServletContext context = sce.getServletContext();
-    StringBuilder log = new StringBuilder();
+    /**
+     * Receives notification that the web application initialization process is
+     * starting.
+     *
+     * @param sce
+     *          The ServletContextEvent
+     */
+    public void contextInitialized(ServletContextEvent sce) {
+        boolean passed = true;
+        ServletContext context = sce.getServletContext();
+        StringBuilder log = new StringBuilder();
 
-    final String addFilterName2 = "AddFilterClass";
+        final String addFilterName2 = "AddFilterClass";
 
-    try {
-      context.addFilter(addFilterName2, AddFilterClass.class);
-      passed = false;
-      log.append("Expected UnsupportedOperationException not thrown.");
-    } catch (UnsupportedOperationException ex) {
-      log.append("Expected UnsupportedOperationException thrown.");
+        try {
+            context.addFilter(addFilterName2, AddFilterClass.class);
+            passed = false;
+            log.append("Expected UnsupportedOperationException not thrown.");
+        } catch (UnsupportedOperationException ex) {
+            log.append("Expected UnsupportedOperationException thrown.");
+        }
+
+        context.setAttribute("TCK_TEST_STATUS", log.toString());
+        context.setAttribute("TCK_TEST_PASS_STATUS", passed);
     }
 
-    context.setAttribute("TCK_TEST_STATUS", log.toString());
-    context.setAttribute("TCK_TEST_PASS_STATUS", passed);
-  }
-
-  /**
-   * Receives notification that the servlet context is about to be shut down.
-   *
-   * @param sce
-   *          The servlet context event
-   */
-  public void contextDestroyed(ServletContextEvent sce) {
-    // Do nothing
-  }
+    /**
+     * Receives notification that the servlet context is about to be shut down.
+     *
+     * @param sce
+     *          The servlet context event
+     */
+    public void contextDestroyed(ServletContextEvent sce) {
+        // Do nothing
+    }
 }

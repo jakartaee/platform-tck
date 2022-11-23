@@ -23,29 +23,28 @@ package com.sun.ts.tests.ejb30.common.callback;
 import java.util.List;
 
 public interface CallbackIF {
-  public void removeFoo(); // for sfsb only
+    public void removeFoo(); // for sfsb only
 
-  /**
-   * In stateful session beans, it verifies whether PostConstruct or
-   * PostActivate has been called.
-   */
-  public boolean isPostConstructCalledTest();
+    /**
+     * In stateful session beans, it verifies whether PostConstruct or
+     * PostActivate has been called.
+     */
+    public boolean isPostConstructCalledTest();
 
-  public boolean isInjectionDoneTest();
+    public boolean isInjectionDoneTest();
 
-  public List getPostConstructCalls();
+    public List getPostConstructCalls();
 
-  public List getPostConstructCallsInContextData();
+    public List getPostConstructCallsInContextData();
 
-  public List getInjectionLocations();
+    public List getInjectionLocations();
 
-  public boolean isGetParametersIllegalStateExceptionThrown();
+    public boolean isGetParametersIllegalStateExceptionThrown();
 
-  public boolean isSetParametersIllegalStateExceptionThrown();
+    public boolean isSetParametersIllegalStateExceptionThrown();
 
-  /////////////////////////////////////////////////////////////////////////
-  // For stateful session beans only
-  /////////////////////////////////////////////////////////////////////////
-  public boolean runtimeExceptionTest();
-
+    /////////////////////////////////////////////////////////////////////////
+    // For stateful session beans only
+    /////////////////////////////////////////////////////////////////////////
+    public boolean runtimeExceptionTest();
 }

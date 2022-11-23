@@ -18,7 +18,6 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpointonmessage;
 
 import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
-
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -31,27 +30,27 @@ import jakarta.websocket.Session;
 @ClientEndpoint
 public class WSStringClientEndpoint extends AnnotatedStringClientEndpoint {
 
-  @OnMessage
-  public String echo(String echo) {
-    super.onMessage(echo);
-    return echo;
-  }
+    @OnMessage
+    public String echo(String echo) {
+        super.onMessage(echo);
+        return echo;
+    }
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+    @OnError
+    @Override
+    public void onError(Session session, Throwable t) {
+        super.onError(session, t);
+    }
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+    @OnClose
+    @Override
+    public void onClose(Session session, CloseReason closeReason) {
+        super.onClose(session, closeReason);
+    }
 
-  @OnOpen
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+    @OnOpen
+    @Override
+    public void onOpen(Session session, EndpointConfig config) {
+        super.onOpen(session, config);
+    }
 }

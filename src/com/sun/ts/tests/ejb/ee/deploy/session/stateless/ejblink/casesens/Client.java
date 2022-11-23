@@ -20,88 +20,87 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateless.ejblink.casesens;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  private static final String beanName = "java:comp/env/ejb/TestBean";
+    private static final String beanName = "java:comp/env/ejb/TestBean";
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  private TestBeanHome home = null;
+    private TestBeanHome home = null;
 
-  private TestBean bean = null;
+    private TestBean bean = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   *
-   */
-  public void setup(String[] args, Properties props) throws Fault {
-    this.props = props;
-
-    try {
-      logTrace("[Client] Getting naming context...");
-      nctx = new TSNamingContext();
-      logTrace("[Client] Looking up home...");
-      home = (TestBeanHome) nctx.lookup(beanName, TestBeanHome.class);
-      logMsg("[Client] Setup OK!");
-    } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /**
-   * @testName: testCaseSensitivity
-   *
-   * @assertion_ids: EJB:SPEC:872
-   *
-   * @test_Strategy: Have two Stateless Session beans whose ejb-name's differ
-   *                 only by case and whose identity is defined by a String
-   *                 environment entry ('myName').
-   *
-   *                 Another Stateless Session bean (TestBean) references these
-   *                 two beans using ejb-link elements. Check that TestBean can
-   *                 lookup the two beans and check each bean identity based on
-   *                 their value for the 'myName' environment entry. Check that
-   *                 this identity correspond to the references specified in the
-   *                 DD (validates that the EJB references were resolved
-   *                 correctly).
-   */
-  public void testCaseSensitivity() throws Fault {
+    /*
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     *
+     */
+    public void setup(String[] args, Properties props) throws Fault {
+        this.props = props;
 
-    boolean pass = true;
-    TestBean bean = null;
-
-    try {
-      logTrace("[Client] creating TestBean instance...");
-      bean = home.create();
-      bean.initLogging(props);
-      logTrace("[Client] Calling TestBean...");
-      pass = bean.testCaseSensitivity(props);
-      logTrace("[Client] Removing TestBean...");
-      bean.remove();
-
-      if (!pass) {
-        throw new Fault("ejb-link casesens test failed");
-      }
-    } catch (Exception e) {
-      throw new Fault("ejb-link casesens test failed: ", e);
+        try {
+            logTrace("[Client] Getting naming context...");
+            nctx = new TSNamingContext();
+            logTrace("[Client] Looking up home...");
+            home = (TestBeanHome) nctx.lookup(beanName, TestBeanHome.class);
+            logMsg("[Client] Setup OK!");
+        } catch (Exception e) {
+            throw new Fault("Setup failed:", e);
+        }
     }
-  }
 
-  public void cleanup() throws Fault {
-    logMsg("[Client] cleanup");
-  }
+    /**
+     * @testName: testCaseSensitivity
+     *
+     * @assertion_ids: EJB:SPEC:872
+     *
+     * @test_Strategy: Have two Stateless Session beans whose ejb-name's differ
+     *                 only by case and whose identity is defined by a String
+     *                 environment entry ('myName').
+     *
+     *                 Another Stateless Session bean (TestBean) references these
+     *                 two beans using ejb-link elements. Check that TestBean can
+     *                 lookup the two beans and check each bean identity based on
+     *                 their value for the 'myName' environment entry. Check that
+     *                 this identity correspond to the references specified in the
+     *                 DD (validates that the EJB references were resolved
+     *                 correctly).
+     */
+    public void testCaseSensitivity() throws Fault {
+
+        boolean pass = true;
+        TestBean bean = null;
+
+        try {
+            logTrace("[Client] creating TestBean instance...");
+            bean = home.create();
+            bean.initLogging(props);
+            logTrace("[Client] Calling TestBean...");
+            pass = bean.testCaseSensitivity(props);
+            logTrace("[Client] Removing TestBean...");
+            bean.remove();
+
+            if (!pass) {
+                throw new Fault("ejb-link casesens test failed");
+            }
+        } catch (Exception e) {
+            throw new Fault("ejb-link casesens test failed: ", e);
+        }
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("[Client] cleanup");
+    }
 }

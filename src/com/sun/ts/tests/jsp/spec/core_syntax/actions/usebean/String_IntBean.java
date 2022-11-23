@@ -60,55 +60,53 @@ package com.sun.ts.tests.jsp.spec.core_syntax.actions.usebean;
 
 public class String_IntBean {
 
-  // Declaring the variables
-  private String name = "hello";
+    // Declaring the variables
+    private String name = "hello";
 
-  private String requ = "polo";
+    private String requ = "polo";
 
-  private int num = 0;
+    private int num = 0;
 
-  private String str;
+    private String str;
 
-  /**
-   * Property 'Str'
-   */
+    /**
+     * Property 'Str'
+     */
+    public String getStr() {
+        return str;
+    }
 
-  public String getStr() {
-    return str;
-  }
+    public void setStr(String a) {
+        this.str = a;
+    }
 
-  public void setStr(String a) {
-    this.str = a;
-  }
+    /**
+     * Property 'Name'
+     */
+    public String getName() {
+        return name;
+    }
 
-  /**
-   * Property 'Name'
-   */
-  public String getName() {
-    return name;
-  }
+    public void setName(String s) {
+        this.name = s;
+    }
 
-  public void setName(String s) {
-    this.name = s;
-  }
+    /**
+     * Property 'Request'
+     */
+    public String getRequest() {
 
-  /**
-   * Property 'Request'
-   */
-  public String getRequest() {
+        return requ;
+    }
 
-    return requ;
-  }
+    /**
+     * Property 'Num'
+     */
+    public int getNum() {
+        return num;
+    }
 
-  /**
-   * Property 'Num'
-   */
-  public int getNum() {
-    return num;
-  }
-
-  public void setNum(int numb) {
-    this.num = numb;
-  }
-
+    public void setNum(int numb) {
+        this.num = numb;
+    }
 }

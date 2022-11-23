@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
 
 public class StringBeanEJB extends StatefulWrapper {
 
-  public boolean testStringEntry() {
-    return TestCode.testStringEntry(nctx);
-  }
-
+    public boolean testStringEntry() {
+        return TestCode.testStringEntry(nctx);
+    }
 }

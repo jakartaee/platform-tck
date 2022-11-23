@@ -26,6 +26,5 @@ package com.sun.ts.tests.common.taglibsig;
 
 public class ValidatorEntry {
 
-  public ValidatorEntry() {
-  }
+    public ValidatorEntry() {}
 }

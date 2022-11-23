@@ -25,57 +25,55 @@ import jakarta.annotation.PreDestroy;
 import jakarta.interceptor.InvocationContext;
 
 public class InterceptorH extends InterceptorF {
-  public InterceptorH() {
-    super();
-  }
+    public InterceptorH() {
+        super();
+    }
 
-  @Override
-  public String getInjectedLocation() {
-    return NOT_INJECTED;
-  }
+    @Override
+    public String getInjectedLocation() {
+        return NOT_INJECTED;
+    }
 
-  @Override
-  protected String getShortName() {
-    return "H";
-  }
+    @Override
+    protected String getShortName() {
+        return "H";
+    }
 
-  @PostConstruct
-  protected void myCreateInH(InvocationContext inv) throws RuntimeException {
-    myCreate0(inv, "H");
-  }
+    @PostConstruct
+    protected void myCreateInH(InvocationContext inv) throws RuntimeException {
+        myCreate0(inv, "H");
+    }
 
-  @PreDestroy
-  protected void myRemoveInH(InvocationContext inv) throws RuntimeException {
-    myRemove0(inv);
-  }
+    @PreDestroy
+    protected void myRemoveInH(InvocationContext inv) throws RuntimeException {
+        myRemove0(inv);
+    }
 
-  @Override
-  protected void myRemoveInF(InvocationContext inv) throws RuntimeException {
-    throw new IllegalStateException("Should not get here.");
-  }
+    @Override
+    protected void myRemoveInF(InvocationContext inv) throws RuntimeException {
+        throw new IllegalStateException("Should not get here.");
+    }
 
-  @Override
-  protected void myRemoveInE(InvocationContext inv) throws RuntimeException {
-    throw new IllegalStateException("Should not get here.");
-  }
+    @Override
+    protected void myRemoveInE(InvocationContext inv) throws RuntimeException {
+        throw new IllegalStateException("Should not get here.");
+    }
 
-  @Override
-  protected void myRemove(InvocationContext inv) throws RuntimeException {
-    throw new IllegalStateException("Should not get here.");
-  }
+    @Override
+    protected void myRemove(InvocationContext inv) throws RuntimeException {
+        throw new IllegalStateException("Should not get here.");
+    }
 
-  @Override
-  protected void myCreateInF(InvocationContext inv) throws RuntimeException {
-    throw new IllegalStateException("Should not get here.");
-  }
+    @Override
+    protected void myCreateInF(InvocationContext inv) throws RuntimeException {
+        throw new IllegalStateException("Should not get here.");
+    }
 
-  @Override
-  protected void myCreateInE(InvocationContext inv) throws RuntimeException {
-  }
+    @Override
+    protected void myCreateInE(InvocationContext inv) throws RuntimeException {}
 
-  @Override
-  protected void myCreate(InvocationContext inv) throws RuntimeException {
-    throw new IllegalStateException("Should not get here.");
-  }
-
+    @Override
+    protected void myCreate(InvocationContext inv) throws RuntimeException {
+        throw new IllegalStateException("Should not get here.");
+    }
 }

@@ -20,14 +20,12 @@
 
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.bean;
 
-import java.util.LinkedList;
-
 import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ConcurrencyIF;
-
 import jakarta.ejb.ConcurrencyManagement;
 import jakarta.ejb.ConcurrencyManagementType;
 import jakarta.ejb.Singleton;
 import jakarta.interceptor.Interceptors;
+import java.util.LinkedList;
 
 /**
  * This class is similar to ../container/SingletonBean except that this one uses
@@ -35,68 +33,68 @@ import jakarta.interceptor.Interceptors;
  */
 @ConcurrencyManagement(ConcurrencyManagementType.BEAN)
 @Singleton
-@Interceptors({ Interceptor0.class, Interceptor3.class })
+@Interceptors({Interceptor0.class, Interceptor3.class})
 public class SingletonBean implements ConcurrencyIF {
-  private static final String msg = "Should not reach here. The interceptors should have returned "
-      + "the result. Maybe the interceptors are not ignored?";
+    private static final String msg = "Should not reach here. The interceptors should have returned "
+            + "the result. Maybe the interceptors are not ignored?";
 
-  private volatile long unlockedSum;
+    private volatile long unlockedSum;
 
-  private volatile long lockedSum;
+    private volatile long lockedSum;
 
-  private volatile LinkedList<Integer> data = new LinkedList<Integer>();
+    private volatile LinkedList<Integer> data = new LinkedList<Integer>();
 
-  public void addToLinkedList(Integer i) {
-    synchronized (data) {
-      data.add(i);
+    public void addToLinkedList(Integer i) {
+        synchronized (data) {
+            data.add(i);
+        }
     }
-  }
 
-  public int getLinkedListSizeAndClear() {
-    synchronized (data) {
-      int i = data.size();
-      data.clear();
-      return i;
+    public int getLinkedListSizeAndClear() {
+        synchronized (data) {
+            int i = data.size();
+            data.clear();
+            return i;
+        }
     }
-  }
 
-  public synchronized long getAndResetLockedSum() {
-    long result = lockedSum;
-    lockedSum = 0;
-    return result;
-  }
-
-  public synchronized void addLocked(int num) {
-    for (int i = 0; i < num; i++) {
-      lockedSum++;
+    public synchronized long getAndResetLockedSum() {
+        long result = lockedSum;
+        lockedSum = 0;
+        return result;
     }
-  }
 
-  public long getAndResetUnlockedSum() {
-    long result = unlockedSum;
-    unlockedSum = 0;
-    return result;
-  }
-
-  public void addUnlocked(int num) {
-    for (int i = 0; i < num; i++) {
-      unlockedSum++;
+    public synchronized void addLocked(int num) {
+        for (int i = 0; i < num; i++) {
+            lockedSum++;
+        }
     }
-  }
 
-  public void addLockedFromInterceptor(String interceptorName, int num) {
-    throw new RuntimeException(msg);
-  }
+    public long getAndResetUnlockedSum() {
+        long result = unlockedSum;
+        unlockedSum = 0;
+        return result;
+    }
 
-  public void addUnlockedFromInterceptor(String interceptorName, int num) {
-    throw new RuntimeException(msg);
-  }
+    public void addUnlocked(int num) {
+        for (int i = 0; i < num; i++) {
+            unlockedSum++;
+        }
+    }
 
-  public long getAndResetLockedSumFromInterceptor(String interceptorName) {
-    throw new RuntimeException(msg);
-  }
+    public void addLockedFromInterceptor(String interceptorName, int num) {
+        throw new RuntimeException(msg);
+    }
 
-  public long getAndResetUnlockedSumFromInterceptor(String interceptorName) {
-    throw new RuntimeException(msg);
-  }
+    public void addUnlockedFromInterceptor(String interceptorName, int num) {
+        throw new RuntimeException(msg);
+    }
+
+    public long getAndResetLockedSumFromInterceptor(String interceptorName) {
+        throw new RuntimeException(msg);
+    }
+
+    public long getAndResetUnlockedSumFromInterceptor(String interceptorName) {
+        throw new RuntimeException(msg);
+    }
 }

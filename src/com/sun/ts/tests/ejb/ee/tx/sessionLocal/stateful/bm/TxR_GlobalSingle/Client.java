@@ -20,188 +20,181 @@
 
 package com.sun.ts.tests.ejb.ee.tx.sessionLocal.stateful.bm.TxR_GlobalSingle;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  private static final String testName = "TxR_GlobalSingle";
+    private static final String testName = "TxR_GlobalSingle";
 
-  private static final String testLookup = "java:comp/env/ejb/TestBean";
+    private static final String testLookup = "java:comp/env/ejb/TestBean";
 
-  private static final String envProps = "testbean.props";
+    private static final String envProps = "testbean.props";
 
-  private static final String testDir = System.getProperty("user.dir");
+    private static final String testDir = System.getProperty("user.dir");
 
-  private TestBeanHome beanHome = null;
+    private TestBeanHome beanHome = null;
 
-  private TestBean beanRef = null;
+    private TestBean beanRef = null;
 
-  private Properties testProps = new Properties();
+    private Properties testProps = new Properties();
 
-  private TSNamingContext jctx = null;
+    private TSNamingContext jctx = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup: */
-
-  /*
-   * @class.setup_props: java.naming.factory.initial;
-   *
-   * @class.testArgs: -ap tssql.stmt
-   */
-  public void setup(String[] args, Properties p) throws Fault {
-    logMsg("Setup tests");
-    this.testProps = p;
-
-    try {
-      logMsg("Get the naming context");
-      jctx = new TSNamingContext();
-
-      logMsg("Getting the EJB Home interface for " + testLookup);
-      beanHome = (TestBeanHome) jctx.lookup(testLookup, TestBeanHome.class);
-
-      logMsg("Setup ok");
-    } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /* Run test */
+    /* Test setup: */
 
-  /*
-   * @testName: test1
-   *
-   * @assertion_ids: EJB:SPEC:543.1; EJB:SPEC:543.2; EJB:SPEC:583.2
-   *
-   * @test_Strategy: Create a stateful session TX_BEAN_MANAGED bean. Obtain the
-   * UserTransaction interface. Perform a global transactions using the TxBean
-   * (deployed as TX_REQUIRED) to a single RDBMS table.
-   * 
-   * Insert/Delete followed by a commit to a single table.
-   *
-   */
-  public void test1() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
-      beanRef = (TestBean) beanHome.create();
+    /*
+     * @class.setup_props: java.naming.factory.initial;
+     *
+     * @class.testArgs: -ap tssql.stmt
+     */
+    public void setup(String[] args, Properties p) throws Fault {
+        logMsg("Setup tests");
+        this.testProps = p;
 
-      logMsg("Logging data from server");
-      beanRef.initLogging(testProps);
+        try {
+            logMsg("Get the naming context");
+            jctx = new TSNamingContext();
 
-      boolean testResult = false;
+            logMsg("Getting the EJB Home interface for " + testLookup);
+            beanHome = (TestBeanHome) jctx.lookup(testLookup, TestBeanHome.class);
 
-      logMsg("Execute TestBean:test1");
-      testResult = beanRef.test1();
-
-      if (!testResult)
-        throw new Fault("test1 failed");
-      else
-        logMsg("test1 passed");
-    } catch (Exception e) {
-      throw new Fault("test1 failed", e);
-    } finally {
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
+            logMsg("Setup ok");
+        } catch (Exception e) {
+            throw new Fault("Setup failed:", e);
+        }
     }
-  }
 
-  /*
-   * @testName: test2
-   *
-   * @assertion_ids: EJB:SPEC:543.1; EJB:SPEC:543.2; EJB:SPEC:583.2
-   *
-   * @test_Strategy: Create a stateful session TX_BEAN_MANAGED bean. Obtain the
-   * UserTransaction interface. Perform a global transactions using the TxBean
-   * (deployed as TX_REQUIRED) to a single RDBMS table.
-   *
-   * Insert/Delete followed by a rollback to a single table.
-   *
-   */
-  public void test2() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
+    /* Run test */
 
-      beanRef = (TestBean) beanHome.create();
+    /*
+     * @testName: test1
+     *
+     * @assertion_ids: EJB:SPEC:543.1; EJB:SPEC:543.2; EJB:SPEC:583.2
+     *
+     * @test_Strategy: Create a stateful session TX_BEAN_MANAGED bean. Obtain the
+     * UserTransaction interface. Perform a global transactions using the TxBean
+     * (deployed as TX_REQUIRED) to a single RDBMS table.
+     *
+     * Insert/Delete followed by a commit to a single table.
+     *
+     */
+    public void test1() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
+            beanRef = (TestBean) beanHome.create();
 
-      logMsg("Logging data from server");
-      beanRef.initLogging(testProps);
+            logMsg("Logging data from server");
+            beanRef.initLogging(testProps);
 
-      boolean testResult = false;
+            boolean testResult = false;
 
-      logMsg("Execute TestBean:test2");
-      testResult = beanRef.test2();
+            logMsg("Execute TestBean:test1");
+            testResult = beanRef.test1();
 
-      if (!testResult)
-        throw new Fault("test2 failed");
-      else
-        logMsg("test2 passed");
-    } catch (Exception e) {
-      throw new Fault("test2 failed", e);
-    } finally {
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
+            if (!testResult) throw new Fault("test1 failed");
+            else logMsg("test1 passed");
+        } catch (Exception e) {
+            throw new Fault("test1 failed", e);
+        } finally {
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
     }
-  }
 
-  /*
-   * @testName: test3
-   *
-   * @assertion_ids: EJB:SPEC:543.1; EJB:SPEC:543.2; EJB:SPEC:583.2
-   *
-   *
-   * @test_Strategy: Create a stateful session TX_BEAN_MANAGED bean. Obtain the
-   * UserTransaction interface. Perform a global transaction using the TxBean
-   * (deployed as TX_REQUIRED) to a single RDBMS table.
-   *
-   * Insert/Delete followed by a commit, and checking TxStatus.
-   *
-   */
-  public void test3() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
+    /*
+     * @testName: test2
+     *
+     * @assertion_ids: EJB:SPEC:543.1; EJB:SPEC:543.2; EJB:SPEC:583.2
+     *
+     * @test_Strategy: Create a stateful session TX_BEAN_MANAGED bean. Obtain the
+     * UserTransaction interface. Perform a global transactions using the TxBean
+     * (deployed as TX_REQUIRED) to a single RDBMS table.
+     *
+     * Insert/Delete followed by a rollback to a single table.
+     *
+     */
+    public void test2() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
 
-      beanRef = (TestBean) beanHome.create();
+            beanRef = (TestBean) beanHome.create();
 
-      logMsg("Logging data from server");
-      beanRef.initLogging(testProps);
+            logMsg("Logging data from server");
+            beanRef.initLogging(testProps);
 
-      boolean testResult = false;
+            boolean testResult = false;
 
-      logMsg("Execute TestBean:test3");
-      testResult = beanRef.test3();
+            logMsg("Execute TestBean:test2");
+            testResult = beanRef.test2();
 
-      if (!testResult)
-        throw new Fault("test3 failed");
-      else
-        logMsg("test3 passed");
-    } catch (Exception e) {
-      throw new Fault("test3 failed", e);
-    } finally {
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
+            if (!testResult) throw new Fault("test2 failed");
+            else logMsg("test2 passed");
+        } catch (Exception e) {
+            throw new Fault("test2 failed", e);
+        } finally {
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
     }
-  }
 
-  /* Test cleanup: */
-  public void cleanup() throws Fault {
-    logMsg("cleanup ok");
-  }
+    /*
+     * @testName: test3
+     *
+     * @assertion_ids: EJB:SPEC:543.1; EJB:SPEC:543.2; EJB:SPEC:583.2
+     *
+     *
+     * @test_Strategy: Create a stateful session TX_BEAN_MANAGED bean. Obtain the
+     * UserTransaction interface. Perform a global transaction using the TxBean
+     * (deployed as TX_REQUIRED) to a single RDBMS table.
+     *
+     * Insert/Delete followed by a commit, and checking TxStatus.
+     *
+     */
+    public void test3() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
+
+            beanRef = (TestBean) beanHome.create();
+
+            logMsg("Logging data from server");
+            beanRef.initLogging(testProps);
+
+            boolean testResult = false;
+
+            logMsg("Execute TestBean:test3");
+            testResult = beanRef.test3();
+
+            if (!testResult) throw new Fault("test3 failed");
+            else logMsg("test3 passed");
+        } catch (Exception e) {
+            throw new Fault("test3 failed", e);
+        } finally {
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
+    }
+
+    /* Test cleanup: */
+    public void cleanup() throws Fault {
+        logMsg("cleanup ok");
+    }
 }

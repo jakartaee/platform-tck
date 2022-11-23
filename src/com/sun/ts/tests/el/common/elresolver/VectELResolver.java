@@ -21,12 +21,11 @@
 
 package com.sun.ts.tests.el.common.elresolver;
 
-import java.util.Iterator;
-import java.util.Vector;
-
 import jakarta.el.ELContext;
 import jakarta.el.ELException;
 import jakarta.el.ELResolver;
+import java.util.Iterator;
+import java.util.Vector;
 
 /* This simple EL Resolver resolves only method expressions of
    the form ${vect.methodName}, where 'vect' is resolved to java.util.Vector
@@ -35,53 +34,43 @@ import jakarta.el.ELResolver;
 
 public class VectELResolver extends ELResolver {
 
-  public Object getValue(ELContext context, Object base, Object property)
-      throws ELException {
-    if (context == null)
-      throw new NullPointerException();
+    public Object getValue(ELContext context, Object base, Object property) throws ELException {
+        if (context == null) throw new NullPointerException();
 
-    if (base == null && "vect".equals(property)) {
-      context.setPropertyResolved(true);
-      return new Vector();
+        if (base == null && "vect".equals(property)) {
+            context.setPropertyResolved(true);
+            return new Vector();
+        }
+        return null;
     }
-    return null;
-  }
 
-  public Class getType(ELContext context, Object base, Object property)
-      throws ELException {
-    if (context == null)
-      throw new NullPointerException();
+    public Class getType(ELContext context, Object base, Object property) throws ELException {
+        if (context == null) throw new NullPointerException();
 
-    if (base == null && "vect".equals(property))
-      context.setPropertyResolved(true);
+        if (base == null && "vect".equals(property)) context.setPropertyResolved(true);
 
-    // we never set a value
-    return null;
-  }
+        // we never set a value
+        return null;
+    }
 
-  public void setValue(ELContext context, Object base, Object property,
-      Object value) {
-    if (context == null)
-      throw new NullPointerException();
+    public void setValue(ELContext context, Object base, Object property, Object value) {
+        if (context == null) throw new NullPointerException();
 
-    if (base == null && "vect".equals(property))
-      context.setPropertyResolved(true);
-  }
+        if (base == null && "vect".equals(property)) context.setPropertyResolved(true);
+    }
 
-  public boolean isReadOnly(ELContext context, Object base, Object property) {
-    if (context == null)
-      throw new NullPointerException();
+    public boolean isReadOnly(ELContext context, Object base, Object property) {
+        if (context == null) throw new NullPointerException();
 
-    if (base == null && "vect".equals(property))
-      context.setPropertyResolved(true);
-    return true;
-  }
+        if (base == null && "vect".equals(property)) context.setPropertyResolved(true);
+        return true;
+    }
 
-  public Iterator getFeatureDescriptors(ELContext context, Object base) {
-    return null;
-  }
+    public Iterator getFeatureDescriptors(ELContext context, Object base) {
+        return null;
+    }
 
-  public Class getCommonPropertyType(ELContext context, Object base) {
-    return null;
-  }
+    public Class getCommonPropertyType(ELContext context, Object base) {
+        return null;
+    }
 }

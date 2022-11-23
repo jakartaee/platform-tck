@@ -20,21 +20,17 @@
 
 package com.sun.ts.tests.ejb.ee.sec.bmp.common;
 
-import java.rmi.RemoteException;
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
 public interface lTestHome extends EJBHome {
-  public lTest create(Properties p, boolean newTable, int cofID, String cofName,
-      float cofPrice) throws RemoteException, CreateException;
+    public lTest create(Properties p, boolean newTable, int cofID, String cofName, float cofPrice)
+            throws RemoteException, CreateException;
 
-  public lTest findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
+    public lTest findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 
-  public lTest findTheBean(Properties p, Integer key)
-      throws RemoteException, FinderException;
-
+    public lTest findTheBean(Properties p, Integer key) throws RemoteException, FinderException;
 }

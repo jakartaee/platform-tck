@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.basic;
 
 import com.sun.ts.tests.ejb30.common.calc.BaseRemoteCalculator;
 import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Remote;
@@ -30,36 +29,28 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
 @Stateless(name = "RemoteCalculatorBean", description = "a simple stateless session bean")
-@Remote({ RemoteCalculator.class })
-public class RemoteCalculatorBean extends BaseRemoteCalculator
-    implements RemoteCalculator {
+@Remote({RemoteCalculator.class})
+public class RemoteCalculatorBean extends BaseRemoteCalculator implements RemoteCalculator {
 
-  @Resource
-  private SessionContext sessionContext;
+    @Resource
+    private SessionContext sessionContext;
 
-  public RemoteCalculatorBean() {
-  }
+    public RemoteCalculatorBean() {}
 
-  // @PostConstruct
-  public void postConstruct() {
+    // @PostConstruct
+    public void postConstruct() {}
 
-  }
+    // @PreDestroy
+    public void preDestroy() {}
 
-  // @PreDestroy
-  public void preDestroy() {
+    @Override
+    public int remoteAdd(int a, int b) {
+        if (sessionContext == null) {
+            throw new EJBException("SessionContext is null in business method remoteAdd: " + this);
+        }
+        int retValue;
 
-  }
-
-  @Override
-  public int remoteAdd(int a, int b) {
-    if (sessionContext == null) {
-      throw new EJBException(
-          "SessionContext is null in business method remoteAdd: " + this);
+        retValue = super.remoteAdd(a, b);
+        return retValue;
     }
-    int retValue;
-
-    retValue = super.remoteAdd(a, b);
-    return retValue;
-  }
-
 }

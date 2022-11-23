@@ -24,54 +24,53 @@ import jakarta.annotation.Resource;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
 
-abstract public class MDBClientBase
-    extends com.sun.ts.tests.ejb30.common.messaging.ClientBase
-    implements com.sun.ts.tests.ejb30.common.messaging.Constants {
+public abstract class MDBClientBase extends com.sun.ts.tests.ejb30.common.messaging.ClientBase
+        implements com.sun.ts.tests.ejb30.common.messaging.Constants {
 
-  @Resource(name = "sendQueue")
-  private static Queue sendQueue;
+    @Resource(name = "sendQueue")
+    private static Queue sendQueue;
 
-  @Resource(name = "receiveQueue")
-  private static Queue receiveQueue;
+    @Resource(name = "receiveQueue")
+    private static Queue receiveQueue;
 
-  @Resource(name = "queueConnectionFactory")
-  private static QueueConnectionFactory queueConnectionFactory;
+    @Resource(name = "queueConnectionFactory")
+    private static QueueConnectionFactory queueConnectionFactory;
 
-  @Override
-  protected void initSendQueue() {
-    setSendQueue(sendQueue);
-  }
+    @Override
+    protected void initSendQueue() {
+        setSendQueue(sendQueue);
+    }
 
-  @Override
-  protected void initReceiveQueue() {
-    setReceiveQueue(receiveQueue);
-  }
+    @Override
+    protected void initReceiveQueue() {
+        setReceiveQueue(receiveQueue);
+    }
 
-  @Override
-  protected void initQueueConnectionFactory() {
-    setQueueConnectionFactory(queueConnectionFactory);
-  }
+    @Override
+    protected void initQueueConnectionFactory() {
+        setQueueConnectionFactory(queueConnectionFactory);
+    }
 
-  /*
-   * testName: test1
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: @TimeOut is at the superclass of MDB
-   */
-  public void test1() throws Fault {
-    sendReceive();
-  }
+    /*
+     * testName: test1
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: @TimeOut is at the superclass of MDB
+     */
+    public void test1() throws Fault {
+        sendReceive();
+    }
 
-  /*
-   * testName: getResourceInTimeOut
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: @TimeOut is at the superclass of MDB; access resource files
-   * from TimeOut method
-   */
-  public void getResourceInTimeOut() throws Fault {
-    sendReceive();
-  }
+    /*
+     * testName: getResourceInTimeOut
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: @TimeOut is at the superclass of MDB; access resource files
+     * from TimeOut method
+     */
+    public void getResourceInTimeOut() throws Fault {
+        sendReceive();
+    }
 }

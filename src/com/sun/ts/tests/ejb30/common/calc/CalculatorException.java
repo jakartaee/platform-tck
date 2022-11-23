@@ -26,35 +26,34 @@ import java.io.Serializable;
  * An application exception for calculator example. It can be used to test that
  * the methods of the business interface may declare arbitrary application
  * exceptions.
- * 
+ *
  * @author Cheng Fang
  */
 public class CalculatorException extends Exception implements Serializable {
 
-  public CalculatorException() {
-    super();
-  }
+    public CalculatorException() {
+        super();
+    }
 
-  /**
-   * @param message
-   */
-  public CalculatorException(String message) {
-    super(message);
-  }
+    /**
+     * @param message
+     */
+    public CalculatorException(String message) {
+        super(message);
+    }
 
-  /**
-   * @param message
-   * @param cause
-   */
-  public CalculatorException(String message, Throwable cause) {
-    super(message, cause);
-  }
+    /**
+     * @param message
+     * @param cause
+     */
+    public CalculatorException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-  /**
-   * @param cause
-   */
-  public CalculatorException(Throwable cause) {
-    super(cause);
-  }
-
+    /**
+     * @param cause
+     */
+    public CalculatorException(Throwable cause) {
+        super(cause);
+    }
 }

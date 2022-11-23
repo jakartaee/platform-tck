@@ -20,33 +20,28 @@
 
 package com.sun.ts.tests.ejb.ee.tx.txEbean;
 
-import java.rmi.RemoteException;
-import java.sql.SQLException;
-import java.util.Collection;
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.DuplicateKeyException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
 import jakarta.ejb.ObjectNotFoundException;
+import java.rmi.RemoteException;
+import java.sql.SQLException;
+import java.util.Collection;
+import java.util.Properties;
 
 public interface TxEBeanHome extends EJBHome {
 
-  public TxEBean create(String tName, int key, String brand, float price,
-      Properties p) throws CreateException, DuplicateKeyException,
-      RemoteException, SQLException;
+    public TxEBean create(String tName, int key, String brand, float price, Properties p)
+            throws CreateException, DuplicateKeyException, RemoteException, SQLException;
 
-  public TxEBean findtxEbean(String tName, Integer key, Properties p)
-      throws FinderException, ObjectNotFoundException, RemoteException;
+    public TxEBean findtxEbean(String tName, Integer key, Properties p)
+            throws FinderException, ObjectNotFoundException, RemoteException;
 
-  public TxEBean findByPrimaryKey(Integer key)
-      throws FinderException, ObjectNotFoundException, RemoteException;
+    public TxEBean findByPrimaryKey(Integer key) throws FinderException, ObjectNotFoundException, RemoteException;
 
-  public Collection findByBrandName(String tName, String brandName,
-      Properties p) throws FinderException, RemoteException;
+    public Collection findByBrandName(String tName, String brandName, Properties p)
+            throws FinderException, RemoteException;
 
-  public Collection findByPrice(String tName, float price, Properties p)
-      throws FinderException, RemoteException;
-
+    public Collection findByPrice(String tName, float price, Properties p) throws FinderException, RemoteException;
 }

@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 
 public class FloatBeanEJB extends BMPWrapper {
 
-  public boolean testFloatEntry() {
-    return TestCode.testFloatEntry(nctx);
-  }
-
+    public boolean testFloatEntry() {
+        return TestCode.testFloatEntry(nctx);
+    }
 }

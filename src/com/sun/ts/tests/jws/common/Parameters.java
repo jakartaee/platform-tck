@@ -25,49 +25,48 @@ package com.sun.ts.tests.jws.common;
 
 public class Parameters {
 
-  private String implementationClass;
+    private String implementationClass;
 
-  private String wsdlUrl;
+    private String wsdlUrl;
 
-  private String portOperationName;
+    private String portOperationName;
 
-  private String serviceUrl;
+    private String serviceUrl;
 
-  public String getImplementationClass() {
-    return implementationClass;
-  }
+    public String getImplementationClass() {
+        return implementationClass;
+    }
 
-  public void setImplementationClass(String implClass) {
-    this.implementationClass = implClass;
-  }
+    public void setImplementationClass(String implClass) {
+        this.implementationClass = implClass;
+    }
 
-  public String getWsdlUrl() {
-    return wsdlUrl;
-  }
+    public String getWsdlUrl() {
+        return wsdlUrl;
+    }
 
-  public void setWsdlUrl(String wsdlUrl) {
-    this.wsdlUrl = wsdlUrl;
-  }
+    public void setWsdlUrl(String wsdlUrl) {
+        this.wsdlUrl = wsdlUrl;
+    }
 
-  public String getPortOperationName() {
-    return portOperationName;
-  }
+    public String getPortOperationName() {
+        return portOperationName;
+    }
 
-  public void setPortOperationName(String portOperationName) {
-    this.portOperationName = portOperationName;
-  }
+    public void setPortOperationName(String portOperationName) {
+        this.portOperationName = portOperationName;
+    }
 
-  public String getServiceUrl() {
-    return serviceUrl;
-  }
+    public String getServiceUrl() {
+        return serviceUrl;
+    }
 
-  public void setServiceUrl(String serviceUrl) {
-    this.serviceUrl = serviceUrl;
-  }
+    public void setServiceUrl(String serviceUrl) {
+        this.serviceUrl = serviceUrl;
+    }
 
-  public String toString() {
-    return "Impl Class:" + implementationClass + " WSDL:" + wsdlUrl
-        + " Port Operation:" + portOperationName + " Service URL:" + serviceUrl;
-  }
-
+    public String toString() {
+        return "Impl Class:" + implementationClass + " WSDL:" + wsdlUrl + " Port Operation:" + portOperationName
+                + " Service URL:" + serviceUrl;
+    }
 }

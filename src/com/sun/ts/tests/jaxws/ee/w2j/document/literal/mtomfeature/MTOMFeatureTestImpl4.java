@@ -20,39 +20,34 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomfeature;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
 import jakarta.jws.WebService;
 import jakarta.xml.ws.BindingType;
-import jakarta.xml.ws.Holder;
-import jakarta.xml.ws.WebServiceException;
-import jakarta.xml.ws.soap.SOAPBinding;
 import jakarta.xml.ws.soap.MTOM;
+import jakarta.xml.ws.soap.SOAPBinding;
 
-import java.awt.Image;
-import com.sun.ts.tests.jaxws.common.AttachmentHelper;
-import java.net.URL;
-import jakarta.activation.DataHandler;
-import javax.xml.transform.Source;
-
-@WebService(portName = "MTOMFeatureTest4Port", serviceName = "MTOMFeatureTestService", targetNamespace = "http://mtomfeatureservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/MTOMFeatureTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomfeature.MTOMFeatureTest4")
+@WebService(
+        portName = "MTOMFeatureTest4Port",
+        serviceName = "MTOMFeatureTestService",
+        targetNamespace = "http://mtomfeatureservice.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/MTOMFeatureTestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomfeature.MTOMFeatureTest4")
 @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)
 @MTOM(enabled = false, threshold = 2000)
-
 public class MTOMFeatureTestImpl4 implements MTOMFeatureTest4 {
 
-  public com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomfeature.DataType33 threshold2000(
-      com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomfeature.DataType3 data) {
+    public com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomfeature.DataType33 threshold2000(
+            com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomfeature.DataType3 data) {
 
-    System.out.println("--------------------------");
-    System.out.println("In MTOMFeatureTestImpl4:threshold2000");
+        System.out.println("--------------------------");
+        System.out.println("In MTOMFeatureTestImpl4:threshold2000");
 
-    DataType33 data33 = new DataType33();
-    data33.setTestName(data.getTestName());
-    data33.setDoc(data.getDoc());
+        DataType33 data33 = new DataType33();
+        data33.setTestName(data.getTestName());
+        data33.setDoc(data.getDoc());
 
-    return data33;
-  }
+        return data33;
+    }
 }

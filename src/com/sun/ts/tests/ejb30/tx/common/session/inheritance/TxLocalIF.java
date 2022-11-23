@@ -23,6 +23,4 @@ package com.sun.ts.tests.ejb30.tx.common.session.inheritance;
 import jakarta.ejb.Local;
 
 @Local
-public interface TxLocalIF extends TxCommonIF {
-
-}
+public interface TxLocalIF extends TxCommonIF {}

@@ -24,134 +24,131 @@ import static com.sun.ts.tests.ejb30.common.sessioncontext.Constants.FROM_BEAN;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionContext;
 
-abstract public class SessionContextBeanBase
+public abstract class SessionContextBeanBase
 // implements Three1IF, Three2IF
 {
-  abstract protected SessionContext getSessionContext();
+    protected abstract SessionContext getSessionContext();
 
-  //////////////////////////////////////////////////////////////////////
-  // Three1IF, Three2IF methods
-  //////////////////////////////////////////////////////////////////////
-  public void hi(String[] m) {
-    m[0] = FROM_BEAN;
-  }
-
-  public Three1IF getBusinessObjectRemote1() throws TestFailedException {
-    Object obj = getSessionContext().getBusinessObject(Three1IF.class);
-    Three1IF bob = (Three1IF) obj;
-    return bob;
-  }
-
-  public Three2IF getBusinessObjectRemote2() throws TestFailedException {
-    Object obj = getSessionContext().getBusinessObject(Three2IF.class);
-    Three2IF bob = (Three2IF) obj;
-    return bob;
-  }
-
-  public ThreeLocal1IF getBusinessObjectLocal1() throws TestFailedException {
-    Object obj = getSessionContext().getBusinessObject(ThreeLocal1IF.class);
-    ThreeLocal1IF bob = (ThreeLocal1IF) obj;
-    return bob;
-  }
-
-  public ThreeLocal2IF getBusinessObjectLocal2() throws TestFailedException {
-    Object obj = getSessionContext().getBusinessObject(ThreeLocal2IF.class);
-    ThreeLocal2IF bob = (ThreeLocal2IF) obj;
-    return bob;
-  }
-
-  public void getBusinessObjectRemote1Illegal() throws TestFailedException {
-    getBusinessObject1Illegal();
-  }
-
-  //////////////////////////////////////////////////////////////////////
-  // ThreeLocal1IF methods
-  //////////////////////////////////////////////////////////////////////
-  public void getBusinessObjectLocal1Illegal() throws TestFailedException {
-    getBusinessObject1Illegal();
-  }
-
-  public Class getInvokedBusinessInterfaceRemote1() throws TestFailedException {
-    return getInvokedBusinessInterface();
-  }
-
-  public Class getInvokedBusinessInterfaceRemote2() throws TestFailedException {
-    return getInvokedBusinessInterface();
-  }
-
-  public Class getInvokedBusinessInterfaceLocal1() throws TestFailedException {
-    return getInvokedBusinessInterface();
-  }
-
-  public Class getInvokedBusinessInterfaceLocal2() throws TestFailedException {
-    return getInvokedBusinessInterface();
-  }
-
-  //////////////////////////////////////////////////////////////////////
-  // TwoRemoteIF methods
-  //////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////
-  // TwoLocalIF methods
-  //////////////////////////////////////////////////////////////////////
-  public void noop() {
-  }
-
-  public void getInvokedBusinessInterfaceRemoteIllegal() {
-    Class intf = null;
-    try {
-      intf = getSessionContext().getInvokedBusinessInterface();
-      throw new EJBException("Expecting IllegalStateException when calling "
-          + "SessionContext.getInvokedBusinessInterface() through "
-          + "component interface, but the actual result is " + intf);
-    } catch (IllegalStateException e) {
-      // good
-      TLogger.log("Got expected IllegalStateException when calling "
-          + "SessionContext.getInvokedBusinessInterface() through "
-          + "component interface.");
+    //////////////////////////////////////////////////////////////////////
+    // Three1IF, Three2IF methods
+    //////////////////////////////////////////////////////////////////////
+    public void hi(String[] m) {
+        m[0] = FROM_BEAN;
     }
-  }
 
-  public void getInvokedBusinessInterfaceLocalIllegal() {
-    // same as the remote case
-    getInvokedBusinessInterfaceRemoteIllegal();
-  }
+    public Three1IF getBusinessObjectRemote1() throws TestFailedException {
+        Object obj = getSessionContext().getBusinessObject(Three1IF.class);
+        Three1IF bob = (Three1IF) obj;
+        return bob;
+    }
 
-  //////////////////////////////////////////////////////////////////////
-  private void getBusinessObject1Illegal() throws TestFailedException {
-    try {
-      getSessionContext().getBusinessObject(Object.class);
-      throw new TestFailedException("Expecting IllegalStateException when "
-          + "calling SessionContext.getBusinessObject(Object.class)");
-    } catch (IllegalStateException e) {
-      TLogger.log("Got expected IllegalStateException when calling "
-          + "SessionContext.getBusinessObject(Object.class)");
-      // good
+    public Three2IF getBusinessObjectRemote2() throws TestFailedException {
+        Object obj = getSessionContext().getBusinessObject(Three2IF.class);
+        Three2IF bob = (Three2IF) obj;
+        return bob;
     }
-    try {
-      getSessionContext().getBusinessObject(null);
-      throw new TestFailedException("Expecting IllegalStateException when "
-          + "calling SessionContext.getBusinessObject(null)");
-    } catch (IllegalStateException e) {
-      TLogger.log("Got expected IllegalStateException when calling "
-          + "SessionContext.getBusinessObject(null)");
-      // good
-    }
-    try {
-      getSessionContext().getBusinessObject(java.io.Serializable.class);
-      throw new TestFailedException("Expecting IllegalStateException when "
-          + "calling SessionContext.getBusinessObject(Serializable.class)");
-    } catch (IllegalStateException e) {
-      TLogger.log("Got expected IllegalStateException when calling "
-          + "SessionContext.getBusinessObject(Serializable.class)");
-      // good
-    }
-  }
 
-  private Class getInvokedBusinessInterface() throws TestFailedException {
-    return getSessionContext().getInvokedBusinessInterface();
-  }
+    public ThreeLocal1IF getBusinessObjectLocal1() throws TestFailedException {
+        Object obj = getSessionContext().getBusinessObject(ThreeLocal1IF.class);
+        ThreeLocal1IF bob = (ThreeLocal1IF) obj;
+        return bob;
+    }
+
+    public ThreeLocal2IF getBusinessObjectLocal2() throws TestFailedException {
+        Object obj = getSessionContext().getBusinessObject(ThreeLocal2IF.class);
+        ThreeLocal2IF bob = (ThreeLocal2IF) obj;
+        return bob;
+    }
+
+    public void getBusinessObjectRemote1Illegal() throws TestFailedException {
+        getBusinessObject1Illegal();
+    }
+
+    //////////////////////////////////////////////////////////////////////
+    // ThreeLocal1IF methods
+    //////////////////////////////////////////////////////////////////////
+    public void getBusinessObjectLocal1Illegal() throws TestFailedException {
+        getBusinessObject1Illegal();
+    }
+
+    public Class getInvokedBusinessInterfaceRemote1() throws TestFailedException {
+        return getInvokedBusinessInterface();
+    }
+
+    public Class getInvokedBusinessInterfaceRemote2() throws TestFailedException {
+        return getInvokedBusinessInterface();
+    }
+
+    public Class getInvokedBusinessInterfaceLocal1() throws TestFailedException {
+        return getInvokedBusinessInterface();
+    }
+
+    public Class getInvokedBusinessInterfaceLocal2() throws TestFailedException {
+        return getInvokedBusinessInterface();
+    }
+
+    //////////////////////////////////////////////////////////////////////
+    // TwoRemoteIF methods
+    //////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////
+    // TwoLocalIF methods
+    //////////////////////////////////////////////////////////////////////
+    public void noop() {}
+
+    public void getInvokedBusinessInterfaceRemoteIllegal() {
+        Class intf = null;
+        try {
+            intf = getSessionContext().getInvokedBusinessInterface();
+            throw new EJBException("Expecting IllegalStateException when calling "
+                    + "SessionContext.getInvokedBusinessInterface() through "
+                    + "component interface, but the actual result is " + intf);
+        } catch (IllegalStateException e) {
+            // good
+            TLogger.log("Got expected IllegalStateException when calling "
+                    + "SessionContext.getInvokedBusinessInterface() through "
+                    + "component interface.");
+        }
+    }
+
+    public void getInvokedBusinessInterfaceLocalIllegal() {
+        // same as the remote case
+        getInvokedBusinessInterfaceRemoteIllegal();
+    }
+
+    //////////////////////////////////////////////////////////////////////
+    private void getBusinessObject1Illegal() throws TestFailedException {
+        try {
+            getSessionContext().getBusinessObject(Object.class);
+            throw new TestFailedException(
+                    "Expecting IllegalStateException when " + "calling SessionContext.getBusinessObject(Object.class)");
+        } catch (IllegalStateException e) {
+            TLogger.log("Got expected IllegalStateException when calling "
+                    + "SessionContext.getBusinessObject(Object.class)");
+            // good
+        }
+        try {
+            getSessionContext().getBusinessObject(null);
+            throw new TestFailedException(
+                    "Expecting IllegalStateException when " + "calling SessionContext.getBusinessObject(null)");
+        } catch (IllegalStateException e) {
+            TLogger.log("Got expected IllegalStateException when calling " + "SessionContext.getBusinessObject(null)");
+            // good
+        }
+        try {
+            getSessionContext().getBusinessObject(java.io.Serializable.class);
+            throw new TestFailedException("Expecting IllegalStateException when "
+                    + "calling SessionContext.getBusinessObject(Serializable.class)");
+        } catch (IllegalStateException e) {
+            TLogger.log("Got expected IllegalStateException when calling "
+                    + "SessionContext.getBusinessObject(Serializable.class)");
+            // good
+        }
+    }
+
+    private Class getInvokedBusinessInterface() throws TestFailedException {
+        return getSessionContext().getInvokedBusinessInterface();
+    }
 }

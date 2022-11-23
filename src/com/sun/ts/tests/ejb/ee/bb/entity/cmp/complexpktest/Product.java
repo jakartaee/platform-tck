@@ -21,16 +21,14 @@
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp.complexpktest;
 
 public class Product implements java.io.Serializable {
-  public int quantity;
+    public int quantity;
 
-  public String country;
+    public String country;
 
-  public Product() {
-  }
+    public Product() {}
 
-  public Product(int quantity, String country) {
-    this.quantity = quantity;
-    this.country = country;
-  }
-
+    public Product(int quantity, String country) {
+        this.quantity = quantity;
+        this.country = country;
+    }
 }

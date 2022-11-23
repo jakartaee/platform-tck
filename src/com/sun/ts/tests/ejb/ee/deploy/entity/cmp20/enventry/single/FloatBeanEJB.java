@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 
 public abstract class FloatBeanEJB extends CMP20Wrapper {
 
-  public boolean testFloatEntry() {
-    return TestCode.testFloatEntry(nctx);
-  }
-
+    public boolean testFloatEntry() {
+        return TestCode.testFloatEntry(nctx);
+    }
 }

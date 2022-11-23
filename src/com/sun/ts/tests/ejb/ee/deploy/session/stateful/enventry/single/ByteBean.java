@@ -20,10 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.enventry.single;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface ByteBean extends EJBObject {
-  public boolean testByteEntry() throws RemoteException;
+    public boolean testByteEntry() throws RemoteException;
 }

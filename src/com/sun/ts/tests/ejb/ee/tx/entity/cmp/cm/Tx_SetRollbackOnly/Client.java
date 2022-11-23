@@ -20,259 +20,248 @@
 
 package com.sun.ts.tests.ejb.ee.tx.entity.cmp.cm.Tx_SetRollbackOnly;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  private static final String testName = "Tx_SetRollbackOnly";
+    private static final String testName = "Tx_SetRollbackOnly";
 
-  private static final String testLookup = "java:comp/env/ejb/TestBean";
+    private static final String testLookup = "java:comp/env/ejb/TestBean";
 
-  private static final String envProps = "testbean.props";
+    private static final String envProps = "testbean.props";
 
-  private static final String testDir = System.getProperty("user.dir");
+    private static final String testDir = System.getProperty("user.dir");
 
-  private TestBeanHome beanHome = null;
+    private TestBeanHome beanHome = null;
 
-  private TestBean beanRef = null;
+    private TestBean beanRef = null;
 
-  private Properties testProps = new Properties();
+    private Properties testProps = new Properties();
 
-  private TSNamingContext jctx = null;
+    private TSNamingContext jctx = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup: */
-
-  /*
-   * @class.setup_props: java.naming.factory.initial;
-   * 
-   * @class.testArgs: -ap tssql.stmt
-   */
-  public void setup(String[] args, Properties p) throws Fault {
-    logMsg("Setup tests");
-    this.testProps = p;
-
-    try {
-      logMsg("Get the naming context");
-      jctx = new TSNamingContext();
-
-      logMsg("Getting the EJB Home interface for " + testLookup);
-      beanHome = (TestBeanHome) jctx.lookup(testLookup, TestBeanHome.class);
-
-      logMsg("Setup ok");
-    } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /* Run test */
+    /* Test setup: */
 
-  /*
-   * @testName: test1
-   *
-   * @assertion_ids: EJB:SPEC:589.2; EJB:SPEC:589.3
-   *
-   * @test_Strategy: setRollbackOnly with EJB - Required Create an instance of a
-   * stateful session Testbean bean. Create an instance of a Entity TxECMPBean
-   * (Required) bean. Perform a update operation to a table and force a rollback
-   * via EJBContext.setRollbackOnly(). Ensure the EJBContext.getRollbackOnly()
-   * status returns true. Ensure the transaction is rolledback.
-   */
-  public void test1() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
-      beanRef = (TestBean) beanHome.create(testProps);
+    /*
+     * @class.setup_props: java.naming.factory.initial;
+     *
+     * @class.testArgs: -ap tssql.stmt
+     */
+    public void setup(String[] args, Properties p) throws Fault {
+        logMsg("Setup tests");
+        this.testProps = p;
 
-      boolean testResult = false;
+        try {
+            logMsg("Get the naming context");
+            jctx = new TSNamingContext();
 
-      logMsg("Execute TestBean:test1");
-      testResult = beanRef.test1();
+            logMsg("Getting the EJB Home interface for " + testLookup);
+            beanHome = (TestBeanHome) jctx.lookup(testLookup, TestBeanHome.class);
 
-      if (!testResult)
-        throw new Fault("test1 failed");
-      else
-        logMsg("test1 passed");
-    } catch (Exception e) {
-      throw new Fault("test1 failed", e);
-    } finally {
-      try {
-        if (beanRef != null) {
-          beanRef.remove();
+            logMsg("Setup ok");
+        } catch (Exception e) {
+            throw new Fault("Setup failed:", e);
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
-      }
     }
-  }
 
-  /*
-   * @testName: test2
-   *
-   * @assertion_ids: EJB:SPEC:589.2; EJB:SPEC:589.3
-   *
-   * @test_Strategy: AppException and setRollbackOnly with EJB - Required Create
-   * an instance of a stateful session Testbean bean. Create an instance of a
-   * Entity TxECMPBean (Required) bean. Perform a update operation to a table
-   * and force a rollback via EJBContext.setRollbackOnly() as well as forcing
-   * the method to throw an AppException. Ensure the getTXRollbackOnly() status
-   * returns true. Ensure the transaction is rolledback.
-   */
-  public void test2() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
-      beanRef = (TestBean) beanHome.create(testProps);
+    /* Run test */
 
-      boolean testResult = false;
+    /*
+     * @testName: test1
+     *
+     * @assertion_ids: EJB:SPEC:589.2; EJB:SPEC:589.3
+     *
+     * @test_Strategy: setRollbackOnly with EJB - Required Create an instance of a
+     * stateful session Testbean bean. Create an instance of a Entity TxECMPBean
+     * (Required) bean. Perform a update operation to a table and force a rollback
+     * via EJBContext.setRollbackOnly(). Ensure the EJBContext.getRollbackOnly()
+     * status returns true. Ensure the transaction is rolledback.
+     */
+    public void test1() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
+            beanRef = (TestBean) beanHome.create(testProps);
 
-      logMsg("Execute TestBean:test2");
-      testResult = beanRef.test2();
+            boolean testResult = false;
 
-      if (!testResult)
-        throw new Fault("test2 failed");
-      else
-        logMsg("test2 passed");
-    } catch (Exception e) {
-      throw new Fault("test2 failed", e);
-    } finally {
-      try {
-        if (beanRef != null) {
-          beanRef.remove();
+            logMsg("Execute TestBean:test1");
+            testResult = beanRef.test1();
+
+            if (!testResult) throw new Fault("test1 failed");
+            else logMsg("test1 passed");
+        } catch (Exception e) {
+            throw new Fault("test1 failed", e);
+        } finally {
+            try {
+                if (beanRef != null) {
+                    beanRef.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
+            }
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
-      }
     }
-  }
 
-  /*
-   * @testName: test5
-   *
-   * @assertion_ids: EJB:SPEC:587.1; EJB:SPEC:587.3
-   *
-   * @test_Strategy: AppException and setRollbackOnly with EJB - Mandatory
-   * Create an instance of a stateful session Testbean bean. Create an instance
-   * of a stateful session TxBean (Mandatory) bean. Verify that and
-   * TransactionRequiredException is thrown due to the fact that the call to
-   * create was not in a transaction.
-   *
-   */
-  public void test5() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
-      beanRef = (TestBean) beanHome.create(testProps);
+    /*
+     * @testName: test2
+     *
+     * @assertion_ids: EJB:SPEC:589.2; EJB:SPEC:589.3
+     *
+     * @test_Strategy: AppException and setRollbackOnly with EJB - Required Create
+     * an instance of a stateful session Testbean bean. Create an instance of a
+     * Entity TxECMPBean (Required) bean. Perform a update operation to a table
+     * and force a rollback via EJBContext.setRollbackOnly() as well as forcing
+     * the method to throw an AppException. Ensure the getTXRollbackOnly() status
+     * returns true. Ensure the transaction is rolledback.
+     */
+    public void test2() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
+            beanRef = (TestBean) beanHome.create(testProps);
 
-      boolean testResult = false;
+            boolean testResult = false;
 
-      logMsg("Execute TestBean:test5");
-      testResult = beanRef.test5();
+            logMsg("Execute TestBean:test2");
+            testResult = beanRef.test2();
 
-      if (!testResult)
-        throw new Fault("test5 failed");
-      else
-        logMsg("test5 passed");
-    } catch (Exception e) {
-      throw new Fault("test5 failed", e);
-    } finally {
-      try {
-        if (beanRef != null) {
-          beanRef.remove();
+            if (!testResult) throw new Fault("test2 failed");
+            else logMsg("test2 passed");
+        } catch (Exception e) {
+            throw new Fault("test2 failed", e);
+        } finally {
+            try {
+                if (beanRef != null) {
+                    beanRef.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
+            }
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
-      }
     }
-  }
 
-  /*
-   * @testName: test8
-   *
-   * @assertion_ids: EJB:SPEC:589.2; EJB:SPEC:589.3
-   *
-   * @test_Strategy: setRollbackOnly with EJB - RequiresNew Create an instance
-   * of a stateful session Testbean bean. Create an instance of a Entity
-   * TxECMPBean (RequiresNew) bean. Perform a update operation to a table and
-   * force a rollback via EJBContext.setRollbackOnly(). Ensure the
-   * EJBContext.getRollbackOnly() status returns true. Ensure the transaction is
-   * rolledback.
-   */
-  public void test8() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
-      beanRef = (TestBean) beanHome.create(testProps);
+    /*
+     * @testName: test5
+     *
+     * @assertion_ids: EJB:SPEC:587.1; EJB:SPEC:587.3
+     *
+     * @test_Strategy: AppException and setRollbackOnly with EJB - Mandatory
+     * Create an instance of a stateful session Testbean bean. Create an instance
+     * of a stateful session TxBean (Mandatory) bean. Verify that and
+     * TransactionRequiredException is thrown due to the fact that the call to
+     * create was not in a transaction.
+     *
+     */
+    public void test5() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
+            beanRef = (TestBean) beanHome.create(testProps);
 
-      boolean testResult = false;
+            boolean testResult = false;
 
-      logMsg("Execute TestBean:test8");
-      testResult = beanRef.test8();
+            logMsg("Execute TestBean:test5");
+            testResult = beanRef.test5();
 
-      if (!testResult)
-        throw new Fault("test8 failed");
-      else
-        logMsg("test8 passed");
-    } catch (Exception e) {
-      throw new Fault("test8 failed", e);
-    } finally {
-      try {
-        if (beanRef != null) {
-          beanRef.remove();
+            if (!testResult) throw new Fault("test5 failed");
+            else logMsg("test5 passed");
+        } catch (Exception e) {
+            throw new Fault("test5 failed", e);
+        } finally {
+            try {
+                if (beanRef != null) {
+                    beanRef.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
+            }
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
-      }
     }
-  }
 
-  /*
-   * @testName: test9
-   *
-   * @assertion_ids: EJB:SPEC:589.2; EJB:SPEC:589.3
-   *
-   * @test_Strategy: AppException and setRollbackOnly with EJB - RequiresNew
-   * Create an instance of a stateful session Testbean bean. Create an instance
-   * of a Entity TxECMPBean (RequiresNew) bean. Perform a update operation to a
-   * table and force a rollback via EJBContext.setRollbackOnly() as well as
-   * forcing the method to throw an AppException. Ensure the getTXRollbackOnly()
-   * status returns true. Ensure the transaction is rolledback.
-   */
-  public void test9() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
-      beanRef = (TestBean) beanHome.create(testProps);
+    /*
+     * @testName: test8
+     *
+     * @assertion_ids: EJB:SPEC:589.2; EJB:SPEC:589.3
+     *
+     * @test_Strategy: setRollbackOnly with EJB - RequiresNew Create an instance
+     * of a stateful session Testbean bean. Create an instance of a Entity
+     * TxECMPBean (RequiresNew) bean. Perform a update operation to a table and
+     * force a rollback via EJBContext.setRollbackOnly(). Ensure the
+     * EJBContext.getRollbackOnly() status returns true. Ensure the transaction is
+     * rolledback.
+     */
+    public void test8() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
+            beanRef = (TestBean) beanHome.create(testProps);
 
-      boolean testResult = false;
+            boolean testResult = false;
 
-      logMsg("Execute TestBean:test9");
-      testResult = beanRef.test9();
+            logMsg("Execute TestBean:test8");
+            testResult = beanRef.test8();
 
-      if (!testResult)
-        throw new Fault("test9 failed");
-      else
-        logMsg("test9 passed");
-    } catch (Exception e) {
-      throw new Fault("test9 failed", e);
-    } finally {
-      try {
-        if (beanRef != null) {
-          beanRef.remove();
+            if (!testResult) throw new Fault("test8 failed");
+            else logMsg("test8 passed");
+        } catch (Exception e) {
+            throw new Fault("test8 failed", e);
+        } finally {
+            try {
+                if (beanRef != null) {
+                    beanRef.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
+            }
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
-      }
     }
-  }
 
-  /* Test cleanup: */
-  public void cleanup() throws Fault {
-    logMsg("cleanup ok");
-  }
+    /*
+     * @testName: test9
+     *
+     * @assertion_ids: EJB:SPEC:589.2; EJB:SPEC:589.3
+     *
+     * @test_Strategy: AppException and setRollbackOnly with EJB - RequiresNew
+     * Create an instance of a stateful session Testbean bean. Create an instance
+     * of a Entity TxECMPBean (RequiresNew) bean. Perform a update operation to a
+     * table and force a rollback via EJBContext.setRollbackOnly() as well as
+     * forcing the method to throw an AppException. Ensure the getTXRollbackOnly()
+     * status returns true. Ensure the transaction is rolledback.
+     */
+    public void test9() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
+            beanRef = (TestBean) beanHome.create(testProps);
+
+            boolean testResult = false;
+
+            logMsg("Execute TestBean:test9");
+            testResult = beanRef.test9();
+
+            if (!testResult) throw new Fault("test9 failed");
+            else logMsg("test9 passed");
+        } catch (Exception e) {
+            throw new Fault("test9 failed", e);
+        } finally {
+            try {
+                if (beanRef != null) {
+                    beanRef.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing bean: " + e.getMessage(), e);
+            }
+        }
+    }
+
+    /* Test cleanup: */
+    public void cleanup() throws Fault {
+        logMsg("cleanup ok");
+    }
 }

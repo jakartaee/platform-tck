@@ -28,7 +28,6 @@ import com.sun.ts.tests.ejb30.assembly.appres.common.AppResTest;
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
@@ -38,44 +37,41 @@ import jakarta.ejb.TransactionManagementType;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.BEAN)
-public class AppResBean extends AppResBeanBase
-    implements AppResRemoteIF, AppResLocalIF {
+public class AppResBean extends AppResBeanBase implements AppResRemoteIF, AppResLocalIF {
 
-  @EJB(lookup = "java:app/env/hello")
-  private HelloRemoteIF hello;
+    @EJB(lookup = "java:app/env/hello")
+    private HelloRemoteIF hello;
 
-  @EJB(lookup = "java:app/env/AppResBean-remote")
-  private AppResRemoteIF appResBeanRemote;
+    @EJB(lookup = "java:app/env/AppResBean-remote")
+    private AppResRemoteIF appResBeanRemote;
 
-  @EJB(lookup = "java:app/env/AppResBean-local")
-  private AppResLocalIF appResBeanLocal;
+    @EJB(lookup = "java:app/env/AppResBean-local")
+    private AppResLocalIF appResBeanLocal;
 
-  @Resource
-  private AppResManagedBean appResManagedBean;
+    @Resource
+    private AppResManagedBean appResManagedBean;
 
-  @Resource(type = AppResManagedBean.class, lookup = "java:module/test-managed-bean")
-  private AppResCommonIF testManagedBean;
+    @Resource(type = AppResManagedBean.class, lookup = "java:module/test-managed-bean")
+    private AppResCommonIF testManagedBean;
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    Helper.assertEquals(null, AppResManagedBean.NAME,
-        appResManagedBean.getName(), getPostConstructRecords());
-    Helper.assertEquals(null, AppResManagedBean.NAME, testManagedBean.getName(),
-        getPostConstructRecords());
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        Helper.assertEquals(null, AppResManagedBean.NAME, appResManagedBean.getName(), getPostConstructRecords());
+        Helper.assertEquals(null, AppResManagedBean.NAME, testManagedBean.getName(), getPostConstructRecords());
 
-    AppResTest.beanPostConstruct(myString, getPostConstructRecords(), true,
-        true);
-    DataSourceTest.verifyDataSource(getPostConstructRecords(), false,
-        "java:app/env/appds",
-        "java:global/env/ejb3_assembly_appres_warmbean/globalds");
-    AppResTest.verifyInjections(getPostConstructRecords(), hello,
-        appResBeanRemote, appResBeanLocal);
-  }
+        AppResTest.beanPostConstruct(myString, getPostConstructRecords(), true, true);
+        DataSourceTest.verifyDataSource(
+                getPostConstructRecords(),
+                false,
+                "java:app/env/appds",
+                "java:global/env/ejb3_assembly_appres_warmbean/globalds");
+        AppResTest.verifyInjections(getPostConstructRecords(), hello, appResBeanRemote, appResBeanLocal);
+    }
 
-  @SuppressWarnings("unused")
-  @Resource(name = "java:app/env/myString")
-  private void setMyString(String s) {
-    this.myString = s;
-  }
+    @SuppressWarnings("unused")
+    @Resource(name = "java:app/env/myString")
+    private void setMyString(String s) {
+        this.myString = s;
+    }
 }

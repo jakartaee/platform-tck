@@ -24,7 +24,6 @@ import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ClientBase;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF;
 import com.sun.ts.tests.ejb30.common.annotation.resource.UserTransactionNegativeIF;
-
 import jakarta.ejb.EJB;
 
 /**
@@ -36,53 +35,53 @@ import jakarta.ejb.EJB;
  * should not affect the test result.
  */
 public class Client extends ClientBase {
-  @EJB(beanName = "ResourceSetterBean")
-  private static ResourceIF resourceSetterBean;
+    @EJB(beanName = "ResourceSetterBean")
+    private static ResourceIF resourceSetterBean;
 
-  @EJB(beanName = "ResourceFieldBean")
-  private static ResourceIF resourceFieldBean;
+    @EJB(beanName = "ResourceFieldBean")
+    private static ResourceIF resourceFieldBean;
 
-  @EJB(beanName = "ResourceTypeBean")
-  private static ResourceIF resourceTypeBean;
+    @EJB(beanName = "ResourceTypeBean")
+    private static ResourceIF resourceTypeBean;
 
-  protected ResourceIF getResourceSetterBean() {
-    return resourceSetterBean;
-  }
+    protected ResourceIF getResourceSetterBean() {
+        return resourceSetterBean;
+    }
 
-  protected ResourceIF getResourceFieldBean() {
-    return resourceFieldBean;
-  }
+    protected ResourceIF getResourceFieldBean() {
+        return resourceFieldBean;
+    }
 
-  protected ResourceIF getResourceTypeBean() {
-    return resourceTypeBean;
-  }
+    protected ResourceIF getResourceTypeBean() {
+        return resourceTypeBean;
+    }
 
-  protected UserTransactionNegativeIF getUserTransactionNegativeBean() {
-    return null;
-  }
+    protected UserTransactionNegativeIF getUserTransactionNegativeBean() {
+        return null;
+    }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * @testName: urlTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: urlTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: mailSessionTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: mailSessionTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
 }

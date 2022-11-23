@@ -58,24 +58,20 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.filterconfig;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class GetInitParamTestServlet extends GenericServlet {
 
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
-    pw.println(
-        "This text should not be displayed from the GetInitParamTest servlet");
-    ServletTestUtil.printResult(pw, false);
-  }
+        PrintWriter pw = response.getWriter();
+        pw.println("This text should not be displayed from the GetInitParamTest servlet");
+        ServletTestUtil.printResult(pw, false);
+    }
 }

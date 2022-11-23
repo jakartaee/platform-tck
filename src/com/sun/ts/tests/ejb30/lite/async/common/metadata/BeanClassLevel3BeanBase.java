@@ -26,7 +26,7 @@ import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
  * No @Asynchronous
  */
 public class BeanClassLevel3BeanBase extends BeanClassLevel2BeanBase {
-  public void syncMethodException3() throws CalculatorException {
-    throw new CalculatorException("syncMethodException3");
-  }
+    public void syncMethodException3() throws CalculatorException {
+        throw new CalculatorException("syncMethodException3");
+    }
 }

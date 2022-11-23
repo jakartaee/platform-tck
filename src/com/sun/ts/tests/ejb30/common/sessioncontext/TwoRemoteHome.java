@@ -20,15 +20,11 @@
 
 package com.sun.ts.tests.ejb30.common.sessioncontext;
 
-import java.rmi.RemoteException;
-
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface TwoRemoteHome extends EJBHome {
-  public TwoRemoteIF create()
-      throws RemoteException, CreateException, TestFailedException;
-
+    public TwoRemoteIF create() throws RemoteException, CreateException, TestFailedException;
 }

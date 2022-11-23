@@ -58,39 +58,34 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servlet;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * Test for Servlet.init() method
  */
-
 public class DoInit2TestServlet extends CoreServletTest {
 
-  /**
-   * inside coreServletTest we are implementing init(ServletConfig) and setting
-   * a bool var to true we'll check for that here
-   */
-
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    boolean passed = false;
-    PrintWriter pw = response.getWriter();
-    // isInit() should return true
-    if (isInit()) {
-      passed = true;
-    } else {
-      // problem with LifeCycle
-      passed = false;
-      pw.println("Problem with Servlet LifeCycle");
-      pw.println("init not called before service");
+    /**
+     * inside coreServletTest we are implementing init(ServletConfig) and setting
+     * a bool var to true we'll check for that here
+     */
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        boolean passed = false;
+        PrintWriter pw = response.getWriter();
+        // isInit() should return true
+        if (isInit()) {
+            passed = true;
+        } else {
+            // problem with LifeCycle
+            passed = false;
+            pw.println("Problem with Servlet LifeCycle");
+            pw.println("init not called before service");
+        }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
-  }
 }

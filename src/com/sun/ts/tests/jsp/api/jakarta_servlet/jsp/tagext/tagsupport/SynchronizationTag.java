@@ -24,54 +24,50 @@ import jakarta.servlet.jsp.JspException;
 
 public class SynchronizationTag extends ContainerInteractionTag {
 
-  /**
-   * Default constructor.
-   */
-  public SynchronizationTag() {
-    super();
-  }
+    /**
+     * Default constructor.
+     */
+    public SynchronizationTag() {
+        super();
+    }
 
-  /**
-   * Adds attributes for begin and nested scripting variables and returns what
-   * ever value is configured by the tag.
-   * 
-   * @return an int value based on what the tag is configured to return
-   * @throws JspException
-   *           if an error occurs
-   */
-  public int doStartTag() throws JspException {
-    pageContext.setAttribute("begin", Integer.valueOf(1));
-    pageContext.setAttribute("nested", Integer.valueOf(1));
-    return super.doStartTag();
-  }
+    /**
+     * Adds attributes for begin and nested scripting variables and returns what
+     * ever value is configured by the tag.
+     *
+     * @return an int value based on what the tag is configured to return
+     * @throws JspException
+     *           if an error occurs
+     */
+    public int doStartTag() throws JspException {
+        pageContext.setAttribute("begin", Integer.valueOf(1));
+        pageContext.setAttribute("nested", Integer.valueOf(1));
+        return super.doStartTag();
+    }
 
-  /**
-   * Adds attributes for begin and end scripting variables as well as removing
-   * nested from the PageContext.
-   * 
-   * @return an int value based on what the tag is configured to return
-   * @throws JspException
-   */
-  public int doEndTag() throws JspException {
-    pageContext.setAttribute("begin",
-        Integer.valueOf(getIntValue("begin") + 1));
-    pageContext.setAttribute("end", Integer.valueOf(getIntValue("nested") + 1));
-    pageContext.removeAttribute("nested");
-    return super.doEndTag();
-  }
+    /**
+     * Adds attributes for begin and end scripting variables as well as removing
+     * nested from the PageContext.
+     *
+     * @return an int value based on what the tag is configured to return
+     * @throws JspException
+     */
+    public int doEndTag() throws JspException {
+        pageContext.setAttribute("begin", Integer.valueOf(getIntValue("begin") + 1));
+        pageContext.setAttribute("end", Integer.valueOf(getIntValue("nested") + 1));
+        pageContext.removeAttribute("nested");
+        return super.doEndTag();
+    }
 
-  /**
-   * Adds attributes for begin and nested scripting variables.
-   * 
-   * @return an int value based on what the tag is configured to return
-   * @throws JspException
-   */
-  public int doAfterBody() throws JspException {
-    pageContext.setAttribute("begin",
-        Integer.valueOf(getIntValue("begin") + 1));
-    pageContext.setAttribute("nested",
-        Integer.valueOf(getIntValue("nested") + 1));
-    return super.doAfterBody();
-  }
-
+    /**
+     * Adds attributes for begin and nested scripting variables.
+     *
+     * @return an int value based on what the tag is configured to return
+     * @throws JspException
+     */
+    public int doAfterBody() throws JspException {
+        pageContext.setAttribute("begin", Integer.valueOf(getIntValue("begin") + 1));
+        pageContext.setAttribute("nested", Integer.valueOf(getIntValue("nested") + 1));
+        return super.doAfterBody();
+    }
 }

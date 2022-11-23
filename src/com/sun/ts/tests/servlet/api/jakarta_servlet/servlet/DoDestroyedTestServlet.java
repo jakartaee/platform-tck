@@ -58,42 +58,35 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servlet;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * Test for destroy Method
  */
-
 public class DoDestroyedTestServlet extends CoreServletTest {
 
-  /**
-   * Testing that destroy method is not called during service method execution
-   *
-   */
+    /**
+     * Testing that destroy method is not called during service method execution
+     *
+     */
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
+        // checking whether destroy is called before this
+        boolean passed = false;
+        PrintWriter pw = response.getWriter();
 
-    // checking whether destroy is called before this
-    boolean passed = false;
-    PrintWriter pw = response.getWriter();
+        if (isDestroyed()) {
+            passed = false;
+            pw.println("Servlet Life Cycle is incorrect. destroy is called before/during the service method");
 
-    if (isDestroyed()) {
-      passed = false;
-      pw.println(
-          "Servlet Life Cycle is incorrect. destroy is called before/during the service method");
-
-    } else {
-      passed = true;
+        } else {
+            passed = true;
+        }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
-
-  }
 }

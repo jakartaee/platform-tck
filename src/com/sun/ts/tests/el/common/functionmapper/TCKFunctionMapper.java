@@ -21,12 +21,10 @@
 
 package com.sun.ts.tests.el.common.functionmapper;
 
+import com.sun.ts.lib.util.TestUtil;
+import jakarta.el.FunctionMapper;
 import java.lang.reflect.Method;
 import java.util.HashMap;
-
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.el.FunctionMapper;
 
 /* A simple implementation of FunctionMapper that maps only
    a single function to Integer.valueOf(String).
@@ -34,37 +32,37 @@ import jakarta.el.FunctionMapper;
 
 public class TCKFunctionMapper extends FunctionMapper {
 
-  private static final String KEY = "Int:val";
+    private static final String KEY = "Int:val";
 
-  private final Class clazz = Integer.class;
+    private final Class clazz = Integer.class;
 
-  private final HashMap<String, Method> fMap;
+    private final HashMap<String, Method> fMap;
 
-  public TCKFunctionMapper() {
+    public TCKFunctionMapper() {
 
-    fMap = new HashMap<String, Method>();
-    try {
-      fMap.put(KEY, clazz.getMethod("valueOf", String.class));
-    } catch (NoSuchMethodException nsme) {
-      TestUtil.logErr("CONSTRUCTOR: Can't find method!");
-      TestUtil.printStackTrace(nsme);
+        fMap = new HashMap<String, Method>();
+        try {
+            fMap.put(KEY, clazz.getMethod("valueOf", String.class));
+        } catch (NoSuchMethodException nsme) {
+            TestUtil.logErr("CONSTRUCTOR: Can't find method!");
+            TestUtil.printStackTrace(nsme);
+        }
     }
-  }
 
-  public Method resolveFunction(String prefix, String localName) {
+    public Method resolveFunction(String prefix, String localName) {
 
-    String key = prefix + ":" + localName;
-    return fMap.get(key);
-  }
-
-  public void update() {
-
-    fMap.remove(KEY);
-    try {
-      fMap.put(KEY, clazz.getMethod("toString", int.class));
-    } catch (NoSuchMethodException nsme) {
-      TestUtil.logErr("UPDATE: Can't find method!");
-      TestUtil.printStackTrace(nsme);
+        String key = prefix + ":" + localName;
+        return fMap.get(key);
     }
-  }
+
+    public void update() {
+
+        fMap.remove(KEY);
+        try {
+            fMap.put(KEY, clazz.getMethod("toString", int.class));
+        } catch (NoSuchMethodException nsme) {
+            TestUtil.logErr("UPDATE: Can't find method!");
+            TestUtil.printStackTrace(nsme);
+        }
+    }
 }

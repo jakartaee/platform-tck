@@ -20,154 +20,146 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1012;
 
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.*;
+import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
+import com.sun.ts.tests.jaxws.wsi.constants.SOAPConstants;
+import com.sun.ts.tests.jaxws.wsi.constants.WSIConstants;
+import com.sun.ts.tests.jaxws.wsi.requests.SOAPRequests;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
-import com.sun.ts.tests.jaxws.wsi.constants.WSIConstants;
-import com.sun.ts.tests.jaxws.wsi.constants.SOAPConstants;
-import com.sun.ts.tests.jaxws.wsi.requests.SOAPRequests;
+public class Client extends ServiceEETest implements SOAPConstants, WSIConstants, SOAPRequests {
 
-import com.sun.ts.lib.harness.*;
+    /**
+     * The string to be echoed for request two.
+     */
+    private static final String STRING_2 = "R1012-2";
 
-public class Client extends ServiceEETest
-    implements SOAPConstants, WSIConstants, SOAPRequests {
+    /**
+     * The one client.
+     */
+    private W2JRLR1012ClientOne client1;
 
-  /**
-   * The string to be echoed for request two.
-   */
-  private static final String STRING_2 = "R1012-2";
+    /**
+     * The other client.
+     */
+    private W2JRLR1012ClientTwo client2;
 
-  /**
-   * The one client.
-   */
-  private W2JRLR1012ClientOne client1;
+    static W2JRLR1012TestService service = null;
 
-  /**
-   * The other client.
-   */
-  private W2JRLR1012ClientTwo client2;
+    /**
+     * Test entry point.
+     *
+     * @param args
+     *          the command-line arguments.
+     */
+    public static void main(String[] args) {
+        Client client = new Client();
+        Status status = client.run(args, System.out, System.err);
+        status.exit();
+    }
 
-  static W2JRLR1012TestService service = null;
+    /**
+     * @class.testArgs: -ap jaxws-url-props.dat
+     * @class.setup_props: webServerHost; webServerPort; platform.mode;
+     *
+     * @param args
+     * @param properties
+     *
+     * @throws Fault
+     */
+    public void setup(String[] args, Properties properties) throws Fault {
+        client1 = (W2JRLR1012ClientOne) ClientFactory.getClient(W2JRLR1012ClientOne.class, properties, this, service);
+        client2 = (W2JRLR1012ClientTwo) ClientFactory.getClient(W2JRLR1012ClientTwo.class, properties, this, service);
+        logMsg("setup ok");
+    }
 
-  /**
-   * Test entry point.
-   * 
-   * @param args
-   *          the command-line arguments.
-   */
-  public static void main(String[] args) {
-    Client client = new Client();
-    Status status = client.run(args, System.out, System.err);
-    status.exit();
-  }
+    public void cleanup() {
+        logMsg("cleanup");
+    }
 
-  /**
-   * @class.testArgs: -ap jaxws-url-props.dat
-   * @class.setup_props: webServerHost; webServerPort; platform.mode;
-   *
-   * @param args
-   * @param properties
-   *
-   * @throws Fault
-   */
-  public void setup(String[] args, Properties properties) throws Fault {
-    client1 = (W2JRLR1012ClientOne) ClientFactory
-        .getClient(W2JRLR1012ClientOne.class, properties, this, service);
-    client2 = (W2JRLR1012ClientTwo) ClientFactory
-        .getClient(W2JRLR1012ClientTwo.class, properties, this, service);
-    logMsg("setup ok");
-  }
-
-  public void cleanup() {
-    logMsg("cleanup");
-  }
-
-  /**
-   * @testName: testResponseEncoding
-   *
-   * @assertion_ids: WSI:SPEC:R1012
-   *
-   * @test_Strategy: A valid request is made to the endpoint and the returned
-   *                 response is investigated in order to determine the
-   *                 encoding.
-   *
-   * @throws Fault
-   */
-  public void testResponseEncoding() throws Fault {
-    InputStream is;
-    Charset cs = Charset.forName("UTF-8");
-    try {
-      is = client1.makeHTTPRequest(R1012_REQUEST, cs);
-      String contentType = client1.getResponseHeader("Content-Type");
-      if (contentType != null) {
-        int index = contentType.toLowerCase().indexOf("charset=");
-        if (index > 0) {
-          String name = contentType.substring(index + 8).trim();
-          if (name.charAt(0) == '"')
-            name = name.substring(1, name.length() - 1);
-          if ((name.equalsIgnoreCase("UTF-8"))
-              || name.equalsIgnoreCase("UTF-16")) {
-            char c = name.charAt(0);
-            if ((c == '\"') || (c == '\'')) {
-              name = name.substring(1, name.length() - 1);
+    /**
+     * @testName: testResponseEncoding
+     *
+     * @assertion_ids: WSI:SPEC:R1012
+     *
+     * @test_Strategy: A valid request is made to the endpoint and the returned
+     *                 response is investigated in order to determine the
+     *                 encoding.
+     *
+     * @throws Fault
+     */
+    public void testResponseEncoding() throws Fault {
+        InputStream is;
+        Charset cs = Charset.forName("UTF-8");
+        try {
+            is = client1.makeHTTPRequest(R1012_REQUEST, cs);
+            String contentType = client1.getResponseHeader("Content-Type");
+            if (contentType != null) {
+                int index = contentType.toLowerCase().indexOf("charset=");
+                if (index > 0) {
+                    String name = contentType.substring(index + 8).trim();
+                    if (name.charAt(0) == '"') name = name.substring(1, name.length() - 1);
+                    if ((name.equalsIgnoreCase("UTF-8")) || name.equalsIgnoreCase("UTF-16")) {
+                        char c = name.charAt(0);
+                        if ((c == '\"') || (c == '\'')) {
+                            name = name.substring(1, name.length() - 1);
+                        }
+                        cs = Charset.forName(name);
+                    } else {
+                        throw new Fault("Response encoded in '" + name + "' (BP-R1012)");
+                    }
+                }
             }
-            cs = Charset.forName(name);
-          } else {
-            throw new Fault("Response encoded in '" + name + "' (BP-R1012)");
-          }
+        } catch (Exception e) {
+            throw new Fault("Unable to invoke echoString operation (BP-R1012)", e);
         }
-      }
-    } catch (Exception e) {
-      throw new Fault("Unable to invoke echoString operation (BP-R1012)", e);
+        InputStreamReader isr = new InputStreamReader(is, cs);
+        try {
+            char[] buffer = new char[1024];
+            int length;
+            do {
+                length = isr.read(buffer);
+            } while (length > 0);
+        } catch (IOException e) {
+            throw new Fault("Unable to read response from endpoint (BP-R1012)", e);
+        } finally {
+            try {
+                isr.close();
+                is.close();
+            } catch (Exception e) {
+            }
+        }
     }
-    InputStreamReader isr = new InputStreamReader(is, cs);
-    try {
-      char[] buffer = new char[1024];
-      int length;
-      do {
-        length = isr.read(buffer);
-      } while (length > 0);
-    } catch (IOException e) {
-      throw new Fault("Unable to read response from endpoint (BP-R1012)", e);
-    } finally {
-      try {
-        isr.close();
-        is.close();
-      } catch (Exception e) {
-      }
-    }
-  }
 
-  /**
-   * @testName: testRequestEncoding
-   *
-   * @assertion_ids: WSI:SPEC:R1012
-   *
-   * @test_Strategy: A request is made from the generated client. A handler
-   *                 verifies the encoding. The returned string indicates the
-   *                 success or failure.
-   *
-   * @throws Fault
-   */
-  public void testRequestEncoding() throws Fault {
-    String result;
-    try {
-      result = client2.echoString(STRING_2);
-    } catch (Exception e) {
-      throw new Fault("Unable to invoke echoString operation (BP-R1012)", e);
+    /**
+     * @testName: testRequestEncoding
+     *
+     * @assertion_ids: WSI:SPEC:R1012
+     *
+     * @test_Strategy: A request is made from the generated client. A handler
+     *                 verifies the encoding. The returned string indicates the
+     *                 success or failure.
+     *
+     * @throws Fault
+     */
+    public void testRequestEncoding() throws Fault {
+        String result;
+        try {
+            result = client2.echoString(STRING_2);
+        } catch (Exception e) {
+            throw new Fault("Unable to invoke echoString operation (BP-R1012)", e);
+        }
+        if (!result.equals(STRING_2)) {
+            if (result.equals("EXCEPTION")) {
+                throw new Fault("Endpoint unable to process request (BP-R1012)");
+            } else {
+                throw new Fault("Request encoding neither 'UTF-8' nor 'UTF-16' (BP-R1012)");
+            }
+        }
     }
-    if (!result.equals(STRING_2)) {
-      if (result.equals("EXCEPTION")) {
-        throw new Fault("Endpoint unable to process request (BP-R1012)");
-      } else {
-        throw new Fault(
-            "Request encoding neither 'UTF-8' nor 'UTF-16' (BP-R1012)");
-      }
-    }
-  }
 }

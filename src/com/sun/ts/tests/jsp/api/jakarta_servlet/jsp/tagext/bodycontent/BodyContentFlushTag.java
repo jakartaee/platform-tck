@@ -20,46 +20,44 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.bodycontent;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.BodyContent;
 import jakarta.servlet.jsp.tagext.BodyTagSupport;
+import java.io.IOException;
 
 public class BodyContentFlushTag extends BodyTagSupport {
 
-  /**
-   * Default constructor.
-   */
-  public BodyContentFlushTag() {
-    super();
-  }
-
-  /**
-   * Validates that an IOException is thrown if BodyContent.flush() is called.
-   * 
-   * @return SKIP_BODY
-   * @throws JspException
-   *           - if an error occurs
-   */
-  public int doAfterBody() throws JspException {
-    JspTestUtil.debug("[BodyContentFlushTag] in doAfterBody()");
-    BodyContent content = this.getBodyContent();
-
-    try {
-      content.flush();
-    } catch (IOException ioe) {
-      try {
-        content.getEnclosingWriter().println("Test PASSED");
-      } catch (IOException eio) {
-        throw new JspException("Test FAILED. Unexpected IOException!", eio);
-      }
-    } catch (Exception e) {
-      throw new JspException("Test FAILED. Unexpected Exception!", e);
+    /**
+     * Default constructor.
+     */
+    public BodyContentFlushTag() {
+        super();
     }
 
-    return SKIP_BODY;
-  }
+    /**
+     * Validates that an IOException is thrown if BodyContent.flush() is called.
+     *
+     * @return SKIP_BODY
+     * @throws JspException
+     *           - if an error occurs
+     */
+    public int doAfterBody() throws JspException {
+        JspTestUtil.debug("[BodyContentFlushTag] in doAfterBody()");
+        BodyContent content = this.getBodyContent();
+
+        try {
+            content.flush();
+        } catch (IOException ioe) {
+            try {
+                content.getEnclosingWriter().println("Test PASSED");
+            } catch (IOException eio) {
+                throw new JspException("Test FAILED. Unexpected IOException!", eio);
+            }
+        } catch (Exception e) {
+            throw new JspException("Test FAILED. Unexpected Exception!", e);
+        }
+
+        return SKIP_BODY;
+    }
 }

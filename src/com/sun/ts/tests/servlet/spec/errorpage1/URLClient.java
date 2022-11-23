@@ -20,94 +20,94 @@
 
 package com.sun.ts.tests.servlet.spec.errorpage1;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
 import com.sun.ts.tests.servlet.common.util.Data;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    setContextRoot("/servlet_spec_errorpage1_web");
-    setServletName("TestServlet");
+        setContextRoot("/servlet_spec_errorpage1_web");
+        setServletName("TestServlet");
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /* Run test */
+    /* Run test */
 
-  /*
-   * @testName: nonServletExceptionTest
-   *
-   * @assertion_ids: Servlet:SPEC:108; Servlet:SPEC:106; Servlet:SPEC:104.3.1;
-   * Servlet:SPEC:104.3.2; Servlet:SPEC:104.3.3; Servlet:SPEC:104.3.4;
-   * Servlet:SPEC:104.3.5; Servlet:SPEC:104.3.6;
-   *
-   * @test_Strategy: Servlet throws IllegalStateException; Verify the Error Page
-   * defined to deal with IllegalStateException is invoked with the appropriate
-   * info regarding the error
-   */
+    /*
+     * @testName: nonServletExceptionTest
+     *
+     * @assertion_ids: Servlet:SPEC:108; Servlet:SPEC:106; Servlet:SPEC:104.3.1;
+     * Servlet:SPEC:104.3.2; Servlet:SPEC:104.3.3; Servlet:SPEC:104.3.4;
+     * Servlet:SPEC:104.3.5; Servlet:SPEC:104.3.6;
+     *
+     * @test_Strategy: Servlet throws IllegalStateException; Verify the Error Page
+     * defined to deal with IllegalStateException is invoked with the appropriate
+     * info regarding the error
+     */
 
-  public void nonServletExceptionTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "nonServletExceptionTest");
-    TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
-    TEST_PROPS.setProperty(SEARCH_STRING,
-        "First ErrorPage|" + "Servlet Name: TestServlet|"
-            + "Request URI: /servlet_spec_errorpage1_web/TestServlet|"
-            + "Status Code: 500|"
-            + "Exception: java.lang.IllegalStateException: error page invoked|"
-            + "Message: error page invoked");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
-    invoke();
-  }
+    public void nonServletExceptionTest() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "nonServletExceptionTest");
+        TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
+        TEST_PROPS.setProperty(
+                SEARCH_STRING,
+                "First ErrorPage|" + "Servlet Name: TestServlet|"
+                        + "Request URI: /servlet_spec_errorpage1_web/TestServlet|"
+                        + "Status Code: 500|"
+                        + "Exception: java.lang.IllegalStateException: error page invoked|"
+                        + "Message: error page invoked");
+        TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
+        invoke();
+    }
 
-  /*
-   * @testName: servletExceptionTest
-   *
-   * @assertion_ids: Servlet:SPEC:108; Servlet:SPEC:107; Servlet:SPEC:104.3.1;
-   * Servlet:SPEC:104.3.2; Servlet:SPEC:104.3.3; Servlet:SPEC:104.3.4;
-   * Servlet:SPEC:104.3.5; Servlet:SPEC:104.3.6;
-   *
-   * @test_Strategy: Invoke TestServlet The Servlet throws TestServletException
-   * which wraps a TestException; --- TestServletException extends
-   * ServletException; There is an error page defined for TestServletException;
-   * --- No error pages are defined to deal with TestException; Verify this
-   * Error Page is invoked with the appropriate info regarding the error
-   */
+    /*
+     * @testName: servletExceptionTest
+     *
+     * @assertion_ids: Servlet:SPEC:108; Servlet:SPEC:107; Servlet:SPEC:104.3.1;
+     * Servlet:SPEC:104.3.2; Servlet:SPEC:104.3.3; Servlet:SPEC:104.3.4;
+     * Servlet:SPEC:104.3.5; Servlet:SPEC:104.3.6;
+     *
+     * @test_Strategy: Invoke TestServlet The Servlet throws TestServletException
+     * which wraps a TestException; --- TestServletException extends
+     * ServletException; There is an error page defined for TestServletException;
+     * --- No error pages are defined to deal with TestException; Verify this
+     * Error Page is invoked with the appropriate info regarding the error
+     */
 
-  public void servletExceptionTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "ServletExceptionTest");
-    TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
-    TEST_PROPS.setProperty(SEARCH_STRING, "Second ErrorPage|"
-        + "Servlet Name: TestServlet|"
-        + "Request URI: /servlet_spec_errorpage1_web/TestServlet|"
-        + "Status Code: 500|"
-        + "Exception: com.sun.ts.tests.servlet.spec.errorpage1.TestServletException: |"
-        + "error page invoked|" + "Message: error page invoked");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
-    invoke();
-  }
-
+    public void servletExceptionTest() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "ServletExceptionTest");
+        TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
+        TEST_PROPS.setProperty(
+                SEARCH_STRING,
+                "Second ErrorPage|"
+                        + "Servlet Name: TestServlet|"
+                        + "Request URI: /servlet_spec_errorpage1_web/TestServlet|"
+                        + "Status Code: 500|"
+                        + "Exception: com.sun.ts.tests.servlet.spec.errorpage1.TestServletException: |"
+                        + "error page invoked|" + "Message: error page invoked");
+        TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
+        invoke();
+    }
 }

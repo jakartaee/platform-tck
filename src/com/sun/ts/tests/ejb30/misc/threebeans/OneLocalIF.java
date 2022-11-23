@@ -21,10 +21,9 @@
 package com.sun.ts.tests.ejb30.misc.threebeans;
 
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.ejb.Local;
 
 @Local
 public interface OneLocalIF extends CommonIF {
-  public String testException() throws TestFailedException;
+    public String testException() throws TestFailedException;
 }

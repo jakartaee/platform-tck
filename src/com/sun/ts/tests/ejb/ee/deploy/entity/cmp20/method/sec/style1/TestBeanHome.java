@@ -20,23 +20,19 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.method.sec.style1;
 
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
+import jakarta.ejb.FinderException;
 import java.rmi.RemoteException;
 import java.util.Collection;
 import java.util.Properties;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJBHome;
-import jakarta.ejb.FinderException;
-
 public interface TestBeanHome extends EJBHome {
 
-  public TestBean create(Properties p, int cofID, String cofName,
-      float cofPrice) throws RemoteException, CreateException;
+    public TestBean create(Properties p, int cofID, String cofName, float cofPrice)
+            throws RemoteException, CreateException;
 
-  public TestBean findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
+    public TestBean findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 
-  public Collection findByName(String name)
-      throws RemoteException, FinderException;
-
+    public Collection findByName(String name) throws RemoteException, FinderException;
 }

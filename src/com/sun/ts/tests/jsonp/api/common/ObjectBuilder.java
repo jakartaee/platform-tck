@@ -16,11 +16,10 @@
 
 package com.sun.ts.tests.jsonp.api.common;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-
 import jakarta.json.JsonObjectBuilder;
 import jakarta.json.JsonValue;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
 // $Id$
 /**
@@ -28,43 +27,40 @@ import jakarta.json.JsonValue;
  */
 public class ObjectBuilder {
 
-  /**
-   * Add {@code value} with {@code name} to provided JSON object builder.
-   * 
-   * @param builder
-   *          Target JSON object builder.
-   * @param name
-   *          Name of value to be added.
-   * @param value
-   *          Value to be added.
-   * @return JSON object builder containing new {@code value}.
-   */
-  @SuppressWarnings("UnnecessaryUnboxing")
-  public static JsonObjectBuilder add(final JsonObjectBuilder builder,
-      final String name, final Object value) {
-    switch (JsonValueType.getType(value)) {
-    case String:
-      return builder.add(name, (String) value);
-    case Integer:
-      return builder.add(name, ((Integer) value).intValue());
-    case Long:
-      return builder.add(name, ((Long) value).intValue());
-    case BigInteger:
-      return builder.add(name, ((BigInteger) value));
-    case Double:
-      return builder.add(name, ((Double) value).doubleValue());
-    case BigDecimal:
-      return builder.add(name, ((BigDecimal) value));
-    case Boolean:
-      return builder.add(name, ((Boolean) value).booleanValue());
-    case JsonValue:
-      return builder.add(name, (JsonValue) value);
-    case Null:
-      return builder.addNull(name);
-    default:
-      throw new IllegalArgumentException(
-          "Value does not match known JSON value type");
+    /**
+     * Add {@code value} with {@code name} to provided JSON object builder.
+     *
+     * @param builder
+     *          Target JSON object builder.
+     * @param name
+     *          Name of value to be added.
+     * @param value
+     *          Value to be added.
+     * @return JSON object builder containing new {@code value}.
+     */
+    @SuppressWarnings("UnnecessaryUnboxing")
+    public static JsonObjectBuilder add(final JsonObjectBuilder builder, final String name, final Object value) {
+        switch (JsonValueType.getType(value)) {
+            case String:
+                return builder.add(name, (String) value);
+            case Integer:
+                return builder.add(name, ((Integer) value).intValue());
+            case Long:
+                return builder.add(name, ((Long) value).intValue());
+            case BigInteger:
+                return builder.add(name, ((BigInteger) value));
+            case Double:
+                return builder.add(name, ((Double) value).doubleValue());
+            case BigDecimal:
+                return builder.add(name, ((BigDecimal) value));
+            case Boolean:
+                return builder.add(name, ((Boolean) value).booleanValue());
+            case JsonValue:
+                return builder.add(name, (JsonValue) value);
+            case Null:
+                return builder.addNull(name);
+            default:
+                throw new IllegalArgumentException("Value does not match known JSON value type");
+        }
     }
-  }
-
 }

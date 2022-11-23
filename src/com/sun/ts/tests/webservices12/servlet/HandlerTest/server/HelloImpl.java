@@ -16,24 +16,25 @@
 
 package com.sun.ts.tests.webservices12.servlet.HandlerTest.server;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-import com.sun.javatest.Status;
-import jakarta.xml.ws.WebServiceException;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
+import jakarta.jws.WebService;
 import jakarta.xml.ws.Holder;
 
-import jakarta.jws.WebService;
-
-@WebService(portName = "HelloPort", serviceName = "HandlerTestService", targetNamespace = "http://handlertestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/HandlerTestService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.servlet.HandlerTest.server.Hello")
-
+@WebService(
+        portName = "HelloPort",
+        serviceName = "HandlerTestService",
+        targetNamespace = "http://handlertestservice.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/HandlerTestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices12.servlet.HandlerTest.server.Hello")
 public class HelloImpl implements Hello {
 
-  public String hello(String s) {
-    return s;
-  }
+    public String hello(String s) {
+        return s;
+    }
 
-  public String hello2(String s, Holder<HeaderType> theHeader) {
-    return s;
-  }
+    public String hello2(String s, Holder<HeaderType> theHeader) {
+        return s;
+    }
 }

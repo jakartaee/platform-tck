@@ -20,60 +20,55 @@
 package com.sun.ts.tests.ejb30.lite.tx.cm.common;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 public class RWTxBeanBase {
-  protected CoffeeEJBLite postConstructCoffee;
+    protected CoffeeEJBLite postConstructCoffee;
 
-  @PersistenceContext(unitName = "ejblite-pu")
-  protected EntityManager em;
+    @PersistenceContext(unitName = "ejblite-pu")
+    protected EntityManager em;
 
-  @TransactionAttribute(TransactionAttributeType.SUPPORTS)
-  public void supports(CoffeeEJBLite c, boolean flush) {
-    updatePersist(c, flush);
-  }
-
-  @TransactionAttribute(TransactionAttributeType.MANDATORY)
-  public void mandatory(CoffeeEJBLite c, boolean flush) {
-    updatePersist(c, flush);
-  }
-
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  public void required(CoffeeEJBLite c, boolean flush) {
-    updatePersist(c, flush);
-  }
-
-  @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-  public void requiresNew(CoffeeEJBLite c, boolean flush) {
-    updatePersist(c, flush);
-  }
-
-  // default REQUIRED
-  public void requiredNoExistingTransaction(CoffeeEJBLite coffee,
-      boolean flush) {
-    updatePersist(coffee, flush);
-  }
-
-  @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-  public void postConstructTransaction(StringBuilder sb) {
-    CoffeeEJBLite c = em.find(CoffeeEJBLite.class, postConstructCoffee.getId());
-    int expected = postConstructCoffee.getId();
-    int actual = c.getId();
-    Helper.assertEquals(
-        "Check the coffee persisted inside postConstruct method: ", expected,
-        actual, sb);
-  }
-
-  protected void updatePersist(CoffeeEJBLite c, boolean flush) {
-    c.setPrice(c.getPrice() + 100);
-    em.persist(c);
-    if (flush) {
-      em.flush();
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+    public void supports(CoffeeEJBLite c, boolean flush) {
+        updatePersist(c, flush);
     }
-  }
 
+    @TransactionAttribute(TransactionAttributeType.MANDATORY)
+    public void mandatory(CoffeeEJBLite c, boolean flush) {
+        updatePersist(c, flush);
+    }
+
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public void required(CoffeeEJBLite c, boolean flush) {
+        updatePersist(c, flush);
+    }
+
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public void requiresNew(CoffeeEJBLite c, boolean flush) {
+        updatePersist(c, flush);
+    }
+
+    // default REQUIRED
+    public void requiredNoExistingTransaction(CoffeeEJBLite coffee, boolean flush) {
+        updatePersist(coffee, flush);
+    }
+
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+    public void postConstructTransaction(StringBuilder sb) {
+        CoffeeEJBLite c = em.find(CoffeeEJBLite.class, postConstructCoffee.getId());
+        int expected = postConstructCoffee.getId();
+        int actual = c.getId();
+        Helper.assertEquals("Check the coffee persisted inside postConstruct method: ", expected, actual, sb);
+    }
+
+    protected void updatePersist(CoffeeEJBLite c, boolean flush) {
+        c.setPrice(c.getPrice() + 100);
+        em.persist(c);
+        if (flush) {
+            em.flush();
+        }
+    }
 }

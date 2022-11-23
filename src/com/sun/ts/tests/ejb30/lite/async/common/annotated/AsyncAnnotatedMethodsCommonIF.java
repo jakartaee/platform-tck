@@ -26,6 +26,6 @@ import java.util.concurrent.Future;
  * sub-interfaces.
  */
 public interface AsyncAnnotatedMethodsCommonIF {
-  // @Asynchronous moved to bean class or super class
-  public Future<Integer> addReturn(int a, int b, long waitMillis);
+    // @Asynchronous moved to bean class or super class
+    public Future<Integer> addReturn(int a, int b, long waitMillis);
 }

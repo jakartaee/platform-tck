@@ -58,44 +58,37 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servlet;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.UnavailableException;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class PUTestServlet extends GenericServlet {
 
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-    boolean passed = false;
-    PrintWriter pw = response.getWriter();
-    try {
-      throw new UnavailableException(
-          "Throwing Permanent unavailable Exception ");
-    } catch (Throwable t) {
-      if (t instanceof UnavailableException) {
-        if (((UnavailableException) t).isPermanent() == true) {
-          passed = true;
-        } else {
-          passed = false;
-          pw.println(
-              "isPermanent() method is returing false for Permanent Unavailable Exception");
+        boolean passed = false;
+        PrintWriter pw = response.getWriter();
+        try {
+            throw new UnavailableException("Throwing Permanent unavailable Exception ");
+        } catch (Throwable t) {
+            if (t instanceof UnavailableException) {
+                if (((UnavailableException) t).isPermanent() == true) {
+                    passed = true;
+                } else {
+                    passed = false;
+                    pw.println("isPermanent() method is returing false for Permanent Unavailable Exception");
+                }
+            } else {
+                passed = false;
+                pw.println("Exception thrown, but was not an instance of UnavailableException.");
+                pw.println("instead received: " + t.getClass().getName());
+            }
         }
-      } else {
-        passed = false;
-        pw.println(
-            "Exception thrown, but was not an instance of UnavailableException.");
-        pw.println("instead received: " + t.getClass().getName());
-      }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
-  }
-
 }

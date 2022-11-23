@@ -17,41 +17,31 @@
 package com.sun.ts.tests.ejb32.timer.service.common;
 
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBase;
-
 import jakarta.ejb.Schedule;
 import jakarta.ejb.Schedules;
 
 public class AutoTimerBeanBase extends TimerBeanBase implements TimerIF {
 
-  @Schedule(hour = "1", dayOfMonth = "1", persistent = false, info = "a0")
-  void singleAutoTimerCallbackNonPersistent() {
+    @Schedule(hour = "1", dayOfMonth = "1", persistent = false, info = "a0")
+    void singleAutoTimerCallbackNonPersistent() {}
 
-  }
+    @Schedules({
+        @Schedule(hour = "12", dayOfWeek = "Mon-Thu", persistent = false, info = "a1"),
+        @Schedule(hour = "11", dayOfWeek = "Fri", persistent = false, info = "a2")
+    })
+    void doubleAutoTimersCallbackNonPersistent() {}
 
-  @Schedules({
-      @Schedule(hour = "12", dayOfWeek = "Mon-Thu", persistent = false, info = "a1"),
-      @Schedule(hour = "11", dayOfWeek = "Fri", persistent = false, info = "a2") })
-  void doubleAutoTimersCallbackNonPersistent() {
+    @Schedule(hour = "1", dayOfMonth = "1", persistent = true, info = "a3")
+    void singleAutoTimerCallback() {}
 
-  }
+    @Schedules({
+        @Schedule(hour = "12", dayOfWeek = "Mon-Thu", persistent = true, info = "a4"),
+        @Schedule(hour = "11", dayOfWeek = "Fri", persistent = true, info = "a5")
+    })
+    void doubleAutoTimersCallback() {}
 
-  @Schedule(hour = "1", dayOfMonth = "1", persistent = true, info = "a3")
-  void singleAutoTimerCallback() {
-
-  }
-
-  @Schedules({
-      @Schedule(hour = "12", dayOfWeek = "Mon-Thu", persistent = true, info = "a4"),
-      @Schedule(hour = "11", dayOfWeek = "Fri", persistent = true, info = "a5") })
-  void doubleAutoTimersCallback() {
-
-  }
-
-  // Since Jakarta Enterprise Beans 4.0, @Schedule is repeatable
-  @Schedule(hour = "12", dayOfWeek = "Mon-Thu", persistent = true, info = "a6")
-  @Schedule(hour = "11", dayOfWeek = "Fri", persistent = false, info = "a7")
-  void doubleAutoTimersCallbackPersistentAndNot() {
-
-  }
-
+    // Since Jakarta Enterprise Beans 4.0, @Schedule is repeatable
+    @Schedule(hour = "12", dayOfWeek = "Mon-Thu", persistent = true, info = "a6")
+    @Schedule(hour = "11", dayOfWeek = "Fri", persistent = false, info = "a7")
+    void doubleAutoTimersCallbackPersistentAndNot() {}
 }

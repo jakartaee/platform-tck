@@ -19,7 +19,6 @@ package com.sun.ts.tests.jpa.core.annotations.mapkeyenumerated;
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
-
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -28,8 +27,7 @@ public class Client extends PMClientBase {
 
     private static final long serialVersionUID = 20L;
 
-    public Client() {
-    }
+    public Client() {}
 
     private static Employee empRef[] = new Employee[5];
     private static Employee2 empRef2[] = new Employee2[5];
@@ -56,28 +54,28 @@ public class Client extends PMClientBase {
         }
     }
 
-/*
-    public void setupCust(String[] args, Properties p) throws Fault {
-        TestUtil.logTrace("setup");
-        try {
-            super.setup(args, p);
-            removeCustTestData();
-        } catch (Exception e) {
-            TestUtil.logErr("Exception: ", e);
-            throw new Fault("Setup failed:", e);
+    /*
+        public void setupCust(String[] args, Properties p) throws Fault {
+            TestUtil.logTrace("setup");
+            try {
+                super.setup(args, p);
+                removeCustTestData();
+            } catch (Exception e) {
+                TestUtil.logErr("Exception: ", e);
+                throw new Fault("Setup failed:", e);
 
+            }
         }
-    }
-*/
+    */
 
     /*
-    * @testName: mapKeyEnumeratedTest
-    * @assertion_ids: PERSISTENCE:SPEC:2051; PERSISTENCE:SPEC:2052;
-    *                   PERSISTENCE:SPEC:2052.2
-    *
-    * @test_Strategy:
-    *
-    */
+     * @testName: mapKeyEnumeratedTest
+     * @assertion_ids: PERSISTENCE:SPEC:2051; PERSISTENCE:SPEC:2052;
+     *                   PERSISTENCE:SPEC:2052.2
+     *
+     * @test_Strategy:
+     *
+     */
     public void mapKeyEnumeratedTest() throws Fault {
 
         boolean pass1 = false;
@@ -96,8 +94,9 @@ public class Client extends PMClientBase {
             Map<Offices, Employee> emps = dept.getLastNameEmployees();
             if (TestUtil.traceflag) {
                 for (Map.Entry<Offices, Employee> entry : emps.entrySet()) {
-                    TestUtil.logTrace("map:" + entry.getKey() + ", " + entry.getValue().getId() + " "
-                            + entry.getValue().getFirstName() + " " + entry.getValue().getLastName());
+                    TestUtil.logTrace("map:" + entry.getKey() + ", "
+                            + entry.getValue().getId() + " " + entry.getValue().getFirstName() + " "
+                            + entry.getValue().getLastName());
                 }
             }
             Set<Offices> keys = emps.keySet();
@@ -124,12 +123,13 @@ public class Client extends PMClientBase {
             sExpected.add(empRef[1]);
             sExpected.add(empRef[2]);
 
-
             Collection<Employee> employees = emps.values();
             for (Employee e : employees) {
                 TestUtil.logTrace("values:" + e.getId() + " " + e.getFirstName() + " " + e.getLastName());
             }
-            if (sExpected.containsAll(employees) && employees.containsAll(sExpected) && sExpected.size() == employees.size()) {
+            if (sExpected.containsAll(employees)
+                    && employees.containsAll(sExpected)
+                    && sExpected.size() == employees.size()) {
                 TestUtil.logTrace("Received expected values");
                 pass2 = true;
             } else {
@@ -155,12 +155,12 @@ public class Client extends PMClientBase {
     }
 
     /*
-    * @testName: mapKeyEnumeratedDefaultTypeTest
-    * @assertion_ids: PERSISTENCE:SPEC:2054; PERSISTENCE:SPEC:2052;
-    *                   PERSISTENCE:SPEC:2052.2;
-    * @test_Strategy:
-    *
-    */
+     * @testName: mapKeyEnumeratedDefaultTypeTest
+     * @assertion_ids: PERSISTENCE:SPEC:2054; PERSISTENCE:SPEC:2052;
+     *                   PERSISTENCE:SPEC:2052.2;
+     * @test_Strategy:
+     *
+     */
     public void mapKeyEnumeratedDefaultTypeTest() throws Fault {
 
         boolean pass1 = false;
@@ -178,8 +178,9 @@ public class Client extends PMClientBase {
             Map<Offices, Employee2> emps = dept.getLastNameEmployees();
             if (TestUtil.traceflag) {
                 for (Map.Entry<Offices, Employee2> entry : emps.entrySet()) {
-                    TestUtil.logTrace("map:" + entry.getKey() + ", " + entry.getValue().getId() + " "
-                            + entry.getValue().getFirstName() + " " + entry.getValue().getLastName());
+                    TestUtil.logTrace("map:" + entry.getKey() + ", "
+                            + entry.getValue().getId() + " " + entry.getValue().getFirstName() + " "
+                            + entry.getValue().getLastName());
                 }
             }
             Set<Offices> keys = emps.keySet();
@@ -205,12 +206,13 @@ public class Client extends PMClientBase {
             sExpected.add(empRef2[0]);
             sExpected.add(empRef2[1]);
 
-
             Collection<Employee2> employees = emps.values();
             for (Employee2 e : employees) {
                 TestUtil.logTrace("values:" + e.getId() + " " + e.getFirstName() + " " + e.getLastName());
             }
-            if (sExpected.containsAll(employees) && employees.containsAll(sExpected) && sExpected.size() == employees.size()) {
+            if (sExpected.containsAll(employees)
+                    && employees.containsAll(sExpected)
+                    && sExpected.size() == employees.size()) {
                 TestUtil.logTrace("Received expected values");
                 pass2 = true;
             } else {
@@ -236,12 +238,12 @@ public class Client extends PMClientBase {
     }
 
     /*
-    * @testName: mapKeyEnumeratedWithMayKeyAnnotationTest
-    * @assertion_ids:  PERSISTENCE:SPEC:2053; PERSISTENCE:SPEC:2052;
-    *                   PERSISTENCE:SPEC:2052.2;
-    * @test_Strategy:
-    *
-    */
+     * @testName: mapKeyEnumeratedWithMayKeyAnnotationTest
+     * @assertion_ids:  PERSISTENCE:SPEC:2053; PERSISTENCE:SPEC:2052;
+     *                   PERSISTENCE:SPEC:2052.2;
+     * @test_Strategy:
+     *
+     */
     public void mapKeyEnumeratedWithMayKeyAnnotationTest() throws Fault {
 
         boolean pass1 = false;
@@ -260,8 +262,9 @@ public class Client extends PMClientBase {
             Map<Offices, Employee3> emps = dept.getLastNameEmployees();
             if (TestUtil.traceflag) {
                 for (Map.Entry<Offices, Employee3> entry : emps.entrySet()) {
-                    TestUtil.logTrace("map:" + entry.getKey() + ", " + entry.getValue().getId() + " "
-                            + entry.getValue().getFirstName() + " " + entry.getValue().getLastName());
+                    TestUtil.logTrace("map:" + entry.getKey() + ", "
+                            + entry.getValue().getId() + " " + entry.getValue().getFirstName() + " "
+                            + entry.getValue().getLastName());
                 }
             }
             Set<Offices> keys = emps.keySet();
@@ -287,12 +290,13 @@ public class Client extends PMClientBase {
             sExpected.add(empRef3[0]);
             sExpected.add(empRef3[1]);
 
-
             Collection<Employee3> employees = emps.values();
             for (Employee3 e : employees) {
                 TestUtil.logTrace("values:" + e.getId() + " " + e.getFirstName() + " " + e.getLastName());
             }
-            if (sExpected.containsAll(employees) && employees.containsAll(sExpected) && sExpected.size() == employees.size()) {
+            if (sExpected.containsAll(employees)
+                    && employees.containsAll(sExpected)
+                    && sExpected.size() == employees.size()) {
                 TestUtil.logTrace("Received expected values");
                 pass2 = true;
             } else {
@@ -317,94 +321,95 @@ public class Client extends PMClientBase {
         }
     }
 
-
-   /*
-    * @testName: elementCollectionTest
-    * @assertion_ids: PERSISTENCE:SPEC:2052; PERSISTENCE:SPEC:2052.1;
-    * @test_Strategy:
-    */
+    /*
+     * @testName: elementCollectionTest
+     * @assertion_ids: PERSISTENCE:SPEC:2052; PERSISTENCE:SPEC:2052.1;
+     * @test_Strategy:
+     */
     public void elementCollectionTest() throws Fault {
 
-         boolean pass1 = false;
-         boolean pass2 = false;
-         Set<Numbers> expected = new HashSet<Numbers>();
-         expected.add(Numbers.one);
-         expected.add(Numbers.two);
+        boolean pass1 = false;
+        boolean pass2 = false;
+        Set<Numbers> expected = new HashSet<Numbers>();
+        expected.add(Numbers.one);
+        expected.add(Numbers.two);
 
-         try {
-             getEntityTransaction().begin();
-             Employee4 emp = getEntityManager().find(Employee4.class, 8);
-             TestUtil.logTrace("Name:" +  emp.getLastName());
-             Department4 dept = emp.getDepartment();
-             TestUtil.logTrace("Dept=" + dept.getName());
-             Map<Numbers, EmbeddedEmployee> emps = dept.getLastNameEmployees();
-             if (TestUtil.traceflag) {
-                 for (Map.Entry<Numbers, EmbeddedEmployee> entry : emps.entrySet()) {
-                     TestUtil.logTrace("map:" + entry.getKey() + ", " + entry.getValue().employeeId + " "
-                             + entry.getValue().employeeName);
-                 }
-             }
-             Set<Numbers> keys = emps.keySet();
-             for (Numbers key : keys) {
-                 TestUtil.logTrace("key:" + key);
-             }
-             if (expected.containsAll(keys) && keys.containsAll(expected) && expected.size() == keys.size()) {
-                 TestUtil.logTrace("Received expected keys");
-                 pass1 = true;
-             } else {
-                 TestUtil.logErr("Did not received expected keys");
-                 TestUtil.logErr("Expected:");
-                 for (Numbers key : expected) {
-                     TestUtil.logTrace("key:" + key);
-                 }
-                 TestUtil.logErr("Actual:");
-                 for (Numbers key : keys) {
-                     TestUtil.logTrace("key:" + key);
-                 }
-             }
+        try {
+            getEntityTransaction().begin();
+            Employee4 emp = getEntityManager().find(Employee4.class, 8);
+            TestUtil.logTrace("Name:" + emp.getLastName());
+            Department4 dept = emp.getDepartment();
+            TestUtil.logTrace("Dept=" + dept.getName());
+            Map<Numbers, EmbeddedEmployee> emps = dept.getLastNameEmployees();
+            if (TestUtil.traceflag) {
+                for (Map.Entry<Numbers, EmbeddedEmployee> entry : emps.entrySet()) {
+                    TestUtil.logTrace("map:" + entry.getKey() + ", " + entry.getValue().employeeId + " "
+                            + entry.getValue().employeeName);
+                }
+            }
+            Set<Numbers> keys = emps.keySet();
+            for (Numbers key : keys) {
+                TestUtil.logTrace("key:" + key);
+            }
+            if (expected.containsAll(keys) && keys.containsAll(expected) && expected.size() == keys.size()) {
+                TestUtil.logTrace("Received expected keys");
+                pass1 = true;
+            } else {
+                TestUtil.logErr("Did not received expected keys");
+                TestUtil.logErr("Expected:");
+                for (Numbers key : expected) {
+                    TestUtil.logTrace("key:" + key);
+                }
+                TestUtil.logErr("Actual:");
+                for (Numbers key : keys) {
+                    TestUtil.logTrace("key:" + key);
+                }
+            }
 
-             Set<Employee4> sExpected = new HashSet<Employee4>();
-             sExpected.add(empRef4[0]);
-             sExpected.add(empRef4[1]);
+            Set<Employee4> sExpected = new HashSet<Employee4>();
+            sExpected.add(empRef4[0]);
+            sExpected.add(empRef4[1]);
 
+            Collection<Employee4> employees = emps.values().stream()
+                    .flatMap(a -> Stream.of(new Employee4(a.employeeId, a.employeeName)))
+                    .collect(Collectors.toList());
+            for (Employee4 e : employees) {
+                TestUtil.logTrace("values:" + e.getId() + " " + e.getLastName());
+            }
+            if (sExpected.containsAll(employees)
+                    && employees.containsAll(sExpected)
+                    && sExpected.size() == employees.size()) {
+                TestUtil.logTrace("Received expected values");
+                pass2 = true;
+            } else {
+                TestUtil.logErr("Did not received expected values");
+                TestUtil.logErr("Expected:");
+                for (Employee4 e : sExpected) {
+                    TestUtil.logTrace("Employee:" + e.getId() + " " + e.getLastName());
+                }
+                TestUtil.logErr("Actual:");
+                for (Employee4 e : employees) {
+                    TestUtil.logTrace("Employee:" + e.getId() + " " + e.getLastName());
+                }
+            }
+            getEntityTransaction().commit();
 
-             Collection<Employee4> employees = emps.values().stream().flatMap(a->Stream.of(new Employee4(a.employeeId, a.employeeName))).collect(Collectors.toList());
-             for (Employee4 e : employees) {
-                 TestUtil.logTrace("values:" + e.getId() + " " +  e.getLastName());
-             }
-             if (sExpected.containsAll(employees) && employees.containsAll(sExpected) && sExpected.size() == employees.size()) {
-                 TestUtil.logTrace("Received expected values");
-                 pass2 = true;
-             } else {
-                 TestUtil.logErr("Did not received expected values");
-                 TestUtil.logErr("Expected:");
-                 for (Employee4 e : sExpected) {
-                     TestUtil.logTrace("Employee:" + e.getId() + " " + e.getLastName());
-                 }
-                 TestUtil.logErr("Actual:");
-                 for (Employee4 e : employees) {
-                     TestUtil.logTrace("Employee:" + e.getId() + " "  + e.getLastName());
-                 }
-             }
-             getEntityTransaction().commit();
+        } catch (Exception ex) {
+            TestUtil.logErr("Unexpected exception occurred", ex);
+        }
 
-         } catch (Exception ex) {
-             TestUtil.logErr("Unexpected exception occurred", ex);
-         }
-
-         if (!pass1 || !pass2) {
-             throw new Fault("elementCollectionTest failed");
-         }
-     }
+        if (!pass1 || !pass2) {
+            throw new Fault("elementCollectionTest failed");
+        }
+    }
 
     /*
-    *  Business Methods to set up data for Test Cases
-    */
+     *  Business Methods to set up data for Test Cases
+     */
     private void createTestData() throws Exception {
         TestUtil.logTrace("createTestData");
         try {
             getEntityTransaction().begin();
-
 
             TestUtil.logTrace("Create 2 - Departments");
             Department deptRef[] = new Department[2];
@@ -479,12 +484,11 @@ public class Client extends PMClientBase {
             empRef3[1] = new Employee3(7, "Kellie", "Sanborn");
             empRef3[1].setDepartment(deptRef3[0]);
 
-            empRef4[0] = new Employee4(8,"Grace");
+            empRef4[0] = new Employee4(8, "Grace");
             empRef4[0].setDepartment(deptRef4[0]);
 
             empRef4[1] = new Employee4(9, "Bender");
             empRef4[1].setDepartment(deptRef4[1]);
-
 
             Map<Offices, Employee> link = new HashMap<Offices, Employee>();
 
@@ -544,7 +548,6 @@ public class Client extends PMClientBase {
                 if (dept != null) {
                     getEntityManager().merge(dept);
                     TestUtil.logTrace("merged Department " + dept.getName());
-
                 }
             }
 
@@ -554,10 +557,8 @@ public class Client extends PMClientBase {
                 if (dept != null) {
                     getEntityManager().merge(dept);
                     TestUtil.logTrace("merged Department2 " + dept.getName());
-
                 }
             }
-
 
             // Merge Department
             TestUtil.logTrace("Merge Department3 ");
@@ -565,7 +566,6 @@ public class Client extends PMClientBase {
                 if (dept != null) {
                     getEntityManager().merge(dept);
                     TestUtil.logTrace("merged Department3 " + dept.getName());
-
                 }
             }
             // Merge Department
@@ -574,7 +574,6 @@ public class Client extends PMClientBase {
                 if (dept != null) {
                     getEntityManager().merge(dept);
                     TestUtil.logTrace("merged Department4 " + dept.getName());
-
                 }
             }
 
@@ -599,7 +598,7 @@ public class Client extends PMClientBase {
         super.cleanup();
     }
 
- /*   public void cleanupCust() throws Fault {
+    /*   public void cleanupCust() throws Fault {
         TestUtil.logTrace("cleanup");
         removeCustTestData();
         TestUtil.logTrace("cleanup complete, calling super.cleanup");
@@ -632,7 +631,7 @@ public class Client extends PMClientBase {
         }
     }
 
- /*   private void removeCustTestData() {
+    /*   private void removeCustTestData() {
         TestUtil.logTrace("removeCustTestData");
         if (getEntityTransaction().isActive()) {
             getEntityTransaction().rollback();

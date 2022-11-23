@@ -21,8 +21,8 @@
 package com.sun.ts.tests.ejb30.common.busiface;
 
 public interface BusinessIF2 {
-  // @todo renamed it to remove
-  public void remove2(); // for sfsb only
+    // @todo renamed it to remove
+    public void remove2(); // for sfsb only
 
-  public boolean businessMethod2(String[] s);
+    public boolean businessMethod2(String[] s);
 }

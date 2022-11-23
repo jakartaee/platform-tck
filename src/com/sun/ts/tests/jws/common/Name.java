@@ -25,35 +25,34 @@ package com.sun.ts.tests.jws.common;
 
 public class Name implements java.io.Serializable {
 
-  private String firstName = "";
+    private String firstName = "";
 
-  private String lastName = "";
+    private String lastName = "";
 
-  public Name(String firstName, String lastName) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
+    public Name(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
-  public Name() {
-  }
+    public Name() {}
 
-  public String getFirstName() {
-    return firstName;
-  }
+    public String getFirstName() {
+        return firstName;
+    }
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-  public String getLastName() {
-    return lastName;
-  }
+    public String getLastName() {
+        return lastName;
+    }
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-  public String toString() {
-    return "First Name:" + firstName + " Last Name:" + lastName;
-  }
+    public String toString() {
+        return "First Name:" + firstName + " Last Name:" + lastName;
+    }
 }

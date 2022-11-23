@@ -20,98 +20,96 @@
 
 package com.sun.ts.tests.ejb30.tx.session.stateless.cm.inheritance.annotated;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.tx.common.session.inheritance.ClientBase;
+import java.io.PrintWriter;
 
 public class Client extends ClientBase {
-  protected String CONTEXT_ROOT = "/tx_stateless_inheritance_annotated_web";
+    protected String CONTEXT_ROOT = "/tx_stateless_inheritance_annotated_web";
 
-  @Override()
-  public String getContextRoot() {
-    return CONTEXT_ROOT;
-  }
+    @Override()
+    public String getContextRoot() {
+        return CONTEXT_ROOT;
+    }
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /*
-   * @testName: aBeanRemote
-   * 
-   * @test_Strategy: httpclient -> servlet -> remote ABean
-   */
+    /*
+     * @testName: aBeanRemote
+     *
+     * @test_Strategy: httpclient -> servlet -> remote ABean
+     */
 
-  /*
-   * @testName: bBeanRemote
-   * 
-   * @test_Strategy: httpclient -> servlet -> remote bBean
-   */
-  /*
-   * @testName: cBeanRemote
-   * 
-   * @test_Strategy: httpclient -> servlet -> remote cBean
-   */
-  /*
-   * @testName: dBeanRemote
-   * 
-   * @test_Strategy: httpclient -> servlet -> remote dBean
-   */
-  /*
-   * @testName: eBeanRemote
-   * 
-   * @test_Strategy: httpclient -> servlet -> remote eBean
-   */
+    /*
+     * @testName: bBeanRemote
+     *
+     * @test_Strategy: httpclient -> servlet -> remote bBean
+     */
+    /*
+     * @testName: cBeanRemote
+     *
+     * @test_Strategy: httpclient -> servlet -> remote cBean
+     */
+    /*
+     * @testName: dBeanRemote
+     *
+     * @test_Strategy: httpclient -> servlet -> remote dBean
+     */
+    /*
+     * @testName: eBeanRemote
+     *
+     * @test_Strategy: httpclient -> servlet -> remote eBean
+     */
 
-  /////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////
 
-  /*
-   * @testName: aBeanLocal
-   * 
-   * @test_Strategy: httpclient -> servlet -> local ABean
-   */
-  /*
-   * @testName: bBeanLocal
-   * 
-   * @test_Strategy: httpclient -> servlet -> local bBean
-   */
-  /*
-   * @testName: cBeanLocal
-   * 
-   * @test_Strategy: httpclient -> servlet -> local cBean
-   */
-  /*
-   * @testName: dBeanLocal
-   * 
-   * @test_Strategy: httpclient -> servlet -> local dBean
-   */
-  /*
-   * @testName: eBeanLocal
-   * 
-   * @test_Strategy: httpclient -> servlet -> local eBean
-   */
-  /*
-   * @testName: overloadedMethodsTxLocal
-   * 
-   * @test_Strategy: httpclient -> servlet -> local fBean
-   */
-  /*
-   * @testName: overloadedMethodsTxRemote
-   * 
-   * @test_Strategy: httpclient -> servlet -> remote fBean
-   */
+    /*
+     * @testName: aBeanLocal
+     *
+     * @test_Strategy: httpclient -> servlet -> local ABean
+     */
+    /*
+     * @testName: bBeanLocal
+     *
+     * @test_Strategy: httpclient -> servlet -> local bBean
+     */
+    /*
+     * @testName: cBeanLocal
+     *
+     * @test_Strategy: httpclient -> servlet -> local cBean
+     */
+    /*
+     * @testName: dBeanLocal
+     *
+     * @test_Strategy: httpclient -> servlet -> local dBean
+     */
+    /*
+     * @testName: eBeanLocal
+     *
+     * @test_Strategy: httpclient -> servlet -> local eBean
+     */
+    /*
+     * @testName: overloadedMethodsTxLocal
+     *
+     * @test_Strategy: httpclient -> servlet -> local fBean
+     */
+    /*
+     * @testName: overloadedMethodsTxRemote
+     *
+     * @test_Strategy: httpclient -> servlet -> remote fBean
+     */
 
 }

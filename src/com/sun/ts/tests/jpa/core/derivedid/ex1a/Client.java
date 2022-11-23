@@ -16,141 +16,135 @@
 
 package com.sun.ts.tests.jpa.core.derivedid.ex1a;
 
-import java.util.List;
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * @author Raja Perumal
  */
 public class Client extends PMClientBase {
 
-  public Client() {
-  }
+    public Client() {}
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  public void setup(String[] args, Properties p) throws Fault {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup(args, p);
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /*
-   * @testName: DIDTest
-   *
-   * @assertion_ids: PERSISTENCE:SPEC:1183;
-   * PERSISTENCE:SPEC:1184;PERSISTENCE:SPEC:1185;
-   *
-   * @test_Strategy: Derived Identifier The parent entity ( DID1Employee ) has a
-   * simple primary key Case (a): The dependent entity (DID1Dependent ) uses
-   * IdClass to represent a composite key:
-   */
-  public void DIDTest() throws Fault {
-    boolean pass = false;
-
-    try {
-
-      getEntityTransaction().begin();
-
-      final DID1Employee employee1 = new DID1Employee(1L, "Duke");
-      final DID1Employee employee2 = new DID1Employee(2L, "foo");
-
-      final DID1Dependent dep1 = new DID1Dependent("Obama", employee1);
-      final DID1Dependent dep2 = new DID1Dependent("Michelle", employee1);
-      final DID1Dependent dep3 = new DID1Dependent("John", employee2);
-
-      getEntityManager().persist(dep1);
-      getEntityManager().persist(dep2);
-      getEntityManager().persist(dep3);
-      getEntityManager().persist(employee1);
-      getEntityManager().persist(employee2);
-
-      TestUtil.logTrace("persisted Employees and Dependents");
-      getEntityManager().flush();
-
-      // Refresh Employee and Dependents
-      for (int i = 1; i < 3; i++) {
-        DID1Employee newEmployee = getEntityManager().find(DID1Employee.class,
-            Long.valueOf(i));
-        if (newEmployee != null) {
-          getEntityManager().refresh(newEmployee);
+    public void setup(String[] args, Properties p) throws Fault {
+        TestUtil.logTrace("setup");
+        try {
+            super.setup(args, p);
+            removeTestData();
+        } catch (Exception e) {
+            TestUtil.logErr("Exception: ", e);
+            throw new Fault("Setup failed:", e);
         }
-      }
+    }
 
-      DID1Dependent newDependent = getEntityManager().find(DID1Dependent.class,
-          new DID1DependentId("Obama", 1L));
-      if (newDependent != null) {
-        getEntityManager().refresh(newDependent);
-      }
+    /*
+     * @testName: DIDTest
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:1183;
+     * PERSISTENCE:SPEC:1184;PERSISTENCE:SPEC:1185;
+     *
+     * @test_Strategy: Derived Identifier The parent entity ( DID1Employee ) has a
+     * simple primary key Case (a): The dependent entity (DID1Dependent ) uses
+     * IdClass to represent a composite key:
+     */
+    public void DIDTest() throws Fault {
+        boolean pass = false;
 
-      List depList = getEntityManager().createQuery(
-          "Select d from DID1Dependent d where d.name='Obama' and d.emp.name='Duke'")
-          .getResultList();
-      newDependent = null;
-      if (depList.size() > 0) {
-        newDependent = (DID1Dependent) depList.get(0);
-        if (newDependent == dep1) {
-          pass = true;
-          TestUtil.logTrace("Received Expected Dependent");
-        } else {
-          TestUtil.logErr("Searched Dependent not found");
+        try {
+
+            getEntityTransaction().begin();
+
+            final DID1Employee employee1 = new DID1Employee(1L, "Duke");
+            final DID1Employee employee2 = new DID1Employee(2L, "foo");
+
+            final DID1Dependent dep1 = new DID1Dependent("Obama", employee1);
+            final DID1Dependent dep2 = new DID1Dependent("Michelle", employee1);
+            final DID1Dependent dep3 = new DID1Dependent("John", employee2);
+
+            getEntityManager().persist(dep1);
+            getEntityManager().persist(dep2);
+            getEntityManager().persist(dep3);
+            getEntityManager().persist(employee1);
+            getEntityManager().persist(employee2);
+
+            TestUtil.logTrace("persisted Employees and Dependents");
+            getEntityManager().flush();
+
+            // Refresh Employee and Dependents
+            for (int i = 1; i < 3; i++) {
+                DID1Employee newEmployee = getEntityManager().find(DID1Employee.class, Long.valueOf(i));
+                if (newEmployee != null) {
+                    getEntityManager().refresh(newEmployee);
+                }
+            }
+
+            DID1Dependent newDependent = getEntityManager().find(DID1Dependent.class, new DID1DependentId("Obama", 1L));
+            if (newDependent != null) {
+                getEntityManager().refresh(newDependent);
+            }
+
+            List depList = getEntityManager()
+                    .createQuery("Select d from DID1Dependent d where d.name='Obama' and d.emp.name='Duke'")
+                    .getResultList();
+            newDependent = null;
+            if (depList.size() > 0) {
+                newDependent = (DID1Dependent) depList.get(0);
+                if (newDependent == dep1) {
+                    pass = true;
+                    TestUtil.logTrace("Received Expected Dependent");
+                } else {
+                    TestUtil.logErr("Searched Dependent not found");
+                }
+            } else {
+                TestUtil.logErr("getEntityManager().createQuery returned null entry");
+            }
+            getEntityTransaction().commit();
+        } catch (Exception e) {
+            TestUtil.logErr("Unexpected exception occurred", e);
+            getEntityTransaction().rollback();
         }
-      } else {
-        TestUtil.logErr("getEntityManager().createQuery returned null entry");
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-      getEntityTransaction().rollback();
+
+        if (!pass) {
+            throw new Fault("DTDTest failed");
+        }
     }
 
-    if (!pass) {
-      throw new Fault("DTDTest failed");
+    public void cleanup() throws Fault {
+        TestUtil.logTrace("cleanup");
+        removeTestData();
+        TestUtil.logTrace("cleanup complete, calling super.cleanup");
+        super.cleanup();
     }
-  }
 
-  public void cleanup() throws Fault {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
-
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM DID1DEPENDENT")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM DID1EMPLOYEE")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
+    private void removeTestData() {
+        TestUtil.logTrace("removeTestData");
         if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
+            getEntityTransaction().rollback();
         }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
+        try {
+            getEntityTransaction().begin();
+            getEntityManager().createNativeQuery("DELETE FROM DID1DEPENDENT").executeUpdate();
+            getEntityManager().createNativeQuery("DELETE FROM DID1EMPLOYEE").executeUpdate();
+            getEntityTransaction().commit();
+        } catch (Exception e) {
+            TestUtil.logErr("Exception encountered while removing entities:", e);
+        } finally {
+            try {
+                if (getEntityTransaction().isActive()) {
+                    getEntityTransaction().rollback();
+                }
+            } catch (Exception re) {
+                TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+            }
+        }
     }
-  }
 }

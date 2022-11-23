@@ -19,57 +19,56 @@
  */
 package com.sun.ts.tests.ejb30.lite.singleton.dependson.graph;
 
-import java.util.List;
-
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 import com.sun.ts.tests.ejb30.lite.singleton.dependson.common.HistoryBean;
-
 import jakarta.ejb.EJB;
+import java.util.List;
 
 public class Client extends EJBLiteClientBase {
-  @EJB(beanName = "HistoryBean")
-  private HistoryBean historyBean;
+    @EJB(beanName = "HistoryBean")
+    private HistoryBean historyBean;
 
-  /*
-   * @testName: graph
-   * 
-   * @test_Strategy: http://en.wikipedia.org/wiki/Directed_acyclic_graph
-   */
-  public void graph() {
-    long t7 = historyBean.getCreationTimeMillisByBeanName("SevenBean");
-    long t5 = historyBean.getCreationTimeMillisByBeanName("FiveBean");
-    long t3 = historyBean.getCreationTimeMillisByBeanName("ThreeBean");
-    long t11 = historyBean.getCreationTimeMillisByBeanName("ElevenBean");
-    long t8 = historyBean.getCreationTimeMillisByBeanName("EightBean");
-    long t2 = historyBean.getCreationTimeMillisByBeanName("TwoBean");
-    long t9 = historyBean.getCreationTimeMillisByBeanName("NineBean");
-    long t10 = historyBean.getCreationTimeMillisByBeanName("TenBean");
+    /*
+     * @testName: graph
+     *
+     * @test_Strategy: http://en.wikipedia.org/wiki/Directed_acyclic_graph
+     */
+    public void graph() {
+        long t7 = historyBean.getCreationTimeMillisByBeanName("SevenBean");
+        long t5 = historyBean.getCreationTimeMillisByBeanName("FiveBean");
+        long t3 = historyBean.getCreationTimeMillisByBeanName("ThreeBean");
+        long t11 = historyBean.getCreationTimeMillisByBeanName("ElevenBean");
+        long t8 = historyBean.getCreationTimeMillisByBeanName("EightBean");
+        long t2 = historyBean.getCreationTimeMillisByBeanName("TwoBean");
+        long t9 = historyBean.getCreationTimeMillisByBeanName("NineBean");
+        long t10 = historyBean.getCreationTimeMillisByBeanName("TenBean");
 
-    assertGreaterThan("7-time > 11-time?", t7, t11);
-    assertGreaterThan("7-time > 8-time?", t7, t8);
-    assertGreaterThan("5-time > 11-time?", t5, t11);
-    assertGreaterThan("3-time > 8-time?", t3, t8);
-    assertGreaterThan("3-time > 10-time?", t3, t10);
-    assertGreaterThan("11-time > 2-time?", t11, t2);
-    assertGreaterThan("11-time > 9-time?", t11, t9);
-    assertGreaterThan("11-time > 10-time?", t11, t10);
-    assertGreaterThan("8-time > 9-time?", t8, t9);
-  }
-
-  /*
-   * @testName: numOfInstances
-   * 
-   * @test_Strategy: verify one instance per singelton bean, using HistoryBean
-   * (a singleton bean) as a place to save each bean instance id.
-   */
-  public void numOfInstances() {
-    String[] beanNames = { "SevenBean", "FiveBean", "ThreeBean", "ElevenBean",
-        "EightBean", "TwoBean", "NineBean", "TenBean" };
-    appendReason("one instance per singelton bean?");
-    for (String beanName : beanNames) {
-      List<Integer> ids = historyBean.getInstanceIdsByBeanName(beanName);
-      appendReason("Instances for ", beanName, ids);
-      assertEquals(null, 1, ids.size());
+        assertGreaterThan("7-time > 11-time?", t7, t11);
+        assertGreaterThan("7-time > 8-time?", t7, t8);
+        assertGreaterThan("5-time > 11-time?", t5, t11);
+        assertGreaterThan("3-time > 8-time?", t3, t8);
+        assertGreaterThan("3-time > 10-time?", t3, t10);
+        assertGreaterThan("11-time > 2-time?", t11, t2);
+        assertGreaterThan("11-time > 9-time?", t11, t9);
+        assertGreaterThan("11-time > 10-time?", t11, t10);
+        assertGreaterThan("8-time > 9-time?", t8, t9);
     }
-  }
+
+    /*
+     * @testName: numOfInstances
+     *
+     * @test_Strategy: verify one instance per singelton bean, using HistoryBean
+     * (a singleton bean) as a place to save each bean instance id.
+     */
+    public void numOfInstances() {
+        String[] beanNames = {
+            "SevenBean", "FiveBean", "ThreeBean", "ElevenBean", "EightBean", "TwoBean", "NineBean", "TenBean"
+        };
+        appendReason("one instance per singelton bean?");
+        for (String beanName : beanNames) {
+            List<Integer> ids = historyBean.getInstanceIdsByBeanName(beanName);
+            appendReason("Instances for ", beanName, ids);
+            assertEquals(null, 1, ids.size());
+        }
+    }
 }

@@ -23,5 +23,4 @@ package com.sun.ts.tests.ejb30.tx.session.stateless.cm.varargs;
 import jakarta.ejb.Local;
 
 @Local
-public interface VarargsLocalIF extends VarargsCommonIF {
-}
+public interface VarargsLocalIF extends VarargsCommonIF {}

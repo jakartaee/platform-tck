@@ -18,13 +18,17 @@ package com.sun.ts.tests.webservices12.wsdlImport.file.shared1.server;
 
 import jakarta.jws.WebService;
 
-@WebService(portName = "Tests11Port", serviceName = "Shared1FileSvc1", targetNamespace = "http://Shared1FileSvc1.org/wsdl", wsdlLocation = "WEB-INF/wsdl/Shared1FileSvc1.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.file.shared1.server.Tests11")
-
+@WebService(
+        portName = "Tests11Port",
+        serviceName = "Shared1FileSvc1",
+        targetNamespace = "http://Shared1FileSvc1.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/Shared1FileSvc1.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.file.shared1.server.Tests11")
 public class TestsImpl11 implements Tests11 {
-  public com.sun.ts.tests.webservices12.wsdlImport.file.shared1.server.Astring invokeTest11() {
-    com.sun.ts.tests.webservices12.wsdlImport.file.shared1.server.Astring result = new com.sun.ts.tests.webservices12.wsdlImport.file.shared1.server.Astring();
-    result.setResult("Hello");
-    return result;
-  }
-
+    public com.sun.ts.tests.webservices12.wsdlImport.file.shared1.server.Astring invokeTest11() {
+        com.sun.ts.tests.webservices12.wsdlImport.file.shared1.server.Astring result =
+                new com.sun.ts.tests.webservices12.wsdlImport.file.shared1.server.Astring();
+        result.setResult("Hello");
+        return result;
+    }
 }

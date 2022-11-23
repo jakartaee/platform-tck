@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 
 public abstract class TestBeanEJB extends CMP20Wrapper {
 
-  public boolean checkEntry(String name, String ref) {
-    return TestCode.checkEntry(nctx, name, ref);
-  }
-
+    public boolean checkEntry(String name, String ref) {
+        return TestCode.checkEntry(nctx, name, ref);
+    }
 }

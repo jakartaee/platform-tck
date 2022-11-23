@@ -24,11 +24,10 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.simpletagsupport;
 
-import java.io.IOException;
-
 import jakarta.servlet.jsp.JspContext;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 /**
  * SimpleTag instance to validate variable synchronization with SimpleTag's
@@ -36,34 +35,34 @@ import jakarta.servlet.jsp.tagext.SimpleTagSupport;
  */
 public class SimpleSyncTag extends SimpleTagSupport {
 
-  /**
-   * Default constructor.
-   */
-  public SimpleSyncTag() {
-    super();
-  }
+    /**
+     * Default constructor.
+     */
+    public SimpleSyncTag() {
+        super();
+    }
 
-  /**
-   * Export PageContext variables to be synced with TEI declared variables.
-   * 
-   * @throws JspException
-   *           if an error occurs
-   * @throws IOException
-   *           if an I/O error occurs
-   */
-  public void doTag() throws JspException, IOException {
-    JspContext context = this.getJspContext();
-    Integer begin = (Integer) context.getAttribute("begin");
-    Integer end = (Integer) context.getAttribute("end");
-    if (begin == null) {
-      context.setAttribute("begin", Integer.valueOf(1));
-    } else {
-      context.setAttribute("begin", Integer.valueOf(begin.intValue() + 1));
+    /**
+     * Export PageContext variables to be synced with TEI declared variables.
+     *
+     * @throws JspException
+     *           if an error occurs
+     * @throws IOException
+     *           if an I/O error occurs
+     */
+    public void doTag() throws JspException, IOException {
+        JspContext context = this.getJspContext();
+        Integer begin = (Integer) context.getAttribute("begin");
+        Integer end = (Integer) context.getAttribute("end");
+        if (begin == null) {
+            context.setAttribute("begin", Integer.valueOf(1));
+        } else {
+            context.setAttribute("begin", Integer.valueOf(begin.intValue() + 1));
+        }
+        if (end == null) {
+            context.setAttribute("end", Integer.valueOf(2));
+        } else {
+            context.setAttribute("end", Integer.valueOf(end.intValue() + 1));
+        }
     }
-    if (end == null) {
-      context.setAttribute("end", Integer.valueOf(2));
-    } else {
-      context.setAttribute("end", Integer.valueOf(end.intValue() + 1));
-    }
-  }
 }

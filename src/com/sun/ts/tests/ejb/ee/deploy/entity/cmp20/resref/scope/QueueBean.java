@@ -20,12 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.resref.scope;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.EJBObject;
+import java.rmi.RemoteException;
 
 public interface QueueBean extends EJBObject {
 
-  public boolean checkYourQueue() throws RemoteException;
-
+    public boolean checkYourQueue() throws RemoteException;
 }

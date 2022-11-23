@@ -20,29 +20,28 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.entitycmptest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
-  // Business Methods for TestBean CMP Fields
-  public Integer getId() throws RemoteException;
+    // Business Methods for TestBean CMP Fields
+    public Integer getId() throws RemoteException;
 
-  public String getBrandName() throws RemoteException;
+    public String getBrandName() throws RemoteException;
 
-  public void setBrandName(String s) throws RemoteException;
+    public void setBrandName(String s) throws RemoteException;
 
-  public float getPrice() throws RemoteException;
+    public float getPrice() throws RemoteException;
 
-  public void setPrice(float p) throws RemoteException;
+    public void setPrice(float p) throws RemoteException;
 
-  public byte[] getB() throws RemoteException;
+    public byte[] getB() throws RemoteException;
 
-  public void setB(byte[] b) throws RemoteException;
+    public void setB(byte[] b) throws RemoteException;
 
-  // Miscellaneous Business Methods
-  public void updatePrice(float price) throws RemoteException;
+    // Miscellaneous Business Methods
+    public void updatePrice(float price) throws RemoteException;
 
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 }

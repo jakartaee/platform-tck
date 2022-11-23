@@ -26,29 +26,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TrailerTestServlet2 extends HttpServlet {
-  @Override
-  protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, IOException {
-    String s = "Get IllegalStateException when call setTrailerFields";
-    resp.setHeader("Content-Length", String.valueOf(s.length()));
-    Writer writer = resp.getWriter();
-    writer.flush();
-    try {
-      resp.setTrailerFields(() -> {
-        Map m = new HashMap();
-        m.put("myTrailer", "foo");
-        return m;
-      });
-      writer.write("Current trailer field: ");
-      resp.getTrailerFields().get().forEach((key, value) -> {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String s = "Get IllegalStateException when call setTrailerFields";
+        resp.setHeader("Content-Length", String.valueOf(s.length()));
+        Writer writer = resp.getWriter();
+        writer.flush();
         try {
-          writer.write(key + ":" + value);
-        } catch (IOException e) {
-          throw new RuntimeException(e);
+            resp.setTrailerFields(() -> {
+                Map m = new HashMap();
+                m.put("myTrailer", "foo");
+                return m;
+            });
+            writer.write("Current trailer field: ");
+            resp.getTrailerFields().get().forEach((key, value) -> {
+                try {
+                    writer.write(key + ":" + value);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        } catch (IllegalStateException e) {
+            writer.write(s);
         }
-      });
-    } catch (IllegalStateException e) {
-      writer.write(s);
     }
-  }
 }

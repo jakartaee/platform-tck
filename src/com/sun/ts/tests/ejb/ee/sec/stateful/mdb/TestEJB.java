@@ -26,29 +26,25 @@ import jakarta.ejb.SessionContext;
 
 public class TestEJB implements SessionBean {
 
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  public void ejbCreate() throws CreateException {
-  }
+    public void ejbCreate() throws CreateException {}
 
-  public void setSessionContext(SessionContext sc) {
-    sctx = sc;
-  }
+    public void setSessionContext(SessionContext sc) {
+        sctx = sc;
+    }
 
-  public void ejbRemove() {
-  }
+    public void ejbRemove() {}
 
-  public void ejbActivate() {
-  }
+    public void ejbActivate() {}
 
-  public void ejbPassivate() {
-  }
+    public void ejbPassivate() {}
 
-  public boolean EjbNotAuthz() {
-    return true;
-  }
+    public boolean EjbNotAuthz() {
+        return true;
+    }
 
-  public boolean EjbIsAuthz() {
-    return true;
-  }
+    public boolean EjbIsAuthz() {
+        return true;
+    }
 }

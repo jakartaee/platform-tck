@@ -25,24 +25,22 @@ package com.sun.ts.tests.ejb30.common.calc;
  * a bean class without implementing any interface must have its business
  * interface generated. When @Remote is applied to such interfaceless bean
  * classes, the generated business interface must have remote accessibility.
- * 
+ *
  * @author Cheng Fang
  */
 public class NoInterfaceRemoteCalculator {
 
-  public NoInterfaceRemoteCalculator() {
-  }
+    public NoInterfaceRemoteCalculator() {}
 
-  public int remoteAdd(int a, int b) {
-    return RemoteCalculator.EXTRA + a + b;
-  }
+    public int remoteAdd(int a, int b) {
+        return RemoteCalculator.EXTRA + a + b;
+    }
 
-  public int remoteSubtract(int a, int b) {
-    return RemoteCalculator.EXTRA + a - b;
-  }
+    public int remoteSubtract(int a, int b) {
+        return RemoteCalculator.EXTRA + a - b;
+    }
 
-  public void remoteThrowIt() throws CalculatorException {
-    throw new CalculatorException();
-  }
-
+    public void remoteThrowIt() throws CalculatorException {
+        throw new CalculatorException();
+    }
 }

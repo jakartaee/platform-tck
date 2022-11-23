@@ -20,33 +20,36 @@
 
 package com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations;
 
-import jakarta.xml.ws.WebServiceException;
-
 @jakarta.jws.WebService(name = "AddressingEndpoint", targetNamespace = "http://rpclitservice.org/wsdl")
-@jakarta.jws.soap.SOAPBinding(style = jakarta.jws.soap.SOAPBinding.Style.RPC, use = jakarta.jws.soap.SOAPBinding.Use.LITERAL, parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
+@jakarta.jws.soap.SOAPBinding(
+        style = jakarta.jws.soap.SOAPBinding.Style.RPC,
+        use = jakarta.jws.soap.SOAPBinding.Use.LITERAL,
+        parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
 public interface AddressingEndpoint {
 
-  @jakarta.xml.ws.Action(input = "input1")
-  public void address1(String s);
+    @jakarta.xml.ws.Action(input = "input1")
+    public void address1(String s);
 
-  @jakarta.xml.ws.Action(output = "output2")
-  public String address2();
+    @jakarta.xml.ws.Action(output = "output2")
+    public String address2();
 
-  @jakarta.xml.ws.Action(fault = {
-      @jakarta.xml.ws.FaultAction(className = MyFault1.class, value = "fault1") })
-  public String address3(String s) throws MyFault1;
+    @jakarta.xml.ws.Action(fault = {@jakarta.xml.ws.FaultAction(className = MyFault1.class, value = "fault1")})
+    public String address3(String s) throws MyFault1;
 
-  @jakarta.xml.ws.Action(output = "output4", fault = {
-      @jakarta.xml.ws.FaultAction(className = MyFault1.class, value = "fault1") })
-  public String address4() throws MyFault1;
+    @jakarta.xml.ws.Action(
+            output = "output4",
+            fault = {@jakarta.xml.ws.FaultAction(className = MyFault1.class, value = "fault1")})
+    public String address4() throws MyFault1;
 
-  @jakarta.xml.ws.Action(input = "input5", output = "output5", fault = {
-      @jakarta.xml.ws.FaultAction(className = MyFault1.class, value = "fault1") })
-  public String address5(String s) throws MyFault1;
+    @jakarta.xml.ws.Action(
+            input = "input5",
+            output = "output5",
+            fault = {@jakarta.xml.ws.FaultAction(className = MyFault1.class, value = "fault1")})
+    public String address5(String s) throws MyFault1;
 
-  @jakarta.xml.ws.Action(input = "")
-  public void address6(String s) throws MyFault1;
+    @jakarta.xml.ws.Action(input = "")
+    public void address6(String s) throws MyFault1;
 
-  @jakarta.xml.ws.Action(output = "")
-  public String address7() throws MyFault1;
+    @jakarta.xml.ws.Action(output = "")
+    public String address7() throws MyFault1;
 }

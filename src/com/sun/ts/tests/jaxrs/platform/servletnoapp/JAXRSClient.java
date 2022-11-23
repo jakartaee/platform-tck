@@ -17,65 +17,60 @@
 package com.sun.ts.tests.jaxrs.platform.servletnoapp;
 
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
-
 import jakarta.ws.rs.core.MediaType;
 
 public class JAXRSClient extends JAXRSCommonClient {
 
-  private static final long serialVersionUID = -840563347622231491L;
+    private static final long serialVersionUID = -840563347622231491L;
 
-  public JAXRSClient() {
-    setContextRoot("/jaxrs_platform_servletnoapp_web");
-  }
+    public JAXRSClient() {
+        setContextRoot("/jaxrs_platform_servletnoapp_web");
+    }
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    new JAXRSClient().run(args);
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        new JAXRSClient().run(args);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
-  /* Run test */
-  /*
-   * @testName: test1
-   * 
-   * @assertion_ids: JAXRS:SPEC:23; JAXRS:SPEC:48; JAXRS:SPEC:56;
-   * 
-   * @test_Strategy: Create a servlet with name jakarta.ws.rs.core.Application in
-   * web.xml; Package all resource in web.war file; Client sends a request on a
-   * resource at /InheritanceTest, Verify that inheritance works; Verify deploy
-   * JAX-RS resource as Servlet application w/o Application works;.
-   */
-  public void test1() throws Fault {
-    setProperty(Property.REQUEST_HEADERS,
-        buildAccept(MediaType.TEXT_PLAIN_TYPE));
-    setProperty(Property.REQUEST,
-        buildRequest(Request.GET, "ServletNoApp/InheritanceTest"));
-    setProperty(Property.SEARCH_STRING, "First");
-    invoke();
-  }
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
+    /* Run test */
+    /*
+     * @testName: test1
+     *
+     * @assertion_ids: JAXRS:SPEC:23; JAXRS:SPEC:48; JAXRS:SPEC:56;
+     *
+     * @test_Strategy: Create a servlet with name jakarta.ws.rs.core.Application in
+     * web.xml; Package all resource in web.war file; Client sends a request on a
+     * resource at /InheritanceTest, Verify that inheritance works; Verify deploy
+     * JAX-RS resource as Servlet application w/o Application works;.
+     */
+    public void test1() throws Fault {
+        setProperty(Property.REQUEST_HEADERS, buildAccept(MediaType.TEXT_PLAIN_TYPE));
+        setProperty(Property.REQUEST, buildRequest(Request.GET, "ServletNoApp/InheritanceTest"));
+        setProperty(Property.SEARCH_STRING, "First");
+        invoke();
+    }
 
-  /*
-   * @testName: test2
-   * 
-   * @assertion_ids: JAXRS:SPEC:24; JAXRS:SPEC:48; JAXRS:SPEC:56;
-   * 
-   * @test_Strategy: Create a servlet with name jakarta.ws.rs.core.Application in
-   * web.xml; Package all resource in web.war file; Client sends a request on a
-   * resource at /InheritanceTest1, Verify that inheritance works. Verify deploy
-   * JAX-RS resource as Servlet application w/o Application works;.
-   */
-  public void test2() throws Fault {
-    setProperty(Property.REQUEST_HEADERS,
-        buildAccept(MediaType.TEXT_HTML_TYPE));
-    setProperty(Property.REQUEST,
-        buildRequest(Request.GET, "ServletNoApp/InheritanceTest1"));
-    setProperty(Property.SEARCH_STRING, "Second");
-    invoke();
-  }
+    /*
+     * @testName: test2
+     *
+     * @assertion_ids: JAXRS:SPEC:24; JAXRS:SPEC:48; JAXRS:SPEC:56;
+     *
+     * @test_Strategy: Create a servlet with name jakarta.ws.rs.core.Application in
+     * web.xml; Package all resource in web.war file; Client sends a request on a
+     * resource at /InheritanceTest1, Verify that inheritance works. Verify deploy
+     * JAX-RS resource as Servlet application w/o Application works;.
+     */
+    public void test2() throws Fault {
+        setProperty(Property.REQUEST_HEADERS, buildAccept(MediaType.TEXT_HTML_TYPE));
+        setProperty(Property.REQUEST, buildRequest(Request.GET, "ServletNoApp/InheritanceTest1"));
+        setProperty(Property.SEARCH_STRING, "Second");
+        invoke();
+    }
 }

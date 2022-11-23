@@ -16,62 +16,60 @@
 
 package com.sun.ts.tests.jsonp.api.common;
 
-import java.util.LinkedList;
-
 import com.sun.ts.lib.harness.EETest.Fault;
+import java.util.LinkedList;
 
 /**
  * Tests result record.
  */
 public class TestResult {
 
-  /** Name of test suite. */
-  private final String name;
+    /** Name of test suite. */
+    private final String name;
 
-  /** List of test failures. */
-  private final LinkedList<TestFail> fails;
+    /** List of test failures. */
+    private final LinkedList<TestFail> fails;
 
-  /**
-   * Creates an instance of tests result record.
-   * 
-   * @param name
-   *          Name of test suite.
-   */
-  public TestResult(final String name) {
-    this.name = name;
-    this.fails = new LinkedList<>();
-  }
-
-  /**
-   * Records test failure.
-   * 
-   * @param name
-   *          Test name.
-   * @param message
-   *          Error message.
-   */
-  public void fail(final String name, final String message) {
-    fails.addLast(new TestFail(name, message));
-  }
-
-  /**
-   * Evaluate test results.
-   * 
-   * @throws Fault
-   *           when any test failed.
-   */
-  public void eval() throws Fault {
-    if (fails.isEmpty()) {
-      return;
+    /**
+     * Creates an instance of tests result record.
+     *
+     * @param name
+     *          Name of test suite.
+     */
+    public TestResult(final String name) {
+        this.name = name;
+        this.fails = new LinkedList<>();
     }
-    final StringBuilder sb = new StringBuilder();
-    sb.append(name);
-    sb.append(" failed:");
-    for (TestFail fail : fails) {
-      sb.append('\n');
-      sb.append(fail.toString());
-    }
-    throw new Fault(sb.toString());
-  }
 
+    /**
+     * Records test failure.
+     *
+     * @param name
+     *          Test name.
+     * @param message
+     *          Error message.
+     */
+    public void fail(final String name, final String message) {
+        fails.addLast(new TestFail(name, message));
+    }
+
+    /**
+     * Evaluate test results.
+     *
+     * @throws Fault
+     *           when any test failed.
+     */
+    public void eval() throws Fault {
+        if (fails.isEmpty()) {
+            return;
+        }
+        final StringBuilder sb = new StringBuilder();
+        sb.append(name);
+        sb.append(" failed:");
+        for (TestFail fail : fails) {
+            sb.append('\n');
+            sb.append(fail.toString());
+        }
+        throw new Fault(sb.toString());
+    }
 }

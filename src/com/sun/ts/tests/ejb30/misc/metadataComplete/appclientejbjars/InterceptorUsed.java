@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb30.misc.metadataComplete.appclientejbjars;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 
@@ -30,27 +29,25 @@ import jakarta.interceptor.InvocationContext;
  */
 public class InterceptorUsed {
 
-  public InterceptorUsed() {
-    super();
-  }
-
-  /**
-   * This interceptor method only intercepts any business method that has
-   * parameters int, int.
-   */
-  @AroundInvoke
-  protected Object intercept(InvocationContext inv) throws Exception {
-    Object[] params = inv.getParameters();
-    if (params != null && params.length == 2 && params[0] instanceof Integer
-        && params[1] instanceof Integer) {
-      TLogger.log(
-          "Interceptor class: " + this + "\n" + "bean class: " + inv.getTarget()
-              + "\n" + "business method: " + inv.getMethod() + "\n");
-      Integer p1 = (Integer) params[0];
-      Integer p2 = (Integer) params[1];
-      Object[] newParams = new Integer[] { p1 + 100, p2 + 100 };
-      inv.setParameters(newParams);
+    public InterceptorUsed() {
+        super();
     }
-    return inv.proceed();
-  }
+
+    /**
+     * This interceptor method only intercepts any business method that has
+     * parameters int, int.
+     */
+    @AroundInvoke
+    protected Object intercept(InvocationContext inv) throws Exception {
+        Object[] params = inv.getParameters();
+        if (params != null && params.length == 2 && params[0] instanceof Integer && params[1] instanceof Integer) {
+            TLogger.log("Interceptor class: " + this + "\n" + "bean class: " + inv.getTarget() + "\n"
+                    + "business method: " + inv.getMethod() + "\n");
+            Integer p1 = (Integer) params[0];
+            Integer p2 = (Integer) params[1];
+            Object[] newParams = new Integer[] {p1 + 100, p2 + 100};
+            inv.setParameters(newParams);
+        }
+        return inv.proceed();
+    }
 }

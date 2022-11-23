@@ -21,14 +21,14 @@
 package com.sun.ts.tests.ejb30.common.ejblink;
 
 public interface Constants {
-  public static final String BEAN1_REF_NAME = "java:comp/env/ejb/EjbLink1Bean";
+    public static final String BEAN1_REF_NAME = "java:comp/env/ejb/EjbLink1Bean";
 
-  public static final String BEAN2_REF_NAME = "java:comp/env/ejb/EjbLink2Bean";
+    public static final String BEAN2_REF_NAME = "java:comp/env/ejb/EjbLink2Bean";
 
-  // bean3 is local bean packaged together with bean2
-  public static final String BEAN3_REF_NAME = "java:comp/env/ejb/EjbLink3Bean";
+    // bean3 is local bean packaged together with bean2
+    public static final String BEAN3_REF_NAME = "java:comp/env/ejb/EjbLink3Bean";
 
-  public static final String BEAN1_LOCAL_REF_NAME = "java:comp/env/ejb/EjbLink1BeanLocal";
-  // public static final String BEAN2_LOCAL_REF_NAME =
-  // "java:comp/env/ejb/EjbLink2BeanLocal";
+    public static final String BEAN1_LOCAL_REF_NAME = "java:comp/env/ejb/EjbLink1BeanLocal";
+    // public static final String BEAN2_LOCAL_REF_NAME =
+    // "java:comp/env/ejb/EjbLink2BeanLocal";
 }

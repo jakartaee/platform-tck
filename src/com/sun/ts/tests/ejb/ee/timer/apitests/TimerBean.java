@@ -20,33 +20,32 @@
 
 package com.sun.ts.tests.ejb.ee.timer.apitests;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface TimerBean extends EJBObject {
-  public boolean test1() throws RemoteException;
+    public boolean test1() throws RemoteException;
 
-  public boolean test2() throws RemoteException;
+    public boolean test2() throws RemoteException;
 
-  public boolean test3() throws RemoteException;
+    public boolean test3() throws RemoteException;
 
-  public boolean test4() throws RemoteException;
+    public boolean test4() throws RemoteException;
 
-  public boolean test5() throws RemoteException;
+    public boolean test5() throws RemoteException;
 
-  public boolean test6() throws RemoteException;
+    public boolean test6() throws RemoteException;
 
-  public boolean test7() throws RemoteException;
+    public boolean test7() throws RemoteException;
 
-  public boolean test8() throws RemoteException;
+    public boolean test8() throws RemoteException;
 
-  public boolean test9() throws RemoteException;
+    public boolean test9() throws RemoteException;
 
-  public boolean test10() throws RemoteException;
+    public boolean test10() throws RemoteException;
 
-  public void findAndCancelTimer() throws RemoteException;
+    public void findAndCancelTimer() throws RemoteException;
 
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 }

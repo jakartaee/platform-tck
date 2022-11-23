@@ -16,14 +16,7 @@
 
 package com.sun.ts.tests.jsonp.provider;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.Reader;
-import java.io.Writer;
-import java.util.Map;
-
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonBuilderFactory;
@@ -39,6 +32,11 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonGeneratorFactory;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParserFactory;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Reader;
+import java.io.Writer;
+import java.util.Map;
 
 // $Id$
 /*
@@ -48,159 +46,149 @@ import jakarta.json.stream.JsonParserFactory;
  */
 public class MyJsonProvider extends JsonProvider {
 
-  // Exception thrown when encoding or i/o error
-  private final JsonException exception = new JsonException(
-      "encoding or i/o error");
+    // Exception thrown when encoding or i/o error
+    private final JsonException exception = new JsonException("encoding or i/o error");
 
-  // call methods
-  private static final StringBuilder CALLS = new StringBuilder();
+    // call methods
+    private static final StringBuilder CALLS = new StringBuilder();
 
-  public static String getCalls() {
-    return CALLS.toString();
-  }
+    public static String getCalls() {
+        return CALLS.toString();
+    }
 
-  public static void clearCalls() {
-    CALLS.delete(0, CALLS.length());
-  }
+    public static void clearCalls() {
+        CALLS.delete(0, CALLS.length());
+    }
 
-  private static void addCalls(String s) {
-    CALLS.append(s);
-  }
+    private static void addCalls(String s) {
+        CALLS.append(s);
+    }
 
-  @Override
-  public JsonArrayBuilder createArrayBuilder() {
-    TestUtil.logTrace("public JsonArrayBuilder createArrayBuilder()");
-    addCalls("public JsonArrayBuilder createArrayBuilder()");
-    return null;
-  }
+    @Override
+    public JsonArrayBuilder createArrayBuilder() {
+        TestUtil.logTrace("public JsonArrayBuilder createArrayBuilder()");
+        addCalls("public JsonArrayBuilder createArrayBuilder()");
+        return null;
+    }
 
-  @Override
-  public JsonBuilderFactory createBuilderFactory(Map<String, ?> config) {
-    TestUtil.logTrace(
-        "public JsonBuilderFactory createBuilderFactory(Map<String, ?>)");
-    addCalls("public JsonBuilderFactory createBuilderFactory(Map<String, ?>)");
-    return null;
-  }
+    @Override
+    public JsonBuilderFactory createBuilderFactory(Map<String, ?> config) {
+        TestUtil.logTrace("public JsonBuilderFactory createBuilderFactory(Map<String, ?>)");
+        addCalls("public JsonBuilderFactory createBuilderFactory(Map<String, ?>)");
+        return null;
+    }
 
-  @Override
-  public JsonObjectBuilder createObjectBuilder() {
-    TestUtil.logTrace("public JsonObjectBuilder createObjectBuilder()");
-    addCalls("public JsonObjectBuilder createObjectBuilder()");
-    return null;
-  }
+    @Override
+    public JsonObjectBuilder createObjectBuilder() {
+        TestUtil.logTrace("public JsonObjectBuilder createObjectBuilder()");
+        addCalls("public JsonObjectBuilder createObjectBuilder()");
+        return null;
+    }
 
-  @Override
-  public JsonReader createReader(Reader reader) {
-    TestUtil.logTrace("public JsonReader createReader(Reader)");
-    addCalls("public JsonReader createReader(Reader)");
-    return new MyJsonReader(reader);
-  }
+    @Override
+    public JsonReader createReader(Reader reader) {
+        TestUtil.logTrace("public JsonReader createReader(Reader)");
+        addCalls("public JsonReader createReader(Reader)");
+        return new MyJsonReader(reader);
+    }
 
-  @Override
-  public JsonReader createReader(InputStream in) {
-    TestUtil.logTrace("public JsonReader createReader(InputStream)");
-    addCalls("public JsonReader createReader(InputStream)");
-    return new MyJsonReader(in);
-  }
+    @Override
+    public JsonReader createReader(InputStream in) {
+        TestUtil.logTrace("public JsonReader createReader(InputStream)");
+        addCalls("public JsonReader createReader(InputStream)");
+        return new MyJsonReader(in);
+    }
 
-  @Override
-  public JsonReaderFactory createReaderFactory(Map<String, ?> config) {
-    TestUtil.logTrace(
-        "public JsonReaderFactory createReaderFactory(Map<String, ?>)");
-    addCalls("public JsonReaderFactory createReaderFactory(Map<String, ?>)");
-    return null;
-  }
+    @Override
+    public JsonReaderFactory createReaderFactory(Map<String, ?> config) {
+        TestUtil.logTrace("public JsonReaderFactory createReaderFactory(Map<String, ?>)");
+        addCalls("public JsonReaderFactory createReaderFactory(Map<String, ?>)");
+        return null;
+    }
 
-  @Override
-  public JsonWriter createWriter(Writer writer) {
-    TestUtil.logTrace("public JsonWriter createWriter(Writer)");
-    addCalls("public JsonWriter createWriter(Writer)");
-    return new MyJsonWriter(writer);
-  }
+    @Override
+    public JsonWriter createWriter(Writer writer) {
+        TestUtil.logTrace("public JsonWriter createWriter(Writer)");
+        addCalls("public JsonWriter createWriter(Writer)");
+        return new MyJsonWriter(writer);
+    }
 
-  @Override
-  public JsonWriter createWriter(OutputStream out) {
-    TestUtil.logTrace("public JsonWriter createWriter(OutputStream)");
-    addCalls("public JsonWriter createWriter(OutputStream)");
-    return new MyJsonWriter(out);
-  }
+    @Override
+    public JsonWriter createWriter(OutputStream out) {
+        TestUtil.logTrace("public JsonWriter createWriter(OutputStream)");
+        addCalls("public JsonWriter createWriter(OutputStream)");
+        return new MyJsonWriter(out);
+    }
 
-  @Override
-  public JsonWriterFactory createWriterFactory(Map<String, ?> config) {
-    TestUtil.logTrace(
-        "public JsonWriterFactory createWriterFactory(Map<String, ?>)");
-    addCalls("public JsonWriterFactory createWriterFactory(Map<String, ?>)");
-    return null;
-  }
+    @Override
+    public JsonWriterFactory createWriterFactory(Map<String, ?> config) {
+        TestUtil.logTrace("public JsonWriterFactory createWriterFactory(Map<String, ?>)");
+        addCalls("public JsonWriterFactory createWriterFactory(Map<String, ?>)");
+        return null;
+    }
 
-  @Override
-  public JsonGenerator createGenerator(Writer writer) {
-    TestUtil.logTrace("public JsonGenerator createGenerator(Writer)");
-    addCalls("public JsonGenerator createGenerator(Writer)");
-    return new MyJsonGenerator(writer);
-  }
+    @Override
+    public JsonGenerator createGenerator(Writer writer) {
+        TestUtil.logTrace("public JsonGenerator createGenerator(Writer)");
+        addCalls("public JsonGenerator createGenerator(Writer)");
+        return new MyJsonGenerator(writer);
+    }
 
-  @Override
-  public JsonGenerator createGenerator(OutputStream out) {
-    TestUtil.logTrace("public JsonGenerator createGenerator(OutputStream)");
-    addCalls("public JsonGenerator createGenerator(OutputStream)");
-    return new MyJsonGenerator(out);
-  }
+    @Override
+    public JsonGenerator createGenerator(OutputStream out) {
+        TestUtil.logTrace("public JsonGenerator createGenerator(OutputStream)");
+        addCalls("public JsonGenerator createGenerator(OutputStream)");
+        return new MyJsonGenerator(out);
+    }
 
-  @Override
-  public JsonParser createParser(Reader reader) {
-    TestUtil.logTrace("public JsonParser createParser(Reader)");
-    addCalls("public JsonParser createParser(Reader)");
-    return new MyJsonParser(reader);
-  }
+    @Override
+    public JsonParser createParser(Reader reader) {
+        TestUtil.logTrace("public JsonParser createParser(Reader)");
+        addCalls("public JsonParser createParser(Reader)");
+        return new MyJsonParser(reader);
+    }
 
-  @Override
-  public JsonParser createParser(InputStream in) {
-    TestUtil.logTrace("public JsonParser createParser(InputStream)");
-    addCalls("public JsonParser createParser(InputStream)");
-    if (in == null)
-      throw exception;
-    else
-      return new MyJsonParser(in);
-  }
+    @Override
+    public JsonParser createParser(InputStream in) {
+        TestUtil.logTrace("public JsonParser createParser(InputStream)");
+        addCalls("public JsonParser createParser(InputStream)");
+        if (in == null) throw exception;
+        else return new MyJsonParser(in);
+    }
 
-  @Override
-  public JsonParserFactory createParserFactory(Map<String, ?> config) {
-    TestUtil.logTrace(
-        "public JsonParserFactory createParserFactory(Map<String, ?>)");
-    addCalls("public JsonParserFactory createParserFactory(Map<String, ?>)");
-    return null;
-  }
+    @Override
+    public JsonParserFactory createParserFactory(Map<String, ?> config) {
+        TestUtil.logTrace("public JsonParserFactory createParserFactory(Map<String, ?>)");
+        addCalls("public JsonParserFactory createParserFactory(Map<String, ?>)");
+        return null;
+    }
 
-  @Override
-  public JsonGeneratorFactory createGeneratorFactory(Map<String, ?> config) {
-    TestUtil.logTrace(
-        "public JsonGeneratorFactory createGeneratorFactory(Map<String, ?>)");
-    addCalls(
-        "public JsonGeneratorFactory createGeneratorFactory(Map<String, ?>)");
-    return null;
-  }
+    @Override
+    public JsonGeneratorFactory createGeneratorFactory(Map<String, ?> config) {
+        TestUtil.logTrace("public JsonGeneratorFactory createGeneratorFactory(Map<String, ?>)");
+        addCalls("public JsonGeneratorFactory createGeneratorFactory(Map<String, ?>)");
+        return null;
+    }
 
-  @Override
-  public JsonPatchBuilder createPatchBuilder() {
-    throw new UnsupportedOperationException("Not supported yet."); // To change
-                                                                   // body of
-                                                                   // generated
-                                                                   // methods,
-                                                                   // choose
-                                                                   // Tools |
-                                                                   // Templates.
-  }
+    @Override
+    public JsonPatchBuilder createPatchBuilder() {
+        throw new UnsupportedOperationException("Not supported yet."); // To change
+        // body of
+        // generated
+        // methods,
+        // choose
+        // Tools |
+        // Templates.
+    }
 
-  @Override
-  public JsonPatchBuilder createPatchBuilder(JsonArray ja) {
-    throw new UnsupportedOperationException("Not supported yet."); // To change
-                                                                   // body of
-                                                                   // generated
-                                                                   // methods,
-                                                                   // choose
-                                                                   // Tools |
-                                                                   // Templates.
-  }
-
+    @Override
+    public JsonPatchBuilder createPatchBuilder(JsonArray ja) {
+        throw new UnsupportedOperationException("Not supported yet."); // To change
+        // body of
+        // generated
+        // methods,
+        // choose
+        // Tools |
+        // Templates.
+    }
 }

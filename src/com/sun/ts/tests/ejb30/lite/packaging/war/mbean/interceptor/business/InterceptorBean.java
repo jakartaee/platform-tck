@@ -19,8 +19,6 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.business;
 
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.Interceptor1;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.Interceptor2;
@@ -30,25 +28,27 @@ import com.sun.ts.tests.ejb30.lite.interceptor.common.business.Interceptor5;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBaseBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBeanBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorIF;
-
 import jakarta.annotation.ManagedBean;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.Interceptors;
 import jakarta.interceptor.InvocationContext;
+import java.util.logging.Level;
 
 @ManagedBean
-@Interceptors({ Interceptor2.class, Interceptor1.class, Interceptor3.class,
-    Interceptor5.class, Interceptor4.class })
-public class InterceptorBean extends InterceptorBeanBase
-    implements InterceptorIF {
-  private static final String simpleName = "InterceptorBean";
+@Interceptors({Interceptor2.class, Interceptor1.class, Interceptor3.class, Interceptor5.class, Interceptor4.class})
+public class InterceptorBean extends InterceptorBeanBase implements InterceptorIF {
+    private static final String simpleName = "InterceptorBean";
 
-  @SuppressWarnings("unused")
-  @AroundInvoke
-  private Object intercep(InvocationContext inv) throws Exception {
-    Helper.getLogger().logp(Level.FINE, simpleName, "InterceptorBean",
-        "Adding around-invoke record: " + simpleName + ", this:" + this);
-    InterceptorBaseBase.addToHistory(inv, simpleName);
-    return inv.proceed();
-  }
+    @SuppressWarnings("unused")
+    @AroundInvoke
+    private Object intercep(InvocationContext inv) throws Exception {
+        Helper.getLogger()
+                .logp(
+                        Level.FINE,
+                        simpleName,
+                        "InterceptorBean",
+                        "Adding around-invoke record: " + simpleName + ", this:" + this);
+        InterceptorBaseBase.addToHistory(inv, simpleName);
+        return inv.proceed();
+    }
 }

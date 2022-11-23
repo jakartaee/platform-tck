@@ -17,42 +17,39 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.programaticcoder;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.WSCLoggerServer;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.WSCSimpleBinaryEchoServer;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.WSCSimpleEchoServer;
-
 import jakarta.websocket.Endpoint;
 import jakarta.websocket.server.ServerApplicationConfig;
 import jakarta.websocket.server.ServerEndpointConfig;
+import java.util.HashSet;
+import java.util.Set;
 
 public class AppConfig implements ServerApplicationConfig {
 
-  @Override
-  public Set<ServerEndpointConfig> getEndpointConfigs(
-      Set<Class<? extends Endpoint>> endpointClasses) {
-    Set<ServerEndpointConfig> set = new HashSet<>();
-    set.add(new BinaryDecoderEndpointConfig());
-    set.add(new BinaryEncoderEndpointConfig());
-    set.add(new BinaryStreamDecoderEndpointConfig());
-    set.add(new BinaryStreamEncoderEndpointConfig());
-    set.add(new TextDecoderEndpointConfig());
-    set.add(new TextEncoderEndpointConfig());
-    set.add(new TextStreamDecoderEndpointConfig());
-    set.add(new TextStreamEncoderEndpointConfig());
-    set.add(new WillDecodeBinaryDecoderEndpointConfig());
-    set.add(new WillDecodeTextDecoderEndpointConfig());
-    return set;
-  }
+    @Override
+    public Set<ServerEndpointConfig> getEndpointConfigs(Set<Class<? extends Endpoint>> endpointClasses) {
+        Set<ServerEndpointConfig> set = new HashSet<>();
+        set.add(new BinaryDecoderEndpointConfig());
+        set.add(new BinaryEncoderEndpointConfig());
+        set.add(new BinaryStreamDecoderEndpointConfig());
+        set.add(new BinaryStreamEncoderEndpointConfig());
+        set.add(new TextDecoderEndpointConfig());
+        set.add(new TextEncoderEndpointConfig());
+        set.add(new TextStreamDecoderEndpointConfig());
+        set.add(new TextStreamEncoderEndpointConfig());
+        set.add(new WillDecodeBinaryDecoderEndpointConfig());
+        set.add(new WillDecodeTextDecoderEndpointConfig());
+        return set;
+    }
 
-  @Override
-  public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scanned) {
-    Set<Class<?>> set = new HashSet<>();
-    set.add(WSCLoggerServer.class);
-    set.add(WSCSimpleBinaryEchoServer.class);
-    set.add(WSCSimpleEchoServer.class);
-    return set;
-  }
+    @Override
+    public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scanned) {
+        Set<Class<?>> set = new HashSet<>();
+        set.add(WSCLoggerServer.class);
+        set.add(WSCSimpleBinaryEchoServer.class);
+        set.add(WSCSimpleEchoServer.class);
+        return set;
+    }
 }

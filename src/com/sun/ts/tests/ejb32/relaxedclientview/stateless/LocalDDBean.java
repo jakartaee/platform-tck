@@ -20,6 +20,4 @@ import com.sun.ts.tests.ejb32.relaxedclientview.common.BaseBean;
 import com.sun.ts.tests.ejb32.relaxedclientview.common.NormalInterface1;
 import com.sun.ts.tests.ejb32.relaxedclientview.common.NormalInterface2;
 
-public class LocalDDBean extends BaseBean
-    implements NormalInterface1, NormalInterface2 {
-}
+public class LocalDDBean extends BaseBean implements NormalInterface1, NormalInterface2 {}

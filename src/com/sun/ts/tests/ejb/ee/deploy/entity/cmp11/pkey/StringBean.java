@@ -20,10 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.pkey;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface StringBean extends EJBObject {
-  public void ping() throws RemoteException;
+    public void ping() throws RemoteException;
 }

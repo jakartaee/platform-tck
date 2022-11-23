@@ -20,38 +20,35 @@
 
 package com.sun.ts.tests.ejb30.common.appexception;
 
+import jakarta.ejb.ApplicationException;
 import java.io.Serializable;
 
-import jakarta.ejb.ApplicationException;
-
 @ApplicationException()
-public class AtUncheckedAppException extends RuntimeException
-    implements Serializable {
+public class AtUncheckedAppException extends RuntimeException implements Serializable {
 
-  public AtUncheckedAppException() {
-    super();
-  }
+    public AtUncheckedAppException() {
+        super();
+    }
 
-  /**
-   * @param message
-   */
-  public AtUncheckedAppException(String message) {
-    super(message);
-  }
+    /**
+     * @param message
+     */
+    public AtUncheckedAppException(String message) {
+        super(message);
+    }
 
-  /**
-   * @param message
-   * @param cause
-   */
-  public AtUncheckedAppException(String message, Throwable cause) {
-    super(message, cause);
-  }
+    /**
+     * @param message
+     * @param cause
+     */
+    public AtUncheckedAppException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-  /**
-   * @param cause
-   */
-  public AtUncheckedAppException(Throwable cause) {
-    super(cause);
-  }
-
+    /**
+     * @param cause
+     */
+    public AtUncheckedAppException(Throwable cause) {
+        super(cause);
+    }
 }

@@ -17,34 +17,32 @@
 
 package com.sun.ts.tests.websocket.negdep.onmessage.client.textbigdecimal;
 
-import java.math.BigDecimal;
-
 import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
-
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
+import java.math.BigDecimal;
 
 @ClientEndpoint
 public class OnMessageClientEndpoint extends AnnotatedStringClientEndpoint {
 
-  @OnMessage
-  public void onMessage(BigDecimal decimal) {
-    clientEndpoint.onMessage(decimal.toString());
-  }
+    @OnMessage
+    public void onMessage(BigDecimal decimal) {
+        clientEndpoint.onMessage(decimal.toString());
+    }
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) {
-    clientEndpoint.onError(session, t);
-  }
+    @Override
+    @OnError
+    public void onError(Session session, Throwable t) {
+        clientEndpoint.onError(session, t);
+    }
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    clientEndpoint.onOpen(session, config, false);
-  }
+    @Override
+    @OnOpen
+    public void onOpen(Session session, EndpointConfig config) {
+        clientEndpoint.onOpen(session, config, false);
+    }
 }

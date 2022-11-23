@@ -60,10 +60,9 @@
 
 package com.sun.ts.tests.common.webclient.handler;
 
+import com.sun.ts.lib.util.TestUtil;
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HeaderElement;
-
-import com.sun.ts.lib.util.TestUtil;
 
 /**
  * <PRE>
@@ -73,73 +72,72 @@ import com.sun.ts.lib.util.TestUtil;
  */
 public class DefaultHandler implements Handler {
 
-  private static Handler handler = new DefaultHandler();
+    private static Handler handler = new DefaultHandler();
 
-  /**
-   * Creates new DefaultHandler
-   */
-  private DefaultHandler() {
-  }
+    /**
+     * Creates new DefaultHandler
+     */
+    private DefaultHandler() {}
 
-  /*
-   * public methods
-   * ========================================================================
-   */
+    /*
+     * public methods
+     * ========================================================================
+     */
 
-  /**
-   * Returns an instance of this handler.
-   */
-  public static Handler getInstance() {
-    return handler;
-  }
-
-  /**
-   * Invokes handler logic.
-   * 
-   * @param configuredHeader
-   *          the user configured header
-   * @param responseHeader
-   *          the response header from the server
-   * @return True if the passed match, otherwise false
-   */
-  public boolean invoke(Header configuredHeader, Header responseHeader) {
-
-    TestUtil.logTrace("[DefaulHandler] DefaultHandler invoked.");
-
-    return areHeadersEqual(configuredHeader, responseHeader);
-  }
-
-  /**
-   * Utility method to determine equality of two Header objects
-   * 
-   * @param h1
-   *          first header
-   * @param h2
-   *          second header
-   * @return true if the headers are equal, otherwise false
-   */
-  protected boolean areHeadersEqual(Header h1, Header h2) {
-
-    HeaderElement[] h1Values = h1.getElements();
-    HeaderElement[] h2Values = h2.getElements();
-
-    if (h1Values.length == h2Values.length) {
-      for (HeaderElement h1Value : h1Values) {
-        String h1Val = h1Value.getName();
-        boolean found = false;
-        for (HeaderElement h2Value : h2Values) {
-          if (h1Val.equals(h2Value.getName())) {
-            found = true;
-            break;
-          }
-        }
-        if (!found) {
-          return false;
-        }
-      }
-      return true;
-    } else {
-      return false;
+    /**
+     * Returns an instance of this handler.
+     */
+    public static Handler getInstance() {
+        return handler;
     }
-  }
+
+    /**
+     * Invokes handler logic.
+     *
+     * @param configuredHeader
+     *          the user configured header
+     * @param responseHeader
+     *          the response header from the server
+     * @return True if the passed match, otherwise false
+     */
+    public boolean invoke(Header configuredHeader, Header responseHeader) {
+
+        TestUtil.logTrace("[DefaulHandler] DefaultHandler invoked.");
+
+        return areHeadersEqual(configuredHeader, responseHeader);
+    }
+
+    /**
+     * Utility method to determine equality of two Header objects
+     *
+     * @param h1
+     *          first header
+     * @param h2
+     *          second header
+     * @return true if the headers are equal, otherwise false
+     */
+    protected boolean areHeadersEqual(Header h1, Header h2) {
+
+        HeaderElement[] h1Values = h1.getElements();
+        HeaderElement[] h2Values = h2.getElements();
+
+        if (h1Values.length == h2Values.length) {
+            for (HeaderElement h1Value : h1Values) {
+                String h1Val = h1Value.getName();
+                boolean found = false;
+                for (HeaderElement h2Value : h2Values) {
+                    if (h1Val.equals(h2Value.getName())) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    return false;
+                }
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

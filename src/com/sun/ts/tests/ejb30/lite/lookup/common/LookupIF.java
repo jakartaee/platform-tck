@@ -20,11 +20,11 @@
 package com.sun.ts.tests.ejb30.lite.lookup.common;
 
 public interface LookupIF {
-  public static final String LOOKUP_BEAN = "LookupBean";
+    public static final String LOOKUP_BEAN = "LookupBean";
 
-  public static final String LOOKUP2_BEAN = "Lookup2Bean";
+    public static final String LOOKUP2_BEAN = "Lookup2Bean";
 
-  public StringBuilder getPostConstructRecords();
+    public StringBuilder getPostConstructRecords();
 
-  public String getName();
+    public String getName();
 }

@@ -16,53 +16,52 @@
 
 package com.sun.ts.tests.jaxrs.platform.managedbean299;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.core.Application;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.UriInfo;
+import java.util.HashSet;
+import java.util.Set;
 
 @ApplicationScoped
 public class TSAppConfig extends Application {
 
-  private int value = 0;
+    private int value = 0;
 
-  public int getValue() {
-    return value;
-  }
+    public int getValue() {
+        return value;
+    }
 
-  public java.util.Set<java.lang.Class<?>> getClasses() {
-    Set<Class<?>> resources = new HashSet<Class<?>>();
-    resources.add(Resource.class);
-    resources.add(StringBuilderProvider.class);
-    return resources;
-  }
+    public java.util.Set<java.lang.Class<?>> getClasses() {
+        Set<Class<?>> resources = new HashSet<Class<?>>();
+        resources.add(Resource.class);
+        resources.add(StringBuilderProvider.class);
+        return resources;
+    }
 
-  @Override
-  public Set<Object> getSingletons() {
-    Set<Object> set = new HashSet<Object>();
-    set.add(new ApplicationHolderSingleton(this));
-    return set;
-  }
+    @Override
+    public Set<Object> getSingletons() {
+        Set<Object> set = new HashSet<Object>();
+        set.add(new ApplicationHolderSingleton(this));
+        return set;
+    }
 
-  @PostConstruct
-  public void post() {
-    value = 1000;
-    isUriInfoInjectedBeforePostConstruct = info != null;
-  }
+    @PostConstruct
+    public void post() {
+        value = 1000;
+        isUriInfoInjectedBeforePostConstruct = info != null;
+    }
 
-  // <JAXRS:SPEC:53.1 ----------------------------------------------->
-  @Context
-  private UriInfo info;
+    // <JAXRS:SPEC:53.1 ----------------------------------------------->
+    @Context
+    private UriInfo info;
 
-  private boolean isUriInfoInjectedBeforePostConstruct;
+    private boolean isUriInfoInjectedBeforePostConstruct;
 
-  public boolean isUriInfoInjectedBeforePostConstruct() {
-    return isUriInfoInjectedBeforePostConstruct;
-  }
-  // </JAXRS:SPEC:53.1 ----------------------------------------------->
+    public boolean isUriInfoInjectedBeforePostConstruct() {
+        return isUriInfoInjectedBeforePostConstruct;
+    }
+    // </JAXRS:SPEC:53.1 ----------------------------------------------->
 
 }

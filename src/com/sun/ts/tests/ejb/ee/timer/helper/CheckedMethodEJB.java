@@ -25,11 +25,11 @@ import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 
 public class CheckedMethodEJB extends StatelessWrapper {
 
-  public CheckedMethodEJB() {
-    TestUtil.logTrace("CheckedMethodEJB no arg constructor");
-  }
+    public CheckedMethodEJB() {
+        TestUtil.logTrace("CheckedMethodEJB no arg constructor");
+    }
 
-  public boolean isAuthz() {
-    return true;
-  }
+    public boolean isAuthz() {
+        return true;
+    }
 }

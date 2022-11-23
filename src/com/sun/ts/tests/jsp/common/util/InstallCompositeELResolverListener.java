@@ -26,24 +26,20 @@ import jakarta.servlet.jsp.JspFactory;
 /**
  * ServletContextListener that installs a CompositeELResolver.
  */
-public class InstallCompositeELResolverListener
-    implements ServletContextListener {
-  public static CompositeELResolver compResolver;
+public class InstallCompositeELResolverListener implements ServletContextListener {
+    public static CompositeELResolver compResolver;
 
-  public void contextInitialized(ServletContextEvent evt) {
+    public void contextInitialized(ServletContextEvent evt) {
 
-    compResolver = new CompositeELResolver();
-    ServletContext context = evt.getServletContext();
-    JspApplicationContext jspContext = JspFactory.getDefaultFactory()
-        .getJspApplicationContext(context);
-    jspContext.addELResolver(compResolver);
+        compResolver = new CompositeELResolver();
+        ServletContext context = evt.getServletContext();
+        JspApplicationContext jspContext = JspFactory.getDefaultFactory().getJspApplicationContext(context);
+        jspContext.addELResolver(compResolver);
+    }
 
-  }
+    public void contextDestroyed(ServletContextEvent evt) {}
 
-  public void contextDestroyed(ServletContextEvent evt) {
-  }
-
-  public static CompositeELResolver getCompositeELResolver() {
-    return compResolver;
-  }
+    public static CompositeELResolver getCompositeELResolver() {
+        return compResolver;
+    }
 }

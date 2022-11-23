@@ -21,5 +21,10 @@
 package com.sun.ts.tests.jpa.core.types.common;
 
 public enum Grade {
-  A, B, C, D, F, INCOMPLETE
+    A,
+    B,
+    C,
+    D,
+    F,
+    INCOMPLETE
 };

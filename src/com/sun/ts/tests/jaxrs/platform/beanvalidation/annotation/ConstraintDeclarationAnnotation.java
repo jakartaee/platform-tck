@@ -16,22 +16,21 @@
 
 package com.sun.ts.tests.jaxrs.platform.beanvalidation.annotation;
 
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import jakarta.validation.Constraint;
-import jakarta.validation.Payload;
-
-@Target({ ElementType.FIELD, ElementType.TYPE, ElementType.CONSTRUCTOR,
-    ElementType.PARAMETER, ElementType.METHOD })
+@Target({ElementType.FIELD, ElementType.TYPE, ElementType.CONSTRUCTOR, ElementType.PARAMETER, ElementType.METHOD})
 @Retention(value = RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = ConstraintDeclarationValidator.class)
 public @interface ConstraintDeclarationAnnotation {
-  String message() default "{com.sun.ts.tests.jaxrs.spec.beanvalidation.annotation.ConstraintDeclarationAnnotation.message}";
+    String message() default
+            "{com.sun.ts.tests.jaxrs.spec.beanvalidation.annotation.ConstraintDeclarationAnnotation.message}";
 
-  Class<?>[] groups() default {};
+    Class<?>[] groups() default {};
 
-  Class<? extends Payload>[] payload() default {};
+    Class<? extends Payload>[] payload() default {};
 }

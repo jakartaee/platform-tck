@@ -16,80 +16,77 @@
 
 package com.sun.ts.tests.jpa.core.override.mapkey;
 
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class TheatreLocation implements Serializable {
 
-  @Id
-  private Long id;
+    @Id
+    private Long id;
 
-  @Column(unique = true, nullable = false)
-  private String code;
+    @Column(unique = true, nullable = false)
+    private String code;
 
-  @ManyToMany()
-  private Set<TheatreCompany> companies = new HashSet();
+    @ManyToMany()
+    private Set<TheatreCompany> companies = new HashSet();
 
-  public TheatreLocation() {
-  }
+    public TheatreLocation() {}
 
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.getId() != null ? this.getId().hashCode() : 0);
-    return hash;
-  }
-
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof TheatreLocation)) {
-      return false;
+    public Long getId() {
+        return id;
     }
-    TheatreLocation other = (TheatreLocation) object;
-    if (this.getId() != other.getId()
-        && (this.getId() == null || !this.getId().equals(other.getId()))) {
-      return false;
+
+    public void setId(Long id) {
+        this.id = id;
     }
-    return true;
-  }
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.mapkey." + "TheatreLocation[id="
-        + getId() + "]";
-  }
+    public int hashCode() {
+        int hash = 0;
+        hash += (this.getId() != null ? this.getId().hashCode() : 0);
+        return hash;
+    }
 
-  public String getCode() {
-    return code;
-  }
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not
+        // set
+        if (!(object instanceof TheatreLocation)) {
+            return false;
+        }
+        TheatreLocation other = (TheatreLocation) object;
+        if (this.getId() != other.getId()
+                && (this.getId() == null || !this.getId().equals(other.getId()))) {
+            return false;
+        }
+        return true;
+    }
 
-  public void setCode(String code) {
-    this.code = code;
-  }
+    public String toString() {
+        return "com.sun.ts.tests.jpa.core.override.mapkey." + "TheatreLocation[id=" + getId() + "]";
+    }
 
-  public Set<TheatreCompany> getCompanies() {
-    return companies;
-  }
+    public String getCode() {
+        return code;
+    }
 
-  public void setCompanies(Set<TheatreCompany> companies) {
-    this.companies = companies;
-  }
+    public void setCode(String code) {
+        this.code = code;
+    }
 
-  public void addCompany(TheatreCompany company) {
-    this.companies.add(company);
-  }
+    public Set<TheatreCompany> getCompanies() {
+        return companies;
+    }
+
+    public void setCompanies(Set<TheatreCompany> companies) {
+        this.companies = companies;
+    }
+
+    public void addCompany(TheatreCompany company) {
+        this.companies.add(company);
+    }
 }

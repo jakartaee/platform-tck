@@ -25,7 +25,6 @@ import com.sun.ts.tests.ejb30.common.busiface.BusinessIF1;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessIF2;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF2;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
@@ -33,40 +32,36 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
 @Stateless(name = "BusinessBean")
-@Remote({ BusinessIF1.class, BusinessIF2.class })
-@Local({ BusinessLocalIF1.class, BusinessLocalIF2.class })
+@Remote({BusinessIF1.class, BusinessIF2.class})
+@Local({BusinessLocalIF1.class, BusinessLocalIF2.class})
 public class BusinessBean extends BusinessBeanBase {
-  @Resource
-  private SessionContext sessionContext;
+    @Resource
+    private SessionContext sessionContext;
 
-  public BusinessBean() {
-  }
+    public BusinessBean() {}
 
-  public void remove() {
-  }
+    public void remove() {}
 
-  public void remove2() {
-  }
+    public void remove2() {}
 
-  //////////////////////////////////////////////////////////////////////
-  // These 3 methods should not be called since this bean does not
-  // implement SessionSynchronization. Their superclass implementation
-  // throws EJBException upon being called.
-  // Having these methods here to verify they must not be called.
-  //////////////////////////////////////////////////////////////////////
-  @Override
-  public void afterCompletion(boolean b) {
-    super.afterCompletion(b);
-  }
+    //////////////////////////////////////////////////////////////////////
+    // These 3 methods should not be called since this bean does not
+    // implement SessionSynchronization. Their superclass implementation
+    // throws EJBException upon being called.
+    // Having these methods here to verify they must not be called.
+    //////////////////////////////////////////////////////////////////////
+    @Override
+    public void afterCompletion(boolean b) {
+        super.afterCompletion(b);
+    }
 
-  @Override
-  public void beforeCompletion() {
-    super.beforeCompletion();
-  }
+    @Override
+    public void beforeCompletion() {
+        super.beforeCompletion();
+    }
 
-  @Override
-  public void afterBegin() {
-    super.afterBegin();
-  }
-
+    @Override
+    public void afterBegin() {
+        super.afterBegin();
+    }
 }

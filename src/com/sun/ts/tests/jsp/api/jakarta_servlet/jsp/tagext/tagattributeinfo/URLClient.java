@@ -24,10 +24,9 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagattributeinfo;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 /**
  * Test client for TagAttributeInfo. Implementation note, all tests are
@@ -36,132 +35,124 @@ import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
  */
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /* Run tests */
+    /* Run tests */
 
-  // ============================================ Tests ======
+    // ============================================ Tests ======
 
-  /*
-   * @testName: tagAttributeInfoGetNameTest
-   * 
-   * @assertion_ids: JSP:JAVADOC:278
-   * 
-   * @test_Strategy: Validate the behavior of TagAttributeInfo.getName().
-   */
-  public void tagAttributeInfoGetNameTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagattrinfo_web/GetNameTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    invoke();
-  }
+    /*
+     * @testName: tagAttributeInfoGetNameTest
+     *
+     * @assertion_ids: JSP:JAVADOC:278
+     *
+     * @test_Strategy: Validate the behavior of TagAttributeInfo.getName().
+     */
+    public void tagAttributeInfoGetNameTest() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagattrinfo_web/GetNameTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
+        invoke();
+    }
 
-  /*
-   * @testName: tagAttributeInfoGetTypeNameTest
-   * 
-   * @assertion_ids: JSP:JAVADOC:279
-   * 
-   * @test_Strategy: Validate the behavior of TagAttributeInfo.getTypeName().
-   */
-  public void tagAttributeInfoGetTypeNameTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagattrinfo_web/GetTypeNameTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    invoke();
-  }
+    /*
+     * @testName: tagAttributeInfoGetTypeNameTest
+     *
+     * @assertion_ids: JSP:JAVADOC:279
+     *
+     * @test_Strategy: Validate the behavior of TagAttributeInfo.getTypeName().
+     */
+    public void tagAttributeInfoGetTypeNameTest() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagattrinfo_web/GetTypeNameTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
+        invoke();
+    }
 
-  /*
-   * @testName: tagAttributeInfoCanBeRequestTimeTest
-   * 
-   * @assertion_ids: JSP:JAVADOC:280
-   * 
-   * @test_Strategy: Validate the behavior of
-   * TagAttributeInfo.catBeRequestTime().
-   */
-  public void tagAttributeInfoCanBeRequestTimeTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagattrinfo_web/CanBeRequestTimeTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    invoke();
-  }
+    /*
+     * @testName: tagAttributeInfoCanBeRequestTimeTest
+     *
+     * @assertion_ids: JSP:JAVADOC:280
+     *
+     * @test_Strategy: Validate the behavior of
+     * TagAttributeInfo.catBeRequestTime().
+     */
+    public void tagAttributeInfoCanBeRequestTimeTest() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagattrinfo_web/CanBeRequestTimeTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
+        invoke();
+    }
 
-  /*
-   * @testName: tagAttributeInfoIsRequiredTest
-   * 
-   * @assertion_ids: JSP:JAVADOC:281
-   * 
-   * @test_Strategy: Validate the behavior of TagAttributeInfo.isRequired().
-   */
-  public void tagAttributeInfoIsRequiredTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagattrinfo_web/IsRequiredTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    invoke();
-  }
+    /*
+     * @testName: tagAttributeInfoIsRequiredTest
+     *
+     * @assertion_ids: JSP:JAVADOC:281
+     *
+     * @test_Strategy: Validate the behavior of TagAttributeInfo.isRequired().
+     */
+    public void tagAttributeInfoIsRequiredTest() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagattrinfo_web/IsRequiredTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
+        invoke();
+    }
 
-  /*
-   * @testName: tagAttributeInfoIsFragmentTest
-   * 
-   * @assertion_ids: JSP:JAVADOC:283
-   * 
-   * @test_Strategy: Validate the behavior of TagAttributeInfo.siFragment().
-   */
-  public void tagAttributeInfoIsFragmentTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagattrinfo_web/IsFragmentTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    invoke();
-  }
+    /*
+     * @testName: tagAttributeInfoIsFragmentTest
+     *
+     * @assertion_ids: JSP:JAVADOC:283
+     *
+     * @test_Strategy: Validate the behavior of TagAttributeInfo.siFragment().
+     */
+    public void tagAttributeInfoIsFragmentTest() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagattrinfo_web/IsFragmentTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
+        invoke();
+    }
 
-  /*
-   * @testName: tagAttributeInfoToStringTest
-   * 
-   * @assertion_ids: JSP:JAVADOC:284
-   * 
-   * @test_Strategy: Validate the behavior of TagAttributeInfo.toString().
-   */
-  public void tagAttributeInfoToStringTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagattrinfo_web/ToStringTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    invoke();
-  }
+    /*
+     * @testName: tagAttributeInfoToStringTest
+     *
+     * @assertion_ids: JSP:JAVADOC:284
+     *
+     * @test_Strategy: Validate the behavior of TagAttributeInfo.toString().
+     */
+    public void tagAttributeInfoToStringTest() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagattrinfo_web/ToStringTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
+        invoke();
+    }
 
-  /*
-   * @testName: tagAttributeInfoGetIdAttribute
-   * 
-   * @assertion_ids: JSP:JAVADOC:282
-   * 
-   * @test_Strategy: Convenience static method that goes through an array of
-   * TagAttributeInfo objects and looks for "id".
-   */
-  public void tagAttributeInfoGetIdAttribute() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagattrinfo_web/GetIdAttribute.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    invoke();
-  }
+    /*
+     * @testName: tagAttributeInfoGetIdAttribute
+     *
+     * @assertion_ids: JSP:JAVADOC:282
+     *
+     * @test_Strategy: Convenience static method that goes through an array of
+     * TagAttributeInfo objects and looks for "id".
+     */
+    public void tagAttributeInfoGetIdAttribute() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagattrinfo_web/GetIdAttribute.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
+        invoke();
+    }
 }

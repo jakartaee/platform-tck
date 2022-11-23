@@ -19,64 +19,63 @@
  */
 package com.sun.ts.tests.ejb30.lite.interceptor.singleton.lifecycle.annotated;
 
-import java.io.Serializable;
-
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorIF;
 import jakarta.ejb.EJB;
+import java.io.Serializable;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
-public class JsfClient extends
-    com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.JsfClientBase implements Serializable {
+public class JsfClient extends com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.JsfClientBase
+        implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @EJB(beanName = "InterceptorBean")
-  protected void setBean(InterceptorIF b) {
-    bean = b;
-  }
+    @EJB(beanName = "InterceptorBean")
+    protected void setBean(InterceptorIF b) {
+        bean = b;
+    }
 
-  @EJB(beanName = "InterceptorOverrideBean")
-  protected void setOverrideBean(InterceptorIF b) {
-    overrideBean = b;
-  }
+    @EJB(beanName = "InterceptorOverrideBean")
+    protected void setOverrideBean(InterceptorIF b) {
+        overrideBean = b;
+    }
 
-  @EJB(beanName = "InterceptorOverride34Bean")
-  protected void setOverride34Bean(InterceptorIF b) {
-    override34Bean = b;
-  }
+    @EJB(beanName = "InterceptorOverride34Bean")
+    protected void setOverride34Bean(InterceptorIF b) {
+        override34Bean = b;
+    }
 
-  @EJB(beanName = "AroundConstructInterceptorBean")
-  protected void setAroundConstructInterceptorBean(InterceptorIF b) {
-    aroundConstructBean = b;
-  }
+    @EJB(beanName = "AroundConstructInterceptorBean")
+    protected void setAroundConstructInterceptorBean(InterceptorIF b) {
+        aroundConstructBean = b;
+    }
 
-  /*
-   * @testName: allInterceptors
-   * 
-   * @test_Strategy: all interceptors at default and class-level should be
-   * invoked, as well as PostConstruct methods on bean class. For Interceptor8,
-   * the PostConstruct methods from super and super-super classes are overridden
-   * and therefore are not invoked.
-   */
-  /*
-   * @testName: overrideBeanInterceptorMethod
-   * 
-   * @test_Strategy: If a PostConstruct method is overridden, it is no longer
-   * invoked. This test override with a non-PostConstruct method. This test also
-   * excludes default and class-level interceptors.
-   */
-  /*
-   * @testName: overrideBeanInterceptorMethod3
-   * 
-   * @test_Strategy: If a PostConstruct method is overridden, it is no longer
-   * invoked. This test override with a PostConstruct method.
-   */
-  /*
-   * @testName: aroundConstructInterceptorTest
-   *
-   * @test_Strategy: Add 2 class-level AroundConstruct interceptors, and one is
-   * another's superclass, then verify the invocation order of all the
-   * AroundConstruct and PostConstruct lifecycle callbacks.
-   */
+    /*
+     * @testName: allInterceptors
+     *
+     * @test_Strategy: all interceptors at default and class-level should be
+     * invoked, as well as PostConstruct methods on bean class. For Interceptor8,
+     * the PostConstruct methods from super and super-super classes are overridden
+     * and therefore are not invoked.
+     */
+    /*
+     * @testName: overrideBeanInterceptorMethod
+     *
+     * @test_Strategy: If a PostConstruct method is overridden, it is no longer
+     * invoked. This test override with a non-PostConstruct method. This test also
+     * excludes default and class-level interceptors.
+     */
+    /*
+     * @testName: overrideBeanInterceptorMethod3
+     *
+     * @test_Strategy: If a PostConstruct method is overridden, it is no longer
+     * invoked. This test override with a PostConstruct method.
+     */
+    /*
+     * @testName: aroundConstructInterceptorTest
+     *
+     * @test_Strategy: Add 2 class-level AroundConstruct interceptors, and one is
+     * another's superclass, then verify the invocation order of all the
+     * AroundConstruct and PostConstruct lifecycle callbacks.
+     */
 }

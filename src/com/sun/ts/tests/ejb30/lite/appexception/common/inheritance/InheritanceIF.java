@@ -21,31 +21,31 @@
 package com.sun.ts.tests.ejb30.lite.appexception.common.inheritance;
 
 public interface InheritanceIF {
-  // public void checkedAppException();
-  public void uncheckedAppException1();
+    // public void checkedAppException();
+    public void uncheckedAppException1();
 
-  public void uncheckedAppException2() throws Exception1;
+    public void uncheckedAppException2() throws Exception1;
 
-  public void uncheckedAppException3() throws RuntimeException;
+    public void uncheckedAppException3() throws RuntimeException;
 
-  // declare to throw Exception1, but actually throw Exception4
-  public void uncheckedSystemException4() throws Exception1;
+    // declare to throw Exception1, but actually throw Exception4
+    public void uncheckedSystemException4() throws Exception1;
 
-  // declare to throw Exception1, but actually throw Exception5
-  public void uncheckedSystemException5() throws Exception1;
+    // declare to throw Exception1, but actually throw Exception5
+    public void uncheckedSystemException5() throws Exception1;
 
-  // declare to throw Exception5, but actually throw Exception6
-  public void uncheckedAppException6() throws Exception5;
+    // declare to throw Exception5, but actually throw Exception6
+    public void uncheckedAppException6() throws Exception5;
 
-  // declare to throw Exception5, but actually throw Exception7
-  public void uncheckedAppException7() throws Exception5;
+    // declare to throw Exception5, but actually throw Exception7
+    public void uncheckedAppException7() throws Exception5;
 
-  // public void checkedRollbackAppException();
-  // public void uncheckedRollbackAppException();
-  //
-  // public void atCheckedAppException();
-  // public void atUncheckedAppException();
-  // public void atCheckedRollbackAppException();
-  // public void atUncheckedRollbackAppException();
+    // public void checkedRollbackAppException();
+    // public void uncheckedRollbackAppException();
+    //
+    // public void atCheckedAppException();
+    // public void atUncheckedAppException();
+    // public void atCheckedRollbackAppException();
+    // public void atUncheckedRollbackAppException();
 
 }

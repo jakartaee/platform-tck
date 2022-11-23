@@ -28,15 +28,15 @@ import jakarta.interceptor.InvocationContext;
  */
 public class InterceptorNoat2 {
 
-  public InterceptorNoat2() {
-    super();
-  }
+    public InterceptorNoat2() {
+        super();
+    }
 
-  // @AroundInvoke
-  public Object intercept2(InvocationContext ctx) throws Exception {
-    Object result = null;
-    int orderInChain = 2;
-    result = AroundInvokeTestImpl.intercept2(ctx, orderInChain);
-    return result;
-  }
+    // @AroundInvoke
+    public Object intercept2(InvocationContext ctx) throws Exception {
+        Object result = null;
+        int orderInChain = 2;
+        result = AroundInvokeTestImpl.intercept2(ctx, orderInChain);
+        return result;
+    }
 }

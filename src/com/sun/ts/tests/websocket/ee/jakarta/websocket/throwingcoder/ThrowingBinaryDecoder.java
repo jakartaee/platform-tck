@@ -17,17 +17,15 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder;
 
-import java.nio.ByteBuffer;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryDecoder;
-
 import jakarta.websocket.DecodeException;
+import java.nio.ByteBuffer;
 
 public class ThrowingBinaryDecoder extends StringBeanBinaryDecoder {
 
-  @Override
-  public StringBean decode(ByteBuffer arg0) throws DecodeException {
-    throw new DecodeException(arg0, ThrowingTextDecoder.ERR_MSG);
-  }
+    @Override
+    public StringBean decode(ByteBuffer arg0) throws DecodeException {
+        throw new DecodeException(arg0, ThrowingTextDecoder.ERR_MSG);
+    }
 }

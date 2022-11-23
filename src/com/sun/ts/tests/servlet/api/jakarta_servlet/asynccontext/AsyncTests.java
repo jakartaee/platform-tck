@@ -19,44 +19,38 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.asynccontext;
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class AsyncTests extends GenericServlet {
 
-  private static final String TEST_HEADER = "testname";
+    private static final String TEST_HEADER = "testname";
 
-  private static final Class[] TEST_ARGS = { ServletRequest.class,
-      ServletResponse.class };
+    private static final Class[] TEST_ARGS = {ServletRequest.class, ServletResponse.class};
 
-  public void service(ServletRequest req, ServletResponse res)
-      throws ServletException, IOException {
-    String test = req.getParameter(TEST_HEADER);
-    try {
-      Method method = this.getClass().getMethod(test, TEST_ARGS);
-      method.invoke(this, new Object[] { req, res });
-    } catch (InvocationTargetException ite) {
-      throw new ServletException(ite.getTargetException());
-    } catch (NoSuchMethodException nsme) {
-      throw new ServletException("Test: " + test + " does not exist");
-    } catch (Throwable t) {
-      throw new ServletException("Error executing test: " + test, t);
+    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+        String test = req.getParameter(TEST_HEADER);
+        try {
+            Method method = this.getClass().getMethod(test, TEST_ARGS);
+            method.invoke(this, new Object[] {req, res});
+        } catch (InvocationTargetException ite) {
+            throw new ServletException(ite.getTargetException());
+        } catch (NoSuchMethodException nsme) {
+            throw new ServletException("Test: " + test + " does not exist");
+        } catch (Throwable t) {
+            throw new ServletException("Error executing test: " + test, t);
+        }
     }
-  }
 
-  public void asyncTest(ServletRequest request, ServletResponse response)
-      throws IOException {
-    response.getWriter().println("ASYNC_STARTED_asyncTest");
-    response.getWriter()
-        .println("IsAsyncSupported=" + request.isAsyncSupported());
-    response.getWriter().println("IsAsyncStarted=" + request.isAsyncStarted());
-    response.getWriter()
-        .println("DispatcherType=" + request.getDispatcherType());
-  }
+    public void asyncTest(ServletRequest request, ServletResponse response) throws IOException {
+        response.getWriter().println("ASYNC_STARTED_asyncTest");
+        response.getWriter().println("IsAsyncSupported=" + request.isAsyncSupported());
+        response.getWriter().println("IsAsyncStarted=" + request.isAsyncStarted());
+        response.getWriter().println("DispatcherType=" + request.getDispatcherType());
+    }
 }

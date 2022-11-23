@@ -25,37 +25,36 @@ import com.sun.ts.lib.util.TestUtil;
 
 public class TestCode {
 
-  /**
-   * Lookup a String env entry and compare its runtime value with a reference
-   * value.
-   *
-   * @param name
-   *          Name of the env entry to lookup.
-   * @param ref
-   *          Reference value for this env entry (the one in DD).
-   *
-   * @return true if runtime value and reference matches. False otherwise.
-   */
-  public static boolean checkEntry(TSNamingContext nctx, String name,
-      String ref) {
+    /**
+     * Lookup a String env entry and compare its runtime value with a reference
+     * value.
+     *
+     * @param name
+     *          Name of the env entry to lookup.
+     * @param ref
+     *          Reference value for this env entry (the one in DD).
+     *
+     * @return true if runtime value and reference matches. False otherwise.
+     */
+    public static boolean checkEntry(TSNamingContext nctx, String name, String ref) {
 
-    String runtimeVal;
-    boolean pass;
+        String runtimeVal;
+        boolean pass;
 
-    try {
-      TestUtil.logTrace("Looking up '" + name + "'");
-      runtimeVal = (String) nctx.lookup("java:comp/env/" + name);
-      TestUtil.logTrace("Runtime value is '" + runtimeVal + "'");
+        try {
+            TestUtil.logTrace("Looking up '" + name + "'");
+            runtimeVal = (String) nctx.lookup("java:comp/env/" + name);
+            TestUtil.logTrace("Runtime value is '" + runtimeVal + "'");
 
-      pass = runtimeVal.equals(ref);
-      if (!pass) {
-        TestUtil.logErr("Expected value was '" + ref + "'");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e, e);
-      pass = false;
+            pass = runtimeVal.equals(ref);
+            if (!pass) {
+                TestUtil.logErr("Expected value was '" + ref + "'");
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e, e);
+            pass = false;
+        }
+
+        return pass;
     }
-
-    return pass;
-  }
 }

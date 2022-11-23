@@ -17,26 +17,24 @@
 package com.sun.ts.tests.jpa.core.override.entitylistener;
 
 import com.sun.ts.tests.jpa.core.override.util.CallBackCounts;
-
 import jakarta.persistence.PostPersist;
 import jakarta.persistence.PrePersist;
 
 public class ListenerD {
 
-  public ListenerD() {
-  }
+    public ListenerD() {}
 
-  @PrePersist
-  public void prePersist(Object obj) {
-    updateCallBackCount("prePersist");
-  }
+    @PrePersist
+    public void prePersist(Object obj) {
+        updateCallBackCount("prePersist");
+    }
 
-  @PostPersist
-  public void postPersist(Object obj) {
-    updateCallBackCount("postPersist");
-  }
+    @PostPersist
+    public void postPersist(Object obj) {
+        updateCallBackCount("postPersist");
+    }
 
-  protected void updateCallBackCount(String callBackKeyName) {
-    CallBackCounts.updateCount(callBackKeyName);
-  }
+    protected void updateCallBackCount(String callBackKeyName) {
+        CallBackCounts.updateCount(callBackKeyName);
+    }
 }

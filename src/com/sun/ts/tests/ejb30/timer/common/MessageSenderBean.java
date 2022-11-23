@@ -24,7 +24,6 @@ import static com.sun.ts.tests.ejb30.common.messaging.Constants.MESSAGE_TIME_TO_
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NAME_KEY;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.jms.JMSException;
 import jakarta.jms.Message;
 import jakarta.jms.Queue;
@@ -37,55 +36,51 @@ import jakarta.jms.TextMessage;
 
 public class MessageSenderBean {
 
-  public static void sendMessage(QueueConnectionFactory queueConnectionFactory,
-      Queue sendQueue, String testname, int testnum) {
-    QueueConnection qConn = null;
-    try {
-      qConn = queueConnectionFactory.createQueueConnection();
-      qConn.start();
-      QueueSession qSession = qConn.createQueueSession(false,
-          Session.AUTO_ACKNOWLEDGE);
-      QueueSender qSender = qSession.createSender(sendQueue);
-      qSender.setTimeToLive(MESSAGE_TIME_TO_LIVE);
-      qSender.send(createTestMessage(qSession, testname, testnum));
-      Helper.getLogger()
-          .info(String.format(
-              "Message sent from testname: %s, testnum: %s, using sender: %s",
-              testname, testnum, qSender));
-    } catch (JMSException e) {
-      throw new RuntimeException(e);
-    } finally {
-      if (qConn != null) {
+    public static void sendMessage(
+            QueueConnectionFactory queueConnectionFactory, Queue sendQueue, String testname, int testnum) {
+        QueueConnection qConn = null;
         try {
-          qConn.close();
+            qConn = queueConnectionFactory.createQueueConnection();
+            qConn.start();
+            QueueSession qSession = qConn.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
+            QueueSender qSender = qSession.createSender(sendQueue);
+            qSender.setTimeToLive(MESSAGE_TIME_TO_LIVE);
+            qSender.send(createTestMessage(qSession, testname, testnum));
+            Helper.getLogger()
+                    .info(String.format(
+                            "Message sent from testname: %s, testnum: %s, using sender: %s",
+                            testname, testnum, qSender));
         } catch (JMSException e) {
-          throw new RuntimeException(e);
+            throw new RuntimeException(e);
+        } finally {
+            if (qConn != null) {
+                try {
+                    qConn.close();
+                } catch (JMSException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
-      }
     }
 
-  }
-
-  protected static TextMessage createTestMessage(Session session,
-      String testname, int num) {
-    TextMessage msg;
-    try {
-      msg = session.createTextMessage();
-      msg.setText(testname);
-      msg.setIntProperty("TestCaseNum", num);
-      msg.setStringProperty("COM_SUN_JMS_TESTNAME", testname);
-    } catch (JMSException e) {
-      throw new RuntimeException(e);
+    protected static TextMessage createTestMessage(Session session, String testname, int num) {
+        TextMessage msg;
+        try {
+            msg = session.createTextMessage();
+            msg.setText(testname);
+            msg.setIntProperty("TestCaseNum", num);
+            msg.setStringProperty("COM_SUN_JMS_TESTNAME", testname);
+        } catch (JMSException e) {
+            throw new RuntimeException(e);
+        }
+        return msg;
     }
-    return msg;
-  }
 
-  public static String getTestName(Message msg) {
-    try {
-      return msg.getStringProperty(TEST_NAME_KEY);
-    } catch (JMSException e) {
-      throw new RuntimeException(e);
+    public static String getTestName(Message msg) {
+        try {
+            return msg.getStringProperty(TEST_NAME_KEY);
+        } catch (JMSException e) {
+            throw new RuntimeException(e);
+        }
     }
-  }
-
 }

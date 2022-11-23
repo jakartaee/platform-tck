@@ -20,81 +20,81 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.remove.oneXmany;
 
-import java.util.Collection;
-
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.Collection;
 
 @Entity
 @Table(name = "AEJB_1XM_BI_BTOB")
 public class A implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+    // ===========================================================
+    // instance variables
 
-  @Id
-  protected String id;
+    @Id
+    protected String id;
 
-  @Basic
-  protected String name;
+    @Basic
+    protected String name;
 
-  @Basic
-  protected int value;
+    @Basic
+    protected int value;
 
-  // ===========================================================
-  // constructors
+    // ===========================================================
+    // constructors
 
-  public A() {
-    TestUtil.logTrace("Entity A no arg constructor");
-  }
+    public A() {
+        TestUtil.logTrace("Entity A no arg constructor");
+    }
 
-  public A(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+    public A(String id, String name, int value) {
+        this.id = id;
+        this.name = name;
+        this.value = value;
+    }
 
-  public A(String id, String name, int value, Collection bCol) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-    this.bCol = bCol;
-  }
+    public A(String id, String name, int value, Collection bCol) {
+        this.id = id;
+        this.name = name;
+        this.value = value;
+        this.bCol = bCol;
+    }
 
-  // ===========================================================
-  // relationship fields
+    // ===========================================================
+    // relationship fields
 
-  @OneToMany(targetEntity = com.sun.ts.tests.jpa.core.entitytest.remove.oneXmany.B.class, mappedBy = "a1", cascade = CascadeType.REMOVE)
-  protected Collection bCol = new java.util.ArrayList();
+    @OneToMany(
+            targetEntity = com.sun.ts.tests.jpa.core.entitytest.remove.oneXmany.B.class,
+            mappedBy = "a1",
+            cascade = CascadeType.REMOVE)
+    protected Collection bCol = new java.util.ArrayList();
 
-  // =======================================================================
-  // Business methods for test cases
+    // =======================================================================
+    // Business methods for test cases
 
-  public Collection getBCol() {
-    TestUtil.logTrace("getBCol");
-    return bCol;
-  }
+    public Collection getBCol() {
+        TestUtil.logTrace("getBCol");
+        return bCol;
+    }
 
-  public void setBCol(Collection c) {
-    this.bCol = c;
-  }
+    public void setBCol(Collection c) {
+        this.bCol = c;
+    }
 
-  public String getAId() {
-    return id;
-  }
+    public String getAId() {
+        return id;
+    }
 
-  public String getAName() {
-    return name;
-  }
+    public String getAName() {
+        return name;
+    }
 
-  public int getAValue() {
-    return value;
-  }
-
+    public int getAValue() {
+        return value;
+    }
 }

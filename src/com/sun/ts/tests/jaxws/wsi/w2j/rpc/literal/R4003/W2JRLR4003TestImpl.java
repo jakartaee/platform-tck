@@ -22,14 +22,18 @@ package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R4003;
 
 import jakarta.jws.WebService;
 
-@WebService(portName = "W2JRLR4003TestPort", serviceName = "W2JRLR4003TestService", targetNamespace = "http://w2jrlr4003testservice.org/W2JRLR4003TestService.wsdl", wsdlLocation = "WEB-INF/wsdl/W2JRLR4003TestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R4003.W2JRLR4003Test")
-
+@WebService(
+        portName = "W2JRLR4003TestPort",
+        serviceName = "W2JRLR4003TestService",
+        targetNamespace = "http://w2jrlr4003testservice.org/W2JRLR4003TestService.wsdl",
+        wsdlLocation = "WEB-INF/wsdl/W2JRLR4003TestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R4003.W2JRLR4003Test")
 public class W2JRLR4003TestImpl implements W2JRLR4003Test {
-  public NonNullStringUTF8 echoStringUTF8(NonNullStringUTF8 str) {
-    return str;
-  }
+    public NonNullStringUTF8 echoStringUTF8(NonNullStringUTF8 str) {
+        return str;
+    }
 
-  public NonNullStringUTF16 echoStringUTF16(NonNullStringUTF16 str) {
-    return str;
-  }
+    public NonNullStringUTF16 echoStringUTF16(NonNullStringUTF16 str) {
+        return str;
+    }
 }

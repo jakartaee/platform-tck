@@ -23,180 +23,179 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventry;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.annotation.enventry.ClientBase;
 import com.sun.ts.tests.ejb30.common.annotation.enventry.EnvEntryIF;
-
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
-  @EJB(beanName = "EnvEntrySetterBean")
-  private static EnvEntryIF envEntrySetterBean;
+    @EJB(beanName = "EnvEntrySetterBean")
+    private static EnvEntryIF envEntrySetterBean;
 
-  @EJB(beanName = "EnvEntryFieldBean")
-  private static EnvEntryIF envEntryFieldBean;
+    @EJB(beanName = "EnvEntryFieldBean")
+    private static EnvEntryIF envEntryFieldBean;
 
-  @EJB(beanName = "EnvEntryTypeBean")
-  private static EnvEntryIF envEntryTypeBean;
+    @EJB(beanName = "EnvEntryTypeBean")
+    private static EnvEntryIF envEntryTypeBean;
 
-  protected EnvEntryIF getEnvEntrySetterBean() {
-    return envEntrySetterBean;
-  }
+    protected EnvEntryIF getEnvEntrySetterBean() {
+        return envEntrySetterBean;
+    }
 
-  protected EnvEntryIF getEnvEntryFieldBean() {
-    return envEntryFieldBean;
-  }
+    protected EnvEntryIF getEnvEntryFieldBean() {
+        return envEntryFieldBean;
+    }
 
-  protected EnvEntryIF getEnvEntryTypeBean() {
-    return envEntryTypeBean;
-  }
+    protected EnvEntryIF getEnvEntryTypeBean() {
+        return envEntryTypeBean;
+    }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * @testName: stringTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
+    /*
+     * @testName: stringTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: charTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
-  /*
-   * @testName: intTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
-  /*
-   * @testName: booleanTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
-  /*
-   * @testName: doubleTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
-  /*
-   * @testName: byteTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
-  /*
-   * @testName: shortTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
-  /*
-   * @testName: longTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
-  /*
-   * @testName: floatTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
-  /*
-   * @testName: stringDeepTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
-  /*
-   * @testName: charDeepTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
-  /*
-   * @testName: intDeepTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
-  /*
-   * @testName: booleanDeepTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
-  /*
-   * @testName: doubleDeepTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
-  /*
-   * @testName: byteDeepTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
-  /*
-   * @testName: shortDeepTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
-  /*
-   * @testName: longDeepTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
-  /*
-   * @testName: floatDeepTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
+    /*
+     * @testName: charTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: intTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: booleanTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: doubleTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: byteTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: shortTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: longTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: floatTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: stringDeepTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: charDeepTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: intDeepTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: booleanDeepTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: doubleDeepTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: byteDeepTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: shortDeepTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: longDeepTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: floatDeepTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 }

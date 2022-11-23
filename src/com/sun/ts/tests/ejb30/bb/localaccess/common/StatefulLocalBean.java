@@ -26,22 +26,21 @@ import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 
-//@Stateful(name="StatefulLocalBean")
+// @Stateful(name="StatefulLocalBean")
 @Stateful
-@Local({ StatefulLocalIF.class })
-public class StatefulLocalBean extends CommonBase
-    implements StatefulLocalIF, java.io.Serializable {
+@Local({StatefulLocalIF.class})
+public class StatefulLocalBean extends CommonBase implements StatefulLocalIF, java.io.Serializable {
 
-  @Resource
-  private SessionContext sessionContext;
+    @Resource
+    private SessionContext sessionContext;
 
-  public StatefulLocalBean() {
-    super();
-  }
+    public StatefulLocalBean() {
+        super();
+    }
 
-  // ================== business methods ====================================
-  @Remove
-  public void remove() {
-    super.remove();
-  }
+    // ================== business methods ====================================
+    @Remove
+    public void remove() {
+        super.remove();
+    }
 }

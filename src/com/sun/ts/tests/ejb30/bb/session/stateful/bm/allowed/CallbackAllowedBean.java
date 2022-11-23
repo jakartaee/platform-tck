@@ -20,13 +20,10 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.bm.allowed;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.ejb30.common.allowed.CallbackAllowedBeanBase;
 import com.sun.ts.tests.ejb30.common.allowed.CallbackAllowedIF;
 import com.sun.ts.tests.ejb30.common.allowed.CallbackAllowedLocalIF;
 import com.sun.ts.tests.ejb30.common.allowed.stateful.TimerLocalIF;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
@@ -38,37 +35,34 @@ import jakarta.ejb.Stateful;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import jakarta.interceptor.Interceptors;
+import java.util.Properties;
 
 @Stateful(name = "CallbackAllowedBean")
-@Remote({ CallbackAllowedIF.class })
-@Local({ CallbackAllowedLocalIF.class })
+@Remote({CallbackAllowedIF.class})
+@Local({CallbackAllowedLocalIF.class})
 @TransactionManagement(TransactionManagementType.BEAN)
-@Interceptors({
-    com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulCancelInterceptor.class })
-
+@Interceptors({com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulCancelInterceptor.class})
 @EJB(name = "ejb/TimerEJB", beanName = "TimerEJB", beanInterface = TimerLocalIF.class)
 public class CallbackAllowedBean extends CallbackAllowedBeanBase
-    implements CallbackAllowedIF, CallbackAllowedLocalIF, java.io.Serializable {
+        implements CallbackAllowedIF, CallbackAllowedLocalIF, java.io.Serializable {
 
-  @PostConstruct
-  public void ejbCreate() {
-    super.ejbCreate();
-  }
+    @PostConstruct
+    public void ejbCreate() {
+        super.ejbCreate();
+    }
 
-  @Resource(name = "ejbContext")
-  public void setSessionContext(SessionContext sc) {
-    super.setSessionContext(sc);
-  }
+    @Resource(name = "ejbContext")
+    public void setSessionContext(SessionContext sc) {
+        super.setSessionContext(sc);
+    }
 
-  @Remove
-  public void remove() {
-    super.remove();
-  }
+    @Remove
+    public void remove() {
+        super.remove();
+    }
 
-  @Override
-  public Properties runOperations(SessionContext sctx) {
-    return StatefulBMTOperations.getInstance().run2(sctx,
-        CallbackAllowedIF.class);
-  }
-
+    @Override
+    public Properties runOperations(SessionContext sctx) {
+        return StatefulBMTOperations.getInstance().run2(sctx, CallbackAllowedIF.class);
+    }
 }

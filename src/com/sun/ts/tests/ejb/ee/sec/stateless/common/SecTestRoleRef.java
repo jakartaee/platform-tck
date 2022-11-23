@@ -20,12 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.sec.stateless.common;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface SecTestRoleRef extends EJBObject {
-  public boolean EjbSecRoleRefScope(String role) throws RemoteException;
+    public boolean EjbSecRoleRefScope(String role) throws RemoteException;
 
-  public void initLogging(java.util.Properties p) throws RemoteException;
+    public void initLogging(java.util.Properties p) throws RemoteException;
 }

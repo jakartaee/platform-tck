@@ -20,11 +20,8 @@
  * @author Raja Perumal
  *         03/13/03
  */
-
 package com.sun.ts.tests.jacc.util;
 
 import jakarta.ejb.EJBObject;
 
-public interface JACCWSSessionRemote extends EJBObject, JACCWSSession {
-
-}
+public interface JACCWSSessionRemote extends EJBObject, JACCWSSession {}

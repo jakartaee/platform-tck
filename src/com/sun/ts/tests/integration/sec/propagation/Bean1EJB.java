@@ -23,7 +23,6 @@ package com.sun.ts.tests.integration.sec.propagation;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TSNamingContextInterface;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionBean;
@@ -31,69 +30,69 @@ import jakarta.ejb.SessionContext;
 
 public class Bean1EJB implements SessionBean {
 
-  private SessionContext sessionContext = null;
+    private SessionContext sessionContext = null;
 
-  public void ejbCreate() throws CreateException {
-    TestUtil.logTrace("ejbCreate OK");
-  }
-
-  /**
-   * Returns the name of the caller principal
-   */
-  public String getCallerPrincipalName() {
-    return sessionContext.getCallerPrincipal().getName();
-  }
-
-  /**
-   * Looks up Bean2, creates an instance, and makes a call to one of its methods
-   * to ensure the principal is propagated properly.
-   */
-  public String getPropagatedPrincipalName() {
-    String result = null;
-
-    try {
-      TSNamingContextInterface nctx = null;
-      String testLookup = "java:comp/env/ejb/Bean2";
-
-      Bean2Home bean2Home = null;
-      Bean2 bean2Ref = null;
-
-      nctx = new TSNamingContext();
-      bean2Home = (Bean2Home) nctx.lookup(testLookup, Bean2Home.class);
-      bean2Ref = bean2Home.create();
-
-      result = bean2Ref.getCallerPrincipalName();
-
-      bean2Ref.remove();
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("Exception: " + e.getMessage());
+    public void ejbCreate() throws CreateException {
+        TestUtil.logTrace("ejbCreate OK");
     }
 
-    return result;
-  }
+    /**
+     * Returns the name of the caller principal
+     */
+    public String getCallerPrincipalName() {
+        return sessionContext.getCallerPrincipal().getName();
+    }
 
-  public String Test() {
-    return "true";
-  }
+    /**
+     * Looks up Bean2, creates an instance, and makes a call to one of its methods
+     * to ensure the principal is propagated properly.
+     */
+    public String getPropagatedPrincipalName() {
+        String result = null;
 
-  public void setSessionContext(SessionContext sc) {
-    sessionContext = sc;
-  }
+        try {
+            TSNamingContextInterface nctx = null;
+            String testLookup = "java:comp/env/ejb/Bean2";
 
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
+            Bean2Home bean2Home = null;
+            Bean2 bean2Ref = null;
 
-  public void ejbDestroy() {
-    TestUtil.logTrace("ejbDestroy");
-  }
+            nctx = new TSNamingContext();
+            bean2Home = (Bean2Home) nctx.lookup(testLookup, Bean2Home.class);
+            bean2Ref = bean2Home.create();
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
+            result = bean2Ref.getCallerPrincipalName();
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
+            bean2Ref.remove();
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("Exception: " + e.getMessage());
+        }
+
+        return result;
+    }
+
+    public String Test() {
+        return "true";
+    }
+
+    public void setSessionContext(SessionContext sc) {
+        sessionContext = sc;
+    }
+
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
+    }
+
+    public void ejbDestroy() {
+        TestUtil.logTrace("ejbDestroy");
+    }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
 }

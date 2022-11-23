@@ -25,12 +25,9 @@ import com.sun.ts.tests.ejb30.assembly.common.AssemblyCommonIF;
 import com.sun.ts.tests.ejb30.assembly.common.AssemblyLocalIF;
 import com.sun.ts.tests.ejb30.assembly.common.AssemblyRemoteIF;
 
-//already declared in ejb-jar.xml.  Annotations not needed
-//@Stateless
-public class AssemblyBean extends AssemblyBeanBase
-    implements AssemblyRemoteIF, AssemblyLocalIF, AssemblyCommonIF {
+// already declared in ejb-jar.xml.  Annotations not needed
+// @Stateless
+public class AssemblyBean extends AssemblyBeanBase implements AssemblyRemoteIF, AssemblyLocalIF, AssemblyCommonIF {
 
-  public AssemblyBean() {
-  }
-
+    public AssemblyBean() {}
 }

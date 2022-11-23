@@ -20,117 +20,113 @@
 
 package com.sun.ts.tests.assembly.compat.cocktail.compat12_50;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  private static final String prefix = "java:comp/env/ejb/";
+    private static final String prefix = "java:comp/env/ejb/";
 
-  /** Bean lookup */
-  private static final String bean1Lookup = prefix + "Vision";
+    /** Bean lookup */
+    private static final String bean1Lookup = prefix + "Vision";
 
-  private static final String bean2Lookup = prefix + "Music";
+    private static final String bean2Lookup = prefix + "Music";
 
-  /** Expected value for the bean name */
-  private static final String bean1RefName = "Rimbaud";
+    /** Expected value for the bean name */
+    private static final String bean1RefName = "Rimbaud";
 
-  private static final String bean2RefName = "Verlaine";
+    private static final String bean2RefName = "Verlaine";
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   * generateSQL;
-   *
-   * @class.testArgs: -ap tssql.stmt
-   *
-   */
-  public void setup(String[] args, Properties props) throws Fault {
-    this.props = props;
-
-    try {
-      nctx = new TSNamingContext();
-      logMsg("[Client] Setup succeed (got naming context).");
-    } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /**
-   * @testName: test12DD
-   *
-   * @assertion_ids: JavaEE:SPEC:284
-   *
-   * @test_Strategy:
-   *
-   *                 Package an .ear file (JavaEE 5.0 application DD) with: - 1
-   *                 ejb-jar file using a J2EE 1.2 DD - 1 ejb-jar file using a
-   *                 JavaEE 5.0 DD - 1 application client jar file using a J2EE
-   *                 1.2 DD - 1 application client jar file using a JavEE 5.0 DD
-   *
-   *                 Deploy the .ear file.
-   *
-   *                 Run the 1.2 client and check that it can call a bean in
-   *                 each ejb-jar at runtime.
-   */
-  public void test12DD() throws Fault {
-    ReferencedBeanHome home1 = null;
-    ReferencedBeanHome home2 = null;
-    ReferencedBean bean1 = null;
-    ReferencedBean bean2 = null;
-    String bean1Name;
-    String bean2Name;
-    boolean pass = false;
+    /*
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     * generateSQL;
+     *
+     * @class.testArgs: -ap tssql.stmt
+     *
+     */
+    public void setup(String[] args, Properties props) throws Fault {
+        this.props = props;
 
-    try {
-      TestUtil.logTrace("[Client] Looking up '" + bean1Lookup);
-      home1 = (ReferencedBeanHome) nctx.lookup(bean1Lookup,
-          ReferencedBeanHome.class);
-      bean1 = home1.create();
-      bean1.initLogging(props);
-      bean1Name = bean1.whoAreYou();
-      TestUtil.logTrace(bean1Lookup + "name is '" + bean1Name + "'");
-      bean1.remove();
-
-      TestUtil.logTrace("[Client] Looking up '" + bean2Lookup);
-      home2 = (ReferencedBeanHome) nctx.lookup(bean2Lookup,
-          ReferencedBeanHome.class);
-      bean2 = home2.create();
-      bean2.initLogging(props);
-      bean2Name = bean2.whoAreYou();
-      TestUtil.logTrace(bean2Lookup + "name is '" + bean2Name + "'");
-      bean2.remove();
-
-      pass = bean1Name.equals(bean1RefName) && bean2Name.equals(bean2RefName);
-      if (!pass) {
-        TestUtil.logErr("[Client] " + bean1Lookup + "name is '" + bean1Name
-            + "' expected '" + bean1RefName + "'");
-
-        TestUtil.logErr("[Client] " + bean2Lookup + "name is '" + bean2Name
-            + "' expected '" + bean2RefName + "'");
-
-        throw new Fault("compat cocktail test failed!");
-      }
-    } catch (Exception e) {
-      throw new Fault("compat cocktail test failed: " + e, e);
+        try {
+            nctx = new TSNamingContext();
+            logMsg("[Client] Setup succeed (got naming context).");
+        } catch (Exception e) {
+            throw new Fault("Setup failed:", e);
+        }
     }
-  }
 
-  public void cleanup() throws Fault {
-    logMsg("[Client] cleanup()");
-  }
+    /**
+     * @testName: test12DD
+     *
+     * @assertion_ids: JavaEE:SPEC:284
+     *
+     * @test_Strategy:
+     *
+     *                 Package an .ear file (JavaEE 5.0 application DD) with: - 1
+     *                 ejb-jar file using a J2EE 1.2 DD - 1 ejb-jar file using a
+     *                 JavaEE 5.0 DD - 1 application client jar file using a J2EE
+     *                 1.2 DD - 1 application client jar file using a JavEE 5.0 DD
+     *
+     *                 Deploy the .ear file.
+     *
+     *                 Run the 1.2 client and check that it can call a bean in
+     *                 each ejb-jar at runtime.
+     */
+    public void test12DD() throws Fault {
+        ReferencedBeanHome home1 = null;
+        ReferencedBeanHome home2 = null;
+        ReferencedBean bean1 = null;
+        ReferencedBean bean2 = null;
+        String bean1Name;
+        String bean2Name;
+        boolean pass = false;
 
+        try {
+            TestUtil.logTrace("[Client] Looking up '" + bean1Lookup);
+            home1 = (ReferencedBeanHome) nctx.lookup(bean1Lookup, ReferencedBeanHome.class);
+            bean1 = home1.create();
+            bean1.initLogging(props);
+            bean1Name = bean1.whoAreYou();
+            TestUtil.logTrace(bean1Lookup + "name is '" + bean1Name + "'");
+            bean1.remove();
+
+            TestUtil.logTrace("[Client] Looking up '" + bean2Lookup);
+            home2 = (ReferencedBeanHome) nctx.lookup(bean2Lookup, ReferencedBeanHome.class);
+            bean2 = home2.create();
+            bean2.initLogging(props);
+            bean2Name = bean2.whoAreYou();
+            TestUtil.logTrace(bean2Lookup + "name is '" + bean2Name + "'");
+            bean2.remove();
+
+            pass = bean1Name.equals(bean1RefName) && bean2Name.equals(bean2RefName);
+            if (!pass) {
+                TestUtil.logErr(
+                        "[Client] " + bean1Lookup + "name is '" + bean1Name + "' expected '" + bean1RefName + "'");
+
+                TestUtil.logErr(
+                        "[Client] " + bean2Lookup + "name is '" + bean2Name + "' expected '" + bean2RefName + "'");
+
+                throw new Fault("compat cocktail test failed!");
+            }
+        } catch (Exception e) {
+            throw new Fault("compat cocktail test failed: " + e, e);
+        }
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("[Client] cleanup()");
+    }
 }

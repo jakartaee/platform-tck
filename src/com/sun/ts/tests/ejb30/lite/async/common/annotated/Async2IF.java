@@ -19,5 +19,4 @@
  */
 package com.sun.ts.tests.ejb30.lite.async.common.annotated;
 
-public interface Async2IF extends AsyncIF {
-}
+public interface Async2IF extends AsyncIF {}

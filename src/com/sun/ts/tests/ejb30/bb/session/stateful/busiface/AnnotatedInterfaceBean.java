@@ -25,7 +25,6 @@ import com.sun.ts.tests.ejb30.common.busiface.AnnotatedBusinessInterface2;
 import com.sun.ts.tests.ejb30.common.busiface.AnnotatedLocalBusinessInterface1;
 import com.sun.ts.tests.ejb30.common.busiface.AnnotatedLocalBusinessInterface2;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessBeanBase;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
@@ -37,19 +36,18 @@ import jakarta.ejb.Stateful;
 // @Local({AnnotatedLocalBusinessInterface1.class,
 // AnnotatedLocalBusinessInterface2.class})
 public class AnnotatedInterfaceBean extends BusinessBeanBase
-    implements AnnotatedLocalBusinessInterface1,
-    AnnotatedLocalBusinessInterface2, AnnotatedBusinessInterface1,
-    AnnotatedBusinessInterface2, java.io.Serializable {
-  @Resource(name = "sessionContext")
-  private SessionContext sessionContext;
+        implements AnnotatedLocalBusinessInterface1,
+                AnnotatedLocalBusinessInterface2,
+                AnnotatedBusinessInterface1,
+                AnnotatedBusinessInterface2,
+                java.io.Serializable {
+    @Resource(name = "sessionContext")
+    private SessionContext sessionContext;
 
-  public AnnotatedInterfaceBean() {
-  }
+    public AnnotatedInterfaceBean() {}
 
-  @Remove
-  public void remove() {
-  }
+    @Remove
+    public void remove() {}
 
-  public void remove2() {
-  }
+    public void remove2() {}
 }

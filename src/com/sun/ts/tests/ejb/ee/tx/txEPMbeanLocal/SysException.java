@@ -22,11 +22,11 @@ package com.sun.ts.tests.ejb.ee.tx.txEPMbeanLocal;
 
 public class SysException extends RuntimeException {
 
-  public SysException() {
-    super();
-  }
+    public SysException() {
+        super();
+    }
 
-  public SysException(String msg) {
-    super(msg);
-  }
+    public SysException(String msg) {
+        super(msg);
+    }
 }

@@ -16,8 +16,8 @@
 
 package com.sun.ts.lib.util.sec.nio;
 
-import java.nio.ByteBuffer;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 
 /**
  * This is an interface to adapt existing APIs to use {@link java.nio.ByteBuffer
@@ -35,18 +35,18 @@ import java.io.IOException;
  */
 public interface ByteBuffered {
 
-  /**
-   * Returns the <tt>ByteBuffer</tt> behind this object, if this particular
-   * instance has one. An implementation of <tt>getByteBuffer()</tt> is allowed
-   * to return <tt>null</tt> for any reason.
-   *
-   * @return The <tt>ByteBuffer</tt>, if this particular instance has one, or
-   *         <tt>null</tt> otherwise.
-   *
-   * @throws IOException
-   *           If the ByteBuffer is no longer valid.
-   *
-   * @since 1.5
-   */
-  public ByteBuffer getByteBuffer() throws IOException;
+    /**
+     * Returns the <tt>ByteBuffer</tt> behind this object, if this particular
+     * instance has one. An implementation of <tt>getByteBuffer()</tt> is allowed
+     * to return <tt>null</tt> for any reason.
+     *
+     * @return The <tt>ByteBuffer</tt>, if this particular instance has one, or
+     *         <tt>null</tt> otherwise.
+     *
+     * @throws IOException
+     *           If the ByteBuffer is no longer valid.
+     *
+     * @since 1.5
+     */
+    public ByteBuffer getByteBuffer() throws IOException;
 }

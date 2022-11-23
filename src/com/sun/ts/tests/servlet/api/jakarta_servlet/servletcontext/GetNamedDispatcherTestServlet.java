@@ -20,11 +20,7 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
@@ -32,34 +28,33 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * Test for ServletContext.getNamedDispatcher(String) method
  */
-
 public class GetNamedDispatcherTestServlet extends GenericServlet {
 
-  /**
-   * We will try to get the RequestDispatcher for the servlet Registered as
-   * config
-   */
+    /**
+     * We will try to get the RequestDispatcher for the servlet Registered as
+     * config
+     */
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        boolean passed = false;
+        ServletConfig config = this.getServletConfig();
+        ServletContext context = config.getServletContext();
 
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
-    ServletConfig config = this.getServletConfig();
-    ServletContext context = config.getServletContext();
+        String path = "GetNamedDispatcherTest";
+        RequestDispatcher rd = context.getNamedDispatcher(path);
 
-    String path = "GetNamedDispatcherTest";
-    RequestDispatcher rd = context.getNamedDispatcher(path);
-
-    if (rd != null) {
-      passed = true;
-    } else {
-      passed = false;
+        if (rd != null) {
+            passed = true;
+        } else {
+            passed = false;
+        }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
-  }
 }

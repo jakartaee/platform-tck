@@ -20,78 +20,77 @@
 
 package com.sun.ts.tests.appclient.deploy.resref.scope;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.tests.assembly.util.shared.resref.scope.QueueCode;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   *
-   */
-  public void setup(String[] args, Properties props) throws Fault {
-    this.props = props;
-
-    try {
-      nctx = new TSNamingContext();
-      logMsg("[Client] Setup succeed (got naming context).");
-    } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /**
-   * @testName: testScope
-   *
-   * @assertion_ids: JavaEE:SPEC:125
-   *
-   * @test_Strategy:
-   *
-   *                 We package in the same .ear file:
-   *
-   *                 - Two application clients using the same res-ref-name
-   *                 ('jms/myFactory') to reference two distinct resource
-   *                 manager connection factories (a QueueConnectionFactory and
-   *                 a TopicConnectionFactory).
-   *
-   *                 We check that:
-   *
-   *                 - We can deploy the application. - We can run one of the
-   *                 application clients - This application client can lookup
-   *                 its resource manager connection factory. - We can cast that
-   *                 factory to its expected Java type and use it to create a
-   *                 connection. This validates the resolution of the resource
-   *                 manager connection factories reference.
-   *
-   */
-  public void testScope() throws Fault {
-    boolean pass;
+    /*
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     *
+     */
+    public void setup(String[] args, Properties props) throws Fault {
+        this.props = props;
 
-    try {
-      pass = QueueCode.checkYourQueue(nctx);
-      if (!pass) {
-        throw new Fault("res-ref scope test failed!");
-      }
-    } catch (Exception e) {
-      throw new Fault("res-ref scope test failed: " + e, e);
+        try {
+            nctx = new TSNamingContext();
+            logMsg("[Client] Setup succeed (got naming context).");
+        } catch (Exception e) {
+            throw new Fault("Setup failed:", e);
+        }
     }
-  }
 
-  public void cleanup() throws Fault {
-    logMsg("[Client] cleanup()");
-  }
+    /**
+     * @testName: testScope
+     *
+     * @assertion_ids: JavaEE:SPEC:125
+     *
+     * @test_Strategy:
+     *
+     *                 We package in the same .ear file:
+     *
+     *                 - Two application clients using the same res-ref-name
+     *                 ('jms/myFactory') to reference two distinct resource
+     *                 manager connection factories (a QueueConnectionFactory and
+     *                 a TopicConnectionFactory).
+     *
+     *                 We check that:
+     *
+     *                 - We can deploy the application. - We can run one of the
+     *                 application clients - This application client can lookup
+     *                 its resource manager connection factory. - We can cast that
+     *                 factory to its expected Java type and use it to create a
+     *                 connection. This validates the resolution of the resource
+     *                 manager connection factories reference.
+     *
+     */
+    public void testScope() throws Fault {
+        boolean pass;
+
+        try {
+            pass = QueueCode.checkYourQueue(nctx);
+            if (!pass) {
+                throw new Fault("res-ref scope test failed!");
+            }
+        } catch (Exception e) {
+            throw new Fault("res-ref scope test failed: " + e, e);
+        }
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("[Client] cleanup()");
+    }
 }

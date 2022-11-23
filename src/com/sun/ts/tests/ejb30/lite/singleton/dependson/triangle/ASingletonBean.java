@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb30.lite.singleton.dependson.triangle;
 
 import com.sun.ts.tests.ejb30.lite.singleton.dependson.common.BeanBase;
-
 import jakarta.ejb.ConcurrencyManagement;
 import jakarta.ejb.ConcurrencyManagementType;
 import jakarta.ejb.DependsOn;
@@ -30,11 +29,11 @@ import jakarta.ejb.Startup;
 
 @Startup
 @Singleton
-@DependsOn({ "CSingletonBean", "BSingletonBean" })
+@DependsOn({"CSingletonBean", "BSingletonBean"})
 @ConcurrencyManagement(ConcurrencyManagementType.BEAN)
 public class ASingletonBean extends BeanBase {
-  @Override
-  protected String getBeanName() {
-    return "ASingletonBean";
-  }
+    @Override
+    protected String getBeanName() {
+        return "ASingletonBean";
+    }
 }

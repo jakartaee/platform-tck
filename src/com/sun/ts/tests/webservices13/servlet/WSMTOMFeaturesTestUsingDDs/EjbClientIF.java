@@ -20,6 +20,5 @@ import java.util.Properties;
 
 public interface EjbClientIF {
 
-  public Properties execute(Properties p);
-
+    public Properties execute(Properties p);
 }

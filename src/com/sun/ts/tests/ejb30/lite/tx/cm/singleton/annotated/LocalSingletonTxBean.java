@@ -23,7 +23,6 @@ package com.sun.ts.tests.ejb30.lite.tx.cm.singleton.annotated;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.tx.common.session.cm.LocalTxBeanBase;
 import com.sun.ts.tests.ejb30.tx.common.session.cm.LocalTxIF;
-
 import jakarta.ejb.Local;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.TransactionAttribute;
@@ -33,26 +32,25 @@ import jakarta.ejb.TransactionAttributeType;
 @Local(LocalTxIF.class)
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class LocalSingletonTxBean extends LocalTxBeanBase {
-  @TransactionAttribute(TransactionAttributeType.MANDATORY)
-  @Override
-  public void localMandatoryTest() {
-    super.localMandatoryTest();
-  }
+    @TransactionAttribute(TransactionAttributeType.MANDATORY)
+    @Override
+    public void localMandatoryTest() {
+        super.localMandatoryTest();
+    }
 
-  @TransactionAttribute(TransactionAttributeType.NEVER)
-  @Override
-  public void neverTest() {
-    super.neverTest();
-  }
+    @TransactionAttribute(TransactionAttributeType.NEVER)
+    @Override
+    public void neverTest() {
+        super.neverTest();
+    }
 
-  @Override
-  public void requiresNewNoop() throws TestFailedException {
-    super.requiresNewNoop();
-  }
+    @Override
+    public void requiresNewNoop() throws TestFailedException {
+        super.requiresNewNoop();
+    }
 
-  @Override
-  public void localRequiresNewTest() {
-    super.localRequiresNewTest();
-  }
-
+    @Override
+    public void localRequiresNewTest() {
+        super.localRequiresNewTest();
+    }
 }

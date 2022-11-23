@@ -21,44 +21,43 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class ZipCode implements java.io.Serializable {
 
-  protected String zip;
+    protected String zip;
 
-  public ZipCode() {
-  }
+    public ZipCode() {}
 
-  public ZipCode(String zip) {
-    this.zip = zip;
-  }
-
-  public String getZip() {
-    return zip;
-  }
-
-  public void setZip(String zip) {
-    this.zip = zip;
-  }
-
-  public boolean equals(Object o) {
-    ZipCode other;
-    boolean result = false;
-
-    if (!(o instanceof Address)) {
-      return result;
-    }
-    other = (ZipCode) o;
-
-    if (this.getZip() == other.getZip()) {
-      result = true;
+    public ZipCode(String zip) {
+        this.zip = zip;
     }
 
-    return result;
-  }
+    public String getZip() {
+        return zip;
+    }
 
-  public int hashCode() {
-    int myHash;
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
 
-    myHash = this.getZip().hashCode();
+    public boolean equals(Object o) {
+        ZipCode other;
+        boolean result = false;
 
-    return myHash;
-  }
+        if (!(o instanceof Address)) {
+            return result;
+        }
+        other = (ZipCode) o;
+
+        if (this.getZip() == other.getZip()) {
+            result = true;
+        }
+
+        return result;
+    }
+
+    public int hashCode() {
+        int myHash;
+
+        myHash = this.getZip().hashCode();
+
+        return myHash;
+    }
 }

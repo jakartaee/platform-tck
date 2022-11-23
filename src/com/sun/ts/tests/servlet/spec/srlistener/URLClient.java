@@ -19,421 +19,383 @@
  */
 package com.sun.ts.tests.servlet.spec.srlistener;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setServletName("TestServlet");
-    setContextRoot("/servlet_spec_srlistener_web");
-
-    return super.run(args, out, err);
-  }
-
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   *
-   */
-
-  /* Run test */
-
-  /*
-   * @testName: simpleinclude
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-  public void simpleinclude() throws Fault {
-    Boolean pass = true;
-    try {
-      TEST_PROPS.setProperty(APITEST, "includes");
-      TEST_PROPS.setProperty(SEARCH_STRING,
-          "IncludedServlet Invoked|simple method");
-      invoke();
-    } catch (Fault flt) {
-      pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
-    }
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
-    invoke();
-
-    if (!pass) {
-      throw new Fault("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue");
-    }
-  }
-
-  /*
-   * @testName: multipleincludes
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-  public void multipleincludes() throws Fault {
-    Boolean pass = true;
-    try {
-      TEST_PROPS.setProperty(APITEST, "multipleincludes");
-      TEST_PROPS.setProperty(SEARCH_STRING,
-          "SecondIncludedServlet Invoked|simple method");
-      invoke();
-    } catch (Fault flt) {
-      pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
-    invoke();
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    if (!pass) {
-      throw new Fault("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue");
-    }
-  }
+        setServletName("TestServlet");
+        setContextRoot("/servlet_spec_srlistener_web");
 
-  /*
-   * @testName: includeforward
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-  public void includeforward() throws Fault {
-    Boolean pass = true;
-    try {
-      TEST_PROPS.setProperty(APITEST, "includeforward");
-      TEST_PROPS.setProperty(SEARCH_STRING,
-          "ForwardedServlet Invoked|simple method");
-      invoke();
-    } catch (Fault flt) {
-      pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+        return super.run(args, out, err);
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
-    invoke();
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     *
+     */
 
-    if (!pass) {
-      throw new Fault("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue");
-    }
-  }
+    /* Run test */
 
-  /*
-   * @testName: includeerror
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-  public void includeerror() throws Fault {
-    Boolean pass = true;
-    try {
-      TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
-          + "/TestServlet?testname=includeerror HTTP/1.1");
-      TEST_PROPS.setProperty(STATUS_CODE, "403");
-      invoke();
-    } catch (Fault flt) {
-      pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
-    }
+    /*
+     * @testName: simpleinclude
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void simpleinclude() throws Fault {
+        Boolean pass = true;
+        try {
+            TEST_PROPS.setProperty(APITEST, "includes");
+            TEST_PROPS.setProperty(SEARCH_STRING, "IncludedServlet Invoked|simple method");
+            invoke();
+        } catch (Fault flt) {
+            pass = false;
+            TestUtil.logErr("Test failed at the first invocation." + "catch it here so the cleanup can continue", flt);
+        }
+        TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+        invoke();
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
-    invoke();
-
-    if (!pass) {
-      throw new Fault("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue");
-    }
-  }
-
-  /*
-   * @testName: simpleforward
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-  public void simpleforward() throws Fault {
-    Boolean pass = true;
-    try {
-      TEST_PROPS.setProperty(APITEST, "forward");
-      TEST_PROPS.setProperty(SEARCH_STRING,
-          "ForwardedServlet Invoked|simple method");
-      invoke();
-    } catch (Fault flt) {
-      pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+        if (!pass) {
+            throw new Fault("Test failed at the first invocation." + "catch it here so the cleanup can continue");
+        }
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
-    invoke();
+    /*
+     * @testName: multipleincludes
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void multipleincludes() throws Fault {
+        Boolean pass = true;
+        try {
+            TEST_PROPS.setProperty(APITEST, "multipleincludes");
+            TEST_PROPS.setProperty(SEARCH_STRING, "SecondIncludedServlet Invoked|simple method");
+            invoke();
+        } catch (Fault flt) {
+            pass = false;
+            TestUtil.logErr("Test failed at the first invocation." + "catch it here so the cleanup can continue", flt);
+        }
 
-    if (!pass) {
-      throw new Fault("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue");
-    }
-  }
+        TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+        invoke();
 
-  /*
-   * @testName: multipleforwards
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-  public void multipleforwards() throws Fault {
-    Boolean pass = true;
-    try {
-      TEST_PROPS.setProperty(APITEST, "multipleforwards");
-      TEST_PROPS.setProperty(SEARCH_STRING,
-          "SecondForwardedServlet Invoked|simple method");
-      invoke();
-    } catch (Fault flt) {
-      pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+        if (!pass) {
+            throw new Fault("Test failed at the first invocation." + "catch it here so the cleanup can continue");
+        }
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
-    invoke();
+    /*
+     * @testName: includeforward
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void includeforward() throws Fault {
+        Boolean pass = true;
+        try {
+            TEST_PROPS.setProperty(APITEST, "includeforward");
+            TEST_PROPS.setProperty(SEARCH_STRING, "ForwardedServlet Invoked|simple method");
+            invoke();
+        } catch (Fault flt) {
+            pass = false;
+            TestUtil.logErr("Test failed at the first invocation." + "catch it here so the cleanup can continue", flt);
+        }
 
-    if (!pass) {
-      throw new Fault("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue");
-    }
-  }
+        TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+        invoke();
 
-  /*
-   * @testName: forwardinclude
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-  public void forwardinclude() throws Fault {
-    Boolean pass = true;
-    try {
-      TEST_PROPS.setProperty(APITEST, "forwardinclude");
-      TEST_PROPS.setProperty(SEARCH_STRING,
-          "IncludedServlet Invoked|simple method");
-      invoke();
-    } catch (Fault flt) {
-      pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+        if (!pass) {
+            throw new Fault("Test failed at the first invocation." + "catch it here so the cleanup can continue");
+        }
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
-    invoke();
+    /*
+     * @testName: includeerror
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void includeerror() throws Fault {
+        Boolean pass = true;
+        try {
+            TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/TestServlet?testname=includeerror HTTP/1.1");
+            TEST_PROPS.setProperty(STATUS_CODE, "403");
+            invoke();
+        } catch (Fault flt) {
+            pass = false;
+            TestUtil.logErr("Test failed at the first invocation." + "catch it here so the cleanup can continue", flt);
+        }
 
-    if (!pass) {
-      throw new Fault("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue");
-    }
-  }
+        TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+        invoke();
 
-  /*
-   * @testName: forwarderror
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-  public void forwarderror() throws Fault {
-    Boolean pass = true;
-    try {
-      TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
-          + "/TestServlet?testname=forwarderror HTTP/1.1");
-      TEST_PROPS.setProperty(STATUS_CODE, "403");
-      invoke();
-    } catch (Fault flt) {
-      pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+        if (!pass) {
+            throw new Fault("Test failed at the first invocation." + "catch it here so the cleanup can continue");
+        }
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
-    invoke();
+    /*
+     * @testName: simpleforward
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void simpleforward() throws Fault {
+        Boolean pass = true;
+        try {
+            TEST_PROPS.setProperty(APITEST, "forward");
+            TEST_PROPS.setProperty(SEARCH_STRING, "ForwardedServlet Invoked|simple method");
+            invoke();
+        } catch (Fault flt) {
+            pass = false;
+            TestUtil.logErr("Test failed at the first invocation." + "catch it here so the cleanup can continue", flt);
+        }
 
-    if (!pass) {
-      throw new Fault("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue");
-    }
-  }
+        TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+        invoke();
 
-  /*
-   * @testName: simpleasync
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-  public void simpleasync() throws Fault {
-    Boolean pass = true;
-    try {
-      TEST_PROPS.setProperty(APITEST, "async");
-      TEST_PROPS.setProperty(SEARCH_STRING,
-          "TestServlet Invoked|method async|TestServlet_Async=STARTED");
-      invoke();
-    } catch (Fault flt) {
-      pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+        if (!pass) {
+            throw new Fault("Test failed at the first invocation." + "catch it here so the cleanup can continue");
+        }
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
-    invoke();
+    /*
+     * @testName: multipleforwards
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void multipleforwards() throws Fault {
+        Boolean pass = true;
+        try {
+            TEST_PROPS.setProperty(APITEST, "multipleforwards");
+            TEST_PROPS.setProperty(SEARCH_STRING, "SecondForwardedServlet Invoked|simple method");
+            invoke();
+        } catch (Fault flt) {
+            pass = false;
+            TestUtil.logErr("Test failed at the first invocation." + "catch it here so the cleanup can continue", flt);
+        }
 
-    if (!pass) {
-      throw new Fault("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue");
-    }
-  }
+        TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+        invoke();
 
-  /*
-   * @testName: simpleasyncinclude
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-  public void simpleasyncinclude() throws Fault {
-    Boolean pass = true;
-    try {
-      TEST_PROPS.setProperty(APITEST, "simpleasyncinclude");
-      TEST_PROPS.setProperty(SEARCH_STRING,
-          "TestServlet Invoked|method simpleasyncinclude"
-              + "|TestServlet_Async=STARTED"
-              + "|IncludedServlet Invoked||simple method");
-      invoke();
-    } catch (Fault flt) {
-      pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+        if (!pass) {
+            throw new Fault("Test failed at the first invocation." + "catch it here so the cleanup can continue");
+        }
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
-    invoke();
+    /*
+     * @testName: forwardinclude
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void forwardinclude() throws Fault {
+        Boolean pass = true;
+        try {
+            TEST_PROPS.setProperty(APITEST, "forwardinclude");
+            TEST_PROPS.setProperty(SEARCH_STRING, "IncludedServlet Invoked|simple method");
+            invoke();
+        } catch (Fault flt) {
+            pass = false;
+            TestUtil.logErr("Test failed at the first invocation." + "catch it here so the cleanup can continue", flt);
+        }
 
-    if (!pass) {
-      throw new Fault("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue");
-    }
-  }
+        TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+        invoke();
 
-  /*
-   * @testName: simpleasyncforward
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-  public void simpleasyncforward() throws Fault {
-    Boolean pass = true;
-    try {
-      TEST_PROPS.setProperty(APITEST, "simpleasyncforward");
-      TEST_PROPS.setProperty(SEARCH_STRING,
-          "ForwardedServlet Invoked||simple method");
-      invoke();
-    } catch (Fault flt) {
-      pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+        if (!pass) {
+            throw new Fault("Test failed at the first invocation." + "catch it here so the cleanup can continue");
+        }
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
-    invoke();
+    /*
+     * @testName: forwarderror
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void forwarderror() throws Fault {
+        Boolean pass = true;
+        try {
+            TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/TestServlet?testname=forwarderror HTTP/1.1");
+            TEST_PROPS.setProperty(STATUS_CODE, "403");
+            invoke();
+        } catch (Fault flt) {
+            pass = false;
+            TestUtil.logErr("Test failed at the first invocation." + "catch it here so the cleanup can continue", flt);
+        }
 
-    if (!pass) {
-      throw new Fault("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue");
-    }
-  }
+        TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+        invoke();
 
-  /*
-   * @testName: simpleasyncerror
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-  public void simpleasyncerror() throws Fault {
-    Boolean pass = true;
-    try {
-      TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
-          + "/TestServlet?testname=simpleasyncerror HTTP/1.1");
-      TEST_PROPS.setProperty(STATUS_CODE, "403");
-      invoke();
-    } catch (Fault flt) {
-      pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+        if (!pass) {
+            throw new Fault("Test failed at the first invocation." + "catch it here so the cleanup can continue");
+        }
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
-    invoke();
+    /*
+     * @testName: simpleasync
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void simpleasync() throws Fault {
+        Boolean pass = true;
+        try {
+            TEST_PROPS.setProperty(APITEST, "async");
+            TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet Invoked|method async|TestServlet_Async=STARTED");
+            invoke();
+        } catch (Fault flt) {
+            pass = false;
+            TestUtil.logErr("Test failed at the first invocation." + "catch it here so the cleanup can continue", flt);
+        }
 
-    if (!pass) {
-      throw new Fault("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue");
-    }
-  }
+        TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+        invoke();
 
-  /*
-   * @testName: error
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-  public void error() throws Fault {
-    Boolean pass = true;
-    try {
-      TEST_PROPS.setProperty(REQUEST,
-          "GET " + getContextRoot() + "/TestServlet?testname=error HTTP/1.1");
-
-      TEST_PROPS.setProperty(STATUS_CODE, "403");
-      invoke();
-    } catch (Fault flt) {
-      pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+        if (!pass) {
+            throw new Fault("Test failed at the first invocation." + "catch it here so the cleanup can continue");
+        }
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
-    invoke();
+    /*
+     * @testName: simpleasyncinclude
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void simpleasyncinclude() throws Fault {
+        Boolean pass = true;
+        try {
+            TEST_PROPS.setProperty(APITEST, "simpleasyncinclude");
+            TEST_PROPS.setProperty(
+                    SEARCH_STRING,
+                    "TestServlet Invoked|method simpleasyncinclude"
+                            + "|TestServlet_Async=STARTED"
+                            + "|IncludedServlet Invoked||simple method");
+            invoke();
+        } catch (Fault flt) {
+            pass = false;
+            TestUtil.logErr("Test failed at the first invocation." + "catch it here so the cleanup can continue", flt);
+        }
 
-    if (!pass) {
-      throw new Fault("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue");
+        TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+        invoke();
+
+        if (!pass) {
+            throw new Fault("Test failed at the first invocation." + "catch it here so the cleanup can continue");
+        }
     }
-  }
+
+    /*
+     * @testName: simpleasyncforward
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void simpleasyncforward() throws Fault {
+        Boolean pass = true;
+        try {
+            TEST_PROPS.setProperty(APITEST, "simpleasyncforward");
+            TEST_PROPS.setProperty(SEARCH_STRING, "ForwardedServlet Invoked||simple method");
+            invoke();
+        } catch (Fault flt) {
+            pass = false;
+            TestUtil.logErr("Test failed at the first invocation." + "catch it here so the cleanup can continue", flt);
+        }
+
+        TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+        invoke();
+
+        if (!pass) {
+            throw new Fault("Test failed at the first invocation." + "catch it here so the cleanup can continue");
+        }
+    }
+
+    /*
+     * @testName: simpleasyncerror
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void simpleasyncerror() throws Fault {
+        Boolean pass = true;
+        try {
+            TEST_PROPS.setProperty(
+                    REQUEST, "GET " + getContextRoot() + "/TestServlet?testname=simpleasyncerror HTTP/1.1");
+            TEST_PROPS.setProperty(STATUS_CODE, "403");
+            invoke();
+        } catch (Fault flt) {
+            pass = false;
+            TestUtil.logErr("Test failed at the first invocation." + "catch it here so the cleanup can continue", flt);
+        }
+
+        TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+        invoke();
+
+        if (!pass) {
+            throw new Fault("Test failed at the first invocation." + "catch it here so the cleanup can continue");
+        }
+    }
+
+    /*
+     * @testName: error
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void error() throws Fault {
+        Boolean pass = true;
+        try {
+            TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/TestServlet?testname=error HTTP/1.1");
+
+            TEST_PROPS.setProperty(STATUS_CODE, "403");
+            invoke();
+        } catch (Fault flt) {
+            pass = false;
+            TestUtil.logErr("Test failed at the first invocation." + "catch it here so the cleanup can continue", flt);
+        }
+
+        TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+        invoke();
+
+        if (!pass) {
+            throw new Fault("Test failed at the first invocation." + "catch it here so the cleanup can continue");
+        }
+    }
 }

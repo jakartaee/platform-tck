@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb30.bb.mdb.activationconfig.topic.selectordupsnondurable.complement;
 
 import com.sun.ts.tests.ejb30.bb.mdb.activationconfig.common.ActivationConfigBeanBase;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.ActivationConfigProperty;
 import jakarta.ejb.EJBContext;
@@ -30,32 +29,37 @@ import jakarta.ejb.MessageDrivenContext;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
-//This MDB does not implement jakarta.jms.MessageListener interface.  It's 
-//specified in ejb-jar.xml
+// This MDB does not implement jakarta.jms.MessageListener interface.  It's
+// specified in ejb-jar.xml
 //
-//some meta data are annotated here and others are in ejb-jar.xml, but there
-//is no overriding, which is tested by ../override directory.
+// some meta data are annotated here and others are in ejb-jar.xml, but there
+// is no overriding, which is tested by ../override directory.
 //
-@MessageDriven(name = "ActivationConfigBean", activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Topic"),
-    @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Dups-ok-acknowledge"),
-    @ActivationConfigProperty(propertyName = "subscriptionDurability", propertyValue = "NonDurable"),
-    @ActivationConfigProperty(propertyName = "messageSelector", propertyValue = "COM_SUN_JMS_TESTNAME='test1' AND TestCaseNum NOT BETWEEN 1 AND 9999") })
+@MessageDriven(
+        name = "ActivationConfigBean",
+        activationConfig = {
+            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Topic"),
+            @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Dups-ok-acknowledge"),
+            @ActivationConfigProperty(propertyName = "subscriptionDurability", propertyValue = "NonDurable"),
+            @ActivationConfigProperty(
+                    propertyName = "messageSelector",
+                    propertyValue = "COM_SUN_JMS_TESTNAME='test1' AND TestCaseNum NOT BETWEEN 1 AND 9999")
+        })
 
 // assembler not permitted to override transaction management type.
 @TransactionManagement(TransactionManagementType.BEAN)
 public class ActivationConfigBean extends ActivationConfigBeanBase {
-  @Resource(name = "mdc")
-  private MessageDrivenContext mdc;
+    @Resource(name = "mdc")
+    private MessageDrivenContext mdc;
 
-  public ActivationConfigBean() {
-    super();
-  }
+    public ActivationConfigBean() {
+        super();
+    }
 
-  public EJBContext getEJBContext() {
-    return this.mdc;
-  }
+    public EJBContext getEJBContext() {
+        return this.mdc;
+    }
 
-  // ================== business methods ====================================
+    // ================== business methods ====================================
 
 }

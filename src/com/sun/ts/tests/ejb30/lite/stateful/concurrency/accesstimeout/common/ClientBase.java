@@ -29,214 +29,190 @@ import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.com
 import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.AccessTimeoutIF.beanClassMethodLevelOverrideAccessTimeoutBeanRemote;
 import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF.CONCURRENT_INVOCATION_TIMES;
 
+import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyClientBase;
+import jakarta.ejb.ConcurrentAccessTimeoutException;
 import java.util.List;
 
-import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyClientBase;
+public abstract class ClientBase extends StatefulConcurrencyClientBase {
 
-import jakarta.ejb.ConcurrentAccessTimeoutException;
-
-abstract public class ClientBase extends StatefulConcurrencyClientBase {
-
-  // remote view tests are only available in JavaEE profile
-  protected AccessTimeoutIF getBeanClassMethodLevelOverrideAccessTimeoutBeanLocal() {
-    return (AccessTimeoutIF) lookup(
-        beanClassMethodLevelOverrideAccessTimeoutBeanLocal, null, null);
-  }
-
-  protected AccessTimeoutIF getBeanClassMethodLevelAccessTimeoutBeanLocal() {
-    return (AccessTimeoutIF) lookup(beanClassMethodLevelAccessTimeoutBeanLocal,
-        null, null);
-  }
-
-  protected AccessTimeoutIF getBeanClassLevelAccessTimeoutBeanLocal() {
-    return (AccessTimeoutIF) lookup(beanClassLevelAccessTimeoutBeanLocal, null,
-        null);
-  }
-
-  protected AccessTimeoutIF getAnnotatedSuperClassAccessTimeoutBeanLocal() {
-    return (AccessTimeoutIF) lookup(annotatedSuperClassAccessTimeoutBeanLocal,
-        null, null);
-  }
-
-  protected AccessTimeoutIF getBeanClassMethodLevelOverrideAccessTimeoutBeanRemote() {
-    return (AccessTimeoutIF) lookup(
-        beanClassMethodLevelOverrideAccessTimeoutBeanRemote, null, null);
-  }
-
-  protected AccessTimeoutIF getBeanClassMethodLevelAccessTimeoutBeanRemote() {
-    return (AccessTimeoutIF) lookup(beanClassMethodLevelAccessTimeoutBeanRemote,
-        null, null);
-  }
-
-  protected AccessTimeoutIF getBeanClassLevelAccessTimeoutBeanRemote() {
-    return (AccessTimeoutIF) lookup(beanClassLevelAccessTimeoutBeanRemote, null,
-        null);
-  }
-
-  protected AccessTimeoutIF getAnnotatedSuperClassAccessTimeoutBeanRemote() {
-    return (AccessTimeoutIF) lookup(annotatedSuperClassAccessTimeoutBeanRemote,
-        null, null);
-  }
-
-  protected void checkConcurrentAccessTimeoutResult(
-      List<Exception> exceptionList, int nullCountExpected,
-      int concurrentAccessTimeoutExceptionCountExpected) {
-    int nullCount = 0;
-    int concurrentAccessTimeoutExceptionCount = 0;
-    for (Exception e : exceptionList) {
-      if (e == null) {
-        appendReason("Got no exception, which may be correct.");
-        nullCount++;
-      } else if (e instanceof ConcurrentAccessTimeoutException) {
-        appendReason(
-            "Got ConcurrentAccessTimeoutException, which may be correct: ", e);
-        concurrentAccessTimeoutExceptionCount++;
-      } else {
-        throw new RuntimeException(
-            "Expecting null or ConcurrentAccessTimeoutException, but got ", e);
-      }
+    // remote view tests are only available in JavaEE profile
+    protected AccessTimeoutIF getBeanClassMethodLevelOverrideAccessTimeoutBeanLocal() {
+        return (AccessTimeoutIF) lookup(beanClassMethodLevelOverrideAccessTimeoutBeanLocal, null, null);
     }
-    assertEquals("Check nullCount", nullCountExpected, nullCount);
-    assertEquals("Check concurrentAccessExceptionCount",
-        concurrentAccessTimeoutExceptionCountExpected,
-        concurrentAccessTimeoutExceptionCount);
-  }
 
-  /*
-   * testName: beanClassLevel
-   * 
-   * @test_Strategy:
-   */
-  public void beanClassLevel() throws InterruptedException {
-    beanClassLevel(getBeanClassLevelAccessTimeoutBeanLocal());
-  }
+    protected AccessTimeoutIF getBeanClassMethodLevelAccessTimeoutBeanLocal() {
+        return (AccessTimeoutIF) lookup(beanClassMethodLevelAccessTimeoutBeanLocal, null, null);
+    }
 
-  protected void beanClassLevel(final AccessTimeoutIF b)
-      throws InterruptedException {
-    List<Exception> exceptionList = concurrentPing(new Runnable() {
-      public void run() {
-        b.beanClassLevel();
-      }
-    });
-    checkConcurrentAccessTimeoutResult(exceptionList, 1, 1);
-  }
+    protected AccessTimeoutIF getBeanClassLevelAccessTimeoutBeanLocal() {
+        return (AccessTimeoutIF) lookup(beanClassLevelAccessTimeoutBeanLocal, null, null);
+    }
 
-  /*
-   * testName: beanClassLevel2
-   * 
-   * @test_Strategy:
-   */
-  public void beanClassLevel2() throws InterruptedException {
-    beanClassLevel2(getBeanClassLevelAccessTimeoutBeanLocal());
-  }
+    protected AccessTimeoutIF getAnnotatedSuperClassAccessTimeoutBeanLocal() {
+        return (AccessTimeoutIF) lookup(annotatedSuperClassAccessTimeoutBeanLocal, null, null);
+    }
 
-  protected void beanClassLevel2(final AccessTimeoutIF b)
-      throws InterruptedException {
-    List<Exception> exceptionList = concurrentPing(new Runnable() {
-      public void run() {
-        b.beanClassLevel2();
-      }
-    });
-    checkConcurrentAccessTimeoutResult(exceptionList, 1, 1);
-  }
+    protected AccessTimeoutIF getBeanClassMethodLevelOverrideAccessTimeoutBeanRemote() {
+        return (AccessTimeoutIF) lookup(beanClassMethodLevelOverrideAccessTimeoutBeanRemote, null, null);
+    }
 
-  /*
-   * testName: beanSuperClassLevel
-   * 
-   * @test_Strategy:
-   */
-  public void beanSuperClassLevel() throws InterruptedException {
-    beanSuperClassLevel(getAnnotatedSuperClassAccessTimeoutBeanLocal());
-  }
+    protected AccessTimeoutIF getBeanClassMethodLevelAccessTimeoutBeanRemote() {
+        return (AccessTimeoutIF) lookup(beanClassMethodLevelAccessTimeoutBeanRemote, null, null);
+    }
 
-  protected void beanSuperClassLevel(final AccessTimeoutIF b)
-      throws InterruptedException {
-    List<Exception> exceptionList = concurrentPing(new Runnable() {
-      public void run() {
-        b.beanSuperClassLevel();
-      }
-    });
-    checkConcurrentAccessTimeoutResult(exceptionList, 1, 1);
-  }
+    protected AccessTimeoutIF getBeanClassLevelAccessTimeoutBeanRemote() {
+        return (AccessTimeoutIF) lookup(beanClassLevelAccessTimeoutBeanRemote, null, null);
+    }
 
-  /*
-   * testName: beanSuperClassMethodLevel
-   * 
-   * @test_Strategy:
-   */
-  public void beanSuperClassMethodLevel() throws InterruptedException {
-    beanSuperClassMethodLevel(getAnnotatedSuperClassAccessTimeoutBeanLocal());
-  }
+    protected AccessTimeoutIF getAnnotatedSuperClassAccessTimeoutBeanRemote() {
+        return (AccessTimeoutIF) lookup(annotatedSuperClassAccessTimeoutBeanRemote, null, null);
+    }
 
-  protected void beanSuperClassMethodLevel(final AccessTimeoutIF b)
-      throws InterruptedException {
-    List<Exception> exceptionList = concurrentPing(new Runnable() {
-      public void run() {
-        b.beanSuperClassMethodLevel();
-      }
-    });
-    checkConcurrentAccessTimeoutResult(exceptionList, 1, 1);
-  }
+    protected void checkConcurrentAccessTimeoutResult(
+            List<Exception> exceptionList, int nullCountExpected, int concurrentAccessTimeoutExceptionCountExpected) {
+        int nullCount = 0;
+        int concurrentAccessTimeoutExceptionCount = 0;
+        for (Exception e : exceptionList) {
+            if (e == null) {
+                appendReason("Got no exception, which may be correct.");
+                nullCount++;
+            } else if (e instanceof ConcurrentAccessTimeoutException) {
+                appendReason("Got ConcurrentAccessTimeoutException, which may be correct: ", e);
+                concurrentAccessTimeoutExceptionCount++;
+            } else {
+                throw new RuntimeException("Expecting null or ConcurrentAccessTimeoutException, but got ", e);
+            }
+        }
+        assertEquals("Check nullCount", nullCountExpected, nullCount);
+        assertEquals(
+                "Check concurrentAccessExceptionCount",
+                concurrentAccessTimeoutExceptionCountExpected,
+                concurrentAccessTimeoutExceptionCount);
+    }
 
-  /*
-   * testName: beanSuperClassMethodLevelOverride
-   * 
-   * @test_Strategy:
-   */
-  public void beanSuperClassMethodLevelOverride() throws InterruptedException {
-    beanSuperClassMethodLevelOverride(
-        getAnnotatedSuperClassAccessTimeoutBeanLocal());
-  }
+    /*
+     * testName: beanClassLevel
+     *
+     * @test_Strategy:
+     */
+    public void beanClassLevel() throws InterruptedException {
+        beanClassLevel(getBeanClassLevelAccessTimeoutBeanLocal());
+    }
 
-  protected void beanSuperClassMethodLevelOverride(final AccessTimeoutIF b)
-      throws InterruptedException {
-    List<Exception> exceptionList = concurrentPing(new Runnable() {
-      public void run() {
-        b.beanSuperClassMethodLevelOverride();
-      }
-    });
-    checkConcurrentAccessTimeoutResult(exceptionList,
-        CONCURRENT_INVOCATION_TIMES, 0);
-  }
+    protected void beanClassLevel(final AccessTimeoutIF b) throws InterruptedException {
+        List<Exception> exceptionList = concurrentPing(new Runnable() {
+            public void run() {
+                b.beanClassLevel();
+            }
+        });
+        checkConcurrentAccessTimeoutResult(exceptionList, 1, 1);
+    }
 
-  /*
-   * testName: beanClassMethodLevel
-   * 
-   * @test_Strategy:
-   */
-  public void beanClassMethodLevel() throws InterruptedException {
-    beanClassMethodLevel(getBeanClassMethodLevelAccessTimeoutBeanLocal());
-  }
+    /*
+     * testName: beanClassLevel2
+     *
+     * @test_Strategy:
+     */
+    public void beanClassLevel2() throws InterruptedException {
+        beanClassLevel2(getBeanClassLevelAccessTimeoutBeanLocal());
+    }
 
-  protected void beanClassMethodLevel(final AccessTimeoutIF b)
-      throws InterruptedException {
-    List<Exception> exceptionList = concurrentPing(new Runnable() {
-      public void run() {
-        b.beanClassMethodLevel();
-      }
-    });
-    checkConcurrentAccessTimeoutResult(exceptionList, 1, 1);
-  }
+    protected void beanClassLevel2(final AccessTimeoutIF b) throws InterruptedException {
+        List<Exception> exceptionList = concurrentPing(new Runnable() {
+            public void run() {
+                b.beanClassLevel2();
+            }
+        });
+        checkConcurrentAccessTimeoutResult(exceptionList, 1, 1);
+    }
 
-  /*
-   * testName: beanClassMethodLevelOverride
-   * 
-   * @test_Strategy:
-   */
-  public void beanClassMethodLevelOverride() throws InterruptedException {
-    beanClassMethodLevelOverride(
-        getBeanClassMethodLevelOverrideAccessTimeoutBeanLocal());
-  }
+    /*
+     * testName: beanSuperClassLevel
+     *
+     * @test_Strategy:
+     */
+    public void beanSuperClassLevel() throws InterruptedException {
+        beanSuperClassLevel(getAnnotatedSuperClassAccessTimeoutBeanLocal());
+    }
 
-  protected void beanClassMethodLevelOverride(final AccessTimeoutIF b)
-      throws InterruptedException {
-    List<Exception> exceptionList = concurrentPing(new Runnable() {
-      public void run() {
-        b.beanClassMethodLevelOverride();
-      }
-    });
-    checkConcurrentAccessTimeoutResult(exceptionList,
-        CONCURRENT_INVOCATION_TIMES, 0);
-  }
+    protected void beanSuperClassLevel(final AccessTimeoutIF b) throws InterruptedException {
+        List<Exception> exceptionList = concurrentPing(new Runnable() {
+            public void run() {
+                b.beanSuperClassLevel();
+            }
+        });
+        checkConcurrentAccessTimeoutResult(exceptionList, 1, 1);
+    }
 
+    /*
+     * testName: beanSuperClassMethodLevel
+     *
+     * @test_Strategy:
+     */
+    public void beanSuperClassMethodLevel() throws InterruptedException {
+        beanSuperClassMethodLevel(getAnnotatedSuperClassAccessTimeoutBeanLocal());
+    }
+
+    protected void beanSuperClassMethodLevel(final AccessTimeoutIF b) throws InterruptedException {
+        List<Exception> exceptionList = concurrentPing(new Runnable() {
+            public void run() {
+                b.beanSuperClassMethodLevel();
+            }
+        });
+        checkConcurrentAccessTimeoutResult(exceptionList, 1, 1);
+    }
+
+    /*
+     * testName: beanSuperClassMethodLevelOverride
+     *
+     * @test_Strategy:
+     */
+    public void beanSuperClassMethodLevelOverride() throws InterruptedException {
+        beanSuperClassMethodLevelOverride(getAnnotatedSuperClassAccessTimeoutBeanLocal());
+    }
+
+    protected void beanSuperClassMethodLevelOverride(final AccessTimeoutIF b) throws InterruptedException {
+        List<Exception> exceptionList = concurrentPing(new Runnable() {
+            public void run() {
+                b.beanSuperClassMethodLevelOverride();
+            }
+        });
+        checkConcurrentAccessTimeoutResult(exceptionList, CONCURRENT_INVOCATION_TIMES, 0);
+    }
+
+    /*
+     * testName: beanClassMethodLevel
+     *
+     * @test_Strategy:
+     */
+    public void beanClassMethodLevel() throws InterruptedException {
+        beanClassMethodLevel(getBeanClassMethodLevelAccessTimeoutBeanLocal());
+    }
+
+    protected void beanClassMethodLevel(final AccessTimeoutIF b) throws InterruptedException {
+        List<Exception> exceptionList = concurrentPing(new Runnable() {
+            public void run() {
+                b.beanClassMethodLevel();
+            }
+        });
+        checkConcurrentAccessTimeoutResult(exceptionList, 1, 1);
+    }
+
+    /*
+     * testName: beanClassMethodLevelOverride
+     *
+     * @test_Strategy:
+     */
+    public void beanClassMethodLevelOverride() throws InterruptedException {
+        beanClassMethodLevelOverride(getBeanClassMethodLevelOverrideAccessTimeoutBeanLocal());
+    }
+
+    protected void beanClassMethodLevelOverride(final AccessTimeoutIF b) throws InterruptedException {
+        List<Exception> exceptionList = concurrentPing(new Runnable() {
+            public void run() {
+                b.beanClassMethodLevelOverride();
+            }
+        });
+        checkConcurrentAccessTimeoutResult(exceptionList, CONCURRENT_INVOCATION_TIMES, 0);
+    }
 }

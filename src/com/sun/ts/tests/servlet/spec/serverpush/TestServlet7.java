@@ -16,71 +16,65 @@
 
 package com.sun.ts.tests.servlet.spec.serverpush;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.PushBuilder;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet7 extends HttpServlet {
 
-  private final static String[] METHODS = { "", "POST", "PUT", "DELETE",
-      "CONNECT", "OPTIONS", "TRACE" };
+    private static final String[] METHODS = {"", "POST", "PUT", "DELETE", "CONNECT", "OPTIONS", "TRACE"};
 
-  @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, IOException {
-    PrintWriter pw = resp.getWriter();
-    PushBuilder pb = req.newPushBuilder();
-    boolean pass = true;
-    try {
-      pb.push();
-      pw.println(
-          "IllegalStateException should be thrown if there was no call to path(java.lang.String) on this instance between its instantiation.");
-      pass = false;
-    } catch (IllegalStateException e) {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        PrintWriter pw = resp.getWriter();
+        PushBuilder pb = req.newPushBuilder();
+        boolean pass = true;
+        try {
+            pb.push();
+            pw.println(
+                    "IllegalStateException should be thrown if there was no call to path(java.lang.String) on this instance between its instantiation.");
+            pass = false;
+        } catch (IllegalStateException e) {
+        }
+
+        pb = req.newPushBuilder();
+        pb.path("index.html");
+        pb.push();
+        try {
+            pb.push();
+            pw.println(
+                    "IllegalStateException should be thrown if there was no call to path(java.lang.String) on this instance between the last call to push() that did not throw an IllegalStateException.");
+            pass = false;
+        } catch (IllegalStateException e) {
+        }
+
+        pb = req.newPushBuilder();
+        try {
+            pb.method(null);
+            pw.println("NullPointerException should be thrown if the argument of method() is null");
+            pass = false;
+        } catch (NullPointerException e) {
+        }
+
+        for (String method : METHODS) {
+            if (!testMethod(pb, pw, method)) pass = false;
+        }
+
+        if (pass) pw.println("test passed");
     }
 
-    pb = req.newPushBuilder();
-    pb.path("index.html");
-    pb.push();
-    try {
-      pb.push();
-      pw.println(
-          "IllegalStateException should be thrown if there was no call to path(java.lang.String) on this instance between the last call to push() that did not throw an IllegalStateException.");
-      pass = false;
-    } catch (IllegalStateException e) {
+    private boolean testMethod(PushBuilder pb, PrintWriter pw, String method) {
+        try {
+            pb.method(method);
+            pw.println("IllegalArgumentException should be thrown if set method \"" + method
+                    + "\" to be used for the push");
+            return false;
+        } catch (IllegalArgumentException e) {
+        }
+        return true;
     }
-
-    pb = req.newPushBuilder();
-    try {
-      pb.method(null);
-      pw.println(
-          "NullPointerException should be thrown if the argument of method() is null");
-      pass = false;
-    } catch (NullPointerException e) {
-    }
-
-    for (String method : METHODS) {
-      if (!testMethod(pb, pw, method))
-        pass = false;
-    }
-
-    if (pass)
-      pw.println("test passed");
-  }
-
-  private boolean testMethod(PushBuilder pb, PrintWriter pw, String method) {
-    try {
-      pb.method(method);
-      pw.println("IllegalArgumentException should be thrown if set method \""
-          + method + "\" to be used for the push");
-      return false;
-    } catch (IllegalArgumentException e) {
-    }
-    return true;
-  }
 }

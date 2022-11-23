@@ -25,23 +25,22 @@ package com.sun.ts.tests.jsp.spec.core_syntax.scripting.el;
  */
 public class ElFunctions {
 
-  /**
-   * EL Function that provides substring functionality
-   * 
-   * @param startIndex
-   *          - the start index for the substring operation
-   * @param endIndex
-   *          - the end index for the substring operation
-   * @param value
-   *          - the String value to perform the operation against
-   * @return the substringed value
-   */
-  public static final String substring(int startIndex, int endIndex,
-      String value) {
-    return value.substring(startIndex, endIndex);
-  }
+    /**
+     * EL Function that provides substring functionality
+     *
+     * @param startIndex
+     *          - the start index for the substring operation
+     * @param endIndex
+     *          - the end index for the substring operation
+     * @param value
+     *          - the String value to perform the operation against
+     * @return the substringed value
+     */
+    public static final String substring(int startIndex, int endIndex, String value) {
+        return value.substring(startIndex, endIndex);
+    }
 
-  public String toString() {
-    return super.toString();
-  }
+    public String toString() {
+        return super.toString();
+    }
 }

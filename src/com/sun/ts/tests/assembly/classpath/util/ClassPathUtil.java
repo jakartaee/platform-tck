@@ -31,22 +31,20 @@ import com.sun.ts.lib.util.TestUtil;
  */
 public class ClassPathUtil {
 
-  /** No args constructor */
-  public ClassPathUtil() {
-  }
+    /** No args constructor */
+    public ClassPathUtil() {}
 
-  /** Check current instance is valid */
-  public void testDirectLibrary() {
-    TestUtil.logTrace("[ClassPathUtil] testDirectLibrary()");
-  }
+    /** Check current instance is valid */
+    public void testDirectLibrary() {
+        TestUtil.logTrace("[ClassPathUtil] testDirectLibrary()");
+    }
 
-  /** To check we can get a valid instance of IndirectClassPathUtil */
-  public void testIndirectLibrary() {
-    IndirectClassPathUtil ref;
+    /** To check we can get a valid instance of IndirectClassPathUtil */
+    public void testIndirectLibrary() {
+        IndirectClassPathUtil ref;
 
-    TestUtil.logTrace("[ClassPathUtil] testIndirectLibrary()");
-    ref = new IndirectClassPathUtil();
-    ref.test();
-  }
-
+        TestUtil.logTrace("[ClassPathUtil] testIndirectLibrary()");
+        ref = new IndirectClassPathUtil();
+        ref.test();
+    }
 }

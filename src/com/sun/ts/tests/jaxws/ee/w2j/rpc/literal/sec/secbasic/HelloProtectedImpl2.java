@@ -20,19 +20,19 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic;
 
-import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
-
-import jakarta.xml.ws.WebServiceException;
-
-// Service Implementation Class - as outlined in JAX-WS Specification
-
+import com.sun.ts.lib.util.*;
 import jakarta.jws.WebService;
 
-@WebService(portName = "HelloProtectedPort2", serviceName = "BasicAuthServiceTestService", targetNamespace = "http://BasicAuthServiceTestService.org/wsdl", wsdlLocation = "WEB-INF/wsdl/BasicAuthServiceTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloProtected2")
+@WebService(
+        portName = "HelloProtectedPort2",
+        serviceName = "BasicAuthServiceTestService",
+        targetNamespace = "http://BasicAuthServiceTestService.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/BasicAuthServiceTestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloProtected2")
 public class HelloProtectedImpl2 implements HelloProtected2 {
 
-  public String helloProtected2(String s) {
-    return "Hello, " + s + "!";
-  }
+    public String helloProtected2(String s) {
+        return "Hello, " + s + "!";
+    }
 }

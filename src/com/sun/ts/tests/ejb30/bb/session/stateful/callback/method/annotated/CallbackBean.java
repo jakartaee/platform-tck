@@ -23,7 +23,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.callback.method.annotated;
 import com.sun.ts.tests.ejb30.common.callback.CallbackBeanBase;
 import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
@@ -32,55 +31,53 @@ import jakarta.ejb.PostActivate;
 import jakarta.ejb.PrePassivate;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Remove;
-//@todo
-//import jakarta.ejb.Init;
+// @todo
+// import jakarta.ejb.Init;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 
 @Stateful(name = "CallbackBean")
-@Remote({ CallbackIF.class })
-public class CallbackBean extends CallbackBeanBase
-    implements CallbackIF, java.io.Serializable {
+@Remote({CallbackIF.class})
+public class CallbackBean extends CallbackBeanBase implements CallbackIF, java.io.Serializable {
 
-  @Resource
-  private SessionContext sctx;
+    @Resource
+    private SessionContext sctx;
 
-  public CallbackBean() {
-    super();
-  }
-
-  public EJBContext getEJBContext() {
-    return this.sctx;
-  }
-
-  // ================= callback methods ====================================
-  @PostConstruct
-  @PostActivate
-  private void ejbCreate() throws RuntimeException {
-    this.setPostConstructCalled(true);
-    TLogger.log("PostConstruct or PostActivate method called: " + this);
-    if (this.getEJBContext() != null) {
-      this.setInjectionDone(true);
+    public CallbackBean() {
+        super();
     }
-    // try {
-    // this.getEJBContext().setRollbackOnly();
-    // } catch (IllegalStateException e) {
-    // //just log it. The test will fail inside the business method.
-    // TLogger.log("WARN: failed to setRollbackOnly inside PostConstruct or
-    // PostActivate");
-    // }
-  }
 
-  @PreDestroy
-  @PrePassivate
-  private void ejbRemove() throws RuntimeException {
-    this.setPreDestroyCalled(true);
-    TLogger.log("PreDestroy or PrePassivate method called: " + this);
-  }
+    public EJBContext getEJBContext() {
+        return this.sctx;
+    }
 
-  @Remove
-  public void removeFoo() {
-  }
+    // ================= callback methods ====================================
+    @PostConstruct
+    @PostActivate
+    private void ejbCreate() throws RuntimeException {
+        this.setPostConstructCalled(true);
+        TLogger.log("PostConstruct or PostActivate method called: " + this);
+        if (this.getEJBContext() != null) {
+            this.setInjectionDone(true);
+        }
+        // try {
+        // this.getEJBContext().setRollbackOnly();
+        // } catch (IllegalStateException e) {
+        // //just log it. The test will fail inside the business method.
+        // TLogger.log("WARN: failed to setRollbackOnly inside PostConstruct or
+        // PostActivate");
+        // }
+    }
 
-  // ================== business methods ====================================
+    @PreDestroy
+    @PrePassivate
+    private void ejbRemove() throws RuntimeException {
+        this.setPreDestroyCalled(true);
+        TLogger.log("PreDestroy or PrePassivate method called: " + this);
+    }
+
+    @Remove
+    public void removeFoo() {}
+
+    // ================== business methods ====================================
 }

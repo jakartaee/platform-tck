@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 
 public class QueueBeanEJB extends BMPWrapper {
 
-  public boolean checkYourQueue() {
-    return QueueCode.checkYourQueue(nctx);
-  }
-
+    public boolean checkYourQueue() {
+        return QueueCode.checkYourQueue(nctx);
+    }
 }

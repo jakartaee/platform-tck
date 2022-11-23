@@ -18,42 +18,47 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest;
 
-import jakarta.xml.ws.WebServiceException;
 import jakarta.jws.WebService;
+import jakarta.xml.ws.WebServiceException;
 
-@WebService(portName = "SwaTestTwoPort", serviceName = "WSIRLSwaTestService", targetNamespace = "http://SwaTestService.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JRLSwaTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.SwaTest2")
+@WebService(
+        portName = "SwaTestTwoPort",
+        serviceName = "WSIRLSwaTestService",
+        targetNamespace = "http://SwaTestService.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/WSW2JRLSwaTestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.SwaTest2")
 public class SwaTestImpl2 implements SwaTest2 {
-  public java.lang.String putMultipleAttachments(
-      com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.InputRequestPut request,
-      jakarta.activation.DataHandler attach1,
-      jakarta.activation.DataHandler attach2) {
-    try {
-      String response = "ok";
-      System.out.println("Enter putMultipleAttachments() ......");
-      if (attach1 == null) {
-        System.err.println("attach1 is null (unexpected)");
-        response = "not ok";
-      }
-      if (attach2 == null) {
-        System.err.println("attach2 is null (unexpected)");
-        response = "not ok";
-      }
-      System.out.println("Leave putMultipleAttachments() ......");
-      return response;
-    } catch (Exception e) {
-      throw new WebServiceException(e.getMessage());
+    public java.lang.String putMultipleAttachments(
+            com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.InputRequestPut request,
+            jakarta.activation.DataHandler attach1,
+            jakarta.activation.DataHandler attach2) {
+        try {
+            String response = "ok";
+            System.out.println("Enter putMultipleAttachments() ......");
+            if (attach1 == null) {
+                System.err.println("attach1 is null (unexpected)");
+                response = "not ok";
+            }
+            if (attach2 == null) {
+                System.err.println("attach2 is null (unexpected)");
+                response = "not ok";
+            }
+            System.out.println("Leave putMultipleAttachments() ......");
+            return response;
+        } catch (Exception e) {
+            throw new WebServiceException(e.getMessage());
+        }
     }
-  }
 
-  public java.lang.String echoNoAttachments(
-      com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.InputRequestString request) {
-    try {
-      System.out.println("Enter echoNoAttachments() ......");
-      String response = request.getMyString();
-      System.out.println("Leave echoNoAttachments() ......");
-      return response;
-    } catch (Exception e) {
-      throw new WebServiceException(e.getMessage());
+    public java.lang.String echoNoAttachments(
+            com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.InputRequestString request) {
+        try {
+            System.out.println("Enter echoNoAttachments() ......");
+            String response = request.getMyString();
+            System.out.println("Leave echoNoAttachments() ......");
+            return response;
+        } catch (Exception e) {
+            throw new WebServiceException(e.getMessage());
+        }
     }
-  }
 }

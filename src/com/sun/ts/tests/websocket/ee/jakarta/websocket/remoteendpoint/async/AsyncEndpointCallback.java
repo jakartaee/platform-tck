@@ -19,22 +19,21 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.async;
 
 import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.tests.websocket.common.client.EndpointCallback;
-
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.RemoteEndpoint.Async;
 import jakarta.websocket.Session;
 
 public abstract class AsyncEndpointCallback extends EndpointCallback {
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-    Async asyncRemote = session.getAsyncRemote();
-    try {
-      doAsync(asyncRemote);
-    } catch (Fault f) {
-      throw new RuntimeException(f);
+    @Override
+    public void onOpen(Session session, EndpointConfig config) {
+        super.onOpen(session, config);
+        Async asyncRemote = session.getAsyncRemote();
+        try {
+            doAsync(asyncRemote);
+        } catch (Fault f) {
+            throw new RuntimeException(f);
+        }
     }
-  }
 
-  abstract void doAsync(Async async) throws Fault;
+    abstract void doAsync(Async async) throws Fault;
 }

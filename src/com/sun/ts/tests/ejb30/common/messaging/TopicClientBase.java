@@ -26,60 +26,59 @@ import jakarta.jms.Session;
 import jakarta.jms.Topic;
 import jakarta.jms.TopicConnectionFactory;
 
-abstract public class TopicClientBase extends ClientBase implements Constants {
-  //////////////////////////////////////////////////////////////////////
-  // Topic related stuff
-  //////////////////////////////////////////////////////////////////////
-  // these are declared in super class
-  // protected TopicConnection tConnect;
-  // protected TopicSession tSession;
-  // protected TopicConnectionFactory tFactory;
-  // protected TopicPublisher tPub;
+public abstract class TopicClientBase extends ClientBase implements Constants {
+    //////////////////////////////////////////////////////////////////////
+    // Topic related stuff
+    //////////////////////////////////////////////////////////////////////
+    // these are declared in super class
+    // protected TopicConnection tConnect;
+    // protected TopicSession tSession;
+    // protected TopicConnectionFactory tFactory;
+    // protected TopicPublisher tPub;
 
-  protected Topic sendTopic;
+    protected Topic sendTopic;
 
-  abstract protected void initSendTopic();
+    protected abstract void initSendTopic();
 
-  protected Topic getSendTopic() {
-    return sendTopic;
-  }
+    protected Topic getSendTopic() {
+        return sendTopic;
+    }
 
-  protected void setSendTopic(Topic topic) {
-    this.sendTopic = topic;
-  }
+    protected void setSendTopic(Topic topic) {
+        this.sendTopic = topic;
+    }
 
-  abstract protected void initTopicConnectionFactory();
+    protected abstract void initTopicConnectionFactory();
 
-  protected TopicConnectionFactory getTopicConnectionFactory() {
-    return tFactory;
-  }
+    protected TopicConnectionFactory getTopicConnectionFactory() {
+        return tFactory;
+    }
 
-  protected void setTopicConnectionFactory(TopicConnectionFactory tf) {
-    tFactory = tf;
-  }
+    protected void setTopicConnectionFactory(TopicConnectionFactory tf) {
+        tFactory = tf;
+    }
 
-  //////////////////////////////////////////////////////////////////////
-  // noop for Queue related methods
-  //////////////////////////////////////////////////////////////////////
-  final protected void initSendQueue() {
-  }
+    //////////////////////////////////////////////////////////////////////
+    // noop for Queue related methods
+    //////////////////////////////////////////////////////////////////////
+    protected final void initSendQueue() {}
 
-  //////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////
 
-  @Override
-  protected MessageProducer getMessageProducer() throws JMSException {
-    // TopicPublisher tPub declared in jms.commonee.Client
-    // TopicSession tSession declared in jms.commonee.Client
-    tPub = tSession.createPublisher(getSendTopic());
-    return tPub;
-  }
+    @Override
+    protected MessageProducer getMessageProducer() throws JMSException {
+        // TopicPublisher tPub declared in jms.commonee.Client
+        // TopicSession tSession declared in jms.commonee.Client
+        tPub = tSession.createPublisher(getSendTopic());
+        return tPub;
+    }
 
-  @Override
-  protected void configureTopic() throws JMSException {
-    initTopicConnectionFactory();
-    tConnect = tFactory.createTopicConnection(jmsUser, jmsPassword);
-    tSession = tConnect.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
-    tConnect.start();
-    initSendTopic();
-  }
+    @Override
+    protected void configureTopic() throws JMSException {
+        initTopicConnectionFactory();
+        tConnect = tFactory.createTopicConnection(jmsUser, jmsPassword);
+        tSession = tConnect.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
+        tConnect.start();
+        initSendTopic();
+    }
 }

@@ -18,28 +18,25 @@ package com.sun.ts.tests.ejb30.lite.xmloverride.resource;
 
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase;
-
 import jakarta.annotation.Resource;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends EJBLiteJsfClientBase {
-  @Resource(name = "unmappedEnvEntry")
-  private Integer unmappedEnvEntry = 1;
+    @Resource(name = "unmappedEnvEntry")
+    private Integer unmappedEnvEntry = 1;
 
-  private TestBean getTestBean() {
-    return (TestBean) ServiceLocator
-        .lookupNoTry("java:global/" + getModuleName() + "/TestBean");
-  }
+    private TestBean getTestBean() {
+        return (TestBean) ServiceLocator.lookupNoTry("java:global/" + getModuleName() + "/TestBean");
+    }
 
-  /*
-   * @testName: unmappedEnvEntry
-   *
-   * @test_Strategy: this @Resource has no mapped <env-entry> in descriptor, so
-   * the default value of the field is unchanged.
-   */
-  public void unmappedEnvEntry() {
-    assertEquals("Check correct the default value is retained. ", 1,
-        unmappedEnvEntry);
-  }
+    /*
+     * @testName: unmappedEnvEntry
+     *
+     * @test_Strategy: this @Resource has no mapped <env-entry> in descriptor, so
+     * the default value of the field is unchanged.
+     */
+    public void unmappedEnvEntry() {
+        assertEquals("Check correct the default value is retained. ", 1, unmappedEnvEntry);
+    }
 }

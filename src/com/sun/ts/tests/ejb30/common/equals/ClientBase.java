@@ -20,108 +20,104 @@
 
 package com.sun.ts.tests.ejb30.common.equals;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.ejb.EJB;
+import java.util.Properties;
 
-abstract public class ClientBase extends EETest {
-  protected static final boolean CLIENT_LOG_IF_OK = true;
+public abstract class ClientBase extends EETest {
+    protected static final boolean CLIENT_LOG_IF_OK = true;
 
-  protected Properties props;
+    protected Properties props;
 
-  @EJB(name = "testBean")
-  private static TestIF testBean;
+    @EJB(name = "testBean")
+    private static TestIF testBean;
 
-  public void setup(String[] args, Properties p) {
-    props = p;
-  }
+    public void setup(String[] args, Properties p) {
+        props = p;
+    }
 
-  public void cleanup() {
-  }
+    public void cleanup() {}
 
-  //////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////
 
-  /*
-   * testName: testBeanselfEquals
-   * 
-   * @test_Strategy:
-   *
-   */
-  public void testBeanselfEquals() throws TestFailedException {
-    testBean.selfEquals();
-  }
+    /*
+     * testName: testBeanselfEquals
+     *
+     * @test_Strategy:
+     *
+     */
+    public void testBeanselfEquals() throws TestFailedException {
+        testBean.selfEquals();
+    }
 
-  /*
-   * testName: testBeanotherEquals
-   * 
-   * @test_Strategy: only for comparing stateless beans.
-   *
-   */
-  public void testBeanotherEquals() throws TestFailedException {
-    testBean.otherEquals();
-  }
+    /*
+     * testName: testBeanotherEquals
+     *
+     * @test_Strategy: only for comparing stateless beans.
+     *
+     */
+    public void testBeanotherEquals() throws TestFailedException {
+        testBean.otherEquals();
+    }
 
-  /*
-   * testName: testBeanotherNotEquals
-   * 
-   * @test_Strategy: only for comparing stateless beans.
-   *
-   */
-  public void testBeanotherNotEquals() throws TestFailedException {
-    testBean.otherNotEquals();
-  }
+    /*
+     * testName: testBeanotherNotEquals
+     *
+     * @test_Strategy: only for comparing stateless beans.
+     *
+     */
+    public void testBeanotherNotEquals() throws TestFailedException {
+        testBean.otherNotEquals();
+    }
 
-  /*
-   * testName: testBeandifferentInterfaceNotEqual
-   * 
-   * @test_Strategy:
-   *
-   */
-  public void testBeandifferentInterfaceNotEqual() throws TestFailedException {
-    testBean.differentInterfaceNotEqual();
-  }
+    /*
+     * testName: testBeandifferentInterfaceNotEqual
+     *
+     * @test_Strategy:
+     *
+     */
+    public void testBeandifferentInterfaceNotEqual() throws TestFailedException {
+        testBean.differentInterfaceNotEqual();
+    }
 
-  /*
-   * testName: testBeanselfEqualsLookup
-   * 
-   * @test_Strategy:
-   *
-   */
-  public void testBeanselfEqualsLookup() throws TestFailedException {
-    testBean.selfEqualsLookup();
-  }
+    /*
+     * testName: testBeanselfEqualsLookup
+     *
+     * @test_Strategy:
+     *
+     */
+    public void testBeanselfEqualsLookup() throws TestFailedException {
+        testBean.selfEqualsLookup();
+    }
 
-  /*
-   * testName: testBeanotherEqualsLookup
-   * 
-   * @test_Strategy:only for comparing stateless beans.
-   *
-   */
-  public void testBeanotherEqualsLookup() throws TestFailedException {
-    testBean.otherEqualsLookup();
-  }
+    /*
+     * testName: testBeanotherEqualsLookup
+     *
+     * @test_Strategy:only for comparing stateless beans.
+     *
+     */
+    public void testBeanotherEqualsLookup() throws TestFailedException {
+        testBean.otherEqualsLookup();
+    }
 
-  /*
-   * testName: testBeanotherNotEqualsLookup
-   * 
-   * @test_Strategy:only for comparing stateful beans.
-   *
-   */
-  public void testBeanotherNotEqualsLookup() throws TestFailedException {
-    testBean.otherNotEqualsLookup();
-  }
+    /*
+     * testName: testBeanotherNotEqualsLookup
+     *
+     * @test_Strategy:only for comparing stateful beans.
+     *
+     */
+    public void testBeanotherNotEqualsLookup() throws TestFailedException {
+        testBean.otherNotEqualsLookup();
+    }
 
-  /*
-   * testName: testBeandifferentInterfaceNotEqualLookup
-   * 
-   * @test_Strategy:
-   *
-   */
-  public void testBeandifferentInterfaceNotEqualLookup()
-      throws TestFailedException {
-    testBean.differentInterfaceNotEqualLookup();
-  }
+    /*
+     * testName: testBeandifferentInterfaceNotEqualLookup
+     *
+     * @test_Strategy:
+     *
+     */
+    public void testBeandifferentInterfaceNotEqualLookup() throws TestFailedException {
+        testBean.differentInterfaceNotEqualLookup();
+    }
 }

@@ -16,87 +16,85 @@
 
 package com.sun.ts.tests.common.connector.embedded.adapter1;
 
+import com.sun.ts.tests.common.connector.whitebox.Debug;
 import javax.transaction.xa.XAException;
 import javax.transaction.xa.XAResource;
 import javax.transaction.xa.Xid;
 
-import com.sun.ts.tests.common.connector.whitebox.Debug;
-
 public class MsgXAResource implements XAResource {
 
-  public MsgXAResource() {
-    Debug.trace("MsgXAResource constructor");
-  }
-
-  private void handleResourceException(Exception ex) throws XAException {
-
-    XAException xae = new XAException(ex.toString());
-    xae.errorCode = XAException.XAER_RMERR;
-    throw xae;
-  }
-
-  public void commit(Xid xid, boolean onePhase) throws XAException {
-    try {
-      Debug.trace("MsgXAResource.commit");
-    } catch (Exception ex) {
-      handleResourceException(ex);
+    public MsgXAResource() {
+        Debug.trace("MsgXAResource constructor");
     }
-  }
 
-  public void start(Xid xid, int flags) throws XAException {
-    try {
-      Debug.trace("MsgXAResource.start");
-    } catch (Exception ex) {
-      handleResourceException(ex);
+    private void handleResourceException(Exception ex) throws XAException {
+
+        XAException xae = new XAException(ex.toString());
+        xae.errorCode = XAException.XAER_RMERR;
+        throw xae;
     }
-  }
 
-  public void end(Xid xid, int flags) throws XAException {
-    try {
-      Debug.trace("MsgXAResource.end");
-    } catch (Exception ex) {
-      handleResourceException(ex);
+    public void commit(Xid xid, boolean onePhase) throws XAException {
+        try {
+            Debug.trace("MsgXAResource.commit");
+        } catch (Exception ex) {
+            handleResourceException(ex);
+        }
     }
-  }
 
-  public void forget(Xid xid) throws XAException {
-    Debug.trace("MsgXAResource.forget");
-  }
-
-  public int getTransactionTimeout() throws XAException {
-    return 1;
-  }
-
-  public boolean isSameRM(XAResource other) throws XAException {
-    Debug.trace("MsgXAResource.isSameRM");
-    return false;
-  }
-
-  public int prepare(Xid xid) throws XAException {
-    Debug.trace("MsgXAResource.prepare");
-    try {
-      return XAResource.XA_OK;
-    } catch (Exception ex) {
-      handleResourceException(ex);
-      return XAException.XAER_RMERR;
+    public void start(Xid xid, int flags) throws XAException {
+        try {
+            Debug.trace("MsgXAResource.start");
+        } catch (Exception ex) {
+            handleResourceException(ex);
+        }
     }
-  }
 
-  public Xid[] recover(int flag) throws XAException {
-    Debug.trace("MsgXAResource.recover");
-    return null;
-  }
-
-  public void rollback(Xid xid) throws XAException {
-    try {
-      Debug.trace("MsgXAResource.rollback");
-    } catch (Exception ex) {
-      handleResourceException(ex);
+    public void end(Xid xid, int flags) throws XAException {
+        try {
+            Debug.trace("MsgXAResource.end");
+        } catch (Exception ex) {
+            handleResourceException(ex);
+        }
     }
-  }
 
-  public boolean setTransactionTimeout(int seconds) throws XAException {
-    return true;
-  }
+    public void forget(Xid xid) throws XAException {
+        Debug.trace("MsgXAResource.forget");
+    }
 
+    public int getTransactionTimeout() throws XAException {
+        return 1;
+    }
+
+    public boolean isSameRM(XAResource other) throws XAException {
+        Debug.trace("MsgXAResource.isSameRM");
+        return false;
+    }
+
+    public int prepare(Xid xid) throws XAException {
+        Debug.trace("MsgXAResource.prepare");
+        try {
+            return XAResource.XA_OK;
+        } catch (Exception ex) {
+            handleResourceException(ex);
+            return XAException.XAER_RMERR;
+        }
+    }
+
+    public Xid[] recover(int flag) throws XAException {
+        Debug.trace("MsgXAResource.recover");
+        return null;
+    }
+
+    public void rollback(Xid xid) throws XAException {
+        try {
+            Debug.trace("MsgXAResource.rollback");
+        } catch (Exception ex) {
+            handleResourceException(ex);
+        }
+    }
+
+    public boolean setTransactionTimeout(int seconds) throws XAException {
+        return true;
+    }
 }

@@ -19,9 +19,8 @@
  */
 package com.sun.ts.tests.ejb30.lite.async.stateless.descriptor;
 
-import java.io.Serializable;
-
 import com.sun.ts.tests.ejb30.lite.async.common.descriptor.DescriptorJsfClientBase;
+import java.io.Serializable;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
@@ -29,35 +28,35 @@ public class JsfClient extends DescriptorJsfClientBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-  /*
-   * @testName: allViews
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: localViews
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: allParams
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: noParams
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: intParams
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: intParamsLocalViews
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: allViews
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: localViews
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: allParams
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: noParams
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: intParams
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: intParamsLocalViews
+     *
+     * @test_Strategy:
+     */
 
 }

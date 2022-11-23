@@ -16,51 +16,47 @@
 
 package com.sun.ts.tests.common.connector.embedded.adapter1;
 
-import javax.transaction.xa.XAException;
-
 import com.sun.ts.tests.common.connector.whitebox.Debug;
 import com.sun.ts.tests.common.connector.whitebox.XidImpl;
-
 import jakarta.resource.spi.BootstrapContext;
 import jakarta.resource.spi.XATerminator;
 import jakarta.resource.spi.work.WorkEvent;
 import jakarta.resource.spi.work.WorkListener;
+import javax.transaction.xa.XAException;
 
 public class CRDMessageListener implements WorkListener {
 
-  private XidImpl xid;
+    private XidImpl xid;
 
-  private BootstrapContext bsc;
+    private BootstrapContext bsc;
 
-  public CRDMessageListener(XidImpl xid, BootstrapContext bsc) {
-    this.xid = xid;
-    this.bsc = bsc;
-  }
-
-  public void workAccepted(WorkEvent e) {
-    System.out.println("CRDMessageListener.workAccepted");
-  }
-
-  public void workRejected(WorkEvent e) {
-    System.out.println("CRDMessageListener.workRejected");
-  }
-
-  public void workStarted(WorkEvent e) {
-    System.out.println("CRDMessageListener.workStarted");
-  }
-
-  public void workCompleted(WorkEvent e) {
-    try {
-      XATerminator xt = bsc.getXATerminator();
-      xt.commit(this.xid, true);
-      System.out.println("CRDMessageListener.workCompleted");
-      System.out.println(
-          "XID getting used in XATerminator [ " + xid.getFormatId() + " ]");
-
-    } catch (XAException ex) {
-      Debug.trace("CRDMessageListener.workCompleted() got XAException");
-      ex.printStackTrace();
+    public CRDMessageListener(XidImpl xid, BootstrapContext bsc) {
+        this.xid = xid;
+        this.bsc = bsc;
     }
-  }
 
+    public void workAccepted(WorkEvent e) {
+        System.out.println("CRDMessageListener.workAccepted");
+    }
+
+    public void workRejected(WorkEvent e) {
+        System.out.println("CRDMessageListener.workRejected");
+    }
+
+    public void workStarted(WorkEvent e) {
+        System.out.println("CRDMessageListener.workStarted");
+    }
+
+    public void workCompleted(WorkEvent e) {
+        try {
+            XATerminator xt = bsc.getXATerminator();
+            xt.commit(this.xid, true);
+            System.out.println("CRDMessageListener.workCompleted");
+            System.out.println("XID getting used in XATerminator [ " + xid.getFormatId() + " ]");
+
+        } catch (XAException ex) {
+            Debug.trace("CRDMessageListener.workCompleted() got XAException");
+            ex.printStackTrace();
+        }
+    }
 }

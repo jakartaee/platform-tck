@@ -21,7 +21,6 @@
 package com.sun.ts.tests.jms.ee20.ra.activationconfig.topic.noselnocidautodurable.descriptor;
 
 import com.sun.ts.tests.jms.ee20.ra.activationconfig.common.ActivationConfigBeanBase;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.MessageDrivenContext;
@@ -29,25 +28,24 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import jakarta.jms.MessageListener;
 
-//This MDB implements jakarta.jms.MessageListener interface, so no need to
-//use annotation element messageListenerInterface, nor descritpor element
-//messaging-type
+// This MDB implements jakarta.jms.MessageListener interface, so no need to
+// use annotation element messageListenerInterface, nor descritpor element
+// messaging-type
 
-//assembler not permitted to override transaction management type. 
+// assembler not permitted to override transaction management type.
 @TransactionManagement(TransactionManagementType.BEAN)
-public class ActivationConfigBean extends ActivationConfigBeanBase
-    implements MessageListener {
-  @Resource(name = "mdc")
-  private MessageDrivenContext mdc;
+public class ActivationConfigBean extends ActivationConfigBeanBase implements MessageListener {
+    @Resource(name = "mdc")
+    private MessageDrivenContext mdc;
 
-  public ActivationConfigBean() {
-    super();
-  }
+    public ActivationConfigBean() {
+        super();
+    }
 
-  public EJBContext getEJBContext() {
-    return this.mdc;
-  }
+    public EJBContext getEJBContext() {
+        return this.mdc;
+    }
 
-  // ================== business methods ====================================
+    // ================== business methods ====================================
 
 }

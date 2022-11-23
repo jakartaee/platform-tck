@@ -25,53 +25,50 @@ package com.sun.ts.tests.jws.common;
 
 public class Salary {
 
-  private int salary = 0;
+    private int salary = 0;
 
-  private int bonusPercentage = 0;
+    private int bonusPercentage = 0;
 
-  private String currency = "USD";
+    private String currency = "USD";
 
-  public Salary(int salary, int bonusPercentage, String currency) {
-    this.salary = salary;
-    this.bonusPercentage = bonusPercentage;
-    this.currency = currency;
-  }
+    public Salary(int salary, int bonusPercentage, String currency) {
+        this.salary = salary;
+        this.bonusPercentage = bonusPercentage;
+        this.currency = currency;
+    }
 
-  public Salary(int salary, int bonusPercentage) {
-    this.salary = salary;
-    this.bonusPercentage = bonusPercentage;
-  }
+    public Salary(int salary, int bonusPercentage) {
+        this.salary = salary;
+        this.bonusPercentage = bonusPercentage;
+    }
 
-  public Salary() {
-  }
+    public Salary() {}
 
-  public int getSalary() {
-    return salary;
-  }
+    public int getSalary() {
+        return salary;
+    }
 
-  public void setSalary(int salary) {
-    this.salary = salary;
-  }
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
 
-  public int getBonusPercentage() {
-    return bonusPercentage;
-  }
+    public int getBonusPercentage() {
+        return bonusPercentage;
+    }
 
-  public void setBonusPercentage(int bonusPercentage) {
-    this.bonusPercentage = bonusPercentage;
-  }
+    public void setBonusPercentage(int bonusPercentage) {
+        this.bonusPercentage = bonusPercentage;
+    }
 
-  public String getCurrency() {
-    return currency;
-  }
+    public String getCurrency() {
+        return currency;
+    }
 
-  public void setCurrency(String currency) {
-    this.currency = currency;
-  }
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
 
-  public String toString() {
-    return "Salary:$" + salary + " Bonus Percentage:%" + bonusPercentage
-        + " Currency:" + currency;
-  }
-
+    public String toString() {
+        return "Salary:$" + salary + " Bonus Percentage:%" + bonusPercentage + " Currency:" + currency;
+    }
 }

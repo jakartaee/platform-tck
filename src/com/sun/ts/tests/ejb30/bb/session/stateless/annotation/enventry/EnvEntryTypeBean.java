@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventry;
 
 import com.sun.ts.tests.ejb30.common.annotation.enventry.EnvEntryBeanBase;
 import com.sun.ts.tests.ejb30.common.annotation.enventry.EnvEntryIF;
-
 import jakarta.annotation.Resource;
 import jakarta.annotation.Resources;
 import jakarta.ejb.Remote;
@@ -32,7 +31,7 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateless(name = "EnvEntryTypeBean")
-@Remote({ EnvEntryIF.class })
+@Remote({EnvEntryIF.class})
 @TransactionManagement(TransactionManagementType.CONTAINER)
 @Resources({
     @Resource(name = "myString", type = String.class, description = "<env-entry> string"),
@@ -44,7 +43,6 @@ import jakarta.ejb.TransactionManagementType;
     @Resource(name = "myShort", type = short.class, description = "<env-entry> Short"),
     @Resource(name = "myLong", type = long.class, description = "<env-entry> Long"),
     @Resource(name = "myFloat", type = float.class, description = "<env-entry> Float"),
-
     @Resource(name = "a/a/a/myString", type = String.class, description = "<env-entry> string"),
     @Resource(name = "a/a/a/myChar", type = char.class, description = "<env-entry> Character"),
     @Resource(name = "a/a/a/myInt", type = int.class, description = "<env-entry> Integer"),
@@ -53,254 +51,253 @@ import jakarta.ejb.TransactionManagementType;
     @Resource(name = "a/a/a/myByte", type = byte.class, description = "<env-entry> Byte"),
     @Resource(name = "a/a/a/myShort", type = short.class, description = "<env-entry> Short"),
     @Resource(name = "a/a/a/myLong", type = long.class, description = "<env-entry> Long"),
-    @Resource(name = "a/a/a/myFloat", type = float.class, description = "<env-entry> Float") })
+    @Resource(name = "a/a/a/myFloat", type = float.class, description = "<env-entry> Float")
+})
 public class EnvEntryTypeBean extends EnvEntryBeanBase implements EnvEntryIF {
 
-  @Resource(name = "sessionContext")
-  private SessionContext sessionContext;
+    @Resource(name = "sessionContext")
+    private SessionContext sessionContext;
 
-  public EnvEntryTypeBean() {
-  }
+    public EnvEntryTypeBean() {}
 
-  public void remove() {
-  }
+    public void remove() {}
 
-  protected jakarta.ejb.EJBContext getEJBContext() {
-    return sessionContext;
-  }
+    protected jakarta.ejb.EJBContext getEJBContext() {
+        return sessionContext;
+    }
 
-  protected String getString() {
-    return (String) getEJBContext().lookup(getStringName());
-  }
+    protected String getString() {
+        return (String) getEJBContext().lookup(getStringName());
+    }
 
-  protected String getStringExpected() {
-    return "EnvEntryTypeBean";
-  }
+    protected String getStringExpected() {
+        return "EnvEntryTypeBean";
+    }
 
-  protected String getStringName() {
-    return "myString";
-  }
+    protected String getStringName() {
+        return "myString";
+    }
 
-  protected char getChar() {
-    Character big = (Character) getEJBContext().lookup(getCharName());
-    return big.charValue();
-  }
+    protected char getChar() {
+        Character big = (Character) getEJBContext().lookup(getCharName());
+        return big.charValue();
+    }
 
-  protected char getCharExpected() {
-    return 't';
-  }
+    protected char getCharExpected() {
+        return 't';
+    }
 
-  protected String getCharName() {
-    return "myChar";
-  }
+    protected String getCharName() {
+        return "myChar";
+    }
 
-  protected int getInt() {
-    Integer big = (Integer) getEJBContext().lookup(getIntName());
-    return big.intValue();
-  }
+    protected int getInt() {
+        Integer big = (Integer) getEJBContext().lookup(getIntName());
+        return big.intValue();
+    }
 
-  protected int getIntExpected() {
-    return -1;
-  }
+    protected int getIntExpected() {
+        return -1;
+    }
 
-  protected String getIntName() {
-    return "myInt";
-  }
+    protected String getIntName() {
+        return "myInt";
+    }
 
-  protected boolean getBoolean() {
-    Boolean big = (Boolean) getEJBContext().lookup(getBooleanName());
-    return big.booleanValue();
-  }
+    protected boolean getBoolean() {
+        Boolean big = (Boolean) getEJBContext().lookup(getBooleanName());
+        return big.booleanValue();
+    }
 
-  protected boolean getBooleanExpected() {
-    return true;
-  }
+    protected boolean getBooleanExpected() {
+        return true;
+    }
 
-  protected String getBooleanName() {
-    return "myBoolean";
-  }
+    protected String getBooleanName() {
+        return "myBoolean";
+    }
 
-  protected double getDouble() {
-    Double big = (Double) getEJBContext().lookup(getDoubleName());
-    return big.doubleValue();
-  }
+    protected double getDouble() {
+        Double big = (Double) getEJBContext().lookup(getDoubleName());
+        return big.doubleValue();
+    }
 
-  protected double getDoubleExpected() {
-    return 1.11;
-  }
+    protected double getDoubleExpected() {
+        return 1.11;
+    }
 
-  protected String getDoubleName() {
-    return "myDouble";
-  }
+    protected String getDoubleName() {
+        return "myDouble";
+    }
 
-  protected byte getByte() {
-    Byte big = (Byte) getEJBContext().lookup(getByteName());
-    return big.byteValue();
-  }
+    protected byte getByte() {
+        Byte big = (Byte) getEJBContext().lookup(getByteName());
+        return big.byteValue();
+    }
 
-  protected byte getByteExpected() {
-    return 8;
-  }
+    protected byte getByteExpected() {
+        return 8;
+    }
 
-  protected String getByteName() {
-    return "myByte";
-  }
+    protected String getByteName() {
+        return "myByte";
+    }
 
-  protected short getShort() {
-    Short big = (Short) getEJBContext().lookup(getShortName());
-    return big.shortValue();
-  }
+    protected short getShort() {
+        Short big = (Short) getEJBContext().lookup(getShortName());
+        return big.shortValue();
+    }
 
-  protected short getShortExpected() {
-    return 1;
-  }
+    protected short getShortExpected() {
+        return 1;
+    }
 
-  protected String getShortName() {
-    return "myShort";
-  }
+    protected String getShortName() {
+        return "myShort";
+    }
 
-  protected long getLong() {
-    Long big = (Long) getEJBContext().lookup(getLongName());
-    return big.longValue();
-  }
+    protected long getLong() {
+        Long big = (Long) getEJBContext().lookup(getLongName());
+        return big.longValue();
+    }
 
-  protected long getLongExpected() {
-    return 100;
-  }
+    protected long getLongExpected() {
+        return 100;
+    }
 
-  protected String getLongName() {
-    return "myLong";
-  }
+    protected String getLongName() {
+        return "myLong";
+    }
 
-  protected float getFloat() {
-    Float big = (Float) getEJBContext().lookup(getFloatName());
-    return big.floatValue();
-  }
+    protected float getFloat() {
+        Float big = (Float) getEJBContext().lookup(getFloatName());
+        return big.floatValue();
+    }
 
-  protected float getFloatExpected() {
-    return (float) 1.1;
-  }
+    protected float getFloatExpected() {
+        return (float) 1.1;
+    }
 
-  protected String getFloatName() {
-    return "myFloat";
-  }
+    protected String getFloatName() {
+        return "myFloat";
+    }
 
-  // env-entries with subcontexts
-  protected String getStringDeep() {
-    String s = (String) getEJBContext().lookup(getStringDeepName());
-    return s;
-  }
+    // env-entries with subcontexts
+    protected String getStringDeep() {
+        String s = (String) getEJBContext().lookup(getStringDeepName());
+        return s;
+    }
 
-  // protected String getStringDeepExpected() {return "EnvEntryTypeBeanDeep";}
-  protected String getStringDeepExpected() {
-    return " ";
-  }
+    // protected String getStringDeepExpected() {return "EnvEntryTypeBeanDeep";}
+    protected String getStringDeepExpected() {
+        return " ";
+    }
 
-  protected String getStringDeepName() {
-    return "a/a/a/myString";
-  }
+    protected String getStringDeepName() {
+        return "a/a/a/myString";
+    }
 
-  protected char getCharDeep() {
-    Character big = (Character) getEJBContext().lookup(getCharDeepName());
-    return big.charValue();
-  }
+    protected char getCharDeep() {
+        Character big = (Character) getEJBContext().lookup(getCharDeepName());
+        return big.charValue();
+    }
 
-  protected char getCharDeepExpected() {
-    return ' ';
-  }
+    protected char getCharDeepExpected() {
+        return ' ';
+    }
 
-  protected String getCharDeepName() {
-    return "a/a/a/myChar";
-  }
+    protected String getCharDeepName() {
+        return "a/a/a/myChar";
+    }
 
-  protected int getIntDeep() {
-    Integer big = (Integer) getEJBContext().lookup(getIntDeepName());
-    return big.intValue();
-  }
+    protected int getIntDeep() {
+        Integer big = (Integer) getEJBContext().lookup(getIntDeepName());
+        return big.intValue();
+    }
 
-  protected int getIntDeepExpected() {
-    return -2;
-  }
+    protected int getIntDeepExpected() {
+        return -2;
+    }
 
-  protected String getIntDeepName() {
-    return "a/a/a/myInt";
-  }
+    protected String getIntDeepName() {
+        return "a/a/a/myInt";
+    }
 
-  protected boolean getBooleanDeep() {
-    Boolean big = (Boolean) getEJBContext().lookup(getBooleanDeepName());
-    return big.booleanValue();
-  }
+    protected boolean getBooleanDeep() {
+        Boolean big = (Boolean) getEJBContext().lookup(getBooleanDeepName());
+        return big.booleanValue();
+    }
 
-  protected boolean getBooleanDeepExpected() {
-    return false;
-  }
+    protected boolean getBooleanDeepExpected() {
+        return false;
+    }
 
-  protected String getBooleanDeepName() {
-    return "a/a/a/myBoolean";
-  }
+    protected String getBooleanDeepName() {
+        return "a/a/a/myBoolean";
+    }
 
-  protected double getDoubleDeep() {
-    Double big = (Double) getEJBContext().lookup(getDoubleDeepName());
-    return big.doubleValue();
-  }
+    protected double getDoubleDeep() {
+        Double big = (Double) getEJBContext().lookup(getDoubleDeepName());
+        return big.doubleValue();
+    }
 
-  protected double getDoubleDeepExpected() {
-    return 2.22;
-  }
+    protected double getDoubleDeepExpected() {
+        return 2.22;
+    }
 
-  protected String getDoubleDeepName() {
-    return "a/a/a/myDouble";
-  }
+    protected String getDoubleDeepName() {
+        return "a/a/a/myDouble";
+    }
 
-  protected byte getByteDeep() {
-    Byte big = (Byte) getEJBContext().lookup(getByteDeepName());
-    return big.byteValue();
-  }
+    protected byte getByteDeep() {
+        Byte big = (Byte) getEJBContext().lookup(getByteDeepName());
+        return big.byteValue();
+    }
 
-  protected byte getByteDeepExpected() {
-    return 16;
-  }
+    protected byte getByteDeepExpected() {
+        return 16;
+    }
 
-  protected String getByteDeepName() {
-    return "a/a/a/myByte";
-  }
+    protected String getByteDeepName() {
+        return "a/a/a/myByte";
+    }
 
-  protected short getShortDeep() {
-    Short big = (Short) getEJBContext().lookup(getShortDeepName());
-    return big.shortValue();
-  }
+    protected short getShortDeep() {
+        Short big = (Short) getEJBContext().lookup(getShortDeepName());
+        return big.shortValue();
+    }
 
-  protected short getShortDeepExpected() {
-    return 2;
-  }
+    protected short getShortDeepExpected() {
+        return 2;
+    }
 
-  protected String getShortDeepName() {
-    return "a/a/a/myShort";
-  }
+    protected String getShortDeepName() {
+        return "a/a/a/myShort";
+    }
 
-  protected long getLongDeep() {
-    Long big = (Long) getEJBContext().lookup(getLongDeepName());
-    return big.longValue();
-  }
+    protected long getLongDeep() {
+        Long big = (Long) getEJBContext().lookup(getLongDeepName());
+        return big.longValue();
+    }
 
-  protected long getLongDeepExpected() {
-    return 200;
-  }
+    protected long getLongDeepExpected() {
+        return 200;
+    }
 
-  protected String getLongDeepName() {
-    return "a/a/a/myLong";
-  }
+    protected String getLongDeepName() {
+        return "a/a/a/myLong";
+    }
 
-  protected float getFloatDeep() {
-    Float big = (Float) getEJBContext().lookup(getFloatDeepName());
-    return big.floatValue();
-  }
+    protected float getFloatDeep() {
+        Float big = (Float) getEJBContext().lookup(getFloatDeepName());
+        return big.floatValue();
+    }
 
-  protected float getFloatDeepExpected() {
-    return (float) 2.2;
-  }
+    protected float getFloatDeepExpected() {
+        return (float) 2.2;
+    }
 
-  protected String getFloatDeepName() {
-    return "a/a/a/myFloat";
-  }
+    protected String getFloatDeepName() {
+        return "a/a/a/myFloat";
+    }
 }

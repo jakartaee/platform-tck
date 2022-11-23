@@ -20,46 +20,41 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Collection;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface Customer extends EJBObject {
-  // Business Methods for CMP Fields
-  public String getId() throws RemoteException;
+    // Business Methods for CMP Fields
+    public String getId() throws RemoteException;
 
-  public String getName() throws RemoteException;
+    public String getName() throws RemoteException;
 
-  public void setName(String v) throws RemoteException;
+    public void setName(String v) throws RemoteException;
 
-  public Country getCountry() throws RemoteException;
+    public Country getCountry() throws RemoteException;
 
-  public void setCountry(Country v) throws RemoteException;
+    public void setCountry(Country v) throws RemoteException;
 
-  // Miscellaneous Business Methods
-  public void addAlias(Alias a) throws RemoteException;
+    // Miscellaneous Business Methods
+    public void addAlias(Alias a) throws RemoteException;
 
-  public void addOrder(Order a) throws RemoteException;
+    public void addOrder(Order a) throws RemoteException;
 
-  public void addSpouse(SpouseDVC s) throws RemoteException, SpouseException;
+    public void addSpouse(SpouseDVC s) throws RemoteException, SpouseException;
 
-  public void addCreditCard(CreditCardDVC a)
-      throws RemoteException, CreditCardException;
+    public void addCreditCard(CreditCardDVC a) throws RemoteException, CreditCardException;
 
-  public AddressDVC getClientHomeAddress()
-      throws RemoteException, AddressException;
+    public AddressDVC getClientHomeAddress() throws RemoteException, AddressException;
 
-  public AddressDVC getClientWorkAddress()
-      throws RemoteException, AddressException;
+    public AddressDVC getClientWorkAddress() throws RemoteException, AddressException;
 
-  public Collection getClientCreditCards()
-      throws RemoteException, CreditCardException;
+    public Collection getClientCreditCards() throws RemoteException, CreditCardException;
 
-  public Collection getClientOrders() throws RemoteException;
+    public Collection getClientOrders() throws RemoteException;
 
-  public Collection getClientAliases() throws RemoteException;
+    public Collection getClientAliases() throws RemoteException;
 
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 }

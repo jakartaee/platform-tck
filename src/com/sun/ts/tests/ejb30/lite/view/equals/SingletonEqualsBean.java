@@ -22,11 +22,9 @@ package com.sun.ts.tests.ejb30.lite.view.equals;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF2;
-
 import jakarta.ejb.Local;
 import jakarta.ejb.Singleton;
 
 @Singleton
-@Local({ BusinessLocalIF1.class, BusinessLocalIF2.class })
-public class SingletonEqualsBean extends StatelessEqualsBean {
-}
+@Local({BusinessLocalIF1.class, BusinessLocalIF2.class})
+public class SingletonEqualsBean extends StatelessEqualsBean {}

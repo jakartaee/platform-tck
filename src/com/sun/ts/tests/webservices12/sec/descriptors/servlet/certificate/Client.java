@@ -19,110 +19,106 @@
  */
 package com.sun.ts.tests.webservices12.sec.descriptors.servlet.certificate;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
-import com.sun.ts.tests.jaxws.common.*;
 import com.sun.javatest.Status;
-import java.util.Iterator;
+import com.sun.ts.lib.harness.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
+import com.sun.ts.tests.jaxws.common.*;
 import jakarta.xml.ws.*;
-import javax.xml.namespace.QName;
-import java.util.Properties;
 import java.util.Map;
+import java.util.Properties;
 import javax.net.ssl.*;
 
 public class Client extends EETest {
-  HelloCertificate certificatePort;
+    HelloCertificate certificatePort;
 
-  private TSURL ctsurl = new TSURL();
+    private TSURL ctsurl = new TSURL();
 
-  private String hostname = "localhost";
+    private String hostname = "localhost";
 
-  private String PROTOCOL = "https";
+    private String PROTOCOL = "https";
 
-  private String urlString = null;
+    private String urlString = null;
 
-  private int portnum = 8000;
+    private int portnum = 8000;
 
-  private static final String ENDPOINTURL = "/WSSecWarCertificate_web/ws4ee/SecWarCertificate";
+    private static final String ENDPOINTURL = "/WSSecWarCertificate_web/ws4ee/SecWarCertificate";
 
-  @WebServiceRef(name = "service/secWar/wscertificate")
-  static HelloCertificateService service = null;
+    @WebServiceRef(name = "service/secWar/wscertificate")
+    static HelloCertificateService service = null;
 
-  private void getPort() throws Exception {
-    TestUtil.logMsg("service=" + service);
-    TestUtil.logMsg("Get port from certificate Service");
-    certificatePort = (HelloCertificate) service.getHelloCertificatePort();
-    TestUtil.logMsg("port=" + certificatePort);
-    TestUtil.logMsg("certificate port obtained");
-    BindingProvider bindingProvider = (BindingProvider) certificatePort;
-    Map<String, Object> map = bindingProvider.getRequestContext();
-    TestUtil
-        .logMsg("Setting the target endpoint address on WS port: " + urlString);
-    map.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, urlString);
-  }
+    private void getPort() throws Exception {
+        TestUtil.logMsg("service=" + service);
+        TestUtil.logMsg("Get port from certificate Service");
+        certificatePort = (HelloCertificate) service.getHelloCertificatePort();
+        TestUtil.logMsg("port=" + certificatePort);
+        TestUtil.logMsg("certificate port obtained");
+        BindingProvider bindingProvider = (BindingProvider) certificatePort;
+        Map<String, Object> map = bindingProvider.getRequestContext();
+        TestUtil.logMsg("Setting the target endpoint address on WS port: " + urlString);
+        map.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, urlString);
+    }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /* Test setup */
+    /* Test setup */
 
-  /*
-   * @class.testArgs: -ap webservices-url-props.dat
-   * 
-   * @class.setup_props: webServerHost; securedWebServicePort;
-   */
+    /*
+     * @class.testArgs: -ap webservices-url-props.dat
+     *
+     * @class.setup_props: webServerHost; securedWebServicePort;
+     */
 
-  public void setup(String[] args, Properties p) throws Fault {
-    try {
-      hostname = p.getProperty("webServerHost");
-      portnum = Integer.parseInt(p.getProperty("securedWebServicePort"));
-      urlString = ctsurl.getURLString(PROTOCOL, hostname, portnum, ENDPOINTURL);
-      HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
-        public boolean verify(String hostname, SSLSession session) {
-          return true;
+    public void setup(String[] args, Properties p) throws Fault {
+        try {
+            hostname = p.getProperty("webServerHost");
+            portnum = Integer.parseInt(p.getProperty("securedWebServicePort"));
+            urlString = ctsurl.getURLString(PROTOCOL, hostname, portnum, ENDPOINTURL);
+            HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            });
+            getPort();
+        } catch (Exception e) {
+            throw new Fault("setup failed:", e);
         }
-      });
-      getPort();
-    } catch (Exception e) {
-      throw new Fault("setup failed:", e);
+        TestUtil.logMsg("setup ok");
     }
-    TestUtil.logMsg("setup ok");
-  }
 
-  public void cleanup() throws Fault {
-    TestUtil.logMsg("cleanup ok");
-  }
-
-  private void printSeperationLine() {
-    TestUtil.logMsg("---------------------------");
-  }
-
-  /*
-   * @testName: secWarCertificate
-   *
-   * @assertion_ids: WS4EE:SPEC:193; WS4EE:SPEC:196; WS4EE:SPEC:194;
-   * WS4EE:SPEC:195; WS4EE:SPEC:9002;
-   * 
-   * @test_Strategy: Call EJB with client certificate authentication
-   */
-  public void secWarCertificate() throws Fault {
-    TestUtil.logMsg("secWarCertificate");
-    try {
-      String ret1 = certificatePort.sayHelloCertificate("secWarCertificate");
-      if (!ret1.equals("'secWarCertificate' from HelloCertificateImpl!")) {
-        TestUtil.logMsg("secWarCertificate failed: return value: " + ret1);
-        throw new Fault("SecWarCertificate failed");
-      }
-      TestUtil.logMsg("secWarCertificate passed");
-    } catch (Throwable t) {
-      TestUtil
-          .logMsg("secWarCertificate failed: got exception " + t.toString());
-      throw new Fault("secWarCertificate failed");
+    public void cleanup() throws Fault {
+        TestUtil.logMsg("cleanup ok");
     }
-    return;
-  }
+
+    private void printSeperationLine() {
+        TestUtil.logMsg("---------------------------");
+    }
+
+    /*
+     * @testName: secWarCertificate
+     *
+     * @assertion_ids: WS4EE:SPEC:193; WS4EE:SPEC:196; WS4EE:SPEC:194;
+     * WS4EE:SPEC:195; WS4EE:SPEC:9002;
+     *
+     * @test_Strategy: Call EJB with client certificate authentication
+     */
+    public void secWarCertificate() throws Fault {
+        TestUtil.logMsg("secWarCertificate");
+        try {
+            String ret1 = certificatePort.sayHelloCertificate("secWarCertificate");
+            if (!ret1.equals("'secWarCertificate' from HelloCertificateImpl!")) {
+                TestUtil.logMsg("secWarCertificate failed: return value: " + ret1);
+                throw new Fault("SecWarCertificate failed");
+            }
+            TestUtil.logMsg("secWarCertificate passed");
+        } catch (Throwable t) {
+            TestUtil.logMsg("secWarCertificate failed: got exception " + t.toString());
+            throw new Fault("secWarCertificate failed");
+        }
+        return;
+    }
 }

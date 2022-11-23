@@ -18,11 +18,14 @@ package com.sun.ts.tests.webservices12.wsdlImport.file.twin2.server;
 
 import jakarta.jws.WebService;
 
-@WebService(portName = "Tests2Port", serviceName = "Twin2FileSvc2", targetNamespace = "http://Twin2FileSvc2.org/wsdl", wsdlLocation = "WEB-INF/wsdl/svc2/Twin2FileSvc2.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.file.twin2.server.Tests2")
-
+@WebService(
+        portName = "Tests2Port",
+        serviceName = "Twin2FileSvc2",
+        targetNamespace = "http://Twin2FileSvc2.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/svc2/Twin2FileSvc2.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.file.twin2.server.Tests2")
 public class TestsImpl2 implements Tests2 {
-  public String invokeTest2() {
-    return "Hello";
-  }
-
+    public String invokeTest2() {
+        return "Hello";
+    }
 }

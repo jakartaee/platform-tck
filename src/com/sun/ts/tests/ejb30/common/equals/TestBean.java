@@ -20,116 +20,108 @@
 
 package com.sun.ts.tests.ejb30.common.equals;
 
-import javax.naming.NamingException;
-
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
+import javax.naming.NamingException;
 
 @Stateless(name = "test-bean")
 @Remote
 public class TestBean extends TestBeanBase implements TestIF {
-  @Resource(name = "sessionContext")
-  private SessionContext sessionContext;
+    @Resource(name = "sessionContext")
+    private SessionContext sessionContext;
 
-  protected SessionContext getSessionContext() {
-    return sessionContext;
-  }
-
-  @EJB(name = "cart")
-  private LocalCartIF cart;
-
-  @EJB(name = "cartOther")
-  private LocalCartIF cartOther;
-
-  @EJB(name = "shoppingCart")
-  private LocalShoppingCartIF shoppingCart;
-
-  @EJB(name = "shoppingCartOther")
-  private LocalShoppingCartIF shoppingCartOther;
-
-  public void remove() {
-  }
-
-  //////////////////////////////////////////////////////////////////////
-  public void selfEquals() throws TestFailedException {
-    Comparator.compare(cart, cart, true, LOG_IF_OK);
-    Comparator.compare(shoppingCart, shoppingCart, true, LOG_IF_OK);
-  }
-
-  public void selfEqualsLookup() throws TestFailedException {
-    try {
-      Object cart = ServiceLocator.lookupByShortName("cart");
-      Object shoppingCart = ServiceLocator.lookupByShortName("shoppingCart");
-      Comparator.compare(cart, cart, true, LOG_IF_OK);
-      Comparator.compare(shoppingCart, shoppingCart, true, LOG_IF_OK);
-
-      cart = getSessionContext().lookup("cart");
-      shoppingCart = getSessionContext().lookup("shoppingCart");
-      Comparator.compare(cart, cart, true, LOG_IF_OK);
-      Comparator.compare(shoppingCart, shoppingCart, true, LOG_IF_OK);
-    } catch (NamingException e) {
-      throw new TestFailedException(e);
+    protected SessionContext getSessionContext() {
+        return sessionContext;
     }
-  }
 
-  public void otherEquals() throws TestFailedException {
-    Comparator.compare(cart, cartOther, true, LOG_IF_OK);
-    Comparator.compare(shoppingCart, shoppingCartOther, true, LOG_IF_OK);
-  }
+    @EJB(name = "cart")
+    private LocalCartIF cart;
 
-  public void otherEqualsLookup() throws TestFailedException {
-    try {
-      Object cart = ServiceLocator.lookupByShortName("cart");
-      Object cartOther = ServiceLocator.lookupByShortName("cartOther");
-      Object shoppingCart = ServiceLocator.lookupByShortName("shoppingCart");
-      Object shoppingCartOther = ServiceLocator
-          .lookupByShortName("shoppingCartOther");
-      Comparator.compare(cart, cartOther, this.cart, true, LOG_IF_OK);
-      Comparator.compare(shoppingCart, shoppingCartOther, this.shoppingCart,
-          true, LOG_IF_OK);
+    @EJB(name = "cartOther")
+    private LocalCartIF cartOther;
 
-      cart = getSessionContext().lookup("cart");
-      cartOther = getSessionContext().lookup("cartOther");
-      shoppingCart = getSessionContext().lookup("shoppingCart");
-      shoppingCartOther = getSessionContext().lookup("shoppingCartOther");
-      Comparator.compare(cart, cartOther, this.cart, true, LOG_IF_OK);
-      Comparator.compare(shoppingCart, shoppingCartOther, this.shoppingCart,
-          true, LOG_IF_OK);
-    } catch (NamingException e) {
-      throw new TestFailedException(e);
+    @EJB(name = "shoppingCart")
+    private LocalShoppingCartIF shoppingCart;
+
+    @EJB(name = "shoppingCartOther")
+    private LocalShoppingCartIF shoppingCartOther;
+
+    public void remove() {}
+
+    //////////////////////////////////////////////////////////////////////
+    public void selfEquals() throws TestFailedException {
+        Comparator.compare(cart, cart, true, LOG_IF_OK);
+        Comparator.compare(shoppingCart, shoppingCart, true, LOG_IF_OK);
     }
-  }
 
-  public void differentInterfaceNotEqual() throws TestFailedException {
-    Comparator.compare(cart, shoppingCart, false, LOG_IF_OK);
-  }
+    public void selfEqualsLookup() throws TestFailedException {
+        try {
+            Object cart = ServiceLocator.lookupByShortName("cart");
+            Object shoppingCart = ServiceLocator.lookupByShortName("shoppingCart");
+            Comparator.compare(cart, cart, true, LOG_IF_OK);
+            Comparator.compare(shoppingCart, shoppingCart, true, LOG_IF_OK);
 
-  public void differentInterfaceNotEqualLookup() throws TestFailedException {
-    try {
-      Object cart = ServiceLocator.lookupByShortName("cart");
-      Object shoppingCart = ServiceLocator.lookupByShortName("shoppingCart");
-      Comparator.compare(cart, shoppingCart, false, LOG_IF_OK);
-    } catch (NamingException e) {
-      throw new TestFailedException(e);
+            cart = getSessionContext().lookup("cart");
+            shoppingCart = getSessionContext().lookup("shoppingCart");
+            Comparator.compare(cart, cart, true, LOG_IF_OK);
+            Comparator.compare(shoppingCart, shoppingCart, true, LOG_IF_OK);
+        } catch (NamingException e) {
+            throw new TestFailedException(e);
+        }
     }
-  }
 
-  //////////////////////////////////////////////////////////////////////
-  // disable methods for stateful beans
-  //////////////////////////////////////////////////////////////////////
-  public void otherNotEqualsLookup() throws TestFailedException {
-    throw new TestFailedException(
-        "This method should not be invoked for this test.");
-  }
+    public void otherEquals() throws TestFailedException {
+        Comparator.compare(cart, cartOther, true, LOG_IF_OK);
+        Comparator.compare(shoppingCart, shoppingCartOther, true, LOG_IF_OK);
+    }
 
-  public void otherNotEquals() throws TestFailedException {
-    throw new TestFailedException(
-        "This method should not be invoked for this test.");
-  }
+    public void otherEqualsLookup() throws TestFailedException {
+        try {
+            Object cart = ServiceLocator.lookupByShortName("cart");
+            Object cartOther = ServiceLocator.lookupByShortName("cartOther");
+            Object shoppingCart = ServiceLocator.lookupByShortName("shoppingCart");
+            Object shoppingCartOther = ServiceLocator.lookupByShortName("shoppingCartOther");
+            Comparator.compare(cart, cartOther, this.cart, true, LOG_IF_OK);
+            Comparator.compare(shoppingCart, shoppingCartOther, this.shoppingCart, true, LOG_IF_OK);
+
+            cart = getSessionContext().lookup("cart");
+            cartOther = getSessionContext().lookup("cartOther");
+            shoppingCart = getSessionContext().lookup("shoppingCart");
+            shoppingCartOther = getSessionContext().lookup("shoppingCartOther");
+            Comparator.compare(cart, cartOther, this.cart, true, LOG_IF_OK);
+            Comparator.compare(shoppingCart, shoppingCartOther, this.shoppingCart, true, LOG_IF_OK);
+        } catch (NamingException e) {
+            throw new TestFailedException(e);
+        }
+    }
+
+    public void differentInterfaceNotEqual() throws TestFailedException {
+        Comparator.compare(cart, shoppingCart, false, LOG_IF_OK);
+    }
+
+    public void differentInterfaceNotEqualLookup() throws TestFailedException {
+        try {
+            Object cart = ServiceLocator.lookupByShortName("cart");
+            Object shoppingCart = ServiceLocator.lookupByShortName("shoppingCart");
+            Comparator.compare(cart, shoppingCart, false, LOG_IF_OK);
+        } catch (NamingException e) {
+            throw new TestFailedException(e);
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////
+    // disable methods for stateful beans
+    //////////////////////////////////////////////////////////////////////
+    public void otherNotEqualsLookup() throws TestFailedException {
+        throw new TestFailedException("This method should not be invoked for this test.");
+    }
+
+    public void otherNotEquals() throws TestFailedException {
+        throw new TestFailedException("This method should not be invoked for this test.");
+    }
 }

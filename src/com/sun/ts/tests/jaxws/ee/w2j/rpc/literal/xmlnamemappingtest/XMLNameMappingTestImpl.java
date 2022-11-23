@@ -20,189 +20,134 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.xmlnamemappingtest;
 
-import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
 import com.sun.ts.tests.jaxws.common.*;
-
+import jakarta.jws.WebService;
 import java.rmi.*;
 
-// Service Implementation Class - as outlined in JAX-WS Specification
-
-import jakarta.jws.WebService;
-
-@WebService(portName = "XMLNameMappingTestPort", serviceName = "xMLNameMappingTest", targetNamespace = "http://XMLNameMappingTest.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JXMLNameMappingTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.xmlnamemappingtest.XMLNameMappingTest")
+@WebService(
+        portName = "XMLNameMappingTestPort",
+        serviceName = "xMLNameMappingTest",
+        targetNamespace = "http://XMLNameMappingTest.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/WSW2JXMLNameMappingTestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.xmlnamemappingtest.XMLNameMappingTest")
 public class XMLNameMappingTestImpl implements XMLNameMappingTest {
-  public EyeColor echoEyeColor(EyeColor inputEyeColor)
+    public EyeColor echoEyeColor(EyeColor inputEyeColor) {
 
-  {
-    return inputEyeColor;
-  }
+        return inputEyeColor;
+    }
 
-  public XMLNameMappingTest_Type echoXMLNameMapping(
-      XMLNameMappingTest_Type inputXMLNameMappingTest)
-      throws XMLNameMappingTest_Exception {
-    return inputXMLNameMappingTest;
-  }
+    public XMLNameMappingTest_Type echoXMLNameMapping(XMLNameMappingTest_Type inputXMLNameMappingTest)
+            throws XMLNameMappingTest_Exception {
+        return inputXMLNameMappingTest;
+    }
 
-  public void nameWithdash() {
-  }
+    public void nameWithdash() {}
 
-  public void nameWithunderscore() {
-  }
+    public void nameWithunderscore() {}
 
-  public void nameWithcolon() {
-  }
+    public void nameWithcolon() {}
 
-  public void nameWithdot() {
-  }
+    public void nameWithdot() {}
 
-  public void nullTest() {
-  }
+    public void nullTest() {}
 
-  public void trueTest() {
-  }
+    public void trueTest() {}
 
-  public void falseTest() {
-  }
+    public void falseTest() {}
 
-  public void abstractTest() {
-  }
+    public void abstractTest() {}
 
-  public void booleanTest() {
-  }
+    public void booleanTest() {}
 
-  public void breakTest() {
-  }
+    public void breakTest() {}
 
-  public void byteTest() {
-  }
+    public void byteTest() {}
 
-  public void caseTest() {
-  }
+    public void caseTest() {}
 
-  public void catchTest() {
-  }
+    public void catchTest() {}
 
-  public void charTest() {
-  }
+    public void charTest() {}
 
-  public void classTest() {
-  }
+    public void classTest() {}
 
-  public void constTest() {
-  }
+    public void constTest() {}
 
-  public void continueTest() {
-  }
+    public void continueTest() {}
 
-  public void defaultTest() {
-  }
+    public void defaultTest() {}
 
-  public void doTest() {
-  }
+    public void doTest() {}
 
-  public void doubleTest() {
-  }
+    public void doubleTest() {}
 
-  public void elseTest() {
-  }
+    public void elseTest() {}
 
-  public void extendsTest() {
-  }
+    public void extendsTest() {}
 
-  public void finalTest() {
-  }
+    public void finalTest() {}
 
-  public void finallyTest() {
-  }
+    public void finallyTest() {}
 
-  public void floatTest() {
-  }
+    public void floatTest() {}
 
-  public void forTest() {
-  }
+    public void forTest() {}
 
-  public void gotoTest() {
-  }
+    public void gotoTest() {}
 
-  public void ifTest() {
-  }
+    public void ifTest() {}
 
-  public void implementsTest() {
-  }
+    public void implementsTest() {}
 
-  public void importTest() {
-  }
+    public void importTest() {}
 
-  public void instanceofTest() {
-  }
+    public void instanceofTest() {}
 
-  public void intTest() {
-  }
+    public void intTest() {}
 
-  public void interfaceTest() {
-  }
+    public void interfaceTest() {}
 
-  public void longTest() {
-  }
+    public void longTest() {}
 
-  public void nativeTest() {
-  }
+    public void nativeTest() {}
 
-  public void newTest() {
-  }
+    public void newTest() {}
 
-  public void packageTest() {
-  }
+    public void packageTest() {}
 
-  public void privateTest() {
-  }
+    public void privateTest() {}
 
-  public void protectedTest() {
-  }
+    public void protectedTest() {}
 
-  public void publicTest() {
-  }
+    public void publicTest() {}
 
-  public void returnTest() {
-  }
+    public void returnTest() {}
 
-  public void shortTest() {
-  }
+    public void shortTest() {}
 
-  public void staticTest() {
-  }
+    public void staticTest() {}
 
-  public void superTest() {
-  }
+    public void superTest() {}
 
-  public void switchTest() {
-  }
+    public void switchTest() {}
 
-  public void synchronizedTest() {
-  }
+    public void synchronizedTest() {}
 
-  public void thisTest() {
-  }
+    public void thisTest() {}
 
-  public void throwTest() {
-  }
+    public void throwTest() {}
 
-  public void throwsTest() {
-  }
+    public void throwsTest() {}
 
-  public void transientTest() {
-  }
+    public void transientTest() {}
 
-  public void tryTest() {
-  }
+    public void tryTest() {}
 
-  public void voidTest() {
-  }
+    public void voidTest() {}
 
-  public void volatileTest() {
-  }
+    public void volatileTest() {}
 
-  public void whileTest() {
-  }
+    public void whileTest() {}
 }

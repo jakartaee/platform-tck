@@ -58,46 +58,41 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.srlistener;
 
+import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
+import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
-import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
-import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
-
 public class TestServlet extends GenericTCKServlet {
 
-  public void initializeDestroyTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
+    public void initializeDestroyTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
+        PrintWriter pw = response.getWriter();
 
-    ServletTestUtil.printResult(pw, true);
-
-  }
-
-  public void checkLog(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    // the last item in the expected is a result of this servlet being called
-    String[] expected = { "in requestInitialized method of listener",
-        "in requestDestroyed method of listener",
-        "in requestInitialized method of listener" };
-
-    // verify results
-    ArrayList result = (ArrayList) getServletContext()
-        .getAttribute("arraylist");
-    boolean b = ServletTestUtil.checkArrayList(result, expected, true, true);
-    if (!b) {
-      ServletTestUtil.printFailureData(pw, result, expected);
+        ServletTestUtil.printResult(pw, true);
     }
-    ServletTestUtil.printResult(pw, b);
-    getServletContext().removeAttribute("arraylist");
 
-  }
+    public void checkLog(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        // the last item in the expected is a result of this servlet being called
+        String[] expected = {
+            "in requestInitialized method of listener",
+            "in requestDestroyed method of listener",
+            "in requestInitialized method of listener"
+        };
 
+        // verify results
+        ArrayList result = (ArrayList) getServletContext().getAttribute("arraylist");
+        boolean b = ServletTestUtil.checkArrayList(result, expected, true, true);
+        if (!b) {
+            ServletTestUtil.printFailureData(pw, result, expected);
+        }
+        ServletTestUtil.printResult(pw, b);
+        getServletContext().removeAttribute("arraylist");
+    }
 }

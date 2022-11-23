@@ -15,14 +15,13 @@
  */
 
 /*
-* $Id$
+ * $Id$
  */
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.noattrremotelocal;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocal1Base;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
 import jakarta.ejb.SessionContext;
@@ -30,22 +29,15 @@ import jakarta.ejb.Stateless;
 
 @Local
 @Stateless(name = "ExternalizableLocalBean")
-public class ExternalizableLocalBean extends BusinessLocal1Base
-    implements BusinessLocalIF1, java.io.Externalizable {
-  @Resource
-  private SessionContext sessionContext;
+public class ExternalizableLocalBean extends BusinessLocal1Base implements BusinessLocalIF1, java.io.Externalizable {
+    @Resource
+    private SessionContext sessionContext;
 
-  public ExternalizableLocalBean() {
-  }
+    public ExternalizableLocalBean() {}
 
-  public void readExternal(java.io.ObjectInput in)
-      throws java.io.IOException, ClassNotFoundException {
-  }
+    public void readExternal(java.io.ObjectInput in) throws java.io.IOException, ClassNotFoundException {}
 
-  public void writeExternal(java.io.ObjectOutput out)
-      throws java.io.IOException {
-  }
+    public void writeExternal(java.io.ObjectOutput out) throws java.io.IOException {}
 
-  public void remove() {
-  }
+    public void remove() {}
 }

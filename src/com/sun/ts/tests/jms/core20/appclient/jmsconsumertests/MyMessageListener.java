@@ -20,55 +20,53 @@
 package com.sun.ts.tests.jms.core20.appclient.jmsconsumertests;
 
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.jms.Message;
 import jakarta.jms.MessageListener;
 
 public class MyMessageListener implements MessageListener {
 
-  private String name = null;
+    private String name = null;
 
-  private Message message = null;
+    private Message message = null;
 
-  boolean complete = false;
+    boolean complete = false;
 
-  public MyMessageListener() {
-    this("MyMessageListener");
-  }
+    public MyMessageListener() {
+        this("MyMessageListener");
+    }
 
-  public MyMessageListener(String name) {
-    this.name = name;
-  }
+    public MyMessageListener(String name) {
+        this.name = name;
+    }
 
-  // getters/setters
-  public String getName() {
-    return name;
-  }
+    // getters/setters
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public Message getMessage() {
-    return message;
-  }
+    public Message getMessage() {
+        return message;
+    }
 
-  public void setMessage(Message message) {
-    this.message = message;
-  }
+    public void setMessage(Message message) {
+        this.message = message;
+    }
 
-  public boolean isComplete() {
-    return complete;
-  }
+    public boolean isComplete() {
+        return complete;
+    }
 
-  public void setComplete(boolean complete) {
-    this.complete = complete;
-  }
+    public void setComplete(boolean complete) {
+        this.complete = complete;
+    }
 
-  public void onMessage(Message message) {
-    TestUtil.logMsg("Got Message: " + message);
-    this.message = message;
-    complete = true;
-  }
-
+    public void onMessage(Message message) {
+        TestUtil.logMsg("Got Message: " + message);
+        this.message = message;
+        complete = true;
+    }
 }

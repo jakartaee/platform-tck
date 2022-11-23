@@ -20,32 +20,31 @@
 
 package com.sun.ts.tests.ejb30.lite.interceptor.common.business;
 
+import com.sun.ts.tests.ejb30.common.appexception.AtCheckedRollbackAppException;
 import java.util.List;
 import java.util.Map;
 
-import com.sun.ts.tests.ejb30.common.appexception.AtCheckedRollbackAppException;
-
 public interface InterceptorIF {
 
-  void allInterceptors(List<String> history);
+    void allInterceptors(List<String> history);
 
-  void excludeDefaultInterceptors(List<String> history);
+    void excludeDefaultInterceptors(List<String> history);
 
-  void excludeClassInterceptors(List<String> history);
+    void excludeClassInterceptors(List<String> history);
 
-  void overrideInterceptorMethod(List<String> history);
+    void overrideInterceptorMethod(List<String> history);
 
-  void overrideBeanInterceptorMethod(List<String> history);
+    void overrideBeanInterceptorMethod(List<String> history);
 
-  void overrideBeanInterceptorMethod2(List<String> history);
+    void overrideBeanInterceptorMethod2(List<String> history);
 
-  void overrideBeanInterceptorMethod3(List<String> history);
+    void overrideBeanInterceptorMethod3(List<String> history);
 
-  void overrideBeanInterceptorMethod4(List<String> history);
+    void overrideBeanInterceptorMethod4(List<String> history);
 
-  void skipProceed(List<String> history);
+    void skipProceed(List<String> history);
 
-  void applicationExceptionRollback() throws AtCheckedRollbackAppException;
+    void applicationExceptionRollback() throws AtCheckedRollbackAppException;
 
-  Map<String, Object> getContextData(List<String> history);
+    Map<String, Object> getContextData(List<String> history);
 }

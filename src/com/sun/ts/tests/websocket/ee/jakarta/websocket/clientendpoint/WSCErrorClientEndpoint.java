@@ -20,7 +20,6 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpoint;
 import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
 import com.sun.ts.tests.websocket.common.client.StringClientEndpoint;
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
-
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -32,48 +31,46 @@ import jakarta.websocket.Session;
 
 @ClientEndpoint
 public class WSCErrorClientEndpoint extends AnnotatedClientEndpoint<String> {
-  private static final String EXCEPTION = "TCK test throwable";
+    private static final String EXCEPTION = "TCK test throwable";
 
-  boolean onErrorCalled = false;
+    boolean onErrorCalled = false;
 
-  public WSCErrorClientEndpoint() {
-    super(new StringClientEndpoint());
-  }
-
-  @Override
-  @OnMessage
-  public void onMessage(String msg) {
-    super.onMessage(msg);
-    OPS op = OPS.valueOf(msg);
-    switch (op) {
-    case THROW:
-      throw new RuntimeException(EXCEPTION);
-    default:
-      break;
+    public WSCErrorClientEndpoint() {
+        super(new StringClientEndpoint());
     }
-  }
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+    @Override
+    @OnMessage
+    public void onMessage(String msg) {
+        super.onMessage(msg);
+        OPS op = OPS.valueOf(msg);
+        switch (op) {
+            case THROW:
+                throw new RuntimeException(EXCEPTION);
+            default:
+                break;
+        }
+    }
 
-  @Override
-  @OnClose
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+    @Override
+    @OnOpen
+    public void onOpen(Session session, EndpointConfig config) {
+        super.onOpen(session, config);
+    }
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) {
-    String msg = WebSocketCommonClient.getCauseMessage(t);
-    if (EXCEPTION.equals(msg)) {
-      onErrorCalled = true;
-      getCountDownLatch().countDown();
-    } else
-      super.onError(session, t);
-  }
+    @Override
+    @OnClose
+    public void onClose(Session session, CloseReason closeReason) {
+        super.onClose(session, closeReason);
+    }
 
+    @Override
+    @OnError
+    public void onError(Session session, Throwable t) {
+        String msg = WebSocketCommonClient.getCauseMessage(t);
+        if (EXCEPTION.equals(msg)) {
+            onErrorCalled = true;
+            getCountDownLatch().countDown();
+        } else super.onError(session, t);
+    }
 }

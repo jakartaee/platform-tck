@@ -19,27 +19,24 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.embed.provider;
 
-import java.util.Map;
-
 import jakarta.ejb.EJBException;
 import jakarta.ejb.embeddable.EJBContainer;
 import jakarta.ejb.spi.EJBContainerProvider;
+import java.util.Map;
 
 public final class TSEJBContainerProviderImpl implements EJBContainerProvider {
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see jakarta.ejb.spi.EJBContainerProvider#createEJBContainer(java.util.Map)
-   */
-  public EJBContainer createEJBContainer(Map<?, ?> properties)
-      throws EJBException {
-    if (properties == null || properties.get(EJBContainer.PROVIDER) == null
-        || properties.get(EJBContainer.PROVIDER)
-            .equals(TSEJBContainerImpl.class.getName())) {
-      return new TSEJBContainerImpl();
+    /*
+     * (non-Javadoc)
+     *
+     * @see jakarta.ejb.spi.EJBContainerProvider#createEJBContainer(java.util.Map)
+     */
+    public EJBContainer createEJBContainer(Map<?, ?> properties) throws EJBException {
+        if (properties == null
+                || properties.get(EJBContainer.PROVIDER) == null
+                || properties.get(EJBContainer.PROVIDER).equals(TSEJBContainerImpl.class.getName())) {
+            return new TSEJBContainerImpl();
+        }
+        return null;
     }
-    return null;
-  }
-
 }

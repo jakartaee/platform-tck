@@ -20,12 +20,9 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.dlhelloproviderservice;
 
-import jakarta.xml.ws.*;
-import jakarta.xml.soap.*;
-
-import java.util.Iterator;
-
 import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+import jakarta.xml.soap.*;
+import jakarta.xml.ws.*;
 import javax.xml.transform.Source;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.sax.SAXSource;
@@ -34,30 +31,30 @@ import javax.xml.transform.stream.StreamSource;
 /*
  * Provider<Source> - req/res a Source in Payload Mode
  */
-@WebServiceProvider(serviceName = "HelloService", portName = "Hello3Port", targetNamespace = "http://helloservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSDLHelloProviderService.wsdl")
+@WebServiceProvider(
+        serviceName = "HelloService",
+        portName = "Hello3Port",
+        targetNamespace = "http://helloservice.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/WSDLHelloProviderService.wsdl")
 @BindingType(value = jakarta.xml.ws.soap.SOAPBinding.SOAP11HTTP_BINDING)
 @ServiceMode(value = jakarta.xml.ws.Service.Mode.PAYLOAD)
 public class Hello3Impl implements Provider<Source> {
 
-  String helloResp = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><HelloResponse xmlns=\"http://helloservice.org/types\"><argument>response</argument></HelloResponse></soapenv:Body></soapenv:Envelope>";
+    String helloResp =
+            "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><HelloResponse xmlns=\"http://helloservice.org/types\"><argument>response</argument></HelloResponse></soapenv:Body></soapenv:Envelope>";
 
-  public Source invoke(Source req) {
-    System.out.println("**** Received in Provider Impl Hello3Impl ******");
-    String str = null;
-    try {
-      str = JAXWS_Util.getSourceAsString(req);
-      System.out.println("->    Source received=" + str);
-    } catch (Exception e) {
-      e.printStackTrace();
+    public Source invoke(Source req) {
+        System.out.println("**** Received in Provider Impl Hello3Impl ******");
+        String str = null;
+        try {
+            str = JAXWS_Util.getSourceAsString(req);
+            System.out.println("->    Source received=" + str);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (str.indexOf("sendEmptyStreamSource") >= 0) return new StreamSource();
+        else if (str.indexOf("sendEmptyDOMSource") >= 0) return new DOMSource();
+        else if (str.indexOf("sendEmptySAXSource") >= 0) return new SAXSource();
+        else return JAXWS_Util.makeSource(helloResp, "StreamSource");
     }
-    if (str.indexOf("sendEmptyStreamSource") >= 0)
-      return new StreamSource();
-    else if (str.indexOf("sendEmptyDOMSource") >= 0)
-      return new DOMSource();
-    else if (str.indexOf("sendEmptySAXSource") >= 0)
-      return new SAXSource();
-    else
-      return JAXWS_Util.makeSource(helloResp, "StreamSource");
-  }
-
 }

@@ -22,33 +22,31 @@ package com.sun.ts.tests.ejb30.common.appexception;
 
 import java.io.Serializable;
 
-public class UncheckedRollbackAppException extends RuntimeException
-    implements Serializable {
+public class UncheckedRollbackAppException extends RuntimeException implements Serializable {
 
-  public UncheckedRollbackAppException() {
-    super();
-  }
+    public UncheckedRollbackAppException() {
+        super();
+    }
 
-  /**
-   * @param message
-   */
-  public UncheckedRollbackAppException(String message) {
-    super(message);
-  }
+    /**
+     * @param message
+     */
+    public UncheckedRollbackAppException(String message) {
+        super(message);
+    }
 
-  /**
-   * @param message
-   * @param cause
-   */
-  public UncheckedRollbackAppException(String message, Throwable cause) {
-    super(message, cause);
-  }
+    /**
+     * @param message
+     * @param cause
+     */
+    public UncheckedRollbackAppException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-  /**
-   * @param cause
-   */
-  public UncheckedRollbackAppException(Throwable cause) {
-    super(cause);
-  }
-
+    /**
+     * @param cause
+     */
+    public UncheckedRollbackAppException(Throwable cause) {
+        super(cause);
+    }
 }

@@ -20,14 +20,11 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.cm.allowed;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.ejb30.common.allowed.CallbackAllowedBeanBase;
 import com.sun.ts.tests.ejb30.common.allowed.CallbackAllowedIF;
 import com.sun.ts.tests.ejb30.common.allowed.CallbackAllowedLocalIF;
 import com.sun.ts.tests.ejb30.common.allowed.Operations;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
@@ -38,34 +35,34 @@ import jakarta.ejb.Timeout;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 import jakarta.interceptor.Interceptors;
+import java.util.Properties;
 
 @Stateless(name = "CallbackAllowedBean")
-@Remote({ CallbackAllowedIF.class })
-@Local({ CallbackAllowedLocalIF.class })
-@Interceptors({ com.sun.ts.tests.ejb30.common.allowed.CancelInterceptor.class })
-public class CallbackAllowedBean extends CallbackAllowedBeanBase
-    implements CallbackAllowedIF, CallbackAllowedLocalIF {
+@Remote({CallbackAllowedIF.class})
+@Local({CallbackAllowedLocalIF.class})
+@Interceptors({com.sun.ts.tests.ejb30.common.allowed.CancelInterceptor.class})
+public class CallbackAllowedBean extends CallbackAllowedBeanBase implements CallbackAllowedIF, CallbackAllowedLocalIF {
 
-  @PostConstruct
-  public void ejbCreate() {
-    super.ejbCreate();
-  }
+    @PostConstruct
+    public void ejbCreate() {
+        super.ejbCreate();
+    }
 
-  @Resource(name = "ejbContext")
-  public void setSessionContext(SessionContext sc) {
-    super.setSessionContext(sc);
-  }
+    @Resource(name = "ejbContext")
+    public void setSessionContext(SessionContext sc) {
+        super.setSessionContext(sc);
+    }
 
-  @Timeout
-  @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-  public void timeout(jakarta.ejb.Timer timer) {
-    TLogger.log("timeout: " + this.getClass().getName());
-  }
+    @Timeout
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public void timeout(jakarta.ejb.Timer timer) {
+        TLogger.log("timeout: " + this.getClass().getName());
+    }
 
-  @Override
-  public Properties runOperations(SessionContext sctx) {
-    Operations op = Operations.getInstance();
-    return op.run2(sctx, CallbackAllowedIF.class);
-    // only supports remote access
-  }
+    @Override
+    public Properties runOperations(SessionContext sctx) {
+        Operations op = Operations.getInstance();
+        return op.run2(sctx, CallbackAllowedIF.class);
+        // only supports remote access
+    }
 }

@@ -20,44 +20,43 @@
 package com.sun.ts.tests.ejb30.lite.singleton.common;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 
-abstract public class SingletonInterceptorBase {
-  @Resource
-  protected EJBContext ejbContext;
+public abstract class SingletonInterceptorBase {
+    @Resource
+    protected EJBContext ejbContext;
 
-  abstract protected Object intercept0(InvocationContext inv, String methodName,
-      String interceptorName, Object[] params) throws Exception;
+    protected abstract Object intercept0(
+            InvocationContext inv, String methodName, String interceptorName, Object[] params) throws Exception;
 
-  @AroundInvoke
-  private Object intercept(InvocationContext inv) throws Exception {
-    String methodName = inv.getMethod().getName();
-    Object[] params = inv.getParameters();
-    String interceptorName = null;
-    if (params != null && params.length > 0) {
-      if (params[0] instanceof String) {
-        interceptorName = (String) params[0]; // simple class name
-      }
+    @AroundInvoke
+    private Object intercept(InvocationContext inv) throws Exception {
+        String methodName = inv.getMethod().getName();
+        Object[] params = inv.getParameters();
+        String interceptorName = null;
+        if (params != null && params.length > 0) {
+            if (params[0] instanceof String) {
+                interceptorName = (String) params[0]; // simple class name
+            }
+        }
+        return intercept0(inv, methodName, interceptorName, params);
     }
-    return intercept0(inv, methodName, interceptorName, params);
-  }
 
-  /**
-   * If the interceptor class (e.g., Interceptor1) is subclassed by the
-   * container, getClass().getSimpleName() returns the subclass' name, which is
-   * not what we are expecting. The safest way is to always override it.
-   */
-  protected String getSimpleName() {
-    return getClass().getSimpleName();
-  }
+    /**
+     * If the interceptor class (e.g., Interceptor1) is subclassed by the
+     * container, getClass().getSimpleName() returns the subclass' name, which is
+     * not what we are expecting. The safest way is to always override it.
+     */
+    protected String getSimpleName() {
+        return getClass().getSimpleName();
+    }
 
-  @PreDestroy
-  private void preDestroy(InvocationContext inv) {
-    Helper.getLogger().info("In SingletonInterceptorBase.preDestroy()");
-  }
+    @PreDestroy
+    private void preDestroy(InvocationContext inv) {
+        Helper.getLogger().info("In SingletonInterceptorBase.preDestroy()");
+    }
 }

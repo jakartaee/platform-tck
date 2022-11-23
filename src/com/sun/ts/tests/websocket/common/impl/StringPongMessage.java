@@ -17,23 +17,20 @@
 
 package com.sun.ts.tests.websocket.common.impl;
 
-import java.nio.ByteBuffer;
-
 import jakarta.websocket.PongMessage;
+import java.nio.ByteBuffer;
 
 public class StringPongMessage implements PongMessage {
 
-  protected String message;
+    protected String message;
 
-  public StringPongMessage(String message) {
-    if (message.length() > 125)
-      throw new RuntimeException("StringPongMessage is too long");
-    this.message = message;
-  }
+    public StringPongMessage(String message) {
+        if (message.length() > 125) throw new RuntimeException("StringPongMessage is too long");
+        this.message = message;
+    }
 
-  @Override
-  public ByteBuffer getApplicationData() {
-    return ByteBuffer.wrap(message.getBytes());
-  }
-
+    @Override
+    public ByteBuffer getApplicationData() {
+        return ByteBuffer.wrap(message.getBytes());
+    }
 }

@@ -24,74 +24,73 @@ package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
 public class SpouseDVC implements java.io.Serializable {
 
-  // Instance variables
-  private String id;
+    // Instance variables
+    private String id;
 
-  private String first;
+    private String first;
 
-  private String maiden;
+    private String maiden;
 
-  private String last;
+    private String last;
 
-  private String sNumber;
+    private String sNumber;
 
-  private InfoDVC info;
+    private InfoDVC info;
 
-  public SpouseDVC(String v1, String v2, String v3, String v4, String v5,
-      InfoDVC v6) {
-    id = v1;
-    first = v2;
-    maiden = v3;
-    last = v4;
-    sNumber = v5;
-    info = v6;
-  }
+    public SpouseDVC(String v1, String v2, String v3, String v4, String v5, InfoDVC v6) {
+        id = v1;
+        first = v2;
+        maiden = v3;
+        last = v4;
+        sNumber = v5;
+        info = v6;
+    }
 
-  public String getId() {
-    return id;
-  }
+    public String getId() {
+        return id;
+    }
 
-  public void setId(String v) {
-    id = v;
-  }
+    public void setId(String v) {
+        id = v;
+    }
 
-  public String getFirstName() {
-    return first;
-  }
+    public String getFirstName() {
+        return first;
+    }
 
-  public void setFirstName(String v) {
-    first = v;
-  }
+    public void setFirstName(String v) {
+        first = v;
+    }
 
-  public String getMaidenName() {
-    return maiden;
-  }
+    public String getMaidenName() {
+        return maiden;
+    }
 
-  public void setMaidenName(String v) {
-    maiden = v;
-  }
+    public void setMaidenName(String v) {
+        maiden = v;
+    }
 
-  public String getLastName() {
-    return last;
-  }
+    public String getLastName() {
+        return last;
+    }
 
-  public void setLastName(String v) {
-    last = v;
-  }
+    public void setLastName(String v) {
+        last = v;
+    }
 
-  public String getSocialSecurityNumber() {
-    return sNumber;
-  }
+    public String getSocialSecurityNumber() {
+        return sNumber;
+    }
 
-  public void setSocialSecurityNumber(String v) {
-    sNumber = v;
-  }
+    public void setSocialSecurityNumber(String v) {
+        sNumber = v;
+    }
 
-  public InfoDVC getInfo() {
-    return info;
-  }
+    public InfoDVC getInfo() {
+        return info;
+    }
 
-  public void setInfo(InfoDVC v) {
-    info = v;
-  }
+    public void setInfo(InfoDVC v) {
+        info = v;
+    }
 }

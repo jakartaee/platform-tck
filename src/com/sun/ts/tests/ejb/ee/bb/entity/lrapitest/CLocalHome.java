@@ -25,10 +25,9 @@ import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
 
 public interface CLocalHome extends EJBLocalHome {
-  public CLocal createC(String id, String name, int value)
-      throws CreateException;
+    public CLocal createC(String id, String name, int value) throws CreateException;
 
-  public CLocal findByPrimaryKey(String id) throws FinderException;
+    public CLocal findByPrimaryKey(String id) throws FinderException;
 
-  public String addBar(String s);
+    public String addBar(String s);
 }

@@ -19,67 +19,65 @@
  */
 package com.sun.ts.tests.ejb30.misc.sameejbclass;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class Client extends AbstractUrlClient {
 
-  public static final String CONTEXT_ROOT = "/misc_sameejbclass_web";
+    public static final String CONTEXT_ROOT = "/misc_sameejbclass_web";
 
-  public static final String SERVLET_NAME = "TestServlet";
+    public static final String SERVLET_NAME = "TestServlet";
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-    setServletName(SERVLET_NAME);
-    setContextRoot(CONTEXT_ROOT);
-    return super.run(args, out, err);
-  }
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
+        setServletName(SERVLET_NAME);
+        setContextRoot(CONTEXT_ROOT);
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
-  /*
-   * @testName: checkEnvEntry
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:client -> TestServlet -> SameEJBClassBean and
-   * SameEJBClassBean2 See issue 6653 (session bean resource values not being
-   * set correctly)
-   */
-  public void checkEnvEntry() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "checkEnvEntry");
-    invoke();
-  }
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
+    /*
+     * @testName: checkEnvEntry
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:client -> TestServlet -> SameEJBClassBean and
+     * SameEJBClassBean2 See issue 6653 (session bean resource values not being
+     * set correctly)
+     */
+    public void checkEnvEntry() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "checkEnvEntry");
+        invoke();
+    }
 
-  /*
-   * @testName: testDTO
-   * 
-   * @assertion_ids: EJB:JAVADOC:185; EJB:JAVADOC:147
-   * 
-   * @test_Strategy: invokes the bean and pass in a simple Data Transfer Object
-   * type. verifies the pass by value behaviors, and proper serializabion of
-   * params.
-   */
-  public void testDTO() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "testDTO");
-    invoke();
-  }
+    /*
+     * @testName: testDTO
+     *
+     * @assertion_ids: EJB:JAVADOC:185; EJB:JAVADOC:147
+     *
+     * @test_Strategy: invokes the bean and pass in a simple Data Transfer Object
+     * type. verifies the pass by value behaviors, and proper serializabion of
+     * params.
+     */
+    public void testDTO() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "testDTO");
+        invoke();
+    }
 }

@@ -28,18 +28,17 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class WrappedException extends HttpServlet {
 
-  public void init(ServletConfig config) throws ServletException {
-    super.init(config);
-  }
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+    }
 
-  public void destroy() {
-    super.destroy();
-  }
+    public void destroy() {
+        super.destroy();
+    }
 
-  // ------------------------------------------------- Test Methods
+    // ------------------------------------------------- Test Methods
 
-  public void service(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException {
-    throw new ServletException(new TestException("error page invoked"));
-  }
+    public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException {
+        throw new ServletException(new TestException("error page invoked"));
+    }
 }

@@ -20,86 +20,80 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2714;
 
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.*;
+import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
+import com.sun.ts.tests.jaxws.wsi.constants.WSIConstants;
+import com.sun.ts.tests.jaxws.wsi.requests.SOAPRequests;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.*;
+public class Client extends ServiceEETest implements WSIConstants, SOAPRequests {
 
-import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
-import com.sun.ts.tests.jaxws.wsi.constants.WSIConstants;
-import com.sun.ts.tests.jaxws.wsi.requests.SOAPRequests;
+    private W2JRLR2714Client client;
 
-public class Client extends ServiceEETest
-    implements WSIConstants, SOAPRequests {
+    static SimpleTest service = null;
 
-  private W2JRLR2714Client client;
-
-  static SimpleTest service = null;
-
-  /**
-   * Test entry point.
-   *
-   * @param args
-   *          the command-line arguments.
-   */
-  public static void main(String[] args) {
-    Client tests = new Client();
-    Status status = tests.run(args, System.out, System.err);
-    status.exit();
-  }
-
-  /**
-   * @class.testArgs: -ap jaxws-url-props.dat
-   * @class.setup_props: webServerHost; webServerPort; platform.mode;
-   *
-   * @param args
-   * @param properties
-   *
-   * @throws com.sun.ts.lib.harness.EETest.Fault
-   */
-  public void setup(String[] args, Properties properties) throws EETest.Fault {
-    client = (W2JRLR2714Client) ClientFactory.getClient(W2JRLR2714Client.class,
-        properties, this, service);
-    logMsg("setup ok");
-  }
-
-  public void cleanup() {
-    logMsg("cleanup");
-  }
-
-  /**
-   * @testName: testNoResponseBodyForOneWay
-   *
-   * @assertion_ids: WSI:SPEC:R2714
-   *
-   * @test_Strategy: Make a request and inspect response to ensure there is no
-   *                 HTTP response body
-   *
-   * @throws com.sun.ts.lib.harness.EETest.Fault
-   */
-  public void testNoResponseBodyForOneWay() throws EETest.Fault {
-    InputStream response = null;
-    try {
-      response = client.makeHTTPRequest(ONE_WAY_OPERATION);
-    } catch (Exception e) {
-      throw new EETest.Fault("Test didn't complete properly: ", e);
+    /**
+     * Test entry point.
+     *
+     * @param args
+     *          the command-line arguments.
+     */
+    public static void main(String[] args) {
+        Client tests = new Client();
+        Status status = tests.run(args, System.out, System.err);
+        status.exit();
     }
-    try {
-      validateNoResponseBody(response);
-    } catch (IOException ioe) {
-      throw new EETest.Fault("Error creating response object", ioe);
-    }
-    client.logMessageInHarness(response);
-  }
 
-  private void validateNoResponseBody(InputStream is)
-      throws IOException, EETest.Fault {
-    if (is.available() > 0) {
-      throw new EETest.Fault(
-          "Invalid HTTP response: response body must be empty for "
-              + "one way operations (BP-R2714).");
+    /**
+     * @class.testArgs: -ap jaxws-url-props.dat
+     * @class.setup_props: webServerHost; webServerPort; platform.mode;
+     *
+     * @param args
+     * @param properties
+     *
+     * @throws com.sun.ts.lib.harness.EETest.Fault
+     */
+    public void setup(String[] args, Properties properties) throws EETest.Fault {
+        client = (W2JRLR2714Client) ClientFactory.getClient(W2JRLR2714Client.class, properties, this, service);
+        logMsg("setup ok");
     }
-  }
+
+    public void cleanup() {
+        logMsg("cleanup");
+    }
+
+    /**
+     * @testName: testNoResponseBodyForOneWay
+     *
+     * @assertion_ids: WSI:SPEC:R2714
+     *
+     * @test_Strategy: Make a request and inspect response to ensure there is no
+     *                 HTTP response body
+     *
+     * @throws com.sun.ts.lib.harness.EETest.Fault
+     */
+    public void testNoResponseBodyForOneWay() throws EETest.Fault {
+        InputStream response = null;
+        try {
+            response = client.makeHTTPRequest(ONE_WAY_OPERATION);
+        } catch (Exception e) {
+            throw new EETest.Fault("Test didn't complete properly: ", e);
+        }
+        try {
+            validateNoResponseBody(response);
+        } catch (IOException ioe) {
+            throw new EETest.Fault("Error creating response object", ioe);
+        }
+        client.logMessageInHarness(response);
+    }
+
+    private void validateNoResponseBody(InputStream is) throws IOException, EETest.Fault {
+        if (is.available() > 0) {
+            throw new EETest.Fault(
+                    "Invalid HTTP response: response body must be empty for " + "one way operations (BP-R2714).");
+        }
+    }
 }

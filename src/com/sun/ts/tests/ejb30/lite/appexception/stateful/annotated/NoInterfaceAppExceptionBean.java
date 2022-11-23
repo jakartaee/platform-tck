@@ -20,9 +20,7 @@
 package com.sun.ts.tests.ejb30.lite.appexception.stateful.annotated;
 
 import com.sun.ts.tests.ejb30.common.appexception.AppExceptionBeanBase;
-
 import jakarta.ejb.Stateful;
 
 @Stateful
-public class NoInterfaceAppExceptionBean extends AppExceptionBeanBase {
-}
+public class NoInterfaceAppExceptionBean extends AppExceptionBeanBase {}

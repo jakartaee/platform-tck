@@ -20,8 +20,6 @@
 
 package com.sun.ts.tests.jsp.spec.tagext.resource.listener;
 
-import javax.sql.DataSource;
-
 import jakarta.annotation.Resource;
 import jakarta.jms.ConnectionFactory;
 import jakarta.jms.Queue;
@@ -31,140 +29,132 @@ import jakarta.jms.TopicConnectionFactory;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextAttributeEvent;
 import jakarta.servlet.ServletContextAttributeListener;
+import javax.sql.DataSource;
 
-public final class ContextAttributeListener
-    implements ServletContextAttributeListener {
+public final class ContextAttributeListener implements ServletContextAttributeListener {
 
-  private ServletContext context = null;
+    private ServletContext context = null;
 
-  @Resource(name = "DB1")
-  private DataSource DB1;
+    @Resource(name = "DB1")
+    private DataSource DB1;
 
-  @Resource(name = "qcFactory")
-  private QueueConnectionFactory qcFactory;
+    @Resource(name = "qcFactory")
+    private QueueConnectionFactory qcFactory;
 
-  @Resource(name = "tcFactory")
-  private TopicConnectionFactory tcFactory;
+    @Resource(name = "tcFactory")
+    private TopicConnectionFactory tcFactory;
 
-  @Resource(name = "cFactory")
-  private ConnectionFactory cFactory;
+    @Resource(name = "cFactory")
+    private ConnectionFactory cFactory;
 
-  @Resource(name = "myQueue")
-  private Queue myQueue;
+    @Resource(name = "myQueue")
+    private Queue myQueue;
 
-  @Resource(name = "myTopic")
-  private Topic myTopic;
+    @Resource(name = "myTopic")
+    private Topic myTopic;
 
-  @Resource(name = "mailSession")
-  private jakarta.mail.Session mailSession;
+    @Resource(name = "mailSession")
+    private jakarta.mail.Session mailSession;
 
-  @Resource(name = "myUrl")
-  private java.net.URL myUrl;
+    @Resource(name = "myUrl")
+    private java.net.URL myUrl;
 
-  public void attributeRemoved(ServletContextAttributeEvent event) {
-    return;
-  }
-
-  public void attributeReplaced(ServletContextAttributeEvent event) {
-    return;
-  }
-
-  public void attributeAdded(ServletContextAttributeEvent event) {
-    this.context = event.getServletContext();
-
-    StringBuffer pw = new StringBuffer();
-    Boolean passed = true;
-
-    pw.append("ContextAttributeListener attributeAdded");
-
-    if (DB1 != null) {
-      if (!(DB1 instanceof DataSource)) {
-        passed = false;
-        pw.append("wrong type DataSource");
-      } else
-        pw.append("passed DataSource");
-    } else {
-      passed = false;
-      pw.append("DB1 is null");
+    public void attributeRemoved(ServletContextAttributeEvent event) {
+        return;
     }
 
-    if (qcFactory != null) {
-      if (!(qcFactory instanceof jakarta.jms.QueueConnectionFactory)) {
-        passed = false;
-        pw.append("wrong type QueueConnectionFactory");
-      } else
-        pw.append("passed QueueConnectionFactory");
-    } else {
-      passed = false;
-      pw.append("qcFactory is null");
+    public void attributeReplaced(ServletContextAttributeEvent event) {
+        return;
     }
 
-    if (tcFactory != null) {
-      if (!(tcFactory instanceof jakarta.jms.TopicConnectionFactory)) {
-        passed = false;
-        pw.append("wrong type TopicConnectionFactory");
-      } else
-        pw.append("passed TopicConnectionFactory");
-    } else {
-      passed = false;
-      pw.append("tcFactory is null");
-    }
+    public void attributeAdded(ServletContextAttributeEvent event) {
+        this.context = event.getServletContext();
 
-    if (cFactory != null) {
-      if (!(cFactory instanceof jakarta.jms.ConnectionFactory)) {
-        pw.append("wrong type ConnectionFactory");
-        passed = false;
-      } else
-        pw.append("passed ConnectionFactory");
-    } else {
-      passed = false;
-      pw.append("cFactory is null");
-    }
+        StringBuffer pw = new StringBuffer();
+        Boolean passed = true;
 
-    if (myQueue != null) {
-      if (!(myQueue instanceof jakarta.jms.Queue)) {
-        pw.append("wrong type Queue");
-        passed = false;
-      } else
-        pw.append("passed Queue");
-    } else {
-      passed = false;
-      pw.append("myQueue is null");
-    }
+        pw.append("ContextAttributeListener attributeAdded");
 
-    if (myTopic != null) {
-      if (!(myTopic instanceof jakarta.jms.Topic)) {
-        pw.append("wrong type Topic");
-        passed = false;
-      } else
-        pw.append("passed Topic");
-    } else {
-      pw.append("myTopic is null");
-      passed = false;
-    }
+        if (DB1 != null) {
+            if (!(DB1 instanceof DataSource)) {
+                passed = false;
+                pw.append("wrong type DataSource");
+            } else pw.append("passed DataSource");
+        } else {
+            passed = false;
+            pw.append("DB1 is null");
+        }
 
-    if (mailSession != null) {
-      if (!(mailSession instanceof jakarta.mail.Session)) {
-        passed = false;
-        pw.append("wrong type .Session");
-      } else
-        pw.append("passed Session");
-    } else {
-      passed = false;
-      pw.append("mailSession is null");
-    }
+        if (qcFactory != null) {
+            if (!(qcFactory instanceof jakarta.jms.QueueConnectionFactory)) {
+                passed = false;
+                pw.append("wrong type QueueConnectionFactory");
+            } else pw.append("passed QueueConnectionFactory");
+        } else {
+            passed = false;
+            pw.append("qcFactory is null");
+        }
 
-    if (myUrl != null) {
-      if (!(myUrl instanceof java.net.URL)) {
-        passed = false;
-        pw.append("wrong type URL ");
-      } else
-        pw.append("passed URL ");
-    } else {
-      passed = false;
-      pw.append("myUrl is null");
-    }
+        if (tcFactory != null) {
+            if (!(tcFactory instanceof jakarta.jms.TopicConnectionFactory)) {
+                passed = false;
+                pw.append("wrong type TopicConnectionFactory");
+            } else pw.append("passed TopicConnectionFactory");
+        } else {
+            passed = false;
+            pw.append("tcFactory is null");
+        }
 
-    context.setAttribute("CTSTestContextAttributeListener", pw.toString());
-  }
+        if (cFactory != null) {
+            if (!(cFactory instanceof jakarta.jms.ConnectionFactory)) {
+                pw.append("wrong type ConnectionFactory");
+                passed = false;
+            } else pw.append("passed ConnectionFactory");
+        } else {
+            passed = false;
+            pw.append("cFactory is null");
+        }
+
+        if (myQueue != null) {
+            if (!(myQueue instanceof jakarta.jms.Queue)) {
+                pw.append("wrong type Queue");
+                passed = false;
+            } else pw.append("passed Queue");
+        } else {
+            passed = false;
+            pw.append("myQueue is null");
+        }
+
+        if (myTopic != null) {
+            if (!(myTopic instanceof jakarta.jms.Topic)) {
+                pw.append("wrong type Topic");
+                passed = false;
+            } else pw.append("passed Topic");
+        } else {
+            pw.append("myTopic is null");
+            passed = false;
+        }
+
+        if (mailSession != null) {
+            if (!(mailSession instanceof jakarta.mail.Session)) {
+                passed = false;
+                pw.append("wrong type .Session");
+            } else pw.append("passed Session");
+        } else {
+            passed = false;
+            pw.append("mailSession is null");
+        }
+
+        if (myUrl != null) {
+            if (!(myUrl instanceof java.net.URL)) {
+                passed = false;
+                pw.append("wrong type URL ");
+            } else pw.append("passed URL ");
+        } else {
+            passed = false;
+            pw.append("myUrl is null");
+        }
+
+        context.setAttribute("CTSTestContextAttributeListener", pw.toString());
+    }
 }

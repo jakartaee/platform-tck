@@ -21,63 +21,63 @@ package com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.descripto
 
 import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF.CONCURRENT_INVOCATION_TIMES;
 
-import java.util.List;
-
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.AccessTimeoutIF;
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBs;
+import java.util.List;
 
 @EJBs({
-    @EJB(name = AccessTimeoutIF.beanClassLevelAccessTimeoutBeanLocal, beanName = "BeanClassLevelAccessTimeoutBean", beanInterface = AccessTimeoutIF.class) })
+    @EJB(
+            name = AccessTimeoutIF.beanClassLevelAccessTimeoutBeanLocal,
+            beanName = "BeanClassLevelAccessTimeoutBean",
+            beanInterface = AccessTimeoutIF.class)
+})
 public class Client extends ClientBase {
-  /*
-   * @testName: beanClassLevel
-   * 
-   * @test_Strategy: ejb-jar.xml declares <concurrent-method> and their
-   * <access-timeout>
-   */
+    /*
+     * @testName: beanClassLevel
+     *
+     * @test_Strategy: ejb-jar.xml declares <concurrent-method> and their
+     * <access-timeout>
+     */
 
-  /*
-   * @testName: beanClassLevel2
-   * 
-   * @test_Strategy: ejb-jar.xml declares <concurrent-method> and their
-   * <access-timeout>
-   */
+    /*
+     * @testName: beanClassLevel2
+     *
+     * @test_Strategy: ejb-jar.xml declares <concurrent-method> and their
+     * <access-timeout>
+     */
 
-  /*
-   * @testName: pingMethodInBeanSuperClass
-   * 
-   * @test_Strategy: ejb-jar.xml declares <concurrent-method> and their
-   * <access-timeout>
-   */
-  public void pingMethodInBeanSuperClass() throws Exception {
-    final AccessTimeoutIF b = getBeanClassLevelAccessTimeoutBeanLocal();
-    List<Exception> exceptionList = concurrentPing(new Runnable() {
-      public void run() {
-        b.ping();
-      }
-    });
-    checkConcurrentAccessTimeoutResult(exceptionList, 1, 1);
-  }
+    /*
+     * @testName: pingMethodInBeanSuperClass
+     *
+     * @test_Strategy: ejb-jar.xml declares <concurrent-method> and their
+     * <access-timeout>
+     */
+    public void pingMethodInBeanSuperClass() throws Exception {
+        final AccessTimeoutIF b = getBeanClassLevelAccessTimeoutBeanLocal();
+        List<Exception> exceptionList = concurrentPing(new Runnable() {
+            public void run() {
+                b.ping();
+            }
+        });
+        checkConcurrentAccessTimeoutResult(exceptionList, 1, 1);
+    }
 
-  /*
-   * @testName: beanClassMethodLevel
-   * 
-   * @test_Strategy: beanClassMethodLevel is a concurrent method with default
-   * access-timeout. It is not declared in ejb-jar.xml with <concurrent-method>
-   */
-  @Override
-  public void beanClassMethodLevel() throws InterruptedException {
-    final AccessTimeoutIF b = getBeanClassLevelAccessTimeoutBeanLocal();
-    List<Exception> exceptionList = concurrentPing(new Runnable() {
-      public void run() {
-        b.beanClassMethodLevel();
-      }
-    });
-    checkConcurrentAccessTimeoutResult(exceptionList,
-        CONCURRENT_INVOCATION_TIMES, 0);
-  }
-
+    /*
+     * @testName: beanClassMethodLevel
+     *
+     * @test_Strategy: beanClassMethodLevel is a concurrent method with default
+     * access-timeout. It is not declared in ejb-jar.xml with <concurrent-method>
+     */
+    @Override
+    public void beanClassMethodLevel() throws InterruptedException {
+        final AccessTimeoutIF b = getBeanClassLevelAccessTimeoutBeanLocal();
+        List<Exception> exceptionList = concurrentPing(new Runnable() {
+            public void run() {
+                b.beanClassMethodLevel();
+            }
+        });
+        checkConcurrentAccessTimeoutResult(exceptionList, CONCURRENT_INVOCATION_TIMES, 0);
+    }
 }

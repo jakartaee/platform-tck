@@ -23,14 +23,14 @@ package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.allowedmethodstest;
 import jakarta.ejb.EJBLocalObject;
 
 public interface TestBeanLocal extends EJBLocalObject {
-  // Business Methods for TestBean CMP Fields
-  public Integer getId();
+    // Business Methods for TestBean CMP Fields
+    public Integer getId();
 
-  public String getBrandName();
+    public String getBrandName();
 
-  public void setBrandName(String s);
+    public void setBrandName(String s);
 
-  public float getPrice();
+    public float getPrice();
 
-  public void setPrice(float p);
+    public void setPrice(float p);
 }

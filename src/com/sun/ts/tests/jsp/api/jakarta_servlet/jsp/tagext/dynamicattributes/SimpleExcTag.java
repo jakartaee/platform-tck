@@ -20,49 +20,48 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.dynamicattributes;
 
-import java.io.IOException;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.DynamicAttributes;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
-public class SimpleExcTag extends SimpleTagSupport
-    implements DynamicAttributes {
+public class SimpleExcTag extends SimpleTagSupport implements DynamicAttributes {
 
-  /**
-   * Default constructor.
-   */
-  public SimpleExcTag() {
-    super();
-  }
+    /**
+     * Default constructor.
+     */
+    public SimpleExcTag() {
+        super();
+    }
 
-  /**
-   * If called, it will fail the test.
-   * 
-   * @throws JspException
-   *           not thrown
-   * @throws IOException
-   *           not thrown
-   */
-  public void doTag() throws JspException, IOException {
-    this.getJspContext().getOut().println("Test FAILED.  Container incorrectly"
-        + " called doTag() after setDynamicAttribute() threw a JspException.");
-  }
+    /**
+     * If called, it will fail the test.
+     *
+     * @throws JspException
+     *           not thrown
+     * @throws IOException
+     *           not thrown
+     */
+    public void doTag() throws JspException, IOException {
+        this.getJspContext()
+                .getOut()
+                .println("Test FAILED.  Container incorrectly"
+                        + " called doTag() after setDynamicAttribute() threw a JspException.");
+    }
 
-  /**
-   * Throws a JspException.
-   * 
-   * @param uri
-   *          - the namespace of the attribute (if any)
-   * @param localName
-   *          - the name of the attribute
-   * @param value
-   *          - the value of the attribute
-   * @throws JspException
-   *           if an error occurs
-   */
-  public void setDynamicAttribute(String uri, String localName, Object value)
-      throws JspException {
-    throw new JspException("JspException");
-  }
+    /**
+     * Throws a JspException.
+     *
+     * @param uri
+     *          - the namespace of the attribute (if any)
+     * @param localName
+     *          - the name of the attribute
+     * @param value
+     *          - the value of the attribute
+     * @throws JspException
+     *           if an error occurs
+     */
+    public void setDynamicAttribute(String uri, String localName, Object value) throws JspException {
+        throw new JspException("JspException");
+    }
 }

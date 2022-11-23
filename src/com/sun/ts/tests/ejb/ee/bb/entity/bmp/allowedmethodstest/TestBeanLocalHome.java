@@ -20,21 +20,18 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.bmp.allowedmethodstest;
 
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
+import java.util.Properties;
 
 public interface TestBeanLocalHome extends EJBLocalHome {
-  public TestBeanLocal create(Properties p, Helper ref, int cofID,
-      String cofName, float cofPrice, int flag) throws CreateException;
+    public TestBeanLocal create(Properties p, Helper ref, int cofID, String cofName, float cofPrice, int flag)
+            throws CreateException;
 
-  public TestBeanLocal create(Properties p, int cofID, String cofName,
-      float cofPrice) throws CreateException;
+    public TestBeanLocal create(Properties p, int cofID, String cofName, float cofPrice) throws CreateException;
 
-  public TestBeanLocal findTheBean(Properties p, Integer key, Helper ref)
-      throws FinderException;
+    public TestBeanLocal findTheBean(Properties p, Integer key, Helper ref) throws FinderException;
 
-  public TestBeanLocal findByPrimaryKey(Integer key) throws FinderException;
+    public TestBeanLocal findByPrimaryKey(Integer key) throws FinderException;
 }

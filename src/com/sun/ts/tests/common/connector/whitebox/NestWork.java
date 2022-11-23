@@ -20,69 +20,65 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
-
 import jakarta.resource.spi.work.Work;
 import jakarta.resource.spi.work.WorkContext;
 import jakarta.resource.spi.work.WorkContextProvider;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
- * this class is used to help facilitate the testing of nexted 
+ * this class is used to help facilitate the testing of nexted
  * work objects/instances as well as the testing of nested contexts.
  * This class needs to be able to support testing the case of having
- * a setable context to allow for testing different spec scenarios, 
- * 
+ * a setable context to allow for testing different spec scenarios,
+ *
  */
 public class NestWork implements Work, WorkContextProvider {
 
-  private List<WorkContext> contextsList = new ArrayList<WorkContext>();
+    private List<WorkContext> contextsList = new ArrayList<WorkContext>();
 
-  private String name = "NestWork.name";
+    private String name = "NestWork.name";
 
-  private String description = "NestWork.description";
+    private String description = "NestWork.description";
 
-  public NestWork() {
-    ConnectorStatus.getConnectorStatus().logState("NestWork.constructor");
-  }
-
-  @Override
-  public List<WorkContext> getWorkContexts() {
-    return contextsList;
-  }
-
-  public void setWorkContexts(List<WorkContext> val) {
-    contextsList = val;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public void addWorkContext(WorkContext ic) {
-    contextsList.add(ic);
-  }
-
-  public boolean hasContextEntry() {
-    if (contextsList.isEmpty()) {
-      return false;
-    } else {
-      return true;
+    public NestWork() {
+        ConnectorStatus.getConnectorStatus().logState("NestWork.constructor");
     }
-  }
 
-  @Override
-  public void release() {
-  }
+    @Override
+    public List<WorkContext> getWorkContexts() {
+        return contextsList;
+    }
 
-  public void run() {
-    ConnectorStatus.getConnectorStatus().logState("NestWork.run");
-  }
+    public void setWorkContexts(List<WorkContext> val) {
+        contextsList = val;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void addWorkContext(WorkContext ic) {
+        contextsList.add(ic);
+    }
+
+    public boolean hasContextEntry() {
+        if (contextsList.isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public void release() {}
+
+    public void run() {
+        ConnectorStatus.getConnectorStatus().logState("NestWork.run");
+    }
 }

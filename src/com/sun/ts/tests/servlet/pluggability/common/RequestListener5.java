@@ -19,29 +19,28 @@
  */
 package com.sun.ts.tests.servlet.pluggability.common;
 
-import java.util.ArrayList;
-
 import jakarta.servlet.ServletRequestEvent;
 import jakarta.servlet.ServletRequestListener;
+import java.util.ArrayList;
 
 public final class RequestListener5 implements ServletRequestListener {
 
-  public void requestDestroyed(ServletRequestEvent event) {
-    ArrayList al = null;
-    al = (ArrayList) event.getServletContext().getAttribute("testmessage");
-    if (al != null) {
-      al.add("RequestListener5 requestDestroyed");
-      event.getServletContext().setAttribute("testmessage", al);
+    public void requestDestroyed(ServletRequestEvent event) {
+        ArrayList al = null;
+        al = (ArrayList) event.getServletContext().getAttribute("testmessage");
+        if (al != null) {
+            al.add("RequestListener5 requestDestroyed");
+            event.getServletContext().setAttribute("testmessage", al);
+        }
     }
-  }
 
-  public void requestInitialized(ServletRequestEvent event) {
-    ArrayList al = null;
-    al = (ArrayList) event.getServletContext().getAttribute("testmessage");
-    if (al == null) {
-      al = new ArrayList();
+    public void requestInitialized(ServletRequestEvent event) {
+        ArrayList al = null;
+        al = (ArrayList) event.getServletContext().getAttribute("testmessage");
+        if (al == null) {
+            al = new ArrayList();
+        }
+        al.add("RequestListener5 requestInitialized");
+        event.getServletContext().setAttribute("testmessage", al);
     }
-    al.add("RequestListener5 requestInitialized");
-    event.getServletContext().setAttribute("testmessage", al);
-  }
 }

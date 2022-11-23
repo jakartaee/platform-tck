@@ -20,10 +20,9 @@
 
 package com.sun.ts.tests.common.taglibsig.validation;
 
+import com.sun.ts.tests.common.taglibsig.TagLibraryDescriptor;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.sun.ts.tests.common.taglibsig.TagLibraryDescriptor;
 
 /**
  * Performs validation of TagLibraryDescriptor <code>&lt;uri&gt;</code>
@@ -31,19 +30,18 @@ import com.sun.ts.tests.common.taglibsig.TagLibraryDescriptor;
  */
 public class URIValidator implements Validator {
 
-  public List validate(TagLibraryDescriptor control,
-      TagLibraryDescriptor underTest) {
-    List messages = new ArrayList();
-    if (control == null || underTest == null) {
-      messages.add("[URIValidator] Null arguments.");
-    } else {
-      String controlUri = control.getURI();
-      String underTestUri = underTest.getURI();
-      if (!(controlUri.equals(underTestUri))) {
-        messages.add("Incorrect URI found.  Expected: '" + controlUri + "',"
-            + " received: '" + underTestUri + "'.");
-      }
+    public List validate(TagLibraryDescriptor control, TagLibraryDescriptor underTest) {
+        List messages = new ArrayList();
+        if (control == null || underTest == null) {
+            messages.add("[URIValidator] Null arguments.");
+        } else {
+            String controlUri = control.getURI();
+            String underTestUri = underTest.getURI();
+            if (!(controlUri.equals(underTestUri))) {
+                messages.add(
+                        "Incorrect URI found.  Expected: '" + controlUri + "'," + " received: '" + underTestUri + "'.");
+            }
+        }
+        return messages;
     }
-    return messages;
-  }
 }

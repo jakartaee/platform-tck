@@ -24,76 +24,69 @@ import static com.sun.ts.tests.ejb30.common.helper.Helper.assertNotEquals;
 import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupNoTry;
 import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupShouldFail;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
 import com.sun.ts.tests.ejb30.assembly.appres.common.TestServletBase;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @WebServlet(urlPatterns = "/TestServlet2", loadOnStartup = 1)
 public class TestServlet2 extends TestServletBase {
-  @EJB
-  private AppResRemoteIF module2Bean;
+    @EJB
+    private AppResRemoteIF module2Bean;
 
-  // See comments in TestServlet
+    // See comments in TestServlet
 
-  @Resource
-  private ModuleMBean moduleMBean;
+    @Resource
+    private ModuleMBean moduleMBean;
 
-  // @EJB(lookup="java:global/ejb3_misc_moduleName_twowars/renamed_twowars_web/ModuleBean")
-  // private AppResRemoteIF moduleBean;
+    // @EJB(lookup="java:global/ejb3_misc_moduleName_twowars/renamed_twowars_web/ModuleBean")
+    // private AppResRemoteIF moduleBean;
 
-  private void nonPostConstruct() {
-    postConstructRecords = new StringBuilder();
+    private void nonPostConstruct() {
+        postConstructRecords = new StringBuilder();
 
-    lookupShouldFail("java:app/two_standalone_component_web/ModuleMBean",
-        postConstructRecords);
-    lookupShouldFail("java:app/two_standalone_component_web/Module2Bean",
-        postConstructRecords);
+        lookupShouldFail("java:app/two_standalone_component_web/ModuleMBean", postConstructRecords);
+        lookupShouldFail("java:app/two_standalone_component_web/Module2Bean", postConstructRecords);
 
-    lookupShouldFail(
-        "java:global/ejb3_misc_moduleName_twowars/ejb3_misc_moduleName_twowars_web/ModuleBean",
-        postConstructRecords);
+        lookupShouldFail(
+                "java:global/ejb3_misc_moduleName_twowars/ejb3_misc_moduleName_twowars_web/ModuleBean",
+                postConstructRecords);
 
-    lookupShouldFail("java:global/two_standalone_component_web/Module2Bean",
-        postConstructRecords);
+        lookupShouldFail("java:global/two_standalone_component_web/Module2Bean", postConstructRecords);
 
-    Helper.getLogger().info(postConstructRecords.toString());
+        Helper.getLogger().info(postConstructRecords.toString());
 
-    // assertNotEquals(null, null, moduleBean, postConstructRecords);
-    assertNotEquals(null, null, moduleMBean, postConstructRecords);
-    assertNotEquals(null, null, module2Bean, postConstructRecords);
+        // assertNotEquals(null, null, moduleBean, postConstructRecords);
+        assertNotEquals(null, null, moduleMBean, postConstructRecords);
+        assertNotEquals(null, null, module2Bean, postConstructRecords);
 
-    AppResRemoteIF lookupResult = null;
-    String[] names = {
-
-        "java:module/ModuleMBean", "java:module/Module2Bean",
-
-        "java:app/renamed2_twowars_web/ModuleMBean",
-        "java:app/renamed2_twowars_web/Module2Bean",
-
-        "java:global/ejb3_misc_moduleName_twowars/renamed_twowars_web/ModuleBean",
-
-        "java:global/renamed2_twowars_web/Module2Bean" };
-    for (String name : names) {
-      postConstructRecords.append("About to look up " + name);
-      lookupResult = (AppResRemoteIF) lookupNoTry(name);
-      assertNotEquals(null, null, lookupResult, postConstructRecords);
-      lookupResult = null;
+        AppResRemoteIF lookupResult = null;
+        String[] names = {
+            "java:module/ModuleMBean",
+            "java:module/Module2Bean",
+            "java:app/renamed2_twowars_web/ModuleMBean",
+            "java:app/renamed2_twowars_web/Module2Bean",
+            "java:global/ejb3_misc_moduleName_twowars/renamed_twowars_web/ModuleBean",
+            "java:global/renamed2_twowars_web/Module2Bean"
+        };
+        for (String name : names) {
+            postConstructRecords.append("About to look up " + name);
+            lookupResult = (AppResRemoteIF) lookupNoTry(name);
+            assertNotEquals(null, null, lookupResult, postConstructRecords);
+            lookupResult = null;
+        }
     }
-  }
 
-  public void servletPostConstruct2(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    nonPostConstruct();
-    verifyRecords(request, response, postConstructRecords);
-    verifyRecords(request, response, module2Bean.getPostConstructRecords());
-  }
+    public void servletPostConstruct2(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        nonPostConstruct();
+        verifyRecords(request, response, postConstructRecords);
+        verifyRecords(request, response, module2Bean.getPostConstructRecords());
+    }
 }

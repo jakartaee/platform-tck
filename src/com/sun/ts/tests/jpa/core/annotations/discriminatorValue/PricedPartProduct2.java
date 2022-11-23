@@ -22,63 +22,62 @@ import jakarta.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("2")
-public class PricedPartProduct2 extends PartProduct2
-    implements java.io.Serializable {
+public class PricedPartProduct2 extends PartProduct2 implements java.io.Serializable {
 
-  private double price;
+    private double price;
 
-  public PricedPartProduct2() {
-    super();
-  }
-
-  @Column(name = "PRICE")
-  public double getPrice() {
-    return price;
-  }
-
-  public void setPrice(double price) {
-    this.price = price;
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    if (getName() != null) {
-      result.append(", name: " + getName());
-    } else {
-      result.append(", name: null");
-    }
-    result.append(", quantity: " + getQuantity());
-    result.append(", partNumber: " + getPartNumber());
-    result.append(", price: " + getPrice());
-    result.append("]");
-    return result.toString();
-  }
-
-  @Override
-  public int hashCode() {
-    return this.getId().hashCode();
-  }
-
-  public boolean equals(Object o) {
-    PricedPartProduct2 other;
-    boolean result = false;
-
-    if (!(o instanceof PricedPartProduct2)) {
-      return result;
-    }
-    other = (PricedPartProduct2) o;
-
-    if (this.getId().equals(other.getId())
-        && this.getName().equals(other.getName())
-        && this.getQuantity() == other.getQuantity()
-        && this.getPartNumber() == other.getQuantity()
-        && this.getPrice() == other.getPrice()) {
-      result = true;
+    public PricedPartProduct2() {
+        super();
     }
 
-    return result;
-  }
+    @Column(name = "PRICE")
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getId());
+        if (getName() != null) {
+            result.append(", name: " + getName());
+        } else {
+            result.append(", name: null");
+        }
+        result.append(", quantity: " + getQuantity());
+        result.append(", partNumber: " + getPartNumber());
+        result.append(", price: " + getPrice());
+        result.append("]");
+        return result.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getId().hashCode();
+    }
+
+    public boolean equals(Object o) {
+        PricedPartProduct2 other;
+        boolean result = false;
+
+        if (!(o instanceof PricedPartProduct2)) {
+            return result;
+        }
+        other = (PricedPartProduct2) o;
+
+        if (this.getId().equals(other.getId())
+                && this.getName().equals(other.getName())
+                && this.getQuantity() == other.getQuantity()
+                && this.getPartNumber() == other.getQuantity()
+                && this.getPrice() == other.getPrice()) {
+            result = true;
+        }
+
+        return result;
+    }
 }

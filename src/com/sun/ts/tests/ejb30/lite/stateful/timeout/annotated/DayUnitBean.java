@@ -20,23 +20,19 @@
 
 package com.sun.ts.tests.ejb30.lite.stateful.timeout.annotated;
 
-import java.util.concurrent.TimeUnit;
-
 import com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutBeanBase;
 import com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutIF;
-
 import jakarta.ejb.AccessTimeout;
 import jakarta.ejb.ConcurrencyManagement;
 import jakarta.ejb.ConcurrencyManagementType;
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.StatefulTimeout;
+import java.util.concurrent.TimeUnit;
 
 @Stateful
 @StatefulTimeout(value = StatefulTimeoutIF.TIMEOUT_DAYS, unit = TimeUnit.DAYS)
 @ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
 @AccessTimeout(value = StatefulTimeoutIF.TIMEOUT_DAYS, unit = TimeUnit.DAYS)
 @Local(StatefulTimeoutIF.class)
-public class DayUnitBean extends StatefulTimeoutBeanBase {
-
-}
+public class DayUnitBean extends StatefulTimeoutBeanBase {}

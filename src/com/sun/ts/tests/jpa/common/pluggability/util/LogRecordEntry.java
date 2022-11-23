@@ -17,130 +17,127 @@
 package com.sun.ts.tests.jpa.common.pluggability.util;
 
 import java.io.Serializable;
-
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class LogRecordEntry implements Serializable {
 
-  private long milliSeconds;
+    private long milliSeconds;
 
-  private long sequenceNumber;
+    private long sequenceNumber;
 
-  private String level;
+    private String level;
 
-  private String className;
+    private String className;
 
-  private String methodName;
+    private String methodName;
 
-  private String message;
+    private String message;
 
-  private String thrown;
+    private String thrown;
 
-  public LogRecordEntry(Node recordNode) throws Exception {
-    if (!recordNode.getNodeName().equals("record")) {
-      throw new Exception("Unexpected tag :" + recordNode.getNodeName());
+    public LogRecordEntry(Node recordNode) throws Exception {
+        if (!recordNode.getNodeName().equals("record")) {
+            throw new Exception("Unexpected tag :" + recordNode.getNodeName());
+        }
+        NodeList nodes = recordNode.getChildNodes();
+
+        for (int i = 0; i < nodes.getLength(); i++) {
+            Node node = nodes.item(i);
+            String childNode = node.getNodeName();
+
+            if (childNode.equals("millis")) {
+                milliSeconds = Long.valueOf(getText(node));
+
+            } else if (childNode.equals("sequence")) {
+                sequenceNumber = Long.valueOf(getText(node));
+
+            } else if (childNode.equals("level")) {
+                level = getText(node);
+
+            } else if (childNode.equals("class")) {
+                className = getText(node);
+
+            } else if (childNode.equals("method")) {
+                methodName = getText(node);
+
+            } else if (childNode.equals("message")) {
+                message = getText(node);
+
+            } else if (childNode.equals("exception")) {
+                thrown = getText(node);
+            }
+        }
     }
-    NodeList nodes = recordNode.getChildNodes();
 
-    for (int i = 0; i < nodes.getLength(); i++) {
-      Node node = nodes.item(i);
-      String childNode = node.getNodeName();
-
-      if (childNode.equals("millis")) {
-        milliSeconds = Long.valueOf(getText(node));
-
-      } else if (childNode.equals("sequence")) {
-        sequenceNumber = Long.valueOf(getText(node));
-
-      } else if (childNode.equals("level")) {
-        level = getText(node);
-
-      } else if (childNode.equals("class")) {
-        className = getText(node);
-
-      } else if (childNode.equals("method")) {
-        methodName = getText(node);
-
-      } else if (childNode.equals("message")) {
-        message = getText(node);
-
-      } else if (childNode.equals("exception")) {
-        thrown = getText(node);
-
-      }
-
+    public long getMilliSeconds() {
+        return this.milliSeconds;
     }
-  }
 
-  public long getMilliSeconds() {
-    return this.milliSeconds;
-  }
-
-  public void setMilliSeconds(long milliSec) {
-    milliSeconds = milliSec;
-  }
-
-  public long getSequenceNumber() {
-    return this.sequenceNumber;
-  }
-
-  public void setSequenceNumber(long seqNum) {
-    sequenceNumber = seqNum;
-  }
-
-  public String getMessage() {
-    return this.message;
-  }
-
-  public void setMessage(String msg) {
-    message = msg;
-  }
-
-  public String getLevel() {
-    return this.level;
-  }
-
-  public void setLevel(String lvl) {
-    level = lvl;
-  }
-
-  public String getClassName() {
-    return this.className;
-  }
-
-  public void setClassName(String cName) {
-    className = cName;
-  }
-
-  public String getMethodName() {
-    return this.methodName;
-  }
-
-  public void setMethodName(String mName) {
-    methodName = mName;
-  }
-
-  public String getThrown() {
-    return this.thrown;
-  }
-
-  public void setThrown(String thrwn) {
-    thrown = thrwn;
-  }
-
-  public String getText(Node textNode) {
-    String result = "";
-    NodeList nodes = textNode.getChildNodes();
-
-    for (int i = 0; i < nodes.getLength(); i++) {
-      Node node = nodes.item(i);
-
-      if (node.getNodeType() == Node.TEXT_NODE) {
-        result = node.getNodeValue();
-        break;
-      }
+    public void setMilliSeconds(long milliSec) {
+        milliSeconds = milliSec;
     }
-    return result;
-  }
+
+    public long getSequenceNumber() {
+        return this.sequenceNumber;
+    }
+
+    public void setSequenceNumber(long seqNum) {
+        sequenceNumber = seqNum;
+    }
+
+    public String getMessage() {
+        return this.message;
+    }
+
+    public void setMessage(String msg) {
+        message = msg;
+    }
+
+    public String getLevel() {
+        return this.level;
+    }
+
+    public void setLevel(String lvl) {
+        level = lvl;
+    }
+
+    public String getClassName() {
+        return this.className;
+    }
+
+    public void setClassName(String cName) {
+        className = cName;
+    }
+
+    public String getMethodName() {
+        return this.methodName;
+    }
+
+    public void setMethodName(String mName) {
+        methodName = mName;
+    }
+
+    public String getThrown() {
+        return this.thrown;
+    }
+
+    public void setThrown(String thrwn) {
+        thrown = thrwn;
+    }
+
+    public String getText(Node textNode) {
+        String result = "";
+        NodeList nodes = textNode.getChildNodes();
+
+        for (int i = 0; i < nodes.getLength(); i++) {
+            Node node = nodes.item(i);
+
+            if (node.getNodeType() == Node.TEXT_NODE) {
+                result = node.getNodeValue();
+                break;
+            }
+        }
+        return result;
+    }
 }

@@ -29,34 +29,33 @@ package com.sun.ts.tests.common.taglibsig;
 
 public class FunctionEntry {
 
-  public static final String NO_FUNCTION_NAME = "no function name";
+    public static final String NO_FUNCTION_NAME = "no function name";
 
-  public static final String NO_FUNCTION_SIGNATURE = "no function signature";
+    public static final String NO_FUNCTION_SIGNATURE = "no function signature";
 
-  private String name = NO_FUNCTION_NAME;
+    private String name = NO_FUNCTION_NAME;
 
-  private String functionSignature = NO_FUNCTION_SIGNATURE;
+    private String functionSignature = NO_FUNCTION_SIGNATURE;
 
-  public FunctionEntry() {
-  }
+    public FunctionEntry() {}
 
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    if (name != null) {
-      this.name = name;
+    public String getName() {
+        return name;
     }
-  }
 
-  public String getFunctionSignature() {
-    return functionSignature;
-  }
-
-  public void setFunctionSignature(String functionSignature) {
-    if (functionSignature != null) {
-      this.functionSignature = functionSignature;
+    public void setName(String name) {
+        if (name != null) {
+            this.name = name;
+        }
     }
-  }
+
+    public String getFunctionSignature() {
+        return functionSignature;
+    }
+
+    public void setFunctionSignature(String functionSignature) {
+        if (functionSignature != null) {
+            this.functionSignature = functionSignature;
+        }
+    }
 }

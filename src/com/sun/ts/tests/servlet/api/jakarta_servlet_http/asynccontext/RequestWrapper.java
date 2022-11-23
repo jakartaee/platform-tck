@@ -24,10 +24,10 @@ import jakarta.servlet.http.HttpServletRequestWrapper;
 
 public class RequestWrapper extends HttpServletRequestWrapper {
 
-  protected HttpServletRequest origRequest = null;
+    protected HttpServletRequest origRequest = null;
 
-  public RequestWrapper(HttpServletRequest request) {
-    super(request);
-    origRequest = request;
-  }
+    public RequestWrapper(HttpServletRequest request) {
+        super(request);
+        origRequest = request;
+    }
 }

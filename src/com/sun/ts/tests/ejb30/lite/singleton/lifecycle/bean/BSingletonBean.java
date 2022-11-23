@@ -20,28 +20,25 @@
 
 package com.sun.ts.tests.ejb30.lite.singleton.lifecycle.bean;
 
+import jakarta.ejb.Singleton;
+import jakarta.ejb.Startup;
 import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.io.Serializable;
 
-import jakarta.ejb.Singleton;
-import jakarta.ejb.Startup;
-
 @Singleton
 @Startup
 // BSingletonIF is its only local business interface, and Serializable and
 // Externalizable are ignored when determining business interfaces
-public class BSingletonBean extends BeanBase
-    implements BSingletonIF, Serializable, Externalizable {
+public class BSingletonBean extends BeanBase implements BSingletonIF, Serializable, Externalizable {
 
-  public void writeExternal(ObjectOutput arg0) throws IOException {
-    throw new UnsupportedOperationException("Not supported yet.");
-  }
+    public void writeExternal(ObjectOutput arg0) throws IOException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
-  public void readExternal(ObjectInput arg0)
-      throws IOException, ClassNotFoundException {
-    throw new UnsupportedOperationException("Not supported yet.");
-  }
+    public void readExternal(ObjectInput arg0) throws IOException, ClassNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

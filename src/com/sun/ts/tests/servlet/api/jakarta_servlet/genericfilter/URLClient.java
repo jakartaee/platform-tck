@@ -20,155 +20,153 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.genericfilter;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    setContextRoot("/servlet_js_genericfilter_web");
+        setContextRoot("/servlet_js_genericfilter_web");
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /* Run test */
-  /*
-   * @testName: initFilterTest
-   *
-   * @assertion_ids: NA;
-   *
-   * @test_Strategy: Client attempts to access a servlet and the filter
-   * configured for that servlet should be invoked.
-   */
+    /* Run test */
+    /*
+     * @testName: initFilterTest
+     *
+     * @assertion_ids: NA;
+     *
+     * @test_Strategy: Client attempts to access a servlet and the filter
+     * configured for that servlet should be invoked.
+     */
 
-  public void initFilterTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "InitFilterTest");
-    invoke();
-  }
+    public void initFilterTest() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "InitFilterTest");
+        invoke();
+    }
 
-  /*
-   * @testName: initFilterConfigTest
-   *
-   * @assertion_ids: NA;
-   *
-   * @test_Strategy: Client attempts to access a servlet and the filter
-   * configured for that servlet should be invoked.
-   */
+    /*
+     * @testName: initFilterConfigTest
+     *
+     * @assertion_ids: NA;
+     *
+     * @test_Strategy: Client attempts to access a servlet and the filter
+     * configured for that servlet should be invoked.
+     */
 
-  public void initFilterConfigTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "InitFilterConfigTest");
-    invoke();
-  }
+    public void initFilterConfigTest() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "InitFilterConfigTest");
+        invoke();
+    }
 
-  /*
-   * @testName: GetFilterNameTest
-   *
-   * @assertion_ids: NA;
-   *
-   * @test_Strategy: Client attempts to access a servlet and the filter
-   * configured for that servlet should be invoked.
-   */
+    /*
+     * @testName: GetFilterNameTest
+     *
+     * @assertion_ids: NA;
+     *
+     * @test_Strategy: Client attempts to access a servlet and the filter
+     * configured for that servlet should be invoked.
+     */
 
-  public void GetFilterNameTest() throws Fault {
-    String testName = "GetFilterNameTest";
-    TEST_PROPS.setProperty(APITEST, testName);
-    invoke();
-  }
+    public void GetFilterNameTest() throws Fault {
+        String testName = "GetFilterNameTest";
+        TEST_PROPS.setProperty(APITEST, testName);
+        invoke();
+    }
 
-  /*
-   * @testName: GetInitParamTest
-   *
-   * @assertion_ids: NA;
-   *
-   * @test_Strategy: Client attempts to access a servlet and the filter
-   * configured for that servlet should be invoked.
-   */
+    /*
+     * @testName: GetInitParamTest
+     *
+     * @assertion_ids: NA;
+     *
+     * @test_Strategy: Client attempts to access a servlet and the filter
+     * configured for that servlet should be invoked.
+     */
 
-  public void GetInitParamTest() throws Fault {
-    String testName = "GetInitParamTest";
-    TEST_PROPS.setProperty(APITEST, testName);
-    invoke();
-  }
+    public void GetInitParamTest() throws Fault {
+        String testName = "GetInitParamTest";
+        TEST_PROPS.setProperty(APITEST, testName);
+        invoke();
+    }
 
-  /*
-   * @testName: GetInitParamNamesTest
-   *
-   * @assertion_ids: NA;
-   *
-   * @test_Strategy: Client attempts to access a servlet and the filter
-   * configured for that servlet should be invoked.
-   */
+    /*
+     * @testName: GetInitParamNamesTest
+     *
+     * @assertion_ids: NA;
+     *
+     * @test_Strategy: Client attempts to access a servlet and the filter
+     * configured for that servlet should be invoked.
+     */
 
-  public void GetInitParamNamesTest() throws Fault {
-    String testName = "GetInitParamNamesTest";
-    TEST_PROPS.setProperty(APITEST, testName);
-    invoke();
-  }
+    public void GetInitParamNamesTest() throws Fault {
+        String testName = "GetInitParamNamesTest";
+        TEST_PROPS.setProperty(APITEST, testName);
+        invoke();
+    }
 
-  /*
-   * @testName: GetInitParamNamesNullTest
-   *
-   * @assertion_ids: NA;
-   *
-   * @test_Strategy: Client attempts to access a servlet and the filter
-   * configured for that servlet should be invoked.
-   */
+    /*
+     * @testName: GetInitParamNamesNullTest
+     *
+     * @assertion_ids: NA;
+     *
+     * @test_Strategy: Client attempts to access a servlet and the filter
+     * configured for that servlet should be invoked.
+     */
 
-  public void GetInitParamNamesNullTest() throws Fault {
-    String testName = "GetInitParamNamesNullTest";
-    TEST_PROPS.setProperty(APITEST, testName);
-    invoke();
-  }
+    public void GetInitParamNamesNullTest() throws Fault {
+        String testName = "GetInitParamNamesNullTest";
+        TEST_PROPS.setProperty(APITEST, testName);
+        invoke();
+    }
 
-  /*
-   * @testName: GetInitParamNullTest
-   *
-   * @assertion_ids: NA;
-   *
-   * @test_Strategy: Client attempts to access a servlet and the filter
-   * configured for that servlet should be invoked.
-   */
+    /*
+     * @testName: GetInitParamNullTest
+     *
+     * @assertion_ids: NA;
+     *
+     * @test_Strategy: Client attempts to access a servlet and the filter
+     * configured for that servlet should be invoked.
+     */
 
-  public void GetInitParamNullTest() throws Fault {
-    String testName = "GetInitParamNullTest";
-    TEST_PROPS.setProperty(APITEST, testName);
-    invoke();
-  }
+    public void GetInitParamNullTest() throws Fault {
+        String testName = "GetInitParamNullTest";
+        TEST_PROPS.setProperty(APITEST, testName);
+        invoke();
+    }
 
-  /*
-   * @testName: GetServletContextTest
-   *
-   * @assertion_ids: NA;
-   *
-   * @test_Strategy: Client attempts to access a servlet and the filter
-   * configured for that servlet should be invoked.
-   */
+    /*
+     * @testName: GetServletContextTest
+     *
+     * @assertion_ids: NA;
+     *
+     * @test_Strategy: Client attempts to access a servlet and the filter
+     * configured for that servlet should be invoked.
+     */
 
-  public void GetServletContextTest() throws Fault {
-    String testName = "GetServletContextTest";
-    TEST_PROPS.setProperty(APITEST, testName);
-    invoke();
-  }
+    public void GetServletContextTest() throws Fault {
+        String testName = "GetServletContextTest";
+        TEST_PROPS.setProperty(APITEST, testName);
+        invoke();
+    }
 }

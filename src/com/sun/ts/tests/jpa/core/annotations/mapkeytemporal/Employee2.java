@@ -27,91 +27,90 @@ import jakarta.persistence.Table;
 @Table(name = "EMP_MAPKEYCOL2")
 public class Employee2 implements java.io.Serializable {
 
-  private int id;
+    private int id;
 
-  private String lastName;
+    private String lastName;
 
-  private Department2 department;
+    private Department2 department;
 
-  public Employee2() {
-  }
+    public Employee2() {}
 
-  public Employee2(int id, String lastName) {
-    this.id = id;
-    this.lastName = lastName;
-  }
-
-  public Employee2(int id, String lastName, Department2 department) {
-    this.id = id;
-    this.lastName = lastName;
-    this.department = department;
-  }
-
-  // ===========================================================
-  // getters and setters for the state fields
-
-  @Id
-  @Column(name = "ID")
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
-
-  @Column(name = "LASTNAME")
-  public String getLastName() {
-    return lastName;
-  }
-
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
-
-  // ===========================================================
-  // getters and setters for the association fields
-
-  @ManyToOne
-  @JoinColumn(name = "FK_DEPT5")
-  public Department2 getDepartment() {
-    return department;
-  }
-
-  public void setDepartment(Department2 department) {
-    this.department = department;
-  }
-
-  @Override
-  public int hashCode() {
-    return this.getId() + this.getLastName().hashCode();
-  }
-
-  public boolean equals(Object o) {
-    Employee2 other;
-    boolean same = true;
-
-    if (!(o instanceof Employee2)) {
-      return false;
+    public Employee2(int id, String lastName) {
+        this.id = id;
+        this.lastName = lastName;
     }
-    other = (Employee2) o;
 
-    same &= (this.id == other.id);
-
-    return same;
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    if (getLastName() != null) {
-      result.append(", name: " + getLastName());
-    } else {
-      result.append(", name: null");
+    public Employee2(int id, String lastName, Department2 department) {
+        this.id = id;
+        this.lastName = lastName;
+        this.department = department;
     }
-    result.append("]");
-    return result.toString();
-  }
+
+    // ===========================================================
+    // getters and setters for the state fields
+
+    @Id
+    @Column(name = "ID")
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Column(name = "LASTNAME")
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    // ===========================================================
+    // getters and setters for the association fields
+
+    @ManyToOne
+    @JoinColumn(name = "FK_DEPT5")
+    public Department2 getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department2 department) {
+        this.department = department;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getId() + this.getLastName().hashCode();
+    }
+
+    public boolean equals(Object o) {
+        Employee2 other;
+        boolean same = true;
+
+        if (!(o instanceof Employee2)) {
+            return false;
+        }
+        other = (Employee2) o;
+
+        same &= (this.id == other.id);
+
+        return same;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getId());
+        if (getLastName() != null) {
+            result.append(", name: " + getLastName());
+        } else {
+            result.append(", name: null");
+        }
+        result.append("]");
+        return result.toString();
+    }
 }

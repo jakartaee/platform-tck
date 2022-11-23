@@ -20,22 +20,20 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addservlet;
 
-import java.io.IOException;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
 
 public abstract class DummyServlet extends GenericServlet {
 
-  public void init(ServletConfig config) throws ServletException {
-    super.init(config);
-  }
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+    }
 
-  public void service(ServletRequest req, ServletResponse res)
-      throws ServletException, IOException {
-    System.out.println("In DummyServlet");
-  }
+    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+        System.out.println("In DummyServlet");
+    }
 }

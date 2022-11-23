@@ -20,59 +20,55 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.dofilter;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-    setContextRoot("/servlet_js_dofilter_web");
-    setServletName("TestServlet");
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
+        setContextRoot("/servlet_js_dofilter_web");
+        setServletName("TestServlet");
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /* Run test */
+    /* Run test */
 
-  /*
-   * @testName: wrapResponseTest
-   *
-   * @assertion_ids: Servlet:SPEC:54; Servlet:SPEC:59;
-   *
-   * @test_Strategy: 1. Create two servlets - TestServlet, ForwardedServlet 2.
-   * Invoke ForwardedServlet using forward in TestServlet 3. Map a filter
-   * WrapResponseFilter with dispatcher value set to FORWARD 4. In the filter,
-   * wrap the response with custom implementation of ServletResponse
-   * CTSResponseWrapper 5. Verify that filter is properly invoked.
-   */
+    /*
+     * @testName: wrapResponseTest
+     *
+     * @assertion_ids: Servlet:SPEC:54; Servlet:SPEC:59;
+     *
+     * @test_Strategy: 1. Create two servlets - TestServlet, ForwardedServlet 2.
+     * Invoke ForwardedServlet using forward in TestServlet 3. Map a filter
+     * WrapResponseFilter with dispatcher value set to FORWARD 4. In the filter,
+     * wrap the response with custom implementation of ServletResponse
+     * CTSResponseWrapper 5. Verify that filter is properly invoked.
+     */
 
-  public void wrapResponseTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "wrapResponseTest");
-    TEST_PROPS.setProperty(SEARCH_STRING,
-        "CTSResponseWrapper|WrapResponseFilter|ForwardedServlet");
-    invoke();
-  }
-
+    public void wrapResponseTest() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "wrapResponseTest");
+        TEST_PROPS.setProperty(SEARCH_STRING, "CTSResponseWrapper|WrapResponseFilter|ForwardedServlet");
+        invoke();
+    }
 }

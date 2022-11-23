@@ -20,14 +20,12 @@
 
 package com.sun.ts.tests.assembly.util.refbean;
 
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJBHome;
-
 public interface StatefulInternalHome extends EJBHome {
 
-  public StatefulInternal create(Properties p)
-      throws RemoteException, CreateException;
+    public StatefulInternal create(Properties p) throws RemoteException, CreateException;
 }

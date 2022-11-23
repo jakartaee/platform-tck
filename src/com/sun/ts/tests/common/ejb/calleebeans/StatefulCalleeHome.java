@@ -20,18 +20,14 @@
 
 package com.sun.ts.tests.common.ejb.calleebeans;
 
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJBHome;
-
 public interface StatefulCalleeHome extends EJBHome {
 
-  public StatefulCallee create(Properties p)
-      throws RemoteException, CreateException;
+    public StatefulCallee create(Properties p) throws RemoteException, CreateException;
 
-  public StatefulCallee create(Properties p, SimpleArgument arg)
-      throws RemoteException, CreateException;
-
+    public StatefulCallee create(Properties p, SimpleArgument arg) throws RemoteException, CreateException;
 }

@@ -19,13 +19,12 @@
  */
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout;
 
-import java.util.concurrent.TimeUnit;
-
 import jakarta.ejb.AccessTimeout;
 import jakarta.ejb.Lock;
 import jakarta.ejb.LockType;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
+import java.util.concurrent.TimeUnit;
 
 /**
  * The purpose of this class is to verify method-level @AccessTimeout. This
@@ -35,20 +34,18 @@ import jakarta.ejb.Startup;
 @Singleton
 @Startup
 @Lock(LockType.READ)
-public class MethodLevelAccessTimeoutBean extends PlainAccessTimeoutBeanBase
-    implements AccessTimeoutIF {
-  @Override
-  @Lock(LockType.READ)
-  @AccessTimeout(unit = TimeUnit.MILLISECONDS, value = 1000)
-  public int longRead(long waitTimeMillis, int readVal) {
-    return super.longRead(waitTimeMillis, readVal);
-  }
+public class MethodLevelAccessTimeoutBean extends PlainAccessTimeoutBeanBase implements AccessTimeoutIF {
+    @Override
+    @Lock(LockType.READ)
+    @AccessTimeout(unit = TimeUnit.MILLISECONDS, value = 1000)
+    public int longRead(long waitTimeMillis, int readVal) {
+        return super.longRead(waitTimeMillis, readVal);
+    }
 
-  @Override
-  @Lock(LockType.WRITE)
-  @AccessTimeout(unit = TimeUnit.MILLISECONDS, value = 1000)
-  public void longWrite(long waitTimeMillis) {
-    super.longWrite(waitTimeMillis);
-  }
-
+    @Override
+    @Lock(LockType.WRITE)
+    @AccessTimeout(unit = TimeUnit.MILLISECONDS, value = 1000)
+    public void longWrite(long waitTimeMillis) {
+        super.longWrite(waitTimeMillis);
+    }
 }

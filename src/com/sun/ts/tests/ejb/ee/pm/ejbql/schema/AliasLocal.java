@@ -20,29 +20,27 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
+import jakarta.ejb.EJBLocalObject;
 import java.util.Collection;
 
-import jakarta.ejb.EJBLocalObject;
-
 public interface AliasLocal extends EJBLocalObject {
-  // Business Methods for CMP Fields
-  public String getId();
+    // Business Methods for CMP Fields
+    public String getId();
 
-  public String getAlias();
+    public String getAlias();
 
-  public void setAlias(String v);
+    public void setAlias(String v);
 
-  // Business Methods for CMR Fields
-  public CustomerLocal getCustomerNoop();
+    // Business Methods for CMR Fields
+    public CustomerLocal getCustomerNoop();
 
-  public void setCustomerNoop(CustomerLocal v);
+    public void setCustomerNoop(CustomerLocal v);
 
-  public Collection getCustomersNoop();
+    public Collection getCustomersNoop();
 
-  public void setCustomersNoop(Collection v);
+    public void setCustomersNoop(Collection v);
 
-  public Collection getCustomers();
+    public Collection getCustomers();
 
-  public void setCustomers(Collection v);
-
+    public void setCustomers(Collection v);
 }

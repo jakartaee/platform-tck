@@ -25,17 +25,15 @@ import jakarta.resource.spi.work.WorkContext;
  * submit this context class to the appserver via a WorkInst should cause the
  * server to throw a proper error code.
  */
-public class UnknownWorkContext extends ExecutionContext
-    implements WorkContext {
+public class UnknownWorkContext extends ExecutionContext implements WorkContext {
 
-  private static final String id = "UnknownWorkContext";
+    private static final String id = "UnknownWorkContext";
 
-  public String getDescription() {
-    return "UnknownWorkContext";
-  }
+    public String getDescription() {
+        return "UnknownWorkContext";
+    }
 
-  public String getName() {
-    return "UnknownWorkContext";
-  }
-
+    public String getName() {
+        return "UnknownWorkContext";
+    }
 }

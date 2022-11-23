@@ -16,49 +16,46 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_el.methodinfo;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.common.el.api.expression.ExpressionTest;
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.el.ELContext;
 import jakarta.el.MethodExpression;
 import jakarta.el.MethodInfo;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class MethodInfoTag extends SimpleTagSupport {
 
-  private MethodExpression mexp;
+    private MethodExpression mexp;
 
-  public void setMethExpr(MethodExpression mexp) {
-    this.mexp = mexp;
-  }
-
-  public void doTag() throws JspException, IOException {
-
-    JspWriter out = getJspContext().getOut();
-    StringBuffer buf = new StringBuffer("");
-    ELContext elContext = getJspContext().getELContext();
-
-    try {
-      MethodInfo minfo = mexp.getMethodInfo(elContext);
-      Class[] paramTypes = { Object.class };
-      boolean pass = ExpressionTest.testMethodInfo(minfo, "add", boolean.class,
-          1, paramTypes, buf);
-
-      if (!pass) {
-        out.println("Test FAILED: return from testMethodExpression\n");
-        out.println("Buffer contents:\n" + buf.toString());
-        return;
-      }
-
-      mexp.invoke(elContext, new Object[] { "latest member" });
-    } catch (Throwable t) {
-      out.println("Test FAILED: Exception in tag handler\n");
-      out.println("Buffer contents:\n" + buf.toString());
-      JspTestUtil.handleThrowable(t, out, "MethodInfoTag");
+    public void setMethExpr(MethodExpression mexp) {
+        this.mexp = mexp;
     }
-  }
+
+    public void doTag() throws JspException, IOException {
+
+        JspWriter out = getJspContext().getOut();
+        StringBuffer buf = new StringBuffer("");
+        ELContext elContext = getJspContext().getELContext();
+
+        try {
+            MethodInfo minfo = mexp.getMethodInfo(elContext);
+            Class[] paramTypes = {Object.class};
+            boolean pass = ExpressionTest.testMethodInfo(minfo, "add", boolean.class, 1, paramTypes, buf);
+
+            if (!pass) {
+                out.println("Test FAILED: return from testMethodExpression\n");
+                out.println("Buffer contents:\n" + buf.toString());
+                return;
+            }
+
+            mexp.invoke(elContext, new Object[] {"latest member"});
+        } catch (Throwable t) {
+            out.println("Test FAILED: Exception in tag handler\n");
+            out.println("Buffer contents:\n" + buf.toString());
+            JspTestUtil.handleThrowable(t, out, "MethodInfoTag");
+        }
+    }
 }

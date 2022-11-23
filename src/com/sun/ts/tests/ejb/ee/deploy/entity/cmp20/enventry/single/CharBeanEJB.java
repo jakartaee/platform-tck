@@ -25,7 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 
 public abstract class CharBeanEJB extends CMP20Wrapper {
 
-  public boolean testCharacterEntry() {
-    return TestCode.testCharacterEntry(nctx);
-  }
+    public boolean testCharacterEntry() {
+        return TestCode.testCharacterEntry(nctx);
+    }
 }

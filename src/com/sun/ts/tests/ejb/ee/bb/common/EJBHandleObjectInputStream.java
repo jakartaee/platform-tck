@@ -26,50 +26,42 @@ import java.lang.reflect.Proxy;
 // This class overrides the resolveClass() and resolveProxyClass() methods  of ObjectInputStream
 public class EJBHandleObjectInputStream extends ObjectInputStream {
 
-  public EJBHandleObjectInputStream(ByteArrayInputStream bais)
-      throws IOException {
-    super(bais);
-  }
+    public EJBHandleObjectInputStream(ByteArrayInputStream bais) throws IOException {
+        super(bais);
+    }
 
-  @Override
-  protected Class<?> resolveClass(final ObjectStreamClass desc)
-      throws IOException, ClassNotFoundException {
-    return Class.forName(desc.getName(), true,
-        EJBHandleObjectInputStream.class.getClassLoader());
-  }
+    @Override
+    protected Class<?> resolveClass(final ObjectStreamClass desc) throws IOException, ClassNotFoundException {
+        return Class.forName(desc.getName(), true, EJBHandleObjectInputStream.class.getClassLoader());
+    }
 
-  @Override
-  protected Class<?> resolveProxyClass(String[] interfaces)
-      throws IOException, ClassNotFoundException {
+    @Override
+    protected Class<?> resolveProxyClass(String[] interfaces) throws IOException, ClassNotFoundException {
 
-    ClassLoader latestLoader = EJBHandleObjectInputStream.class
-        .getClassLoader();
-    ClassLoader nonPublicLoader = null;
-    boolean hasNonPublicInterface = false;
+        ClassLoader latestLoader = EJBHandleObjectInputStream.class.getClassLoader();
+        ClassLoader nonPublicLoader = null;
+        boolean hasNonPublicInterface = false;
 
-    // define proxy in class loader of non-public interface(s), if any
-    Class[] classObjs = new Class[interfaces.length];
-    for (int i = 0; i < interfaces.length; i++) {
-      Class cl = Class.forName(interfaces[i], false, latestLoader);
-      if ((cl.getModifiers() & Modifier.PUBLIC) == 0) {
-        if (hasNonPublicInterface) {
-          if (nonPublicLoader != cl.getClassLoader()) {
-            throw new IllegalAccessError(
-                "conflicting non-public interface class loaders");
-          }
-        } else {
-          nonPublicLoader = cl.getClassLoader();
-          hasNonPublicInterface = true;
+        // define proxy in class loader of non-public interface(s), if any
+        Class[] classObjs = new Class[interfaces.length];
+        for (int i = 0; i < interfaces.length; i++) {
+            Class cl = Class.forName(interfaces[i], false, latestLoader);
+            if ((cl.getModifiers() & Modifier.PUBLIC) == 0) {
+                if (hasNonPublicInterface) {
+                    if (nonPublicLoader != cl.getClassLoader()) {
+                        throw new IllegalAccessError("conflicting non-public interface class loaders");
+                    }
+                } else {
+                    nonPublicLoader = cl.getClassLoader();
+                    hasNonPublicInterface = true;
+                }
+            }
+            classObjs[i] = cl;
         }
-      }
-      classObjs[i] = cl;
+        try {
+            return Proxy.getProxyClass(hasNonPublicInterface ? nonPublicLoader : latestLoader, classObjs);
+        } catch (IllegalArgumentException e) {
+            throw new ClassNotFoundException(null, e);
+        }
     }
-    try {
-      return Proxy.getProxyClass(
-          hasNonPublicInterface ? nonPublicLoader : latestLoader, classObjs);
-    } catch (IllegalArgumentException e) {
-      throw new ClassNotFoundException(null, e);
-    }
-  }
-
 }

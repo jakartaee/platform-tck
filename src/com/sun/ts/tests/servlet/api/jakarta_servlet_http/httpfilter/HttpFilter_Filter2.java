@@ -60,37 +60,33 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpfilter;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpFilter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public final class HttpFilter_Filter2 extends HttpFilter {
 
-  public void doFilter(ServletRequest request, ServletResponse response,
-      FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-    PrintWriter pw = response.getWriter();
+        PrintWriter pw = response.getWriter();
 
-    pw.println("doFilter was successfully called in HttpFilter_Filter2");
+        pw.println("doFilter was successfully called in HttpFilter_Filter2");
 
-    if (getFilterConfig() == null) {
-      pw.println(
-          "doFilter of HttpFilter_Filter2 was called but this filter instance is not currently configured ");
-      ServletTestUtil.printResult(pw, false);
-    } else {
-      super.doFilter(request, response, chain);
+        if (getFilterConfig() == null) {
+            pw.println(
+                    "doFilter of HttpFilter_Filter2 was called but this filter instance is not currently configured ");
+            ServletTestUtil.printResult(pw, false);
+        } else {
+            super.doFilter(request, response, chain);
+        }
     }
-  }
 
-  // remove the filter configuration object for this filter.
-  public void destroy() {
-  }
-
+    // remove the filter configuration object for this filter.
+    public void destroy() {}
 }

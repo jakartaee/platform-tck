@@ -23,5 +23,5 @@ package com.sun.ts.tests.ejb30.misc.sameejbclass;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface SameEJBClassIF {
-  public String checkEnvEntry(String beanName) throws TestFailedException;
+    public String checkEnvEntry(String beanName) throws TestFailedException;
 }

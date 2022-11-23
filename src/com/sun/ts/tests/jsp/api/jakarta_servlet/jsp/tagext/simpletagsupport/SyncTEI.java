@@ -25,7 +25,6 @@
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.simpletagsupport;
 
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.tagext.TagData;
 import jakarta.servlet.jsp.tagext.TagExtraInfo;
 import jakarta.servlet.jsp.tagext.VariableInfo;
@@ -35,26 +34,25 @@ import jakarta.servlet.jsp.tagext.VariableInfo;
  */
 public class SyncTEI extends TagExtraInfo {
 
-  /**
-   * Default constructor.
-   */
-  public SyncTEI() {
-    super();
-  }
+    /**
+     * Default constructor.
+     */
+    public SyncTEI() {
+        super();
+    }
 
-  /**
-   * Exports 'begin' with scope of AT_BEGIN, and 'end' with scope of AT_END.
-   * 
-   * @param data
-   *          - TagData instance
-   * @return an array of VariableInfos
-   */
-  public VariableInfo[] getVariableInfo(TagData data) {
-    JspTestUtil.debug("[SyncTEI] in getVariableInfo()");
-    return new VariableInfo[] {
-        new VariableInfo("begin", "java.lang.Integer", true,
-            VariableInfo.AT_BEGIN),
-        new VariableInfo("end", "java.lang.Integer", true,
-            VariableInfo.AT_END) };
-  }
+    /**
+     * Exports 'begin' with scope of AT_BEGIN, and 'end' with scope of AT_END.
+     *
+     * @param data
+     *          - TagData instance
+     * @return an array of VariableInfos
+     */
+    public VariableInfo[] getVariableInfo(TagData data) {
+        JspTestUtil.debug("[SyncTEI] in getVariableInfo()");
+        return new VariableInfo[] {
+            new VariableInfo("begin", "java.lang.Integer", true, VariableInfo.AT_BEGIN),
+            new VariableInfo("end", "java.lang.Integer", true, VariableInfo.AT_END)
+        };
+    }
 }

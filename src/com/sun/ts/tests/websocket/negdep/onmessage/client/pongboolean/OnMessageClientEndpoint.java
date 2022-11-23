@@ -17,10 +17,7 @@
 
 package com.sun.ts.tests.websocket.negdep.onmessage.client.pongboolean;
 
-import java.nio.ByteBuffer;
-
 import com.sun.ts.tests.websocket.common.client.AnnotatedByteBufferClientEndpoint;
-
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.OnError;
@@ -28,30 +25,31 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.PongMessage;
 import jakarta.websocket.Session;
+import java.nio.ByteBuffer;
 
 @ClientEndpoint
 public class OnMessageClientEndpoint extends AnnotatedByteBufferClientEndpoint {
 
-  @SuppressWarnings("unused")
-  @OnMessage
-  public void onMessage(PongMessage msg, boolean finito) {
-    // there is no server endpoint that sends ping/pong messages
-  }
+    @SuppressWarnings("unused")
+    @OnMessage
+    public void onMessage(PongMessage msg, boolean finito) {
+        // there is no server endpoint that sends ping/pong messages
+    }
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) {
-    clientEndpoint.onError(session, t);
-  }
+    @Override
+    @OnError
+    public void onError(Session session, Throwable t) {
+        clientEndpoint.onError(session, t);
+    }
 
-  @OnMessage
-  public void onMessage(String msg) {
-    clientEndpoint.onMessage(ByteBuffer.wrap(msg.getBytes()));
-  }
+    @OnMessage
+    public void onMessage(String msg) {
+        clientEndpoint.onMessage(ByteBuffer.wrap(msg.getBytes()));
+    }
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    clientEndpoint.onOpen(session, config, false);
-  }
+    @Override
+    @OnOpen
+    public void onOpen(Session session, EndpointConfig config) {
+        clientEndpoint.onOpen(session, config, false);
+    }
 }

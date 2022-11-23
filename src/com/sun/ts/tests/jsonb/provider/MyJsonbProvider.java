@@ -28,5 +28,4 @@ public class MyJsonbProvider extends JsonbProvider {
     public JsonbBuilder create() {
         return new MyJsonbBuilder();
     }
-
 }

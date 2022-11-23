@@ -20,101 +20,99 @@ import javax.transaction.xa.Xid;
 
 public class XidImpl implements Xid {
 
-  private static int ID = 0;
+    private static int ID = 0;
 
-  public int formatID; // Format identifier
-                       // (-1) means that the XidImpl is null
+    public int formatID; // Format identifier
+    // (-1) means that the XidImpl is null
 
-  public int branchQualifier;
+    public int branchQualifier;
 
-  public int globalTxID;
+    public int globalTxID;
 
-  static public final int MAXGTRIDSIZE = 64;
+    public static final int MAXGTRIDSIZE = 64;
 
-  static public final int MAXBQUALSIZE = 64;
+    public static final int MAXBQUALSIZE = 64;
 
-  public XidImpl() {
-    int foo = ++ID;
-    formatID = foo;
-    branchQualifier = foo;
-    globalTxID = foo;
-  }
-
-  public boolean equals(Object o) {
-    XidImpl other; // The "other" XidImpl
-    int L; // Combined gtrid_length + bqual_length
-    int i;
-
-    if (!(o instanceof XidImpl)) // If the other XidImpl isn't an XidImpl
-    {
-      return false; // It can't be equal
+    public XidImpl() {
+        int foo = ++ID;
+        formatID = foo;
+        branchQualifier = foo;
+        globalTxID = foo;
     }
 
-    other = (XidImpl) o; // The other XidImpl, now properly cast
+    public boolean equals(Object o) {
+        XidImpl other; // The "other" XidImpl
+        int L; // Combined gtrid_length + bqual_length
+        int i;
 
-    if (this.formatID == other.formatID
-        && this.branchQualifier == other.branchQualifier
-        && this.globalTxID == other.globalTxID) {
-      return true;
+        if (!(o instanceof XidImpl)) // If the other XidImpl isn't an XidImpl
+        {
+            return false; // It can't be equal
+        }
+
+        other = (XidImpl) o; // The other XidImpl, now properly cast
+
+        if (this.formatID == other.formatID
+                && this.branchQualifier == other.branchQualifier
+                && this.globalTxID == other.globalTxID) {
+            return true;
+        }
+
+        return false;
     }
 
-    return false;
-  }
+    /**
+     * Compute the hash code.
+     *
+     * @return the computed hashcode
+     */
+    public int hashCode() {
+        if (formatID == (-1)) {
+            return (-1);
+        }
 
-  /**
-   * Compute the hash code.
-   *
-   * @return the computed hashcode
-   */
-  public int hashCode() {
-    if (formatID == (-1)) {
-      return (-1);
+        return formatID + branchQualifier + globalTxID;
     }
 
-    return formatID + branchQualifier + globalTxID;
+    /*
+     * Convert to String
+     *
+     * <p> This is normally used to display the XidImpl when debugging.
+     */
 
-  }
+    /**
+     * Return a string representing this XidImpl.
+     *
+     * @return the string representation of this XidImpl
+     */
+    public String toString() {
 
-  /*
-   * Convert to String
-   *
-   * <p> This is normally used to display the XidImpl when debugging.
-   */
+        String s = new String("{XidImpl: " + "formatID(" + formatID + "), " + "branchQualifier (" + branchQualifier
+                + "), " + "globalTxID(" + globalTxID + ")}");
 
-  /**
-   * Return a string representing this XidImpl.
-   *
-   * @return the string representation of this XidImpl
-   */
-  public String toString() {
+        return s;
+    }
 
-    String s = new String(
-        "{XidImpl: " + "formatID(" + formatID + "), " + "branchQualifier ("
-            + branchQualifier + "), " + "globalTxID(" + globalTxID + ")}");
+    /*
+     * Return branch qualifier
+     */
 
-    return s;
-  }
+    /**
+     * Returns the branch qualifier for this XidImpl.
+     *
+     * @return the branch qualifier
+     */
+    public byte[] getBranchQualifier() {
+        String foo = (new Integer(branchQualifier)).toString();
+        return foo.getBytes();
+    }
 
-  /*
-   * Return branch qualifier
-   */
+    public int getFormatId() {
+        return formatID;
+    }
 
-  /**
-   * Returns the branch qualifier for this XidImpl.
-   *
-   * @return the branch qualifier
-   */
-  public byte[] getBranchQualifier() {
-    String foo = (new Integer(branchQualifier)).toString();
-    return foo.getBytes();
-  }
-
-  public int getFormatId() {
-    return formatID;
-  }
-
-  public byte[] getGlobalTransactionId() {
-    String foo = (new Integer(globalTxID)).toString();
-    return foo.getBytes();
-  }
+    public byte[] getGlobalTransactionId() {
+        String foo = (new Integer(globalTxID)).toString();
+        return foo.getBytes();
+    }
 }

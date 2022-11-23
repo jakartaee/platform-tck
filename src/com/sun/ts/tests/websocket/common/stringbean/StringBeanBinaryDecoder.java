@@ -17,29 +17,26 @@
 
 package com.sun.ts.tests.websocket.common.stringbean;
 
-import java.nio.ByteBuffer;
-
 import jakarta.websocket.DecodeException;
 import jakarta.websocket.Decoder.Binary;
 import jakarta.websocket.EndpointConfig;
+import java.nio.ByteBuffer;
 
 public class StringBeanBinaryDecoder implements Binary<StringBean> {
 
-  @Override
-  public void init(EndpointConfig config) {
-  }
+    @Override
+    public void init(EndpointConfig config) {}
 
-  @Override
-  public StringBean decode(ByteBuffer arg0) throws DecodeException {
-    return new StringBean(new String(arg0.array()));
-  }
+    @Override
+    public StringBean decode(ByteBuffer arg0) throws DecodeException {
+        return new StringBean(new String(arg0.array()));
+    }
 
-  @Override
-  public boolean willDecode(ByteBuffer arg0) {
-    return true;
-  }
+    @Override
+    public boolean willDecode(ByteBuffer arg0) {
+        return true;
+    }
 
-  @Override
-  public void destroy() {
-  }
+    @Override
+    public void destroy() {}
 }

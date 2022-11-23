@@ -29,12 +29,12 @@ import jakarta.interceptor.InvocationContext;
  */
 public class Interceptor1 extends AroundInvokeTestImpl {
 
-  public Interceptor1() {
-    super();
-  }
+    public Interceptor1() {
+        super();
+    }
 
-  @AroundInvoke
-  public Object intercept1(InvocationContext ctx) throws Exception {
-    return super.intercept(ctx);
-  }
+    @AroundInvoke
+    public Object intercept1(InvocationContext ctx) throws Exception {
+        return super.intercept(ctx);
+    }
 }

@@ -17,9 +17,6 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.async;
 
-import java.io.IOException;
-import java.util.concurrent.ExecutionException;
-
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.BinaryCoderBool;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.BinaryCoderByte;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.BinaryCoderChar;
@@ -28,29 +25,38 @@ import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.BinaryCoderInt;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.BinaryCoderLong;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.BinaryCoderShort;
-
 import jakarta.websocket.EncodeException;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
-@ServerEndpoint(value = "/binary", encoders = { BinaryCoderBool.class,
-    BinaryCoderByte.class, BinaryCoderChar.class, BinaryCoderDouble.class,
-    BinaryCoderInt.class, BinaryCoderLong.class, BinaryCoderFloat.class,
-    BinaryCoderShort.class })
+@ServerEndpoint(
+        value = "/binary",
+        encoders = {
+            BinaryCoderBool.class,
+            BinaryCoderByte.class,
+            BinaryCoderChar.class,
+            BinaryCoderDouble.class,
+            BinaryCoderInt.class,
+            BinaryCoderLong.class,
+            BinaryCoderFloat.class,
+            BinaryCoderShort.class
+        })
 public class WSCBinaryServer extends WSCCommonServer {
 
-  @Override
-  @OnMessage
-  public void onMessage(String msg, Session session) throws IOException,
-      EncodeException, InterruptedException, ExecutionException {
-    super.onMessage(msg, session);
-  }
+    @Override
+    @OnMessage
+    public void onMessage(String msg, Session session)
+            throws IOException, EncodeException, InterruptedException, ExecutionException {
+        super.onMessage(msg, session);
+    }
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    super.onError(session, t);
-  }
+    @Override
+    @OnError
+    public void onError(Session session, Throwable t) throws IOException {
+        super.onError(session, t);
+    }
 }

@@ -22,39 +22,35 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.xmloverride.ejbref;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 import com.sun.ts.tests.ejb30.common.lite.NumberIF;
-
 import jakarta.ejb.EJB;
 
 public class Client extends EJBLiteClientBase {
-  @EJB
-  // there are 2 beans implementing NumberIF, and so this @EJB is
-  // ambiguous. It's fully resolved in web.xml with ejb-link
-  private NumberIF overrideBean;
+    @EJB
+    // there are 2 beans implementing NumberIF, and so this @EJB is
+    // ambiguous. It's fully resolved in web.xml with ejb-link
+    private NumberIF overrideBean;
 
-  private TestBean getTestBean() {
-    return (TestBean) ServiceLocator
-        .lookupNoTry("java:global/" + getModuleName() + "/TestBean");
-  }
+    private TestBean getTestBean() {
+        return (TestBean) ServiceLocator.lookupNoTry("java:global/" + getModuleName() + "/TestBean");
+    }
 
-  /*
-   * @testName: resolveByEjbLinkInXml
-   * 
-   * @test_Strategy: @EJB in TestBean is incomplete. But the corresponding
-   * ejb-local-ref in web.xml resolves it with ejb-link.
-   */
-  public void resolveByEjbLinkInXml() {
-    assertEquals("Check correct target EJB is resolved. ", 1,
-        overrideBean.getNumber());
-  }
+    /*
+     * @testName: resolveByEjbLinkInXml
+     *
+     * @test_Strategy: @EJB in TestBean is incomplete. But the corresponding
+     * ejb-local-ref in web.xml resolves it with ejb-link.
+     */
+    public void resolveByEjbLinkInXml() {
+        assertEquals("Check correct target EJB is resolved. ", 1, overrideBean.getNumber());
+    }
 
-  /*
-   * @testName: availableInEjb
-   * 
-   * @test_Strategy: the ejb-local-ref declared in web.xml should be available
-   * for lookup in ejb components.
-   */
-  public void availableInEjb() {
-    assertEquals("Look up OverrideBean and invoke: ", 1,
-        getTestBean().getNumber());
-  }
+    /*
+     * @testName: availableInEjb
+     *
+     * @test_Strategy: the ejb-local-ref declared in web.xml should be available
+     * for lookup in ejb components.
+     */
+    public void availableInEjb() {
+        assertEquals("Look up OverrideBean and invoke: ", 1, getTestBean().getNumber());
+    }
 }

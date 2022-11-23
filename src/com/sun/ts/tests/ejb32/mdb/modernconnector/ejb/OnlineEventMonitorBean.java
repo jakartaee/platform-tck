@@ -18,37 +18,31 @@ package com.sun.ts.tests.ejb32.mdb.modernconnector.ejb;
 
 import com.sun.ts.tests.ejb32.mdb.modernconnector.connector.EventMonitor;
 import com.sun.ts.tests.ejb32.mdb.modernconnector.connector.NoUseListener;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.ActivationConfigProperty;
 import jakarta.ejb.MessageDriven;
 import jakarta.ejb.MessageDrivenContext;
 import jakarta.interceptor.Interceptors;
 
-@MessageDriven(activationConfig = {
-    @ActivationConfigProperty(propertyName = "category", propertyValue = "online") })
+@MessageDriven(activationConfig = {@ActivationConfigProperty(propertyName = "category", propertyValue = "online")})
 @Interceptors(LoggerInterceptor.class)
 public class OnlineEventMonitorBean implements NoUseListener {
 
-  @Resource
-  private MessageDrivenContext messageDrivenContext;
+    @Resource
+    private MessageDrivenContext messageDrivenContext;
 
-  @EventMonitor(priority = "high")
-  public void consumeHigh(String event) {
-    messageDrivenContext.getContextData().put("data",
-        event + " is processed by high-priority online monitor");
-  }
+    @EventMonitor(priority = "high")
+    public void consumeHigh(String event) {
+        messageDrivenContext.getContextData().put("data", event + " is processed by high-priority online monitor");
+    }
 
-  @EventMonitor(priority = "normal")
-  public void consumeNormal(String event) {
-    messageDrivenContext.getContextData().put("data",
-        event + " is processed by normal-priority online monitor");
-  }
+    @EventMonitor(priority = "normal")
+    public void consumeNormal(String event) {
+        messageDrivenContext.getContextData().put("data", event + " is processed by normal-priority online monitor");
+    }
 
-  @EventMonitor(priority = "low")
-  public void consumeLow(String event) {
-    messageDrivenContext.getContextData().put("data",
-        event + " is processed by low-priority online monitor");
-  }
-
+    @EventMonitor(priority = "low")
+    public void consumeLow(String event) {
+        messageDrivenContext.getContextData().put("data", event + " is processed by low-priority online monitor");
+    }
 }

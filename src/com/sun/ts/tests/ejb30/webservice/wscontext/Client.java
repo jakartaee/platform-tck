@@ -16,134 +16,129 @@
 
 package com.sun.ts.tests.ejb30.webservice.wscontext;
 
-import java.util.Map;
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.xml.ws.BindingProvider;
 import jakarta.xml.ws.WebServiceException;
 import jakarta.xml.ws.WebServiceRef;
+import java.util.Map;
+import java.util.Properties;
 
 /**
  *
  * @author Raja Perumal
  */
 public class Client extends EETest {
-  @WebServiceRef(name = "service/HelloService")
-  static HelloService service;
+    @WebServiceRef(name = "service/HelloService")
+    static HelloService service;
 
-  private Hello port;
+    private Hello port;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  private TSURL ctsurl = new TSURL();
+    private TSURL ctsurl = new TSURL();
 
-  private String hostname = "localhost";
+    private String hostname = "localhost";
 
-  private String PROTOCOL = "http";
+    private String PROTOCOL = "http";
 
-  private String urlString = null;
+    private String urlString = null;
 
-  private int portnum = 8000;
+    private int portnum = 8000;
 
-  private String username = "";
+    private String username = "";
 
-  private String password = "";
+    private String password = "";
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @class.setup_props: webServerHost; webServerPort; user; password;
-   */
-  public void setup(String[] args, Properties p) throws Fault {
-    props = p;
-    try {
-      hostname = props.getProperty("webServerHost");
-      portnum = Integer.parseInt(props.getProperty("webServerPort"));
-      username = props.getProperty("user");
-      password = props.getProperty("password");
-      urlString = ctsurl.getURLString(PROTOCOL, hostname, portnum,
-          "/service/HelloService");
-
-    } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
 
-    TestUtil.logMsg("setup ok");
-  }
+    /*
+     * @class.setup_props: webServerHost; webServerPort; user; password;
+     */
+    public void setup(String[] args, Properties p) throws Fault {
+        props = p;
+        try {
+            hostname = props.getProperty("webServerHost");
+            portnum = Integer.parseInt(props.getProperty("webServerPort"));
+            username = props.getProperty("user");
+            password = props.getProperty("password");
+            urlString = ctsurl.getURLString(PROTOCOL, hostname, portnum, "/service/HelloService");
 
-  /*
-   * @testName: WebServiceContextTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   * 1) During webservice invocation, the WebServiceContext injected to the
-   * webservice should have the following.
-   *
-   * 1) The getMessageContext() on WebServiceContext should return an instance
-   * of JAX-WS Message context. i.e. jakarta.xml.ws.handler.MessageContext
-   *
-   * 2) The getUserPrincipal() Returns the Principal that identifies the sender
-   * of the request.
-   *
-   * 3) The isUserInRole("Administrator") method should return true Note: The
-   * user j2ee is mapped to role Adminstrator
-   *
-   * 2) If any of the above values are incorrect, then the sayHelloProtected()
-   * method throws exception and the WebServiceContextTest fails.
-   *
-   */
-  public void WebServiceContextTest() throws Fault {
+        } catch (Exception e) {
+            throw new Fault("Setup failed:", e);
+        }
 
-    try {
-      Hello port = null;
-
-      port = (Hello) getJavaEEPort();
-
-      BindingProvider bindingProvider = (BindingProvider) port;
-      Map<String, Object> map = bindingProvider.getRequestContext();
-
-      TestUtil.logMsg(
-          "Setting the target endpoint address on WS port: " + urlString);
-      map.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, urlString);
-
-      // set Username
-      map.put(BindingProvider.USERNAME_PROPERTY, username);
-
-      // set password
-      map.put(BindingProvider.PASSWORD_PROPERTY, password);
-
-      TestUtil.logMsg("Invoking sayHelloProtected on Hello port");
-      String text = port.sayHelloProtected("Raja");
-      TestUtil.logMsg("Got Output : " + text);
-
-    } catch (WebServiceException we) {
-      we.printStackTrace();
-      throw new Fault("WebServiceContext values not correct");
-    } catch (Exception e) {
-      e.printStackTrace();
-      throw new Fault("WebServiceContextTest failed");
+        TestUtil.logMsg("setup ok");
     }
 
-  }
+    /*
+     * @testName: WebServiceContextTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     * 1) During webservice invocation, the WebServiceContext injected to the
+     * webservice should have the following.
+     *
+     * 1) The getMessageContext() on WebServiceContext should return an instance
+     * of JAX-WS Message context. i.e. jakarta.xml.ws.handler.MessageContext
+     *
+     * 2) The getUserPrincipal() Returns the Principal that identifies the sender
+     * of the request.
+     *
+     * 3) The isUserInRole("Administrator") method should return true Note: The
+     * user j2ee is mapped to role Adminstrator
+     *
+     * 2) If any of the above values are incorrect, then the sayHelloProtected()
+     * method throws exception and the WebServiceContextTest fails.
+     *
+     */
+    public void WebServiceContextTest() throws Fault {
 
-  public Object getJavaEEPort() throws Exception {
-    TestUtil.logMsg("Get Hello Port from HelloService");
-    Object port = service.getPort(Hello.class);
-    return port;
-  }
+        try {
+            Hello port = null;
 
-  public void cleanup() throws Fault {
-    logMsg("cleanup ok");
-  }
+            port = (Hello) getJavaEEPort();
+
+            BindingProvider bindingProvider = (BindingProvider) port;
+            Map<String, Object> map = bindingProvider.getRequestContext();
+
+            TestUtil.logMsg("Setting the target endpoint address on WS port: " + urlString);
+            map.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, urlString);
+
+            // set Username
+            map.put(BindingProvider.USERNAME_PROPERTY, username);
+
+            // set password
+            map.put(BindingProvider.PASSWORD_PROPERTY, password);
+
+            TestUtil.logMsg("Invoking sayHelloProtected on Hello port");
+            String text = port.sayHelloProtected("Raja");
+            TestUtil.logMsg("Got Output : " + text);
+
+        } catch (WebServiceException we) {
+            we.printStackTrace();
+            throw new Fault("WebServiceContext values not correct");
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Fault("WebServiceContextTest failed");
+        }
+    }
+
+    public Object getJavaEEPort() throws Exception {
+        TestUtil.logMsg("Get Hello Port from HelloService");
+        Object port = service.getPort(Hello.class);
+        return port;
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("cleanup ok");
+    }
 }

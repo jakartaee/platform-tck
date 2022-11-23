@@ -21,37 +21,35 @@
 package com.sun.ts.tests.ejb30.common.allowed.stateful;
 
 import com.sun.ts.tests.ejb30.common.allowed.CancelInterceptor;
-
 import jakarta.ejb.SessionContext;
 import jakarta.interceptor.AroundInvoke;
 
 public class StatefulCancelInterceptor extends CancelInterceptor {
-  private static StatefulCancelInterceptor instance = new StatefulCancelInterceptor();
+    private static StatefulCancelInterceptor instance = new StatefulCancelInterceptor();
 
-  public StatefulCancelInterceptor() {
-    super();
-  }
+    public StatefulCancelInterceptor() {
+        super();
+    }
 
-  public static StatefulCancelInterceptor getInstance() {
-    return instance;
-  }
+    public static StatefulCancelInterceptor getInstance() {
+        return instance;
+    }
 
-  @Override
-  public void cancelTimers(SessionContext sctx) {
-    TimerLocalIF timerBean = StatefulOperations.getInstance().getTimerBean();
-    timerBean.findAndCancelTimer();
-  }
+    @Override
+    public void cancelTimers(SessionContext sctx) {
+        TimerLocalIF timerBean = StatefulOperations.getInstance().getTimerBean();
+        timerBean.findAndCancelTimer();
+    }
 
-  // @todo this interceptor method is not called since it overrides the one
-  // in superclass. Make sure this is what we want.
-  @Override
-  @AroundInvoke
-  public Object intercept(jakarta.interceptor.InvocationContext inv)
-      throws Exception {
+    // @todo this interceptor method is not called since it overrides the one
+    // in superclass. Make sure this is what we want.
+    @Override
+    @AroundInvoke
+    public Object intercept(jakarta.interceptor.InvocationContext inv) throws Exception {
 
-    Object retValue;
+        Object retValue;
 
-    retValue = super.intercept(inv);
-    return retValue;
-  }
+        retValue = super.intercept(inv);
+        return retValue;
+    }
 }

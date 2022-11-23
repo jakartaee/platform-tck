@@ -24,41 +24,38 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.simpletagsupport;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.JspContext;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class SimpleGetSetJspContext extends SimpleTagSupport {
 
-  /**
-   * Default constructor.
-   */
-  public SimpleGetSetJspContext() {
-    super();
-  }
-
-  /**
-   * Validates that getJspContext() returns a non null value. This indirectly
-   * ensures that the container properly called setJspContext().
-   *
-   * @throws JspException
-   *           - if an unexpected error occured.
-   * @throws IOException
-   *           - if an unexpected I/O error occured.
-   */
-  public void doTag() throws JspException, IOException {
-    JspTestUtil.debug("[SimpleGetSetJspcontext] in doTag()");
-    JspContext ctx = this.getJspContext();
-
-    if (ctx != null) {
-      ctx.getOut().println("Test PASSED");
-    } else {
-      throw new JspException(
-          "Test FAILED.  PageContext.getJspContext()" + "returned null.");
+    /**
+     * Default constructor.
+     */
+    public SimpleGetSetJspContext() {
+        super();
     }
-  }
+
+    /**
+     * Validates that getJspContext() returns a non null value. This indirectly
+     * ensures that the container properly called setJspContext().
+     *
+     * @throws JspException
+     *           - if an unexpected error occured.
+     * @throws IOException
+     *           - if an unexpected I/O error occured.
+     */
+    public void doTag() throws JspException, IOException {
+        JspTestUtil.debug("[SimpleGetSetJspcontext] in doTag()");
+        JspContext ctx = this.getJspContext();
+
+        if (ctx != null) {
+            ctx.getOut().println("Test PASSED");
+        } else {
+            throw new JspException("Test FAILED.  PageContext.getJspContext()" + "returned null.");
+        }
+    }
 }

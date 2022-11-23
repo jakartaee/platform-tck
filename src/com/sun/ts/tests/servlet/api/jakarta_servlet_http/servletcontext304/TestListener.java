@@ -19,54 +19,53 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.servletcontext304;
 
-import java.util.EventListener;
-
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.ServletException;
+import java.util.EventListener;
 
 public class TestListener implements ServletContextListener {
 
-  /**
-   * Receives notification that the web application initialization process is
-   * starting.
-   *
-   * @param sce
-   *          The servlet context event
-   */
-  public void contextInitialized(ServletContextEvent sce) {
-    ServletContext context = sce.getServletContext();
-
-    Boolean listener_test = true;
-    String LISTENER_TEST = "LISTENER_TEST";
-
-    /*
-     * Add HttpSessionListener
+    /**
+     * Receives notification that the web application initialization process is
+     * starting.
+     *
+     * @param sce
+     *          The servlet context event
      */
-    context.addListener(
-        com.sun.ts.tests.servlet.api.jakarta_servlet_http.servletcontext304.AddHttpSessionListenerClass.class);
-    context.addListener(
-        "com.sun.ts.tests.servlet.api.jakarta_servlet_http.servletcontext304.AddHttpSessionListenerString");
-    try {
-      EventListener hslistener = context.createListener(
-          com.sun.ts.tests.servlet.api.jakarta_servlet_http.servletcontext304.CreateHttpSessionListener.class);
-      context.addListener(hslistener);
-    } catch (ServletException ex) {
-      listener_test = false;
-      System.out.println("Error creating Listener CreateHttpSessionListener: "
-          + ex.getMessage());
-    }
-    context.setInitParameter(LISTENER_TEST, listener_test.toString());
-  }
+    public void contextInitialized(ServletContextEvent sce) {
+        ServletContext context = sce.getServletContext();
 
-  /**
-   * Receives notification that the servlet context is about to be shut down.
-   *
-   * @param sce
-   *          The servlet context event
-   */
-  public void contextDestroyed(ServletContextEvent sce) {
-    // Do nothing
-  }
+        Boolean listener_test = true;
+        String LISTENER_TEST = "LISTENER_TEST";
+
+        /*
+         * Add HttpSessionListener
+         */
+        context.addListener(
+                com.sun.ts.tests.servlet.api.jakarta_servlet_http.servletcontext304.AddHttpSessionListenerClass.class);
+        context.addListener(
+                "com.sun.ts.tests.servlet.api.jakarta_servlet_http.servletcontext304.AddHttpSessionListenerString");
+        try {
+            EventListener hslistener = context.createListener(
+                    com.sun.ts.tests.servlet.api.jakarta_servlet_http.servletcontext304.CreateHttpSessionListener
+                            .class);
+            context.addListener(hslistener);
+        } catch (ServletException ex) {
+            listener_test = false;
+            System.out.println("Error creating Listener CreateHttpSessionListener: " + ex.getMessage());
+        }
+        context.setInitParameter(LISTENER_TEST, listener_test.toString());
+    }
+
+    /**
+     * Receives notification that the servlet context is about to be shut down.
+     *
+     * @param sce
+     *          The servlet context event
+     */
+    public void contextDestroyed(ServletContextEvent sce) {
+        // Do nothing
+    }
 }

@@ -29,86 +29,85 @@ import jakarta.persistence.Version;
 @Access(AccessType.FIELD)
 public class Integer_Field implements java.io.Serializable {
 
-  @Id
-  protected String id;
+    @Id
+    protected String id;
 
-  @Version
-  protected Integer basicInteger;
+    @Version
+    protected Integer basicInteger;
 
-  @Basic
-  protected String name;
+    @Basic
+    protected String name;
 
-  public Integer_Field() {
-  }
+    public Integer_Field() {}
 
-  public Integer_Field(String id) {
-    this.id = id;
-  }
-
-  public Integer_Field(String id, Integer basicInteger) {
-
-    this.id = id;
-    this.basicInteger = basicInteger;
-  }
-
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return this.name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public Integer getVersion() {
-    return this.basicInteger;
-  }
-
-  public void setVersion(Integer basicInteger) {
-    this.basicInteger = basicInteger;
-  }
-
-  public boolean equals(Object o) {
-    Integer_Field other;
-    boolean result = false;
-
-    if (!(o instanceof Integer_Field)) {
-      return result;
-    }
-    other = (Integer_Field) o;
-
-    if (this.getId().equals(other.getId())
-        && this.basicInteger.equals(other.basicInteger)
-        && this.name.equals(other.getName())) {
-      result = true;
+    public Integer_Field(String id) {
+        this.id = id;
     }
 
-    return result;
-  }
+    public Integer_Field(String id, Integer basicInteger) {
 
-  public int hashCode() {
-    int myHash;
+        this.id = id;
+        this.basicInteger = basicInteger;
+    }
 
-    myHash = this.getId().hashCode() + this.basicInteger + this.name.hashCode();
+    public String getId() {
+        return id;
+    }
 
-    return myHash;
-  }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", version: " + basicInteger);
-    result.append(", name: " + name);
-    result.append("]");
-    return result.toString();
-  }
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getVersion() {
+        return this.basicInteger;
+    }
+
+    public void setVersion(Integer basicInteger) {
+        this.basicInteger = basicInteger;
+    }
+
+    public boolean equals(Object o) {
+        Integer_Field other;
+        boolean result = false;
+
+        if (!(o instanceof Integer_Field)) {
+            return result;
+        }
+        other = (Integer_Field) o;
+
+        if (this.getId().equals(other.getId())
+                && this.basicInteger.equals(other.basicInteger)
+                && this.name.equals(other.getName())) {
+            result = true;
+        }
+
+        return result;
+    }
+
+    public int hashCode() {
+        int myHash;
+
+        myHash = this.getId().hashCode() + this.basicInteger + this.name.hashCode();
+
+        return myHash;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getId());
+        result.append(", version: " + basicInteger);
+        result.append(", name: " + name);
+        result.append("]");
+        return result.toString();
+    }
 }

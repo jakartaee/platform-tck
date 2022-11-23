@@ -25,62 +25,62 @@ import com.sun.ts.tests.ejb30.common.ejblink.ClientBase;
 
 public class Client extends ClientBase {
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * @testName: callBean1
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: callBean1
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: callBean2
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: callBean2
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: callBean1Bean2
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: callBean1Bean2
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: callBean2Bean1
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: callBean2Bean1
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: callBean2Bean3
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: callBean2Bean1Local
-   * 
-   * @test_Strategy: bean1 packaged in jar1, bean2 and bean3 packaged in jar2.
-   * Bean2 should be able to locally access bean1. <ejb-local-ref> is declared
-   * in two_ejb.xml
-   *
-   */
+    /*
+     * @testName: callBean2Bean3
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: callBean2Bean1Local
+     *
+     * @test_Strategy: bean1 packaged in jar1, bean2 and bean3 packaged in jar2.
+     * Bean2 should be able to locally access bean1. <ejb-local-ref> is declared
+     * in two_ejb.xml
+     *
+     */
 }

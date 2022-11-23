@@ -28,20 +28,19 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.UserTransaction;
 
 public class FooServlet extends HttpServlet {
-  @Resource
-  private UserTransaction ut;
+    @Resource
+    private UserTransaction ut;
 
-  public FooServlet() {
-  }
+    public FooServlet() {}
 
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, java.io.IOException {
-    try {
-      // when the service() method exits, the tx should be terminated by
-      // the container.
-      ut.begin();
-    } catch (Exception e) {
-      throw new ServletException(e);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, java.io.IOException {
+        try {
+            // when the service() method exits, the tx should be terminated by
+            // the container.
+            ut.begin();
+        } catch (Exception e) {
+            throw new ServletException(e);
+        }
     }
-  }
 }

@@ -19,97 +19,85 @@
  */
 package com.sun.ts.tests.ejb30.lite.interceptor.common.business;
 
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.appexception.AtCheckedRollbackAppException;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
-
 import jakarta.ejb.EJBContext;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.ExcludeClassInterceptors;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
 import jakarta.interceptor.Interceptors;
 import jakarta.interceptor.InvocationContext;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
 
 public class InterceptorBeanBase implements InterceptorIF {
-  private static final String simpleName = "InterceptorBeanBase";
+    private static final String simpleName = "InterceptorBeanBase";
 
-  @AroundInvoke
-  protected Object intercepInInterceptorBeanBase(InvocationContext inv)
-      throws Exception {
-    Helper.getLogger().logp(Level.FINE, simpleName,
-        "intercepInInterceptorBeanBase",
-        "Adding around-invoke record: " + simpleName + ", this:" + this);
-    InterceptorBaseBase.addToHistory(inv, simpleName);
-    return inv.proceed();
-  }
+    @AroundInvoke
+    protected Object intercepInInterceptorBeanBase(InvocationContext inv) throws Exception {
+        Helper.getLogger()
+                .logp(
+                        Level.FINE,
+                        simpleName,
+                        "intercepInInterceptorBeanBase",
+                        "Adding around-invoke record: " + simpleName + ", this:" + this);
+        InterceptorBaseBase.addToHistory(inv, simpleName);
+        return inv.proceed();
+    }
 
-  // Method-level interceptors can be specified in bean superclasses, whereas
-  // class-level interceptors cannot.
+    // Method-level interceptors can be specified in bean superclasses, whereas
+    // class-level interceptors cannot.
 
-  @Interceptors({ Interceptor7.class, Interceptor6.class })
-  public void allInterceptors(List<String> history) {
-  }
+    @Interceptors({Interceptor7.class, Interceptor6.class})
+    public void allInterceptors(List<String> history) {}
 
-  @Interceptors({ Interceptor6.class, Interceptor7.class })
-  @ExcludeDefaultInterceptors
-  public void excludeDefaultInterceptors(List<String> history) {
-  }
+    @Interceptors({Interceptor6.class, Interceptor7.class})
+    @ExcludeDefaultInterceptors
+    public void excludeDefaultInterceptors(List<String> history) {}
 
-  @Interceptors({ Interceptor6.class, Interceptor7.class })
-  @ExcludeClassInterceptors
-  public void excludeClassInterceptors(List<String> history) {
-  }
+    @Interceptors({Interceptor6.class, Interceptor7.class})
+    @ExcludeClassInterceptors
+    public void excludeClassInterceptors(List<String> history) {}
 
-  @ExcludeDefaultInterceptors
-  @Interceptors({ Interceptor8.class, Interceptor6.class, Interceptor7.class })
-  @ExcludeClassInterceptors
-  public void overrideInterceptorMethod(List<String> history) {
-  }
+    @ExcludeDefaultInterceptors
+    @Interceptors({Interceptor8.class, Interceptor6.class, Interceptor7.class})
+    @ExcludeClassInterceptors
+    public void overrideInterceptorMethod(List<String> history) {}
 
-  public void overrideBeanInterceptorMethod(List<String> history) {
-  }
+    public void overrideBeanInterceptorMethod(List<String> history) {}
 
-  public void overrideBeanInterceptorMethod2(List<String> history) {
-  }
+    public void overrideBeanInterceptorMethod2(List<String> history) {}
 
-  @Interceptors({ Interceptor1.class })
-  // Interceptor1 is declared as a default interceptor in ejb-jar.xml, excluded
-  // at class-level, and then reinstated as a method-level interceptor
-  public void overrideBeanInterceptorMethod3(List<String> history) {
-  }
+    @Interceptors({Interceptor1.class})
+    // Interceptor1 is declared as a default interceptor in ejb-jar.xml, excluded
+    // at class-level, and then reinstated as a method-level interceptor
+    public void overrideBeanInterceptorMethod3(List<String> history) {}
 
-  @ExcludeClassInterceptors
-  @ExcludeDefaultInterceptors
-  // ok to exclude class interceptors, though there is no class interceptors
-  // ok to exclude default interceptors again on method-level
-  public void overrideBeanInterceptorMethod4(List<String> history) {
-  }
+    @ExcludeClassInterceptors
+    @ExcludeDefaultInterceptors
+    // ok to exclude class interceptors, though there is no class interceptors
+    // ok to exclude default interceptors again on method-level
+    public void overrideBeanInterceptorMethod4(List<String> history) {}
 
-  @ExcludeClassInterceptors
-  @ExcludeDefaultInterceptors
-  @Interceptors({ Interceptor1.class, Interceptor2.class })
-  public void skipProceed(List<String> history) {
-    throw new RuntimeException(
-        "Should not reach here.  Invocation should have been intercepted.");
-  }
+    @ExcludeClassInterceptors
+    @ExcludeDefaultInterceptors
+    @Interceptors({Interceptor1.class, Interceptor2.class})
+    public void skipProceed(List<String> history) {
+        throw new RuntimeException("Should not reach here.  Invocation should have been intercepted.");
+    }
 
-  @ExcludeDefaultInterceptors
-  @ExcludeClassInterceptors
-  @Interceptors(Interceptor9.class)
-  public void applicationExceptionRollback()
-      throws AtCheckedRollbackAppException {
-    // Interceptor9 aroundInvoke method throws AtCheckedRollbackAppException,
-    // which should cause the tx to rollback
-  }
+    @ExcludeDefaultInterceptors
+    @ExcludeClassInterceptors
+    @Interceptors(Interceptor9.class)
+    public void applicationExceptionRollback() throws AtCheckedRollbackAppException {
+        // Interceptor9 aroundInvoke method throws AtCheckedRollbackAppException,
+        // which should cause the tx to rollback
+    }
 
-  public Map<String, Object> getContextData(List<String> history) {
-    EJBContext ejbContext = (EJBContext) ServiceLocator
-        .lookupNoTry("java:comp/EJBContext");
-    return ejbContext.getContextData();
-  }
-
+    public Map<String, Object> getContextData(List<String> history) {
+        EJBContext ejbContext = (EJBContext) ServiceLocator.lookupNoTry("java:comp/EJBContext");
+        return ejbContext.getContextData();
+    }
 }

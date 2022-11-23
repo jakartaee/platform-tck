@@ -16,35 +16,33 @@
 
 package com.sun.ts.tests.jstl.common.tags;
 
-import java.util.ArrayList;
-
 import jakarta.el.ValueExpression;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.PageContext;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.util.ArrayList;
 
 public class SaveTag extends SimpleTagSupport {
 
-  private ValueExpression attr;
+    private ValueExpression attr;
 
-  public void setAttr(ValueExpression attr) {
-    this.attr = attr;
-  }
-
-  public void doTag() throws JspException {
-
-    PageContext pc = (PageContext) getJspContext();
-
-    try {
-      ArrayList list = (ArrayList) pc.getAttribute("alist",
-          PageContext.APPLICATION_SCOPE);
-      if (list == null) {
-        list = new ArrayList();
-        pc.setAttribute("alist", list, PageContext.APPLICATION_SCOPE);
-      }
-      list.add(attr);
-    } catch (Exception ex) {
-      throw new JspException(ex);
+    public void setAttr(ValueExpression attr) {
+        this.attr = attr;
     }
-  }
+
+    public void doTag() throws JspException {
+
+        PageContext pc = (PageContext) getJspContext();
+
+        try {
+            ArrayList list = (ArrayList) pc.getAttribute("alist", PageContext.APPLICATION_SCOPE);
+            if (list == null) {
+                list = new ArrayList();
+                pc.setAttribute("alist", list, PageContext.APPLICATION_SCOPE);
+            }
+            list.add(attr);
+        } catch (Exception ex) {
+            throw new JspException(ex);
+        }
+    }
 }

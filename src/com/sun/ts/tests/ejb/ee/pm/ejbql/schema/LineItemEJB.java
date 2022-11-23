@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
@@ -31,89 +30,88 @@ import jakarta.ejb.RemoveException;
 
 public abstract class LineItemEJB implements EntityBean {
 
-  private EntityContext context = null;
+    private EntityContext context = null;
 
-  private static final String OrderLocal = "java:comp/env/ejb/OrderLocal";
+    private static final String OrderLocal = "java:comp/env/ejb/OrderLocal";
 
-  private static final String ProductLocal = "java:comp/env/ejb/ProductLocal";
+    private static final String ProductLocal = "java:comp/env/ejb/ProductLocal";
 
-  // ===========================================================
-  // getters and setters for CMP fields
+    // ===========================================================
+    // getters and setters for CMP fields
 
-  public abstract String getId();
+    public abstract String getId();
 
-  public abstract void setId(String v);
+    public abstract void setId(String v);
 
-  public abstract int getQuantity();
+    public abstract int getQuantity();
 
-  public abstract void setQuantity(int v);
+    public abstract void setQuantity(int v);
 
-  // ===========================================================
-  // getters and setters for CMR fields
+    // ===========================================================
+    // getters and setters for CMR fields
 
-  // 1x1
-  public abstract OrderLocal getOrder();
+    // 1x1
+    public abstract OrderLocal getOrder();
 
-  public abstract void setOrder(OrderLocal v);
+    public abstract void setOrder(OrderLocal v);
 
-  // 1x1
-  public abstract ProductLocal getProduct();
+    // 1x1
+    public abstract ProductLocal getProduct();
 
-  public abstract void setProduct(ProductLocal v);
+    public abstract void setProduct(ProductLocal v);
 
-  // ===========================================================
-  public String ejbCreate(String id, int quantity, OrderLocal orderLocal,
-      ProductLocal productLocal) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    try {
-      setId(id);
-      setQuantity(quantity);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    // ===========================================================
+    public String ejbCreate(String id, int quantity, OrderLocal orderLocal, ProductLocal productLocal)
+            throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        try {
+            setId(id);
+            setQuantity(quantity);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+        return null;
     }
-    return null;
-  }
 
-  public void ejbPostCreate(String id, int quantity, OrderLocal orderLocal,
-      ProductLocal productLocal) throws CreateException {
-    TestUtil.logTrace("ejbPostCreate");
-    try {
-      setOrder(orderLocal);
-      setProduct(productLocal);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    public void ejbPostCreate(String id, int quantity, OrderLocal orderLocal, ProductLocal productLocal)
+            throws CreateException {
+        TestUtil.logTrace("ejbPostCreate");
+        try {
+            setOrder(orderLocal);
+            setProduct(productLocal);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
     }
-  }
 
-  public void setEntityContext(EntityContext c) {
-    TestUtil.logTrace("setEntityContext");
-    context = c;
-  }
+    public void setEntityContext(EntityContext c) {
+        TestUtil.logTrace("setEntityContext");
+        context = c;
+    }
 
-  public void unsetEntityContext() {
-    TestUtil.logTrace("unsetEntityContext");
-  }
+    public void unsetEntityContext() {
+        TestUtil.logTrace("unsetEntityContext");
+    }
 
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("ejbRemove");
-  }
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("ejbRemove");
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
 
-  public void ejbStore() {
-    TestUtil.logTrace("ejbStore");
-  }
+    public void ejbStore() {
+        TestUtil.logTrace("ejbStore");
+    }
 
-  public void ejbLoad() {
-    TestUtil.logTrace("ejbLoad");
-  }
-
+    public void ejbLoad() {
+        TestUtil.logTrace("ejbLoad");
+    }
 }

@@ -20,84 +20,80 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2030;
 
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.*;
+import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
+import jakarta.xml.ws.*;
 import java.util.Properties;
 
-import jakarta.xml.ws.*;
-import com.sun.javatest.Status;
-import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
-
-import com.sun.ts.lib.harness.*;
-
 public class Client extends ServiceEETest {
-  /**
-   * The string to be echoed.
-   */
-  private static final String STRING = "R2030";
+    /**
+     * The string to be echoed.
+     */
+    private static final String STRING = "R2030";
 
-  /**
-   * The client.
-   */
-  private W2JDLR2030Client client;
+    /**
+     * The client.
+     */
+    private W2JDLR2030Client client;
 
-  /**
-   * Test entry point.
-   * 
-   * @param args
-   *          the command-line arguments.
-   */
-  public static void main(String[] args) {
-    Client client = new Client();
-    Status status = client.run(args, System.out, System.err);
-    status.exit();
-  }
-
-  static W2JDLR2030TestService service = null;
-
-  /**
-   * @class.testArgs: -ap jaxws-url-props.dat
-   * @class.setup_props: webServerHost; webServerPort; platform.mode;
-   *
-   * @param args
-   * @param properties
-   *
-   * @throws Fault
-   */
-  public void setup(String[] args, Properties properties) throws Fault {
-    client = (W2JDLR2030Client) ClientFactory.getClient(W2JDLR2030Client.class,
-        properties, this, service);
-    logMsg("setup ok");
-  }
-
-  public void cleanup() {
-    logMsg("cleanup");
-  }
-
-  /**
-   * @testName: testDocumentLiteralDocumentationElement
-   *
-   * @assertion_ids: WSI:SPEC:R2030
-   *
-   * @test_Strategy: The supplied WSDL, containing a wsdl:documentation element
-   *                 as a child of the wsdl:import element, containing a
-   *                 wsdl:documentation element as a child of the wsdl:part
-   *                 element, and containing a wsdl:documentation element as a
-   *                 child of the wsdl:definitions element, has been used by the
-   *                 WSDL-to-Java tool to generate an end point. If the tool
-   *                 works correctly, the end-point has been built and deployed
-   *                 so it should simply be reachable.
-   *
-   * @throws Fault
-   */
-  public void testDocumentLiteralDocumentationElement() throws Fault {
-    String result;
-    try {
-      result = client.echoString(STRING);
-    } catch (Exception e) {
-      throw new Fault("Unable to invoke echoString operation (BP-R2030)", e);
+    /**
+     * Test entry point.
+     *
+     * @param args
+     *          the command-line arguments.
+     */
+    public static void main(String[] args) {
+        Client client = new Client();
+        Status status = client.run(args, System.out, System.err);
+        status.exit();
     }
-    if (!STRING.equals(result)) {
-      throw new Fault("echoString operation returns '" + result
-          + "' in stead of '" + STRING + "' (BP-R2030)");
+
+    static W2JDLR2030TestService service = null;
+
+    /**
+     * @class.testArgs: -ap jaxws-url-props.dat
+     * @class.setup_props: webServerHost; webServerPort; platform.mode;
+     *
+     * @param args
+     * @param properties
+     *
+     * @throws Fault
+     */
+    public void setup(String[] args, Properties properties) throws Fault {
+        client = (W2JDLR2030Client) ClientFactory.getClient(W2JDLR2030Client.class, properties, this, service);
+        logMsg("setup ok");
     }
-  }
+
+    public void cleanup() {
+        logMsg("cleanup");
+    }
+
+    /**
+     * @testName: testDocumentLiteralDocumentationElement
+     *
+     * @assertion_ids: WSI:SPEC:R2030
+     *
+     * @test_Strategy: The supplied WSDL, containing a wsdl:documentation element
+     *                 as a child of the wsdl:import element, containing a
+     *                 wsdl:documentation element as a child of the wsdl:part
+     *                 element, and containing a wsdl:documentation element as a
+     *                 child of the wsdl:definitions element, has been used by the
+     *                 WSDL-to-Java tool to generate an end point. If the tool
+     *                 works correctly, the end-point has been built and deployed
+     *                 so it should simply be reachable.
+     *
+     * @throws Fault
+     */
+    public void testDocumentLiteralDocumentationElement() throws Fault {
+        String result;
+        try {
+            result = client.echoString(STRING);
+        } catch (Exception e) {
+            throw new Fault("Unable to invoke echoString operation (BP-R2030)", e);
+        }
+        if (!STRING.equals(result)) {
+            throw new Fault("echoString operation returns '" + result + "' in stead of '" + STRING + "' (BP-R2030)");
+        }
+    }
 }

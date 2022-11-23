@@ -19,9 +19,6 @@
  */
 package com.sun.ts.tests.servlet.spec.annotationservlet.webservletapi;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
@@ -29,67 +26,68 @@ import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRegistration;
 import jakarta.servlet.annotation.WebListener;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebListener("")
 public class TestListener implements ServletContextListener {
 
-  /**
-   * Receives notification that the web application initialization process is
-   * starting.
-   *
-   * @param sce
-   *          The servlet context event
-   */
-  public void contextInitialized(ServletContextEvent sce) {
-    ServletContext context = sce.getServletContext();
-
-    final String addServletName1 = "Servlet1API";
-    final String addServletName2 = "Servlet2API";
-    final String addServletName3 = "Servlet3API";
-
-    Map<String, String> params = new HashMap<String, String>();
-
-    /*
-     * Add Servlet1
+    /**
+     * Receives notification that the web application initialization process is
+     * starting.
+     *
+     * @param sce
+     *          The servlet context event
      */
-    ServletRegistration sr1 = context.addServlet(addServletName1,
-        "com.sun.ts.tests.servlet.spec.annotationservlet.webservlet.Servlet1");
-    sr1.addMapping("/Servlet1APIURL");
+    public void contextInitialized(ServletContextEvent sce) {
+        ServletContext context = sce.getServletContext();
 
-    /*
-     * Add Servlet2
-     */
-    ServletRegistration sr2 = context.addServlet(addServletName2,
-        com.sun.ts.tests.servlet.spec.annotationservlet.webservlet.Servlet2.class);
-    sr2.addMapping("/Servlet2APIURL", "/Servlet2APIURL2", "*.xml",
-        "/ServletAPIURL2/*");
+        final String addServletName1 = "Servlet1API";
+        final String addServletName2 = "Servlet2API";
+        final String addServletName3 = "Servlet3API";
 
-    /*
-     * Add Servlet3
-     */
-    ServletRegistration sr3 = null;
-    try {
-      Servlet servlet3 = context.createServlet(
-          com.sun.ts.tests.servlet.spec.annotationservlet.webservlet.Servlet3.class);
-      sr3 = context.addServlet(addServletName3, servlet3);
-      sr3.addMapping("/Servlet3APIURL");
-      params.put("name1", "servlet3");
-      params.put("name2", "servlet3again");
-      sr3.setInitParameters(params);
-      params.clear();
+        Map<String, String> params = new HashMap<String, String>();
 
-    } catch (ServletException ex) {
-      System.out.println("Error creating Servlet");
+        /*
+         * Add Servlet1
+         */
+        ServletRegistration sr1 = context.addServlet(
+                addServletName1, "com.sun.ts.tests.servlet.spec.annotationservlet.webservlet.Servlet1");
+        sr1.addMapping("/Servlet1APIURL");
+
+        /*
+         * Add Servlet2
+         */
+        ServletRegistration sr2 = context.addServlet(
+                addServletName2, com.sun.ts.tests.servlet.spec.annotationservlet.webservlet.Servlet2.class);
+        sr2.addMapping("/Servlet2APIURL", "/Servlet2APIURL2", "*.xml", "/ServletAPIURL2/*");
+
+        /*
+         * Add Servlet3
+         */
+        ServletRegistration sr3 = null;
+        try {
+            Servlet servlet3 =
+                    context.createServlet(com.sun.ts.tests.servlet.spec.annotationservlet.webservlet.Servlet3.class);
+            sr3 = context.addServlet(addServletName3, servlet3);
+            sr3.addMapping("/Servlet3APIURL");
+            params.put("name1", "servlet3");
+            params.put("name2", "servlet3again");
+            sr3.setInitParameters(params);
+            params.clear();
+
+        } catch (ServletException ex) {
+            System.out.println("Error creating Servlet");
+        }
     }
-  }
 
-  /**
-   * Receives notification that the servlet context is about to be shut down.
-   *
-   * @param sce
-   *          The servlet context event
-   */
-  public void contextDestroyed(ServletContextEvent sce) {
-    // Do nothing
-  }
+    /**
+     * Receives notification that the servlet context is about to be shut down.
+     *
+     * @param sce
+     *          The servlet context event
+     */
+    public void contextDestroyed(ServletContextEvent sce) {
+        // Do nothing
+    }
 }

@@ -18,11 +18,14 @@ package com.sun.ts.tests.webservices12.wsdlImport.http.simple1;
 
 import jakarta.jws.WebService;
 
-@WebService(portName = "TestsPort", serviceName = "Simple1HttpSvc", targetNamespace = "http://Simple1HttpSvc.org/wsdl", wsdlLocation = "WEB-INF/wsdl/Simple1HttpSvc.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.http.simple1.Tests")
-
+@WebService(
+        portName = "TestsPort",
+        serviceName = "Simple1HttpSvc",
+        targetNamespace = "http://Simple1HttpSvc.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/Simple1HttpSvc.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.http.simple1.Tests")
 public class TestsImpl implements Tests {
-  public String invokeTest1() {
-    return "Hello";
-  }
-
+    public String invokeTest1() {
+        return "Hello";
+    }
 }

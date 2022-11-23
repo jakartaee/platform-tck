@@ -22,9 +22,13 @@ package com.sun.ts.tests.jaxws.se.api.jakarta_xml_ws.Endpoint;
 
 import jakarta.jws.WebService;
 
-@WebService(name = "Hello", portName = "HelloPort", serviceName = "HelloService", targetNamespace = "http://helloservice.org/wsdl")
+@WebService(
+        name = "Hello",
+        portName = "HelloPort",
+        serviceName = "HelloService",
+        targetNamespace = "http://helloservice.org/wsdl")
 public class HelloImpl {
-  public String hello(String who) {
-    return "Hello, " + who;
-  }
+    public String hello(String who) {
+        return "Hello, " + who;
+    }
 }

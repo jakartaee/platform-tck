@@ -58,133 +58,113 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.srattributeevent;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletRequestAttributeEvent;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class TestServlet extends GenericTCKServlet {
 
-  public void constructorTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
+    public void constructorTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
-    ServletRequestAttributeEvent sre = new ServletRequestAttributeEvent(
-        getServletContext(), request, "test", "value");
-    if (sre == null) {
-      passed = false;
-      pw.println("The constructor for ServletRequestEvent returned a null");
-    } else {
-      passed = true;
+        PrintWriter pw = response.getWriter();
+        boolean passed = false;
+        ServletRequestAttributeEvent sre =
+                new ServletRequestAttributeEvent(getServletContext(), request, "test", "value");
+        if (sre == null) {
+            passed = false;
+            pw.println("The constructor for ServletRequestEvent returned a null");
+        } else {
+            passed = true;
+        }
+        StaticLog.clear();
+        ServletTestUtil.printResult(pw, passed);
     }
-    StaticLog.clear();
-    ServletTestUtil.printResult(pw, passed);
-  }
 
-  public void addedTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
+    public void addedTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
+        PrintWriter pw = response.getWriter();
 
-    StaticLog.clear();
+        StaticLog.clear();
 
-    String[] expected = { "AttributeAdded:addTest,Attribute1" };
+        String[] expected = {"AttributeAdded:addTest,Attribute1"};
 
-    // the test
-    request.setAttribute("addTest", "Attribute1");
+        // the test
+        request.setAttribute("addTest", "Attribute1");
 
-    // verify results
-    ArrayList result = StaticLog.getClear();
-    boolean passed = ServletTestUtil.checkArrayList(result, expected, true,
-        false);
-    if (!passed) {
-      ServletTestUtil.printFailureData(pw, result, expected);
+        // verify results
+        ArrayList result = StaticLog.getClear();
+        boolean passed = ServletTestUtil.checkArrayList(result, expected, true, false);
+        if (!passed) {
+            ServletTestUtil.printFailureData(pw, result, expected);
+        }
+        ServletRequest sr = (ServletRequest) getServletContext().getAttribute("testrequest");
+        if (!request.equals(sr)) {
+            passed = false;
+            pw.println("The request returned by the listener did not match the request in the TestServlet");
+            pw.println("Request in TestServlet=" + request.toString());
+            pw.println("Request from Listener=" + sr.toString());
+        }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletRequest sr = (ServletRequest) getServletContext()
-        .getAttribute("testrequest");
-    if (!request.equals(sr)) {
-      passed = false;
-      pw.println(
-          "The request returned by the listener did not match the request in the TestServlet");
-      pw.println("Request in TestServlet=" + request.toString());
-      pw.println("Request from Listener=" + sr.toString());
+
+    public void removedTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+
+        StaticLog.clear();
+
+        String[] expected = {"AttributeAdded:removeTest,Attribute1", "AttributeRemoved:removeTest,Attribute1"};
+
+        // the test
+        request.setAttribute("removeTest", "Attribute1");
+        request.removeAttribute("removeTest");
+
+        // verify results
+        ArrayList result = StaticLog.getClear();
+        boolean passed = ServletTestUtil.checkArrayList(result, expected, true, false);
+        if (!passed) {
+            ServletTestUtil.printFailureData(pw, result, expected);
+        }
+        ServletRequest sr = (ServletRequest) getServletContext().getAttribute("testrequest");
+        if (!request.equals(sr)) {
+            passed = false;
+            pw.println("The request returned by the listener did not match the request in the TestServlet");
+            pw.println("Request in TestServlet=" + request.toString());
+            pw.println("Request from Listener=" + sr.toString());
+        }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
 
-  }
+    public void replacedTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-  public void removedTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+        StaticLog.clear();
 
-    StaticLog.clear();
+        String[] expected = {"AttributeAdded:replacedTest,Attribute1", "AttributeReplaced:replacedTest,Attribute1"};
 
-    String[] expected = { "AttributeAdded:removeTest,Attribute1",
-        "AttributeRemoved:removeTest,Attribute1" };
+        // the test
+        request.setAttribute("replacedTest", "Attribute1");
+        request.setAttribute("replacedTest", "Attribute2");
 
-    // the test
-    request.setAttribute("removeTest", "Attribute1");
-    request.removeAttribute("removeTest");
-
-    // verify results
-    ArrayList result = StaticLog.getClear();
-    boolean passed = ServletTestUtil.checkArrayList(result, expected, true,
-        false);
-    if (!passed) {
-      ServletTestUtil.printFailureData(pw, result, expected);
+        // verify results
+        ArrayList result = StaticLog.getClear();
+        boolean passed = ServletTestUtil.checkArrayList(result, expected, true, false);
+        if (!passed) {
+            ServletTestUtil.printFailureData(pw, result, expected);
+        }
+        ServletRequest sr = (ServletRequest) getServletContext().getAttribute("testrequest");
+        if (!request.equals(sr)) {
+            passed = false;
+            pw.println("The request returned by the listener did not match the request in the TestServlet");
+            pw.println("Request in TestServlet=" + request.toString());
+            pw.println("Request from Listener=" + sr.toString());
+        }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletRequest sr = (ServletRequest) getServletContext()
-        .getAttribute("testrequest");
-    if (!request.equals(sr)) {
-      passed = false;
-      pw.println(
-          "The request returned by the listener did not match the request in the TestServlet");
-      pw.println("Request in TestServlet=" + request.toString());
-      pw.println("Request from Listener=" + sr.toString());
-    }
-    ServletTestUtil.printResult(pw, passed);
-
-  }
-
-  public void replacedTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-
-    StaticLog.clear();
-
-    String[] expected = { "AttributeAdded:replacedTest,Attribute1",
-        "AttributeReplaced:replacedTest,Attribute1" };
-
-    // the test
-    request.setAttribute("replacedTest", "Attribute1");
-    request.setAttribute("replacedTest", "Attribute2");
-
-    // verify results
-    ArrayList result = StaticLog.getClear();
-    boolean passed = ServletTestUtil.checkArrayList(result, expected, true,
-        false);
-    if (!passed) {
-      ServletTestUtil.printFailureData(pw, result, expected);
-    }
-    ServletRequest sr = (ServletRequest) getServletContext()
-        .getAttribute("testrequest");
-    if (!request.equals(sr)) {
-      passed = false;
-      pw.println(
-          "The request returned by the listener did not match the request in the TestServlet");
-      pw.println("Request in TestServlet=" + request.toString());
-      pw.println("Request from Listener=" + sr.toString());
-    }
-    ServletTestUtil.printResult(pw, passed);
-
-  }
 }

@@ -20,25 +20,23 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
-import java.util.Collection;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
+import java.util.Collection;
 
 public interface CustomerLocalHome extends EJBLocalHome {
-  public CustomerLocal create(String id, String name, AddressDVC home,
-      AddressDVC work, Country country) throws CreateException;
+    public CustomerLocal create(String id, String name, AddressDVC home, AddressDVC work, Country country)
+            throws CreateException;
 
-  public CustomerLocal findByPrimaryKey(String key) throws FinderException;
+    public CustomerLocal findByPrimaryKey(String key) throws FinderException;
 
-  public CustomerLocal findCustomerByHomePhoneNumber(String phone)
-      throws FinderException;
+    public CustomerLocal findCustomerByHomePhoneNumber(String phone) throws FinderException;
 
-  public Collection findCustomersByWorkCity(String city) throws FinderException;
+    public Collection findCustomersByWorkCity(String city) throws FinderException;
 
-  public CustomerLocal findCustomerByQuery29(String street, String city,
-      String state, String zip) throws FinderException;
+    public CustomerLocal findCustomerByQuery29(String street, String city, String state, String zip)
+            throws FinderException;
 
-  public Collection findCustomersByQuery32(String city) throws FinderException;
+    public Collection findCustomersByQuery32(String city) throws FinderException;
 }

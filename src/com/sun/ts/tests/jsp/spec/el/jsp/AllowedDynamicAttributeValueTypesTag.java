@@ -20,66 +20,63 @@
 
 package com.sun.ts.tests.jsp.spec.el.jsp;
 
-import java.io.IOException;
-
 import jakarta.el.MethodExpression;
 import jakarta.el.ValueExpression;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.TagSupport;
+import java.io.IOException;
 
 public class AllowedDynamicAttributeValueTypesTag extends TagSupport {
 
-  private String litExpr;
+    private String litExpr;
 
-  private String scriptExpr;
+    private String scriptExpr;
 
-  private String dollarExpr;
+    private String dollarExpr;
 
-  private ValueExpression valueExpr;
+    private ValueExpression valueExpr;
 
-  private MethodExpression methodExpr;
+    private MethodExpression methodExpr;
 
-  private boolean valExprSet;
+    private boolean valExprSet;
 
-  public void setLitExpr(String litExpr) {
-    this.litExpr = litExpr;
-  }
-
-  public void setScriptExpr(String scriptExpr) {
-    this.scriptExpr = scriptExpr;
-  }
-
-  public void setDollarExpr(String dollarExpr) {
-    this.dollarExpr = dollarExpr;
-  }
-
-  public void setValueExpr(Object expr) {
-    if (expr instanceof ValueExpression) {
-      this.valueExpr = (ValueExpression) expr;
-      valExprSet = true;
-    } else {
-      this.valueExpr = null;
-      valExprSet = false;
+    public void setLitExpr(String litExpr) {
+        this.litExpr = litExpr;
     }
-  }
 
-  public void setMethodExpr(MethodExpression methodExpr) {
-    this.methodExpr = methodExpr;
-  }
-
-  public int doStartTag() throws JspException {
-    try {
-      pageContext.getOut().println("litExpr is " + litExpr);
-      pageContext.getOut().println("scriptExpr is " + scriptExpr);
-      pageContext.getOut().println("dollarExpr is " + dollarExpr);
-      pageContext.getOut()
-          .println("valueExpr is " + ((valExprSet) ? valueExpr : "null"));
-      pageContext.getOut().println("methodExpr is " + methodExpr);
-      if (valExprSet)
-        pageContext.getOut().println("Test PASSED.");
-    } catch (IOException ioe) {
-      throw new JspException("Unexpected Exception", ioe);
+    public void setScriptExpr(String scriptExpr) {
+        this.scriptExpr = scriptExpr;
     }
-    return SKIP_BODY;
-  }
+
+    public void setDollarExpr(String dollarExpr) {
+        this.dollarExpr = dollarExpr;
+    }
+
+    public void setValueExpr(Object expr) {
+        if (expr instanceof ValueExpression) {
+            this.valueExpr = (ValueExpression) expr;
+            valExprSet = true;
+        } else {
+            this.valueExpr = null;
+            valExprSet = false;
+        }
+    }
+
+    public void setMethodExpr(MethodExpression methodExpr) {
+        this.methodExpr = methodExpr;
+    }
+
+    public int doStartTag() throws JspException {
+        try {
+            pageContext.getOut().println("litExpr is " + litExpr);
+            pageContext.getOut().println("scriptExpr is " + scriptExpr);
+            pageContext.getOut().println("dollarExpr is " + dollarExpr);
+            pageContext.getOut().println("valueExpr is " + ((valExprSet) ? valueExpr : "null"));
+            pageContext.getOut().println("methodExpr is " + methodExpr);
+            if (valExprSet) pageContext.getOut().println("Test PASSED.");
+        } catch (IOException ioe) {
+            throw new JspException("Unexpected Exception", ioe);
+        }
+        return SKIP_BODY;
+    }
 }

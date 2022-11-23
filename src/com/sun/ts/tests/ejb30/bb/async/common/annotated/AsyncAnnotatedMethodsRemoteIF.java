@@ -19,6 +19,4 @@ package com.sun.ts.tests.ejb30.bb.async.common.annotated;
 import jakarta.ejb.Remote;
 
 @Remote
-public interface AsyncAnnotatedMethodsRemoteIF
-    extends AsyncAnnotatedMethodsCommonIF {
-}
+public interface AsyncAnnotatedMethodsRemoteIF extends AsyncAnnotatedMethodsCommonIF {}

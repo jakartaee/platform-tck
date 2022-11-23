@@ -22,11 +22,11 @@ package com.sun.ts.tests.ejb.ee.bb.session.stateful.exceptionerrortest;
 
 public class MyApplicationException extends Exception {
 
-  public MyApplicationException() {
-    super();
-  }
+    public MyApplicationException() {
+        super();
+    }
 
-  public MyApplicationException(String msg) {
-    super(msg);
-  }
+    public MyApplicationException(String msg) {
+        super(msg);
+    }
 }

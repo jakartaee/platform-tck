@@ -17,24 +17,21 @@
 
 package com.sun.ts.tests.websocket.common.stringbean;
 
-import java.nio.ByteBuffer;
-
 import jakarta.websocket.EncodeException;
 import jakarta.websocket.Encoder.Binary;
 import jakarta.websocket.EndpointConfig;
+import java.nio.ByteBuffer;
 
 public class StringBeanBinaryEncoder implements Binary<StringBean> {
 
-  @Override
-  public void init(EndpointConfig config) {
-  }
+    @Override
+    public void init(EndpointConfig config) {}
 
-  @Override
-  public ByteBuffer encode(StringBean bean) throws EncodeException {
-    return ByteBuffer.wrap(bean.get().getBytes());
-  }
+    @Override
+    public ByteBuffer encode(StringBean bean) throws EncodeException {
+        return ByteBuffer.wrap(bean.get().getBytes());
+    }
 
-  @Override
-  public void destroy() {
-  }
+    @Override
+    public void destroy() {}
 }

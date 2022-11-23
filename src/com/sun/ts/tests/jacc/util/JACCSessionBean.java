@@ -20,73 +20,64 @@
  * @author Raja Perumal
  *         08/22/02
  */
-
 package com.sun.ts.tests.jacc.util;
-
-import java.rmi.RemoteException;
-import java.security.Principal;
 
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
+import java.rmi.RemoteException;
+import java.security.Principal;
 
 public class JACCSessionBean implements SessionBean {
 
-  String arg1;
+    String arg1;
 
-  int arg2;
+    int arg2;
 
-  long arg3;
+    long arg3;
 
-  private SessionContext context;
+    private SessionContext context;
 
-  public JACCSessionBean() {
-  }
+    public JACCSessionBean() {}
 
-  public void ejbCreate(String arg1, int arg2, long arg3)
-      throws RemoteException {
-    this.arg1 = arg1;
-    this.arg2 = arg2;
-    this.arg3 = arg3;
-  }
+    public void ejbCreate(String arg1, int arg2, long arg3) throws RemoteException {
+        this.arg1 = arg1;
+        this.arg2 = arg2;
+        this.arg3 = arg3;
+    }
 
-  public void setSessionContext(SessionContext sc) {
-    this.context = sc;
-  }
+    public void setSessionContext(SessionContext sc) {
+        this.context = sc;
+    }
 
-  public void ejbRemove() throws RemoteException {
-  }
+    public void ejbRemove() throws RemoteException {}
 
-  public void ejbActivate() throws RemoteException {
-  }
+    public void ejbActivate() throws RemoteException {}
 
-  public void ejbPassivate() throws RemoteException {
-  }
+    public void ejbPassivate() throws RemoteException {}
 
-  public String getArg1() throws RemoteException {
-    return this.arg1;
-  }
+    public String getArg1() throws RemoteException {
+        return this.arg1;
+    }
 
-  public int getArg2() throws RemoteException {
-    return this.arg2;
-  }
+    public int getArg2() throws RemoteException {
+        return this.arg2;
+    }
 
-  public long getArg3() throws RemoteException {
-    return this.arg3;
-  }
+    public long getArg3() throws RemoteException {
+        return this.arg3;
+    }
 
-  public String getCallerName() throws RemoteException {
-    String callerName = null;
-    Principal callerPrincipal = context.getCallerPrincipal();
+    public String getCallerName() throws RemoteException {
+        String callerName = null;
+        Principal callerPrincipal = context.getCallerPrincipal();
 
-    if (callerPrincipal != null)
-      callerName = callerPrincipal.getName();
+        if (callerPrincipal != null) callerName = callerPrincipal.getName();
 
-    // invoke isCallerInRole() for the following tests
-    // EJBRoleRefPermissionEquals() and
-    // EJBRoleRefPermissionHashCode()
-    boolean isCallerInRole = context.isCallerInRole("EMP");
+        // invoke isCallerInRole() for the following tests
+        // EJBRoleRefPermissionEquals() and
+        // EJBRoleRefPermissionHashCode()
+        boolean isCallerInRole = context.isCallerInRole("EMP");
 
-    return callerName;
-  }
-
+        return callerName;
+    }
 }

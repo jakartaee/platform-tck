@@ -25,7 +25,6 @@ import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
 import com.sun.ts.tests.ejb30.timer.interceptor.business.common.BusinessTimerBeanBase;
 import com.sun.ts.tests.ejb30.timer.interceptor.business.common.Interceptor2;
 import com.sun.ts.tests.ejb30.timer.interceptor.business.common.Interceptor3;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.EJB;
@@ -38,46 +37,44 @@ import jakarta.jms.Message;
 import jakarta.jms.MessageListener;
 
 @MessageDriven
-@Interceptors({ Interceptor2.class })
-public class BusinessTimerBean extends BusinessTimerBeanBase
-    implements MessageListener {
-  @EJB(beanInterface = TestBean.class, beanName = "TestBean")
-  private TestBean testBean;
+@Interceptors({Interceptor2.class})
+public class BusinessTimerBean extends BusinessTimerBeanBase implements MessageListener {
+    @EJB(beanInterface = TestBean.class, beanName = "TestBean")
+    private TestBean testBean;
 
-  @SuppressWarnings("unused")
-  @AroundInvoke
-  private Object aroundInvoke(InvocationContext inv) throws Exception {
-    TimerUtil.createMillisecondLaterTimer(timerService,
-        "BusinessTimerBean.aroundInvoke");
-    return inv.proceed();
-  }
-
-  @Interceptors(Interceptor3.class)
-  public void onMessage(Message msg) {
-    Helper.getLogger().info("In onMessage method of " + this);
-    String testName = MessageSenderBean.getTestName(msg);
-
-    if ("messageFromSingletonBeanToMDB".equals(testName)) {
-      testBean.setReplyFromMDB(testName);
-      return;
+    @SuppressWarnings("unused")
+    @AroundInvoke
+    private Object aroundInvoke(InvocationContext inv) throws Exception {
+        TimerUtil.createMillisecondLaterTimer(timerService, "BusinessTimerBean.aroundInvoke");
+        return inv.proceed();
     }
-    super.createMillisecondLaterTimer(testName);
-  }
 
-  @Override
-  public Timer createMillisecondLaterTimer(String name) {
-    return null;
-  }
+    @Interceptors(Interceptor3.class)
+    public void onMessage(Message msg) {
+        Helper.getLogger().info("In onMessage method of " + this);
+        String testName = MessageSenderBean.getTestName(msg);
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    Helper.getLogger().info("In PostConstruct of " + this);
-  }
+        if ("messageFromSingletonBeanToMDB".equals(testName)) {
+            testBean.setReplyFromMDB(testName);
+            return;
+        }
+        super.createMillisecondLaterTimer(testName);
+    }
 
-  @SuppressWarnings("unused")
-  @PreDestroy
-  private void preDestroy() {
-    Helper.getLogger().info("In PreDestroy of " + this);
-  }
+    @Override
+    public Timer createMillisecondLaterTimer(String name) {
+        return null;
+    }
+
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        Helper.getLogger().info("In PostConstruct of " + this);
+    }
+
+    @SuppressWarnings("unused")
+    @PreDestroy
+    private void preDestroy() {
+        Helper.getLogger().info("In PreDestroy of " + this);
+    }
 }

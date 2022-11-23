@@ -20,18 +20,17 @@ import com.sun.ts.tests.common.webclient.http.HttpRequest;
 
 public class ApacheRequestAdapter extends HttpRequest {
 
-  public ApacheRequestAdapter(String requestLine, String host, int port) {
-    super(requestLine, host, port);
-  }
+    public ApacheRequestAdapter(String requestLine, String host, int port) {
+        super(requestLine, host, port);
+    }
 
-  /**
-   * <code>getRequestPath</code> returns the request path for this particular
-   * request.
-   *
-   * @return String request path
-   */
-  public String getRequestPath() {
-    return super.getRequestPath();
-  }
-
+    /**
+     * <code>getRequestPath</code> returns the request path for this particular
+     * request.
+     *
+     * @return String request path
+     */
+    public String getRequestPath() {
+        return super.getRequestPath();
+    }
 }

@@ -29,36 +29,28 @@ import jakarta.jms.*;
  *
  */
 public interface TSJMSObjectsInterface {
-  /**
-   * This method allows JMS implementation to get Queue
-   */
+    /**
+     * This method allows JMS implementation to get Queue
+     */
+    public Queue getQueue(String name) throws Exception;
 
-  public Queue getQueue(String name) throws Exception;
+    /**
+     * This method allows JMS implementation to get Topic
+     */
+    public Topic getTopic(String name) throws Exception;
 
-  /**
-   * This method allows JMS implementation to get Topic
-   */
+    /**
+     * This method allows JMS implementation to get TopicConnectionFactory
+     */
+    public TopicConnectionFactory getTopicConnectionFactory(String name) throws Exception;
 
-  public Topic getTopic(String name) throws Exception;
+    /**
+     * This method allows JMS implementation to get QueueConnectionFactory
+     */
+    public QueueConnectionFactory getQueueConnectionFactory(String name) throws Exception;
 
-  /**
-   * This method allows JMS implementation to get TopicConnectionFactory
-   */
-
-  public TopicConnectionFactory getTopicConnectionFactory(String name)
-      throws Exception;
-
-  /**
-   * This method allows JMS implementation to get QueueConnectionFactory
-   */
-
-  public QueueConnectionFactory getQueueConnectionFactory(String name)
-      throws Exception;
-
-  /**
-   * This method allows JMS implementation to get ConnectionFactory
-   */
-
-  public ConnectionFactory getConnectionFactory(String name) throws Exception;
-
+    /**
+     * This method allows JMS implementation to get ConnectionFactory
+     */
+    public ConnectionFactory getConnectionFactory(String name) throws Exception;
 }

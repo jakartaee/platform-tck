@@ -23,5 +23,5 @@ package com.sun.ts.tests.ejb.ee.bb.localaccess.ebaccesstest;
 import jakarta.ejb.EJBLocalObject;
 
 public interface CLocal extends EJBLocalObject {
-  public String whoAmI();
+    public String whoAmI();
 }

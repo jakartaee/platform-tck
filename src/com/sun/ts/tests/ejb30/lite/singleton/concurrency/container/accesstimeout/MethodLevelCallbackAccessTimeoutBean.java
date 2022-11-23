@@ -20,7 +20,6 @@
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.AccessTimeout;
@@ -34,52 +33,50 @@ import jakarta.interceptor.InvocationContext;
  * The purpose of this class is to verify the wait time in post-construct method
  * does not count towards AccessTimeout. This bean is not annotated
  * with @Startup.
- * 
+ *
  * @AccessTimeout at method-level also applies to the PostConstruct,
  *                AroundInvoke and PreDestroy methods that are exposed as
  *                business methods.
  */
 @Singleton
-public class MethodLevelCallbackAccessTimeoutBean
-    extends CallbackAccessTimeoutBeanBase {
-  @Override
-  @AccessTimeout(value = 1000)
-  @Lock(LockType.READ)
-  public int postConstructWait(int resultVal) {
-    return super.postConstructWait(resultVal);
-  }
+public class MethodLevelCallbackAccessTimeoutBean extends CallbackAccessTimeoutBeanBase {
+    @Override
+    @AccessTimeout(value = 1000)
+    @Lock(LockType.READ)
+    public int postConstructWait(int resultVal) {
+        return super.postConstructWait(resultVal);
+    }
 
-  @Override
-  @PostConstruct
-  @AccessTimeout(value = 1000)
-  @Lock(LockType.READ)
-  public void postConstruct() {
-    super.postConstruct();
-  }
+    @Override
+    @PostConstruct
+    @AccessTimeout(value = 1000)
+    @Lock(LockType.READ)
+    public void postConstruct() {
+        super.postConstruct();
+    }
 
-  @Override
-  @PreDestroy
-  @Lock(LockType.READ)
-  @AccessTimeout(value = 1000)
-  public void preDestroy() {
-    super.preDestroy();
-  }
+    @Override
+    @PreDestroy
+    @Lock(LockType.READ)
+    @AccessTimeout(value = 1000)
+    public void preDestroy() {
+        super.preDestroy();
+    }
 
-  @Override
-  @AroundInvoke
-  @Lock(LockType.READ)
-  @AccessTimeout(value = 1000)
-  public Object intercept(InvocationContext inv) throws Exception {
-    return super.intercept(inv);
-  }
+    @Override
+    @AroundInvoke
+    @Lock(LockType.READ)
+    @AccessTimeout(value = 1000)
+    public Object intercept(InvocationContext inv) throws Exception {
+        return super.intercept(inv);
+    }
 
-  protected void busyWait(long waitMillis, String methodName) {
-    Helper.getLogger().fine("Waiting in " + methodName
-        + ", but it should not affect AccessTimeout:" + waitMillis);
-    Helper.busyWait(waitMillis);
-  }
+    protected void busyWait(long waitMillis, String methodName) {
+        Helper.getLogger().fine("Waiting in " + methodName + ", but it should not affect AccessTimeout:" + waitMillis);
+        Helper.busyWait(waitMillis);
+    }
 
-  protected static final long ACCESS_TIMEOUT_MILLIS = 1000;
+    protected static final long ACCESS_TIMEOUT_MILLIS = 1000;
 
-  protected static final long AROUND_INVOKE_WAIT_MILLIS = 600;
+    protected static final long AROUND_INVOKE_WAIT_MILLIS = 600;
 }

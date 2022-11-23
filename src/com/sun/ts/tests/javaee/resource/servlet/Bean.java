@@ -16,28 +16,26 @@
 
 package com.sun.ts.tests.javaee.resource.servlet;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.mail.MailSessionDefinition;
 import jakarta.mail.Session;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
-@MailSessionDefinition(name = "java:app/env/Bean_MailSession", properties = {
-    "test=Bean_MailSession" })
+@MailSessionDefinition(
+        name = "java:app/env/Bean_MailSession",
+        properties = {"test=Bean_MailSession"})
 @ApplicationScoped
 public class Bean {
 
-  public Session getSession(String jndiName) {
-    try {
-      InitialContext ic = new InitialContext();
-      Object obj = ic.lookup(jndiName);
-      if (obj instanceof Session)
-        return (Session) obj;
-      else
-        return null;
-    } catch (NamingException nex) {
-      return null;
+    public Session getSession(String jndiName) {
+        try {
+            InitialContext ic = new InitialContext();
+            Object obj = ic.lookup(jndiName);
+            if (obj instanceof Session) return (Session) obj;
+            else return null;
+        } catch (NamingException nex) {
+            return null;
+        }
     }
-  }
 }

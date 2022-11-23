@@ -20,17 +20,15 @@
 
 package com.sun.ts.tests.common.web;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Properties;
-
 import com.sun.ts.lib.util.TSNamingContext;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Properties;
 
 /**
  * Provide a testing framework for a Servlet test.
@@ -46,57 +44,54 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 public abstract class ServletWrapper extends HttpServlet {
 
-  /** Name of property used to send back test result to client */
-  public static final String RESULT_PROP = "ctsWebTestResult";
+    /** Name of property used to send back test result to client */
+    public static final String RESULT_PROP = "ctsWebTestResult";
 
-  public static final String TEST_NAME_PROP = "ctsWebTestName";
+    public static final String TEST_NAME_PROP = "ctsWebTestName";
 
-  protected static TSNamingContext nctx = null;
+    protected static TSNamingContext nctx = null;
 
-  private Properties servletProps = null;
+    private Properties servletProps = null;
 
-  public void init(ServletConfig config) throws ServletException {
-    super.init(config);
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
 
-    try {
-      WebUtil.logTrace("[ServletWrapper] init()");
-      WebUtil.logTrace("[ServletWrapper] Getting naming ctx...");
-      nctx = new TSNamingContext();
-    } catch (Exception e) {
-      WebUtil.logErr("[ServletWrapper] Cannot get Naming ctx", e);
-      throw new ServletException("Cannot initialize Servlet");
+        try {
+            WebUtil.logTrace("[ServletWrapper] init()");
+            WebUtil.logTrace("[ServletWrapper] Getting naming ctx...");
+            nctx = new TSNamingContext();
+        } catch (Exception e) {
+            WebUtil.logErr("[ServletWrapper] Cannot get Naming ctx", e);
+            throw new ServletException("Cannot initialize Servlet");
+        }
     }
-  }
 
-  public void doGet(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
+    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-    PrintWriter out = null;
+        PrintWriter out = null;
 
-    try {
-      WebUtil.logTrace("[ServletWrapper] doGet()");
-      res.setContentType("text/plain");
-      out = res.getWriter();
-      servletProps.list(out);
-    } catch (Exception e) {
-      WebUtil.logErr("[ServletWrapper] Exception in doGet()", e);
-      if (null != out) {
-        e.printStackTrace(out);
-      }
-    } finally {
-      if (null != out) {
-        out.close();
-      }
+        try {
+            WebUtil.logTrace("[ServletWrapper] doGet()");
+            res.setContentType("text/plain");
+            out = res.getWriter();
+            servletProps.list(out);
+        } catch (Exception e) {
+            WebUtil.logErr("[ServletWrapper] Exception in doGet()", e);
+            if (null != out) {
+                e.printStackTrace(out);
+            }
+        } finally {
+            if (null != out) {
+                out.close();
+            }
+        }
     }
-  }
 
-  public void doPost(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-    WebUtil.logTrace("[ServletWrapper] doPost()");
-    servletProps = WebUtil.executeTest(this, nctx, req);
-    doGet(req, res);
-    servletProps = null;
-  }
-
+        WebUtil.logTrace("[ServletWrapper] doPost()");
+        servletProps = WebUtil.executeTest(this, nctx, req);
+        doGet(req, res);
+        servletProps = null;
+    }
 }

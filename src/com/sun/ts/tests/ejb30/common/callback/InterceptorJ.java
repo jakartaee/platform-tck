@@ -26,18 +26,17 @@ package com.sun.ts.tests.ejb30.common.callback;
  * ITS superclasses.
  */
 public class InterceptorJ extends InterceptorI {
-  public InterceptorJ() {
-    super();
-  }
+    public InterceptorJ() {
+        super();
+    }
 
-  @Override
-  public String getInjectedLocation() {
-    return NOT_INJECTED;
-  }
+    @Override
+    public String getInjectedLocation() {
+        return NOT_INJECTED;
+    }
 
-  @Override
-  protected String getShortName() {
-    return "J";
-  }
-
+    @Override
+    protected String getShortName() {
+        return "J";
+    }
 }

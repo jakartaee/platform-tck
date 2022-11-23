@@ -19,19 +19,16 @@
  */
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.ejblink.casesens;
 
-import java.rmi.RemoteException;
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
 public interface CaseBeanHome extends EJBHome {
 
-  public CaseBean create(Properties p, int keyId, String brandName, float price)
-      throws RemoteException, CreateException;
+    public CaseBean create(Properties p, int keyId, String brandName, float price)
+            throws RemoteException, CreateException;
 
-  public CaseBean findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
-
+    public CaseBean findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 }

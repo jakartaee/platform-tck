@@ -21,8 +21,7 @@ import com.sun.ts.tests.jaxrs.common.provider.StringBean;
 @NotNullOrOne
 public class NotNullOrOneStringBean extends StringBean {
 
-  public NotNullOrOneStringBean(String header) {
-    super(header);
-  }
-
+    public NotNullOrOneStringBean(String header) {
+        super(header);
+    }
 }

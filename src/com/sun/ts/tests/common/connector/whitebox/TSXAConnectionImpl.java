@@ -20,58 +20,46 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import javax.transaction.xa.XAResource;
-
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
-
 import jakarta.resource.spi.ConnectionEventListener;
+import javax.transaction.xa.XAResource;
 
 public class TSXAConnectionImpl implements TSXAConnection {
 
-  public TSXAConnectionImpl() {
+    public TSXAConnectionImpl() {}
 
-  }
-
-  public XAResource getXAResource(TSManagedConnection mc) throws Exception {
-    System.out.println("TSXAConnectionImpl.getXAResource");
-    XAResourceImpl xaimpl = new XAResourceImpl(mc);
-    return xaimpl;
-  }
-
-  public TSConnection getConnection() throws Exception {
-    try {
-
-      TSConnection ctscon = TSeis.getTSeis().getConnection();
-      System.out.println("TSXAConnectionImpl.getConnection");
-      ConnectorStatus.getConnectorStatus()
-          .logAPI("TSConnectionImpl.getConnection", "", "");
-      return ctscon;
-    } catch (Exception ex) {
-      ex.getMessage();
-      return null;
+    public XAResource getXAResource(TSManagedConnection mc) throws Exception {
+        System.out.println("TSXAConnectionImpl.getXAResource");
+        XAResourceImpl xaimpl = new XAResourceImpl(mc);
+        return xaimpl;
     }
-  }
 
-  public TSConnection getConnection(String user, char[] password)
-      throws Exception {
-    try {
+    public TSConnection getConnection() throws Exception {
+        try {
 
-      TSConnection ctscon = TSeis.getTSeis().getConnection(user, password);
-      ConnectorStatus.getConnectorStatus()
-          .logAPI("TSConnectionImpl.getConnection", "", "");
-      return ctscon;
-    } catch (Exception ex) {
-      ex.getMessage();
-      return null;
+            TSConnection ctscon = TSeis.getTSeis().getConnection();
+            System.out.println("TSXAConnectionImpl.getConnection");
+            ConnectorStatus.getConnectorStatus().logAPI("TSConnectionImpl.getConnection", "", "");
+            return ctscon;
+        } catch (Exception ex) {
+            ex.getMessage();
+            return null;
+        }
     }
-  }
 
-  public void close() throws Exception {
+    public TSConnection getConnection(String user, char[] password) throws Exception {
+        try {
 
-  }
+            TSConnection ctscon = TSeis.getTSeis().getConnection(user, password);
+            ConnectorStatus.getConnectorStatus().logAPI("TSConnectionImpl.getConnection", "", "");
+            return ctscon;
+        } catch (Exception ex) {
+            ex.getMessage();
+            return null;
+        }
+    }
 
-  public void addConnectionEventListener(ConnectionEventListener listener) {
+    public void close() throws Exception {}
 
-  }
-
+    public void addConnectionEventListener(ConnectionEventListener listener) {}
 }

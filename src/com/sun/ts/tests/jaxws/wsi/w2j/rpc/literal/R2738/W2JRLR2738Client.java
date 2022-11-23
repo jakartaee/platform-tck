@@ -20,45 +20,40 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2738;
 
-import jakarta.xml.ws.Holder;
-import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
+import jakarta.xml.ws.Holder;
 
 public class W2JRLR2738Client extends SOAPClient {
 
-  public W2JRLR2738Client(String webServerHost, int port, int mode)
-      throws EETest.Fault {
-    this(webServerHost, port, mode, null);
-  }
+    public W2JRLR2738Client(String webServerHost, int port, int mode) throws EETest.Fault {
+        this(webServerHost, port, mode, null);
+    }
 
-  public W2JRLR2738Client(String webServerHost, int port, int mode,
-      jakarta.xml.ws.Service webServiceRef) throws EETest.Fault {
-    super(webServerHost, port, mode);
-    stubContext.setNamespace(
-        "http://w2jrlr2738testservice.org/W2JRLR2738TestService.wsdl");
-    stubContext.setService("W2JRLR2738TestService");
-    stubContext.setPort("W2JRLR2738TestPort");
-    stubContext.setEndpointInterface(W2JRLR2738Test.class);
-    stubContext.setWebServiceRef(webServiceRef);
-  }
+    public W2JRLR2738Client(String webServerHost, int port, int mode, jakarta.xml.ws.Service webServiceRef)
+            throws EETest.Fault {
+        super(webServerHost, port, mode);
+        stubContext.setNamespace("http://w2jrlr2738testservice.org/W2JRLR2738TestService.wsdl");
+        stubContext.setService("W2JRLR2738TestService");
+        stubContext.setPort("W2JRLR2738TestPort");
+        stubContext.setEndpointInterface(W2JRLR2738Test.class);
+        stubContext.setWebServiceRef(webServiceRef);
+    }
 
-  protected String getEndpointURLProperty() {
-    return "wsi.w2jrlr2738.endpoint.1";
-  }
+    protected String getEndpointURLProperty() {
+        return "wsi.w2jrlr2738.endpoint.1";
+    }
 
-  protected String getWSDLURLProperty() {
-    return "wsi.w2jrlr2738.wsdlloc.1";
-  }
+    protected String getWSDLURLProperty() {
+        return "wsi.w2jrlr2738.wsdlloc.1";
+    }
 
-  public String echoIt(String text, ConfigHeader ch1, Holder<ConfigHeader> ghh2,
-      Holder<ConfigHeader> ghh3)
-
-      throws Exception {
-    String result = "";
-    Holder gh = new Holder<String>();
-    gh.value = result;
-    ((W2JRLR2738Test) stubContext.getStub()).echoIt(text, ch1, ghh2, gh, ghh3);
-    return (String) gh.value;
-  }
-
+    public String echoIt(String text, ConfigHeader ch1, Holder<ConfigHeader> ghh2, Holder<ConfigHeader> ghh3)
+            throws Exception {
+        String result = "";
+        Holder gh = new Holder<String>();
+        gh.value = result;
+        ((W2JRLR2738Test) stubContext.getStub()).echoIt(text, ch1, ghh2, gh, ghh3);
+        return (String) gh.value;
+    }
 }

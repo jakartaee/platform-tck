@@ -16,50 +16,44 @@
 
 package com.sun.ts.lib.deliverable.jacc;
 
+import com.sun.javatest.TestEnvironment;
 import com.sun.ts.lib.deliverable.AbstractDeliverable;
 import com.sun.ts.lib.deliverable.PropertyManagerInterface;
-import com.sun.javatest.TestEnvironment;
-import com.sun.ts.lib.util.TestUtil;
-import java.io.File;
 import java.util.Map;
 import java.util.Properties;
 
 public class JACCDeliverable extends AbstractDeliverable {
 
-  public PropertyManagerInterface createPropertyManager(TestEnvironment te)
-      throws Exception {
-    return JACCPropertyManager.getJACCPropertyManager(te);
-  }
+    public PropertyManagerInterface createPropertyManager(TestEnvironment te) throws Exception {
+        return JACCPropertyManager.getJACCPropertyManager(te);
+    }
 
-  public PropertyManagerInterface createPropertyManager(Properties p)
-      throws Exception {
-    return JACCPropertyManager.getJACCPropertyManager(p);
-  }
+    public PropertyManagerInterface createPropertyManager(Properties p) throws Exception {
+        return JACCPropertyManager.getJACCPropertyManager(p);
+    }
 
-  public PropertyManagerInterface getPropertyManager() throws Exception {
-    return JACCPropertyManager.getJACCPropertyManager();
-  }
+    public PropertyManagerInterface getPropertyManager() throws Exception {
+        return JACCPropertyManager.getJACCPropertyManager();
+    }
 
-  public boolean supportsAutoDeployment() {
-    return false;
-  }
+    public boolean supportsAutoDeployment() {
+        return false;
+    }
 
-  public boolean supportsAutoJMSAdmin() {
-    return false;
-  }
+    public boolean supportsAutoJMSAdmin() {
+        return false;
+    }
 
-  public boolean supportsInterop() {
-    return false;
-  }
+    public boolean supportsInterop() {
+        return false;
+    }
 
-  public Map getValidVehicles() {
-    super.getValidVehicles();
+    public Map getValidVehicles() {
+        super.getValidVehicles();
 
-    // add default values
-    htTSValidVehicles.put("tests.service_eetest.vehicles",
-        new String[] { "standalone", "appclient" });
+        // add default values
+        htTSValidVehicles.put("tests.service_eetest.vehicles", new String[] {"standalone", "appclient"});
 
-    return htTSValidVehicles;
-  }
-
+        return htTSValidVehicles;
+    }
 }

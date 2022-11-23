@@ -26,42 +26,41 @@ import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 
 public class TestBeanEJB extends StatelessWrapper {
 
-  public boolean testDirectLibrary() {
-    ClassPathUtil util = null;
-    boolean pass;
+    public boolean testDirectLibrary() {
+        ClassPathUtil util = null;
+        boolean pass;
 
-    try {
-      TestUtil.logTrace("[TestBean] creating class instance...");
-      util = new ClassPathUtil();
-      util.testDirectLibrary();
+        try {
+            TestUtil.logTrace("[TestBean] creating class instance...");
+            util = new ClassPathUtil();
+            util.testDirectLibrary();
 
-      /* Test succeeds, ClassPathUtil is in classpath */
-      pass = true;
-    } catch (Exception e) {
-      TestUtil.logErr("[TestBean] Caught exception: " + e, e);
-      pass = false;
+            /* Test succeeds, ClassPathUtil is in classpath */
+            pass = true;
+        } catch (Exception e) {
+            TestUtil.logErr("[TestBean] Caught exception: " + e, e);
+            pass = false;
+        }
+
+        return pass;
     }
 
-    return pass;
-  }
+    public boolean testIndirectLibrary() {
+        ClassPathUtil util = null;
+        boolean pass;
 
-  public boolean testIndirectLibrary() {
-    ClassPathUtil util = null;
-    boolean pass;
+        try {
+            TestUtil.logTrace("[TestBean] creating class instance...");
+            util = new ClassPathUtil();
+            util.testIndirectLibrary();
 
-    try {
-      TestUtil.logTrace("[TestBean] creating class instance...");
-      util = new ClassPathUtil();
-      util.testIndirectLibrary();
+            /* Test succeeds, IndirectClassPathUtil is in classpath */
+            pass = true;
+        } catch (Exception e) {
+            pass = false;
+            TestUtil.logErr("[TestBean] Caught exception: " + e, e);
+        }
 
-      /* Test succeeds, IndirectClassPathUtil is in classpath */
-      pass = true;
-    } catch (Exception e) {
-      pass = false;
-      TestUtil.logErr("[TestBean] Caught exception: " + e, e);
+        return pass;
     }
-
-    return pass;
-  }
-
 }

@@ -20,7 +20,6 @@
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.AccessTimeout;
@@ -34,45 +33,43 @@ import jakarta.interceptor.InvocationContext;
  * The purpose of this class is to verify the wait time in post-construct method
  * does not count towards AccessTimeout. This bean is not annotated
  * with @Startup.
- * 
+ *
  * @AccessTimeout at class-level also applies to the PostConstruct, AroundInvoke
  *                and PreDestroy methods that are exposed as business methods.
  */
 @Singleton
 @AccessTimeout(value = 1000)
 @Lock(LockType.READ)
-public class ClassLevelCallbackAccessTimeoutBean
-    extends CallbackAccessTimeoutBeanBase {
-  @Override
-  public int postConstructWait(int resultVal) {
-    return super.postConstructWait(resultVal);
-  }
+public class ClassLevelCallbackAccessTimeoutBean extends CallbackAccessTimeoutBeanBase {
+    @Override
+    public int postConstructWait(int resultVal) {
+        return super.postConstructWait(resultVal);
+    }
 
-  @Override
-  @PostConstruct
-  public void postConstruct() {
-    super.postConstruct();
-  }
+    @Override
+    @PostConstruct
+    public void postConstruct() {
+        super.postConstruct();
+    }
 
-  @Override
-  @PreDestroy
-  public void preDestroy() {
-    super.preDestroy();
-  }
+    @Override
+    @PreDestroy
+    public void preDestroy() {
+        super.preDestroy();
+    }
 
-  @Override
-  @AroundInvoke
-  public Object intercept(InvocationContext inv) throws Exception {
-    return super.intercept(inv);
-  }
+    @Override
+    @AroundInvoke
+    public Object intercept(InvocationContext inv) throws Exception {
+        return super.intercept(inv);
+    }
 
-  protected void busyWait(long waitMillis, String methodName) {
-    Helper.getLogger()
-        .fine("Waiting in " + methodName + " for millis " + waitMillis);
-    Helper.busyWait(waitMillis);
-  }
+    protected void busyWait(long waitMillis, String methodName) {
+        Helper.getLogger().fine("Waiting in " + methodName + " for millis " + waitMillis);
+        Helper.busyWait(waitMillis);
+    }
 
-  protected static final long ACCESS_TIMEOUT_MILLIS = 1000;
+    protected static final long ACCESS_TIMEOUT_MILLIS = 1000;
 
-  protected static final long AROUND_INVOKE_WAIT_MILLIS = 600;
+    protected static final long AROUND_INVOKE_WAIT_MILLIS = 600;
 }

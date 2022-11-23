@@ -20,16 +20,12 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.interceptor.method.descriptor;
 
-import java.io.Serializable;
-import java.lang.reflect.Method;
-
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeBase;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeIF;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeTestImpl;
 import com.sun.ts.tests.ejb30.common.interceptor.Constants;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Remove;
@@ -39,146 +35,142 @@ import jakarta.ejb.Stateful;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import jakarta.interceptor.InvocationContext;
+import java.io.Serializable;
+import java.lang.reflect.Method;
 
 @Stateful(name = "AroundInvokeBean")
-@Remote({ AroundInvokeIF.class })
+@Remote({AroundInvokeIF.class})
 // This bean must use cmt, since it uses setRollbackOnly
 @TransactionManagement(TransactionManagementType.CONTAINER)
 
 // @todo redundant implements
 
 public class AroundInvokeBean extends AroundInvokeBase
-    implements AroundInvokeIF, SessionSynchronization, Constants, Serializable {
-  @Resource(name = "ejbContext")
-  private SessionContext ejbContext;
+        implements AroundInvokeIF, SessionSynchronization, Constants, Serializable {
+    @Resource(name = "ejbContext")
+    private SessionContext ejbContext;
 
-  private boolean afterCompletionCalled;
+    private boolean afterCompletionCalled;
 
-  private boolean beforeCompletionCalled;
+    private boolean beforeCompletionCalled;
 
-  private boolean afterBeginCalled;
+    private boolean afterBeginCalled;
 
-  public AroundInvokeBean() {
-    super();
-  }
+    public AroundInvokeBean() {
+        super();
+    }
 
-  // ============ abstract methods from super ==========================
-  protected jakarta.ejb.EJBContext getEJBContext() {
-    return this.ejbContext;
-  }
+    // ============ abstract methods from super ==========================
+    protected jakarta.ejb.EJBContext getEJBContext() {
+        return this.ejbContext;
+    }
 
-  // ============= interceptor method ==================================
-  /**
-   * There is some duplication between this method in
-   * stateful/interceptor/listener and stateful/interceptor/method. It's too
-   * much work to abstract them out, because: (1) this method need to access
-   * bean's internal state. If we delegate to a helper class, then we need to
-   * pass this bean to it, and we need a common type for this bean. (2) we do
-   * not want to populate common/interceptor with stateful-related stuff.
-   * 
-   */
-  // @AroundInvoke
-  public Object intercept(InvocationContext ctx) throws Exception {
-    // this interceptor should be invoked last, unless overrid by deployment
-    // descriptor.
-    Object result = null;
-    int orderInChain = 1;
-    Method meth = ctx.getMethod();
-    String methName = meth.getName();
+    // ============= interceptor method ==================================
+    /**
+     * There is some duplication between this method in
+     * stateful/interceptor/listener and stateful/interceptor/method. It's too
+     * much work to abstract them out, because: (1) this method need to access
+     * bean's internal state. If we delegate to a helper class, then we need to
+     * pass this bean to it, and we need a common type for this bean. (2) we do
+     * not want to populate common/interceptor with stateful-related stuff.
+     *
+     */
+    // @AroundInvoke
+    public Object intercept(InvocationContext ctx) throws Exception {
+        // this interceptor should be invoked last, unless overrid by deployment
+        // descriptor.
+        Object result = null;
+        int orderInChain = 1;
+        Method meth = ctx.getMethod();
+        String methName = meth.getName();
 
-    TLogger.log("Creating AroundInvokeTestMDBImpl with: ejbContext="
-        + ejbContext + ";" + " bean=" + this + ", callerPrincipal="
-        + ejbContext.getCallerPrincipal());
-    AroundInvokeTestImpl helper = new AroundInvokeTestImpl(this,
-        getEJBContext().getCallerPrincipal());
+        TLogger.log("Creating AroundInvokeTestMDBImpl with: ejbContext="
+                + ejbContext + ";" + " bean=" + this + ", callerPrincipal="
+                + ejbContext.getCallerPrincipal());
+        AroundInvokeTestImpl helper =
+                new AroundInvokeTestImpl(this, getEJBContext().getCallerPrincipal());
 
-    if (afterBeginTest.equals(methName)) {
-      // afterBegin() should already have been called. Ideally, this
-      // should be checked in the first interceptor (this one is the last),
-      // but we need access to the bean's internal state.
-      if (!isAfterBeginCalled()) {
-        throw new CalculatorException(
-            "afterBegin() was not called before this interceptor.");
-      } else { // good, go to proceed(), which is in intercept2
-        TLogger.log("good, isAfterBeginCalled: " + isAfterBeginCalled()
-            + ", proceed...");
-        result = helper.intercept(ctx);
+        if (afterBeginTest.equals(methName)) {
+            // afterBegin() should already have been called. Ideally, this
+            // should be checked in the first interceptor (this one is the last),
+            // but we need access to the bean's internal state.
+            if (!isAfterBeginCalled()) {
+                throw new CalculatorException("afterBegin() was not called before this interceptor.");
+            } else { // good, go to proceed(), which is in intercept2
+                TLogger.log("good, isAfterBeginCalled: " + isAfterBeginCalled() + ", proceed...");
+                result = helper.intercept(ctx);
+                return result;
+            }
+        } else if (beforeCompletionTest.equals(methName)) {
+            // nothing at this point, more later in try/catch/finally
+        } else {
+            result = helper.intercept(ctx);
+            return result;
+        }
+
+        // we know here we are dealing w/ beforeCompletionTest
+        if (!beforeCompletionTest.equals(methName)) {
+            throw new IllegalStateException(
+                    "Only beforeCompletionTest can get here, but current method name is " + methName);
+        }
+        try {
+            result = ctx.proceed();
+        } catch (CalculatorException e) {
+            throw e;
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        } finally {
+            // beforeCompletion must not be called yet
+            if (isBeforeCompletionCalled()) {
+                throw new CalculatorException("beforeCompletion must not be called before any interceptor.");
+            } else {
+                TLogger.log("good, isBeforeCompletionCalled after proceed(): " + isBeforeCompletionCalled());
+            }
+        }
         return result;
-      }
-    } else if (beforeCompletionTest.equals(methName)) {
-      // nothing at this point, more later in try/catch/finally
-    } else {
-      result = helper.intercept(ctx);
-      return result;
     }
 
-    // we know here we are dealing w/ beforeCompletionTest
-    if (!beforeCompletionTest.equals(methName)) {
-      throw new IllegalStateException(
-          "Only beforeCompletionTest can get here, but current method name is "
-              + methName);
+    // ============ SessionSynchronization related methods =================
+    public void afterCompletion(boolean param) throws jakarta.ejb.EJBException {
+        setAfterCompletionCalled(true);
     }
-    try {
-      result = ctx.proceed();
-    } catch (CalculatorException e) {
-      throw e;
-    } catch (RuntimeException e) {
-      throw e;
-    } catch (Exception e) {
-      throw new IllegalStateException(e);
-    } finally {
-      // beforeCompletion must not be called yet
-      if (isBeforeCompletionCalled()) {
-        throw new CalculatorException(
-            "beforeCompletion must not be called before any interceptor.");
-      } else {
-        TLogger.log("good, isBeforeCompletionCalled after proceed(): "
-            + isBeforeCompletionCalled());
-      }
+
+    public void beforeCompletion() throws jakarta.ejb.EJBException {
+        setBeforeCompletionCalled(true);
     }
-    return result;
-  }
 
-  // ============ SessionSynchronization related methods =================
-  public void afterCompletion(boolean param) throws jakarta.ejb.EJBException {
-    setAfterCompletionCalled(true);
-  }
+    public void afterBegin() throws jakarta.ejb.EJBException {
+        setAfterBeginCalled(true);
+    }
 
-  public void beforeCompletion() throws jakarta.ejb.EJBException {
-    setBeforeCompletionCalled(true);
-  }
+    private boolean isAfterCompletionCalled() {
+        return afterCompletionCalled;
+    }
 
-  public void afterBegin() throws jakarta.ejb.EJBException {
-    setAfterBeginCalled(true);
-  }
+    private void setAfterCompletionCalled(boolean afterCompletionCalled) {
+        this.afterCompletionCalled = afterCompletionCalled;
+    }
 
-  private boolean isAfterCompletionCalled() {
-    return afterCompletionCalled;
-  }
+    private boolean isBeforeCompletionCalled() {
+        return beforeCompletionCalled;
+    }
 
-  private void setAfterCompletionCalled(boolean afterCompletionCalled) {
-    this.afterCompletionCalled = afterCompletionCalled;
-  }
+    private void setBeforeCompletionCalled(boolean beforeCompletionCalled) {
+        this.beforeCompletionCalled = beforeCompletionCalled;
+    }
 
-  private boolean isBeforeCompletionCalled() {
-    return beforeCompletionCalled;
-  }
+    private boolean isAfterBeginCalled() {
+        return afterBeginCalled;
+    }
 
-  private void setBeforeCompletionCalled(boolean beforeCompletionCalled) {
-    this.beforeCompletionCalled = beforeCompletionCalled;
-  }
+    private void setAfterBeginCalled(boolean afterBeginCalled) {
+        this.afterBeginCalled = afterBeginCalled;
+    }
 
-  private boolean isAfterBeginCalled() {
-    return afterBeginCalled;
-  }
+    @Remove
+    public void remove() {}
 
-  private void setAfterBeginCalled(boolean afterBeginCalled) {
-    this.afterBeginCalled = afterBeginCalled;
-  }
-
-  @Remove
-  public void remove() {
-  }
-
-  // ============= override business methods from super ================
+    // ============= override business methods from super ================
 }

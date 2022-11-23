@@ -19,140 +19,144 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext306;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.Filter;
 import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet extends GenericTCKServlet {
 
-  final static String addServletName1 = "AddServletString";
+    static final String addServletName1 = "AddServletString";
 
-  final static String addServletName2 = "AddServletClass";
+    static final String addServletName2 = "AddServletClass";
 
-  final static String addServletName3 = "CreateServlet";
+    static final String addServletName3 = "CreateServlet";
 
-  final static String addFilterName1 = "AddFilterString";
+    static final String addFilterName1 = "AddFilterString";
 
-  final static String addFilterName2 = "AddFilterClass";
+    static final String addFilterName2 = "AddFilterClass";
 
-  final static String addFilterName3 = "CreateFilter";
+    static final String addFilterName3 = "CreateFilter";
 
-  public void addServletStringTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void addServletStringTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    try {
-      getServletContext().addServlet(addServletName1,
-          "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddServletString");
-      pw.append("Expected IllegalStateException not thrown.");
-      ServletTestUtil.printResult(pw, false);
-    } catch (IllegalStateException ex) {
-      pw.append("Expected IllegalStateException thrown: " + ex.getMessage());
-      ServletTestUtil.printResult(pw, true);
+        try {
+            getServletContext()
+                    .addServlet(
+                            addServletName1,
+                            "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddServletString");
+            pw.append("Expected IllegalStateException not thrown.");
+            ServletTestUtil.printResult(pw, false);
+        } catch (IllegalStateException ex) {
+            pw.append("Expected IllegalStateException thrown: " + ex.getMessage());
+            ServletTestUtil.printResult(pw, true);
+        }
     }
-  }
 
-  public void addServletClassTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void addServletClassTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    try {
-      getServletContext().addServlet(addServletName2,
-          com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddServletClass.class);
-      pw.append("Expected IllegalStateException not thrown.");
-      ServletTestUtil.printResult(pw, false);
-    } catch (IllegalStateException ex) {
-      pw.append("Expected IllegalStateException thrown: " + ex.getMessage());
-      ServletTestUtil.printResult(pw, true);
+        try {
+            getServletContext()
+                    .addServlet(
+                            addServletName2,
+                            com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddServletClass.class);
+            pw.append("Expected IllegalStateException not thrown.");
+            ServletTestUtil.printResult(pw, false);
+        } catch (IllegalStateException ex) {
+            pw.append("Expected IllegalStateException thrown: " + ex.getMessage());
+            ServletTestUtil.printResult(pw, true);
+        }
     }
-  }
 
-  public void addServletTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void addServletTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    try {
-      Servlet servlet3 = getServletContext().createServlet(
-          com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.CreateServlet.class);
-      getServletContext().addServlet(addServletName3, servlet3);
-      pw.append("Expected IllegalStateException not thrown.");
-      ServletTestUtil.printResult(pw, false);
+        try {
+            Servlet servlet3 = getServletContext()
+                    .createServlet(com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.CreateServlet.class);
+            getServletContext().addServlet(addServletName3, servlet3);
+            pw.append("Expected IllegalStateException not thrown.");
+            ServletTestUtil.printResult(pw, false);
 
-    } catch (IllegalStateException ex) {
-      pw.append("Expected IllegalStateException thrown: " + ex.getMessage());
-      ServletTestUtil.printResult(pw, true);
+        } catch (IllegalStateException ex) {
+            pw.append("Expected IllegalStateException thrown: " + ex.getMessage());
+            ServletTestUtil.printResult(pw, true);
+        }
     }
-  }
 
-  public void addFilterStringTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void addFilterStringTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    try {
-      getServletContext().addFilter(addFilterName1,
-          "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddFilterString");
-      pw.append("Expected IllegalStateException not thrown.");
-      ServletTestUtil.printResult(pw, false);
+        try {
+            getServletContext()
+                    .addFilter(
+                            addFilterName1,
+                            "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddFilterString");
+            pw.append("Expected IllegalStateException not thrown.");
+            ServletTestUtil.printResult(pw, false);
 
-    } catch (IllegalStateException ex) {
-      pw.append("Expected IllegalStateException thrown: " + ex.getMessage());
-      ServletTestUtil.printResult(pw, true);
+        } catch (IllegalStateException ex) {
+            pw.append("Expected IllegalStateException thrown: " + ex.getMessage());
+            ServletTestUtil.printResult(pw, true);
+        }
     }
-  }
 
-  public void addFilterClassTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void addFilterClassTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    try {
-      getServletContext().addFilter(addFilterName2,
-          com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddFilterClass.class);
-      pw.append("Expected IllegalStateException not thrown.");
-      ServletTestUtil.printResult(pw, false);
+        try {
+            getServletContext()
+                    .addFilter(
+                            addFilterName2,
+                            com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddFilterClass.class);
+            pw.append("Expected IllegalStateException not thrown.");
+            ServletTestUtil.printResult(pw, false);
 
-    } catch (IllegalStateException ex) {
-      pw.append("Expected IllegalStateException thrown: " + ex.getMessage());
-      ServletTestUtil.printResult(pw, true);
+        } catch (IllegalStateException ex) {
+            pw.append("Expected IllegalStateException thrown: " + ex.getMessage());
+            ServletTestUtil.printResult(pw, true);
+        }
     }
-  }
 
-  public void addFilterTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void addFilterTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    try {
-      Filter filter3 = getServletContext().createFilter(
-          com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.CreateFilter.class);
-      getServletContext().addFilter(addFilterName3, filter3);
-      pw.append("Expected IllegalStateException not thrown.");
-      ServletTestUtil.printResult(pw, false);
+        try {
+            Filter filter3 = getServletContext()
+                    .createFilter(com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.CreateFilter.class);
+            getServletContext().addFilter(addFilterName3, filter3);
+            pw.append("Expected IllegalStateException not thrown.");
+            ServletTestUtil.printResult(pw, false);
 
-    } catch (IllegalStateException ex) {
-      pw.append("Expected IllegalStateException thrown: " + ex.getMessage());
-      ServletTestUtil.printResult(pw, true);
+        } catch (IllegalStateException ex) {
+            pw.append("Expected IllegalStateException thrown: " + ex.getMessage());
+            ServletTestUtil.printResult(pw, true);
+        }
     }
-  }
 
-  public void setInitParameterTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void setInitParameterTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    try {
-      getServletContext().addFilter("abc", "xyz");
-      pw.append("Expected IllegalStateException not thrown.");
-      ServletTestUtil.printResult(pw, false);
+        try {
+            getServletContext().addFilter("abc", "xyz");
+            pw.append("Expected IllegalStateException not thrown.");
+            ServletTestUtil.printResult(pw, false);
 
-    } catch (IllegalStateException ex) {
-      pw.append("Expected IllegalStateException thrown: " + ex.getMessage());
-      ServletTestUtil.printResult(pw, true);
+        } catch (IllegalStateException ex) {
+            pw.append("Expected IllegalStateException thrown: " + ex.getMessage());
+            ServletTestUtil.printResult(pw, true);
+        }
     }
-  }
 }

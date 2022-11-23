@@ -20,21 +20,16 @@
  * @author Raja Perumal
  *         08/22/02
  */
-
 package com.sun.ts.tests.jacc.util;
-
-import java.rmi.RemoteException;
 
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
 
 public interface JACCEntityHome extends EJBHome {
 
-  public JACCEntity create(String arg1, int arg2, long arg3)
-      throws RemoteException, CreateException;
+    public JACCEntity create(String arg1, int arg2, long arg3) throws RemoteException, CreateException;
 
-  public JACCEntity findByPrimaryKey(JACCEntityKey primaryKey)
-      throws RemoteException, FinderException;
-
+    public JACCEntity findByPrimaryKey(JACCEntityKey primaryKey) throws RemoteException, FinderException;
 }

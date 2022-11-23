@@ -20,82 +20,78 @@ import java.math.BigDecimal;
 
 public class Order2 implements java.io.Serializable {
 
-  // Instance variables
-  private int id;
+    // Instance variables
+    private int id;
 
-  private double totalPrice;
+    private double totalPrice;
 
-  private String itemName;
+    private String itemName;
 
-  public Order2() {
-  }
+    public Order2() {}
 
-  public Order2(int id) {
-    this.id = id;
-  }
-
-  public Order2(int id, double totalPrice) {
-    this.id = id;
-    this.totalPrice = totalPrice;
-  }
-
-  public Order2(int id, double totalPrice, String itemName) {
-    this.id = id;
-    this.totalPrice = totalPrice;
-    this.itemName = itemName;
-  }
-
-  public Order2(BigDecimal id, double totalPrice, String itemName) {
-    if (id != null) {
-      this.id = id.intValue();
-    } else {
-      throw new IllegalArgumentException(
-          "Received a null for the ID, this should not occur");
+    public Order2(int id) {
+        this.id = id;
     }
-    this.totalPrice = totalPrice;
-    this.itemName = itemName;
-  }
 
-  public Order2(BigDecimal id, BigDecimal totalPrice, String itemName) {
-    if (id != null) {
-      this.id = id.intValue();
-    } else {
-      throw new IllegalArgumentException(
-          "Received a null for the ID, this should not occur");
+    public Order2(int id, double totalPrice) {
+        this.id = id;
+        this.totalPrice = totalPrice;
     }
-    if (totalPrice != null) {
-      this.totalPrice = totalPrice.longValue();
-    } else {
-      throw new IllegalArgumentException(
-          "Received a null for the TOTALPRICE, this should not occur");
+
+    public Order2(int id, double totalPrice, String itemName) {
+        this.id = id;
+        this.totalPrice = totalPrice;
+        this.itemName = itemName;
     }
-    this.itemName = itemName;
-  }
 
-  // ====================================================================
-  // getters and setters for State fields
+    public Order2(BigDecimal id, double totalPrice, String itemName) {
+        if (id != null) {
+            this.id = id.intValue();
+        } else {
+            throw new IllegalArgumentException("Received a null for the ID, this should not occur");
+        }
+        this.totalPrice = totalPrice;
+        this.itemName = itemName;
+    }
 
-  public int getId() {
-    return id;
-  }
+    public Order2(BigDecimal id, BigDecimal totalPrice, String itemName) {
+        if (id != null) {
+            this.id = id.intValue();
+        } else {
+            throw new IllegalArgumentException("Received a null for the ID, this should not occur");
+        }
+        if (totalPrice != null) {
+            this.totalPrice = totalPrice.longValue();
+        } else {
+            throw new IllegalArgumentException("Received a null for the TOTALPRICE, this should not occur");
+        }
+        this.itemName = itemName;
+    }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    // ====================================================================
+    // getters and setters for State fields
 
-  public double getTotalPrice() {
-    return totalPrice;
-  }
+    public int getId() {
+        return id;
+    }
 
-  public void setTotalPrice(double price) {
-    this.totalPrice = price;
-  }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  public String getItemName() {
-    return itemName;
-  }
+    public double getTotalPrice() {
+        return totalPrice;
+    }
 
-  public void setItemName(String v) {
-    itemName = v;
-  }
+    public void setTotalPrice(double price) {
+        this.totalPrice = price;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String v) {
+        itemName = v;
+    }
 }

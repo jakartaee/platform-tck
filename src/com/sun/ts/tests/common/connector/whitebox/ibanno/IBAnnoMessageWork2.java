@@ -16,94 +16,85 @@
 
 package com.sun.ts.tests.common.connector.whitebox.ibanno;
 
-import java.lang.reflect.Method;
-
 import com.sun.ts.tests.common.connector.util.AppException;
 import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
 import com.sun.ts.tests.common.connector.whitebox.Debug;
 import com.sun.ts.tests.common.connector.whitebox.LocalTxMessageXAResource;
-
 import jakarta.resource.spi.UnavailableException;
 import jakarta.resource.spi.endpoint.MessageEndpoint;
 import jakarta.resource.spi.endpoint.MessageEndpointFactory;
 import jakarta.resource.spi.work.Work;
+import java.lang.reflect.Method;
 
 public class IBAnnoMessageWork2 implements Work {
 
-  private String name;
+    private String name;
 
-  private boolean stop = false;
+    private boolean stop = false;
 
-  private MessageEndpointFactory factory;
+    private MessageEndpointFactory factory;
 
-  private LocalTxMessageXAResource msgxa = new LocalTxMessageXAResource(
-      "LocalTxMessageXAResource2");
+    private LocalTxMessageXAResource msgxa = new LocalTxMessageXAResource("LocalTxMessageXAResource2");
 
-  public IBAnnoMessageWork2(String name, MessageEndpointFactory factory) {
-    this.factory = factory;
-    this.name = name;
-    System.out.println("IBAnnoMessageWork2.constructor");
-  }
+    public IBAnnoMessageWork2(String name, MessageEndpointFactory factory) {
+        this.factory = factory;
+        this.name = name;
+        System.out.println("IBAnnoMessageWork2.constructor");
+    }
 
-  public void run() {
+    public void run() {
 
-    while (!stop) {
-      try {
+        while (!stop) {
+            try {
 
-        // creating xaep to check if the message delivery is transacted.
-        MessageEndpoint xaep = factory.createEndpoint(msgxa);
-        MessageEndpoint xaep1 = factory.createEndpoint(msgxa);
-        MessageEndpoint xaep2 = factory.createEndpoint(msgxa);
+                // creating xaep to check if the message delivery is transacted.
+                MessageEndpoint xaep = factory.createEndpoint(msgxa);
+                MessageEndpoint xaep1 = factory.createEndpoint(msgxa);
+                MessageEndpoint xaep2 = factory.createEndpoint(msgxa);
 
-        Method onMessagexa = getOnMessageMethod();
-        ((TSMessageListenerInterface) xaep)
-            .onMessage("IBAnnoMessageWork2 MDB2 Transacted Message1");
-        ((TSMessageListenerInterface) xaep1)
-            .onMessage("IBAnnoMessageWork2 MDB2 Transacted Message2");
-        ((TSMessageListenerInterface) xaep2)
-            .onMessage("IBAnnoMessageWork2 MDB2 Transacted Message3");
+                Method onMessagexa = getOnMessageMethod();
+                ((TSMessageListenerInterface) xaep).onMessage("IBAnnoMessageWork2 MDB2 Transacted Message1");
+                ((TSMessageListenerInterface) xaep1).onMessage("IBAnnoMessageWork2 MDB2 Transacted Message2");
+                ((TSMessageListenerInterface) xaep2).onMessage("IBAnnoMessageWork2 MDB2 Transacted Message3");
 
-        Debug.trace("IBAnnoMessageWork2 MDB2 Transacted Message1");
-        Debug.trace("IBAnnoMessageWork2 MDB2 Transacted Message2");
-        Debug.trace("IBAnnoMessageWork2 MDB2 Transacted Message3");
+                Debug.trace("IBAnnoMessageWork2 MDB2 Transacted Message1");
+                Debug.trace("IBAnnoMessageWork2 MDB2 Transacted Message2");
+                Debug.trace("IBAnnoMessageWork2 MDB2 Transacted Message3");
 
-        break;
-      } catch (AppException ex) {
-        ex.printStackTrace();
-      } catch (UnavailableException ex) {
-        try {
-          Thread.currentThread().sleep(3000);
-        } catch (Exception e) {
-          e.printStackTrace();
+                break;
+            } catch (AppException ex) {
+                ex.printStackTrace();
+            } catch (UnavailableException ex) {
+                try {
+                    Thread.currentThread().sleep(3000);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
-      }
     }
 
-  }
+    public Method getOnMessageMethod() {
 
-  public Method getOnMessageMethod() {
+        Method onMessageMethod = null;
+        try {
+            Class msgListenerClass = TSMessageListenerInterface.class;
+            Class[] paramTypes = {java.lang.String.class};
+            onMessageMethod = msgListenerClass.getMethod("onMessage", paramTypes);
 
-    Method onMessageMethod = null;
-    try {
-      Class msgListenerClass = TSMessageListenerInterface.class;
-      Class[] paramTypes = { java.lang.String.class };
-      onMessageMethod = msgListenerClass.getMethod("onMessage", paramTypes);
-
-    } catch (NoSuchMethodException ex) {
-      ex.printStackTrace();
+        } catch (NoSuchMethodException ex) {
+            ex.printStackTrace();
+        }
+        return onMessageMethod;
     }
-    return onMessageMethod;
-  }
 
-  public void release() {
-  }
+    public void release() {}
 
-  public void stop() {
-    this.stop = true;
-  }
+    public void stop() {
+        this.stop = true;
+    }
 
-  public String toString() {
-    return name;
-  }
-
+    public String toString() {
+        return name;
+    }
 }

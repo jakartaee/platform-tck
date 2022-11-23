@@ -20,28 +20,27 @@
 
 package com.sun.ts.tests.ejb30.assembly.common;
 
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import java.net.URL;
 
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 public interface AssemblyCommonIF {
-  public static final String RESOURCE_NAME = "foo.txt";
+    public static final String RESOURCE_NAME = "foo.txt";
 
-  public static final String EAR_LIB_JAR_NAME = "/shared.jar";
+    public static final String EAR_LIB_JAR_NAME = "/shared.jar";
 
-  int getPostConstructCalls();
+    int getPostConstructCalls();
 
-  int remoteAdd(int a, int b);
+    int remoteAdd(int a, int b);
 
-  String callHelloBean();
+    String callHelloBean();
 
-  void libSubdirNotScanned() throws TestFailedException;
+    void libSubdirNotScanned() throws TestFailedException;
 
-  void earLibNotInClasspath() throws TestFailedException;
+    void earLibNotInClasspath() throws TestFailedException;
 
-  String dirUsedInClassPath();
+    String dirUsedInClassPath();
 
-  URL getResource(String name);
+    URL getResource(String name);
 
-  String getResourceContent(String name) throws TestFailedException;
+    String getResourceContent(String name) throws TestFailedException;
 }

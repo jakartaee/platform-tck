@@ -60,51 +60,44 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.filter;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public final class DoFilter_Filter implements Filter {
 
-  // The filter configuration object we are associated with. If this value
-  // is null, this filter instance is not currently configured.
-  private FilterConfig filterConfig = null;
+    // The filter configuration object we are associated with. If this value
+    // is null, this filter instance is not currently configured.
+    private FilterConfig filterConfig = null;
 
-  public void doFilter(ServletRequest request, ServletResponse response,
-      FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-    boolean passed = false;
-    PrintWriter pw = response.getWriter();
+        boolean passed = false;
+        PrintWriter pw = response.getWriter();
 
-    if (filterConfig == null) {
-      passed = false;
-      pw.println(
-          "doFilter of DoFilter_Filter was called but this filter instance is not currently configured");
-    } else {
-      passed = true;
-      pw.println("doFilter was successfully called in DoFilter_Filter");
+        if (filterConfig == null) {
+            passed = false;
+            pw.println("doFilter of DoFilter_Filter was called but this filter instance is not currently configured");
+        } else {
+            passed = true;
+            pw.println("doFilter was successfully called in DoFilter_Filter");
+        }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
 
-  }
+    // Remove the filter configuration object for this filter.
+    public void destroy() {}
 
-  // Remove the filter configuration object for this filter.
-  public void destroy() {
-  }
+    // initialize the filter configuration object for this filter.
 
-  // initialize the filter configuration object for this filter.
-
-  public void init(FilterConfig filterConfig) {
-    this.filterConfig = filterConfig;
-
-  }
-
+    public void init(FilterConfig filterConfig) {
+        this.filterConfig = filterConfig;
+    }
 }

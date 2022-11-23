@@ -20,47 +20,38 @@
 
 package com.sun.ts.tests.servlet.spec.security.secbasic;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class ServletSecTestServlet extends HttpServlet {
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    PrintWriter out = response.getWriter();
+        PrintWriter out = response.getWriter();
 
-    System.out.println("Inside  ServletSecTestServlet ....." + "<BR>");
-    System.out.println("The user principal is: "
-        + request.getUserPrincipal().getName() + "<BR>");
-    System.err.println("The user principal is: "
-        + request.getUserPrincipal().getName() + "<BR>");
+        System.out.println("Inside  ServletSecTestServlet ....." + "<BR>");
+        System.out.println(
+                "The user principal is: " + request.getUserPrincipal().getName() + "<BR>");
+        System.err.println(
+                "The user principal is: " + request.getUserPrincipal().getName() + "<BR>");
 
-    out.println("The user principal is: " + request.getUserPrincipal().getName()
-        + "<BR>");
-    out.println("getRemoteUser(): " + request.getRemoteUser() + "<BR>");
+        out.println("The user principal is: " + request.getUserPrincipal().getName() + "<BR>");
+        out.println("getRemoteUser(): " + request.getRemoteUser() + "<BR>");
 
-    out.println("Inside  ServletSecTestServlet ....." + "<BR>"); // used for
-                                                                 // validating
-                                                                 // test7
+        out.println("Inside  ServletSecTestServlet ....." + "<BR>"); // used for
+        // validating
+        // test7
 
-    // Surround these with !'s so they are easier to search for.
-    // (i.e. we can search for !true! or !false!)
-    out.println(
-        "isUserInRole(\"ADM\"): !" + request.isUserInRole("ADM") + "!<BR>");
-    out.println(
-        "isUserInRole(\"MGR\"): !" + request.isUserInRole("MGR") + "!<BR>");
-    out.println(
-        "isUserInRole(\"VP\"): !" + request.isUserInRole("VP") + "!<BR>");
-    out.println(
-        "isUserInRole(\"EMP\"): !" + request.isUserInRole("EMP") + "!<BR>");
-    out.println("isUserInRole(\"Administrator\"): !"
-        + request.isUserInRole("Administrator") + "!<BR>");
-
-  }
+        // Surround these with !'s so they are easier to search for.
+        // (i.e. we can search for !true! or !false!)
+        out.println("isUserInRole(\"ADM\"): !" + request.isUserInRole("ADM") + "!<BR>");
+        out.println("isUserInRole(\"MGR\"): !" + request.isUserInRole("MGR") + "!<BR>");
+        out.println("isUserInRole(\"VP\"): !" + request.isUserInRole("VP") + "!<BR>");
+        out.println("isUserInRole(\"EMP\"): !" + request.isUserInRole("EMP") + "!<BR>");
+        out.println("isUserInRole(\"Administrator\"): !" + request.isUserInRole("Administrator") + "!<BR>");
+    }
 }

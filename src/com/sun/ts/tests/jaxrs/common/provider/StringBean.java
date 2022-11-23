@@ -22,23 +22,23 @@ package com.sun.ts.tests.jaxrs.common.provider;
  * mutable string.
  */
 public class StringBean {
-  private String header;
+    private String header;
 
-  public String get() {
-    return header;
-  }
+    public String get() {
+        return header;
+    }
 
-  public void set(String header) {
-    this.header = header;
-  }
+    public void set(String header) {
+        this.header = header;
+    }
 
-  @Override
-  public String toString() {
-    return "StringBean. To get a value, use rather #get() method.";
-  }
+    @Override
+    public String toString() {
+        return "StringBean. To get a value, use rather #get() method.";
+    }
 
-  public StringBean(String header) {
-    super();
-    this.header = header;
-  }
+    public StringBean(String header) {
+        super();
+        this.header = header;
+    }
 }

@@ -17,8 +17,8 @@
 package com.sun.ts.lib.harness;
 
 import com.sun.ts.lib.util.*;
-import java.util.*;
 import java.io.*;
+import java.util.*;
 import java.util.StringTokenizer;
 
 /**
@@ -30,154 +30,149 @@ import java.util.StringTokenizer;
  */
 public class CommonAppVerifier {
 
-  public final static String COMMONARCHIVES_PROP_FILE_NAME = "commonarchives.properties";
+    public static final String COMMONARCHIVES_PROP_FILE_NAME = "commonarchives.properties";
 
-  public final static String EXCLUDE_KEY = "exclude.dir";
+    public static final String EXCLUDE_KEY = "exclude.dir";
 
-  private static Properties mapping;
+    private static Properties mapping;
 
-  private static String[] keys; // sorted ascending
+    private static String[] keys; // sorted ascending
 
-  private static String[] excludes;
+    private static String[] excludes;
 
-  private String relativeTestDir;
+    private String relativeTestDir;
 
-  private static boolean loaded;
+    private static boolean loaded;
 
-  private static String distDir;
+    private static String distDir;
 
-  // an uninitialized singleton instance
-  private static CommonAppVerifier instance = new CommonAppVerifier();
+    // an uninitialized singleton instance
+    private static CommonAppVerifier instance = new CommonAppVerifier();
 
-  private CommonAppVerifier() {
-  }
+    private CommonAppVerifier() {}
 
-  public static CommonAppVerifier getInstance(File path) {
-    if (instance == null) {
-      instance = new CommonAppVerifier();
-    }
-    instance.init(path);
-    String pathString = path.getPath();
-    distDir = pathString.substring(0,
-        pathString.lastIndexOf("dist" + File.separator) + 5);
-    return instance;
-  }
-
-  private void loadExcludes() {
-    if (mapping == null) {
-      excludes = TestUtil.EMPTY_STRING_ARRAY;
-    } else {
-      excludes = ConfigUtil.stringToArray((String) mapping.remove(EXCLUDE_KEY));
-    }
-  }
-
-  private void init(File file) {
-    if (!loaded) {
-      mapping = ConfigUtil.loadPropertiesFor(COMMONARCHIVES_PROP_FILE_NAME);
-
-      if (File.separator.equals("\\")) {
-        TestUtil.logHarnessDebug(
-            "On Windows, so we must normalize the path returned from commonarchives.properties");
-
-        Enumeration e = mapping.propertyNames();
-
-        while (e.hasMoreElements()) {
-          String key = (String) e.nextElement();
-          String val = mapping.getProperty(key);
-          mapping.setProperty(key, val.replace('/', File.separatorChar));
+    public static CommonAppVerifier getInstance(File path) {
+        if (instance == null) {
+            instance = new CommonAppVerifier();
         }
-      }
-
-      loadExcludes();
-      keys = ConfigUtil.loadKeysFrom(mapping);
-      loaded = true;
-    }
-    if (mapping != null) {
-      this.relativeTestDir = TestUtil.getRelativePath(file.getPath());
+        instance.init(path);
+        String pathString = path.getPath();
+        distDir = pathString.substring(0, pathString.lastIndexOf("dist" + File.separator) + 5);
+        return instance;
     }
 
-  }
-
-  private boolean isExcluded() {
-    for (int i = 0; i < excludes.length; i++) {
-      if (relativeTestDir.startsWith(excludes[i])) {
-        TestUtil.logHarnessDebug(
-            "CommonAppVerifier:  This test dir is excluded from those listed in commonarchives.properties.");
-        TestUtil.logHarnessDebug(
-            "CommonAppVerifier:  Please check your exclude list in the commonarchives.properties file.");
-        return true;
-      }
-    }
-    return false;
-  }
-
-  /**
-   * This method returns the common archives for a given test directory
-   *
-   * @return the common archives for a given test directory
-   */
-  public String[] getCommonApps() {
-
-    String[] result;
-
-    System.err.println("getCommonApps - relativeTestDir = " + relativeTestDir);
-    if (mapping == null || keys == null || isExcluded()) {
-      result = TestUtil.EMPTY_STRING_ARRAY;
-    } else {
-      result = getMappingValue();
-    }
-
-    return result;
-  }
-
-  private String[] getMappingValue() {
-
-    String relativePath = "commonarchives." + relativeTestDir;
-    for (int i = keys.length - 1; i >= 0; i--) { // must traverse in reverse
-                                                 // order.
-      if (relativePath.startsWith(keys[i])) {
-
-        // check that that we don't have a test leaf dir thet is a subset
-        // of another test leaf dir - e.g. jaxrs
-        String relativePathLeafDir = relativePath
-            .substring(relativePath.lastIndexOf("/"));
-        String keyLeafDir = keys[i].substring(keys[i].lastIndexOf("/"));
-        // TestUtil.logHarnessDebug("relativePathLeafDir = " +
-        // relativePathLeafDir);
-        // TestUtil.logHarnessDebug("keyLeafDir = " + keyLeafDir);
-
-        if (!relativePathLeafDir.startsWith(keyLeafDir)
-            || relativePathLeafDir.equals(keyLeafDir)) {
-          return stringToArray(mapping.getProperty(keys[i]));
+    private void loadExcludes() {
+        if (mapping == null) {
+            excludes = TestUtil.EMPTY_STRING_ARRAY;
+        } else {
+            excludes = ConfigUtil.stringToArray((String) mapping.remove(EXCLUDE_KEY));
         }
-      }
-    }
-    return TestUtil.EMPTY_STRING_ARRAY;
-  }
-
-  private String[] stringToArray(String s) {
-    if (s == null) {
-      return TestUtil.EMPTY_STRING_ARRAY;
     }
 
-    StringTokenizer st = new StringTokenizer(s, " ,;\t\r\n\f");
-    int tokenCount = st.countTokens();
-    if (tokenCount == 0) {
-      return TestUtil.EMPTY_STRING_ARRAY;
+    private void init(File file) {
+        if (!loaded) {
+            mapping = ConfigUtil.loadPropertiesFor(COMMONARCHIVES_PROP_FILE_NAME);
+
+            if (File.separator.equals("\\")) {
+                TestUtil.logHarnessDebug(
+                        "On Windows, so we must normalize the path returned from commonarchives.properties");
+
+                Enumeration e = mapping.propertyNames();
+
+                while (e.hasMoreElements()) {
+                    String key = (String) e.nextElement();
+                    String val = mapping.getProperty(key);
+                    mapping.setProperty(key, val.replace('/', File.separatorChar));
+                }
+            }
+
+            loadExcludes();
+            keys = ConfigUtil.loadKeysFrom(mapping);
+            loaded = true;
+        }
+        if (mapping != null) {
+            this.relativeTestDir = TestUtil.getRelativePath(file.getPath());
+        }
     }
-    String[] result = new String[tokenCount];
-    for (int i = 0; st.hasMoreTokens(); i++) {
-      result[i] = distDir + st.nextToken();
+
+    private boolean isExcluded() {
+        for (int i = 0; i < excludes.length; i++) {
+            if (relativeTestDir.startsWith(excludes[i])) {
+                TestUtil.logHarnessDebug(
+                        "CommonAppVerifier:  This test dir is excluded from those listed in commonarchives.properties.");
+                TestUtil.logHarnessDebug(
+                        "CommonAppVerifier:  Please check your exclude list in the commonarchives.properties file.");
+                return true;
+            }
+        }
+        return false;
     }
-    return result;
-  }
+
+    /**
+     * This method returns the common archives for a given test directory
+     *
+     * @return the common archives for a given test directory
+     */
+    public String[] getCommonApps() {
+
+        String[] result;
+
+        System.err.println("getCommonApps - relativeTestDir = " + relativeTestDir);
+        if (mapping == null || keys == null || isExcluded()) {
+            result = TestUtil.EMPTY_STRING_ARRAY;
+        } else {
+            result = getMappingValue();
+        }
+
+        return result;
+    }
+
+    private String[] getMappingValue() {
+
+        String relativePath = "commonarchives." + relativeTestDir;
+        for (int i = keys.length - 1; i >= 0; i--) { // must traverse in reverse
+            // order.
+            if (relativePath.startsWith(keys[i])) {
+
+                // check that that we don't have a test leaf dir thet is a subset
+                // of another test leaf dir - e.g. jaxrs
+                String relativePathLeafDir = relativePath.substring(relativePath.lastIndexOf("/"));
+                String keyLeafDir = keys[i].substring(keys[i].lastIndexOf("/"));
+                // TestUtil.logHarnessDebug("relativePathLeafDir = " +
+                // relativePathLeafDir);
+                // TestUtil.logHarnessDebug("keyLeafDir = " + keyLeafDir);
+
+                if (!relativePathLeafDir.startsWith(keyLeafDir) || relativePathLeafDir.equals(keyLeafDir)) {
+                    return stringToArray(mapping.getProperty(keys[i]));
+                }
+            }
+        }
+        return TestUtil.EMPTY_STRING_ARRAY;
+    }
+
+    private String[] stringToArray(String s) {
+        if (s == null) {
+            return TestUtil.EMPTY_STRING_ARRAY;
+        }
+
+        StringTokenizer st = new StringTokenizer(s, " ,;\t\r\n\f");
+        int tokenCount = st.countTokens();
+        if (tokenCount == 0) {
+            return TestUtil.EMPTY_STRING_ARRAY;
+        }
+        String[] result = new String[tokenCount];
+        for (int i = 0; st.hasMoreTokens(); i++) {
+            result[i] = distDir + st.nextToken();
+        }
+        return result;
+    }
 }
 /*
  * public class CommonAppVerifier { private static Map htValidApps; private
  * String sRelativeTestPath = "";
- * 
+ *
  * private CommonAppVerifier() {}
- * 
+ *
  * //use specific classloader if the class-to-load is not in the classpath of
  * the current vm. private static void getDeliverableTable (ClassLoader
  * classLoader) { if (htValidApps == null) { try { htValidApps =
@@ -185,11 +180,11 @@ public class CommonAppVerifier {
  * catch (Exception e) { TestUtil.
  * logHarness("ERROR:  Failed to get common apps from the Deliverable instance."
  * , e); } } }
- * 
+ *
  * public static String[] getCommonApps (String sPath) { return
  * getCommonApps(sPath, null); }
- * 
- * 
+ *
+ *
  * public static String[] getCommonApps (String sPath, ClassLoader classLoader)
  * { //get the mappings from the active deliverable
  * getDeliverableTable(classLoader); String sPathCopy = sPath; String
@@ -207,13 +202,13 @@ public class CommonAppVerifier {
  * sPathCopy = sPathCopy.substring(0, sPathCopy.length() - 1); }
  * sRelativeTestPath = (sPathCopy.substring(iTSDirLength +
  * 1)).replace(File.separatorChar, '_');
- * 
+ *
  * if(TestUtil.harnessDebug) TestUtil.logHarnessDebug("sRelativeTestPath = " +
  * sRelativeTestPath);
- * 
+ *
  * if (sTSHome.endsWith(File.separator)) { sTSHome = sTSHome.substring(0,
  * sTSHome.length() - 1); }
- * 
+ *
  * if(TestUtil.harnessDebug)
  * TestUtil.logHarnessDebug("TS_HOME from backtracing=" + sTSHome); do { sVal2 =
  * (String[])htValidApps.get(sRelativeTestPathCopy + ".common_apps"); if
@@ -227,18 +222,18 @@ public class CommonAppVerifier {
  * path if(sVal2 == null) { return null; } String[] result = new
  * String[sVal2.length]; for (int ii = 0; ii < sVal2.length; ii++) { result[ii]
  * = sTSHome + convertDashesToSlashes(sVal2[ii]); } return result; }
- * 
+ *
  * private static String getNextLevelUp (String sDottedPath) { int index = 0;
  * String sNewPath = null; index = sDottedPath.lastIndexOf("-"); if (index !=
  * -1) sNewPath = sDottedPath.substring(0, index); return sNewPath; }
- * 
+ *
  * private static String convertSlashesToDashes (String sTestDir) { String
  * sRelativeTestPath = (sTestDir.substring(sTestDir.indexOf(File.separator +
  * "ts" + File.separator + "tests" + File.separator) +
  * 4)).replace(File.separatorChar, '-'); if(TestUtil.harnessDebug)
  * TestUtil.logHarnessDebug("convertSlashesToDashes(): sRelativeTestPath = " +
  * sRelativeTestPath); return sRelativeTestPath; }
- * 
+ *
  * private static String convertDashesToSlashes (String sTestDir) { String
  * sRelativeTestPath = sTestDir.replace('-', File.separatorChar);
  * if(TestUtil.harnessDebug)

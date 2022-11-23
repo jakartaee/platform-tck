@@ -24,43 +24,42 @@ import com.sun.ts.tests.ejb30.bb.async.common.metadata.PlainInterfaceTypeLevelRe
  */
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
-public class JsfClient
-    extends com.sun.ts.tests.ejb30.bb.async.common.metadata.MetadataJsfClientBase {
+public class JsfClient extends com.sun.ts.tests.ejb30.bb.async.common.metadata.MetadataJsfClientBase {
 
-  @Override
-  protected PlainInterfaceTypeLevelIF getBeanClassLevel() {
-    return (PlainInterfaceTypeLevelIF) lookup("beanClassLevel",
-        "BeanClassLevelBean", PlainInterfaceTypeLevelIF.class);
-  }
+    @Override
+    protected PlainInterfaceTypeLevelIF getBeanClassLevel() {
+        return (PlainInterfaceTypeLevelIF)
+                lookup("beanClassLevel", "BeanClassLevelBean", PlainInterfaceTypeLevelIF.class);
+    }
 
-  @Override
-  protected PlainInterfaceTypeLevelRemoteIF getBeanClassLevelRemote() {
-    return (PlainInterfaceTypeLevelRemoteIF) lookup("beanClassLevelRemote",
-        "BeanClassLevelBean", PlainInterfaceTypeLevelRemoteIF.class);
-  }
+    @Override
+    protected PlainInterfaceTypeLevelRemoteIF getBeanClassLevelRemote() {
+        return (PlainInterfaceTypeLevelRemoteIF)
+                lookup("beanClassLevelRemote", "BeanClassLevelBean", PlainInterfaceTypeLevelRemoteIF.class);
+    }
 
-  /*
-   * @testName: beanClassLevelReturnType
-   * 
-   * @test_Strategy:verify 2 types of return types in bean class: Future<T> and
-   * T.
-   */
-  /*
-   * @testName: beanClassLevelRuntimeException
-   * 
-   * @test_Strategy: for async method with void return type, RuntimeException is
-   * not visible to the client. For Future return type, RuntimeException is
-   * wrapped as EJBException and then as ExecutionException.
-   */
-  /*
-   * @testName: customFutureImpl
-   * 
-   * @test_Strategy: Async method returning a custom Future impl.
-   */
-  /*
-   * @testName: beanClassLevelSyncMethod
-   * 
-   * @test_Strategy: syncMethodException is implemented in a bean superclass
-   * that is not annotated with @Asynchronous.
-   */
+    /*
+     * @testName: beanClassLevelReturnType
+     *
+     * @test_Strategy:verify 2 types of return types in bean class: Future<T> and
+     * T.
+     */
+    /*
+     * @testName: beanClassLevelRuntimeException
+     *
+     * @test_Strategy: for async method with void return type, RuntimeException is
+     * not visible to the client. For Future return type, RuntimeException is
+     * wrapped as EJBException and then as ExecutionException.
+     */
+    /*
+     * @testName: customFutureImpl
+     *
+     * @test_Strategy: Async method returning a custom Future impl.
+     */
+    /*
+     * @testName: beanClassLevelSyncMethod
+     *
+     * @test_Strategy: syncMethodException is implemented in a bean superclass
+     * that is not annotated with @Asynchronous.
+     */
 }

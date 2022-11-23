@@ -20,12 +20,9 @@
 
 package com.sun.ts.tests.jpa.ee.packaging.ejb.standalone;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.ee.common.B;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBException;
@@ -33,100 +30,96 @@ import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 import jakarta.persistence.EntityManager;
+import java.util.Properties;
 
 @Stateful(name = "Stateful3Bean")
-@Remote({ Stateful3IF.class })
+@Remote({Stateful3IF.class})
 public class Stateful3Bean implements Stateful3IF {
 
-  private EntityManager entityManager;
+    private EntityManager entityManager;
 
-  @PostConstruct
-  public void prepareEnvironment() {
-    try {
-      TestUtil.logTrace("In PostContruct");
-      entityManager = (EntityManager) sessionContext
-          .lookup("persistence/MyPersistenceContext");
-    } catch (Exception e) {
-      TestUtil.logErr(
-          " In PostConstruct: Exception caught while looking up EntityManager",
-          e);
-    }
-  }
-
-  public SessionContext sessionContext;
-
-  private static final B bRef[] = new B[5];
-
-  @Resource
-  public void setSessionContext(SessionContext sessionContext) {
-    this.sessionContext = sessionContext;
-  }
-
-  public void createTestData() {
-    TestUtil.logTrace("createTestData");
-
-    try {
-      TestUtil.logTrace("Create 5 Bees");
-      bRef[0] = new B("1", "b1", 1);
-      bRef[1] = new B("2", "b2", 2);
-      bRef[2] = new B("3", "b3", 3);
-      bRef[3] = new B("4", "b4", 4);
-      bRef[4] = new B("5", "b5", 5);
-
-      TestUtil.logTrace("Start to persist Bees ");
-      for (B b : bRef) {
-        if (b != null) {
-          entityManager.persist(b);
-          TestUtil.logTrace("persisted B " + b);
+    @PostConstruct
+    public void prepareEnvironment() {
+        try {
+            TestUtil.logTrace("In PostContruct");
+            entityManager = (EntityManager) sessionContext.lookup("persistence/MyPersistenceContext");
+        } catch (Exception e) {
+            TestUtil.logErr(" In PostConstruct: Exception caught while looking up EntityManager", e);
         }
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected while creating test data:" + e);
     }
-  }
 
-  public void removeTestData() {
-    try {
-      entityManager.createNativeQuery("DELETE FROM BEJB_1X1_BI_BTOB")
-          .executeUpdate();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception caught while cleaning up:", e);
+    public SessionContext sessionContext;
+
+    private static final B bRef[] = new B[5];
+
+    @Resource
+    public void setSessionContext(SessionContext sessionContext) {
+        this.sessionContext = sessionContext;
     }
-    // clear the cache if the provider supports caching otherwise
-    // the evictAll is ignored.
-    TestUtil.logTrace("Clearing cache");
-    entityManager.getEntityManagerFactory().getCache().evictAll();
-    TestUtil.logTrace("cleanup complete");
-  }
 
-  public void init(Properties p) {
-    TestUtil.logTrace("init");
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
+    public void createTestData() {
+        TestUtil.logTrace("createTestData");
+
+        try {
+            TestUtil.logTrace("Create 5 Bees");
+            bRef[0] = new B("1", "b1", 1);
+            bRef[1] = new B("2", "b2", 2);
+            bRef[2] = new B("3", "b3", 3);
+            bRef[3] = new B("4", "b4", 4);
+            bRef[4] = new B("5", "b5", 5);
+
+            TestUtil.logTrace("Start to persist Bees ");
+            for (B b : bRef) {
+                if (b != null) {
+                    entityManager.persist(b);
+                    TestUtil.logTrace("persisted B " + b);
+                }
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("Unexpected while creating test data:" + e);
+        }
     }
-  }
 
-  public boolean test1() {
-    TestUtil.logTrace("Begin test1");
-    boolean pass = false;
-
-    try {
-
-      createTestData();
-      B anotherB = entityManager.find(B.class, "3");
-
-      if (anotherB != null) {
-        TestUtil.logTrace("newB found" + anotherB.getName());
-        pass = true;
-      }
-
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception :", e);
+    public void removeTestData() {
+        try {
+            entityManager.createNativeQuery("DELETE FROM BEJB_1X1_BI_BTOB").executeUpdate();
+        } catch (Exception e) {
+            TestUtil.logErr("Unexpected Exception caught while cleaning up:", e);
+        }
+        // clear the cache if the provider supports caching otherwise
+        // the evictAll is ignored.
+        TestUtil.logTrace("Clearing cache");
+        entityManager.getEntityManagerFactory().getCache().evictAll();
+        TestUtil.logTrace("cleanup complete");
     }
-    return pass;
-  }
 
+    public void init(Properties p) {
+        TestUtil.logTrace("init");
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
+        }
+    }
+
+    public boolean test1() {
+        TestUtil.logTrace("Begin test1");
+        boolean pass = false;
+
+        try {
+
+            createTestData();
+            B anotherB = entityManager.find(B.class, "3");
+
+            if (anotherB != null) {
+                TestUtil.logTrace("newB found" + anotherB.getName());
+                pass = true;
+            }
+
+        } catch (Exception e) {
+            TestUtil.logErr("Unexpected Exception :", e);
+        }
+        return pass;
+    }
 }

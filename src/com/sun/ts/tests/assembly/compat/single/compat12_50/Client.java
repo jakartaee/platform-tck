@@ -20,84 +20,82 @@
 
 package com.sun.ts.tests.assembly.compat.single.compat12_50;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  /** JNDI Name we use to lookup the bean */
-  public static final String lookupName = "java:comp/env/ejb/TestBean";
+    /** JNDI Name we use to lookup the bean */
+    public static final String lookupName = "java:comp/env/ejb/TestBean";
 
-  private TestBeanHome home;
+    private TestBeanHome home;
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   *
-   */
-  public void setup(String[] args, Properties p) throws Fault {
-    props = p;
-
-    try {
-      logMsg("[Client] setup(): getting Naming Context...");
-      nctx = new TSNamingContext();
-
-      logTrace("[Client] Looking up bean Home...");
-      home = (TestBeanHome) nctx.lookup(lookupName, TestBeanHome.class);
-
-      logMsg("[Client] Setup OK!");
-    } catch (Exception e) {
-      throw new Fault("[Client] Setup failed:" + e, e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /**
-   * @testName: test12Compat
-   *
-   * @assertion_ids: JavaEE:SPEC:283; JavaEE:SPEC:284
-   *
-   * @test_Strategy: Package an application with an application client and an
-   *                 EJB jar file. Use JavaEE 5.0 DD for the 2 modules, and a
-   *                 JavaEE 1.2 DD for the application DD.
-   *
-   *                 Check that: - we can deploy the application, - the
-   *                 application client can lookup a bean - the application
-   *                 client can create a bean instance - the application client
-   *                 can invoke a business method on that instance
-   */
-  public void test12Compat() throws Fault {
-    TestBean bean;
-    boolean pass;
+    /*
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     *
+     */
+    public void setup(String[] args, Properties p) throws Fault {
+        props = p;
 
-    try {
-      logTrace("[Client] Creating bean instance...");
-      bean = home.create();
-      bean.initLogging(props);
+        try {
+            logMsg("[Client] setup(): getting Naming Context...");
+            nctx = new TSNamingContext();
 
-      logTrace("[Client] Calling bean...");
-      pass = bean.ping();
-      if (!pass) {
-        throw new Fault("Compat single test failed");
-      }
-    } catch (Exception e) {
-      throw new Fault("Compat single test failed: " + e, e);
+            logTrace("[Client] Looking up bean Home...");
+            home = (TestBeanHome) nctx.lookup(lookupName, TestBeanHome.class);
+
+            logMsg("[Client] Setup OK!");
+        } catch (Exception e) {
+            throw new Fault("[Client] Setup failed:" + e, e);
+        }
     }
-  }
 
-  public void cleanup() throws Fault {
-    logMsg("[Client] Cleanup()");
-  }
+    /**
+     * @testName: test12Compat
+     *
+     * @assertion_ids: JavaEE:SPEC:283; JavaEE:SPEC:284
+     *
+     * @test_Strategy: Package an application with an application client and an
+     *                 EJB jar file. Use JavaEE 5.0 DD for the 2 modules, and a
+     *                 JavaEE 1.2 DD for the application DD.
+     *
+     *                 Check that: - we can deploy the application, - the
+     *                 application client can lookup a bean - the application
+     *                 client can create a bean instance - the application client
+     *                 can invoke a business method on that instance
+     */
+    public void test12Compat() throws Fault {
+        TestBean bean;
+        boolean pass;
 
+        try {
+            logTrace("[Client] Creating bean instance...");
+            bean = home.create();
+            bean.initLogging(props);
+
+            logTrace("[Client] Calling bean...");
+            pass = bean.ping();
+            if (!pass) {
+                throw new Fault("Compat single test failed");
+            }
+        } catch (Exception e) {
+            throw new Fault("Compat single test failed: " + e, e);
+        }
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("[Client] Cleanup()");
+    }
 }

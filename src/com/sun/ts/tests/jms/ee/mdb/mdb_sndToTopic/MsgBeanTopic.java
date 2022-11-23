@@ -20,14 +20,9 @@
 
 package com.sun.ts.tests.jms.ee.mdb.mdb_sndToTopic;
 
-import java.util.Properties;
-
-import javax.sql.DataSource;
-
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.common.JmsUtil;
-
 import jakarta.ejb.EJBException;
 import jakarta.ejb.MessageDrivenBean;
 import jakarta.ejb.MessageDrivenContext;
@@ -39,103 +34,103 @@ import jakarta.jms.QueueConnectionFactory;
 import jakarta.jms.QueueSender;
 import jakarta.jms.QueueSession;
 import jakarta.jms.TopicConnectionFactory;
+import java.util.Properties;
+import javax.sql.DataSource;
 
 public class MsgBeanTopic implements MessageDrivenBean, MessageListener {
 
-  // properties object needed for logging, get this from the message object
-  // passed into
-  // the onMessage method.
-  private java.util.Properties p = null;
+    // properties object needed for logging, get this from the message object
+    // passed into
+    // the onMessage method.
+    private java.util.Properties p = null;
 
-  private TSNamingContext context = null;
+    private TSNamingContext context = null;
 
-  private MessageDrivenContext mdc = null;
+    private MessageDrivenContext mdc = null;
 
-  // JMS
-  private QueueConnectionFactory queueConFactory = null;
+    // JMS
+    private QueueConnectionFactory queueConFactory = null;
 
-  private TopicConnectionFactory topicConFactory = null;
+    private TopicConnectionFactory topicConFactory = null;
 
-  private DataSource dataSource = null;
+    private DataSource dataSource = null;
 
-  private QueueConnectionFactory qcFactory = null;
+    private QueueConnectionFactory qcFactory = null;
 
-  private QueueConnection connection = null;
+    private QueueConnection connection = null;
 
-  private Queue replyQueue = null;
+    private Queue replyQueue = null;
 
-  public MsgBeanTopic() {
-    TestUtil.logTrace("@MsgBeanTopic - @MsgBean()!");
-  };
-
-  public void ejbCreate() {
-    TestUtil.logTrace("@MsgBeanTopic - @MsgBean-ejbCreate() !!");
-    try {
-      TSNamingContext context = new TSNamingContext();
-      qcFactory = (QueueConnectionFactory) context
-          .lookup("java:comp/env/jms/MyQueueConnectionFactory");
-      replyQueue = (Queue) context.lookup("java:comp/env/jms/MDB_QUEUE_REPLY");
-      p = new Properties();
-
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("MDB ejbCreate Error!", e);
+    public MsgBeanTopic() {
+        TestUtil.logTrace("@MsgBeanTopic - @MsgBean()!");
     }
-  }
+    ;
 
-  public void onMessage(Message msg) {
-
-    JmsUtil.initHarnessProps(msg, p);
-    TestUtil.logTrace("@MsgBeanTopic - MsgBeanTopic - onMessage! " + msg);
-
-    try {
-      TestUtil.logTrace("In MsgBeanForTopic::onMessage() : " + msg);
-      TestUtil.logTrace("calling sendReply");
-      sendReply(msg);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-    }
-
-  }
-
-  private void sendReply(Message msg) {
-    try {
-      connection = qcFactory.createQueueConnection();
-
-      // get the reply to queue
-      System.out.println("From sendReply");
-      connection.start();
-      System.out.println("started the connection");
-
-      QueueSession session = connection.createQueueSession(true, 0);
-      jakarta.jms.TextMessage reply = session.createTextMessage();
-      QueueSender replier = session.createSender(replyQueue);
-      reply.setText("MDB Responding to message receipt");
-      reply.setStringProperty("MessageType",
-          msg.getStringProperty("MessageType"));
-
-      TestUtil.logTrace("sending a msg to MDB_QUEUE_REPLY");
-      replier.send(reply);
-      System.out.println("Sent the message");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-    } finally {
-      if (connection != null) {
+    public void ejbCreate() {
+        TestUtil.logTrace("@MsgBeanTopic - @MsgBean-ejbCreate() !!");
         try {
-          connection.close();
-        } catch (Exception ee) {
-          TestUtil.printStackTrace(ee);
+            TSNamingContext context = new TSNamingContext();
+            qcFactory = (QueueConnectionFactory) context.lookup("java:comp/env/jms/MyQueueConnectionFactory");
+            replyQueue = (Queue) context.lookup("java:comp/env/jms/MDB_QUEUE_REPLY");
+            p = new Properties();
+
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("MDB ejbCreate Error!", e);
         }
-      }
     }
-  }
 
-  public void setMessageDrivenContext(MessageDrivenContext mdc) {
-    TestUtil.logTrace("In MsgBean::setMessageDrivenContext()!!");
-    this.mdc = mdc;
-  }
+    public void onMessage(Message msg) {
 
-  public void ejbRemove() {
-    TestUtil.logTrace("In MsgBean::remove()!!");
-  }
+        JmsUtil.initHarnessProps(msg, p);
+        TestUtil.logTrace("@MsgBeanTopic - MsgBeanTopic - onMessage! " + msg);
+
+        try {
+            TestUtil.logTrace("In MsgBeanForTopic::onMessage() : " + msg);
+            TestUtil.logTrace("calling sendReply");
+            sendReply(msg);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+        }
+    }
+
+    private void sendReply(Message msg) {
+        try {
+            connection = qcFactory.createQueueConnection();
+
+            // get the reply to queue
+            System.out.println("From sendReply");
+            connection.start();
+            System.out.println("started the connection");
+
+            QueueSession session = connection.createQueueSession(true, 0);
+            jakarta.jms.TextMessage reply = session.createTextMessage();
+            QueueSender replier = session.createSender(replyQueue);
+            reply.setText("MDB Responding to message receipt");
+            reply.setStringProperty("MessageType", msg.getStringProperty("MessageType"));
+
+            TestUtil.logTrace("sending a msg to MDB_QUEUE_REPLY");
+            replier.send(reply);
+            System.out.println("Sent the message");
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (Exception ee) {
+                    TestUtil.printStackTrace(ee);
+                }
+            }
+        }
+    }
+
+    public void setMessageDrivenContext(MessageDrivenContext mdc) {
+        TestUtil.logTrace("In MsgBean::setMessageDrivenContext()!!");
+        this.mdc = mdc;
+    }
+
+    public void ejbRemove() {
+        TestUtil.logTrace("In MsgBean::remove()!!");
+    }
 }

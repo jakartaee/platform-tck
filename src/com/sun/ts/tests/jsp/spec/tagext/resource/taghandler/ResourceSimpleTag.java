@@ -20,12 +20,7 @@
 
 package com.sun.ts.tests.jsp.spec.tagext.resource.taghandler;
 
-import java.io.IOException;
-
-import javax.sql.DataSource;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.annotation.Resource;
 import jakarta.jms.ConnectionFactory;
 import jakarta.jms.Queue;
@@ -35,133 +30,126 @@ import jakarta.jms.TopicConnectionFactory;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
+import javax.sql.DataSource;
 
 public class ResourceSimpleTag extends SimpleTagSupport {
 
-  @Resource(name = "DB1")
-  private DataSource DB1;
+    @Resource(name = "DB1")
+    private DataSource DB1;
 
-  @Resource(name = "qcFactory")
-  private QueueConnectionFactory qcFactory;
+    @Resource(name = "qcFactory")
+    private QueueConnectionFactory qcFactory;
 
-  @Resource(name = "tcFactory")
-  private TopicConnectionFactory tcFactory;
+    @Resource(name = "tcFactory")
+    private TopicConnectionFactory tcFactory;
 
-  @Resource(name = "cFactory")
-  private ConnectionFactory cFactory;
+    @Resource(name = "cFactory")
+    private ConnectionFactory cFactory;
 
-  @Resource(name = "myQueue")
-  private Queue myQueue;
+    @Resource(name = "myQueue")
+    private Queue myQueue;
 
-  @Resource(name = "myTopic")
-  private Topic myTopic;
+    @Resource(name = "myTopic")
+    private Topic myTopic;
 
-  @Resource(name = "mailSession")
-  private jakarta.mail.Session mailSession;
+    @Resource(name = "mailSession")
+    private jakarta.mail.Session mailSession;
 
-  @Resource(name = "myUrl")
-  private java.net.URL myUrl;
+    @Resource(name = "myUrl")
+    private java.net.URL myUrl;
 
-  public void doTag() throws JspException, IOException {
+    public void doTag() throws JspException, IOException {
 
-    boolean passed = true;
-    JspWriter out = getJspContext().getOut();
+        boolean passed = true;
+        JspWriter out = getJspContext().getOut();
 
-    try {
+        try {
 
-      if (DB1 != null) {
-        if (!(DB1 instanceof DataSource)) {
-          passed = false;
-          out.println("wrong type DataSource");
-        } else
-          out.println("passed DataSource");
-      } else {
-        passed = false;
-        out.println("DB1 is null");
-      }
+            if (DB1 != null) {
+                if (!(DB1 instanceof DataSource)) {
+                    passed = false;
+                    out.println("wrong type DataSource");
+                } else out.println("passed DataSource");
+            } else {
+                passed = false;
+                out.println("DB1 is null");
+            }
 
-      if (qcFactory != null) {
-        if (!(qcFactory instanceof jakarta.jms.QueueConnectionFactory)) {
-          passed = false;
-          out.println("wrong type QueueConnectionFactory");
-        } else
-          out.println("passed QueueConnectionFactory");
-      } else {
-        passed = false;
-        out.println("qcFactory is null");
-      }
+            if (qcFactory != null) {
+                if (!(qcFactory instanceof jakarta.jms.QueueConnectionFactory)) {
+                    passed = false;
+                    out.println("wrong type QueueConnectionFactory");
+                } else out.println("passed QueueConnectionFactory");
+            } else {
+                passed = false;
+                out.println("qcFactory is null");
+            }
 
-      if (tcFactory != null) {
-        if (!(tcFactory instanceof jakarta.jms.TopicConnectionFactory)) {
-          passed = false;
-          out.println("wrong type TopicConnectionFactory");
-        } else
-          out.println("passed TopicConnectionFactory");
-      } else {
-        passed = false;
-        out.println("tcFactory is null");
-      }
+            if (tcFactory != null) {
+                if (!(tcFactory instanceof jakarta.jms.TopicConnectionFactory)) {
+                    passed = false;
+                    out.println("wrong type TopicConnectionFactory");
+                } else out.println("passed TopicConnectionFactory");
+            } else {
+                passed = false;
+                out.println("tcFactory is null");
+            }
 
-      if (cFactory != null) {
-        if (!(cFactory instanceof jakarta.jms.ConnectionFactory)) {
-          out.println("wrong type ConnectionFactory");
-          passed = false;
-        } else
-          out.println("passed ConnectionFactory");
-      } else {
-        passed = false;
-        out.println("cFactory is null");
-      }
+            if (cFactory != null) {
+                if (!(cFactory instanceof jakarta.jms.ConnectionFactory)) {
+                    out.println("wrong type ConnectionFactory");
+                    passed = false;
+                } else out.println("passed ConnectionFactory");
+            } else {
+                passed = false;
+                out.println("cFactory is null");
+            }
 
-      if (myQueue != null) {
-        if (!(myQueue instanceof jakarta.jms.Queue)) {
-          out.println("wrong type Queue");
-          passed = false;
-        } else
-          out.println("passed Queue");
-      } else {
-        passed = false;
-        out.println("myQueue is null");
-      }
+            if (myQueue != null) {
+                if (!(myQueue instanceof jakarta.jms.Queue)) {
+                    out.println("wrong type Queue");
+                    passed = false;
+                } else out.println("passed Queue");
+            } else {
+                passed = false;
+                out.println("myQueue is null");
+            }
 
-      if (myTopic != null) {
-        if (!(myTopic instanceof jakarta.jms.Topic)) {
-          out.println("wrong type Topic");
-          passed = false;
-        } else
-          out.println("passed Topic");
-      } else {
-        out.println("myTopic is null");
-        passed = false;
-      }
+            if (myTopic != null) {
+                if (!(myTopic instanceof jakarta.jms.Topic)) {
+                    out.println("wrong type Topic");
+                    passed = false;
+                } else out.println("passed Topic");
+            } else {
+                out.println("myTopic is null");
+                passed = false;
+            }
 
-      if (mailSession != null) {
-        if (!(mailSession instanceof jakarta.mail.Session)) {
-          passed = false;
-          out.println("wrong type .Session");
-        } else
-          out.println("passed Session");
-      } else {
-        passed = false;
-        out.println("mailSession is null");
-      }
+            if (mailSession != null) {
+                if (!(mailSession instanceof jakarta.mail.Session)) {
+                    passed = false;
+                    out.println("wrong type .Session");
+                } else out.println("passed Session");
+            } else {
+                passed = false;
+                out.println("mailSession is null");
+            }
 
-      if (myUrl != null) {
-        if (!(myUrl instanceof java.net.URL)) {
-          passed = false;
-          out.println("wrong type URL ");
-        } else
-          out.println("passed URL ");
-      } else {
-        passed = false;
-        out.println("myUrl is null");
-      }
+            if (myUrl != null) {
+                if (!(myUrl instanceof java.net.URL)) {
+                    passed = false;
+                    out.println("wrong type URL ");
+                } else out.println("passed URL ");
+            } else {
+                passed = false;
+                out.println("myUrl is null");
+            }
 
-      if (passed == true)
-        out.println("Test PASSED.");
+            if (passed == true) out.println("Test PASSED.");
 
-    } catch (Throwable t) {
-      JspTestUtil.handleThrowable(t, out, "ResourceSimpleTag");
+        } catch (Throwable t) {
+            JspTestUtil.handleThrowable(t, out, "ResourceSimpleTag");
+        }
     }
-  }
 }

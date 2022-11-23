@@ -22,56 +22,55 @@ package com.sun.ts.tests.internal.implementation.sjsas.saaj.com.sun.xml.messagin
 
 import com.sun.javatest.Status;
 
-public class Client
-    extends com.sun.xml.messaging.saaj.client.p2p.http.handler.AbstractClient {
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+public class Client extends com.sun.xml.messaging.saaj.client.p2p.http.handler.AbstractClient {
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * @class.setup_props: ts_home; webServerHost; webServerPort; user; password;
-   * authuser; authpassword;
-   */
+    /*
+     * @class.setup_props: ts_home; webServerHost; webServerPort; user; password;
+     * authuser; authpassword;
+     */
 
-  /*
-   * @testName: BasicAuthenticationTest
-   *
-   * @assertion_ids:
-   *
-   * @test_Strategy:
-   */
+    /*
+     * @testName: BasicAuthenticationTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
 
-  /*
-   * @testName: DigestAuthenticationTest
-   *
-   * @assertion_ids:
-   *
-   * @test_Strategy:
-   */
+    /*
+     * @testName: DigestAuthenticationTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
 
-  /*
-   * @testName: HttpURLConnectionTest
-   *
-   * @assertion_ids:
-   *
-   * @test_Strategy:
-   */
+    /*
+     * @testName: HttpURLConnectionTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
 
-  /*
-   * @testName: HandlerTest
-   *
-   * @assertion_ids:
-   *
-   * @test_Strategy:
-   */
+    /*
+     * @testName: HandlerTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
 
-  /*
-   * @testName: EmptyInputStreamTest
-   *
-   * @assertion_ids:
-   *
-   * @test_Strategy:
-   */
+    /*
+     * @testName: EmptyInputStreamTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
 }

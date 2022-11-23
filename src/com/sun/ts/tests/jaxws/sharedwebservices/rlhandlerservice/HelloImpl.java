@@ -20,76 +20,65 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice;
 
-import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
-
+import com.sun.ts.lib.util.*;
 import com.sun.ts.tests.jaxws.common.*;
-
+import jakarta.annotation.Resource;
+import jakarta.jws.WebService;
 import jakarta.xml.ws.*;
+import jakarta.xml.ws.WebServiceException;
 import jakarta.xml.ws.handler.*;
 import jakarta.xml.ws.handler.soap.*;
-
-import jakarta.xml.ws.WebServiceException;
-
 import java.io.*;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.List;
-import java.util.Vector;
-import jakarta.xml.ws.handler.MessageContext;
-import jakarta.activation.DataHandler;
-import java.util.Properties;
 
-// Service Implementation Class - as outlined in JAX-WS Specification
-
-import jakarta.jws.WebService;
-import jakarta.annotation.Resource;
-
-@WebService(portName = "HelloPort", targetNamespace = "http://rlhandlerservice.org/wsdl", serviceName = "RLHandlerService", wsdlLocation = "WEB-INF/wsdl/RLHandlerService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.Hello")
-
+@WebService(
+        portName = "HelloPort",
+        targetNamespace = "http://rlhandlerservice.org/wsdl",
+        serviceName = "RLHandlerService",
+        wsdlLocation = "WEB-INF/wsdl/RLHandlerService.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.Hello")
 public class HelloImpl implements Hello {
 
-  @Resource
-  WebServiceContext wscontext;
+    @Resource
+    WebServiceContext wscontext;
 
-  public com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.MyResultType doHandlerTest1(
-      com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.MyActionType action) {
+    public com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.MyResultType doHandlerTest1(
+            com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.MyActionType action) {
 
-    Handler_Util.setTraceFlag(action.getHarnesslogtraceflag());
+        Handler_Util.setTraceFlag(action.getHarnesslogtraceflag());
 
-    Handler_Util.initTestUtil("HelloImpl", action.getHarnessloghost(),
-        action.getHarnesslogport(), action.getHarnesslogtraceflag());
+        Handler_Util.initTestUtil(
+                "HelloImpl", action.getHarnessloghost(), action.getHarnesslogport(), action.getHarnesslogtraceflag());
 
-    TestUtil.logTrace("*** in HelloImpl:doHandlerTest1 ***");
-    String theAction = action.getAction();
-    TestUtil.logTrace("*** action = " + theAction + " ***");
-    String testType = action.getTestType();
-    TestUtil.logTrace("*** testType = " + testType + " ***");
-    TestUtil.logTrace("*** wscontext = " + wscontext + " ***");
+        TestUtil.logTrace("*** in HelloImpl:doHandlerTest1 ***");
+        String theAction = action.getAction();
+        TestUtil.logTrace("*** action = " + theAction + " ***");
+        String testType = action.getTestType();
+        TestUtil.logTrace("*** testType = " + testType + " ***");
+        TestUtil.logTrace("*** wscontext = " + wscontext + " ***");
 
-    String errors = "";
+        String errors = "";
 
-    MyResultType r = null;
-    try {
-      TestUtil.logTrace("The endpoint is sending back the following data:");
-      TestUtil.logTrace("action=" + action.getAction());
-      TestUtil.logTrace("getTestType=" + action.getTestType());
-      TestUtil.logTrace("harnessloghost=" + action.getHarnessloghost());
-      TestUtil.logTrace("harnesslogport=" + action.getHarnesslogport());
-      TestUtil
-          .logTrace("harnesslogtraceflag=" + action.getHarnesslogtraceflag());
-      TestUtil.logTrace("errors:" + errors);
+        MyResultType r = null;
+        try {
+            TestUtil.logTrace("The endpoint is sending back the following data:");
+            TestUtil.logTrace("action=" + action.getAction());
+            TestUtil.logTrace("getTestType=" + action.getTestType());
+            TestUtil.logTrace("harnessloghost=" + action.getHarnessloghost());
+            TestUtil.logTrace("harnesslogport=" + action.getHarnesslogport());
+            TestUtil.logTrace("harnesslogtraceflag=" + action.getHarnesslogtraceflag());
+            TestUtil.logTrace("errors:" + errors);
 
-      r = new MyResultType();
-      r.setAction(action.getAction());
-      r.setTestType(action.getTestType());
-      r.setErrors(errors);
-      r.setHarnessloghost(action.getHarnessloghost());
-      r.setHarnesslogport(action.getHarnesslogport());
-      r.setHarnesslogtraceflag(action.getHarnesslogtraceflag());
-    } catch (Exception e) {
-      throw new WebServiceException(e.getMessage(), e);
+            r = new MyResultType();
+            r.setAction(action.getAction());
+            r.setTestType(action.getTestType());
+            r.setErrors(errors);
+            r.setHarnessloghost(action.getHarnessloghost());
+            r.setHarnesslogport(action.getHarnesslogport());
+            r.setHarnesslogtraceflag(action.getHarnesslogtraceflag());
+        } catch (Exception e) {
+            throw new WebServiceException(e.getMessage(), e);
+        }
+        return r;
     }
-    return r;
-  }
 }

@@ -20,11 +20,8 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.envsharing;
 
-import java.net.URL;
-
 import com.sun.ts.tests.ejb30.common.annotation.resource.EnvSharingBeanBase;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
@@ -32,35 +29,35 @@ import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import jakarta.mail.Session;
+import java.net.URL;
 
 @Stateless(name = "ResourceTypeBean")
-@Remote({ ResourceIF.class })
+@Remote({ResourceIF.class})
 @TransactionManagement(TransactionManagementType.BEAN)
 @Resource(name = "mailSession", type = Session.class, shareable = false)
 @Resource(name = "url", shareable = false, type = URL.class)
-
 public class ResourceTypeBean extends EnvSharingBeanBase implements ResourceIF {
 
-  @Resource(name = "sessionContext", description = "session context", type = SessionContext.class)
-  private SessionContext sessionContext;
+    @Resource(name = "sessionContext", description = "session context", type = SessionContext.class)
+    private SessionContext sessionContext;
 
-  protected String getMailSessionName() {
-    return "mailSession";
-  }
+    protected String getMailSessionName() {
+        return "mailSession";
+    }
 
-  protected String getUrlName() {
-    return "url";
-  }
+    protected String getUrlName() {
+        return "url";
+    }
 
-  protected jakarta.ejb.EJBContext getEJBContext() {
-    return sessionContext;
-  }
+    protected jakarta.ejb.EJBContext getEJBContext() {
+        return sessionContext;
+    }
 
-  protected jakarta.mail.Session getMailSession() {
-    return (Session) getEJBContext().lookup(getMailSessionName());
-  }
+    protected jakarta.mail.Session getMailSession() {
+        return (Session) getEJBContext().lookup(getMailSessionName());
+    }
 
-  protected URL getUrl() {
-    return (URL) getEJBContext().lookup(getUrlName());
-  }
+    protected URL getUrl() {
+        return (URL) getEJBContext().lookup(getUrlName());
+    }
 }

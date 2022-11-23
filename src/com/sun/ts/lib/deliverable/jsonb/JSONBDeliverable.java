@@ -16,50 +16,46 @@
 
 package com.sun.ts.lib.deliverable.jsonb;
 
-import java.util.Map;
-import java.util.Properties;
-
 import com.sun.javatest.TestEnvironment;
 import com.sun.ts.lib.deliverable.AbstractDeliverable;
 import com.sun.ts.lib.deliverable.PropertyManagerInterface;
+import java.util.Map;
+import java.util.Properties;
 
 /**
  * This class serves as a place for JSONB Deliverable specific info.
  */
 public class JSONBDeliverable extends AbstractDeliverable {
-  public PropertyManagerInterface createPropertyManager(TestEnvironment te)
-      throws Exception {
-    return JSONBPropertyManager.getJSONBPropertyManager(te);
-  }
+    public PropertyManagerInterface createPropertyManager(TestEnvironment te) throws Exception {
+        return JSONBPropertyManager.getJSONBPropertyManager(te);
+    }
 
-  public PropertyManagerInterface createPropertyManager(Properties p)
-      throws Exception {
-    return JSONBPropertyManager.getJSONBPropertyManager(p);
-  }
+    public PropertyManagerInterface createPropertyManager(Properties p) throws Exception {
+        return JSONBPropertyManager.getJSONBPropertyManager(p);
+    }
 
-  public PropertyManagerInterface getPropertyManager() throws Exception {
-    return JSONBPropertyManager.getJSONBPropertyManager();
-  }
+    public PropertyManagerInterface getPropertyManager() throws Exception {
+        return JSONBPropertyManager.getJSONBPropertyManager();
+    }
 
-  public boolean supportsAutoDeployment() {
-    return false;
-  }
+    public boolean supportsAutoDeployment() {
+        return false;
+    }
 
-  public boolean supportsAutoJMSAdmin() {
-    return false;
-  }
+    public boolean supportsAutoJMSAdmin() {
+        return false;
+    }
 
-  public boolean supportsInterop() {
-    return false;
-  }
+    public boolean supportsInterop() {
+        return false;
+    }
 
-  public Map getValidVehicles() {
-    super.getValidVehicles();
+    public Map getValidVehicles() {
+        super.getValidVehicles();
 
-    // add default values
-    htTSValidVehicles.put("tests.service_eetest.vehicles",
-        new String[] { "standalone" });
+        // add default values
+        htTSValidVehicles.put("tests.service_eetest.vehicles", new String[] {"standalone"});
 
-    return htTSValidVehicles;
-  }
+        return htTSValidVehicles;
+    }
 }

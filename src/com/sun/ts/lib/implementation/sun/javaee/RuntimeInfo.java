@@ -19,12 +19,10 @@ package com.sun.ts.lib.implementation.sun.javaee;
 import com.sun.ts.lib.porting.DeploymentInfo;
 
 public class RuntimeInfo {
-  public final String getRuntimeInfo(DeploymentInfo info) {
-    StringBuffer result = new StringBuffer(
-        "*********************************************\n");
-    result.append(
-        "You must use the following information to deploy the application:\n\n");
-    result.append(info.getContentAsXml());
-    return result.toString();
-  }
+    public final String getRuntimeInfo(DeploymentInfo info) {
+        StringBuffer result = new StringBuffer("*********************************************\n");
+        result.append("You must use the following information to deploy the application:\n\n");
+        result.append(info.getContentAsXml());
+        return result.toString();
+    }
 }

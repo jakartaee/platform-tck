@@ -28,6 +28,11 @@ import static com.sun.ts.tests.ejb30.timer.common.ScheduleAttributeType.MONTH;
 import static com.sun.ts.tests.ejb30.timer.common.ScheduleAttributeType.SECOND;
 import static com.sun.ts.tests.ejb30.timer.common.ScheduleAttributeType.YEAR;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import jakarta.ejb.ScheduleExpression;
+import jakarta.ejb.Timer;
+import jakarta.ejb.TimerConfig;
+import jakarta.ejb.TimerService;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Collection;
@@ -36,444 +41,402 @@ import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.logging.Level;
 
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-
-import jakarta.ejb.ScheduleExpression;
-import jakarta.ejb.Timer;
-import jakarta.ejb.TimerConfig;
-import jakarta.ejb.TimerService;
-
 public final class TimerUtil {
-  private TimerUtil() {
-  }
+    private TimerUtil() {}
 
-  public static void cancelAllTimers(TimerService timerService,
-      boolean failOnError) {
-    Collection<Timer> timers = timerService.getTimers();
-    for (Iterator<Timer> it = timers.iterator(); it.hasNext();) {
-      Timer timer = it.next();
-      try {
-        timer.cancel();
-      } catch (RuntimeException e) {
-        if (failOnError) {
-          throw e;
+    public static void cancelAllTimers(TimerService timerService, boolean failOnError) {
+        Collection<Timer> timers = timerService.getTimers();
+        for (Iterator<Timer> it = timers.iterator(); it.hasNext(); ) {
+            Timer timer = it.next();
+            try {
+                timer.cancel();
+            } catch (RuntimeException e) {
+                if (failOnError) {
+                    throw e;
+                }
+                Helper.getLogger().warning(e.toString());
+            }
         }
-        Helper.getLogger().warning(e.toString());
-      }
     }
-  }
 
-  public static void cancelTimer(TimerService timerService, String name) {
-    Collection<Timer> timers = timerService.getTimers();
-    for (Iterator<Timer> it = timers.iterator(); it.hasNext();) {
-      Timer timer = it.next();
-      TimerInfo info = (TimerInfo) timer.getInfo();
-      if (info.getTestName().equals(name)) {
-        timer.cancel();
-      }
-    }
-  }
-
-  public static int countTimers(final TimerService timerService) {
-    return timerService.getTimers().size();
-  }
-
-  public static int countTimers(final Collection<Timer> timers,
-      final String testName) {
-    int result = 0;
-    for (Iterator<Timer> it = timers.iterator(); it.hasNext();) {
-      Timer t = it.next();
-      TimerInfo info = (TimerInfo) t.getInfo();
-      if (info != null) {
-        if (testName.equals(info.getTestName())) {
-          result++;
+    public static void cancelTimer(TimerService timerService, String name) {
+        Collection<Timer> timers = timerService.getTimers();
+        for (Iterator<Timer> it = timers.iterator(); it.hasNext(); ) {
+            Timer timer = it.next();
+            TimerInfo info = (TimerInfo) timer.getInfo();
+            if (info.getTestName().equals(name)) {
+                timer.cancel();
+            }
         }
-      }
     }
-    return result;
-  }
 
-  public static int countTimers(Collection<Timer> timers, TimerInfo info) {
-    int result = 0;
-    for (Iterator<Timer> it = timers.iterator(); it.hasNext();) {
-      Timer timer = it.next();
-      TimerInfo fo = (TimerInfo) timer.getInfo();
-      if (info == null) {
-        if (fo == null) {
-          result++;
+    public static int countTimers(final TimerService timerService) {
+        return timerService.getTimers().size();
+    }
+
+    public static int countTimers(final Collection<Timer> timers, final String testName) {
+        int result = 0;
+        for (Iterator<Timer> it = timers.iterator(); it.hasNext(); ) {
+            Timer t = it.next();
+            TimerInfo info = (TimerInfo) t.getInfo();
+            if (info != null) {
+                if (testName.equals(info.getTestName())) {
+                    result++;
+                }
+            }
         }
-      } else if (info.equals(fo)) {
-        result++;
-      }
+        return result;
     }
-    return result;
-  }
 
-  public static int countTimers(TimerService timerService, TimerInfo info) {
-    return countTimers(timerService.getTimers(), info);
-  }
+    public static int countTimers(Collection<Timer> timers, TimerInfo info) {
+        int result = 0;
+        for (Iterator<Timer> it = timers.iterator(); it.hasNext(); ) {
+            Timer timer = it.next();
+            TimerInfo fo = (TimerInfo) timer.getInfo();
+            if (info == null) {
+                if (fo == null) {
+                    result++;
+                }
+            } else if (info.equals(fo)) {
+                result++;
+            }
+        }
+        return result;
+    }
 
-  public static int countTimers(Collection<Timer> timers,
-      ScheduleExpression exp) {
-    int result = 0;
-    for (Iterator<Timer> it = timers.iterator(); it.hasNext();) {
-      Timer timer = it.next();
-      if (timer.isCalendarTimer()) {
-        ScheduleExpression ex = timer.getSchedule();
-        if (exp == null) {
-          if (ex == null) {
+    public static int countTimers(TimerService timerService, TimerInfo info) {
+        return countTimers(timerService.getTimers(), info);
+    }
+
+    public static int countTimers(Collection<Timer> timers, ScheduleExpression exp) {
+        int result = 0;
+        for (Iterator<Timer> it = timers.iterator(); it.hasNext(); ) {
+            Timer timer = it.next();
+            if (timer.isCalendarTimer()) {
+                ScheduleExpression ex = timer.getSchedule();
+                if (exp == null) {
+                    if (ex == null) {
+                        result++;
+                    }
+                } else if (exp.equals(ex)) {
+                    result++;
+                }
+            }
+        }
+        return result;
+    }
+
+    public static int countTimers(TimerService timerService, ScheduleExpression exp) {
+        return countTimers(timerService.getTimers(), exp);
+    }
+
+    // can also find a timer with null info
+    public static Timer findTimer(final TimerService timerService, final TimerInfo info) {
+        return findTimer(timerService.getTimers(), info);
+    }
+
+    // can also find a timer with null info
+    public static Timer findTimer(final Collection<Timer> timers, final TimerInfo info) {
+        Timer result = null;
+        if (info == null) {
+            for (Iterator<Timer> it = timers.iterator(); it.hasNext(); ) {
+                Timer t = it.next();
+                if (t.getInfo() == null) {
+                    result = t;
+                    break;
+                }
+            }
+        } else {
+            result = findTimer(timers, info.getTestName());
+        }
+        return result;
+    }
+
+    public static Timer findTimer(final TimerService timerService, final ScheduleExpression exp) {
+        return findTimer(timerService.getTimers(), exp);
+    }
+
+    public static Timer findTimer(final Collection<Timer> timers, final ScheduleExpression exp) {
+        Timer result = null;
+        for (Iterator<Timer> it = timers.iterator(); it.hasNext(); ) {
+            Timer t = it.next();
+            if (t.isCalendarTimer()) {
+                if (exp.equals(t.getSchedule())) {
+                    result = t;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+    public static Timer findTimer(final TimerService timerService, final String testName) {
+        return findTimer(timerService.getTimers(), testName);
+    }
+
+    public static Timer findTimer(final Collection<Timer> timers, final String testName) {
+        Timer result = null;
+        for (Iterator<Timer> it = timers.iterator(); it.hasNext(); ) {
+            Timer t = it.next();
+            Serializable ser = t.getInfo();
+            if (ser != null) {
+                if (testName.trim().equals(getTimerName(t))) {
+                    result = t;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+    public static Timer findTimer(final TimerService timerService, final TimerConfig timerConfig) {
+        return findTimer(timerService.getTimers(), timerConfig);
+    }
+
+    public static Timer findTimer(final Collection<Timer> timers, final TimerConfig timerConfig) {
+        return findTimer(timers, (TimerInfo) timerConfig.getInfo());
+    }
+
+    public static boolean containsTimer(final Collection<Timer> timers, final Timer timer) {
+        return timers.contains(timer);
+    }
+
+    public static Timer getSingleTimer(TimerService timerService) {
+        Collection<Timer> timers = timerService.getTimers();
+        if (timers.size() != 1) {
+            throw new IllegalStateException("Expecting 1 timer, but actual " + timers.size());
+        }
+        Timer timer = null;
+        for (Iterator<Timer> it = timers.iterator(); it.hasNext(); ) {
+            timer = it.next();
+        }
+        return timer;
+    }
+
+    public static Timer createMillisecondLaterTimer(TimerService timerService, String timerName) {
+        return createMillisecondLaterTimer(timerService, timerName, true);
+    }
+
+    public static Timer createMillisecondLaterTimer(TimerService timerService, String timerName, boolean persistent) {
+        Date expiration = TimerUtil.getCurrentDatePlus(Calendar.MILLISECOND, 1);
+        Helper.getLogger()
+                .logp(
+                        Level.FINE,
+                        "TimerUtil",
+                        "createMilliSecondLaterTimer",
+                        "About to create a timer expiring on " + expiration + ", name:" + timerName);
+        Timer timer;
+        if (persistent) {
+            timer = timerService.createTimer(expiration, new TimerInfo(timerName));
+        } else {
+            timer = timerService.createSingleActionTimer(expiration, new TimerConfig(new TimerInfo(timerName), false));
+        }
+        Helper.getLogger()
+                .logp(
+                        Level.FINE,
+                        "TimerUtil",
+                        "createMilliSecondLaterTimer",
+                        "Created a timer expiring on " + expiration + ", name:" + timerName);
+        return timer;
+    }
+
+    public static Timer createSecondLaterTimer(TimerService timerService) {
+        return createSecondLaterTimer(timerService, (TimerInfo) null);
+    }
+
+    public static Timer createSecondLaterTimer(TimerService timerService, String testName) {
+        return createSecondLaterTimer(timerService, new TimerInfo(testName));
+    }
+
+    public static Timer createSecondLaterTimer(TimerService timerService, String testName, int seconds) {
+        return createSecondLaterTimer(timerService, new TimerInfo(testName), seconds);
+    }
+
+    public static Timer createSecondLaterTimer(TimerService timerService, TimerConfig timerConfig) {
+        return createSecondLaterTimer(timerService, timerConfig, 1);
+    }
+
+    public static Timer createSecondLaterTimer(TimerService timerService, TimerConfig timerConfig, int seconds) {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.SECOND, seconds); // certain seconds later
+        return timerService.createCalendarTimer(getPreciseScheduleExpression(cal), timerConfig);
+    }
+
+    public static Timer createSecondLaterTimer(TimerService timerService, TimerInfo info) {
+        return createSecondLaterTimer(timerService, info, 1);
+    }
+
+    public static Timer createSecondLaterTimer(TimerService timerService, TimerInfo info, int seconds) {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.SECOND, seconds); // certain seconds later
+        return timerService.createCalendarTimer(getPreciseScheduleExpression(cal), new TimerConfig(info, true));
+    }
+
+    public static Date getCurrentDatePlus(int calendarUnit, int amount) {
+        Calendar cal = Calendar.getInstance();
+        if (amount != 0) {
+            cal.add(calendarUnit, amount);
+        }
+        return cal.getTime();
+    }
+
+    public static Calendar getCurrentCalendarPlus(int calendarUnit, int amount) {
+        Calendar cal = Calendar.getInstance();
+        if (amount != 0) {
+            cal.add(calendarUnit, amount);
+        }
+        return cal;
+    }
+
+    public static ScheduleExpression getPreciseScheduleExpression(Calendar... cals) {
+        Calendar cal = (cals.length == 0) ? Calendar.getInstance() : cals[0];
+        ScheduleExpression exp = new ScheduleExpression()
+                .year(cal.get(Calendar.YEAR))
+                .month(getForSchedule(Calendar.MONTH, cal))
+                .dayOfMonth(getForSchedule(Calendar.DAY_OF_MONTH, cal))
+                .hour(getForSchedule(Calendar.HOUR_OF_DAY, cal))
+                .minute(getForSchedule(Calendar.MINUTE, cal))
+                .second(getForSchedule(Calendar.SECOND, cal));
+        return exp;
+    }
+
+    public static Timer createFarFutureTimer(TimerService timerService) {
+        return createFarFutureTimer(timerService, (TimerInfo) null);
+    }
+
+    public static Timer createFarFutureTimer(TimerService timerService, TimerInfo info) {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.YEAR, 2); // next, next year
+        return timerService.createCalendarTimer(getPreciseScheduleExpression(cal), new TimerConfig(info, true));
+    }
+
+    public static Timer createFarFutureTimer(TimerService timerService, TimerConfig timerConfig) {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.YEAR, 2); // next, next year
+        return timerService.createCalendarTimer(getPreciseScheduleExpression(cal), timerConfig);
+    }
+
+    public static Timer createFarFutureTimer(TimerService timerService, String testName) {
+        return createFarFutureTimer(timerService, new TimerInfo(testName));
+    }
+
+    /**
+     * Gets the current date-related values according to the rules of
+     * jakarta.ejb.ScheduleExpression. In java.util.Calendar, DAY_OF_WEEK is 1-7
+     * (Sunday-Saturday); MONTH is 0-11 (Jan-Dec)
+     *
+     * @param field
+     *          a java.util.Calendar field for year, month, hour, etc
+     * @param an
+     *          optional Calendar that may have been manipulated
+     * @return a value that can be used for jakarta.ejb.ScheduleExpression
+     */
+    public static int getForSchedule(int field, Calendar... calendars) {
+        int result = 0;
+        Calendar cal = null;
+        if (calendars.length == 0) {
+            cal = Calendar.getInstance();
+        } else {
+            cal = calendars[0];
+        }
+        result = cal.get(field);
+        if (field == Calendar.DAY_OF_WEEK) {
+            result--; // 0 and 7 are both Sunday
+            if (result == 0) {
+                result = (Math.random() < 0.5) ? 0 : 7;
+            }
+        } else if (field == Calendar.MONTH) {
             result++;
-          }
-        } else if (exp.equals(ex)) {
-          result++;
         }
-      }
+        return result;
     }
-    return result;
-  }
 
-  public static int countTimers(TimerService timerService,
-      ScheduleExpression exp) {
-    return countTimers(timerService.getTimers(), exp);
-  }
+    public static void checkScheduleDefaults(ScheduleExpression exp, StringBuilder sb) {
+        sb.append("Check default schedule attribute values. ");
+        assertEquals(SECOND.toString(), ScheduleValues.DEFAULT_ATTRIBUTE_VALUE_0, exp.getSecond(), sb);
+        assertEquals(MINUTE.toString(), ScheduleValues.DEFAULT_ATTRIBUTE_VALUE_0, exp.getMinute(), sb);
+        assertEquals(HOUR.toString(), ScheduleValues.DEFAULT_ATTRIBUTE_VALUE_0, exp.getHour(), sb);
 
-  // can also find a timer with null info
-  public static Timer findTimer(final TimerService timerService,
-      final TimerInfo info) {
-    return findTimer(timerService.getTimers(), info);
-  }
+        assertEquals(MONTH.toString(), ScheduleValues.DEFAULT_ATTRIBUTE_VALUE_STAR, exp.getMonth(), sb);
+        assertEquals(YEAR.toString(), ScheduleValues.DEFAULT_ATTRIBUTE_VALUE_STAR, exp.getYear(), sb);
+        assertEquals(DAY_OF_WEEK.toString(), ScheduleValues.DEFAULT_ATTRIBUTE_VALUE_STAR, exp.getDayOfWeek(), sb);
+        assertEquals(DAY_OF_MONTH.toString(), ScheduleValues.DEFAULT_ATTRIBUTE_VALUE_STAR, exp.getDayOfMonth(), sb);
 
-  // can also find a timer with null info
-  public static Timer findTimer(final Collection<Timer> timers,
-      final TimerInfo info) {
-    Timer result = null;
-    if (info == null) {
-      for (Iterator<Timer> it = timers.iterator(); it.hasNext();) {
-        Timer t = it.next();
-        if (t.getInfo() == null) {
-          result = t;
-          break;
+        assertEquals("start", null, exp.getStart(), sb);
+        assertEquals("end", null, exp.getEnd(), sb);
+    }
+
+    public static int getDateField(int field, Calendar... calendars) {
+        Calendar cal = null;
+        if (calendars.length == 0) {
+            cal = Calendar.getInstance();
+        } else {
+            cal = calendars[0];
         }
-      }
-    } else {
-      result = findTimer(timers, info.getTestName());
+        return cal.get(field);
     }
-    return result;
-  }
 
-  public static Timer findTimer(final TimerService timerService,
-      final ScheduleExpression exp) {
-    return findTimer(timerService.getTimers(), exp);
-  }
-
-  public static Timer findTimer(final Collection<Timer> timers,
-      final ScheduleExpression exp) {
-    Timer result = null;
-    for (Iterator<Timer> it = timers.iterator(); it.hasNext();) {
-      Timer t = it.next();
-      if (t.isCalendarTimer()) {
-        if (exp.equals(t.getSchedule())) {
-          result = t;
-          break;
+    public static int getDateField(int field, Date... dates) {
+        Calendar cal = null;
+        if (dates.length == 0) {
+            cal = Calendar.getInstance();
+        } else {
+            cal = Calendar.getInstance();
+            cal.setTime(dates[0]);
         }
-      }
+        return cal.get(field);
     }
-    return result;
-  }
 
-  public static Timer findTimer(final TimerService timerService,
-      final String testName) {
-    return findTimer(timerService.getTimers(), testName);
-  }
-
-  public static Timer findTimer(final Collection<Timer> timers,
-      final String testName) {
-    Timer result = null;
-    for (Iterator<Timer> it = timers.iterator(); it.hasNext();) {
-      Timer t = it.next();
-      Serializable ser = t.getInfo();
-      if (ser != null) {
-        if (testName.trim().equals(getTimerName(t))) {
-          result = t;
-          break;
+    public static String getTimerName(Timer timer) {
+        if (timer == null) {
+            return null;
         }
-      }
+        Serializable info = timer.getInfo();
+        if (info == null) {
+            return null;
+        }
+        String result = null;
+        if (info instanceof String) {
+            result = (String) info;
+        } else if (info instanceof TimerInfo) {
+            result = ((TimerInfo) info).getTestName();
+        } else {
+            result = info.toString();
+        }
+        return (result == null) ? result : result.trim();
     }
-    return result;
-  }
 
-  public static Timer findTimer(final TimerService timerService,
-      final TimerConfig timerConfig) {
-    return findTimer(timerService.getTimers(), timerConfig);
-  }
-
-  public static Timer findTimer(final Collection<Timer> timers,
-      final TimerConfig timerConfig) {
-    return findTimer(timers, (TimerInfo) timerConfig.getInfo());
-  }
-
-  public static boolean containsTimer(final Collection<Timer> timers,
-      final Timer timer) {
-    return timers.contains(timer);
-  }
-
-  public static Timer getSingleTimer(TimerService timerService) {
-    Collection<Timer> timers = timerService.getTimers();
-    if (timers.size() != 1) {
-      throw new IllegalStateException(
-          "Expecting 1 timer, but actual " + timers.size());
+    public static String toString(Timer timer) {
+        if (timer == null) {
+            return null;
+        }
+        String s = timer.getInfo() + "\tschedule:"
+                + (timer.isCalendarTimer() ? timer.getSchedule() : null)
+                + "\tnextTimeout:" + timer.getNextTimeout() + "\ttimeRemaining:"
+                + timer.getTimeRemaining() + "\tisPersistent:" + timer.isPersistent();
+        return s;
     }
-    Timer timer = null;
-    for (Iterator<Timer> it = timers.iterator(); it.hasNext();) {
-      timer = it.next();
+
+    public static String toString(ScheduleExpression exp) {
+        if (exp == null) {
+            return null;
+        }
+        Date start = exp.getStart();
+        Date end = exp.getEnd();
+        return "year=" + exp.getYear() + " month=" + exp.getMonth() + " dayOfMonth="
+                + exp.getDayOfMonth() + " dayOfWeek=" + exp.getDayOfWeek() + " hour="
+                + exp.getHour() + " minute=" + exp.getMinute() + " second="
+                + exp.getSecond() + " start=" + start + " end=" + end + " timezone="
+                + exp.getTimezone();
     }
-    return timer;
-  }
 
-  public static Timer createMillisecondLaterTimer(TimerService timerService,
-      String timerName) {
-    return createMillisecondLaterTimer(timerService, timerName, true);
-  }
-
-  public static Timer createMillisecondLaterTimer(TimerService timerService,
-      String timerName, boolean persistent) {
-    Date expiration = TimerUtil.getCurrentDatePlus(Calendar.MILLISECOND, 1);
-    Helper.getLogger().logp(Level.FINE, "TimerUtil",
-        "createMilliSecondLaterTimer", "About to create a timer expiring on "
-            + expiration + ", name:" + timerName);
-    Timer timer;
-    if (persistent) {
-      timer = timerService.createTimer(expiration, new TimerInfo(timerName));
-    } else {
-      timer = timerService.createSingleActionTimer(expiration,
-          new TimerConfig(new TimerInfo(timerName), false));
+    public static int getNextLeapYear(int... baseYears) {
+        GregorianCalendar cal = new GregorianCalendar();
+        int baseYear = (baseYears.length == 0) ? cal.get(Calendar.YEAR) : baseYears[0];
+        for (int i = baseYear + 1; ; i++) {
+            if (cal.isLeapYear(i)) {
+                return i;
+            }
+        }
     }
-    Helper.getLogger().logp(Level.FINE, "TimerUtil",
-        "createMilliSecondLaterTimer",
-        "Created a timer expiring on " + expiration + ", name:" + timerName);
-    return timer;
-  }
-
-  public static Timer createSecondLaterTimer(TimerService timerService) {
-    return createSecondLaterTimer(timerService, (TimerInfo) null);
-  }
-
-  public static Timer createSecondLaterTimer(TimerService timerService,
-      String testName) {
-    return createSecondLaterTimer(timerService, new TimerInfo(testName));
-  }
-
-  public static Timer createSecondLaterTimer(TimerService timerService,
-      String testName, int seconds) {
-    return createSecondLaterTimer(timerService, new TimerInfo(testName),
-            seconds);
-  }
-
-  public static Timer createSecondLaterTimer(TimerService timerService,
-      TimerConfig timerConfig) {
-    return createSecondLaterTimer(timerService, timerConfig, 1);
-  }
-
-  public static Timer createSecondLaterTimer(TimerService timerService,
-      TimerConfig timerConfig, int seconds) {
-    Calendar cal = Calendar.getInstance();
-    cal.add(Calendar.SECOND, seconds); // certain seconds later
-    return timerService.createCalendarTimer(getPreciseScheduleExpression(cal),
-        timerConfig);
-  }
-
-  public static Timer createSecondLaterTimer(TimerService timerService,
-      TimerInfo info) {
-    return createSecondLaterTimer(timerService, info, 1);
-  }
-
-  public static Timer createSecondLaterTimer(TimerService timerService,
-      TimerInfo info, int seconds) {
-    Calendar cal = Calendar.getInstance();
-    cal.add(Calendar.SECOND, seconds); // certain seconds later
-    return timerService.createCalendarTimer(getPreciseScheduleExpression(cal),
-        new TimerConfig(info, true));
-  }
-
-  public static Date getCurrentDatePlus(int calendarUnit, int amount) {
-    Calendar cal = Calendar.getInstance();
-    if (amount != 0) {
-      cal.add(calendarUnit, amount);
-    }
-    return cal.getTime();
-  }
-
-  public static Calendar getCurrentCalendarPlus(int calendarUnit, int amount) {
-    Calendar cal = Calendar.getInstance();
-    if (amount != 0) {
-      cal.add(calendarUnit, amount);
-    }
-    return cal;
-  }
-
-  public static ScheduleExpression getPreciseScheduleExpression(
-      Calendar... cals) {
-    Calendar cal = (cals.length == 0) ? Calendar.getInstance() : cals[0];
-    ScheduleExpression exp = new ScheduleExpression()
-        .year(cal.get(Calendar.YEAR)).month(getForSchedule(Calendar.MONTH, cal))
-        .dayOfMonth(getForSchedule(Calendar.DAY_OF_MONTH, cal))
-        .hour(getForSchedule(Calendar.HOUR_OF_DAY, cal))
-        .minute(getForSchedule(Calendar.MINUTE, cal))
-        .second(getForSchedule(Calendar.SECOND, cal));
-    return exp;
-  }
-
-  public static Timer createFarFutureTimer(TimerService timerService) {
-    return createFarFutureTimer(timerService, (TimerInfo) null);
-  }
-
-  public static Timer createFarFutureTimer(TimerService timerService,
-      TimerInfo info) {
-    Calendar cal = Calendar.getInstance();
-    cal.add(Calendar.YEAR, 2); // next, next year
-    return timerService.createCalendarTimer(getPreciseScheduleExpression(cal),
-        new TimerConfig(info, true));
-  }
-
-  public static Timer createFarFutureTimer(TimerService timerService,
-      TimerConfig timerConfig) {
-    Calendar cal = Calendar.getInstance();
-    cal.add(Calendar.YEAR, 2); // next, next year
-    return timerService.createCalendarTimer(getPreciseScheduleExpression(cal),
-        timerConfig);
-  }
-
-  public static Timer createFarFutureTimer(TimerService timerService,
-      String testName) {
-    return createFarFutureTimer(timerService, new TimerInfo(testName));
-  }
-
-  /**
-   * Gets the current date-related values according to the rules of
-   * jakarta.ejb.ScheduleExpression. In java.util.Calendar, DAY_OF_WEEK is 1-7
-   * (Sunday-Saturday); MONTH is 0-11 (Jan-Dec)
-   * 
-   * @param field
-   *          a java.util.Calendar field for year, month, hour, etc
-   * @param an
-   *          optional Calendar that may have been manipulated
-   * @return a value that can be used for jakarta.ejb.ScheduleExpression
-   */
-  public static int getForSchedule(int field, Calendar... calendars) {
-    int result = 0;
-    Calendar cal = null;
-    if (calendars.length == 0) {
-      cal = Calendar.getInstance();
-    } else {
-      cal = calendars[0];
-    }
-    result = cal.get(field);
-    if (field == Calendar.DAY_OF_WEEK) {
-      result--; // 0 and 7 are both Sunday
-      if (result == 0) {
-        result = (Math.random() < 0.5) ? 0 : 7;
-      }
-    } else if (field == Calendar.MONTH) {
-      result++;
-    }
-    return result;
-  }
-
-  public static void checkScheduleDefaults(ScheduleExpression exp,
-      StringBuilder sb) {
-    sb.append("Check default schedule attribute values. ");
-    assertEquals(SECOND.toString(), ScheduleValues.DEFAULT_ATTRIBUTE_VALUE_0,
-        exp.getSecond(), sb);
-    assertEquals(MINUTE.toString(), ScheduleValues.DEFAULT_ATTRIBUTE_VALUE_0,
-        exp.getMinute(), sb);
-    assertEquals(HOUR.toString(), ScheduleValues.DEFAULT_ATTRIBUTE_VALUE_0,
-        exp.getHour(), sb);
-
-    assertEquals(MONTH.toString(), ScheduleValues.DEFAULT_ATTRIBUTE_VALUE_STAR,
-        exp.getMonth(), sb);
-    assertEquals(YEAR.toString(), ScheduleValues.DEFAULT_ATTRIBUTE_VALUE_STAR,
-        exp.getYear(), sb);
-    assertEquals(DAY_OF_WEEK.toString(),
-        ScheduleValues.DEFAULT_ATTRIBUTE_VALUE_STAR, exp.getDayOfWeek(), sb);
-    assertEquals(DAY_OF_MONTH.toString(),
-        ScheduleValues.DEFAULT_ATTRIBUTE_VALUE_STAR, exp.getDayOfMonth(), sb);
-
-    assertEquals("start", null, exp.getStart(), sb);
-    assertEquals("end", null, exp.getEnd(), sb);
-  }
-
-  public static int getDateField(int field, Calendar... calendars) {
-    Calendar cal = null;
-    if (calendars.length == 0) {
-      cal = Calendar.getInstance();
-    } else {
-      cal = calendars[0];
-    }
-    return cal.get(field);
-  }
-
-  public static int getDateField(int field, Date... dates) {
-    Calendar cal = null;
-    if (dates.length == 0) {
-      cal = Calendar.getInstance();
-    } else {
-      cal = Calendar.getInstance();
-      cal.setTime(dates[0]);
-    }
-    return cal.get(field);
-  }
-
-  public static String getTimerName(Timer timer) {
-    if (timer == null) {
-      return null;
-    }
-    Serializable info = timer.getInfo();
-    if (info == null) {
-      return null;
-    }
-    String result = null;
-    if (info instanceof String) {
-      result = (String) info;
-    } else if (info instanceof TimerInfo) {
-      result = ((TimerInfo) info).getTestName();
-    } else {
-      result = info.toString();
-    }
-    return (result == null) ? result : result.trim();
-  }
-
-  public static String toString(Timer timer) {
-    if (timer == null) {
-      return null;
-    }
-    String s = timer.getInfo() + "\tschedule:"
-        + (timer.isCalendarTimer() ? timer.getSchedule() : null)
-        + "\tnextTimeout:" + timer.getNextTimeout() + "\ttimeRemaining:"
-        + timer.getTimeRemaining() + "\tisPersistent:" + timer.isPersistent();
-    return s;
-  }
-
-  public static String toString(ScheduleExpression exp) {
-    if (exp == null) {
-      return null;
-    }
-    Date start = exp.getStart();
-    Date end = exp.getEnd();
-    return "year=" + exp.getYear() + " month=" + exp.getMonth() + " dayOfMonth="
-        + exp.getDayOfMonth() + " dayOfWeek=" + exp.getDayOfWeek() + " hour="
-        + exp.getHour() + " minute=" + exp.getMinute() + " second="
-        + exp.getSecond() + " start=" + start + " end=" + end + " timezone="
-        + exp.getTimezone();
-  }
-
-  public static int getNextLeapYear(int... baseYears) {
-    GregorianCalendar cal = new GregorianCalendar();
-    int baseYear = (baseYears.length == 0) ? cal.get(Calendar.YEAR)
-        : baseYears[0];
-    for (int i = baseYear + 1;; i++) {
-      if (cal.isLeapYear(i)) {
-        return i;
-      }
-    }
-  }
 }

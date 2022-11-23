@@ -21,42 +21,34 @@
 package com.sun.ts.tests.ejb30.tx.common.session.cm;
 
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 
-abstract public class LocalTxBeanBase extends TxBeanBase0 implements LocalTxIF {
-  public void localMandatoryTest() {
-  }
+public abstract class LocalTxBeanBase extends TxBeanBase0 implements LocalTxIF {
+    public void localMandatoryTest() {}
 
-  public void neverTest() {
-  }
+    public void neverTest() {}
 
-  public void requiresNewNoop() throws TestFailedException {
-  }
+    public void requiresNewNoop() throws TestFailedException {}
 
-  public void localRequiresNewTest() {
-    getSessionContext().setRollbackOnly();
-  }
+    public void localRequiresNewTest() {
+        getSessionContext().setRollbackOnly();
+    }
 
-  public void localRequiresNewRemoveTest() {
-  }
+    public void localRequiresNewRemoveTest() {}
 
-  @TransactionAttribute(TransactionAttributeType.SUPPORTS)
-  public String localSupportsTest() throws TestFailedException {
-    return illegalGetSetRollbackOnly(TransactionAttributeType.SUPPORTS);
-  }
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+    public String localSupportsTest() throws TestFailedException {
+        return illegalGetSetRollbackOnly(TransactionAttributeType.SUPPORTS);
+    }
 
-  @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-  public String localIllegalGetSetRollbackOnlyNotSupportedTest()
-      throws TestFailedException {
-    return illegalGetSetRollbackOnly(TransactionAttributeType.NOT_SUPPORTED);
-  }
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+    public String localIllegalGetSetRollbackOnlyNotSupportedTest() throws TestFailedException {
+        return illegalGetSetRollbackOnly(TransactionAttributeType.NOT_SUPPORTED);
+    }
 
-  @TransactionAttribute(TransactionAttributeType.NEVER)
-  public String localIllegalGetSetRollbackOnlyNeverTest()
-      throws TestFailedException {
-    return illegalGetSetRollbackOnly(TransactionAttributeType.NEVER);
-  }
-
+    @TransactionAttribute(TransactionAttributeType.NEVER)
+    public String localIllegalGetSetRollbackOnlyNeverTest() throws TestFailedException {
+        return illegalGetSetRollbackOnly(TransactionAttributeType.NEVER);
+    }
 }

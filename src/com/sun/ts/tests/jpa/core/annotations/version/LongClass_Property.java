@@ -26,92 +26,90 @@ import jakarta.persistence.Version;
 @Table(name = "A_BASIC")
 public class LongClass_Property implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+    // ===========================================================
+    // instance variables
 
-  protected String id;
+    protected String id;
 
-  protected Long basicLong;
+    protected Long basicLong;
 
-  protected String name;
+    protected String name;
 
-  // ===========================================================
-  // constructors
-  public LongClass_Property() {
-  }
+    // ===========================================================
+    // constructors
+    public LongClass_Property() {}
 
-  public LongClass_Property(String id) {
-    this.id = id;
-  }
-
-  public LongClass_Property(String id, Long value) {
-
-    this.id = id;
-    this.basicLong = value;
-  }
-
-  @Id
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  @Basic
-  public String getName() {
-    return this.name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  @Version
-  public Long getBasicLong() {
-    return this.basicLong;
-  }
-
-  public void setBasicLong(Long value) {
-    this.basicLong = value;
-  }
-
-  public boolean equals(Object o) {
-    LongClass_Property other;
-    boolean result = false;
-
-    if (!(o instanceof LongClass_Property)) {
-      return result;
-    }
-    other = (LongClass_Property) o;
-
-    if (this.getId().equals(other.getId())
-        && this.basicLong.equals(other.basicLong)
-        && this.name.equals(other.getName())) {
-      result = true;
+    public LongClass_Property(String id) {
+        this.id = id;
     }
 
-    return result;
-  }
+    public LongClass_Property(String id, Long value) {
 
-  public int hashCode() {
-    int myHash;
+        this.id = id;
+        this.basicLong = value;
+    }
 
-    myHash = this.getId().hashCode() + this.basicLong.intValue()
-        + this.name.hashCode();
+    @Id
+    public String getId() {
+        return id;
+    }
 
-    return myHash;
-  }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", version: " + basicLong);
-    result.append(", name: " + name);
-    result.append("]");
-    return result.toString();
-  }
+    @Basic
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Version
+    public Long getBasicLong() {
+        return this.basicLong;
+    }
+
+    public void setBasicLong(Long value) {
+        this.basicLong = value;
+    }
+
+    public boolean equals(Object o) {
+        LongClass_Property other;
+        boolean result = false;
+
+        if (!(o instanceof LongClass_Property)) {
+            return result;
+        }
+        other = (LongClass_Property) o;
+
+        if (this.getId().equals(other.getId())
+                && this.basicLong.equals(other.basicLong)
+                && this.name.equals(other.getName())) {
+            result = true;
+        }
+
+        return result;
+    }
+
+    public int hashCode() {
+        int myHash;
+
+        myHash = this.getId().hashCode() + this.basicLong.intValue() + this.name.hashCode();
+
+        return myHash;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getId());
+        result.append(", version: " + basicLong);
+        result.append(", name: " + name);
+        result.append("]");
+        return result.toString();
+    }
 }

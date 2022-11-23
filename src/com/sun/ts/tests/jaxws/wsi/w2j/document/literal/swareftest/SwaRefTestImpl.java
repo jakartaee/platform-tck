@@ -20,36 +20,38 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swareftest;
 
-import jakarta.xml.ws.WebServiceException;
-import jakarta.xml.soap.*;
 import jakarta.activation.*;
-import javax.xml.transform.stream.*;
-import javax.xml.transform.*;
-import java.net.*;
-import java.awt.*;
-
 import jakarta.jws.WebService;
+import jakarta.xml.soap.*;
+import java.awt.*;
+import java.net.*;
+import javax.xml.transform.*;
+import javax.xml.transform.stream.*;
 
-@WebService(portName = "SwaRefTestPort", serviceName = "WSIDLSwaRefTestService", targetNamespace = "http://SwaRefTestService.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JDLSwaRefTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swareftest.SwaRefTest")
-
+@WebService(
+        portName = "SwaRefTestPort",
+        serviceName = "WSIDLSwaRefTestService",
+        targetNamespace = "http://SwaRefTestService.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/WSW2JDLSwaRefTestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swareftest.SwaRefTest")
 public class SwaRefTestImpl implements SwaRefTest {
-  public com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swareftest.SwaRefTypeResponse echoSingleSwaRefAttachment(
-      com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swareftest.SwaRefTypeRequest request) {
-    System.out.println("Enter echoSingleSwaRefAttachment() ......");
-    SwaRefTypeResponse response = new SwaRefTypeResponse();
-    response.setAttachment(request.getAttachment());
-    System.out.println("Leave echoSingleSwaRefAttachment() ......");
-    return response;
-  }
+    public com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swareftest.SwaRefTypeResponse echoSingleSwaRefAttachment(
+            com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swareftest.SwaRefTypeRequest request) {
+        System.out.println("Enter echoSingleSwaRefAttachment() ......");
+        SwaRefTypeResponse response = new SwaRefTypeResponse();
+        response.setAttachment(request.getAttachment());
+        System.out.println("Leave echoSingleSwaRefAttachment() ......");
+        return response;
+    }
 
-  public com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swareftest.SwaRefTypeResponse2 echoMultipleSwaRefAttachments(
-      com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swareftest.SwaRefTypeRequest2 request) {
-    System.out.println("Enter echoMultipleSwaRefAttachments() ......");
-    SwaRefTypeResponse2 response = new SwaRefTypeResponse2();
-    response.setAttachment1(request.getAttachment1());
-    response.setAttachment2(request.getAttachment2());
-    response.setAttachment3(request.getAttachment3());
-    System.out.println("Leave echoMultipleSwaRefAttachments() ......");
-    return response;
-  }
+    public com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swareftest.SwaRefTypeResponse2 echoMultipleSwaRefAttachments(
+            com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swareftest.SwaRefTypeRequest2 request) {
+        System.out.println("Enter echoMultipleSwaRefAttachments() ......");
+        SwaRefTypeResponse2 response = new SwaRefTypeResponse2();
+        response.setAttachment1(request.getAttachment1());
+        response.setAttachment2(request.getAttachment2());
+        response.setAttachment3(request.getAttachment3());
+        System.out.println("Leave echoMultipleSwaRefAttachments() ......");
+        return response;
+    }
 }

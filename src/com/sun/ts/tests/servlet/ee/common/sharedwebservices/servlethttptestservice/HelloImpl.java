@@ -22,18 +22,23 @@ package com.sun.ts.tests.servlet.ee.common.sharedwebservices.servlethttptestserv
 
 import jakarta.jws.WebService;
 
-@WebService(portName = "HelloPort", serviceName = "ServletHttpTestService", targetNamespace = "http://servlethttptestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/ServletHttpTestService.wsdl", endpointInterface = "com.sun.ts.tests.servlet.ee.common.sharedwebservices.servlethttptestservice.Hello")
+@WebService(
+        portName = "HelloPort",
+        serviceName = "ServletHttpTestService",
+        targetNamespace = "http://servlethttptestservice.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/ServletHttpTestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.servlet.ee.common.sharedwebservices.servlethttptestservice.Hello")
 public class HelloImpl implements Hello {
 
-  public HelloResponse hello(HelloRequest req) {
-    HelloResponse resp = null;
-    System.out.println("Hello, " + req.getString() + "!");
-    resp = new HelloResponse();
-    resp.setString("Hello, " + req.getString() + "!");
-    return resp;
-  }
+    public HelloResponse hello(HelloRequest req) {
+        HelloResponse resp = null;
+        System.out.println("Hello, " + req.getString() + "!");
+        resp = new HelloResponse();
+        resp.setString("Hello, " + req.getString() + "!");
+        return resp;
+    }
 
-  public void helloOneWay(HelloOneWay req) {
-    System.out.println("Hello OneWay, " + req.getString() + "!");
-  }
+    public void helloOneWay(HelloOneWay req) {
+        System.out.println("Hello OneWay, " + req.getString() + "!");
+    }
 }

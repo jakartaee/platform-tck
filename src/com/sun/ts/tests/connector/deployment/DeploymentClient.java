@@ -20,96 +20,94 @@
 
 package com.sun.ts.tests.connector.deployment;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
+import java.util.Properties;
 
 public class DeploymentClient extends EETest {
-  // Naming specific member variables
-  private TSNamingContext jc = null;
+    // Naming specific member variables
+    private TSNamingContext jc = null;
 
-  // Harness requirements
-  private Deployment hr = null;
+    // Harness requirements
+    private Deployment hr = null;
 
-  private DeploymentHome home = null;
+    private DeploymentHome home = null;
 
-  private StringBuffer logData = null;
+    private StringBuffer logData = null;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    DeploymentClient theTests = new DeploymentClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup: */
-
-  /*
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   * whitebox-embed; rauser1; rapassword1;
-   *
-   */
-  public void setup(String[] args, Properties p) throws Fault {
-
-    // Get JNDI lookups for both adapters. The harness will throw if these
-    // properties can not be retrieved, so there is no need for error checking
-    // here.
-
-    props = p;
-
-    // Construct our DBSupport object. This object performs interactions
-    // on a table, based on the properties object supplied.
-
-    try {
-      jc = new TSNamingContext();
-      logMsg("Looked up home!!");
-      home = (DeploymentHome) jc.lookup("java:comp/env/ejb/Deployment",
-          DeploymentHome.class);
-      logMsg("Setup ok;");
-    } catch (Exception e) {
-      throw new Fault("Setup Failed!", e);
+    /* Run test in standalone mode */
+    public static void main(String[] args) {
+        DeploymentClient theTests = new DeploymentClient();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /*
-   * @testName: testRarInEar
-   *
-   * @assertion_ids: Connector:SPEC:147; Connector:SPEC:153;
-   * 
-   * @test_Strategy: Call DataSource.getConnection for the embedded resource
-   * adapter. Check whether the connection has been correctly allocated from the
-   * ConnectionManager.
-   *
-   * Use the connection in some interactions with the database.
-   *
-   *
-   */
-  public void testRarInEar() throws Fault {
-    try {
+    /* Test setup: */
 
-      hr = home.create(props);
+    /*
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     * whitebox-embed; rauser1; rapassword1;
+     *
+     */
+    public void setup(String[] args, Properties p) throws Fault {
 
-      boolean result = hr.testRarInEar();
+        // Get JNDI lookups for both adapters. The harness will throw if these
+        // properties can not be retrieved, so there is no need for error checking
+        // here.
 
-      if (result) {
-        logMsg("Test Passed");
-      } else {
-        throw new Fault("Embedded resource adapter test failed");
-      }
+        props = p;
 
-      // invoke method on the EJB
-      logMsg("Test passed;");
-    } catch (Exception e) {
-      throw new Fault("Test Failed!", e);
+        // Construct our DBSupport object. This object performs interactions
+        // on a table, based on the properties object supplied.
+
+        try {
+            jc = new TSNamingContext();
+            logMsg("Looked up home!!");
+            home = (DeploymentHome) jc.lookup("java:comp/env/ejb/Deployment", DeploymentHome.class);
+            logMsg("Setup ok;");
+        } catch (Exception e) {
+            throw new Fault("Setup Failed!", e);
+        }
     }
-  }
 
-  /* cleanup -- none in this case */
-  public void cleanup() throws Fault {
-    logMsg("Cleanup ok;");
-  }
+    /*
+     * @testName: testRarInEar
+     *
+     * @assertion_ids: Connector:SPEC:147; Connector:SPEC:153;
+     *
+     * @test_Strategy: Call DataSource.getConnection for the embedded resource
+     * adapter. Check whether the connection has been correctly allocated from the
+     * ConnectionManager.
+     *
+     * Use the connection in some interactions with the database.
+     *
+     *
+     */
+    public void testRarInEar() throws Fault {
+        try {
+
+            hr = home.create(props);
+
+            boolean result = hr.testRarInEar();
+
+            if (result) {
+                logMsg("Test Passed");
+            } else {
+                throw new Fault("Embedded resource adapter test failed");
+            }
+
+            // invoke method on the EJB
+            logMsg("Test passed;");
+        } catch (Exception e) {
+            throw new Fault("Test Failed!", e);
+        }
+    }
+
+    /* cleanup -- none in this case */
+    public void cleanup() throws Fault {
+        logMsg("Cleanup ok;");
+    }
 }

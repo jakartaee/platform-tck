@@ -30,45 +30,44 @@ import com.sun.ts.tests.websocket.negdep.NegativeDeploymentClient;
  */
 public class WSCClient extends NegativeDeploymentClient {
 
-  private static final long serialVersionUID = 111L;
+    private static final long serialVersionUID = 111L;
 
-  public WSCClient() {
-    setContextRoot("wsc_negdep_malformedpath_web");
-  }
-
-  public static void main(String[] args) {
-    new WSCClient().run(args);
-  }
-
-  /*
-   * @testName: mallformedPathTest
-   * 
-   * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3;WebSocket:SPEC:WSC-4.1.1-3;
-   * 
-   * @test_Strategy: In both cases, a deployment error raised during the
-   * deployment process must halt the deployment of the application, any well
-   * formed endpoints deployed prior to the error being raised must be removed
-   * from service and no more websocket endpoints from that application may be
-   * deployed by the container, even if they are valid.
-   * 
-   * The value attribute is mandatory; the implementation must reject a missing
-   * or malformed path at deployment time [WSC-4.1.1-3]
-   * 
-   * To verify the test fails when the deployment was successful, set path in
-   * MalformedPathServerEndpoint
-   */
-  public void mallformedPathTest() throws Fault {
-    setProperty(Property.CONTENT, "anything");
-    setProperty(Property.REQUEST, buildRequest("echo"));
-    setProperty(Property.STATUS_CODE, "-1");
-    // logExceptionOnInvocation(false);
-    try {
-      invoke(false);
-    } catch (Fault tfe) {
-      // DeploymentException
+    public WSCClient() {
+        setContextRoot("wsc_negdep_malformedpath_web");
     }
-    String response = getResponseAsString();
-    if ("anything".equals(response))
-      throwValidEndpointMustBeRemoved();
-  }
+
+    public static void main(String[] args) {
+        new WSCClient().run(args);
+    }
+
+    /*
+     * @testName: mallformedPathTest
+     *
+     * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3;WebSocket:SPEC:WSC-4.1.1-3;
+     *
+     * @test_Strategy: In both cases, a deployment error raised during the
+     * deployment process must halt the deployment of the application, any well
+     * formed endpoints deployed prior to the error being raised must be removed
+     * from service and no more websocket endpoints from that application may be
+     * deployed by the container, even if they are valid.
+     *
+     * The value attribute is mandatory; the implementation must reject a missing
+     * or malformed path at deployment time [WSC-4.1.1-3]
+     *
+     * To verify the test fails when the deployment was successful, set path in
+     * MalformedPathServerEndpoint
+     */
+    public void mallformedPathTest() throws Fault {
+        setProperty(Property.CONTENT, "anything");
+        setProperty(Property.REQUEST, buildRequest("echo"));
+        setProperty(Property.STATUS_CODE, "-1");
+        // logExceptionOnInvocation(false);
+        try {
+            invoke(false);
+        } catch (Fault tfe) {
+            // DeploymentException
+        }
+        String response = getResponseAsString();
+        if ("anything".equals(response)) throwValidEndpointMustBeRemoved();
+    }
 }

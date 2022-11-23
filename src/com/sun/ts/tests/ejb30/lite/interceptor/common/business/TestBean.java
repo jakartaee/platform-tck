@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.lite.interceptor.common.business;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.appexception.AtCheckedRollbackAppException;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.TransactionManagement;
@@ -36,43 +35,40 @@ import jakarta.transaction.UserTransaction;
 @TransactionManagement(TransactionManagementType.BEAN)
 public class TestBean {
 
-  @Resource
-  private UserTransaction ut;
+    @Resource
+    private UserTransaction ut;
 
-  public String applicationExceptionRollback() {
-    StringBuilder sb = new StringBuilder();
-    InterceptorIF interceptorBean = (InterceptorIF) ServiceLocator
-        .lookupNoTry("java:module/InterceptorBean");
-    try {
-      ut.begin();
-      interceptorBean.applicationExceptionRollback();
-      throw new RuntimeException(
-          "Expecting AtCheckedRollbackAppException, but got none");
-    } catch (AtCheckedRollbackAppException e) {
-      sb.append("Got expected " + e);
-      int status;
-      try {
-        status = ut.getStatus();
-      } catch (Exception e2) {
-        throw new RuntimeException(e2);
-      }
-      String statusDisplay = TestUtil.getTransactionStatus(status);
-      if (status == Status.STATUS_MARKED_ROLLBACK
-          || status == Status.STATUS_ROLLEDBACK
-          || status == Status.STATUS_ROLLING_BACK) {
-        sb.append("Got expected status code " + statusDisplay);
-      } else {
-        throw new RuntimeException(
-            "Got unexpected transaction status code: " + statusDisplay);
-      }
-    } catch (Exception e) {
-      throw new RuntimeException(e);
-    } finally {
-      try {
-        ut.rollback();
-      } catch (Exception ignore) {
-      }
+    public String applicationExceptionRollback() {
+        StringBuilder sb = new StringBuilder();
+        InterceptorIF interceptorBean = (InterceptorIF) ServiceLocator.lookupNoTry("java:module/InterceptorBean");
+        try {
+            ut.begin();
+            interceptorBean.applicationExceptionRollback();
+            throw new RuntimeException("Expecting AtCheckedRollbackAppException, but got none");
+        } catch (AtCheckedRollbackAppException e) {
+            sb.append("Got expected " + e);
+            int status;
+            try {
+                status = ut.getStatus();
+            } catch (Exception e2) {
+                throw new RuntimeException(e2);
+            }
+            String statusDisplay = TestUtil.getTransactionStatus(status);
+            if (status == Status.STATUS_MARKED_ROLLBACK
+                    || status == Status.STATUS_ROLLEDBACK
+                    || status == Status.STATUS_ROLLING_BACK) {
+                sb.append("Got expected status code " + statusDisplay);
+            } else {
+                throw new RuntimeException("Got unexpected transaction status code: " + statusDisplay);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                ut.rollback();
+            } catch (Exception ignore) {
+            }
+        }
+        return sb.toString();
     }
-    return sb.toString();
-  }
 }

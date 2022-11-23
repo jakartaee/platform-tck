@@ -20,29 +20,26 @@
 
 package com.sun.ts.tests.ejb.ee.tx.txEPMbeanLocal;
 
-import java.sql.SQLException;
-import java.util.Collection;
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.DuplicateKeyException;
 import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
+import java.sql.SQLException;
+import java.util.Collection;
+import java.util.Properties;
 
 public interface TxEPMBeanHome extends EJBLocalHome {
 
-  public TxEPMBean create(String tName, Integer key, String brand, float price,
-      Properties p) throws CreateException, DuplicateKeyException, SQLException;
+    public TxEPMBean create(String tName, Integer key, String brand, float price, Properties p)
+            throws CreateException, DuplicateKeyException, SQLException;
 
-  public TxEPMBean findByPrimaryKey(Integer key) throws FinderException;
+    public TxEPMBean findByPrimaryKey(Integer key) throws FinderException;
 
-  public Collection findByName(String name) throws FinderException;
+    public Collection findByName(String name) throws FinderException;
 
-  public Collection findByPrice(float price) throws FinderException;
+    public Collection findByPrice(float price) throws FinderException;
 
-  public Collection findWithinPriceRange(float pmin, float pmax)
-      throws FinderException;
+    public Collection findWithinPriceRange(float pmin, float pmax) throws FinderException;
 
-  public Collection findWithinPrimaryKeyRange(Integer kmin, Integer kmax)
-      throws FinderException;
+    public Collection findWithinPrimaryKeyRange(Integer kmin, Integer kmax) throws FinderException;
 }

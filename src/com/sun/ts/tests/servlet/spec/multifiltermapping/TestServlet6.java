@@ -20,20 +20,18 @@
 
 package com.sun.ts.tests.servlet.spec.multifiltermapping;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet6 extends GenericServlet {
 
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    pw.println("TestServlet6 is invoked");
-    pw.println("TestServlet6's URL: ");
-  }
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        pw.println("TestServlet6 is invoked");
+        pw.println("TestServlet6's URL: ");
+    }
 }

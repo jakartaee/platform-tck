@@ -21,41 +21,39 @@ package com.sun.ts.tests.jsonp.api.common;
  */
 public class TestFail {
 
-  /** Test failure name and message separator. */
-  private static final String NM_SEP = ": ";
+    /** Test failure name and message separator. */
+    private static final String NM_SEP = ": ";
 
-  /** Name of test that failed. */
-  private final String name;
+    /** Name of test that failed. */
+    private final String name;
 
-  /** Error message. */
-  private final String message;
+    /** Error message. */
+    private final String message;
 
-  /**
-   * Creates an instance of test failure notification.
-   * 
-   * @param name
-   *          Test name.
-   * @param message
-   *          Error message.
-   */
-  public TestFail(final String name, final String message) {
-    this.name = name;
-    this.message = message;
-  }
+    /**
+     * Creates an instance of test failure notification.
+     *
+     * @param name
+     *          Test name.
+     * @param message
+     *          Error message.
+     */
+    public TestFail(final String name, final String message) {
+        this.name = name;
+        this.message = message;
+    }
 
-  /**
-   * Returns human readable content of test failure notification.
-   * 
-   * @return Human readable content of test failure notification.
-   */
-  @Override
-  public String toString() {
-    final StringBuilder sb = new StringBuilder(
-        name.length() + message.length() + NM_SEP.length());
-    sb.append(name);
-    sb.append(NM_SEP);
-    sb.append(message);
-    return sb.toString();
-  }
-
+    /**
+     * Returns human readable content of test failure notification.
+     *
+     * @return Human readable content of test failure notification.
+     */
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder(name.length() + message.length() + NM_SEP.length());
+        sb.append(name);
+        sb.append(NM_SEP);
+        sb.append(message);
+        return sb.toString();
+    }
 }

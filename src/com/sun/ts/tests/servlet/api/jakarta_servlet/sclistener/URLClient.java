@@ -20,55 +20,53 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.sclistener;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    setServletName("TestServlet");
-    setContextRoot("/servlet_js_sclistener_web");
+        setServletName("TestServlet");
+        setContextRoot("/servlet_js_sclistener_web");
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   *
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     *
+     */
 
-  /* Run test */
+    /* Run test */
 
-  /*
-   * @testName: contextInitializedTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:214
-   * 
-   * @test_Strategy: A ServletContext Listener is deployed and the listener
-   * write a message indicating so to a static log. The servlet reads the log
-   * and verifies the result
-   */
+    /*
+     * @testName: contextInitializedTest
+     *
+     * @assertion_ids: Servlet:JAVADOC:214
+     *
+     * @test_Strategy: A ServletContext Listener is deployed and the listener
+     * write a message indicating so to a static log. The servlet reads the log
+     * and verifies the result
+     */
 
-  public void contextInitializedTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "contextInitializedTest");
-    invoke();
-  }
+    public void contextInitializedTest() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "contextInitializedTest");
+        invoke();
+    }
 }

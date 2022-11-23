@@ -27,7 +27,7 @@ import java.rmi.RemoteException;
  * java.rmi.RemoteException.
  */
 public interface BusinessIF1 extends java.rmi.Remote {
-  public void remove() throws RemoteException; // for sfsb only
+    public void remove() throws RemoteException; // for sfsb only
 
-  public boolean _businessMethod1_(String[] s) throws RemoteException;
+    public boolean _businessMethod1_(String[] s) throws RemoteException;
 }

@@ -20,18 +20,17 @@
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 
 public class Interceptor1 {
-  @AroundInvoke
-  private Object intercept(InvocationContext inv) throws Exception {
-    if (inv.getMethod().getName().equals("timeoutInterceptor")) {
-      Object[] params = inv.getParameters();
-      long waitMillis = (Long) params[0];
-      Helper.busyWait(waitMillis);
+    @AroundInvoke
+    private Object intercept(InvocationContext inv) throws Exception {
+        if (inv.getMethod().getName().equals("timeoutInterceptor")) {
+            Object[] params = inv.getParameters();
+            long waitMillis = (Long) params[0];
+            Helper.busyWait(waitMillis);
+        }
+        return inv.proceed();
     }
-    return inv.proceed();
-  }
 }

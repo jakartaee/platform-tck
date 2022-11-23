@@ -19,16 +19,14 @@
  */
 package com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.accesstimeout.annotated;
 
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.AccessTimeoutIF;
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.PlainAccessTimeoutBeanBase;
-
 import jakarta.ejb.AccessTimeout;
 import jakarta.ejb.Asynchronous;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateful;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 /**
  * All @AccessTimeout metadata are specified in bean class itself at method
@@ -37,13 +35,11 @@ import jakarta.ejb.Stateful;
 @Stateful(mappedName = "stateful-concurrency-accesstimeout-annotated-BeanClassMethodLevelAccessTimeoutBean")
 @Remote(AccessTimeoutRemoteIF.class)
 @Asynchronous
-public class BeanClassMethodLevelAccessTimeoutBean
-    extends PlainAccessTimeoutBeanBase implements AccessTimeoutIF {
+public class BeanClassMethodLevelAccessTimeoutBean extends PlainAccessTimeoutBeanBase implements AccessTimeoutIF {
 
-  @Override
-  @AccessTimeout(value = BEAN_METHOD_LEVEL_TIMEOUT_MILLIS, unit = TimeUnit.MILLISECONDS)
-  public Future<String> beanClassMethodLevel() {
-    return ping();
-  }
-
+    @Override
+    @AccessTimeout(value = BEAN_METHOD_LEVEL_TIMEOUT_MILLIS, unit = TimeUnit.MILLISECONDS)
+    public Future<String> beanClassMethodLevel() {
+        return ping();
+    }
 }

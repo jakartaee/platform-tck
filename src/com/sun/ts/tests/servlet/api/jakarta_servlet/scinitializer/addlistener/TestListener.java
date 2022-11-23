@@ -25,73 +25,63 @@ import jakarta.servlet.ServletContextListener;
 
 public class TestListener implements ServletContextListener {
 
-  /**
-   * Receives notification that the web application initialization process is
-   * starting.
-   *
-   * @param sce
-   *          The ServletContextEvent
-   */
-  public void contextInitialized(ServletContextEvent sce) {
-    boolean passed = true;
-    ServletContext context = sce.getServletContext();
-    StringBuilder log = new StringBuilder();
+    /**
+     * Receives notification that the web application initialization process is
+     * starting.
+     *
+     * @param sce
+     *          The ServletContextEvent
+     */
+    public void contextInitialized(ServletContextEvent sce) {
+        boolean passed = true;
+        ServletContext context = sce.getServletContext();
+        StringBuilder log = new StringBuilder();
 
-    try {
-      context.addListener(
-          com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addlistener.SCListener.class);
-      passed = false;
-      log.append(
-          "Expected UnsupportedOperationException not thrown by addListener(SCListener.class).");
-    } catch (UnsupportedOperationException ex) {
-      log.append(
-          "Expected UnsupportedOperationException thrown by addListener(SCListener.class).");
+        try {
+            context.addListener(
+                    com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addlistener.SCListener.class);
+            passed = false;
+            log.append("Expected UnsupportedOperationException not thrown by addListener(SCListener.class).");
+        } catch (UnsupportedOperationException ex) {
+            log.append("Expected UnsupportedOperationException thrown by addListener(SCListener.class).");
+        }
+
+        try {
+            context.addListener(SCAttributeListener.class);
+            passed = false;
+            log.append("Expected UnsupportedOperationException not thrown by addListener(SCAttributeListener.class).");
+        } catch (UnsupportedOperationException ex) {
+            log.append("Expected UnsupportedOperationException thrown by addListener(SCAttributeListener.class).");
+        }
+
+        try {
+            context.addListener(
+                    com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addlistener.SRListener.class);
+            passed = false;
+            log.append("Expected UnsupportedOperationException not thrown by addListener(SRListener.class).");
+        } catch (UnsupportedOperationException ex) {
+            log.append("Expected UnsupportedOperationException thrown by addListener(SRListener.class).");
+        }
+
+        try {
+            context.addListener(SRAttributeListener.class);
+            passed = false;
+            log.append("Expected UnsupportedOperationException not thrown by addListener(SRAttributeListener.class).");
+        } catch (UnsupportedOperationException ex) {
+            log.append("Expected UnsupportedOperationException thrown by addListener(SRAttributeListener.class).");
+        }
+
+        context.setAttribute("TCK_TEST_STATUS", log.toString());
+        context.setAttribute("TCK_TEST_PASS_STATUS", passed);
     }
 
-    try {
-      context.addListener(
-          SCAttributeListener.class);
-      passed = false;
-      log.append(
-          "Expected UnsupportedOperationException not thrown by addListener(SCAttributeListener.class).");
-    } catch (UnsupportedOperationException ex) {
-      log.append(
-          "Expected UnsupportedOperationException thrown by addListener(SCAttributeListener.class).");
+    /**
+     * Receives notification that the servlet context is about to be shut down.
+     *
+     * @param sce
+     *          The servlet context event
+     */
+    public void contextDestroyed(ServletContextEvent sce) {
+        // Do nothing
     }
-
-    try {
-      context.addListener(
-          com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addlistener.SRListener.class);
-      passed = false;
-      log.append(
-          "Expected UnsupportedOperationException not thrown by addListener(SRListener.class).");
-    } catch (UnsupportedOperationException ex) {
-      log.append(
-          "Expected UnsupportedOperationException thrown by addListener(SRListener.class).");
-    }
-
-    try {
-      context.addListener(
-          SRAttributeListener.class);
-      passed = false;
-      log.append(
-          "Expected UnsupportedOperationException not thrown by addListener(SRAttributeListener.class).");
-    } catch (UnsupportedOperationException ex) {
-      log.append(
-          "Expected UnsupportedOperationException thrown by addListener(SRAttributeListener.class).");
-    }
-
-    context.setAttribute("TCK_TEST_STATUS", log.toString());
-    context.setAttribute("TCK_TEST_PASS_STATUS", passed);
-  }
-
-  /**
-   * Receives notification that the servlet context is about to be shut down.
-   *
-   * @param sce
-   *          The servlet context event
-   */
-  public void contextDestroyed(ServletContextEvent sce) {
-    // Do nothing
-  }
 }

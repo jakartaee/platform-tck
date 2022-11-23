@@ -20,66 +20,64 @@
 
 package com.sun.ts.tests.appclient.deploy.enventry.casesens;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.tests.assembly.util.shared.enventry.casesens.TestCode;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   *
-   */
-  public void setup(String[] args, Properties props) throws Fault {
-    this.props = props;
-
-    try {
-      nctx = new TSNamingContext();
-      logMsg("[Client] Setup succeed (got naming context).");
-    } catch (Exception e) {
-      throw new Fault("[Client] Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /**
-   * @testName: testCaseSensitivity
-   *
-   * @assertion_ids: JavaEE:SPEC:279
-   *
-   * @test_Strategy: Deploy an application client with two String environment
-   *                 entries whose name differ only by case and are assigned to
-   *                 two distinct values. Check that we can lookup the two
-   *                 environment entries. Check that their runtime values are
-   *                 distinct and match the ones specified in the DD.
-   */
-  public void testCaseSensitivity() throws Fault {
-    boolean pass;
+    /*
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     *
+     */
+    public void setup(String[] args, Properties props) throws Fault {
+        this.props = props;
 
-    try {
-      pass = TestCode.testCaseSensitivity(nctx);
-      if (!pass) {
-        throw new Fault("Case sensitivity test failed!");
-      }
-    } catch (Exception e) {
-      throw new Fault("Case sensitivity test failed: " + e, e);
+        try {
+            nctx = new TSNamingContext();
+            logMsg("[Client] Setup succeed (got naming context).");
+        } catch (Exception e) {
+            throw new Fault("[Client] Setup failed:", e);
+        }
     }
-  }
 
-  public void cleanup() throws Fault {
-    logMsg("[Client] cleanup()");
-  }
+    /**
+     * @testName: testCaseSensitivity
+     *
+     * @assertion_ids: JavaEE:SPEC:279
+     *
+     * @test_Strategy: Deploy an application client with two String environment
+     *                 entries whose name differ only by case and are assigned to
+     *                 two distinct values. Check that we can lookup the two
+     *                 environment entries. Check that their runtime values are
+     *                 distinct and match the ones specified in the DD.
+     */
+    public void testCaseSensitivity() throws Fault {
+        boolean pass;
 
+        try {
+            pass = TestCode.testCaseSensitivity(nctx);
+            if (!pass) {
+                throw new Fault("Case sensitivity test failed!");
+            }
+        } catch (Exception e) {
+            throw new Fault("Case sensitivity test failed: " + e, e);
+        }
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("[Client] cleanup()");
+    }
 }

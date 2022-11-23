@@ -24,10 +24,9 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.functioninfo;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 /**
  * Test client for FunctionInfo. Implementation note, all tests are performed
@@ -36,80 +35,76 @@ import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
  */
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /* Run tests */
+    /* Run tests */
 
-  // ============================================ Tests ======
+    // ============================================ Tests ======
 
-  /*
-   * @testName: functionInfoGetNameTest
-   * 
-   * @assertion_ids: JSP:JAVADOC:315
-   * 
-   * @test_Strategy: Validate the container properly parses the function
-   * information in the provided TLD and the method calls, in this case,
-   * FunctionInfo.getName(), returns the expected value.
-   */
-  public void functionInfoGetNameTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_functioninfo_web/GetNameTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    invoke();
-  }
+    /*
+     * @testName: functionInfoGetNameTest
+     *
+     * @assertion_ids: JSP:JAVADOC:315
+     *
+     * @test_Strategy: Validate the container properly parses the function
+     * information in the provided TLD and the method calls, in this case,
+     * FunctionInfo.getName(), returns the expected value.
+     */
+    public void functionInfoGetNameTest() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_functioninfo_web/GetNameTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
+        invoke();
+    }
 
-  /*
-   * @testName: functionInfoGetFunctionClassTest
-   * 
-   * @assertion_ids: JSP:JAVADOC:316
-   * 
-   * @test_Strategy: Validate the container properly parses the function
-   * information in the provided TLD and the method calls, in this case,
-   * FunctionInfo.getFunctionClass(), returns the expected value.
-   */
-  public void functionInfoGetFunctionClassTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_functioninfo_web/GetFunctionClassTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    invoke();
-  }
+    /*
+     * @testName: functionInfoGetFunctionClassTest
+     *
+     * @assertion_ids: JSP:JAVADOC:316
+     *
+     * @test_Strategy: Validate the container properly parses the function
+     * information in the provided TLD and the method calls, in this case,
+     * FunctionInfo.getFunctionClass(), returns the expected value.
+     */
+    public void functionInfoGetFunctionClassTest() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_functioninfo_web/GetFunctionClassTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
+        invoke();
+    }
 
-  /*
-   * @testName: functionInfoGetFunctionSignatureTest
-   * 
-   * @assertion_ids: JSP:JAVADOC:317
-   * 
-   * @test_Strategy: Validate the container properly parses the function
-   * information in the provided TLD and the method calls, in this case,
-   * FunctionInfo.getFunctionSignature(), returns the expected value.
-   */
-  public void functionInfoGetFunctionSignatureTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_functioninfo_web/GetFunctionSignatureTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    invoke();
-  }
+    /*
+     * @testName: functionInfoGetFunctionSignatureTest
+     *
+     * @assertion_ids: JSP:JAVADOC:317
+     *
+     * @test_Strategy: Validate the container properly parses the function
+     * information in the provided TLD and the method calls, in this case,
+     * FunctionInfo.getFunctionSignature(), returns the expected value.
+     */
+    public void functionInfoGetFunctionSignatureTest() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_functioninfo_web/GetFunctionSignatureTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
+        invoke();
+    }
 }

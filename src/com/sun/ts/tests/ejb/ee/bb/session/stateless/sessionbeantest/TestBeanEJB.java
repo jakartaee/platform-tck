@@ -20,110 +20,99 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateless.sessionbeantest;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
+import java.util.Properties;
 
 public class TestBeanEJB implements SessionBean {
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  // Proper lifecycle create call order for EJBObject creation.
-  // A client invokes home.create()
-  // - newInstance()
-  // - setSessionContext(SessionContext ctx)
-  // - ejbCreate()
+    // Proper lifecycle create call order for EJBObject creation.
+    // A client invokes home.create()
+    // - newInstance()
+    // - setSessionContext(SessionContext ctx)
+    // - ejbCreate()
 
-  private boolean ejbNewInstanceFlag = false;
+    private boolean ejbNewInstanceFlag = false;
 
-  private boolean ejbSessionContextFlag = false;
+    private boolean ejbSessionContextFlag = false;
 
-  private boolean ejbCreateFlag = false;
+    private boolean ejbCreateFlag = false;
 
-  private boolean createLifeCycleFlag = true;
+    private boolean createLifeCycleFlag = true;
 
-  // newInstance() invokes default no-arg constructor for class
-  public TestBeanEJB() {
-    TestUtil.logTrace("newInstance => default constructor called");
-    ejbNewInstanceFlag = true;
-    if (ejbSessionContextFlag || ejbCreateFlag)
-      createLifeCycleFlag = false;
-    if (ejbSessionContextFlag)
-      TestUtil.logErr("newInstance() not called before setSessionContext()");
-    if (ejbCreateFlag)
-      TestUtil.logErr("newInstance() not called before ejbCreate()");
-  }
-
-  public void ejbCreate() throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    ejbCreateFlag = true;
-    if (!ejbNewInstanceFlag || !ejbSessionContextFlag)
-      createLifeCycleFlag = false;
-    if (!ejbNewInstanceFlag)
-      TestUtil.logErr("newInstance() not called before ejbCreate()");
-    if (!ejbSessionContextFlag)
-      TestUtil.logErr("setSessionContext() not called before ejbCreate()");
-  }
-
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-    ejbSessionContextFlag = true;
-    if (!ejbNewInstanceFlag || ejbCreateFlag)
-      createLifeCycleFlag = false;
-    if (!ejbNewInstanceFlag)
-      TestUtil.logErr("newInstance() not called before setSessionContext()");
-    if (ejbCreateFlag)
-      TestUtil.logErr("ejbCreate() called before setSessionContext()");
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-    reset();
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  // ===========================================================
-  // TestBean interface (our business methods)
-
-  public void ping() {
-    TestUtil.logTrace("ping");
-  }
-
-  public boolean isCreateLifeCycle() {
-    TestUtil.logTrace("isCreateLifeCycle");
-    boolean status = createLifeCycleFlag;
-    reset();
-    return status;
-  }
-
-  public void initLogging(Properties p) {
-    TestUtil.logTrace("initLogging");
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
+    // newInstance() invokes default no-arg constructor for class
+    public TestBeanEJB() {
+        TestUtil.logTrace("newInstance => default constructor called");
+        ejbNewInstanceFlag = true;
+        if (ejbSessionContextFlag || ejbCreateFlag) createLifeCycleFlag = false;
+        if (ejbSessionContextFlag) TestUtil.logErr("newInstance() not called before setSessionContext()");
+        if (ejbCreateFlag) TestUtil.logErr("newInstance() not called before ejbCreate()");
     }
-  }
 
-  private void reset() {
-    ejbSessionContextFlag = false;
-    ejbCreateFlag = false;
-    createLifeCycleFlag = true;
-  }
+    public void ejbCreate() throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        ejbCreateFlag = true;
+        if (!ejbNewInstanceFlag || !ejbSessionContextFlag) createLifeCycleFlag = false;
+        if (!ejbNewInstanceFlag) TestUtil.logErr("newInstance() not called before ejbCreate()");
+        if (!ejbSessionContextFlag) TestUtil.logErr("setSessionContext() not called before ejbCreate()");
+    }
 
-  // ===========================================================
+    public void setSessionContext(SessionContext sc) {
+        TestUtil.logTrace("setSessionContext");
+        this.sctx = sc;
+        ejbSessionContextFlag = true;
+        if (!ejbNewInstanceFlag || ejbCreateFlag) createLifeCycleFlag = false;
+        if (!ejbNewInstanceFlag) TestUtil.logErr("newInstance() not called before setSessionContext()");
+        if (ejbCreateFlag) TestUtil.logErr("ejbCreate() called before setSessionContext()");
+    }
+
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
+        reset();
+    }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
+
+    // ===========================================================
+    // TestBean interface (our business methods)
+
+    public void ping() {
+        TestUtil.logTrace("ping");
+    }
+
+    public boolean isCreateLifeCycle() {
+        TestUtil.logTrace("isCreateLifeCycle");
+        boolean status = createLifeCycleFlag;
+        reset();
+        return status;
+    }
+
+    public void initLogging(Properties p) {
+        TestUtil.logTrace("initLogging");
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
+        }
+    }
+
+    private void reset() {
+        ejbSessionContextFlag = false;
+        ejbCreateFlag = false;
+        createLifeCycleFlag = true;
+    }
+
+    // ===========================================================
 }

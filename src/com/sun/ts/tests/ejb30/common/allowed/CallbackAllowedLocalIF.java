@@ -20,6 +20,4 @@
 
 package com.sun.ts.tests.ejb30.common.allowed;
 
-public interface CallbackAllowedLocalIF extends CallbackAllowedIF {
-
-}
+public interface CallbackAllowedLocalIF extends CallbackAllowedIF {}

@@ -19,53 +19,51 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.getfilterregistration;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    setContextRoot("/servlet_sci_getfilterregistration_web");
-    setServletName("TestServlet");
+        setContextRoot("/servlet_sci_getfilterregistration_web");
+        setServletName("TestServlet");
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
-  /* Run test */
-  /*
-   * @testName: getFilterRegistrationTest
-   *
-   * @assertion_ids: Servlet:JAVADOC:688.1;
-   *
-   * @test_Strategy: Create a ServletContextInitializer, in which, Add a
-   * ServletContextListener instance using ServletContext.addListener; in the
-   * ServletContextListener call ServletContext.getFilterRegistration(String)
-   * Verify that UnsupportedOperationException is thrown.
-   */
-  public void getFilterRegistrationTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "getFilterRegistrationTest");
-    invoke();
-  }
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
+    /* Run test */
+    /*
+     * @testName: getFilterRegistrationTest
+     *
+     * @assertion_ids: Servlet:JAVADOC:688.1;
+     *
+     * @test_Strategy: Create a ServletContextInitializer, in which, Add a
+     * ServletContextListener instance using ServletContext.addListener; in the
+     * ServletContextListener call ServletContext.getFilterRegistration(String)
+     * Verify that UnsupportedOperationException is thrown.
+     */
+    public void getFilterRegistrationTest() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "getFilterRegistrationTest");
+        invoke();
+    }
 }

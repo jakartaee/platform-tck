@@ -20,17 +20,12 @@
 
 package com.sun.ts.tests.common.ejb.wrappers;
 
-import java.util.Properties;
-
-import javax.naming.NamingException;
-
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.dao.DAOException;
 import com.sun.ts.tests.common.dao.DAOFactory;
 import com.sun.ts.tests.common.dao.coffee.CoffeeBean;
 import com.sun.ts.tests.common.dao.coffee.CoffeeDAO;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
@@ -38,6 +33,8 @@ import jakarta.ejb.EntityContext;
 import jakarta.ejb.FinderException;
 import jakarta.ejb.NoSuchEntityException;
 import jakarta.ejb.RemoveException;
+import java.util.Properties;
+import javax.naming.NamingException;
 
 /**
  * BMP wrapper that provide the bean life cycle methods for a BMP bean. This
@@ -46,178 +43,175 @@ import jakarta.ejb.RemoveException;
  */
 public class BMPWrapper implements EntityBean {
 
-  /** Cached instance state */
-  private CoffeeBean cache;
+    /** Cached instance state */
+    private CoffeeBean cache;
 
-  protected TSNamingContext nctx = null;
+    protected TSNamingContext nctx = null;
 
-  protected EntityContext ectx = null;
+    protected EntityContext ectx = null;
 
-  private CoffeeDAO dao = null;
+    private CoffeeDAO dao = null;
 
-  /*
-   * Bean life cycle.
-   */
+    /*
+     * Bean life cycle.
+     */
 
-  public void setEntityContext(EntityContext ctx) throws EJBException {
+    public void setEntityContext(EntityContext ctx) throws EJBException {
 
-    TestUtil.logTrace("[BMPWrapper] setEntityContext()");
-    this.ectx = ctx;
+        TestUtil.logTrace("[BMPWrapper] setEntityContext()");
+        this.ectx = ctx;
 
-    try {
-      TestUtil.logMsg("[BMPWrapper] Obtaining TS Naming Context...");
-      nctx = new TSNamingContext();
-    } catch (NamingException e) {
-      TestUtil.logErr("[BMPWrapper] Naming Exception : " + e);
-      throw new EJBException("Cannot obtain Naming Context" + e);
-    } catch (Exception e) {
-      TestUtil.logErr("[BMPWrapper] Caught exception: " + e);
-      throw new EJBException("Caught exception: " + e);
-    }
-  }
-
-  public Integer ejbCreate(Properties props, int id, String name, float price)
-      throws CreateException {
-
-    try {
-      TestUtil.logTrace("[BMPWrapper] ejbCreate()");
-
-      TestUtil.logTrace("[BMPWrapper] Initialize remote logging");
-      TestUtil.init(props);
-
-      TestUtil.logTrace("[BMPWrapper] DAO Init");
-      if (null == dao) {
-        dao = DAOFactory.getInstance().getCoffeeDAO();
-      }
-      dao.startSession();
-
-      TestUtil.logTrace("[BMPWrapper] Create new row...");
-      dao.create(id, name, price);
-      this.cache = new CoffeeBean(id, name, price);
-    } catch (Exception e) {
-      TestUtil.logErr("[BMPWrapper] Unexpected exception ", e);
-      throw new CreateException("Caught exception : " + e);
-    } finally {
-      if (null != dao) {
-        dao.stopSession();
-      }
+        try {
+            TestUtil.logMsg("[BMPWrapper] Obtaining TS Naming Context...");
+            nctx = new TSNamingContext();
+        } catch (NamingException e) {
+            TestUtil.logErr("[BMPWrapper] Naming Exception : " + e);
+            throw new EJBException("Cannot obtain Naming Context" + e);
+        } catch (Exception e) {
+            TestUtil.logErr("[BMPWrapper] Caught exception: " + e);
+            throw new EJBException("Caught exception: " + e);
+        }
     }
 
-    return new Integer(id);
-  }
+    public Integer ejbCreate(Properties props, int id, String name, float price) throws CreateException {
 
-  public void ejbPostCreate(Properties props, int id, String name,
-      float price) {
+        try {
+            TestUtil.logTrace("[BMPWrapper] ejbCreate()");
 
-    TestUtil.logTrace("[BMPWrapper] ejbPostCreate()");
-  }
+            TestUtil.logTrace("[BMPWrapper] Initialize remote logging");
+            TestUtil.init(props);
 
-  public void unsetEntityContext() {
-    TestUtil.logTrace("[BMPWrapper] unsetEntityContext()");
-  }
+            TestUtil.logTrace("[BMPWrapper] DAO Init");
+            if (null == dao) {
+                dao = DAOFactory.getInstance().getCoffeeDAO();
+            }
+            dao.startSession();
 
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("[BMPWrapper] ejbRemove()");
-    try {
-      if (null == dao) {
-        TestUtil.logMsg("[BMPWrapper] get DAO...");
-        dao = DAOFactory.getInstance().getCoffeeDAO();
-      }
-      TestUtil.logTrace("[BMPWrapper] Start DAO session...");
-      dao.startSession();
-      TestUtil.logTrace("[BMPWrapper] Remove row...");
-      dao.delete(((Integer) ectx.getPrimaryKey()).intValue());
-    } catch (DAOException e) {
-      throw new RemoveException("[BMPWrapper] Caught DAOException" + e);
-    } catch (Exception e) {
-      throw new RemoveException("[BMPWrapper] Caught exception: " + e);
-    } finally {
-      if (null != dao) {
-        dao.stopSession();
-      }
+            TestUtil.logTrace("[BMPWrapper] Create new row...");
+            dao.create(id, name, price);
+            this.cache = new CoffeeBean(id, name, price);
+        } catch (Exception e) {
+            TestUtil.logErr("[BMPWrapper] Unexpected exception ", e);
+            throw new CreateException("Caught exception : " + e);
+        } finally {
+            if (null != dao) {
+                dao.stopSession();
+            }
+        }
+
+        return new Integer(id);
     }
-  }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("[BMPWrapper] ejbActivate()");
-  }
+    public void ejbPostCreate(Properties props, int id, String name, float price) {
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("[BMPWrapper] ejbPassivate()");
-  }
-
-  public void ejbLoad() throws EJBException {
-
-    TestUtil.logTrace("[BMPWrapper] ejbLoad()");
-    try {
-      if (null == dao) {
-        TestUtil.logMsg("[BMPWrapper] Get DAO");
-        dao = DAOFactory.getInstance().getCoffeeDAO();
-      }
-      TestUtil.logTrace("[BMPWrapper] Start DAO session...");
-      dao.startSession();
-      TestUtil.logTrace("[BMPWrapper] Load row...");
-      this.cache = dao.load(((Integer) ectx.getPrimaryKey()).intValue());
-    } catch (DAOException e) {
-      TestUtil.logErr("[BMPWrapper] No such entity exists: " + e);
-      throw new NoSuchEntityException("[ejbLoad] DAOException" + e);
-    } catch (Exception e) {
-      throw new EJBException("[ejbLoad] Unable to init DAO " + e);
-    } finally {
-      if (null != dao) {
-        dao.stopSession();
-      }
+        TestUtil.logTrace("[BMPWrapper] ejbPostCreate()");
     }
-  }
 
-  public void ejbStore() throws EJBException {
-    TestUtil.logTrace("[BMPWrapper] ejbStore()");
-    try {
-      if (null == dao) {
-        TestUtil.logMsg("[BMPWrapper] Get DAO...");
-        dao = DAOFactory.getInstance().getCoffeeDAO();
-      }
-      TestUtil.logTrace("[BMPWrapper] Start DAO session...");
-      dao.startSession();
-      TestUtil.logTrace("[BMPWrapper] Store row...");
-      dao.store(cache);
-    } catch (DAOException e) {
-      TestUtil.logErr("[BMPWrapper] No such entity: " + e);
-      throw new NoSuchEntityException("[ejbStore] DAOException" + e);
-    } catch (Exception e) {
-      throw new EJBException("[ejbStore] Unable to init DAO");
-    } finally {
-      if (null != dao) {
-        dao.stopSession();
-      }
-      dao = null;
+    public void unsetEntityContext() {
+        TestUtil.logTrace("[BMPWrapper] unsetEntityContext()");
     }
-  }
 
-  public Integer ejbFindByPrimaryKey(Integer key) throws FinderException {
-
-    TestUtil.logTrace("[BMPWrapper] ejbFindByPrimaryKey()");
-    try {
-      if (null == dao) {
-        TestUtil.logMsg("[BMPWrapper] Get DAO...");
-        dao = DAOFactory.getInstance().getCoffeeDAO();
-      }
-
-      dao.startSession();
-      if (dao.exists(key.intValue())) {
-        return key;
-      } else {
-        throw new FinderException("[BMPWrapper] Key not found: " + key);
-      }
-    } catch (DAOException e) {
-      throw new FinderException("DAOException " + e);
-    } catch (Exception e) {
-      throw new FinderException("Exception occurred: " + e);
-    } finally {
-      if (null != dao) {
-        dao.stopSession();
-      }
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("[BMPWrapper] ejbRemove()");
+        try {
+            if (null == dao) {
+                TestUtil.logMsg("[BMPWrapper] get DAO...");
+                dao = DAOFactory.getInstance().getCoffeeDAO();
+            }
+            TestUtil.logTrace("[BMPWrapper] Start DAO session...");
+            dao.startSession();
+            TestUtil.logTrace("[BMPWrapper] Remove row...");
+            dao.delete(((Integer) ectx.getPrimaryKey()).intValue());
+        } catch (DAOException e) {
+            throw new RemoveException("[BMPWrapper] Caught DAOException" + e);
+        } catch (Exception e) {
+            throw new RemoveException("[BMPWrapper] Caught exception: " + e);
+        } finally {
+            if (null != dao) {
+                dao.stopSession();
+            }
+        }
     }
-  }
 
+    public void ejbActivate() {
+        TestUtil.logTrace("[BMPWrapper] ejbActivate()");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("[BMPWrapper] ejbPassivate()");
+    }
+
+    public void ejbLoad() throws EJBException {
+
+        TestUtil.logTrace("[BMPWrapper] ejbLoad()");
+        try {
+            if (null == dao) {
+                TestUtil.logMsg("[BMPWrapper] Get DAO");
+                dao = DAOFactory.getInstance().getCoffeeDAO();
+            }
+            TestUtil.logTrace("[BMPWrapper] Start DAO session...");
+            dao.startSession();
+            TestUtil.logTrace("[BMPWrapper] Load row...");
+            this.cache = dao.load(((Integer) ectx.getPrimaryKey()).intValue());
+        } catch (DAOException e) {
+            TestUtil.logErr("[BMPWrapper] No such entity exists: " + e);
+            throw new NoSuchEntityException("[ejbLoad] DAOException" + e);
+        } catch (Exception e) {
+            throw new EJBException("[ejbLoad] Unable to init DAO " + e);
+        } finally {
+            if (null != dao) {
+                dao.stopSession();
+            }
+        }
+    }
+
+    public void ejbStore() throws EJBException {
+        TestUtil.logTrace("[BMPWrapper] ejbStore()");
+        try {
+            if (null == dao) {
+                TestUtil.logMsg("[BMPWrapper] Get DAO...");
+                dao = DAOFactory.getInstance().getCoffeeDAO();
+            }
+            TestUtil.logTrace("[BMPWrapper] Start DAO session...");
+            dao.startSession();
+            TestUtil.logTrace("[BMPWrapper] Store row...");
+            dao.store(cache);
+        } catch (DAOException e) {
+            TestUtil.logErr("[BMPWrapper] No such entity: " + e);
+            throw new NoSuchEntityException("[ejbStore] DAOException" + e);
+        } catch (Exception e) {
+            throw new EJBException("[ejbStore] Unable to init DAO");
+        } finally {
+            if (null != dao) {
+                dao.stopSession();
+            }
+            dao = null;
+        }
+    }
+
+    public Integer ejbFindByPrimaryKey(Integer key) throws FinderException {
+
+        TestUtil.logTrace("[BMPWrapper] ejbFindByPrimaryKey()");
+        try {
+            if (null == dao) {
+                TestUtil.logMsg("[BMPWrapper] Get DAO...");
+                dao = DAOFactory.getInstance().getCoffeeDAO();
+            }
+
+            dao.startSession();
+            if (dao.exists(key.intValue())) {
+                return key;
+            } else {
+                throw new FinderException("[BMPWrapper] Key not found: " + key);
+            }
+        } catch (DAOException e) {
+            throw new FinderException("DAOException " + e);
+        } catch (Exception e) {
+            throw new FinderException("Exception occurred: " + e);
+        } finally {
+            if (null != dao) {
+                dao.stopSession();
+            }
+        }
+    }
 }

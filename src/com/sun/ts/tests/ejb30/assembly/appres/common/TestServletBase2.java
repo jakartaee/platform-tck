@@ -21,38 +21,36 @@
 package com.sun.ts.tests.ejb30.assembly.appres.common;
 
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 
-abstract public class TestServletBase2 extends TestServletBase {
-  @Resource(name = "java:app/env/myString")
-  protected String myString;
+public abstract class TestServletBase2 extends TestServletBase {
+    @Resource(name = "java:app/env/myString")
+    protected String myString;
 
-  @EJB(lookup = "java:app/env/hello")
-  protected HelloRemoteIF hello;
+    @EJB(lookup = "java:app/env/hello")
+    protected HelloRemoteIF hello;
 
-  @EJB(lookup = "java:app/env/AppResBean-remote")
-  protected AppResRemoteIF appResBeanRemote;
+    @EJB(lookup = "java:app/env/AppResBean-remote")
+    protected AppResRemoteIF appResBeanRemote;
 
-  @EJB(lookup = "java:app/env/AppResBean-local")
-  protected AppResLocalIF appResBeanLocal;
+    @EJB(lookup = "java:app/env/AppResBean-local")
+    protected AppResLocalIF appResBeanLocal;
 
-  @Resource
-  private Validator validator;
+    @Resource
+    private Validator validator;
 
-  @Resource
-  private ValidatorFactory validatorFactory;
+    @Resource
+    private ValidatorFactory validatorFactory;
 
-  @PostConstruct
-  protected void postConstruct() {
-    postConstructRecords = new StringBuilder();
-    AppResTest.beanPostConstruct(myString, postConstructRecords, true, false);
-    AppResTest.verifyInjections(postConstructRecords, hello, appResBeanRemote,
-        appResBeanLocal, validatorFactory, validator);
-  }
-
+    @PostConstruct
+    protected void postConstruct() {
+        postConstructRecords = new StringBuilder();
+        AppResTest.beanPostConstruct(myString, postConstructRecords, true, false);
+        AppResTest.verifyInjections(
+                postConstructRecords, hello, appResBeanRemote, appResBeanLocal, validatorFactory, validator);
+    }
 }

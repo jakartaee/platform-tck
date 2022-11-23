@@ -20,76 +20,72 @@
 
 package com.sun.ts.tests.jaxws.wsi.j2w.rpc.literal.R1124;
 
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.*;
 import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
 import com.sun.ts.tests.jaxws.sharedclients.simpleclient.*;
 import com.sun.ts.tests.jaxws.wsi.requests.SOAPRequests;
-import com.sun.javatest.Status;
-
-import java.util.Properties;
-import java.io.InputStream;
 import java.io.IOException;
-
-import com.sun.ts.lib.harness.*;
+import java.io.InputStream;
+import java.util.Properties;
 
 public class Client extends ServiceEETest implements SOAPRequests {
 
-  private SimpleTestClient client;
+    private SimpleTestClient client;
 
-  static SimpleTest service = null;
+    static SimpleTest service = null;
 
-  /**
-   * Test entry point.
-   *
-   * @param args
-   *          the command-line arguments.
-   */
-  public static void main(String[] args) {
-    Client tests = new Client();
-    Status status = tests.run(args, System.out, System.err);
-    status.exit();
-  }
-
-  /**
-   * @class.testArgs: -ap jaxws-url-props.dat
-   * @class.setup_props: webServerHost; webServerPort; platform.mode;
-   *
-   * @param args
-   * @param properties
-   *
-   * @throws com.sun.ts.lib.harness.EETest.Fault
-   */
-  public void setup(String[] args, Properties properties) throws EETest.Fault {
-    client = (SimpleTestClient) ClientFactory.getClient(SimpleTestClient.class,
-        properties, this, service);
-    logMsg("setup ok");
-  }
-
-  public void cleanup() {
-    logMsg("cleanup");
-  }
-
-  /**
-   * @testName: testSuccessfulResponseStatusCode
-   *
-   * @assertion_ids: WSI:SPEC:R1124
-   *
-   * @test_Strategy: Make a request that generates a successful outcome, inpsect
-   *                 HTTP response to make sure the status code is 2xx.
-   *
-   * @throws com.sun.ts.lib.harness.EETest.Fault
-   */
-  public void testSuccessfulResponseStatusCode() throws EETest.Fault {
-    InputStream response;
-    try {
-      response = client.makeHTTPRequest(HELLOWORLD);
-      client.logMessageInHarness(response);
-      if (!Integer.toString(client.getStatusCode()).startsWith("2")) {
-        throw new EETest.Fault(
-            "Invalid response: instances must return HTTP status code 200"
-                + " for a successful request (BP-R1124).");
-      }
-    } catch (IOException e) {
-      throw new EETest.Fault("Test didn't complete properly: ", e);
+    /**
+     * Test entry point.
+     *
+     * @param args
+     *          the command-line arguments.
+     */
+    public static void main(String[] args) {
+        Client tests = new Client();
+        Status status = tests.run(args, System.out, System.err);
+        status.exit();
     }
-  }
+
+    /**
+     * @class.testArgs: -ap jaxws-url-props.dat
+     * @class.setup_props: webServerHost; webServerPort; platform.mode;
+     *
+     * @param args
+     * @param properties
+     *
+     * @throws com.sun.ts.lib.harness.EETest.Fault
+     */
+    public void setup(String[] args, Properties properties) throws EETest.Fault {
+        client = (SimpleTestClient) ClientFactory.getClient(SimpleTestClient.class, properties, this, service);
+        logMsg("setup ok");
+    }
+
+    public void cleanup() {
+        logMsg("cleanup");
+    }
+
+    /**
+     * @testName: testSuccessfulResponseStatusCode
+     *
+     * @assertion_ids: WSI:SPEC:R1124
+     *
+     * @test_Strategy: Make a request that generates a successful outcome, inpsect
+     *                 HTTP response to make sure the status code is 2xx.
+     *
+     * @throws com.sun.ts.lib.harness.EETest.Fault
+     */
+    public void testSuccessfulResponseStatusCode() throws EETest.Fault {
+        InputStream response;
+        try {
+            response = client.makeHTTPRequest(HELLOWORLD);
+            client.logMessageInHarness(response);
+            if (!Integer.toString(client.getStatusCode()).startsWith("2")) {
+                throw new EETest.Fault("Invalid response: instances must return HTTP status code 200"
+                        + " for a successful request (BP-R1124).");
+            }
+        } catch (IOException e) {
+            throw new EETest.Fault("Test didn't complete properly: ", e);
+        }
+    }
 }

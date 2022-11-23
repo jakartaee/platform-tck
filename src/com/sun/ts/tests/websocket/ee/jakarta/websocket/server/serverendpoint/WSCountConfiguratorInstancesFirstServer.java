@@ -17,29 +17,27 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverendpoint;
 
-import java.lang.annotation.Annotation;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.server.ServerEndpoint;
 import jakarta.websocket.server.ServerEndpointConfig.Configurator;
+import java.lang.annotation.Annotation;
 
 @ServerEndpoint(value = "/countone", configurator = CountingConfigurator.class)
 public class WSCountConfiguratorInstancesFirstServer {
 
-  @SuppressWarnings("unused")
-  @OnMessage
-  public String getCountingConfiguratorValue(String entity) {
-    Annotation ann = getClass().getAnnotations()[0];
-    ServerEndpoint endpoint = (ServerEndpoint) ann;
-    Class<? extends Configurator> config = endpoint.configurator();
-    try {
-      CountingConfigurator cc = (CountingConfigurator) config
-          .getConstructor(boolean.class).newInstance(true);
-      return String.valueOf(cc.getCounterValue());
-    } catch (Exception e) {
-      return IOUtil.printStackTrace(e);
+    @SuppressWarnings("unused")
+    @OnMessage
+    public String getCountingConfiguratorValue(String entity) {
+        Annotation ann = getClass().getAnnotations()[0];
+        ServerEndpoint endpoint = (ServerEndpoint) ann;
+        Class<? extends Configurator> config = endpoint.configurator();
+        try {
+            CountingConfigurator cc =
+                    (CountingConfigurator) config.getConstructor(boolean.class).newInstance(true);
+            return String.valueOf(cc.getCounterValue());
+        } catch (Exception e) {
+            return IOUtil.printStackTrace(e);
+        }
     }
-  }
 }

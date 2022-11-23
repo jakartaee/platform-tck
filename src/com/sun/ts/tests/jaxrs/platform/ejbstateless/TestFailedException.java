@@ -20,32 +20,31 @@ import java.io.Serializable;
 
 public class TestFailedException extends Exception implements Serializable {
 
-  private static final long serialVersionUID = 6601177992600863805L;
+    private static final long serialVersionUID = 6601177992600863805L;
 
-  public TestFailedException() {
-    super();
-  }
+    public TestFailedException() {
+        super();
+    }
 
-  /**
-   * @param message
-   */
-  public TestFailedException(String message) {
-    super(message);
-  }
+    /**
+     * @param message
+     */
+    public TestFailedException(String message) {
+        super(message);
+    }
 
-  /**
-   * @param message
-   * @param cause
-   */
-  public TestFailedException(String message, Throwable cause) {
-    super(message, cause);
-  }
+    /**
+     * @param message
+     * @param cause
+     */
+    public TestFailedException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-  /**
-   * @param cause
-   */
-  public TestFailedException(Throwable cause) {
-    super(cause);
-  }
-
+    /**
+     * @param cause
+     */
+    public TestFailedException(Throwable cause) {
+        super(cause);
+    }
 }

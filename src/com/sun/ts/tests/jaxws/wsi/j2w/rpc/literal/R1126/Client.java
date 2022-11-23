@@ -20,76 +20,72 @@
 
 package com.sun.ts.tests.jaxws.wsi.j2w.rpc.literal.R1126;
 
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.*;
 import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
 import com.sun.ts.tests.jaxws.sharedclients.faultclient.*;
 import com.sun.ts.tests.jaxws.wsi.requests.SOAPRequests;
-import com.sun.javatest.Status;
-
-import java.util.Properties;
-import java.io.InputStream;
 import java.io.IOException;
-
-import com.sun.ts.lib.harness.*;
+import java.io.InputStream;
+import java.util.Properties;
 
 public class Client extends ServiceEETest implements SOAPRequests {
 
-  private FaultTestClient client;
+    private FaultTestClient client;
 
-  static FaultTest service = null;
+    static FaultTest service = null;
 
-  /**
-   * Test entry point.
-   *
-   * @param args
-   *          the command-line arguments.
-   */
-  public static void main(String[] args) {
-    Client tests = new Client();
-    Status status = tests.run(args, System.out, System.err);
-    status.exit();
-  }
-
-  /**
-   * @class.testArgs: -ap jaxws-url-props.dat
-   * @class.setup_props: webServerHost; webServerPort; platform.mode;
-   *
-   * @param args
-   * @param properties
-   *
-   * @throws com.sun.ts.lib.harness.EETest.Fault
-   */
-  public void setup(String[] args, Properties properties) throws EETest.Fault {
-    client = (FaultTestClient) ClientFactory.getClient(FaultTestClient.class,
-        properties, this, service);
-    logMsg("setup ok");
-  }
-
-  public void cleanup() {
-    logMsg("cleanup");
-  }
-
-  /**
-   * @testName: testFaultResponseStatusCode
-   *
-   * @assertion_ids: WSI:SPEC:R1126
-   *
-   * @test_Strategy: Make a request that generates a soap:Fault, inspect the
-   *                 HTTP response to make sure the status code is 500.
-   *
-   * @throws com.sun.ts.lib.harness.EETest.Fault
-   */
-  public void testFaultResponseStatusCode() throws EETest.Fault {
-    InputStream response;
-    try {
-      response = client.makeHTTPRequest(ALWAYS_THROWS_EXCEPTION);
-      client.logMessageInHarness(response);
-      if (client.getStatusCode() != 500) {
-        throw new EETest.Fault(
-            "Invalid response: instances must return HTTP status code 500"
-                + " when a soap:Fault is returned (BP-R1126).");
-      }
-    } catch (IOException e) {
-      throw new EETest.Fault("Test didn't complete properly: ", e);
+    /**
+     * Test entry point.
+     *
+     * @param args
+     *          the command-line arguments.
+     */
+    public static void main(String[] args) {
+        Client tests = new Client();
+        Status status = tests.run(args, System.out, System.err);
+        status.exit();
     }
-  }
+
+    /**
+     * @class.testArgs: -ap jaxws-url-props.dat
+     * @class.setup_props: webServerHost; webServerPort; platform.mode;
+     *
+     * @param args
+     * @param properties
+     *
+     * @throws com.sun.ts.lib.harness.EETest.Fault
+     */
+    public void setup(String[] args, Properties properties) throws EETest.Fault {
+        client = (FaultTestClient) ClientFactory.getClient(FaultTestClient.class, properties, this, service);
+        logMsg("setup ok");
+    }
+
+    public void cleanup() {
+        logMsg("cleanup");
+    }
+
+    /**
+     * @testName: testFaultResponseStatusCode
+     *
+     * @assertion_ids: WSI:SPEC:R1126
+     *
+     * @test_Strategy: Make a request that generates a soap:Fault, inspect the
+     *                 HTTP response to make sure the status code is 500.
+     *
+     * @throws com.sun.ts.lib.harness.EETest.Fault
+     */
+    public void testFaultResponseStatusCode() throws EETest.Fault {
+        InputStream response;
+        try {
+            response = client.makeHTTPRequest(ALWAYS_THROWS_EXCEPTION);
+            client.logMessageInHarness(response);
+            if (client.getStatusCode() != 500) {
+                throw new EETest.Fault("Invalid response: instances must return HTTP status code 500"
+                        + " when a soap:Fault is returned (BP-R1126).");
+            }
+        } catch (IOException e) {
+            throw new EETest.Fault("Test didn't complete properly: ", e);
+        }
+    }
 }

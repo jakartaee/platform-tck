@@ -22,5 +22,4 @@ package com.sun.ts.tests.ejb32.mdb.modernconnector.connector;
  * specification could allow this class to be used as an annotation on bean
  * class.
  */
-public interface NoUseListener {
-}
+public interface NoUseListener {}

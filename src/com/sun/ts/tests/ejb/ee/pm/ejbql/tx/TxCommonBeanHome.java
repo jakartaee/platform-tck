@@ -20,31 +20,25 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.tx;
 
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
+import jakarta.ejb.FinderException;
 import java.rmi.RemoteException;
 import java.util.Collection;
 import java.util.Properties;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJBHome;
-import jakarta.ejb.FinderException;
-
 public interface TxCommonBeanHome extends EJBHome {
 
-  public TxCommonBean create(Integer key, String brand, float price,
-      Properties p) throws CreateException, RemoteException;
+    public TxCommonBean create(Integer key, String brand, float price, Properties p)
+            throws CreateException, RemoteException;
 
-  public TxCommonBean findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
+    public TxCommonBean findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 
-  public Collection findByBrandName(String brandName)
-      throws RemoteException, FinderException;
+    public Collection findByBrandName(String brandName) throws RemoteException, FinderException;
 
-  public Collection findByBrandName1(String brandName)
-      throws RemoteException, FinderException;
+    public Collection findByBrandName1(String brandName) throws RemoteException, FinderException;
 
-  public Collection findByBrandName2(String brandName)
-      throws RemoteException, FinderException;
+    public Collection findByBrandName2(String brandName) throws RemoteException, FinderException;
 
-  public Collection findAllBeans() throws RemoteException, FinderException;
-
+    public Collection findAllBeans() throws RemoteException, FinderException;
 }

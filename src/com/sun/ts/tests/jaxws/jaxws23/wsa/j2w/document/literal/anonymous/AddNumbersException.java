@@ -21,16 +21,16 @@
 package com.sun.ts.tests.jaxws.jaxws23.wsa.j2w.document.literal.anonymous;
 
 public class AddNumbersException extends Exception {
-  private static final long serialVersionUID = 23L;
+    private static final long serialVersionUID = 23L;
 
-  String detail;
+    String detail;
 
-  public AddNumbersException(String message, String detail) {
-    super(message);
-    this.detail = detail;
-  }
+    public AddNumbersException(String message, String detail) {
+        super(message);
+        this.detail = detail;
+    }
 
-  public String getDetail() {
-    return detail;
-  }
+    public String getDetail() {
+        return detail;
+    }
 }

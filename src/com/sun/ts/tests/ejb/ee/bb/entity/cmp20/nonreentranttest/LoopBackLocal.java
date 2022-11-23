@@ -23,7 +23,7 @@ package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.nonreentranttest;
 import jakarta.ejb.EJBLocalObject;
 
 public interface LoopBackLocal extends EJBLocalObject {
-  public void setBeanRefLocal(TestBeanLocal r);
+    public void setBeanRefLocal(TestBeanLocal r);
 
-  public boolean loopBackTestLocal();
+    public boolean loopBackTestLocal();
 }

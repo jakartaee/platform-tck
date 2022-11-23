@@ -24,15 +24,14 @@
 
 package com.sun.ts.tests.servlet.common.servlets;
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * GenericTCKServlet.java
@@ -46,60 +45,55 @@ import jakarta.servlet.ServletResponse;
  * @author <a href="mailto:">Ryan Lubke</a>
  * @version %I%
  */
-
 public abstract class GenericTCKServlet extends GenericServlet {
 
-  /**
-   * <code>TEST_HEADER</code> is the constant for the <code>testname</code>
-   * header.
-   */
-  private static final String TEST_HEADER = "testname";
+    /**
+     * <code>TEST_HEADER</code> is the constant for the <code>testname</code>
+     * header.
+     */
+    private static final String TEST_HEADER = "testname";
 
-  /**
-   * <code>TEST_ARGS</code> is an array of Classes used during reflection.
-   */
-  private static final Class[] TEST_ARGS = { ServletRequest.class,
-      ServletResponse.class };
+    /**
+     * <code>TEST_ARGS</code> is an array of Classes used during reflection.
+     */
+    private static final Class[] TEST_ARGS = {ServletRequest.class, ServletResponse.class};
 
-  /**
-   * <code>init</code> initializes the servlet.
-   *
-   * @param config
-   *          - <code>ServletConfig</code>
-   */
-  public void init(ServletConfig config) throws ServletException {
-    super.init(config);
-  }
-
-  public void service(ServletRequest req, ServletResponse res)
-      throws ServletException, IOException {
-    invokeTest(req, res);
-  }
-
-  /**
-   * <code>invokeTest</code> uses reflection to invoke test methods in child
-   * classes of this particular class.
-   *
-   * @param req
-   *          - <code>ServletRequest</code>
-   * @param res
-   *          - <code>ServletResponse</code>
-   * @exception ServletException
-   *              if an error occurs
-   */
-  protected void invokeTest(ServletRequest req, ServletResponse res)
-      throws ServletException {
-    String test = req.getParameter(TEST_HEADER);
-    try {
-      Method method = this.getClass().getMethod(test, TEST_ARGS);
-      method.invoke(this, new Object[] { req, res });
-    } catch (InvocationTargetException ite) {
-      throw new ServletException(ite.getTargetException());
-    } catch (NoSuchMethodException nsme) {
-      throw new ServletException("Test: " + test + " does not exist");
-    } catch (Throwable t) {
-      throw new ServletException("Error executing test: " + test, t);
+    /**
+     * <code>init</code> initializes the servlet.
+     *
+     * @param config
+     *          - <code>ServletConfig</code>
+     */
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
     }
-  }
 
-}// GenericTCKServlet
+    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+        invokeTest(req, res);
+    }
+
+    /**
+     * <code>invokeTest</code> uses reflection to invoke test methods in child
+     * classes of this particular class.
+     *
+     * @param req
+     *          - <code>ServletRequest</code>
+     * @param res
+     *          - <code>ServletResponse</code>
+     * @exception ServletException
+     *              if an error occurs
+     */
+    protected void invokeTest(ServletRequest req, ServletResponse res) throws ServletException {
+        String test = req.getParameter(TEST_HEADER);
+        try {
+            Method method = this.getClass().getMethod(test, TEST_ARGS);
+            method.invoke(this, new Object[] {req, res});
+        } catch (InvocationTargetException ite) {
+            throw new ServletException(ite.getTargetException());
+        } catch (NoSuchMethodException nsme) {
+            throw new ServletException("Test: " + test + " does not exist");
+        } catch (Throwable t) {
+            throw new ServletException("Error executing test: " + test, t);
+        }
+    }
+} // GenericTCKServlet

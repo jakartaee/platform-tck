@@ -16,36 +16,34 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.directives.page;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class IsELIgnoredTrueActionTag extends SimpleTagSupport {
 
-  private String dollarValue;
+    private String dollarValue;
 
-  private String poundValue;
+    private String poundValue;
 
-  public void setDollarValue(String dollarValue) {
-    this.dollarValue = dollarValue;
-  }
-
-  public void setPoundValue(String poundValue) {
-    this.poundValue = poundValue;
-  }
-
-  public void doTag() throws JspException, IOException {
-    JspWriter out = getJspContext().getOut();
-
-    try {
-      out.println("Dollar value = " + dollarValue);
-      out.println("Pound value = " + poundValue);
-    } catch (Throwable t) {
-      JspTestUtil.handleThrowable(t, out, "IsELIgnoredTrueActionTag");
+    public void setDollarValue(String dollarValue) {
+        this.dollarValue = dollarValue;
     }
-  }
+
+    public void setPoundValue(String poundValue) {
+        this.poundValue = poundValue;
+    }
+
+    public void doTag() throws JspException, IOException {
+        JspWriter out = getJspContext().getOut();
+
+        try {
+            out.println("Dollar value = " + dollarValue);
+            out.println("Pound value = " + poundValue);
+        } catch (Throwable t) {
+            JspTestUtil.handleThrowable(t, out, "IsELIgnoredTrueActionTag");
+        }
+    }
 }

@@ -21,97 +21,93 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;
 
-@WebService(portName = "JunkJunkJunkPortName", serviceName = "JunkJunkJunkServiceName", targetNamespace = "http://Tx.org", wsdlLocation = "META-INF/wsdl/TxService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.ejb.descriptors.WSEjbOverrideWSRefWithDDsTest.Tx")
+@WebService(
+        portName = "JunkJunkJunkPortName",
+        serviceName = "JunkJunkJunkServiceName",
+        targetNamespace = "http://Tx.org",
+        wsdlLocation = "META-INF/wsdl/TxService.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices12.ejb.descriptors.WSEjbOverrideWSRefWithDDsTest.Tx")
 @Stateless(name = "WsFrontEjb")
 public class TxBean implements SessionBean {
 
-  private ChokeRemote choke;
+    private ChokeRemote choke;
 
-  private ChokeHome home;
+    private ChokeHome home;
 
-  private Object o;
+    private Object o;
 
-  public void ejbCreate() {
-    try {
-      javax.naming.InitialContext ctx = new javax.naming.InitialContext();
-      o = ctx.lookup("java:comp/env/ejb/wschokebean");
-      home = (ChokeHome) javax.rmi.PortableRemoteObject.narrow(o,
-          ChokeHome.class);
-      choke = home.create();
-    } catch (Exception e) {
-      System.out.println("*** TxBean.ejbCreate: failed to find choke");
-      e.printStackTrace();
+    public void ejbCreate() {
+        try {
+            javax.naming.InitialContext ctx = new javax.naming.InitialContext();
+            o = ctx.lookup("java:comp/env/ejb/wschokebean");
+            home = (ChokeHome) javax.rmi.PortableRemoteObject.narrow(o, ChokeHome.class);
+            choke = home.create();
+        } catch (Exception e) {
+            System.out.println("*** TxBean.ejbCreate: failed to find choke");
+            e.printStackTrace();
+        }
     }
-  }
 
-  public void ejbActivate() {
-    try {
-      javax.naming.InitialContext ctx = new javax.naming.InitialContext();
-      o = ctx.lookup("java:comp/env/ejb/wschokebean");
-      home = (ChokeHome) javax.rmi.PortableRemoteObject.narrow(o,
-          ChokeHome.class);
-      choke = home.create();
-    } catch (Exception e) {
-      System.out.println("*** TxBean.ejbActivate: failed to find choke");
-      e.printStackTrace();
+    public void ejbActivate() {
+        try {
+            javax.naming.InitialContext ctx = new javax.naming.InitialContext();
+            o = ctx.lookup("java:comp/env/ejb/wschokebean");
+            home = (ChokeHome) javax.rmi.PortableRemoteObject.narrow(o, ChokeHome.class);
+            choke = home.create();
+        } catch (Exception e) {
+            System.out.println("*** TxBean.ejbActivate: failed to find choke");
+            e.printStackTrace();
+        }
     }
-  }
 
-  public void ejbRemove() {
-  }
+    public void ejbRemove() {}
 
-  public void ejbPassivate() {
-  }
+    public void ejbPassivate() {}
 
-  public void setSessionContext(SessionContext sc) {
-  }
+    public void setSessionContext(SessionContext sc) {}
 
-  public String txRequired(String s) {
-    try {
-      choke.chokeMandatory();
-      return s;
-    } catch (Exception e) {
-      throw new RuntimeException(
-          "TxBean.txRequired choked on " + e.getMessage());
+    public String txRequired(String s) {
+        try {
+            choke.chokeMandatory();
+            return s;
+        } catch (Exception e) {
+            throw new RuntimeException("TxBean.txRequired choked on " + e.getMessage());
+        }
     }
-  }
 
-  public String txRequiresNew(String s) {
-    try {
-      choke.chokeMandatory();
-      return s;
-    } catch (Exception e) {
-      throw new RuntimeException(
-          "TxBean.txRequiresNew choked on " + e.getMessage());
+    public String txRequiresNew(String s) {
+        try {
+            choke.chokeMandatory();
+            return s;
+        } catch (Exception e) {
+            throw new RuntimeException("TxBean.txRequiresNew choked on " + e.getMessage());
+        }
     }
-  }
 
-  public String txSupports(String s) {
-    try {
-      choke.chokeNever();
-      return s;
-    } catch (Exception e) {
-      throw new RuntimeException(
-          "TxBean.txSupports choked on " + e.getMessage());
+    public String txSupports(String s) {
+        try {
+            choke.chokeNever();
+            return s;
+        } catch (Exception e) {
+            throw new RuntimeException("TxBean.txSupports choked on " + e.getMessage());
+        }
     }
-  }
 
-  public String txNotSupported(String s) {
-    try {
-      choke.chokeNever();
-      return s;
-    } catch (Exception e) {
-      throw new RuntimeException(
-          "TxBean.txNotSupported choked on " + e.getMessage());
+    public String txNotSupported(String s) {
+        try {
+            choke.chokeNever();
+            return s;
+        } catch (Exception e) {
+            throw new RuntimeException("TxBean.txNotSupported choked on " + e.getMessage());
+        }
     }
-  }
 
-  public String txNever(String s) {
-    try {
-      choke.chokeNever();
-      return s;
-    } catch (Exception e) {
-      throw new RuntimeException("TxBean.txNever choked on " + e.getMessage());
+    public String txNever(String s) {
+        try {
+            choke.chokeNever();
+            return s;
+        } catch (Exception e) {
+            throw new RuntimeException("TxBean.txNever choked on " + e.getMessage());
+        }
     }
-  }
 }

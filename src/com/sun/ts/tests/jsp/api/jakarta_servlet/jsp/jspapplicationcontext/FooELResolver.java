@@ -16,88 +16,73 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.jspapplicationcontext;
 
-import java.util.Iterator;
-
 import jakarta.el.ELContext;
 import jakarta.el.ELException;
 import jakarta.el.ELResolver;
+import java.util.Iterator;
 
 public class FooELResolver extends ELResolver {
-  public Object getValue(ELContext context, Object base, Object property)
-      throws ELException {
-    if (context == null)
-      throw new NullPointerException();
+    public Object getValue(ELContext context, Object base, Object property) throws ELException {
+        if (context == null) throw new NullPointerException();
 
-    Object result = null;
+        Object result = null;
 
-    if (base == null) {
-      // Resolving first variable (e.g. ${Foo}).
-      // We only handle "Foo"
-      String propertyName = (String) property;
-      if (propertyName.equals("Foo")) {
-        result = "Test PASSED";
-        context.setPropertyResolved(true);
-      } else {
-        System.out.println(
-            "FooELResolver: no match: propertyName is " + propertyName);
-      }
-    } else {
-      System.out.println("FooELResolver: base is non-null");
+        if (base == null) {
+            // Resolving first variable (e.g. ${Foo}).
+            // We only handle "Foo"
+            String propertyName = (String) property;
+            if (propertyName.equals("Foo")) {
+                result = "Test PASSED";
+                context.setPropertyResolved(true);
+            } else {
+                System.out.println("FooELResolver: no match: propertyName is " + propertyName);
+            }
+        } else {
+            System.out.println("FooELResolver: base is non-null");
+        }
+
+        return result;
     }
 
-    return result;
-  }
+    public Class getType(ELContext context, Object base, Object property) throws ELException {
+        if (context == null) throw new NullPointerException();
 
-  public Class getType(ELContext context, Object base, Object property)
-      throws ELException {
-    if (context == null)
-      throw new NullPointerException();
+        if (base instanceof String && base.toString().equals("Foo")) {
+            context.setPropertyResolved(true);
+        }
 
-    if (base instanceof String && base.toString().equals("Foo")) {
-      context.setPropertyResolved(true);
+        // we never set a value
+        return null;
     }
 
-    // we never set a value
-    return null;
-  }
+    public void setValue(ELContext context, Object base, Object property, Object value) throws ELException {
 
-  public void setValue(ELContext context, Object base, Object property,
+        if (context == null) throw new NullPointerException();
 
-      Object value) throws ELException {
-    if (context == null)
-      throw new NullPointerException();
-
-    if (base == null && property instanceof String
-        && property.toString().equals("Foo")) {
-      context.setPropertyResolved(true);
-    }
-  }
-
-  public boolean isReadOnly(ELContext context, Object base, Object property)
-      throws ELException {
-    if (context == null)
-      throw new NullPointerException();
-
-    if (base == null && property instanceof String
-        && property.toString().equals("Foo")) {
-      context.setPropertyResolved(true);
+        if (base == null && property instanceof String && property.toString().equals("Foo")) {
+            context.setPropertyResolved(true);
+        }
     }
 
-    return true;
-  }
+    public boolean isReadOnly(ELContext context, Object base, Object property) throws ELException {
+        if (context == null) throw new NullPointerException();
 
-  public Iterator getFeatureDescriptors(ELContext context, Object base) {
-    if (context == null)
-      throw new NullPointerException();
-    return null;
-  }
+        if (base == null && property instanceof String && property.toString().equals("Foo")) {
+            context.setPropertyResolved(true);
+        }
 
-  public Class getCommonPropertyType(ELContext context, Object base) {
-    if (context == null)
-      throw new NullPointerException();
+        return true;
+    }
 
-    if (base == null)
-      return String.class;
-    return null;
-  }
+    public Iterator getFeatureDescriptors(ELContext context, Object base) {
+        if (context == null) throw new NullPointerException();
+        return null;
+    }
+
+    public Class getCommonPropertyType(ELContext context, Object base) {
+        if (context == null) throw new NullPointerException();
+
+        if (base == null) return String.class;
+        return null;
+    }
 }

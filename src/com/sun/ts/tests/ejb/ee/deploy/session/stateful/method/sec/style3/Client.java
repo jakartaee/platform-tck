@@ -20,158 +20,152 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.method.sec.style3;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSLoginContext;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  private static final String prefix = "java:comp/env/ejb/";
+    private static final String prefix = "java:comp/env/ejb/";
 
-  private static final String beanLookup = prefix + "TestBean";
+    private static final String beanLookup = prefix + "TestBean";
 
-  private static final String userPropName = "user";
+    private static final String userPropName = "user";
 
-  private static final String pwdPropName = "password";
+    private static final String pwdPropName = "password";
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  private String user;
+    private String user;
 
-  private String password;
+    private String password;
 
-  private TestBeanHome beanHome;
+    private TestBeanHome beanHome;
 
-  private TestBean bean;
+    private TestBean bean;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   * user; password;
-   *
-   */
-  public void setup(String[] args, Properties props) throws Fault {
-
-    try {
-      this.props = props;
-
-      TestUtil.logTrace("[Client] Getting TS Naming Context...");
-      nctx = new TSNamingContext();
-
-      TestUtil.logTrace("[Client] Getting user/password info...");
-      user = props.getProperty(userPropName);
-      password = props.getProperty(pwdPropName);
-      TestUtil.logTrace("[Client] Log in as " + user + " / " + password);
-      TSLoginContext lc = new TSLoginContext();
-      lc.login(user, password);
-
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] Caught exception: " + e);
-      throw new Fault("Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /**
-   * @testName: testStyle3Positive
-   *
-   * @assertion_ids: EJB:SPEC:805
-   *
-   * @test_Strategy: Package a Stateful Session bean using a Style 3 declaration
-   *                 to grant permission to role 'Employee' for test1(int)
-   *                 method. Login as a user associated to this security role
-   *                 and check that we can call a business method on that bean.
-   */
-  public void testStyle3Positive() throws Fault {
-    boolean pass;
+    /*
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     * user; password;
+     *
+     */
+    public void setup(String[] args, Properties props) throws Fault {
 
-    try {
-      bean = null;
-      TestUtil.logTrace("[Client] Looking up " + beanLookup);
-      beanHome = (TestBeanHome) nctx.lookup(beanLookup, TestBeanHome.class);
-      bean = beanHome.create(props);
+        try {
+            this.props = props;
 
-      TestUtil.logTrace("[Client] Calling test1(int)...");
-      pass = bean.test1(1789);
-      if (!pass) {
-        throw new Fault("Style 3 positive test failed.");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] Unexpected exception: " + e);
-      throw new Fault("Style 3 positive test failed: ", e);
-    } finally {
-      /* Make sure we always attempt to cleanup the bean. */
-      try {
-        if (null != bean) {
-          TestUtil.logTrace("[Client] Removing bean...");
-          bean.remove();
+            TestUtil.logTrace("[Client] Getting TS Naming Context...");
+            nctx = new TSNamingContext();
+
+            TestUtil.logTrace("[Client] Getting user/password info...");
+            user = props.getProperty(userPropName);
+            password = props.getProperty(pwdPropName);
+            TestUtil.logTrace("[Client] Log in as " + user + " / " + password);
+            TSLoginContext lc = new TSLoginContext();
+            lc.login(user, password);
+
+        } catch (Exception e) {
+            TestUtil.logErr("[Client] Caught exception: " + e);
+            throw new Fault("Setup failed:", e);
         }
-      } catch (Exception e) {
-        TestUtil
-            .logMsg("[Client] Ignoring Exception on " + "bean remove: " + e);
-      }
     }
-  }
 
-  /**
-   * @testName: testStyle3Negative
-   *
-   * @assertion_ids: EJB:SPEC:805
-   *
-   * @test_Strategy: Package a Stateful Session bean using a Style 3 declaration
-   *                 to grant permissions to role 'Manager' only for
-   *                 test1(double) method. Login as a user that is not
-   *                 associated to this security role and check that we get a
-   *                 java.rmi.RemoteException when calling a test1(double)
-   *                 method on that bean.
-   */
-  public void testStyle3Negative() throws Fault {
-    boolean pass;
+    /**
+     * @testName: testStyle3Positive
+     *
+     * @assertion_ids: EJB:SPEC:805
+     *
+     * @test_Strategy: Package a Stateful Session bean using a Style 3 declaration
+     *                 to grant permission to role 'Employee' for test1(int)
+     *                 method. Login as a user associated to this security role
+     *                 and check that we can call a business method on that bean.
+     */
+    public void testStyle3Positive() throws Fault {
+        boolean pass;
 
-    try {
-      TestUtil.logTrace("[Client] Looking up " + beanLookup);
-      beanHome = (TestBeanHome) nctx.lookup(beanLookup, TestBeanHome.class);
-      bean = beanHome.create(props);
+        try {
+            bean = null;
+            TestUtil.logTrace("[Client] Looking up " + beanLookup);
+            beanHome = (TestBeanHome) nctx.lookup(beanLookup, TestBeanHome.class);
+            bean = beanHome.create(props);
 
-      TestUtil.logTrace("[Client] Calling test1(double)...");
-      pass = bean.test1(37.2);
-
-      /* We should never get there (unsufficient permissions) */
-      throw new Fault(
-          "Style 3 negative test failed: " + "We were allowed to call method!");
-    } catch (java.rmi.RemoteException e) {
-      TestUtil.logTrace(
-          "[Client] Caught " + "java.rmi.RemoteException as expected");
-      /* Test pass */
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] Unexpected exception: " + e);
-      throw new Fault("Style 3 negative test failed: ", e);
-    } finally {
-      /* Make sure we always attempt to cleanup the bean. */
-      try {
-        if (null != bean) {
-          TestUtil.logTrace("[Client] Removing bean...");
-          bean.remove();
+            TestUtil.logTrace("[Client] Calling test1(int)...");
+            pass = bean.test1(1789);
+            if (!pass) {
+                throw new Fault("Style 3 positive test failed.");
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("[Client] Unexpected exception: " + e);
+            throw new Fault("Style 3 positive test failed: ", e);
+        } finally {
+            /* Make sure we always attempt to cleanup the bean. */
+            try {
+                if (null != bean) {
+                    TestUtil.logTrace("[Client] Removing bean...");
+                    bean.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logMsg("[Client] Ignoring Exception on " + "bean remove: " + e);
+            }
         }
-      } catch (Exception e) {
-        TestUtil
-            .logMsg("[Client] Ignoring Exception on " + "bean remove: " + e);
-      }
     }
-  }
 
-  public void cleanup() throws Fault {
-    logMsg("[Client] cleanup()");
-  }
+    /**
+     * @testName: testStyle3Negative
+     *
+     * @assertion_ids: EJB:SPEC:805
+     *
+     * @test_Strategy: Package a Stateful Session bean using a Style 3 declaration
+     *                 to grant permissions to role 'Manager' only for
+     *                 test1(double) method. Login as a user that is not
+     *                 associated to this security role and check that we get a
+     *                 java.rmi.RemoteException when calling a test1(double)
+     *                 method on that bean.
+     */
+    public void testStyle3Negative() throws Fault {
+        boolean pass;
 
+        try {
+            TestUtil.logTrace("[Client] Looking up " + beanLookup);
+            beanHome = (TestBeanHome) nctx.lookup(beanLookup, TestBeanHome.class);
+            bean = beanHome.create(props);
+
+            TestUtil.logTrace("[Client] Calling test1(double)...");
+            pass = bean.test1(37.2);
+
+            /* We should never get there (unsufficient permissions) */
+            throw new Fault("Style 3 negative test failed: " + "We were allowed to call method!");
+        } catch (java.rmi.RemoteException e) {
+            TestUtil.logTrace("[Client] Caught " + "java.rmi.RemoteException as expected");
+            /* Test pass */
+        } catch (Exception e) {
+            TestUtil.logErr("[Client] Unexpected exception: " + e);
+            throw new Fault("Style 3 negative test failed: ", e);
+        } finally {
+            /* Make sure we always attempt to cleanup the bean. */
+            try {
+                if (null != bean) {
+                    TestUtil.logTrace("[Client] Removing bean...");
+                    bean.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logMsg("[Client] Ignoring Exception on " + "bean remove: " + e);
+            }
+        }
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("[Client] cleanup()");
+    }
 }

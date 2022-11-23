@@ -20,12 +20,13 @@
 
 package com.sun.ts.tests.jaxws.ee.j2w.rpc.literal.handlerchaintest2;
 
-import jakarta.xml.ws.WebServiceException;
-
-@jakarta.jws.WebService(targetNamespace = "http://handlerchaintestservice.org/wsdl", serviceName = "HandlerChainTestService", portName = "HandlerChainTestPort", endpointInterface = "com.sun.ts.tests.jaxws.ee.j2w.rpc.literal.handlerchaintest2.HandlerChainTest")
+@jakarta.jws.WebService(
+        targetNamespace = "http://handlerchaintestservice.org/wsdl",
+        serviceName = "HandlerChainTestService",
+        portName = "HandlerChainTestPort",
+        endpointInterface = "com.sun.ts.tests.jaxws.ee.j2w.rpc.literal.handlerchaintest2.HandlerChainTest")
 public class HandlerChainTestImpl implements HandlerChainTest {
-  public String helloWorld(String str) {
-    return str;
-  }
-
+    public String helloWorld(String str) {
+        return str;
+    }
 }

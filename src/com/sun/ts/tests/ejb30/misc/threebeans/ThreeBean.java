@@ -30,49 +30,44 @@ import jakarta.ejb.Stateful;
 @Local(ThreeLocalIF.class)
 @Remote(ThreeRemoteIF.class)
 public class ThreeBean extends CommonBeanBase {
-  @EJB
-  private OneRemoteIF oneRemote;
+    @EJB
+    private OneRemoteIF oneRemote;
 
-  @EJB
-  private OneLocalIF oneLocal;
+    @EJB
+    private OneLocalIF oneLocal;
 
-  @EJB
-  private TwoRemoteIF twoRemote;
+    @EJB
+    private TwoRemoteIF twoRemote;
 
-  @EJB
-  private TwoLocalIF twoLocal;
+    @EJB
+    private TwoLocalIF twoLocal;
 
-  // @EJB(beanName="FourBean")
-  // private ThreeRemoteIF fourRemote;
-  //
-  // @EJB(beanName="FourBean")
-  // private ThreeLocalIF fourLocal;
+    // @EJB(beanName="FourBean")
+    // private ThreeRemoteIF fourRemote;
+    //
+    // @EJB(beanName="FourBean")
+    // private ThreeLocalIF fourLocal;
 
-  @Override
-  protected void verifyInjectedEJB() {
-    if (twoRemote == null)
-      throw new IllegalStateException("twoRemote was not injected.");
-    if (twoLocal == null)
-      throw new IllegalStateException("twoLocal was not injected.");
-    if (oneRemote == null)
-      throw new IllegalStateException("oneRemote was not injected.");
-    if (oneLocal == null)
-      throw new IllegalStateException("oneLocal was not injected.");
-    // if(fourRemote== null)
-    // throw new IllegalStateException("fourRemote was not injected.");
-    // if(fourLocal == null)
-    // throw new IllegalStateException("fourLocal was not injected.");
-  }
+    @Override
+    protected void verifyInjectedEJB() {
+        if (twoRemote == null) throw new IllegalStateException("twoRemote was not injected.");
+        if (twoLocal == null) throw new IllegalStateException("twoLocal was not injected.");
+        if (oneRemote == null) throw new IllegalStateException("oneRemote was not injected.");
+        if (oneLocal == null) throw new IllegalStateException("oneLocal was not injected.");
+        // if(fourRemote== null)
+        // throw new IllegalStateException("fourRemote was not injected.");
+        // if(fourLocal == null)
+        // throw new IllegalStateException("fourLocal was not injected.");
+    }
 
-  @Override
-  @Remove(retainIfException = false)
-  public String getShortName() {
-    return super.getShortName();
-  }
+    @Override
+    @Remove(retainIfException = false)
+    public String getShortName() {
+        return super.getShortName();
+    }
 
-  @Override
-  protected String getBeanName() {
-    return "ThreeBean";
-  }
-
+    @Override
+    protected String getBeanName() {
+        return "ThreeBean";
+    }
 }

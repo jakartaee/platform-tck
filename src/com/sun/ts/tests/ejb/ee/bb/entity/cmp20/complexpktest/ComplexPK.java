@@ -21,37 +21,31 @@
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.complexpktest;
 
 public class ComplexPK implements java.io.Serializable {
-  public Integer id;
+    public Integer id;
 
-  public String brandName;
+    public String brandName;
 
-  public ComplexPK() {
-    this.id = new Integer(0);
-    this.brandName = "default";
-  }
+    public ComplexPK() {
+        this.id = new Integer(0);
+        this.brandName = "default";
+    }
 
-  public ComplexPK(int id, String brandname) {
-    Integer Id = new Integer(id);
-    this.id = Id;
-    this.brandName = brandname;
-  }
+    public ComplexPK(int id, String brandname) {
+        Integer Id = new Integer(id);
+        this.id = Id;
+        this.brandName = brandname;
+    }
 
-  public boolean equals(Object o) {
+    public boolean equals(Object o) {
 
-    if (!(o instanceof ComplexPK))
-      return false;
-    ComplexPK other = (ComplexPK) o;
-    if (id.intValue() == other.id.intValue()
-        && brandName.equals(other.brandName))
-      return true;
-    else
-      return false;
+        if (!(o instanceof ComplexPK)) return false;
+        ComplexPK other = (ComplexPK) o;
+        if (id.intValue() == other.id.intValue() && brandName.equals(other.brandName)) return true;
+        else return false;
+    }
 
-  }
+    public int hashCode() {
 
-  public int hashCode() {
-
-    return id.hashCode() / 2 + brandName.hashCode() / 2;
-
-  }
+        return id.hashCode() / 2 + brandName.hashCode() / 2;
+    }
 }

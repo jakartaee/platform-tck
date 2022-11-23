@@ -23,32 +23,31 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.callback.inheritance.descrip
 import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
 import com.sun.ts.tests.ejb30.common.callback.InterceptorF;
 import com.sun.ts.tests.ejb30.common.callback.InterceptorG;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 import jakarta.interceptor.Interceptors;
 
 @Stateless(name = "Callback3Bean")
-@Remote({ Callback2IF.class })
-@Interceptors({ InterceptorF.class, InterceptorG.class })
+@Remote({Callback2IF.class})
+@Interceptors({InterceptorF.class, InterceptorG.class})
 public class Callback3Bean extends Callback3BeanSuper {
-  public Callback3Bean() {
-    super();
-  }
+    public Callback3Bean() {
+        super();
+    }
 
-  @PostConstruct
-  @Override
-  protected void postConstructMethod() throws RuntimeException {
-    // addPostConstructCall(BEAN_SHORT_NAME);
-    super.postConstructMethod();
-  }
+    @PostConstruct
+    @Override
+    protected void postConstructMethod() throws RuntimeException {
+        // addPostConstructCall(BEAN_SHORT_NAME);
+        super.postConstructMethod();
+    }
 
-  // this does NOT override the superclass method, which is private.
-  // So the superclass' @PostConstruct method is still active.
-  protected void postConstructMethodInSuper() throws RuntimeException {
-    throw new IllegalStateException("Should not get here.");
-  }
-  // ================== business methods ====================================
+    // this does NOT override the superclass method, which is private.
+    // So the superclass' @PostConstruct method is still active.
+    protected void postConstructMethodInSuper() throws RuntimeException {
+        throw new IllegalStateException("Should not get here.");
+    }
+    // ================== business methods ====================================
 
 }

@@ -21,568 +21,521 @@
 
 package com.sun.ts.tests.el.spec.language;
 
-import java.util.Hashtable;
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.el.spec.Book;
 import com.sun.ts.tests.el.common.util.ExprEval;
 import com.sun.ts.tests.el.common.util.ResolverType;
-
 import jakarta.el.ELException;
+import java.util.Hashtable;
+import java.util.Properties;
 
 public class ELClient extends ServiceEETest {
 
-  private static String NLINE = System.getProperty("line.separator", "\n");
+    private static String NLINE = System.getProperty("line.separator", "\n");
 
-  Properties testProps;
+    Properties testProps;
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  public void setup(String[] args, Properties p) throws Fault {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
-  }
-
-  public void cleanup() throws Fault {
-  }
-
-  // ------------------------------------------------------------- Test Methods
-
-  /*
-   * @testName: poundDollarSameMeaning1Test
-   * 
-   * @assertion_ids: EL:SPEC:1
-   * 
-   * @test_Strategy: Confirm that two EL expressions, identical except for the
-   * '$' and '#' delimiters, are evaluated the same. Case 1: base is null.
-   */
-  public void poundDollarSameMeaning1Test() throws Fault {
-
-    boolean pass = true;
-
-    String testExpr = "\"foo\"";
-
-    try {
-      Object dollarResult = ExprEval
-          .evaluateValueExpression("${" + testExpr + "}", null, String.class);
-      Object poundResult = ExprEval
-          .evaluateValueExpression("#{" + testExpr + "}", null, String.class);
-
-      TestUtil.logTrace("Comparing  ${" + dollarResult.toString() + "} "
-          + "to #{" + poundResult.toString() + "}");
-
-      pass = (ExprEval.compareClass(poundResult, String.class)
-          && ExprEval.compareClass(dollarResult, String.class)
-          && ExprEval.compareValue(poundResult, dollarResult));
-
-    } catch (Exception e) {
-      throw new Fault(e);
+    public static void main(String[] args) {
+        ELClient theTests = new ELClient();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
 
-    if (!pass)
-      throw new Fault("TEST FAILED!");
-  }
-
-  /*
-   * @testName: poundDollarSameMeaning2Test
-   * 
-   * @assertion_ids: EL:SPEC:1
-   * 
-   * @test_Strategy: Confirm that two EL expressions, identical except for the
-   * '$' and '#' delimiters, are evaluated the same. Case 2: base is non-null.
-   */
-  public void poundDollarSameMeaning2Test() throws Fault {
-
-    boolean pass = true;
-
-    try {
-      Object firstNameDollar = ExprEval.evaluateValueExpression(
-          "${worker.firstName}", null, String.class,
-          ResolverType.EMPLOYEE_ELRESOLVER);
-
-      Object firstNamePound = ExprEval.evaluateValueExpression(
-          "#{worker.firstName}", null, String.class,
-          ResolverType.EMPLOYEE_ELRESOLVER);
-
-      TestUtil.logTrace("Comparing  ${" + firstNameDollar.toString() + "} to #{"
-          + firstNamePound.toString() + "}");
-
-      if (!(firstNamePound.toString().equals(firstNameDollar.toString()))) {
-
-        TestUtil.logTrace(
-            "Dollar & Pound symbols return different" + "expression values!");
-        pass = false;
-
-      }
-
-    } catch (Exception e) {
-      throw new Fault(e);
+    public void setup(String[] args, Properties p) throws Fault {
+        TestUtil.logTrace("Setup method called");
+        this.testProps = p;
     }
 
-    if (!pass)
-      throw new Fault("TEST FAILED!");
-  }
+    public void cleanup() throws Fault {}
 
-  /*
-   * @testName: nestedEvalExpressionsTest
-   * 
-   * @assertion_ids: EL:SPEC:2
-   * 
-   * @test_Strategy: Verify that nested eval-expressions are illegal.
-   */
-  public void nestedEvalExpressionsTest() throws Fault {
+    // ------------------------------------------------------------- Test Methods
 
-    boolean pass = true;
-    String[] expr = { "${worker[${worker}]}", "${worker[#{worker}]}",
-        "#{worker[${worker}]}", "#{worker[#{worker}]}" };
+    /*
+     * @testName: poundDollarSameMeaning1Test
+     *
+     * @assertion_ids: EL:SPEC:1
+     *
+     * @test_Strategy: Confirm that two EL expressions, identical except for the
+     * '$' and '#' delimiters, are evaluated the same. Case 1: base is null.
+     */
+    public void poundDollarSameMeaning1Test() throws Fault {
 
-    for (int i = 0; i < expr.length; ++i) {
+        boolean pass = true;
 
-      try {
-        ExprEval.evaluateValueExpression(expr[i], null, String.class,
-            ResolverType.EMPLOYEE_ELRESOLVER);
-        pass = false;
-        TestUtil.logErr("Test FAILED. No exception thrown for ");
-        TestUtil.logErr(expr[i]);
+        String testExpr = "\"foo\"";
 
-      } catch (ELException ee) {
-        // Test passes
-        TestUtil.logErr("Expected Exception thrown.");
+        try {
+            Object dollarResult = ExprEval.evaluateValueExpression("${" + testExpr + "}", null, String.class);
+            Object poundResult = ExprEval.evaluateValueExpression("#{" + testExpr + "}", null, String.class);
 
-      } catch (Exception e) {
-        pass = false;
-        TestUtil.logErr("Test FAILED. " + expr[i] + " caused ");
-        TestUtil.logErr("an exception, but it was not an ");
-        TestUtil.logErr("ELException.");
-        TestUtil.printStackTrace(e);
-      }
+            TestUtil.logTrace(
+                    "Comparing  ${" + dollarResult.toString() + "} " + "to #{" + poundResult.toString() + "}");
+
+            pass = (ExprEval.compareClass(poundResult, String.class)
+                    && ExprEval.compareClass(dollarResult, String.class)
+                    && ExprEval.compareValue(poundResult, dollarResult));
+
+        } catch (Exception e) {
+            throw new Fault(e);
+        }
+
+        if (!pass) throw new Fault("TEST FAILED!");
     }
 
-    if (!pass)
-      throw new Fault("TEST FAILED!");
-  }
+    /*
+     * @testName: poundDollarSameMeaning2Test
+     *
+     * @assertion_ids: EL:SPEC:1
+     *
+     * @test_Strategy: Confirm that two EL expressions, identical except for the
+     * '$' and '#' delimiters, are evaluated the same. Case 2: base is non-null.
+     */
+    public void poundDollarSameMeaning2Test() throws Fault {
 
-  /*
-   * @testName: mixedCompositeExpressionsTest
-   * 
-   * @assertion_ids: EL:SPEC:12
-   * 
-   * @test_Strategy: Verify that composite expressions that mix the '$' and '#'
-   * delimiters are illegal.
-   */
-  public void mixedCompositeExpressionsTest() throws Fault {
+        boolean pass = true;
 
-    boolean pass = true;
-    String[] expr = { "${worker}#{worker}", "#{worker}${worker}",
-        "${worker}#{worker}${worker}", "#{worker}${worker}#{worker}" };
+        try {
+            Object firstNameDollar = ExprEval.evaluateValueExpression(
+                    "${worker.firstName}", null, String.class, ResolverType.EMPLOYEE_ELRESOLVER);
 
-    for (int i = 0; i < expr.length; ++i) {
+            Object firstNamePound = ExprEval.evaluateValueExpression(
+                    "#{worker.firstName}", null, String.class, ResolverType.EMPLOYEE_ELRESOLVER);
 
-      try {
-        ExprEval.evaluateValueExpression(expr[i], null, String.class,
-            ResolverType.EMPLOYEE_ELRESOLVER);
-        pass = false;
-        TestUtil.logErr("Test FAILED. No exception thrown for ");
-        TestUtil.logErr(expr[i]);
+            TestUtil.logTrace(
+                    "Comparing  ${" + firstNameDollar.toString() + "} to #{" + firstNamePound.toString() + "}");
 
-      } catch (ELException ee) {
-        // Test passes
-        TestUtil.logErr("Expected Exception thrown.");
+            if (!(firstNamePound.toString().equals(firstNameDollar.toString()))) {
 
-      } catch (Exception e) {
-        pass = false;
-        TestUtil.logErr("Test FAILED. " + expr[i] + " caused ");
-        TestUtil.logErr("an exception, but it was not an ");
-        TestUtil.logErr("ELException.");
-        TestUtil.printStackTrace(e);
-      }
+                TestUtil.logTrace("Dollar & Pound symbols return different" + "expression values!");
+                pass = false;
+            }
 
-      if (!pass)
-        throw new Fault("TEST FAILED!");
-    }
-  }
+        } catch (Exception e) {
+            throw new Fault(e);
+        }
 
-  /*
-   * @testName: compositeExprEval1Test
-   * 
-   * @assertion_ids: EL:SPEC:11
-   * 
-   * @test_Strategy: Verify that in a composite expression eval-expressions are
-   * coerced to Strings according to the EL type conversion rules and
-   * concatenated with any intervening literal-expressions.
-   */
-  public void compositeExprEval1Test() throws Fault {
-
-    boolean pass = true;
-
-    String streetName = "${'Network Circle'}";
-    String city = "${'Santa Clara'}";
-    String state = "${'CA'}";
-
-    String expected = "4140 Network Circle, Santa Clara, CA 95054";
-
-    try {
-      Object address = ExprEval.evaluateValueExpression(
-          4140 + " " + streetName + ", " + city + ", " + state + " " + 95054,
-          null, String.class);
-
-      TestUtil.logTrace("Testing for Address: " + expected);
-
-      pass = (ExprEval.compareClass(address, String.class)
-          && ExprEval.compareValue(address, expected));
-
-    } catch (Exception e) {
-      throw new Fault(e);
+        if (!pass) throw new Fault("TEST FAILED!");
     }
 
-    if (!pass)
-      throw new Fault("TEST FAILED!");
-  }
+    /*
+     * @testName: nestedEvalExpressionsTest
+     *
+     * @assertion_ids: EL:SPEC:2
+     *
+     * @test_Strategy: Verify that nested eval-expressions are illegal.
+     */
+    public void nestedEvalExpressionsTest() throws Fault {
 
-  /*
-   * @testName: compositeExprEval2Test
-   * 
-   * @assertion_ids: EL:SPEC:11
-   * 
-   * @test_Strategy: Verify that in a composite expression eval-expressions are
-   * evaluated left to right, coerced to Strings according to the EL type
-   * conversion rules, and concatenated with any intervening
-   * literal-expressions.
-   */
-  public void compositeExprEval2Test() throws Fault {
+        boolean pass = true;
+        String[] expr = {"${worker[${worker}]}", "${worker[#{worker}]}", "#{worker[${worker}]}", "#{worker[#{worker}]}"
+        };
 
-    boolean pass = true;
+        for (int i = 0; i < expr.length; ++i) {
 
-    int num = 2;
-    String expected = "total = 3.0";
+            try {
+                ExprEval.evaluateValueExpression(expr[i], null, String.class, ResolverType.EMPLOYEE_ELRESOLVER);
+                pass = false;
+                TestUtil.logErr("Test FAILED. No exception thrown for ");
+                TestUtil.logErr(expr[i]);
 
-    try {
-      Object div = ExprEval.evaluateValueExpression(
-          "total = " + "${" + num + "+2/" + num + "}", null, String.class);
+            } catch (ELException ee) {
+                // Test passes
+                TestUtil.logErr("Expected Exception thrown.");
 
-      TestUtil.logTrace("Testing for: " + expected);
+            } catch (Exception e) {
+                pass = false;
+                TestUtil.logErr("Test FAILED. " + expr[i] + " caused ");
+                TestUtil.logErr("an exception, but it was not an ");
+                TestUtil.logErr("ELException.");
+                TestUtil.printStackTrace(e);
+            }
+        }
 
-      pass = (ExprEval.compareClass(div, String.class)
-          && ExprEval.compareValue(div, expected));
-
-    } catch (Exception e) {
-      throw new Fault(e);
+        if (!pass) throw new Fault("TEST FAILED!");
     }
 
-    if (!pass)
-      throw new Fault("TEST FAILED!");
-  }
+    /*
+     * @testName: mixedCompositeExpressionsTest
+     *
+     * @assertion_ids: EL:SPEC:12
+     *
+     * @test_Strategy: Verify that composite expressions that mix the '$' and '#'
+     * delimiters are illegal.
+     */
+    public void mixedCompositeExpressionsTest() throws Fault {
 
-  /*
-   * @testName: dotAndIndexOperatorsSameTest
-   * 
-   * @assertion_ids: EL:SPEC:15
-   * 
-   * @test_Strategy: [DotAndIndexOperatorsSame] Verify that the dot and index
-   * operators are evaluated in the same way.
-   */
-  public void dotAndIndexOperatorsSameTest() throws Fault {
+        boolean pass = true;
+        String[] expr = {
+            "${worker}#{worker}", "#{worker}${worker}", "${worker}#{worker}${worker}", "#{worker}${worker}#{worker}"
+        };
 
-    boolean pass = true;
+        for (int i = 0; i < expr.length; ++i) {
 
-    try {
-      // ELResolver empResolver = new EmployeeELResolver();
+            try {
+                ExprEval.evaluateValueExpression(expr[i], null, String.class, ResolverType.EMPLOYEE_ELRESOLVER);
+                pass = false;
+                TestUtil.logErr("Test FAILED. No exception thrown for ");
+                TestUtil.logErr(expr[i]);
 
-      Object firstnameDot = ExprEval.evaluateValueExpression(
-          "${worker.firstName}", null, String.class,
-          ResolverType.EMPLOYEE_ELRESOLVER);
+            } catch (ELException ee) {
+                // Test passes
+                TestUtil.logErr("Expected Exception thrown.");
 
-      Object firstnameBracket = ExprEval.evaluateValueExpression(
-          "${worker['firstName']}", null, String.class,
-          ResolverType.EMPLOYEE_ELRESOLVER);
+            } catch (Exception e) {
+                pass = false;
+                TestUtil.logErr("Test FAILED. " + expr[i] + " caused ");
+                TestUtil.logErr("an exception, but it was not an ");
+                TestUtil.logErr("ELException.");
+                TestUtil.printStackTrace(e);
+            }
 
-      pass = firstnameDot.equals(firstnameBracket);
-
-    } catch (Exception e) {
-      throw new Fault(e);
+            if (!pass) throw new Fault("TEST FAILED!");
+        }
     }
 
-    if (!pass)
-      throw new Fault("TEST FAILED!");
-  }
+    /*
+     * @testName: compositeExprEval1Test
+     *
+     * @assertion_ids: EL:SPEC:11
+     *
+     * @test_Strategy: Verify that in a composite expression eval-expressions are
+     * coerced to Strings according to the EL type conversion rules and
+     * concatenated with any intervening literal-expressions.
+     */
+    public void compositeExprEval1Test() throws Fault {
 
-  /*
-   * @testName: elSyntaxEscapeTest
-   * 
-   * @assertion_ids: EL:SPEC:8
-   * 
-   * @test_Strategy: [ELSyntaxEscape] Verify that the EL special characters '$'
-   * and '#' are treated as literals when preceded with '\'.
-   */
-  public void elSyntaxEscapeTest() throws Fault {
+        boolean pass = true;
 
-    boolean pass = true;
+        String streetName = "${'Network Circle'}";
+        String city = "${'Santa Clara'}";
+        String state = "${'CA'}";
 
-    try {
-      Object firstnameDollar = ExprEval.evaluateValueExpression(
-          "\\${worker.firstName}", null, String.class,
-          ResolverType.EMPLOYEE_ELRESOLVER);
+        String expected = "4140 Network Circle, Santa Clara, CA 95054";
 
-      Object firstnamePound = ExprEval.evaluateValueExpression(
-          "\\#{worker.firstName}", null, String.class,
-          ResolverType.EMPLOYEE_ELRESOLVER);
+        try {
+            Object address = ExprEval.evaluateValueExpression(
+                    4140 + " " + streetName + ", " + city + ", " + state + " " + 95054, null, String.class);
 
-      if (!(ExprEval.compareValue(firstnameDollar, "${worker.firstName}")
-          && ExprEval.compareValue(firstnamePound, "#{worker.firstName}"))) {
+            TestUtil.logTrace("Testing for Address: " + expected);
 
-        TestUtil.logTrace("Escape character failed to work.");
-        pass = false;
-      }
+            pass = (ExprEval.compareClass(address, String.class) && ExprEval.compareValue(address, expected));
 
-    } catch (Exception e) {
-      throw new Fault(e);
+        } catch (Exception e) {
+            throw new Fault(e);
+        }
+
+        if (!pass) throw new Fault("TEST FAILED!");
     }
 
-    if (!pass)
-      throw new Fault("TEST FAILED!");
-  }
+    /*
+     * @testName: compositeExprEval2Test
+     *
+     * @assertion_ids: EL:SPEC:11
+     *
+     * @test_Strategy: Verify that in a composite expression eval-expressions are
+     * evaluated left to right, coerced to Strings according to the EL type
+     * conversion rules, and concatenated with any intervening
+     * literal-expressions.
+     */
+    public void compositeExprEval2Test() throws Fault {
 
-  /*
-   * @testName: literalExprEval1Test
-   * 
-   * @assertion_ids: EL:SPEC:6
-   * 
-   * @test_Strategy: [LiteralExprEval] Set the value of a ValueExpression to a
-   * literal String type. Verify that the value retrieved when the expression is
-   * evaluated is a String equal to the value set.
-   */
-  public void literalExprEval1Test() throws Fault {
+        boolean pass = true;
 
-    boolean pass = true;
+        int num = 2;
+        String expected = "total = 3.0";
 
-    String exprStr = "foo";
-    String expected = exprStr;
+        try {
+            Object div =
+                    ExprEval.evaluateValueExpression("total = " + "${" + num + "+2/" + num + "}", null, String.class);
 
-    try {
-      Object expr = ExprEval.evaluateValueExpression(exprStr, null,
-          String.class);
+            TestUtil.logTrace("Testing for: " + expected);
 
-      pass = (ExprEval.compareClass(expr, String.class)
-          && ExprEval.compareValue(expr, expected));
+            pass = (ExprEval.compareClass(div, String.class) && ExprEval.compareValue(div, expected));
 
-    } catch (Exception e) {
-      throw new Fault(e);
+        } catch (Exception e) {
+            throw new Fault(e);
+        }
+
+        if (!pass) throw new Fault("TEST FAILED!");
     }
 
-    if (!pass)
-      throw new Fault("TEST FAILED!");
-  }
+    /*
+     * @testName: dotAndIndexOperatorsSameTest
+     *
+     * @assertion_ids: EL:SPEC:15
+     *
+     * @test_Strategy: [DotAndIndexOperatorsSame] Verify that the dot and index
+     * operators are evaluated in the same way.
+     */
+    public void dotAndIndexOperatorsSameTest() throws Fault {
 
-  /*
-   * @testName: literalExprEval2Test
-   * 
-   * @assertion_ids: EL:SPEC:6
-   * 
-   * @test_Strategy: [LiteralExprEval] Coerce a String literal to a Boolean in a
-   * ValueExpression. Verify that the value retrieved when the expression is
-   * evaluated is a Boolean of the expected value.
-   */
-  public void literalExprEval2Test() throws Fault {
+        boolean pass = true;
 
-    boolean pass = true;
+        try {
+            // ELResolver empResolver = new EmployeeELResolver();
 
-    String exprStr = "true";
+            Object firstnameDot = ExprEval.evaluateValueExpression(
+                    "${worker.firstName}", null, String.class, ResolverType.EMPLOYEE_ELRESOLVER);
 
-    try {
-      Object expr = ExprEval.evaluateValueExpression(exprStr, null,
-          Boolean.class);
+            Object firstnameBracket = ExprEval.evaluateValueExpression(
+                    "${worker['firstName']}", null, String.class, ResolverType.EMPLOYEE_ELRESOLVER);
 
-      pass = (ExprEval.compareClass(expr, Boolean.class)
-          && ExprEval.compareValue(expr, true));
+            pass = firstnameDot.equals(firstnameBracket);
 
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Fault(e);
+        } catch (Exception e) {
+            throw new Fault(e);
+        }
+
+        if (!pass) throw new Fault("TEST FAILED!");
     }
 
-    if (!pass)
-      throw new Fault("TEST FAILED!");
-  }
+    /*
+     * @testName: elSyntaxEscapeTest
+     *
+     * @assertion_ids: EL:SPEC:8
+     *
+     * @test_Strategy: [ELSyntaxEscape] Verify that the EL special characters '$'
+     * and '#' are treated as literals when preceded with '\'.
+     */
+    public void elSyntaxEscapeTest() throws Fault {
 
-  /*
-   * @testName: literalExprAsMethodExpr1Test
-   * 
-   * @assertion_ids: EL:SPEC:10
-   * 
-   * @test_Strategy: [LiteralExprAsMethodExpr] Verify that a literal-expression
-   * can also be used as a method expression that returns a non-void value.
-   */
-  public void literalExprAsMethodExpr1Test() throws Fault {
+        boolean pass = true;
 
-    boolean pass = true;
+        try {
+            Object firstnameDollar = ExprEval.evaluateValueExpression(
+                    "\\${worker.firstName}", null, String.class, ResolverType.EMPLOYEE_ELRESOLVER);
 
-    try {
-      // literal expression returning String
-      Class[] params = {};
+            Object firstnamePound = ExprEval.evaluateValueExpression(
+                    "\\#{worker.firstName}", null, String.class, ResolverType.EMPLOYEE_ELRESOLVER);
 
-      Object value1 = ExprEval.evaluateMethodExpression("true", params,
-          String.class, ResolverType.VECT_ELRESOLVER);
+            if (!(ExprEval.compareValue(firstnameDollar, "${worker.firstName}")
+                    && ExprEval.compareValue(firstnamePound, "#{worker.firstName}"))) {
 
-      if (!("true".equals(value1))) {
-        pass = false;
-        TestUtil.logErr("Literal Expression, Return String Failed!");
-      }
+                TestUtil.logTrace("Escape character failed to work.");
+                pass = false;
+            }
 
-      // literal expression returning non-String value
-      Object value2 = ExprEval.evaluateMethodExpression("true", params,
-          Boolean.class, ResolverType.VECT_ELRESOLVER);
-      if (!((Boolean) value2).booleanValue()) {
-        pass = false;
-        TestUtil.logErr("Literal Expression, Return non-String " + "Failed!");
-      }
+        } catch (Exception e) {
+            throw new Fault(e);
+        }
 
-    } catch (Exception e) {
-      throw new Fault(e);
+        if (!pass) throw new Fault("TEST FAILED!");
     }
 
-    if (!pass)
-      throw new Fault("Test Failed!");
-  }
+    /*
+     * @testName: literalExprEval1Test
+     *
+     * @assertion_ids: EL:SPEC:6
+     *
+     * @test_Strategy: [LiteralExprEval] Set the value of a ValueExpression to a
+     * literal String type. Verify that the value retrieved when the expression is
+     * evaluated is a String equal to the value set.
+     */
+    public void literalExprEval1Test() throws Fault {
 
-  /*
-   * @testName: literalExprAsMethodExpr2Test
-   * 
-   * @assertion_ids: EL:SPEC:10
-   * 
-   * @test_Strategy: [LiteralExprAsMethodExpr] Verify that a literal-expression
-   * can also be used as a method expression that returns a non-void value.
-   * Verify that the standard coercion rules apply if the return type is not
-   * java.lang.String.
-   */
-  public void literalExprAsMethodExpr2Test() throws Fault {
+        boolean pass = true;
 
-    boolean pass = true;
-    int testNum = 496;
+        String exprStr = "foo";
+        String expected = exprStr;
 
-    try {
-      // literal expression returning String
-      Class[] params = {};
+        try {
+            Object expr = ExprEval.evaluateValueExpression(exprStr, null, String.class);
 
-      Object value = ExprEval.evaluateMethodExpression("496", params,
-          Integer.class, ResolverType.VECT_ELRESOLVER);
+            pass = (ExprEval.compareClass(expr, String.class) && ExprEval.compareValue(expr, expected));
 
-      if (!(value instanceof Integer)) {
-        pass = false;
-        TestUtil.logErr("MethodExpression invocation does not return"
-            + " instance of expected class");
-      }
+        } catch (Exception e) {
+            throw new Fault(e);
+        }
 
-      else if (((Integer) value).intValue() != testNum) {
-        pass = false;
-        TestUtil.logErr(
-            "Expected: " + testNum + NLINE + "Received: " + value.toString());
-      }
-
-    } catch (Exception e) {
-      throw new Fault(e);
+        if (!pass) throw new Fault("TEST FAILED!");
     }
 
-    if (!pass)
-      throw new Fault("Test Failed!");
-  }
+    /*
+     * @testName: literalExprEval2Test
+     *
+     * @assertion_ids: EL:SPEC:6
+     *
+     * @test_Strategy: [LiteralExprEval] Coerce a String literal to a Boolean in a
+     * ValueExpression. Verify that the value retrieved when the expression is
+     * evaluated is a Boolean of the expected value.
+     */
+    public void literalExprEval2Test() throws Fault {
 
-  /*
-   * @testName: rValueCoercion1Test
-   * 
-   * @assertion_ids: EL:SPEC:3
-   * 
-   * @test_Strategy: [RValueCoercion] Set the value of a ValueExpression to a
-   * String type and verify that the value retrieved when the expression is
-   * evaluated is also a String type.
-   */
-  public void rValueCoercion1Test() throws Fault {
-    boolean pass = false;
+        boolean pass = true;
 
-    String expr = "${foo}";
-    String expected = "bar";
+        String exprStr = "true";
 
-    try {
-      Object value = ExprEval.evaluateCoerceValueExpression(expr, expected,
-          String.class);
+        try {
+            Object expr = ExprEval.evaluateValueExpression(exprStr, null, Boolean.class);
 
-      pass = (ExprEval.compareClass(value, String.class)
-          && ExprEval.compareValue(value, expected));
+            pass = (ExprEval.compareClass(expr, Boolean.class) && ExprEval.compareValue(expr, true));
 
-    } catch (Exception e) {
-      throw new Fault(e);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new Fault(e);
+        }
+
+        if (!pass) throw new Fault("TEST FAILED!");
     }
-    if (!pass)
-      throw new Fault("TEST FAILED!");
-  }
 
-  /*
-   * @testName: rValueCoercion2Test
-   * 
-   * @assertion_ids: EL:SPEC:3
-   * 
-   * @test_Strategy: [RValueCoercion] Set the value of a ValueExpression to a
-   * complex type and verify that the value retrieved when the expression is
-   * evaluated is a String type in accordance with the coercion rules.
-   */
-  public void rValueCoercion2Test() throws Fault {
-    boolean pass = false;
+    /*
+     * @testName: literalExprAsMethodExpr1Test
+     *
+     * @assertion_ids: EL:SPEC:10
+     *
+     * @test_Strategy: [LiteralExprAsMethodExpr] Verify that a literal-expression
+     * can also be used as a method expression that returns a non-void value.
+     */
+    public void literalExprAsMethodExpr1Test() throws Fault {
 
-    String expr = "${javabook}";
-    String expected = "The Java Programming Language";
+        boolean pass = true;
 
-    try {
-      Book jbook = new Book(expected, "Arnold and Gosling", "Addison Wesley",
-          1996);
+        try {
+            // literal expression returning String
+            Class[] params = {};
 
-      Object value = ExprEval.evaluateCoerceValueExpression(expr, jbook,
-          String.class);
+            Object value1 =
+                    ExprEval.evaluateMethodExpression("true", params, String.class, ResolverType.VECT_ELRESOLVER);
 
-      pass = (ExprEval.compareClass(value, String.class)
-          && ExprEval.compareValue(value, expected));
+            if (!("true".equals(value1))) {
+                pass = false;
+                TestUtil.logErr("Literal Expression, Return String Failed!");
+            }
 
-    } catch (Exception e) {
-      throw new Fault(e);
+            // literal expression returning non-String value
+            Object value2 =
+                    ExprEval.evaluateMethodExpression("true", params, Boolean.class, ResolverType.VECT_ELRESOLVER);
+            if (!((Boolean) value2).booleanValue()) {
+                pass = false;
+                TestUtil.logErr("Literal Expression, Return non-String " + "Failed!");
+            }
+
+        } catch (Exception e) {
+            throw new Fault(e);
+        }
+
+        if (!pass) throw new Fault("Test Failed!");
     }
-    if (!pass)
-      throw new Fault("TEST FAILED!");
-  }
 
-  /*
-   * @testName: parseOnceEvalManyTest
-   * 
-   * @assertion_ids: EL:SPEC:45
-   * 
-   * @test_Strategy: [ExprParsedEvalMany] Verify that once an expression is
-   * parsed, it can be evaluated multiple times, and that the result of the
-   * evaluation will be the same even when the EL context is modified.
-   */
-  public void parseOnceEvalManyTest() throws Fault {
-    boolean pass = false;
+    /*
+     * @testName: literalExprAsMethodExpr2Test
+     *
+     * @assertion_ids: EL:SPEC:10
+     *
+     * @test_Strategy: [LiteralExprAsMethodExpr] Verify that a literal-expression
+     * can also be used as a method expression that returns a non-void value.
+     * Verify that the standard coercion rules apply if the return type is not
+     * java.lang.String.
+     */
+    public void literalExprAsMethodExpr2Test() throws Fault {
 
-    String expr = "${foo}";
-    String expected = "bar";
+        boolean pass = true;
+        int testNum = 496;
 
-    Hashtable contextObjects = new Hashtable();
-    contextObjects.put(String.class, "string context");
-    contextObjects.put(Integer.class, Integer.valueOf(1));
-    contextObjects.put(Boolean.class, Boolean.TRUE);
+        try {
+            // literal expression returning String
+            Class[] params = {};
 
-    try {
-      pass = ExprEval.evaluateManyValueExpression(expr, expected, String.class,
-          contextObjects);
+            Object value =
+                    ExprEval.evaluateMethodExpression("496", params, Integer.class, ResolverType.VECT_ELRESOLVER);
 
-    } catch (Exception e) {
-      throw new Fault(e);
+            if (!(value instanceof Integer)) {
+                pass = false;
+                TestUtil.logErr("MethodExpression invocation does not return" + " instance of expected class");
+            } else if (((Integer) value).intValue() != testNum) {
+                pass = false;
+                TestUtil.logErr("Expected: " + testNum + NLINE + "Received: " + value.toString());
+            }
+
+        } catch (Exception e) {
+            throw new Fault(e);
+        }
+
+        if (!pass) throw new Fault("Test Failed!");
     }
-    if (!pass)
-      throw new Fault("TEST FAILED!");
-  }
 
+    /*
+     * @testName: rValueCoercion1Test
+     *
+     * @assertion_ids: EL:SPEC:3
+     *
+     * @test_Strategy: [RValueCoercion] Set the value of a ValueExpression to a
+     * String type and verify that the value retrieved when the expression is
+     * evaluated is also a String type.
+     */
+    public void rValueCoercion1Test() throws Fault {
+        boolean pass = false;
+
+        String expr = "${foo}";
+        String expected = "bar";
+
+        try {
+            Object value = ExprEval.evaluateCoerceValueExpression(expr, expected, String.class);
+
+            pass = (ExprEval.compareClass(value, String.class) && ExprEval.compareValue(value, expected));
+
+        } catch (Exception e) {
+            throw new Fault(e);
+        }
+        if (!pass) throw new Fault("TEST FAILED!");
+    }
+
+    /*
+     * @testName: rValueCoercion2Test
+     *
+     * @assertion_ids: EL:SPEC:3
+     *
+     * @test_Strategy: [RValueCoercion] Set the value of a ValueExpression to a
+     * complex type and verify that the value retrieved when the expression is
+     * evaluated is a String type in accordance with the coercion rules.
+     */
+    public void rValueCoercion2Test() throws Fault {
+        boolean pass = false;
+
+        String expr = "${javabook}";
+        String expected = "The Java Programming Language";
+
+        try {
+            Book jbook = new Book(expected, "Arnold and Gosling", "Addison Wesley", 1996);
+
+            Object value = ExprEval.evaluateCoerceValueExpression(expr, jbook, String.class);
+
+            pass = (ExprEval.compareClass(value, String.class) && ExprEval.compareValue(value, expected));
+
+        } catch (Exception e) {
+            throw new Fault(e);
+        }
+        if (!pass) throw new Fault("TEST FAILED!");
+    }
+
+    /*
+     * @testName: parseOnceEvalManyTest
+     *
+     * @assertion_ids: EL:SPEC:45
+     *
+     * @test_Strategy: [ExprParsedEvalMany] Verify that once an expression is
+     * parsed, it can be evaluated multiple times, and that the result of the
+     * evaluation will be the same even when the EL context is modified.
+     */
+    public void parseOnceEvalManyTest() throws Fault {
+        boolean pass = false;
+
+        String expr = "${foo}";
+        String expected = "bar";
+
+        Hashtable contextObjects = new Hashtable();
+        contextObjects.put(String.class, "string context");
+        contextObjects.put(Integer.class, Integer.valueOf(1));
+        contextObjects.put(Boolean.class, Boolean.TRUE);
+
+        try {
+            pass = ExprEval.evaluateManyValueExpression(expr, expected, String.class, contextObjects);
+
+        } catch (Exception e) {
+            throw new Fault(e);
+        }
+        if (!pass) throw new Fault("TEST FAILED!");
+    }
 }

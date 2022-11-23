@@ -20,29 +20,28 @@
 
 package com.sun.ts.tests.ejb.ee.pm.manyXmany.bi.btob;
 
+import jakarta.ejb.EJBLocalObject;
 import java.util.Collection;
 
-import jakarta.ejb.EJBLocalObject;
-
 public interface BLocal extends EJBLocalObject {
-  // Business Methods for BLocal CMP Fields
-  public String getId();
+    // Business Methods for BLocal CMP Fields
+    public String getId();
 
-  public String getName();
+    public String getName();
 
-  public void setName(String v);
+    public void setName(String v);
 
-  public int getValue();
+    public int getValue();
 
-  public void setValue(int v);
+    public void setValue(int v);
 
-  // Business Methods for A CMR Fields
-  public Collection getA();
+    // Business Methods for A CMR Fields
+    public Collection getA();
 
-  public void setA(Collection v);
+    public void setA(Collection v);
 
-  public boolean setCmrFieldToNull();
+    public boolean setCmrFieldToNull();
 
-  // Business method to return A relationship info as Collection DVC's
-  public Collection getAInfo();
+    // Business method to return A relationship info as Collection DVC's
+    public Collection getAInfo();
 }

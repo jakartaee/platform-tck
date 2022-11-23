@@ -20,13 +20,7 @@
 
 package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPConnection;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.Enumeration;
-import java.util.Iterator;
-
 import com.sun.ts.tests.saaj.common.SOAP_Util;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -40,78 +34,80 @@ import jakarta.xml.soap.SOAPConstants;
 import jakarta.xml.soap.SOAPEnvelope;
 import jakarta.xml.soap.SOAPMessage;
 import jakarta.xml.soap.SOAPPart;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Enumeration;
+import java.util.Iterator;
 
 public class GetServlet extends HttpServlet {
-  protected MessageFactory msgFactory = null;
+    protected MessageFactory msgFactory = null;
 
-  private MimeHeaders getHeaders(HttpServletRequest req) {
-    Enumeration enumlist = req.getHeaderNames();
-    MimeHeaders headers = new MimeHeaders();
+    private MimeHeaders getHeaders(HttpServletRequest req) {
+        Enumeration enumlist = req.getHeaderNames();
+        MimeHeaders headers = new MimeHeaders();
 
-    while (enumlist.hasMoreElements()) {
-      String headerName = (String) enumlist.nextElement();
-      String headerValue = req.getHeader(headerName);
-      headers.addHeader(headerName, headerValue);
+        while (enumlist.hasMoreElements()) {
+            String headerName = (String) enumlist.nextElement();
+            String headerValue = req.getHeader(headerName);
+            headers.addHeader(headerName, headerValue);
+        }
+
+        return headers;
     }
 
-    return headers;
-  }
-
-  private void putHeaders(MimeHeaders headers, HttpServletResponse res) {
-    Iterator it = headers.getAllHeaders();
-    while (it.hasNext()) {
-      MimeHeader header = (MimeHeader) it.next();
-      res.setHeader(header.getName(), header.getValue());
+    private void putHeaders(MimeHeaders headers, HttpServletResponse res) {
+        Iterator it = headers.getAllHeaders();
+        while (it.hasNext()) {
+            MimeHeader header = (MimeHeader) it.next();
+            res.setHeader(header.getName(), header.getValue());
+        }
     }
-  }
 
-  public void init(ServletConfig servletConfig) throws ServletException {
-    super.init(servletConfig);
-    try {
-      // Initialize it to the default.
-      SOAP_Util.setup();
-      msgFactory = MessageFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
-    } catch (Exception e) {
-      System.err.println("Exception occurred: " + e.getMessage());
-      e.printStackTrace();
-      throw new ServletException("Exception occurred: " + e.getMessage());
+    public void init(ServletConfig servletConfig) throws ServletException {
+        super.init(servletConfig);
+        try {
+            // Initialize it to the default.
+            SOAP_Util.setup();
+            msgFactory = MessageFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
+        } catch (Exception e) {
+            System.err.println("Exception occurred: " + e.getMessage());
+            e.printStackTrace();
+            throw new ServletException("Exception occurred: " + e.getMessage());
+        }
     }
-  }
 
-  public void doPost(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, IOException {
-    doGet(req, resp);
-  }
-
-  public void doGet(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, IOException {
-    try {
-      // Create a SOAPMessage
-      SOAPMessage msg = msgFactory.createMessage();
-
-      SOAPPart sp = msg.getSOAPPart();
-
-      SOAPEnvelope envelope = sp.getEnvelope();
-
-      SOAPBody body = envelope.getBody();
-
-      body.addBodyElement(envelope.createName("GetLastTradePriceResponse",
-          "ztrade", "http://wombat.ztrade.com")).addChildElement("Price")
-          .addTextNode("95.12");
-
-      msg.saveChanges();
-
-      resp.setStatus(HttpServletResponse.SC_OK);
-
-      // Set HTTP headers
-      putHeaders(msg.getMimeHeaders(), resp);
-
-      // Write out the message on the response stream.
-      OutputStream os = resp.getOutputStream();
-      msg.writeTo(os);
-      os.flush();
-    } catch (Exception ex) {
-      throw new ServletException("GetServlet GET failed " + ex.getMessage());
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
     }
-  }
+
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            // Create a SOAPMessage
+            SOAPMessage msg = msgFactory.createMessage();
+
+            SOAPPart sp = msg.getSOAPPart();
+
+            SOAPEnvelope envelope = sp.getEnvelope();
+
+            SOAPBody body = envelope.getBody();
+
+            body.addBodyElement(envelope.createName("GetLastTradePriceResponse", "ztrade", "http://wombat.ztrade.com"))
+                    .addChildElement("Price")
+                    .addTextNode("95.12");
+
+            msg.saveChanges();
+
+            resp.setStatus(HttpServletResponse.SC_OK);
+
+            // Set HTTP headers
+            putHeaders(msg.getMimeHeaders(), resp);
+
+            // Write out the message on the response stream.
+            OutputStream os = resp.getOutputStream();
+            msg.writeTo(os);
+            os.flush();
+        } catch (Exception ex) {
+            throw new ServletException("GetServlet GET failed " + ex.getMessage());
+        }
+    }
 }

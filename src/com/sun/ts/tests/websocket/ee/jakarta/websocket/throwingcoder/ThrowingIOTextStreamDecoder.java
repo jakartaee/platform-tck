@@ -17,18 +17,16 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder;
 
+import com.sun.ts.tests.websocket.common.stringbean.StringBean;
+import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextStreamDecoder;
+import jakarta.websocket.DecodeException;
 import java.io.IOException;
 import java.io.Reader;
 
-import com.sun.ts.tests.websocket.common.stringbean.StringBean;
-import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextStreamDecoder;
-
-import jakarta.websocket.DecodeException;
-
 public class ThrowingIOTextStreamDecoder extends StringBeanTextStreamDecoder {
 
-  @Override
-  public StringBean decode(Reader r) throws DecodeException, IOException {
-    throw new IOException(ThrowingTextDecoder.IO_ERR_MSG);
-  }
+    @Override
+    public StringBean decode(Reader r) throws DecodeException, IOException {
+        throw new IOException(ThrowingTextDecoder.IO_ERR_MSG);
+    }
 }

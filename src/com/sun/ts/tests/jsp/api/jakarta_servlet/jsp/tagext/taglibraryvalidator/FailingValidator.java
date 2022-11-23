@@ -21,18 +21,15 @@
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.taglibraryvalidator;
 
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.tagext.PageData;
 import jakarta.servlet.jsp.tagext.TagLibraryValidator;
 import jakarta.servlet.jsp.tagext.ValidationMessage;
 
 public class FailingValidator extends TagLibraryValidator {
 
-  public FailingValidator() {
-  }
+    public FailingValidator() {}
 
-  public ValidationMessage[] validate(String s, String s1, PageData pageData) {
-    return JspTestUtil.getValidationMessage(null,
-        "Test PASSED.  Translation failure occurred.");
-  }
+    public ValidationMessage[] validate(String s, String s1, PageData pageData) {
+        return JspTestUtil.getValidationMessage(null, "Test PASSED.  Translation failure occurred.");
+    }
 }

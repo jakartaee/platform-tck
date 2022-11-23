@@ -20,68 +20,60 @@
 
 package com.sun.ts.tests.ejb30.common.helloejbjar;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.Resource;
-
 public class HelloBeanBase implements HelloRemoteIF, HelloLocalIF {
-  public static final Logger logger = Logger
-      .getLogger(HelloBeanBase.class.getName());
+    public static final Logger logger = Logger.getLogger(HelloBeanBase.class.getName());
 
-  private List<String> records = new ArrayList<String>();
+    private List<String> records = new ArrayList<String>();
 
-  @Resource(lookup = "java:app/AppName")
-  private String appName;
+    @Resource(lookup = "java:app/AppName")
+    private String appName;
 
-  @Resource(lookup = "java:module/ModuleName")
-  private String moduleName;
+    @Resource(lookup = "java:module/ModuleName")
+    private String moduleName;
 
-  public HelloBeanBase() {
-  }
+    public HelloBeanBase() {}
 
-  public void hello() {
-  }
+    public void hello() {}
 
-  public Object getMessage() {
-    return toString();
-  }
-
-  public int add(int a, int b) {
-    return a + b;
-  }
-
-  public void addRecord(String rec) {
-    if (records.contains(rec)) {
-      logger.warning("Record already exists in HelloBeanBase: " + rec);
-    } else {
-      records.add(rec);
-    }
-  }
-
-  public List<String> getAndClearRecords() {
-    List<String> r = new ArrayList<String>(records);
-    records.clear();
-    return r;
-  }
-
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    System.out.println(
-        String.format("appName: %s, moduleName: %s", appName, moduleName));
-    String nameExpected = "ejb3_common_helloejbjar_standalone_component_ejb";
-    if (!nameExpected.equals(appName)) {
-      throw new RuntimeException(String.format(
-          "Expecting appName %s, but actual %s", nameExpected, appName));
-    }
-    if (!nameExpected.equals(moduleName)) {
-      throw new RuntimeException(String.format(
-          "Expecting moduleName %s, but actual %s", nameExpected, moduleName));
+    public Object getMessage() {
+        return toString();
     }
 
-  }
+    public int add(int a, int b) {
+        return a + b;
+    }
 
+    public void addRecord(String rec) {
+        if (records.contains(rec)) {
+            logger.warning("Record already exists in HelloBeanBase: " + rec);
+        } else {
+            records.add(rec);
+        }
+    }
+
+    public List<String> getAndClearRecords() {
+        List<String> r = new ArrayList<String>(records);
+        records.clear();
+        return r;
+    }
+
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        System.out.println(String.format("appName: %s, moduleName: %s", appName, moduleName));
+        String nameExpected = "ejb3_common_helloejbjar_standalone_component_ejb";
+        if (!nameExpected.equals(appName)) {
+            throw new RuntimeException(String.format("Expecting appName %s, but actual %s", nameExpected, appName));
+        }
+        if (!nameExpected.equals(moduleName)) {
+            throw new RuntimeException(
+                    String.format("Expecting moduleName %s, but actual %s", nameExpected, moduleName));
+        }
+    }
 }

@@ -27,24 +27,23 @@ import org.xml.sax.helpers.XMLFilterImpl;
 
 public class SimpleXmlFilter extends XMLFilterImpl {
 
-  /** Creates new SimpleXmlFilter */
-  public SimpleXmlFilter() {
-  }
+    /** Creates new SimpleXmlFilter */
+    public SimpleXmlFilter() {}
 
-  /*
-   * public methods
-   * ========================================================================
-   */
+    /*
+     * public methods
+     * ========================================================================
+     */
 
-  /**
-   * When called, an new attribute, 'test', will be added to each element
-   * processed.
-   */
-  public void startElement(String namespaceURI, String localName,
-      String qualifiedName, Attributes atts) throws SAXException {
-    AttributesImpl attributes = new AttributesImpl(atts);
-    attributes.addAttribute("", "test", "test", "CDATA", "attrvalue");
-    atts = attributes;
-    super.startElement(namespaceURI, localName, qualifiedName, atts);
-  }
+    /**
+     * When called, an new attribute, 'test', will be added to each element
+     * processed.
+     */
+    public void startElement(String namespaceURI, String localName, String qualifiedName, Attributes atts)
+            throws SAXException {
+        AttributesImpl attributes = new AttributesImpl(atts);
+        attributes.addAttribute("", "test", "test", "CDATA", "attrvalue");
+        atts = attributes;
+        super.startElement(namespaceURI, localName, qualifiedName, atts);
+    }
 }

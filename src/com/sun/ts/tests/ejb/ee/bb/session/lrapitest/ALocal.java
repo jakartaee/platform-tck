@@ -23,8 +23,8 @@ package com.sun.ts.tests.ejb.ee.bb.session.lrapitest;
 import jakarta.ejb.EJBLocalObject;
 
 public interface ALocal extends EJBLocalObject {
-  // Business Methods
-  public String whoAmILocal();
+    // Business Methods
+    public String whoAmILocal();
 
-  public EJBLocalObject getLocalRef();
+    public EJBLocalObject getLocalRef();
 }

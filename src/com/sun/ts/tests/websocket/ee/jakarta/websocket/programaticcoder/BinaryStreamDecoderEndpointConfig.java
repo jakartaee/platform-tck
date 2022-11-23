@@ -17,62 +17,58 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.programaticcoder;
 
+import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.InitDestroyBinaryStreamDecoder;
+import jakarta.websocket.Decoder;
+import jakarta.websocket.Encoder;
+import jakarta.websocket.Extension;
+import jakarta.websocket.server.ServerEndpointConfig;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.InitDestroyBinaryStreamDecoder;
-
-import jakarta.websocket.Decoder;
-import jakarta.websocket.Encoder;
-import jakarta.websocket.Extension;
-import jakarta.websocket.server.ServerEndpointConfig;
-
 public class BinaryStreamDecoderEndpointConfig implements ServerEndpointConfig {
 
-  @Override
-  public Map<String, Object> getUserProperties() {
-    return Collections.emptyMap();
-  }
+    @Override
+    public Map<String, Object> getUserProperties() {
+        return Collections.emptyMap();
+    }
 
-  @Override
-  public Class<?> getEndpointClass() {
-    return WSCBinaryStreamDecoderServer.class;
-  }
+    @Override
+    public Class<?> getEndpointClass() {
+        return WSCBinaryStreamDecoderServer.class;
+    }
 
-  @Override
-  public String getPath() {
-    return "/binarystreamdecoder";
-  }
+    @Override
+    public String getPath() {
+        return "/binarystreamdecoder";
+    }
 
-  @Override
-  public List<String> getSubprotocols() {
-    return Collections.emptyList();
-  }
+    @Override
+    public List<String> getSubprotocols() {
+        return Collections.emptyList();
+    }
 
-  @Override
-  public List<Extension> getExtensions() {
-    return Collections.emptyList();
-  }
+    @Override
+    public List<Extension> getExtensions() {
+        return Collections.emptyList();
+    }
 
-  @Override
-  public Configurator getConfigurator() {
-    return new ServerEndpointConfig.Configurator() {
-    };
-  }
+    @Override
+    public Configurator getConfigurator() {
+        return new ServerEndpointConfig.Configurator() {};
+    }
 
-  @Override
-  public List<Class<? extends Encoder>> getEncoders() {
-    return Collections.emptyList();
-  }
+    @Override
+    public List<Class<? extends Encoder>> getEncoders() {
+        return Collections.emptyList();
+    }
 
-  @Override
-  public List<Class<? extends Decoder>> getDecoders() {
-    Class<? extends Decoder> clz = InitDestroyBinaryStreamDecoder.class;
-    List<Class<? extends Decoder>> list = new LinkedList<>();
-    list.add(clz);
-    return list;
-  }
-
+    @Override
+    public List<Class<? extends Decoder>> getDecoders() {
+        Class<? extends Decoder> clz = InitDestroyBinaryStreamDecoder.class;
+        List<Class<? extends Decoder>> list = new LinkedList<>();
+        list.add(clz);
+        return list;
+    }
 }

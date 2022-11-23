@@ -17,31 +17,27 @@
 
 package com.sun.ts.tests.websocket.negdep.invalidpathparamtype.srv.onerror;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.negdep.StringHolder;
-
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
 @ServerEndpoint("/invalid/{arg}")
 public class OnErrorStringHolderServerEndpoint {
-  private static String exception = "";
+    private static String exception = "";
 
-  @OnMessage
-  public String echo(String echo) {
-    if ("throw".equals(echo))
-      throw new RuntimeException(echo);
-    return exception + echo;
-  }
+    @OnMessage
+    public String echo(String echo) {
+        if ("throw".equals(echo)) throw new RuntimeException(echo);
+        return exception + echo;
+    }
 
-  @OnError
-  public void onError(Session session, Throwable t,
-      @PathParam("arg") StringHolder sb) throws IOException {
-    exception = sb.toString();
-    session.getBasicRemote().sendText(t.getMessage());
-  }
+    @OnError
+    public void onError(Session session, Throwable t, @PathParam("arg") StringHolder sb) throws IOException {
+        exception = sb.toString();
+        session.getBasicRemote().sendText(t.getMessage());
+    }
 }

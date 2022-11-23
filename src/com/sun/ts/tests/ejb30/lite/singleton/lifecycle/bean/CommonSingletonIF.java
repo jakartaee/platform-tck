@@ -22,12 +22,11 @@ package com.sun.ts.tests.ejb30.lite.singleton.lifecycle.bean;
 
 public interface CommonSingletonIF {
 
-  public <T extends CommonSingletonIF> T getSingletonReference(Class<T> type);
+    public <T extends CommonSingletonIF> T getSingletonReference(Class<T> type);
 
-  public <T extends CommonSingletonIF> T getSingletonReferenceFromEJBContext(
-      Class<T> type);
+    public <T extends CommonSingletonIF> T getSingletonReferenceFromEJBContext(Class<T> type);
 
-  public void error() throws RuntimeException;
+    public void error() throws RuntimeException;
 
-  public int identityHashCode();
+    public int identityHashCode();
 }

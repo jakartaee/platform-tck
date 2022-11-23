@@ -23,6 +23,4 @@ package com.sun.ts.tests.ejb30.tx.common.session.inheritance;
 import jakarta.ejb.Remote;
 
 @Remote()
-public interface TxRemoteIF extends TxCommonIF {
-
-}
+public interface TxRemoteIF extends TxCommonIF {}

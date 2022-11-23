@@ -24,7 +24,6 @@ import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
 import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
 import com.sun.ts.tests.ejb30.common.callback.ClientBase;
-
 import jakarta.ejb.EJB;
 
 /**
@@ -33,91 +32,91 @@ import jakarta.ejb.EJB;
  * through the returned value.
  */
 public class Client extends ClientBase {
-  @EJB(beanName = "CallbackBean")
-  private static CallbackIF bean;
+    @EJB(beanName = "CallbackBean")
+    private static CallbackIF bean;
 
-  @EJB(beanName = "Callback2Bean")
-  private static Callback2IF bean2;
+    @EJB(beanName = "Callback2Bean")
+    private static Callback2IF bean2;
 
-  @EJB(beanName = "SessionBeanCallbackBean")
-  private static CallbackIF sessionBeanCallbackBean;
+    @EJB(beanName = "SessionBeanCallbackBean")
+    private static CallbackIF sessionBeanCallbackBean;
 
-  protected Callback2IF getBean2() {
-    return bean2;
-  }
+    protected Callback2IF getBean2() {
+        return bean2;
+    }
 
-  protected CallbackIF getBean() {
-    return bean;
-  }
+    protected CallbackIF getBean() {
+        return bean;
+    }
 
-  protected CallbackIF getSessionBean() {
-    return sessionBeanCallbackBean;
-  }
+    protected CallbackIF getSessionBean() {
+        return sessionBeanCallbackBean;
+    }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  public void cleanup() throws com.sun.ts.lib.harness.EETest.Fault {
-    super.cleanup();
-    remove();
-  }
+    public void cleanup() throws com.sun.ts.lib.harness.EETest.Fault {
+        super.cleanup();
+        remove();
+    }
 
-  /*
-   * @class.setup_props:
-   */
+    /*
+     * @class.setup_props:
+     */
 
-  /*
-   * @testName: isPostConstructCalledTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-   * PreDestroy o PostActivate o PrePassivate o verify callback methods in
-   * handler class are invoked o Callback methods may throw RuntimeException o
-   * callback methods may, in some cases, named as ejbCreate, ejbRemove
-   */
+    /*
+     * @testName: isPostConstructCalledTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
+     * PreDestroy o PostActivate o PrePassivate o verify callback methods in
+     * handler class are invoked o Callback methods may throw RuntimeException o
+     * callback methods may, in some cases, named as ejbCreate, ejbRemove
+     */
 
-  /*
-   * @testName: isInjectionDoneTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-   * PreDestroy o Resource o verify dependency injection has occurred when
-   * callback method is called o Callback methods may throw RuntimeException
-   */
+    /*
+     * @testName: isInjectionDoneTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
+     * PreDestroy o Resource o verify dependency injection has occurred when
+     * callback method is called o Callback methods may throw RuntimeException
+     */
 
-  /*
-   * @testName: isPostConstructOrPreDestroyCalledTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-   * PreDestroy o PostActivate o PrePassivate o apply four callback annotations
-   * on the same method o Callback methods may throw RuntimeException o callback
-   * methods may use arbitrary names
-   */
+    /*
+     * @testName: isPostConstructOrPreDestroyCalledTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
+     * PreDestroy o PostActivate o PrePassivate o apply four callback annotations
+     * on the same method o Callback methods may throw RuntimeException o callback
+     * methods may use arbitrary names
+     */
 
-  /*
-   * @testName: isPostConstructCalledSessionBeanTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-   * PreDestroy o verify callback methods in handler class are invoked o
-   * callback methods may, in some cases, named as ejbCreate, ejbRemove
-   */
+    /*
+     * @testName: isPostConstructCalledSessionBeanTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
+     * PreDestroy o verify callback methods in handler class are invoked o
+     * callback methods may, in some cases, named as ejbCreate, ejbRemove
+     */
 
-  /*
-   * @testName: isInjectionDoneSessionBeanTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-   * PreDestroy o Resource o verify dependency injection has occurred when
-   * callback method is called
-   */
+    /*
+     * @testName: isInjectionDoneSessionBeanTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
+     * PreDestroy o Resource o verify dependency injection has occurred when
+     * callback method is called
+     */
 }

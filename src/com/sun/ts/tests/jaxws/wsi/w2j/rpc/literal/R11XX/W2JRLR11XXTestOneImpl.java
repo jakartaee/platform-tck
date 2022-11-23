@@ -20,13 +20,16 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R11XX;
 
-import jakarta.xml.ws.WebServiceException;
 import jakarta.jws.WebService;
 
-@WebService(portName = "W2JRLR11XXTestOnePort", serviceName = "W2JRLR11XXTestService", targetNamespace = "http://soapactionservice.org/wsdl/", wsdlLocation = "WEB-INF/wsdl/W2JRLR11XXTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R11XX.W2JRLR11XXTest")
-
+@WebService(
+        portName = "W2JRLR11XXTestOnePort",
+        serviceName = "W2JRLR11XXTestService",
+        targetNamespace = "http://soapactionservice.org/wsdl/",
+        wsdlLocation = "WEB-INF/wsdl/W2JRLR11XXTestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R11XX.W2JRLR11XXTest")
 public class W2JRLR11XXTestOneImpl implements W2JRLR11XXTest {
-  public String echoString(String s) {
-    return s;
-  }
+    public String echoString(String s) {
+        return s;
+    }
 }

@@ -17,57 +17,53 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.asyncwithhandler;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.impl.WaitingSendHandler;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.OPS;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.WSCSuperEndpoint;
-
 import jakarta.websocket.EncodeException;
 import jakarta.websocket.SendResult;
 import jakarta.websocket.Session;
+import java.io.IOException;
 
 public abstract class WSCCommonServer implements WSCSuperEndpoint {
-  public void onMessage(String msg, Session session)
-      throws IOException, EncodeException {
-    OPS op = OPS.valueOf(msg);
-    WaitingSendHandler handler = new WaitingSendHandler();
-    switch (op) {
-    case BOOL:
-      session.getAsyncRemote().sendObject(BOOL, handler);
-      break;
-    case BYTE:
-      session.getAsyncRemote().sendObject(NUMERIC.byteValue(), handler);
-      break;
-    case CHAR:
-      session.getAsyncRemote().sendObject(CHAR, handler);
-      break;
-    case DOUBLE:
-      session.getAsyncRemote().sendObject(NUMERIC.doubleValue(), handler);
-      break;
-    case FLOAT:
-      session.getAsyncRemote().sendObject(NUMERIC.floatValue(), handler);
-      break;
-    case INT:
-      session.getAsyncRemote().sendObject(NUMERIC.intValue(), handler);
-      break;
-    case LONG:
-      session.getAsyncRemote().sendObject(NUMERIC.longValue(), handler);
-      break;
-    case SHORT:
-      session.getAsyncRemote().sendObject(NUMERIC.shortValue(), handler);
-      break;
+    public void onMessage(String msg, Session session) throws IOException, EncodeException {
+        OPS op = OPS.valueOf(msg);
+        WaitingSendHandler handler = new WaitingSendHandler();
+        switch (op) {
+            case BOOL:
+                session.getAsyncRemote().sendObject(BOOL, handler);
+                break;
+            case BYTE:
+                session.getAsyncRemote().sendObject(NUMERIC.byteValue(), handler);
+                break;
+            case CHAR:
+                session.getAsyncRemote().sendObject(CHAR, handler);
+                break;
+            case DOUBLE:
+                session.getAsyncRemote().sendObject(NUMERIC.doubleValue(), handler);
+                break;
+            case FLOAT:
+                session.getAsyncRemote().sendObject(NUMERIC.floatValue(), handler);
+                break;
+            case INT:
+                session.getAsyncRemote().sendObject(NUMERIC.intValue(), handler);
+                break;
+            case LONG:
+                session.getAsyncRemote().sendObject(NUMERIC.longValue(), handler);
+                break;
+            case SHORT:
+                session.getAsyncRemote().sendObject(NUMERIC.shortValue(), handler);
+                break;
+        }
+        SendResult result = handler.waitForResult(4);
+        if (!result.isOK() || result.getException() != null) throw new RuntimeException(result.getException());
     }
-    SendResult result = handler.waitForResult(4);
-    if (!result.isOK() || result.getException() != null)
-      throw new RuntimeException(result.getException());
-  }
 
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in " + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+    public void onError(Session session, Throwable t) throws IOException {
+        System.out.println("@OnError in " + getClass().getName());
+        t.printStackTrace(); // Write to error log, too
+        String message = "Exception: " + IOUtil.printStackTrace(t);
+        session.getBasicRemote().sendText(message);
+    }
 }

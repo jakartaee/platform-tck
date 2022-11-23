@@ -20,7 +20,6 @@
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.inheritance;
 
 import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ConcurrencyIF;
-
 import jakarta.ejb.Lock;
 import jakarta.ejb.LockType;
 import jakarta.ejb.Singleton;
@@ -30,29 +29,27 @@ import jakarta.ejb.Singleton;
  * metadata by the superclasses.
  */
 @Singleton
-public class InverseLockSingletonBean extends ReadLockBeanBase
-    implements ConcurrencyIF {
+public class InverseLockSingletonBean extends ReadLockBeanBase implements ConcurrencyIF {
 
-  @Override
-  public void addUnlocked(int num) {
-    super.addUnlocked(num);
-  }
+    @Override
+    public void addUnlocked(int num) {
+        super.addUnlocked(num);
+    }
 
-  @Override
-  public long getAndResetUnlockedSum() {
-    return super.getAndResetUnlockedSum();
-  }
+    @Override
+    public long getAndResetUnlockedSum() {
+        return super.getAndResetUnlockedSum();
+    }
 
-  @Override
-  @Lock(LockType.READ)
-  public void addLocked(int num) {
-    super.addLocked(num);
-  }
+    @Override
+    @Lock(LockType.READ)
+    public void addLocked(int num) {
+        super.addLocked(num);
+    }
 
-  @Override
-  @Lock(LockType.READ)
-  public long getAndResetLockedSum() {
-    return super.getAndResetLockedSum();
-  }
-
+    @Override
+    @Lock(LockType.READ)
+    public long getAndResetLockedSum() {
+        return super.getAndResetLockedSum();
+    }
 }

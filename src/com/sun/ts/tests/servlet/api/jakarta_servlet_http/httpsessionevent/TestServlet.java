@@ -58,59 +58,54 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpsessionevent;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpSessionEvent;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class TestServlet extends HttpTCKServlet {
 
-  public void getSessionTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+    public void getSessionTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
-    StaticLog.clear();
+        PrintWriter pw = response.getWriter();
+        StaticLog.clear();
 
-    HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(true);
 
-    String[] expected = { "sessionCreated:sessionid=" + session.getId() };
+        String[] expected = {"sessionCreated:sessionid=" + session.getId()};
 
-    ArrayList result = StaticLog.getClear();
-    boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);
-    if (!b) {
-      ServletTestUtil.printFailureData(pw, result, expected);
-    }
-    ServletTestUtil.printResult(pw, b);
+        ArrayList result = StaticLog.getClear();
+        boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);
+        if (!b) {
+            ServletTestUtil.printFailureData(pw, result, expected);
+        }
+        ServletTestUtil.printResult(pw, b);
 
-    session.invalidate();
-
-  }
-
-  public void constructorTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-
-    PrintWriter pw = response.getWriter();
-    StaticLog.clear();
-
-    HttpSession session = request.getSession(true);
-
-    HttpSessionEvent hse = new HttpSessionEvent(session);
-    if (hse != null) {
-      ServletTestUtil.printResult(pw, true);
-    } else {
-      pw.println("ERROR: HttpSessionEvent returned a null");
-      ServletTestUtil.printResult(pw, true);
+        session.invalidate();
     }
 
-  }
+    public void constructorTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
+        PrintWriter pw = response.getWriter();
+        StaticLog.clear();
+
+        HttpSession session = request.getSession(true);
+
+        HttpSessionEvent hse = new HttpSessionEvent(session);
+        if (hse != null) {
+            ServletTestUtil.printResult(pw, true);
+        } else {
+            pw.println("ERROR: HttpSessionEvent returned a null");
+            ServletTestUtil.printResult(pw, true);
+        }
+    }
 }

@@ -23,13 +23,13 @@ package com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice;
 import com.sun.ts.tests.jaxws.common.SOAPHandlerBase;
 
 public class ServerSOAPHandler2 extends SOAPHandlerBase {
-  private static final String WHICHHANDLERTYPE = "Server";
+    private static final String WHICHHANDLERTYPE = "Server";
 
-  private static final String HANDLERNAME = "ServerSOAPHandler2";
+    private static final String HANDLERNAME = "ServerSOAPHandler2";
 
-  public ServerSOAPHandler2() {
-    super();
-    super.setWhichHandlerType(WHICHHANDLERTYPE);
-    super.setHandlerName(HANDLERNAME);
-  }
+    public ServerSOAPHandler2() {
+        super();
+        super.setWhichHandlerType(WHICHHANDLERTYPE);
+        super.setHandlerName(HANDLERNAME);
+    }
 }

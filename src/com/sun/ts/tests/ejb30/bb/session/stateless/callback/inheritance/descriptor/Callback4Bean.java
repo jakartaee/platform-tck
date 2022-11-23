@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.callback.inheritance.descrip
 
 import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
 import com.sun.ts.tests.ejb30.common.callback.InterceptorJ;
-
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
@@ -34,12 +33,11 @@ import jakarta.interceptor.Interceptors;
  * superclasses.
  */
 @Stateless(name = "Callback4Bean")
-@Remote({ Callback2IF.class })
-@Interceptors({ InterceptorJ.class })
+@Remote({Callback2IF.class})
+@Interceptors({InterceptorJ.class})
 @ExcludeDefaultInterceptors
 public class Callback4Bean extends Callback4BeanSuper {
-  public Callback4Bean() {
-    super();
-  }
-
+    public Callback4Bean() {
+        super();
+    }
 }

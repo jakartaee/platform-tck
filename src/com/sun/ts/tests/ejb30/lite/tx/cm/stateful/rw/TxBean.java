@@ -20,13 +20,10 @@
 
 package com.sun.ts.tests.ejb30.lite.tx.cm.stateful.rw;
 
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeEJBLite;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeUtil;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTxBeanBase;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.AfterBegin;
@@ -35,65 +32,63 @@ import jakarta.ejb.BeforeCompletion;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
+import java.util.logging.Level;
 
 @Stateful
 public class TxBean extends RWTxBeanBase {
 
-  public static final String AFTER_BEGIN = "afterBegin";
+    public static final String AFTER_BEGIN = "afterBegin";
 
-  public static final String BEFORE_COMPLETION = "beforeCompletion";
+    public static final String BEFORE_COMPLETION = "beforeCompletion";
 
-  public static final String AFTER_COMPLETION = "afterCompletion";
+    public static final String AFTER_COMPLETION = "afterCompletion";
 
-  public static final int AFTER_BEGIN_COFFEE_ID = 1602;
+    public static final int AFTER_BEGIN_COFFEE_ID = 1602;
 
-  public static final int BEFORE_COMPLETION_COFFEE_ID = 2503;
+    public static final int BEFORE_COMPLETION_COFFEE_ID = 2503;
 
-  public static final int AFTER_COMPLETION_COFFEE_ID = 1603;
+    public static final int AFTER_COMPLETION_COFFEE_ID = 1603;
 
-  @AfterBegin
-  public void afterBegin() {
-    CoffeeUtil.findDeletePersist(AFTER_BEGIN_COFFEE_ID, AFTER_BEGIN, em);
-  }
-
-  @BeforeCompletion
-  public void beforeCompletion() {
-    CoffeeUtil.verifyCoffee(AFTER_BEGIN_COFFEE_ID, AFTER_BEGIN, em, true);
-    CoffeeUtil.findDeletePersist(BEFORE_COMPLETION_COFFEE_ID, BEFORE_COMPLETION,
-        em);
-    CoffeeUtil.verifyCoffee(BEFORE_COMPLETION_COFFEE_ID, BEFORE_COMPLETION, em,
-        true);
-  }
-
-  @AfterCompletion
-  public void afterCompletion(boolean arg0) {
-  }
-
-  @SuppressWarnings("unused")
-  @PostConstruct
-  @TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
-  private void postConstruct() {
-    int id = 9582176;
-    String brandName = "postConstruct";
-    float price = id;
-
-    CoffeeUtil.findDelete(id, false, em);
-    postConstructCoffee = new CoffeeEJBLite(id, brandName, price);
-    updatePersist(postConstructCoffee, false);
-    Helper.getLogger().logp(Level.FINE, "TxBean", "postConstruct",
-        "Updated and persisted coffee: " + postConstructCoffee);
-  }
-
-  @SuppressWarnings("unused")
-  @PreDestroy
-  @TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
-  private void preDestroy() {
-    if ((System.getProperty("ejbembed", null) == null)) {
-      // we are NOT in ejbembed
-      Helper.getLogger().logp(Level.FINE, "TxBean", "preDestroy",
-          "About to merge and remove: " + postConstructCoffee);
-      em.remove(em.merge(postConstructCoffee));
-      em.getEntityManagerFactory().getCache().evictAll();
+    @AfterBegin
+    public void afterBegin() {
+        CoffeeUtil.findDeletePersist(AFTER_BEGIN_COFFEE_ID, AFTER_BEGIN, em);
     }
-  }
+
+    @BeforeCompletion
+    public void beforeCompletion() {
+        CoffeeUtil.verifyCoffee(AFTER_BEGIN_COFFEE_ID, AFTER_BEGIN, em, true);
+        CoffeeUtil.findDeletePersist(BEFORE_COMPLETION_COFFEE_ID, BEFORE_COMPLETION, em);
+        CoffeeUtil.verifyCoffee(BEFORE_COMPLETION_COFFEE_ID, BEFORE_COMPLETION, em, true);
+    }
+
+    @AfterCompletion
+    public void afterCompletion(boolean arg0) {}
+
+    @SuppressWarnings("unused")
+    @PostConstruct
+    @TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
+    private void postConstruct() {
+        int id = 9582176;
+        String brandName = "postConstruct";
+        float price = id;
+
+        CoffeeUtil.findDelete(id, false, em);
+        postConstructCoffee = new CoffeeEJBLite(id, brandName, price);
+        updatePersist(postConstructCoffee, false);
+        Helper.getLogger()
+                .logp(Level.FINE, "TxBean", "postConstruct", "Updated and persisted coffee: " + postConstructCoffee);
+    }
+
+    @SuppressWarnings("unused")
+    @PreDestroy
+    @TransactionAttribute(value = TransactionAttributeType.REQUIRES_NEW)
+    private void preDestroy() {
+        if ((System.getProperty("ejbembed", null) == null)) {
+            // we are NOT in ejbembed
+            Helper.getLogger()
+                    .logp(Level.FINE, "TxBean", "preDestroy", "About to merge and remove: " + postConstructCoffee);
+            em.remove(em.merge(postConstructCoffee));
+            em.getEntityManagerFactory().getCache().evictAll();
+        }
+    }
 }

@@ -26,17 +26,17 @@ import jakarta.servlet.jsp.tagext.SimpleTagSupport;
  */
 public class SetTag extends SimpleTagSupport {
 
-  private String var, value;
+    private String var, value;
 
-  public void setVar(String var) {
-    this.var = var;
-  }
+    public void setVar(String var) {
+        this.var = var;
+    }
 
-  public void setValue(String value) {
-    this.value = value;
-  }
+    public void setValue(String value) {
+        this.value = value;
+    }
 
-  public void doTag() throws JspException {
-    getJspContext().setAttribute(var, value, PageContext.PAGE_SCOPE);
-  }
+    public void doTag() throws JspException {
+        getJspContext().setAttribute(var, value, PageContext.PAGE_SCOPE);
+    }
 }

@@ -27,15 +27,14 @@ import com.sun.ts.tests.ejb30.misc.getresource.common.GetResourceBeanBase;
  * will resolve to this class, and so that the package name used by JDK to
  * convert relative resource name to absolute name will be this package, as
  * opposed to com.sun.ts.tests.ejb30.misc.getresource.common.
- * 
+ *
  */
 public class GetResourceDelegate extends GetResourceBeanBase {
-  // when creating an absolute resource name for Class.getResource, strarts with
-  // /
-  // when creating an absolute resource name for ClassLoader.getResource, no /
-  @Override
-  protected String getAbsoluteName(String name, boolean leadingSlash) {
-    return (leadingSlash ? "/" : "")
-        + "com/sun/ts/tests/ejb30/misc/getresource/warejb/" + name;
-  }
+    // when creating an absolute resource name for Class.getResource, strarts with
+    // /
+    // when creating an absolute resource name for ClassLoader.getResource, no /
+    @Override
+    protected String getAbsoluteName(String name, boolean leadingSlash) {
+        return (leadingSlash ? "/" : "") + "com/sun/ts/tests/ejb30/misc/getresource/warejb/" + name;
+    }
 }

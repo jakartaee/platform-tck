@@ -24,14 +24,12 @@
 
 package com.sun.ts.tests.connector.mdb;
 
-import javax.naming.Context;
-
 import com.sun.ts.tests.common.connector.util.AppException;
 import com.sun.ts.tests.common.connector.util.SysException;
 import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
-
 import jakarta.ejb.MessageDrivenBean;
 import jakarta.ejb.MessageDrivenContext;
+import javax.naming.Context;
 
 /**
  * The MessageBean class is a message-driven bean. It implements the
@@ -39,89 +37,85 @@ import jakarta.ejb.MessageDrivenContext;
  * public (but not final or abstract). It defines a constructor and the methods
  * setMessageDrivenContext, ejbCreate, onMessage, and ejbRemove.
  */
-public class MessageBeanOne
-    implements MessageDrivenBean, TSMessageListenerInterface {
+public class MessageBeanOne implements MessageDrivenBean, TSMessageListenerInterface {
 
-  private transient MessageDrivenContext mdc = null;
+    private transient MessageDrivenContext mdc = null;
 
-  private Context context;
+    private Context context;
 
-  /**
-   * Constructor, which is public and takes no arguments.
-   */
-  public MessageBeanOne() {
-    System.out.println("In MessageBean.MessageBean()");
-  }
-
-  /**
-   * setMessageDrivenContext method, declared as public (but not final or
-   * static), with a return type of void, and with one argument of type
-   * jakarta.ejb.MessageDrivenContext.
-   *
-   * @param mdc
-   *          the context to set
-   */
-  public void setMessageDrivenContext(MessageDrivenContext mdc) {
-    this.mdc = mdc;
-  }
-
-  /**
-   * ejbCreate method, declared as public (but not final or static), with a
-   * return type of void, and with no arguments.
-   */
-  public void ejbCreate() {
-
-  }
-
-  /**
-   * onMessage method, declared as public (but not final or static), with a
-   * return type of void, and with one argument of type jakarta.jms.Message.
-   *
-   * Casts the incoming Message to a TextMessage and displays the text.
-   *
-   * @param inMessage
-   *          the incoming message
-   */
-  public void onMessage(String inMessage) throws AppException {
-
-    if (!inMessage.equals("")) {
-      if (inMessage.equals("Throw EJBException from Required")) {
-        sysMessage();
-      }
-
-      if (inMessage.equals("Throw AppException from Required")) {
-        appMessage();
-      }
-
-      sendReply(inMessage);
-      System.out.println("MESSAGE BEAN: Message " + inMessage);
+    /**
+     * Constructor, which is public and takes no arguments.
+     */
+    public MessageBeanOne() {
+        System.out.println("In MessageBean.MessageBean()");
     }
-  }
 
-  private void sysMessage() {
-    System.out
-        .println("Inside sysMessage intentionally throwing an exception.");
-    throw new SysException("Throw SysException");
-  }
-
-  private void appMessage() throws AppException {
-    System.out.println("Inside appMessage");
-    throw new AppException("Throw AppException");
-  }
-
-  private void sendReply(String msg) {
-    try {
-      System.out.println(msg);
-    } catch (Exception e) {
-      com.sun.ts.lib.util.TestUtil.printStackTrace(e);
+    /**
+     * setMessageDrivenContext method, declared as public (but not final or
+     * static), with a return type of void, and with one argument of type
+     * jakarta.ejb.MessageDrivenContext.
+     *
+     * @param mdc
+     *          the context to set
+     */
+    public void setMessageDrivenContext(MessageDrivenContext mdc) {
+        this.mdc = mdc;
     }
-  }
 
-  /**
-   * ejbRemove method, declared as public (but not final or static), with a
-   * return type of void, and with no arguments.
-   */
-  public void ejbRemove() {
-    System.out.println("In MessageBean.remove()");
-  }
+    /**
+     * ejbCreate method, declared as public (but not final or static), with a
+     * return type of void, and with no arguments.
+     */
+    public void ejbCreate() {}
+
+    /**
+     * onMessage method, declared as public (but not final or static), with a
+     * return type of void, and with one argument of type jakarta.jms.Message.
+     *
+     * Casts the incoming Message to a TextMessage and displays the text.
+     *
+     * @param inMessage
+     *          the incoming message
+     */
+    public void onMessage(String inMessage) throws AppException {
+
+        if (!inMessage.equals("")) {
+            if (inMessage.equals("Throw EJBException from Required")) {
+                sysMessage();
+            }
+
+            if (inMessage.equals("Throw AppException from Required")) {
+                appMessage();
+            }
+
+            sendReply(inMessage);
+            System.out.println("MESSAGE BEAN: Message " + inMessage);
+        }
+    }
+
+    private void sysMessage() {
+        System.out.println("Inside sysMessage intentionally throwing an exception.");
+        throw new SysException("Throw SysException");
+    }
+
+    private void appMessage() throws AppException {
+        System.out.println("Inside appMessage");
+        throw new AppException("Throw AppException");
+    }
+
+    private void sendReply(String msg) {
+        try {
+            System.out.println(msg);
+        } catch (Exception e) {
+            com.sun.ts.lib.util.TestUtil.printStackTrace(e);
+        }
+    }
+
+    /**
+     * ejbRemove method, declared as public (but not final or static), with a
+     * return type of void, and with no arguments.
+     */
+    public void ejbRemove() {
+        System.out.println("In MessageBean.remove()");
+    }
 }

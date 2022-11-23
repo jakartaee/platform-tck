@@ -19,7 +19,6 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.coder;
 
 import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
 import com.sun.ts.tests.websocket.common.client.StringClientEndpoint;
-
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -30,35 +29,33 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
 @ClientEndpoint(encoders = InitDestroyBinaryStreamEncoder.class)
-public class WSCEndpointWithBinaryStreamEncoder
-    extends AnnotatedClientEndpoint<String> {
+public class WSCEndpointWithBinaryStreamEncoder extends AnnotatedClientEndpoint<String> {
 
-  public WSCEndpointWithBinaryStreamEncoder() {
-    super(new StringClientEndpoint());
-  }
+    public WSCEndpointWithBinaryStreamEncoder() {
+        super(new StringClientEndpoint());
+    }
 
-  @Override
-  @OnMessage
-  public void onMessage(String msg) {
-    super.onMessage(msg);
-  }
+    @Override
+    @OnMessage
+    public void onMessage(String msg) {
+        super.onMessage(msg);
+    }
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+    @Override
+    @OnOpen
+    public void onOpen(Session session, EndpointConfig config) {
+        super.onOpen(session, config);
+    }
 
-  @Override
-  @OnClose
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+    @Override
+    @OnClose
+    public void onClose(Session session, CloseReason closeReason) {
+        super.onClose(session, closeReason);
+    }
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
-
+    @Override
+    @OnError
+    public void onError(Session session, Throwable t) {
+        super.onError(session, t);
+    }
 }

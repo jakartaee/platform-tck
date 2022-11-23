@@ -19,25 +19,24 @@
  */
 package com.sun.ts.tests.ejb30.lite.async.common.metadata;
 
+import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
-
-import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 
 /**
  * @Asynchronous cannot be specified in interface. Move them to bean class or
  *               superclass
  */
 public interface PlainInterfaceTypeLevelIF {
-  public void voidRuntimeException();
+    public void voidRuntimeException();
 
-  public Future<Boolean> futureReturnType();
+    public Future<Boolean> futureReturnType();
 
-  public Future<Integer> futureRuntimeException();
+    public Future<Integer> futureRuntimeException();
 
-  public void syncMethodException0() throws CalculatorException;
+    public void syncMethodException0() throws CalculatorException;
 
-  public void syncMethodException3() throws CalculatorException;
+    public void syncMethodException3() throws CalculatorException;
 
-  public Future<TimeUnit> customFutureImpl(TimeUnit timeUnit);
+    public Future<TimeUnit> customFutureImpl(TimeUnit timeUnit);
 }

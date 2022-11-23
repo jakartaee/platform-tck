@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.mdb.callback.method.annotated;
 
 import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.callback.MDBClientBase;
-
 import jakarta.annotation.Resource;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
@@ -33,72 +32,71 @@ import jakarta.jms.QueueConnectionFactory;
  * through the returned value.
  */
 public class Client extends MDBClientBase {
-  @Resource(name = "sendQueue")
-  private static Queue sendQueue;
+    @Resource(name = "sendQueue")
+    private static Queue sendQueue;
 
-  @Resource(name = "receiveQueue")
-  private static Queue receiveQueue;
+    @Resource(name = "receiveQueue")
+    private static Queue receiveQueue;
 
-  @Resource(name = "queueConnectionFactory")
-  private static QueueConnectionFactory queueConnectionFactory;
+    @Resource(name = "queueConnectionFactory")
+    private static QueueConnectionFactory queueConnectionFactory;
 
-  protected void initSendQueue() {
-    setSendQueue(sendQueue);
-  }
+    protected void initSendQueue() {
+        setSendQueue(sendQueue);
+    }
 
-  protected void initReceiveQueue() {
-    setReceiveQueue(receiveQueue);
-  }
+    protected void initReceiveQueue() {
+        setReceiveQueue(receiveQueue);
+    }
 
-  protected void initQueueConnectionFactory() {
-    setQueueConnectionFactory(queueConnectionFactory);
-  }
+    protected void initQueueConnectionFactory() {
+        setQueueConnectionFactory(queueConnectionFactory);
+    }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
-   * harness.log.port;
-   */
-  public void setup(String[] args, java.util.Properties p)
-      throws com.sun.ts.lib.harness.EETest.Fault {
-    super.setup(args, p);
-  }
+    /*
+     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
+     * harness.log.port;
+     */
+    public void setup(String[] args, java.util.Properties p) throws com.sun.ts.lib.harness.EETest.Fault {
+        super.setup(args, p);
+    }
 
-  /*
-   * @testName: isPostConstructOrPreDestroyCalledTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-   * PreDestroy o apply two callback annotations on the same method o Callback
-   * methods may throw RuntimeException o callback methods may use arbitrary
-   * names
-   */
+    /*
+     * @testName: isPostConstructOrPreDestroyCalledTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
+     * PreDestroy o apply two callback annotations on the same method o Callback
+     * methods may throw RuntimeException o callback methods may use arbitrary
+     * names
+     */
 
-  /*
-   * @testName: isPostConstructCalledTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-   * PreDestroy o verify callback methods in handler class are invoked o
-   * Callback methods may throw RuntimeException o callback methods may, in some
-   * cases, named as ejbCreate, ejbRemove
-   */
+    /*
+     * @testName: isPostConstructCalledTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
+     * PreDestroy o verify callback methods in handler class are invoked o
+     * Callback methods may throw RuntimeException o callback methods may, in some
+     * cases, named as ejbCreate, ejbRemove
+     */
 
-  /*
-   * @testName: isInjectionDoneTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-   * PreDestroy o Resource o verify dependency injection has occurred when
-   * callback method is called o Callback methods may throw RuntimeException
-   */
+    /*
+     * @testName: isInjectionDoneTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
+     * PreDestroy o Resource o verify dependency injection has occurred when
+     * callback method is called o Callback methods may throw RuntimeException
+     */
 
 }

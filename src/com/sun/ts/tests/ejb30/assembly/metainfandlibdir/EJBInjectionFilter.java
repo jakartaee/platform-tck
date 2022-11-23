@@ -22,6 +22,4 @@ package com.sun.ts.tests.ejb30.assembly.metainfandlibdir;
 
 import jakarta.servlet.Filter;
 
-public class EJBInjectionFilter extends EJBInjectionFilterBase
-    implements Filter {
-}
+public class EJBInjectionFilter extends EJBInjectionFilterBase implements Filter {}

@@ -21,5 +21,4 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.accesstimeout.ann
 
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.AccessTimeoutIF;
 
-public interface AccessTimeoutRemoteIF extends AccessTimeoutIF {
-}
+public interface AccessTimeoutRemoteIF extends AccessTimeoutIF {}

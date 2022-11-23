@@ -25,7 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 
 public abstract class IntegerBeanEJB extends CMP20Wrapper {
 
-  public boolean testIntegerEntry() {
-    return TestCode.testIntegerEntry(nctx);
-  }
+    public boolean testIntegerEntry() {
+        return TestCode.testIntegerEntry(nctx);
+    }
 }

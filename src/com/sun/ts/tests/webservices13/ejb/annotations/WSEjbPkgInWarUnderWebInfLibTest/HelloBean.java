@@ -16,35 +16,40 @@
 
 package com.sun.ts.tests.webservices13.ejb.annotations.WSEjbPkgInWarUnderWebInfLibTest;
 
-import jakarta.ejb.Remote;
-import jakarta.ejb.Stateless;
-import jakarta.ejb.SessionContext;
-import jakarta.jws.WebService;
 import jakarta.annotation.Resource;
+import jakarta.ejb.Remote;
+import jakarta.ejb.SessionContext;
+import jakarta.ejb.Stateless;
+import jakarta.jws.WebService;
 
-@WebService(portName = "Hello", serviceName = "HelloService", targetNamespace = "http://Hello.org", wsdlLocation = "WEB-INF/wsdl/HelloService.wsdl", endpointInterface = "com.sun.ts.tests.webservices13.ejb.annotations.WSEjbPkgInWarUnderWebInfLibTest.Hello")
+@WebService(
+        portName = "Hello",
+        serviceName = "HelloService",
+        targetNamespace = "http://Hello.org",
+        wsdlLocation = "WEB-INF/wsdl/HelloService.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices13.ejb.annotations.WSEjbPkgInWarUnderWebInfLibTest.Hello")
 @Stateless(name = "WSEjbPkgInWarUnderWebInfLibTest")
-@Remote({ HelloIF.class })
+@Remote({HelloIF.class})
 public class HelloBean implements HelloIF {
 
-  @Resource
-  private SessionContext sc;
+    @Resource
+    private SessionContext sc;
 
-  public String hello(String str) {
-    return str + " to you too!";
-  }
+    public String hello(String str) {
+        return str + " to you too!";
+    }
 
-  public String bye(String str) {
-    return str + " and take care";
-  }
+    public String bye(String str) {
+        return str + " and take care";
+    }
 
-  public String extra(String str, int i) {
-    String tmp = str + i + ", all from yours truly";
-    return tmp;
-  }
+    public String extra(String str, int i) {
+        String tmp = str + i + ", all from yours truly";
+        return tmp;
+    }
 
-  public void extraExtra(long i) {
-    long ll = i * 2002 + 1999 + 8734895;
-    System.out.println("Long i=" + i + ",  Long ll=" + ll);
-  }
+    public void extraExtra(long i) {
+        long ll = i * 2002 + 1999 + 8734895;
+        System.out.println("Long i=" + i + ",  Long ll=" + ll);
+    }
 }

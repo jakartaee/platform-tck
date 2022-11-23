@@ -19,88 +19,73 @@
  */
 package com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common;
 
-import java.util.Arrays;
-import java.util.Map;
-
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.singleton.annotated.InvocationContextMethodsBean;
-
 import jakarta.ejb.Timeout;
 import jakarta.ejb.Timer;
 import jakarta.interceptor.AroundTimeout;
 import jakarta.interceptor.Interceptors;
 import jakarta.interceptor.InvocationContext;
+import java.util.Arrays;
+import java.util.Map;
 
-public class AroundTimeoutBeanBase extends TimerBeanBaseWithoutTimeOutMethod
-    implements AroundTimeoutIF {
+public class AroundTimeoutBeanBase extends TimerBeanBaseWithoutTimeOutMethod implements AroundTimeoutIF {
 
-  private static final String simpleName = "AroundTimeoutBeanBase";
+    private static final String simpleName = "AroundTimeoutBeanBase";
 
-  @Override
-  @Timeout
-  @Interceptors({ Interceptor6.class, Interceptor5.class })
-  protected void timeout(Timer timer) {
-    super.timeout(timer);
-    InterceptorBase.addAroundInvokeRecord(timer, simpleName + ".timeout", this,
-        "timeout");
-  }
-
-  @AroundTimeout
-  protected Object aroundTimeoutInAroundTimeoutBeanBase(InvocationContext inv)
-      throws Exception {
-    return InterceptorBase.handleAroundTimeout(inv, simpleName, this,
-        "aroundTimeoutInAroundTimeoutBeanBase");
-  }
-
-  protected Object invocationContextMethods(InvocationContext inv)
-      throws Exception {
-    String rec = null;
-    String m = inv.getMethod().getName();
-    Timer timer = (Timer) inv.getTimer();
-    if (m.equals("timeout")) {
-      rec = "getMethod";
-    } else {
-      rec = "Expecting method name timeout, but got " + m;
+    @Override
+    @Timeout
+    @Interceptors({Interceptor6.class, Interceptor5.class})
+    protected void timeout(Timer timer) {
+        super.timeout(timer);
+        InterceptorBase.addAroundInvokeRecord(timer, simpleName + ".timeout", this, "timeout");
     }
-    InterceptorBase.addAroundInvokeRecord(timer, rec, this,
-        "invocationContextMethods");
 
-    Object[] parameters = inv.getParameters();
-    if (parameters.length == 1 && parameters[0] instanceof Timer) {
-      rec = "getParameters";
-    } else {
-      rec = "Expecting 1 param of type Timer, but got "
-          + Arrays.asList(parameters);
+    @AroundTimeout
+    protected Object aroundTimeoutInAroundTimeoutBeanBase(InvocationContext inv) throws Exception {
+        return InterceptorBase.handleAroundTimeout(inv, simpleName, this, "aroundTimeoutInAroundTimeoutBeanBase");
     }
-    InterceptorBase.addAroundInvokeRecord(timer, rec, this,
-        "invocationContextMethods");
 
-    Object target = inv.getTarget();
-    if (target instanceof InvocationContextMethodsBean) {
-      rec = "getTarget";
-    } else {
-      rec = "Expecting target of type InvocationContextMethodsBean, but got "
-          + target;
+    protected Object invocationContextMethods(InvocationContext inv) throws Exception {
+        String rec = null;
+        String m = inv.getMethod().getName();
+        Timer timer = (Timer) inv.getTimer();
+        if (m.equals("timeout")) {
+            rec = "getMethod";
+        } else {
+            rec = "Expecting method name timeout, but got " + m;
+        }
+        InterceptorBase.addAroundInvokeRecord(timer, rec, this, "invocationContextMethods");
+
+        Object[] parameters = inv.getParameters();
+        if (parameters.length == 1 && parameters[0] instanceof Timer) {
+            rec = "getParameters";
+        } else {
+            rec = "Expecting 1 param of type Timer, but got " + Arrays.asList(parameters);
+        }
+        InterceptorBase.addAroundInvokeRecord(timer, rec, this, "invocationContextMethods");
+
+        Object target = inv.getTarget();
+        if (target instanceof InvocationContextMethodsBean) {
+            rec = "getTarget";
+        } else {
+            rec = "Expecting target of type InvocationContextMethodsBean, but got " + target;
+        }
+        InterceptorBase.addAroundInvokeRecord(timer, rec, this, "invocationContextMethods");
+
+        Map<String, Object> contextData = inv.getContextData();
+        if (contextData.size() == 0) {
+            rec = "getContextData";
+        } else {
+            rec = "Expecting empty contextData, but got " + contextData;
+        }
+        InterceptorBase.addAroundInvokeRecord(timer, rec, this, "invocationContextMethods");
+
+        Object[] newParams = {parameters[0]};
+        inv.setParameters(newParams);
+        rec = "setParameters";
+        InterceptorBase.addAroundInvokeRecord(timer, rec, this, "invocationContextMethods");
+
+        return inv.proceed();
     }
-    InterceptorBase.addAroundInvokeRecord(timer, rec, this,
-        "invocationContextMethods");
-
-    Map<String, Object> contextData = inv.getContextData();
-    if (contextData.size() == 0) {
-      rec = "getContextData";
-    } else {
-      rec = "Expecting empty contextData, but got " + contextData;
-    }
-    InterceptorBase.addAroundInvokeRecord(timer, rec, this,
-        "invocationContextMethods");
-
-    Object[] newParams = { parameters[0] };
-    inv.setParameters(newParams);
-    rec = "setParameters";
-    InterceptorBase.addAroundInvokeRecord(timer, rec, this,
-        "invocationContextMethods");
-
-    return inv.proceed();
-  }
-
 }

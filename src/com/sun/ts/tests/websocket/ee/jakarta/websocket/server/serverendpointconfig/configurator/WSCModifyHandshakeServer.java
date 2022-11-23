@@ -17,10 +17,7 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverendpointconfig.configurator;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
@@ -28,37 +25,36 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 import jakarta.websocket.server.ServerEndpointConfig;
+import java.io.IOException;
 
 @ServerEndpoint(value = "/modifyhandshake", configurator = ModifyHandshakeConfigurator.class)
 public class WSCModifyHandshakeServer {
 
-  ServerEndpointConfig config;
+    ServerEndpointConfig config;
 
-  @OnMessage
-  public String onMessage(String msg) {
-    boolean ret = false;
-    if (msg.equals("origin"))
-      ret = ModifyHandshakeConfigurator.isCheckedOriginBeforeModifyHandshake();
-    else if (msg.equals("config"))
-      ret = ModifyHandshakeConfigurator.getConfig().getClass().getName()
-          .equals(config.getClass().getName());
-    else if (msg.equals("request"))
-      ret = ModifyHandshakeConfigurator.getRequest() != null;
-    else if (msg.equals("response"))
-      ret = ModifyHandshakeConfigurator.getResponse() != null;
-    return String.valueOf(ret);
-  }
+    @OnMessage
+    public String onMessage(String msg) {
+        boolean ret = false;
+        if (msg.equals("origin")) ret = ModifyHandshakeConfigurator.isCheckedOriginBeforeModifyHandshake();
+        else if (msg.equals("config"))
+            ret = ModifyHandshakeConfigurator.getConfig()
+                    .getClass()
+                    .getName()
+                    .equals(config.getClass().getName());
+        else if (msg.equals("request")) ret = ModifyHandshakeConfigurator.getRequest() != null;
+        else if (msg.equals("response")) ret = ModifyHandshakeConfigurator.getResponse() != null;
+        return String.valueOf(ret);
+    }
 
-  @OnOpen
-  public void onOpen(EndpointConfig config) {
-    this.config = (ServerEndpointConfig) config;
-  }
+    @OnOpen
+    public void onOpen(EndpointConfig config) {
+        this.config = (ServerEndpointConfig) config;
+    }
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
-
+    @OnError
+    public void onError(Session session, Throwable thr) throws IOException {
+        thr.printStackTrace(); // Write to error log, too
+        String message = IOUtil.printStackTrace(thr);
+        session.getBasicRemote().sendText(message);
+    }
 }

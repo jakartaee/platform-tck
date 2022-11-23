@@ -19,81 +19,74 @@
  */
 package com.sun.ts.tests.servlet.spec.srlistener;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class IncludedServlet extends HttpServlet {
 
-  private static final String TEST_HEADER = "testname";
+    private static final String TEST_HEADER = "testname";
 
-  private static final Class[] TEST_ARGS = { HttpServletRequest.class,
-      HttpServletResponse.class };
+    private static final Class[] TEST_ARGS = {HttpServletRequest.class, HttpServletResponse.class};
 
-  public void service(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    String test = req.getParameter(TEST_HEADER);
-    try {
-      Method method = this.getClass().getMethod(test, TEST_ARGS);
-      method.invoke(this, new Object[] { req, res });
-    } catch (InvocationTargetException ite) {
-      throw new ServletException(ite.getTargetException());
-    } catch (NoSuchMethodException nsme) {
-      throw new ServletException("Test: " + test + " does not exist");
-    } catch (Throwable t) {
-      throw new ServletException("Error executing test: " + test, t);
+    public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String test = req.getParameter(TEST_HEADER);
+        try {
+            Method method = this.getClass().getMethod(test, TEST_ARGS);
+            method.invoke(this, new Object[] {req, res});
+        } catch (InvocationTargetException ite) {
+            throw new ServletException(ite.getTargetException());
+        } catch (NoSuchMethodException nsme) {
+            throw new ServletException("Test: " + test + " does not exist");
+        } catch (Throwable t) {
+            throw new ServletException("Error executing test: " + test, t);
+        }
     }
-  }
 
-  public void simple(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    PrintWriter pw = res.getWriter();
-    pw.print("IncludedServlet Invoked, simple method");
-    System.out.println("In includedServlet, simple method");
-    ServletTestUtil.printResult(pw, true);
-  }
-
-  public void includeagain(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-
-    String path = "/include/SecondIncludedServlet?testname=simple";
-    RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-    System.out.println("In includedServlet, includeagain method");
-    if (rd == null) {
-      pw.println("Null RequestDispatcher got for path=" + path);
-    } else {
-      rd.include(request, response);
+    public void simple(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        PrintWriter pw = res.getWriter();
+        pw.print("IncludedServlet Invoked, simple method");
+        System.out.println("In includedServlet, simple method");
+        ServletTestUtil.printResult(pw, true);
     }
-  }
 
-  public void forward(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void includeagain(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    String path = "/forward/ForwardedServlet?testname=simple";
-    RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-    System.out.println("In method forward");
-    if (rd == null) {
-      pw.println("Null RequestDispatcher got for path=" + path);
-    } else {
-      rd.forward(request, response);
+        String path = "/include/SecondIncludedServlet?testname=simple";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
+        System.out.println("In includedServlet, includeagain method");
+        if (rd == null) {
+            pw.println("Null RequestDispatcher got for path=" + path);
+        } else {
+            rd.include(request, response);
+        }
     }
-  }
 
-  public void error(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    System.out.println("In includedServlet, error method");
-    req.setAttribute("ERROR_TEST_INCLUDE", "403");
-    res.sendError(403);
-  }
+    public void forward(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+
+        String path = "/forward/ForwardedServlet?testname=simple";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
+        System.out.println("In method forward");
+        if (rd == null) {
+            pw.println("Null RequestDispatcher got for path=" + path);
+        } else {
+            rd.forward(request, response);
+        }
+    }
+
+    public void error(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        System.out.println("In includedServlet, error method");
+        req.setAttribute("ERROR_TEST_INCLUDE", "403");
+        res.sendError(403);
+    }
 }

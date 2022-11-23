@@ -27,59 +27,62 @@ import jakarta.ws.rs.Path;
 @Path("resource")
 public class Resource {
 
-  public static final String[] LABEL = { "type", "number" };
+    public static final String[] LABEL = {"type", "number"};
 
-  public static final String[] TYPE = { "home", "fax" };
+    public static final String[] TYPE = {"home", "fax"};
 
-  public static final String[] PHONE = { "212 555-1234", "646 555-4567" };
+    public static final String[] PHONE = {"212 555-1234", "646 555-4567"};
 
-  @Path("tostructure")
-  @GET
-  public JsonStructure toStructure() {
-    return toArray();
-  }
+    @Path("tostructure")
+    @GET
+    public JsonStructure toStructure() {
+        return toArray();
+    }
 
-  @Path("toarray")
-  @GET
-  public JsonArray toArray() {
-    JsonArray array = createArray();
-    return array;
-  }
+    @Path("toarray")
+    @GET
+    public JsonArray toArray() {
+        JsonArray array = createArray();
+        return array;
+    }
 
-  @Path("toobject")
-  @GET
-  public JsonObject toObject() {
-    return createObject(0);
-  }
+    @Path("toobject")
+    @GET
+    public JsonObject toObject() {
+        return createObject(0);
+    }
 
-  @Path("fromobject")
-  @POST
-  public String fromObject(JsonObject object) {
-    return object.toString();
-  }
+    @Path("fromobject")
+    @POST
+    public String fromObject(JsonObject object) {
+        return object.toString();
+    }
 
-  @Path("fromarray")
-  @POST
-  public String fromArray(JsonArray array) {
-    return array.toString();
-  }
+    @Path("fromarray")
+    @POST
+    public String fromArray(JsonArray array) {
+        return array.toString();
+    }
 
-  @Path("fromstructure")
-  @POST
-  public String fromArray(JsonStructure struct) {
-    return struct.toString();
-  }
+    @Path("fromstructure")
+    @POST
+    public String fromArray(JsonStructure struct) {
+        return struct.toString();
+    }
 
-  public static JsonObject createObject(int id) {
-    JsonObject object = Json.createObjectBuilder().add(LABEL[0], TYPE[id])
-        .add(LABEL[1], PHONE[id]).build();
-    return object;
-  }
+    public static JsonObject createObject(int id) {
+        JsonObject object = Json.createObjectBuilder()
+                .add(LABEL[0], TYPE[id])
+                .add(LABEL[1], PHONE[id])
+                .build();
+        return object;
+    }
 
-  public static JsonArray createArray() {
-    JsonArray array = Json.createArrayBuilder().add(createObject(0))
-        .add(createObject(1)).build();
-    return array;
-  }
-
+    public static JsonArray createArray() {
+        JsonArray array = Json.createArrayBuilder()
+                .add(createObject(0))
+                .add(createObject(1))
+                .build();
+        return array;
+    }
 }

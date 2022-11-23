@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb30.assembly.common;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.interceptor.AroundInvoke;
@@ -29,32 +28,30 @@ import jakarta.interceptor.InvocationContext;
 
 public class AssemblyInterceptor {
 
-  public AssemblyInterceptor() {
-    super();
-  }
-
-  @PostConstruct
-  protected void myCreate(InvocationContext inv) throws RuntimeException {
-  }
-
-  @PreDestroy
-  protected void myRemove(InvocationContext inv) throws RuntimeException {
-  }
-
-  @AroundInvoke
-  protected Object intercept(InvocationContext inv) throws Exception {
-    TLogger.log("In AroundInvoke of " + this);
-    final int additional = 100;
-    Object[] params = inv.getParameters();
-    Object[] newParams = null;
-    if (params != null && params.length == 2) {
-      if (params[0] instanceof Integer && params[1] instanceof Integer) {
-        newParams = new Integer[2];
-        newParams[0] = (Integer) params[0] + additional;
-        newParams[1] = (Integer) params[1] + additional;
-        inv.setParameters(newParams);
-      }
+    public AssemblyInterceptor() {
+        super();
     }
-    return inv.proceed();
-  }
+
+    @PostConstruct
+    protected void myCreate(InvocationContext inv) throws RuntimeException {}
+
+    @PreDestroy
+    protected void myRemove(InvocationContext inv) throws RuntimeException {}
+
+    @AroundInvoke
+    protected Object intercept(InvocationContext inv) throws Exception {
+        TLogger.log("In AroundInvoke of " + this);
+        final int additional = 100;
+        Object[] params = inv.getParameters();
+        Object[] newParams = null;
+        if (params != null && params.length == 2) {
+            if (params[0] instanceof Integer && params[1] instanceof Integer) {
+                newParams = new Integer[2];
+                newParams[0] = (Integer) params[0] + additional;
+                newParams[1] = (Integer) params[1] + additional;
+                inv.setParameters(newParams);
+            }
+        }
+        return inv.proceed();
+    }
 }

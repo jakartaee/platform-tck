@@ -60,61 +60,57 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.filterconfig;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public final class GetInitParam_Filter implements Filter {
 
-  // The filter configuration object we are associated with. If this value
-  // is null, this filter instance is not currently configured.
-  private FilterConfig filterConfig = null;
+    // The filter configuration object we are associated with. If this value
+    // is null, this filter instance is not currently configured.
+    private FilterConfig filterConfig = null;
 
-  public void doFilter(ServletRequest request, ServletResponse response,
-      FilterChain chain) throws IOException, ServletException {
-    boolean passed = false;
-    PrintWriter pw = response.getWriter();
-    pw.println("doFilter was successfully called in GetInitParam_Filter");
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        boolean passed = false;
+        PrintWriter pw = response.getWriter();
+        pw.println("doFilter was successfully called in GetInitParam_Filter");
 
-    if (filterConfig == null) {
-      passed = false;
-      pw.println(
-          "doFilter of GetInitParam_Filter was called but this filter instance is not currently configured ");
-    } else {
+        if (filterConfig == null) {
+            passed = false;
+            pw.println(
+                    "doFilter of GetInitParam_Filter was called but this filter instance is not currently configured ");
+        } else {
 
-      String param = "GetInitParam_Filter_attribute1";
-      String expected = "com.sun.ts.tests.servlet.api.jakarta_servlet.filterconfig.GetInitParam_Filter.SERVLET_MAPPED1";
-      String result = filterConfig.getInitParameter(param);
+            String param = "GetInitParam_Filter_attribute1";
+            String expected =
+                    "com.sun.ts.tests.servlet.api.jakarta_servlet.filterconfig.GetInitParam_Filter.SERVLET_MAPPED1";
+            String result = filterConfig.getInitParameter(param);
 
-      if (expected.equals(result)) {
-        passed = true;
-      } else {
-        passed = true;
-        pw.println("FilterConfig.getInitParameter(" + param
-            + ") returned the wrong result");
-        pw.println("Expected Value returned ->" + expected);
-        pw.println("Actual Value returned ->|" + result + "|");
-      }
+            if (expected.equals(result)) {
+                passed = true;
+            } else {
+                passed = true;
+                pw.println("FilterConfig.getInitParameter(" + param + ") returned the wrong result");
+                pw.println("Expected Value returned ->" + expected);
+                pw.println("Actual Value returned ->|" + result + "|");
+            }
+        }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
-  }
 
-  // remove the filter configuration object for this filter.
-  public void destroy() {
-  }
+    // remove the filter configuration object for this filter.
+    public void destroy() {}
 
-  // initialize the filter configuration object for this filter.
+    // initialize the filter configuration object for this filter.
 
-  public void init(FilterConfig filterConfig) {
-    this.filterConfig = filterConfig;
-  }
-
+    public void init(FilterConfig filterConfig) {
+        this.filterConfig = filterConfig;
+    }
 }

@@ -16,75 +16,72 @@
 
 package com.sun.ts.tests.jpa.se.schemaGeneration.annotations.joinTable;
 
-import java.util.List;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "SCHEMAGENSTUDENT")
 public class Student implements java.io.Serializable {
-  int studentId;
+    int studentId;
 
-  String studentName;
+    String studentName;
 
-  List<Course> courses;
+    List<Course> courses;
 
-  public Student() {
-  }
+    public Student() {}
 
-  public Student(int id) {
-    this.studentId = id;
-  }
-
-  public Student(int id, String name) {
-    this.studentId = id;
-    this.studentName = name;
-  }
-
-  @Id
-  public int getStudentId() {
-    return studentId;
-  }
-
-  public void setStudentId(int id) {
-    this.studentId = id;
-  }
-
-  @ManyToMany(mappedBy = "students", cascade = CascadeType.ALL)
-  public List<Course> getCourses() {
-    return courses;
-  }
-
-  public void setCourses(List<Course> courses) {
-    this.courses = courses;
-  }
-
-  public String getStudentName() {
-    return studentName;
-  }
-
-  public void setStudentName(String studentName) {
-    this.studentName = studentName;
-  }
-
-  public int hashCode() {
-
-    return this.getStudentId() + this.getStudentName().hashCode();
-  }
-
-  public boolean equals(Object obj) {
-    boolean result = false;
-
-    if ((obj != null) && (obj instanceof Student)) {
-      Student student = (Student) obj;
-      result = (student.getStudentId() == this.getStudentId()
-          && student.getStudentName().equals(this.getStudentName()));
+    public Student(int id) {
+        this.studentId = id;
     }
-    return result;
-  }
 
+    public Student(int id, String name) {
+        this.studentId = id;
+        this.studentName = name;
+    }
+
+    @Id
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int id) {
+        this.studentId = id;
+    }
+
+    @ManyToMany(mappedBy = "students", cascade = CascadeType.ALL)
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public int hashCode() {
+
+        return this.getStudentId() + this.getStudentName().hashCode();
+    }
+
+    public boolean equals(Object obj) {
+        boolean result = false;
+
+        if ((obj != null) && (obj instanceof Student)) {
+            Student student = (Student) obj;
+            result = (student.getStudentId() == this.getStudentId()
+                    && student.getStudentName().equals(this.getStudentName()));
+        }
+        return result;
+    }
 }

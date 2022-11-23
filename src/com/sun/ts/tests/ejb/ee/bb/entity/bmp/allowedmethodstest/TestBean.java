@@ -20,17 +20,16 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.bmp.allowedmethodstest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Hashtable;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
-  public Hashtable getResults() throws RemoteException;
+    public Hashtable getResults() throws RemoteException;
 
-  public void businessMethod(Helper ref) throws RemoteException;
+    public void businessMethod(Helper ref) throws RemoteException;
 
-  public void doTimer(long duration, String info) throws RemoteException;
+    public void doTimer(long duration, String info) throws RemoteException;
 
-  public void findAndCancelTimer() throws RemoteException;
+    public void findAndCancelTimer() throws RemoteException;
 }

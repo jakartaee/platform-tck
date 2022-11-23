@@ -20,8 +20,6 @@
 
 package com.sun.ts.tests.ejb.ee.tx.entityLocal.pm.bm.TxRN_Exceptions;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
@@ -29,350 +27,337 @@ import com.sun.ts.tests.ejb.ee.tx.txEPMbeanLocal.AppException;
 import com.sun.ts.tests.ejb.ee.tx.txEPMbeanLocal.TxEPMBean;
 import com.sun.ts.tests.ejb.ee.tx.txEPMbeanLocal.TxEPMBeanEJB;
 import com.sun.ts.tests.ejb.ee.tx.txEPMbeanLocal.TxEPMBeanHome;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
 import jakarta.transaction.UserTransaction;
+import java.util.Properties;
 
 public class TestBeanEJB implements SessionBean {
 
-  // testProps represent the test specific properties passed in
-  // from the test harness.
-  private Properties testProps = new Properties();
+    // testProps represent the test specific properties passed in
+    // from the test harness.
+    private Properties testProps = new Properties();
 
-  // The TSNamingContext abstracts away the underlying distribution protocol.
-  private TSNamingContext jctx = null;
+    // The TSNamingContext abstracts away the underlying distribution protocol.
+    private TSNamingContext jctx = null;
 
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  // The TxEPMBean variables
-  private static final String txEPMBeanRequiresNew = "java:comp/env/ejb/TxRequiresNew";
+    // The TxEPMBean variables
+    private static final String txEPMBeanRequiresNew = "java:comp/env/ejb/TxRequiresNew";
 
-  private TxEPMBeanHome beanHome = null;
+    private TxEPMBeanHome beanHome = null;
 
-  // Table Name variables
-  private String tName1 = null;
+    // Table Name variables
+    private String tName1 = null;
 
-  // The requiredEJB methods
-  public void ejbCreate() throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-  }
-
-  public void ejbCreate(Properties p) throws CreateException {
-    TestUtil.logTrace("ejbCreate w/Properties");
-
-    try {
-      TestUtil.logMsg("Getting Naming Context");
-      jctx = new TSNamingContext();
-
-      initLogging(p);
-
-    } catch (Exception e) {
-      TestUtil.logErr("Create exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
+    // The requiredEJB methods
+    public void ejbCreate() throws CreateException {
+        TestUtil.logTrace("ejbCreate");
     }
-  }
 
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-  }
+    public void ejbCreate(Properties p) throws CreateException {
+        TestUtil.logTrace("ejbCreate w/Properties");
 
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
+        try {
+            TestUtil.logMsg("Getting Naming Context");
+            jctx = new TSNamingContext();
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
+            initLogging(p);
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  // ===========================================================
-  // TestBean interface (our business methods)
-
-  public boolean test1() {
-    TestUtil.logMsg("test1");
-    TestUtil.logMsg("Cause an AppException");
-
-    TxEPMBean beanref = null;
-    boolean testResult = false;
-    UserTransaction ut = null;
-
-    String brand1 = "First brand";
-    String brand2 = "Second brand";
-    String tempName1, tempName2;
-
-    try {
-      TestUtil.logTrace(
-          "Looking up the TxEPMBean Home interface of " + txEPMBeanRequiresNew);
-      beanHome = (TxEPMBeanHome) jctx.lookup(txEPMBeanRequiresNew);
-
-      TestUtil.logTrace("Creating EJB instances of " + txEPMBeanRequiresNew);
-      beanref = (TxEPMBean) beanHome.create(tName1, new Integer(1), brand1,
-          (float) 1, testProps);
-
-      TestUtil.logTrace("Getting the UserTransaction interface");
-      ut = sctx.getUserTransaction();
-
-      TestUtil.logTrace("Update brand name and catch AppException");
-      ut.begin();
-      try {
-        beanref.updateBrandName(brand2, TxEPMBeanEJB.FLAGAPPEXCEPTION);
-        TestUtil.logTrace("Did not receive expected AppException");
-      } catch (AppException ae) {
-        TestUtil.logTrace("AppException received as expected.");
-        testResult = true;
-      }
-      ut.commit();
-      TestUtil.logTrace("Transaction commited");
-
-      return (testResult);
-
-    } catch (Exception e) {
-      TestUtil.logMsg("Unexpected exception caught");
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
-    } finally {
-      // cleanup the bean (will remove the DB row entry!)
-      try {
-        beanref.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
-      ;
+        } catch (Exception e) {
+            TestUtil.logErr("Create exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+        }
     }
-  }
 
-  public boolean test2() {
-    TestUtil.logMsg("test2");
-    TestUtil.logMsg("Cause a SystemException");
-
-    TxEPMBean beanref = null;
-    boolean t1;
-    t1 = false;
-    boolean testResult = false;
-    UserTransaction ut = null;
-
-    String brand1 = "First brand";
-    String brand2 = "Second brand";
-    String tempName1, tempName2;
-
-    try {
-      TestUtil.logTrace(
-          "Looking up the TxEPMBean Home interface of " + txEPMBeanRequiresNew);
-      beanHome = (TxEPMBeanHome) jctx.lookup(txEPMBeanRequiresNew);
-
-      TestUtil.logTrace("Creating EJB instances of " + txEPMBeanRequiresNew);
-      beanref = (TxEPMBean) beanHome.create(tName1, new Integer(1), brand1,
-          (float) 1, testProps);
-
-      TestUtil.logTrace("Getting the UserTransaction interface");
-      ut = sctx.getUserTransaction();
-
-      // Let's first check that we get our exception thrown
-      TestUtil.logTrace("Update brand name and catch EJBException");
-      ut.begin();
-      try {
-        beanref.updateBrandName(brand2, TxEPMBeanEJB.FLAGSYSEXCEPTION);
-        TestUtil.logTrace("Did not receive expected EJBException");
-      } catch (EJBException ee) {
-        TestUtil.logTrace("EJBException received as expected.");
-        t1 = true;
-      }
-
-      /*
-       * Entity Note : AppException - - instance not discarded - Allowed to
-       * continue
-       *
-       * SysException - - instance discarded - dbrow not removed - must
-       * explicitly remove bean via ejb.remove()
-       */
-
-      // OK, let's rollback
-      TestUtil.logTrace("Starting rollback");
-      ut.rollback();
-      TestUtil.logTrace("Rollback finished");
-
-      if (t1)
-        testResult = true;
-
-      return (testResult);
-
-    } catch (Exception e) {
-      TestUtil.logMsg("Unexpected exception caught");
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
-    } finally {
-      // cleanup the bean (will remove the DB row entry!)
-      try {
-        TestUtil.logTrace("Removing beanref in finally clause!");
-        beanref.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
-      ;
+    public void setSessionContext(SessionContext sc) {
+        TestUtil.logTrace("setSessionContext");
+        this.sctx = sc;
     }
-  }
 
-  public boolean test3() {
-    TestUtil.logMsg("test3");
-    TestUtil.logMsg("Cause an EJBException");
-
-    TxEPMBean beanref = null;
-    boolean t1;
-    t1 = false;
-    boolean testResult = false;
-    UserTransaction ut = null;
-
-    String brand1 = "First brand";
-    String brand2 = "Second brand";
-    String tempName1, tempName2;
-
-    try {
-      TestUtil.logTrace(
-          "Looking up the TxEPMBean Home interface of " + txEPMBeanRequiresNew);
-      beanHome = (TxEPMBeanHome) jctx.lookup(txEPMBeanRequiresNew);
-
-      TestUtil.logTrace("Creating EJB instances of " + txEPMBeanRequiresNew);
-      beanref = (TxEPMBean) beanHome.create(tName1, new Integer(1), brand1,
-          (float) 1, testProps);
-
-      TestUtil.logTrace("Getting the UserTransaction interface");
-      ut = sctx.getUserTransaction();
-
-      // Let's first check that we get our exception thrown
-      TestUtil.logTrace("Update brand name and catch EJBException");
-      ut.begin();
-      try {
-        beanref.updateBrandName(brand2, TxEPMBeanEJB.FLAGEJBEXCEPTION);
-        TestUtil.logTrace("Did not receive expected EJBException");
-      } catch (EJBException ee) {
-        TestUtil.logTrace("EJBException received as expected.");
-        t1 = true;
-      }
-
-      /*
-       * Entity Note : AppException - - instance not discarded - Allowed to
-       * continue
-       *
-       * SysException - - instance discarded - dbrow not removed - must
-       * explicitly remove bean via ejb.remove()
-       */
-
-      // OK, let's rollback
-      TestUtil.logTrace("Starting rollback");
-      ut.rollback();
-      TestUtil.logTrace("Rollback finished");
-
-      if (t1)
-        testResult = true;
-
-      return (testResult);
-
-    } catch (Exception e) {
-      TestUtil.logMsg("Unexpected exception caught");
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
-    } finally {
-      // cleanup the bean (will remove the DB row entry!)
-      try {
-        beanref.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
-      ;
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
     }
-  }
 
-  public boolean test4() {
-    TestUtil.logMsg("test4");
-    TestUtil.logMsg("Cause an Error");
-
-    TxEPMBean beanref = null;
-    boolean t1;
-    t1 = false;
-    boolean testResult = false;
-    UserTransaction ut = null;
-
-    String brand1 = "First brand";
-    String brand2 = "Second brand";
-    String tempName1, tempName2;
-
-    try {
-      TestUtil.logTrace(
-          "Looking up the TxEPMBean Home interface of " + txEPMBeanRequiresNew);
-      beanHome = (TxEPMBeanHome) jctx.lookup(txEPMBeanRequiresNew);
-
-      TestUtil.logTrace("Creating EJB instances of " + txEPMBeanRequiresNew);
-      beanref = (TxEPMBean) beanHome.create(tName1, new Integer(1), brand1,
-          (float) 1, testProps);
-
-      TestUtil.logTrace("Getting the UserTransaction interface");
-      ut = sctx.getUserTransaction();
-
-      // Let's first check that we get our exception thrown
-      TestUtil.logTrace("Update brand name and catch EJBException");
-      ut.begin();
-      try {
-        beanref.updateBrandName(brand2, TxEPMBeanEJB.FLAGERROR);
-        TestUtil.logTrace("Did not receive expected EJBException");
-      } catch (EJBException ee) {
-        TestUtil.logTrace("EJBException received as expected.");
-        t1 = true;
-      }
-
-      /*
-       * Entity Note : AppException - - instance not discarded - Allowed to
-       * continue
-       *
-       * SysException - - instance discarded - dbrow not removed - must
-       * explicitly remove bean via ejb.remove()
-       */
-
-      // OK, let's rollback
-      TestUtil.logTrace("Starting rollback");
-      ut.rollback();
-      TestUtil.logTrace("Rollback finished");
-
-      if (t1)
-        testResult = true;
-
-      return (testResult);
-
-    } catch (Exception e) {
-      TestUtil.logMsg("Unexpected exception caught");
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
-    } finally {
-      // cleanup the bean (will remove the DB row entry!)
-      try {
-        beanref.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
-      ;
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
     }
-  }
 
-  private void initLogging(Properties p) {
-    TestUtil.logTrace("initLogging");
-    this.testProps = p;
-    try {
-      TestUtil.init(p);
-      // Get the table name
-      this.tName1 = TestUtil
-          .getTableName(testProps.getProperty("TxEBean_Delete"));
-      TestUtil.logTrace("tName1: " + this.tName1);
-
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
     }
-  }
 
+    // ===========================================================
+    // TestBean interface (our business methods)
+
+    public boolean test1() {
+        TestUtil.logMsg("test1");
+        TestUtil.logMsg("Cause an AppException");
+
+        TxEPMBean beanref = null;
+        boolean testResult = false;
+        UserTransaction ut = null;
+
+        String brand1 = "First brand";
+        String brand2 = "Second brand";
+        String tempName1, tempName2;
+
+        try {
+            TestUtil.logTrace("Looking up the TxEPMBean Home interface of " + txEPMBeanRequiresNew);
+            beanHome = (TxEPMBeanHome) jctx.lookup(txEPMBeanRequiresNew);
+
+            TestUtil.logTrace("Creating EJB instances of " + txEPMBeanRequiresNew);
+            beanref = (TxEPMBean) beanHome.create(tName1, new Integer(1), brand1, (float) 1, testProps);
+
+            TestUtil.logTrace("Getting the UserTransaction interface");
+            ut = sctx.getUserTransaction();
+
+            TestUtil.logTrace("Update brand name and catch AppException");
+            ut.begin();
+            try {
+                beanref.updateBrandName(brand2, TxEPMBeanEJB.FLAGAPPEXCEPTION);
+                TestUtil.logTrace("Did not receive expected AppException");
+            } catch (AppException ae) {
+                TestUtil.logTrace("AppException received as expected.");
+                testResult = true;
+            }
+            ut.commit();
+            TestUtil.logTrace("Transaction commited");
+
+            return (testResult);
+
+        } catch (Exception e) {
+            TestUtil.logMsg("Unexpected exception caught");
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
+        } finally {
+            // cleanup the bean (will remove the DB row entry!)
+            try {
+                beanref.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+            ;
+        }
+    }
+
+    public boolean test2() {
+        TestUtil.logMsg("test2");
+        TestUtil.logMsg("Cause a SystemException");
+
+        TxEPMBean beanref = null;
+        boolean t1;
+        t1 = false;
+        boolean testResult = false;
+        UserTransaction ut = null;
+
+        String brand1 = "First brand";
+        String brand2 = "Second brand";
+        String tempName1, tempName2;
+
+        try {
+            TestUtil.logTrace("Looking up the TxEPMBean Home interface of " + txEPMBeanRequiresNew);
+            beanHome = (TxEPMBeanHome) jctx.lookup(txEPMBeanRequiresNew);
+
+            TestUtil.logTrace("Creating EJB instances of " + txEPMBeanRequiresNew);
+            beanref = (TxEPMBean) beanHome.create(tName1, new Integer(1), brand1, (float) 1, testProps);
+
+            TestUtil.logTrace("Getting the UserTransaction interface");
+            ut = sctx.getUserTransaction();
+
+            // Let's first check that we get our exception thrown
+            TestUtil.logTrace("Update brand name and catch EJBException");
+            ut.begin();
+            try {
+                beanref.updateBrandName(brand2, TxEPMBeanEJB.FLAGSYSEXCEPTION);
+                TestUtil.logTrace("Did not receive expected EJBException");
+            } catch (EJBException ee) {
+                TestUtil.logTrace("EJBException received as expected.");
+                t1 = true;
+            }
+
+            /*
+             * Entity Note : AppException - - instance not discarded - Allowed to
+             * continue
+             *
+             * SysException - - instance discarded - dbrow not removed - must
+             * explicitly remove bean via ejb.remove()
+             */
+
+            // OK, let's rollback
+            TestUtil.logTrace("Starting rollback");
+            ut.rollback();
+            TestUtil.logTrace("Rollback finished");
+
+            if (t1) testResult = true;
+
+            return (testResult);
+
+        } catch (Exception e) {
+            TestUtil.logMsg("Unexpected exception caught");
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
+        } finally {
+            // cleanup the bean (will remove the DB row entry!)
+            try {
+                TestUtil.logTrace("Removing beanref in finally clause!");
+                beanref.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+            ;
+        }
+    }
+
+    public boolean test3() {
+        TestUtil.logMsg("test3");
+        TestUtil.logMsg("Cause an EJBException");
+
+        TxEPMBean beanref = null;
+        boolean t1;
+        t1 = false;
+        boolean testResult = false;
+        UserTransaction ut = null;
+
+        String brand1 = "First brand";
+        String brand2 = "Second brand";
+        String tempName1, tempName2;
+
+        try {
+            TestUtil.logTrace("Looking up the TxEPMBean Home interface of " + txEPMBeanRequiresNew);
+            beanHome = (TxEPMBeanHome) jctx.lookup(txEPMBeanRequiresNew);
+
+            TestUtil.logTrace("Creating EJB instances of " + txEPMBeanRequiresNew);
+            beanref = (TxEPMBean) beanHome.create(tName1, new Integer(1), brand1, (float) 1, testProps);
+
+            TestUtil.logTrace("Getting the UserTransaction interface");
+            ut = sctx.getUserTransaction();
+
+            // Let's first check that we get our exception thrown
+            TestUtil.logTrace("Update brand name and catch EJBException");
+            ut.begin();
+            try {
+                beanref.updateBrandName(brand2, TxEPMBeanEJB.FLAGEJBEXCEPTION);
+                TestUtil.logTrace("Did not receive expected EJBException");
+            } catch (EJBException ee) {
+                TestUtil.logTrace("EJBException received as expected.");
+                t1 = true;
+            }
+
+            /*
+             * Entity Note : AppException - - instance not discarded - Allowed to
+             * continue
+             *
+             * SysException - - instance discarded - dbrow not removed - must
+             * explicitly remove bean via ejb.remove()
+             */
+
+            // OK, let's rollback
+            TestUtil.logTrace("Starting rollback");
+            ut.rollback();
+            TestUtil.logTrace("Rollback finished");
+
+            if (t1) testResult = true;
+
+            return (testResult);
+
+        } catch (Exception e) {
+            TestUtil.logMsg("Unexpected exception caught");
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
+        } finally {
+            // cleanup the bean (will remove the DB row entry!)
+            try {
+                beanref.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+            ;
+        }
+    }
+
+    public boolean test4() {
+        TestUtil.logMsg("test4");
+        TestUtil.logMsg("Cause an Error");
+
+        TxEPMBean beanref = null;
+        boolean t1;
+        t1 = false;
+        boolean testResult = false;
+        UserTransaction ut = null;
+
+        String brand1 = "First brand";
+        String brand2 = "Second brand";
+        String tempName1, tempName2;
+
+        try {
+            TestUtil.logTrace("Looking up the TxEPMBean Home interface of " + txEPMBeanRequiresNew);
+            beanHome = (TxEPMBeanHome) jctx.lookup(txEPMBeanRequiresNew);
+
+            TestUtil.logTrace("Creating EJB instances of " + txEPMBeanRequiresNew);
+            beanref = (TxEPMBean) beanHome.create(tName1, new Integer(1), brand1, (float) 1, testProps);
+
+            TestUtil.logTrace("Getting the UserTransaction interface");
+            ut = sctx.getUserTransaction();
+
+            // Let's first check that we get our exception thrown
+            TestUtil.logTrace("Update brand name and catch EJBException");
+            ut.begin();
+            try {
+                beanref.updateBrandName(brand2, TxEPMBeanEJB.FLAGERROR);
+                TestUtil.logTrace("Did not receive expected EJBException");
+            } catch (EJBException ee) {
+                TestUtil.logTrace("EJBException received as expected.");
+                t1 = true;
+            }
+
+            /*
+             * Entity Note : AppException - - instance not discarded - Allowed to
+             * continue
+             *
+             * SysException - - instance discarded - dbrow not removed - must
+             * explicitly remove bean via ejb.remove()
+             */
+
+            // OK, let's rollback
+            TestUtil.logTrace("Starting rollback");
+            ut.rollback();
+            TestUtil.logTrace("Rollback finished");
+
+            if (t1) testResult = true;
+
+            return (testResult);
+
+        } catch (Exception e) {
+            TestUtil.logMsg("Unexpected exception caught");
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
+        } finally {
+            // cleanup the bean (will remove the DB row entry!)
+            try {
+                beanref.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+            ;
+        }
+    }
+
+    private void initLogging(Properties p) {
+        TestUtil.logTrace("initLogging");
+        this.testProps = p;
+        try {
+            TestUtil.init(p);
+            // Get the table name
+            this.tName1 = TestUtil.getTableName(testProps.getProperty("TxEBean_Delete"));
+            TestUtil.logTrace("tName1: " + this.tName1);
+
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
+        }
+    }
 }

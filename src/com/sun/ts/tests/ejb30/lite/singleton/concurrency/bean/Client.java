@@ -21,27 +21,26 @@ package com.sun.ts.tests.ejb30.lite.singleton.concurrency.bean;
 
 import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ClientBase;
 import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ConcurrencyIF;
-
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
-  @EJB(beanName = "SingletonBean")
-  public void setSingleton(ConcurrencyIF singleton) {
-    this.singleton = singleton;
-  }
+    @EJB(beanName = "SingletonBean")
+    public void setSingleton(ConcurrencyIF singleton) {
+        this.singleton = singleton;
+    }
 
-  /*
-   * @testName: lockedSum1
-   * 
-   * @test_Strategy: spawn multiple threads, invoke synchronized methods of a
-   * singleton with bean-managed concurrency. Expecting correct sum result.
-   */
+    /*
+     * @testName: lockedSum1
+     *
+     * @test_Strategy: spawn multiple threads, invoke synchronized methods of a
+     * singleton with bean-managed concurrency. Expecting correct sum result.
+     */
 
-  /*
-   * @testName: lockedLinkedList1
-   * 
-   * @test_Strategy: spawn multiple threads, invoke methods of a singleton with
-   * bean-managed concurrency. Expecting correct data in the LinkedList.
-   */
+    /*
+     * @testName: lockedLinkedList1
+     *
+     * @test_Strategy: spawn multiple threads, invoke methods of a singleton with
+     * bean-managed concurrency. Expecting correct data in the LinkedList.
+     */
 
 }

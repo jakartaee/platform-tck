@@ -24,11 +24,11 @@ import jakarta.servlet.ServletResponseWrapper;
 
 public class ResponseWrapper extends ServletResponseWrapper {
 
-  protected ServletResponse origResponse = null;
+    protected ServletResponse origResponse = null;
 
-  public ResponseWrapper(ServletResponse response) {
-    super(response);
-    response.setContentType("text/plain");
-    origResponse = response;
-  }
+    public ResponseWrapper(ServletResponse response) {
+        super(response);
+        response.setContentType("text/plain");
+        origResponse = response;
+    }
 }

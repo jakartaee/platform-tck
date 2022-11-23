@@ -21,34 +21,33 @@
 package com.sun.ts.tests.ejb30.timer.basic.mdb;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.ActivationConfigProperty;
 import jakarta.ejb.MessageDriven;
 import jakarta.jms.MessageListener;
 
-//This MDB implements jakarta.jms.MessageListener interface, so no need to
-//use annotation element messageListenerInterface, nor descritpor element
-//messaging-type
-@MessageDriven(activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue") })
-public class TimerBasicBean extends TimerBasicBeanBase
-    implements MessageListener {
-  public TimerBasicBean() {
-    super();
-  }
+// This MDB implements jakarta.jms.MessageListener interface, so no need to
+// use annotation element messageListenerInterface, nor descritpor element
+// messaging-type
+@MessageDriven(
+        activationConfig = {
+            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
+        })
+public class TimerBasicBean extends TimerBasicBeanBase implements MessageListener {
+    public TimerBasicBean() {
+        super();
+    }
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    Helper.getLogger().info("In PostConstruct of " + this);
-  }
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        Helper.getLogger().info("In PostConstruct of " + this);
+    }
 
-  @SuppressWarnings("unused")
-  @PreDestroy
-  private void preDestroy() {
-    Helper.getLogger().info("In PreDestroy of " + this);
-  }
-
+    @SuppressWarnings("unused")
+    @PreDestroy
+    private void preDestroy() {
+        Helper.getLogger().info("In PreDestroy of " + this);
+    }
 }

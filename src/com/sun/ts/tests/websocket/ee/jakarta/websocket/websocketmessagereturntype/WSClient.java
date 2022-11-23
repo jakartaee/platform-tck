@@ -27,136 +27,135 @@ import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
  */
 public class WSClient extends WebSocketCommonClient {
 
-  private static final long serialVersionUID = -5623230069104999740L;
+    private static final long serialVersionUID = -5623230069104999740L;
 
-  public WSClient() {
-    setContextRoot("ws_ee_websocketmessagereturntype_web");
-  }
-
-  public static void main(String[] args) {
-    new WSClient().run(args);
-  }
-
-  /* Run test */
-
-  // TEXT ------------------------------------------
-
-  /*
-   * @testName: dataTypesTest
-   * 
-   * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
-   * WebSocket:JAVADOC:80;
-   * 
-   * @test_Strategy: test primitive and boxed datatypes
-   */
-  public void dataTypesTest() throws Fault {
-    invokeDataTypeSequence("true", "boolean");
-    invokeDataTypeSequence("123", "byte");
-    invokeDataTypeSequence(String.valueOf(Short.MAX_VALUE), "short");
-    invokeDataTypeSequence(String.valueOf(Short.MIN_VALUE), "int");
-    invokeDataTypeSequence(String.valueOf(Short.MIN_VALUE), "long");
-    invokeDataTypeSequence(String.valueOf(123.456f), "float");
-    invokeDataTypeSequence(String.valueOf(789.012), "double");
-    invokeDataTypeSequence(String.valueOf('A'), "char");
-  }
-
-  /*
-   * @testName: textEncoderTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:80;
-   * 
-   * @test_Strategy: test text encoder
-   */
-  public void textEncoderTest() throws Fault {
-    invokeSequence("textEncoderTest", "textencoder");
-  }
-
-  /*
-   * @testName: textStreamEncoderTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:80;
-   * 
-   * @test_Strategy: test text stream encoder
-   */
-  public void textStreamEncoderTest() throws Fault {
-    invokeSequence("textStreamEncoderTest", "textstreamencoder");
-  }
-
-  // -----------------Binary --------------------------------
-
-  /*
-   * @testName: binaryEncoderTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:80;
-   * 
-   * @test_Strategy: test binary encoder
-   */
-  public void binaryEncoderTest() throws Fault {
-    setClientEndpoint(ByteBufferClientEndpoint.class);
-    invokeSequence("binaryEncoderTest", "binaryencoder");
-  }
-
-  /*
-   * @testName: binaryStreamEncoderTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:80;
-   * 
-   * @test_Strategy: test binary stream encoder
-   */
-  public void binaryStreamEncoderTest() throws Fault {
-    setClientEndpoint(ByteBufferClientEndpoint.class);
-    invokeSequence("binaryStreamEncoderTest", "binarystreamencoder");
-  }
-
-  /*
-   * @testName: byteArrayTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:80;
-   * 
-   * @test_Strategy: test byte array
-   */
-  public void byteArrayTest() throws Fault {
-    setClientEndpoint(ByteBufferClientEndpoint.class);
-    invokeSequence("byteArrayTest", "bytearray");
-  }
-
-  /*
-   * @testName: byteBufferTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:80;
-   * 
-   * @test_Strategy: test byte buffer
-   */
-  public void byteBufferTest() throws Fault {
-    setClientEndpoint(ByteBufferClientEndpoint.class);
-    invokeSequence("byteBufferTest", "bytebuffer");
-  }
-
-  /*
-   * @testName: directByteBufferTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:80;
-   * 
-   * @test_Strategy: test direct byte buffer
-   */
-  public void directByteBufferTest() throws Fault {
-    setClientEndpoint(ByteBufferClientEndpoint.class);
-    invokeSequence("byteBufferTest", "directbytebuffer");
-  }
-
-  // Private -----------------------------------------
-  private void invokeSequence(String search, String... sequence) throws Fault {
-    for (int i = 0; i != sequence.length; i++) {
-      setProperty(Property.REQUEST, buildRequest(sequence[i]));
-      setProperty(Property.SEARCH_STRING, search);
-      setProperty(Property.CONTENT, search);
-      invoke();
+    public WSClient() {
+        setContextRoot("ws_ee_websocketmessagereturntype_web");
     }
-  }
 
-  private void invokeDataTypeSequence(String search, String type) throws Fault {
-    String[] sequence = { "primitive" + type, "full" + type };
-    invokeSequence(search, sequence);
-  }
+    public static void main(String[] args) {
+        new WSClient().run(args);
+    }
 
+    /* Run test */
+
+    // TEXT ------------------------------------------
+
+    /*
+     * @testName: dataTypesTest
+     *
+     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
+     * WebSocket:JAVADOC:80;
+     *
+     * @test_Strategy: test primitive and boxed datatypes
+     */
+    public void dataTypesTest() throws Fault {
+        invokeDataTypeSequence("true", "boolean");
+        invokeDataTypeSequence("123", "byte");
+        invokeDataTypeSequence(String.valueOf(Short.MAX_VALUE), "short");
+        invokeDataTypeSequence(String.valueOf(Short.MIN_VALUE), "int");
+        invokeDataTypeSequence(String.valueOf(Short.MIN_VALUE), "long");
+        invokeDataTypeSequence(String.valueOf(123.456f), "float");
+        invokeDataTypeSequence(String.valueOf(789.012), "double");
+        invokeDataTypeSequence(String.valueOf('A'), "char");
+    }
+
+    /*
+     * @testName: textEncoderTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:80;
+     *
+     * @test_Strategy: test text encoder
+     */
+    public void textEncoderTest() throws Fault {
+        invokeSequence("textEncoderTest", "textencoder");
+    }
+
+    /*
+     * @testName: textStreamEncoderTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:80;
+     *
+     * @test_Strategy: test text stream encoder
+     */
+    public void textStreamEncoderTest() throws Fault {
+        invokeSequence("textStreamEncoderTest", "textstreamencoder");
+    }
+
+    // -----------------Binary --------------------------------
+
+    /*
+     * @testName: binaryEncoderTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:80;
+     *
+     * @test_Strategy: test binary encoder
+     */
+    public void binaryEncoderTest() throws Fault {
+        setClientEndpoint(ByteBufferClientEndpoint.class);
+        invokeSequence("binaryEncoderTest", "binaryencoder");
+    }
+
+    /*
+     * @testName: binaryStreamEncoderTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:80;
+     *
+     * @test_Strategy: test binary stream encoder
+     */
+    public void binaryStreamEncoderTest() throws Fault {
+        setClientEndpoint(ByteBufferClientEndpoint.class);
+        invokeSequence("binaryStreamEncoderTest", "binarystreamencoder");
+    }
+
+    /*
+     * @testName: byteArrayTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:80;
+     *
+     * @test_Strategy: test byte array
+     */
+    public void byteArrayTest() throws Fault {
+        setClientEndpoint(ByteBufferClientEndpoint.class);
+        invokeSequence("byteArrayTest", "bytearray");
+    }
+
+    /*
+     * @testName: byteBufferTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:80;
+     *
+     * @test_Strategy: test byte buffer
+     */
+    public void byteBufferTest() throws Fault {
+        setClientEndpoint(ByteBufferClientEndpoint.class);
+        invokeSequence("byteBufferTest", "bytebuffer");
+    }
+
+    /*
+     * @testName: directByteBufferTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:80;
+     *
+     * @test_Strategy: test direct byte buffer
+     */
+    public void directByteBufferTest() throws Fault {
+        setClientEndpoint(ByteBufferClientEndpoint.class);
+        invokeSequence("byteBufferTest", "directbytebuffer");
+    }
+
+    // Private -----------------------------------------
+    private void invokeSequence(String search, String... sequence) throws Fault {
+        for (int i = 0; i != sequence.length; i++) {
+            setProperty(Property.REQUEST, buildRequest(sequence[i]));
+            setProperty(Property.SEARCH_STRING, search);
+            setProperty(Property.CONTENT, search);
+            invoke();
+        }
+    }
+
+    private void invokeDataTypeSequence(String search, String type) throws Fault {
+        String[] sequence = {"primitive" + type, "full" + type};
+        invokeSequence(search, sequence);
+    }
 }

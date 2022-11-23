@@ -20,14 +20,11 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.interceptor.listener.mixed;
 
-import java.util.ArrayList;
-
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeBase;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeIF;
 import com.sun.ts.tests.ejb30.common.interceptor.Interceptor1;
 import com.sun.ts.tests.ejb30.common.interceptor.InterceptorNoat1;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
@@ -35,57 +32,52 @@ import jakarta.ejb.Stateless;
 import jakarta.interceptor.ExcludeClassInterceptors;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
 import jakarta.interceptor.Interceptors;
+import java.util.ArrayList;
 
 @Stateless
-@Remote({ AroundInvokeIF.class })
+@Remote({AroundInvokeIF.class})
 // This bean must use cmt, since it uses setRollbackOnly
 @ExcludeDefaultInterceptors
-@Interceptors({ Interceptor1.class, Interceptor1.class })
-public class AroundInvokeBean extends AroundInvokeBase
-    implements AroundInvokeIF {
-  @Resource(name = "ejbContext")
-  private SessionContext ejbContext;
+@Interceptors({Interceptor1.class, Interceptor1.class})
+public class AroundInvokeBean extends AroundInvokeBase implements AroundInvokeIF {
+    @Resource(name = "ejbContext")
+    private SessionContext ejbContext;
 
-  public AroundInvokeBean() {
-    super();
-  }
+    public AroundInvokeBean() {
+        super();
+    }
 
-  // ============ abstract methods from super ==========================
-  protected jakarta.ejb.EJBContext getEJBContext() {
-    return this.ejbContext;
-  }
+    // ============ abstract methods from super ==========================
+    protected jakarta.ejb.EJBContext getEJBContext() {
+        return this.ejbContext;
+    }
 
-  // ============= override business methods from super ================
-  @Override
-  @ExcludeClassInterceptors
-  @Interceptors({ InterceptorNoat1.class,
-      MethodLevelOnlyNoopInterceptor.class })
-  public ArrayList<String> methodLevelInterceptorMixedTest(
-      ArrayList<String> alist) throws CalculatorException {
-    return super.methodLevelInterceptorMixedTest(alist);
-  }
+    // ============= override business methods from super ================
+    @Override
+    @ExcludeClassInterceptors
+    @Interceptors({InterceptorNoat1.class, MethodLevelOnlyNoopInterceptor.class})
+    public ArrayList<String> methodLevelInterceptorMixedTest(ArrayList<String> alist) throws CalculatorException {
+        return super.methodLevelInterceptorMixedTest(alist);
+    }
 
-  @Override
-  @Interceptors({ Interceptor1.class, MethodLevelOnlyNoopInterceptor.class })
-  public ArrayList<String> methodLevelClassLevelInterceptorMixedTest(
-      ArrayList<String> alist) throws CalculatorException {
-    return super.methodLevelClassLevelInterceptorMixedTest(alist);
-  }
+    @Override
+    @Interceptors({Interceptor1.class, MethodLevelOnlyNoopInterceptor.class})
+    public ArrayList<String> methodLevelClassLevelInterceptorMixedTest(ArrayList<String> alist)
+            throws CalculatorException {
+        return super.methodLevelClassLevelInterceptorMixedTest(alist);
+    }
 
-  @Override
-  @ExcludeDefaultInterceptors
-  @Interceptors({ InterceptorNoat1.class, InterceptorNoat1.class,
-      MethodLevelOnlyNoopInterceptor.class })
-  public ArrayList<String> repeatedInterceptors(ArrayList<String> alist)
-      throws CalculatorException {
-    return super.repeatedInterceptors(alist);
-  }
+    @Override
+    @ExcludeDefaultInterceptors
+    @Interceptors({InterceptorNoat1.class, InterceptorNoat1.class, MethodLevelOnlyNoopInterceptor.class})
+    public ArrayList<String> repeatedInterceptors(ArrayList<String> alist) throws CalculatorException {
+        return super.repeatedInterceptors(alist);
+    }
 
-  @Override
-  @ExcludeDefaultInterceptors
-  @Interceptors({ Interceptor1.class, InterceptorNoat1.class })
-  public ArrayList<String> interceptorOrderingOverride(ArrayList<String> alist)
-      throws CalculatorException {
-    return super.interceptorOrderingOverride(alist);
-  }
+    @Override
+    @ExcludeDefaultInterceptors
+    @Interceptors({Interceptor1.class, InterceptorNoat1.class})
+    public ArrayList<String> interceptorOrderingOverride(ArrayList<String> alist) throws CalculatorException {
+        return super.interceptorOrderingOverride(alist);
+    }
 }

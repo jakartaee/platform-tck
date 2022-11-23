@@ -19,105 +19,101 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.dispatchertype;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.DispatcherType;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet extends GenericTCKServlet {
 
-  public void valuesTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    Boolean pass = true;
-    PrintWriter pw = response.getWriter();
+    public void valuesTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        Boolean pass = true;
+        PrintWriter pw = response.getWriter();
 
-    DispatcherType[] types = jakarta.servlet.DispatcherType.values();
-    DispatcherType[] expected_types = { DispatcherType.FORWARD,
-        DispatcherType.INCLUDE, DispatcherType.REQUEST, DispatcherType.ASYNC,
-        DispatcherType.ERROR };
+        DispatcherType[] types = jakarta.servlet.DispatcherType.values();
+        DispatcherType[] expected_types = {
+            DispatcherType.FORWARD,
+            DispatcherType.INCLUDE,
+            DispatcherType.REQUEST,
+            DispatcherType.ASYNC,
+            DispatcherType.ERROR
+        };
 
-    int i = 0;
-    for (DispatcherType type : types) {
-      if (!type.equals(expected_types[i])) {
-        pw.println(
-            "The DispatcherType value at position " + i + " is incorrect.");
-        pw.println("Expecting " + expected_types[i] + "; got " + type + ".");
-        pass = false;
-      }
-      i++;
-    }
-    ServletTestUtil.printResult(pw, pass);
-  }
-
-  public void valueOfTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    Boolean pass = true;
-    PrintWriter pw = response.getWriter();
-
-    String[] types = { "FORWARD", "INCLUDE", "REQUEST", "ASYNC", "ERROR" };
-    DispatcherType[] expected_types = { DispatcherType.FORWARD,
-        DispatcherType.INCLUDE, DispatcherType.REQUEST, DispatcherType.ASYNC,
-        DispatcherType.ERROR };
-
-    int i = 0;
-    for (DispatcherType type : expected_types) {
-      if (!type.equals(DispatcherType.valueOf(types[i]))) {
-        pw.println("DispatcherType.valueOf does not work correctly.");
-        pw.println("Expecting " + expected_types[i] + "; got "
-            + DispatcherType.valueOf(types[i]) + ".");
-        pass = false;
-      }
-      i++;
-    }
-    ServletTestUtil.printResult(pw, pass);
-  }
-
-  public void valueOfNullTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    Boolean pass = true;
-    PrintWriter pw = response.getWriter();
-    String name = null;
-
-    try {
-      DispatcherType.valueOf(name);
-      pass = false;
-      pw.println("DispatcherType.valueOf(null) does not work correctly.");
-      pw.println("Expected NullPointerException not thrown.");
-    } catch (NullPointerException npe) {
-      pw.println("Test Passed. Expected NullPointerException thrown for name ="
-          + name + ".");
+        int i = 0;
+        for (DispatcherType type : types) {
+            if (!type.equals(expected_types[i])) {
+                pw.println("The DispatcherType value at position " + i + " is incorrect.");
+                pw.println("Expecting " + expected_types[i] + "; got " + type + ".");
+                pass = false;
+            }
+            i++;
+        }
+        ServletTestUtil.printResult(pw, pass);
     }
 
-    ServletTestUtil.printResult(pw, pass);
-  }
+    public void valueOfTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        Boolean pass = true;
+        PrintWriter pw = response.getWriter();
 
-  public void valueOfInvalidTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-    Boolean pass = true;
-    PrintWriter pw = response.getWriter();
+        String[] types = {"FORWARD", "INCLUDE", "REQUEST", "ASYNC", "ERROR"};
+        DispatcherType[] expected_types = {
+            DispatcherType.FORWARD,
+            DispatcherType.INCLUDE,
+            DispatcherType.REQUEST,
+            DispatcherType.ASYNC,
+            DispatcherType.ERROR
+        };
 
-    String[] names = { "Forward", " INCLUDE", "REQUEST ", "ASYNc", "ERROr ",
-        "bogus" };
-
-    for (String name : names) {
-      try {
-        DispatcherType.valueOf(name);
-        pass = false;
-        pw.println(
-            "DispatcherType.valueOf(bad dispatchertype) does not work correctly.");
-        pw.println("Expected IllegalArgumentException not thrown.");
-      } catch (IllegalArgumentException ile) {
-        pw.println(
-            "Test Passed. Expected IllegalArgumentException thrown for name ="
-                + name + ".");
-      }
+        int i = 0;
+        for (DispatcherType type : expected_types) {
+            if (!type.equals(DispatcherType.valueOf(types[i]))) {
+                pw.println("DispatcherType.valueOf does not work correctly.");
+                pw.println("Expecting " + expected_types[i] + "; got " + DispatcherType.valueOf(types[i]) + ".");
+                pass = false;
+            }
+            i++;
+        }
+        ServletTestUtil.printResult(pw, pass);
     }
-    ServletTestUtil.printResult(pw, pass);
-  }
+
+    public void valueOfNullTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        Boolean pass = true;
+        PrintWriter pw = response.getWriter();
+        String name = null;
+
+        try {
+            DispatcherType.valueOf(name);
+            pass = false;
+            pw.println("DispatcherType.valueOf(null) does not work correctly.");
+            pw.println("Expected NullPointerException not thrown.");
+        } catch (NullPointerException npe) {
+            pw.println("Test Passed. Expected NullPointerException thrown for name =" + name + ".");
+        }
+
+        ServletTestUtil.printResult(pw, pass);
+    }
+
+    public void valueOfInvalidTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        Boolean pass = true;
+        PrintWriter pw = response.getWriter();
+
+        String[] names = {"Forward", " INCLUDE", "REQUEST ", "ASYNc", "ERROr ", "bogus"};
+
+        for (String name : names) {
+            try {
+                DispatcherType.valueOf(name);
+                pass = false;
+                pw.println("DispatcherType.valueOf(bad dispatchertype) does not work correctly.");
+                pw.println("Expected IllegalArgumentException not thrown.");
+            } catch (IllegalArgumentException ile) {
+                pw.println("Test Passed. Expected IllegalArgumentException thrown for name =" + name + ".");
+            }
+        }
+        ServletTestUtil.printResult(pw, pass);
+    }
 }

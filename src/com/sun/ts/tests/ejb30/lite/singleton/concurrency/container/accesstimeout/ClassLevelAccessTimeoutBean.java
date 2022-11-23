@@ -19,13 +19,12 @@
  */
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout;
 
-import java.util.concurrent.TimeUnit;
-
 import jakarta.ejb.AccessTimeout;
 import jakarta.ejb.Lock;
 import jakarta.ejb.LockType;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
+import java.util.concurrent.TimeUnit;
 
 /**
  * The purpose of this class is to verify its class-level @AccessTimeout applies
@@ -36,17 +35,16 @@ import jakarta.ejb.Startup;
 @Startup
 @AccessTimeout(unit = TimeUnit.MILLISECONDS, value = 1000)
 @Lock(LockType.READ)
-public class ClassLevelAccessTimeoutBean extends PlainAccessTimeoutBeanBase
-    implements AccessTimeoutIF {
-  @Override
-  @Lock(LockType.READ)
-  public int longRead(long waitTimeMillis, int readVal) {
-    return super.longRead(waitTimeMillis, readVal);
-  }
+public class ClassLevelAccessTimeoutBean extends PlainAccessTimeoutBeanBase implements AccessTimeoutIF {
+    @Override
+    @Lock(LockType.READ)
+    public int longRead(long waitTimeMillis, int readVal) {
+        return super.longRead(waitTimeMillis, readVal);
+    }
 
-  @Override
-  @Lock(LockType.WRITE)
-  public void longWrite(long waitTimeMillis) {
-    super.longWrite(waitTimeMillis);
-  }
+    @Override
+    @Lock(LockType.WRITE)
+    public void longWrite(long waitTimeMillis) {
+        super.longWrite(waitTimeMillis);
+    }
 }

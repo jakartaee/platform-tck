@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb30.bb.session.stateful.callback.listener.annotated;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.PostActivate;
@@ -35,33 +34,33 @@ import jakarta.interceptor.InvocationContext;
  */
 public class StatefulCallbackListener2 {
 
-  public StatefulCallbackListener2() {
-    super();
-  }
-
-  /**
-   * 4 callback annotations are applied on the same method
-   */
-  @PostConstruct
-  @PreDestroy
-  @PostActivate
-  @PrePassivate
-  private void sharedCallback(InvocationContext inv) throws RuntimeException {
-    Callback2Bean bean = (Callback2Bean) inv.getTarget();
-    bean.setPostConstructOrPreDestroyCalled(true);
-    TLogger.log("PostConstruct, PreDestroy, PostActivateor or PrePassivate "
-        + "method in " + this + " called for bean " + bean);
-    try {
-      inv.proceed();
-    } catch (RuntimeException e) {
-      throw e;
-    } catch (Exception e) {
-      throw new IllegalStateException(e);
+    public StatefulCallbackListener2() {
+        super();
     }
-  }
 
-  @AroundInvoke
-  private Object intercept(InvocationContext inv) throws Exception {
-    return inv.proceed();
-  }
+    /**
+     * 4 callback annotations are applied on the same method
+     */
+    @PostConstruct
+    @PreDestroy
+    @PostActivate
+    @PrePassivate
+    private void sharedCallback(InvocationContext inv) throws RuntimeException {
+        Callback2Bean bean = (Callback2Bean) inv.getTarget();
+        bean.setPostConstructOrPreDestroyCalled(true);
+        TLogger.log("PostConstruct, PreDestroy, PostActivateor or PrePassivate " + "method in " + this
+                + " called for bean " + bean);
+        try {
+            inv.proceed();
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    @AroundInvoke
+    private Object intercept(InvocationContext inv) throws Exception {
+        return inv.proceed();
+    }
 }

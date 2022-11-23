@@ -17,7 +17,6 @@
 package com.sun.ts.tests.jaxrs.platform.provider.jsonp;
 
 import com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient;
-
 import jakarta.ws.rs.core.MediaType;
 
 /*
@@ -28,126 +27,125 @@ import jakarta.ws.rs.core.MediaType;
 
 public class JAXRSClient extends JaxrsCommonClient {
 
-  private static final long serialVersionUID = 7441792527287072853L;
+    private static final long serialVersionUID = 7441792527287072853L;
 
-  public JAXRSClient() {
-    setContextRoot("/jaxrs_platform_provider_jsonp_web/resource");
-  }
+    public JAXRSClient() {
+        setContextRoot("/jaxrs_platform_provider_jsonp_web/resource");
+    }
 
-  /*
-   * @testName: serverJsonArrayReturnTest
-   * 
-   * @assertion_ids: JAXRS:SPEC:107;
-   * 
-   * @test_Strategy: implementations MUST support entity providers for the
-   * following types: JsonArray
-   */
-  public void serverJsonArrayReturnTest() throws Fault {
-    setProperty(Property.REQUEST, buildRequest(Request.GET, "toarray"));
-    bufferEntity(true);
-    invoke();
-    assertResponseContainsRow(0);
-    assertResponseContainsRow(1);
-  }
+    /*
+     * @testName: serverJsonArrayReturnTest
+     *
+     * @assertion_ids: JAXRS:SPEC:107;
+     *
+     * @test_Strategy: implementations MUST support entity providers for the
+     * following types: JsonArray
+     */
+    public void serverJsonArrayReturnTest() throws Fault {
+        setProperty(Property.REQUEST, buildRequest(Request.GET, "toarray"));
+        bufferEntity(true);
+        invoke();
+        assertResponseContainsRow(0);
+        assertResponseContainsRow(1);
+    }
 
-  /*
-   * @testName: serverJsonStructureReturnTest
-   * 
-   * @assertion_ids: JAXRS:SPEC:33; JAXRS:SPEC:33.1; JAXRS:SPEC:75;
-   * 
-   * @test_Strategy: implementations MUST support entity providers for the
-   * following types: JsonStructure
-   */
-  public void serverJsonStructureReturnTest() throws Fault {
-    setProperty(Property.REQUEST, buildRequest(Request.GET, "tostructure"));
-    bufferEntity(true);
-    invoke();
-    assertResponseContainsRow(0);
-    assertResponseContainsRow(1);
-  }
+    /*
+     * @testName: serverJsonStructureReturnTest
+     *
+     * @assertion_ids: JAXRS:SPEC:33; JAXRS:SPEC:33.1; JAXRS:SPEC:75;
+     *
+     * @test_Strategy: implementations MUST support entity providers for the
+     * following types: JsonStructure
+     */
+    public void serverJsonStructureReturnTest() throws Fault {
+        setProperty(Property.REQUEST, buildRequest(Request.GET, "tostructure"));
+        bufferEntity(true);
+        invoke();
+        assertResponseContainsRow(0);
+        assertResponseContainsRow(1);
+    }
 
-  /*
-   * @testName: serverJsonObjectReturnTest
-   * 
-   * @assertion_ids: JAXRS:SPEC:107;
-   * 
-   * @test_Strategy: implementations MUST support entity providers for the
-   * following types: JsonObject
-   */
-  public void serverJsonObjectReturnTest() throws Fault {
-    setProperty(Property.REQUEST, buildRequest(Request.GET, "toobject"));
-    bufferEntity(true);
-    invoke();
-    assertResponseContainsRow(0);
-  }
+    /*
+     * @testName: serverJsonObjectReturnTest
+     *
+     * @assertion_ids: JAXRS:SPEC:107;
+     *
+     * @test_Strategy: implementations MUST support entity providers for the
+     * following types: JsonObject
+     */
+    public void serverJsonObjectReturnTest() throws Fault {
+        setProperty(Property.REQUEST, buildRequest(Request.GET, "toobject"));
+        bufferEntity(true);
+        invoke();
+        assertResponseContainsRow(0);
+    }
 
-  /*
-   * @testName: serverJsonArrayArgumentTest
-   * 
-   * @assertion_ids: JAXRS:SPEC:107;
-   * 
-   * @test_Strategy: implementations MUST support entity providers for the
-   * following types: JsonArray
-   */
-  public void serverJsonArrayArgumentTest() throws Fault {
-    String entity = Resource.createArray().toString();
-    setProperty(Property.REQUEST, buildRequest(Request.POST, "fromarray"));
-    setProperty(Property.REQUEST_HEADERS, buildContentType(getJsonType()));
-    setProperty(Property.CONTENT, entity);
-    setProperty(Property.SEARCH_STRING, entity);
-    invoke();
-  }
+    /*
+     * @testName: serverJsonArrayArgumentTest
+     *
+     * @assertion_ids: JAXRS:SPEC:107;
+     *
+     * @test_Strategy: implementations MUST support entity providers for the
+     * following types: JsonArray
+     */
+    public void serverJsonArrayArgumentTest() throws Fault {
+        String entity = Resource.createArray().toString();
+        setProperty(Property.REQUEST, buildRequest(Request.POST, "fromarray"));
+        setProperty(Property.REQUEST_HEADERS, buildContentType(getJsonType()));
+        setProperty(Property.CONTENT, entity);
+        setProperty(Property.SEARCH_STRING, entity);
+        invoke();
+    }
 
-  /*
-   * @testName: serverJsonStructureArgumentTest
-   * 
-   * @assertion_ids: JAXRS:SPEC:107;
-   * 
-   * @test_Strategy: implementations MUST support entity providers for the
-   * following types: JsonStructure
-   */
-  public void serverJsonStructureArgumentTest() throws Fault {
-    String entity = Resource.createArray().toString();
-    setProperty(Property.REQUEST, buildRequest(Request.POST, "fromstructure"));
-    setProperty(Property.REQUEST_HEADERS, buildContentType(getJsonType()));
-    setProperty(Property.CONTENT, entity);
-    setProperty(Property.SEARCH_STRING, entity);
-    invoke();
-  }
+    /*
+     * @testName: serverJsonStructureArgumentTest
+     *
+     * @assertion_ids: JAXRS:SPEC:107;
+     *
+     * @test_Strategy: implementations MUST support entity providers for the
+     * following types: JsonStructure
+     */
+    public void serverJsonStructureArgumentTest() throws Fault {
+        String entity = Resource.createArray().toString();
+        setProperty(Property.REQUEST, buildRequest(Request.POST, "fromstructure"));
+        setProperty(Property.REQUEST_HEADERS, buildContentType(getJsonType()));
+        setProperty(Property.CONTENT, entity);
+        setProperty(Property.SEARCH_STRING, entity);
+        invoke();
+    }
 
-  /*
-   * @testName: serverJsonObjectArgumentTest
-   * 
-   * @assertion_ids: JAXRS:SPEC:107;
-   * 
-   * @test_Strategy: implementations MUST support entity providers for the
-   * following types: JsonObject
-   */
-  public void serverJsonObjectArgumentTest() throws Fault {
-    String entity = Resource.createObject(1).toString();
-    setProperty(Property.REQUEST, buildRequest(Request.POST, "fromobject"));
-    setProperty(Property.REQUEST_HEADERS, buildContentType(getJsonType()));
-    setProperty(Property.CONTENT, entity);
-    setProperty(Property.SEARCH_STRING, entity);
-    invoke();
-  }
+    /*
+     * @testName: serverJsonObjectArgumentTest
+     *
+     * @assertion_ids: JAXRS:SPEC:107;
+     *
+     * @test_Strategy: implementations MUST support entity providers for the
+     * following types: JsonObject
+     */
+    public void serverJsonObjectArgumentTest() throws Fault {
+        String entity = Resource.createObject(1).toString();
+        setProperty(Property.REQUEST, buildRequest(Request.POST, "fromobject"));
+        setProperty(Property.REQUEST_HEADERS, buildContentType(getJsonType()));
+        setProperty(Property.CONTENT, entity);
+        setProperty(Property.SEARCH_STRING, entity);
+        invoke();
+    }
 
-  // ////////////////////////////////////////////////////////////////////////
-  private void assertResponseContainsRow(int id) throws Fault {
-    String content = getResponseBody();
-    assertContains(content, Resource.LABEL[0]);
-    assertContains(content, Resource.TYPE[id]);
-    assertContains(content, Resource.LABEL[1]);
-    assertContains(content, Resource.PHONE[id]);
-    logMsg("Found", Resource.createObject(id).toString(), "as expected");
-  }
+    // ////////////////////////////////////////////////////////////////////////
+    private void assertResponseContainsRow(int id) throws Fault {
+        String content = getResponseBody();
+        assertContains(content, Resource.LABEL[0]);
+        assertContains(content, Resource.TYPE[id]);
+        assertContains(content, Resource.LABEL[1]);
+        assertContains(content, Resource.PHONE[id]);
+        logMsg("Found", Resource.createObject(id).toString(), "as expected");
+    }
 
-  private static void assertContains(String where, String what) throws Fault {
-    assertContains(where, what, what, "has not been found in", where);
-  }
+    private static void assertContains(String where, String what) throws Fault {
+        assertContains(where, what, what, "has not been found in", where);
+    }
 
-  private static MediaType getJsonType() {
-    return new MediaType("application", "json");
-  }
-
+    private static MediaType getJsonType() {
+        return new MediaType("application", "json");
+    }
 }

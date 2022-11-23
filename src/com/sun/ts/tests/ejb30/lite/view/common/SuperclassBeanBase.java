@@ -20,7 +20,6 @@
 package com.sun.ts.tests.ejb30.lite.view.common;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.SessionContext;
 
@@ -29,14 +28,12 @@ import jakarta.ejb.SessionContext;
  * subclass bean class.
  */
 public class SuperclassBeanBase implements BusinessLocalIF1 {
-  @Resource
-  protected SessionContext sessionContext;
+    @Resource
+    protected SessionContext sessionContext;
 
-  public String[] businessMethodLocal1(String[] s) {
-    return null;
-  }
+    public String[] businessMethodLocal1(String[] s) {
+        return null;
+    }
 
-  public void remove() {
-  }
-
+    public void remove() {}
 }

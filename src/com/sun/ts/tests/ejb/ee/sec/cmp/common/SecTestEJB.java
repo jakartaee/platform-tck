@@ -20,124 +20,114 @@
 
 package com.sun.ts.tests.ejb.ee.sec.cmp.common;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
 import jakarta.ejb.RemoveException;
+import java.util.Properties;
 
 public class SecTestEJB implements EntityBean {
 
-  public String BRAND_NAME;
+    public String BRAND_NAME;
 
-  public Integer KEY_ID;
+    public Integer KEY_ID;
 
-  public float PRICE;
+    public float PRICE;
 
-  private EntityContext ectx = null;
+    private EntityContext ectx = null;
 
-  public Integer ejbCreate(Properties p, boolean newTable, int KEY_ID,
-      String BRAND_NAME, float PRICE) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    try {
-      TestUtil.init(p);
+    public Integer ejbCreate(Properties p, boolean newTable, int KEY_ID, String BRAND_NAME, float PRICE)
+            throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        try {
+            TestUtil.init(p);
 
-      this.KEY_ID = new Integer(KEY_ID);
-      this.BRAND_NAME = BRAND_NAME;
-      this.PRICE = PRICE;
+            this.KEY_ID = new Integer(KEY_ID);
+            this.BRAND_NAME = BRAND_NAME;
+            this.PRICE = PRICE;
 
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException(e.getMessage());
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException(e.getMessage());
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+        return this.KEY_ID;
     }
-    return this.KEY_ID;
-  }
 
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbPostCreate(Properties p, boolean newTable, int KEY_ID,
-      String BRAND_NAME, float PRICE) {
-    TestUtil.logTrace("In ejbPostCreate !!");
-  }
-
-  public void ejbStore() {
-    TestUtil.logTrace("ejbStore");
-  }
-
-  public boolean IsCaller(String caller) {
-    TestUtil.logMsg("EntityContext.getCallerPrincipal().getName(): "
-        + ectx.getCallerPrincipal());
-
-    TestUtil.logMsg("Comparing getCallerPrincipal with caller " + caller);
-
-    if (ectx.getCallerPrincipal().getName().indexOf(caller) < 0) {
-      TestUtil
-          .logMsg("get CallerPrincipal didn't match with the caller " + caller);
-      return false;
-    } else {
-      TestUtil.logMsg("get CallerPrincipal matched with the caller " + caller);
-      return true;
-
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("ejbRemove");
     }
-  }
 
-  public boolean EjbNotAuthz() {
-    return true;
-  }
+    public void ejbPostCreate(Properties p, boolean newTable, int KEY_ID, String BRAND_NAME, float PRICE) {
+        TestUtil.logTrace("In ejbPostCreate !!");
+    }
 
-  public boolean EjbIsAuthz() {
-    return true;
-  }
+    public void ejbStore() {
+        TestUtil.logTrace("ejbStore");
+    }
 
-  public boolean EjbSecRoleRef(String role) {
-    return ectx.isCallerInRole(role);
-  }
+    public boolean IsCaller(String caller) {
+        TestUtil.logMsg("EntityContext.getCallerPrincipal().getName(): " + ectx.getCallerPrincipal());
 
-  public boolean EjbOverloadedSecRoleRefs(String role1) {
-    TestUtil.logMsg(
-        "isCallerInRole(" + role1 + ") = " + ectx.isCallerInRole(role1));
-    return ectx.isCallerInRole(role1);
-  }
+        TestUtil.logMsg("Comparing getCallerPrincipal with caller " + caller);
 
-  public boolean EjbOverloadedSecRoleRefs(String role1, String role2) {
-    TestUtil
-        .logMsg("isCallerInRole(" + role1 + ")= " + ectx.isCallerInRole(role1)
-            + "isCallerInRole(" + role2 + ")= " + ectx.isCallerInRole(role2));
-    return ectx.isCallerInRole(role1) && ectx.isCallerInRole(role2);
-  }
+        if (ectx.getCallerPrincipal().getName().indexOf(caller) < 0) {
+            TestUtil.logMsg("get CallerPrincipal didn't match with the caller " + caller);
+            return false;
+        } else {
+            TestUtil.logMsg("get CallerPrincipal matched with the caller " + caller);
+            return true;
+        }
+    }
 
-  public boolean checktest1() {
-    return true;
-  }
+    public boolean EjbNotAuthz() {
+        return true;
+    }
 
-  public boolean excludetest1() {
-    return true;
-  }
+    public boolean EjbIsAuthz() {
+        return true;
+    }
 
-  public void setEntityContext(EntityContext sc) {
-    ectx = sc;
-  }
+    public boolean EjbSecRoleRef(String role) {
+        return ectx.isCallerInRole(role);
+    }
 
-  public void unsetEntityContext() {
-    TestUtil.logTrace("unsetEntityContext");
-  }
+    public boolean EjbOverloadedSecRoleRefs(String role1) {
+        TestUtil.logMsg("isCallerInRole(" + role1 + ") = " + ectx.isCallerInRole(role1));
+        return ectx.isCallerInRole(role1);
+    }
 
-  public void ejbLoad() {
-    TestUtil.logTrace("ejbLoad");
-  }
+    public boolean EjbOverloadedSecRoleRefs(String role1, String role2) {
+        TestUtil.logMsg("isCallerInRole(" + role1 + ")= " + ectx.isCallerInRole(role1) + "isCallerInRole(" + role2
+                + ")= " + ectx.isCallerInRole(role2));
+        return ectx.isCallerInRole(role1) && ectx.isCallerInRole(role2);
+    }
 
-  public void ejbActivate() {
-  }
+    public boolean checktest1() {
+        return true;
+    }
 
-  public void ejbPassivate() {
-  }
+    public boolean excludetest1() {
+        return true;
+    }
+
+    public void setEntityContext(EntityContext sc) {
+        ectx = sc;
+    }
+
+    public void unsetEntityContext() {
+        TestUtil.logTrace("unsetEntityContext");
+    }
+
+    public void ejbLoad() {
+        TestUtil.logTrace("ejbLoad");
+    }
+
+    public void ejbActivate() {}
+
+    public void ejbPassivate() {}
 }

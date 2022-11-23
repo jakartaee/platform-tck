@@ -20,19 +20,19 @@
 
 package com.sun.ts.tests.jpa.core.types.field;
 
-import java.util.UUID;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.util.UUID;
 
 @Entity
 @Table(name = "UUIDTYPE")
 public class UUIDType implements java.io.Serializable {
 
     @Id
-    //@GeneratedValue(strategy=GenerationType.UUID)
+    // @GeneratedValue(strategy=GenerationType.UUID)
     private UUID id;
+
     private String name;
 
     public UUIDType() {
@@ -60,5 +60,4 @@ public class UUIDType implements java.io.Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
 }

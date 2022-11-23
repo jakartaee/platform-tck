@@ -20,108 +20,102 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.pkey;
 
-import java.util.Properties;
-
-import javax.naming.NamingException;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
 import jakarta.ejb.RemoveException;
+import java.util.Properties;
+import javax.naming.NamingException;
 
 public class StringBeanEJB implements EntityBean {
 
-  /* CMP fields */
-  public String cmpID;
+    /* CMP fields */
+    public String cmpID;
 
-  public String cmpBrandName;
+    public String cmpBrandName;
 
-  public float cmpPrice;
+    public float cmpPrice;
 
-  protected EntityContext ectx = null;
+    protected EntityContext ectx = null;
 
-  protected TSNamingContext nctx = null;
+    protected TSNamingContext nctx = null;
 
-  public void ping() {
-    TestUtil.logTrace("StringBean: ping()");
-  }
-
-  /*
-   * Bean life cycle.
-   */
-
-  public String ejbCreate(Properties props, String id, String brandName,
-      float price) throws CreateException {
-
-    try {
-      TestUtil.logTrace("CMP11Wrapper: ejbCreate()");
-
-      TestUtil.init(props);
-
-      this.cmpID = id;
-      this.cmpBrandName = brandName;
-      this.cmpPrice = price;
-
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException(e.getMessage());
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    public void ping() {
+        TestUtil.logTrace("StringBean: ping()");
     }
 
-    return this.cmpID;
-  }
+    /*
+     * Bean life cycle.
+     */
 
-  public void ejbPostCreate(Properties props, String id, String brandName,
-      float price) {
+    public String ejbCreate(Properties props, String id, String brandName, float price) throws CreateException {
 
-    TestUtil.logTrace("StringBean: ejbPostCreate()");
-  }
+        try {
+            TestUtil.logTrace("CMP11Wrapper: ejbCreate()");
 
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("StringBean: ejbRemove()");
-  }
+            TestUtil.init(props);
 
-  public void setEntityContext(EntityContext x) throws EJBException {
+            this.cmpID = id;
+            this.cmpBrandName = brandName;
+            this.cmpPrice = price;
 
-    TestUtil.logTrace("StringBean: setEntityContext()");
-    ectx = x;
-    try {
-      TestUtil.logMsg("StringBean: Obtaining TS Naming Context...");
-      nctx = new TSNamingContext();
-    } catch (NamingException e) {
-      TestUtil.logErr("StringBean: Naming Exception : " + e, e);
-      throw new EJBException("Cannot obtain Naming Context" + e);
-    } catch (Exception e) {
-      TestUtil.logErr("StringBean: Caught exception: " + e, e);
-      throw new EJBException("Caught exception: " + e);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException(e.getMessage());
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+
+        return this.cmpID;
     }
-  }
 
-  public void unsetEntityContext() {
-    TestUtil.logTrace("StringBean: unsetEntityContext()");
-  }
+    public void ejbPostCreate(Properties props, String id, String brandName, float price) {
 
-  public void ejbStore() {
-    TestUtil.logTrace("StringBean: ejbStore()");
-  }
+        TestUtil.logTrace("StringBean: ejbPostCreate()");
+    }
 
-  public void ejbLoad() {
-    TestUtil.logTrace("StringBean: ejbLoad()");
-  }
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("StringBean: ejbRemove()");
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("StringBean: ejbActivate()");
-  }
+    public void setEntityContext(EntityContext x) throws EJBException {
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("StringBean: ejbPassivate()");
-  }
+        TestUtil.logTrace("StringBean: setEntityContext()");
+        ectx = x;
+        try {
+            TestUtil.logMsg("StringBean: Obtaining TS Naming Context...");
+            nctx = new TSNamingContext();
+        } catch (NamingException e) {
+            TestUtil.logErr("StringBean: Naming Exception : " + e, e);
+            throw new EJBException("Cannot obtain Naming Context" + e);
+        } catch (Exception e) {
+            TestUtil.logErr("StringBean: Caught exception: " + e, e);
+            throw new EJBException("Caught exception: " + e);
+        }
+    }
 
+    public void unsetEntityContext() {
+        TestUtil.logTrace("StringBean: unsetEntityContext()");
+    }
+
+    public void ejbStore() {
+        TestUtil.logTrace("StringBean: ejbStore()");
+    }
+
+    public void ejbLoad() {
+        TestUtil.logTrace("StringBean: ejbLoad()");
+    }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("StringBean: ejbActivate()");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("StringBean: ejbPassivate()");
+    }
 }

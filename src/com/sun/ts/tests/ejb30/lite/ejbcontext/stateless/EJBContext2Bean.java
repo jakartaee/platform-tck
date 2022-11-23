@@ -25,7 +25,6 @@ import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.ejbcontext.common.EJBContext2IF;
 import com.sun.ts.tests.ejb30.lite.ejbcontext.common.EJBContextBeanBase;
 import com.sun.ts.tests.ejb30.lite.ejbcontext.common.EJBContextIF;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
@@ -35,39 +34,37 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
 @Stateless
-@Local({ EJBContext2IF.class, EJBContextIF.class })
-public class EJBContext2Bean extends EJBContextBeanBase
-    implements EJBContext2IF, EJBContextIF {
+@Local({EJBContext2IF.class, EJBContextIF.class})
+public class EJBContext2Bean extends EJBContextBeanBase implements EJBContext2IF, EJBContextIF {
 
-  @Resource
-  private EJBContext ejbContext; // field-inject EJBContext
+    @Resource
+    private EJBContext ejbContext; // field-inject EJBContext
 
-  private SessionContext sessionContext; // setter-inject SessionContext
+    private SessionContext sessionContext; // setter-inject SessionContext
 
-  private EJBContext ejbContextFromDescriptorInjection; // injected in
-                                                        // ejb-jar.xml
+    private EJBContext ejbContextFromDescriptorInjection; // injected in
+    // ejb-jar.xml
 
-  @SuppressWarnings("unused")
-  @Resource
-  private void setSessionContext(SessionContext sessionContext) {
-    this.sessionContext = sessionContext;
-  }
+    @SuppressWarnings("unused")
+    @Resource
+    private void setSessionContext(SessionContext sessionContext) {
+        this.sessionContext = sessionContext;
+    }
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    Helper.getLogger()
-        .info("In postConstruct of " + this + ", ejbContext=" + ejbContext
-            + ", sessionContext=" + sessionContext
-            + ", ejbContextFromDescriptorInjection="
-            + ejbContextFromDescriptorInjection);
-    postConstruct1(injectionRecords, ejbContext, sessionContext,
-        ejbContextFromDescriptorInjection);
-  }
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        Helper.getLogger()
+                .info("In postConstruct of " + this + ", ejbContext=" + ejbContext
+                        + ", sessionContext=" + sessionContext
+                        + ", ejbContextFromDescriptorInjection="
+                        + ejbContextFromDescriptorInjection);
+        postConstruct1(injectionRecords, ejbContext, sessionContext, ejbContextFromDescriptorInjection);
+    }
 
-  @SuppressWarnings("unused")
-  @PreDestroy
-  private void preDestroy() {
-    Helper.preDestroy(this);
-  }
+    @SuppressWarnings("unused")
+    @PreDestroy
+    private void preDestroy() {
+        Helper.preDestroy(this);
+    }
 }

@@ -16,33 +16,31 @@
 
 package com.sun.ts.tests.servlet.spec.serverpush;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.PushBuilder;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet extends HttpServlet {
-  @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, IOException {
-    PrintWriter pw = resp.getWriter();
-    PushBuilder pb = req.newPushBuilder();
-    if (pb == null) {
-      pw.println("Get Null PushBuilder");
-    } else {
-      pw.println("hello");
-      pb.path("index.html");
-      pb.addHeader("If-Match", "*");
-      pb.push();
-      pw.println(
-          pb.getPath() == null ? "path is cleared" : "path is not cleared");
-      pw.println(
-          pb.getHeader("If-Match") == null ? "conditional headers are cleared"
-              : "conditional headers are not cleared");
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        PrintWriter pw = resp.getWriter();
+        PushBuilder pb = req.newPushBuilder();
+        if (pb == null) {
+            pw.println("Get Null PushBuilder");
+        } else {
+            pw.println("hello");
+            pb.path("index.html");
+            pb.addHeader("If-Match", "*");
+            pb.push();
+            pw.println(pb.getPath() == null ? "path is cleared" : "path is not cleared");
+            pw.println(
+                    pb.getHeader("If-Match") == null
+                            ? "conditional headers are cleared"
+                            : "conditional headers are not cleared");
+        }
     }
-  }
 }

@@ -20,84 +20,78 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1016;
 
-import com.sun.ts.tests.jaxws.common.Handler_Util;
 import com.sun.ts.tests.jaxws.common.Constants;
+import com.sun.ts.tests.jaxws.common.Handler_Util;
 import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-
-import jakarta.xml.ws.handler.soap.SOAPMessageContext;
-import jakarta.xml.ws.handler.soap.SOAPHandler;
-import jakarta.xml.ws.handler.MessageContext;
 import jakarta.xml.soap.*;
-import javax.xml.namespace.QName;
+import jakarta.xml.ws.handler.MessageContext;
+import jakarta.xml.ws.handler.soap.SOAPHandler;
+import jakarta.xml.ws.handler.soap.SOAPMessageContext;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.HashSet;
+import javax.xml.namespace.QName;
 
 public class XMLLangHandler implements SOAPHandler<SOAPMessageContext> {
 
-  public Set<QName> getHeaders() {
-    return new HashSet<QName>();
-  }
-
-  public void init(java.util.Map<String, Object> config) {
-  };
-
-  public boolean handleFault(SOAPMessageContext context) {
-    System.out.println("HANDLER: XMLLangHandler.handleFault() BEGIN");
-    JAXWS_Util.dumpSOAPMessage(context.getMessage(), false);
-    try {
-      if (Handler_Util.getDirection(context).equals(Constants.OUTBOUND)) {
-        System.out.println(
-            "HANDLER: XMLLangHandler.handleFault() direction=outbound");
-        addXMLLangAttribute((SOAPMessageContext) context);
-      } else {
-        System.out
-            .println("HANDLER: XMLLangHandler.handleFault() direction=inbound");
-      }
-    } catch (SOAPException se) {
-      com.sun.ts.lib.util.TestUtil.printStackTrace(se);
+    public Set<QName> getHeaders() {
+        return new HashSet<QName>();
     }
-    System.out.println("HANDLER: XMLLangHandler.handleFault() END");
-    return true;
-  };
 
-  public void destroy() {
-  };
+    public void init(java.util.Map<String, Object> config) {}
+    ;
 
-  public void close(MessageContext context) {
-  };
-
-  public boolean handleMessage(SOAPMessageContext context) {
-    if (Handler_Util.getDirection(context).equals(Constants.OUTBOUND)) {
-      System.out.println(
-          "HANDLER: XMLLangHandler.handleMessage() direction=outbound");
-    } else {
-      System.out
-          .println("HANDLER: XMLLangHandler.handleMessage() direction=inbound");
+    public boolean handleFault(SOAPMessageContext context) {
+        System.out.println("HANDLER: XMLLangHandler.handleFault() BEGIN");
+        JAXWS_Util.dumpSOAPMessage(context.getMessage(), false);
+        try {
+            if (Handler_Util.getDirection(context).equals(Constants.OUTBOUND)) {
+                System.out.println("HANDLER: XMLLangHandler.handleFault() direction=outbound");
+                addXMLLangAttribute((SOAPMessageContext) context);
+            } else {
+                System.out.println("HANDLER: XMLLangHandler.handleFault() direction=inbound");
+            }
+        } catch (SOAPException se) {
+            com.sun.ts.lib.util.TestUtil.printStackTrace(se);
+        }
+        System.out.println("HANDLER: XMLLangHandler.handleFault() END");
+        return true;
     }
-    return true;
-  }
+    ;
 
-  private void addXMLLangAttribute(SOAPMessageContext context)
-      throws SOAPException {
+    public void destroy() {}
+    ;
 
-    Iterator children;
-    SOAPElement fault = context.getMessage().getSOAPPart().getEnvelope()
-        .getBody().getFault();
-    if (fault == null)
-      return;
-    children = fault.getChildElements();
-    SOAPElement child;
-    while (children.hasNext()) {
-      child = (SOAPElement) children.next();
-      if (child.getElementName().getLocalName().equals("faultstring")) {
-        child.addAttribute(getXMLLangName(SOAPFactory.newInstance()), "en");
-      }
+    public void close(MessageContext context) {}
+    ;
+
+    public boolean handleMessage(SOAPMessageContext context) {
+        if (Handler_Util.getDirection(context).equals(Constants.OUTBOUND)) {
+            System.out.println("HANDLER: XMLLangHandler.handleMessage() direction=outbound");
+        } else {
+            System.out.println("HANDLER: XMLLangHandler.handleMessage() direction=inbound");
+        }
+        return true;
     }
-    context.getMessage().saveChanges();
-  }
 
-  private Name getXMLLangName(SOAPFactory factory) throws SOAPException {
-    return factory.createName("lang", "xml", "");
-  }
+    private void addXMLLangAttribute(SOAPMessageContext context) throws SOAPException {
+
+        Iterator children;
+        SOAPElement fault =
+                context.getMessage().getSOAPPart().getEnvelope().getBody().getFault();
+        if (fault == null) return;
+        children = fault.getChildElements();
+        SOAPElement child;
+        while (children.hasNext()) {
+            child = (SOAPElement) children.next();
+            if (child.getElementName().getLocalName().equals("faultstring")) {
+                child.addAttribute(getXMLLangName(SOAPFactory.newInstance()), "en");
+            }
+        }
+        context.getMessage().saveChanges();
+    }
+
+    private Name getXMLLangName(SOAPFactory factory) throws SOAPException {
+        return factory.createName("lang", "xml", "");
+    }
 }

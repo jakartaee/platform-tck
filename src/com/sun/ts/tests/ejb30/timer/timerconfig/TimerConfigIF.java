@@ -19,14 +19,12 @@
  */
 package com.sun.ts.tests.ejb30.timer.timerconfig;
 
-import java.util.Collection;
-import java.util.Date;
-
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
-
 import jakarta.ejb.ScheduleExpression;
 import jakarta.ejb.Timer;
 import jakarta.ejb.TimerConfig;
+import java.util.Collection;
+import java.util.Date;
 
 /**
  * This interface is extracted from TimerConfigBean and its superclasses. It
@@ -36,67 +34,63 @@ import jakarta.ejb.TimerConfig;
  */
 public interface TimerConfigIF {
 
-  public abstract void resetTimerConfig(String testName, StringBuilder sb);
+    public abstract void resetTimerConfig(String testName, StringBuilder sb);
 
-  public abstract void illegalArgumentException(StringBuilder sb,
-      TimerConfig timerConfig);
+    public abstract void illegalArgumentException(StringBuilder sb, TimerConfig timerConfig);
 
-  public abstract void gettersSetters(StringBuilder sb);
+    public abstract void gettersSetters(StringBuilder sb);
 
-  Collection<Timer> getTimers();
+    Collection<Timer> getTimers();
 
-  void cancelTimer(Timer... timers);
+    void cancelTimer(Timer... timers);
 
-  void cancelAllTimers();
+    void cancelAllTimers();
 
-  Timer createTimer(ScheduleExpression exp, String name);
+    Timer createTimer(ScheduleExpression exp, String name);
 
-  boolean isPersistent(Timer timer);
+    boolean isPersistent(Timer timer);
 
-  boolean isCalendarTimer(Timer timer);
+    boolean isCalendarTimer(Timer timer);
 
-  ScheduleExpression getSchedule(Timer timer);
+    ScheduleExpression getSchedule(Timer timer);
 
-  Timer createTimer(Date expiration, TimerConfig timerConfig);
+    Timer createTimer(Date expiration, TimerConfig timerConfig);
 
-  Timer createTimer(Date initialExpiration, long intervalDuration,
-      TimerConfig timerConfig);
+    Timer createTimer(Date initialExpiration, long intervalDuration, TimerConfig timerConfig);
 
-  Timer createTimer(long duration, TimerConfig timerConfig);
+    Timer createTimer(long duration, TimerConfig timerConfig);
 
-  Timer createTimer(long InitialDuration, long intervalDuration,
-      TimerConfig timerConfig);
+    Timer createTimer(long InitialDuration, long intervalDuration, TimerConfig timerConfig);
 
-  Timer createTimer(ScheduleExpression exp, TimerConfig timerConfig);
+    Timer createTimer(ScheduleExpression exp, TimerConfig timerConfig);
 
-  Timer createTimer(ScheduleExpression exp, TimerInfo info);
+    Timer createTimer(ScheduleExpression exp, TimerInfo info);
 
-  Timer createTimer(long duration, java.io.Serializable timerInfo);
+    Timer createTimer(long duration, java.io.Serializable timerInfo);
 
-  Timer createTimer(Date expiration, long duration,
-      java.io.Serializable timerInfo);
+    Timer createTimer(Date expiration, long duration, java.io.Serializable timerInfo);
 
-  Timer createFarFutureTimer(String name);
+    Timer createFarFutureTimer(String name);
 
-  Timer createFarFutureTimer(TimerConfig timerConfig);
+    Timer createFarFutureTimer(TimerConfig timerConfig);
 
-  Timer createSecondLaterTimer(String name);
+    Timer createSecondLaterTimer(String name);
 
-  Timer createSecondLaterTimer(TimerConfig timerConfig);
+    Timer createSecondLaterTimer(TimerConfig timerConfig);
 
-  Timer createMillisecondLaterTimer(String name);
+    Timer createMillisecondLaterTimer(String name);
 
-  Timer findTimer(TimerInfo info);
+    Timer findTimer(TimerInfo info);
 
-  long getTimeRemaining(Timer timer);
+    long getTimeRemaining(Timer timer);
 
-  Date getNextTimeout(Timer timer);
+    Date getNextTimeout(Timer timer);
 
-  Timer findTimer(String info);
+    Timer findTimer(String info);
 
-  Timer findTimer(TimerConfig timerConfig);
+    Timer findTimer(TimerConfig timerConfig);
 
-  String passIfNoMoreTimeouts(Timer t);
+    String passIfNoMoreTimeouts(Timer t);
 
-  String passIfNoSuchObjectLocalException(Timer t);
+    String passIfNoSuchObjectLocalException(Timer t);
 }

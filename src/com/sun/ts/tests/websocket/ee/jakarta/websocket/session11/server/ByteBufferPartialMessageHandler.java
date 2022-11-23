@@ -17,36 +17,32 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.server;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+import jakarta.websocket.MessageHandler;
+import jakarta.websocket.Session;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
-import com.sun.ts.tests.websocket.common.util.IOUtil;
+public class ByteBufferPartialMessageHandler implements MessageHandler.Partial<ByteBuffer> {
 
-import jakarta.websocket.MessageHandler;
-import jakarta.websocket.Session;
+    private Session session;
 
-public class ByteBufferPartialMessageHandler
-    implements MessageHandler.Partial<ByteBuffer> {
+    public static final String HANDLER_SAYS = "ByteBufferPartialMessageHandler says: ";
 
-  private Session session;
+    StringBuilder sb = new StringBuilder();
 
-  public static final String HANDLER_SAYS = "ByteBufferPartialMessageHandler says: ";
-
-  StringBuilder sb = new StringBuilder();
-
-  public ByteBufferPartialMessageHandler(Session session) {
-    super();
-    this.session = session;
-  }
-
-  @Override
-  public void onMessage(ByteBuffer message, boolean finite) {
-    sb.append(IOUtil.byteBufferToString(message));
-    try {
-      if (finite)
-        session.getBasicRemote().sendText(HANDLER_SAYS + sb.toString());
-    } catch (IOException e) {
-      throw new RuntimeException(e);
+    public ByteBufferPartialMessageHandler(Session session) {
+        super();
+        this.session = session;
     }
-  }
+
+    @Override
+    public void onMessage(ByteBuffer message, boolean finite) {
+        sb.append(IOUtil.byteBufferToString(message));
+        try {
+            if (finite) session.getBasicRemote().sendText(HANDLER_SAYS + sb.toString());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

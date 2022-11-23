@@ -16,9 +16,6 @@
 
 package com.sun.ts.tests.servlet.spec.security.metadatacomplete;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.HttpConstraint;
 import jakarta.servlet.annotation.ServletSecurity;
@@ -27,55 +24,53 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /*
  * This servlet is declared to PERMIT all via annotation but is declared
- * to DenyAll via DD.  The DD is flagged with metadata-complete=true so 
+ * to DenyAll via DD.  The DD is flagged with metadata-complete=true so
  * the DD *must* take precedence over the annotation in here.  Thus
  * this servlet will be set to DENYALL because of the DD settings.
  */
 @ServletSecurity(@HttpConstraint(EmptyRoleSemantic.PERMIT))
-@WebServlet(name = "DenyAllTestLogicalName", urlPatterns = {
-    "/ServletDenyAll" })
+@WebServlet(
+        name = "DenyAllTestLogicalName",
+        urlPatterns = {"/ServletDenyAll"})
 public class DenyAllServlet extends HttpServlet {
 
-  //
-  // this must be supported per Servlet 3.0 spec (section 13.4), bullet item 1.
-  //
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter out = response.getWriter();
+    //
+    // this must be supported per Servlet 3.0 spec (section 13.4), bullet item 1.
+    //
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
 
-    System.out.println("Inside  DenyAllServlet ....." + "<BR>");
-    if ((request != null) && (request.getUserPrincipal() != null)) {
-      System.out.println("The user principal is: "
-          + request.getUserPrincipal().getName() + "<BR>");
-      System.err.println("The user principal is: "
-          + request.getUserPrincipal().getName() + "<BR>");
-      out.println("The user principal is: "
-          + request.getUserPrincipal().getName() + "<BR>");
-      out.println("getRemoteUser(): " + request.getRemoteUser() + "<BR>");
+        System.out.println("Inside  DenyAllServlet ....." + "<BR>");
+        if ((request != null) && (request.getUserPrincipal() != null)) {
+            System.out.println(
+                    "The user principal is: " + request.getUserPrincipal().getName() + "<BR>");
+            System.err.println(
+                    "The user principal is: " + request.getUserPrincipal().getName() + "<BR>");
+            out.println("The user principal is: " + request.getUserPrincipal().getName() + "<BR>");
+            out.println("getRemoteUser(): " + request.getRemoteUser() + "<BR>");
+        }
     }
-  }
 
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, java.io.IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, java.io.IOException {
 
-    PrintWriter out = response.getWriter();
+        PrintWriter out = response.getWriter();
 
-    if ((request != null) && (request.getUserPrincipal() != null)) {
-      System.out.println("Inside  DenyAllServlet.doGet() ....." + "<BR>");
-      System.out.println("The user principal is: "
-          + request.getUserPrincipal().getName() + "<BR>");
-      System.err.println("The user principal is: "
-          + request.getUserPrincipal().getName() + "<BR>");
-      out.println("The user principal is: "
-          + request.getUserPrincipal().getName() + "<BR>");
-      out.println("getRemoteUser(): " + request.getRemoteUser() + "<BR>");
-    } else {
-      out.println(
-          "DenyAllServlet.doGet() - could not get request.getUserPrincipal()");
+        if ((request != null) && (request.getUserPrincipal() != null)) {
+            System.out.println("Inside  DenyAllServlet.doGet() ....." + "<BR>");
+            System.out.println(
+                    "The user principal is: " + request.getUserPrincipal().getName() + "<BR>");
+            System.err.println(
+                    "The user principal is: " + request.getUserPrincipal().getName() + "<BR>");
+            out.println("The user principal is: " + request.getUserPrincipal().getName() + "<BR>");
+            out.println("getRemoteUser(): " + request.getRemoteUser() + "<BR>");
+        } else {
+            out.println("DenyAllServlet.doGet() - could not get request.getUserPrincipal()");
+        }
     }
-  }
-
 }

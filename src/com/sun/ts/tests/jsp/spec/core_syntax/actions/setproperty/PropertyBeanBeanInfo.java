@@ -26,33 +26,31 @@ import java.beans.SimpleBeanInfo;
 import java.util.Arrays;
 
 public class PropertyBeanBeanInfo extends SimpleBeanInfo {
-  private PropertyDescriptor[] pd = null;
+    private PropertyDescriptor[] pd = null;
 
-  public PropertyBeanBeanInfo() {
+    public PropertyBeanBeanInfo() {}
 
-  }
+    /**
+     *
+     * @return an array of PropertyDescriptors describing the PropertyBean's
+     *         exposed properties.
+     */
+    public PropertyDescriptor[] getPropertyDescriptors() {
+        if (pd == null) {
+            try {
+                pd = new PropertyDescriptor[] {
+                    new PropertyDescriptor("PString", PropertyBean.class),
+                    new PropertyDescriptor("PBoolean", PropertyBean.class),
+                    new PropertyDescriptor("PInteger", PropertyBean.class)
+                };
 
-  /**
-   *
-   * @return an array of PropertyDescriptors describing the PropertyBean's
-   *         exposed properties.
-   */
-  public PropertyDescriptor[] getPropertyDescriptors() {
-    if (pd == null) {
-      try {
-        pd = new PropertyDescriptor[] {
-            new PropertyDescriptor("PString", PropertyBean.class),
-            new PropertyDescriptor("PBoolean", PropertyBean.class),
-            new PropertyDescriptor("PInteger", PropertyBean.class) };
-
-        pd[0].setPropertyEditorClass(PStringPropertyEditor.class);
-        pd[1].setPropertyEditorClass(PBooleanPropertyEditor.class);
-        pd[2].setPropertyEditorClass(PIntegerPropertyEditor.class);
-      } catch (IntrospectionException ie) {
-        pd = super.getPropertyDescriptors();
-      }
+                pd[0].setPropertyEditorClass(PStringPropertyEditor.class);
+                pd[1].setPropertyEditorClass(PBooleanPropertyEditor.class);
+                pd[2].setPropertyEditorClass(PIntegerPropertyEditor.class);
+            } catch (IntrospectionException ie) {
+                pd = super.getPropertyDescriptors();
+            }
+        }
+        return Arrays.copyOf(pd, pd.length);
     }
-    return Arrays.copyOf(pd, pd.length);
-  }
-
-}// PropertyBeanBeanInfo
+} // PropertyBeanBeanInfo

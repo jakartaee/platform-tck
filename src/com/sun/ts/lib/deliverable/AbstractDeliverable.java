@@ -16,10 +16,9 @@
 
 package com.sun.ts.lib.deliverable;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.porting.DeploymentInfo;
-import java.util.Map;
 import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * This class serves as an abstract implementation of the DeliverableInterface.
@@ -28,50 +27,48 @@ import java.util.Hashtable;
  * @author Kyle Grucci
  */
 public abstract class AbstractDeliverable implements DeliverableInterface {
-  protected Map htTSValidVehicles;
+    protected Map htTSValidVehicles;
 
-  protected Map htValidApps;
+    protected Map htValidApps;
 
-  protected Map htValidRunDirections;
+    protected Map htValidRunDirections;
 
-  public boolean supportsAutoDeployment() {
-    return true;
-  }
-
-  public boolean supportsAutoJMSAdmin() {
-    return true;
-  }
-
-  public Map getValidVehicles() {
-    if (htTSValidVehicles == null) {
-      // TS hash table
-      htTSValidVehicles = new Hashtable();
-      // add default values
-      htTSValidVehicles.put("tests.service_eetest.vehicles",
-          new String[] { "ejb", "servlet", "jsp" });
+    public boolean supportsAutoDeployment() {
+        return true;
     }
-    return htTSValidVehicles;
-  }
 
-  public Map getInteropDirections() {
-    if (htValidRunDirections == null) {
-      htValidRunDirections = new Hashtable();
-      // default for all tests
-      htValidRunDirections.put("tests.interop", "forward");
+    public boolean supportsAutoJMSAdmin() {
+        return true;
     }
-    return htValidRunDirections;
-  }
 
-  public boolean supportsInterop() {
-    return true;
-  }
+    public Map getValidVehicles() {
+        if (htTSValidVehicles == null) {
+            // TS hash table
+            htTSValidVehicles = new Hashtable();
+            // add default values
+            htTSValidVehicles.put("tests.service_eetest.vehicles", new String[] {"ejb", "servlet", "jsp"});
+        }
+        return htTSValidVehicles;
+    }
 
-  public String getAdditionalClasspath(String distDir) {
-    return null;
-  }
+    public Map getInteropDirections() {
+        if (htValidRunDirections == null) {
+            htValidRunDirections = new Hashtable();
+            // default for all tests
+            htValidRunDirections.put("tests.interop", "forward");
+        }
+        return htValidRunDirections;
+    }
 
-  public DeploymentInfo getDeploymentInfo(String earFile,
-      String[] sValidRuntimeInfoFilesArray) {
-    return null;
-  }
+    public boolean supportsInterop() {
+        return true;
+    }
+
+    public String getAdditionalClasspath(String distDir) {
+        return null;
+    }
+
+    public DeploymentInfo getDeploymentInfo(String earFile, String[] sValidRuntimeInfoFilesArray) {
+        return null;
+    }
 }

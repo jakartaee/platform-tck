@@ -20,24 +20,26 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice;
 
-import jakarta.xml.ws.WebServiceException;
-
 import jakarta.jws.WebService;
 
-@WebService(portName = "HelloPort", serviceName = "HelloService", targetNamespace = "http://helloservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSDLHelloService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice.Hello")
-
+@WebService(
+        portName = "HelloPort",
+        serviceName = "HelloService",
+        targetNamespace = "http://helloservice.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/WSDLHelloService.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice.Hello")
 public class HelloImpl implements Hello {
-  private static final ObjectFactory of = new ObjectFactory();
+    private static final ObjectFactory of = new ObjectFactory();
 
-  public HelloResponse hello(HelloRequest req) {
-    System.out.println("HelloImpl received: " + req.getArgument());
-    HelloResponse resp = null;
-    resp = of.createHelloResponse();
-    resp.setArgument(req.getArgument());
-    return resp;
-  }
+    public HelloResponse hello(HelloRequest req) {
+        System.out.println("HelloImpl received: " + req.getArgument());
+        HelloResponse resp = null;
+        resp = of.createHelloResponse();
+        resp.setArgument(req.getArgument());
+        return resp;
+    }
 
-  public void helloOneWay(HelloOneWayRequest req) {
-    System.out.println("HelloImpl received: " + req.getArgument());
-  }
+    public void helloOneWay(HelloOneWayRequest req) {
+        System.out.println("HelloImpl received: " + req.getArgument());
+    }
 }

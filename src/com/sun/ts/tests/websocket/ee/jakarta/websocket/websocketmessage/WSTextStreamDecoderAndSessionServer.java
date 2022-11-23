@@ -17,33 +17,31 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.websocketmessage;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextStreamDecoder;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
-@ServerEndpoint(value = "/textstreamdecodersession", decoders = {
-    StringBeanTextStreamDecoder.class })
+@ServerEndpoint(
+        value = "/textstreamdecodersession",
+        decoders = {StringBeanTextStreamDecoder.class})
 public class WSTextStreamDecoderAndSessionServer {
 
-  @SuppressWarnings("unused")
-  @OnMessage
-  public String echo(Session s, StringBean bean) {
-    return bean.get();
-  }
+    @SuppressWarnings("unused")
+    @OnMessage
+    public String echo(Session s, StringBean bean) {
+        return bean.get();
+    }
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in " + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
-
+    @OnError
+    public void onError(Session session, Throwable t) throws IOException {
+        System.out.println("@OnError in " + getClass().getName());
+        t.printStackTrace(); // Write to error log, too
+        String message = "Exception: " + IOUtil.printStackTrace(t);
+        session.getBasicRemote().sendText(message);
+    }
 }

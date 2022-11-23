@@ -22,11 +22,11 @@ package com.sun.ts.tests.ejb.ee.tx.txbean;
 
 public class AppException extends Exception {
 
-  public AppException() {
-    super();
-  }
+    public AppException() {
+        super();
+    }
 
-  public AppException(String msg) {
-    super(msg);
-  }
+    public AppException(String msg) {
+        super(msg);
+    }
 }

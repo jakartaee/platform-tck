@@ -27,50 +27,49 @@ import jakarta.persistence.TemporalType;
 @Table(name = "DATATYPES2")
 public class PropertyUtilDateId implements java.io.Serializable {
 
-  protected java.util.Date id;
+    protected java.util.Date id;
 
-  private java.util.Date date;
+    private java.util.Date date;
 
-  public PropertyUtilDateId() {
-  }
+    public PropertyUtilDateId() {}
 
-  public PropertyUtilDateId(java.util.Date id, java.util.Date date) {
-    this.id = id;
-    this.date = date;
-  }
-
-  @Id
-  @Column(name = "DATATYPES2_ID")
-  @Temporal(TemporalType.DATE)
-  public java.util.Date getId() {
-    return id;
-  }
-
-  public void setId(java.util.Date id) {
-    this.id = id;
-  }
-
-  @Column(name = "DATEDATA")
-  @Temporal(TemporalType.DATE)
-  public java.util.Date getDate() {
-    return date;
-  }
-
-  public void setDate(java.util.Date date) {
-    this.date = date;
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    if (getDate() != null) {
-      result.append(", date: " + getDate());
-    } else {
-      result.append(", date: null");
+    public PropertyUtilDateId(java.util.Date id, java.util.Date date) {
+        this.id = id;
+        this.date = date;
     }
-    result.append("]");
-    return result.toString();
-  }
+
+    @Id
+    @Column(name = "DATATYPES2_ID")
+    @Temporal(TemporalType.DATE)
+    public java.util.Date getId() {
+        return id;
+    }
+
+    public void setId(java.util.Date id) {
+        this.id = id;
+    }
+
+    @Column(name = "DATEDATA")
+    @Temporal(TemporalType.DATE)
+    public java.util.Date getDate() {
+        return date;
+    }
+
+    public void setDate(java.util.Date date) {
+        this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getId());
+        if (getDate() != null) {
+            result.append(", date: " + getDate());
+        } else {
+            result.append(", date: null");
+        }
+        result.append("]");
+        return result.toString();
+    }
 }

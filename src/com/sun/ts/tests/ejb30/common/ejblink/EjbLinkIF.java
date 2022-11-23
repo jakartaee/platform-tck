@@ -20,5 +20,4 @@
 
 package com.sun.ts.tests.ejb30.common.ejblink;
 
-public interface EjbLinkIF extends CommonIF {
-}
+public interface EjbLinkIF extends CommonIF {}

@@ -26,17 +26,17 @@ import jakarta.annotation.PreDestroy;
 
 @ManagedBean("OverrideWithPostConstructBean")
 public class OverrideWithPostConstructBean extends OverrideBeanBase {
-  private static final String simpleName = "OverrideWithPostConstructBean";
+    private static final String simpleName = "OverrideWithPostConstructBean";
 
-  @PostConstruct
-  @Override
-  protected void postConstructInOverrideBeanBase() {
-    historySingletonBean.addPostConstructRecordFor(this, simpleName);
-  }
+    @PostConstruct
+    @Override
+    protected void postConstructInOverrideBeanBase() {
+        historySingletonBean.addPostConstructRecordFor(this, simpleName);
+    }
 
-  @Override
-  @PreDestroy
-  protected void preDestroyInOverrideBeanBase() {
-    Helper.getLogger().info("In preDestroyInOverrideBeanBase of " + this);
-  }
+    @Override
+    @PreDestroy
+    protected void preDestroyInOverrideBeanBase() {
+        Helper.getLogger().info("In preDestroyInOverrideBeanBase of " + this);
+    }
 }

@@ -24,13 +24,13 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "MyOtherFaultBean", namespace = "http://doclitservice.org/wsdl")
 public class MyOtherFaultBean {
-  protected String message;
+    protected String message;
 
-  public String getMessage() {
-    return message;
-  }
+    public String getMessage() {
+        return message;
+    }
 
-  public void setMessage(String value) {
-    this.message = value;
-  }
+    public void setMessage(String value) {
+        this.message = value;
+    }
 }

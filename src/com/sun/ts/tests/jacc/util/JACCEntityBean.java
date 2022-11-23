@@ -20,131 +20,114 @@
  * @author Raja Perumal
  *         08/22/02
  */
-
 package com.sun.ts.tests.jacc.util;
-
-import java.rmi.RemoteException;
-import java.security.Principal;
 
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
+import java.rmi.RemoteException;
+import java.security.Principal;
 
 public abstract class JACCEntityBean implements EntityBean {
 
-  private EntityContext context;
+    private EntityContext context;
 
-  private static final String jndiName = "java:comp/env/ejb/JACCSession";
+    private static final String jndiName = "java:comp/env/ejb/JACCSession";
 
-  private JACCSessionHome jaccSessionHome = null;
+    private JACCSessionHome jaccSessionHome = null;
 
-  private JACCSession jaccSession = null;
+    private JACCSession jaccSession = null;
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  public JACCEntityKey ejbCreate(String arg1, int arg2, long arg3)
-      throws CreateException {
+    public JACCEntityKey ejbCreate(String arg1, int arg2, long arg3) throws CreateException {
 
-    setArg1(arg1);
-    setArg2(new Integer(arg2));
-    setArg3(new Long(arg3));
-    return null;
-  }
-
-  public void ejbPostCreate(String arg1, int arg2, long arg3)
-      throws CreateException {
-  }
-
-  public void setEntityContext(EntityContext ctx) {
-    context = ctx;
-    try {
-
-      nctx = new TSNamingContext();
-
-      // lookup JACCSessionHome
-      jaccSessionHome = (JACCSessionHome) nctx.lookup(jndiName,
-          JACCSessionHome.class);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-
-      throw new EJBException("Unable to obtain naming context");
+        setArg1(arg1);
+        setArg2(new Integer(arg2));
+        setArg3(new Long(arg3));
+        return null;
     }
 
-  }
+    public void ejbPostCreate(String arg1, int arg2, long arg3) throws CreateException {}
 
-  public void unsetEntityContext() {
-    this.context = null;
-  }
+    public void setEntityContext(EntityContext ctx) {
+        context = ctx;
+        try {
 
-  public void ejbRemove() {
-  }
+            nctx = new TSNamingContext();
 
-  public void ejbLoad() {
-  }
+            // lookup JACCSessionHome
+            jaccSessionHome = (JACCSessionHome) nctx.lookup(jndiName, JACCSessionHome.class);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
 
-  public void ejbStore() {
-  }
-
-  public void ejbPassivate() {
-  }
-
-  public void ejbActivate() {
-  }
-
-  // Get Arg1
-  public abstract String getArg1();
-
-  // Set Arg1
-  public abstract void setArg1(String arg1);
-
-  // Get Arg2
-  public abstract Integer getArg2();
-
-  // Set Arg2
-  public abstract void setArg2(Integer arg2);
-
-  // Get Arg3
-  public abstract Long getArg3();
-
-  // Set Arg3
-  public abstract void setArg3(Long arg3);
-
-  public boolean accessJACCSession_getCallerName() throws RemoteException {
-    boolean result = false;
-    String callerName = null;
-    Principal principal = context.getCallerPrincipal();
-
-    if (principal != null) {
-      callerName = principal.getName();
+            throw new EJBException("Unable to obtain naming context");
+        }
     }
 
-    try {
-
-      TestUtil.logMsg("User " + callerName + " invoked "
-          + "JACCEntity.accessJACCSession_getCallerName");
-
-      // create JACCSession
-      jaccSession = jaccSessionHome.create("sample", 2, 2L);
-
-      TestUtil.logMsg("Created JACCSessionBean");
-
-      // access getCallerName()
-      String newCallerName = jaccSession.getCallerName();
-      TestUtil.logMsg(
-          "JACCEnitty accessed JACCSession.getCallerName as " + newCallerName);
-      result = true;
-
-    } catch (CreateException ce) {
-      throw new RemoteException("couldn't create JACCSession", ce);
-    } catch (Exception e) {
-      throw new RemoteException("couldn't access JACCSession.getCallerName()",
-          e);
+    public void unsetEntityContext() {
+        this.context = null;
     }
-    return result;
-  }
 
+    public void ejbRemove() {}
+
+    public void ejbLoad() {}
+
+    public void ejbStore() {}
+
+    public void ejbPassivate() {}
+
+    public void ejbActivate() {}
+
+    // Get Arg1
+    public abstract String getArg1();
+
+    // Set Arg1
+    public abstract void setArg1(String arg1);
+
+    // Get Arg2
+    public abstract Integer getArg2();
+
+    // Set Arg2
+    public abstract void setArg2(Integer arg2);
+
+    // Get Arg3
+    public abstract Long getArg3();
+
+    // Set Arg3
+    public abstract void setArg3(Long arg3);
+
+    public boolean accessJACCSession_getCallerName() throws RemoteException {
+        boolean result = false;
+        String callerName = null;
+        Principal principal = context.getCallerPrincipal();
+
+        if (principal != null) {
+            callerName = principal.getName();
+        }
+
+        try {
+
+            TestUtil.logMsg("User " + callerName + " invoked " + "JACCEntity.accessJACCSession_getCallerName");
+
+            // create JACCSession
+            jaccSession = jaccSessionHome.create("sample", 2, 2L);
+
+            TestUtil.logMsg("Created JACCSessionBean");
+
+            // access getCallerName()
+            String newCallerName = jaccSession.getCallerName();
+            TestUtil.logMsg("JACCEnitty accessed JACCSession.getCallerName as " + newCallerName);
+            result = true;
+
+        } catch (CreateException ce) {
+            throw new RemoteException("couldn't create JACCSession", ce);
+        } catch (Exception e) {
+            throw new RemoteException("couldn't access JACCSession.getCallerName()", e);
+        }
+        return result;
+    }
 }

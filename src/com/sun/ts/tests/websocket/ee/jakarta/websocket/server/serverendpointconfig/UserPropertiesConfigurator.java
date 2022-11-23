@@ -16,42 +16,40 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverendpointconfig;
 
-import java.util.Map;
-
 import jakarta.websocket.HandshakeResponse;
 import jakarta.websocket.server.HandshakeRequest;
 import jakarta.websocket.server.ServerEndpointConfig;
 import jakarta.websocket.server.ServerEndpointConfig.Configurator;
+import java.util.Map;
 
 public class UserPropertiesConfigurator extends Configurator {
 
-  public static final String KEY_3 = "UPC-1";
-  public static final String KEY_4 = "UPC-2";
+    public static final String KEY_3 = "UPC-1";
+    public static final String KEY_4 = "UPC-2";
 
-  @Override
-  public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
-    Map<String,Object> userProperties = sec.getUserProperties();
-    
-    // First check that the expected properties are present
-    if (userProperties.size() != 2) {
-      throw new IllegalStateException(
-          "User properties map has [" + userProperties.size() + "] entries when 2 are expected");
+    @Override
+    public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
+        Map<String, Object> userProperties = sec.getUserProperties();
+
+        // First check that the expected properties are present
+        if (userProperties.size() != 2) {
+            throw new IllegalStateException(
+                    "User properties map has [" + userProperties.size() + "] entries when 2 are expected");
+        }
+
+        // Then check that both expected keys are present
+        checkKey(userProperties, UserPropertiesServerEndpointConfig.KEY_1);
+        checkKey(userProperties, UserPropertiesServerEndpointConfig.KEY_2);
+
+        // Now remove key 2 and and two keys of our own
+        userProperties.remove(UserPropertiesServerEndpointConfig.KEY_2);
+        userProperties.put(KEY_3, new Object());
+        userProperties.put(KEY_4, new Object());
     }
-   
-    // Then check that both expected keys are present
-    checkKey(userProperties, UserPropertiesServerEndpointConfig.KEY_1);
-    checkKey(userProperties, UserPropertiesServerEndpointConfig.KEY_2);
-    
-    // Now remove key 2 and and two keys of our own
-    userProperties.remove(UserPropertiesServerEndpointConfig.KEY_2);
-    userProperties.put(KEY_3, new Object());
-    userProperties.put(KEY_4, new Object());
-  }
-  
-  
-  private void checkKey(Map<String,Object> map, String key) {
-    if (!map.containsKey(key)) {
-      throw new IllegalStateException("User properties map is missing entry with key [" + key + "]");
+
+    private void checkKey(Map<String, Object> map, String key) {
+        if (!map.containsKey(key)) {
+            throw new IllegalStateException("User properties map is missing entry with key [" + key + "]");
+        }
     }
-  }
 }

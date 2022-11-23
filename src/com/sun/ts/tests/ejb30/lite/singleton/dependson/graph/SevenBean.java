@@ -20,17 +20,16 @@
 package com.sun.ts.tests.ejb30.lite.singleton.dependson.graph;
 
 import com.sun.ts.tests.ejb30.lite.singleton.dependson.common.BeanBase;
-
 import jakarta.ejb.DependsOn;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
 
 @Startup
 @Singleton
-@DependsOn({ "ElevenBean", "EightBean" })
+@DependsOn({"ElevenBean", "EightBean"})
 public class SevenBean extends BeanBase {
-  @Override
-  protected String getBeanName() {
-    return "SevenBean";
-  }
+    @Override
+    protected String getBeanName() {
+        return "SevenBean";
+    }
 }

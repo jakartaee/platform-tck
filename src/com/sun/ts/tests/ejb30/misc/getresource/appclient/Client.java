@@ -20,141 +20,139 @@
 
 package com.sun.ts.tests.ejb30.misc.getresource.appclient;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.misc.getresource.common.GetResourceIF;
+import java.util.Properties;
 
 public class Client extends EETest {
-  protected Properties props;
+    protected Properties props;
 
-  private GetResourceIF tester = new GetResourceDelegate();
+    private GetResourceIF tester = new GetResourceDelegate();
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * @class.setup_props:
-   */
-  public void setup(String[] args, Properties p) throws Fault {
-    props = p;
-  }
+    /*
+     * @class.setup_props:
+     */
+    public void setup(String[] args, Properties p) throws Fault {
+        props = p;
+    }
 
-  public void cleanup() throws Fault {
-  }
+    public void cleanup() throws Fault {}
 
-  /*
-   * @testName: getResourceNullParam
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: access resource in application client component
-   */
-  public void getResourceNullParam() throws TestFailedException {
-    tester.getResourceNullParam();
-  }
+    /*
+     * @testName: getResourceNullParam
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: access resource in application client component
+     */
+    public void getResourceNullParam() throws TestFailedException {
+        tester.getResourceNullParam();
+    }
 
-  /*
-   * @testName: getResourceAsStreamNullParam
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: access resource in application client component
-   */
-  public void getResourceAsStreamNullParam() throws TestFailedException {
-    tester.getResourceAsStreamNullParam();
-  }
+    /*
+     * @testName: getResourceAsStreamNullParam
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: access resource in application client component
+     */
+    public void getResourceAsStreamNullParam() throws TestFailedException {
+        tester.getResourceAsStreamNullParam();
+    }
 
-  /*
-   * @testName: getResourceNonexisting
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: access resource in application client component
-   */
-  public void getResourceNonexisting() throws TestFailedException {
-    tester.getResourceNonexisting();
-  }
+    /*
+     * @testName: getResourceNonexisting
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: access resource in application client component
+     */
+    public void getResourceNonexisting() throws TestFailedException {
+        tester.getResourceNonexisting();
+    }
 
-  /*
-   * @testName: getResourceAsStreamNonexisting
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: access resource in application client component
-   */
-  public void getResourceAsStreamNonexisting() throws TestFailedException {
-    tester.getResourceAsStreamNonexisting();
-  }
+    /*
+     * @testName: getResourceAsStreamNonexisting
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: access resource in application client component
+     */
+    public void getResourceAsStreamNonexisting() throws TestFailedException {
+        tester.getResourceAsStreamNonexisting();
+    }
 
-  /*
-   * @testName: getResourceSamePackage
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: access resource in application client component
-   */
-  public void getResourceSamePackage() throws TestFailedException {
-    tester.getResourceSamePackage();
-  }
+    /*
+     * @testName: getResourceSamePackage
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: access resource in application client component
+     */
+    public void getResourceSamePackage() throws TestFailedException {
+        tester.getResourceSamePackage();
+    }
 
-  /*
-   * @testName: getResourceAsStreamSamePackage
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: access resource in application client component
-   */
-  public void getResourceAsStreamSamePackage() throws TestFailedException {
-    tester.getResourceAsStreamSamePackage();
-  }
+    /*
+     * @testName: getResourceAsStreamSamePackage
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: access resource in application client component
+     */
+    public void getResourceAsStreamSamePackage() throws TestFailedException {
+        tester.getResourceAsStreamSamePackage();
+    }
 
-  /*
-   * @testName: getResourceResolve
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: access resource in application client component
-   */
-  public void getResourceResolve() throws TestFailedException {
-    tester.getResourceResolve();
-  }
+    /*
+     * @testName: getResourceResolve
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: access resource in application client component
+     */
+    public void getResourceResolve() throws TestFailedException {
+        tester.getResourceResolve();
+    }
 
-  /*
-   * @testName: getResourceAsStreamResolve
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: access resource in application client component
-   */
-  public void getResourceAsStreamResolve() throws TestFailedException {
-    tester.getResourceAsStreamResolve();
-  }
+    /*
+     * @testName: getResourceAsStreamResolve
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: access resource in application client component
+     */
+    public void getResourceAsStreamResolve() throws TestFailedException {
+        tester.getResourceAsStreamResolve();
+    }
 
-  /*
-   * @testName: getResourceResolveEarLib
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: access resource in application client component
-   */
-  public void getResourceResolveEarLib() throws TestFailedException {
-    tester.getResourceResolveEarLib();
-  }
+    /*
+     * @testName: getResourceResolveEarLib
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: access resource in application client component
+     */
+    public void getResourceResolveEarLib() throws TestFailedException {
+        tester.getResourceResolveEarLib();
+    }
 
-  /*
-   * @testName: getResourceAsStreamResolveEarLib
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: access resource in application client component
-   */
-  public void getResourceAsStreamResolveEarLib() throws TestFailedException {
-    tester.getResourceAsStreamResolveEarLib();
-  }
+    /*
+     * @testName: getResourceAsStreamResolveEarLib
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: access resource in application client component
+     */
+    public void getResourceAsStreamResolveEarLib() throws TestFailedException {
+        tester.getResourceAsStreamResolveEarLib();
+    }
 }

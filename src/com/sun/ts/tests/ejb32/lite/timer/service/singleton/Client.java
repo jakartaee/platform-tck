@@ -16,26 +16,25 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.service.singleton;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.ejb32.timer.service.common.ClientBase;
+import java.util.Properties;
 
 public class Client extends ClientBase {
 
-  /*
-   * @testName: testGetAllTimers
-   * 
-   * @test_Strategy: create a bunch of auto-timers & programmatic timers
-   * respectively in a SLSB and a Singleton Bean, then run getAllTimers() from
-   * the singleton bean, which should return all the timers created within the
-   * same module. A SFSB with no associated timers is also packaged in the
-   * module but should not cause problems.
-   */
+    /*
+     * @testName: testGetAllTimers
+     *
+     * @test_Strategy: create a bunch of auto-timers & programmatic timers
+     * respectively in a SLSB and a Singleton Bean, then run getAllTimers() from
+     * the singleton bean, which should return all the timers created within the
+     * same module. A SFSB with no associated timers is also packaged in the
+     * module but should not cause problems.
+     */
 
-  public void setup(String[] args, Properties p) {
-    super.setup(args, p);
-    clientBean = singletonBean;
-    autoTimerCount = 3;
-    ejbLite = true;
-  }
+    public void setup(String[] args, Properties p) {
+        super.setup(args, p);
+        clientBean = singletonBean;
+        autoTimerCount = 3;
+        ejbLite = true;
+    }
 }

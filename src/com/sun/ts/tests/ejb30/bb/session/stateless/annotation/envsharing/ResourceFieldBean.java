@@ -20,50 +20,47 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.envsharing;
 
-import java.net.URL;
-
 import com.sun.ts.tests.ejb30.common.annotation.resource.EnvSharingBeanBase;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
+import java.net.URL;
 
 @Stateless(name = "ResourceFieldBean")
-@Remote({ ResourceIF.class })
+@Remote({ResourceIF.class})
 @TransactionManagement(TransactionManagementType.BEAN)
-public class ResourceFieldBean extends EnvSharingBeanBase
-    implements ResourceIF {
+public class ResourceFieldBean extends EnvSharingBeanBase implements ResourceIF {
 
-  @Resource(name = "sessionContext", description = "session context", type = SessionContext.class)
-  private SessionContext sessionContext;
+    @Resource(name = "sessionContext", description = "session context", type = SessionContext.class)
+    private SessionContext sessionContext;
 
-  @Resource(name = "mailSession", shareable = false)
-  private jakarta.mail.Session mailSession;
+    @Resource(name = "mailSession", shareable = false)
+    private jakarta.mail.Session mailSession;
 
-  protected String getMailSessionName() {
-    return "mailSession";
-  }
+    protected String getMailSessionName() {
+        return "mailSession";
+    }
 
-  @Resource(name = "url", shareable = false)
-  private URL url;
+    @Resource(name = "url", shareable = false)
+    private URL url;
 
-  protected String getUrlName() {
-    return "url";
-  }
+    protected String getUrlName() {
+        return "url";
+    }
 
-  protected jakarta.ejb.EJBContext getEJBContext() {
-    return sessionContext;
-  }
+    protected jakarta.ejb.EJBContext getEJBContext() {
+        return sessionContext;
+    }
 
-  protected jakarta.mail.Session getMailSession() {
-    return mailSession;
-  }
+    protected jakarta.mail.Session getMailSession() {
+        return mailSession;
+    }
 
-  protected URL getUrl() {
-    return url;
-  }
+    protected URL getUrl() {
+        return url;
+    }
 }

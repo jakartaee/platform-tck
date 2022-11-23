@@ -20,129 +20,124 @@
 
 package com.sun.ts.tests.ejb30.assembly.common;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
+import java.util.Properties;
 
 public class ClientBase extends EETest {
 
-  @EJB(name = "remoteAssemblyBean", beanInterface = AssemblyRemoteIF.class)
-  static protected AssemblyCommonIF remoteAssemblyBean;
+    @EJB(name = "remoteAssemblyBean", beanInterface = AssemblyRemoteIF.class)
+    protected static AssemblyCommonIF remoteAssemblyBean;
 
-  // helloBean is deployed in a separate ejb module (see tests/ejb30/common/
-  // helloejbjar/). This ejb-ref is resolved by sun-ejb-jar.xml or sun-
-  // application-client.xml
-  @EJB(name = "helloBean")
-  private static HelloRemoteIF helloBean;
+    // helloBean is deployed in a separate ejb module (see tests/ejb30/common/
+    // helloejbjar/). This ejb-ref is resolved by sun-ejb-jar.xml or sun-
+    // application-client.xml
+    @EJB(name = "helloBean")
+    private static HelloRemoteIF helloBean;
 
-  private static int postConstructCallsCount;
+    private static int postConstructCallsCount;
 
-  private Properties props;
+    private Properties props;
 
-  public static void main(String[] args) {
-    ClientBase theTests = new ClientBase();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @class.setup_props:
-   */
-  public void setup(String[] args, Properties p) throws Fault {
-    props = p;
-  }
-
-  @PostConstruct
-  private static void postConstruct() {
-    postConstructCallsCount++;
-  }
-
-  /*
-   * testName: postConstructInvokedInSuperElseWhere
-   * 
-   * @test_Strategy: PostConstruct method must be invoked even when it's in a
-   * superclass not packaged in appclient-client.jar
-   */
-  public void postConstructInvokedInSuperElseWhere() throws Fault {
-    if (postConstructCallsCount > 0) {
-      TLogger
-          .log("Got expected result.  Client.PostConstruct method is invoked "
-              + postConstructCallsCount + " times");
-    } else {
-      throw new Fault("Expecting the Client.PostConstruct to be invoked "
-          + " at least once, but actual " + postConstructCallsCount);
+    public static void main(String[] args) {
+        ClientBase theTests = new ClientBase();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /*
-   * testName: remoteAdd
-   * 
-   * @test_Strategy:
-   */
-  public void remoteAdd() throws Fault {
-    int a = 1;
-    int b = 2;
-    int additionalByInterceptor = 100 * 2;
-    int expected = a + b + additionalByInterceptor;
-    int actual = remoteAssemblyBean.remoteAdd(a, b);
-    if (actual == expected) {
-      TLogger.log("Got expected result: " + expected);
-    } else {
-      throw new Fault("Expecting " + expected + ", but actual " + actual
-          + ". The interceptor may not have been invoked.");
+    /*
+     * @class.setup_props:
+     */
+    public void setup(String[] args, Properties p) throws Fault {
+        props = p;
     }
-  }
 
-  /*
-   * testName: remoteAddByHelloEJB
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: hello ejb is packaged as a standalone ejb module and
-   * deployed separately. It client view jar is packaged inside current ear and
-   * referenced by both appclient and ejb jar thru MANIFEST.MF appclient ->
-   * helloBean
-   */
-  public void remoteAddByHelloEJB() throws Fault {
-    int a = 1;
-    int b = 1;
-    int expected = a + b;
-    int actual = helloBean.add(a, b);
-    if (actual == expected) {
-      TLogger.log("Got expected result from calling helloBean.");
-    } else {
-      throw new Fault("Expecting helloBean.add to return " + expected
-          + ", but actual was " + actual);
+    @PostConstruct
+    private static void postConstruct() {
+        postConstructCallsCount++;
     }
-  }
 
-  /*
-   * testName: remoteAddByHelloEJBFromAssemblyBean
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: hello ejb is packaged as a standalone ejb module and
-   * deployed separately. It client view jar is packaged inside current ear and
-   * referenced by both appclient and ejb jar thru MANIFEST.MF appclient ->
-   * assemblyBean -> helloBean
-   */
-  public void remoteAddByHelloEJBFromAssemblyBean() throws Fault {
-    String result = remoteAssemblyBean.callHelloBean();
-    if (result != null) {
-      TLogger.log("Got expected result: " + result);
-    } else {
-      throw new Fault(
-          "Expecting a non-null result from remoteAssemblyBean.callHelloBean(), but got null.");
+    /*
+     * testName: postConstructInvokedInSuperElseWhere
+     *
+     * @test_Strategy: PostConstruct method must be invoked even when it's in a
+     * superclass not packaged in appclient-client.jar
+     */
+    public void postConstructInvokedInSuperElseWhere() throws Fault {
+        if (postConstructCallsCount > 0) {
+            TLogger.log("Got expected result.  Client.PostConstruct method is invoked " + postConstructCallsCount
+                    + " times");
+        } else {
+            throw new Fault("Expecting the Client.PostConstruct to be invoked " + " at least once, but actual "
+                    + postConstructCallsCount);
+        }
     }
-  }
 
-  public void cleanup() throws Fault {
-    // bean already removed in test method. If not, need to remove it here.
-  }
+    /*
+     * testName: remoteAdd
+     *
+     * @test_Strategy:
+     */
+    public void remoteAdd() throws Fault {
+        int a = 1;
+        int b = 2;
+        int additionalByInterceptor = 100 * 2;
+        int expected = a + b + additionalByInterceptor;
+        int actual = remoteAssemblyBean.remoteAdd(a, b);
+        if (actual == expected) {
+            TLogger.log("Got expected result: " + expected);
+        } else {
+            throw new Fault("Expecting " + expected + ", but actual " + actual
+                    + ". The interceptor may not have been invoked.");
+        }
+    }
+
+    /*
+     * testName: remoteAddByHelloEJB
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: hello ejb is packaged as a standalone ejb module and
+     * deployed separately. It client view jar is packaged inside current ear and
+     * referenced by both appclient and ejb jar thru MANIFEST.MF appclient ->
+     * helloBean
+     */
+    public void remoteAddByHelloEJB() throws Fault {
+        int a = 1;
+        int b = 1;
+        int expected = a + b;
+        int actual = helloBean.add(a, b);
+        if (actual == expected) {
+            TLogger.log("Got expected result from calling helloBean.");
+        } else {
+            throw new Fault("Expecting helloBean.add to return " + expected + ", but actual was " + actual);
+        }
+    }
+
+    /*
+     * testName: remoteAddByHelloEJBFromAssemblyBean
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: hello ejb is packaged as a standalone ejb module and
+     * deployed separately. It client view jar is packaged inside current ear and
+     * referenced by both appclient and ejb jar thru MANIFEST.MF appclient ->
+     * assemblyBean -> helloBean
+     */
+    public void remoteAddByHelloEJBFromAssemblyBean() throws Fault {
+        String result = remoteAssemblyBean.callHelloBean();
+        if (result != null) {
+            TLogger.log("Got expected result: " + result);
+        } else {
+            throw new Fault("Expecting a non-null result from remoteAssemblyBean.callHelloBean(), but got null.");
+        }
+    }
+
+    public void cleanup() throws Fault {
+        // bean already removed in test method. If not, need to remove it here.
+    }
 }

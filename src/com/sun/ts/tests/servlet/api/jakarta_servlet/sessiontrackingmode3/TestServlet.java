@@ -19,32 +19,30 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.sessiontrackingmode3;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet extends GenericTCKServlet {
 
-  public void setSessionTrackingModes6(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
-    boolean passed = true;
-    String expected_status = "Expected IllegalArgumentException thrown.";
-    PrintWriter pw = response.getWriter();
-    ServletConfig config = this.getServletConfig();
-    ServletContext context = config.getServletContext();
-    String status = (String) context.getAttribute("TCK_TEST_STATUS");
-    if (!expected_status.equals(status)) {
-      passed = false;
-    }
+    public void setSessionTrackingModes6(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        boolean passed = true;
+        String expected_status = "Expected IllegalArgumentException thrown.";
+        PrintWriter pw = response.getWriter();
+        ServletConfig config = this.getServletConfig();
+        ServletContext context = config.getServletContext();
+        String status = (String) context.getAttribute("TCK_TEST_STATUS");
+        if (!expected_status.equals(status)) {
+            passed = false;
+        }
 
-    ServletTestUtil.printResult(pw.append(status), passed);
-  }
+        ServletTestUtil.printResult(pw.append(status), passed);
+    }
 }

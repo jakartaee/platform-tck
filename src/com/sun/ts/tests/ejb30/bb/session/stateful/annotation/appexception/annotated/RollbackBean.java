@@ -22,14 +22,12 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.annotation.appexception.annot
 
 import com.sun.ts.tests.ejb30.common.appexception.RollbackBeanBase;
 import com.sun.ts.tests.ejb30.common.appexception.RollbackIF;
-
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateful;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateful(name = "RollbackBean")
-@Remote({ RollbackIF.class })
+@Remote({RollbackIF.class})
 @TransactionManagement(TransactionManagementType.BEAN)
-public class RollbackBean extends RollbackBeanBase {
-}
+public class RollbackBean extends RollbackBeanBase {}

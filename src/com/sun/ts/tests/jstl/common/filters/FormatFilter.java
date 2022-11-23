@@ -20,11 +20,8 @@
 
 package com.sun.ts.tests.jstl.common.filters;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jstl.common.wrappers.FormatRequestWrapper;
 import com.sun.ts.tests.jstl.common.wrappers.FormatResponseWrapper;
-
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
@@ -33,6 +30,7 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /*
  * Simple Filter to wrap requests and responses for the fmt tests.
@@ -40,49 +38,46 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class FormatFilter implements Filter {
 
-  /**
-   * Filter configuration
-   */
-  private FilterConfig _config = null;
+    /**
+     * Filter configuration
+     */
+    private FilterConfig _config = null;
 
-  /** Creates new FormatFilter */
-  public FormatFilter() {
-  }
+    /** Creates new FormatFilter */
+    public FormatFilter() {}
 
-  /*
-   * public methods
-   * ========================================================================
-   */
+    /*
+     * public methods
+     * ========================================================================
+     */
 
-  /**
-   * Called by the container to initialize this filter.
-   *
-   * @param config
-   *          filter configuration.
-   */
-  public void init(FilterConfig config) {
-    _config = config;
-  }
+    /**
+     * Called by the container to initialize this filter.
+     *
+     * @param config
+     *          filter configuration.
+     */
+    public void init(FilterConfig config) {
+        _config = config;
+    }
 
-  /**
-   * When called by the container, the current request and response are wrapped
-   * by an instance of FormatRequestWrapper and FormatResponseWrapper
-   * respectively. Doing this allows the "logging" of certain events that must
-   * take place when using certain formatting actions.
-   */
-  public void doFilter(ServletRequest request, ServletResponse response,
-      FilterChain chain) throws IOException, ServletException {
-    FormatResponseWrapper resWrapper = new FormatResponseWrapper(
-        (HttpServletResponse) response);
-    FormatRequestWrapper reqWrapper = new FormatRequestWrapper(
-        (HttpServletRequest) request);
-    chain.doFilter(reqWrapper, resWrapper);
-  }
+    /**
+     * When called by the container, the current request and response are wrapped
+     * by an instance of FormatRequestWrapper and FormatResponseWrapper
+     * respectively. Doing this allows the "logging" of certain events that must
+     * take place when using certain formatting actions.
+     */
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        FormatResponseWrapper resWrapper = new FormatResponseWrapper((HttpServletResponse) response);
+        FormatRequestWrapper reqWrapper = new FormatRequestWrapper((HttpServletRequest) request);
+        chain.doFilter(reqWrapper, resWrapper);
+    }
 
-  /**
-   * Called by the container to destroy this instance.
-   */
-  public void destroy() {
-    _config = null;
-  }
+    /**
+     * Called by the container to destroy this instance.
+     */
+    public void destroy() {
+        _config = null;
+    }
 }

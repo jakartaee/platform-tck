@@ -17,28 +17,25 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.handshakerequest;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
 @ServerEndpoint(value = "/getoneparam/{first}", configurator = PathParamConfigurator.class)
 public class WSCGetOneParamServer {
-  @OnMessage
-  public String onMessage(@PathParam("first") String param, String msg) {
-    return param + msg;
-  }
+    @OnMessage
+    public String onMessage(@PathParam("first") String param, String msg) {
+        return param + msg;
+    }
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
-
+    @OnError
+    public void onError(Session session, Throwable thr) throws IOException {
+        thr.printStackTrace(); // Write to error log, too
+        String message = IOUtil.printStackTrace(thr);
+        session.getBasicRemote().sendText(message);
+    }
 }

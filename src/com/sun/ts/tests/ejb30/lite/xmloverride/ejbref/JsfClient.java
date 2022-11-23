@@ -24,65 +24,59 @@ import com.sun.ts.tests.ejb30.common.lite.NumberIF;
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends EJBLiteJsfClientBase {
 
-  private TestBean getTestBean() {
-    return (TestBean) ServiceLocator
-        .lookupNoTry("java:global/" + getModuleName() + "/TestBean");
-  }
-
-  /*
-   * @testName: resolveByEjbLinkInXml
-   * 
-   * @test_Strategy: @EJB in TestBean is incomplete. But the corresponding
-   * ejb-local-ref in ejb-jar.xml resolves it with ejb-link.
-   */
-  public void resolveByEjbLinkInXml() {
-    assertEquals("Check correct target EJB is resolved. ", 1,
-        getTestBean().getNumber());
-  }
-
-  /*
-   * @testName: availableInWebComponent
-   * 
-   * @test_Strategy: the ejb-local-ref declared in ejb-jar.xml should be
-   * available for lookup in web components.
-   */
-  public void availableInWebComponent() {
-    if (getContainer() != null) {
-      return; // skip if running in ejbembed
+    private TestBean getTestBean() {
+        return (TestBean) ServiceLocator.lookupNoTry("java:global/" + getModuleName() + "/TestBean");
     }
-    NumberIF overrideBean = (NumberIF) ServiceLocator.lookupNoTry(
-        "java:comp/env/com.sun.ts.tests.ejb30.lite.xmloverride.ejbref.TestBean/overrideBean");
-    assertEquals("Look up OverrideBean and invoke: ", 1,
-        overrideBean.getNumber());
-  }
 
-  /*
-   * @testName: overrideLookup
-   * 
-   * @test_Strategy: lookup-name in ejb-jar.xml overrides lookup attr in @EJB
-   */
-  public void overrideLookup() {
-    assertEquals("Check correct target EJB is resolved. ", 1,
-        getTestBean().overrideLookup());
-  }
+    /*
+     * @testName: resolveByEjbLinkInXml
+     *
+     * @test_Strategy: @EJB in TestBean is incomplete. But the corresponding
+     * ejb-local-ref in ejb-jar.xml resolves it with ejb-link.
+     */
+    public void resolveByEjbLinkInXml() {
+        assertEquals("Check correct target EJB is resolved. ", 1, getTestBean().getNumber());
+    }
 
-  /*
-   * @testName: overrideInterfaceType
-   * 
-   * @test_Strategy: <local> in ejb-jar.xml overrides beanInterface attr in @EJB
-   */
-  public void overrideInterfaceType() {
-    assertEquals("Check correct target EJB is resolved. ", 1,
-        getTestBean().overrideInterfaceType());
-  }
+    /*
+     * @testName: availableInWebComponent
+     *
+     * @test_Strategy: the ejb-local-ref declared in ejb-jar.xml should be
+     * available for lookup in web components.
+     */
+    public void availableInWebComponent() {
+        if (getContainer() != null) {
+            return; // skip if running in ejbembed
+        }
+        NumberIF overrideBean = (NumberIF) ServiceLocator.lookupNoTry(
+                "java:comp/env/com.sun.ts.tests.ejb30.lite.xmloverride.ejbref.TestBean/overrideBean");
+        assertEquals("Look up OverrideBean and invoke: ", 1, overrideBean.getNumber());
+    }
 
-  /*
-   * @testName: overrideBeanName
-   * 
-   * @test_Strategy: <ejb-link> in ejb-jar.xml overrides beanName attr in @EJB
-   */
-  public void overrideBeanName() {
-    assertEquals("Check correct target EJB is resolved. ", 1,
-        getTestBean().overrideBeanName());
-  }
+    /*
+     * @testName: overrideLookup
+     *
+     * @test_Strategy: lookup-name in ejb-jar.xml overrides lookup attr in @EJB
+     */
+    public void overrideLookup() {
+        assertEquals("Check correct target EJB is resolved. ", 1, getTestBean().overrideLookup());
+    }
+
+    /*
+     * @testName: overrideInterfaceType
+     *
+     * @test_Strategy: <local> in ejb-jar.xml overrides beanInterface attr in @EJB
+     */
+    public void overrideInterfaceType() {
+        assertEquals("Check correct target EJB is resolved. ", 1, getTestBean().overrideInterfaceType());
+    }
+
+    /*
+     * @testName: overrideBeanName
+     *
+     * @test_Strategy: <ejb-link> in ejb-jar.xml overrides beanName attr in @EJB
+     */
+    public void overrideBeanName() {
+        assertEquals("Check correct target EJB is resolved. ", 1, getTestBean().overrideBeanName());
+    }
 }

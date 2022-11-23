@@ -60,175 +60,167 @@
 
 package com.sun.ts.tests.common.webclient;
 
+import com.sun.ts.lib.util.BASE64Encoder;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import com.sun.ts.lib.util.BASE64Encoder;
-
 public class Util {
 
-  /**
-   * Zeros
-   */
-  private static final String ZEROS = "00000000";
+    /**
+     * Zeros
+     */
+    private static final String ZEROS = "00000000";
 
-  /**
-   * short pad size
-   */
-  private static final int SHORTPADSIZE = 4;
+    /**
+     * short pad size
+     */
+    private static final int SHORTPADSIZE = 4;
 
-  /**
-   * byte pad size
-   */
-  private static final int BYTEPADSIZE = 2;
+    /**
+     * byte pad size
+     */
+    private static final int BYTEPADSIZE = 2;
 
-  /** Creates new Util */
-  private Util() {
-  }
+    /** Creates new Util */
+    private Util() {}
 
-  /*
-   * public methods
-   * ========================================================================
-   */
+    /*
+     * public methods
+     * ========================================================================
+     */
 
-  /**
-   * BASE64 encodes the provided string.
-   * 
-   * @return BASE64 encoded string.
-   */
-  public static String getBase64EncodedString(String value) {
-    BASE64Encoder encoder = new BASE64Encoder();
-    return encoder.encode(value.getBytes());
-  }
-
-  /**
-   * Returns a charset encoded string based on the provided InputStream and
-   * charset encoding.
-   *
-   * @return encoding string
-   */
-  public static String getEncodedStringFromStream(InputStream in, String enc)
-      throws IOException {
-    BufferedReader bin = new BufferedReader(new InputStreamReader(in, enc));
-    StringBuffer sb = new StringBuffer(128);
-    for (int ch = bin.read(); ch != -1; ch = bin.read()) {
-      sb.append((char) ch);
+    /**
+     * BASE64 encodes the provided string.
+     *
+     * @return BASE64 encoded string.
+     */
+    public static String getBase64EncodedString(String value) {
+        BASE64Encoder encoder = new BASE64Encoder();
+        return encoder.encode(value.getBytes());
     }
-    return sb.toString();
-  }
 
-  /**
-   * <code>getHexValue</code> displays a formatted hex representation of the
-   * passed byte array. It also allows for only a specified offset and length of
-   * a particular array to be returned.
-   *
-   * @param bytes
-   *          <code>byte[]</code> array to process.
-   * @param pos
-   *          <code>int</code> specifies offset to begin processing.
-   * @param len
-   *          <code>int</code> specifies the number of bytes to process.
-   * @return <code>String</code> formatted hex representation of processed
-   *         array.
-   */
-  public static String getHexValue(byte[] bytes, int pos, int len) {
-    StringBuffer outBuf = new StringBuffer(bytes.length * 2);
-    int bytesPerLine = 36;
-    int cnt = 1;
-    int groups = 4;
-    int curPos = pos;
-    int linePos = 1;
-    boolean displayOffset = true;
+    /**
+     * Returns a charset encoded string based on the provided InputStream and
+     * charset encoding.
+     *
+     * @return encoding string
+     */
+    public static String getEncodedStringFromStream(InputStream in, String enc) throws IOException {
+        BufferedReader bin = new BufferedReader(new InputStreamReader(in, enc));
+        StringBuffer sb = new StringBuffer(128);
+        for (int ch = bin.read(); ch != -1; ch = bin.read()) {
+            sb.append((char) ch);
+        }
+        return sb.toString();
+    }
 
-    while (len-- > 0) {
-      if (displayOffset) {
+    /**
+     * <code>getHexValue</code> displays a formatted hex representation of the
+     * passed byte array. It also allows for only a specified offset and length of
+     * a particular array to be returned.
+     *
+     * @param bytes
+     *          <code>byte[]</code> array to process.
+     * @param pos
+     *          <code>int</code> specifies offset to begin processing.
+     * @param len
+     *          <code>int</code> specifies the number of bytes to process.
+     * @return <code>String</code> formatted hex representation of processed
+     *         array.
+     */
+    public static String getHexValue(byte[] bytes, int pos, int len) {
+        StringBuffer outBuf = new StringBuffer(bytes.length * 2);
+        int bytesPerLine = 36;
+        int cnt = 1;
+        int groups = 4;
+        int curPos = pos;
+        int linePos = 1;
+        boolean displayOffset = true;
 
-        outBuf.append("\n" + paddedHexString(pos, SHORTPADSIZE, true) + ": ");
-        displayOffset = false;
-      }
+        while (len-- > 0) {
+            if (displayOffset) {
 
-      outBuf.append(paddedHexString((int) bytes[pos], BYTEPADSIZE, false));
-      linePos += 2; // Byte is padded to 2 characters
+                outBuf.append("\n" + paddedHexString(pos, SHORTPADSIZE, true) + ": ");
+                displayOffset = false;
+            }
 
-      if ((cnt % 4) == 0) {
-        outBuf.append(" ");
-        linePos++;
-      }
+            outBuf.append(paddedHexString((int) bytes[pos], BYTEPADSIZE, false));
+            linePos += 2; // Byte is padded to 2 characters
 
-      // Now display the characters that are printable
-      if ((cnt % (groups * 4)) == 0) {
-        outBuf.append(" ");
+            if ((cnt % 4) == 0) {
+                outBuf.append(" ");
+                linePos++;
+            }
 
-        while (curPos <= pos) {
-          if (!Character.isWhitespace((char) bytes[curPos])) {
-            outBuf.append((char) bytes[curPos]);
-          } else {
-            outBuf.append(".");
-          }
+            // Now display the characters that are printable
+            if ((cnt % (groups * 4)) == 0) {
+                outBuf.append(" ");
 
-          curPos++;
+                while (curPos <= pos) {
+                    if (!Character.isWhitespace((char) bytes[curPos])) {
+                        outBuf.append((char) bytes[curPos]);
+                    } else {
+                        outBuf.append(".");
+                    }
+
+                    curPos++;
+                }
+
+                curPos = pos + 1;
+                linePos = 1;
+                displayOffset = true;
+            }
+
+            cnt++;
+            pos++;
         }
 
-        curPos = pos + 1;
-        linePos = 1;
-        displayOffset = true;
-      }
+        // pad out the line with spaces
+        while (linePos++ <= bytesPerLine) {
+            outBuf.append(" ");
+        }
 
-      cnt++;
-      pos++;
+        outBuf.append(" ");
+        // Now display the printable characters for the trailing bytes
+        while (curPos < pos) {
+            if (!Character.isWhitespace((char) bytes[curPos])) {
+                outBuf.append((char) bytes[curPos]);
+            } else {
+                outBuf.append(".");
+            }
+
+            curPos++;
+        }
+
+        return outBuf.toString();
     }
 
-    // pad out the line with spaces
-    while (linePos++ <= bytesPerLine) {
-      outBuf.append(" ");
+    /*
+     * private methods
+     * ========================================================================
+     */
+
+    /**
+     * <code>paddedHexString</code> pads the passed value based on the specified
+     * wordsize and the value of the prefixFlag.
+     *
+     * @param val
+     *          an <code>int</code> value
+     * @param wordsize
+     *          an <code>int</code> value
+     * @param prefixFlag
+     *          a <code>boolean</code> value
+     * @return a <code>String</code> value
+     */
+    private static String paddedHexString(int val, int wordsize, boolean prefixFlag) {
+
+        String prefix = prefixFlag ? "0x" : "";
+        String hexVal = Integer.toHexString(val);
+
+        if (hexVal.length() > wordsize) hexVal = hexVal.substring(hexVal.length() - wordsize);
+
+        return (prefix + (wordsize > hexVal.length() ? ZEROS.substring(0, wordsize - hexVal.length()) : "") + hexVal);
     }
-
-    outBuf.append(" ");
-    // Now display the printable characters for the trailing bytes
-    while (curPos < pos) {
-      if (!Character.isWhitespace((char) bytes[curPos])) {
-        outBuf.append((char) bytes[curPos]);
-      } else {
-        outBuf.append(".");
-      }
-
-      curPos++;
-    }
-
-    return outBuf.toString();
-  }
-
-  /*
-   * private methods
-   * ========================================================================
-   */
-
-  /**
-   * <code>paddedHexString</code> pads the passed value based on the specified
-   * wordsize and the value of the prefixFlag.
-   *
-   * @param val
-   *          an <code>int</code> value
-   * @param wordsize
-   *          an <code>int</code> value
-   * @param prefixFlag
-   *          a <code>boolean</code> value
-   * @return a <code>String</code> value
-   */
-  private static String paddedHexString(int val, int wordsize,
-      boolean prefixFlag) {
-
-    String prefix = prefixFlag ? "0x" : "";
-    String hexVal = Integer.toHexString(val);
-
-    if (hexVal.length() > wordsize)
-      hexVal = hexVal.substring(hexVal.length() - wordsize);
-
-    return (prefix + (wordsize > hexVal.length()
-        ? ZEROS.substring(0, wordsize - hexVal.length())
-        : "") + hexVal);
-  }
-
 }

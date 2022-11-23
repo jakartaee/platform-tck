@@ -20,45 +20,42 @@
 
 package com.sun.ts.tests.ejb30.common.generics;
 
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
 import java.util.Arrays;
 import java.util.List;
 
-import jakarta.ejb.TransactionAttribute;
-import jakarta.ejb.TransactionAttributeType;
+public abstract class GreetingBeanBase implements RemoteIntGreetingIF, LocalIntGreetingIF, ParameterizedIF {
 
-public abstract class GreetingBeanBase
-    implements RemoteIntGreetingIF, LocalIntGreetingIF, ParameterizedIF {
+    @TransactionAttribute(TransactionAttributeType.MANDATORY)
+    public Integer negate(Integer i) {
+        return i - i - i;
+    }
 
-  @TransactionAttribute(TransactionAttributeType.MANDATORY)
-  public Integer negate(Integer i) {
-    return i - i - i;
-  }
+    @TransactionAttribute(TransactionAttributeType.MANDATORY)
+    public Integer greet(Integer t) {
+        return t;
+    }
 
-  @TransactionAttribute(TransactionAttributeType.MANDATORY)
-  public Integer greet(Integer t) {
-    return t;
-  }
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * com.sun.ts.tests.ejb30.common.generics.ParameterizedIF#parameterizedParam(
+     * java.util.List)
+     */
+    @TransactionAttribute(TransactionAttributeType.MANDATORY)
+    public void parameterizedParam(List<String> ls) {}
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * com.sun.ts.tests.ejb30.common.generics.ParameterizedIF#parameterizedParam(
-   * java.util.List)
-   */
-  @TransactionAttribute(TransactionAttributeType.MANDATORY)
-  public void parameterizedParam(List<String> ls) {
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * com.sun.ts.tests.ejb30.common.generics.ParameterizedIF#parameterizedReturn(
-   * int)
-   */
-  @TransactionAttribute(TransactionAttributeType.MANDATORY)
-  public List<String> parameterizedReturn(int i) {
-    return Arrays.asList(String.valueOf(i));
-  }
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * com.sun.ts.tests.ejb30.common.generics.ParameterizedIF#parameterizedReturn(
+     * int)
+     */
+    @TransactionAttribute(TransactionAttributeType.MANDATORY)
+    public List<String> parameterizedReturn(int i) {
+        return Arrays.asList(String.valueOf(i));
+    }
 }

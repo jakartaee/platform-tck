@@ -20,6 +20,8 @@
 
 package com.sun.ts.tests.assembly.util.shared.resref.single;
 
+import com.sun.ts.lib.util.TestUtil;
+import jakarta.activation.DataSource;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -27,59 +29,53 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.activation.DataSource;
-
 class ByteArrayDataSource implements DataSource {
-  private byte[] data;
+    private byte[] data;
 
-  private String type;
+    private String type;
 
-  ByteArrayDataSource(InputStream is, String type) {
-    this.type = type;
-    try {
-      ByteArrayOutputStream os = new ByteArrayOutputStream();
-      int ch;
+    ByteArrayDataSource(InputStream is, String type) {
+        this.type = type;
+        try {
+            ByteArrayOutputStream os = new ByteArrayOutputStream();
+            int ch;
 
-      while ((ch = is.read()) != -1)
-        os.write(ch);
+            while ((ch = is.read()) != -1) os.write(ch);
 
-      data = os.toByteArray();
-    } catch (IOException ioex) {
-      TestUtil.printStackTrace(ioex);
+            data = os.toByteArray();
+        } catch (IOException ioex) {
+            TestUtil.printStackTrace(ioex);
+        }
     }
-  }
 
-  ByteArrayDataSource(byte[] data, String type) {
-    this.data = data;
-    this.type = type;
-  }
-
-  ByteArrayDataSource(String data, String type) {
-    try {
-      this.data = data.getBytes("iso-8859-1");
-    } catch (UnsupportedEncodingException uex) {
-      TestUtil.printStackTrace(uex);
+    ByteArrayDataSource(byte[] data, String type) {
+        this.data = data;
+        this.type = type;
     }
-    this.type = type;
-  }
 
-  public InputStream getInputStream() throws IOException {
-    if (data == null)
-      throw new IOException("no data");
-    return new ByteArrayInputStream(data);
-  }
+    ByteArrayDataSource(String data, String type) {
+        try {
+            this.data = data.getBytes("iso-8859-1");
+        } catch (UnsupportedEncodingException uex) {
+            TestUtil.printStackTrace(uex);
+        }
+        this.type = type;
+    }
 
-  public OutputStream getOutputStream() throws IOException {
-    throw new IOException("cannot do this");
-  }
+    public InputStream getInputStream() throws IOException {
+        if (data == null) throw new IOException("no data");
+        return new ByteArrayInputStream(data);
+    }
 
-  public String getContentType() {
-    return type;
-  }
+    public OutputStream getOutputStream() throws IOException {
+        throw new IOException("cannot do this");
+    }
 
-  public String getName() {
-    return "dummy";
-  }
+    public String getContentType() {
+        return type;
+    }
+
+    public String getName() {
+        return "dummy";
+    }
 }

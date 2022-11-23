@@ -21,13 +21,10 @@ package com.sun.ts.tests.ejb30.lite.appexception.stateful.inheritance;
 
 import com.sun.ts.tests.ejb30.lite.appexception.common.inheritance.InheritanceBeanBase;
 import com.sun.ts.tests.ejb30.lite.appexception.common.inheritance.InheritanceIF;
-
 import jakarta.ejb.Stateful;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateful
 @TransactionManagement(TransactionManagementType.BEAN)
-public class InheritanceBean extends InheritanceBeanBase
-    implements InheritanceIF {
-}
+public class InheritanceBean extends InheritanceBeanBase implements InheritanceIF {}

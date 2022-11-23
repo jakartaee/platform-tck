@@ -16,74 +16,67 @@
 
 package com.sun.ts.tests.webservices12.wsdlImport.http.nested3;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
 import com.sun.javatest.Status;
-
+import com.sun.ts.lib.harness.*;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
 import java.util.*;
 
-import jakarta.xml.ws.Service;
-
-import javax.naming.InitialContext;
-
 public class Client extends ServiceEETest {
-  private Tests port;
+    private Tests port;
 
-  Nested3HttpSvc service = null;
+    Nested3HttpSvc service = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup */
-
-  /*
-   * @class.testArgs: -ap webservices-url-props.dat
-   * 
-   * @class.setup_props: webServerHost; webServerPort;
-   */
-
-  public void setup(String[] args, Properties p) throws Fault {
-    try {
-      TestUtil.logMsg(
-          "WebServiceRef is not set in Client (get it from specific vehicle)");
-      service = (Nested3HttpSvc) getSharedObject();
-      TestUtil.logMsg("service=" + service);
-      TestUtil.logMsg("Get port from Service");
-      port = (Tests) service.getPort(Tests.class);
-      TestUtil.logMsg("Port obtained");
-    } catch (Exception e) {
-      throw new Fault("setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
 
-    logMsg("setup ok");
-  }
+    /* Test setup */
 
-  public void cleanup() throws Fault {
-    logMsg("cleanup ok");
-  }
+    /*
+     * @class.testArgs: -ap webservices-url-props.dat
+     *
+     * @class.setup_props: webServerHost; webServerPort;
+     */
 
-  /*
-   * @testName: InvokeMethod
-   *
-   * @assertion_ids: WS4EE:SPEC:214; WS4EE:SPEC:65;
-   *
-   * @test_Strategy: Call a method in Tests.
-   */
-  public void InvokeMethod() throws Fault {
-    TestUtil.logMsg("InvokeMethod");
-    try {
-      port.invokeTest1();
-      TestUtil.logMsg("InvokeMethod passed");
-    } catch (Throwable t) {
-      TestUtil
-          .logMsg("test InvokeMethod failed: got exception " + t.toString());
-      throw new Fault("InvokeMethod failed");
+    public void setup(String[] args, Properties p) throws Fault {
+        try {
+            TestUtil.logMsg("WebServiceRef is not set in Client (get it from specific vehicle)");
+            service = (Nested3HttpSvc) getSharedObject();
+            TestUtil.logMsg("service=" + service);
+            TestUtil.logMsg("Get port from Service");
+            port = (Tests) service.getPort(Tests.class);
+            TestUtil.logMsg("Port obtained");
+        } catch (Exception e) {
+            throw new Fault("setup failed:", e);
+        }
+
+        logMsg("setup ok");
     }
 
-    return;
-  }
+    public void cleanup() throws Fault {
+        logMsg("cleanup ok");
+    }
+
+    /*
+     * @testName: InvokeMethod
+     *
+     * @assertion_ids: WS4EE:SPEC:214; WS4EE:SPEC:65;
+     *
+     * @test_Strategy: Call a method in Tests.
+     */
+    public void InvokeMethod() throws Fault {
+        TestUtil.logMsg("InvokeMethod");
+        try {
+            port.invokeTest1();
+            TestUtil.logMsg("InvokeMethod passed");
+        } catch (Throwable t) {
+            TestUtil.logMsg("test InvokeMethod failed: got exception " + t.toString());
+            throw new Fault("InvokeMethod failed");
+        }
+
+        return;
+    }
 }

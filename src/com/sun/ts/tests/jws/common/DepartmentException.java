@@ -24,15 +24,14 @@
 package com.sun.ts.tests.jws.common;
 
 public class DepartmentException extends Exception {
-  private String message = "Department Error";
+    private String message = "Department Error";
 
-  public DepartmentException(String message) {
-    super(message);
-    this.message = message;
-  }
+    public DepartmentException(String message) {
+        super(message);
+        this.message = message;
+    }
 
-  public DepartmentException() {
-    super();
-  }
-
+    public DepartmentException() {
+        super();
+    }
 }

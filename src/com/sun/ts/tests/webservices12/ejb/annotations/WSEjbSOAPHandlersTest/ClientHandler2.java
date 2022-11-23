@@ -19,38 +19,31 @@ package com.sun.ts.tests.webservices12.ejb.annotations.WSEjbSOAPHandlersTest;
 
 import com.sun.ts.tests.jaxws.common.HandlerTracker;
 import com.sun.ts.tests.jaxws.common.Handler_Util;
-
 import jakarta.xml.ws.handler.*;
 import jakarta.xml.ws.handler.soap.*;
-import javax.xml.namespace.QName;
-
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Map;
-import java.util.List;
-import java.util.Iterator;
+import javax.xml.namespace.QName;
 
 public class ClientHandler2 implements SOAPHandler<SOAPMessageContext> {
-  public void init(java.util.Map<String, Object> config) {
-  }
+    public void init(java.util.Map<String, Object> config) {}
 
-  public boolean handleFault(SOAPMessageContext context) {
-    HandlerTracker.reportHandleFault(this);
-    return true;
-  }
+    public boolean handleFault(SOAPMessageContext context) {
+        HandlerTracker.reportHandleFault(this);
+        return true;
+    }
 
-  public void close(MessageContext context) {
-    HandlerTracker.reportClose(this);
-  }
+    public void close(MessageContext context) {
+        HandlerTracker.reportClose(this);
+    }
 
-  public boolean handleMessage(SOAPMessageContext context) {
-    HandlerTracker.reportHandleMessage(this,
-        Handler_Util.getDirection(context));
-    return true;
-  }
+    public boolean handleMessage(SOAPMessageContext context) {
+        HandlerTracker.reportHandleMessage(this, Handler_Util.getDirection(context));
+        return true;
+    }
 
-  public Set<QName> getHeaders() {
-    HandlerTracker.reportGetHeaders(this);
-    return new HashSet<QName>();
-  }
+    public Set<QName> getHeaders() {
+        HandlerTracker.reportGetHeaders(this);
+        return new HashSet<QName>();
+    }
 }

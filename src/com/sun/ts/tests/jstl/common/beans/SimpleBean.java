@@ -25,40 +25,39 @@ package com.sun.ts.tests.jstl.common.beans;
  */
 public class SimpleBean {
 
-  /** Creates new NullBean */
-  public SimpleBean() {
-  }
+    /** Creates new NullBean */
+    public SimpleBean() {}
 
-  private String _value = null;
+    private String _value = null;
 
-  /*
-   * public methods
-   * ========================================================================
-   */
+    /*
+     * public methods
+     * ========================================================================
+     */
 
-  /**
-   * Sets a non-descriptive value
-   * 
-   * @param value
-   *          some value
-   */
-  public void setValue(String value) {
-    _value = value;
-  }
+    /**
+     * Sets a non-descriptive value
+     *
+     * @param value
+     *          some value
+     */
+    public void setValue(String value) {
+        _value = value;
+    }
 
-  /**
-   * Returns the current value of the bean
-   * 
-   * @return the current value
-   */
-  public String getValue() {
-    return _value;
-  }
+    /**
+     * Returns the current value of the bean
+     *
+     * @return the current value
+     */
+    public String getValue() {
+        return _value;
+    }
 
-  /**
-   * Causes a RuntimeException to be thrown when called.
-   */
-  public String toString() {
-    throw new RuntimeException();
-  }
+    /**
+     * Causes a RuntimeException to be thrown when called.
+     */
+    public String toString() {
+        throw new RuntimeException();
+    }
 }

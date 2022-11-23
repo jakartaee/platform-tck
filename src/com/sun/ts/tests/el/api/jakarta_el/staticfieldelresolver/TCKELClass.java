@@ -21,32 +21,31 @@
 package com.sun.ts.tests.el.api.jakarta_el.staticfieldelresolver;
 
 public class TCKELClass {
-  public static String firstName = "Ender";
+    public static String firstName = "Ender";
 
-  public static String lastName = "Wiggins";
+    public static String lastName = "Wiggins";
 
-  // Not writable from StaticFieldELResolver
-  public String notStatic = "notStatic";
+    // Not writable from StaticFieldELResolver
+    public String notStatic = "notStatic";
 
-  private static String privStatic = "privStatic";
+    private static String privStatic = "privStatic";
 
-  /**
-   * 
-   * @param firstName
-   *          - first name @String
-   * @param lastName
-   *          - last Name
-   * @return true is full name matches the given firstName + " " + lastName
-   *         pattern.
-   */
-  public static boolean isName(String name) {
-    boolean result = Boolean.FALSE;
+    /**
+     *
+     * @param firstName
+     *          - first name @String
+     * @param lastName
+     *          - last Name
+     * @return true is full name matches the given firstName + " " + lastName
+     *         pattern.
+     */
+    public static boolean isName(String name) {
+        boolean result = Boolean.FALSE;
 
-    if (name.equals(firstName)) {
-      result = true;
+        if (name.equals(firstName)) {
+            result = true;
+        }
+
+        return result;
     }
-
-    return result;
-  }
-
 }

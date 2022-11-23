@@ -19,28 +19,27 @@
  */
 package com.sun.ts.tests.ejb30.lite.lookup.descriptor;
 
-public class Client
-    extends com.sun.ts.tests.ejb30.lite.lookup.common.ClientBase {
+public class Client extends com.sun.ts.tests.ejb30.lite.lookup.common.ClientBase {
 
-  /*
-   * @testName: ejbPostConstructRecords
-   * 
-   * @test_Strategy: verify all ejbs are injected properly by the time
-   * post-construct method is invoked.
-   */
+    /*
+     * @testName: ejbPostConstructRecords
+     *
+     * @test_Strategy: verify all ejbs are injected properly by the time
+     * post-construct method is invoked.
+     */
 
-  /*
-   * @testName: ejb2PostConstructRecords
-   * 
-   * @test_Strategy: verify all ejbs are injected properly by the time
-   * post-construct method is invoked.
-   */
+    /*
+     * @testName: ejb2PostConstructRecords
+     *
+     * @test_Strategy: verify all ejbs are injected properly by the time
+     * post-construct method is invoked.
+     */
 
-  /*
-   * @testName: clientPostConstructRecords
-   * 
-   * @test_Strategy: verify all ejbs injected into web client. In embeddable
-   * usage, this test is noop.
-   */
+    /*
+     * @testName: clientPostConstructRecords
+     *
+     * @test_Strategy: verify all ejbs injected into web client. In embeddable
+     * usage, this test is noop.
+     */
 
 }

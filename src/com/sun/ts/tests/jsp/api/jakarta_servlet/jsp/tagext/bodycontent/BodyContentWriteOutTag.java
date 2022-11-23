@@ -20,43 +20,41 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.bodycontent;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.BodyContent;
 import jakarta.servlet.jsp.tagext.BodyTagSupport;
+import java.io.IOException;
 
 public class BodyContentWriteOutTag extends BodyTagSupport {
 
-  /**
-   * Default constructor.
-   */
-  public BodyContentWriteOutTag() {
-    super();
-  }
-
-  /**
-   * Validates the behavior of BodyContent.writeOut().
-   * 
-   * @return SKIP_BODY
-   * @throws JspException
-   *           if an error occurs
-   */
-  public int doAfterBody() throws JspException {
-    JspTestUtil.debug("[BodyContentWriteOutTag] in doAfterBody()");
-    BodyContent content = this.getBodyContent();
-
-    try {
-      // write the content of the body to the current writer
-      content.writeOut(content.getEnclosingWriter());
-
-    } catch (IOException ioe) {
-      throw new JspException("Test FAILED. Unexpected IOException!", ioe);
-    } catch (Exception e) {
-      throw new JspException("Test FAILED. Unexpected Exception!", e);
+    /**
+     * Default constructor.
+     */
+    public BodyContentWriteOutTag() {
+        super();
     }
-    return SKIP_BODY;
-  }
+
+    /**
+     * Validates the behavior of BodyContent.writeOut().
+     *
+     * @return SKIP_BODY
+     * @throws JspException
+     *           if an error occurs
+     */
+    public int doAfterBody() throws JspException {
+        JspTestUtil.debug("[BodyContentWriteOutTag] in doAfterBody()");
+        BodyContent content = this.getBodyContent();
+
+        try {
+            // write the content of the body to the current writer
+            content.writeOut(content.getEnclosingWriter());
+
+        } catch (IOException ioe) {
+            throw new JspException("Test FAILED. Unexpected IOException!", ioe);
+        } catch (Exception e) {
+            throw new JspException("Test FAILED. Unexpected Exception!", e);
+        }
+        return SKIP_BODY;
+    }
 }

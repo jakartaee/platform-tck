@@ -19,18 +19,15 @@
  */
 package com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common;
 
+import jakarta.ejb.AccessTimeout;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
-import jakarta.ejb.AccessTimeout;
+public class MethodLevelAnnotatedAccessTimeoutBeanBase extends PlainAccessTimeoutBeanBase {
 
-public class MethodLevelAnnotatedAccessTimeoutBeanBase
-    extends PlainAccessTimeoutBeanBase {
-
-  @Override
-  @AccessTimeout(value = SUPER_CLASS_METHOD_LEVEL_TIMEOUT_MILLIS, unit = TimeUnit.MILLISECONDS)
-  public Future<String> beanSuperClassMethodLevel() {
-    return ping();
-  }
-
+    @Override
+    @AccessTimeout(value = SUPER_CLASS_METHOD_LEVEL_TIMEOUT_MILLIS, unit = TimeUnit.MILLISECONDS)
+    public Future<String> beanSuperClassMethodLevel() {
+        return ping();
+    }
 }

@@ -16,122 +16,112 @@
 
 package com.sun.ts.tests.ejb30.lite.packaging.embed.classloader.annotated;
 
+import com.sun.ts.lib.util.TestUtil;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import com.sun.ts.lib.util.TestUtil;
-
 public class TSDbUtil {
 
-  private Connection databaseConnection;
+    private Connection databaseConnection;
 
-  private String databaseURL;
+    private String databaseURL;
 
-  private String databaseUser;
+    private String databaseUser;
 
-  private String databasePassword;
+    private String databasePassword;
 
-  private String driverClassName;
+    private String driverClassName;
 
-  public TSDbUtil(String url, String user, String password, String driverName) {
+    public TSDbUtil(String url, String user, String password, String driverName) {
 
-    databaseURL = url;
-    databaseUser = user;
-    databasePassword = password;
-    driverClassName = driverName;
+        databaseURL = url;
+        databaseUser = user;
+        databasePassword = password;
+        driverClassName = driverName;
 
-    databaseConnection = getDatabaseConnection(databaseURL, databaseUser,
-        databasePassword, driverClassName);
-    TestUtil.logMsg("TSDbUtil constructore called");
-
-  }
-
-  private Connection getDatabaseConnection(String url, String user,
-      String password, String driverClassName) {
-
-    Connection con = null;
-
-    try {
-      Class.forName(driverClassName);
-      con = DriverManager.getConnection(url, user, password);
-      TestUtil.logMsg("Got datbase connection");
-
-    } catch (Exception e) {
-      TestUtil.logErr("Failed to load database driver");
-      e.printStackTrace();
-      return null;
+        databaseConnection = getDatabaseConnection(databaseURL, databaseUser, databasePassword, driverClassName);
+        TestUtil.logMsg("TSDbUtil constructore called");
     }
 
-    return con;
+    private Connection getDatabaseConnection(String url, String user, String password, String driverClassName) {
 
-  }
+        Connection con = null;
 
-  public Connection getConnection() {
-    return this.databaseConnection;
-  }
+        try {
+            Class.forName(driverClassName);
+            con = DriverManager.getConnection(url, user, password);
+            TestUtil.logMsg("Got datbase connection");
 
-  public int writeToDatabase(Connection con, String key, String value) {
+        } catch (Exception e) {
+            TestUtil.logErr("Failed to load database driver");
+            e.printStackTrace();
+            return null;
+        }
 
-    int updateCount = 0;
-    Statement statement;
-    try {
-
-      statement = con.createStatement();
-      updateCount = statement
-          .executeUpdate("INSERT INTO EJB_AUTOCLOSE_TAB (NAME, MESSAGE) "
-              + "VALUES ('" + key + "'" + ",'" + value + "')");
-      TestUtil.logMsg(
-          "Database write successful : wrote " + updateCount + " record");
-    } catch (Exception e) {
-      TestUtil.logErr("Error updating database");
-      e.printStackTrace();
+        return con;
     }
 
-    return updateCount;
-  }
-
-  public int deleteRecordFromDatabase(Connection con, String key) {
-
-    int updateCount = 0;
-    Statement statement;
-    try {
-
-      statement = con.createStatement();
-      updateCount = statement.executeUpdate(
-          "DELETE FROM EJB_AUTOCLOSE_TAB WHERE NAME ='" + key + "'");
-      TestUtil.logMsg("Deleted " + updateCount + " record");
-    } catch (Exception e) {
-      TestUtil.logErr("Error deleting record from database");
-      e.printStackTrace();
+    public Connection getConnection() {
+        return this.databaseConnection;
     }
 
-    return updateCount;
-  }
+    public int writeToDatabase(Connection con, String key, String value) {
 
-  public String readFromDatabase(Connection con, String key) {
+        int updateCount = 0;
+        Statement statement;
+        try {
 
-    String result = null;
-    Statement statement;
+            statement = con.createStatement();
+            updateCount = statement.executeUpdate(
+                    "INSERT INTO EJB_AUTOCLOSE_TAB (NAME, MESSAGE) " + "VALUES ('" + key + "'" + ",'" + value + "')");
+            TestUtil.logMsg("Database write successful : wrote " + updateCount + " record");
+        } catch (Exception e) {
+            TestUtil.logErr("Error updating database");
+            e.printStackTrace();
+        }
 
-    try {
-      statement = con.createStatement();
-      ResultSet resultSet = statement.executeQuery(
-          "SELECT MESSAGE FROM EJB_AUTOCLOSE_TAB WHERE NAME='" + key + "'");
-
-      while (resultSet.next()) {
-        result = resultSet.getString(1);
-      }
-
-      TestUtil.logMsg("Read record from Database");
-    } catch (Exception e) {
-      TestUtil.logErr("Error reading database");
-      e.printStackTrace();
-
+        return updateCount;
     }
 
-    return result;
-  }
+    public int deleteRecordFromDatabase(Connection con, String key) {
 
+        int updateCount = 0;
+        Statement statement;
+        try {
+
+            statement = con.createStatement();
+            updateCount = statement.executeUpdate("DELETE FROM EJB_AUTOCLOSE_TAB WHERE NAME ='" + key + "'");
+            TestUtil.logMsg("Deleted " + updateCount + " record");
+        } catch (Exception e) {
+            TestUtil.logErr("Error deleting record from database");
+            e.printStackTrace();
+        }
+
+        return updateCount;
+    }
+
+    public String readFromDatabase(Connection con, String key) {
+
+        String result = null;
+        Statement statement;
+
+        try {
+            statement = con.createStatement();
+            ResultSet resultSet =
+                    statement.executeQuery("SELECT MESSAGE FROM EJB_AUTOCLOSE_TAB WHERE NAME='" + key + "'");
+
+            while (resultSet.next()) {
+                result = resultSet.getString(1);
+            }
+
+            TestUtil.logMsg("Read record from Database");
+        } catch (Exception e) {
+            TestUtil.logErr("Error reading database");
+            e.printStackTrace();
+        }
+
+        return result;
+    }
 }

@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb.ee.bb.session.lrapitest;
 
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBLocalObject;
 import jakarta.ejb.EJBObject;
@@ -30,105 +29,101 @@ import jakarta.ejb.SessionContext;
 
 public class CEJB implements SessionBean {
 
-  private SessionContext context = null;
+    private SessionContext context = null;
 
-  private String whoAmI;
+    private String whoAmI;
 
-  // ===========================================================
-  // C interface business methods
+    // ===========================================================
+    // C interface business methods
 
-  // This method is only exposed through the Local Interface
-  public String whoAmILocal() {
-    return "Local-" + whoAmI;
-  }
-
-  public boolean test3() {
-    TestUtil.logTrace("test3");
-    boolean pass = true;
-    if (getObjectTest())
-      TestUtil.logMsg("getEJBObject ... PASSED");
-    else {
-      TestUtil.logMsg("getEJBObject ... FAILED");
-      pass = false;
+    // This method is only exposed through the Local Interface
+    public String whoAmILocal() {
+        return "Local-" + whoAmI;
     }
-    if (getLocalObjectTest())
-      TestUtil.logMsg("getEJBLocalObject ... PASSED");
-    else {
-      TestUtil.logMsg("getEJBLocalObject ... FAILED");
-      pass = false;
-    }
-    return pass;
-  }
 
-  // ===========================================================
-  // private methods
-
-  private boolean getObjectTest() {
-    TestUtil.logTrace("getObjectTest");
-    boolean pass = true;
-    try {
-      TestUtil.logMsg("getEJBObject() - IllegalStateException");
-      EJBObject object = context.getEJBObject();
-      TestUtil.logErr("getEJBObject() - no IllegalStateException");
-      pass = false;
-    } catch (IllegalStateException e) {
-      TestUtil.logErr("IllegalStateException caught as expected");
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      pass = false;
-    }
-    return pass;
-  }
-
-  private boolean getLocalObjectTest() {
-    TestUtil.logTrace("getLocalObjectTest");
-    boolean pass = true;
-    try {
-      EJBLocalObject object = context.getEJBLocalObject();
-      if (object != null) {
-        TestUtil
-            .logMsg("getEJBLocalObject() returned EJBLocalObject reference");
-        if (object instanceof CLocal)
-          TestUtil.logMsg("An CLocal object");
+    public boolean test3() {
+        TestUtil.logTrace("test3");
+        boolean pass = true;
+        if (getObjectTest()) TestUtil.logMsg("getEJBObject ... PASSED");
         else {
-          TestUtil.logErr("Not an CLocal object");
-          pass = false;
+            TestUtil.logMsg("getEJBObject ... FAILED");
+            pass = false;
         }
-      } else {
-        TestUtil.logErr("getEJBLocalObject() returned null reference");
-        pass = false;
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      pass = false;
+        if (getLocalObjectTest()) TestUtil.logMsg("getEJBLocalObject ... PASSED");
+        else {
+            TestUtil.logMsg("getEJBLocalObject ... FAILED");
+            pass = false;
+        }
+        return pass;
     }
-    return pass;
-  }
 
-  // ===========================================================
-  // EJB Specification Required Methods
+    // ===========================================================
+    // private methods
 
-  public void ejbCreateC(String whoami) throws CreateException {
-    TestUtil.logTrace("ejbCreateC");
-    whoAmI = whoami;
-  }
+    private boolean getObjectTest() {
+        TestUtil.logTrace("getObjectTest");
+        boolean pass = true;
+        try {
+            TestUtil.logMsg("getEJBObject() - IllegalStateException");
+            EJBObject object = context.getEJBObject();
+            TestUtil.logErr("getEJBObject() - no IllegalStateException");
+            pass = false;
+        } catch (IllegalStateException e) {
+            TestUtil.logErr("IllegalStateException caught as expected");
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+            pass = false;
+        }
+        return pass;
+    }
 
-  public void setSessionContext(SessionContext c) {
-    TestUtil.logTrace("setSessionContext");
-    context = c;
-  }
+    private boolean getLocalObjectTest() {
+        TestUtil.logTrace("getLocalObjectTest");
+        boolean pass = true;
+        try {
+            EJBLocalObject object = context.getEJBLocalObject();
+            if (object != null) {
+                TestUtil.logMsg("getEJBLocalObject() returned EJBLocalObject reference");
+                if (object instanceof CLocal) TestUtil.logMsg("An CLocal object");
+                else {
+                    TestUtil.logErr("Not an CLocal object");
+                    pass = false;
+                }
+            } else {
+                TestUtil.logErr("getEJBLocalObject() returned null reference");
+                pass = false;
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+            pass = false;
+        }
+        return pass;
+    }
 
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
+    // ===========================================================
+    // EJB Specification Required Methods
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
+    public void ejbCreateC(String whoami) throws CreateException {
+        TestUtil.logTrace("ejbCreateC");
+        whoAmI = whoami;
+    }
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
+    public void setSessionContext(SessionContext c) {
+        TestUtil.logTrace("setSessionContext");
+        context = c;
+    }
+
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
+    }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
 }

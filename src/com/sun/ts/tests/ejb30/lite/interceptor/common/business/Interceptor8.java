@@ -19,25 +19,25 @@
  */
 package com.sun.ts.tests.ejb30.lite.interceptor.common.business;
 
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
+import java.util.logging.Level;
 
 public class Interceptor8 extends InterceptorOverrideBase {
-  private static final String simpleName = "Interceptor8";
+    private static final String simpleName = "Interceptor8";
 
-  @AroundInvoke
-  @Override // override the superclass' interceptor method with interceptor
-            // method
-  protected Object interceptInInterceptorOverrideBase(InvocationContext inv)
-      throws Exception {
-    Helper.getLogger().logp(Level.FINE, simpleName,
-        "interceptInInterceptorOverrideBase",
-        "Adding around-invoke record: " + simpleName);
-    addToHistory(inv, simpleName);
-    return inv.proceed();
-  }
+    @AroundInvoke
+    @Override // override the superclass' interceptor method with interceptor
+    // method
+    protected Object interceptInInterceptorOverrideBase(InvocationContext inv) throws Exception {
+        Helper.getLogger()
+                .logp(
+                        Level.FINE,
+                        simpleName,
+                        "interceptInInterceptorOverrideBase",
+                        "Adding around-invoke record: " + simpleName);
+        addToHistory(inv, simpleName);
+        return inv.proceed();
+    }
 }

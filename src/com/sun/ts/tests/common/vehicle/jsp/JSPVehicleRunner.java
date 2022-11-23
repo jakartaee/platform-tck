@@ -25,12 +25,12 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.web.WebVehicleRunner;
 
 public class JSPVehicleRunner extends WebVehicleRunner {
-  protected Status run() {
-    // run in a Jsp
-    sTestStatus = runWebVehicleTest(sVehicle);
+    protected Status run() {
+        // run in a Jsp
+        sTestStatus = runWebVehicleTest(sVehicle);
 
-    TestUtil.logMsg("Test: returning from running in a jsp vehicle");
+        TestUtil.logMsg("Test: returning from running in a jsp vehicle");
 
-    return sTestStatus;
-  }
+        return sTestStatus;
+    }
 }

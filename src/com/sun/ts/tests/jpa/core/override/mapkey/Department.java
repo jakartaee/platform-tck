@@ -16,78 +16,75 @@
 
 package com.sun.ts.tests.jpa.core.override.mapkey;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "DEPARTMENT_2")
 public class Department implements Serializable {
 
-  @Id
-  private Long id;
+    @Id
+    private Long id;
 
-  private String name;
+    private String name;
 
-  private List<Employee> employees = new ArrayList<Employee>();
+    private List<Employee> employees = new ArrayList<Employee>();
 
-  public Department() {
-  }
+    public Department() {}
 
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.getId() != null ? this.getId().hashCode() : 0);
-    return hash;
-  }
-
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof Department)) {
-      return false;
+    public Long getId() {
+        return id;
     }
-    Department other = (Department) object;
-    if (this.getId() != other.getId()
-        && (this.getId() == null || !this.getId().equals(other.getId()))) {
-      return false;
+
+    public void setId(Long id) {
+        this.id = id;
     }
-    return true;
-  }
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.mapkey." + "Department[id="
-        + getId() + "]";
-  }
+    public int hashCode() {
+        int hash = 0;
+        hash += (this.getId() != null ? this.getId().hashCode() : 0);
+        return hash;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not
+        // set
+        if (!(object instanceof Department)) {
+            return false;
+        }
+        Department other = (Department) object;
+        if (this.getId() != other.getId()
+                && (this.getId() == null || !this.getId().equals(other.getId()))) {
+            return false;
+        }
+        return true;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public String toString() {
+        return "com.sun.ts.tests.jpa.core.override.mapkey." + "Department[id=" + getId() + "]";
+    }
 
-  public void addEmployee(Employee employee) {
-    this.getEmployees().add(employee);
-  }
+    public String getName() {
+        return name;
+    }
 
-  public List<Employee> getEmployees() {
-    return employees;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public void setEmployees(List<Employee> employees) {
-    this.employees = employees;
-  }
+    public void addEmployee(Employee employee) {
+        this.getEmployees().add(employee);
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
 }

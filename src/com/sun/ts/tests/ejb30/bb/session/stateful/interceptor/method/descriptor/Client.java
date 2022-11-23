@@ -23,171 +23,170 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.interceptor.method.descriptor
 import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeIF;
 import com.sun.ts.tests.ejb30.common.interceptor.ClientBase;
-
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
-  @EJB(name = "AroundInvokeBean")
-  static private AroundInvokeIF bean;
+    @EJB(name = "AroundInvokeBean")
+    private static AroundInvokeIF bean;
 
-  protected AroundInvokeIF getBean() {
-    return bean;
-  }
+    protected AroundInvokeIF getBean() {
+        return bean;
+    }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  public void cleanup() throws com.sun.ts.lib.harness.EETest.Fault {
-    super.cleanup();
-    remove();
-  }
+    public void cleanup() throws com.sun.ts.lib.harness.EETest.Fault {
+        super.cleanup();
+        remove();
+    }
 
-  /*
-   * @class.setup_props:
-   */
+    /*
+     * @class.setup_props:
+     */
 
-  /*
-   * @testName: getBeanTest
-   * 
-   * @assertion_ids: EJB:JAVADOC:258
-   * 
-   * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-   * InvocationContext methods o interceptor method can throw exceptions
-   */
+    /*
+     * @testName: getBeanTest
+     *
+     * @assertion_ids: EJB:JAVADOC:258
+     *
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
+     * InvocationContext methods o interceptor method can throw exceptions
+     */
 
-  /*
-   * @testName: getParametersTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-   * InvocationContext methods o interceptor method can throw exceptions
-   */
+    /*
+     * @testName: getParametersTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
+     * InvocationContext methods o interceptor method can throw exceptions
+     */
 
-  /*
-   * @testName: getParametersEmptyTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: o no parameters in business method.
-   * InvocationContext.getParameters() should return null or Object[]{}; This is
-   * verified in interceptor method.
-   */
+    /*
+     * @testName: getParametersEmptyTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: o no parameters in business method.
+     * InvocationContext.getParameters() should return null or Object[]{}; This is
+     * verified in interceptor method.
+     */
 
-  /*
-   * @testName: txRollbackOnlyTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: o interceptor marks a tx to be rollback only before
-   * proceed();
-   */
+    /*
+     * @testName: txRollbackOnlyTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: o interceptor marks a tx to be rollback only before
+     * proceed();
+     */
 
-  /*
-   * @testName: txRollbackOnlyAfterTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: o interceptor marks a tx to be rollback only before
-   * proceed();
-   */
+    /*
+     * @testName: txRollbackOnlyAfterTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: o interceptor marks a tx to be rollback only before
+     * proceed();
+     */
 
-  /*
-   * @testName: runtimeExceptionTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: o interceptor marks a tx to be rollback only before
-   * proceed(), by runtime exception o bean instance is no longer usable after
-   * this test
-   */
+    /*
+     * @testName: runtimeExceptionTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: o interceptor marks a tx to be rollback only before
+     * proceed(), by runtime exception o bean instance is no longer usable after
+     * this test
+     */
 
-  /*
-   * @testName: runtimeExceptionAfterTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: o interceptor marks a tx to be rollback only after
-   * proceed(), by runtime exception o bean instance is no longer usable after
-   * this test
-   */
+    /*
+     * @testName: runtimeExceptionAfterTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: o interceptor marks a tx to be rollback only after
+     * proceed(), by runtime exception o bean instance is no longer usable after
+     * this test
+     */
 
-  /*
-   * @testName: setParametersTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-   * InvocationContext methods o interceptor method can throw exceptions
-   */
+    /*
+     * @testName: setParametersTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
+     * InvocationContext methods o interceptor method can throw exceptions
+     */
 
-  /*
-   * @testName: getContextDataTest
-   * 
-   * @assertion_ids: EJB:JAVADOC:255
-   * 
-   * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-   * InvocationContext methods o interceptor method can throw exceptions
-   */
+    /*
+     * @testName: getContextDataTest
+     *
+     * @assertion_ids: EJB:JAVADOC:255
+     *
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
+     * InvocationContext methods o interceptor method can throw exceptions
+     */
 
-  /*
-   * @testName: getMethodTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-   * InvocationContext methods o interceptor method can throw exceptions
-   */
+    /*
+     * @testName: getMethodTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
+     * InvocationContext methods o interceptor method can throw exceptions
+     */
 
-  /*
-   * @testName: exceptionTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-   * InvocationContext methods o interceptor method can throw exceptions
-   */
+    /*
+     * @testName: exceptionTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
+     * InvocationContext methods o interceptor method can throw exceptions
+     */
 
-  /*
-   * @testName: suppressExceptionTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: o the checked exception throwb by the business method can
-   * be supressed by the interceptor.
-   */
+    /*
+     * @testName: suppressExceptionTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: o the checked exception throwb by the business method can
+     * be supressed by the interceptor.
+     */
 
-  //////////////////////////////////////////////////////////////////////////
-  // afterBeginTest and beforeCompletionTest can only be used with
-  // sfsb with SessionSynchronization. Otherwise, do not inherit them.
-  //////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////
+    // afterBeginTest and beforeCompletionTest can only be used with
+    // sfsb with SessionSynchronization. Otherwise, do not inherit them.
+    //////////////////////////////////////////////////////////////////////////
 
-  /*
-   * @testName: afterBeginTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: o afterBegin happens before any interceptor methods
-   */
+    /*
+     * @testName: afterBeginTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: o afterBegin happens before any interceptor methods
+     */
 
-  /*
-   * @testName: beforeCompletionTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: o beforeCompletion happens after any interceptor methods
-   */
+    /*
+     * @testName: beforeCompletionTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: o beforeCompletion happens after any interceptor methods
+     */
 
-  /*
-   * @testName: sameSecContextTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: o interceptor method occurs with the same security context
-   * as the business method
-   */
+    /*
+     * @testName: sameSecContextTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: o interceptor method occurs with the same security context
+     * as the business method
+     */
 
 }

@@ -20,13 +20,11 @@
 
 package com.sun.ts.tests.ejb30.assembly.common;
 
-import java.util.ArrayList;
-import java.util.Vector;
-
-import javax.naming.NamingException;
-
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+import java.util.ArrayList;
+import java.util.Vector;
+import javax.naming.NamingException;
 
 /**
  * Multiple threads performing lookup of EJB and DataSource, and each thread has
@@ -34,71 +32,67 @@ import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
  * https://glassfish.dev.java.net/issues/show_bug.cgi?id=2672
  */
 public class ConcurrentLookup {
-  private final static Integer DEFAULT_LOOKUP_COUNT = 10;
+    private static final Integer DEFAULT_LOOKUP_COUNT = 10;
 
-  private Vector lookupResults = new Vector();
+    private Vector lookupResults = new Vector();
 
-  public ConcurrentLookup() {
-  }
+    public ConcurrentLookup() {}
 
-  public String concurrentLookup(String shortLookupName, Integer count)
-      throws TestFailedException {
-    if (count == null) {
-      count = DEFAULT_LOOKUP_COUNT;
-    }
-    ArrayList<Thread> threads = new ArrayList<Thread>();
-    for (int i = 0; i < count; i++) {
-      threads.add((new LookupThread(shortLookupName)));
-    }
-    for (Thread t : threads) {
-      t.start();
-    }
-    for (Thread t : threads) {
-      try {
-        t.join();
-      } catch (InterruptedException ex) {
-        ex.printStackTrace();
-      }
-    }
-    if (lookupResults.size() != count) {
-      throw new TestFailedException(
-          "Expecting " + count + " lookups, but only got "
-              + lookupResults.size() + " results: " + lookupResults);
-    }
-    for (Object obj : lookupResults) {
-      if (obj == null || obj instanceof Throwable) {
-        throw new TestFailedException(
-            "At least one lookup returned null or Throwable:" + lookupResults);
-      }
-    }
-    return "All " + count + " lookups returned good results: " + lookupResults;
-  }
-
-  class LookupThread extends Thread {
-    private String shortLookupName;
-
-    public LookupThread() {
-      super();
-    }
-
-    public LookupThread(String shortLookupName) {
-      super();
-      this.shortLookupName = shortLookupName;
-    }
-
-    @Override
-    public void run() {
-      Object result = null;
-      try {
-        if (shortLookupName.startsWith("java:global/")) {
-          result = ServiceLocator.lookup(shortLookupName);
-        } else {
-          result = ServiceLocator.lookupByShortName(shortLookupName);
+    public String concurrentLookup(String shortLookupName, Integer count) throws TestFailedException {
+        if (count == null) {
+            count = DEFAULT_LOOKUP_COUNT;
         }
-      } catch (NamingException ex) {
-        result = ex;
-      }
-      lookupResults.add(result);
+        ArrayList<Thread> threads = new ArrayList<Thread>();
+        for (int i = 0; i < count; i++) {
+            threads.add((new LookupThread(shortLookupName)));
+        }
+        for (Thread t : threads) {
+            t.start();
+        }
+        for (Thread t : threads) {
+            try {
+                t.join();
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
+        if (lookupResults.size() != count) {
+            throw new TestFailedException("Expecting " + count + " lookups, but only got " + lookupResults.size()
+                    + " results: " + lookupResults);
+        }
+        for (Object obj : lookupResults) {
+            if (obj == null || obj instanceof Throwable) {
+                throw new TestFailedException("At least one lookup returned null or Throwable:" + lookupResults);
+            }
+        }
+        return "All " + count + " lookups returned good results: " + lookupResults;
     }
-  }
+
+    class LookupThread extends Thread {
+        private String shortLookupName;
+
+        public LookupThread() {
+            super();
+        }
+
+        public LookupThread(String shortLookupName) {
+            super();
+            this.shortLookupName = shortLookupName;
+        }
+
+        @Override
+        public void run() {
+            Object result = null;
+            try {
+                if (shortLookupName.startsWith("java:global/")) {
+                    result = ServiceLocator.lookup(shortLookupName);
+                } else {
+                    result = ServiceLocator.lookupByShortName(shortLookupName);
+                }
+            } catch (NamingException ex) {
+                result = ex;
+            }
+            lookupResults.add(result);
+        }
+    }
 }

@@ -15,66 +15,64 @@
  */
 
 /*
- * 
- * @(#)TestBean2EJB.java	1.2 03/05/16 
- * 
+ *
+ * @(#)TestBean2EJB.java	1.2 03/05/16
+ *
  */
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.bean2beanmultijartest.bean2;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
+import java.util.Properties;
 
 public class TestBean2EJB implements SessionBean {
-  private static final String PINGMSG = "ping from bean2";
+    private static final String PINGMSG = "ping from bean2";
 
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  private Properties harnessProps = null;
+    private Properties harnessProps = null;
 
-  public void ejbCreate(Properties p) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    harnessProps = p;
-    try {
-      TestUtil.logMsg("initialize remote logging");
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException(e.getMessage());
+    public void ejbCreate(Properties p) throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        harnessProps = p;
+        try {
+            TestUtil.logMsg("initialize remote logging");
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException(e.getMessage());
+        }
     }
-  }
 
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-  }
+    public void setSessionContext(SessionContext sc) {
+        TestUtil.logTrace("setSessionContext");
+        this.sctx = sc;
+    }
 
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
 
-  // ===========================================================
-  // TestBean2 interface (our business methods)
+    // ===========================================================
+    // TestBean2 interface (our business methods)
 
-  public String ping(String s) {
-    TestUtil.logTrace("ping");
-    TestUtil.logMsg("Received: " + s);
-    return PINGMSG;
-  }
+    public String ping(String s) {
+        TestUtil.logTrace("ping");
+        TestUtil.logMsg("Received: " + s);
+        return PINGMSG;
+    }
 
-  // ===========================================================
+    // ===========================================================
 }

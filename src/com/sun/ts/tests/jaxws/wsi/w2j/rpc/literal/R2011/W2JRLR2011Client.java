@@ -24,43 +24,40 @@ import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 
 public class W2JRLR2011Client extends SOAPClient {
-  public W2JRLR2011Client(String webServerHost, int webServerPort, int mode)
-      throws EETest.Fault {
-    this(webServerHost, webServerPort, mode, null);
-  }
+    public W2JRLR2011Client(String webServerHost, int webServerPort, int mode) throws EETest.Fault {
+        this(webServerHost, webServerPort, mode, null);
+    }
 
-  public W2JRLR2011Client(String webServerHost, int webServerPort, int mode,
-      jakarta.xml.ws.Service webServiceRef) throws EETest.Fault {
-    super(webServerHost, webServerPort, mode);
-    stubContext.setNamespace(
-        "http://w2jrlr2011testservice.org/W2JRLR2011TestService.wsdl");
-    stubContext.setService("W2JRLR2011TestService");
-    stubContext.setPort("W2JRLR2011TestPort");
-    stubContext.setEndpointInterface(W2JRLR2011Test.class);
-    stubContext.setWebServiceRef(webServiceRef);
-  }
+    public W2JRLR2011Client(String webServerHost, int webServerPort, int mode, jakarta.xml.ws.Service webServiceRef)
+            throws EETest.Fault {
+        super(webServerHost, webServerPort, mode);
+        stubContext.setNamespace("http://w2jrlr2011testservice.org/W2JRLR2011TestService.wsdl");
+        stubContext.setService("W2JRLR2011TestService");
+        stubContext.setPort("W2JRLR2011TestPort");
+        stubContext.setEndpointInterface(W2JRLR2011Test.class);
+        stubContext.setWebServiceRef(webServiceRef);
+    }
 
-  protected String getEndpointURLProperty() {
-    return "wsi.w2jrlr2011.endpoint.1";
-  }
+    protected String getEndpointURLProperty() {
+        return "wsi.w2jrlr2011.endpoint.1";
+    }
 
-  protected String getWSDLURLProperty() {
-    return "wsi.w2jrlr2011.wsdlloc.1";
-  }
+    protected String getWSDLURLProperty() {
+        return "wsi.w2jrlr2011.wsdlloc.1";
+    }
 
-  public String echoImportDirectlyStringTest(String str) throws Exception {
-    ImportDirectlyStringRequest srq = new ImportDirectlyStringRequest();
-    srq.setStringValue(str);
-    ImportDirectlyStringResponse srp = ((W2JRLR2011Test) stubContext.getStub())
-        .echoImportDirectlyStringTest(srq);
-    return srp.getStringValue();
-  }
+    public String echoImportDirectlyStringTest(String str) throws Exception {
+        ImportDirectlyStringRequest srq = new ImportDirectlyStringRequest();
+        srq.setStringValue(str);
+        ImportDirectlyStringResponse srp = ((W2JRLR2011Test) stubContext.getStub()).echoImportDirectlyStringTest(srq);
+        return srp.getStringValue();
+    }
 
-  public String echoImportIndirectlyStringTest(String str) throws Exception {
-    ImportIndirectlyStringRequest srq = new ImportIndirectlyStringRequest();
-    srq.setStringValue(str);
-    ImportIndirectlyStringResponse srp = ((W2JRLR2011Test) stubContext
-        .getStub()).echoImportIndirectlyStringTest(srq);
-    return srp.getStringValue();
-  }
+    public String echoImportIndirectlyStringTest(String str) throws Exception {
+        ImportIndirectlyStringRequest srq = new ImportIndirectlyStringRequest();
+        srq.setStringValue(str);
+        ImportIndirectlyStringResponse srp =
+                ((W2JRLR2011Test) stubContext.getStub()).echoImportIndirectlyStringTest(srq);
+        return srp.getStringValue();
+    }
 }

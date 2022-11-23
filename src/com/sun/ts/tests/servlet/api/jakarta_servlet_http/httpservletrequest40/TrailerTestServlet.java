@@ -16,35 +16,33 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpservletrequest40;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
 public class TrailerTestServlet extends HttpServlet {
 
-  @Override
-  protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, IOException {
-    InputStream in = req.getInputStream();
-    int i = 0;
-    ByteArrayOutputStream out = new ByteArrayOutputStream();
-    while ((i = in.read()) != -1) {
-      out.write(i);
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        InputStream in = req.getInputStream();
+        int i = 0;
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        while ((i = in.read()) != -1) {
+            out.write(i);
+        }
+
+        PrintWriter writer = new PrintWriter(resp.getWriter());
+
+        writer.write("Chunk Data: " + new String(out.toByteArray()));
+        writer.println();
+        writer.write("isTrailerFieldsReady: " + req.isTrailerFieldsReady());
+        writer.println();
+        writer.write("Trailer: " + req.getTrailerFields().toString());
+        writer.flush();
     }
-
-    PrintWriter writer = new PrintWriter(resp.getWriter());
-
-    writer.write("Chunk Data: " + new String(out.toByteArray()));
-    writer.println();
-    writer.write("isTrailerFieldsReady: " + req.isTrailerFieldsReady());
-    writer.println();
-    writer.write("Trailer: " + req.getTrailerFields().toString());
-    writer.flush();
-  }
 }

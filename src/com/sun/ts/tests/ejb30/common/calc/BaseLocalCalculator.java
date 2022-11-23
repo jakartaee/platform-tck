@@ -24,10 +24,7 @@ package com.sun.ts.tests.ejb30.common.calc;
  * An implementation class of LocalCalculator interface. This implementation is
  * the same as <code>BaseCalculator</code>, which by default implements local
  * business interface.
- * 
+ *
  * @author Cheng Fang
  */
-public class BaseLocalCalculator extends BaseCalculator
-    implements LocalCalculator {
-
-}
+public class BaseLocalCalculator extends BaseCalculator implements LocalCalculator {}

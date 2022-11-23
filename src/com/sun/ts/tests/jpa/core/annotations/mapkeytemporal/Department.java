@@ -16,9 +16,6 @@
 
 package com.sun.ts.tests.jpa.core.annotations.mapkeytemporal;
 
-import java.util.Date;
-import java.util.Map;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -27,73 +24,74 @@ import jakarta.persistence.MapKeyTemporal;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.TemporalType;
+import java.util.Date;
+import java.util.Map;
 
 @Entity
 @Table(name = "DEPARTMENT2")
 public class Department implements java.io.Serializable {
 
-  // Instance variables
-  private int id;
+    // Instance variables
+    private int id;
 
-  private String name;
+    private String name;
 
-  private Map<java.util.Date, Employee> lastNameEmployees;
+    private Map<java.util.Date, Employee> lastNameEmployees;
 
-  public Department() {
-  }
+    public Department() {}
 
-  public Department(int id, String name) {
-    this.id = id;
-    this.name = name;
-  }
-
-  // ===========================================================
-  // getters and setters for the state fields
-
-  @Id
-  @Column(name = "ID")
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
-
-  @Column(name = "NAME")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  // ===========================================================
-  // getters and setters for the association fields
-
-  @OneToMany(mappedBy = "department")
-  @MapKeyColumn(name = "THEDATE")
-  @MapKeyTemporal(TemporalType.DATE)
-  public Map<Date, Employee> getLastNameEmployees() {
-    return lastNameEmployees;
-  }
-
-  public void setLastNameEmployees(Map<Date, Employee> lastNameEmployees) {
-    this.lastNameEmployees = lastNameEmployees;
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    if (getName() != null) {
-      result.append(", name: " + getName());
-    } else {
-      result.append(", name: null");
+    public Department(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
-    result.append("]");
-    return result.toString();
-  }
+
+    // ===========================================================
+    // getters and setters for the state fields
+
+    @Id
+    @Column(name = "ID")
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Column(name = "NAME")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // ===========================================================
+    // getters and setters for the association fields
+
+    @OneToMany(mappedBy = "department")
+    @MapKeyColumn(name = "THEDATE")
+    @MapKeyTemporal(TemporalType.DATE)
+    public Map<Date, Employee> getLastNameEmployees() {
+        return lastNameEmployees;
+    }
+
+    public void setLastNameEmployees(Map<Date, Employee> lastNameEmployees) {
+        this.lastNameEmployees = lastNameEmployees;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getId());
+        if (getName() != null) {
+            result.append(", name: " + getName());
+        } else {
+            result.append(", name: null");
+        }
+        result.append("]");
+        return result.toString();
+    }
 }

@@ -20,23 +20,20 @@
 
 package com.sun.ts.tests.ejb30.lite.async.common.metadata;
 
+import jakarta.ejb.AsyncResult;
 import java.util.concurrent.Future;
 
-import jakarta.ejb.AsyncResult;
+public abstract class InterfaceTypeLevelBeanBase implements PlainInterfaceTypeLevelIF {
 
-public abstract class InterfaceTypeLevelBeanBase
-    implements PlainInterfaceTypeLevelIF {
+    public void voidRuntimeException() {
+        throw new RuntimeException("This exception is not visible to the client.");
+    }
 
-  public void voidRuntimeException() {
-    throw new RuntimeException("This exception is not visible to the client.");
-  }
+    public Future<Integer> futureRuntimeException() {
+        throw new RuntimeException("futureRuntimeException");
+    }
 
-  public Future<Integer> futureRuntimeException() {
-    throw new RuntimeException("futureRuntimeException");
-  }
-
-  public Future<Boolean> futureReturnType() {
-    return new AsyncResult<Boolean>(true);
-  }
-
+    public Future<Boolean> futureReturnType() {
+        return new AsyncResult<Boolean>(true);
+    }
 }

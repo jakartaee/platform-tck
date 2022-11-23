@@ -20,145 +20,136 @@
 
 package com.sun.ts.tests.ejb30.common.equals;
 
-import javax.naming.NamingException;
-
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
+import javax.naming.NamingException;
 
 @Stateless(name = "test-bean-for-stateful")
 @Remote
-
 public class TestBeanForStateful extends TestBeanBase implements TestIF {
-  @Resource(name = "sessionContext")
-  private SessionContext sessionContext;
+    @Resource(name = "sessionContext")
+    private SessionContext sessionContext;
 
-  protected SessionContext getSessionContext() {
-    return sessionContext;
-  }
-
-  @EJB(name = "cart")
-  private LocalCartIF cart;
-
-  @EJB(name = "cartOther")
-  private LocalCartIF cartOther;
-
-  @EJB(name = "shoppingCart")
-  private LocalShoppingCartIF shoppingCart;
-
-  @EJB(name = "shoppingCartOther")
-  private LocalShoppingCartIF shoppingCartOther;
-
-  public void remove() {
-  }
-
-  //////////////////////////////////////////////////////////////////////
-  public void selfEquals() throws TestFailedException {
-    Comparator.compare(cart, cart, true, LOG_IF_OK);
-    Comparator.compare(shoppingCart, shoppingCart, true, LOG_IF_OK);
-  }
-
-  public void selfEqualsLookup() throws TestFailedException {
-    try {
-      Object cart = ServiceLocator.lookupByShortName("cart");
-      Object shoppingCart = ServiceLocator.lookupByShortName("shoppingCart");
-      Comparator.compare(cart, cart, true, LOG_IF_OK);
-      Comparator.compare(shoppingCart, shoppingCart, true, LOG_IF_OK);
-
-      removeCart(cart);
-      removeShoppingCart(shoppingCart);
-
-      cart = getSessionContext().lookup("cart");
-      shoppingCart = getSessionContext().lookup("shoppingCart");
-      Comparator.compare(cart, cart, true, LOG_IF_OK);
-      Comparator.compare(shoppingCart, shoppingCart, true, LOG_IF_OK);
-
-      removeCart(cart);
-      removeShoppingCart(shoppingCart);
-    } catch (NamingException e) {
-      throw new TestFailedException(e);
+    protected SessionContext getSessionContext() {
+        return sessionContext;
     }
-  }
 
-  public void otherNotEquals() throws TestFailedException {
-    Comparator.compare(cart, cartOther, false, LOG_IF_OK);
-    Comparator.compare(shoppingCart, shoppingCartOther, false, LOG_IF_OK);
-  }
+    @EJB(name = "cart")
+    private LocalCartIF cart;
 
-  public void otherNotEqualsLookup() throws TestFailedException {
-    try {
-      Object cart = ServiceLocator.lookupByShortName("cart");
-      Object cartOther = ServiceLocator.lookupByShortName("cartOther");
-      Object shoppingCart = ServiceLocator.lookupByShortName("shoppingCart");
-      Object shoppingCartOther = ServiceLocator
-          .lookupByShortName("shoppingCartOther");
-      Comparator.compare(cart, cartOther, this.cart, false, LOG_IF_OK);
-      Comparator.compare(shoppingCart, shoppingCartOther, this.shoppingCart,
-          false, LOG_IF_OK);
+    @EJB(name = "cartOther")
+    private LocalCartIF cartOther;
 
-      removeCart(cart);
-      removeCart(cartOther);
-      removeShoppingCart(shoppingCart);
-      removeShoppingCart(shoppingCartOther);
+    @EJB(name = "shoppingCart")
+    private LocalShoppingCartIF shoppingCart;
 
-      cart = getSessionContext().lookup("cart");
-      cartOther = getSessionContext().lookup("cartOther");
-      shoppingCart = getSessionContext().lookup("shoppingCart");
-      shoppingCartOther = getSessionContext().lookup("shoppingCartOther");
-      Comparator.compare(cart, cartOther, this.cart, false, LOG_IF_OK);
-      Comparator.compare(shoppingCart, shoppingCartOther, this.shoppingCart,
-          false, LOG_IF_OK);
+    @EJB(name = "shoppingCartOther")
+    private LocalShoppingCartIF shoppingCartOther;
 
-      removeCart(cart);
-      removeCart(cartOther);
-      removeShoppingCart(shoppingCart);
-      removeShoppingCart(shoppingCartOther);
-    } catch (NamingException e) {
-      throw new TestFailedException(e);
+    public void remove() {}
+
+    //////////////////////////////////////////////////////////////////////
+    public void selfEquals() throws TestFailedException {
+        Comparator.compare(cart, cart, true, LOG_IF_OK);
+        Comparator.compare(shoppingCart, shoppingCart, true, LOG_IF_OK);
     }
-  }
 
-  public void differentInterfaceNotEqual() throws TestFailedException {
-    Comparator.compare(cart, shoppingCart, false, LOG_IF_OK);
-  }
+    public void selfEqualsLookup() throws TestFailedException {
+        try {
+            Object cart = ServiceLocator.lookupByShortName("cart");
+            Object shoppingCart = ServiceLocator.lookupByShortName("shoppingCart");
+            Comparator.compare(cart, cart, true, LOG_IF_OK);
+            Comparator.compare(shoppingCart, shoppingCart, true, LOG_IF_OK);
 
-  public void differentInterfaceNotEqualLookup() throws TestFailedException {
-    try {
-      Object cart = ServiceLocator.lookupByShortName("cart");
-      Object shoppingCart = ServiceLocator.lookupByShortName("shoppingCart");
-      Comparator.compare(cart, shoppingCart, false, LOG_IF_OK);
+            removeCart(cart);
+            removeShoppingCart(shoppingCart);
 
-      removeCart(cart);
-      removeShoppingCart(shoppingCart);
-    } catch (NamingException e) {
-      throw new TestFailedException(e);
+            cart = getSessionContext().lookup("cart");
+            shoppingCart = getSessionContext().lookup("shoppingCart");
+            Comparator.compare(cart, cart, true, LOG_IF_OK);
+            Comparator.compare(shoppingCart, shoppingCart, true, LOG_IF_OK);
+
+            removeCart(cart);
+            removeShoppingCart(shoppingCart);
+        } catch (NamingException e) {
+            throw new TestFailedException(e);
+        }
     }
-  }
 
-  //////////////////////////////////////////////////////////////////////
-  // disable methods for stateless beans
-  //////////////////////////////////////////////////////////////////////
-  public void otherEqualsLookup() throws TestFailedException {
-    throw new TestFailedException(
-        "This method should not be invoked for this test.");
-  }
+    public void otherNotEquals() throws TestFailedException {
+        Comparator.compare(cart, cartOther, false, LOG_IF_OK);
+        Comparator.compare(shoppingCart, shoppingCartOther, false, LOG_IF_OK);
+    }
 
-  public void otherEquals() throws TestFailedException {
-    throw new TestFailedException(
-        "This method should not be invoked for this test.");
-  }
+    public void otherNotEqualsLookup() throws TestFailedException {
+        try {
+            Object cart = ServiceLocator.lookupByShortName("cart");
+            Object cartOther = ServiceLocator.lookupByShortName("cartOther");
+            Object shoppingCart = ServiceLocator.lookupByShortName("shoppingCart");
+            Object shoppingCartOther = ServiceLocator.lookupByShortName("shoppingCartOther");
+            Comparator.compare(cart, cartOther, this.cart, false, LOG_IF_OK);
+            Comparator.compare(shoppingCart, shoppingCartOther, this.shoppingCart, false, LOG_IF_OK);
 
-  //////////////////////////////////////////////////////////////////////
-  private void removeCart(Object aCart) {
-    ((LocalCartIF) aCart).remove();
-  }
+            removeCart(cart);
+            removeCart(cartOther);
+            removeShoppingCart(shoppingCart);
+            removeShoppingCart(shoppingCartOther);
 
-  private void removeShoppingCart(Object aShoppingCart) {
-    ((LocalShoppingCartIF) aShoppingCart).remove();
-  }
+            cart = getSessionContext().lookup("cart");
+            cartOther = getSessionContext().lookup("cartOther");
+            shoppingCart = getSessionContext().lookup("shoppingCart");
+            shoppingCartOther = getSessionContext().lookup("shoppingCartOther");
+            Comparator.compare(cart, cartOther, this.cart, false, LOG_IF_OK);
+            Comparator.compare(shoppingCart, shoppingCartOther, this.shoppingCart, false, LOG_IF_OK);
+
+            removeCart(cart);
+            removeCart(cartOther);
+            removeShoppingCart(shoppingCart);
+            removeShoppingCart(shoppingCartOther);
+        } catch (NamingException e) {
+            throw new TestFailedException(e);
+        }
+    }
+
+    public void differentInterfaceNotEqual() throws TestFailedException {
+        Comparator.compare(cart, shoppingCart, false, LOG_IF_OK);
+    }
+
+    public void differentInterfaceNotEqualLookup() throws TestFailedException {
+        try {
+            Object cart = ServiceLocator.lookupByShortName("cart");
+            Object shoppingCart = ServiceLocator.lookupByShortName("shoppingCart");
+            Comparator.compare(cart, shoppingCart, false, LOG_IF_OK);
+
+            removeCart(cart);
+            removeShoppingCart(shoppingCart);
+        } catch (NamingException e) {
+            throw new TestFailedException(e);
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////
+    // disable methods for stateless beans
+    //////////////////////////////////////////////////////////////////////
+    public void otherEqualsLookup() throws TestFailedException {
+        throw new TestFailedException("This method should not be invoked for this test.");
+    }
+
+    public void otherEquals() throws TestFailedException {
+        throw new TestFailedException("This method should not be invoked for this test.");
+    }
+
+    //////////////////////////////////////////////////////////////////////
+    private void removeCart(Object aCart) {
+        ((LocalCartIF) aCart).remove();
+    }
+
+    private void removeShoppingCart(Object aShoppingCart) {
+        ((LocalShoppingCartIF) aShoppingCart).remove();
+    }
 }

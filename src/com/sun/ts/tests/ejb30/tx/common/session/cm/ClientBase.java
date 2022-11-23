@@ -20,160 +20,152 @@
 
 package com.sun.ts.tests.ejb30.tx.common.session.cm;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.ejb.EJB;
+import java.util.Properties;
 
-abstract public class ClientBase extends EETest {
-  @EJB(name = "testBean")
-  static protected TestIF testBean;
+public abstract class ClientBase extends EETest {
+    @EJB(name = "testBean")
+    protected static TestIF testBean;
 
-  protected Properties props;
+    protected Properties props;
 
-  /*
-   * @class.setup_props:
-   */
-  public void setup(String[] args, Properties p) {
-    props = p;
-  }
-
-  public void cleanup() {
-  }
-
-  protected void removeBeans() {
-    if (testBean != null) {
-      try {
-        testBean.remove();
-      } catch (Exception e) {
-        // ignore
-      }
+    /*
+     * @class.setup_props:
+     */
+    public void setup(String[] args, Properties p) {
+        props = p;
     }
-  }
 
-  /*
-   * testName: mandatoryTest
-   * 
-   * @test_Strategy: client -> remote bm slsb -> remote cm slsb
-   */
-  public void mandatoryTest() throws TestFailedException {
-    testBean.mandatoryTest();
-  }
+    public void cleanup() {}
 
-  /*
-   * testName: localMandatoryTest
-   * 
-   * @test_Strategy: client -> remote bm slsb -> local cm slsb
-   */
-  public void localMandatoryTest() throws TestFailedException {
-    testBean.localMandatoryTest();
-  }
+    protected void removeBeans() {
+        if (testBean != null) {
+            try {
+                testBean.remove();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
+    }
 
-  /*
-   * testName: neverTest
-   * 
-   * @test_Strategy: client -> remote bm slsb -> remote cm slsb
-   */
-  public void neverTest() throws TestFailedException {
-    testBean.neverTest();
-  }
+    /*
+     * testName: mandatoryTest
+     *
+     * @test_Strategy: client -> remote bm slsb -> remote cm slsb
+     */
+    public void mandatoryTest() throws TestFailedException {
+        testBean.mandatoryTest();
+    }
 
-  /*
-   * testName: localNeverTest
-   * 
-   * @test_Strategy: client -> remote bm slsb -> local cm slsb
-   */
-  public void localNeverTest() throws TestFailedException {
-    testBean.localNeverTest();
-  }
+    /*
+     * testName: localMandatoryTest
+     *
+     * @test_Strategy: client -> remote bm slsb -> local cm slsb
+     */
+    public void localMandatoryTest() throws TestFailedException {
+        testBean.localMandatoryTest();
+    }
 
-  /*
-   * testName: supportsTest
-   * 
-   * @test_Strategy: client -> remote bm slsb -> remote cm slsb 13.6.2.9
-   * Handling of getRollbackOnly Method The container must throw the
-   * java.lang.IllegalStateException if the EJBContext. getRollbackOnly method
-   * is invoked from a business method executing with the SUPPORTS,
-   * NOT_SUPPORTED, or NEVER transaction attribute.
-   * 
-   * 13.6.2.8 Handling of setRollbackOnly Method The container must throw the
-   * java.lang.IllegalStateException if the EJBContext. setRollbackOnly method
-   * is invoked from a business method executing with the SUPPORTS,
-   * NOT_SUPPORTED, or NEVER transaction attribute.
-   */
-  public void supportsTest() throws TestFailedException {
-    Helper.getLogger().info(testBean.supportsTest());
-  }
+    /*
+     * testName: neverTest
+     *
+     * @test_Strategy: client -> remote bm slsb -> remote cm slsb
+     */
+    public void neverTest() throws TestFailedException {
+        testBean.neverTest();
+    }
 
-  /*
-   * testName: localSupportsTest
-   * 
-   * @test_Strategy: client -> remote bm slsb -> local cm slsb
-   */
-  public void localSupportsTest() throws TestFailedException {
-    Helper.getLogger().info(testBean.localSupportsTest());
-    System.out.println(testBean.localSupportsTest());
-  }
+    /*
+     * testName: localNeverTest
+     *
+     * @test_Strategy: client -> remote bm slsb -> local cm slsb
+     */
+    public void localNeverTest() throws TestFailedException {
+        testBean.localNeverTest();
+    }
 
-  /*
-   * testName: illegalGetSetRollbackOnlyNeverTest
-   * 
-   * @test_Strategy: client -> remote bm bean -> local cm bean
-   */
-  public void illegalGetSetRollbackOnlyNeverTest() throws TestFailedException {
-    Helper.getLogger().info(testBean.illegalGetSetRollbackOnlyNeverTest());
-  }
+    /*
+     * testName: supportsTest
+     *
+     * @test_Strategy: client -> remote bm slsb -> remote cm slsb 13.6.2.9
+     * Handling of getRollbackOnly Method The container must throw the
+     * java.lang.IllegalStateException if the EJBContext. getRollbackOnly method
+     * is invoked from a business method executing with the SUPPORTS,
+     * NOT_SUPPORTED, or NEVER transaction attribute.
+     *
+     * 13.6.2.8 Handling of setRollbackOnly Method The container must throw the
+     * java.lang.IllegalStateException if the EJBContext. setRollbackOnly method
+     * is invoked from a business method executing with the SUPPORTS,
+     * NOT_SUPPORTED, or NEVER transaction attribute.
+     */
+    public void supportsTest() throws TestFailedException {
+        Helper.getLogger().info(testBean.supportsTest());
+    }
 
-  /*
-   * testName: localIllegalGetSetRollbackOnlyNeverTest
-   * 
-   * @test_Strategy: client -> remote bm bean -> local cm bean
-   */
-  public void localIllegalGetSetRollbackOnlyNeverTest()
-      throws TestFailedException {
-    Helper.getLogger().info(testBean.localIllegalGetSetRollbackOnlyNeverTest());
-  }
+    /*
+     * testName: localSupportsTest
+     *
+     * @test_Strategy: client -> remote bm slsb -> local cm slsb
+     */
+    public void localSupportsTest() throws TestFailedException {
+        Helper.getLogger().info(testBean.localSupportsTest());
+        System.out.println(testBean.localSupportsTest());
+    }
 
-  /*
-   * testName: illegalGetSetRollbackOnlyNotSupportedTest
-   * 
-   * @test_Strategy: client -> remote bm bean -> local cm bean
-   */
-  public void illegalGetSetRollbackOnlyNotSupportedTest()
-      throws TestFailedException {
-    Helper.getLogger()
-        .info(testBean.illegalGetSetRollbackOnlyNotSupportedTest());
-  }
+    /*
+     * testName: illegalGetSetRollbackOnlyNeverTest
+     *
+     * @test_Strategy: client -> remote bm bean -> local cm bean
+     */
+    public void illegalGetSetRollbackOnlyNeverTest() throws TestFailedException {
+        Helper.getLogger().info(testBean.illegalGetSetRollbackOnlyNeverTest());
+    }
 
-  /*
-   * testName: localIllegalGetSetRollbackOnlyNotSupportedTest
-   * 
-   * @test_Strategy: client -> remote bm bean -> local cm bean
-   */
-  public void localIllegalGetSetRollbackOnlyNotSupportedTest()
-      throws TestFailedException {
-    Helper.getLogger()
-        .info(testBean.localIllegalGetSetRollbackOnlyNotSupportedTest());
-  }
+    /*
+     * testName: localIllegalGetSetRollbackOnlyNeverTest
+     *
+     * @test_Strategy: client -> remote bm bean -> local cm bean
+     */
+    public void localIllegalGetSetRollbackOnlyNeverTest() throws TestFailedException {
+        Helper.getLogger().info(testBean.localIllegalGetSetRollbackOnlyNeverTest());
+    }
 
-  /*
-   * testName: systemExceptionTest
-   * 
-   * @test_Strategy: client -> remote bm bean -> local cm bean
-   */
-  public void systemExceptionTest() throws TestFailedException {
-    Helper.getLogger().info(testBean.systemExceptionTest());
-  }
+    /*
+     * testName: illegalGetSetRollbackOnlyNotSupportedTest
+     *
+     * @test_Strategy: client -> remote bm bean -> local cm bean
+     */
+    public void illegalGetSetRollbackOnlyNotSupportedTest() throws TestFailedException {
+        Helper.getLogger().info(testBean.illegalGetSetRollbackOnlyNotSupportedTest());
+    }
 
-  /*
-   * testName: localRequiresNewRemoveTest
-   * 
-   * @test_Strategy: client -> remote bm slsb -> local cm sfsb
-   */
-  public void localRequiresNewRemoveTest() throws TestFailedException {
-    testBean.localRequiresNewRemoveTest();
-  }
+    /*
+     * testName: localIllegalGetSetRollbackOnlyNotSupportedTest
+     *
+     * @test_Strategy: client -> remote bm bean -> local cm bean
+     */
+    public void localIllegalGetSetRollbackOnlyNotSupportedTest() throws TestFailedException {
+        Helper.getLogger().info(testBean.localIllegalGetSetRollbackOnlyNotSupportedTest());
+    }
+
+    /*
+     * testName: systemExceptionTest
+     *
+     * @test_Strategy: client -> remote bm bean -> local cm bean
+     */
+    public void systemExceptionTest() throws TestFailedException {
+        Helper.getLogger().info(testBean.systemExceptionTest());
+    }
+
+    /*
+     * testName: localRequiresNewRemoveTest
+     *
+     * @test_Strategy: client -> remote bm slsb -> local cm sfsb
+     */
+    public void localRequiresNewRemoveTest() throws TestFailedException {
+        testBean.localRequiresNewRemoveTest();
+    }
 }

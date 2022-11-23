@@ -20,23 +20,20 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateless.statetest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface Counter extends EJBObject {
-  public int value(int value) throws RemoteException;
+    public int value(int value) throws RemoteException;
 
-  public int decrement(int value)
-      throws RemoteException, InvalidTransactionException;
+    public int decrement(int value) throws RemoteException, InvalidTransactionException;
 
-  public int increment(int value) throws RemoteException;
+    public int increment(int value) throws RemoteException;
 
-  public int decrement(int value, int n)
-      throws RemoteException, InvalidTransactionException;
+    public int decrement(int value, int n) throws RemoteException, InvalidTransactionException;
 
-  public int increment(int value, int n) throws RemoteException;
+    public int increment(int value, int n) throws RemoteException;
 
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 }

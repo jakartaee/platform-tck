@@ -20,20 +20,18 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateless.resref.casesens;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.assembly.util.shared.resref.casesens.TestCode;
 import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
+import java.util.Properties;
 
 public class TestBeanEJB extends StatelessWrapper {
 
-  /**
-   * Check that two resref entries whose names differ only by case are
-   * associated with different runtime values (more exactly to distinct java
-   * types, as specified in DD).
-   */
-  public boolean testCaseSensitivity(Properties p) {
-    return TestCode.testCaseSensitivity(nctx);
-  }
-
+    /**
+     * Check that two resref entries whose names differ only by case are
+     * associated with different runtime values (more exactly to distinct java
+     * types, as specified in DD).
+     */
+    public boolean testCaseSensitivity(Properties p) {
+        return TestCode.testCaseSensitivity(nctx);
+    }
 }

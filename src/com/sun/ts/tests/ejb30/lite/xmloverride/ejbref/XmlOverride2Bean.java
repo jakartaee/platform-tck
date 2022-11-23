@@ -21,39 +21,37 @@ package com.sun.ts.tests.ejb30.lite.xmloverride.ejbref;
 
 import com.sun.ts.tests.ejb30.common.lite.NumberEnum;
 import com.sun.ts.tests.ejb30.common.lite.NumberIF;
-
 import jakarta.ejb.Stateless;
 
 @Stateless
 public class XmlOverride2Bean implements NumberIF {
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.sun.ts.tests.ejb30.common.lite.NumberIF#add(int)
-   */
-  public int add(int toAdd) {
-    return 2;
-  }
+    /*
+     * (non-Javadoc)
+     *
+     * @see com.sun.ts.tests.ejb30.common.lite.NumberIF#add(int)
+     */
+    public int add(int toAdd) {
+        return 2;
+    }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * com.sun.ts.tests.ejb30.common.lite.NumberIF#add(com.sun.ts.tests.ejb30.
-   * common.lite.NumberIF)
-   */
-  public NumberIF add(NumberIF toAdd) {
-    return NumberEnum.TWO;
-  }
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * com.sun.ts.tests.ejb30.common.lite.NumberIF#add(com.sun.ts.tests.ejb30.
+     * common.lite.NumberIF)
+     */
+    public NumberIF add(NumberIF toAdd) {
+        return NumberEnum.TWO;
+    }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.sun.ts.tests.ejb30.common.lite.NumberIF#getNumber()
-   */
-  public int getNumber() {
-    return 2; // different from XmlOverrideBean
-  }
-
+    /*
+     * (non-Javadoc)
+     *
+     * @see com.sun.ts.tests.ejb30.common.lite.NumberIF#getNumber()
+     */
+    public int getNumber() {
+        return 2; // different from XmlOverrideBean
+    }
 }

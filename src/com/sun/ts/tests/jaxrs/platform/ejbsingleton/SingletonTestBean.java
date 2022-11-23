@@ -27,22 +27,18 @@ import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.UriInfo;
 
 @Stateless(name = "SingletonTestBean")
-@Local({ SingletonLocalIF.class })
+@Local({SingletonLocalIF.class})
 public class SingletonTestBean implements SingletonLocalIF {
 
-  public SingletonTestBean() {
-  }
+    public SingletonTestBean() {}
 
-  public void remove() {
-  }
+    public void remove() {}
 
-  @Context
-  private UriInfo ui;
+    @Context
+    private UriInfo ui;
 
-  @GET
-  public String get() {
-    return "GET: " + ui.getRequestUri().toASCIIString()
-        + " Hello From Singleton Local EJB Sub";
-  }
-
+    @GET
+    public String get() {
+        return "GET: " + ui.getRequestUri().toASCIIString() + " Hello From Singleton Local EJB Sub";
+    }
 }

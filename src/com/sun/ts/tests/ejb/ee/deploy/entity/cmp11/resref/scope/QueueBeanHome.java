@@ -20,19 +20,16 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.resref.scope;
 
-import java.rmi.RemoteException;
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
 public interface QueueBeanHome extends EJBHome {
 
-  public QueueBean create(Properties p, int cofID, String cofName,
-      float cofPrice) throws RemoteException, CreateException;
+    public QueueBean create(Properties p, int cofID, String cofName, float cofPrice)
+            throws RemoteException, CreateException;
 
-  public QueueBean findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
-
+    public QueueBean findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 }

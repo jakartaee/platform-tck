@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 
 public class BeanEJB extends BMPWrapper {
 
-  public boolean checkEntry(String name, String ref) {
-    return TestCode.checkEntry(nctx, name, ref);
-  }
-
+    public boolean checkEntry(String name, String ref) {
+        return TestCode.checkEntry(nctx, name, ref);
+    }
 }

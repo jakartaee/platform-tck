@@ -20,17 +20,15 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.requestdispatcher;
 
-import java.io.IOException;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
 
 public class ForwardedServlet2 extends GenericServlet {
 
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    throw new ServletException("Content from ForwardedServlet2");
-  }
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        throw new ServletException("Content from ForwardedServlet2");
+    }
 }

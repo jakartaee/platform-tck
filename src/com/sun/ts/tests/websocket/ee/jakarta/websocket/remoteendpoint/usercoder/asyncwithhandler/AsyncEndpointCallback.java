@@ -20,33 +20,31 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder
 import com.sun.ts.tests.websocket.common.client.EndpointCallback;
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient.Entity;
 import com.sun.ts.tests.websocket.common.impl.WaitingSendHandler;
-
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.RemoteEndpoint;
 import jakarta.websocket.SendResult;
 import jakarta.websocket.Session;
 
 public class AsyncEndpointCallback extends EndpointCallback {
-  protected Entity entity;
+    protected Entity entity;
 
-  public AsyncEndpointCallback(Entity entity) {
-    super();
-    this.entity = entity;
-  }
-
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-    RemoteEndpoint.Async endpoint = session.getAsyncRemote();
-    SendResult result = null;
-    try {
-      WaitingSendHandler handler = new WaitingSendHandler();
-      endpoint.sendObject(entity.getEntityAt(0), handler);
-      result = handler.waitForResult(4);
-    } catch (Exception i) {
-      throw new RuntimeException(i);
+    public AsyncEndpointCallback(Entity entity) {
+        super();
+        this.entity = entity;
     }
-    if (!result.isOK() || result.getException() != null)
-      throw new RuntimeException(result.getException());
-  }
+
+    @Override
+    public void onOpen(Session session, EndpointConfig config) {
+        super.onOpen(session, config);
+        RemoteEndpoint.Async endpoint = session.getAsyncRemote();
+        SendResult result = null;
+        try {
+            WaitingSendHandler handler = new WaitingSendHandler();
+            endpoint.sendObject(entity.getEntityAt(0), handler);
+            result = handler.waitForResult(4);
+        } catch (Exception i) {
+            throw new RuntimeException(i);
+        }
+        if (!result.isOK() || result.getException() != null) throw new RuntimeException(result.getException());
+    }
 }

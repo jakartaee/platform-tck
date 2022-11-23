@@ -22,22 +22,21 @@ package com.sun.ts.tests.ejb30.common.migration.threetwo;
 
 import jakarta.ejb.SessionBean;
 
-//This is a 2.1 style bean
+// This is a 2.1 style bean
 
-//@Stateless(name="MigrationBean")
-//@Remote({ThreeIF.class})
-//@Local({ThreeIF.class})
-//@RemoteHome(TwoRemoteHome.class)
-//@LocalHome(TwoLocalHome.class)
+// @Stateless(name="MigrationBean")
+// @Remote({ThreeIF.class})
+// @Local({ThreeIF.class})
+// @RemoteHome(TwoRemoteHome.class)
+// @LocalHome(TwoLocalHome.class)
 public class MigrationBean extends MigrationBeanBase implements SessionBean {
 
-  public MigrationBean() {
-  }
+    public MigrationBean() {}
 
-  // remove method is already declared in EJBObject and not needed here for
-  // 2.1 style beans
+    // remove method is already declared in EJBObject and not needed here for
+    // 2.1 style beans
 
-  // public void remove() {
-  // }
+    // public void remove() {
+    // }
 
 }

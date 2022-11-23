@@ -19,49 +19,47 @@
  */
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.common;
 
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.singleton.common.SingletonInterceptorBase;
-
 import jakarta.interceptor.InvocationContext;
+import java.util.logging.Level;
 
-abstract public class InterceptorBase extends SingletonInterceptorBase {
-  abstract protected long getAndResetLockedSum();
+public abstract class InterceptorBase extends SingletonInterceptorBase {
+    protected abstract long getAndResetLockedSum();
 
-  abstract protected void addLocked(int num);
+    protected abstract void addLocked(int num);
 
-  abstract protected long getAndResetUnlockedSum();
+    protected abstract long getAndResetUnlockedSum();
 
-  abstract protected void addUnlocked(int num);
+    protected abstract void addUnlocked(int num);
 
-  @Override
-  final protected Object intercept0(InvocationContext inv, String methodName,
-      String interceptorName, Object[] params) throws Exception {
-    if (getSimpleName().equals(interceptorName)) {
-      if (Helper.getLogger().isLoggable(Level.FINE)) {
-        Helper.getLogger().finest(
-            "Intercepting it and skipping the rest of interceptor chain. "
-                + " methodName:" + methodName + ", interceptorName:"
-                + interceptorName);
-      }
-      if ("addLockedFromInterceptor".equals(methodName)) {
-        addLocked((Integer) params[1]);
-        return null;
-      } else if ("getAndResetLockedSumFromInterceptor".equals(methodName)) {
-        return getAndResetLockedSum();
-      } else if ("addUnlockedFromInterceptor".equals(methodName)) {
-        addUnlocked((Integer) params[1]);
-        return null;
-      } else if ("getAndResetUnlockedSumFromInterceptor".equals(methodName)) {
-        return getAndResetUnlockedSum();
-      } else {
-        throw new IllegalStateException("Invalid methodName: " + methodName);
-      }
-    } else {
-      Helper.getLogger().finest("interceptorName does not match, so proceed:"
-          + interceptorName + " vs " + getSimpleName());
+    @Override
+    protected final Object intercept0(InvocationContext inv, String methodName, String interceptorName, Object[] params)
+            throws Exception {
+        if (getSimpleName().equals(interceptorName)) {
+            if (Helper.getLogger().isLoggable(Level.FINE)) {
+                Helper.getLogger()
+                        .finest("Intercepting it and skipping the rest of interceptor chain. "
+                                + " methodName:" + methodName + ", interceptorName:"
+                                + interceptorName);
+            }
+            if ("addLockedFromInterceptor".equals(methodName)) {
+                addLocked((Integer) params[1]);
+                return null;
+            } else if ("getAndResetLockedSumFromInterceptor".equals(methodName)) {
+                return getAndResetLockedSum();
+            } else if ("addUnlockedFromInterceptor".equals(methodName)) {
+                addUnlocked((Integer) params[1]);
+                return null;
+            } else if ("getAndResetUnlockedSumFromInterceptor".equals(methodName)) {
+                return getAndResetUnlockedSum();
+            } else {
+                throw new IllegalStateException("Invalid methodName: " + methodName);
+            }
+        } else {
+            Helper.getLogger()
+                    .finest("interceptorName does not match, so proceed:" + interceptorName + " vs " + getSimpleName());
+        }
+        return inv.proceed();
     }
-    return inv.proceed();
-  }
 }

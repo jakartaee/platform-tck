@@ -22,16 +22,15 @@ package com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.bare;
 
 public class Bar {
 
-  private String bar;
+    private String bar;
 
-  public Bar() {
-  }
+    public Bar() {}
 
-  public String getBar() {
-    return bar;
-  }
+    public String getBar() {
+        return bar;
+    }
 
-  public void setBar(String bar) {
-    this.bar = bar;
-  }
+    public void setBar(String bar) {
+        this.bar = bar;
+    }
 }

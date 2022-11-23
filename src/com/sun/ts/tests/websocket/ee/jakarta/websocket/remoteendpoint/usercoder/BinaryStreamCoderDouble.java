@@ -17,16 +17,14 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder;
 
+import jakarta.websocket.DecodeException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import jakarta.websocket.DecodeException;
+public class BinaryStreamCoderDouble extends CoderSuperClassBinaryStream<Double> {
 
-public class BinaryStreamCoderDouble
-    extends CoderSuperClassBinaryStream<Double> {
-
-  @Override
-  public Double decode(InputStream is) throws DecodeException, IOException {
-    return NUMERIC.doubleValue();
-  }
+    @Override
+    public Double decode(InputStream is) throws DecodeException, IOException {
+        return NUMERIC.doubleValue();
+    }
 }

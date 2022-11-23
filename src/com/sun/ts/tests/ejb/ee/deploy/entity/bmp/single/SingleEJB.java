@@ -24,11 +24,10 @@ import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 
 public class SingleEJB extends BMPWrapper {
 
-  /* String identifying bean remote interface */
-  private static final String idString = "Entity Single Remote";
+    /* String identifying bean remote interface */
+    private static final String idString = "Entity Single Remote";
 
-  public String getIdString() {
-    return idString;
-  }
-
+    public String getIdString() {
+        return idString;
+    }
 }

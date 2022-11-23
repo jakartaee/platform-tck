@@ -16,12 +16,11 @@
 
 package com.sun.ts.tests.jsonp.api.common;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.tests.jsonp.api.patchtests.PatchTests;
+import java.util.Properties;
 
 // $Id$
 /**
@@ -29,38 +28,37 @@ import com.sun.ts.tests.jsonp.api.patchtests.PatchTests;
  */
 public class JsonPTest extends ServiceEETest {
 
-  /**
-   * Java VM code execution entry point.
-   * 
-   * @param args
-   *          Command line arguments.
-   */
-  public static void main(String[] args) {
-    PatchTests theTests = new PatchTests();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    /**
+     * Java VM code execution entry point.
+     *
+     * @param args
+     *          Command line arguments.
+     */
+    public static void main(String[] args) {
+        PatchTests theTests = new PatchTests();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /**
-   * Test setup.
-   * 
-   * @param args
-   *          Command line arguments.
-   * @param p
-   *          Test properties.
-   * @throws Fault
-   */
-  public void setup(String[] args, Properties p) throws EETest.Fault {
-    // logMsg("setup ok");
-  }
+    /**
+     * Test setup.
+     *
+     * @param args
+     *          Command line arguments.
+     * @param p
+     *          Test properties.
+     * @throws Fault
+     */
+    public void setup(String[] args, Properties p) throws EETest.Fault {
+        // logMsg("setup ok");
+    }
 
-  /**
-   * Test cleanup.
-   * 
-   * @throws Fault
-   */
-  public void cleanup() throws EETest.Fault {
-    // logMsg("cleanup ok");
-  }
-
+    /**
+     * Test cleanup.
+     *
+     * @throws Fault
+     */
+    public void cleanup() throws EETest.Fault {
+        // logMsg("cleanup ok");
+    }
 }

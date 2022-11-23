@@ -19,87 +19,89 @@
  */
 package com.sun.ts.tests.ejb30.lite.view.stateful.annotated;
 
+import jakarta.ejb.EJB;
 import java.util.Arrays;
 import java.util.List;
 
-import jakarta.ejb.EJB;
-
 public class Client extends com.sun.ts.tests.ejb30.lite.view.common.ClientBase {
 
-  @EJB(beanName = "LocalAndNoInterfaceBean", beanInterface = LocalAndNoInterfaceBean.class)
-  protected void setLocalAndNoInterfaceBeanNoInterfaceView(
-      LocalAndNoInterfaceBean b) {
-    this.localAndNoInterfaceBeanNoInterfaceView = b;
-  }
+    @EJB(beanName = "LocalAndNoInterfaceBean", beanInterface = LocalAndNoInterfaceBean.class)
+    protected void setLocalAndNoInterfaceBeanNoInterfaceView(LocalAndNoInterfaceBean b) {
+        this.localAndNoInterfaceBeanNoInterfaceView = b;
+    }
 
-  @EJB(beanName = "SubclassExtendsPOJOBean")
-  private SubclassExtendsPOJOBean subclassExtendsPOJOBean;
+    @EJB(beanName = "SubclassExtendsPOJOBean")
+    private SubclassExtendsPOJOBean subclassExtendsPOJOBean;
 
-  @EJB(beanName = "SubclassExtendsBeanBean")
-  private SubclassExtendsBeanBean subclassExtendsBeanBean;
+    @EJB(beanName = "SubclassExtendsBeanBean")
+    private SubclassExtendsBeanBean subclassExtendsBeanBean;
 
-  /*
-   * @testName: singleInterfaceLocal
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: overridden in stateful to skip TimedObjectLocalBean
-   */
-  @Override
-  public void singleInterfaceLocal() {
-    assertEquals("local interface & Serializable:", resultReset[0],
-        serializableLocalBean.businessMethodLocal1(args)[0]);
-    assertEquals("local interface & Externalizable:", resultReset[0],
-        externalizableLocalBean.businessMethodLocal1(args)[0]);
-    assertEquals("local interface & SessionBean:", resultReset[0],
-        sessionBeanLocalBean.businessMethodLocal1(args)[0]);
-  }
+    /*
+     * @testName: singleInterfaceLocal
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: overridden in stateful to skip TimedObjectLocalBean
+     */
+    @Override
+    public void singleInterfaceLocal() {
+        assertEquals(
+                "local interface & Serializable:",
+                resultReset[0],
+                serializableLocalBean.businessMethodLocal1(args)[0]);
+        assertEquals(
+                "local interface & Externalizable:",
+                resultReset[0],
+                externalizableLocalBean.businessMethodLocal1(args)[0]);
+        assertEquals(
+                "local interface & SessionBean:",
+                resultReset[0],
+                sessionBeanLocalBean.businessMethodLocal1(args)[0]);
+    }
 
-  /*
-   * @testName: multipleInterfacesLocal
-   * 
-   * @assertion_ids: EJB:JAVADOC:125
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: multipleAnnotatedInterfacesLocal
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: localAndNoInterfaceView
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: multipleInterfacesLocal
+     *
+     * @assertion_ids: EJB:JAVADOC:125
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: multipleAnnotatedInterfacesLocal
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: localAndNoInterfaceView
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
 
-  /*
-   * @testName: getBusinessObjectInSubclassBean
-   * 
-   * @test_Strategy:Try to get the business object with a particular interface,
-   * and call a method on the obtained business object. Expecting 2 results, the
-   * first result is the IllegalStateException when getting business object with
-   * BusinessLocalIF1; the second result is "SubclassBean". This is to verify
-   * that BusinessLocalIF1, which is implemented by the superclass of the bean
-   * class is not exposed as a business interface of the subclass bean.
-   */
-  public void getBusinessObjectInSubclassBean() {
-    List<String> expected = Arrays.asList(
-        IllegalStateException.class.getSimpleName(),
-        SubclassExtendsPOJOBean.class.getSimpleName());
-    String[] businessObjects = new String[2];
-    subclassExtendsPOJOBean.businessMethodLocal1(businessObjects);
-    assertEquals(null, expected, Arrays.asList(businessObjects));
+    /*
+     * @testName: getBusinessObjectInSubclassBean
+     *
+     * @test_Strategy:Try to get the business object with a particular interface,
+     * and call a method on the obtained business object. Expecting 2 results, the
+     * first result is the IllegalStateException when getting business object with
+     * BusinessLocalIF1; the second result is "SubclassBean". This is to verify
+     * that BusinessLocalIF1, which is implemented by the superclass of the bean
+     * class is not exposed as a business interface of the subclass bean.
+     */
+    public void getBusinessObjectInSubclassBean() {
+        List<String> expected = Arrays.asList(
+                IllegalStateException.class.getSimpleName(), SubclassExtendsPOJOBean.class.getSimpleName());
+        String[] businessObjects = new String[2];
+        subclassExtendsPOJOBean.businessMethodLocal1(businessObjects);
+        assertEquals(null, expected, Arrays.asList(businessObjects));
 
-    List<String> expected2 = Arrays.asList(
-        IllegalStateException.class.getSimpleName(),
-        SubclassExtendsBeanBean.class.getSimpleName());
-    String[] businessObjects2 = new String[2];
-    subclassExtendsBeanBean.businessMethodLocal1(businessObjects2);
-    assertEquals(null, expected2, Arrays.asList(businessObjects2));
-  }
+        List<String> expected2 = Arrays.asList(
+                IllegalStateException.class.getSimpleName(), SubclassExtendsBeanBean.class.getSimpleName());
+        String[] businessObjects2 = new String[2];
+        subclassExtendsBeanBean.businessMethodLocal1(businessObjects2);
+        assertEquals(null, expected2, Arrays.asList(businessObjects2));
+    }
 }

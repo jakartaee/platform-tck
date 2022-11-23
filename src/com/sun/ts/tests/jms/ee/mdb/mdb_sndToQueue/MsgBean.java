@@ -20,13 +20,10 @@
 
 package com.sun.ts.tests.jms.ee.mdb.mdb_sndToQueue;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.common.JmsUtil;
-
 import jakarta.ejb.EJBException;
 import jakarta.ejb.MessageDrivenBean;
 import jakarta.ejb.MessageDrivenContext;
@@ -42,215 +39,212 @@ import jakarta.jms.QueueSender;
 import jakarta.jms.QueueSession;
 import jakarta.jms.StreamMessage;
 import jakarta.jms.TextMessage;
+import java.util.Properties;
 
 public class MsgBean implements MessageDrivenBean, MessageListener {
 
-  // properties object needed for logging, get this from the message object
-  // passed into the onMessage method.
-  private java.util.Properties p = null;
+    // properties object needed for logging, get this from the message object
+    // passed into the onMessage method.
+    private java.util.Properties p = null;
 
-  private TSNamingContext context = null;
+    private TSNamingContext context = null;
 
-  private MessageDrivenContext mdc = null;
+    private MessageDrivenContext mdc = null;
 
-  // JMS
-  private QueueConnectionFactory qFactory = null;
+    // JMS
+    private QueueConnectionFactory qFactory = null;
 
-  private QueueConnection qConnection = null;
+    private QueueConnection qConnection = null;
 
-  private Queue queue = null;
+    private Queue queue = null;
 
-  private QueueSender mSender = null;
+    private QueueSender mSender = null;
 
-  private QueueSession qSession = null;
+    private QueueSession qSession = null;
 
-  public MsgBean() {
-    TestUtil.logTrace("@MsgBean()!");
-  };
-
-  public void ejbCreate() {
-    TestUtil.logTrace("@MsgBean-ejbCreate() !!");
-    try {
-      context = new TSNamingContext();
-      qFactory = (QueueConnectionFactory) context
-          .lookup("java:comp/env/jms/MyQueueConnectionFactory");
-      if (qFactory == null)
-        TestUtil.logErr("qFactory error");
-      TestUtil.logTrace("got a qFactory !!");
-
-      queue = (Queue) context.lookup("java:comp/env/jms/MDB_QUEUE_REPLY");
-      if (queue == null)
-        TestUtil.logErr("queue error");
-
-      TestUtil.logTrace("got a queue ");
-      p = new Properties();
-
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("MDB ejbCreate Error!", e);
+    public MsgBean() {
+        TestUtil.logTrace("@MsgBean()!");
     }
-  }
+    ;
 
-  public void onMessage(Message msg) {
-    JmsUtil.initHarnessProps(msg, p);
-    TestUtil.logTrace("@onMessage! " + msg);
-
-    try {
-      qConnection = qFactory.createQueueConnection();
-      if (qConnection == null)
-        TestUtil.logErr("connection error");
-      else {
-        qConnection.start();
-        qSession = qConnection.createQueueSession(true, 0);
-      }
-      TestUtil.logTrace("started the connection !!");
-
-      if (msg.getObjectProperty("properties") != null) {
-        initLogging((java.util.Properties) msg.getObjectProperty("properties"));
-      }
-
-      // Send a message back to acknowledge that the mdb received the message.
-      if (msg.getStringProperty("MessageType").equals("TextMessage")) {
-        sendATextMessage();
-      } else if (msg.getStringProperty("MessageType").equals("BytesMessage")) {
-        sendABytesMessage();
-      } else if (msg.getStringProperty("MessageType").equals("MapMessage")) {
-        sendAMapMessage();
-      } else if (msg.getStringProperty("MessageType").equals("StreamMessage")) {
-        sendAStreamMessage();
-      } else if (msg.getStringProperty("MessageType").equals("ObjectMessage")) {
-        sendAnObjectMessage();
-      } else {
-        TestUtil.logTrace(
-            "@onMessage - invalid message type found in StringProperty");
-      }
-
-    } catch (Exception e) {
-      TestUtil.logErr("Exception caught in onMessage!", e);
-    } finally {
-      if (qConnection != null) {
+    public void ejbCreate() {
+        TestUtil.logTrace("@MsgBean-ejbCreate() !!");
         try {
-          qConnection.close();
+            context = new TSNamingContext();
+            qFactory = (QueueConnectionFactory) context.lookup("java:comp/env/jms/MyQueueConnectionFactory");
+            if (qFactory == null) TestUtil.logErr("qFactory error");
+            TestUtil.logTrace("got a qFactory !!");
+
+            queue = (Queue) context.lookup("java:comp/env/jms/MDB_QUEUE_REPLY");
+            if (queue == null) TestUtil.logErr("queue error");
+
+            TestUtil.logTrace("got a queue ");
+            p = new Properties();
+
         } catch (Exception e) {
-          TestUtil.printStackTrace(e);
+            TestUtil.printStackTrace(e);
+            throw new EJBException("MDB ejbCreate Error!", e);
         }
-      }
     }
-  }
 
-  // message bean helper methods follow.
-  // Each method will send a simple message of the type requested.
-  // this will send a text message to a Queue
+    public void onMessage(Message msg) {
+        JmsUtil.initHarnessProps(msg, p);
+        TestUtil.logTrace("@onMessage! " + msg);
 
-  // must call init for logging to be properly performed
-  public void initLogging(java.util.Properties p) {
-    try {
-      TestUtil.init(p);
-      TestUtil.logTrace("MsgBean initLogging OK.");
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      TestUtil.logMsg("MsgBean initLogging failed.");
-      throw new EJBException(e.getMessage());
+        try {
+            qConnection = qFactory.createQueueConnection();
+            if (qConnection == null) TestUtil.logErr("connection error");
+            else {
+                qConnection.start();
+                qSession = qConnection.createQueueSession(true, 0);
+            }
+            TestUtil.logTrace("started the connection !!");
+
+            if (msg.getObjectProperty("properties") != null) {
+                initLogging((java.util.Properties) msg.getObjectProperty("properties"));
+            }
+
+            // Send a message back to acknowledge that the mdb received the message.
+            if (msg.getStringProperty("MessageType").equals("TextMessage")) {
+                sendATextMessage();
+            } else if (msg.getStringProperty("MessageType").equals("BytesMessage")) {
+                sendABytesMessage();
+            } else if (msg.getStringProperty("MessageType").equals("MapMessage")) {
+                sendAMapMessage();
+            } else if (msg.getStringProperty("MessageType").equals("StreamMessage")) {
+                sendAStreamMessage();
+            } else if (msg.getStringProperty("MessageType").equals("ObjectMessage")) {
+                sendAnObjectMessage();
+            } else {
+                TestUtil.logTrace("@onMessage - invalid message type found in StringProperty");
+            }
+
+        } catch (Exception e) {
+            TestUtil.logErr("Exception caught in onMessage!", e);
+        } finally {
+            if (qConnection != null) {
+                try {
+                    qConnection.close();
+                } catch (Exception e) {
+                    TestUtil.printStackTrace(e);
+                }
+            }
+        }
     }
-  }
 
-  private void sendATextMessage() {
-    TestUtil.logTrace("@sendATextMessage");
-    try {
-      String myMsg = "I am sending a text message as requested";
+    // message bean helper methods follow.
+    // Each method will send a simple message of the type requested.
+    // this will send a text message to a Queue
 
-      // send a text message as requested to MDB_QUEUE_REPLY
-      mSender = qSession.createSender(queue);
-
-      TextMessage msg = qSession.createTextMessage();
-      msg.setText(myMsg);
-      msg.setStringProperty("MessageType", "TextMessageFromMsgBean");
-
-      mSender.send(msg);
-    } catch (Exception e) {
-      TestUtil.logErr("Exception caught sending a TextMessage!", e);
+    // must call init for logging to be properly performed
+    public void initLogging(java.util.Properties p) {
+        try {
+            TestUtil.init(p);
+            TestUtil.logTrace("MsgBean initLogging OK.");
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            TestUtil.logMsg("MsgBean initLogging failed.");
+            throw new EJBException(e.getMessage());
+        }
     }
-  }
 
-  private void sendABytesMessage() {
-    TestUtil.logTrace("@sendABytesMessage");
-    try {
-      byte aByte = 10;
+    private void sendATextMessage() {
+        TestUtil.logTrace("@sendATextMessage");
+        try {
+            String myMsg = "I am sending a text message as requested";
 
-      // send a text message as requested to MDB_QUEUE_REPLY
-      mSender = qSession.createSender(queue);
+            // send a text message as requested to MDB_QUEUE_REPLY
+            mSender = qSession.createSender(queue);
 
-      BytesMessage msg = qSession.createBytesMessage();
-      JmsUtil.addPropsToMessage(msg, p);
-      msg.writeByte(aByte);
-      msg.setStringProperty("MessageType", "BytesMessageFromMsgBean");
+            TextMessage msg = qSession.createTextMessage();
+            msg.setText(myMsg);
+            msg.setStringProperty("MessageType", "TextMessageFromMsgBean");
 
-      mSender.send(msg);
-    } catch (Exception e) {
-      TestUtil.logErr("Exception caught sending a BytesMessage!", e);
+            mSender.send(msg);
+        } catch (Exception e) {
+            TestUtil.logErr("Exception caught sending a TextMessage!", e);
+        }
     }
-  }
 
-  private void sendAMapMessage() {
-    TestUtil.logTrace("@sendAMapMessage");
-    try {
-      String myMsg = "I am sending a map message as requested";
+    private void sendABytesMessage() {
+        TestUtil.logTrace("@sendABytesMessage");
+        try {
+            byte aByte = 10;
 
-      // send a text message as requested to MDB_QUEUE_REPLY
-      mSender = qSession.createSender(queue);
+            // send a text message as requested to MDB_QUEUE_REPLY
+            mSender = qSession.createSender(queue);
 
-      MapMessage msg = qSession.createMapMessage();
-      JmsUtil.addPropsToMessage(msg, p);
-      msg.setString("MapMessage", myMsg);
-      msg.setStringProperty("MessageType", "MapMessageFromMsgBean");
+            BytesMessage msg = qSession.createBytesMessage();
+            JmsUtil.addPropsToMessage(msg, p);
+            msg.writeByte(aByte);
+            msg.setStringProperty("MessageType", "BytesMessageFromMsgBean");
 
-      mSender.send(msg);
-    } catch (Exception e) {
-      TestUtil.logErr("Exception caught sending a MapMessage!", e);
+            mSender.send(msg);
+        } catch (Exception e) {
+            TestUtil.logErr("Exception caught sending a BytesMessage!", e);
+        }
     }
-  }
 
-  private void sendAStreamMessage() {
-    TestUtil.logTrace("@sendAStreamMessage");
-    try {
-      String myMsg = "I am sending a stream message as requested";
-      // send a text message as requested to MDB_QUEUE_REPLY
-      mSender = qSession.createSender(queue);
-      StreamMessage msg = qSession.createStreamMessage();
-      JmsUtil.addPropsToMessage(msg, p);
-      msg.writeString(myMsg);
-      msg.setStringProperty("MessageType", "StreamMessageFromMsgBean");
-      mSender.send(msg);
-    } catch (Exception e) {
-      TestUtil.logErr("Exception caught sending a StreamMessage!", e);
+    private void sendAMapMessage() {
+        TestUtil.logTrace("@sendAMapMessage");
+        try {
+            String myMsg = "I am sending a map message as requested";
+
+            // send a text message as requested to MDB_QUEUE_REPLY
+            mSender = qSession.createSender(queue);
+
+            MapMessage msg = qSession.createMapMessage();
+            JmsUtil.addPropsToMessage(msg, p);
+            msg.setString("MapMessage", myMsg);
+            msg.setStringProperty("MessageType", "MapMessageFromMsgBean");
+
+            mSender.send(msg);
+        } catch (Exception e) {
+            TestUtil.logErr("Exception caught sending a MapMessage!", e);
+        }
     }
-  }
 
-  private void sendAnObjectMessage() {
-    TestUtil.logTrace("@sendAnObjectMessage");
-    try {
-      String myMsg = "I am sending a text message as requested";
-
-      // send a text message as requested to MDB_QUEUE_REPLY
-      mSender = qSession.createSender(queue);
-
-      ObjectMessage msg = qSession.createObjectMessage();
-      JmsUtil.addPropsToMessage(msg, p);
-      msg.setObject(myMsg);
-      msg.setStringProperty("MessageType", "ObjectMessageFromMsgBean");
-
-      mSender.send(msg);
-    } catch (Exception e) {
-      TestUtil.logErr("Exception caught sending an ObjectMessage!", e);
+    private void sendAStreamMessage() {
+        TestUtil.logTrace("@sendAStreamMessage");
+        try {
+            String myMsg = "I am sending a stream message as requested";
+            // send a text message as requested to MDB_QUEUE_REPLY
+            mSender = qSession.createSender(queue);
+            StreamMessage msg = qSession.createStreamMessage();
+            JmsUtil.addPropsToMessage(msg, p);
+            msg.writeString(myMsg);
+            msg.setStringProperty("MessageType", "StreamMessageFromMsgBean");
+            mSender.send(msg);
+        } catch (Exception e) {
+            TestUtil.logErr("Exception caught sending a StreamMessage!", e);
+        }
     }
-  }
 
-  public void setMessageDrivenContext(MessageDrivenContext mdc) {
-    TestUtil.logTrace("In MsgBean::setMessageDrivenContext()!!");
-    this.mdc = mdc;
-  }
+    private void sendAnObjectMessage() {
+        TestUtil.logTrace("@sendAnObjectMessage");
+        try {
+            String myMsg = "I am sending a text message as requested";
 
-  public void ejbRemove() {
-    TestUtil.logTrace("In MsgBean::remove()!!");
-  }
+            // send a text message as requested to MDB_QUEUE_REPLY
+            mSender = qSession.createSender(queue);
+
+            ObjectMessage msg = qSession.createObjectMessage();
+            JmsUtil.addPropsToMessage(msg, p);
+            msg.setObject(myMsg);
+            msg.setStringProperty("MessageType", "ObjectMessageFromMsgBean");
+
+            mSender.send(msg);
+        } catch (Exception e) {
+            TestUtil.logErr("Exception caught sending an ObjectMessage!", e);
+        }
+    }
+
+    public void setMessageDrivenContext(MessageDrivenContext mdc) {
+        TestUtil.logTrace("In MsgBean::setMessageDrivenContext()!!");
+        this.mdc = mdc;
+    }
+
+    public void ejbRemove() {
+        TestUtil.logTrace("In MsgBean::remove()!!");
+    }
 }

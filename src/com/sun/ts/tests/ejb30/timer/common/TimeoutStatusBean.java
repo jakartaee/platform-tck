@@ -19,76 +19,72 @@
  */
 package com.sun.ts.tests.ejb30.timer.common;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import jakarta.ejb.Singleton;
+import jakarta.interceptor.ExcludeDefaultInterceptors;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-
-import jakarta.ejb.Singleton;
-import jakarta.interceptor.ExcludeDefaultInterceptors;
-
 @Singleton
 @ExcludeDefaultInterceptors
 public class TimeoutStatusBean {
-  // to limit the number of records from some calendar-based recurring timers.
-  private final static int maxNumOfRecords = 1000;
+    // to limit the number of records from some calendar-based recurring timers.
+    private static final int maxNumOfRecords = 1000;
 
-  private Map<String, ArrayList<String>> timeoutRecordsMap = new HashMap<String, ArrayList<String>>();
+    private Map<String, ArrayList<String>> timeoutRecordsMap = new HashMap<String, ArrayList<String>>();
 
-  private Map<String, Boolean> timeoutStatusMap = new HashMap<String, Boolean>();
+    private Map<String, Boolean> timeoutStatusMap = new HashMap<String, Boolean>();
 
-  // If the status is explicitly set to false, the test must fail.
-  public Boolean getStatus(String testName) {
-    return timeoutStatusMap.get(testName);
-  }
-
-  public void removeStatus(String testName) {
-    timeoutStatusMap.remove(testName);
-  }
-
-  public void setStatus(String testName, boolean b) {
-    timeoutStatusMap.put(testName, b);
-    Helper.getLogger()
-        .fine("Set timeout status to " + b + ", for test " + testName);
-  }
-
-  public void addRecord(String testName, String record) {
-    ArrayList<String> previousRecords = timeoutRecordsMap.get(testName);
-    if (previousRecords == null) {
-      previousRecords = new ArrayList<String>();
-      timeoutRecordsMap.put(testName, previousRecords);
+    // If the status is explicitly set to false, the test must fail.
+    public Boolean getStatus(String testName) {
+        return timeoutStatusMap.get(testName);
     }
-    if (previousRecords.size() < maxNumOfRecords) {
-      previousRecords.add(record);
+
+    public void removeStatus(String testName) {
+        timeoutStatusMap.remove(testName);
     }
-    Helper.getLogger()
-        .fine("Added timeout record for test " + testName + ": " + record);
-  }
 
-  public List<String> getRecords(String testName) {
-    ArrayList<String> rec = timeoutRecordsMap.get(testName);
-    if (rec == null) {
-      return Collections.emptyList();
+    public void setStatus(String testName, boolean b) {
+        timeoutStatusMap.put(testName, b);
+        Helper.getLogger().fine("Set timeout status to " + b + ", for test " + testName);
     }
-    return Collections.unmodifiableList(rec);
-  }
 
-  public boolean containsRecords(String testName) {
-    return timeoutRecordsMap.containsKey(testName);
-  }
+    public void addRecord(String testName, String record) {
+        ArrayList<String> previousRecords = timeoutRecordsMap.get(testName);
+        if (previousRecords == null) {
+            previousRecords = new ArrayList<String>();
+            timeoutRecordsMap.put(testName, previousRecords);
+        }
+        if (previousRecords.size() < maxNumOfRecords) {
+            previousRecords.add(record);
+        }
+        Helper.getLogger().fine("Added timeout record for test " + testName + ": " + record);
+    }
 
-  public void clearRecords() {
-    timeoutRecordsMap.clear();
-  }
+    public List<String> getRecords(String testName) {
+        ArrayList<String> rec = timeoutRecordsMap.get(testName);
+        if (rec == null) {
+            return Collections.emptyList();
+        }
+        return Collections.unmodifiableList(rec);
+    }
 
-  public void removeRecords(String testName) {
-    timeoutRecordsMap.remove(testName);
-  }
+    public boolean containsRecords(String testName) {
+        return timeoutRecordsMap.containsKey(testName);
+    }
 
-  public int recordsSize() {
-    return timeoutRecordsMap.size();
-  }
+    public void clearRecords() {
+        timeoutRecordsMap.clear();
+    }
+
+    public void removeRecords(String testName) {
+        timeoutRecordsMap.remove(testName);
+    }
+
+    public int recordsSize() {
+        return timeoutRecordsMap.size();
+    }
 }

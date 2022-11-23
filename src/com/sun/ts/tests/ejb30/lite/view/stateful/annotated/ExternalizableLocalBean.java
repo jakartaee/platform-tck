@@ -22,20 +22,13 @@ package com.sun.ts.tests.ejb30.lite.view.stateful.annotated;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocal1Base;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
-
 import jakarta.ejb.Stateful;
 
 @Stateful
-public class ExternalizableLocalBean extends BusinessLocal1Base
-    implements BusinessLocalIF1, java.io.Externalizable {
-  public void readExternal(java.io.ObjectInput in)
-      throws java.io.IOException, ClassNotFoundException {
-  }
+public class ExternalizableLocalBean extends BusinessLocal1Base implements BusinessLocalIF1, java.io.Externalizable {
+    public void readExternal(java.io.ObjectInput in) throws java.io.IOException, ClassNotFoundException {}
 
-  public void writeExternal(java.io.ObjectOutput out)
-      throws java.io.IOException {
-  }
+    public void writeExternal(java.io.ObjectOutput out) throws java.io.IOException {}
 
-  public void remove() {
-  }
+    public void remove() {}
 }

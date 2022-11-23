@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.jsonp.common;
 
+import com.sun.ts.lib.util.TestUtil;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-import com.sun.ts.lib.util.TestUtil;
 
 // A wrapper class to BufferedInputStream class used to inject IOException errors
 // when the throwIOException instance variable is set. All methods delegate
@@ -33,47 +32,46 @@ import com.sun.ts.lib.util.TestUtil;
 
 public class MyBufferedInputStream extends BufferedInputStream {
 
-  private boolean throwIOException = false;
+    private boolean throwIOException = false;
 
-  public MyBufferedInputStream(InputStream in) {
-    super(in);
-  }
-
-  public MyBufferedInputStream(InputStream in, int sz) {
-    super(in, sz);
-  }
-
-  public MyBufferedInputStream(InputStream in, boolean throwIOException) {
-    super(in);
-    this.throwIOException = throwIOException;
-  }
-
-  private void checkToTripIOException() throws IOException {
-    if (throwIOException) {
-      TestUtil.logMsg(
-          "MyBufferedInputStream->checkToTripIOException: *** tripping an IOException ***");
-      throw new IOException("tripping an IOException");
+    public MyBufferedInputStream(InputStream in) {
+        super(in);
     }
-  }
 
-  public void setThrowIOException(boolean throwIOException) {
-    this.throwIOException = throwIOException;
-  }
+    public MyBufferedInputStream(InputStream in, int sz) {
+        super(in, sz);
+    }
 
-  public int read() throws IOException {
-    checkToTripIOException();
-    int c = super.read();
-    return c;
-  }
+    public MyBufferedInputStream(InputStream in, boolean throwIOException) {
+        super(in);
+        this.throwIOException = throwIOException;
+    }
 
-  public int read(byte[] b, int off, int len) throws IOException {
-    checkToTripIOException();
-    int c = super.read(b, off, len);
-    return c;
-  }
+    private void checkToTripIOException() throws IOException {
+        if (throwIOException) {
+            TestUtil.logMsg("MyBufferedInputStream->checkToTripIOException: *** tripping an IOException ***");
+            throw new IOException("tripping an IOException");
+        }
+    }
 
-  public void close() throws IOException {
-    checkToTripIOException();
-    super.close();
-  }
+    public void setThrowIOException(boolean throwIOException) {
+        this.throwIOException = throwIOException;
+    }
+
+    public int read() throws IOException {
+        checkToTripIOException();
+        int c = super.read();
+        return c;
+    }
+
+    public int read(byte[] b, int off, int len) throws IOException {
+        checkToTripIOException();
+        int c = super.read(b, off, len);
+        return c;
+    }
+
+    public void close() throws IOException {
+        checkToTripIOException();
+        super.close();
+    }
 }

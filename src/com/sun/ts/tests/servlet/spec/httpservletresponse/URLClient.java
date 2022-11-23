@@ -20,134 +20,133 @@
 
 package com.sun.ts.tests.servlet.spec.httpservletresponse;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
 
-  private static final String CONTEXT_ROOT = "/servlet_spec_httpservletresponse_web";
+    private static final String CONTEXT_ROOT = "/servlet_spec_httpservletresponse_web";
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    setContextRoot(CONTEXT_ROOT);
-    setServletName("HttpTestServlet");
+        setContextRoot(CONTEXT_ROOT);
+        setServletName("HttpTestServlet");
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /* Run test */
-  /*
-   * @testName: intHeaderTest
-   *
-   * @assertion_ids: Servlet:SPEC:33;
-   *
-   * @test_Strategy: 1. Call setIntHeader to set header; 2. Commit it and set
-   * the header again; 3. Verify that only the first header value is set, the
-   * second set is ignored
-   */
+    /* Run test */
+    /*
+     * @testName: intHeaderTest
+     *
+     * @assertion_ids: Servlet:SPEC:33;
+     *
+     * @test_Strategy: 1. Call setIntHeader to set header; 2. Commit it and set
+     * the header again; 3. Verify that only the first header value is set, the
+     * second set is ignored
+     */
 
-  public void intHeaderTest() throws Fault {
-    TEST_PROPS.setProperty(EXPECTED_HEADERS, "header1: 12345");
-    TEST_PROPS.setProperty(UNEXPECTED_HEADERS, "header2: 56789");
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/"
-        + getServletName() + "?testname=" + "intHeaderTest" + " HTTP/1.1");
-    invoke();
-  }
+    public void intHeaderTest() throws Fault {
+        TEST_PROPS.setProperty(EXPECTED_HEADERS, "header1: 12345");
+        TEST_PROPS.setProperty(UNEXPECTED_HEADERS, "header2: 56789");
+        TEST_PROPS.setProperty(
+                REQUEST,
+                "GET " + getContextRoot() + "/" + getServletName() + "?testname=" + "intHeaderTest" + " HTTP/1.1");
+        invoke();
+    }
 
-  /*
-   * @testName: flushBufferTest
-   *
-   * @assertion_ids: Servlet:SPEC:32; Servlet:SPEC:33; Servlet:SPEC:42.2;
-   *
-   * @test_Strategy: 1. First call setContentLength to set the length of
-   * content; 2. Then write to the buffer to fill up the buffer. 2. Call
-   * setIntHeader to set header 3. Verify that the header value is not set,
-   */
+    /*
+     * @testName: flushBufferTest
+     *
+     * @assertion_ids: Servlet:SPEC:32; Servlet:SPEC:33; Servlet:SPEC:42.2;
+     *
+     * @test_Strategy: 1. First call setContentLength to set the length of
+     * content; 2. Then write to the buffer to fill up the buffer. 2. Call
+     * setIntHeader to set header 3. Verify that the header value is not set,
+     */
 
-  public void flushBufferTest() throws Fault {
-    TEST_PROPS.setProperty(UNEXPECTED_HEADERS, "header1: 12345");
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/"
-        + getServletName() + "?testname=" + "flushBufferTest" + " HTTP/1.1");
-    invoke();
-  }
+    public void flushBufferTest() throws Fault {
+        TEST_PROPS.setProperty(UNEXPECTED_HEADERS, "header1: 12345");
+        TEST_PROPS.setProperty(
+                REQUEST,
+                "GET " + getContextRoot() + "/" + getServletName() + "?testname=" + "flushBufferTest" + " HTTP/1.1");
+        invoke();
+    }
 
-  /*
-   * @testName: sendErrorCommitTest
-   *
-   * @assertion_ids: Servlet:SPEC:36; Servlet:SPEC:42.3; Servlet:SPEC:41;
-   *
-   * @test_Strategy: 1. Call sendError; 2. then setIntHeader to set header 3.
-   * then write to buffer; 4. Verify that the header value is not set, content
-   * wrote to buffer is ignored
-   */
+    /*
+     * @testName: sendErrorCommitTest
+     *
+     * @assertion_ids: Servlet:SPEC:36; Servlet:SPEC:42.3; Servlet:SPEC:41;
+     *
+     * @test_Strategy: 1. Call sendError; 2. then setIntHeader to set header 3.
+     * then write to buffer; 4. Verify that the header value is not set, content
+     * wrote to buffer is ignored
+     */
 
-  public void sendErrorCommitTest() throws Fault {
-    String testname = "sendErrorCommitTest";
-    TEST_PROPS.setProperty(UNEXPECTED_HEADERS, "header1: 12345");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/"
-        + getServletName() + "?testname=" + testname + " HTTP/1.1");
-    invoke();
-  }
+    public void sendErrorCommitTest() throws Fault {
+        String testname = "sendErrorCommitTest";
+        TEST_PROPS.setProperty(UNEXPECTED_HEADERS, "header1: 12345");
+        TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
+        TEST_PROPS.setProperty(
+                REQUEST, "GET " + getContextRoot() + "/" + getServletName() + "?testname=" + testname + " HTTP/1.1");
+        invoke();
+    }
 
-  /*
-   * @testName: sendRedirectCommitTest
-   *
-   * @assertion_ids: Servlet:SPEC:37; Servlet:SPEC:42.4; Servlet:SPEC:40;
-   *
-   * @test_Strategy: 1. Call sendRedirect; 2. then setIntHeader to set header 3.
-   * then write to buffer; 4. Verify that the header value is not set, content
-   * wrote to buffer is ignored
-   */
+    /*
+     * @testName: sendRedirectCommitTest
+     *
+     * @assertion_ids: Servlet:SPEC:37; Servlet:SPEC:42.4; Servlet:SPEC:40;
+     *
+     * @test_Strategy: 1. Call sendRedirect; 2. then setIntHeader to set header 3.
+     * then write to buffer; 4. Verify that the header value is not set, content
+     * wrote to buffer is ignored
+     */
 
-  public void sendRedirectCommitTest() throws Fault {
-    String testname = "sendRedirectCommitTest";
-    TEST_PROPS.setProperty(UNEXPECTED_HEADERS, "header1: 12345");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
-    TEST_PROPS.setProperty(STATUS_CODE, MOVED_TEMPORARY);
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/"
-        + getServletName() + "?testname=" + testname + " HTTP/1.1");
-    invoke();
-  }
+    public void sendRedirectCommitTest() throws Fault {
+        String testname = "sendRedirectCommitTest";
+        TEST_PROPS.setProperty(UNEXPECTED_HEADERS, "header1: 12345");
+        TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
+        TEST_PROPS.setProperty(STATUS_CODE, MOVED_TEMPORARY);
+        TEST_PROPS.setProperty(
+                REQUEST, "GET " + getContextRoot() + "/" + getServletName() + "?testname=" + testname + " HTTP/1.1");
+        invoke();
+    }
 
-  /*
-   * @testName: sendRedirectClearBufferTest
-   *
-   * @assertion_ids: Servlet:SPEC:38;
-   *
-   * @test_Strategy: 1. First write to buffer 2. Call sendRedirect; 3. Verify
-   * that content wrote to buffer is cleared
-   */
+    /*
+     * @testName: sendRedirectClearBufferTest
+     *
+     * @assertion_ids: Servlet:SPEC:38;
+     *
+     * @test_Strategy: 1. First write to buffer 2. Call sendRedirect; 3. Verify
+     * that content wrote to buffer is cleared
+     */
 
-  public void sendRedirectClearBufferTest() throws Fault {
-    String testname = "sendRedirectClearBufferTest";
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
-    TEST_PROPS.setProperty(STATUS_CODE, MOVED_TEMPORARY);
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/"
-        + getServletName() + "?testname=" + testname + " HTTP/1.1");
-    invoke();
-  }
-
+    public void sendRedirectClearBufferTest() throws Fault {
+        String testname = "sendRedirectClearBufferTest";
+        TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
+        TEST_PROPS.setProperty(STATUS_CODE, MOVED_TEMPORARY);
+        TEST_PROPS.setProperty(
+                REQUEST, "GET " + getContextRoot() + "/" + getServletName() + "?testname=" + testname + " HTTP/1.1");
+        invoke();
+    }
 }

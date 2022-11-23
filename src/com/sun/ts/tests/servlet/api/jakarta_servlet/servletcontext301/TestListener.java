@@ -25,39 +25,39 @@ import jakarta.servlet.ServletContextListener;
 
 public class TestListener implements ServletContextListener {
 
-  /**
-   * Receives notification that the web application initialization process is
-   * starting.
-   *
-   * @param sce
-   *          The servlet context event
-   */
-  public void contextInitialized(ServletContextEvent sce) {
-    ServletContext context = sce.getServletContext();
-
-    /*
-     * Negative tests for - addListener
+    /**
+     * Receives notification that the web application initialization process is
+     * starting.
+     *
+     * @param sce
+     *          The servlet context event
      */
+    public void contextInitialized(ServletContextEvent sce) {
+        ServletContext context = sce.getServletContext();
 
-    Boolean listener_test = false;
-    String LISTENER_TEST = "LISTENER_TEST";
+        /*
+         * Negative tests for - addListener
+         */
 
-    try {
-      context.addListener(
-          com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext301.AddGenericEventListenerClass.class);
-    } catch (IllegalArgumentException ex) {
-      listener_test = true;
+        Boolean listener_test = false;
+        String LISTENER_TEST = "LISTENER_TEST";
+
+        try {
+            context.addListener(
+                    com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext301.AddGenericEventListenerClass.class);
+        } catch (IllegalArgumentException ex) {
+            listener_test = true;
+        }
+        context.setInitParameter(LISTENER_TEST, listener_test.toString());
     }
-    context.setInitParameter(LISTENER_TEST, listener_test.toString());
-  }
 
-  /**
-   * Receives notification that the servlet context is about to be shut down.
-   *
-   * @param sce
-   *          The servlet context event
-   */
-  public void contextDestroyed(ServletContextEvent sce) {
-    // Do nothing
-  }
+    /**
+     * Receives notification that the servlet context is about to be shut down.
+     *
+     * @param sce
+     *          The servlet context event
+     */
+    public void contextDestroyed(ServletContextEvent sce) {
+        // Do nothing
+    }
 }

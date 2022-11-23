@@ -20,10 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.enventry.single;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface DoubleBean extends EJBObject {
-  public boolean testDoubleEntry() throws RemoteException;
+    public boolean testDoubleEntry() throws RemoteException;
 }

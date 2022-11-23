@@ -30,399 +30,353 @@ import static jakarta.transaction.Status.STATUS_ROLLEDBACK;
 import static jakarta.transaction.Status.STATUS_ROLLING_BACK;
 import static jakarta.transaction.Status.STATUS_UNKNOWN;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.transaction.UserTransaction;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RollbackBeanBase implements RollbackIF {
-  @EJB(beanName = "AppExceptionBean", description = "just to see if descripton field works or not.  It should map to <ejb-ref>/<description> xml element.")
-  protected AppExceptionIF appExceptionBean;
+    @EJB(
+            beanName = "AppExceptionBean",
+            description =
+                    "just to see if descripton field works or not.  It should map to <ejb-ref>/<description> xml element.")
+    protected AppExceptionIF appExceptionBean;
 
-  @EJB(beanName = "AppExceptionBean")
-  protected AppExceptionLocalIF appExceptionLocalBean;
+    @EJB(beanName = "AppExceptionBean")
+    protected AppExceptionLocalIF appExceptionLocalBean;
 
-  @Resource
-  protected UserTransaction ut;
+    @Resource
+    protected UserTransaction ut;
 
-  protected static final Map txStatusCodes = new HashMap();
+    protected static final Map txStatusCodes = new HashMap();
 
-  static {
-    txStatusCodes.put(STATUS_ACTIVE, "STATUS_ACTIVE");
-    txStatusCodes.put(STATUS_COMMITTED, "STATUS_COMMITTED");
-    txStatusCodes.put(STATUS_COMMITTING, "STATUS_COMMITTING");
-    txStatusCodes.put(STATUS_MARKED_ROLLBACK, "STATUS_MARKED_ROLLBACK");
-    txStatusCodes.put(STATUS_NO_TRANSACTION, "STATUS_NO_TRANSACTION");
-    txStatusCodes.put(STATUS_PREPARED, "STATUS_PREPARED");
-    txStatusCodes.put(STATUS_PREPARING, "STATUS_PREPARING");
-    txStatusCodes.put(STATUS_ROLLEDBACK, "STATUS_ROLLEDBACK");
-    txStatusCodes.put(STATUS_ROLLING_BACK, "STATUS_ROLLING_BACK");
-    txStatusCodes.put(STATUS_UNKNOWN, "STATUS_UNKNOWN");
-  }
-
-  //////////////////////////////////////////////////////////////////////
-  // interface methods
-  //////////////////////////////////////////////////////////////////////
-  public void checkedAppException()
-      throws CheckedAppException, TestFailedException {
-    try {
-      ut.begin();
-      appExceptionBean.checkedAppException();
-      throw new TestFailedException(
-          "Didn't get expected exception: " + "CheckedAppException");
-    } catch (CheckedAppException e) {
-      checkStatus(ut, STATUS_ACTIVE);
-    } catch (Exception e) {
-      throw new TestFailedException("Got unexpected exception: ", e);
-    } finally {
-      try {
-        ut.rollback();
-      } catch (Exception e) {
-        // ignore
-      }
+    static {
+        txStatusCodes.put(STATUS_ACTIVE, "STATUS_ACTIVE");
+        txStatusCodes.put(STATUS_COMMITTED, "STATUS_COMMITTED");
+        txStatusCodes.put(STATUS_COMMITTING, "STATUS_COMMITTING");
+        txStatusCodes.put(STATUS_MARKED_ROLLBACK, "STATUS_MARKED_ROLLBACK");
+        txStatusCodes.put(STATUS_NO_TRANSACTION, "STATUS_NO_TRANSACTION");
+        txStatusCodes.put(STATUS_PREPARED, "STATUS_PREPARED");
+        txStatusCodes.put(STATUS_PREPARING, "STATUS_PREPARING");
+        txStatusCodes.put(STATUS_ROLLEDBACK, "STATUS_ROLLEDBACK");
+        txStatusCodes.put(STATUS_ROLLING_BACK, "STATUS_ROLLING_BACK");
+        txStatusCodes.put(STATUS_UNKNOWN, "STATUS_UNKNOWN");
     }
-  }
 
-  public void checkedAppExceptionLocal()
-      throws CheckedAppException, TestFailedException {
-    try {
-      ut.begin();
-      appExceptionLocalBean.checkedAppException();
-      throw new TestFailedException(
-          "Didn't get expected exception: " + "CheckedAppException");
-    } catch (CheckedAppException e) {
-      checkStatus(ut, STATUS_ACTIVE);
-    } catch (Exception e) {
-      throw new TestFailedException("Got unexpected exception: ", e);
-    } finally {
-      try {
-        ut.rollback();
-      } catch (Exception e) {
-        // ignore
-      }
-
+    //////////////////////////////////////////////////////////////////////
+    // interface methods
+    //////////////////////////////////////////////////////////////////////
+    public void checkedAppException() throws CheckedAppException, TestFailedException {
+        try {
+            ut.begin();
+            appExceptionBean.checkedAppException();
+            throw new TestFailedException("Didn't get expected exception: " + "CheckedAppException");
+        } catch (CheckedAppException e) {
+            checkStatus(ut, STATUS_ACTIVE);
+        } catch (Exception e) {
+            throw new TestFailedException("Got unexpected exception: ", e);
+        } finally {
+            try {
+                ut.rollback();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  public void uncheckedAppException()
-      throws UncheckedAppException, TestFailedException {
-    try {
-      ut.begin();
-      appExceptionBean.uncheckedAppException();
-      throw new TestFailedException(
-          "Didn't get expected exception: " + "UncheckedAppException");
-    } catch (UncheckedAppException e) {
-      checkStatus(ut, STATUS_ACTIVE);
-    } catch (Exception e) {
-      throw new TestFailedException("Got unexpected exception: ", e);
-    } finally {
-      try {
-        ut.rollback();
-      } catch (Exception e) {
-        // ignore
-      }
-
+    public void checkedAppExceptionLocal() throws CheckedAppException, TestFailedException {
+        try {
+            ut.begin();
+            appExceptionLocalBean.checkedAppException();
+            throw new TestFailedException("Didn't get expected exception: " + "CheckedAppException");
+        } catch (CheckedAppException e) {
+            checkStatus(ut, STATUS_ACTIVE);
+        } catch (Exception e) {
+            throw new TestFailedException("Got unexpected exception: ", e);
+        } finally {
+            try {
+                ut.rollback();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  public void uncheckedAppExceptionLocal()
-      throws UncheckedAppException, TestFailedException {
-    try {
-      ut.begin();
-      appExceptionLocalBean.uncheckedAppException();
-      throw new TestFailedException(
-          "Didn't get expected exception: " + "UncheckedAppException");
-    } catch (UncheckedAppException e) {
-      checkStatus(ut, STATUS_ACTIVE);
-    } catch (Exception e) {
-      throw new TestFailedException("Got unexpected exception: ", e);
-    } finally {
-      try {
-        ut.rollback();
-      } catch (Exception e) {
-        // ignore
-      }
-
+    public void uncheckedAppException() throws UncheckedAppException, TestFailedException {
+        try {
+            ut.begin();
+            appExceptionBean.uncheckedAppException();
+            throw new TestFailedException("Didn't get expected exception: " + "UncheckedAppException");
+        } catch (UncheckedAppException e) {
+            checkStatus(ut, STATUS_ACTIVE);
+        } catch (Exception e) {
+            throw new TestFailedException("Got unexpected exception: ", e);
+        } finally {
+            try {
+                ut.rollback();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  public void uncheckedRollbackAppException()
-      throws UncheckedRollbackAppException, TestFailedException {
-    try {
-      ut.begin();
-      appExceptionBean.uncheckedRollbackAppException();
-      throw new TestFailedException(
-          "Didn't get expected exception: " + "UncheckedRollbackAppException");
-    } catch (UncheckedRollbackAppException e) {
-      checkStatus(ut, STATUS_MARKED_ROLLBACK);
-    } catch (Exception e) {
-      throw new TestFailedException("Got unexpected exception: ", e);
-    } finally {
-      try {
-        ut.rollback();
-      } catch (Exception e) {
-        // ignore
-      }
-
+    public void uncheckedAppExceptionLocal() throws UncheckedAppException, TestFailedException {
+        try {
+            ut.begin();
+            appExceptionLocalBean.uncheckedAppException();
+            throw new TestFailedException("Didn't get expected exception: " + "UncheckedAppException");
+        } catch (UncheckedAppException e) {
+            checkStatus(ut, STATUS_ACTIVE);
+        } catch (Exception e) {
+            throw new TestFailedException("Got unexpected exception: ", e);
+        } finally {
+            try {
+                ut.rollback();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  public void uncheckedRollbackAppExceptionLocal()
-      throws UncheckedRollbackAppException, TestFailedException {
-    try {
-      ut.begin();
-      appExceptionLocalBean.uncheckedRollbackAppException();
-      throw new TestFailedException(
-          "Didn't get expected exception: " + "UncheckedRollbackAppException");
-    } catch (UncheckedRollbackAppException e) {
-      checkStatus(ut, STATUS_MARKED_ROLLBACK);
-    } catch (Exception e) {
-      throw new TestFailedException("Got unexpected exception: ", e);
-    } finally {
-      try {
-        ut.rollback();
-      } catch (Exception e) {
-        // ignore
-      }
-
+    public void uncheckedRollbackAppException() throws UncheckedRollbackAppException, TestFailedException {
+        try {
+            ut.begin();
+            appExceptionBean.uncheckedRollbackAppException();
+            throw new TestFailedException("Didn't get expected exception: " + "UncheckedRollbackAppException");
+        } catch (UncheckedRollbackAppException e) {
+            checkStatus(ut, STATUS_MARKED_ROLLBACK);
+        } catch (Exception e) {
+            throw new TestFailedException("Got unexpected exception: ", e);
+        } finally {
+            try {
+                ut.rollback();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  public void checkedRollbackAppException()
-      throws CheckedRollbackAppException, TestFailedException {
-    try {
-      ut.begin();
-      appExceptionBean.checkedRollbackAppException();
-      throw new TestFailedException(
-          "Didn't get expected exception: " + "CheckedRollbackAppException");
-    } catch (CheckedRollbackAppException e) {
-      checkStatus(ut, STATUS_MARKED_ROLLBACK);
-    } catch (Exception e) {
-      throw new TestFailedException("Got unexpected exception: ", e);
-    } finally {
-      try {
-        ut.rollback();
-      } catch (Exception e) {
-        // ignore
-      }
-
+    public void uncheckedRollbackAppExceptionLocal() throws UncheckedRollbackAppException, TestFailedException {
+        try {
+            ut.begin();
+            appExceptionLocalBean.uncheckedRollbackAppException();
+            throw new TestFailedException("Didn't get expected exception: " + "UncheckedRollbackAppException");
+        } catch (UncheckedRollbackAppException e) {
+            checkStatus(ut, STATUS_MARKED_ROLLBACK);
+        } catch (Exception e) {
+            throw new TestFailedException("Got unexpected exception: ", e);
+        } finally {
+            try {
+                ut.rollback();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  public void checkedRollbackAppExceptionLocal()
-      throws CheckedRollbackAppException, TestFailedException {
-    try {
-      ut.begin();
-      appExceptionLocalBean.checkedRollbackAppException();
-      throw new TestFailedException(
-          "Didn't get expected exception: " + "CheckedRollbackAppException");
-    } catch (CheckedRollbackAppException e) {
-      checkStatus(ut, STATUS_MARKED_ROLLBACK);
-    } catch (Exception e) {
-      throw new TestFailedException("Got unexpected exception: ", e);
-    } finally {
-      try {
-        ut.rollback();
-      } catch (Exception e) {
-        // ignore
-      }
-
+    public void checkedRollbackAppException() throws CheckedRollbackAppException, TestFailedException {
+        try {
+            ut.begin();
+            appExceptionBean.checkedRollbackAppException();
+            throw new TestFailedException("Didn't get expected exception: " + "CheckedRollbackAppException");
+        } catch (CheckedRollbackAppException e) {
+            checkStatus(ut, STATUS_MARKED_ROLLBACK);
+        } catch (Exception e) {
+            throw new TestFailedException("Got unexpected exception: ", e);
+        } finally {
+            try {
+                ut.rollback();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  //////////////////////////////////////////////////////////////////////
-  // for /at/ and /override/ only
-  //////////////////////////////////////////////////////////////////////
-  public void atUncheckedAppException()
-      throws AtUncheckedAppException, TestFailedException {
-    try {
-      ut.begin();
-      appExceptionBean.atUncheckedAppException();
-      throw new TestFailedException(
-          "Didn't get expected exception: " + "AtUncheckedAppException");
-    } catch (AtUncheckedAppException e) {
-      checkStatus(ut, STATUS_ACTIVE);
-    } catch (Exception e) {
-      throw new TestFailedException("Got unexpected exception: ", e);
-    } finally {
-      try {
-        ut.rollback();
-      } catch (Exception e) {
-        // ignore
-      }
-
+    public void checkedRollbackAppExceptionLocal() throws CheckedRollbackAppException, TestFailedException {
+        try {
+            ut.begin();
+            appExceptionLocalBean.checkedRollbackAppException();
+            throw new TestFailedException("Didn't get expected exception: " + "CheckedRollbackAppException");
+        } catch (CheckedRollbackAppException e) {
+            checkStatus(ut, STATUS_MARKED_ROLLBACK);
+        } catch (Exception e) {
+            throw new TestFailedException("Got unexpected exception: ", e);
+        } finally {
+            try {
+                ut.rollback();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  public void atUncheckedAppExceptionLocal()
-      throws AtUncheckedAppException, TestFailedException {
-    try {
-      ut.begin();
-      appExceptionLocalBean.atUncheckedAppException();
-      throw new TestFailedException(
-          "Didn't get expected exception: " + "AtUncheckedAppException");
-    } catch (AtUncheckedAppException e) {
-      checkStatus(ut, STATUS_ACTIVE);
-    } catch (Exception e) {
-      throw new TestFailedException("Got unexpected exception: ", e);
-    } finally {
-      try {
-        ut.rollback();
-      } catch (Exception e) {
-        // ignore
-      }
-
+    //////////////////////////////////////////////////////////////////////
+    // for /at/ and /override/ only
+    //////////////////////////////////////////////////////////////////////
+    public void atUncheckedAppException() throws AtUncheckedAppException, TestFailedException {
+        try {
+            ut.begin();
+            appExceptionBean.atUncheckedAppException();
+            throw new TestFailedException("Didn't get expected exception: " + "AtUncheckedAppException");
+        } catch (AtUncheckedAppException e) {
+            checkStatus(ut, STATUS_ACTIVE);
+        } catch (Exception e) {
+            throw new TestFailedException("Got unexpected exception: ", e);
+        } finally {
+            try {
+                ut.rollback();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  public void atCheckedAppException()
-      throws AtCheckedAppException, TestFailedException {
-    try {
-      ut.begin();
-      appExceptionBean.atCheckedAppException();
-      throw new TestFailedException(
-          "Didn't get expected exception: " + "AtCheckedAppException");
-    } catch (AtCheckedAppException e) {
-      checkStatus(ut, STATUS_ACTIVE);
-    } catch (Exception e) {
-      throw new TestFailedException("Got unexpected exception: ", e);
-    } finally {
-      try {
-        ut.rollback();
-      } catch (Exception e) {
-        // ignore
-      }
-
+    public void atUncheckedAppExceptionLocal() throws AtUncheckedAppException, TestFailedException {
+        try {
+            ut.begin();
+            appExceptionLocalBean.atUncheckedAppException();
+            throw new TestFailedException("Didn't get expected exception: " + "AtUncheckedAppException");
+        } catch (AtUncheckedAppException e) {
+            checkStatus(ut, STATUS_ACTIVE);
+        } catch (Exception e) {
+            throw new TestFailedException("Got unexpected exception: ", e);
+        } finally {
+            try {
+                ut.rollback();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  public void atCheckedAppExceptionLocal()
-      throws AtCheckedAppException, TestFailedException {
-    try {
-      ut.begin();
-      appExceptionLocalBean.atCheckedAppException();
-      throw new TestFailedException(
-          "Didn't get expected exception: " + "AtCheckedAppException");
-    } catch (AtCheckedAppException e) {
-      checkStatus(ut, STATUS_ACTIVE);
-    } catch (Exception e) {
-      throw new TestFailedException("Got unexpected exception: ", e);
-    } finally {
-      try {
-        ut.rollback();
-      } catch (Exception e) {
-        // ignore
-      }
-
+    public void atCheckedAppException() throws AtCheckedAppException, TestFailedException {
+        try {
+            ut.begin();
+            appExceptionBean.atCheckedAppException();
+            throw new TestFailedException("Didn't get expected exception: " + "AtCheckedAppException");
+        } catch (AtCheckedAppException e) {
+            checkStatus(ut, STATUS_ACTIVE);
+        } catch (Exception e) {
+            throw new TestFailedException("Got unexpected exception: ", e);
+        } finally {
+            try {
+                ut.rollback();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  public void atUncheckedRollbackAppException()
-      throws AtUncheckedRollbackAppException, TestFailedException {
-    try {
-      ut.begin();
-      appExceptionBean.atUncheckedRollbackAppException();
-      throw new TestFailedException("Didn't get expected exception: "
-          + "AtUncheckedRollbackAppException");
-    } catch (AtUncheckedRollbackAppException e) {
-      checkStatus(ut, STATUS_MARKED_ROLLBACK);
-    } catch (Exception e) {
-      throw new TestFailedException("Got unexpected exception: ", e);
-    } finally {
-      try {
-        ut.rollback();
-      } catch (Exception e) {
-        // ignore
-      }
-
+    public void atCheckedAppExceptionLocal() throws AtCheckedAppException, TestFailedException {
+        try {
+            ut.begin();
+            appExceptionLocalBean.atCheckedAppException();
+            throw new TestFailedException("Didn't get expected exception: " + "AtCheckedAppException");
+        } catch (AtCheckedAppException e) {
+            checkStatus(ut, STATUS_ACTIVE);
+        } catch (Exception e) {
+            throw new TestFailedException("Got unexpected exception: ", e);
+        } finally {
+            try {
+                ut.rollback();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  public void atUncheckedRollbackAppExceptionLocal()
-      throws AtUncheckedRollbackAppException, TestFailedException {
-    try {
-      ut.begin();
-      appExceptionLocalBean.atUncheckedRollbackAppException();
-      throw new TestFailedException("Didn't get expected exception: "
-          + "AtUncheckedRollbackAppException");
-    } catch (AtUncheckedRollbackAppException e) {
-      checkStatus(ut, STATUS_MARKED_ROLLBACK);
-    } catch (Exception e) {
-      throw new TestFailedException("Got unexpected exception: ", e);
-    } finally {
-      try {
-        ut.rollback();
-      } catch (Exception e) {
-        // ignore
-      }
-
+    public void atUncheckedRollbackAppException() throws AtUncheckedRollbackAppException, TestFailedException {
+        try {
+            ut.begin();
+            appExceptionBean.atUncheckedRollbackAppException();
+            throw new TestFailedException("Didn't get expected exception: " + "AtUncheckedRollbackAppException");
+        } catch (AtUncheckedRollbackAppException e) {
+            checkStatus(ut, STATUS_MARKED_ROLLBACK);
+        } catch (Exception e) {
+            throw new TestFailedException("Got unexpected exception: ", e);
+        } finally {
+            try {
+                ut.rollback();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  public void atCheckedRollbackAppException()
-      throws AtCheckedRollbackAppException, TestFailedException {
-    try {
-      ut.begin();
-      appExceptionBean.atCheckedRollbackAppException();
-      throw new TestFailedException(
-          "Didn't get expected exception: " + "AtCheckedRollbackAppException");
-    } catch (AtCheckedRollbackAppException e) {
-      checkStatus(ut, STATUS_MARKED_ROLLBACK);
-    } catch (Exception e) {
-      throw new TestFailedException("Got unexpected exception: ", e);
-    } finally {
-      try {
-        ut.rollback();
-      } catch (Exception e) {
-        // ignore
-      }
-
+    public void atUncheckedRollbackAppExceptionLocal() throws AtUncheckedRollbackAppException, TestFailedException {
+        try {
+            ut.begin();
+            appExceptionLocalBean.atUncheckedRollbackAppException();
+            throw new TestFailedException("Didn't get expected exception: " + "AtUncheckedRollbackAppException");
+        } catch (AtUncheckedRollbackAppException e) {
+            checkStatus(ut, STATUS_MARKED_ROLLBACK);
+        } catch (Exception e) {
+            throw new TestFailedException("Got unexpected exception: ", e);
+        } finally {
+            try {
+                ut.rollback();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  public void atCheckedRollbackAppExceptionLocal()
-      throws AtCheckedRollbackAppException, TestFailedException {
-    try {
-      ut.begin();
-      appExceptionLocalBean.atCheckedRollbackAppException();
-      throw new TestFailedException(
-          "Didn't get expected exception: " + "AtCheckedRollbackAppException");
-    } catch (AtCheckedRollbackAppException e) {
-      checkStatus(ut, STATUS_MARKED_ROLLBACK);
-    } catch (Exception e) {
-      throw new TestFailedException("Got unexpected exception: ", e);
-    } finally {
-      try {
-        ut.rollback();
-      } catch (Exception e) {
-        // ignore
-      }
+    public void atCheckedRollbackAppException() throws AtCheckedRollbackAppException, TestFailedException {
+        try {
+            ut.begin();
+            appExceptionBean.atCheckedRollbackAppException();
+            throw new TestFailedException("Didn't get expected exception: " + "AtCheckedRollbackAppException");
+        } catch (AtCheckedRollbackAppException e) {
+            checkStatus(ut, STATUS_MARKED_ROLLBACK);
+        } catch (Exception e) {
+            throw new TestFailedException("Got unexpected exception: ", e);
+        } finally {
+            try {
+                ut.rollback();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
 
-  //////////////////////////////////////////////////////////////////////
-  protected void checkStatus(UserTransaction ut, int expected)
-      throws TestFailedException {
-    try {
-      int actual = ut.getStatus();
-      if (actual == expected) {
-        // good
-      } else {
-        throw new TestFailedException("Got expected application exception,"
-            + "expected tx status code " + expected + "("
-            + txStatusCodes.get(expected) + ")" + ", but actual " + actual + "("
-            + txStatusCodes.get(actual) + ")");
-      }
-    } catch (TestFailedException e) {
-      throw e;
-    } catch (RuntimeException e) {
-      throw e;
-    } catch (Exception e) {
-      throw new RuntimeException(e);
+    public void atCheckedRollbackAppExceptionLocal() throws AtCheckedRollbackAppException, TestFailedException {
+        try {
+            ut.begin();
+            appExceptionLocalBean.atCheckedRollbackAppException();
+            throw new TestFailedException("Didn't get expected exception: " + "AtCheckedRollbackAppException");
+        } catch (AtCheckedRollbackAppException e) {
+            checkStatus(ut, STATUS_MARKED_ROLLBACK);
+        } catch (Exception e) {
+            throw new TestFailedException("Got unexpected exception: ", e);
+        } finally {
+            try {
+                ut.rollback();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
     }
-  }
+
+    //////////////////////////////////////////////////////////////////////
+    protected void checkStatus(UserTransaction ut, int expected) throws TestFailedException {
+        try {
+            int actual = ut.getStatus();
+            if (actual == expected) {
+                // good
+            } else {
+                throw new TestFailedException("Got expected application exception,"
+                        + "expected tx status code " + expected + "("
+                        + txStatusCodes.get(expected) + ")" + ", but actual " + actual + "("
+                        + txStatusCodes.get(actual) + ")");
+            }
+        } catch (TestFailedException e) {
+            throw e;
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

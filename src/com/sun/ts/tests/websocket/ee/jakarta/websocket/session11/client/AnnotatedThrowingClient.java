@@ -17,13 +17,9 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.client;
 
-import java.io.InputStream;
-import java.io.Reader;
-
 import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
 import com.sun.ts.tests.websocket.common.client.StringClientEndpoint;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.TypeEnum;
-
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -32,82 +28,76 @@ import jakarta.websocket.OnError;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.PongMessage;
 import jakarta.websocket.Session;
+import java.io.InputStream;
+import java.io.Reader;
 
 @ClientEndpoint
 public class AnnotatedThrowingClient extends AnnotatedClientEndpoint<String> {
 
-  TypeEnum typeEnum;
+    TypeEnum typeEnum;
 
-  RuntimeException thrown = null;
+    RuntimeException thrown = null;
 
-  public AnnotatedThrowingClient(TypeEnum typeEnum) {
-    super(new StringClientEndpoint());
-    this.typeEnum = typeEnum;
-  }
-
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    switch (typeEnum) {
-    case PONG:
-      session.addMessageHandler(PongMessage.class,
-          new PongMessageHandler(clientEndpoint));
-      try {
-        session.addMessageHandler(PongMessage.class,
-            new PongMessageHandler(clientEndpoint));
-      } catch (RuntimeException e) {
-        thrown = e;
-      }
-      break;
-    case READER:
-      session.addMessageHandler(Reader.class,
-          new ReaderMessageHandler(clientEndpoint));
-      try {
-        session.addMessageHandler(Reader.class,
-            new ReaderMessageHandler(clientEndpoint));
-      } catch (RuntimeException e) {
-        thrown = e;
-      }
-      break;
-    case INPUTSTREAM:
-      session.addMessageHandler(InputStream.class,
-          new InputStreamMessageHandler(clientEndpoint));
-      try {
-        session.addMessageHandler(InputStream.class,
-            new InputStreamMessageHandler(clientEndpoint));
-      } catch (RuntimeException e) {
-        thrown = e;
-      }
-      break;
-    case STRING_PARTIAL:
-      session.addMessageHandler(String.class,
-          new StringPartialMessageHandler(clientEndpoint));
-      try {
-        session.addMessageHandler(String.class,
-            new StringPartialMessageHandler(clientEndpoint));
-      } catch (RuntimeException e) {
-        thrown = e;
-      }
-      break;
-    default:
-      break;
+    public AnnotatedThrowingClient(TypeEnum typeEnum) {
+        super(new StringClientEndpoint());
+        this.typeEnum = typeEnum;
     }
-    super.onOpen(session, config);
-  }
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+    @Override
+    @OnOpen
+    public void onOpen(Session session, EndpointConfig config) {
+        switch (typeEnum) {
+            case PONG:
+                session.addMessageHandler(PongMessage.class, new PongMessageHandler(clientEndpoint));
+                try {
+                    session.addMessageHandler(PongMessage.class, new PongMessageHandler(clientEndpoint));
+                } catch (RuntimeException e) {
+                    thrown = e;
+                }
+                break;
+            case READER:
+                session.addMessageHandler(Reader.class, new ReaderMessageHandler(clientEndpoint));
+                try {
+                    session.addMessageHandler(Reader.class, new ReaderMessageHandler(clientEndpoint));
+                } catch (RuntimeException e) {
+                    thrown = e;
+                }
+                break;
+            case INPUTSTREAM:
+                session.addMessageHandler(InputStream.class, new InputStreamMessageHandler(clientEndpoint));
+                try {
+                    session.addMessageHandler(InputStream.class, new InputStreamMessageHandler(clientEndpoint));
+                } catch (RuntimeException e) {
+                    thrown = e;
+                }
+                break;
+            case STRING_PARTIAL:
+                session.addMessageHandler(String.class, new StringPartialMessageHandler(clientEndpoint));
+                try {
+                    session.addMessageHandler(String.class, new StringPartialMessageHandler(clientEndpoint));
+                } catch (RuntimeException e) {
+                    thrown = e;
+                }
+                break;
+            default:
+                break;
+        }
+        super.onOpen(session, config);
+    }
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+    @OnClose
+    @Override
+    public void onClose(Session session, CloseReason closeReason) {
+        super.onClose(session, closeReason);
+    }
 
-  public RuntimeException getThrown() {
-    return thrown;
-  }
+    @OnError
+    @Override
+    public void onError(Session session, Throwable t) {
+        super.onError(session, t);
+    }
+
+    public RuntimeException getThrown() {
+        return thrown;
+    }
 }

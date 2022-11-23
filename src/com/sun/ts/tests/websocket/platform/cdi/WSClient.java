@@ -26,76 +26,75 @@ import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
  */
 public class WSClient extends WebSocketCommonClient {
 
-  private static final long serialVersionUID = 5295841512141568599L;
+    private static final long serialVersionUID = 5295841512141568599L;
 
-  public WSClient() {
-    setContextRoot("wsc_platform_cdi_web");
-  }
+    public WSClient() {
+        setContextRoot("wsc_platform_cdi_web");
+    }
 
-  public static void main(String[] args) {
-    new WSClient().run(args);
-  }
+    public static void main(String[] args) {
+        new WSClient().run(args);
+    }
 
-  /* Run test */
+    /* Run test */
 
-  /*
-   * @testName: cdiFieldTest
-   * 
-   * @assertion_ids: WebSocket:SPEC:WSC-7.1.1-1;
-   * 
-   * @test_Strategy: Websocket endpoints running in the Java EE platform must
-   * have full dependency injection support as described in the CDI
-   * specification. Websocket implementations part of the Java EE platform are
-   * required to support field, injection using the jakarta.inject.Inject
-   * annotation into all endpoint classes
-   */
-  public void cdiFieldTest() throws Fault {
-    String msg = "field";
-    setProperty(Property.REQUEST, buildRequest(msg));
-    setProperty(Property.CONTENT, msg);
-    setProperty(Property.SEARCH_STRING, msg);
-    setProperty(Property.SEARCH_STRING, WSInjectableServer.class.getName());
-    invoke();
-  }
+    /*
+     * @testName: cdiFieldTest
+     *
+     * @assertion_ids: WebSocket:SPEC:WSC-7.1.1-1;
+     *
+     * @test_Strategy: Websocket endpoints running in the Java EE platform must
+     * have full dependency injection support as described in the CDI
+     * specification. Websocket implementations part of the Java EE platform are
+     * required to support field, injection using the jakarta.inject.Inject
+     * annotation into all endpoint classes
+     */
+    public void cdiFieldTest() throws Fault {
+        String msg = "field";
+        setProperty(Property.REQUEST, buildRequest(msg));
+        setProperty(Property.CONTENT, msg);
+        setProperty(Property.SEARCH_STRING, msg);
+        setProperty(Property.SEARCH_STRING, WSInjectableServer.class.getName());
+        invoke();
+    }
 
-  /*
-   * @testName: cdiMethodTest
-   * 
-   * @assertion_ids: WebSocket:SPEC:WSC-7.1.1-1;
-   * 
-   * @test_Strategy: Websocket endpoints running in the Java EE platform must
-   * have full dependency injection support as described in the CDI
-   * specification. Websocket implementations part of the Java EE platform are
-   * required to support method injection using the jakarta.inject.Inject
-   * annotation into all endpoint classes
-   */
-  public void cdiMethodTest() throws Fault {
-    String msg = "method";
-    setProperty(Property.REQUEST, buildRequest(msg));
-    setProperty(Property.CONTENT, msg);
-    setProperty(Property.SEARCH_STRING, msg);
-    setProperty(Property.SEARCH_STRING, WSInjectableServer.class.getName());
-    invoke();
-  }
+    /*
+     * @testName: cdiMethodTest
+     *
+     * @assertion_ids: WebSocket:SPEC:WSC-7.1.1-1;
+     *
+     * @test_Strategy: Websocket endpoints running in the Java EE platform must
+     * have full dependency injection support as described in the CDI
+     * specification. Websocket implementations part of the Java EE platform are
+     * required to support method injection using the jakarta.inject.Inject
+     * annotation into all endpoint classes
+     */
+    public void cdiMethodTest() throws Fault {
+        String msg = "method";
+        setProperty(Property.REQUEST, buildRequest(msg));
+        setProperty(Property.CONTENT, msg);
+        setProperty(Property.SEARCH_STRING, msg);
+        setProperty(Property.SEARCH_STRING, WSInjectableServer.class.getName());
+        invoke();
+    }
 
-  /*
-   * @testName: cdiConstructorTest
-   * 
-   * @assertion_ids: WebSocket:SPEC:WSC-7.1.1-1;
-   * 
-   * @test_Strategy: Websocket endpoints running in the Java EE platform must
-   * have full dependency injection support as described in the CDI
-   * specification. Websocket implementations part of the Java EE platform are
-   * required to support constructor injection using the jakarta.inject.Inject
-   * annotation into all endpoint classes
-   */
-  public void cdiConstructorTest() throws Fault {
-    String msg = "constructor";
-    setProperty(Property.REQUEST, buildRequest(msg));
-    setProperty(Property.CONTENT, msg);
-    setProperty(Property.SEARCH_STRING, msg);
-    setProperty(Property.SEARCH_STRING, WSInjectableServer.class.getName());
-    invoke();
-  }
-
+    /*
+     * @testName: cdiConstructorTest
+     *
+     * @assertion_ids: WebSocket:SPEC:WSC-7.1.1-1;
+     *
+     * @test_Strategy: Websocket endpoints running in the Java EE platform must
+     * have full dependency injection support as described in the CDI
+     * specification. Websocket implementations part of the Java EE platform are
+     * required to support constructor injection using the jakarta.inject.Inject
+     * annotation into all endpoint classes
+     */
+    public void cdiConstructorTest() throws Fault {
+        String msg = "constructor";
+        setProperty(Property.REQUEST, buildRequest(msg));
+        setProperty(Property.CONTENT, msg);
+        setProperty(Property.SEARCH_STRING, msg);
+        setProperty(Property.SEARCH_STRING, WSInjectableServer.class.getName());
+        invoke();
+    }
 }

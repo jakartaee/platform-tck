@@ -21,14 +21,14 @@
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
 public class InfoException extends Exception {
-  public String reason = null;
+    public String reason = null;
 
-  public InfoException() {
-    super();
-  }
+    public InfoException() {
+        super();
+    }
 
-  public InfoException(String msg) {
-    super(msg);
-    reason = msg;
-  }
+    public InfoException(String msg) {
+        super(msg);
+        reason = msg;
+    }
 }

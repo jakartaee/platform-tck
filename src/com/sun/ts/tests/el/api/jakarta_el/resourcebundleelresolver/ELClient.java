@@ -21,161 +21,146 @@
 
 package com.sun.ts.tests.el.api.jakarta_el.resourcebundleelresolver;
 
-import java.io.Serializable;
-import java.util.Enumeration;
-import java.util.Properties;
-import java.util.ResourceBundle;
-import java.util.StringTokenizer;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.elcontext.BareBonesELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
-
 import jakarta.el.ELContext;
 import jakarta.el.ResourceBundleELResolver;
+import java.io.Serializable;
+import java.util.Enumeration;
+import java.util.Properties;
+import java.util.ResourceBundle;
+import java.util.StringTokenizer;
 
 public class ELClient extends ServiceEETest {
 
-  private Properties testProps;
+    private Properties testProps;
 
-  private TckResourceBundle tckrb;
+    private TckResourceBundle tckrb;
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  public void setup(String[] args, Properties p) throws Fault {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
-    tckrb = new TckResourceBundle();
-  }
-
-  public void cleanup() throws Fault {
-  }
-
-  /**
-   * @testName: resourceBundleELResolverTest
-   *
-   * @assertion_ids: EL:JAVADOC:103; EL:JAVADOC:104; EL:JAVADOC:105;
-   *                 EL:JAVADOC:106; EL:JAVADOC:107; EL:JAVADOC:108;
-   *                 EL:JAVADOC:109
-   *
-   * @test_Strategy: Verify that API calls work as expected:
-   *                 ResourceBundleELResolver() setValue() getValue() getType()
-   *                 isReadOnly() getCommonPropertyType()
-   *                 getFeatureDescriptors()
-   */
-
-  public void resourceBundleELResolverTest() throws Fault {
-
-    boolean pass = false;
-    StringBuffer buf = new StringBuffer();
-
-    try {
-      ResourceBundleELResolver rsbResolver = new ResourceBundleELResolver();
-      BareBonesELContext barebonesContext = new BareBonesELContext();
-      ELContext context = barebonesContext.getELContext();
-
-      pass = ResolverTest.testELResolver(context, rsbResolver, tckrb, "Dinner",
-          "DINNER", buf, true);
-    } catch (Exception ex) {
-      throw new Fault(ex);
+    public static void main(String[] args) {
+        ELClient theTests = new ELClient();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
 
-    if (!pass)
-      throw new Fault(ELTestUtil.FAIL + buf.toString());
-    TestUtil.logTrace(buf.toString());
-  }
-
-  /**
-   * @testName: resourceBundleELResolverNPETest
-   *
-   * @assertion_ids: EL:JAVADOC:106; EL:JAVADOC:105; EL:JAVADOC:107;
-   *                 EL:JAVADOC:108; EL:JAVADOC:109; EL:JAVADOC:313;
-   *                 EL:JAVADOC:314; EL:JAVADOC:316; EL:JAVADOC:317
-   *
-   * @test_Strategy: Verify that the following methods throw a
-   *                 NullPointerException, if context is null:
-   *
-   *                 getValue() getType() setValue() isReadOnly()
-   */
-  public void resourceBundleELResolverNPETest() throws Fault {
-
-    boolean pass = false;
-    StringBuffer buf = new StringBuffer();
-
-    ResourceBundleELResolver resolver = new ResourceBundleELResolver();
-
-    try {
-      pass = ResolverTest.testELResolverNPE(resolver, tckrb, "brunch", "BRUNCH",
-          buf);
-    } catch (Exception ex) {
-      throw new Fault(ex);
+    public void setup(String[] args, Properties p) throws Fault {
+        TestUtil.logTrace("Setup method called");
+        this.testProps = p;
+        tckrb = new TckResourceBundle();
     }
 
-    if (!pass)
-      throw new Fault(ELTestUtil.FAIL + buf.toString());
-    TestUtil.logTrace(buf.toString());
-  }
+    public void cleanup() throws Fault {}
 
-  /**
-   * @testName: resourceBundleELResolverPNWETest
-   *
-   * @assertion_ids: EL:JAVADOC:108; EL:JAVADOC:109; EL:JAVADOC:318
-   *
-   * @test_Strategy: Verify that the following methods throw a
-   *                 PropertyNotWritableException, since
-   *                 ResourceBundleELResolvers are non-writable.
-   *
-   *                 setValue()
-   */
-  public void resourceBundleELResolverPNWETest() throws Fault {
+    /**
+     * @testName: resourceBundleELResolverTest
+     *
+     * @assertion_ids: EL:JAVADOC:103; EL:JAVADOC:104; EL:JAVADOC:105;
+     *                 EL:JAVADOC:106; EL:JAVADOC:107; EL:JAVADOC:108;
+     *                 EL:JAVADOC:109
+     *
+     * @test_Strategy: Verify that API calls work as expected:
+     *                 ResourceBundleELResolver() setValue() getValue() getType()
+     *                 isReadOnly() getCommonPropertyType()
+     *                 getFeatureDescriptors()
+     */
+    public void resourceBundleELResolverTest() throws Fault {
 
-    boolean pass = false;
-    StringBuffer buf = new StringBuffer();
+        boolean pass = false;
+        StringBuffer buf = new StringBuffer();
 
-    BareBonesELContext barebonesContext = new BareBonesELContext();
-    ELContext context = barebonesContext.getELContext();
-    ResourceBundleELResolver rsbResolver = new ResourceBundleELResolver();
+        try {
+            ResourceBundleELResolver rsbResolver = new ResourceBundleELResolver();
+            BareBonesELContext barebonesContext = new BareBonesELContext();
+            ELContext context = barebonesContext.getELContext();
 
-    try {
-      pass = ResolverTest.testELResolverPNWE(context, rsbResolver, tckrb,
-          "snack", "SNACK", buf);
-    } catch (Exception ex) {
-      throw new Fault(ex);
+            pass = ResolverTest.testELResolver(context, rsbResolver, tckrb, "Dinner", "DINNER", buf, true);
+        } catch (Exception ex) {
+            throw new Fault(ex);
+        }
+
+        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
+        TestUtil.logTrace(buf.toString());
     }
 
-    if (!pass)
-      throw new Fault(ELTestUtil.FAIL + buf.toString());
-    TestUtil.logTrace(buf.toString());
-  }
+    /**
+     * @testName: resourceBundleELResolverNPETest
+     *
+     * @assertion_ids: EL:JAVADOC:106; EL:JAVADOC:105; EL:JAVADOC:107;
+     *                 EL:JAVADOC:108; EL:JAVADOC:109; EL:JAVADOC:313;
+     *                 EL:JAVADOC:314; EL:JAVADOC:316; EL:JAVADOC:317
+     *
+     * @test_Strategy: Verify that the following methods throw a
+     *                 NullPointerException, if context is null:
+     *
+     *                 getValue() getType() setValue() isReadOnly()
+     */
+    public void resourceBundleELResolverNPETest() throws Fault {
 
-  private static class TckResourceBundle extends ResourceBundle
-      implements Serializable {
+        boolean pass = false;
+        StringBuffer buf = new StringBuffer();
 
-    private static final String KEYS = "Breakfast Lunch Dinner";
+        ResourceBundleELResolver resolver = new ResourceBundleELResolver();
 
-    public Object handleGetObject(String key) {
-      if ("Breakfast".equals(key))
-        return "BREAKFAST";
-      if ("Lunch".equals(key))
-        return "LUNCH";
-      if ("Dinner".equals(key))
-        return "DINNER";
+        try {
+            pass = ResolverTest.testELResolverNPE(resolver, tckrb, "brunch", "BRUNCH", buf);
+        } catch (Exception ex) {
+            throw new Fault(ex);
+        }
 
-      return null;
+        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
+        TestUtil.logTrace(buf.toString());
     }
 
-    public Enumeration getKeys() {
-      StringTokenizer keyTokenizer = new StringTokenizer(KEYS);
+    /**
+     * @testName: resourceBundleELResolverPNWETest
+     *
+     * @assertion_ids: EL:JAVADOC:108; EL:JAVADOC:109; EL:JAVADOC:318
+     *
+     * @test_Strategy: Verify that the following methods throw a
+     *                 PropertyNotWritableException, since
+     *                 ResourceBundleELResolvers are non-writable.
+     *
+     *                 setValue()
+     */
+    public void resourceBundleELResolverPNWETest() throws Fault {
 
-      return keyTokenizer;
+        boolean pass = false;
+        StringBuffer buf = new StringBuffer();
 
+        BareBonesELContext barebonesContext = new BareBonesELContext();
+        ELContext context = barebonesContext.getELContext();
+        ResourceBundleELResolver rsbResolver = new ResourceBundleELResolver();
+
+        try {
+            pass = ResolverTest.testELResolverPNWE(context, rsbResolver, tckrb, "snack", "SNACK", buf);
+        } catch (Exception ex) {
+            throw new Fault(ex);
+        }
+
+        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
+        TestUtil.logTrace(buf.toString());
     }
-  }
+
+    private static class TckResourceBundle extends ResourceBundle implements Serializable {
+
+        private static final String KEYS = "Breakfast Lunch Dinner";
+
+        public Object handleGetObject(String key) {
+            if ("Breakfast".equals(key)) return "BREAKFAST";
+            if ("Lunch".equals(key)) return "LUNCH";
+            if ("Dinner".equals(key)) return "DINNER";
+
+            return null;
+        }
+
+        public Enumeration getKeys() {
+            StringTokenizer keyTokenizer = new StringTokenizer(KEYS);
+
+            return keyTokenizer;
+        }
+    }
 }

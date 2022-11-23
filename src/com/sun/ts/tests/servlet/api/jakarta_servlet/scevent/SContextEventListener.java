@@ -59,32 +59,29 @@
 package com.sun.ts.tests.servlet.api.jakarta_servlet.scevent;
 
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 
 public final class SContextEventListener implements ServletContextListener {
 
-  // The servlet context with which we are associated.
-  private ServletContext context = null;
+    // The servlet context with which we are associated.
+    private ServletContext context = null;
 
-  // Public Methods
-  public void contextDestroyed(ServletContextEvent event) {
-    this.context = null;
-    StaticLog.clear();
-  }
-
-  public void contextInitialized(ServletContextEvent event) {
-    this.context = event.getServletContext();
-    StaticLog.clear();
-
-    if (event.getServletContext() instanceof ServletContext) {
-      StaticLog.add(
-          "ServletContextEvent.getServletContext() returned instanceof ServletContext");
-    } else {
-      StaticLog.add(
-          "ServletContextEvent.getServletContext() did not return an instanceof ServletContext");
+    // Public Methods
+    public void contextDestroyed(ServletContextEvent event) {
+        this.context = null;
+        StaticLog.clear();
     }
-  }
+
+    public void contextInitialized(ServletContextEvent event) {
+        this.context = event.getServletContext();
+        StaticLog.clear();
+
+        if (event.getServletContext() instanceof ServletContext) {
+            StaticLog.add("ServletContextEvent.getServletContext() returned instanceof ServletContext");
+        } else {
+            StaticLog.add("ServletContextEvent.getServletContext() did not return an instanceof ServletContext");
+        }
+    }
 }

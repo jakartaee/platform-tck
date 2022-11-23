@@ -24,10 +24,9 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagextrainfo;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 /**
  * Test client for TagExtraInfo. If the test fails, a translation error will be
@@ -35,67 +34,62 @@ import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
  */
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    setContextRoot("/jsp_tagextrainfo_web");
+        setContextRoot("/jsp_tagextrainfo_web");
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /* Run tests */
+    /* Run tests */
 
-  // ============================================ Tests ======
+    // ============================================ Tests ======
 
-  /*
-   * @testName: tagExtraInfoTest
-   * 
-   * @assertion_ids:
-   * JSP:JAVADOC:264;JSP:JAVADOC:265;JSP:JAVADOC:266;JSP:JAVADOC:267
-   * 
-   * @test_Strategy: Validate the following: - TagExtraInfo.getTagInfo() returns
-   * a non-null value as the container called TagExtraInfo.setTagInfo() prior to
-   * calling validate. - A null or an emtpy array of ValidationMessage returned
-   * by validate does not cause a translation error. - A non-empty array of
-   * ValiationMessages causes a translation error. - The default implementation
-   * of TagExtraInfo.validate() calls isValid(). If isValid() returns false, a
-   * default ValidationMessage array is returned.
-   */
-  public void tagExtraInfoTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagextrainfo_web/TagExtraInfoNullReturnTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED.");
-    invoke();
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagextrainfo_web/TagExtraInfoEmptyReturnTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED.");
-    invoke();
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagextrainfo_web/TagExtraInfoNonEmptyReturnTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
-    invoke();
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagextrainfo_web/TagExtraInfoDefaultImplTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED.");
-    invoke();
-  }
+    /*
+     * @testName: tagExtraInfoTest
+     *
+     * @assertion_ids:
+     * JSP:JAVADOC:264;JSP:JAVADOC:265;JSP:JAVADOC:266;JSP:JAVADOC:267
+     *
+     * @test_Strategy: Validate the following: - TagExtraInfo.getTagInfo() returns
+     * a non-null value as the container called TagExtraInfo.setTagInfo() prior to
+     * calling validate. - A null or an emtpy array of ValidationMessage returned
+     * by validate does not cause a translation error. - A non-empty array of
+     * ValiationMessages causes a translation error. - The default implementation
+     * of TagExtraInfo.validate() calls isValid(). If isValid() returns false, a
+     * default ValidationMessage array is returned.
+     */
+    public void tagExtraInfoTest() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagextrainfo_web/TagExtraInfoNullReturnTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED.");
+        invoke();
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagextrainfo_web/TagExtraInfoEmptyReturnTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED.");
+        invoke();
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagextrainfo_web/TagExtraInfoNonEmptyReturnTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
+        invoke();
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagextrainfo_web/TagExtraInfoDefaultImplTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED.");
+        invoke();
+    }
 }

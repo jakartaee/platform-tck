@@ -25,34 +25,32 @@ import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 
 public class W2JDLR2707Client extends SOAPClient {
 
-  public W2JDLR2707Client(String webServerHost, int webServerPort, int mode)
-      throws EETest.Fault {
-    this(webServerHost, webServerPort, mode, null);
-  }
+    public W2JDLR2707Client(String webServerHost, int webServerPort, int mode) throws EETest.Fault {
+        this(webServerHost, webServerPort, mode, null);
+    }
 
-  public W2JDLR2707Client(String webServerHost, int webServerPort, int mode,
-      jakarta.xml.ws.Service webServiceRef) throws EETest.Fault {
-    super(webServerHost, webServerPort, mode);
-    stubContext.setNamespace(
-        "http://w2jdlr2707testservice.org/W2JDLR2707TestService.wsdl");
-    stubContext.setService("W2JDLR2707TestService");
-    stubContext.setPort("W2JDLR2707TestPort");
-    stubContext.setEndpointInterface(W2JDLR2707Test.class);
-    stubContext.setWebServiceRef(webServiceRef);
-  }
+    public W2JDLR2707Client(String webServerHost, int webServerPort, int mode, jakarta.xml.ws.Service webServiceRef)
+            throws EETest.Fault {
+        super(webServerHost, webServerPort, mode);
+        stubContext.setNamespace("http://w2jdlr2707testservice.org/W2JDLR2707TestService.wsdl");
+        stubContext.setService("W2JDLR2707TestService");
+        stubContext.setPort("W2JDLR2707TestPort");
+        stubContext.setEndpointInterface(W2JDLR2707Test.class);
+        stubContext.setWebServiceRef(webServiceRef);
+    }
 
-  protected String getEndpointURLProperty() {
-    return "wsi.w2jdlr2707.endpoint.1";
-  }
+    protected String getEndpointURLProperty() {
+        return "wsi.w2jdlr2707.endpoint.1";
+    }
 
-  protected String getWSDLURLProperty() {
-    return "wsi.w2jdlr2707.wsdlloc.1";
-  }
+    protected String getWSDLURLProperty() {
+        return "wsi.w2jdlr2707.wsdlloc.1";
+    }
 
-  public String echoString(String str) throws Exception {
-    Header hdr = new Header();
-    hdr.setTestName("echoString");
-    hdr.setMessage("Testing echoString method call");
-    return ((W2JDLR2707Test) stubContext.getStub()).echoString(str, hdr);
-  }
+    public String echoString(String str) throws Exception {
+        Header hdr = new Header();
+        hdr.setTestName("echoString");
+        hdr.setMessage("Testing echoString method call");
+        return ((W2JDLR2707Test) stubContext.getStub()).echoString(str, hdr);
+    }
 }

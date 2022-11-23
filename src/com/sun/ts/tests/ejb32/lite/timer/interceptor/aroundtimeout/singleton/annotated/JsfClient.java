@@ -18,7 +18,6 @@ package com.sun.ts.tests.ejb32.lite.timer.interceptor.aroundtimeout.singleton.an
 
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeoutIF;
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.JsfClientBase;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBException;
 import java.io.Serializable;
@@ -27,83 +26,83 @@ import java.io.Serializable;
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends JsfClientBase implements Serializable {
 
-  private static final long serialVersionUID = -256884412676327L;
+    private static final long serialVersionUID = -256884412676327L;
 
-  @EJB(beanName = "AroundTimeoutExceptionBean")
-  protected AroundTimeoutExceptionBean aroundTimeoutExceptionBean;
+    @EJB(beanName = "AroundTimeoutExceptionBean")
+    protected AroundTimeoutExceptionBean aroundTimeoutExceptionBean;
 
-  @Override
-  protected AroundTimeoutIF getAroundTimeoutExceptionBean() {
-    return aroundTimeoutExceptionBean;
-  }
-
-  /*
-   * @testName: aroundTimeoutExceptionAsBusinessMethod
-   * 
-   * @test_Strategy: invoke the bean class' aroundTimeout method as a business
-   * method.
-   */
-  public void aroundTimeoutExceptionAsBusinessMethod() throws Exception {
-    try {
-      aroundTimeoutExceptionBean.aroundTimeout(null);
-    } catch (EJBException e) {
-      RuntimeException cause = (RuntimeException) e.getCause();
-      assertEquals(null, "AroundTimeoutExceptionBeanBase", cause.getMessage());
+    @Override
+    protected AroundTimeoutIF getAroundTimeoutExceptionBean() {
+        return aroundTimeoutExceptionBean;
     }
-  }
 
-  /*
-   * @testName: allInterceptors
-   * 
-   * @test_Strategy: all interceptors at default and class-level should be
-   * invoked. //default interceptors 2, 1 //class-level interceptors 4, 3
-   * //method-level interceptors 6, 5
-   */
+    /*
+     * @testName: aroundTimeoutExceptionAsBusinessMethod
+     *
+     * @test_Strategy: invoke the bean class' aroundTimeout method as a business
+     * method.
+     */
+    public void aroundTimeoutExceptionAsBusinessMethod() throws Exception {
+        try {
+            aroundTimeoutExceptionBean.aroundTimeout(null);
+        } catch (EJBException e) {
+            RuntimeException cause = (RuntimeException) e.getCause();
+            assertEquals(null, "AroundTimeoutExceptionBeanBase", cause.getMessage());
+        }
+    }
 
-  /*
-   * @testName: allInterceptorsOverride
-   * 
-   * @test_Strategy: For AroundTimeoutOverrideBean, interceptor-order in
-   * ejb-jar.xml is used to override the ordering of class-level interceptors.
-   * exclude-default-interceptors is also applied for AroundTimeoutOverrideBean.
-   */
+    /*
+     * @testName: allInterceptors
+     *
+     * @test_Strategy: all interceptors at default and class-level should be
+     * invoked. //default interceptors 2, 1 //class-level interceptors 4, 3
+     * //method-level interceptors 6, 5
+     */
 
-  /*
-   * @testName: allInterceptorsComplement
-   * 
-   * @test_Strategy: AroundTimeoutComplementBean's interceptors are also
-   * declared in ejb-jar.xml to complement the class-level interceptors.
-   * AroundTimeoutComplementBean excludes default interceptors.
-   */
+    /*
+     * @testName: allInterceptorsOverride
+     *
+     * @test_Strategy: For AroundTimeoutOverrideBean, interceptor-order in
+     * ejb-jar.xml is used to override the ordering of class-level interceptors.
+     * exclude-default-interceptors is also applied for AroundTimeoutOverrideBean.
+     */
 
-  /*
-   * @testName: aroundTimeoutMethod
-   * 
-   * @test_Strategy: override @AroundTimeout method with @AroundTimeout method
-   * and verify that the superclass' @AroundTimeout is disabled, and subclass'
-   * 
-   * @AroundTimeout method is invoked
-   */
+    /*
+     * @testName: allInterceptorsComplement
+     *
+     * @test_Strategy: AroundTimeoutComplementBean's interceptors are also
+     * declared in ejb-jar.xml to complement the class-level interceptors.
+     * AroundTimeoutComplementBean excludes default interceptors.
+     */
 
-  /*
-   * @testName: aroundTimeoutMethod2
-   * 
-   * @test_Strategy:override @AroundTimeout method with non-AroundTimeout method
-   * and verify that the superclass' @AroundTimeout is disabled
-   */
+    /*
+     * @testName: aroundTimeoutMethod
+     *
+     * @test_Strategy: override @AroundTimeout method with @AroundTimeout method
+     * and verify that the superclass' @AroundTimeout is disabled, and subclass'
+     *
+     * @AroundTimeout method is invoked
+     */
 
-  /*
-   * @testName: aroundTimeoutException
-   * 
-   * @test_Strategy: Interceptor1 catches and suppresses the RuntimeException
-   * from bean class' AroundTimeout method.
-   */
+    /*
+     * @testName: aroundTimeoutMethod2
+     *
+     * @test_Strategy:override @AroundTimeout method with non-AroundTimeout method
+     * and verify that the superclass' @AroundTimeout is disabled
+     */
 
-  /*
-   * @testName: invocationContextMethods
-   * 
-   * @test_Strategy: invokes various methods on InvocationContext inside
-   * 
-   * @AroundTimeout method.
-   */
+    /*
+     * @testName: aroundTimeoutException
+     *
+     * @test_Strategy: Interceptor1 catches and suppresses the RuntimeException
+     * from bean class' AroundTimeout method.
+     */
+
+    /*
+     * @testName: invocationContextMethods
+     *
+     * @test_Strategy: invokes various methods on InvocationContext inside
+     *
+     * @AroundTimeout method.
+     */
 }

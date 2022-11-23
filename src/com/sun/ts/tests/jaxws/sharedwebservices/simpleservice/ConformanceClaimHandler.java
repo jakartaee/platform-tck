@@ -20,82 +20,72 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.simpleservice;
 
+import com.sun.ts.tests.jaxws.common.Constants;
+import com.sun.ts.tests.jaxws.common.Handler_Util;
+import com.sun.ts.tests.jaxws.wsi.constants.WSIConstants;
+import jakarta.xml.soap.*;
 import jakarta.xml.ws.handler.*;
 import jakarta.xml.ws.handler.soap.*;
-import javax.xml.namespace.QName;
-import jakarta.xml.soap.*;
 import java.util.*;
-import com.sun.ts.tests.jaxws.wsi.constants.WSIConstants;
-import com.sun.ts.tests.jaxws.common.Handler_Util;
-import com.sun.ts.tests.jaxws.common.Constants;
+import javax.xml.namespace.QName;
 
-public class ConformanceClaimHandler
-    implements SOAPHandler<SOAPMessageContext>, WSIConstants {
-  public Set<QName> getHeaders() {
-    Set<QName> headers = new HashSet<QName>();
-    headers.add(new QName(WSI_CLAIM_NAMESPACE_URI, WSI_CLAIM_LOCAL_NAME));
-    return headers;
-  }
-
-  public void init(Map<String, Object> config) {
-  }
-
-  public void destroy() {
-  }
-
-  public void close(MessageContext message) {
-  }
-
-  public boolean handleMessage(SOAPMessageContext context) {
-    try {
-      if (Handler_Util.getDirection(context).equals(Constants.OUTBOUND))
-        addConformanceClaims(context.getMessage());
-    } catch (SOAPException se) {
-      com.sun.ts.lib.util.TestUtil.printStackTrace(se);
+public class ConformanceClaimHandler implements SOAPHandler<SOAPMessageContext>, WSIConstants {
+    public Set<QName> getHeaders() {
+        Set<QName> headers = new HashSet<QName>();
+        headers.add(new QName(WSI_CLAIM_NAMESPACE_URI, WSI_CLAIM_LOCAL_NAME));
+        return headers;
     }
 
-    return true;
-  }
+    public void init(Map<String, Object> config) {}
 
-  public boolean handleFault(SOAPMessageContext message) {
-    return true;
-  }
+    public void destroy() {}
 
-  private void addConformanceClaims(SOAPMessage message) throws SOAPException {
-    addBP10ConformanceClaim(message);
-    addDummyConformanceClaim(message);
-  }
+    public void close(MessageContext message) {}
 
-  private void addBP10ConformanceClaim(SOAPMessage message)
-      throws SOAPException {
-    SOAPEnvelope env = message.getSOAPPart().getEnvelope();
-    SOAPHeader conformanceClaim = getHeader(env);
-    Name claimName = env.createName(WSI_CLAIM_LOCAL_NAME, WSI_CLAIM_PREFIX,
-        WSI_CLAIM_NAMESPACE_URI);
-    SOAPHeaderElement claim = conformanceClaim.addHeaderElement(claimName);
-    claim.addAttribute(env.createName(WSI_CLAIM_CONFORMS_TO_ATTR),
-        WSI_CLAIM_CONFORMS_TO_VALUE);
-    message.saveChanges();
-  }
+    public boolean handleMessage(SOAPMessageContext context) {
+        try {
+            if (Handler_Util.getDirection(context).equals(Constants.OUTBOUND))
+                addConformanceClaims(context.getMessage());
+        } catch (SOAPException se) {
+            com.sun.ts.lib.util.TestUtil.printStackTrace(se);
+        }
 
-  private void addDummyConformanceClaim(SOAPMessage message)
-      throws SOAPException {
-    SOAPEnvelope env = message.getSOAPPart().getEnvelope();
-    SOAPHeader conformanceClaim = getHeader(env);
-    Name claimName = env.createName(WSI_CLAIM_LOCAL_NAME, WSI_CLAIM_PREFIX,
-        WSI_CLAIM_NAMESPACE_URI);
-    SOAPHeaderElement claim = conformanceClaim.addHeaderElement(claimName);
-    claim.addAttribute(env.createName(WSI_CLAIM_CONFORMS_TO_ATTR),
-        "http://dummy/conformanceClaim");
-    message.saveChanges();
-  }
-
-  private SOAPHeader getHeader(SOAPEnvelope env) throws SOAPException {
-    SOAPHeader header = env.getHeader();
-    if (header != null) {
-      return header;
-    } else {
-      return env.addHeader();
+        return true;
     }
-  }
+
+    public boolean handleFault(SOAPMessageContext message) {
+        return true;
+    }
+
+    private void addConformanceClaims(SOAPMessage message) throws SOAPException {
+        addBP10ConformanceClaim(message);
+        addDummyConformanceClaim(message);
+    }
+
+    private void addBP10ConformanceClaim(SOAPMessage message) throws SOAPException {
+        SOAPEnvelope env = message.getSOAPPart().getEnvelope();
+        SOAPHeader conformanceClaim = getHeader(env);
+        Name claimName = env.createName(WSI_CLAIM_LOCAL_NAME, WSI_CLAIM_PREFIX, WSI_CLAIM_NAMESPACE_URI);
+        SOAPHeaderElement claim = conformanceClaim.addHeaderElement(claimName);
+        claim.addAttribute(env.createName(WSI_CLAIM_CONFORMS_TO_ATTR), WSI_CLAIM_CONFORMS_TO_VALUE);
+        message.saveChanges();
+    }
+
+    private void addDummyConformanceClaim(SOAPMessage message) throws SOAPException {
+        SOAPEnvelope env = message.getSOAPPart().getEnvelope();
+        SOAPHeader conformanceClaim = getHeader(env);
+        Name claimName = env.createName(WSI_CLAIM_LOCAL_NAME, WSI_CLAIM_PREFIX, WSI_CLAIM_NAMESPACE_URI);
+        SOAPHeaderElement claim = conformanceClaim.addHeaderElement(claimName);
+        claim.addAttribute(env.createName(WSI_CLAIM_CONFORMS_TO_ATTR), "http://dummy/conformanceClaim");
+        message.saveChanges();
+    }
+
+    private SOAPHeader getHeader(SOAPEnvelope env) throws SOAPException {
+        SOAPHeader header = env.getHeader();
+        if (header != null) {
+            return header;
+        } else {
+            return env.addHeader();
+        }
+    }
 }

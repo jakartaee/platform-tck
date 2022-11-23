@@ -23,13 +23,13 @@ package com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client;
 import com.sun.ts.tests.jaxws.common.LogicalHandlerBase2;
 
 public class ClientLogicalHandler1 extends LogicalHandlerBase2 {
-  private static final String WHICHHANDLERTYPE = "Client";
+    private static final String WHICHHANDLERTYPE = "Client";
 
-  private static final String HANDLERNAME = "ClientLogicalHandler1";
+    private static final String HANDLERNAME = "ClientLogicalHandler1";
 
-  public ClientLogicalHandler1() {
-    super();
-    super.setWhichHandlerType(WHICHHANDLERTYPE);
-    super.setHandlerName(HANDLERNAME);
-  }
+    public ClientLogicalHandler1() {
+        super();
+        super.setWhichHandlerType(WHICHHANDLERTYPE);
+        super.setHandlerName(HANDLERNAME);
+    }
 }

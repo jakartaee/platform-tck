@@ -22,26 +22,24 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.callback.listener.descriptor
 
 import com.sun.ts.tests.ejb30.common.callback.Callback2BeanBase;
 import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.SessionContext;
 
-public class NoAnnotationCallback2Bean extends Callback2BeanBase
-    implements Callback2IF {
-  private boolean postConstructOrPreDestroyCalled;
+public class NoAnnotationCallback2Bean extends Callback2BeanBase implements Callback2IF {
+    private boolean postConstructOrPreDestroyCalled;
 
-  @Resource
-  private SessionContext sctx;
+    @Resource
+    private SessionContext sctx;
 
-  public NoAnnotationCallback2Bean() {
-    super();
-  }
+    public NoAnnotationCallback2Bean() {
+        super();
+    }
 
-  public EJBContext getEJBContext() {
-    return this.sctx;
-  }
+    public EJBContext getEJBContext() {
+        return this.sctx;
+    }
 
-  // ================== business methods ====================================
+    // ================== business methods ====================================
 
 }

@@ -23,6 +23,6 @@ package com.sun.ts.tests.ejb.ee.bb.localaccess.webaccesstest;
 import jakarta.ejb.EJBLocalObject;
 
 public interface BLocal extends EJBLocalObject {
-  // Business Methods
-  public String whoAmI();
+    // Business Methods
+    public String whoAmI();
 }

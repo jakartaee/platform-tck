@@ -60,111 +60,103 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.genericfilter;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Enumeration;
-import java.util.Vector;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.GenericFilter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
+import java.util.Vector;
 
 public final class GetInitParamNames_Filter extends GenericFilter {
 
-  public void doFilter(ServletRequest request, ServletResponse response,
-      FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-    boolean passed = false;
-    PrintWriter pw = response.getWriter();
-    pw.println("doFilter was successfully called in GetInitParamNames_Filter");
+        boolean passed = false;
+        PrintWriter pw = response.getWriter();
+        pw.println("doFilter was successfully called in GetInitParamNames_Filter");
 
-    if (getFilterConfig() == null) {
-      passed = false;
-      pw.println(
-          "doFilter of GetInitParamNames_Filter was called but this filter instance is not currently configured ");
-    } else {
-
-      String expectedResult1 = "GetInitParamNames_Filter_attribute1";
-      String expectedResult2 = "GetInitParamNames_Filter_attribute2";
-
-      boolean expectedResult1Found = false;
-      boolean expectedResult2Found = false;
-      Enumeration initP = getInitParameterNames();
-      int expectedCount = 2;
-      int count = 0;
-
-      if (initP.hasMoreElements()) {
-        Vector v = new Vector();
-
-        while (initP.hasMoreElements()) {
-          String result = (String) initP.nextElement();
-
-          if (result.equals(expectedResult1)) {
-            if (!expectedResult1Found) {
-              count++;
-              expectedResult1Found = true;
-            } else {
-              passed = false;
-              pw.println(
-                  "GenericFilter.getInitParameterNames() method return the same parameter name twice  ");
-              pw.println(
-                  "The parameter name already received was " + expectedResult1);
-            }
-          } else if (result.equals(expectedResult2)) {
-            if (!expectedResult2Found) {
-              count++;
-              expectedResult2Found = true;
-            } else {
-              passed = false;
-              pw.println(
-                  "GenericFilter.getInitParameterNames() method return the same parameter name twice ");
-              pw.println(
-                  "The parameter name already received was " + expectedResult2);
-            }
-          } else {
-            v.add(result);
-          }
-        }
-
-        if (count != expectedCount) {
-          passed = false;
-          pw.println("GenericFilter.getInitParameterNames() method FAILED  ");
-          pw.println("Expected count = " + expectedCount);
-          pw.println("Actual count = " + count);
-          pw.println("The expected parameter names received were :");
-
-          if (expectedResult1Found) {
-            pw.println(expectedResult1);
-          }
-
-          if (expectedResult2Found) {
-            pw.println(expectedResult2);
-          }
-
-          pw.println("    Other parameter names received were :");
-
-          for (int i = 0; i <= v.size() - 1; i++) {
-            pw.println("     " + v.elementAt(i).toString());
-          }
+        if (getFilterConfig() == null) {
+            passed = false;
+            pw.println(
+                    "doFilter of GetInitParamNames_Filter was called but this filter instance is not currently configured ");
         } else {
-          passed = true;
+
+            String expectedResult1 = "GetInitParamNames_Filter_attribute1";
+            String expectedResult2 = "GetInitParamNames_Filter_attribute2";
+
+            boolean expectedResult1Found = false;
+            boolean expectedResult2Found = false;
+            Enumeration initP = getInitParameterNames();
+            int expectedCount = 2;
+            int count = 0;
+
+            if (initP.hasMoreElements()) {
+                Vector v = new Vector();
+
+                while (initP.hasMoreElements()) {
+                    String result = (String) initP.nextElement();
+
+                    if (result.equals(expectedResult1)) {
+                        if (!expectedResult1Found) {
+                            count++;
+                            expectedResult1Found = true;
+                        } else {
+                            passed = false;
+                            pw.println(
+                                    "GenericFilter.getInitParameterNames() method return the same parameter name twice  ");
+                            pw.println("The parameter name already received was " + expectedResult1);
+                        }
+                    } else if (result.equals(expectedResult2)) {
+                        if (!expectedResult2Found) {
+                            count++;
+                            expectedResult2Found = true;
+                        } else {
+                            passed = false;
+                            pw.println(
+                                    "GenericFilter.getInitParameterNames() method return the same parameter name twice ");
+                            pw.println("The parameter name already received was " + expectedResult2);
+                        }
+                    } else {
+                        v.add(result);
+                    }
+                }
+
+                if (count != expectedCount) {
+                    passed = false;
+                    pw.println("GenericFilter.getInitParameterNames() method FAILED  ");
+                    pw.println("Expected count = " + expectedCount);
+                    pw.println("Actual count = " + count);
+                    pw.println("The expected parameter names received were :");
+
+                    if (expectedResult1Found) {
+                        pw.println(expectedResult1);
+                    }
+
+                    if (expectedResult2Found) {
+                        pw.println(expectedResult2);
+                    }
+
+                    pw.println("    Other parameter names received were :");
+
+                    for (int i = 0; i <= v.size() - 1; i++) {
+                        pw.println("     " + v.elementAt(i).toString());
+                    }
+                } else {
+                    passed = true;
+                }
+            } else {
+                passed = false;
+                pw.println("GenericFilter.getInitParameterNames() returned an empty enumeration");
+            }
         }
-      } else {
-        passed = false;
-        pw.println(
-            "GenericFilter.getInitParameterNames() returned an empty enumeration");
-      }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
 
-  }
-
-  // remove the filter configuration object for this filter.
-  public void destroy() {
-  }
-
+    // remove the filter configuration object for this filter.
+    public void destroy() {}
 }

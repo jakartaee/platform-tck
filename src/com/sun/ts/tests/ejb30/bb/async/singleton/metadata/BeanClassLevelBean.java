@@ -19,7 +19,6 @@ package com.sun.ts.tests.ejb30.bb.async.singleton.metadata;
 import com.sun.ts.tests.ejb30.bb.async.common.metadata.BeanClassLevel3BeanBase;
 import com.sun.ts.tests.ejb30.bb.async.common.metadata.PlainInterfaceTypeLevelIF;
 import com.sun.ts.tests.ejb30.bb.async.common.metadata.PlainInterfaceTypeLevelRemoteIF;
-
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Singleton;
@@ -36,5 +35,4 @@ import jakarta.ejb.Singleton;
 @Singleton
 @Local(PlainInterfaceTypeLevelIF.class)
 @Remote(PlainInterfaceTypeLevelRemoteIF.class)
-public class BeanClassLevelBean extends BeanClassLevel3BeanBase {
-}
+public class BeanClassLevelBean extends BeanClassLevel3BeanBase {}

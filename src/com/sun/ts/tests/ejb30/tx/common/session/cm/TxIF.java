@@ -23,20 +23,19 @@ package com.sun.ts.tests.ejb30.tx.common.session.cm;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface TxIF {
-  public void mandatoryTest();
+    public void mandatoryTest();
 
-  public void neverTest();
+    public void neverTest();
 
-  public void mandatoryTest(String s);
+    public void mandatoryTest(String s);
 
-  public void neverTest(String s);
+    public void neverTest(String s);
 
-  public String supportsTest() throws TestFailedException;
+    public String supportsTest() throws TestFailedException;
 
-  public String illegalGetSetRollbackOnlyNeverTest() throws TestFailedException;
+    public String illegalGetSetRollbackOnlyNeverTest() throws TestFailedException;
 
-  public String illegalGetSetRollbackOnlyNotSupportedTest()
-      throws TestFailedException;
+    public String illegalGetSetRollbackOnlyNotSupportedTest() throws TestFailedException;
 
-  public String systemExceptionTest() throws TestFailedException;
+    public String systemExceptionTest() throws TestFailedException;
 }

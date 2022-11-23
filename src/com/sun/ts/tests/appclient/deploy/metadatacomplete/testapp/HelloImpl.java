@@ -23,7 +23,7 @@ import jakarta.jws.WebService;
 @Stateless
 public class HelloImpl {
 
-  public String sayHello(String param) {
-    return "Hello " + param;
-  }
+    public String sayHello(String param) {
+        return "Hello " + param;
+    }
 }

@@ -20,82 +20,75 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.cm.allowedmethodstest;
 
-import java.util.Collection;
-import java.util.Iterator;
-
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.TimedObject;
 import jakarta.ejb.TimerHandle;
+import java.util.Collection;
+import java.util.Iterator;
 
 public class TimerEJB implements SessionBean, TimedObject {
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  public void ejbCreate() throws CreateException {
-  }
+    public void ejbCreate() throws CreateException {}
 
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-  }
-
-  public void ejbRemove() {
-  }
-
-  public void ejbActivate() {
-  }
-
-  public void ejbPassivate() {
-  }
-
-  public void ejbTimeout(jakarta.ejb.Timer timer) {
-  }
-
-  public TimerHandle startTimer(long duration, String info) {
-    try {
-      TestUtil.logTrace("startTimer method entered");
-      jakarta.ejb.TimerService ts = sctx.getTimerService();
-      TestUtil.logTrace("create Timer");
-      jakarta.ejb.Timer t = ts.createTimer(duration, info);
-      return t.getHandle();
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("startTimer:" + e);
+    public void setSessionContext(SessionContext sc) {
+        TestUtil.logTrace("setSessionContext");
+        this.sctx = sc;
     }
-  }
 
-  public void findAndCancelTimer() {
-    Collection ccol = null;
-    try {
-      TestUtil.logTrace("findAndCancelTimer method entered");
-      jakarta.ejb.TimerService ts = sctx.getTimerService();
-      TestUtil.logTrace("getTimers");
-      ccol = ts.getTimers();
-      if (!ccol.isEmpty()) {
-        TestUtil.logTrace("Timer Collection Not Empty");
-        Iterator i = ccol.iterator();
-        while (i.hasNext()) {
-          TestUtil.logTrace("Looking up next timer");
-          jakarta.ejb.Timer t = (jakarta.ejb.Timer) i.next();
-          TestUtil.logTrace("Cancel timer with info: " + t.getInfo());
-          t.cancel();
+    public void ejbRemove() {}
+
+    public void ejbActivate() {}
+
+    public void ejbPassivate() {}
+
+    public void ejbTimeout(jakarta.ejb.Timer timer) {}
+
+    public TimerHandle startTimer(long duration, String info) {
+        try {
+            TestUtil.logTrace("startTimer method entered");
+            jakarta.ejb.TimerService ts = sctx.getTimerService();
+            TestUtil.logTrace("create Timer");
+            jakarta.ejb.Timer t = ts.createTimer(duration, info);
+            return t.getHandle();
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("startTimer:" + e);
         }
-      } else {
-        TestUtil.logTrace("Timer Collection is Empty");
-      }
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("findAndCancelTimer: " + e);
     }
-  }
 
-  // ===========================================================
+    public void findAndCancelTimer() {
+        Collection ccol = null;
+        try {
+            TestUtil.logTrace("findAndCancelTimer method entered");
+            jakarta.ejb.TimerService ts = sctx.getTimerService();
+            TestUtil.logTrace("getTimers");
+            ccol = ts.getTimers();
+            if (!ccol.isEmpty()) {
+                TestUtil.logTrace("Timer Collection Not Empty");
+                Iterator i = ccol.iterator();
+                while (i.hasNext()) {
+                    TestUtil.logTrace("Looking up next timer");
+                    jakarta.ejb.Timer t = (jakarta.ejb.Timer) i.next();
+                    TestUtil.logTrace("Cancel timer with info: " + t.getInfo());
+                    t.cancel();
+                }
+            } else {
+                TestUtil.logTrace("Timer Collection is Empty");
+            }
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("findAndCancelTimer: " + e);
+        }
+    }
+
+    // ===========================================================
 
 }

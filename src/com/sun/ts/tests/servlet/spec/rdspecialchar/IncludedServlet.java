@@ -20,20 +20,17 @@
 
 package com.sun.ts.tests.servlet.spec.rdspecialchar;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class IncludedServlet extends GenericServlet {
 
-  public void service(ServletRequest req, ServletResponse res)
-      throws ServletException, IOException {
-    PrintWriter out = res.getWriter();
-    out.println("Test PASSED");
-  }
-
+    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+        PrintWriter out = res.getWriter();
+        out.println("Test PASSED");
+    }
 }

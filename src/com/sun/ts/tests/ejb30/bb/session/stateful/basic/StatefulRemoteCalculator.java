@@ -27,9 +27,8 @@ import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
  * A stateful base calculator session bean class that implements
  * jakarta.ejb.SessionBean. ejbCreate method is optional and not implemented here.
  */
-
 public interface StatefulRemoteCalculator extends RemoteCalculator {
-  // @todo Remove in business interface?
-  // @Remove
-  public void remoteThrowIt() throws CalculatorException;
+    // @todo Remove in business interface?
+    // @Remove
+    public void remoteThrowIt() throws CalculatorException;
 }

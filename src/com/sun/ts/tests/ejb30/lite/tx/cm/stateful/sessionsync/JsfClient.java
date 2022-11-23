@@ -32,166 +32,158 @@ import static com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync.SessionSync
 import static com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync.SessionSyncIF.beforeCompletion;
 import static com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync.SessionSyncIF.getHistory;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase;
 import com.sun.ts.tests.ejb30.common.statussingleton.StatusSingletonBean;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.NoSuchEJBException;
-
+import java.util.Arrays;
+import java.util.List;
 
 @EJB(name = "ejb/rollbackBean", beanInterface = RollbackBean.class, beanName = "RollbackBean")
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends EJBLiteJsfClientBase {
-  @EJB(beanName = "AnnotatedBean")
-  private SessionSyncIF annotatedBean;
+    @EJB(beanName = "AnnotatedBean")
+    private SessionSyncIF annotatedBean;
 
-  @EJB(beanName = "ImplementingBean")
-  private SessionSyncIF implementingBean;
+    @EJB(beanName = "ImplementingBean")
+    private SessionSyncIF implementingBean;
 
-  @EJB(beanName = "DescriptorBean")
-  private SessionSyncIF descriptorBean;
+    @EJB(beanName = "DescriptorBean")
+    private SessionSyncIF descriptorBean;
 
-  @EJB(beanName = "StatusSingletonBean")
-  private StatusSingletonBean statusSingleton;
+    @EJB(beanName = "StatusSingletonBean")
+    private StatusSingletonBean statusSingleton;
 
-  /*
-   * @testName: sessionSynchronizationCallbackSequence
-   * 
-   * @test_Strategy: verify the correct sequence of SessionSynchronization
-   * 
-   * callbacks SessionSynchronization methods can be specified by implementing
-   * SessionSynchronization interface, or annotations, or ejb-jar.xml;
-   * 
-   * SessionSynchronization callback methods can have public, protected, private
-   * or default access;
-   * 
-   * Bean class can implement all or some SessionSynchronization methods, and
-   * only those implemented callback can be called;
-   * 
-   * The correct sequence when interceptor is used (see expectedAll variable in
-   * test method)
-   * 
-   * Such bean classes can only have Required, Requires_New, or Mandatory
-   * attributes
-   */
-  public void sessionSynchronizationCallbackSequence() {
-    final List<String> expectedAll = Arrays.asList(afterBegin, aroundInvoke1,
-        getHistory, aroundInvoke2, beforeCompletion, afterCompletion);
-    final List<String> historyAll = implementingBean.getHistory();
-    assertEquals(null, expectedAll, historyAll);
+    /*
+     * @testName: sessionSynchronizationCallbackSequence
+     *
+     * @test_Strategy: verify the correct sequence of SessionSynchronization
+     *
+     * callbacks SessionSynchronization methods can be specified by implementing
+     * SessionSynchronization interface, or annotations, or ejb-jar.xml;
+     *
+     * SessionSynchronization callback methods can have public, protected, private
+     * or default access;
+     *
+     * Bean class can implement all or some SessionSynchronization methods, and
+     * only those implemented callback can be called;
+     *
+     * The correct sequence when interceptor is used (see expectedAll variable in
+     * test method)
+     *
+     * Such bean classes can only have Required, Requires_New, or Mandatory
+     * attributes
+     */
+    public void sessionSynchronizationCallbackSequence() {
+        final List<String> expectedAll =
+                Arrays.asList(afterBegin, aroundInvoke1, getHistory, aroundInvoke2, beforeCompletion, afterCompletion);
+        final List<String> historyAll = implementingBean.getHistory();
+        assertEquals(null, expectedAll, historyAll);
 
-    final List<String> expectedPartial = Arrays.asList(afterBegin,
-        aroundInvoke1, getHistory, aroundInvoke2, beforeCompletion);
-    for (SessionSyncIF b : new SessionSyncIF[] { annotatedBean,
-        descriptorBean }) {
-      final List<String> history = b.getHistory();
-      assertEquals(null, expectedPartial, history);
-    }
-  }
-
-  /*
-   * @testName: afterBeginException
-   * 
-   * @test_Strategy: verify tx rollback caused by system exception and
-   * setRollbackOnly calls inside business method and SessionSynchronization
-   * callback methods.
-   * 
-   * The container must handle system exceptions: If the instance is in a
-   * transaction, mark the transaction for rollback.
-   * 
-   * Discard the instance (i.e., the container must not invoke any business
-   * methods or container callbacks on the instance).
-   * 
-   * If the instance executed in the client transaction, the container should
-   * throw the jakarta.ejb.EJBTransactionRolledbackException
-   */
-  public void afterBeginException() {
-    rollback(afterBeginException, true, null);
-  }
-
-  /*
-   * @testName: methodException
-   * 
-   * @test_Strategy: see test afterBeginException
-   */
-  public void methodException() {
-    rollback(methodException, true, null);
-  }
-
-  /*
-   * @testName: beforeCompletionException
-   * 
-   * @test_Strategy: see test afterBeginException
-   */
-  public void beforeCompletionException() {
-    rollback(beforeCompletionException, true, null);
-  }
-
-  public void afterCompletionException() {
-    // the transaction should have been committed, but we have no way
-    // to check, as the bean instance is already discarded.
-    rollback(afterCompletionException, true, null);
-  }
-
-  /*
-   * @testName: afterBeginSetRollbackOnly
-   * 
-   * @test_Strategy: see test afterBeginException
-   */
-  public void afterBeginSetRollbackOnly() {
-    rollback(afterBeginSetRollbackOnly, false, false);
-  }
-
-  /*
-   * @testName: methodSetRollbackOnly
-   * 
-   * @test_Strategy: see test afterBeginException
-   */
-  public void methodSetRollbackOnly() {
-    rollback(methodSetRollbackOnly, false, false);
-  }
-
-  public void beforeCompletionSetRollbackOnly() {
-    rollback(beforeCompletionSetRollbackOnly, false, false);
-  }
-
-  private void rollback(RollbackBean.TestNames testName,
-      boolean expectingException, Boolean expectedTxResult) {
-    RollbackBean b = (RollbackBean) lookup("ejb/rollbackBean", "RollbackBean",
-        null);
-
-    statusSingleton.addResult(currentTestKey.toString(), testName.toString());
-    statusSingleton.getAndResetResult(isTxCommittedKey.toString());
-
-    if (expectingException) {
-      try {
-        b.rollback();
-        throw new RuntimeException("Expecting EJBException, but got none.");
-      } catch (NoSuchEJBException e) {
-        throw new RuntimeException(
-            "Expecting other EJBException, but got " + e);
-      } catch (EJBException e) {
-        appendReason("Got expected " + e);
-        // the bean instance should have been discarded.
-        try {
-          b.rollback();
-          throw new RuntimeException(
-              "Expecting NoSuchEJBException, but got none.");
-        } catch (NoSuchEJBException ee) {
-          appendReason("Got expected " + ee);
+        final List<String> expectedPartial =
+                Arrays.asList(afterBegin, aroundInvoke1, getHistory, aroundInvoke2, beforeCompletion);
+        for (SessionSyncIF b : new SessionSyncIF[] {annotatedBean, descriptorBean}) {
+            final List<String> history = b.getHistory();
+            assertEquals(null, expectedPartial, history);
         }
-      }
-    } else {
-      b.rollback();
     }
-    if (expectedTxResult == null) {
-      return;
+
+    /*
+     * @testName: afterBeginException
+     *
+     * @test_Strategy: verify tx rollback caused by system exception and
+     * setRollbackOnly calls inside business method and SessionSynchronization
+     * callback methods.
+     *
+     * The container must handle system exceptions: If the instance is in a
+     * transaction, mark the transaction for rollback.
+     *
+     * Discard the instance (i.e., the container must not invoke any business
+     * methods or container callbacks on the instance).
+     *
+     * If the instance executed in the client transaction, the container should
+     * throw the jakarta.ejb.EJBTransactionRolledbackException
+     */
+    public void afterBeginException() {
+        rollback(afterBeginException, true, null);
     }
-    assertEquals(null, expectedTxResult, b.getAndResetTransactionStatus());
-  }
+
+    /*
+     * @testName: methodException
+     *
+     * @test_Strategy: see test afterBeginException
+     */
+    public void methodException() {
+        rollback(methodException, true, null);
+    }
+
+    /*
+     * @testName: beforeCompletionException
+     *
+     * @test_Strategy: see test afterBeginException
+     */
+    public void beforeCompletionException() {
+        rollback(beforeCompletionException, true, null);
+    }
+
+    public void afterCompletionException() {
+        // the transaction should have been committed, but we have no way
+        // to check, as the bean instance is already discarded.
+        rollback(afterCompletionException, true, null);
+    }
+
+    /*
+     * @testName: afterBeginSetRollbackOnly
+     *
+     * @test_Strategy: see test afterBeginException
+     */
+    public void afterBeginSetRollbackOnly() {
+        rollback(afterBeginSetRollbackOnly, false, false);
+    }
+
+    /*
+     * @testName: methodSetRollbackOnly
+     *
+     * @test_Strategy: see test afterBeginException
+     */
+    public void methodSetRollbackOnly() {
+        rollback(methodSetRollbackOnly, false, false);
+    }
+
+    public void beforeCompletionSetRollbackOnly() {
+        rollback(beforeCompletionSetRollbackOnly, false, false);
+    }
+
+    private void rollback(RollbackBean.TestNames testName, boolean expectingException, Boolean expectedTxResult) {
+        RollbackBean b = (RollbackBean) lookup("ejb/rollbackBean", "RollbackBean", null);
+
+        statusSingleton.addResult(currentTestKey.toString(), testName.toString());
+        statusSingleton.getAndResetResult(isTxCommittedKey.toString());
+
+        if (expectingException) {
+            try {
+                b.rollback();
+                throw new RuntimeException("Expecting EJBException, but got none.");
+            } catch (NoSuchEJBException e) {
+                throw new RuntimeException("Expecting other EJBException, but got " + e);
+            } catch (EJBException e) {
+                appendReason("Got expected " + e);
+                // the bean instance should have been discarded.
+                try {
+                    b.rollback();
+                    throw new RuntimeException("Expecting NoSuchEJBException, but got none.");
+                } catch (NoSuchEJBException ee) {
+                    appendReason("Got expected " + ee);
+                }
+            }
+        } else {
+            b.rollback();
+        }
+        if (expectedTxResult == null) {
+            return;
+        }
+        assertEquals(null, expectedTxResult, b.getAndResetTransactionStatus());
+    }
 }

@@ -20,79 +20,77 @@
 
 package com.sun.ts.tests.servlet.ee.spec.crosscontext;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
 
-  private static final String CONTEXT_ROOT = "/servlet_ee_spec_crosscontext1_web";
+    private static final String CONTEXT_ROOT = "/servlet_ee_spec_crosscontext1_web";
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    setContextRoot(CONTEXT_ROOT);
-    setTestJsp("JSPAccessServlet");
-    System.out.println("Running TESTS");
+        setContextRoot(CONTEXT_ROOT);
+        setTestJsp("JSPAccessServlet");
+        System.out.println("Running TESTS");
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /* Run test */
+    /* Run test */
 
-  /*
-   * @testName: forwardJSPServlet
-   *
-   * @assertion_ids: Servlet:SPEC:63;
-   *
-   * @test_Strategy: 1. Create two web applications; One with a jsp page
-   * JSPAccessServlet.jsp under contextroot /servlet_spec_crosscontext1_web; The
-   * other with servlet FowardedServlet under contextroot
-   * /servlet_spec_crosscontext2_web; 2. client calls to the jsp page; 3. In jsp
-   * page, use RequestDispatcher to forward to the servlet; 4. Verify that
-   * Session attributes set in jsp cannot be seen in servlet
-   */
+    /*
+     * @testName: forwardJSPServlet
+     *
+     * @assertion_ids: Servlet:SPEC:63;
+     *
+     * @test_Strategy: 1. Create two web applications; One with a jsp page
+     * JSPAccessServlet.jsp under contextroot /servlet_spec_crosscontext1_web; The
+     * other with servlet FowardedServlet under contextroot
+     * /servlet_spec_crosscontext2_web; 2. client calls to the jsp page; 3. In jsp
+     * page, use RequestDispatcher to forward to the servlet; 4. Verify that
+     * Session attributes set in jsp cannot be seen in servlet
+     */
 
-  public void forwardJSPServlet() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "forwardJSPServlet");
-    invoke();
-  }
+    public void forwardJSPServlet() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "forwardJSPServlet");
+        invoke();
+    }
 
-  /*
-   * @testName: includeJSPServlet
-   *
-   * @assertion_ids: Servlet:SPEC:63;
-   *
-   * @test_Strategy: 1. Create two web applications; One with a jsp page
-   * JSPAccessServlet.jsp under contextroot /servlet_spec_crosscontext1_web; The
-   * other with servlet IncludedServlet under contextroot
-   * /servlet_spec_crosscontext2_web; 2. client calls to the jsp page; 3. In jsp
-   * page, use RequestDispatcher to include the servlet; 4. Verify that Session
-   * attributes set in jsp cannot be seen in servlet and vice versa
-   */
+    /*
+     * @testName: includeJSPServlet
+     *
+     * @assertion_ids: Servlet:SPEC:63;
+     *
+     * @test_Strategy: 1. Create two web applications; One with a jsp page
+     * JSPAccessServlet.jsp under contextroot /servlet_spec_crosscontext1_web; The
+     * other with servlet IncludedServlet under contextroot
+     * /servlet_spec_crosscontext2_web; 2. client calls to the jsp page; 3. In jsp
+     * page, use RequestDispatcher to include the servlet; 4. Verify that Session
+     * attributes set in jsp cannot be seen in servlet and vice versa
+     */
 
-  public void includeJSPServlet() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "includeJSPServlet");
-    invoke();
-  }
+    public void includeJSPServlet() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "includeJSPServlet");
+        invoke();
+    }
 }

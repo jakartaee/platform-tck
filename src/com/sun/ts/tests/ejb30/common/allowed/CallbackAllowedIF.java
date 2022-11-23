@@ -23,8 +23,7 @@ package com.sun.ts.tests.ejb30.common.allowed;
 import java.util.Properties;
 
 public interface CallbackAllowedIF {
-  void remove(); // for sfsb only
+    void remove(); // for sfsb only
 
-  Properties getResults();
-
+    Properties getResults();
 }

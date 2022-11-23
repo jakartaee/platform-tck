@@ -24,10 +24,9 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagfileinfo;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 /**
  * Test client for TagFileInfo. Implementation note, all tests are performed
@@ -36,79 +35,75 @@ import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
  */
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    setContextRoot("/jsp_taginfo_web");
+        setContextRoot("/jsp_taginfo_web");
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /* Run tests */
+    /* Run tests */
 
-  // ============================================ Tests ======
+    // ============================================ Tests ======
 
-  /*
-   * @testName: tagFileInfoGetNameTest
-   * 
-   * @assertion_ids: JSP:JAVADOC:259
-   * 
-   * @test_Strategy: Validate TagFileInfo.getName returns the expected values
-   * based on what is defined in the TLD.
-   */
-  public void tagFileInfoGetNameTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagfileinfo_web/GetNameTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED.");
-    invoke();
-  }
+    /*
+     * @testName: tagFileInfoGetNameTest
+     *
+     * @assertion_ids: JSP:JAVADOC:259
+     *
+     * @test_Strategy: Validate TagFileInfo.getName returns the expected values
+     * based on what is defined in the TLD.
+     */
+    public void tagFileInfoGetNameTest() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagfileinfo_web/GetNameTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED.");
+        invoke();
+    }
 
-  /*
-   * @testName: tagFileInfoGetPathTest
-   * 
-   * @assertion_ids: JSP:JAVADOC:260
-   * 
-   * @test_Strategy: Validate TagFileInfo.getPath() returns the expected values
-   * based on what is defined in the TLD.
-   */
-  public void tagFileInfoGetPathTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagfileinfo_web/GetPathTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED.");
-    invoke();
-  }
+    /*
+     * @testName: tagFileInfoGetPathTest
+     *
+     * @assertion_ids: JSP:JAVADOC:260
+     *
+     * @test_Strategy: Validate TagFileInfo.getPath() returns the expected values
+     * based on what is defined in the TLD.
+     */
+    public void tagFileInfoGetPathTest() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagfileinfo_web/GetPathTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED.");
+        invoke();
+    }
 
-  /*
-   * @testName: tagFileInfoGetTagInfoTest
-   * 
-   * @assertion_ids: JSP:JAVADOC:261
-   * 
-   * @test_Strategy: Validate TagFileInfo.getTagInfo() returns the expected
-   * values based on what is defined in the tag file.
-   */
-  public void tagFileInfoGetTagInfoTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagfileinfo_web/GetTagInfoTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED.");
-    invoke();
-  }
+    /*
+     * @testName: tagFileInfoGetTagInfoTest
+     *
+     * @assertion_ids: JSP:JAVADOC:261
+     *
+     * @test_Strategy: Validate TagFileInfo.getTagInfo() returns the expected
+     * values based on what is defined in the tag file.
+     */
+    public void tagFileInfoGetTagInfoTest() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagfileinfo_web/GetTagInfoTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED.");
+        invoke();
+    }
 }

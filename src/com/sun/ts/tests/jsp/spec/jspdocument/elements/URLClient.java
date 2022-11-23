@@ -20,163 +20,152 @@
 
 package com.sun.ts.tests.jsp.spec.jspdocument.elements;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
-  private static final String CONTEXT_ROOT = "/jsp_jspdocument_elements_web";
+    private static final String CONTEXT_ROOT = "/jsp_jspdocument_elements_web";
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    setContextRoot(CONTEXT_ROOT);
+        setContextRoot(CONTEXT_ROOT);
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /*
-   * @testName: negativeJspRootTest
-   * 
-   * @assertion_ids: JSP:SPEC:177; JSP:SPEC:173.1
-   * 
-   * @test_Strategy: use jsp:root not as the top element of a jsp document.
-   * jsp-property-group config overrides other determiniations.
-   */
+    /*
+     * @testName: negativeJspRootTest
+     *
+     * @assertion_ids: JSP:SPEC:177; JSP:SPEC:173.1
+     *
+     * @test_Strategy: use jsp:root not as the top element of a jsp document.
+     * jsp-property-group config overrides other determiniations.
+     */
 
-  public void negativeJspRootTest() throws Fault {
-    String testName = "negativeJspRoot";
-    TEST_PROPS.setProperty(REQUEST,
-        "GET " + CONTEXT_ROOT + "/" + testName + ".jspx HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
-    invoke();
-    TEST_PROPS.setProperty(REQUEST,
-        "GET " + CONTEXT_ROOT + "/" + "notJspDocument.jspx HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
-    invoke();
-  }
+    public void negativeJspRootTest() throws Fault {
+        String testName = "negativeJspRoot";
+        TEST_PROPS.setProperty(REQUEST, "GET " + CONTEXT_ROOT + "/" + testName + ".jspx HTTP/1.1");
+        TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
+        invoke();
+        TEST_PROPS.setProperty(REQUEST, "GET " + CONTEXT_ROOT + "/" + "notJspDocument.jspx HTTP/1.1");
+        TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
+        invoke();
+    }
 
-  /*
-   * @testName: jspRootPrefixTest
-   * 
-   * @assertion_ids: JSP:SPEC:175
-   * 
-   * @test_Strategy: use a different prefix abc
-   */
+    /*
+     * @testName: jspRootPrefixTest
+     *
+     * @assertion_ids: JSP:SPEC:175
+     *
+     * @test_Strategy: use a different prefix abc
+     */
 
-  public void jspRootPrefixTest() throws Fault {
-    String testName = "jspRootPrefix";
-    TEST_PROPS.setProperty(REQUEST,
-        "GET " + CONTEXT_ROOT + "/" + testName + ".jspx HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    invoke();
-  }
+    public void jspRootPrefixTest() throws Fault {
+        String testName = "jspRootPrefix";
+        TEST_PROPS.setProperty(REQUEST, "GET " + CONTEXT_ROOT + "/" + testName + ".jspx HTTP/1.1");
+        TEST_PROPS.setProperty(STATUS_CODE, OK);
+        invoke();
+    }
 
-  /*
-   * @testName: directiveIncludeLocationTest
-   * 
-   * @assertion_ids: JSP:SPEC:179.1; JSP:SPEC:179; JSP:SPEC:179.3
-   * 
-   * @test_Strategy: use jsp:directive.include anywhere within a jsp document.
-   */
+    /*
+     * @testName: directiveIncludeLocationTest
+     *
+     * @assertion_ids: JSP:SPEC:179.1; JSP:SPEC:179; JSP:SPEC:179.3
+     *
+     * @test_Strategy: use jsp:directive.include anywhere within a jsp document.
+     */
 
-  public void directiveIncludeLocationTest() throws Fault {
-    String testName = "directiveIncludeLocation";
-    TEST_PROPS.setProperty(REQUEST,
-        "GET " + CONTEXT_ROOT + "/" + testName + ".jspx HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "HELLO|ONE|HELLO|TWO");
-    invoke();
-  }
+    public void directiveIncludeLocationTest() throws Fault {
+        String testName = "directiveIncludeLocation";
+        TEST_PROPS.setProperty(REQUEST, "GET " + CONTEXT_ROOT + "/" + testName + ".jspx HTTP/1.1");
+        TEST_PROPS.setProperty(STATUS_CODE, OK);
+        TEST_PROPS.setProperty(SEARCH_STRING, "HELLO|ONE|HELLO|TWO");
+        invoke();
+    }
 
-  /*
-   * @testName: directiveIncludeInJspPageTest
-   * 
-   * @assertion_ids: JSP:SPEC:179.5
-   * 
-   * @test_Strategy: use jsp:directive.include in a jsp page
-   */
+    /*
+     * @testName: directiveIncludeInJspPageTest
+     *
+     * @assertion_ids: JSP:SPEC:179.5
+     *
+     * @test_Strategy: use jsp:directive.include in a jsp page
+     */
 
-  public void directiveIncludeInJspPageTest() throws Fault {
-    String testName = "directiveIncludeInJspPage";
-    TEST_PROPS.setProperty(REQUEST,
-        "GET " + CONTEXT_ROOT + "/" + testName + ".jsp HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "HELLO|ONE");
-    invoke();
-  }
+    public void directiveIncludeInJspPageTest() throws Fault {
+        String testName = "directiveIncludeInJspPage";
+        TEST_PROPS.setProperty(REQUEST, "GET " + CONTEXT_ROOT + "/" + testName + ".jsp HTTP/1.1");
+        TEST_PROPS.setProperty(STATUS_CODE, OK);
+        TEST_PROPS.setProperty(SEARCH_STRING, "HELLO|ONE");
+        invoke();
+    }
 
-  /*
-   * @testName: directivePageInJspPageTest
-   * 
-   * @assertion_ids: JSP:SPEC:178.39
-   * 
-   * @test_Strategy: use jsp:directive.page in a jsp page
-   */
+    /*
+     * @testName: directivePageInJspPageTest
+     *
+     * @assertion_ids: JSP:SPEC:178.39
+     *
+     * @test_Strategy: use jsp:directive.page in a jsp page
+     */
 
-  public void directivePageInJspPageTest() throws Fault {
-    String testName = "directivePageInJspPage";
-    TEST_PROPS.setProperty(REQUEST,
-        "GET " + CONTEXT_ROOT + "/" + testName + ".jsp HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "listSize2");
-    invoke();
-  }
+    public void directivePageInJspPageTest() throws Fault {
+        String testName = "directivePageInJspPage";
+        TEST_PROPS.setProperty(REQUEST, "GET " + CONTEXT_ROOT + "/" + testName + ".jsp HTTP/1.1");
+        TEST_PROPS.setProperty(STATUS_CODE, OK);
+        TEST_PROPS.setProperty(SEARCH_STRING, "listSize2");
+        invoke();
+    }
 
-  /*
-   * @testName: scriptingTest
-   * 
-   * @assertion_ids: JSP:SPEC:180; JSP:SPEC:181; JSP:SPEC:182
-   * 
-   * @test_Strategy: use jsp:declaration, jsp:scriptlet, and jsp:expression in a
-   * jsp document.
-   */
+    /*
+     * @testName: scriptingTest
+     *
+     * @assertion_ids: JSP:SPEC:180; JSP:SPEC:181; JSP:SPEC:182
+     *
+     * @test_Strategy: use jsp:declaration, jsp:scriptlet, and jsp:expression in a
+     * jsp document.
+     */
 
-  public void scriptingTest() throws Fault {
-    String testName = "scripting";
-    TEST_PROPS.setProperty(REQUEST,
-        "GET " + CONTEXT_ROOT + "/" + testName + ".jspx HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "JSP637|JSP637|99");
-    invoke();
-  }
+    public void scriptingTest() throws Fault {
+        String testName = "scripting";
+        TEST_PROPS.setProperty(REQUEST, "GET " + CONTEXT_ROOT + "/" + testName + ".jspx HTTP/1.1");
+        TEST_PROPS.setProperty(STATUS_CODE, OK);
+        TEST_PROPS.setProperty(SEARCH_STRING, "JSP637|JSP637|99");
+        invoke();
+    }
 
-  /*
-   * @testName: scriptingInJspPageTest
-   * 
-   * @assertion_ids: JSP:SPEC:180.4; JSP:SPEC:181.2; JSP:SPEC:182.5
-   * 
-   * @test_Strategy: use jsp:declaration, jsp:scriptlet, and jsp:expression in a
-   * jsp page.
-   */
+    /*
+     * @testName: scriptingInJspPageTest
+     *
+     * @assertion_ids: JSP:SPEC:180.4; JSP:SPEC:181.2; JSP:SPEC:182.5
+     *
+     * @test_Strategy: use jsp:declaration, jsp:scriptlet, and jsp:expression in a
+     * jsp page.
+     */
 
-  public void scriptingInJspPageTest() throws Fault {
-    String testName = "scriptingInJspPage";
-    TEST_PROPS.setProperty(REQUEST,
-        "GET " + CONTEXT_ROOT + "/" + testName + ".jsp HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "JSP637|99");
-    invoke();
-  }
-
+    public void scriptingInJspPageTest() throws Fault {
+        String testName = "scriptingInJspPage";
+        TEST_PROPS.setProperty(REQUEST, "GET " + CONTEXT_ROOT + "/" + testName + ".jsp HTTP/1.1");
+        TEST_PROPS.setProperty(STATUS_CODE, OK);
+        TEST_PROPS.setProperty(SEARCH_STRING, "JSP637|99");
+        invoke();
+    }
 }

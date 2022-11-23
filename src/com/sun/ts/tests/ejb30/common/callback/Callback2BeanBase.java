@@ -20,29 +20,25 @@
 
 package com.sun.ts.tests.ejb30.common.callback;
 
-abstract public class Callback2BeanBase extends SharedCallbackBeanBase
-    implements Callback2IF, java.io.Serializable {
-  protected boolean postConstructOrPreDestroyCalled;
+public abstract class Callback2BeanBase extends SharedCallbackBeanBase implements Callback2IF, java.io.Serializable {
+    protected boolean postConstructOrPreDestroyCalled;
 
-  protected Callback2BeanBase() {
-    super();
-  }
+    protected Callback2BeanBase() {
+        super();
+    }
 
-  public boolean isPostConstructOrPreDestroyCalled() {
-    return postConstructOrPreDestroyCalled;
-  }
+    public boolean isPostConstructOrPreDestroyCalled() {
+        return postConstructOrPreDestroyCalled;
+    }
 
-  public void setPostConstructOrPreDestroyCalled(
-      boolean postConstructOrPreDestroyCalled) {
-    this.postConstructOrPreDestroyCalled = postConstructOrPreDestroyCalled;
-  }
+    public void setPostConstructOrPreDestroyCalled(boolean postConstructOrPreDestroyCalled) {
+        this.postConstructOrPreDestroyCalled = postConstructOrPreDestroyCalled;
+    }
 
-  // ================== business methods ====================================
-  public void removeFoo() {
-  }
+    // ================== business methods ====================================
+    public void removeFoo() {}
 
-  public boolean isPostConstructOrPreDestroyCalledTest() {
-    return isPostConstructOrPreDestroyCalled();
-  }
-
+    public boolean isPostConstructOrPreDestroyCalledTest() {
+        return isPostConstructOrPreDestroyCalled();
+    }
 }

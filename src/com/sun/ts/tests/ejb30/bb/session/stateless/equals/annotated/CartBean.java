@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.equals.annotated;
 
 import com.sun.ts.tests.ejb30.common.equals.CartIF;
 import com.sun.ts.tests.ejb30.common.equals.LocalCartIF;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
@@ -30,22 +29,19 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
 @Stateless(name = "cart-bean")
-@Remote({ CartIF.class })
-@Local({ LocalCartIF.class })
+@Remote({CartIF.class})
+@Local({LocalCartIF.class})
 public class CartBean
 // implements CartIF, ShoppingCartIF, LocalCartIF, LocalShoppingCartIF
 {
-  @Resource(name = "sessionContext")
-  private SessionContext sessionContext;
+    @Resource(name = "sessionContext")
+    private SessionContext sessionContext;
 
-  protected SessionContext getSessionContext() {
-    return sessionContext;
-  }
+    protected SessionContext getSessionContext() {
+        return sessionContext;
+    }
 
-  public CartBean() {
-  }
+    public CartBean() {}
 
-  public void remove() {
-  }
-
+    public void remove() {}
 }

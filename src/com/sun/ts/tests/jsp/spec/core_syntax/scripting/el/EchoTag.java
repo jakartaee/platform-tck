@@ -16,47 +16,46 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.scripting.el;
 
-import java.io.IOException;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.BodyContent;
 import jakarta.servlet.jsp.tagext.BodyTagSupport;
+import java.io.IOException;
 
 public class EchoTag extends BodyTagSupport {
 
-  private String _echo = null;
+    private String _echo = null;
 
-  private String _static = null;
+    private String _static = null;
 
-  public void setEcho(String echo) {
-    _echo = echo;
-  }
-
-  public void setStatic(String staticString) {
-    _static = staticString;
-  }
-
-  public int doAfterBody() throws JspException {
-    BodyContent body = this.getBodyContent();
-    try {
-      body.writeOut(body.getEnclosingWriter());
-    } catch (IOException ioe) {
-      throw new JspException("Unexpected IOException!", ioe);
+    public void setEcho(String echo) {
+        _echo = echo;
     }
-    return SKIP_BODY;
-  }
 
-  public int doEndTag() throws JspException {
-    if (_echo != null) {
-      try {
-        pageContext.getOut().println("Expression from attribute: " + _echo);
-        pageContext.getOut().println("String from attribute: " + _static);
-      } catch (IOException ioe) {
-        throw new JspException("Unexpected IOException!", ioe);
-      } finally {
-        _echo = null;
-      }
+    public void setStatic(String staticString) {
+        _static = staticString;
     }
-    return EVAL_PAGE;
-  }
+
+    public int doAfterBody() throws JspException {
+        BodyContent body = this.getBodyContent();
+        try {
+            body.writeOut(body.getEnclosingWriter());
+        } catch (IOException ioe) {
+            throw new JspException("Unexpected IOException!", ioe);
+        }
+        return SKIP_BODY;
+    }
+
+    public int doEndTag() throws JspException {
+        if (_echo != null) {
+            try {
+                pageContext.getOut().println("Expression from attribute: " + _echo);
+                pageContext.getOut().println("String from attribute: " + _static);
+            } catch (IOException ioe) {
+                throw new JspException("Unexpected IOException!", ioe);
+            } finally {
+                _echo = null;
+            }
+        }
+        return EVAL_PAGE;
+    }
 }

@@ -20,44 +20,43 @@
 
 package com.sun.ts.tests.jsp.spec.jspdocument.general;
 
-import java.io.IOException;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.JspFragment;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class EchoTag extends SimpleTagSupport {
 
-  private String _echo = null;
+    private String _echo = null;
 
-  private String _static = null;
+    private String _static = null;
 
-  public void setEcho(String echo) {
-    _echo = echo;
-  }
-
-  public void setStatic(String staticString) {
-    _static = staticString;
-  }
-
-  public void doTag() throws JspException {
-    JspWriter out = null;
-    JspFragment body = null;
-    try {
-      out = getJspContext().getOut();
-      body = getJspBody();
-      if (body != null) {
-        body.invoke(null);
-      }
-      if (_echo != null) {
-        out.println("Expression from attribute: " + _echo);
-      }
-      if (_static != null) {
-        out.println("String from attribute: " + _static);
-      }
-    } catch (IOException ioe) {
-      throw new JspException("Unexpected IOException!", ioe);
+    public void setEcho(String echo) {
+        _echo = echo;
     }
-  }
+
+    public void setStatic(String staticString) {
+        _static = staticString;
+    }
+
+    public void doTag() throws JspException {
+        JspWriter out = null;
+        JspFragment body = null;
+        try {
+            out = getJspContext().getOut();
+            body = getJspBody();
+            if (body != null) {
+                body.invoke(null);
+            }
+            if (_echo != null) {
+                out.println("Expression from attribute: " + _echo);
+            }
+            if (_static != null) {
+                out.println("String from attribute: " + _static);
+            }
+        } catch (IOException ioe) {
+            throw new JspException("Unexpected IOException!", ioe);
+        }
+    }
 }

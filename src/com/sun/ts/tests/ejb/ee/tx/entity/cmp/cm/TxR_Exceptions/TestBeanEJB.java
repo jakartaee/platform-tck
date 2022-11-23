@@ -20,9 +20,6 @@
 
 package com.sun.ts.tests.ejb.ee.tx.entity.cmp.cm.TxR_Exceptions;
 
-import java.rmi.RemoteException;
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
@@ -30,292 +27,276 @@ import com.sun.ts.tests.ejb.ee.tx.txECMPbean.AppException;
 import com.sun.ts.tests.ejb.ee.tx.txECMPbean.TxECMPBean;
 import com.sun.ts.tests.ejb.ee.tx.txECMPbean.TxECMPBeanEJB;
 import com.sun.ts.tests.ejb.ee.tx.txECMPbean.TxECMPBeanHome;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
 public class TestBeanEJB implements SessionBean {
 
-  // testProps represent the test specific properties passed in
-  // from the test harness.
-  private Properties testProps = new Properties();
+    // testProps represent the test specific properties passed in
+    // from the test harness.
+    private Properties testProps = new Properties();
 
-  // The TSNamingContext abstracts away the underlying distribution protocol.
-  private TSNamingContext jctx = null;
+    // The TSNamingContext abstracts away the underlying distribution protocol.
+    private TSNamingContext jctx = null;
 
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  // The TxECMPBean variable
-  private static final String txECMPBeanRequired = "java:comp/env/ejb/TxRequired";
+    // The TxECMPBean variable
+    private static final String txECMPBeanRequired = "java:comp/env/ejb/TxRequired";
 
-  private TxECMPBeanHome beanHome = null;
+    private TxECMPBeanHome beanHome = null;
 
-  // Table Name variable
-  private String tName1 = null;
+    // Table Name variable
+    private String tName1 = null;
 
-  // The requiredEJB methods
-  public void ejbCreate() throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-  }
-
-  public void ejbCreate(Properties p) throws CreateException {
-    TestUtil.logTrace("ejbCreate w/Properties");
-
-    try {
-      TestUtil.logMsg("Getting Naming Context");
-      jctx = new TSNamingContext();
-
-    } catch (Exception e) {
-      TestUtil.logErr("Create exception: " + e.getMessage(), e);
+    // The requiredEJB methods
+    public void ejbCreate() throws CreateException {
+        TestUtil.logTrace("ejbCreate");
     }
-  }
 
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-  }
+    public void ejbCreate(Properties p) throws CreateException {
+        TestUtil.logTrace("ejbCreate w/Properties");
 
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
+        try {
+            TestUtil.logMsg("Getting Naming Context");
+            jctx = new TSNamingContext();
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  // ===========================================================
-  // TestBean interface (our business methods)
-
-  public boolean test1() {
-    TestUtil.logMsg("test1");
-    TestUtil.logMsg("Cause an AppException");
-
-    TxECMPBean beanref = null;
-    boolean testResult = false;
-
-    String brand1 = "First brand";
-    String brand2 = "Second brand";
-    String tempName1, tempName2;
-
-    try {
-      TestUtil.logTrace(
-          "Looking up the TxECMPBean Home interface of " + txECMPBeanRequired);
-      beanHome = (TxECMPBeanHome) jctx.lookup(txECMPBeanRequired,
-          TxECMPBeanHome.class);
-
-      TestUtil.logTrace("Creating EJB instances of " + txECMPBeanRequired);
-      beanref = (TxECMPBean) beanHome.create(tName1, new Integer(1), brand1,
-          (float) 1, testProps);
-
-      TestUtil.logTrace("Update brand name and catch AppException");
-      try {
-        beanref.updateBrandName(brand2, TxECMPBeanEJB.FLAGAPPEXCEPTION);
-        TestUtil.logTrace("Did not receive AppException as expected");
-      } catch (AppException ae) {
-        TestUtil.logTrace("AppException received as expected.");
-        testResult = true;
-      }
-
-      return (testResult);
-
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception caught: " + e.getMessage(), e);
-      throw new EJBException(e.getMessage());
-    } finally {
-      // cleanup the bean (will remove the DB row entry!)
-      try {
-        if (beanref != null) {
-          beanref.remove();
+        } catch (Exception e) {
+            TestUtil.logErr("Create exception: " + e.getMessage(), e);
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing beanref: " + e.getMessage(), e);
-      }
     }
-  }
 
-  public boolean test2() {
-    TestUtil.logMsg("test2");
-    TestUtil.logMsg("Cause a SystemException");
+    public void setSessionContext(SessionContext sc) {
+        TestUtil.logTrace("setSessionContext");
+        this.sctx = sc;
+    }
 
-    TxECMPBean beanref = null;
-    boolean t1, t2;
-    t1 = t2 = false;
-    boolean testResult = false;
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
+    }
 
-    String brand1 = "First brand";
-    String brand2 = "Second brand";
-    String tempName1, tempName2;
-    Integer key = null;
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
 
-    try {
-      TestUtil.logTrace(
-          "Looking up the TxECMPBean Home interface of " + txECMPBeanRequired);
-      beanHome = (TxECMPBeanHome) jctx.lookup(txECMPBeanRequired,
-          TxECMPBeanHome.class);
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
 
-      TestUtil.logTrace("Creating EJB instances of " + txECMPBeanRequired);
-      beanref = (TxECMPBean) beanHome.create(tName1, new Integer(1), brand1,
-          (float) 1, testProps);
+    // ===========================================================
+    // TestBean interface (our business methods)
 
-      // Let's first check that we get our exception thrown
-      TestUtil.logTrace("Update brand name and catch RemoteException");
-      try {
-        beanref.updateBrandName(brand2, TxECMPBeanEJB.FLAGSYSEXCEPTION);
-        TestUtil.logTrace("Did not receive RemoteException as expected");
-      } catch (RemoteException re) {
-        TestUtil.logTrace("RemoteException received as expected.");
-        t1 = true;
-      }
+    public boolean test1() {
+        TestUtil.logMsg("test1");
+        TestUtil.logMsg("Cause an AppException");
 
-      if (t1)
-        testResult = true;
+        TxECMPBean beanref = null;
+        boolean testResult = false;
 
-      return (testResult);
+        String brand1 = "First brand";
+        String brand2 = "Second brand";
+        String tempName1, tempName2;
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception caught: " + e.getMessage(), e);
-      throw new EJBException(e.getMessage());
-    } finally {
-      // cleanup the bean (will remove the DB row entry!)
-      try {
-        if (beanref != null) {
-          beanref.remove();
+        try {
+            TestUtil.logTrace("Looking up the TxECMPBean Home interface of " + txECMPBeanRequired);
+            beanHome = (TxECMPBeanHome) jctx.lookup(txECMPBeanRequired, TxECMPBeanHome.class);
+
+            TestUtil.logTrace("Creating EJB instances of " + txECMPBeanRequired);
+            beanref = (TxECMPBean) beanHome.create(tName1, new Integer(1), brand1, (float) 1, testProps);
+
+            TestUtil.logTrace("Update brand name and catch AppException");
+            try {
+                beanref.updateBrandName(brand2, TxECMPBeanEJB.FLAGAPPEXCEPTION);
+                TestUtil.logTrace("Did not receive AppException as expected");
+            } catch (AppException ae) {
+                TestUtil.logTrace("AppException received as expected.");
+                testResult = true;
+            }
+
+            return (testResult);
+
+        } catch (Exception e) {
+            TestUtil.logErr("Unexpected exception caught: " + e.getMessage(), e);
+            throw new EJBException(e.getMessage());
+        } finally {
+            // cleanup the bean (will remove the DB row entry!)
+            try {
+                if (beanref != null) {
+                    beanref.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing beanref: " + e.getMessage(), e);
+            }
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing beanref: " + e.getMessage(), e);
-      }
     }
-  }
 
-  public boolean test4() {
-    TestUtil.logMsg("test4");
-    TestUtil.logMsg("Cause an EJBException");
+    public boolean test2() {
+        TestUtil.logMsg("test2");
+        TestUtil.logMsg("Cause a SystemException");
 
-    TxECMPBean beanref = null;
-    boolean t1, t2;
-    t1 = t2 = false;
-    boolean testResult = false;
+        TxECMPBean beanref = null;
+        boolean t1, t2;
+        t1 = t2 = false;
+        boolean testResult = false;
 
-    String brand1 = "First brand";
-    String brand2 = "Second brand";
-    String tempName1, tempName2;
-    Integer key = null;
+        String brand1 = "First brand";
+        String brand2 = "Second brand";
+        String tempName1, tempName2;
+        Integer key = null;
 
-    try {
-      TestUtil.logTrace(
-          "Looking up the TxECMPBean Home interface of " + txECMPBeanRequired);
-      beanHome = (TxECMPBeanHome) jctx.lookup(txECMPBeanRequired,
-          TxECMPBeanHome.class);
+        try {
+            TestUtil.logTrace("Looking up the TxECMPBean Home interface of " + txECMPBeanRequired);
+            beanHome = (TxECMPBeanHome) jctx.lookup(txECMPBeanRequired, TxECMPBeanHome.class);
 
-      TestUtil.logTrace("Creating EJB instances of " + txECMPBeanRequired);
-      beanref = (TxECMPBean) beanHome.create(tName1, new Integer(1), brand1,
-          (float) 1, testProps);
+            TestUtil.logTrace("Creating EJB instances of " + txECMPBeanRequired);
+            beanref = (TxECMPBean) beanHome.create(tName1, new Integer(1), brand1, (float) 1, testProps);
 
-      // Let's first check that we get our exception thrown
-      TestUtil.logTrace("Update brand name and catch RemoteException");
-      try {
-        beanref.updateBrandName(brand2, TxECMPBeanEJB.FLAGEJBEXCEPTION);
-        TestUtil.logTrace("Did not receive RemoteException as expected");
-      } catch (RemoteException re) {
-        TestUtil.logTrace("RemoteException received as expected.");
-        t1 = true;
-      }
+            // Let's first check that we get our exception thrown
+            TestUtil.logTrace("Update brand name and catch RemoteException");
+            try {
+                beanref.updateBrandName(brand2, TxECMPBeanEJB.FLAGSYSEXCEPTION);
+                TestUtil.logTrace("Did not receive RemoteException as expected");
+            } catch (RemoteException re) {
+                TestUtil.logTrace("RemoteException received as expected.");
+                t1 = true;
+            }
 
-      if (t1)
-        testResult = true;
+            if (t1) testResult = true;
 
-      return (testResult);
+            return (testResult);
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception caught: " + e.getMessage(), e);
-      throw new EJBException(e.getMessage());
-    } finally {
-      // cleanup the bean (will remove the DB row entry!)
-      try {
-        if (beanref != null) {
-          beanref.remove();
+        } catch (Exception e) {
+            TestUtil.logErr("Unexpected exception caught: " + e.getMessage(), e);
+            throw new EJBException(e.getMessage());
+        } finally {
+            // cleanup the bean (will remove the DB row entry!)
+            try {
+                if (beanref != null) {
+                    beanref.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing beanref: " + e.getMessage(), e);
+            }
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing beanref: " + e.getMessage(), e);
-      }
     }
-  }
 
-  public boolean test5() {
-    TestUtil.logMsg("test5");
-    TestUtil.logMsg("Cause an Error");
+    public boolean test4() {
+        TestUtil.logMsg("test4");
+        TestUtil.logMsg("Cause an EJBException");
 
-    TxECMPBean beanref = null;
-    boolean t1, t2;
-    t1 = t2 = false;
-    boolean testResult = false;
+        TxECMPBean beanref = null;
+        boolean t1, t2;
+        t1 = t2 = false;
+        boolean testResult = false;
 
-    String brand1 = "First brand";
-    String brand2 = "Second brand";
-    String tempName1, tempName2;
-    Integer key = null;
+        String brand1 = "First brand";
+        String brand2 = "Second brand";
+        String tempName1, tempName2;
+        Integer key = null;
 
-    try {
-      TestUtil.logTrace(
-          "Looking up the TxECMPBean Home interface of " + txECMPBeanRequired);
-      beanHome = (TxECMPBeanHome) jctx.lookup(txECMPBeanRequired,
-          TxECMPBeanHome.class);
+        try {
+            TestUtil.logTrace("Looking up the TxECMPBean Home interface of " + txECMPBeanRequired);
+            beanHome = (TxECMPBeanHome) jctx.lookup(txECMPBeanRequired, TxECMPBeanHome.class);
 
-      TestUtil.logTrace("Creating EJB instances of " + txECMPBeanRequired);
-      beanref = (TxECMPBean) beanHome.create(tName1, new Integer(1), brand1,
-          (float) 1, testProps);
+            TestUtil.logTrace("Creating EJB instances of " + txECMPBeanRequired);
+            beanref = (TxECMPBean) beanHome.create(tName1, new Integer(1), brand1, (float) 1, testProps);
 
-      // Let's first check that we get our exception thrown
-      TestUtil.logTrace("Update brand name and catch RemoteException");
-      try {
-        beanref.updateBrandName(brand2, TxECMPBeanEJB.FLAGERROR);
-        TestUtil.logTrace("Did not receive RemoteException as expected");
-      } catch (RemoteException re) {
-        TestUtil.logTrace("RemoteException received as expected.");
-        t1 = true;
-      }
+            // Let's first check that we get our exception thrown
+            TestUtil.logTrace("Update brand name and catch RemoteException");
+            try {
+                beanref.updateBrandName(brand2, TxECMPBeanEJB.FLAGEJBEXCEPTION);
+                TestUtil.logTrace("Did not receive RemoteException as expected");
+            } catch (RemoteException re) {
+                TestUtil.logTrace("RemoteException received as expected.");
+                t1 = true;
+            }
 
-      if (t1)
-        testResult = true;
+            if (t1) testResult = true;
 
-      return (testResult);
+            return (testResult);
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception caught: " + e.getMessage(), e);
-      throw new EJBException(e.getMessage());
-    } finally {
-      // cleanup the bean (will remove the DB row entry!)
-      try {
-        if (beanref != null) {
-          beanref.remove();
+        } catch (Exception e) {
+            TestUtil.logErr("Unexpected exception caught: " + e.getMessage(), e);
+            throw new EJBException(e.getMessage());
+        } finally {
+            // cleanup the bean (will remove the DB row entry!)
+            try {
+                if (beanref != null) {
+                    beanref.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing beanref: " + e.getMessage(), e);
+            }
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing beanref: " + e.getMessage(), e);
-      }
     }
-  }
 
-  public void initLogging(Properties p) {
-    TestUtil.logTrace("initLogging");
-    this.testProps = p;
-    try {
-      TestUtil.init(p);
+    public boolean test5() {
+        TestUtil.logMsg("test5");
+        TestUtil.logMsg("Cause an Error");
 
-      // Get the table name
-      this.tName1 = TestUtil
-          .getTableName(TestUtil.getProperty("TxEBean_Delete"));
-      TestUtil.logTrace("tName1: " + this.tName1);
+        TxECMPBean beanref = null;
+        boolean t1, t2;
+        t1 = t2 = false;
+        boolean testResult = false;
 
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.logErr("RemoteLoggingInitException: " + e.getMessage(), e);
-      throw new EJBException(e.getMessage());
+        String brand1 = "First brand";
+        String brand2 = "Second brand";
+        String tempName1, tempName2;
+        Integer key = null;
+
+        try {
+            TestUtil.logTrace("Looking up the TxECMPBean Home interface of " + txECMPBeanRequired);
+            beanHome = (TxECMPBeanHome) jctx.lookup(txECMPBeanRequired, TxECMPBeanHome.class);
+
+            TestUtil.logTrace("Creating EJB instances of " + txECMPBeanRequired);
+            beanref = (TxECMPBean) beanHome.create(tName1, new Integer(1), brand1, (float) 1, testProps);
+
+            // Let's first check that we get our exception thrown
+            TestUtil.logTrace("Update brand name and catch RemoteException");
+            try {
+                beanref.updateBrandName(brand2, TxECMPBeanEJB.FLAGERROR);
+                TestUtil.logTrace("Did not receive RemoteException as expected");
+            } catch (RemoteException re) {
+                TestUtil.logTrace("RemoteException received as expected.");
+                t1 = true;
+            }
+
+            if (t1) testResult = true;
+
+            return (testResult);
+
+        } catch (Exception e) {
+            TestUtil.logErr("Unexpected exception caught: " + e.getMessage(), e);
+            throw new EJBException(e.getMessage());
+        } finally {
+            // cleanup the bean (will remove the DB row entry!)
+            try {
+                if (beanref != null) {
+                    beanref.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing beanref: " + e.getMessage(), e);
+            }
+        }
     }
-  }
 
+    public void initLogging(Properties p) {
+        TestUtil.logTrace("initLogging");
+        this.testProps = p;
+        try {
+            TestUtil.init(p);
+
+            // Get the table name
+            this.tName1 = TestUtil.getTableName(TestUtil.getProperty("TxEBean_Delete"));
+            TestUtil.logTrace("tName1: " + this.tName1);
+
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.logErr("RemoteLoggingInitException: " + e.getMessage(), e);
+            throw new EJBException(e.getMessage());
+        }
+    }
 }

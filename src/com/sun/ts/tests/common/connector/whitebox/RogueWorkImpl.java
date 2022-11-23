@@ -21,31 +21,27 @@
 package com.sun.ts.tests.common.connector.whitebox;
 
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
-
 import jakarta.resource.spi.work.Work;
 
 public class RogueWorkImpl implements Work {
 
-  public RogueWorkImpl() {
+    public RogueWorkImpl() {
 
-    ConnectorStatus.getConnectorStatus().logAPI("RogueWorkImpl.constructor", "",
-        "");
-    System.out.println("RogueWorkImpl.constructor");
-  }
+        ConnectorStatus.getConnectorStatus().logAPI("RogueWorkImpl.constructor", "", "");
+        System.out.println("RogueWorkImpl.constructor");
+    }
 
-  @Override
-  public void release() {
-    ConnectorStatus.getConnectorStatus().logAPI("RogueWorkImpl.release", "",
-        "");
-    System.out.println("RogueWorkImpl.release");
-  }
+    @Override
+    public void release() {
+        ConnectorStatus.getConnectorStatus().logAPI("RogueWorkImpl.release", "", "");
+        System.out.println("RogueWorkImpl.release");
+    }
 
-  public void run() {
-    final int i = 0;
-    final int y = 10;
+    public void run() {
+        final int i = 0;
+        final int y = 10;
 
-    int x = y / i;
-    System.out.println("Answer is " + x);
-  }
-
+        int x = y / i;
+        System.out.println("Answer is " + x);
+    }
 }

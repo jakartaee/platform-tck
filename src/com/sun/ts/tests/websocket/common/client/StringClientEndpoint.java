@@ -19,6 +19,4 @@ package com.sun.ts.tests.websocket.common.client;
 /**
  * WebSockets need concrete class
  */
-public class StringClientEndpoint extends ClientEndpoint<String> {
-
-}
+public class StringClientEndpoint extends ClientEndpoint<String> {}

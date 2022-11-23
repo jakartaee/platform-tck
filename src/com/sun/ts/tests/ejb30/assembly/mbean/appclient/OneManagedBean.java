@@ -23,7 +23,6 @@ import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResTest;
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
@@ -31,27 +30,29 @@ import jakarta.ejb.EJB;
 
 @ManagedBean("one-managed-bean")
 public class OneManagedBean extends AppResBeanBase {
-  public static final String NAME = "one-managed-bean";
+    public static final String NAME = "one-managed-bean";
 
-  @EJB(name = "java:module/env/hello", lookup = "java:global/ejb3_common_helloejbjar_standalone_component_ejb/HelloBean!com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF")
-  private HelloRemoteIF hello;
+    @EJB(
+            name = "java:module/env/hello",
+            lookup =
+                    "java:global/ejb3_common_helloejbjar_standalone_component_ejb/HelloBean!com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF")
+    private HelloRemoteIF hello;
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    AppResTest.verifyInjections(getPostConstructRecords(), hello);
-    Helper.assertEquals(null, "ejb3_assembly_mbean_appclient", myString,
-        getPostConstructRecords());
-  }
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        AppResTest.verifyInjections(getPostConstructRecords(), hello);
+        Helper.assertEquals(null, "ejb3_assembly_mbean_appclient", myString, getPostConstructRecords());
+    }
 
-  @SuppressWarnings("unused")
-  @Resource(lookup = "java:app/AppName")
-  private void setMyString(String s) {
-    this.myString = s;
-  }
+    @SuppressWarnings("unused")
+    @Resource(lookup = "java:app/AppName")
+    private void setMyString(String s) {
+        this.myString = s;
+    }
 
-  @Override
-  public String getName() {
-    return NAME;
-  }
+    @Override
+    public String getName() {
+        return NAME;
+    }
 }

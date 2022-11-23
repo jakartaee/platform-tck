@@ -17,11 +17,8 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpointonmessage;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -31,33 +28,33 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.PongMessage;
 import jakarta.websocket.Session;
+import java.io.IOException;
 
 @ClientEndpoint
-public class WSPongMessageAndSessionClientEndpoint
-    extends AnnotatedStringClientEndpoint {
+public class WSPongMessageAndSessionClientEndpoint extends AnnotatedStringClientEndpoint {
 
-  @OnMessage
-  public void echo(PongMessage msg, Session s) throws IOException {
-    String data = IOUtil.byteBufferToString(msg.getApplicationData());
-    super.onMessage(data);
-    s.getBasicRemote().sendText(data);
-  }
+    @OnMessage
+    public void echo(PongMessage msg, Session s) throws IOException {
+        String data = IOUtil.byteBufferToString(msg.getApplicationData());
+        super.onMessage(data);
+        s.getBasicRemote().sendText(data);
+    }
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+    @OnError
+    @Override
+    public void onError(Session session, Throwable t) {
+        super.onError(session, t);
+    }
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+    @OnClose
+    @Override
+    public void onClose(Session session, CloseReason closeReason) {
+        super.onClose(session, closeReason);
+    }
 
-  @OnOpen
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+    @OnOpen
+    @Override
+    public void onOpen(Session session, EndpointConfig config) {
+        super.onOpen(session, config);
+    }
 }

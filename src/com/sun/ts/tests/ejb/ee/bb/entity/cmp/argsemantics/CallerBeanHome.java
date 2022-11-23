@@ -20,21 +20,17 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp.argsemantics;
 
-import java.rmi.RemoteException;
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.DuplicateKeyException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
 public interface CallerBeanHome extends EJBHome {
 
-  public CallerBean create(Properties p, int KEY_ID, String BRAND_NAME,
-      float PRICE)
-      throws RemoteException, DuplicateKeyException, CreateException;
+    public CallerBean create(Properties p, int KEY_ID, String BRAND_NAME, float PRICE)
+            throws RemoteException, DuplicateKeyException, CreateException;
 
-  public CallerBean findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
-
+    public CallerBean findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 }

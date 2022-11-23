@@ -22,51 +22,51 @@ package com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped;
 
 public class ConfigHeader {
 
-  protected String message;
+    protected String message;
 
-  protected String testName;
+    protected String testName;
 
-  protected boolean mustUnderstand;
+    protected boolean mustUnderstand;
 
-  /**
-   * Gets the value of the message property.
-   */
-  public String getMessage() {
-    return message;
-  }
+    /**
+     * Gets the value of the message property.
+     */
+    public String getMessage() {
+        return message;
+    }
 
-  /**
-   * Sets the value of the message property.
-   */
-  public void setMessage(String value) {
-    this.message = value;
-  }
+    /**
+     * Sets the value of the message property.
+     */
+    public void setMessage(String value) {
+        this.message = value;
+    }
 
-  /**
-   * Gets the value of the testName property.
-   */
-  public String getTestName() {
-    return testName;
-  }
+    /**
+     * Gets the value of the testName property.
+     */
+    public String getTestName() {
+        return testName;
+    }
 
-  /**
-   * Sets the value of the testName property.
-   */
-  public void setTestName(String value) {
-    this.testName = value;
-  }
+    /**
+     * Sets the value of the testName property.
+     */
+    public void setTestName(String value) {
+        this.testName = value;
+    }
 
-  /**
-   * Gets the value of the mustUnderstand property.
-   */
-  public boolean isMustUnderstand() {
-    return mustUnderstand;
-  }
+    /**
+     * Gets the value of the mustUnderstand property.
+     */
+    public boolean isMustUnderstand() {
+        return mustUnderstand;
+    }
 
-  /**
-   * Sets the value of the mustUnderstand property.
-   */
-  public void setMustUnderstand(boolean value) {
-    this.mustUnderstand = value;
-  }
+    /**
+     * Sets the value of the mustUnderstand property.
+     */
+    public void setMustUnderstand(boolean value) {
+        this.mustUnderstand = value;
+    }
 }

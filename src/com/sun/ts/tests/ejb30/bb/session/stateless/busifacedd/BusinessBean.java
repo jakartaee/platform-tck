@@ -21,23 +21,19 @@
 package com.sun.ts.tests.ejb30.bb.session.stateless.busifacedd;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessBeanBase;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.SessionContext;
 
-//@Stateless(name="BusinessBean")
-//@Remote({BusinessIF1.class, BusinessIF2.class})
-//@Local({BusinessLocalIF1.class, BusinessLocalIF2.class})
+// @Stateless(name="BusinessBean")
+// @Remote({BusinessIF1.class, BusinessIF2.class})
+// @Local({BusinessLocalIF1.class, BusinessLocalIF2.class})
 public class BusinessBean extends BusinessBeanBase {
-  @Resource
-  private SessionContext sessionContext;
+    @Resource
+    private SessionContext sessionContext;
 
-  public BusinessBean() {
-  }
+    public BusinessBean() {}
 
-  public void remove() {
-  }
+    public void remove() {}
 
-  public void remove2() {
-  }
+    public void remove2() {}
 }

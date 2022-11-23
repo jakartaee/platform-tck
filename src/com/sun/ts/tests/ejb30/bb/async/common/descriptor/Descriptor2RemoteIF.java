@@ -19,6 +19,4 @@ package com.sun.ts.tests.ejb30.bb.async.common.descriptor;
 import jakarta.ejb.Remote;
 
 @Remote
-public interface Descriptor2RemoteIF extends Descriptor2IF {
-
-}
+public interface Descriptor2RemoteIF extends Descriptor2IF {}

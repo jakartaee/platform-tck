@@ -16,51 +16,45 @@
 
 package com.sun.ts.tests.javaee.resource.servlet;
 
+import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
+import jakarta.mail.Session;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
-import jakarta.mail.Session;
-import jakarta.servlet.http.HttpServletResponse;
-
 public class ResourceUtil {
 
-  public static Session getSession(String jndiName) {
-    try {
-      InitialContext ic = new InitialContext();
-      Object obj = ic.lookup(jndiName);
-      if (obj instanceof Session)
-        return (Session) obj;
-      else
-        return null;
-    } catch (NamingException nex) {
-      return null;
-    }
-  }
-
-  public static void test(HttpServletResponse response, Session session,
-      String expected) throws IOException {
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
-
-    if (session == null) {
-      pw.println("ERROR: resource was not found");
-    } else {
-      String actual = session.getProperty("test");
-      if (actual == null) {
-        pw.println("ERROR: property was not found");
-      } else if (!actual.equals(expected)) {
-        pw.println("expected result=" + expected);
-        pw.println("actual result=" + actual);
-      } else {
-        passed = true;
-      }
+    public static Session getSession(String jndiName) {
+        try {
+            InitialContext ic = new InitialContext();
+            Object obj = ic.lookup(jndiName);
+            if (obj instanceof Session) return (Session) obj;
+            else return null;
+        } catch (NamingException nex) {
+            return null;
+        }
     }
 
-    ServletTestUtil.printResult(pw, passed);
-  }
+    public static void test(HttpServletResponse response, Session session, String expected) throws IOException {
+        PrintWriter pw = response.getWriter();
+        boolean passed = false;
+
+        if (session == null) {
+            pw.println("ERROR: resource was not found");
+        } else {
+            String actual = session.getProperty("test");
+            if (actual == null) {
+                pw.println("ERROR: property was not found");
+            } else if (!actual.equals(expected)) {
+                pw.println("expected result=" + expected);
+                pw.println("actual result=" + actual);
+            } else {
+                passed = true;
+            }
+        }
+
+        ServletTestUtil.printResult(pw, passed);
+    }
 }

@@ -24,7 +24,6 @@ import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeBase;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeIF;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeTestImpl;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
@@ -34,34 +33,33 @@ import jakarta.ejb.TransactionManagementType;
 import jakarta.interceptor.InvocationContext;
 
 @Stateless(name = "AroundInvokeBean")
-@Remote({ AroundInvokeIF.class })
+@Remote({AroundInvokeIF.class})
 // This bean must use cmt, since it uses setRollbackOnly
 @TransactionManagement(TransactionManagementType.CONTAINER)
 // @todo redundant implements
 
-public class AroundInvokeBean extends AroundInvokeBase
-    implements AroundInvokeIF {
-  @Resource(name = "ejbContext")
-  private SessionContext ejbContext;
+public class AroundInvokeBean extends AroundInvokeBase implements AroundInvokeIF {
+    @Resource(name = "ejbContext")
+    private SessionContext ejbContext;
 
-  public AroundInvokeBean() {
-    super();
-  }
+    public AroundInvokeBean() {
+        super();
+    }
 
-  // @AroundInvoke
-  public Object intercept(InvocationContext ctx) throws Exception {
-    TLogger.log("Creating AroundInvokeTestImpl with: ejbContext=" + ejbContext
-        + ";" + " bean=" + this + ", callerPrincipal="
-        + ejbContext.getCallerPrincipal());
-    AroundInvokeTestImpl helper = new AroundInvokeTestImpl(this,
-        getEJBContext().getCallerPrincipal());
-    return helper.intercept(ctx);
-  }
+    // @AroundInvoke
+    public Object intercept(InvocationContext ctx) throws Exception {
+        TLogger.log("Creating AroundInvokeTestImpl with: ejbContext=" + ejbContext
+                + ";" + " bean=" + this + ", callerPrincipal="
+                + ejbContext.getCallerPrincipal());
+        AroundInvokeTestImpl helper =
+                new AroundInvokeTestImpl(this, getEJBContext().getCallerPrincipal());
+        return helper.intercept(ctx);
+    }
 
-  // ============ abstract methods from super ==========================
-  protected jakarta.ejb.EJBContext getEJBContext() {
-    return this.ejbContext;
-  }
+    // ============ abstract methods from super ==========================
+    protected jakarta.ejb.EJBContext getEJBContext() {
+        return this.ejbContext;
+    }
 
-  // ============= override business methods from super ================
+    // ============= override business methods from super ================
 }

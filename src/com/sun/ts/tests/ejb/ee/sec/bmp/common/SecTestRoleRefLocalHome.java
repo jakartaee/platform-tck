@@ -20,20 +20,16 @@
 
 package com.sun.ts.tests.ejb.ee.sec.bmp.common;
 
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
+import java.util.Properties;
 
 public interface SecTestRoleRefLocalHome extends EJBLocalHome {
-  public SecTestRoleRefLocal create(Properties p, boolean newTable, int cofID,
-      String cofName, float cofPrice) throws CreateException;
+    public SecTestRoleRefLocal create(Properties p, boolean newTable, int cofID, String cofName, float cofPrice)
+            throws CreateException;
 
-  public SecTestRoleRefLocal findByPrimaryKey(Integer key)
-      throws FinderException;
+    public SecTestRoleRefLocal findByPrimaryKey(Integer key) throws FinderException;
 
-  public SecTestRoleRefLocal findTheBean(Properties p, Integer key)
-      throws FinderException;
-
+    public SecTestRoleRefLocal findTheBean(Properties p, Integer key) throws FinderException;
 }

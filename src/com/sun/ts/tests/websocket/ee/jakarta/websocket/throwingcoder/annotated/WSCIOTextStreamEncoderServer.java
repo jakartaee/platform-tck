@@ -17,38 +17,34 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder.annotated;
 
-import java.io.IOException;
-import java.util.concurrent.ExecutionException;
-
 import com.sun.ts.tests.websocket.common.impl.WaitingSendHandler;
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder.ThrowingIOTextStreamEncoder;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder.ThrowingTextDecoder;
-
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.SendResult;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
-@ServerEndpoint(value = "/iotextstreamencoder", encoders = {
-    ThrowingIOTextStreamEncoder.class })
+@ServerEndpoint(
+        value = "/iotextstreamencoder",
+        encoders = {ThrowingIOTextStreamEncoder.class})
 public class WSCIOTextStreamEncoderServer {
 
-  @OnMessage
-  public void echo(String data, Session session)
-      throws InterruptedException, ExecutionException {
-    WaitingSendHandler handler = new WaitingSendHandler();
-    session.getAsyncRemote().sendObject(new StringBean(data), handler);
-    SendResult result = handler.waitForResult(4);
-    if (result.getException() != null)
-      throw new RuntimeException(result.getException());
-  }
+    @OnMessage
+    public void echo(String data, Session session) throws InterruptedException, ExecutionException {
+        WaitingSendHandler handler = new WaitingSendHandler();
+        session.getAsyncRemote().sendObject(new StringBean(data), handler);
+        SendResult result = handler.waitForResult(4);
+        if (result.getException() != null) throw new RuntimeException(result.getException());
+    }
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    String message = ThrowingTextDecoder.getCauseMessage(t);
-    session.getBasicRemote().sendText(message);
-  }
-
+    @OnError
+    public void onError(Session session, Throwable t) throws IOException {
+        String message = ThrowingTextDecoder.getCauseMessage(t);
+        session.getBasicRemote().sendText(message);
+    }
 }

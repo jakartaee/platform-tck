@@ -37,9 +37,7 @@ package com.sun.ts.tests.jaxrs.common;
  * </p>
  * <p>
  * 2.1 - The code that has been created for JAXRS 2.1 TCK
- * 
+ *
  * @since 2.0.1
  */
-public interface Version {
-
-}
+public interface Version {}

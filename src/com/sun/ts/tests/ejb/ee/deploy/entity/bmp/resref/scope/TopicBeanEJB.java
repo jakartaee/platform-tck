@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 
 public class TopicBeanEJB extends BMPWrapper {
 
-  public boolean checkYourTopic() {
-    return TopicCode.checkYourTopic(nctx);
-  }
-
+    public boolean checkYourTopic() {
+        return TopicCode.checkYourTopic(nctx);
+    }
 }

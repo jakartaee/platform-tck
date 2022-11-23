@@ -28,7 +28,7 @@ import com.sun.ts.tests.ejb30.common.appexception.AtUncheckedAppException;
  * all subclass by default become ApplicationException.
  */
 public class Exception1 extends AtUncheckedAppException {
-  public Exception1(String message) {
-    super(message);
-  }
+    public Exception1(String message) {
+        super(message);
+    }
 }

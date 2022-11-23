@@ -60,38 +60,34 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpfilter;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpFilter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public final class HttpFilter_Filter1 extends HttpFilter {
 
-  public void doFilter(ServletRequest request, ServletResponse response,
-      FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-    PrintWriter pw = response.getWriter();
-    // this pw.println should not get displayed, only the line going to the
-    // static log should be valid
-    pw.println("doFilter was successfully called in HttpFilter_Filter1");
+        PrintWriter pw = response.getWriter();
+        // this pw.println should not get displayed, only the line going to the
+        // static log should be valid
+        pw.println("doFilter was successfully called in HttpFilter_Filter1");
 
-    if (getFilterConfig() == null) {
-      pw.println(
-          "doFilter of HttpFilter_Filter1 was called but this filter instance is not currently configured ");
-      ServletTestUtil.printResult(pw, false);
-    } else {
-      super.doFilter(request, response, chain);
+        if (getFilterConfig() == null) {
+            pw.println(
+                    "doFilter of HttpFilter_Filter1 was called but this filter instance is not currently configured ");
+            ServletTestUtil.printResult(pw, false);
+        } else {
+            super.doFilter(request, response, chain);
+        }
     }
-  }
 
-  // remove the filter configuration object for this filter.
-  public void destroy() {
-  }
-
+    // remove the filter configuration object for this filter.
+    public void destroy() {}
 }

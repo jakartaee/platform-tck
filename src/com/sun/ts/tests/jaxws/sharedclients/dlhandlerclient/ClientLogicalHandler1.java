@@ -23,13 +23,13 @@ package com.sun.ts.tests.jaxws.sharedclients.dlhandlerclient;
 import com.sun.ts.tests.jaxws.common.LogicalHandlerBase;
 
 public class ClientLogicalHandler1 extends LogicalHandlerBase {
-  private static final String WHICHHANDLERTYPE = "Client";
+    private static final String WHICHHANDLERTYPE = "Client";
 
-  private static final String HANDLERNAME = "ClientLogicalHandler1";
+    private static final String HANDLERNAME = "ClientLogicalHandler1";
 
-  public ClientLogicalHandler1() {
-    super();
-    super.setWhichHandlerType(WHICHHANDLERTYPE);
-    super.setHandlerName(HANDLERNAME);
-  }
+    public ClientLogicalHandler1() {
+        super();
+        super.setWhichHandlerType(WHICHHANDLERTYPE);
+        super.setHandlerName(HANDLERNAME);
+    }
 }

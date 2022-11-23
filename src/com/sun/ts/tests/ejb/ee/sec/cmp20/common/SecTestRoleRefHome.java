@@ -20,17 +20,13 @@
 
 package com.sun.ts.tests.ejb.ee.sec.cmp20.common;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
 
 public interface SecTestRoleRefHome extends EJBHome {
-  public SecTestRoleRef create(int cofID, String cofName, float cofPrice)
-      throws RemoteException, CreateException;
+    public SecTestRoleRef create(int cofID, String cofName, float cofPrice) throws RemoteException, CreateException;
 
-  public SecTestRoleRef findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
-
+    public SecTestRoleRef findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 }

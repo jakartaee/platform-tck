@@ -16,25 +16,23 @@
 
 package com.sun.ts.tests.jsonp.api.common;
 
-import java.io.StringReader;
-
 import jakarta.json.Json;
 import jakarta.json.JsonValue;
+import java.io.StringReader;
 
 // $Id$
 /**
  * Read and write JSON values.
  */
 public class JsonIO {
-  /**
-   * Reads JSON value from {@code String}.
-   * 
-   * @param json
-   *          JSON value to be read.
-   * @return JSON value from provided {@code String}.
-   */
-  public static JsonValue read(final String json) {
-    return Json.createReader(new StringReader(json)).readValue();
-  }
-
+    /**
+     * Reads JSON value from {@code String}.
+     *
+     * @param json
+     *          JSON value to be read.
+     * @return JSON value from provided {@code String}.
+     */
+    public static JsonValue read(final String json) {
+        return Json.createReader(new StringReader(json)).readValue();
+    }
 }

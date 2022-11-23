@@ -19,32 +19,33 @@
  */
 package com.sun.ts.tests.ejb30.lite.interceptor.common.business;
 
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
+import java.util.logging.Level;
 
-//TODO Make some interceptors (e.g., 1, 5, 7) pure java classes without interceptor-
-//related annotations.  They will be declared as interceptors in descriptors.
-//Copy and modify from the generated full descriptors.
-//For both annotated and descriptor subdirs
+// TODO Make some interceptors (e.g., 1, 5, 7) pure java classes without interceptor-
+// related annotations.  They will be declared as interceptors in descriptors.
+// Copy and modify from the generated full descriptors.
+// For both annotated and descriptor subdirs
 public class Interceptor1 extends InterceptorBase {
-  private static final String simpleName = "Interceptor1";
+    private static final String simpleName = "Interceptor1";
 
-  @SuppressWarnings("unused")
-  @AroundInvoke
-  private Object intercept(InvocationContext inv) throws Exception {
-    Helper.getLogger().logp(Level.FINE, simpleName, "intercept",
-        "Adding around-invoke record: " + simpleName);
-    addToHistory(inv, simpleName);
-    String methodName = inv.getMethod().getName();
-    if (methodName.equals("skipProceed")) {
-      Helper.getLogger().logp(Level.INFO, simpleName, "intercept",
-          "Skip InvocationContext.proceed for business method " + methodName);
-      return null;
+    @SuppressWarnings("unused")
+    @AroundInvoke
+    private Object intercept(InvocationContext inv) throws Exception {
+        Helper.getLogger().logp(Level.FINE, simpleName, "intercept", "Adding around-invoke record: " + simpleName);
+        addToHistory(inv, simpleName);
+        String methodName = inv.getMethod().getName();
+        if (methodName.equals("skipProceed")) {
+            Helper.getLogger()
+                    .logp(
+                            Level.INFO,
+                            simpleName,
+                            "intercept",
+                            "Skip InvocationContext.proceed for business method " + methodName);
+            return null;
+        }
+        return inv.proceed();
     }
-    return inv.proceed();
-  }
 }

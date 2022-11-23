@@ -20,23 +20,19 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.enventry.single;
 
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
+import jakarta.ejb.FinderException;
 import java.rmi.RemoteException;
 import java.util.Collection;
 import java.util.Properties;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJBHome;
-import jakarta.ejb.FinderException;
-
 public interface LongBeanHome extends EJBHome {
 
-  public LongBean create(Properties p, int cofID, String cofName,
-      float cofPrice) throws RemoteException, CreateException;
+    public LongBean create(Properties p, int cofID, String cofName, float cofPrice)
+            throws RemoteException, CreateException;
 
-  public LongBean findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
+    public LongBean findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 
-  public Collection findByName(String name)
-      throws RemoteException, FinderException;
-
+    public Collection findByName(String name) throws RemoteException, FinderException;
 }

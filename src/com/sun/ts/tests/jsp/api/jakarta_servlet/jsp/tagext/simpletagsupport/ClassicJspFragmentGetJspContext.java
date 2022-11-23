@@ -20,53 +20,50 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.simpletagsupport;
 
-import java.io.IOException;
-
 import jakarta.servlet.jsp.JspContext;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.JspFragment;
 import jakarta.servlet.jsp.tagext.TagSupport;
+import java.io.IOException;
 
 public class ClassicJspFragmentGetJspContext extends TagSupport {
 
-  /**
-   * JspFragment instance.
-   */
-  Object _fragment = null;
+    /**
+     * JspFragment instance.
+     */
+    Object _fragment = null;
 
-  /**
-   * Sets _fragment. This should be an instance of JspFragment.
-   * 
-   * @param o
-   *          - a JspFragment instance
-   */
-  public void setFragment(Object o) {
-    _fragment = o;
-  }
-
-  public int doStartTag() throws JspException {
-    JspWriter out = pageContext.getOut();
-    try {
-      if (_fragment != null) {
-        if (_fragment instanceof JspFragment) {
-          JspContext ctx = ((JspFragment) _fragment).getJspContext();
-          if (ctx == null) {
-            out.println(
-                "Test FAILED in classic tag. jspFragment.getJspContext() returned null.");
-          } else {
-            ctx.getOut().println("Test PASSED in classic tag.");
-          }
-        } else {
-          out.println(
-              "Test FAILED in classic tag. fragment is not of type JspFragment.");
-        }
-      } else {
-        out.println("Test FAILED in classic tag. fragment attribute is null.");
-      }
-    } catch (IOException ioex) {
-      throw new JspException("Unexpected IOException", ioex);
+    /**
+     * Sets _fragment. This should be an instance of JspFragment.
+     *
+     * @param o
+     *          - a JspFragment instance
+     */
+    public void setFragment(Object o) {
+        _fragment = o;
     }
-    return SKIP_BODY;
-  }
+
+    public int doStartTag() throws JspException {
+        JspWriter out = pageContext.getOut();
+        try {
+            if (_fragment != null) {
+                if (_fragment instanceof JspFragment) {
+                    JspContext ctx = ((JspFragment) _fragment).getJspContext();
+                    if (ctx == null) {
+                        out.println("Test FAILED in classic tag. jspFragment.getJspContext() returned null.");
+                    } else {
+                        ctx.getOut().println("Test PASSED in classic tag.");
+                    }
+                } else {
+                    out.println("Test FAILED in classic tag. fragment is not of type JspFragment.");
+                }
+            } else {
+                out.println("Test FAILED in classic tag. fragment attribute is null.");
+            }
+        } catch (IOException ioex) {
+            throw new JspException("Unexpected IOException", ioex);
+        }
+        return SKIP_BODY;
+    }
 }

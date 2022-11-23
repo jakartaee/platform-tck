@@ -25,39 +25,37 @@ import jakarta.servlet.ServletContextListener;
 
 public class TestListener implements ServletContextListener {
 
-  /**
-   * Receives notification that the web application initialization process is
-   * starting.
-   *
-   * @param sce
-   *          The ServletContextEvent
-   */
-  public void contextInitialized(ServletContextEvent sce) {
-    boolean passed = false;
-    ServletContext context = sce.getServletContext();
-    StringBuilder log = new StringBuilder();
+    /**
+     * Receives notification that the web application initialization process is
+     * starting.
+     *
+     * @param sce
+     *          The ServletContextEvent
+     */
+    public void contextInitialized(ServletContextEvent sce) {
+        boolean passed = false;
+        ServletContext context = sce.getServletContext();
+        StringBuilder log = new StringBuilder();
 
-    try {
-      context.getClassLoader();
-      passed = true;
-      log.append(
-          "UnsupportedOperationException not thrown by getClassLoader().");
-    } catch (UnsupportedOperationException ex) {
-      log.append(
-          "UnsupportedOperationException thrown by getClassLoader().");
+        try {
+            context.getClassLoader();
+            passed = true;
+            log.append("UnsupportedOperationException not thrown by getClassLoader().");
+        } catch (UnsupportedOperationException ex) {
+            log.append("UnsupportedOperationException thrown by getClassLoader().");
+        }
+
+        context.setAttribute("TCK_TEST_STATUS", log.toString());
+        context.setAttribute("TCK_TEST_PASS_STATUS", passed);
     }
 
-    context.setAttribute("TCK_TEST_STATUS", log.toString());
-    context.setAttribute("TCK_TEST_PASS_STATUS", passed);
-  }
-
-  /**
-   * Receives notification that the Servlet Context is about to be shut down.
-   *
-   * @param sce
-   *          The Servlet Context event
-   */
-  public void contextDestroyed(ServletContextEvent sce) {
-    // Do nothing
-  }
+    /**
+     * Receives notification that the Servlet Context is about to be shut down.
+     *
+     * @param sce
+     *          The Servlet Context event
+     */
+    public void contextDestroyed(ServletContextEvent sce) {
+        // Do nothing
+    }
 }

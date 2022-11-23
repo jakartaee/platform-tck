@@ -30,92 +30,92 @@ import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public class Client extends ClientBase {
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * @testName: libSubdirNotScanned
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: EAR/lib/sub-directory/*.jar are not included in classpath
-   */
-  public void libSubdirNotScanned() throws TestFailedException {
-    Util.verifyGetResource(getClass(), RESOURCE_NAME, null);
-  }
+    /*
+     * @testName: libSubdirNotScanned
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: EAR/lib/sub-directory/*.jar are not included in classpath
+     */
+    public void libSubdirNotScanned() throws TestFailedException {
+        Util.verifyGetResource(getClass(), RESOURCE_NAME, null);
+    }
 
-  /*
-   * @testName: earLibNotInClasspath
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: EAR/lib are not included in classpath
-   */
-  public void earLibNotInClasspath() throws TestFailedException {
-    Util.verifyGetResource(getClass(), EAR_LIB_JAR_NAME, null);
-  }
+    /*
+     * @testName: earLibNotInClasspath
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: EAR/lib are not included in classpath
+     */
+    public void earLibNotInClasspath() throws TestFailedException {
+        Util.verifyGetResource(getClass(), EAR_LIB_JAR_NAME, null);
+    }
 
-  /*
-   * @testName: libSubdirNotScannedEJB
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: EAR/lib/sub-directory/*.jar are not included in classpath
-   */
-  public void libSubdirNotScannedEJB() throws TestFailedException {
-    remoteAssemblyBean.libSubdirNotScanned();
-  }
+    /*
+     * @testName: libSubdirNotScannedEJB
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: EAR/lib/sub-directory/*.jar are not included in classpath
+     */
+    public void libSubdirNotScannedEJB() throws TestFailedException {
+        remoteAssemblyBean.libSubdirNotScanned();
+    }
 
-  /*
-   * @testName: earLibNotInClasspathEJB
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: EAR/lib are not included in classpath
-   */
-  public void earLibNotInClasspathEJB() throws TestFailedException {
-    remoteAssemblyBean.earLibNotInClasspath();
-  }
+    /*
+     * @testName: earLibNotInClasspathEJB
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: EAR/lib are not included in classpath
+     */
+    public void earLibNotInClasspathEJB() throws TestFailedException {
+        remoteAssemblyBean.earLibNotInClasspath();
+    }
 
-  /*
-   * @testName: postConstructInvokedInSuperElseWhere
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: PostConstruct method must be invoked even when it's in a
-   * superclass not packaged in appclient-client.jar
-   */
+    /*
+     * @testName: postConstructInvokedInSuperElseWhere
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: PostConstruct method must be invoked even when it's in a
+     * superclass not packaged in appclient-client.jar
+     */
 
-  /*
-   * @testName: remoteAdd
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: remoteAdd
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
 
-  /*
-   * @testName: remoteAddByHelloEJB
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: hello ejb is packaged as a standalone ejb module and
-   * deployed separately. It client view jar is packaged inside current ear and
-   * referenced by both appclient and ejb jar thru MANIFEST.MF appclient ->
-   * helloBean
-   */
+    /*
+     * @testName: remoteAddByHelloEJB
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: hello ejb is packaged as a standalone ejb module and
+     * deployed separately. It client view jar is packaged inside current ear and
+     * referenced by both appclient and ejb jar thru MANIFEST.MF appclient ->
+     * helloBean
+     */
 
-  /*
-   * @testName: remoteAddByHelloEJBFromAssemblyBean
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: hello ejb is packaged as a standalone ejb module and
-   * deployed separately. It client view jar is packaged inside current ear and
-   * referenced by both appclient and ejb jar thru MANIFEST.MF appclient ->
-   * assemblyBean -> helloBean
-   */
+    /*
+     * @testName: remoteAddByHelloEJBFromAssemblyBean
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: hello ejb is packaged as a standalone ejb module and
+     * deployed separately. It client view jar is packaged inside current ear and
+     * referenced by both appclient and ejb jar thru MANIFEST.MF appclient ->
+     * assemblyBean -> helloBean
+     */
 }

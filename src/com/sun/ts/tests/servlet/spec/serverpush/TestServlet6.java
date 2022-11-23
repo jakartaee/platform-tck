@@ -16,28 +16,26 @@
 
 package com.sun.ts.tests.servlet.spec.serverpush;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.PushBuilder;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet6 extends HttpServlet {
 
-  @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, IOException {
-    PrintWriter pw = resp.getWriter();
-    pw.println("hello");
-    PushBuilder pb = req.newPushBuilder();
-    pb.addHeader("h1", "v1");
-    pb.setHeader("foo", "v2");
-    pb.removeHeader("baz");
-    pb.queryString("querystring=2");
-    pb.path("index.html?querystring=1");
-    pb.push();
-  }
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        PrintWriter pw = resp.getWriter();
+        pw.println("hello");
+        PushBuilder pb = req.newPushBuilder();
+        pb.addHeader("h1", "v1");
+        pb.setHeader("foo", "v2");
+        pb.removeHeader("baz");
+        pb.queryString("querystring=2");
+        pb.path("index.html?querystring=1");
+        pb.push();
+    }
 }

@@ -17,23 +17,22 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.coder;
 
-import java.nio.ByteBuffer;
-
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryDecoder;
-
 import jakarta.websocket.DecodeException;
+import java.nio.ByteBuffer;
 
 public class WillDecodeFirstBinaryDecoder extends StringBeanBinaryDecoder {
-  @Override
-  public StringBean decode(ByteBuffer arg0) throws DecodeException {
-    Logger.onCode(getClass());
-    return super.decode(arg0);
-  };
+    @Override
+    public StringBean decode(ByteBuffer arg0) throws DecodeException {
+        Logger.onCode(getClass());
+        return super.decode(arg0);
+    }
+    ;
 
-  @Override
-  public boolean willDecode(ByteBuffer arg0) {
-    Logger.onWillCode(getClass());
-    return false;
-  }
+    @Override
+    public boolean willDecode(ByteBuffer arg0) {
+        Logger.onWillCode(getClass());
+        return false;
+    }
 }

@@ -20,19 +20,17 @@
 
 package com.sun.ts.tests.ejb.ee.pm.oneXone.bi.btob;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
 
 public interface BeanHome extends EJBHome {
-  public Bean create(String id, String name, int value, ADVC a, BDVC b,
-      int flag) throws RemoteException, CreateException;
+    public Bean create(String id, String name, int value, ADVC a, BDVC b, int flag)
+            throws RemoteException, CreateException;
 
-  public Bean create(String id, String name, int value, ADVC a1, BDVC b1,
-      ADVC a2, BDVC b2) throws RemoteException, CreateException;
+    public Bean create(String id, String name, int value, ADVC a1, BDVC b1, ADVC a2, BDVC b2)
+            throws RemoteException, CreateException;
 
-  public Bean findByPrimaryKey(String id)
-      throws RemoteException, FinderException;
+    public Bean findByPrimaryKey(String id) throws RemoteException, FinderException;
 }

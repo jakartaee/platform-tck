@@ -17,5 +17,5 @@
 package com.sun.ts.tests.webservices12.wsdlImport.file.simple4;
 
 public interface Simple4FileSvc extends jakarta.xml.ws.Service {
-  public Tests getTestsPort() throws jakarta.xml.ws.WebServiceException;
+    public Tests getTestsPort() throws jakarta.xml.ws.WebServiceException;
 }

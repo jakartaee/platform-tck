@@ -19,39 +19,39 @@
  */
 package com.sun.ts.tests.servlet.spec.annotationservlet.webservlet;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Enumeration;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebInitParam;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
 
-@WebServlet(urlPatterns = "/Servlet4URL/*", asyncSupported = true, initParams = {
-    @WebInitParam(name = "name1", value = "value1"),
-    @WebInitParam(name = "name2", value = "value2") }, name = "Servlet4")
+@WebServlet(
+        urlPatterns = "/Servlet4URL/*",
+        asyncSupported = true,
+        initParams = {@WebInitParam(name = "name1", value = "value1"), @WebInitParam(name = "name2", value = "value2")},
+        name = "Servlet4")
 public class Servlet4 extends HttpServlet {
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    pw.write("Servlet4_INVOKED");
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        pw.write("Servlet4_INVOKED");
 
-    pw.print("ServletName=" + getServletName());
-    pw.print("isAsyncSupported=" + request.isAsyncSupported());
+        pw.print("ServletName=" + getServletName());
+        pw.print("isAsyncSupported=" + request.isAsyncSupported());
 
-    pw.write("initParams: ");
-    String name = null;
-    String value = null;
-    Enumeration names = getInitParameterNames();
+        pw.write("initParams: ");
+        String name = null;
+        String value = null;
+        Enumeration names = getInitParameterNames();
 
-    while (names.hasMoreElements()) {
-      name = (String) names.nextElement();
-      value = getInitParameter(name);
-      pw.print(name + "=" + value);
+        while (names.hasMoreElements()) {
+            name = (String) names.nextElement();
+            value = getInitParameter(name);
+            pw.print(name + "=" + value);
+        }
     }
-  }
 }

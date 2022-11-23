@@ -21,7 +21,7 @@
 package com.sun.ts.tests.ejb30.timer.basic.mdb;
 
 public class TimerBasicBeanBase extends TimerBasicBeanBase2 {
-  protected TimerBasicBeanBase() {
-    super();
-  }
+    protected TimerBasicBeanBase() {
+        super();
+    }
 }

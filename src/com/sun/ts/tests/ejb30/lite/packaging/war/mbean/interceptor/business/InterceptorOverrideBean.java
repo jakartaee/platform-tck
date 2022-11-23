@@ -19,53 +19,49 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.business;
 
-import java.util.List;
-
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.Interceptor1;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBaseBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorBeanBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.business.InterceptorIF;
-
 import jakarta.annotation.ManagedBean;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.ExcludeClassInterceptors;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
 import jakarta.interceptor.Interceptors;
 import jakarta.interceptor.InvocationContext;
+import java.util.List;
 
 @ManagedBean
 @ExcludeDefaultInterceptors
-public class InterceptorOverrideBean extends InterceptorBeanBase
-    implements InterceptorIF {
+public class InterceptorOverrideBean extends InterceptorBeanBase implements InterceptorIF {
 
-  private static final String simpleName = "InterceptorOverrideBean";
+    private static final String simpleName = "InterceptorOverrideBean";
 
-  @Override // override the superclass' interceptor method with a
-            // non-interceptor method
-  protected Object intercepInInterceptorBeanBase(InvocationContext inv)
-      throws Exception {
-    return super.intercepInInterceptorBeanBase(inv);
-  }
+    @Override // override the superclass' interceptor method with a
+    // non-interceptor method
+    protected Object intercepInInterceptorBeanBase(InvocationContext inv) throws Exception {
+        return super.intercepInInterceptorBeanBase(inv);
+    }
 
-  @SuppressWarnings("unused")
-  @AroundInvoke
-  private Object intercep(InvocationContext inv) throws Exception {
-    InterceptorBaseBase.addToHistory(inv, simpleName);
-    return inv.proceed();
-  }
+    @SuppressWarnings("unused")
+    @AroundInvoke
+    private Object intercep(InvocationContext inv) throws Exception {
+        InterceptorBaseBase.addToHistory(inv, simpleName);
+        return inv.proceed();
+    }
 
-  @Override
-  @Interceptors({ Interceptor1.class })
-  // Interceptor1 is declared as a default interceptor in ejb-jar.xml, excluded
-  // at class-level, and then reinstated as a method-level interceptor
-  public void overrideBeanInterceptorMethod2(List<String> history) {
-    super.overrideBeanInterceptorMethod2(history);
-  }
+    @Override
+    @Interceptors({Interceptor1.class})
+    // Interceptor1 is declared as a default interceptor in ejb-jar.xml, excluded
+    // at class-level, and then reinstated as a method-level interceptor
+    public void overrideBeanInterceptorMethod2(List<String> history) {
+        super.overrideBeanInterceptorMethod2(history);
+    }
 
-  @Override
-  @ExcludeClassInterceptors
-  // OK to exclude class interceptors, though there is no class interceptors
-  public void overrideInterceptorMethod(List<String> history) {
-    super.overrideInterceptorMethod(history);
-  }
+    @Override
+    @ExcludeClassInterceptors
+    // OK to exclude class interceptors, though there is no class interceptors
+    public void overrideInterceptorMethod(List<String> history) {
+        super.overrideInterceptorMethod(history);
+    }
 }

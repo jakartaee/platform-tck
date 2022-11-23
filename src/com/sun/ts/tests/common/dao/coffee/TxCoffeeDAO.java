@@ -26,6 +26,4 @@ package com.sun.ts.tests.common.dao.coffee;
  * id (int, primary key) | name (String) | price (float)
  *
  */
-public interface TxCoffeeDAO extends CoffeeDAO {
-
-}
+public interface TxCoffeeDAO extends CoffeeDAO {}

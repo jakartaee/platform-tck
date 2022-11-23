@@ -24,5 +24,5 @@ import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBLocalHome;
 
 public interface DLocalHome extends EJBLocalHome {
-  public DLocal create() throws CreateException;
+    public DLocal create() throws CreateException;
 }

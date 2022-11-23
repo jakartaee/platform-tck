@@ -26,25 +26,25 @@ import jakarta.ws.rs.container.Suspended;
 @Path("resource")
 @Singleton
 public class Resource {
-  private long sync;
+    private long sync;
 
-  @GET
-  @Path("check")
-  @Asynchronous
-  public void check(@Suspended AsyncResponse asyncResponse) {
-    sync = System.currentTimeMillis();
-    doSomethingLongTime();
-    sync = System.currentTimeMillis() - sync;
-    asyncResponse.resume(sync);
-  }
-
-  // ////////////////////////////////////////////////////////////////////////
-
-  private static void doSomethingLongTime() {
-    try {
-      Thread.sleep(1000L);
-    } catch (Exception e) {
-
+    @GET
+    @Path("check")
+    @Asynchronous
+    public void check(@Suspended AsyncResponse asyncResponse) {
+        sync = System.currentTimeMillis();
+        doSomethingLongTime();
+        sync = System.currentTimeMillis() - sync;
+        asyncResponse.resume(sync);
     }
-  }
+
+    // ////////////////////////////////////////////////////////////////////////
+
+    private static void doSomethingLongTime() {
+        try {
+            Thread.sleep(1000L);
+        } catch (Exception e) {
+
+        }
+    }
 }

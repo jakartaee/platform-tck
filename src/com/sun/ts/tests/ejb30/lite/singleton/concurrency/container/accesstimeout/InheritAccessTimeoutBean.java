@@ -28,6 +28,4 @@ import jakarta.ejb.Startup;
  */
 @Singleton
 @Startup
-public class InheritAccessTimeoutBean extends AnnotatedAccessTimeoutBeanBase
-    implements AccessTimeoutIF {
-}
+public class InheritAccessTimeoutBean extends AnnotatedAccessTimeoutBeanBase implements AccessTimeoutIF {}

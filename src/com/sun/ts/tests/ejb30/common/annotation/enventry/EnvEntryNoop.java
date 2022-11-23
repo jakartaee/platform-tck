@@ -23,61 +23,41 @@ package com.sun.ts.tests.ejb30.common.annotation.enventry;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public class EnvEntryNoop implements EnvEntryIF {
-  public void stringTest() throws TestFailedException {
-  }
+    public void stringTest() throws TestFailedException {}
 
-  public void stringDeepTest() throws TestFailedException {
-  }
+    public void stringDeepTest() throws TestFailedException {}
 
-  public void shortTest() throws TestFailedException {
-  }
+    public void shortTest() throws TestFailedException {}
 
-  public void shortDeepTest() throws TestFailedException {
-  }
+    public void shortDeepTest() throws TestFailedException {}
 
-  public void remove() {
-  }
+    public void remove() {}
 
-  public void longTest() throws TestFailedException {
-  }
+    public void longTest() throws TestFailedException {}
 
-  public void booleanDeepTest() throws TestFailedException {
-  }
+    public void booleanDeepTest() throws TestFailedException {}
 
-  public void booleanTest() throws TestFailedException {
-  }
+    public void booleanTest() throws TestFailedException {}
 
-  public void byteDeepTest() throws TestFailedException {
-  }
+    public void byteDeepTest() throws TestFailedException {}
 
-  public void byteTest() throws TestFailedException {
-  }
+    public void byteTest() throws TestFailedException {}
 
-  public void charDeepTest() throws TestFailedException {
-  }
+    public void charDeepTest() throws TestFailedException {}
 
-  public void charTest() throws TestFailedException {
-  }
+    public void charTest() throws TestFailedException {}
 
-  public void doubleDeepTest() throws TestFailedException {
-  }
+    public void doubleDeepTest() throws TestFailedException {}
 
-  public void doubleTest() throws TestFailedException {
-  }
+    public void doubleTest() throws TestFailedException {}
 
-  public void floatDeepTest() throws TestFailedException {
-  }
+    public void floatDeepTest() throws TestFailedException {}
 
-  public void floatTest() throws TestFailedException {
-  }
+    public void floatTest() throws TestFailedException {}
 
-  public void intDeepTest() throws TestFailedException {
-  }
+    public void intDeepTest() throws TestFailedException {}
 
-  public void intTest() throws TestFailedException {
-  }
+    public void intTest() throws TestFailedException {}
 
-  public void longDeepTest() throws TestFailedException {
-  }
-
+    public void longDeepTest() throws TestFailedException {}
 }

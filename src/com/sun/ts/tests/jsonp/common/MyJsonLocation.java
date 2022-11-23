@@ -24,42 +24,41 @@ import jakarta.json.stream.JsonLocation;
 
 public class MyJsonLocation implements JsonLocation {
 
-  private long lineNumber = -1;
+    private long lineNumber = -1;
 
-  private long columnNumber = -1;
+    private long columnNumber = -1;
 
-  private long streamOffset = -1;
+    private long streamOffset = -1;
 
-  public MyJsonLocation() {
-  }
+    public MyJsonLocation() {}
 
-  public MyJsonLocation(long lineNumber, long columnNumber, long streamOffset) {
-    this.lineNumber = lineNumber;
-    this.columnNumber = columnNumber;
-    this.streamOffset = streamOffset;
-  }
+    public MyJsonLocation(long lineNumber, long columnNumber, long streamOffset) {
+        this.lineNumber = lineNumber;
+        this.columnNumber = columnNumber;
+        this.streamOffset = streamOffset;
+    }
 
-  public void setLineNumber(long lineNumber) {
-    this.lineNumber = lineNumber;
-  }
+    public void setLineNumber(long lineNumber) {
+        this.lineNumber = lineNumber;
+    }
 
-  public long getLineNumber() {
-    return lineNumber;
-  }
+    public long getLineNumber() {
+        return lineNumber;
+    }
 
-  public void setColumnNumber(long columnNumber) {
-    this.columnNumber = columnNumber;
-  }
+    public void setColumnNumber(long columnNumber) {
+        this.columnNumber = columnNumber;
+    }
 
-  public long getColumnNumber() {
-    return columnNumber;
-  }
+    public long getColumnNumber() {
+        return columnNumber;
+    }
 
-  public void setStreamOffset(long streamOffset) {
-    this.streamOffset = streamOffset;
-  }
+    public void setStreamOffset(long streamOffset) {
+        this.streamOffset = streamOffset;
+    }
 
-  public long getStreamOffset() {
-    return streamOffset;
-  }
+    public long getStreamOffset() {
+        return streamOffset;
+    }
 }

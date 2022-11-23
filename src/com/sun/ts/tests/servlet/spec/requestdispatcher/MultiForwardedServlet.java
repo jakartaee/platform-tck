@@ -19,36 +19,32 @@
  */
 package com.sun.ts.tests.servlet.spec.requestdispatcher;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class MultiForwardedServlet extends GenericTCKServlet {
 
-  private static final String TEST_HEADER = "testname";
+    private static final String TEST_HEADER = "testname";
 
-  private static final Class[] TEST_ARGS = { ServletRequest.class,
-      ServletResponse.class };
+    private static final Class[] TEST_ARGS = {ServletRequest.class, ServletResponse.class};
 
-  private static final String TEST1_HEADER = "TestName";
+    private static final String TEST1_HEADER = "TestName";
 
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    String path = "/forward/ForwardedServlet?testname=attributes&query=forwardAttributes6";
-    RequestDispatcher rd = request.getRequestDispatcher(path);
+        String path = "/forward/ForwardedServlet?testname=attributes&query=forwardAttributes6";
+        RequestDispatcher rd = request.getRequestDispatcher(path);
 
-    if (rd == null) {
-      pw.println("Null RequestDispatcher got for path=" + path);
-    } else {
-      rd.forward(request, response);
+        if (rd == null) {
+            pw.println("Null RequestDispatcher got for path=" + path);
+        } else {
+            rd.forward(request, response);
+        }
     }
-  }
 }

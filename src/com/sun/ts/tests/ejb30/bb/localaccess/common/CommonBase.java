@@ -26,18 +26,17 @@ import com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException;
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 
 public class CommonBase implements CommonIF {
-  public void passByReferenceTest(String[] args) {
-    args[0] = SERVER_MSG;
-  }
+    public void passByReferenceTest(String[] args) {
+        args[0] = SERVER_MSG;
+    }
 
-  public void exceptionTest() throws CalculatorException {
-    throw new CalculatorException("Application exception from bean.");
-  }
+    public void exceptionTest() throws CalculatorException {
+        throw new CalculatorException("Application exception from bean.");
+    }
 
-  public void runtimeExceptionTest() {
-    throw new UncheckedAppException("UncheckedAppException from bean.");
-  }
+    public void runtimeExceptionTest() {
+        throw new UncheckedAppException("UncheckedAppException from bean.");
+    }
 
-  public void remove() {
-  }
+    public void remove() {}
 }

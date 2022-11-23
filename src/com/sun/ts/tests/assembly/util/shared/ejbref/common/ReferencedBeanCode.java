@@ -21,29 +21,28 @@ package com.sun.ts.tests.assembly.util.shared.ejbref.common;
 
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.EJBException;
 
 public class ReferencedBeanCode {
-  public static final String envEntryName = "java:comp/env/myName";
+    public static final String envEntryName = "java:comp/env/myName";
 
-  /**
-   * Method used to identify this bean. Return the value of bean env entry
-   * called 'myName'.
-   */
-  public static String whoAreYou(TSNamingContext nctx) throws EJBException {
+    /**
+     * Method used to identify this bean. Return the value of bean env entry
+     * called 'myName'.
+     */
+    public static String whoAreYou(TSNamingContext nctx) throws EJBException {
 
-    String name;
+        String name;
 
-    try {
-      TestUtil.logTrace("CaseBean: whoAreYou()");
-      name = (String) nctx.lookup(envEntryName);
-      TestUtil.logTrace("CaseBean: my name is '" + name + "'");
-    } catch (Exception e) {
-      TestUtil.logErr("CaseBean: Caught exception: " + e, e);
-      throw new EJBException(e.getMessage());
+        try {
+            TestUtil.logTrace("CaseBean: whoAreYou()");
+            name = (String) nctx.lookup(envEntryName);
+            TestUtil.logTrace("CaseBean: my name is '" + name + "'");
+        } catch (Exception e) {
+            TestUtil.logErr("CaseBean: Caught exception: " + e, e);
+            throw new EJBException(e.getMessage());
+        }
+
+        return name;
     }
-
-    return name;
-  }
 }

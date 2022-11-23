@@ -23,7 +23,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.callback.method.annotated;
 import com.sun.ts.tests.ejb30.common.callback.Callback2BeanBase;
 import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
@@ -36,36 +35,33 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 
 @Stateful(name = "Callback2Bean")
-@Remote({ Callback2IF.class })
-public class Callback2Bean extends Callback2BeanBase
-    implements Callback2IF, java.io.Serializable {
-  @Resource
-  private SessionContext sctx;
+@Remote({Callback2IF.class})
+public class Callback2Bean extends Callback2BeanBase implements Callback2IF, java.io.Serializable {
+    @Resource
+    private SessionContext sctx;
 
-  public Callback2Bean() {
-    super();
-  }
+    public Callback2Bean() {
+        super();
+    }
 
-  public EJBContext getEJBContext() {
-    return this.sctx;
-  }
+    public EJBContext getEJBContext() {
+        return this.sctx;
+    }
 
-  // ================= callback methods ===================================
-  /**
-   * 4 callback annotations are applied on the same method
-   */
-  @PostConstruct
-  @PreDestroy
-  @PostActivate
-  @PrePassivate
-  private void sharedCallback() throws RuntimeException {
-    this.setPostConstructOrPreDestroyCalled(true);
-    TLogger.log("PostConstruct, PreDestroy, PostActivateor or PrePassivate "
-        + "method called: " + this);
-  }
+    // ================= callback methods ===================================
+    /**
+     * 4 callback annotations are applied on the same method
+     */
+    @PostConstruct
+    @PreDestroy
+    @PostActivate
+    @PrePassivate
+    private void sharedCallback() throws RuntimeException {
+        this.setPostConstructOrPreDestroyCalled(true);
+        TLogger.log("PostConstruct, PreDestroy, PostActivateor or PrePassivate " + "method called: " + this);
+    }
 
-  // ================== business methods ====================================
-  @Remove
-  public void removeFoo() {
-  }
+    // ================== business methods ====================================
+    @Remove
+    public void removeFoo() {}
 }

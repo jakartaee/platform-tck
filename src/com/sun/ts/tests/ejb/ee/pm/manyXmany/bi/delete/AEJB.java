@@ -20,152 +20,146 @@
 
 package com.sun.ts.tests.ejb.ee.pm.manyXmany.bi.delete;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Properties;
-import java.util.Vector;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
 import jakarta.ejb.RemoveException;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Properties;
+import java.util.Vector;
 
 public abstract class AEJB implements EntityBean {
 
-  private EntityContext context = null;
+    private EntityContext context = null;
 
-  // ===========================================================
-  // getters and setters for cmp fields
+    // ===========================================================
+    // getters and setters for cmp fields
 
-  public abstract String getId();
+    public abstract String getId();
 
-  public abstract void setId(String v);
+    public abstract void setId(String v);
 
-  public abstract String getName();
+    public abstract String getName();
 
-  public abstract void setName(String v);
+    public abstract void setName(String v);
 
-  public abstract int getValue();
+    public abstract int getValue();
 
-  public abstract void setValue(int v);
+    public abstract void setValue(int v);
 
-  // ===========================================================
-  // getters and setters for relationship fields
+    // ===========================================================
+    // getters and setters for relationship fields
 
-  // manyxmany
-  public abstract Collection getB();
+    // manyxmany
+    public abstract Collection getB();
 
-  public abstract void setB(Collection v);
+    public abstract void setB(Collection v);
 
-  // ===========================================================
-  // A interface business methods
+    // ===========================================================
+    // A interface business methods
 
-  public void init(Properties p) {
-    TestUtil.logTrace("init");
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
-    }
-  }
-
-  public boolean isB() {
-    TestUtil.logTrace("isB");
-    if (getB().isEmpty() != true)
-      TestUtil.logMsg("Relationship set for B ...");
-    else
-      TestUtil.logMsg("Relationship not set for B ...");
-    return getB().isEmpty() != true;
-  }
-
-  public boolean setCmrFieldToNull() {
-    TestUtil.logTrace("setCmrFieldToNull");
-    try {
-      setB(null);
-      TestUtil.logErr("no exception when setting collection cmr field to null");
-      return false;
-    } catch (IllegalArgumentException e) {
-      TestUtil.logMsg("IllegalArgumentException caught as expected");
-      return true;
-    } catch (Exception e) {
-      TestUtil.logErr("Expected IllegalArgumentException, received " + e);
-      return false;
-    }
-  }
-
-  public Collection getBInfo() {
-    TestUtil.logTrace("getBInfo");
-    try {
-      Vector v = new Vector();
-      if (isB()) {
-        Collection bcol = getB();
-        Iterator iterator = bcol.iterator();
-        while (iterator.hasNext()) {
-          BLocal b = (BLocal) iterator.next();
-          BDVC bDVC = new BDVC(b.getId(), b.getName(), b.getValue());
-          v.add(bDVC);
+    public void init(Properties p) {
+        TestUtil.logTrace("init");
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
         }
-      }
-      return v;
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e, e);
-      return null;
     }
-  }
 
-  // ===========================================================
-  // EJB Specification Required Methods
-
-  public String ejbCreate(String id, String name, int value)
-      throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    try {
-      setId(id);
-      setName(name);
-      setValue(value);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    public boolean isB() {
+        TestUtil.logTrace("isB");
+        if (getB().isEmpty() != true) TestUtil.logMsg("Relationship set for B ...");
+        else TestUtil.logMsg("Relationship not set for B ...");
+        return getB().isEmpty() != true;
     }
-    return null;
-  }
 
-  public void ejbPostCreate(String id, String name, int value)
-      throws CreateException {
-    TestUtil.logTrace("ejbPostCreate");
-  }
+    public boolean setCmrFieldToNull() {
+        TestUtil.logTrace("setCmrFieldToNull");
+        try {
+            setB(null);
+            TestUtil.logErr("no exception when setting collection cmr field to null");
+            return false;
+        } catch (IllegalArgumentException e) {
+            TestUtil.logMsg("IllegalArgumentException caught as expected");
+            return true;
+        } catch (Exception e) {
+            TestUtil.logErr("Expected IllegalArgumentException, received " + e);
+            return false;
+        }
+    }
 
-  public void setEntityContext(EntityContext c) {
-    TestUtil.logTrace("setEntityContext");
-    context = c;
-  }
+    public Collection getBInfo() {
+        TestUtil.logTrace("getBInfo");
+        try {
+            Vector v = new Vector();
+            if (isB()) {
+                Collection bcol = getB();
+                Iterator iterator = bcol.iterator();
+                while (iterator.hasNext()) {
+                    BLocal b = (BLocal) iterator.next();
+                    BDVC bDVC = new BDVC(b.getId(), b.getName(), b.getValue());
+                    v.add(bDVC);
+                }
+            }
+            return v;
+        } catch (Exception e) {
+            TestUtil.logErr("Exception: " + e, e);
+            return null;
+        }
+    }
 
-  public void unsetEntityContext() {
-    TestUtil.logTrace("unsetEntityContext");
-  }
+    // ===========================================================
+    // EJB Specification Required Methods
 
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("ejbRemove");
-  }
+    public String ejbCreate(String id, String name, int value) throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        try {
+            setId(id);
+            setName(name);
+            setValue(value);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+        return null;
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
+    public void ejbPostCreate(String id, String name, int value) throws CreateException {
+        TestUtil.logTrace("ejbPostCreate");
+    }
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
+    public void setEntityContext(EntityContext c) {
+        TestUtil.logTrace("setEntityContext");
+        context = c;
+    }
 
-  public void ejbLoad() {
-    TestUtil.logTrace("ejbLoad");
-  }
+    public void unsetEntityContext() {
+        TestUtil.logTrace("unsetEntityContext");
+    }
 
-  public void ejbStore() {
-    TestUtil.logTrace("ejbStore");
-  }
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("ejbRemove");
+    }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
+
+    public void ejbLoad() {
+        TestUtil.logTrace("ejbLoad");
+    }
+
+    public void ejbStore() {
+        TestUtil.logTrace("ejbStore");
+    }
 }

@@ -24,9 +24,9 @@ import jakarta.ejb.Timer;
 
 public class TimerBeanBase extends TimerBeanBaseWithoutTimeOutMethod {
 
-  @Timeout
-  @Override
-  protected void timeout(Timer timer) {
-    super.timeout(timer);
-  }
+    @Timeout
+    @Override
+    protected void timeout(Timer timer) {
+        super.timeout(timer);
+    }
 }

@@ -17,8 +17,6 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.asyncwithhandler;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.TextCoderBool;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.TextCoderByte;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.TextCoderChar;
@@ -27,29 +25,36 @@ import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.TextCoderInt;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.TextCoderLong;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.TextCoderShort;
-
 import jakarta.websocket.EncodeException;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
-@ServerEndpoint(value = "/text", encoders = { TextCoderBool.class,
-    TextCoderByte.class, TextCoderChar.class, TextCoderDouble.class,
-    TextCoderInt.class, TextCoderLong.class, TextCoderFloat.class,
-    TextCoderShort.class })
+@ServerEndpoint(
+        value = "/text",
+        encoders = {
+            TextCoderBool.class,
+            TextCoderByte.class,
+            TextCoderChar.class,
+            TextCoderDouble.class,
+            TextCoderInt.class,
+            TextCoderLong.class,
+            TextCoderFloat.class,
+            TextCoderShort.class
+        })
 public class WSCTextServer extends WSCCommonServer {
 
-  @Override
-  @OnMessage
-  public void onMessage(String msg, Session session)
-      throws IOException, EncodeException {
-    super.onMessage(msg, session);
-  }
+    @Override
+    @OnMessage
+    public void onMessage(String msg, Session session) throws IOException, EncodeException {
+        super.onMessage(msg, session);
+    }
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    super.onError(session, t);
-  }
+    @Override
+    @OnError
+    public void onError(Session session, Throwable t) throws IOException {
+        super.onError(session, t);
+    }
 }

@@ -16,85 +16,81 @@
 
 package com.sun.ts.tests.jpa.core.persistenceUtil;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
-
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceUtil;
+import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-  public Client() {
-  }
+    public Client() {}
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  public void setup(String[] args, Properties p) throws Fault {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup(args, p);
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
-    }
-  }
-
-  /*
-   * @testName: getPersistenceUtilTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:384; PERSISTENCE:SPEC:1917;
-   * 
-   * @test_Strategy:
-   *
-   */
-  public void getPersistenceUtilTest() throws Fault {
-    boolean pass = false;
-    PersistenceUtil pu = Persistence.getPersistenceUtil();
-    if (pu != null) {
-      pass = true;
-    } else {
-      TestUtil.logErr("getPersistenceUtil() returned null");
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
 
-    if (!pass) {
-      throw new Fault("getPersistenceUtilTest failed");
-    }
-  }
-
-  public void cleanup() throws Fault {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
-
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM EMPLOYEE")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
+    public void setup(String[] args, Properties p) throws Fault {
+        TestUtil.logTrace("setup");
+        try {
+            super.setup(args, p);
+        } catch (Exception e) {
+            TestUtil.logErr("Exception: ", e);
+            throw new Fault("Setup failed:", e);
         }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
     }
-  }
+
+    /*
+     * @testName: getPersistenceUtilTest
+     *
+     * @assertion_ids: PERSISTENCE:JAVADOC:384; PERSISTENCE:SPEC:1917;
+     *
+     * @test_Strategy:
+     *
+     */
+    public void getPersistenceUtilTest() throws Fault {
+        boolean pass = false;
+        PersistenceUtil pu = Persistence.getPersistenceUtil();
+        if (pu != null) {
+            pass = true;
+        } else {
+            TestUtil.logErr("getPersistenceUtil() returned null");
+        }
+
+        if (!pass) {
+            throw new Fault("getPersistenceUtilTest failed");
+        }
+    }
+
+    public void cleanup() throws Fault {
+        TestUtil.logTrace("cleanup");
+        removeTestData();
+        TestUtil.logTrace("cleanup complete, calling super.cleanup");
+        super.cleanup();
+    }
+
+    private void removeTestData() {
+        TestUtil.logTrace("removeTestData");
+        if (getEntityTransaction().isActive()) {
+            getEntityTransaction().rollback();
+        }
+        try {
+            getEntityTransaction().begin();
+            getEntityManager().createNativeQuery("DELETE FROM EMPLOYEE").executeUpdate();
+            getEntityTransaction().commit();
+        } catch (Exception e) {
+            TestUtil.logErr("Exception encountered while removing entities:", e);
+        } finally {
+            try {
+                if (getEntityTransaction().isActive()) {
+                    getEntityTransaction().rollback();
+                }
+            } catch (Exception re) {
+                TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+            }
+        }
+    }
 }

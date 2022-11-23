@@ -22,7 +22,6 @@ package com.sun.ts.tests.servlet.spec.errorpage1;
 
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.spec.errorpage.TestException;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,23 +29,22 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class TestServlet extends HttpTCKServlet {
 
-  public void init(ServletConfig config) throws ServletException {
-    super.init(config);
-  }
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+    }
 
-  public void destroy() {
-    super.destroy();
-  }
+    public void destroy() {
+        super.destroy();
+    }
 
-  // ------------------------------------------------- Test Methods
+    // ------------------------------------------------- Test Methods
 
-  public void nonServletExceptionTest(HttpServletRequest req,
-      HttpServletResponse res) throws ServletException, InstantiationException {
-    throw new IllegalStateException("error page invoked");
-  }
+    public void nonServletExceptionTest(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, InstantiationException {
+        throw new IllegalStateException("error page invoked");
+    }
 
-  public void servletExceptionTest(HttpServletRequest req,
-      HttpServletResponse res) throws ServletException {
-    throw new TestServletException(new TestException("error page invoked"));
-  }
-}// ErrorPageTestServlet
+    public void servletExceptionTest(HttpServletRequest req, HttpServletResponse res) throws ServletException {
+        throw new TestServletException(new TestException("error page invoked"));
+    }
+} // ErrorPageTestServlet

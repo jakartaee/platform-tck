@@ -20,16 +20,15 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.multiclienttest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
-  // exposed getters and setters for cmp fields
-  public float getPrice() throws RemoteException;
+    // exposed getters and setters for cmp fields
+    public float getPrice() throws RemoteException;
 
-  public void setPrice(float v) throws RemoteException;
+    public void setPrice(float v) throws RemoteException;
 
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 }

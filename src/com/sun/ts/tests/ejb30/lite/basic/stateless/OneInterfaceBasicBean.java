@@ -22,10 +22,7 @@ package com.sun.ts.tests.ejb30.lite.basic.stateless;
 
 import com.sun.ts.tests.ejb30.lite.basic.common.Basic1IF;
 import com.sun.ts.tests.ejb30.lite.basic.common.BasicBeanBase;
-
 import jakarta.ejb.Stateless;
 
 @Stateless
-public class OneInterfaceBasicBean extends BasicBeanBase implements Basic1IF {
-
-}
+public class OneInterfaceBasicBean extends BasicBeanBase implements Basic1IF {}

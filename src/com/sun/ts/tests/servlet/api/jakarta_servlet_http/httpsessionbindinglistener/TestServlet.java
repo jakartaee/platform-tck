@@ -58,69 +58,67 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpsessionbindinglistener;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class TestServlet extends HttpTCKServlet {
 
-  public void boundTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+    public void boundTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
-    StaticLog.clear();
+        PrintWriter pw = response.getWriter();
+        StaticLog.clear();
 
-    String[] expected = { "valueBound:boundTest" };
+        String[] expected = {"valueBound:boundTest"};
 
-    HttpSession session = request.getSession(true);
-    HSBindingListener hsbl = new HSBindingListener();
+        HttpSession session = request.getSession(true);
+        HSBindingListener hsbl = new HSBindingListener();
 
-    session.setAttribute("boundTest", hsbl);
+        session.setAttribute("boundTest", hsbl);
 
-    ArrayList result = StaticLog.getClear();
-    boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);
-    if (!b) {
-      ServletTestUtil.printFailureData(pw, result, expected);
+        ArrayList result = StaticLog.getClear();
+        boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);
+        if (!b) {
+            ServletTestUtil.printFailureData(pw, result, expected);
+        }
+        ServletTestUtil.printResult(pw, b);
+
+        session.invalidate();
     }
-    ServletTestUtil.printResult(pw, b);
 
-    session.invalidate();
-  }
+    public void unBoundTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-  public void unBoundTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        StaticLog.clear();
 
-    PrintWriter pw = response.getWriter();
-    StaticLog.clear();
+        String[] expected = {
+            "valueBound:unBoundTest", "valueUnBound:unBoundTest", "valueBound:unBoundTest", "valueUnBound:unBoundTest"
+        };
 
-    String[] expected = { "valueBound:unBoundTest", "valueUnBound:unBoundTest",
-        "valueBound:unBoundTest", "valueUnBound:unBoundTest" };
+        HttpSession session = request.getSession(true);
+        HSBindingListener hsbl1 = new HSBindingListener();
+        HSBindingListener hsbl2 = new HSBindingListener();
 
-    HttpSession session = request.getSession(true);
-    HSBindingListener hsbl1 = new HSBindingListener();
-    HSBindingListener hsbl2 = new HSBindingListener();
+        session.setAttribute("unBoundTest", hsbl1);
+        session.setAttribute("unBoundTest", hsbl2);
+        session.removeAttribute("unBoundTest");
 
-    session.setAttribute("unBoundTest", hsbl1);
-    session.setAttribute("unBoundTest", hsbl2);
-    session.removeAttribute("unBoundTest");
+        ArrayList result = StaticLog.getClear();
+        boolean b = ServletTestUtil.checkArrayList(result, expected, true, true);
+        if (!b) {
+            ServletTestUtil.printFailureData(pw, result, expected);
+        }
+        ServletTestUtil.printResult(pw, b);
 
-    ArrayList result = StaticLog.getClear();
-    boolean b = ServletTestUtil.checkArrayList(result, expected, true, true);
-    if (!b) {
-      ServletTestUtil.printFailureData(pw, result, expected);
+        session.invalidate();
     }
-    ServletTestUtil.printResult(pw, b);
-
-    session.invalidate();
-
-  }
 }

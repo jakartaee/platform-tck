@@ -28,81 +28,80 @@ import jakarta.persistence.Table;
 @Table(name = "ACCOUNT")
 public class Account implements java.io.Serializable {
 
-  // Instance variable
-  @Id
-  private Integer id;
+    // Instance variable
+    @Id
+    private Integer id;
 
-  private double balance;
+    private double balance;
 
-  private double deposit;
+    private double deposit;
 
-  private double withdraw;
+    private double withdraw;
 
-  // constructors
+    // constructors
 
-  public Account() {
-    // No-arg
-  }
-
-  public Account(Integer id, double balance) {
-    this.id = id;
-    this.balance = balance;
-  }
-
-  // ===========================================================
-  // Account Business Methods
-
-  public int id() {
-    return id;
-  }
-
-  public double balance() {
-    return balance;
-  }
-
-  public double deposit(double v) {
-    balance += v;
-    return balance;
-  }
-
-  public double withdraw(double v) {
-    balance -= v;
-    return balance;
-  }
-
-  // ===========================================================
-  public boolean equals(Object o) {
-    Account other;
-    boolean same = true;
-
-    if (!(o instanceof Account)) {
-      return false;
-    }
-    other = (Account) o;
-
-    if (this.id() == other.id()
-        && (Double.compare(this.balance(), other.balance()) == 0)) {
-      same = true;
+    public Account() {
+        // No-arg
     }
 
-    return same;
-  }
+    public Account(Integer id, double balance) {
+        this.id = id;
+        this.balance = balance;
+    }
 
-  public int hashCode() {
-    int myHash;
+    // ===========================================================
+    // Account Business Methods
 
-    myHash = this.id;
+    public int id() {
+        return id;
+    }
 
-    return myHash;
-  }
+    public double balance() {
+        return balance;
+    }
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + id());
-    result.append(",  balance: " + balance());
-    result.append("]");
-    return result.toString();
-  }
+    public double deposit(double v) {
+        balance += v;
+        return balance;
+    }
+
+    public double withdraw(double v) {
+        balance -= v;
+        return balance;
+    }
+
+    // ===========================================================
+    public boolean equals(Object o) {
+        Account other;
+        boolean same = true;
+
+        if (!(o instanceof Account)) {
+            return false;
+        }
+        other = (Account) o;
+
+        if (this.id() == other.id() && (Double.compare(this.balance(), other.balance()) == 0)) {
+            same = true;
+        }
+
+        return same;
+    }
+
+    public int hashCode() {
+        int myHash;
+
+        myHash = this.id;
+
+        return myHash;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + id());
+        result.append(",  balance: " + balance());
+        result.append("]");
+        return result.toString();
+    }
 }

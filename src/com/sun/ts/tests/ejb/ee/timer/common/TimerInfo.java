@@ -24,35 +24,36 @@ import java.io.Serializable;
 
 public final class TimerInfo implements Serializable {
 
-  public String str;
+    public String str;
 
-  public Integer i;
+    public Integer i;
 
-  public Boolean bool;
+    public Boolean bool;
 
-  public Double doubl;
+    public Double doubl;
 
-  public TimerInfo(String str, int i, boolean bool, double doubl) {
+    public TimerInfo(String str, int i, boolean bool, double doubl) {
 
-    this.str = str;
-    this.i = new Integer(i);
-    this.bool = new Boolean(bool);
-    this.doubl = new Double(doubl);
-  }
-
-  public boolean equals(Object o) {
-
-    if (o instanceof TimerInfo) {
-      TimerInfo info = (TimerInfo) o;
-      return (this.str.equals(info.str) && this.i.equals(info.i)
-          && this.bool.equals(info.bool) && this.doubl.equals(info.doubl));
+        this.str = str;
+        this.i = new Integer(i);
+        this.bool = new Boolean(bool);
+        this.doubl = new Double(doubl);
     }
-    return false;
-  }
 
-  public String toString() {
+    public boolean equals(Object o) {
 
-    return (str + " " + i.toString() + " " + bool.toString() + " "
-        + doubl.toString());
-  }
+        if (o instanceof TimerInfo) {
+            TimerInfo info = (TimerInfo) o;
+            return (this.str.equals(info.str)
+                    && this.i.equals(info.i)
+                    && this.bool.equals(info.bool)
+                    && this.doubl.equals(info.doubl));
+        }
+        return false;
+    }
+
+    public String toString() {
+
+        return (str + " " + i.toString() + " " + bool.toString() + " " + doubl.toString());
+    }
 }

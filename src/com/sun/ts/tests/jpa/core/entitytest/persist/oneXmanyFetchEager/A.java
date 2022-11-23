@@ -16,11 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.persist.oneXmanyFetchEager;
 
-import java.util.Iterator;
-import java.util.List;
-
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -28,90 +24,95 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.Iterator;
+import java.util.List;
 
 @Entity
 @Table(name = "AEJB_1XM_BI_BTOB")
 public class A implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+    // ===========================================================
+    // instance variables
 
-  @Id
-  protected String id;
+    @Id
+    protected String id;
 
-  @Basic
-  protected String name;
+    @Basic
+    protected String name;
 
-  @Basic
-  protected int value;
+    @Basic
+    protected int value;
 
-  // ===========================================================
-  // constructors
+    // ===========================================================
+    // constructors
 
-  public A() {
-    TestUtil.logTrace("Entity A no arg constructor");
-  }
-
-  public A(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
-
-  public A(String id, String name, int value, List<B> bCol) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-    this.bCol = bCol;
-  }
-
-  // ===========================================================
-  // relationship fields
-
-  @OneToMany(targetEntity = com.sun.ts.tests.jpa.core.entitytest.persist.oneXmanyFetchEager.B.class, cascade = CascadeType.PERSIST, mappedBy = "a1", fetch = FetchType.EAGER)
-  protected List<B> bCol = new java.util.ArrayList<B>();
-
-  // =======================================================================
-  // Business methods for test cases
-
-  public List<B> getBCol() {
-    TestUtil.logTrace("getBCol");
-    return bCol;
-  }
-
-  public void setBCol(List<B> bCol) {
-    TestUtil.logTrace("setBCol");
-    this.bCol = bCol;
-  }
-
-  public String getAId() {
-    return id;
-  }
-
-  public String getAName() {
-    return name;
-  }
-
-  public void setAName(String name) {
-    this.name = name;
-  }
-
-  public int getAValue() {
-    return value;
-  }
-
-  public List<B> getBInfoFromA() {
-    TestUtil.logTrace("getBInfoFromA");
-    List<B> v = new java.util.ArrayList<B>();
-    if (getBCol().size() != 0) {
-      List<B> bcol = getBCol();
-      Iterator iterator = bcol.iterator();
-      while (iterator.hasNext()) {
-        B b = (B) iterator.next();
-        v.add(b);
-      }
+    public A() {
+        TestUtil.logTrace("Entity A no arg constructor");
     }
-    return v;
-  }
 
+    public A(String id, String name, int value) {
+        this.id = id;
+        this.name = name;
+        this.value = value;
+    }
+
+    public A(String id, String name, int value, List<B> bCol) {
+        this.id = id;
+        this.name = name;
+        this.value = value;
+        this.bCol = bCol;
+    }
+
+    // ===========================================================
+    // relationship fields
+
+    @OneToMany(
+            targetEntity = com.sun.ts.tests.jpa.core.entitytest.persist.oneXmanyFetchEager.B.class,
+            cascade = CascadeType.PERSIST,
+            mappedBy = "a1",
+            fetch = FetchType.EAGER)
+    protected List<B> bCol = new java.util.ArrayList<B>();
+
+    // =======================================================================
+    // Business methods for test cases
+
+    public List<B> getBCol() {
+        TestUtil.logTrace("getBCol");
+        return bCol;
+    }
+
+    public void setBCol(List<B> bCol) {
+        TestUtil.logTrace("setBCol");
+        this.bCol = bCol;
+    }
+
+    public String getAId() {
+        return id;
+    }
+
+    public String getAName() {
+        return name;
+    }
+
+    public void setAName(String name) {
+        this.name = name;
+    }
+
+    public int getAValue() {
+        return value;
+    }
+
+    public List<B> getBInfoFromA() {
+        TestUtil.logTrace("getBInfoFromA");
+        List<B> v = new java.util.ArrayList<B>();
+        if (getBCol().size() != 0) {
+            List<B> bcol = getBCol();
+            Iterator iterator = bcol.iterator();
+            while (iterator.hasNext()) {
+                B b = (B) iterator.next();
+                v.add(b);
+            }
+        }
+        return v;
+    }
 }

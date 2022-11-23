@@ -20,23 +20,21 @@
 
 package com.sun.ts.tests.ejb30.timer.basic.sharing;
 
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+import jakarta.ejb.Timer;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
-import jakarta.ejb.Timer;
-
 public interface TimerIF {
-  String accessTimers() throws TestFailedException;
+    String accessTimers() throws TestFailedException;
 
-  void cancelAllTimers();
+    void cancelAllTimers();
 
-  void cancelTimer(Timer... timer);
+    void cancelTimer(Timer... timer);
 
-  Timer createTimer(long duration, java.io.Serializable timerInfo);
+    Timer createTimer(long duration, java.io.Serializable timerInfo);
 
-  Timer createTimer(Date expiration, long duration, Serializable timerInfo);
+    Timer createTimer(Date expiration, long duration, Serializable timerInfo);
 
-  void createTimerRollback(long duration, java.io.Serializable timerInfo);
+    void createTimerRollback(long duration, java.io.Serializable timerInfo);
 }

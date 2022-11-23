@@ -20,20 +20,19 @@
 
 package com.sun.ts.tests.ejb30.bb.mdb.dest.common;
 
-abstract public class ClientBase
-    extends com.sun.ts.tests.ejb30.common.messaging.ClientBase
-    implements com.sun.ts.tests.ejb30.common.messaging.Constants {
+public abstract class ClientBase extends com.sun.ts.tests.ejb30.common.messaging.ClientBase
+        implements com.sun.ts.tests.ejb30.common.messaging.Constants {
 
-  /*
-   * testName: test1
-   * 
-   * @assertion_ids: EJB:SPEC:778; EJB:SPEC:779; EJB:SPEC:780
-   * 
-   * @test_Strategy: test message destination related elements in deployment
-   * descriptors: message-destination, message-destination-ref,
-   * message-destination-link
-   */
-  public void test1() throws Fault {
-    sendReceive();
-  }
+    /*
+     * testName: test1
+     *
+     * @assertion_ids: EJB:SPEC:778; EJB:SPEC:779; EJB:SPEC:780
+     *
+     * @test_Strategy: test message destination related elements in deployment
+     * descriptors: message-destination, message-destination-ref,
+     * message-destination-link
+     */
+    public void test1() throws Fault {
+        sendReceive();
+    }
 }

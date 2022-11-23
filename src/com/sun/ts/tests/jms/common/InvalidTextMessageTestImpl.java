@@ -24,28 +24,27 @@ import jakarta.jms.JMSException;
 import jakarta.jms.MessageFormatException;
 import jakarta.jms.TextMessage;
 
-public class InvalidTextMessageTestImpl extends MessageTestImpl
-    implements TextMessage {
-  private String text;
+public class InvalidTextMessageTestImpl extends MessageTestImpl implements TextMessage {
+    private String text;
 
-  private int integer;
+    private int integer;
 
-  private java.util.Date date = new java.util.Date();
+    private java.util.Date date = new java.util.Date();
 
-  public InvalidTextMessageTestImpl() {
-    super();
-  }
+    public InvalidTextMessageTestImpl() {
+        super();
+    }
 
-  public InvalidTextMessageTestImpl(String string) {
-    super();
-    text = string;
-  }
+    public InvalidTextMessageTestImpl(String string) {
+        super();
+        text = string;
+    }
 
-  public void setText(String string) throws JMSException {
-    text = string;
-  }
+    public void setText(String string) throws JMSException {
+        text = string;
+    }
 
-  public String getText() throws JMSException {
-    throw new MessageFormatException("bad text message");
-  }
+    public String getText() throws JMSException {
+        throw new MessageFormatException("bad text message");
+    }
 }

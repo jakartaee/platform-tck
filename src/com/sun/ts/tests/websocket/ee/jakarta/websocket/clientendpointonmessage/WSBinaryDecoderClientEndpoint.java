@@ -21,7 +21,6 @@ import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryDecoder;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanClientEndpoint;
-
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -31,36 +30,34 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
-@ClientEndpoint(decoders = { StringBeanBinaryDecoder.class })
-public class WSBinaryDecoderClientEndpoint
-    extends AnnotatedClientEndpoint<StringBean> {
+@ClientEndpoint(decoders = {StringBeanBinaryDecoder.class})
+public class WSBinaryDecoderClientEndpoint extends AnnotatedClientEndpoint<StringBean> {
 
-  public WSBinaryDecoderClientEndpoint() {
-    super(new StringBeanClientEndpoint());
-  }
+    public WSBinaryDecoderClientEndpoint() {
+        super(new StringBeanClientEndpoint());
+    }
 
-  @OnMessage
-  public String echo(StringBean bean) {
-    super.onMessage(bean);
-    return bean.get();
-  }
+    @OnMessage
+    public String echo(StringBean bean) {
+        super.onMessage(bean);
+        return bean.get();
+    }
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+    @OnError
+    @Override
+    public void onError(Session session, Throwable t) {
+        super.onError(session, t);
+    }
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+    @OnClose
+    @Override
+    public void onClose(Session session, CloseReason closeReason) {
+        super.onClose(session, closeReason);
+    }
 
-  @OnOpen
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
-
+    @OnOpen
+    @Override
+    public void onOpen(Session session, EndpointConfig config) {
+        super.onOpen(session, config);
+    }
 }

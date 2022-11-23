@@ -27,120 +27,122 @@ import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveIF;
 import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveNotRetainIF;
 import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.TestIF;
 import com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome;
-
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
-  // @EJB(name="removeBean")
-  private static RemoveIF removeBean;
+    // @EJB(name="removeBean")
+    private static RemoveIF removeBean;
 
-  // @EJB(name="removeBean2")
-  private static Remove2IF removeBean2;
+    // @EJB(name="removeBean2")
+    private static Remove2IF removeBean2;
 
-  // @EJB(name="removeNotRetainBean")
-  private static RemoveNotRetainIF removeNotRetainBean;
+    // @EJB(name="removeNotRetainBean")
+    private static RemoveNotRetainIF removeNotRetainBean;
 
-  // @EJB(name="testBean")
-  private static TestIF testBean;
+    // @EJB(name="testBean")
+    private static TestIF testBean;
 
-  @EJB(name = "twoRemoteHome", lookup = "java:global/stateful_remove_complement/stateful_remove_complement_ejb/RemoveBean!com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome")
-  private static TwoRemoteHome twoRemoteHome;
+    @EJB(
+            name = "twoRemoteHome",
+            lookup =
+                    "java:global/stateful_remove_complement/stateful_remove_complement_ejb/RemoveBean!com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome")
+    private static TwoRemoteHome twoRemoteHome;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  @Override
-  protected TestIF getTestBean() {
-    return testBean;
-  }
+    @Override
+    protected TestIF getTestBean() {
+        return testBean;
+    }
 
-  @Override
-  protected RemoveIF getRemoveBean() {
-    return removeBean;
-  }
+    @Override
+    protected RemoveIF getRemoveBean() {
+        return removeBean;
+    }
 
-  @Override
-  protected Remove2IF getRemoveBean2() {
-    return removeBean2;
-  }
+    @Override
+    protected Remove2IF getRemoveBean2() {
+        return removeBean2;
+    }
 
-  @Override
-  protected RemoveNotRetainIF getRemoveNotRetainBean() {
-    return removeNotRetainBean;
-  }
+    @Override
+    protected RemoveNotRetainIF getRemoveNotRetainBean() {
+        return removeNotRetainBean;
+    }
 
-  @Override
-  protected TwoRemoteHome getTwoRemoteHome() {
-    return twoRemoteHome;
-  }
+    @Override
+    protected TwoRemoteHome getTwoRemoteHome() {
+        return twoRemoteHome;
+    }
 
-  /*
-   * @testName: removeBean
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   * 
-   */
+    /*
+     * @testName: removeBean
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: removeBean2
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: removeBean2
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: retainBean
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: retainBean2
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: removeNotRetainBean
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: removeNotRetainBean2
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: removeTwoRemoteHome
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: removeTwoRemoteHomeHandle
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: retainBean
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: retainBean2
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: removeNotRetainBean
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: removeNotRetainBean2
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: removeTwoRemoteHome
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: removeTwoRemoteHomeHandle
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 }

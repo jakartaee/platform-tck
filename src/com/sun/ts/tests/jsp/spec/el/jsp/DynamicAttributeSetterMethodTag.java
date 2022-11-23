@@ -20,17 +20,15 @@
 
 package com.sun.ts.tests.jsp.spec.el.jsp;
 
-import java.io.IOException;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class DynamicAttributeSetterMethodTag extends SimpleTagSupport {
 
-  public void setNum(int i) {
-    // do nothing server should error out.
-  }
+    public void setNum(int i) {
+        // do nothing server should error out.
+    }
 
-  public void doTag() throws JspException, IOException {
-  }
+    public void doTag() throws JspException, IOException {}
 }

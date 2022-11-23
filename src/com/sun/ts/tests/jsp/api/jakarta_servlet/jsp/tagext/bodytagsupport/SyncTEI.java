@@ -21,36 +21,33 @@
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.bodytagsupport;
 
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.tagext.TagData;
 import jakarta.servlet.jsp.tagext.TagExtraInfo;
 import jakarta.servlet.jsp.tagext.VariableInfo;
 
 public class SyncTEI extends TagExtraInfo {
 
-  /**
-   * Default constructor.
-   */
-  public SyncTEI() {
-    super();
-  }
+    /**
+     * Default constructor.
+     */
+    public SyncTEI() {
+        super();
+    }
 
-  /**
-   * Sets the begin, nested, and end scripting variables for the
-   * BodySynchronizationTag.
-   * 
-   * @param data
-   *          - the TagData from the TLD.
-   * @return a VariableInfo array.
-   */
-  public VariableInfo[] getVariableInfo(TagData data) {
-    JspTestUtil.debug("[SyncTEI] in getVariableInfo()");
-    return new VariableInfo[] {
-        new VariableInfo("begin", "java.lang.Integer", true,
-            VariableInfo.AT_BEGIN),
-        new VariableInfo("nested", "java.lang.Integer", true,
-            VariableInfo.NESTED),
-        new VariableInfo("end", "java.lang.Integer", true,
-            VariableInfo.AT_END) };
-  }
+    /**
+     * Sets the begin, nested, and end scripting variables for the
+     * BodySynchronizationTag.
+     *
+     * @param data
+     *          - the TagData from the TLD.
+     * @return a VariableInfo array.
+     */
+    public VariableInfo[] getVariableInfo(TagData data) {
+        JspTestUtil.debug("[SyncTEI] in getVariableInfo()");
+        return new VariableInfo[] {
+            new VariableInfo("begin", "java.lang.Integer", true, VariableInfo.AT_BEGIN),
+            new VariableInfo("nested", "java.lang.Integer", true, VariableInfo.NESTED),
+            new VariableInfo("end", "java.lang.Integer", true, VariableInfo.AT_END)
+        };
+    }
 }

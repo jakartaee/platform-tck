@@ -23,11 +23,11 @@ import jakarta.annotation.PostConstruct;
 import jakarta.interceptor.InvocationContext;
 
 public class InterceptorOverrideBase extends InterceptorBaseBase {
-  private static final String simpleName = "InterceptorOverrideBase";
+    private static final String simpleName = "InterceptorOverrideBase";
 
-  // To be overridden and thus disabled in Interceptor8
-  @PostConstruct
-  protected void postConstructInInterceptorOverrideBase(InvocationContext inv) {
-    historySingletonBean.addPostConstructRecordFor(inv.getTarget(), simpleName);
-  }
+    // To be overridden and thus disabled in Interceptor8
+    @PostConstruct
+    protected void postConstructInInterceptorOverrideBase(InvocationContext inv) {
+        historySingletonBean.addPostConstructRecordFor(inv.getTarget(), simpleName);
+    }
 }

@@ -21,47 +21,46 @@ package com.sun.ts.tests.ejb30.lite.appexception.stateful.inheritance;
 
 import com.sun.ts.tests.ejb30.lite.appexception.common.inheritance.InheritanceIF;
 
-public class Client extends
-    com.sun.ts.tests.ejb30.lite.appexception.common.inheritance.ClientBase {
+public class Client extends com.sun.ts.tests.ejb30.lite.appexception.common.inheritance.ClientBase {
 
-  @Override
-  protected InheritanceIF getBean() {
-    return (InheritanceIF) lookup(BEAN_LOOKUP_NAME, "InheritanceBean", null);
-  }
+    @Override
+    protected InheritanceIF getBean() {
+        return (InheritanceIF) lookup(BEAN_LOOKUP_NAME, "InheritanceBean", null);
+    }
 
-  /*
-   * @testName: uncheckedAppException1
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: uncheckedAppException2
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: uncheckedAppException3
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: uncheckedSystemException4
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: uncheckedSystemException5
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: uncheckedAppException6
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: uncheckedAppException7
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: uncheckedAppException1
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: uncheckedAppException2
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: uncheckedAppException3
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: uncheckedSystemException4
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: uncheckedSystemException5
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: uncheckedAppException6
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: uncheckedAppException7
+     *
+     * @test_Strategy:
+     */
 }

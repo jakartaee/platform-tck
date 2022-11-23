@@ -19,12 +19,13 @@ package com.sun.ts.tests.el.common.util;
  * Defines an interface with default methods: one read-only, one read-write.
  */
 public interface SimpleInterface {
-  default String getDefaultRO() {
-    return "RO";
-  }
-  default String getDefaultRW() {
-    return "RW";
-  }
-  default void setDefaultRW(String ignored) {
-  }
+    default String getDefaultRO() {
+        return "RO";
+    }
+
+    default String getDefaultRW() {
+        return "RW";
+    }
+
+    default void setDefaultRW(String ignored) {}
 }

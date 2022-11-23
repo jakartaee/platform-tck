@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.localaccess.webclient;
 
 import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanBase;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanIF;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.Remote;
@@ -32,14 +31,12 @@ import jakarta.ejb.Stateless;
 @Stateless
 @Remote(TestBeanIF.class)
 public class StatelessTestBean extends TestBeanBase implements TestBeanIF {
-  @Resource
-  private SessionContext sessionContext;
+    @Resource
+    private SessionContext sessionContext;
 
-  public EJBContext getEJBContext() {
-    return sessionContext;
-  }
+    public EJBContext getEJBContext() {
+        return sessionContext;
+    }
 
-  public void remove() {
-  }
-
+    public void remove() {}
 }

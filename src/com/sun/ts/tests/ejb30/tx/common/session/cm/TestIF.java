@@ -23,39 +23,38 @@ package com.sun.ts.tests.ejb30.tx.common.session.cm;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface TestIF {
-  void mandatoryTest() throws TestFailedException;
+    void mandatoryTest() throws TestFailedException;
 
-  String localMandatoryTest() throws TestFailedException;
+    String localMandatoryTest() throws TestFailedException;
 
-  void neverTest() throws TestFailedException;
+    void neverTest() throws TestFailedException;
 
-  String localNeverTest() throws TestFailedException;
+    String localNeverTest() throws TestFailedException;
 
-  void requiresNewTest() throws TestFailedException;
+    void requiresNewTest() throws TestFailedException;
 
-  String localRequiresNewTest() throws TestFailedException;
+    String localRequiresNewTest() throws TestFailedException;
 
-  String supportsTest() throws TestFailedException;
+    String supportsTest() throws TestFailedException;
 
-  String localSupportsTest() throws TestFailedException;
+    String localSupportsTest() throws TestFailedException;
 
-  String illegalGetSetRollbackOnlyNeverTest() throws TestFailedException;
+    String illegalGetSetRollbackOnlyNeverTest() throws TestFailedException;
 
-  String localIllegalGetSetRollbackOnlyNeverTest() throws TestFailedException;
+    String localIllegalGetSetRollbackOnlyNeverTest() throws TestFailedException;
 
-  String illegalGetSetRollbackOnlyNotSupportedTest() throws TestFailedException;
+    String illegalGetSetRollbackOnlyNotSupportedTest() throws TestFailedException;
 
-  String localIllegalGetSetRollbackOnlyNotSupportedTest()
-      throws TestFailedException;
+    String localIllegalGetSetRollbackOnlyNotSupportedTest() throws TestFailedException;
 
-  String systemExceptionTest() throws TestFailedException;
+    String systemExceptionTest() throws TestFailedException;
 
-  String localSystemExceptionTest() throws TestFailedException;
+    String localSystemExceptionTest() throws TestFailedException;
 
-  // for Stateful only
-  String localRequiresNewRemoveTest() throws TestFailedException;
+    // for Stateful only
+    String localRequiresNewRemoveTest() throws TestFailedException;
 
-  void remove();
+    void remove();
 
-  void sameMethodDifferentTxAttr() throws TestFailedException;
+    void sameMethodDifferentTxAttr() throws TestFailedException;
 }

@@ -17,27 +17,25 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverapplicationconfig;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import jakarta.websocket.Endpoint;
 import jakarta.websocket.server.ServerApplicationConfig;
 import jakarta.websocket.server.ServerEndpointConfig;
+import java.util.HashSet;
+import java.util.Set;
 
 public class AppConfig implements ServerApplicationConfig {
 
-  @Override
-  public Set<ServerEndpointConfig> getEndpointConfigs(
-      Set<Class<? extends Endpoint>> endpointClasses) {
-    Set<ServerEndpointConfig> set = new HashSet<>();
-    set.add(new UsedServerEndpointConfig());
-    return set;
-  }
+    @Override
+    public Set<ServerEndpointConfig> getEndpointConfigs(Set<Class<? extends Endpoint>> endpointClasses) {
+        Set<ServerEndpointConfig> set = new HashSet<>();
+        set.add(new UsedServerEndpointConfig());
+        return set;
+    }
 
-  @Override
-  public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scanned) {
-    Set<Class<?>> set = new HashSet<>();
-    set.add(WSUsedServer.class);
-    return set;
-  }
+    @Override
+    public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scanned) {
+        Set<Class<?>> set = new HashSet<>();
+        set.add(WSUsedServer.class);
+        return set;
+    }
 }

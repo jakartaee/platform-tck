@@ -20,13 +20,17 @@ import com.sun.ts.tests.jaxws.common.HandlerTracker;
 import jakarta.ejb.Stateless;
 import jakarta.jws.*;
 
-@WebService(portName = "Hello", serviceName = "HelloService", targetNamespace = "http://Hello.org", wsdlLocation = "META-INF/wsdl/HelloService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.ejb.annotations.WSEjbSOAPHandlersTest.Hello")
+@WebService(
+        portName = "Hello",
+        serviceName = "HelloService",
+        targetNamespace = "http://Hello.org",
+        wsdlLocation = "META-INF/wsdl/HelloService.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices12.ejb.annotations.WSEjbSOAPHandlersTest.Hello")
 @Stateless(name = "WSEjbSOAPHandlersTest")
 public class HelloBean {
-  public String helloEcho(String s) {
-    String messages = HandlerTracker.getMessages1();
-    if (s.equals("secondcall"))
-      HandlerTracker.purge();
-    return messages;
-  }
+    public String helloEcho(String s) {
+        String messages = HandlerTracker.getMessages1();
+        if (s.equals("secondcall")) HandlerTracker.purge();
+        return messages;
+    }
 }

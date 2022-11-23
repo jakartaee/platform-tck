@@ -20,73 +20,68 @@
 
 package com.sun.ts.tests.servlet.spec.dir_struct;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    setServletName("TestServlet");
-    setContextRoot("/servlet_spec_dirstruct_web");
+        setServletName("TestServlet");
+        setContextRoot("/servlet_spec_dirstruct_web");
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /* Test setup */
+    /* Test setup */
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   *
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     *
+     */
 
-  /* Run test */
+    /* Run test */
 
-  /*
-   * @testName: loadClassesTest
-   * 
-   * @assertion_ids: Servlet:SPEC:91
-   * 
-   * @test_Strategy: The servlet which is in the WEB-INF/classes directory is
-   * called by the client and should execute. Then the servlet which is in the
-   * WEB-INF/lib directory is called by the client and should execute.
-   *
-   */
+    /*
+     * @testName: loadClassesTest
+     *
+     * @assertion_ids: Servlet:SPEC:91
+     *
+     * @test_Strategy: The servlet which is in the WEB-INF/classes directory is
+     * called by the client and should execute. Then the servlet which is in the
+     * WEB-INF/lib directory is called by the client and should execute.
+     *
+     */
 
-  public void loadClassesTest() throws Fault {
-    String testName = "classFileTest";
-    TEST_PROPS.setProperty(TEST_NAME, testName);
-    TEST_PROPS.setProperty(REQUEST,
-        "GET " + getContextRoot() + "/" + testName + " HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "in ClassFileTestServlet");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "in jarFileTestServlet");
-    invoke();
+    public void loadClassesTest() throws Fault {
+        String testName = "classFileTest";
+        TEST_PROPS.setProperty(TEST_NAME, testName);
+        TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/" + testName + " HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "in ClassFileTestServlet");
+        TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "in jarFileTestServlet");
+        invoke();
 
-    testName = "jarFileTest";
-    TEST_PROPS.setProperty(TEST_NAME, testName);
-    TEST_PROPS.setProperty(REQUEST,
-        "GET " + getContextRoot() + "/" + testName + " HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "in JarFileTestServlet");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH,
-        "in ClassFileTestServlet");
-    invoke();
-  }
+        testName = "jarFileTest";
+        TEST_PROPS.setProperty(TEST_NAME, testName);
+        TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/" + testName + " HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "in JarFileTestServlet");
+        TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "in ClassFileTestServlet");
+        invoke();
+    }
 }

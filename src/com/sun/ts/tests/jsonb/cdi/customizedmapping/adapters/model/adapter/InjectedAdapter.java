@@ -27,55 +27,54 @@ import static com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapte
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Animal;
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Cat;
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Dog;
-
 import jakarta.inject.Inject;
 import jakarta.json.bind.adapter.JsonbAdapter;
 
 public class InjectedAdapter implements JsonbAdapter<Animal, AnimalJson> {
-  @Inject
-  private AnimalIdentifier animalIdentifier;
+    @Inject
+    private AnimalIdentifier animalIdentifier;
 
-  @Override
-  public AnimalJson adaptToJson(Animal animal) throws Exception {
-    AnimalJson adapted = new AnimalJson();
-    switch (animalIdentifier.getType(animal)) {
-    case CAT:
-      adapted.setType(CAT);
-      adapted.setCuddly(((Cat) animal).isCuddly());
-      break;
-    case DOG:
-      adapted.setType(DOG);
-      adapted.setBarking(((Dog) animal).isBarking());
-      break;
-    default:
-      adapted.setType(GENERIC);
+    @Override
+    public AnimalJson adaptToJson(Animal animal) throws Exception {
+        AnimalJson adapted = new AnimalJson();
+        switch (animalIdentifier.getType(animal)) {
+            case CAT:
+                adapted.setType(CAT);
+                adapted.setCuddly(((Cat) animal).isCuddly());
+                break;
+            case DOG:
+                adapted.setType(DOG);
+                adapted.setBarking(((Dog) animal).isBarking());
+                break;
+            default:
+                adapted.setType(GENERIC);
+        }
+        adapted.setName(animal.getName());
+        adapted.setAge(animal.getAge());
+        adapted.setFurry(animal.isFurry());
+        adapted.setWeight(animal.getWeight());
+        return adapted;
     }
-    adapted.setName(animal.getName());
-    adapted.setAge(animal.getAge());
-    adapted.setFurry(animal.isFurry());
-    adapted.setWeight(animal.getWeight());
-    return adapted;
-  }
 
-  @Override
-  public Animal adaptFromJson(AnimalJson adapted) throws Exception {
-    Animal animal;
-    switch (adapted.getType()) {
-    case CAT:
-      animal = new Cat();
-      ((Cat) animal).setCuddly(adapted.isCuddly());
-      break;
-    case DOG:
-      animal = new Dog();
-      ((Dog) animal).setBarking(adapted.isBarking());
-      break;
-    default:
-      animal = new Animal();
+    @Override
+    public Animal adaptFromJson(AnimalJson adapted) throws Exception {
+        Animal animal;
+        switch (adapted.getType()) {
+            case CAT:
+                animal = new Cat();
+                ((Cat) animal).setCuddly(adapted.isCuddly());
+                break;
+            case DOG:
+                animal = new Dog();
+                ((Dog) animal).setBarking(adapted.isBarking());
+                break;
+            default:
+                animal = new Animal();
+        }
+        animal.setName(adapted.getName());
+        animal.setAge(adapted.getAge());
+        animal.setFurry(adapted.isFurry());
+        animal.setWeight(adapted.getWeight());
+        return animal;
     }
-    animal.setName(adapted.getName());
-    animal.setAge(adapted.getAge());
-    animal.setFurry(adapted.isFurry());
-    animal.setWeight(adapted.getWeight());
-    return animal;
-  }
 }

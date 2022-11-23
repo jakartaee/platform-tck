@@ -19,51 +19,48 @@
  */
 package com.sun.ts.tests.servlet.pluggability.fragment;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Enumeration;
-
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
 
 public final class TestFilter3 implements Filter {
 
-  private FilterConfig filterConfig = null;
+    private FilterConfig filterConfig = null;
 
-  public void doFilter(ServletRequest request, ServletResponse response,
-      FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-    PrintWriter pw = response.getWriter();
+        PrintWriter pw = response.getWriter();
 
-    pw.println("doFilter in TestFilter3 invoked");
+        pw.println("doFilter in TestFilter3 invoked");
 
-    if (filterConfig == null) {
-      pw.println("filter instance is null ");
-    } else {
-      Enumeration initP = filterConfig.getInitParameterNames();
-      int expectedCount = 2;
-      int count = 0;
+        if (filterConfig == null) {
+            pw.println("filter instance is null ");
+        } else {
+            Enumeration initP = filterConfig.getInitParameterNames();
+            int expectedCount = 2;
+            int count = 0;
 
-      if (initP.hasMoreElements()) {
-        while (initP.hasMoreElements()) {
-          String result = (String) initP.nextElement();
-          pw.println("parameter name= " + result);
-          pw.println(
-              "parameter value= " + filterConfig.getInitParameter(result));
+            if (initP.hasMoreElements()) {
+                while (initP.hasMoreElements()) {
+                    String result = (String) initP.nextElement();
+                    pw.println("parameter name= " + result);
+                    pw.println("parameter value= " + filterConfig.getInitParameter(result));
+                }
+            }
+            chain.doFilter(request, response);
         }
-      }
-      chain.doFilter(request, response);
     }
-  }
 
-  public void destroy() {
-  }
+    public void destroy() {}
 
-  public void init(FilterConfig filterConfig) {
-    this.filterConfig = filterConfig;
-  }
+    public void init(FilterConfig filterConfig) {
+        this.filterConfig = filterConfig;
+    }
 }

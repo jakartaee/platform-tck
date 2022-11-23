@@ -21,152 +21,144 @@
 
 package com.sun.ts.tests.el.api.jakarta_el.elprocessor;
 
-import java.lang.reflect.Method;
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
-
 import jakarta.el.ELProcessor;
+import java.lang.reflect.Method;
+import java.util.Properties;
 
 public class ELClient extends ServiceEETest {
 
-  private Properties testProps;
+    private Properties testProps;
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  public void setup(String[] args, Properties p) throws Fault {
-    this.testProps = p;
-  }
-
-  /**
-   * Does nothing...
-   * 
-   * @throws Fault
-   */
-  public void cleanup() throws Fault {
-    // does nothing at this point
-  }
-
-  /**
-   * @testName: elProcessorDefineFunctionNPETest
-   * @assertion_ids: EL:JAVADOC:220; EL:JAVADOC:216; EL:JAVADOC:219
-   * @test_Strategy: Assert that a NullPointerException is thrown if any of the
-   *                 arguments is null.
-   * 
-   * @since: 3.0
-   */
-
-  public void elProcessorDefineFunctionNPETest() throws Fault {
-    ELProcessor elp = new ELProcessor();
-
-    Method meth;
-    try {
-      meth = elp.getClass().getMethod("toString", new Class<?>[] {});
-
-      // Tests for defineFunction(String, String, Method)
-      TestUtil.logMsg(
-          "Testing: ELProcessor.defineFunction(null, " + "function, meth)");
-      ELTestUtil.checkForNPE(elp, "defineFunction",
-          new Class<?>[] { String.class, String.class, Method.class },
-          new Object[] { null, "function", meth });
-
-      TestUtil.logMsg(
-          "Testing: ELProcessor.defineFunction(prefix, " + "null, meth)");
-      ELTestUtil.checkForNPE(elp, "defineFunction",
-          new Class<?>[] { String.class, String.class, Method.class },
-          new Object[] { "prefix", null, meth });
-
-      TestUtil.logMsg(
-          "Testing: ELProcessor.defineFunction(prefix, " + "function, null)");
-      ELTestUtil.checkForNPE(elp, "defineFunction",
-          new Class<?>[] { String.class, String.class, Method.class },
-          new Object[] { "prefix", "function", null });
-
-      // Tests for defineFunction(String, String, String, String)
-      TestUtil.logMsg("Testing: ELProcessor.defineFunction(prefix, "
-          + "function, className, null)");
-      ELTestUtil.checkForNPE(elp, "defineFunction",
-          new Class<?>[] { String.class, String.class, String.class,
-              String.class },
-          new Object[] { "prefix", "function", "className", null });
-
-      TestUtil.logMsg("Testing: ELProcessor.defineFunction(prefix, "
-          + "function, null, method)");
-      ELTestUtil.checkForNPE(elp, "defineFunction",
-          new Class<?>[] { String.class, String.class, String.class,
-              String.class },
-          new Object[] { "prefix", "function", null, "method" });
-
-      TestUtil.logMsg("Testing: ELProcessor.defineFunction(prefix, "
-          + "null, className, method)");
-      ELTestUtil.checkForNPE(elp, "defineFunction",
-          new Class<?>[] { String.class, String.class, String.class,
-              String.class },
-          new Object[] { "prefix", null, "className", "method" });
-
-      TestUtil.logMsg("Testing: ELProcessor.defineFunction(null, "
-          + "function, className, method)");
-      ELTestUtil.checkForNPE(elp, "defineFunction",
-          new Class<?>[] { String.class, String.class, String.class,
-              String.class },
-          new Object[] { null, "function", "className", "method" });
-
-    } catch (SecurityException e) {
-      e.printStackTrace();
-
-    } catch (NoSuchMethodException nsme) {
-      nsme.printStackTrace();
+    public static void main(String[] args) {
+        ELClient theTests = new ELClient();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
 
-  } // end elProcessorDefineFunctionNPETest
+    public void setup(String[] args, Properties p) throws Fault {
+        this.testProps = p;
+    }
 
-  /**
-   * @testName: elProcessorDefineFunctionCNFETest
-   * @assertion_ids: EL:JAVADOC:220; EL:JAVADOC:214; EL:JAVADOC:217
-   * @test_Strategy: Assert that a ClassNotFoundException if the specified class
-   *                 does not exists.
-   * 
-   * @since: 3.0
-   */
+    /**
+     * Does nothing...
+     *
+     * @throws Fault
+     */
+    public void cleanup() throws Fault {
+        // does nothing at this point
+    }
 
-  public void elProcessorDefineFunctionCNFETest() throws Fault {
-    ELProcessor elp = new ELProcessor();
+    /**
+     * @testName: elProcessorDefineFunctionNPETest
+     * @assertion_ids: EL:JAVADOC:220; EL:JAVADOC:216; EL:JAVADOC:219
+     * @test_Strategy: Assert that a NullPointerException is thrown if any of the
+     *                 arguments is null.
+     *
+     * @since: 3.0
+     */
+    public void elProcessorDefineFunctionNPETest() throws Fault {
+        ELProcessor elp = new ELProcessor();
 
-    TestUtil.logMsg("Testing: ELProcessor.defineFunction(null, "
-        + "function, className, method)");
-    ELTestUtil.checkForCNFE(elp, "defineFunction",
-        new Class<?>[] { String.class, String.class, String.class,
-            String.class },
-        new Object[] { "prefix", "function", "bogus", "method" });
+        Method meth;
+        try {
+            meth = elp.getClass().getMethod("toString", new Class<?>[] {});
 
-  } // end elProcessorDefineFunctionCNFETest
+            // Tests for defineFunction(String, String, Method)
+            TestUtil.logMsg("Testing: ELProcessor.defineFunction(null, " + "function, meth)");
+            ELTestUtil.checkForNPE(
+                    elp, "defineFunction", new Class<?>[] {String.class, String.class, Method.class}, new Object[] {
+                        null, "function", meth
+                    });
 
-  /**
-   * @testName: elProcessorDefineFunctionNSMETest
-   * @assertion_ids: EL:JAVADOC:220; EL:JAVADOC:215
-   * @test_Strategy: Assert that a NoSuchMethodException if the method (with or
-   *                 without the signature) is not a declared method of the
-   *                 class, or if the method signature is not valid.
-   * 
-   * @since: 3.0
-   */
+            TestUtil.logMsg("Testing: ELProcessor.defineFunction(prefix, " + "null, meth)");
+            ELTestUtil.checkForNPE(
+                    elp, "defineFunction", new Class<?>[] {String.class, String.class, Method.class}, new Object[] {
+                        "prefix", null, meth
+                    });
 
-  public void elProcessorDefineFunctionNSMETest() throws Fault {
-    ELProcessor elp = new ELProcessor();
+            TestUtil.logMsg("Testing: ELProcessor.defineFunction(prefix, " + "function, null)");
+            ELTestUtil.checkForNPE(
+                    elp, "defineFunction", new Class<?>[] {String.class, String.class, Method.class}, new Object[] {
+                        "prefix", "function", null
+                    });
 
-    TestUtil.logMsg("Testing: ELProcessor.defineFunction(null, "
-        + "function, className, method)");
-    ELTestUtil.checkForCNFE(elp, "defineFunction",
-        new Class<?>[] { String.class, String.class, String.class,
-            String.class },
-        new Object[] { "prefix", "function", "java.util.String", "bogus" });
+            // Tests for defineFunction(String, String, String, String)
+            TestUtil.logMsg("Testing: ELProcessor.defineFunction(prefix, " + "function, className, null)");
+            ELTestUtil.checkForNPE(
+                    elp,
+                    "defineFunction",
+                    new Class<?>[] {String.class, String.class, String.class, String.class},
+                    new Object[] {"prefix", "function", "className", null});
 
-  } // end elProcessorDefineFunctionNSMETest
+            TestUtil.logMsg("Testing: ELProcessor.defineFunction(prefix, " + "function, null, method)");
+            ELTestUtil.checkForNPE(
+                    elp,
+                    "defineFunction",
+                    new Class<?>[] {String.class, String.class, String.class, String.class},
+                    new Object[] {"prefix", "function", null, "method"});
+
+            TestUtil.logMsg("Testing: ELProcessor.defineFunction(prefix, " + "null, className, method)");
+            ELTestUtil.checkForNPE(
+                    elp,
+                    "defineFunction",
+                    new Class<?>[] {String.class, String.class, String.class, String.class},
+                    new Object[] {"prefix", null, "className", "method"});
+
+            TestUtil.logMsg("Testing: ELProcessor.defineFunction(null, " + "function, className, method)");
+            ELTestUtil.checkForNPE(
+                    elp,
+                    "defineFunction",
+                    new Class<?>[] {String.class, String.class, String.class, String.class},
+                    new Object[] {null, "function", "className", "method"});
+
+        } catch (SecurityException e) {
+            e.printStackTrace();
+
+        } catch (NoSuchMethodException nsme) {
+            nsme.printStackTrace();
+        }
+    } // end elProcessorDefineFunctionNPETest
+
+    /**
+     * @testName: elProcessorDefineFunctionCNFETest
+     * @assertion_ids: EL:JAVADOC:220; EL:JAVADOC:214; EL:JAVADOC:217
+     * @test_Strategy: Assert that a ClassNotFoundException if the specified class
+     *                 does not exists.
+     *
+     * @since: 3.0
+     */
+    public void elProcessorDefineFunctionCNFETest() throws Fault {
+        ELProcessor elp = new ELProcessor();
+
+        TestUtil.logMsg("Testing: ELProcessor.defineFunction(null, " + "function, className, method)");
+        ELTestUtil.checkForCNFE(
+                elp,
+                "defineFunction",
+                new Class<?>[] {String.class, String.class, String.class, String.class},
+                new Object[] {"prefix", "function", "bogus", "method"});
+    } // end elProcessorDefineFunctionCNFETest
+
+    /**
+     * @testName: elProcessorDefineFunctionNSMETest
+     * @assertion_ids: EL:JAVADOC:220; EL:JAVADOC:215
+     * @test_Strategy: Assert that a NoSuchMethodException if the method (with or
+     *                 without the signature) is not a declared method of the
+     *                 class, or if the method signature is not valid.
+     *
+     * @since: 3.0
+     */
+    public void elProcessorDefineFunctionNSMETest() throws Fault {
+        ELProcessor elp = new ELProcessor();
+
+        TestUtil.logMsg("Testing: ELProcessor.defineFunction(null, " + "function, className, method)");
+        ELTestUtil.checkForCNFE(
+                elp,
+                "defineFunction",
+                new Class<?>[] {String.class, String.class, String.class, String.class},
+                new Object[] {"prefix", "function", "java.util.String", "bogus"});
+    } // end elProcessorDefineFunctionNSMETest
 }

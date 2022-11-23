@@ -26,78 +26,65 @@ import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveLocal2IF;
 import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveLocalIF;
 import com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.Init;
 import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
 
-//@Stateful(name="RemoveBean")
-//@Remote({RemoveIF.class, Remove2IF.class})
-//@Local({RemoveLocalIF.class, RemoveLocal2IF.class})
-//@RemoteHome(TwoRemoteHome.class)
-//@LocalHome(TwoLocalHome.class)
-public class RemoveBean
-    implements RemoveIF, Remove2IF, RemoveLocal2IF, RemoveLocalIF {
-  private SessionContext sessionContext;
+// @Stateful(name="RemoveBean")
+// @Remote({RemoveIF.class, Remove2IF.class})
+// @Local({RemoveLocalIF.class, RemoveLocal2IF.class})
+// @RemoteHome(TwoRemoteHome.class)
+// @LocalHome(TwoLocalHome.class)
+public class RemoveBean implements RemoveIF, Remove2IF, RemoveLocal2IF, RemoveLocalIF {
+    private SessionContext sessionContext;
 
-  public RemoveBean() {
-  }
+    public RemoveBean() {}
 
-  public void ejbCreate() throws CreateException {
+    public void ejbCreate() throws CreateException {}
 
-  }
+    @Init
+    public void create() {
+        // do nothing since our stateful beans do not need
+        // any specific initialization.
+    }
 
-  @Init
-  public void create() {
-    // do nothing since our stateful beans do not need
-    // any specific initialization.
-  }
+    @Remove(retainIfException = true)
+    public void remove() {}
 
-  @Remove(retainIfException = true)
-  public void remove() {
-  }
+    public void remove(String s) {
+        // this is not a remove-method
+    }
 
-  public void remove(String s) {
-    // this is not a remove-method
-  }
+    @Remove(retainIfException = true)
+    public void remove2() {}
 
-  @Remove(retainIfException = true)
-  public void remove2() {
-  }
+    // retainIfException should be applied since retain-if-exception is not
+    // specified for this remove-method
+    //
+    @Remove(retainIfException = true)
+    public void retain() throws TestFailedException {
+        throw new TestFailedException("Not to remove this bean");
+    }
 
-  // retainIfException should be applied since retain-if-exception is not
-  // specified for this remove-method
-  //
-  @Remove(retainIfException = true)
-  public void retain() throws TestFailedException {
-    throw new TestFailedException("Not to remove this bean");
-  }
+    @Remove(retainIfException = false)
+    public void retain2() throws UncheckedAppException {
+        throw new UncheckedAppException("Not to remove this bean");
+    }
 
-  @Remove(retainIfException = false)
-  public void retain2() throws UncheckedAppException {
-    throw new UncheckedAppException("Not to remove this bean");
-  }
+    public void hi() {}
 
-  public void hi() {
-  }
+    //////////////////////////////////////////////////////////////////////
 
-  //////////////////////////////////////////////////////////////////////
+    public String from2RemoteClient() {
+        return "from2RemoteClient";
+    }
 
-  public String from2RemoteClient() {
-    return "from2RemoteClient";
-  }
+    public void remoteSameTxContext() {}
 
-  public void remoteSameTxContext() {
+    public String from2LocalClient() {
+        return "from2LocalClient";
+    }
 
-  }
-
-  public String from2LocalClient() {
-    return "from2LocalClient";
-  }
-
-  public void localSameTxContext() {
-
-  }
-
+    public void localSameTxContext() {}
 }

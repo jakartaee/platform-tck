@@ -21,24 +21,23 @@ package com.sun.ts.tests.ejb30.lite.enventry.singleton;
 
 import jakarta.ejb.EJB;
 
-public class Client
-    extends com.sun.ts.tests.ejb30.lite.enventry.common.ClientBase {
-  @EJB(beanName = "EnvEntryBean", beanInterface = EnvEntryBean.class)
-  protected void setEnvEntryBean(EnvEntryBean b) {
-    this.envEntryBean = b;
-  }
+public class Client extends com.sun.ts.tests.ejb30.lite.enventry.common.ClientBase {
+    @EJB(beanName = "EnvEntryBean", beanInterface = EnvEntryBean.class)
+    protected void setEnvEntryBean(EnvEntryBean b) {
+        this.envEntryBean = b;
+    }
 
-  /*
-   * @testName: ejbPostConstructRecords
-   * 
-   * @test_Strategy: verify all env-entry are injected properly by the time
-   * post-construct method is invoked.
-   */
+    /*
+     * @testName: ejbPostConstructRecords
+     *
+     * @test_Strategy: verify all env-entry are injected properly by the time
+     * post-construct method is invoked.
+     */
 
-  /*
-   * @testName: clientPostConstructRecords
-   * 
-   * @test_Strategy: verify all env-entry injected into ejb can also be looked
-   * up from web client. In embeddable usage, this test is noop.
-   */
+    /*
+     * @testName: clientPostConstructRecords
+     *
+     * @test_Strategy: verify all env-entry injected into ejb can also be looked
+     * up from web client. In embeddable usage, this test is noop.
+     */
 }

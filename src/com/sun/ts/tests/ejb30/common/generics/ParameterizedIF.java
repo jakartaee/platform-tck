@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.common.generics;
 import java.util.List;
 
 public interface ParameterizedIF {
-  public void parameterizedParam(List<String> ls);
+    public void parameterizedParam(List<String> ls);
 
-  public List<String> parameterizedReturn(int i);
+    public List<String> parameterizedReturn(int i);
 }

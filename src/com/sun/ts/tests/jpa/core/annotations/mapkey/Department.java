@@ -20,8 +20,6 @@
 
 package com.sun.ts.tests.jpa.core.annotations.mapkey;
 
-import java.util.Map;
-
 import jakarta.persistence.Cacheable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,6 +27,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MapKey;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.Map;
 
 /*
  * Department
@@ -38,54 +37,52 @@ import jakarta.persistence.Table;
 @Table(name = "DEPARTMENT")
 public class Department implements java.io.Serializable {
 
-  // Instance variables
-  private int id;
+    // Instance variables
+    private int id;
 
-  private String name;
+    private String name;
 
-  private Map<String, Employee> lastNameEmployees;
+    private Map<String, Employee> lastNameEmployees;
 
-  public Department() {
-  }
+    public Department() {}
 
-  public Department(int id, String name) {
-    this.id = id;
-    this.name = name;
-  }
+    public Department(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
-  // ===========================================================
-  // getters and setters for the state fields
+    // ===========================================================
+    // getters and setters for the state fields
 
-  @Id
-  @Column(name = "ID")
-  public int getId() {
-    return id;
-  }
+    @Id
+    @Column(name = "ID")
+    public int getId() {
+        return id;
+    }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  @Column(name = "NAME")
-  public String getName() {
-    return name;
-  }
+    @Column(name = "NAME")
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  // ===========================================================
-  // getters and setters for the association fields
+    // ===========================================================
+    // getters and setters for the association fields
 
-  @OneToMany(mappedBy = "department")
-  @MapKey(name = "lastName")
-  public Map<String, Employee> getLastNameEmployees() {
-    return lastNameEmployees;
-  }
+    @OneToMany(mappedBy = "department")
+    @MapKey(name = "lastName")
+    public Map<String, Employee> getLastNameEmployees() {
+        return lastNameEmployees;
+    }
 
-  public void setLastNameEmployees(Map<String, Employee> lastNameEmployees) {
-    this.lastNameEmployees = lastNameEmployees;
-  }
-
+    public void setLastNameEmployees(Map<String, Employee> lastNameEmployees) {
+        this.lastNameEmployees = lastNameEmployees;
+    }
 }

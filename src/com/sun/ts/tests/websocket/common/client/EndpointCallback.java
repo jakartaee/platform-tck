@@ -17,8 +17,6 @@
 
 package com.sun.ts.tests.websocket.common.client;
 
-import java.util.concurrent.CountDownLatch;
-
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.Endpoint;
 import jakarta.websocket.EndpointConfig;
@@ -26,6 +24,7 @@ import jakarta.websocket.MessageHandler;
 import jakarta.websocket.MessageHandler.Partial;
 import jakarta.websocket.MessageHandler.Whole;
 import jakarta.websocket.Session;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * Default empty implementation of merged functionality of {@link Endpoint}
@@ -37,31 +36,27 @@ import jakarta.websocket.Session;
  */
 public class EndpointCallback {
 
-  @SuppressWarnings("unused")
-  public void onError(Session session, Throwable t) {
-  }
+    @SuppressWarnings("unused")
+    public void onError(Session session, Throwable t) {}
 
-  @SuppressWarnings("unused")
-  public void onMessage(Object o) {
-  }
+    @SuppressWarnings("unused")
+    public void onMessage(Object o) {}
 
-  @SuppressWarnings("unused")
-  public void onOpen(Session session, EndpointConfig config) {
-  }
+    @SuppressWarnings("unused")
+    public void onOpen(Session session, EndpointConfig config) {}
 
-  @SuppressWarnings("unused")
-  public void onClose(Session session, CloseReason closeReason) {
-  }
+    @SuppressWarnings("unused")
+    public void onClose(Session session, CloseReason closeReason) {}
 
-  public CountDownLatch getCountDownLatch() {
-    return ClientEndpoint.getCountDownLatch();
-  }
+    public CountDownLatch getCountDownLatch() {
+        return ClientEndpoint.getCountDownLatch();
+    }
 
-  public StringBuffer getMessageBuilder() {
-    return ClientEndpoint.getMessageBuilder();
-  }
+    public StringBuffer getMessageBuilder() {
+        return ClientEndpoint.getMessageBuilder();
+    }
 
-  public Throwable getLastError() {
-    return ClientEndpoint.getLastError();
-  }
+    public Throwable getLastError() {
+        return ClientEndpoint.getLastError();
+    }
 }

@@ -19,13 +19,11 @@ package com.sun.ts.tests.ejb30.bb.async.singleton.annotated;
 import com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncAnnotatedMethodsBeanBase;
 import com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncAnnotatedMethodsIF;
 import com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncAnnotatedMethodsRemoteIF;
-
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Singleton;
 
 @Singleton
-@Local({ AsyncAnnotatedMethodsIF.class })
-@Remote({ AsyncAnnotatedMethodsRemoteIF.class })
-public class AsyncAnnotatedMethodsBean extends AsyncAnnotatedMethodsBeanBase {
-}
+@Local({AsyncAnnotatedMethodsIF.class})
+@Remote({AsyncAnnotatedMethodsRemoteIF.class})
+public class AsyncAnnotatedMethodsBean extends AsyncAnnotatedMethodsBeanBase {}

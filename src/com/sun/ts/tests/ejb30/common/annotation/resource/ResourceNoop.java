@@ -21,66 +21,45 @@
 package com.sun.ts.tests.ejb30.common.annotation.resource;
 
 public class ResourceNoop implements ResourceIF {
-  public void testEJBContext() {
-  }
+    public void testEJBContext() {}
 
-  public void remove() {
-  }
+    public void remove() {}
 
-  public void testConnectionFactoryQ() {
-  }
+    public void testConnectionFactoryQ() {}
 
-  public void testConnectionFactoryT() {
-  }
+    public void testConnectionFactoryT() {}
 
-  public void testDataSource() {
-  }
+    public void testDataSource() {}
 
-  public void testDataSource2() {
-  }
+    public void testDataSource2() {}
 
-  public void testUserTransaction() {
-  }
+    public void testUserTransaction() {}
 
-  public void testUrl() {
-  }
+    public void testUrl() {}
 
-  public void testTopicConnectionFactory() {
-  }
+    public void testTopicConnectionFactory() {}
 
-  public void testTopic() {
-  }
+    public void testTopic() {}
 
-  public void testQueueConnectionFactory() {
-  }
+    public void testQueueConnectionFactory() {}
 
-  public void testQueue() {
-  }
+    public void testQueue() {}
 
-  public void testMailSession() {
-  }
+    public void testMailSession() {}
 
-  public void testCustomResourceInjected() {
-  }
+    public void testCustomResourceInjected() {}
 
-  public void testCustomResourceLookup() {
-  }
+    public void testCustomResourceLookup() {}
 
-  public void testTransactionSynchronizationRegistryInjected() {
-  }
+    public void testTransactionSynchronizationRegistryInjected() {}
 
-  public void testTransactionSynchronizationRegistryLookup() {
-  }
+    public void testTransactionSynchronizationRegistryLookup() {}
 
-  public void testTimerServiceInjected() {
-  }
+    public void testTimerServiceInjected() {}
 
-  public void testTimerServiceLookup() {
-  }
+    public void testTimerServiceLookup() {}
 
-  public void testDestinationT() {
-  }
+    public void testDestinationT() {}
 
-  public void testDestinationQ() {
-  }
+    public void testDestinationQ() {}
 }

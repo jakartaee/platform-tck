@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb30.common.migration.twothree;
 
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBContext;
@@ -33,47 +32,44 @@ import jakarta.ejb.Stateless;
 @Remote
 public class ThreeTestBean implements ThreeTestIF {
 
-  @Resource(name = "sessionContext")
-  private SessionContext sessionContext;
+    @Resource(name = "sessionContext")
+    private SessionContext sessionContext;
 
-  @EJB(name = "migrationBeanThreeRemote")
-  private ThreeIF migrationBeanThreeRemote;
+    @EJB(name = "migrationBeanThreeRemote")
+    private ThreeIF migrationBeanThreeRemote;
 
-  @EJB(name = "migrationBeanThreeLocal")
-  private ThreeLocalIF migrationBeanThreeLocal;
+    @EJB(name = "migrationBeanThreeLocal")
+    private ThreeLocalIF migrationBeanThreeLocal;
 
-  protected EJBContext getEJBContext() {
-    return sessionContext;
-  }
-
-  public ThreeTestBean() {
-  }
-
-  public void remove() {
-  }
-
-  public void callRemote() throws TestFailedException {
-    String expected = "from3Client";
-    String reason = null;
-    String result = migrationBeanThreeRemote.from3Client();
-    if (expected.equals(result)) {
-      // good
-    } else {
-      reason = "Expecting return value " + expected + ", actual " + result;
-      throw new TestFailedException(reason);
+    protected EJBContext getEJBContext() {
+        return sessionContext;
     }
-  }
 
-  public void callLocal() throws TestFailedException {
-    String expected = "from3Client";
-    String reason = null;
-    String result = migrationBeanThreeLocal.from3Client();
-    if (expected.equals(result)) {
-      // good
-    } else {
-      reason = "Expecting return value " + expected + ", actual " + result;
-      throw new TestFailedException(reason);
+    public ThreeTestBean() {}
+
+    public void remove() {}
+
+    public void callRemote() throws TestFailedException {
+        String expected = "from3Client";
+        String reason = null;
+        String result = migrationBeanThreeRemote.from3Client();
+        if (expected.equals(result)) {
+            // good
+        } else {
+            reason = "Expecting return value " + expected + ", actual " + result;
+            throw new TestFailedException(reason);
+        }
     }
-  }
 
+    public void callLocal() throws TestFailedException {
+        String expected = "from3Client";
+        String reason = null;
+        String result = migrationBeanThreeLocal.from3Client();
+        if (expected.equals(result)) {
+            // good
+        } else {
+            reason = "Expecting return value " + expected + ", actual " + result;
+            throw new TestFailedException(reason);
+        }
+    }
 }

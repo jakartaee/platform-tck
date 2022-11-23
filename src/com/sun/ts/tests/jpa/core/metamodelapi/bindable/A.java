@@ -16,11 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.bindable;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -28,63 +24,64 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "COLTAB")
 public class A implements java.io.Serializable {
 
-  @Id
-  protected String id;
+    @Id
+    protected String id;
 
-  protected String name;
+    protected String name;
 
-  @Version
-  protected Integer value;
+    @Version
+    protected Integer value;
 
-  @ElementCollection
-  @CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
-  protected Set<Address> address = new HashSet();
+    @ElementCollection
+    @CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
+    protected Set<Address> address = new HashSet();
 
-  public A() {
-  }
+    public A() {}
 
-  public A(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+    public A(String id, String name, int value) {
+        this.id = id;
+        this.name = name;
+        this.value = value;
+    }
 
-  public Set<Address> getAddress() {
-    TestUtil.logTrace("getAddress");
-    return address;
-  }
+    public Set<Address> getAddress() {
+        TestUtil.logTrace("getAddress");
+        return address;
+    }
 
-  public void setAddress(Set<Address> addr) {
-    TestUtil.logTrace("setAddress");
-    this.address = addr;
-  }
+    public void setAddress(Set<Address> addr) {
+        TestUtil.logTrace("setAddress");
+        this.address = addr;
+    }
 
-  public String getId() {
-    return id;
-  }
+    public String getId() {
+        return id;
+    }
 
-  public void setId(String id) {
-    this.id = id;
-  }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public Integer getValue() {
-    return value;
-  }
+    public Integer getValue() {
+        return value;
+    }
 
-  public void setValue(Integer val) {
-    this.value = val;
-  }
+    public void setValue(Integer val) {
+        this.value = val;
+    }
 }

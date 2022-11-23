@@ -27,18 +27,18 @@ import jakarta.ejb.Stateless;
 
 @Stateless
 // @Stateless(name="StatelessLocal2Bean")
-@Local({ LocalIF.class })
+@Local({LocalIF.class})
 public class StatelessLocal2Bean extends CommonBase
 // implements LocalIF
 {
 
-  @Resource(name = "sessionContext")
-  private SessionContext sessionContext;
+    @Resource(name = "sessionContext")
+    private SessionContext sessionContext;
 
-  public StatelessLocal2Bean() {
-    super();
-  }
+    public StatelessLocal2Bean() {
+        super();
+    }
 
-  // ================== business methods ====================================
+    // ================== business methods ====================================
 
 }

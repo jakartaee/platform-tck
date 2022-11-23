@@ -19,12 +19,10 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.lifecyclecdi;
 
-import java.util.List;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
-
 import jakarta.annotation.Resource;
+import java.util.List;
 
 /**
  * This test directory contains an empty beans.xml that will be packaged in WAR
@@ -34,38 +32,35 @@ import jakarta.annotation.Resource;
  */
 public class Client extends EJBLiteClientBase {
 
-  @Resource
-  private OverrideBean overrideBean;
+    @Resource
+    private OverrideBean overrideBean;
 
-  @Resource
-  private OverrideWithPostConstructBean overrideWithPostConstructBean;
+    @Resource
+    private OverrideWithPostConstructBean overrideWithPostConstructBean;
 
-  /*
-   * @testName: overrideWithRegularMethod
-   * 
-   * @test_Strategy: If a PostConstruct method is overridden, it is no longer
-   * invoked. This test override with a non-PostConstruct method. This test also
-   * excludes default and class-level interceptors.
-   */
-  public void overrideWithRegularMethod() {
-    checkPostConstructRecords(overrideBean, new String[] { "OverrideBean" });
-  }
+    /*
+     * @testName: overrideWithRegularMethod
+     *
+     * @test_Strategy: If a PostConstruct method is overridden, it is no longer
+     * invoked. This test override with a non-PostConstruct method. This test also
+     * excludes default and class-level interceptors.
+     */
+    public void overrideWithRegularMethod() {
+        checkPostConstructRecords(overrideBean, new String[] {"OverrideBean"});
+    }
 
-  /*
-   * @testName: overrideWithPostConstructBean
-   * 
-   * @test_Strategy: If a PostConstruct method is overridden, it is no longer
-   * invoked. This test override with a PostConstruct method.
-   */
-  public void overrideWithPostConstructBean() {
-    checkPostConstructRecords(overrideWithPostConstructBean,
-        new String[] { "OverrideWithPostConstructBean" });
-  }
+    /*
+     * @testName: overrideWithPostConstructBean
+     *
+     * @test_Strategy: If a PostConstruct method is overridden, it is no longer
+     * invoked. This test override with a PostConstruct method.
+     */
+    public void overrideWithPostConstructBean() {
+        checkPostConstructRecords(overrideWithPostConstructBean, new String[] {"OverrideWithPostConstructBean"});
+    }
 
-  protected void checkPostConstructRecords(OverrideBeanBase b,
-      String[] expectedPostConstruct) {
-    List<String> actualPostConstruct = b.getPostConstructRecords();
-    appendReason(
-        Helper.compareResultList(expectedPostConstruct, actualPostConstruct));
-  }
+    protected void checkPostConstructRecords(OverrideBeanBase b, String[] expectedPostConstruct) {
+        List<String> actualPostConstruct = b.getPostConstructRecords();
+        appendReason(Helper.compareResultList(expectedPostConstruct, actualPostConstruct));
+    }
 }

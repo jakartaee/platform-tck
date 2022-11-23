@@ -20,255 +20,241 @@
 
 package com.sun.ts.tests.jms.ee.mdb.mdb_exceptQ;
 
-import java.security.Principal;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.common.JmsUtil;
 import com.sun.ts.tests.jms.commonee.ParentMsgBeanNoTx;
-
 import jakarta.ejb.EJBHome;
 import jakarta.jms.Message;
 import jakarta.jms.QueueSession;
 import jakarta.transaction.UserTransaction;
+import java.security.Principal;
 
 public class MsgBean extends ParentMsgBeanNoTx {
 
-  protected void runTests(Message msg, QueueSession qSession, String testName,
-      java.util.Properties p) {
-    try {
-      // test to see if this is the first message
-      if (msg.getIntProperty("TestCaseNum") > 0) {
+    protected void runTests(Message msg, QueueSession qSession, String testName, java.util.Properties p) {
+        try {
+            // test to see if this is the first message
+            if (msg.getIntProperty("TestCaseNum") > 0) {
 
-        switch (msg.getIntProperty("TestCaseNum")) {
+                switch (msg.getIntProperty("TestCaseNum")) {
+                    case 1: // MDB Queue w/ BMT demarcation
+                        runGetRollbackOnlyBMT(msg, qSession, testName);
+                        break;
 
-        case 1: // MDB Queue w/ BMT demarcation
-          runGetRollbackOnlyBMT(msg, qSession, testName);
-          break;
+                    case 2: // MDB Queue w/ BMT demarcation
+                        runSetRollbackOnlyBMT(msg, qSession, testName);
+                        break;
 
-        case 2: // MDB Queue w/ BMT demarcation
-          runSetRollbackOnlyBMT(msg, qSession, testName);
-          break;
+                    case 3: // MDB Queue w/CMT - TX_NOT_SUPPORTED
+                        runSetRollbackOnlyCMT(msg, qSession, testName);
+                        break;
 
-        case 3: // MDB Queue w/CMT - TX_NOT_SUPPORTED
-          runSetRollbackOnlyCMT(msg, qSession, testName);
-          break;
+                    case 4: // MDB Queue w/CMT - TX_NOT_SUPPORTED
+                        runGetRollbackOnlyCMT(msg, qSession, testName);
+                        break;
 
-        case 4: // MDB Queue w/CMT - TX_NOT_SUPPORTED
-          runGetRollbackOnlyCMT(msg, qSession, testName);
-          break;
+                    case 5: // MDB Queue w/CMT - TX_NOT_SUPPORTED
+                    case 6: // MDB Queue w/CMT
+                        runGetUserTransaction(msg, qSession, testName);
+                        break;
 
-        case 5: // MDB Queue w/CMT - TX_NOT_SUPPORTED
-        case 6: // MDB Queue w/CMT
-          runGetUserTransaction(msg, qSession, testName);
-          break;
+                    case 7: // MDB Queue w/CMT
+                    case 8: // MDB Queue w/CMT - TX_NOT_SUPPORTED
+                        runGetCallerPrincipal(msg, qSession, testName);
+                        break;
 
-        case 7: // MDB Queue w/CMT
-        case 8: // MDB Queue w/CMT - TX_NOT_SUPPORTED
-          runGetCallerPrincipal(msg, qSession, testName);
-          break;
+                    case 11: // MDB Queue w/CMT
+                    case 12: // MDB Queue w/CMT - TX_NOT_SUPPORTED
+                        runGetEJBHome(msg, qSession, testName);
+                        break;
 
-        case 11: // MDB Queue w/CMT
-        case 12: // MDB Queue w/CMT - TX_NOT_SUPPORTED
-          runGetEJBHome(msg, qSession, testName);
-          break;
+                    case 15: // MDB Queue w/ BMT demarcation
+                        runBeginAgain(msg, qSession, testName);
+                        break;
 
-        case 15: // MDB Queue w/ BMT demarcation
-          runBeginAgain(msg, qSession, testName);
-          break;
-
-        default:
-          TestUtil.logErr("Error in mdb - ");
-          TestUtil.logErr("No test match for TestCaseNum: "
-              + msg.getIntProperty("TestCaseNum"));
-          break;
+                    default:
+                        TestUtil.logErr("Error in mdb - ");
+                        TestUtil.logErr("No test match for TestCaseNum: " + msg.getIntProperty("TestCaseNum"));
+                        break;
+                }
+            }
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
         }
-      }
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-    }
-  }// runTests
+    } // runTests
 
-  // MDB_QUEUE_BMT getRollbackOnly
-  public void runGetRollbackOnlyBMT(Message msg, QueueSession qSession,
-      String testName) {
+    // MDB_QUEUE_BMT getRollbackOnly
+    public void runGetRollbackOnlyBMT(Message msg, QueueSession qSession, String testName) {
 
-    result = false;
+        result = false;
 
-    try {
+        try {
 
-      // get beanManagedTx
-      UserTransaction ut = mdc.getUserTransaction();
-      ut.begin();
+            // get beanManagedTx
+            UserTransaction ut = mdc.getUserTransaction();
+            ut.begin();
 
-      // this should throw an exception
-      try {
-        mdc.getRollbackOnly();
+            // this should throw an exception
+            try {
+                mdc.getRollbackOnly();
 
-        TestUtil.logErr("BMT MDB getRollbackOnly() Test Failed!");
-      } catch (java.lang.IllegalStateException e) {
-        result = true;
-        TestUtil.logTrace("BMT MDB getRollbackOnly() Test Succeeded!");
-        TestUtil.logTrace("Got expected IllegalStateException");
-      }
+                TestUtil.logErr("BMT MDB getRollbackOnly() Test Failed!");
+            } catch (java.lang.IllegalStateException e) {
+                result = true;
+                TestUtil.logTrace("BMT MDB getRollbackOnly() Test Succeeded!");
+                TestUtil.logTrace("Got expected IllegalStateException");
+            }
 
-      ut.rollback();
+            ut.rollback();
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception: ", e);
-    }
-    // send a message to MDB_QUEUE_REPLY.
-    JmsUtil.sendTestResults(testName, result, qSession, queueR);
-  }
-
-  // MDB_QUEUE_BMT setRollbackOnly
-  public void runSetRollbackOnlyBMT(Message msg, QueueSession qSession,
-      String testName) {
-    result = false;
-    try {
-
-      // get beanManagedTx
-      UserTransaction ut = mdc.getUserTransaction();
-
-      ut.begin();
-
-      // this should throw an exception
-      try {
-        mdc.setRollbackOnly();
-
-        TestUtil.logErr("BMT MDB setRollbackOnly() Test Failed!");
+        } catch (Exception e) {
+            TestUtil.logErr("Unexpected exception: ", e);
+        }
         // send a message to MDB_QUEUE_REPLY.
-      } catch (java.lang.IllegalStateException e) {
-        TestUtil.logTrace("BMT MDB setRollbackOnly() Test Succeeded!");
-        TestUtil.logTrace("Got expected IllegalStateException");
-        result = true;
-      }
-      ut.rollback();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception: ", e);
+        JmsUtil.sendTestResults(testName, result, qSession, queueR);
     }
-    JmsUtil.sendTestResults(testName, result, qSession, queueR);
-  }
 
-  // MDB_NSTX_CMT setRollbackOnly
-  public void runSetRollbackOnlyCMT(Message msg, QueueSession qSession,
-      String testName) {
+    // MDB_QUEUE_BMT setRollbackOnly
+    public void runSetRollbackOnlyBMT(Message msg, QueueSession qSession, String testName) {
+        result = false;
+        try {
 
-    result = false;
+            // get beanManagedTx
+            UserTransaction ut = mdc.getUserTransaction();
 
-    // this should throw an exception
-    try {
-      mdc.setRollbackOnly();
+            ut.begin();
 
-      TestUtil.logErr("CMT MDB setRollbackOnly() Test Failed!");
-    } catch (java.lang.IllegalStateException e) {
-      TestUtil.logTrace("CMT MDB setRollbackOnly() Test Succeeded!");
-      TestUtil.logTrace("Got expected IllegalStateException");
-      result = true;
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception: ", e);
+            // this should throw an exception
+            try {
+                mdc.setRollbackOnly();
+
+                TestUtil.logErr("BMT MDB setRollbackOnly() Test Failed!");
+                // send a message to MDB_QUEUE_REPLY.
+            } catch (java.lang.IllegalStateException e) {
+                TestUtil.logTrace("BMT MDB setRollbackOnly() Test Succeeded!");
+                TestUtil.logTrace("Got expected IllegalStateException");
+                result = true;
+            }
+            ut.rollback();
+        } catch (Exception e) {
+            TestUtil.logErr("Unexpected exception: ", e);
+        }
+        JmsUtil.sendTestResults(testName, result, qSession, queueR);
     }
-    JmsUtil.sendTestResults(testName, result, qSession, queueR);
-  }
 
-  public void runGetRollbackOnlyCMT(Message msg, QueueSession qSession,
-      String testName) {
-    result = false;
+    // MDB_NSTX_CMT setRollbackOnly
+    public void runSetRollbackOnlyCMT(Message msg, QueueSession qSession, String testName) {
 
-    // this should throw an exception
-    try {
-      mdc.getRollbackOnly();
+        result = false;
 
-      TestUtil.logErr("CMT MDB getRollbackOnly() Test Failed!");
-    } catch (java.lang.IllegalStateException e) {
-      TestUtil.logTrace("CMT MDB getRollbackOnly() Test Succeeded!");
-      TestUtil.logTrace("Got expected IllegalStateException");
-      result = true;
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception: ", e);
+        // this should throw an exception
+        try {
+            mdc.setRollbackOnly();
+
+            TestUtil.logErr("CMT MDB setRollbackOnly() Test Failed!");
+        } catch (java.lang.IllegalStateException e) {
+            TestUtil.logTrace("CMT MDB setRollbackOnly() Test Succeeded!");
+            TestUtil.logTrace("Got expected IllegalStateException");
+            result = true;
+        } catch (Exception e) {
+            TestUtil.logErr("Unexpected exception: ", e);
+        }
+        JmsUtil.sendTestResults(testName, result, qSession, queueR);
     }
-    JmsUtil.sendTestResults(testName, result, qSession, queueR);
-  }
 
-  // MDB_NSTX_CMT getUserTransaction
-  public void runGetUserTransaction(Message msg, QueueSession qSession,
-      String testName) {
-    result = false;
+    public void runGetRollbackOnlyCMT(Message msg, QueueSession qSession, String testName) {
+        result = false;
 
-    // this should throw an exception
-    try {
-      UserTransaction ut = mdc.getUserTransaction();
+        // this should throw an exception
+        try {
+            mdc.getRollbackOnly();
 
-      TestUtil.logErr("CMT MDB getUserTransaction() Test Failed!");
-    } catch (java.lang.IllegalStateException e) {
-      TestUtil.logTrace("CMT MDB getUserTransaction() Test Succeeded!");
-      TestUtil.logTrace("Got expected IllegalStateException");
-      result = true;
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception: ", e);
+            TestUtil.logErr("CMT MDB getRollbackOnly() Test Failed!");
+        } catch (java.lang.IllegalStateException e) {
+            TestUtil.logTrace("CMT MDB getRollbackOnly() Test Succeeded!");
+            TestUtil.logTrace("Got expected IllegalStateException");
+            result = true;
+        } catch (Exception e) {
+            TestUtil.logErr("Unexpected exception: ", e);
+        }
+        JmsUtil.sendTestResults(testName, result, qSession, queueR);
     }
-    // send a message to MDB_QUEUE_REPLY.
-    JmsUtil.sendTestResults(testName, result, qSession, queueR);
-  }
 
-  public void runGetCallerPrincipal(Message msg, QueueSession qSession,
-      String testName) {
-    result = false;
+    // MDB_NSTX_CMT getUserTransaction
+    public void runGetUserTransaction(Message msg, QueueSession qSession, String testName) {
+        result = false;
 
-    try {
-      Principal cp = mdc.getCallerPrincipal();
-      TestUtil.logTrace("CMT MDB getCallerPrincipal() Test Succeeded!");
-      result = true;
-    } catch (Exception e) {
-      TestUtil.logErr("CMT MDB getCallerPrincipal() Test Failed!", e);
+        // this should throw an exception
+        try {
+            UserTransaction ut = mdc.getUserTransaction();
+
+            TestUtil.logErr("CMT MDB getUserTransaction() Test Failed!");
+        } catch (java.lang.IllegalStateException e) {
+            TestUtil.logTrace("CMT MDB getUserTransaction() Test Succeeded!");
+            TestUtil.logTrace("Got expected IllegalStateException");
+            result = true;
+        } catch (Exception e) {
+            TestUtil.logErr("Unexpected exception: ", e);
+        }
+        // send a message to MDB_QUEUE_REPLY.
+        JmsUtil.sendTestResults(testName, result, qSession, queueR);
     }
-    // send a message to MDB_QUEUE_REPLY.
-    JmsUtil.sendTestResults(testName, result, qSession, queueR);
-  }
 
-  public void runGetEJBHome(Message msg, QueueSession qSession,
-      String testName) {
-    result = false;
+    public void runGetCallerPrincipal(Message msg, QueueSession qSession, String testName) {
+        result = false;
 
-    // this should throw an exception
-    try {
-      EJBHome home = mdc.getEJBHome();
-
-      TestUtil.logErr("CMT MDB getEJBHome() Test Failed!");
-    } catch (java.lang.IllegalStateException e) {
-      TestUtil.logTrace("CMT MDB getEJBHome() Test Succeeded!");
-      TestUtil.logTrace("Got expected IllegalStateException");
-      result = true;
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception: ", e);
+        try {
+            Principal cp = mdc.getCallerPrincipal();
+            TestUtil.logTrace("CMT MDB getCallerPrincipal() Test Succeeded!");
+            result = true;
+        } catch (Exception e) {
+            TestUtil.logErr("CMT MDB getCallerPrincipal() Test Failed!", e);
+        }
+        // send a message to MDB_QUEUE_REPLY.
+        JmsUtil.sendTestResults(testName, result, qSession, queueR);
     }
-    // send a message to MDB_QUEUE_REPLY.
-    JmsUtil.sendTestResults(testName, result, qSession, queueR);
-  }
 
-  public void runBeginAgain(Message msg, QueueSession qSession,
-      String testName) {
-    try {
+    public void runGetEJBHome(Message msg, QueueSession qSession, String testName) {
+        result = false;
 
-      // get beanManagedTx
-      UserTransaction ut = mdc.getUserTransaction();
+        // this should throw an exception
+        try {
+            EJBHome home = mdc.getEJBHome();
 
-      ut.begin();
-
-      // this should throw an exception
-      try {
-        ut.begin();
-        TestUtil.logErr("BMT MDB getBeginAgain() Test Failed!");
-      } catch (jakarta.transaction.NotSupportedException e) {
-        TestUtil.logTrace("BMT MDB getBeginAgain() Test Succeeded!");
-        TestUtil.logTrace("Got expected NotSupportedException");
-        result = true;
-      }
-      ut.rollback();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception: ", e);
+            TestUtil.logErr("CMT MDB getEJBHome() Test Failed!");
+        } catch (java.lang.IllegalStateException e) {
+            TestUtil.logTrace("CMT MDB getEJBHome() Test Succeeded!");
+            TestUtil.logTrace("Got expected IllegalStateException");
+            result = true;
+        } catch (Exception e) {
+            TestUtil.logErr("Unexpected exception: ", e);
+        }
+        // send a message to MDB_QUEUE_REPLY.
+        JmsUtil.sendTestResults(testName, result, qSession, queueR);
     }
-    // send a message to MDB_QUEUE_REPLY.
-    JmsUtil.sendTestResults(testName, result, qSession, queueR);
-  }
 
+    public void runBeginAgain(Message msg, QueueSession qSession, String testName) {
+        try {
+
+            // get beanManagedTx
+            UserTransaction ut = mdc.getUserTransaction();
+
+            ut.begin();
+
+            // this should throw an exception
+            try {
+                ut.begin();
+                TestUtil.logErr("BMT MDB getBeginAgain() Test Failed!");
+            } catch (jakarta.transaction.NotSupportedException e) {
+                TestUtil.logTrace("BMT MDB getBeginAgain() Test Succeeded!");
+                TestUtil.logTrace("Got expected NotSupportedException");
+                result = true;
+            }
+            ut.rollback();
+        } catch (Exception e) {
+            TestUtil.logErr("Unexpected exception: ", e);
+        }
+        // send a message to MDB_QUEUE_REPLY.
+        JmsUtil.sendTestResults(testName, result, qSession, queueR);
+    }
 }

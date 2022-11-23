@@ -20,172 +20,194 @@
 
 package com.sun.ts.tests.jsp.spec.tagext.resource.listener;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet extends GenericTCKServlet {
 
-  public void testResourceCL(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    boolean passed = true;
+    public void testResourceCL(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        boolean passed = true;
 
-    String[] expected = { "ContextListener contextInitialized",
-        "passed DataSource", "passed QueueConnectionFactory",
-        "passed TopicConnectionFactory", "passed TopicConnectionFactory",
-        "passed ConnectionFactory", "passed Queue", "passed Topic",
-        "passed Session", "passed URL" };
+        String[] expected = {
+            "ContextListener contextInitialized",
+            "passed DataSource",
+            "passed QueueConnectionFactory",
+            "passed TopicConnectionFactory",
+            "passed TopicConnectionFactory",
+            "passed ConnectionFactory",
+            "passed Queue",
+            "passed Topic",
+            "passed Session",
+            "passed URL"
+        };
 
-    ServletConfig config = getServletConfig();
-    ServletContext context = config.getServletContext();
-    Object o = context.getAttribute("ContextListener");
-    if (o != null) {
-      if (o instanceof String) {
-        String actual = (String) o;
-        int i = 0;
-        while (i < 10) {
-          if (!actual.contains(expected[i])) {
+        ServletConfig config = getServletConfig();
+        ServletContext context = config.getServletContext();
+        Object o = context.getAttribute("ContextListener");
+        if (o != null) {
+            if (o instanceof String) {
+                String actual = (String) o;
+                int i = 0;
+                while (i < 10) {
+                    if (!actual.contains(expected[i])) {
+                        passed = false;
+                        pw.println("missing expected=" + expected[i]);
+                    }
+                    i++;
+                }
+                pw.println("actual=" + actual);
+            } else {
+                passed = false;
+                pw.println("Object returned was not and instance of String");
+            }
+        } else {
             passed = false;
-            pw.println("missing expected=" + expected[i]);
-          }
-          i++;
+            pw.println("ContextListener attribute not found");
         }
-        pw.println("actual=" + actual);
-      } else {
-        passed = false;
-        pw.println("Object returned was not and instance of String");
-      }
-    } else {
-      passed = false;
-      pw.println("ContextListener attribute not found");
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
-  }
 
-  public void testResourceCAL(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    boolean passed = true;
+    public void testResourceCAL(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        boolean passed = true;
 
-    String[] expected = { "ContextAttributeListener attributeAdded",
-        "passed DataSource", "passed QueueConnectionFactory",
-        "passed TopicConnectionFactory", "passed TopicConnectionFactory",
-        "passed ConnectionFactory", "passed Queue", "passed Topic",
-        "passed Session", "passed URL" };
+        String[] expected = {
+            "ContextAttributeListener attributeAdded",
+            "passed DataSource",
+            "passed QueueConnectionFactory",
+            "passed TopicConnectionFactory",
+            "passed TopicConnectionFactory",
+            "passed ConnectionFactory",
+            "passed Queue",
+            "passed Topic",
+            "passed Session",
+            "passed URL"
+        };
 
-    ServletConfig config = getServletConfig();
-    ServletContext context = config.getServletContext();
+        ServletConfig config = getServletConfig();
+        ServletContext context = config.getServletContext();
 
-    context.setAttribute("CTSTestContextAttributesListener", "CTS Test");
-    context.setAttribute("CTSTest", "CTS Test");
-    Object o = context.getAttribute("CTSTestContextAttributeListener");
-    if (o != null) {
-      if (o instanceof String) {
-        String actual = (String) o;
-        int i = 0;
-        while (i < 10) {
-          if (!actual.contains(expected[i])) {
+        context.setAttribute("CTSTestContextAttributesListener", "CTS Test");
+        context.setAttribute("CTSTest", "CTS Test");
+        Object o = context.getAttribute("CTSTestContextAttributeListener");
+        if (o != null) {
+            if (o instanceof String) {
+                String actual = (String) o;
+                int i = 0;
+                while (i < 10) {
+                    if (!actual.contains(expected[i])) {
+                        passed = false;
+                        pw.println("missing expected=" + expected[i]);
+                    }
+                    i++;
+                }
+                pw.println("actual=" + actual);
+            } else {
+                passed = false;
+                pw.println("Object returned was not and instance of String");
+            }
+        } else {
             passed = false;
-            pw.println("missing expected=" + expected[i]);
-          }
-          i++;
+            pw.println("CTSTestContextAttributeListener attribute not found");
         }
-        pw.println("actual=" + actual);
-      } else {
-        passed = false;
-        pw.println("Object returned was not and instance of String");
-      }
-    } else {
-      passed = false;
-      pw.println("CTSTestContextAttributeListener attribute not found");
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
-  }
 
-  public void testResourceRL(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    boolean passed = true;
+    public void testResourceRL(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        boolean passed = true;
 
-    String[] expected = { "RequestListener requestInitialized",
-        "passed DataSource", "passed QueueConnectionFactory",
-        "passed TopicConnectionFactory", "passed TopicConnectionFactory",
-        "passed ConnectionFactory", "passed Queue", "passed Topic",
-        "passed Session", "passed URL" };
+        String[] expected = {
+            "RequestListener requestInitialized",
+            "passed DataSource",
+            "passed QueueConnectionFactory",
+            "passed TopicConnectionFactory",
+            "passed TopicConnectionFactory",
+            "passed ConnectionFactory",
+            "passed Queue",
+            "passed Topic",
+            "passed Session",
+            "passed URL"
+        };
 
-    ServletConfig config = getServletConfig();
-    ServletContext context = config.getServletContext();
+        ServletConfig config = getServletConfig();
+        ServletContext context = config.getServletContext();
 
-    Object o = context.getAttribute("CTSTestRequestListener");
-    if (o != null) {
-      if (o instanceof String) {
-        String actual = (String) o;
-        int i = 0;
-        while (i < 10) {
-          if (!actual.contains(expected[i])) {
+        Object o = context.getAttribute("CTSTestRequestListener");
+        if (o != null) {
+            if (o instanceof String) {
+                String actual = (String) o;
+                int i = 0;
+                while (i < 10) {
+                    if (!actual.contains(expected[i])) {
+                        passed = false;
+                        pw.println("missing expected=" + expected[i]);
+                    }
+                    i++;
+                }
+                pw.println("actual=" + actual);
+            } else {
+                passed = false;
+                pw.println("Object returned was not and instance of String");
+            }
+        } else {
+            pw.println("CTSTestRequestListener attribute not found");
             passed = false;
-            pw.println("missing expected=" + expected[i]);
-          }
-          i++;
         }
-        pw.println("actual=" + actual);
-      } else {
-        passed = false;
-        pw.println("Object returned was not and instance of String");
-      }
-    } else {
-      pw.println("CTSTestRequestListener attribute not found");
-      passed = false;
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
-  }
 
-  public void testResourceRAL(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    boolean passed = true;
+    public void testResourceRAL(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        boolean passed = true;
 
-    String[] expected = { "RequestAttributeListener attributeAdded",
-        "passed DataSource", "passed QueueConnectionFactory",
-        "passed TopicConnectionFactory", "passed TopicConnectionFactory",
-        "passed ConnectionFactory", "passed Queue", "passed Topic",
-        "passed Session", "passed URL" };
+        String[] expected = {
+            "RequestAttributeListener attributeAdded",
+            "passed DataSource",
+            "passed QueueConnectionFactory",
+            "passed TopicConnectionFactory",
+            "passed TopicConnectionFactory",
+            "passed ConnectionFactory",
+            "passed Queue",
+            "passed Topic",
+            "passed Session",
+            "passed URL"
+        };
 
-    request.setAttribute("CTSTEST", "CTSTEST");
+        request.setAttribute("CTSTEST", "CTSTEST");
 
-    ServletConfig config = getServletConfig();
-    ServletContext context = config.getServletContext();
+        ServletConfig config = getServletConfig();
+        ServletContext context = config.getServletContext();
 
-    Object o = context.getAttribute("CTSTestRequestAttributeListener");
-    if (o != null) {
-      if (o instanceof String) {
-        String actual = (String) o;
-        int i = 0;
-        while (i < 10) {
-          if (!actual.contains(expected[i])) {
+        Object o = context.getAttribute("CTSTestRequestAttributeListener");
+        if (o != null) {
+            if (o instanceof String) {
+                String actual = (String) o;
+                int i = 0;
+                while (i < 10) {
+                    if (!actual.contains(expected[i])) {
+                        passed = false;
+                        pw.println("missing expected=" + expected[i]);
+                    }
+                    i++;
+                }
+                pw.println("actual=" + actual);
+            } else {
+                passed = false;
+                pw.println("Object returned was not and instance of String");
+            }
+        } else {
             passed = false;
-            pw.println("missing expected=" + expected[i]);
-          }
-          i++;
+            pw.println("CTSTestRequestAttributeListener attribute not found");
         }
-        pw.println("actual=" + actual);
-      } else {
-        passed = false;
-        pw.println("Object returned was not and instance of String");
-      }
-    } else {
-      passed = false;
-      pw.println("CTSTestRequestAttributeListener attribute not found");
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
-  }
 }

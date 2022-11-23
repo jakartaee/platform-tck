@@ -16,10 +16,9 @@
 
 package com.sun.ts.tests.jpa.core.derivedid.ex4a;
 
-import java.io.Serializable;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import java.io.Serializable;
 
 /**
  *
@@ -28,61 +27,59 @@ import jakarta.persistence.Id;
 @Entity
 public class DID4Person implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Id
-  private String ssn;
+    @Id
+    private String ssn;
 
-  private String name;
+    private String name;
 
-  public DID4Person() {
-  }
+    public DID4Person() {}
 
-  public DID4Person(String ssn, String name) {
-    this.ssn = ssn;
-    this.name = name;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getSsn() {
-    return ssn;
-  }
-
-  public void setSsn(String ssn) {
-    this.ssn = ssn;
-  }
-
-  @Override
-  public int hashCode() {
-    int hash = 0;
-    hash += (ssn != null ? ssn.hashCode() : 0);
-    return hash;
-  }
-
-  @Override
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the ssn fields are not
-    // set
-    if (!(object instanceof DID4Person)) {
-      return false;
+    public DID4Person(String ssn, String name) {
+        this.ssn = ssn;
+        this.name = name;
     }
-    DID4Person other = (DID4Person) object;
-    if ((this.ssn == null && other.ssn != null)
-        || (this.ssn != null && !this.ssn.equals(other.ssn))) {
-      return false;
-    }
-    return true;
-  }
 
-  @Override
-  public String toString() {
-    return "derivedssn4.DID4Person[ssn=" + ssn + "]";
-  }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSsn() {
+        return ssn;
+    }
+
+    public void setSsn(String ssn) {
+        this.ssn = ssn;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (ssn != null ? ssn.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the ssn fields are not
+        // set
+        if (!(object instanceof DID4Person)) {
+            return false;
+        }
+        DID4Person other = (DID4Person) object;
+        if ((this.ssn == null && other.ssn != null) || (this.ssn != null && !this.ssn.equals(other.ssn))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "derivedssn4.DID4Person[ssn=" + ssn + "]";
+    }
 }

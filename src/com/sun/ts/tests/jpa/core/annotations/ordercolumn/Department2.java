@@ -16,8 +16,6 @@
 
 package com.sun.ts.tests.jpa.core.annotations.ordercolumn;
 
-import java.util.List;
-
 import jakarta.persistence.Access;
 import jakarta.persistence.AccessType;
 import jakarta.persistence.Column;
@@ -26,87 +24,86 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OrderColumn;
 import jakarta.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "DEPARTMENT")
 @Access(AccessType.FIELD)
 public class Department2 implements java.io.Serializable {
 
-  @Id
-  @Column(name = "ID")
-  private int id;
+    @Id
+    @Column(name = "ID")
+    private int id;
 
-  @Column(name = "NAME")
-  private String name;
+    @Column(name = "NAME")
+    private String name;
 
-  @OneToMany(mappedBy = "department")
-  @OrderColumn()
-  private List<Employee2> employees;
+    @OneToMany(mappedBy = "department")
+    @OrderColumn()
+    private List<Employee2> employees;
 
-  public Department2() {
-  }
+    public Department2() {}
 
-  public Department2(int id, String name) {
-    this.id = id;
-    this.name = name;
-  }
-
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public List<Employee2> getEmployees() {
-    return employees;
-  }
-
-  public void setEmployees(List<Employee2> employees) {
-    this.employees = employees;
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", first: " + getName());
-    result.append("]");
-    return result.toString();
-  }
-
-  public boolean equals(Object o) {
-    Department2 other;
-    boolean result = false;
-
-    if (!(o instanceof Department2)) {
-      return result;
-    }
-    other = (Department2) o;
-
-    if (this.getId() == other.getId()
-        && this.getName().equals(other.getName())) {
-      result = true;
+    public Department2(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
-    return result;
-  }
+    public int getId() {
+        return id;
+    }
 
-  public int hashCode() {
-    int myHash;
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    myHash = this.getId() + this.getName().hashCode();
+    public String getName() {
+        return name;
+    }
 
-    return myHash;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Employee2> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee2> employees) {
+        this.employees = employees;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getId());
+        result.append(", first: " + getName());
+        result.append("]");
+        return result.toString();
+    }
+
+    public boolean equals(Object o) {
+        Department2 other;
+        boolean result = false;
+
+        if (!(o instanceof Department2)) {
+            return result;
+        }
+        other = (Department2) o;
+
+        if (this.getId() == other.getId() && this.getName().equals(other.getName())) {
+            result = true;
+        }
+
+        return result;
+    }
+
+    public int hashCode() {
+        int myHash;
+
+        myHash = this.getId() + this.getName().hashCode();
+
+        return myHash;
+    }
 }

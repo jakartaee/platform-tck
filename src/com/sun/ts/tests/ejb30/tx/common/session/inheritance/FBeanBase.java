@@ -23,25 +23,24 @@ package com.sun.ts.tests.ejb30.tx.common.session.inheritance;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 
-abstract public class FBeanBase implements TxRemoteIF, TxLocalIF {
+public abstract class FBeanBase implements TxRemoteIF, TxLocalIF {
 
-  public FBeanBase() {
-  }
+    public FBeanBase() {}
 
-  @TransactionAttribute(TransactionAttributeType.MANDATORY)
-  public String foo() {
-    return "foo";
-  }
+    @TransactionAttribute(TransactionAttributeType.MANDATORY)
+    public String foo() {
+        return "foo";
+    }
 
-  public String foo(String s) {
-    return s;
-  }
+    public String foo(String s) {
+        return s;
+    }
 
-  public String foo(String s, String ss) {
-    return s + ss;
-  }
+    public String foo(String s, String ss) {
+        return s + ss;
+    }
 
-  public String bar() {
-    return "bar";
-  }
+    public String bar() {
+        return "bar";
+    }
 }

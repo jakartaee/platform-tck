@@ -21,11 +21,15 @@ package com.sun.ts.tests.webservices12.sec.descriptors.servlet.basicSSL;
 
 import jakarta.jws.WebService;
 
-@WebService(portName = "HelloBasicPort", serviceName = "HelloBasicService", targetNamespace = "http://HelloBasic.org", wsdlLocation = "WEB-INF/wsdl/HelloBasic.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.sec.descriptors.servlet.basicSSL.HelloBasic")
-
+@WebService(
+        portName = "HelloBasicPort",
+        serviceName = "HelloBasicService",
+        targetNamespace = "http://HelloBasic.org",
+        wsdlLocation = "WEB-INF/wsdl/HelloBasic.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices12.sec.descriptors.servlet.basicSSL.HelloBasic")
 public class HelloBasicImpl implements HelloBasic {
 
-  public String sayHelloBasic(String input) {
-    return "'" + input + "' from HelloBasicImpl!";
-  }
+    public String sayHelloBasic(String input) {
+        return "'" + input + "' from HelloBasicImpl!";
+    }
 }

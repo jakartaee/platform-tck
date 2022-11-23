@@ -19,14 +19,12 @@
  */
 package com.sun.ts.tests.ejb30.lite.singleton.lifecycle.interceptor;
 
-import java.util.Vector;
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBException;
+import java.util.Vector;
+import java.util.logging.Level;
 
 /**
  * Interceptors of singleton beans have the same lifecycle behavior as that
@@ -35,140 +33,133 @@ import jakarta.ejb.EJBException;
  * common practice for them to be unique.
  */
 public class Client extends EJBLiteClientBase {
-  private static final int NUM_OF_CONCURRENT_REQUESTS = 1000;
+    private static final int NUM_OF_CONCURRENT_REQUESTS = 1000;
 
-  private static final String[] INTERCEPTORS = new String[] {
-      Interceptor0.class.getSimpleName(), Interceptor1.class.getSimpleName(),
-      Interceptor2.class.getSimpleName(), Interceptor3.class.getSimpleName() };
+    private static final String[] INTERCEPTORS = new String[] {
+        Interceptor0.class.getSimpleName(), Interceptor1.class.getSimpleName(),
+        Interceptor2.class.getSimpleName(), Interceptor3.class.getSimpleName()
+    };
 
-  @EJB(name = "ejb/aSingleton", beanName = "ASingletonBean")
-  private ASingletonBean aSingleton; // no interface
+    @EJB(name = "ejb/aSingleton", beanName = "ASingletonBean")
+    private ASingletonBean aSingleton; // no interface
 
-  @EJB(name = "ejb/cSingleton", beanName = "CSingletonBean")
-  private CSingletonIF cSingleton; // c interface 1
+    @EJB(name = "ejb/cSingleton", beanName = "CSingletonBean")
+    private CSingletonIF cSingleton; // c interface 1
 
-  @EJB(name = "ejb/c2Singleton", beanName = "CSingletonBean")
-  private C2SingletonIF c2Singleton; // c interface 2
+    @EJB(name = "ejb/c2Singleton", beanName = "CSingletonBean")
+    private C2SingletonIF c2Singleton; // c interface 2
 
-  /*
-   * @testName: sameInterceptorInstanceA
-   * 
-   * @test_Strategy: Only 1 instance of each interceptor is associated with
-   * ASingletonBean.
-   */
-  public void sameInterceptorInstanceA() {
-    for (String i : INTERCEPTORS) {
-      sameInterceptorInstance(aSingleton, i);
-    }
-  }
-
-  /*
-   * @testName: sameInterceptorInstanceC
-   * 
-   * @test_Strategy: Only 1 instance of each interceptor is associated with
-   * CSingletonBean.
-   */
-  public void sameInterceptorInstanceC() {
-    for (String i : INTERCEPTORS) {
-      sameInterceptorInstance(cSingleton, i, c2Singleton.identityHashCode(i));
-    } // use c2's interceptor as the expected id for c
-
-  }
-
-  /*
-   * @testName: noDestructionAfterSystemExceptionA
-   * 
-   * @test_Strategy: interceptors are not destructed after system exception.
-   */
-  public void noDestructionAfterSystemExceptionA() {
-    for (String i : INTERCEPTORS) {
-      noDestructionAfterSystemException(aSingleton, i);
-    }
-  }
-
-  /*
-   * @testName: noDestructionAfterSystemExceptionC
-   * 
-   * @test_Strategy: interceptors are not destructed after system exception.
-   */
-  public void noDestructionAfterSystemExceptionC() {
-    for (CommonSingletonIF b : new CommonSingletonIF[] { c2Singleton,
-        cSingleton }) {
-      for (String i : INTERCEPTORS) {
-        noDestructionAfterSystemException(b, i);
-      }
-    }
-  }
-
-  /*
-   * @testName: differentInterceptorInstance
-   * 
-   * @test_Strategy: interceptors are not shared between beans
-   */
-  public void differentInterceptorInstance() {
-    appendReason(
-        "Check different interceptor instances of the same type associated with different singletons.");
-    for (String i : INTERCEPTORS) {
-      assertNotEquals(null, aSingleton.identityHashCode(i),
-          cSingleton.identityHashCode(i));
-      assertNotEquals(null, aSingleton.identityHashCode(i),
-          c2Singleton.identityHashCode(i));
-    }
-  }
-
-  private void noDestructionAfterSystemException(final CommonSingletonIF b,
-      final String interceptorName) {
-    int id1 = b.identityHashCode(interceptorName);
-    try {
-      b.error(interceptorName);
-    } catch (EJBException e) {
-      Throwable cause = e.getCausedByException();
-      if (cause instanceof IllegalStateException) {
-        throw new RuntimeException(
-            "Expecting a RuntimeException from one of the interceptors, but got IllegalStateException from bean class"
-                + cause.getMessage());
-      } else {
-        appendReason(
-            "Got expected RuntimeException from one of the interceptors");
-      }
-    }
-    int id2 = b.identityHashCode(interceptorName);
-    assertEquals("Check ids for interceptor " + interceptorName, id1, id2);
-  }
-
-  private void sameInterceptorInstance(final CommonSingletonIF b,
-      final String interceptorName, final int... expectedVals) {
-    Thread[] threads = new Thread[NUM_OF_CONCURRENT_REQUESTS];
-    final Vector<Integer> ids = new Vector<Integer>();
-    for (int i = 0; i < NUM_OF_CONCURRENT_REQUESTS; i++) {
-      threads[i] = new Thread(new Runnable() {
-        public void run() {
-          ids.add(b.identityHashCode(interceptorName));
+    /*
+     * @testName: sameInterceptorInstanceA
+     *
+     * @test_Strategy: Only 1 instance of each interceptor is associated with
+     * ASingletonBean.
+     */
+    public void sameInterceptorInstanceA() {
+        for (String i : INTERCEPTORS) {
+            sameInterceptorInstance(aSingleton, i);
         }
-      });
-      threads[i].start();
-    }
-    for (Thread t : threads) {
-      try {
-        t.join();
-      } catch (InterruptedException ex) {
-        Helper.getLogger().log(Level.SEVERE, null, ex);
-      }
-    }
-    assertEquals("Checking # of ids. ", NUM_OF_CONCURRENT_REQUESTS, ids.size());
-
-    int expected;
-    if (expectedVals.length == 0) {
-      expected = b.identityHashCode(interceptorName);
-    } else {
-      expected = expectedVals[0];
     }
 
-    for (int i : ids) {
-      if (i != expected) {// only report failure
-        assertEquals("Compare id for interceptor " + interceptorName, expected,
-            i);
-      }
+    /*
+     * @testName: sameInterceptorInstanceC
+     *
+     * @test_Strategy: Only 1 instance of each interceptor is associated with
+     * CSingletonBean.
+     */
+    public void sameInterceptorInstanceC() {
+        for (String i : INTERCEPTORS) {
+            sameInterceptorInstance(cSingleton, i, c2Singleton.identityHashCode(i));
+        } // use c2's interceptor as the expected id for c
     }
-  }
+
+    /*
+     * @testName: noDestructionAfterSystemExceptionA
+     *
+     * @test_Strategy: interceptors are not destructed after system exception.
+     */
+    public void noDestructionAfterSystemExceptionA() {
+        for (String i : INTERCEPTORS) {
+            noDestructionAfterSystemException(aSingleton, i);
+        }
+    }
+
+    /*
+     * @testName: noDestructionAfterSystemExceptionC
+     *
+     * @test_Strategy: interceptors are not destructed after system exception.
+     */
+    public void noDestructionAfterSystemExceptionC() {
+        for (CommonSingletonIF b : new CommonSingletonIF[] {c2Singleton, cSingleton}) {
+            for (String i : INTERCEPTORS) {
+                noDestructionAfterSystemException(b, i);
+            }
+        }
+    }
+
+    /*
+     * @testName: differentInterceptorInstance
+     *
+     * @test_Strategy: interceptors are not shared between beans
+     */
+    public void differentInterceptorInstance() {
+        appendReason("Check different interceptor instances of the same type associated with different singletons.");
+        for (String i : INTERCEPTORS) {
+            assertNotEquals(null, aSingleton.identityHashCode(i), cSingleton.identityHashCode(i));
+            assertNotEquals(null, aSingleton.identityHashCode(i), c2Singleton.identityHashCode(i));
+        }
+    }
+
+    private void noDestructionAfterSystemException(final CommonSingletonIF b, final String interceptorName) {
+        int id1 = b.identityHashCode(interceptorName);
+        try {
+            b.error(interceptorName);
+        } catch (EJBException e) {
+            Throwable cause = e.getCausedByException();
+            if (cause instanceof IllegalStateException) {
+                throw new RuntimeException(
+                        "Expecting a RuntimeException from one of the interceptors, but got IllegalStateException from bean class"
+                                + cause.getMessage());
+            } else {
+                appendReason("Got expected RuntimeException from one of the interceptors");
+            }
+        }
+        int id2 = b.identityHashCode(interceptorName);
+        assertEquals("Check ids for interceptor " + interceptorName, id1, id2);
+    }
+
+    private void sameInterceptorInstance(
+            final CommonSingletonIF b, final String interceptorName, final int... expectedVals) {
+        Thread[] threads = new Thread[NUM_OF_CONCURRENT_REQUESTS];
+        final Vector<Integer> ids = new Vector<Integer>();
+        for (int i = 0; i < NUM_OF_CONCURRENT_REQUESTS; i++) {
+            threads[i] = new Thread(new Runnable() {
+                public void run() {
+                    ids.add(b.identityHashCode(interceptorName));
+                }
+            });
+            threads[i].start();
+        }
+        for (Thread t : threads) {
+            try {
+                t.join();
+            } catch (InterruptedException ex) {
+                Helper.getLogger().log(Level.SEVERE, null, ex);
+            }
+        }
+        assertEquals("Checking # of ids. ", NUM_OF_CONCURRENT_REQUESTS, ids.size());
+
+        int expected;
+        if (expectedVals.length == 0) {
+            expected = b.identityHashCode(interceptorName);
+        } else {
+            expected = expectedVals[0];
+        }
+
+        for (int i : ids) {
+            if (i != expected) { // only report failure
+                assertEquals("Compare id for interceptor " + interceptorName, expected, i);
+            }
+        }
+    }
 }

@@ -23,36 +23,36 @@ import jakarta.mail.Session;
 @ApplicationScoped
 public class BeanResource {
 
-  /*
-   * Since this bean is app-scoped, these resource references need to have a
-   * name in the java:app namespace; we can't use the default name.
-   */
+    /*
+     * Since this bean is app-scoped, these resource references need to have a
+     * name in the java:app namespace; we can't use the default name.
+     */
 
-  @Resource(name = "java:app/env/compSession", lookup = "java:comp/env/ResourceCompTestServlet_MailSession")
-  private Session compSession;
+    @Resource(name = "java:app/env/compSession", lookup = "java:comp/env/ResourceCompTestServlet_MailSession")
+    private Session compSession;
 
-  @Resource(name = "java:app/env/moduleSession", lookup = "java:module/env/ResourceModuleTestServlet_MailSession")
-  private Session moduleSession;
+    @Resource(name = "java:app/env/moduleSession", lookup = "java:module/env/ResourceModuleTestServlet_MailSession")
+    private Session moduleSession;
 
-  @Resource(name = "java:app/env/appSession", lookup = "java:app/env/ResourceAppTestServlet_MailSession")
-  private Session appSession;
+    @Resource(name = "java:app/env/appSession", lookup = "java:app/env/ResourceAppTestServlet_MailSession")
+    private Session appSession;
 
-  @Resource(name = "java:app/env/globalSession", lookup = "java:global/env/ResourceGlobalTestServlet_MailSession")
-  private Session globalSession;
+    @Resource(name = "java:app/env/globalSession", lookup = "java:global/env/ResourceGlobalTestServlet_MailSession")
+    private Session globalSession;
 
-  public Session getCompSession() {
-    return compSession;
-  }
+    public Session getCompSession() {
+        return compSession;
+    }
 
-  public Session getModuleSession() {
-    return moduleSession;
-  }
+    public Session getModuleSession() {
+        return moduleSession;
+    }
 
-  public Session getAppSession() {
-    return appSession;
-  }
+    public Session getAppSession() {
+        return appSession;
+    }
 
-  public Session getGlobalSession() {
-    return globalSession;
-  }
+    public Session getGlobalSession() {
+        return globalSession;
+    }
 }

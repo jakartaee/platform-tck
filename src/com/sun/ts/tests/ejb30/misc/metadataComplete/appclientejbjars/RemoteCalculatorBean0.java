@@ -20,47 +20,42 @@
 
 package com.sun.ts.tests.ejb30.misc.metadataComplete.appclientejbjars;
 
-
 import com.sun.ts.tests.ejb30.common.calc.BaseRemoteCalculator;
 import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.EJBException;
 
-abstract public class RemoteCalculatorBean0 extends BaseRemoteCalculator
-    implements RemoteCalculator {
+public abstract class RemoteCalculatorBean0 extends BaseRemoteCalculator implements RemoteCalculator {
 
-  public RemoteCalculatorBean0() {
-  }
+    public RemoteCalculatorBean0() {}
 
-  abstract protected EJBContext getEJBContext();
+    protected abstract EJBContext getEJBContext();
 
-  @PostConstruct // to be ignored
-  public void postConstruct0() {
-    throw new IllegalStateException("Should not get here. Annotations in the "
-        + "bean class should not be processed, since the descriptor is "
-        + "metadata-complete.");
-  }
-
-  @PreDestroy // to be ignored
-  public void preDestroy0() {
-    throw new IllegalStateException("Should not get here. Annotations in the "
-        + "bean class should not be processed, since the descriptor is "
-        + "metadata-complete.");
-  }
-
-  @Override
-  public int remoteAdd(int a, int b) {
-    if (getEJBContext() != null) {
-      throw new EJBException("SessionContext is not null: " + getEJBContext()
-          + ".  It should not be injected since this ejb-jar is marked"
-          + " as metadata-complete.");
+    @PostConstruct // to be ignored
+    public void postConstruct0() {
+        throw new IllegalStateException("Should not get here. Annotations in the "
+                + "bean class should not be processed, since the descriptor is "
+                + "metadata-complete.");
     }
-    int retValue;
-    retValue = super.remoteAdd(a, b);
-    return retValue;
-  }
 
+    @PreDestroy // to be ignored
+    public void preDestroy0() {
+        throw new IllegalStateException("Should not get here. Annotations in the "
+                + "bean class should not be processed, since the descriptor is "
+                + "metadata-complete.");
+    }
+
+    @Override
+    public int remoteAdd(int a, int b) {
+        if (getEJBContext() != null) {
+            throw new EJBException("SessionContext is not null: " + getEJBContext()
+                    + ".  It should not be injected since this ejb-jar is marked"
+                    + " as metadata-complete.");
+        }
+        int retValue;
+        retValue = super.remoteAdd(a, b);
+        return retValue;
+    }
 }

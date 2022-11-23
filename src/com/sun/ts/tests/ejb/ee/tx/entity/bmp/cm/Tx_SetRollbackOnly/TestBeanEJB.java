@@ -20,8 +20,6 @@
 
 package com.sun.ts.tests.ejb.ee.tx.entity.bmp.cm.Tx_SetRollbackOnly;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
@@ -29,435 +27,400 @@ import com.sun.ts.tests.ejb.ee.tx.txEbean.AppException;
 import com.sun.ts.tests.ejb.ee.tx.txEbean.TxEBean;
 import com.sun.ts.tests.ejb.ee.tx.txEbean.TxEBeanEJB;
 import com.sun.ts.tests.ejb.ee.tx.txEbean.TxEBeanHome;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
 import jakarta.transaction.TransactionRequiredException;
+import java.util.Properties;
 
 public class TestBeanEJB implements SessionBean {
 
-  // testProps represent the test specific properties passed in
-  // from the test harness.
-  private Properties testProps = null;
+    // testProps represent the test specific properties passed in
+    // from the test harness.
+    private Properties testProps = null;
 
-  // The TSNamingContext abstracts away the underlying distribution protocol.
-  private TSNamingContext jctx = null;
+    // The TSNamingContext abstracts away the underlying distribution protocol.
+    private TSNamingContext jctx = null;
 
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  // The TxEBean variables
-  private static final String txEBeanRequired = "java:comp/env/ejb/TxRequired";
+    // The TxEBean variables
+    private static final String txEBeanRequired = "java:comp/env/ejb/TxRequired";
 
-  private static final String txEBeanMandatory = "java:comp/env/ejb/Mandatory";
+    private static final String txEBeanMandatory = "java:comp/env/ejb/Mandatory";
 
-  private static final String txEBeanTxRequiresNew = "java:comp/env/ejb/TxRequiresNew";
+    private static final String txEBeanTxRequiresNew = "java:comp/env/ejb/TxRequiresNew";
 
-  private TxEBeanHome beanHome = null;
+    private TxEBeanHome beanHome = null;
 
-  // Table Name variables
-  private String tName1 = null;
+    // Table Name variables
+    private String tName1 = null;
 
-  // The requiredEJB methods
-  public void ejbCreate() throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-  }
-
-  public void ejbCreate(Properties p) throws CreateException {
-    TestUtil.logTrace("ejbCreate w/Properties");
-
-    try {
-      initLogging(p);
-      TestUtil.logTrace("Call to initLogging DONE");
-    } catch (Exception e) {
-      TestUtil.logErr("Exception from initLogging - TestBean:" + e.getMessage(),
-          e);
+    // The requiredEJB methods
+    public void ejbCreate() throws CreateException {
+        TestUtil.logTrace("ejbCreate");
     }
 
-    try {
-      TestUtil.logMsg("Getting Naming Context");
-      jctx = new TSNamingContext();
+    public void ejbCreate(Properties p) throws CreateException {
+        TestUtil.logTrace("ejbCreate w/Properties");
 
-      // Get the table names
-      this.tName1 = TestUtil
-          .getTableName(TestUtil.getProperty("TxEBean_Delete"));
-      TestUtil.logTrace("tName1: " + this.tName1);
-
-    } catch (Exception e) {
-      TestUtil.logErr("Create exception: " + e.getMessage(), e);
-    }
-  }
-
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  // ===========================================================
-  // TestBean interface (our business methods)
-
-  public boolean test1() {
-    TestUtil.logMsg("test1");
-    TestUtil
-        .logMsg("Mark a transaction involving an entity EJB for rollback, in a "
-            + "Required case");
-
-    TxEBean beanRef;
-    beanRef = null;
-
-    boolean testResult = false;
-    boolean b1;
-    b1 = false;
-
-    String expName = "TS";
-
-    String tempName1, origName;
-    tempName1 = null;
-    origName = tName1 + "-1";
-
-    try {
-      TestUtil.logTrace(
-          "Looking up the TxEBean Home interface of " + txEBeanRequired);
-      beanHome = (TxEBeanHome) jctx.lookup(txEBeanRequired, TxEBeanHome.class);
-
-      TestUtil.logTrace("Creating EJB instances of " + txEBeanRequired);
-      beanRef = (TxEBean) beanHome.create(tName1, 1, origName, (float) 1,
-          testProps);
-      TestUtil.logTrace("Entity EJB objects created!");
-
-      try {
-        TestUtil.logTrace("Updating the Brand Name with Rollback");
-        b1 = beanRef.updateBrandNameRB(expName, TxEBeanEJB.FLAGROLLBACK);
-        if (b1) {
-          TestUtil.logMsg("Tx was rolledback as expected");
-        } else
-          TestUtil.logMsg("Tx was NOT rolledback as expected");
-      } catch (Exception rb) {
-        TestUtil.logErr(
-            "Exception rolling back the transaction" + rb.getMessage(), rb);
-      }
-
-      if (b1) {
-        testResult = true;
-        TestUtil.logMsg("The transaction rollback was successful");
-      } else {
-        TestUtil.logMsg("The transaction rollback failed");
-      }
-      TestUtil.logMsg("test1 completed");
-      return testResult;
-
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception caught: " + e.getMessage(), e);
-      throw new EJBException(e.getMessage());
-    } finally {
-      // cleanup the bean (will remove the DB row entry!)
-      try {
-        if (beanRef != null) {
-          beanRef.remove();
+        try {
+            initLogging(p);
+            TestUtil.logTrace("Call to initLogging DONE");
+        } catch (Exception e) {
+            TestUtil.logErr("Exception from initLogging - TestBean:" + e.getMessage(), e);
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing beanRef: " + e.getMessage(), e);
-      }
-    }
-  }
 
-  public boolean test2() {
-    TestUtil.logMsg("test2");
-    TestUtil
-        .logMsg("Mark a transaction involving an entity EJB for rollback, in a "
-            + "Required case");
+        try {
+            TestUtil.logMsg("Getting Naming Context");
+            jctx = new TSNamingContext();
 
-    TxEBean beanRef;
-    beanRef = null;
+            // Get the table names
+            this.tName1 = TestUtil.getTableName(TestUtil.getProperty("TxEBean_Delete"));
+            TestUtil.logTrace("tName1: " + this.tName1);
 
-    boolean testResult = false;
-    boolean b1, b2;
-    b1 = b2 = false;
-
-    String expName = "TS";
-
-    String tempName1, origName;
-    tempName1 = null;
-    origName = tName1 + "-1";
-
-    try {
-      TestUtil.logTrace(
-          "Looking up the TxEBean Home interface of " + txEBeanRequired);
-      beanHome = (TxEBeanHome) jctx.lookup(txEBeanRequired, TxEBeanHome.class);
-
-      TestUtil.logTrace("Creating EJB instances of " + txEBeanRequired);
-      beanRef = (TxEBean) beanHome.create(tName1, 1, origName, (float) 1,
-          testProps);
-      TestUtil.logTrace("Entity EJB objects created!");
-
-      try {
-        beanRef.updateBrandName(expName,
-            TxEBeanEJB.FLAGAPPEXCEPTIONWITHROLLBACK);
-        TestUtil.logMsg("Expected AppException did not occur");
-      } catch (AppException ae) {
-        TestUtil.logMsg("AppException received as expected");
-        b1 = true;
-      }
-
-      TestUtil
-          .logTrace("Verifying the transaction is rolledback on method return");
-      tempName1 = beanRef.getDbBrandName();
-      if (tempName1.equals(origName))
-        b2 = true;
-      TestUtil.logMsg("DB Brand Name is " + tempName1);
-
-      if (!b2) {
-        TestUtil.logMsg("Brand Name DB value did not match expected value");
-        TestUtil.logMsg("Expected: " + origName + ", Actual: " + tempName1);
-      }
-
-      if (b1 && b2) {
-        testResult = true;
-        TestUtil.logMsg("The transaction rollback was successful");
-      } else {
-        TestUtil.logMsg("The transaction rollback failed");
-      }
-      TestUtil.logMsg("test2 completed");
-      return testResult;
-
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception caught: " + e.getMessage());
-      throw new EJBException(e.getMessage());
-    } finally {
-      // cleanup the bean (will remove the DB row entry!)
-      try {
-        if (beanRef != null) {
-          beanRef.remove();
+        } catch (Exception e) {
+            TestUtil.logErr("Create exception: " + e.getMessage(), e);
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing beanRef: " + e.getMessage(), e);
-      }
     }
-  }
 
-  public boolean test5() {
-    TestUtil.logMsg("test5");
-    TestUtil
-        .logMsg("Mark a transaction involving an entity EJB for rollback, in a "
-            + "Mandatory case");
+    public void setSessionContext(SessionContext sc) {
+        TestUtil.logTrace("setSessionContext");
+        this.sctx = sc;
+    }
 
-    TxEBean beanRef;
-    beanRef = null;
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
+    }
 
-    boolean testResult = false;
-    boolean b1;
-    b1 = false;
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
 
-    String expName = "TS";
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
 
-    String tempName1, origName;
-    tempName1 = null;
-    origName = tName1 + "-1";
+    // ===========================================================
+    // TestBean interface (our business methods)
 
-    try {
-      TestUtil.logTrace(
-          "Looking up the TxEBean Home interface of " + txEBeanMandatory);
-      beanHome = (TxEBeanHome) jctx.lookup(txEBeanMandatory, TxEBeanHome.class);
+    public boolean test1() {
+        TestUtil.logMsg("test1");
+        TestUtil.logMsg("Mark a transaction involving an entity EJB for rollback, in a " + "Required case");
 
-      try {
-        TestUtil.logTrace("Creating EJB instances of " + txEBeanMandatory);
-        beanRef = (TxEBean) beanHome.create(tName1, 1, origName, (float) 1,
-            testProps);
-        TestUtil.logTrace("Entity EJB objects created!");
-      } catch (TransactionRequiredException t1) {
-        TestUtil.logMsg("Caught TransactionRequiredException as expected");
-        b1 = true;
-      } catch (Exception e1) {
-        TestUtil.logErr("Unexpected exception caught" + e1.getMessage(), e1);
-      }
+        TxEBean beanRef;
+        beanRef = null;
 
-      if (b1) {
-        testResult = true;
-        TestUtil.logMsg("Exception was handled as expected.");
-      } else {
-        TestUtil.logMsg("Exception was not handled as expected.");
-      }
-      TestUtil.logMsg("test5 completed");
-      return testResult;
+        boolean testResult = false;
+        boolean b1;
+        b1 = false;
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception caught: " + e.getMessage(), e);
-      throw new EJBException(e.getMessage());
-    } finally {
-      // cleanup the bean (will remove the DB row entry!)
-      try {
-        if (beanRef != null) {
-          beanRef.remove();
+        String expName = "TS";
+
+        String tempName1, origName;
+        tempName1 = null;
+        origName = tName1 + "-1";
+
+        try {
+            TestUtil.logTrace("Looking up the TxEBean Home interface of " + txEBeanRequired);
+            beanHome = (TxEBeanHome) jctx.lookup(txEBeanRequired, TxEBeanHome.class);
+
+            TestUtil.logTrace("Creating EJB instances of " + txEBeanRequired);
+            beanRef = (TxEBean) beanHome.create(tName1, 1, origName, (float) 1, testProps);
+            TestUtil.logTrace("Entity EJB objects created!");
+
+            try {
+                TestUtil.logTrace("Updating the Brand Name with Rollback");
+                b1 = beanRef.updateBrandNameRB(expName, TxEBeanEJB.FLAGROLLBACK);
+                if (b1) {
+                    TestUtil.logMsg("Tx was rolledback as expected");
+                } else TestUtil.logMsg("Tx was NOT rolledback as expected");
+            } catch (Exception rb) {
+                TestUtil.logErr("Exception rolling back the transaction" + rb.getMessage(), rb);
+            }
+
+            if (b1) {
+                testResult = true;
+                TestUtil.logMsg("The transaction rollback was successful");
+            } else {
+                TestUtil.logMsg("The transaction rollback failed");
+            }
+            TestUtil.logMsg("test1 completed");
+            return testResult;
+
+        } catch (Exception e) {
+            TestUtil.logErr("Unexpected exception caught: " + e.getMessage(), e);
+            throw new EJBException(e.getMessage());
+        } finally {
+            // cleanup the bean (will remove the DB row entry!)
+            try {
+                if (beanRef != null) {
+                    beanRef.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing beanRef: " + e.getMessage(), e);
+            }
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing beanRef: " + e.getMessage(), e);
-      }
     }
-  }
 
-  public boolean test8() {
-    TestUtil.logMsg("test8");
-    TestUtil
-        .logMsg("Mark a transaction involving an entity EJB for rollback, in a "
-            + "RequiresNew case");
+    public boolean test2() {
+        TestUtil.logMsg("test2");
+        TestUtil.logMsg("Mark a transaction involving an entity EJB for rollback, in a " + "Required case");
 
-    TxEBean beanRef;
-    beanRef = null;
+        TxEBean beanRef;
+        beanRef = null;
 
-    boolean testResult = false;
-    boolean b1;
-    b1 = false;
+        boolean testResult = false;
+        boolean b1, b2;
+        b1 = b2 = false;
 
-    String expName = "TS";
+        String expName = "TS";
 
-    String tempName1, origName;
-    tempName1 = null;
-    origName = tName1 + "-1";
+        String tempName1, origName;
+        tempName1 = null;
+        origName = tName1 + "-1";
 
-    try {
-      TestUtil.logTrace(
-          "Looking up the TxEBean Home interface of " + txEBeanTxRequiresNew);
-      beanHome = (TxEBeanHome) jctx.lookup(txEBeanTxRequiresNew,
-          TxEBeanHome.class);
+        try {
+            TestUtil.logTrace("Looking up the TxEBean Home interface of " + txEBeanRequired);
+            beanHome = (TxEBeanHome) jctx.lookup(txEBeanRequired, TxEBeanHome.class);
 
-      TestUtil.logTrace("Creating EJB instances of " + txEBeanTxRequiresNew);
-      beanRef = (TxEBean) beanHome.create(tName1, 1, origName, (float) 1,
-          testProps);
-      TestUtil.logTrace("Entity EJB objects created!");
+            TestUtil.logTrace("Creating EJB instances of " + txEBeanRequired);
+            beanRef = (TxEBean) beanHome.create(tName1, 1, origName, (float) 1, testProps);
+            TestUtil.logTrace("Entity EJB objects created!");
 
-      try {
-        TestUtil.logTrace("Updating the Brand Name with Rollback");
-        b1 = beanRef.updateBrandNameRB(expName, TxEBeanEJB.FLAGROLLBACK);
-        if (b1) {
-          TestUtil.logMsg("Tx was rolledback as expected");
-        } else
-          TestUtil.logMsg("Tx was NOT rolledback as expected");
-      } catch (Exception rb) {
-        TestUtil.logErr(
-            "Exception rolling back the transaction" + rb.getMessage(), rb);
-      }
+            try {
+                beanRef.updateBrandName(expName, TxEBeanEJB.FLAGAPPEXCEPTIONWITHROLLBACK);
+                TestUtil.logMsg("Expected AppException did not occur");
+            } catch (AppException ae) {
+                TestUtil.logMsg("AppException received as expected");
+                b1 = true;
+            }
 
-      if (b1) {
-        testResult = true;
-        TestUtil.logMsg("The transaction rollback was successful");
-      } else {
-        TestUtil.logMsg("The transaction rollback failed");
-      }
-      TestUtil.logMsg("test8 completed");
-      return testResult;
+            TestUtil.logTrace("Verifying the transaction is rolledback on method return");
+            tempName1 = beanRef.getDbBrandName();
+            if (tempName1.equals(origName)) b2 = true;
+            TestUtil.logMsg("DB Brand Name is " + tempName1);
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception caught: " + e.getMessage(), e);
-      throw new EJBException(e.getMessage());
-    } finally {
-      // cleanup the bean (will remove the DB row entry!)
-      try {
-        if (beanRef != null) {
-          beanRef.remove();
+            if (!b2) {
+                TestUtil.logMsg("Brand Name DB value did not match expected value");
+                TestUtil.logMsg("Expected: " + origName + ", Actual: " + tempName1);
+            }
+
+            if (b1 && b2) {
+                testResult = true;
+                TestUtil.logMsg("The transaction rollback was successful");
+            } else {
+                TestUtil.logMsg("The transaction rollback failed");
+            }
+            TestUtil.logMsg("test2 completed");
+            return testResult;
+
+        } catch (Exception e) {
+            TestUtil.logErr("Unexpected exception caught: " + e.getMessage());
+            throw new EJBException(e.getMessage());
+        } finally {
+            // cleanup the bean (will remove the DB row entry!)
+            try {
+                if (beanRef != null) {
+                    beanRef.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing beanRef: " + e.getMessage(), e);
+            }
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing beanRef: " + e.getMessage(), e);
-      }
     }
-  }
 
-  public boolean test9() {
-    TestUtil.logMsg("test9");
-    TestUtil
-        .logMsg("Mark a transaction involving an entity EJB for rollback, in a "
-            + "RequiresNew case");
+    public boolean test5() {
+        TestUtil.logMsg("test5");
+        TestUtil.logMsg("Mark a transaction involving an entity EJB for rollback, in a " + "Mandatory case");
 
-    TxEBean beanRef;
-    beanRef = null;
+        TxEBean beanRef;
+        beanRef = null;
 
-    boolean testResult = false;
-    boolean b1, b2;
-    b1 = b2 = false;
+        boolean testResult = false;
+        boolean b1;
+        b1 = false;
 
-    String expName = "TS";
+        String expName = "TS";
 
-    String tempName1, origName;
-    tempName1 = null;
-    origName = tName1 + "-1";
+        String tempName1, origName;
+        tempName1 = null;
+        origName = tName1 + "-1";
 
-    try {
-      TestUtil.logTrace(
-          "Looking up the TxEBean Home interface of " + txEBeanTxRequiresNew);
-      beanHome = (TxEBeanHome) jctx.lookup(txEBeanTxRequiresNew,
-          TxEBeanHome.class);
+        try {
+            TestUtil.logTrace("Looking up the TxEBean Home interface of " + txEBeanMandatory);
+            beanHome = (TxEBeanHome) jctx.lookup(txEBeanMandatory, TxEBeanHome.class);
 
-      TestUtil.logTrace("Creating EJB instances of " + txEBeanTxRequiresNew);
-      beanRef = (TxEBean) beanHome.create(tName1, 1, origName, (float) 1,
-          testProps);
-      TestUtil.logTrace("Entity EJB objects created!");
+            try {
+                TestUtil.logTrace("Creating EJB instances of " + txEBeanMandatory);
+                beanRef = (TxEBean) beanHome.create(tName1, 1, origName, (float) 1, testProps);
+                TestUtil.logTrace("Entity EJB objects created!");
+            } catch (TransactionRequiredException t1) {
+                TestUtil.logMsg("Caught TransactionRequiredException as expected");
+                b1 = true;
+            } catch (Exception e1) {
+                TestUtil.logErr("Unexpected exception caught" + e1.getMessage(), e1);
+            }
 
-      try {
-        beanRef.updateBrandName(expName,
-            TxEBeanEJB.FLAGAPPEXCEPTIONWITHROLLBACK);
-        TestUtil.logMsg("Expected AppException did not occur");
-      } catch (AppException ae) {
-        TestUtil.logMsg("AppException received as expected");
-        b1 = true;
-      }
+            if (b1) {
+                testResult = true;
+                TestUtil.logMsg("Exception was handled as expected.");
+            } else {
+                TestUtil.logMsg("Exception was not handled as expected.");
+            }
+            TestUtil.logMsg("test5 completed");
+            return testResult;
 
-      TestUtil
-          .logTrace("Verifying the transaction is rolledback on method return");
-      tempName1 = beanRef.getDbBrandName();
-      if (tempName1.equals(origName))
-        b2 = true;
-      TestUtil.logMsg("DB Brand Name is " + tempName1);
-
-      if (!b2) {
-        TestUtil.logMsg("Brand Name DB value did not match expected value");
-        TestUtil.logMsg("Expected: " + origName + ", Actual: " + tempName1);
-      }
-
-      if (b1 && b2) {
-        testResult = true;
-        TestUtil.logMsg("The transaction rollback was successful");
-      } else {
-        TestUtil.logMsg("The transaction rollback failed");
-      }
-      TestUtil.logMsg("test9 completed");
-      return testResult;
-
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception caught: " + e.getMessage());
-      throw new EJBException(e.getMessage());
-    } finally {
-      // cleanup the bean (will remove the DB row entry!)
-      try {
-        if (beanRef != null) {
-          beanRef.remove();
+        } catch (Exception e) {
+            TestUtil.logErr("Unexpected exception caught: " + e.getMessage(), e);
+            throw new EJBException(e.getMessage());
+        } finally {
+            // cleanup the bean (will remove the DB row entry!)
+            try {
+                if (beanRef != null) {
+                    beanRef.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing beanRef: " + e.getMessage(), e);
+            }
         }
-      } catch (Exception e) {
-        TestUtil.logErr("Exception removing beanRef: " + e.getMessage(), e);
-      }
     }
-  }
 
-  private void initLogging(Properties p) {
-    TestUtil.logTrace("initLogging");
-    this.testProps = p;
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.logErr("RemoteLoggingInitException: " + e.getMessage(), e);
-      throw new EJBException(e.getMessage());
+    public boolean test8() {
+        TestUtil.logMsg("test8");
+        TestUtil.logMsg("Mark a transaction involving an entity EJB for rollback, in a " + "RequiresNew case");
+
+        TxEBean beanRef;
+        beanRef = null;
+
+        boolean testResult = false;
+        boolean b1;
+        b1 = false;
+
+        String expName = "TS";
+
+        String tempName1, origName;
+        tempName1 = null;
+        origName = tName1 + "-1";
+
+        try {
+            TestUtil.logTrace("Looking up the TxEBean Home interface of " + txEBeanTxRequiresNew);
+            beanHome = (TxEBeanHome) jctx.lookup(txEBeanTxRequiresNew, TxEBeanHome.class);
+
+            TestUtil.logTrace("Creating EJB instances of " + txEBeanTxRequiresNew);
+            beanRef = (TxEBean) beanHome.create(tName1, 1, origName, (float) 1, testProps);
+            TestUtil.logTrace("Entity EJB objects created!");
+
+            try {
+                TestUtil.logTrace("Updating the Brand Name with Rollback");
+                b1 = beanRef.updateBrandNameRB(expName, TxEBeanEJB.FLAGROLLBACK);
+                if (b1) {
+                    TestUtil.logMsg("Tx was rolledback as expected");
+                } else TestUtil.logMsg("Tx was NOT rolledback as expected");
+            } catch (Exception rb) {
+                TestUtil.logErr("Exception rolling back the transaction" + rb.getMessage(), rb);
+            }
+
+            if (b1) {
+                testResult = true;
+                TestUtil.logMsg("The transaction rollback was successful");
+            } else {
+                TestUtil.logMsg("The transaction rollback failed");
+            }
+            TestUtil.logMsg("test8 completed");
+            return testResult;
+
+        } catch (Exception e) {
+            TestUtil.logErr("Unexpected exception caught: " + e.getMessage(), e);
+            throw new EJBException(e.getMessage());
+        } finally {
+            // cleanup the bean (will remove the DB row entry!)
+            try {
+                if (beanRef != null) {
+                    beanRef.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing beanRef: " + e.getMessage(), e);
+            }
+        }
     }
-  }
 
+    public boolean test9() {
+        TestUtil.logMsg("test9");
+        TestUtil.logMsg("Mark a transaction involving an entity EJB for rollback, in a " + "RequiresNew case");
+
+        TxEBean beanRef;
+        beanRef = null;
+
+        boolean testResult = false;
+        boolean b1, b2;
+        b1 = b2 = false;
+
+        String expName = "TS";
+
+        String tempName1, origName;
+        tempName1 = null;
+        origName = tName1 + "-1";
+
+        try {
+            TestUtil.logTrace("Looking up the TxEBean Home interface of " + txEBeanTxRequiresNew);
+            beanHome = (TxEBeanHome) jctx.lookup(txEBeanTxRequiresNew, TxEBeanHome.class);
+
+            TestUtil.logTrace("Creating EJB instances of " + txEBeanTxRequiresNew);
+            beanRef = (TxEBean) beanHome.create(tName1, 1, origName, (float) 1, testProps);
+            TestUtil.logTrace("Entity EJB objects created!");
+
+            try {
+                beanRef.updateBrandName(expName, TxEBeanEJB.FLAGAPPEXCEPTIONWITHROLLBACK);
+                TestUtil.logMsg("Expected AppException did not occur");
+            } catch (AppException ae) {
+                TestUtil.logMsg("AppException received as expected");
+                b1 = true;
+            }
+
+            TestUtil.logTrace("Verifying the transaction is rolledback on method return");
+            tempName1 = beanRef.getDbBrandName();
+            if (tempName1.equals(origName)) b2 = true;
+            TestUtil.logMsg("DB Brand Name is " + tempName1);
+
+            if (!b2) {
+                TestUtil.logMsg("Brand Name DB value did not match expected value");
+                TestUtil.logMsg("Expected: " + origName + ", Actual: " + tempName1);
+            }
+
+            if (b1 && b2) {
+                testResult = true;
+                TestUtil.logMsg("The transaction rollback was successful");
+            } else {
+                TestUtil.logMsg("The transaction rollback failed");
+            }
+            TestUtil.logMsg("test9 completed");
+            return testResult;
+
+        } catch (Exception e) {
+            TestUtil.logErr("Unexpected exception caught: " + e.getMessage());
+            throw new EJBException(e.getMessage());
+        } finally {
+            // cleanup the bean (will remove the DB row entry!)
+            try {
+                if (beanRef != null) {
+                    beanRef.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("Exception removing beanRef: " + e.getMessage(), e);
+            }
+        }
+    }
+
+    private void initLogging(Properties p) {
+        TestUtil.logTrace("initLogging");
+        this.testProps = p;
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.logErr("RemoteLoggingInitException: " + e.getMessage(), e);
+            throw new EJBException(e.getMessage());
+        }
+    }
 }

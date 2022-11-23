@@ -21,75 +21,67 @@
 package com.sun.ts.tests.common.connector.whitebox;
 
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
-
 import jakarta.resource.spi.ActivationSpec;
 import jakarta.resource.spi.ResourceAdapter;
 
-public class LocalTxActivationSpec
-    implements ActivationSpec, java.io.Serializable {
+public class LocalTxActivationSpec implements ActivationSpec, java.io.Serializable {
 
-  private String destinationName;
+    private String destinationName;
 
-  private String destinationType;
+    private String destinationType;
 
-  private ResourceAdapter resourceAdapter;
+    private ResourceAdapter resourceAdapter;
 
-  private int counter = 0;
+    private int counter = 0;
 
-  /**
-   * Default constructor.
-   */
-  public LocalTxActivationSpec() {
+    /**
+     * Default constructor.
+     */
+    public LocalTxActivationSpec() {}
 
-  }
+    public String getDestinationName() {
+        System.out.println("LocalTxActivationSpec.getDestinationName :" + this.destinationName);
+        return this.destinationName;
+    }
 
-  public String getDestinationName() {
-    System.out.println(
-        "LocalTxActivationSpec.getDestinationName :" + this.destinationName);
-    return this.destinationName;
-  }
+    public void setDestinationName(String name) {
+        this.destinationName = name;
+        System.out.println("LocalTxActivationSpec.setDestinationName :" + name);
+    }
 
-  public void setDestinationName(String name) {
-    this.destinationName = name;
-    System.out.println("LocalTxActivationSpec.setDestinationName :" + name);
-  }
+    public String getDestinationType() {
+        System.out.println("LocalTxActivationSpec.getDestinationType :" + this.destinationType);
+        return this.destinationType;
+    }
 
-  public String getDestinationType() {
-    System.out.println(
-        "LocalTxActivationSpec.getDestinationType :" + this.destinationType);
-    return this.destinationType;
-  }
+    public void setDestinationType(String type) {
+        System.out.println("LocalTxActivationSpec.setDestinationType :" + type);
+        this.destinationType = type;
+    }
 
-  public void setDestinationType(String type) {
-    System.out.println("LocalTxActivationSpec.setDestinationType :" + type);
-    this.destinationType = type;
-  }
+    @Override
+    public ResourceAdapter getResourceAdapter() {
+        return this.resourceAdapter;
+    }
 
-  @Override
-  public ResourceAdapter getResourceAdapter() {
-    return this.resourceAdapter;
-  }
+    @Override
+    public void setResourceAdapter(ResourceAdapter ra) {
+        counter++;
+        ConnectorStatus.getConnectorStatus().logState("LocalTxActivationSpec setResourceAdapter " + counter);
+        System.out.println("LocalTxActivationSpec.setResourceAdatper called");
+        this.resourceAdapter = ra;
+    }
 
-  @Override
-  public void setResourceAdapter(ResourceAdapter ra) {
-    counter++;
-    ConnectorStatus.getConnectorStatus()
-        .logState("LocalTxActivationSpec setResourceAdapter " + counter);
-    System.out.println("LocalTxActivationSpec.setResourceAdatper called");
-    this.resourceAdapter = ra;
-  }
+    @Override
+    public void validate() {
+        throw new UnsupportedOperationException();
+    }
 
-  @Override
-  public void validate() {
-    throw new UnsupportedOperationException();
-  }
+    public void setCounter(int val) {
+        this.counter = val;
+    }
 
-  public void setCounter(int val) {
-    this.counter = val;
-  }
-
-  public int getCounter() {
-    return this.counter;
-  }
-
+    public int getCounter() {
+        return this.counter;
+    }
 }

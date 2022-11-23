@@ -20,20 +20,19 @@
 
 package com.sun.ts.tests.ejb.ee.tx.entityLocal.bmp.bm.Tx_Single;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
-  public boolean test1() throws RemoteException;
+    public boolean test1() throws RemoteException;
 
-  public boolean test2() throws RemoteException;
+    public boolean test2() throws RemoteException;
 
-  public boolean test3() throws RemoteException;
+    public boolean test3() throws RemoteException;
 
-  public boolean test4() throws RemoteException;
+    public boolean test4() throws RemoteException;
 
-  public boolean test7() throws RemoteException;
+    public boolean test7() throws RemoteException;
 
-  public boolean test8() throws RemoteException;
+    public boolean test8() throws RemoteException;
 }

@@ -25,11 +25,11 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlType(name = "Bozo", namespace = "http://bozo.org/wsdl")
 public class MyFault extends Exception {
 
-  public MyFault(String message) {
-    super(message);
-  }
+    public MyFault(String message) {
+        super(message);
+    }
 
-  public MyFault(String message, Throwable cause) {
-    super(message, cause);
-  }
+    public MyFault(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

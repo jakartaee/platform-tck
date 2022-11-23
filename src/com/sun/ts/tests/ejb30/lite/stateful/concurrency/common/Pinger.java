@@ -23,51 +23,50 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pinger extends Thread {
-  protected Exception exception;
+    protected Exception exception;
 
-  private StatefulConcurrencyIF bean;
+    private StatefulConcurrencyIF bean;
 
-  protected Runnable runnable;
+    protected Runnable runnable;
 
-  public Pinger() {
-  }
+    public Pinger() {}
 
-  public Pinger(StatefulConcurrencyIF bean) {
-    this.bean = bean;
-  }
-
-  public Pinger(Runnable runnable) {
-    super(runnable);
-    this.runnable = runnable;
-  }
-
-  @Override
-  public void run() {
-    if (runnable != null) {
-      try {
-        super.run();
-      } catch (Exception e) {
-        exception = e;
-      }
-      return;
+    public Pinger(StatefulConcurrencyIF bean) {
+        this.bean = bean;
     }
 
-    try {
-      bean.ping();
-    } catch (Exception e) {
-      exception = e;
+    public Pinger(Runnable runnable) {
+        super(runnable);
+        this.runnable = runnable;
     }
-  }
 
-  public Exception getException() {
-    return exception;
-  }
+    @Override
+    public void run() {
+        if (runnable != null) {
+            try {
+                super.run();
+            } catch (Exception e) {
+                exception = e;
+            }
+            return;
+        }
 
-  public static List<Exception> getExceptionAsList(Pinger... pingers) {
-    List<Exception> result = new ArrayList<Exception>();
-    for (Pinger p : pingers) {
-      result.add(p.getException());
+        try {
+            bean.ping();
+        } catch (Exception e) {
+            exception = e;
+        }
     }
-    return result;
-  }
+
+    public Exception getException() {
+        return exception;
+    }
+
+    public static List<Exception> getExceptionAsList(Pinger... pingers) {
+        List<Exception> result = new ArrayList<Exception>();
+        for (Pinger p : pingers) {
+            result.add(p.getException());
+        }
+        return result;
+    }
 }

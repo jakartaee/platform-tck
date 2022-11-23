@@ -24,5 +24,5 @@ import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBLocalHome;
 
 public interface FastPathLocalHome extends EJBLocalHome {
-  public FastPathLocal create() throws CreateException;
+    public FastPathLocal create() throws CreateException;
 }

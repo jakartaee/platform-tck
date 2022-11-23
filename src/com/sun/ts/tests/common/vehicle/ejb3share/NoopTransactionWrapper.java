@@ -22,28 +22,23 @@ package com.sun.ts.tests.common.vehicle.ejb3share;
 
 import jakarta.persistence.EntityTransaction;
 
-final public class NoopTransactionWrapper implements EntityTransaction {
+public final class NoopTransactionWrapper implements EntityTransaction {
 
-  public NoopTransactionWrapper() {
-  }
+    public NoopTransactionWrapper() {}
 
-  public void rollback() {
-  }
+    public void rollback() {}
 
-  public boolean isActive() {
-    return true;
-  }
+    public boolean isActive() {
+        return true;
+    }
 
-  public void commit() {
-  }
+    public void commit() {}
 
-  public void begin() {
-  }
+    public void begin() {}
 
-  public void setRollbackOnly() {
-  }
+    public void setRollbackOnly() {}
 
-  public boolean getRollbackOnly() {
-    return false;
-  }
+    public boolean getRollbackOnly() {
+        return false;
+    }
 }

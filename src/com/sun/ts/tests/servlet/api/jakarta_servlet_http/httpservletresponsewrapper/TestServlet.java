@@ -58,27 +58,23 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpservletresponsewrapper;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.servlet.api.common.response.HttpResponseTestServlet;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpServletResponseWrapper;
+import java.io.IOException;
 
 public class TestServlet extends HttpResponseTestServlet {
 
-  public void init(ServletConfig servletConfig) throws ServletException {
-    super.init(servletConfig);
-  }
+    public void init(ServletConfig servletConfig) throws ServletException {
+        super.init(servletConfig);
+    }
 
-  public void service(HttpServletRequest servletRequest,
-      HttpServletResponse servletResponse)
-      throws ServletException, IOException {
-    HttpServletResponseWrapper wrapper = new HttpServletResponseWrapper(
-        servletResponse);
-    super.service(servletRequest, wrapper);
-  }
+    public void service(HttpServletRequest servletRequest, HttpServletResponse servletResponse)
+            throws ServletException, IOException {
+        HttpServletResponseWrapper wrapper = new HttpServletResponseWrapper(servletResponse);
+        super.service(servletRequest, wrapper);
+    }
 }

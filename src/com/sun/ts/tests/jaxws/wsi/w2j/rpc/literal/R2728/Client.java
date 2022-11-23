@@ -20,80 +20,76 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2728;
 
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.*;
+import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
-
-import com.sun.ts.lib.harness.*;
-
 public class Client extends ServiceEETest {
-  /**
-   * The string to be echoed.
-   */
-  private static final String STRING = "R2728";
+    /**
+     * The string to be echoed.
+     */
+    private static final String STRING = "R2728";
 
-  /**
-   * The client.
-   */
-  private W2JRLR2728Client client;
+    /**
+     * The client.
+     */
+    private W2JRLR2728Client client;
 
-  static W2JRLR2728TestService service = null;
+    static W2JRLR2728TestService service = null;
 
-  /**
-   * Test entry point.
-   * 
-   * @param args
-   *          the command-line arguments.
-   */
-  public static void main(String[] args) {
-    Client client = new Client();
-    Status status = client.run(args, System.out, System.err);
-    status.exit();
-  }
-
-  /**
-   * @class.testArgs: -ap jaxws-url-props.dat
-   * @class.setup_props: webServerHost; webServerPort; platform.mode;
-   *
-   * @param args
-   * @param properties
-   *
-   * @throws Fault
-   */
-  public void setup(String[] args, Properties properties) throws Fault {
-    client = (W2JRLR2728Client) ClientFactory.getClient(W2JRLR2728Client.class,
-        properties, this, service);
-    logMsg("setup ok");
-  }
-
-  public void cleanup() {
-    logMsg("cleanup");
-  }
-
-  /**
-   * @testName: testUseAttributeDefaulting
-   *
-   * @assertion_ids: WSI:SPEC:R2728
-   *
-   * @test_Strategy: The supplied WSDL, containg a soap:fault element without
-   *                 the use="literal" attribute has been used by the
-   *                 WSDL-to-Java tool to generate an end point. If the tool
-   *                 works correctly, the end-point has been built and deployed
-   *                 so it should simply be reachable.
-   *
-   * @throws Fault
-   */
-  public void testUseAttributeDefaulting() throws Fault {
-    String result;
-    try {
-      result = client.echoString(STRING);
-    } catch (Exception e) {
-      throw new Fault("Unable to invoke echoString operation (BP-R2728)", e);
+    /**
+     * Test entry point.
+     *
+     * @param args
+     *          the command-line arguments.
+     */
+    public static void main(String[] args) {
+        Client client = new Client();
+        Status status = client.run(args, System.out, System.err);
+        status.exit();
     }
-    if (!STRING.equals(result)) {
-      throw new Fault("echoString operation returns '" + result
-          + "' in stead of '" + STRING + "' (BP-R2728)");
+
+    /**
+     * @class.testArgs: -ap jaxws-url-props.dat
+     * @class.setup_props: webServerHost; webServerPort; platform.mode;
+     *
+     * @param args
+     * @param properties
+     *
+     * @throws Fault
+     */
+    public void setup(String[] args, Properties properties) throws Fault {
+        client = (W2JRLR2728Client) ClientFactory.getClient(W2JRLR2728Client.class, properties, this, service);
+        logMsg("setup ok");
     }
-  }
+
+    public void cleanup() {
+        logMsg("cleanup");
+    }
+
+    /**
+     * @testName: testUseAttributeDefaulting
+     *
+     * @assertion_ids: WSI:SPEC:R2728
+     *
+     * @test_Strategy: The supplied WSDL, containg a soap:fault element without
+     *                 the use="literal" attribute has been used by the
+     *                 WSDL-to-Java tool to generate an end point. If the tool
+     *                 works correctly, the end-point has been built and deployed
+     *                 so it should simply be reachable.
+     *
+     * @throws Fault
+     */
+    public void testUseAttributeDefaulting() throws Fault {
+        String result;
+        try {
+            result = client.echoString(STRING);
+        } catch (Exception e) {
+            throw new Fault("Unable to invoke echoString operation (BP-R2728)", e);
+        }
+        if (!STRING.equals(result)) {
+            throw new Fault("echoString operation returns '" + result + "' in stead of '" + STRING + "' (BP-R2728)");
+        }
+    }
 }

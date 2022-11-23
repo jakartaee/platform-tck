@@ -17,37 +17,35 @@
 
 package com.sun.ts.tests.websocket.negdep.invalidpathparamtype.srv.onopen;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 import com.sun.ts.tests.websocket.negdep.StringHolder;
-
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
 @ServerEndpoint("/invalid/{arg}")
 public class OnOpenStringHolderServerEndpoint {
-  private String open;
+    private String open;
 
-  @OnMessage
-  public String echo(String echo) {
-    return open + echo;
-  }
+    @OnMessage
+    public String echo(String echo) {
+        return open + echo;
+    }
 
-  @SuppressWarnings("unused")
-  @OnOpen
-  public void onOpen(Session session, @PathParam("arg") StringHolder sb) {
-    open = sb.toString();
-  }
+    @SuppressWarnings("unused")
+    @OnOpen
+    public void onOpen(Session session, @PathParam("arg") StringHolder sb) {
+        open = sb.toString();
+    }
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+    @OnError
+    public void onError(Session session, Throwable thr) throws IOException {
+        thr.printStackTrace(); // Write to error log, too
+        String message = IOUtil.printStackTrace(thr);
+        session.getBasicRemote().sendText(message);
+    }
 }

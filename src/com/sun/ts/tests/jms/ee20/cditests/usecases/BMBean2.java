@@ -16,11 +16,8 @@
 
 package com.sun.ts.tests.jms.ee20.cditests.usecases;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBException;
@@ -34,55 +31,56 @@ import jakarta.jms.JMSConnectionFactory;
 import jakarta.jms.JMSContext;
 import jakarta.jms.Queue;
 import jakarta.jms.Topic;
+import java.util.Properties;
 
 @TransactionManagement(TransactionManagementType.BEAN)
 @Stateless(name = "CDIUseCasesBMBEAN2")
-@Remote({ BMBean2IF.class })
+@Remote({BMBean2IF.class})
 public class BMBean2 implements BMBean2IF {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  // JMSContext CDI injection specifying ConnectionFactory
-  @Inject
-  @JMSConnectionFactory("jms/ConnectionFactory")
-  JMSContext context;
+    // JMSContext CDI injection specifying ConnectionFactory
+    @Inject
+    @JMSConnectionFactory("jms/ConnectionFactory")
+    JMSContext context;
 
-  @Resource(name = "jms/MyConnectionFactory")
-  ConnectionFactory cfactory;
+    @Resource(name = "jms/MyConnectionFactory")
+    ConnectionFactory cfactory;
 
-  @Resource(name = "jms/MY_QUEUE")
-  Queue queue;
+    @Resource(name = "jms/MY_QUEUE")
+    Queue queue;
 
-  @Resource(name = "jms/MY_TOPIC")
-  Topic topic;
+    @Resource(name = "jms/MY_TOPIC")
+    Topic topic;
 
-  @PostConstruct
-  public void postConstruct() {
-    System.out.println("BMBean2:postConstruct()");
-    System.out.println("queue=" + queue);
-    System.out.println("topic=" + topic);
-    System.out.println("cfactory=" + cfactory);
-    if (queue == null || topic == null || context == null || cfactory == null) {
-      throw new EJBException("postConstruct failed: injection failure");
+    @PostConstruct
+    public void postConstruct() {
+        System.out.println("BMBean2:postConstruct()");
+        System.out.println("queue=" + queue);
+        System.out.println("topic=" + topic);
+        System.out.println("cfactory=" + cfactory);
+        if (queue == null || topic == null || context == null || cfactory == null) {
+            throw new EJBException("postConstruct failed: injection failure");
+        }
     }
-  }
 
-  public void init(Properties p) {
-    TestUtil.logMsg("BMBean2.init()");
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("BMBean2.init: failed");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("BMBean2.init: failed");
+    public void init(Properties p) {
+        TestUtil.logMsg("BMBean2.init()");
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("BMBean2.init: failed");
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("BMBean2.init: failed");
+        }
     }
-  }
 
-  public void method2() {
-    TestUtil.logMsg("BMBean2.method2(): JMSContext context=" + context);
-    TestUtil.logMsg("Sending message [Message 2]");
-    context.createProducer().send(queue, "Message 2");
-  }
+    public void method2() {
+        TestUtil.logMsg("BMBean2.method2(): JMSContext context=" + context);
+        TestUtil.logMsg("Sending message [Message 2]");
+        context.createProducer().send(queue, "Message 2");
+    }
 }

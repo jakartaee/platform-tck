@@ -20,9 +20,9 @@
 
 package com.sun.ts.lib.porting;
 
-import java.net.*;
-import java.io.Serializable;
 import com.sun.ts.lib.util.*;
+import java.io.Serializable;
+import java.net.*;
 
 /**
  * This is a Java EE Reference specific implementation of the TSURLInterface
@@ -34,94 +34,92 @@ import com.sun.ts.lib.util.*;
  * @author Kyle Grucci
  */
 public class TSURL implements TSURLInterface, Serializable {
-  private TSURLInterface ctsURL = null;
+    private TSURLInterface ctsURL = null;
 
-  private String sClass = "porting.ts.url.class.1";
+    private String sClass = "porting.ts.url.class.1";
 
-  public TSURL() {
-    // we'll initialize the impl when the individual method is called
-    // this constructor assumes sClass = "porting.ts.url.class.1".
-  }
-
-  public TSURL(String sClassName) {
-    sClass = sClassName;
-  }
-
-  /**
-   * This method is called by TS tests to get the URL to use to access a given
-   * web component.
-   *
-   * @param protocol
-   *          - the name of the protocol.
-   * @param host
-   *          - the name of the host.
-   * @param port
-   *          - the port number.
-   * @param file
-   *          - the host file.
-   * @return a valid URL object.
-   */
-  public URL getURL(String protocol, String host, int port, String file)
-      throws MalformedURLException {
-    if (ctsURL == null) {
-      try {
-        // create and initialize a new instance of TSURLInterface
-        Class c = Class.forName(TestUtil.getProperty(sClass));
-        ctsURL = (TSURLInterface) c.newInstance();
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
+    public TSURL() {
+        // we'll initialize the impl when the individual method is called
+        // this constructor assumes sClass = "porting.ts.url.class.1".
     }
 
-    return ctsURL.getURL(protocol, host, port, file);
-  }
-
-  /**
-   * This method is called by TS tests to get the URL to use to access a given
-   * web component.
-   *
-   * @param protocol
-   *          - the name of the protocol.
-   * @param host
-   *          - the name of the host.
-   * @param port
-   *          - the port number.
-   * @param file
-   *          - the host file.
-   * @return a valid URL as a String.
-   */
-  public String getURLString(String protocol, String host, int port,
-      String file) {
-    if (ctsURL == null) {
-      try {
-        // create and initialize a new instance of TSURLInterface
-        Class c = Class.forName(TestUtil.getProperty(sClass));
-        ctsURL = (TSURLInterface) c.newInstance();
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
+    public TSURL(String sClassName) {
+        sClass = sClassName;
     }
-    return ctsURL.getURLString(protocol, host, port, file);
-  }
 
-  /**
-   * This method is called by TS tests to get the request string to use to
-   * access a given web component.
-   *
-   * @param request
-   *          - the request file.
-   * @return a valid String object.
-   */
-  public String getRequest(String request) {
-    if (ctsURL == null) {
-      try {
-        // create and initialize a new instance of TSURLInterface
-        Class c = Class.forName(TestUtil.getProperty(sClass));
-        ctsURL = (TSURLInterface) c.newInstance();
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
+    /**
+     * This method is called by TS tests to get the URL to use to access a given
+     * web component.
+     *
+     * @param protocol
+     *          - the name of the protocol.
+     * @param host
+     *          - the name of the host.
+     * @param port
+     *          - the port number.
+     * @param file
+     *          - the host file.
+     * @return a valid URL object.
+     */
+    public URL getURL(String protocol, String host, int port, String file) throws MalformedURLException {
+        if (ctsURL == null) {
+            try {
+                // create and initialize a new instance of TSURLInterface
+                Class c = Class.forName(TestUtil.getProperty(sClass));
+                ctsURL = (TSURLInterface) c.newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return ctsURL.getURL(protocol, host, port, file);
     }
-    return ctsURL.getRequest(request);
-  }
+
+    /**
+     * This method is called by TS tests to get the URL to use to access a given
+     * web component.
+     *
+     * @param protocol
+     *          - the name of the protocol.
+     * @param host
+     *          - the name of the host.
+     * @param port
+     *          - the port number.
+     * @param file
+     *          - the host file.
+     * @return a valid URL as a String.
+     */
+    public String getURLString(String protocol, String host, int port, String file) {
+        if (ctsURL == null) {
+            try {
+                // create and initialize a new instance of TSURLInterface
+                Class c = Class.forName(TestUtil.getProperty(sClass));
+                ctsURL = (TSURLInterface) c.newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return ctsURL.getURLString(protocol, host, port, file);
+    }
+
+    /**
+     * This method is called by TS tests to get the request string to use to
+     * access a given web component.
+     *
+     * @param request
+     *          - the request file.
+     * @return a valid String object.
+     */
+    public String getRequest(String request) {
+        if (ctsURL == null) {
+            try {
+                // create and initialize a new instance of TSURLInterface
+                Class c = Class.forName(TestUtil.getProperty(sClass));
+                ctsURL = (TSURLInterface) c.newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return ctsURL.getRequest(request);
+    }
 }

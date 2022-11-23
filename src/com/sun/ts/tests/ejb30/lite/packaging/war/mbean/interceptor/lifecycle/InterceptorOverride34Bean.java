@@ -21,21 +21,19 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.lifecycle;
 
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorBeanBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorIF;
-
 import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PostConstruct;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
 
 @ManagedBean("InterceptorOverride34Bean")
 @ExcludeDefaultInterceptors
-public class InterceptorOverride34Bean extends InterceptorBeanBase
-    implements InterceptorIF {
-  private static final String simpleName = "InterceptorOverride34Bean";
+public class InterceptorOverride34Bean extends InterceptorBeanBase implements InterceptorIF {
+    private static final String simpleName = "InterceptorOverride34Bean";
 
-  @Override // override superclass' PostConstruct method with a PostConstruct
-            // method
-  @PostConstruct
-  protected void postConstructInInterceptorBeanBase() {
-    historySingletonBean.addPostConstructRecordFor(this, simpleName);
-  }
+    @Override // override superclass' PostConstruct method with a PostConstruct
+    // method
+    @PostConstruct
+    protected void postConstructInInterceptorBeanBase() {
+        historySingletonBean.addPostConstructRecordFor(this, simpleName);
+    }
 }

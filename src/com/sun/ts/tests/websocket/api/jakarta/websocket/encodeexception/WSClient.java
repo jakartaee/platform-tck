@@ -20,84 +20,76 @@
  */
 package com.sun.ts.tests.websocket.api.jakarta.websocket.encodeexception;
 
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
+import jakarta.websocket.EncodeException;
 import java.io.PrintWriter;
 import java.nio.ByteBuffer;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.websocket.EncodeException;
-
 public class WSClient extends ServiceEETest {
-  public static void main(String[] args) {
-    WSClient theTests = new WSClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ws_wait; ts_home;
-   */
-  @SuppressWarnings("unused")
-  public void setup(String[] args, Properties p) throws Fault {
-  }
-
-  /* Run test */
-  /*
-   * @testName: constructorTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:51; WebSocket:JAVADOC:53;
-   *
-   * @test_Strategy: Test constructor EncodeException(Object, String)
-   */
-  public void constructorTest() throws Fault {
-    boolean passed = true;
-    String reason = "TCK: Cannot encode the message";
-    String encoded_message = "xyz for now";
-
-    EncodeException eex = new EncodeException(encoded_message, reason);
-
-    if (!encoded_message.equals(eex.getObject())) {
-      passed = false;
-      TestUtil.logErr("Expected message " + encoded_message + ", returned"
-          + eex.getObject());
+    public static void main(String[] args) {
+        WSClient theTests = new WSClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
     }
 
-    if (passed == false) {
-      throw new Fault("Test failed");
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ws_wait; ts_home;
+     */
+    @SuppressWarnings("unused")
+    public void setup(String[] args, Properties p) throws Fault {}
+
+    /* Run test */
+    /*
+     * @testName: constructorTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:51; WebSocket:JAVADOC:53;
+     *
+     * @test_Strategy: Test constructor EncodeException(Object, String)
+     */
+    public void constructorTest() throws Fault {
+        boolean passed = true;
+        String reason = "TCK: Cannot encode the message";
+        String encoded_message = "xyz for now";
+
+        EncodeException eex = new EncodeException(encoded_message, reason);
+
+        if (!encoded_message.equals(eex.getObject())) {
+            passed = false;
+            TestUtil.logErr("Expected message " + encoded_message + ", returned" + eex.getObject());
+        }
+
+        if (passed == false) {
+            throw new Fault("Test failed");
+        }
     }
-  }
 
-  /*
-   * @testName: constructorTest1
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:52; WebSocket:JAVADOC:53;
-   *
-   * @test_Strategy: Test constructor EncodeException(Object, String, Throwable)
-   */
-  public void constructorTest1() throws Fault {
-    boolean passed = true;
-    String reason = "TCK: Cannot decode the message";
-    ByteBuffer encoded_message = ByteBuffer.allocate(20);
-    encoded_message.put("xyz for now".getBytes());
+    /*
+     * @testName: constructorTest1
+     *
+     * @assertion_ids: WebSocket:JAVADOC:52; WebSocket:JAVADOC:53;
+     *
+     * @test_Strategy: Test constructor EncodeException(Object, String, Throwable)
+     */
+    public void constructorTest1() throws Fault {
+        boolean passed = true;
+        String reason = "TCK: Cannot decode the message";
+        ByteBuffer encoded_message = ByteBuffer.allocate(20);
+        encoded_message.put("xyz for now".getBytes());
 
-    EncodeException eex = new EncodeException(encoded_message, reason,
-        new Throwable("TCK Cannot encode"));
+        EncodeException eex = new EncodeException(encoded_message, reason, new Throwable("TCK Cannot encode"));
 
-    if (!encoded_message.equals(eex.getObject())) {
-      passed = false;
-      TestUtil.logErr("Expected message " + encoded_message + ", returned"
-          + eex.getObject());
+        if (!encoded_message.equals(eex.getObject())) {
+            passed = false;
+            TestUtil.logErr("Expected message " + encoded_message + ", returned" + eex.getObject());
+        }
+
+        if (passed == false) {
+            throw new Fault("Test failed");
+        }
     }
 
-    if (passed == false) {
-      throw new Fault("Test failed");
-    }
-  }
-
-  public void cleanup() {
-  }
+    public void cleanup() {}
 }

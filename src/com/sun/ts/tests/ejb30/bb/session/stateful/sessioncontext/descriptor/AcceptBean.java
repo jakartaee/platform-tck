@@ -21,31 +21,27 @@
 package com.sun.ts.tests.ejb30.bb.session.stateful.sessioncontext.descriptor;
 
 import com.sun.ts.tests.ejb30.common.sessioncontext.AcceptBeanBase;
-
 import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
-//@Stateful(name="AcceptBean")
-//@Remote({AcceptIF.class})
-//@Local({AcceptLocalIF.class})
-//use bmt so that it can be safely removed from the calling bean (TestBean)
-//assembler not permitted to override transaction management type.
+// @Stateful(name="AcceptBean")
+// @Remote({AcceptIF.class})
+// @Local({AcceptLocalIF.class})
+// use bmt so that it can be safely removed from the calling bean (TestBean)
+// assembler not permitted to override transaction management type.
 @TransactionManagement(TransactionManagementType.BEAN)
 public class AcceptBean extends AcceptBeanBase {
-  // @Resource(name="sessionContext")
-  private SessionContext sessionContext;
+    // @Resource(name="sessionContext")
+    private SessionContext sessionContext;
 
-  protected SessionContext getSessionContext() {
-    return sessionContext;
-  }
+    protected SessionContext getSessionContext() {
+        return sessionContext;
+    }
 
-  public AcceptBean() {
-  }
+    public AcceptBean() {}
 
-  @Remove(retainIfException = false)
-  public void remove() {
-  }
-
+    @Remove(retainIfException = false)
+    public void remove() {}
 }

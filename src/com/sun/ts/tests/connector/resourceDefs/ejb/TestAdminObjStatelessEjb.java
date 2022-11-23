@@ -18,7 +18,6 @@ package com.sun.ts.tests.connector.resourceDefs.ejb;
 
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
-
 import jakarta.ejb.Stateless;
 import jakarta.resource.AdministeredObjectDefinition;
 import jakarta.resource.AdministeredObjectDefinitions;
@@ -26,54 +25,67 @@ import jakarta.resource.AdministeredObjectDefinitions;
 /**
  * This is the impl for a stateless ejb.
  */
-
 @AdministeredObjectDefinitions({
-    @AdministeredObjectDefinition(name = "java:app/env/EJBAdminObjectForAppScope", description = "application scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
-
-    @AdministeredObjectDefinition(name = "java:comp/env/EJBAdminObjectForCompScope", description = "component scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
-
-    @AdministeredObjectDefinition(name = "java:module/env/EJBAdminObjectForModuleScope", description = "module scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
-
-    @AdministeredObjectDefinition(name = "java:global/env/EJBAdminObjectForGlobalScope", description = "globally scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd") })
-
+    @AdministeredObjectDefinition(
+            name = "java:app/env/EJBAdminObjectForAppScope",
+            description = "application scoped AdminObjectDefinition",
+            interfaceName = "jakarta.jms.Queue",
+            className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject",
+            resourceAdapter = "#whitebox-rd"),
+    @AdministeredObjectDefinition(
+            name = "java:comp/env/EJBAdminObjectForCompScope",
+            description = "component scoped AdminObjectDefinition",
+            interfaceName = "jakarta.jms.Queue",
+            className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject",
+            resourceAdapter = "#whitebox-rd"),
+    @AdministeredObjectDefinition(
+            name = "java:module/env/EJBAdminObjectForModuleScope",
+            description = "module scoped AdminObjectDefinition",
+            interfaceName = "jakarta.jms.Queue",
+            className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject",
+            resourceAdapter = "#whitebox-rd"),
+    @AdministeredObjectDefinition(
+            name = "java:global/env/EJBAdminObjectForGlobalScope",
+            description = "globally scoped AdminObjectDefinition",
+            interfaceName = "jakarta.jms.Queue",
+            className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject",
+            resourceAdapter = "#whitebox-rd")
+})
 @Stateless
 public class TestAdminObjStatelessEjb implements ITestAdminObjStatelessEjb {
 
-  public boolean validateConnectorResource(String jndiName) {
-    TSConnection c = null;
-    boolean rval = false;
+    public boolean validateConnectorResource(String jndiName) {
+        TSConnection c = null;
+        boolean rval = false;
 
-    try {
+        try {
 
-      debug("validateConnectorResource():  calling new TSNamingContext()");
-      TSNamingContext ic = new TSNamingContext();
+            debug("validateConnectorResource():  calling new TSNamingContext()");
+            TSNamingContext ic = new TSNamingContext();
 
-      debug("Doing lookup of jndiName = " + jndiName);
-      Object ds = ic.lookup(jndiName);
-      debug(
-          "validateConnectorResource(): Successfully did lookup of jndiName = "
-              + jndiName);
+            debug("Doing lookup of jndiName = " + jndiName);
+            Object ds = ic.lookup(jndiName);
+            debug("validateConnectorResource(): Successfully did lookup of jndiName = " + jndiName);
 
-      rval = true;
-    } catch (Exception e) {
-      debug("Fail to access connector resource: " + jndiName);
-      e.printStackTrace();
-    } finally {
-      debug("finally:  Fail to access connector resource: " + jndiName);
-      try {
-        if (c != null) {
-          c.close();
+            rval = true;
+        } catch (Exception e) {
+            debug("Fail to access connector resource: " + jndiName);
+            e.printStackTrace();
+        } finally {
+            debug("finally:  Fail to access connector resource: " + jndiName);
+            try {
+                if (c != null) {
+                    c.close();
+                }
+            } catch (Exception e) {
+                return false;
+            }
         }
-      } catch (Exception e) {
-        return false;
-      }
+
+        return rval;
     }
 
-    return rval;
-  }
-
-  private void debug(String str) {
-    System.out.println(str);
-  }
-
+    private void debug(String str) {
+        System.out.println(str);
+    }
 }

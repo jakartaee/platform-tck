@@ -20,7 +20,6 @@
 package com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated;
 
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF;
-
 import jakarta.ejb.Local;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Remote;
@@ -30,6 +29,4 @@ import jakarta.ejb.Stateful;
 @Local(StatefulConcurrencyIF.class)
 @Remote(StatefulConcurrencyRemoteIF.class)
 @LocalBean
-public class DefaultConcurrencyBean extends StatefulConcurrencyBeanBase2 {
-
-}
+public class DefaultConcurrencyBean extends StatefulConcurrencyBeanBase2 {}

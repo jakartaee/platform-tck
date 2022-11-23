@@ -21,53 +21,51 @@
 package com.sun.ts.tests.ejb30.tx.mdb.notsupported.annotated;
 
 import com.sun.javatest.Status;
-
 import jakarta.annotation.Resource;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
 
-public class Client
-    extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.ClientBase {
-  @Resource(name = "sendQueue")
-  private static Queue sendQueue;
+public class Client extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.ClientBase {
+    @Resource(name = "sendQueue")
+    private static Queue sendQueue;
 
-  @Resource(name = "receiveQueue")
-  private static Queue receiveQueue;
+    @Resource(name = "receiveQueue")
+    private static Queue receiveQueue;
 
-  @Resource(name = "queueConnectionFactory")
-  private static QueueConnectionFactory queueConnectionFactory;
+    @Resource(name = "queueConnectionFactory")
+    private static QueueConnectionFactory queueConnectionFactory;
 
-  protected void initSendQueue() {
-    setSendQueue(sendQueue);
-  }
+    protected void initSendQueue() {
+        setSendQueue(sendQueue);
+    }
 
-  protected void initReceiveQueue() {
-    setReceiveQueue(receiveQueue);
-  }
+    protected void initReceiveQueue() {
+        setReceiveQueue(receiveQueue);
+    }
 
-  protected void initQueueConnectionFactory() {
-    setQueueConnectionFactory(queueConnectionFactory);
-  }
+    protected void initQueueConnectionFactory() {
+        setQueueConnectionFactory(queueConnectionFactory);
+    }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
-   * harness.log.port;
-   */
+    /*
+     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
+     * harness.log.port;
+     */
 
-  /*
-   * @testName: test1
-   * 
-   * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
-   * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
-   * 
-   * @test_Strategy: use transaction attribute NOT_SUPPORTED annotation at type
-   * level
-   *
-   */
+    /*
+     * @testName: test1
+     *
+     * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
+     * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
+     *
+     * @test_Strategy: use transaction attribute NOT_SUPPORTED annotation at type
+     * level
+     *
+     */
 }

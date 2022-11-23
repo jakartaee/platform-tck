@@ -58,48 +58,44 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.genericservlet;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Init_ServletConfigTestServlet extends GenericServlet {
 
-  private static final String EXPECTED = "in init";
+    private static final String EXPECTED = "in init";
 
-  public void init(ServletConfig sc) throws ServletException {
-    super.init(sc);
-    sc.getServletContext().setAttribute("status", EXPECTED);
-  }
-
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
-
-    String actual = (String) getServletContext().getAttribute("status");
-    if (actual != null) {
-      if (!actual.equals(EXPECTED)) {
-        passed = false;
-        pw.println("ERROR: status message was not found");
-        pw.println("expected result=" + EXPECTED);
-        pw.println("actual result=" + actual);
-      } else {
-        passed = false;
-      }
-    } else {
-      passed = false;
-      pw.println("ERROR: status attribute was not found");
+    public void init(ServletConfig sc) throws ServletException {
+        super.init(sc);
+        sc.getServletContext().setAttribute("status", EXPECTED);
     }
 
-    ServletTestUtil.printResult(pw, passed);
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-  }
+        PrintWriter pw = response.getWriter();
+        boolean passed = false;
+
+        String actual = (String) getServletContext().getAttribute("status");
+        if (actual != null) {
+            if (!actual.equals(EXPECTED)) {
+                passed = false;
+                pw.println("ERROR: status message was not found");
+                pw.println("expected result=" + EXPECTED);
+                pw.println("actual result=" + actual);
+            } else {
+                passed = false;
+            }
+        } else {
+            passed = false;
+            pw.println("ERROR: status attribute was not found");
+        }
+
+        ServletTestUtil.printResult(pw, passed);
+    }
 }

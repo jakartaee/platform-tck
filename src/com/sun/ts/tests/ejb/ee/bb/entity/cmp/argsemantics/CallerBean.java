@@ -20,25 +20,23 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp.argsemantics;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface CallerBean extends EJBObject {
 
-  public boolean testStatefulRemote(Properties props) throws RemoteException;
+    public boolean testStatefulRemote(Properties props) throws RemoteException;
 
-  public boolean testStatefulLocal(Properties props) throws RemoteException;
+    public boolean testStatefulLocal(Properties props) throws RemoteException;
 
-  public boolean testStatefulBoth(Properties props) throws RemoteException;
+    public boolean testStatefulBoth(Properties props) throws RemoteException;
 
-  public boolean testCMP20Remote(Properties props) throws RemoteException;
+    public boolean testCMP20Remote(Properties props) throws RemoteException;
 
-  public boolean testCMP20Local(Properties props) throws RemoteException;
+    public boolean testCMP20Local(Properties props) throws RemoteException;
 
-  public boolean testCMP20Both(Properties props) throws RemoteException;
+    public boolean testCMP20Both(Properties props) throws RemoteException;
 
-  public void cleanUpBean() throws RemoteException;
-
+    public void cleanUpBean() throws RemoteException;
 }

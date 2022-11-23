@@ -58,64 +58,60 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpsessionlistener;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class TestServlet extends HttpTCKServlet {
 
-  public void createdTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+    public void createdTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
+        PrintWriter pw = response.getWriter();
 
-    StaticLog.clear();
+        StaticLog.clear();
 
-    String[] expected = { "HSListener:sessionCreated" };
+        String[] expected = {"HSListener:sessionCreated"};
 
-    HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(true);
 
-    ArrayList result = StaticLog.getClear();
-    boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);
-    if (!b) {
-      ServletTestUtil.printFailureData(pw, result, expected);
+        ArrayList result = StaticLog.getClear();
+        boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);
+        if (!b) {
+            ServletTestUtil.printFailureData(pw, result, expected);
+        }
+        ServletTestUtil.printResult(pw, b);
+
+        session.invalidate();
     }
-    ServletTestUtil.printResult(pw, b);
 
-    session.invalidate();
+    public void destroyedTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-  }
+        PrintWriter pw = response.getWriter();
 
-  public void destroyedTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+        StaticLog.clear();
 
-    PrintWriter pw = response.getWriter();
+        String[] expected = {"HSListener:sessionDestroyed"};
 
-    StaticLog.clear();
+        HttpSession session = request.getSession(true);
 
-    String[] expected = { "HSListener:sessionDestroyed" };
+        StaticLog.clear();
 
-    HttpSession session = request.getSession(true);
+        session.invalidate();
 
-    StaticLog.clear();
-
-    session.invalidate();
-
-    ArrayList result = StaticLog.getClear();
-    boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);
-    if (!b) {
-      ServletTestUtil.printFailureData(pw, result, expected);
+        ArrayList result = StaticLog.getClear();
+        boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);
+        if (!b) {
+            ServletTestUtil.printFailureData(pw, result, expected);
+        }
+        ServletTestUtil.printResult(pw, b);
     }
-    ServletTestUtil.printResult(pw, b);
-
-  }
 }

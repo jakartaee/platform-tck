@@ -15,9 +15,6 @@
  */
 package com.sun.ts.tests.websocket.spec.servercontainer.upgradehttptowebsocket;
 
-import java.io.IOException;
-import java.util.Collections;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -26,21 +23,24 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.websocket.DeploymentException;
 import jakarta.websocket.server.ServerContainer;
 import jakarta.websocket.server.ServerEndpointConfig;
+import java.io.IOException;
+import java.util.Collections;
 
 @WebServlet("/TCKTestServlet")
 public class WSTestServlet extends HttpServlet {
 
-  @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    ServerContainer sc = (ServerContainer) getServletContext().getAttribute("jakarta.websocket.server.ServerContainer");
-    ServerEndpointConfig sec = ServerEndpointConfig.Builder.create(WSTestServer.class, "/TCKTestServer").build();
-    try {
-      sc.upgradeHttpToWebSocket(req, resp, sec, Collections.emptyMap());
-    } catch (DeploymentException e) {
-      throw new ServletException(e);
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ServerContainer sc =
+                (ServerContainer) getServletContext().getAttribute("jakarta.websocket.server.ServerContainer");
+        ServerEndpointConfig sec = ServerEndpointConfig.Builder.create(WSTestServer.class, "/TCKTestServer")
+                .build();
+        try {
+            sc.upgradeHttpToWebSocket(req, resp, sec, Collections.emptyMap());
+        } catch (DeploymentException e) {
+            throw new ServletException(e);
+        }
     }
-  }
 
-  private static final long serialVersionUID = 1L;
-
+    private static final long serialVersionUID = 1L;
 }

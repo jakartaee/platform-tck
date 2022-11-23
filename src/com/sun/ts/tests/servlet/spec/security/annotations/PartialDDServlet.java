@@ -19,39 +19,33 @@
  */
 package com.sun.ts.tests.servlet.spec.security.annotations;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /*
  * this permits all - since PERMIT is the default
  */
 public class PartialDDServlet extends HttpServlet {
 
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter out = response.getWriter();
-    if ((request != null) && (request.getUserPrincipal() != null)) {
-      out.println("The user principal is: "
-          + request.getUserPrincipal().getName() + "<BR>");
-    } else {
-      out.println("The user principal is null! <BR>");
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
+        if ((request != null) && (request.getUserPrincipal() != null)) {
+            out.println("The user principal is: " + request.getUserPrincipal().getName() + "<BR>");
+        } else {
+            out.println("The user principal is null! <BR>");
+        }
     }
-  }
 
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter out = response.getWriter();
-    if ((request != null) && (request.getUserPrincipal() != null)) {
-      out.println("The user principal is: "
-          + request.getUserPrincipal().getName() + "<BR>");
-    } else {
-      out.println("The user principal is null! <BR>");
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
+        if ((request != null) && (request.getUserPrincipal() != null)) {
+            out.println("The user principal is: " + request.getUserPrincipal().getName() + "<BR>");
+        } else {
+            out.println("The user principal is null! <BR>");
+        }
     }
-  }
-
 }

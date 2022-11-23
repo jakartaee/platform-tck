@@ -25,65 +25,64 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP11Wrapper;
 
 public class TestBeanEJB extends CMP11Wrapper {
 
-  private static final String prefix = "java:comp/env/ejb/";
+    private static final String prefix = "java:comp/env/ejb/";
 
-  /* These lookups differ only by case */
-  private static final String bean1Lookup = prefix + "Samba";
+    /* These lookups differ only by case */
+    private static final String bean1Lookup = prefix + "Samba";
 
-  private static final String bean2Lookup = prefix + "Bossa";
+    private static final String bean2Lookup = prefix + "Bossa";
 
-  private static final String bean1RefName = "Bahia";
+    private static final String bean1RefName = "Bahia";
 
-  private static final String bean2RefName = "Rio";
+    private static final String bean2RefName = "Rio";
 
-  /*
-   * Business methods.
-   */
+    /*
+     * Business methods.
+     */
 
-  /**
-   * Check that two ejblink entries whose names differ only by case are
-   * associated with different runtime values (as specified in DD).
-   */
-  public boolean testCaseSensitivity(java.util.Properties props) {
-    CaseBeanHome home1 = null;
-    CaseBeanHome home2 = null;
-    CaseBean bean1 = null;
-    CaseBean bean2 = null;
-    String bean1Name;
-    String bean2Name;
-    boolean pass = false;
+    /**
+     * Check that two ejblink entries whose names differ only by case are
+     * associated with different runtime values (as specified in DD).
+     */
+    public boolean testCaseSensitivity(java.util.Properties props) {
+        CaseBeanHome home1 = null;
+        CaseBeanHome home2 = null;
+        CaseBean bean1 = null;
+        CaseBean bean2 = null;
+        String bean1Name;
+        String bean2Name;
+        boolean pass = false;
 
-    try {
+        try {
 
-      TestUtil.logTrace("TestBean: Looking up '" + bean1Lookup + "'...");
-      home1 = (CaseBeanHome) nctx.lookup(bean1Lookup, CaseBeanHome.class);
-      bean1 = home1.create(props, 2, "expresso", 10);
-      bean1Name = bean1.whoAreYou();
-      TestUtil.logTrace(bean1Lookup + "name is '" + bean1Name + "'");
-      bean1.remove();
+            TestUtil.logTrace("TestBean: Looking up '" + bean1Lookup + "'...");
+            home1 = (CaseBeanHome) nctx.lookup(bean1Lookup, CaseBeanHome.class);
+            bean1 = home1.create(props, 2, "expresso", 10);
+            bean1Name = bean1.whoAreYou();
+            TestUtil.logTrace(bean1Lookup + "name is '" + bean1Name + "'");
+            bean1.remove();
 
-      TestUtil.logTrace("TestBean: Looking up '" + bean2Lookup + "'...");
-      home2 = (CaseBeanHome) nctx.lookup(bean2Lookup, CaseBeanHome.class);
-      bean2 = home2.create(props, 3, "capuccino", 10);
-      bean2Name = bean2.whoAreYou();
-      TestUtil.logTrace(bean2Lookup + " name is '" + bean2Name + "'");
-      bean2.remove();
+            TestUtil.logTrace("TestBean: Looking up '" + bean2Lookup + "'...");
+            home2 = (CaseBeanHome) nctx.lookup(bean2Lookup, CaseBeanHome.class);
+            bean2 = home2.create(props, 3, "capuccino", 10);
+            bean2Name = bean2.whoAreYou();
+            TestUtil.logTrace(bean2Lookup + " name is '" + bean2Name + "'");
+            bean2.remove();
 
-      pass = bean1Name.equals(bean1RefName) && bean2Name.equals(bean2RefName);
+            pass = bean1Name.equals(bean1RefName) && bean2Name.equals(bean2RefName);
 
-      if (!pass) {
-        TestUtil.logErr("TestBean: " + bean1Lookup + "name is '" + bean1Name
-            + "' expected '" + bean1RefName + "'");
-        TestUtil.logErr("TestBean: " + bean2Lookup + "name is '" + bean2Name
-            + "' expected '" + bean2RefName + "'");
-      }
+            if (!pass) {
+                TestUtil.logErr(
+                        "TestBean: " + bean1Lookup + "name is '" + bean1Name + "' expected '" + bean1RefName + "'");
+                TestUtil.logErr(
+                        "TestBean: " + bean2Lookup + "name is '" + bean2Name + "' expected '" + bean2RefName + "'");
+            }
 
-    } catch (Exception e) {
-      TestUtil.logErr("TestBean: Got exception in " + "testCase(): " + e, e);
-      pass = false;
+        } catch (Exception e) {
+            TestUtil.logErr("TestBean: Got exception in " + "testCase(): " + e, e);
+            pass = false;
+        }
+
+        return pass;
     }
-
-    return pass;
-  }
-
 }

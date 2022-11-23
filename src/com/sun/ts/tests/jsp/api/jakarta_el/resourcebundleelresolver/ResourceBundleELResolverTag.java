@@ -16,55 +16,50 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_el.resourcebundleelresolver;
 
-import java.io.IOException;
-import java.util.Enumeration;
-import java.util.ResourceBundle;
-import java.util.StringTokenizer;
-
 import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.el.ELContext;
 import jakarta.el.ResourceBundleELResolver;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.ResourceBundle;
+import java.util.StringTokenizer;
 
 public class ResourceBundleELResolverTag extends SimpleTagSupport {
 
-  public void doTag() throws JspException, IOException {
+    public void doTag() throws JspException, IOException {
 
-    StringBuffer buf = new StringBuffer();
+        StringBuffer buf = new StringBuffer();
 
-    JspWriter out = getJspContext().getOut();
-    ELContext context = getJspContext().getELContext();
-    ResourceBundleELResolver resourceBundleResolver = new ResourceBundleELResolver();
-    ResourceBundle resources = new MyResources();
+        JspWriter out = getJspContext().getOut();
+        ELContext context = getJspContext().getELContext();
+        ResourceBundleELResolver resourceBundleResolver = new ResourceBundleELResolver();
+        ResourceBundle resources = new MyResources();
 
-    try {
-      boolean pass = ResolverTest.testELResolver(context,
-          resourceBundleResolver, resources, "okKey", "all right!", buf, true);
-      out.println(buf.toString());
-      if (pass == true)
-        out.println("Test PASSED");
-    } catch (Throwable t) {
-      out.println("buffer is " + buf.toString());
-      JspTestUtil.handleThrowable(t, out, "ResourceBundleELResolverTag");
-    }
-  }
-
-  static class MyResources extends ResourceBundle {
-
-    public Object handleGetObject(String key) {
-      if (key.equals("okKey"))
-        return "Ok";
-      if (key.equals("cancelKey"))
-        return "Cancel";
-      return null;
+        try {
+            boolean pass = ResolverTest.testELResolver(
+                    context, resourceBundleResolver, resources, "okKey", "all right!", buf, true);
+            out.println(buf.toString());
+            if (pass == true) out.println("Test PASSED");
+        } catch (Throwable t) {
+            out.println("buffer is " + buf.toString());
+            JspTestUtil.handleThrowable(t, out, "ResourceBundleELResolverTag");
+        }
     }
 
-    public Enumeration getKeys() {
-      return new StringTokenizer("okKey cancelKey");
+    static class MyResources extends ResourceBundle {
+
+        public Object handleGetObject(String key) {
+            if (key.equals("okKey")) return "Ok";
+            if (key.equals("cancelKey")) return "Cancel";
+            return null;
+        }
+
+        public Enumeration getKeys() {
+            return new StringTokenizer("okKey cancelKey");
+        }
     }
-  }
 }

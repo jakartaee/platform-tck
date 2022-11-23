@@ -19,38 +19,35 @@
  */
 package com.sun.ts.tests.servlet.spec.annotationservlet.webfilter;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 @WebServlet(value = "/Servlet1", name = "servlet1")
 public class Servlet1 extends HttpServlet {
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    ArrayList result = StaticLog.getClear();
-    if (result != null) {
-      for (Object tmp : result) {
-        if (tmp != null) {
-          pw.println(tmp.toString());
-          System.out.println(tmp.toString());
+        ArrayList result = StaticLog.getClear();
+        if (result != null) {
+            for (Object tmp : result) {
+                if (tmp != null) {
+                    pw.println(tmp.toString());
+                    System.out.println(tmp.toString());
+                }
+            }
         }
-      }
-    }
-    StaticLog.clear();
+        StaticLog.clear();
 
-    pw.write("Servlet1_INVOKED");
-    ServletTestUtil.printResult(pw, true);
-  }
+        pw.write("Servlet1_INVOKED");
+        ServletTestUtil.printResult(pw, true);
+    }
 }

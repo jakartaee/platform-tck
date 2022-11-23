@@ -25,49 +25,47 @@ import jakarta.annotation.PreDestroy;
 import jakarta.interceptor.InvocationContext;
 
 public class InterceptorI extends InterceptorF {
-  public InterceptorI() {
-    super();
-  }
+    public InterceptorI() {
+        super();
+    }
 
-  @Override
-  public String getInjectedLocation() {
-    return NOT_INJECTED;
-  }
+    @Override
+    public String getInjectedLocation() {
+        return NOT_INJECTED;
+    }
 
-  @Override
-  protected String getShortName() {
-    return "I";
-  }
+    @Override
+    protected String getShortName() {
+        return "I";
+    }
 
-  @Override
-  protected void myRemoveInF(InvocationContext inv) throws RuntimeException {
-    throw new IllegalStateException("Should not get here.");
-  }
+    @Override
+    protected void myRemoveInF(InvocationContext inv) throws RuntimeException {
+        throw new IllegalStateException("Should not get here.");
+    }
 
-  @Override
-  protected void myRemoveInE(InvocationContext inv) throws RuntimeException {
-    throw new IllegalStateException("Should not get here.");
-  }
+    @Override
+    protected void myRemoveInE(InvocationContext inv) throws RuntimeException {
+        throw new IllegalStateException("Should not get here.");
+    }
 
-  @Override
-  protected void myRemove(InvocationContext inv) throws RuntimeException {
-    throw new IllegalStateException("Should not get here.");
-  }
+    @Override
+    protected void myRemove(InvocationContext inv) throws RuntimeException {
+        throw new IllegalStateException("Should not get here.");
+    }
 
-  @Override
-  protected void myCreateInF(InvocationContext inv) throws RuntimeException {
-    throw new IllegalStateException("Should not get here.");
-  }
+    @Override
+    protected void myCreateInF(InvocationContext inv) throws RuntimeException {
+        throw new IllegalStateException("Should not get here.");
+    }
 
-  @PostConstruct
-  @Override
-  protected void myCreateInE(InvocationContext inv) throws RuntimeException {
-    myCreate0(inv, "I");
-  }
+    @PostConstruct
+    @Override
+    protected void myCreateInE(InvocationContext inv) throws RuntimeException {
+        myCreate0(inv, "I");
+    }
 
-  @Override
-  @PreDestroy // re-annotated it as another type of lifecycle
-  protected void myCreate(InvocationContext inv) throws RuntimeException {
-  }
-
+    @Override
+    @PreDestroy // re-annotated it as another type of lifecycle
+    protected void myCreate(InvocationContext inv) throws RuntimeException {}
 }

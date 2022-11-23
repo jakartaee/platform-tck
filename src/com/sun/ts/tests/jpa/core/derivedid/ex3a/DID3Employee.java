@@ -16,36 +16,33 @@
 
 package com.sun.ts.tests.jpa.core.derivedid.ex3a;
 
-import java.io.Serializable;
-
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import java.io.Serializable;
 
 /**
  *
  * @author Raja Perumal
  */
-
 @Entity
 public class DID3Employee implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @EmbeddedId
-  DID3EmployeeId empId;
+    @EmbeddedId
+    DID3EmployeeId empId;
 
-  public DID3Employee() {
-  }
+    public DID3Employee() {}
 
-  public DID3Employee(DID3EmployeeId eId) {
-    this.empId = eId;
-  }
+    public DID3Employee(DID3EmployeeId eId) {
+        this.empId = eId;
+    }
 
-  public DID3EmployeeId getEmpId() {
-    return empId;
-  }
+    public DID3EmployeeId getEmpId() {
+        return empId;
+    }
 
-  public void setEmpId(DID3EmployeeId empId) {
-    this.empId = empId;
-  }
+    public void setEmpId(DID3EmployeeId empId) {
+        this.empId = empId;
+    }
 }

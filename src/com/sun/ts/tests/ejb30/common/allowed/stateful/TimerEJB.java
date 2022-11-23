@@ -20,11 +20,7 @@
 
 package com.sun.ts.tests.ejb30.common.allowed.stateful;
 
-import java.util.Collection;
-import java.util.Iterator;
-
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Local;
@@ -34,59 +30,60 @@ import jakarta.ejb.Timeout;
 import jakarta.ejb.TimerHandle;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
+import java.util.Collection;
+import java.util.Iterator;
 
 @Stateless(name = "TimerEJB")
-@Local({ TimerLocalIF.class })
+@Local({TimerLocalIF.class})
 public class TimerEJB implements TimerLocalIF {
-  private SessionContext sessionContext;
+    private SessionContext sessionContext;
 
-  @Resource
-  public void setSessionContext(SessionContext sc) {
-    this.sessionContext = sc;
-  }
-
-  @Timeout
-  @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-  private void ejbTimeout(jakarta.ejb.Timer timer) {
-  }
-
-  // @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-  public TimerHandle startTimer(long duration, String info) {
-    try {
-      jakarta.ejb.TimerService ts = sessionContext.getTimerService();
-      TLogger.logTrace("create Timer");
-      jakarta.ejb.Timer t = ts.createTimer(duration, info);
-      return t.getHandle();
-    } catch (Exception e) {
-      TLogger.printStackTrace(e);
-      throw new EJBException("startTimer:" + e);
+    @Resource
+    public void setSessionContext(SessionContext sc) {
+        this.sessionContext = sc;
     }
-  }
 
-  public void findAndCancelTimer() {
-    Collection ccol = null;
-    try {
-      TLogger.logTrace("findAndCancelTimer method entered");
-      jakarta.ejb.TimerService ts = sessionContext.getTimerService();
-      TLogger.logTrace("getTimers");
-      ccol = ts.getTimers();
-      if (!ccol.isEmpty()) {
-        TLogger.logTrace("Timer Collection Not Empty");
-        Iterator i = ccol.iterator();
-        while (i.hasNext()) {
-          TLogger.logTrace("Looking up next timer");
-          jakarta.ejb.Timer t = (jakarta.ejb.Timer) i.next();
-          TLogger.logTrace("Cancel timer with info: " + t.getInfo());
-          t.cancel();
+    @Timeout
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    private void ejbTimeout(jakarta.ejb.Timer timer) {}
+
+    // @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public TimerHandle startTimer(long duration, String info) {
+        try {
+            jakarta.ejb.TimerService ts = sessionContext.getTimerService();
+            TLogger.logTrace("create Timer");
+            jakarta.ejb.Timer t = ts.createTimer(duration, info);
+            return t.getHandle();
+        } catch (Exception e) {
+            TLogger.printStackTrace(e);
+            throw new EJBException("startTimer:" + e);
         }
-      } else {
-        TLogger.logTrace("Timer Collection is Empty");
-      }
-    } catch (Exception e) {
-      // ignore
     }
-  }
 
-  // ===========================================================
+    public void findAndCancelTimer() {
+        Collection ccol = null;
+        try {
+            TLogger.logTrace("findAndCancelTimer method entered");
+            jakarta.ejb.TimerService ts = sessionContext.getTimerService();
+            TLogger.logTrace("getTimers");
+            ccol = ts.getTimers();
+            if (!ccol.isEmpty()) {
+                TLogger.logTrace("Timer Collection Not Empty");
+                Iterator i = ccol.iterator();
+                while (i.hasNext()) {
+                    TLogger.logTrace("Looking up next timer");
+                    jakarta.ejb.Timer t = (jakarta.ejb.Timer) i.next();
+                    TLogger.logTrace("Cancel timer with info: " + t.getInfo());
+                    t.cancel();
+                }
+            } else {
+                TLogger.logTrace("Timer Collection is Empty");
+            }
+        } catch (Exception e) {
+            // ignore
+        }
+    }
+
+    // ===========================================================
 
 }

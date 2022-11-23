@@ -23,7 +23,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.callback.method.descriptor;
 import com.sun.ts.tests.ejb30.common.callback.CallbackBeanBase;
 import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.Remote;
@@ -31,52 +30,50 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
 @Stateless(name = "CallbackBean")
-@Remote({ CallbackIF.class })
+@Remote({CallbackIF.class})
 public class CallbackBean extends CallbackBeanBase implements CallbackIF {
 
-  @Resource
-  private SessionContext sctx;
+    @Resource
+    private SessionContext sctx;
 
-  public CallbackBean() {
-    super();
-  }
-
-  public EJBContext getEJBContext() {
-    return this.sctx;
-  }
-
-  // ================= callback methods ====================================
-  // @PostConstruct
-  private void ejbCreate() throws RuntimeException {
-    this.setPostConstructCalled(true);
-    TLogger.log("PostConstruct method called: " + this);
-    if (this.getEJBContext() != null) {
-      this.setInjectionDone(true);
-    } else {
-      TLogger.log("Inside PostConstruct method SessionContext is null.");
+    public CallbackBean() {
+        super();
     }
-  }
 
-  // @PreDestroy
-  void ejbRemove() throws RuntimeException {
-    this.setPreDestroyCalled(true);
-    TLogger.log("PreDestroy method called: " + this);
-  }
-
-  // ================== business methods ====================================
-
-  public boolean isInjectionDoneTest() {
-    if (getEJBContext() == null) {
-      TLogger.log("SessionContext is null inside business method "
-          + "isInjectionDoneTest " + this);
-    } else {
-      TLogger.log("SessionContext has been injected when business method "
-          + "isInjectionDoneTest is called " + this);
+    public EJBContext getEJBContext() {
+        return this.sctx;
     }
-    boolean retValue;
 
-    retValue = super.isInjectionDoneTest();
-    return retValue;
-  }
+    // ================= callback methods ====================================
+    // @PostConstruct
+    private void ejbCreate() throws RuntimeException {
+        this.setPostConstructCalled(true);
+        TLogger.log("PostConstruct method called: " + this);
+        if (this.getEJBContext() != null) {
+            this.setInjectionDone(true);
+        } else {
+            TLogger.log("Inside PostConstruct method SessionContext is null.");
+        }
+    }
 
+    // @PreDestroy
+    void ejbRemove() throws RuntimeException {
+        this.setPreDestroyCalled(true);
+        TLogger.log("PreDestroy method called: " + this);
+    }
+
+    // ================== business methods ====================================
+
+    public boolean isInjectionDoneTest() {
+        if (getEJBContext() == null) {
+            TLogger.log("SessionContext is null inside business method " + "isInjectionDoneTest " + this);
+        } else {
+            TLogger.log(
+                    "SessionContext has been injected when business method " + "isInjectionDoneTest is called " + this);
+        }
+        boolean retValue;
+
+        retValue = super.isInjectionDoneTest();
+        return retValue;
+    }
 }

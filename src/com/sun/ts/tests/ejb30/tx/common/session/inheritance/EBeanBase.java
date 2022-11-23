@@ -24,14 +24,13 @@ import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-abstract public class EBeanBase extends TxBeanBase {
+public abstract class EBeanBase extends TxBeanBase {
 
-  public EBeanBase() {
-  }
+    public EBeanBase() {}
 
-  // All business methods are inherited from superclass, along with their
-  // transaction attribute MANDATORY.
-  // The transaction attribute at this class level (REQUIRES_NEW) must not
-  // be used.
+    // All business methods are inherited from superclass, along with their
+    // transaction attribute MANDATORY.
+    // The transaction attribute at this class level (REQUIRES_NEW) must not
+    // be used.
 
 }

@@ -22,11 +22,9 @@ package com.sun.ts.tests.ejb30.lite.async.stateful.annotated;
 
 import com.sun.ts.tests.ejb30.lite.async.common.annotated.AsyncAnnotatedMethodsBeanBase;
 import com.sun.ts.tests.ejb30.lite.async.common.annotated.AsyncAnnotatedMethodsIF;
-
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateful;
 
 @Stateful
-@Local({ AsyncAnnotatedMethodsIF.class })
-public class AsyncAnnotatedMethodsBean extends AsyncAnnotatedMethodsBeanBase {
-}
+@Local({AsyncAnnotatedMethodsIF.class})
+public class AsyncAnnotatedMethodsBean extends AsyncAnnotatedMethodsBeanBase {}

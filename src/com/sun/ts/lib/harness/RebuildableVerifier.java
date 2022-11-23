@@ -17,8 +17,8 @@
 package com.sun.ts.lib.harness;
 
 import com.sun.ts.lib.util.*;
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
 /**
  * This class is used by the TS harness to figure out which test directories
@@ -29,87 +29,85 @@ import java.io.*;
  *
  */
 public class RebuildableVerifier {
-  public final static String REBUILDABLE_PROP_FILE_NAME = "rebuildable.properties";
+    public static final String REBUILDABLE_PROP_FILE_NAME = "rebuildable.properties";
 
-  public final static String EXCLUDE_KEY = "exclude.dir";
+    public static final String EXCLUDE_KEY = "exclude.dir";
 
-  private static Properties mapping;
+    private static Properties mapping;
 
-  private static String[] keys; // sorted ascending
+    private static String[] keys; // sorted ascending
 
-  private static String[] excludes;
+    private static String[] excludes;
 
-  private String relativeTestDir;
+    private String relativeTestDir;
 
-  private static boolean loaded;
+    private static boolean loaded;
 
-  // an uninitialized singleton instance
-  private static RebuildableVerifier instance = new RebuildableVerifier();
+    // an uninitialized singleton instance
+    private static RebuildableVerifier instance = new RebuildableVerifier();
 
-  private RebuildableVerifier() {
-  }
+    private RebuildableVerifier() {}
 
-  public static RebuildableVerifier getInstance(File path) {
-    if (instance == null) {
-      instance = new RebuildableVerifier();
-    }
-    instance.init(path);
-    return instance;
-  }
-
-  private void loadExcludes() {
-    if (this.mapping == null) {
-      excludes = TestUtil.EMPTY_STRING_ARRAY;
-    } else {
-      excludes = ConfigUtil.stringToArray((String) mapping.remove(EXCLUDE_KEY));
-    }
-  }
-
-  private void init(File file) {
-    if (!loaded) {
-      mapping = ConfigUtil.loadPropertiesFor(REBUILDABLE_PROP_FILE_NAME);
-      loadExcludes();
-      keys = ConfigUtil.loadKeysFrom(mapping);
-      loaded = true;
-    }
-    if (mapping != null) {
-      this.relativeTestDir = TestUtil.getRelativePath(file.getPath());
-    }
-
-  }
-
-  private boolean isExcluded() {
-    for (int i = 0; i < excludes.length; i++) {
-      if (relativeTestDir.startsWith(excludes[i])) {
-        TestUtil.logHarnessDebug(
-            "RebuildableVerifier:  This test dir is excluded from those listed in rebuildable.properties.");
-        TestUtil.logHarnessDebug(
-            "RebuildableVerifier:  Please check your exclude list in the rebuildable.properties file.");
-        return true;
-      }
-    }
-    return false;
-  }
-
-  /**
-   * This method tells us if a given directory path is rebuildable of not
-   *
-   * @return true if the directory path contains rebuildable tests run in
-   */
-  public boolean isRebuildable() {
-    boolean result = false;
-
-    if (mapping == null || keys == null || isExcluded()) {
-      result = false;
-    } else {
-      for (int i = keys.length - 1; i >= 0; i--) { // must traverse in reverse
-                                                   // order.
-        if (("rebuildable." + relativeTestDir).startsWith(keys[i])) {
-          result = true;
-          break;
+    public static RebuildableVerifier getInstance(File path) {
+        if (instance == null) {
+            instance = new RebuildableVerifier();
         }
-      }
+        instance.init(path);
+        return instance;
     }
-    return result;
-  }
+
+    private void loadExcludes() {
+        if (this.mapping == null) {
+            excludes = TestUtil.EMPTY_STRING_ARRAY;
+        } else {
+            excludes = ConfigUtil.stringToArray((String) mapping.remove(EXCLUDE_KEY));
+        }
+    }
+
+    private void init(File file) {
+        if (!loaded) {
+            mapping = ConfigUtil.loadPropertiesFor(REBUILDABLE_PROP_FILE_NAME);
+            loadExcludes();
+            keys = ConfigUtil.loadKeysFrom(mapping);
+            loaded = true;
+        }
+        if (mapping != null) {
+            this.relativeTestDir = TestUtil.getRelativePath(file.getPath());
+        }
+    }
+
+    private boolean isExcluded() {
+        for (int i = 0; i < excludes.length; i++) {
+            if (relativeTestDir.startsWith(excludes[i])) {
+                TestUtil.logHarnessDebug(
+                        "RebuildableVerifier:  This test dir is excluded from those listed in rebuildable.properties.");
+                TestUtil.logHarnessDebug(
+                        "RebuildableVerifier:  Please check your exclude list in the rebuildable.properties file.");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * This method tells us if a given directory path is rebuildable of not
+     *
+     * @return true if the directory path contains rebuildable tests run in
+     */
+    public boolean isRebuildable() {
+        boolean result = false;
+
+        if (mapping == null || keys == null || isExcluded()) {
+            result = false;
+        } else {
+            for (int i = keys.length - 1; i >= 0; i--) { // must traverse in reverse
+                // order.
+                if (("rebuildable." + relativeTestDir).startsWith(keys[i])) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
 }

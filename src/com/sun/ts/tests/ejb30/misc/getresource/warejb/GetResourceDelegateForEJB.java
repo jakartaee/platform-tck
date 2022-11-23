@@ -25,8 +25,7 @@ package com.sun.ts.tests.ejb30.misc.getresource.warejb;
  * will resolve to this class, and so that the package name used by JDK to
  * convert relative resource name to absolute name will be this package, as
  * opposed to com.sun.ts.tests.ejb30.misc.getresource.common.
- * 
+ *
  * Packaged in ejb jar
  */
-public class GetResourceDelegateForEJB extends GetResourceDelegate {
-}
+public class GetResourceDelegateForEJB extends GetResourceDelegate {}

@@ -20,270 +20,265 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.cm.allowedmethodstest;
 
-import java.util.Hashtable;
-import java.util.Properties;
-
-import javax.naming.Context;
-import javax.naming.NamingException;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
 import jakarta.transaction.UserTransaction;
+import java.util.Hashtable;
+import java.util.Properties;
+import javax.naming.Context;
+import javax.naming.NamingException;
 
 public class TestBeanNoTxEJB implements SessionBean {
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  private Properties harnessProps = null;
+    private Properties harnessProps = null;
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  private String role = "Administrator";
+    private String role = "Administrator";
 
-  private Hashtable table = new Hashtable();
+    private Hashtable table = new Hashtable();
 
-  private static final String testLookup = "java:comp/env/ejb/Helper";
+    private static final String testLookup = "java:comp/env/ejb/Helper";
 
-  private UserTransaction ut;
+    private UserTransaction ut;
 
-  // These are the method tests
-  private static final String tests[] = { "ejbCreate", "ejbRemove",
-      "ejbActivate", "ejbPassivate", "afterBegin", "beforeCompletion",
-      "afterCompletion", "setSessionContext", "businessMethod" };
+    // These are the method tests
+    private static final String tests[] = {
+        "ejbCreate",
+        "ejbRemove",
+        "ejbActivate",
+        "ejbPassivate",
+        "afterBegin",
+        "beforeCompletion",
+        "afterCompletion",
+        "setSessionContext",
+        "businessMethod"
+    };
 
-  // This is the results of the operation tests
-  private static final Properties methodList[] = { new Properties(),
-      new Properties(), new Properties(), new Properties(), new Properties(),
-      new Properties(), new Properties(), new Properties(), new Properties() };
+    // This is the results of the operation tests
+    private static final Properties methodList[] = {
+        new Properties(),
+        new Properties(),
+        new Properties(),
+        new Properties(),
+        new Properties(),
+        new Properties(),
+        new Properties(),
+        new Properties(),
+        new Properties()
+    };
 
-  public void ejbCreate(Properties p) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    harnessProps = p;
-    try {
-      TestUtil.logMsg("Initialize remote logging");
-      TestUtil.init(p);
+    public void ejbCreate(Properties p) throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        harnessProps = p;
+        try {
+            TestUtil.logMsg("Initialize remote logging");
+            TestUtil.init(p);
 
-      TestUtil.logMsg("Obtain naming context");
-      nctx = new TSNamingContext();
+            TestUtil.logMsg("Obtain naming context");
+            nctx = new TSNamingContext();
 
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException(e.getMessage());
-    } catch (NamingException e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Unable to obtain naming context");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
-    }
-  }
-
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-    try {
-      TestUtil.logMsg("Obtain naming context");
-      nctx = new TSNamingContext();
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("Unable to obtain NamingContext");
-    }
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  // ===========================================================
-  // TestBeanNoTx interface (our business methods)
-
-  public Hashtable getResults() {
-    TestUtil.logTrace("getResults");
-    return table;
-  }
-
-  public void txNotSupported() {
-    TestUtil.logTrace("txNotSupported");
-    doOperationTests("businessMethod");
-  }
-
-  public void txSupports() {
-    TestUtil.logTrace("txSupports");
-    doOperationTests("businessMethod");
-  }
-
-  public void txNever() {
-    TestUtil.logTrace("txNever");
-    doOperationTests("businessMethod");
-  }
-
-  // ===========================================================
-  // Private methods
-
-  private int testIndex(String s) {
-    TestUtil.logTrace("testIndex");
-    for (int i = 0; i < tests.length; i++)
-      if (s.equals(tests[i]))
-        return i;
-    return -1;
-  }
-
-  private void setTestList(int i) {
-    TestUtil.logTrace("setTestList");
-    methodList[i].setProperty("JNDI_Access", "true");
-    methodList[i].setProperty("getEJBHome", "true");
-    methodList[i].setProperty("getCallerPrincipal", "true");
-    methodList[i].setProperty("getRollbackOnly", "true");
-    methodList[i].setProperty("isCallerInRole", "true");
-    methodList[i].setProperty("setRollbackOnly", "true");
-    methodList[i].setProperty("getEJBObject", "true");
-    methodList[i].setProperty("UserTransaction", "true");
-  }
-
-  private void doOperationTests(String s) {
-    TestUtil.logTrace("doOperationTests");
-    int i = testIndex(s);
-    TestUtil.logMsg("index for " + s + " is " + i);
-    TestUtil.logMsg("methodList length=" + methodList.length);
-    TestUtil.logMsg("tests length=" + tests.length);
-    setTestList(i);
-    TestUtil.logMsg("Operations testing for " + s + " method ...");
-
-    // getEJBHome test
-    try {
-      sctx.getEJBHome();
-      TestUtil.logMsg("Operations test: getEJBHome() - allowed");
-    } catch (IllegalStateException e) {
-      methodList[i].setProperty("getEJBHome", "false");
-      TestUtil.logMsg("Operations test: getEJBHome() - not allowed");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      methodList[i].setProperty("getEJBHome", "false");
-      TestUtil.logMsg(
-          "Operations test: getEJBHome() - not allowed (Unexpected Exception) - "
-              + e);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException(e.getMessage());
+        } catch (NamingException e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Unable to obtain naming context");
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
     }
 
-    // getCallerPrincipal test
-    try {
-      sctx.getCallerPrincipal();
-      TestUtil.logMsg("Operations test: getCallerPrincipal() - allowed");
-    } catch (IllegalStateException e) {
-      methodList[i].setProperty("getCallerPrincipal", "false");
-      TestUtil.logMsg("Operations test: getCallerPrincipal() - not allowed");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      methodList[i].setProperty("getCallerPrincipal", "false");
-      TestUtil.logMsg(
-          "Operations test: getCallerPrincipal() - not allowed (Unexpected Exception) - "
-              + e);
+    public void setSessionContext(SessionContext sc) {
+        TestUtil.logTrace("setSessionContext");
+        this.sctx = sc;
+        try {
+            TestUtil.logMsg("Obtain naming context");
+            nctx = new TSNamingContext();
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("Unable to obtain NamingContext");
+        }
     }
 
-    // getRollbackOnly test
-    try {
-      sctx.getRollbackOnly();
-      TestUtil.logMsg("Operations test: getRollbackOnly() - allowed");
-    } catch (IllegalStateException e) {
-      methodList[i].setProperty("getRollbackOnly", "false");
-      TestUtil.logMsg("Operations test: getRollbackOnly() - not allowed");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      methodList[i].setProperty("getRollbackOnly", "false");
-      TestUtil.logMsg(
-          "Operations test: getRollbackOnly() - not allowed (Unexpected Exception) - "
-              + e);
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
     }
 
-    // isCallerInRole test
-    try {
-      sctx.isCallerInRole(role);
-      TestUtil.logMsg("Operations test: isCallerInRole() - allowed");
-    } catch (IllegalStateException e) {
-      methodList[i].setProperty("isCallerInRole", "false");
-      TestUtil.logMsg("Operations test: isCallerInRole() - not allowed");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      methodList[i].setProperty("isCallerInRole", "false");
-      TestUtil.logMsg(
-          "Operations test: isCallerInRole() - not allowed (Unexpected Exception) - "
-              + e);
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
     }
 
-    // getEJBObject test
-    try {
-      sctx.getEJBObject();
-      TestUtil.logMsg("Operations test: getEJBObject() - allowed");
-    } catch (IllegalStateException e) {
-      methodList[i].setProperty("getEJBObject", "false");
-      TestUtil.logMsg("Operations test: getEJBObject() - not allowed");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      methodList[i].setProperty("getEJBObject", "false");
-      TestUtil.logMsg(
-          "Operations test: getEJBObject() - not allowed (Unexpected Exception) - "
-              + e);
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
     }
 
-    // JNDI Access test
-    try {
-      Context ctx = (Context) nctx.lookup("java:comp/env");
-      TestUtil.logMsg("Operations test: JNDI_Access - allowed");
-    } catch (IllegalStateException e) {
-      methodList[i].setProperty("JNDI_Access", "false");
-      TestUtil.logMsg("Operations test: JNDI_Access - not allowed");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      methodList[i].setProperty("JNDI_Access", "false");
-      TestUtil.logMsg(
-          "Operations test: JNDI_Access - not allowed (Unexpected Exception) - "
-              + e);
+    // ===========================================================
+    // TestBeanNoTx interface (our business methods)
+
+    public Hashtable getResults() {
+        TestUtil.logTrace("getResults");
+        return table;
     }
 
-    // UserTransaction Access test
-    try {
-      ut = sctx.getUserTransaction();
-      TestUtil.logMsg("Operations test: UserTransaction - allowed");
-    } catch (IllegalStateException e) {
-      methodList[i].setProperty("UserTransaction", "false");
-      TestUtil.logMsg("Operations test: UserTransaction - not allowed");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      methodList[i].setProperty("UserTransaction", "false");
-      TestUtil.logMsg(
-          "Operations test: UserTransaction - not allowed (Unexpected Exception) - "
-              + e);
+    public void txNotSupported() {
+        TestUtil.logTrace("txNotSupported");
+        doOperationTests("businessMethod");
     }
 
-    // setRollbackOnly test
-    try {
-      sctx.setRollbackOnly();
-      TestUtil.logMsg("Operations test: setRollbackOnly() - allowed");
-    } catch (IllegalStateException e) {
-      methodList[i].setProperty("setRollbackOnly", "false");
-      TestUtil.logMsg("Operations test: setRollbackOnly() - not allowed");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      methodList[i].setProperty("setRollbackOnly", "false");
-      TestUtil.logMsg(
-          "Operations test: setRollbackOnly() - not allowed (Unexpected Exception) - "
-              + e);
+    public void txSupports() {
+        TestUtil.logTrace("txSupports");
+        doOperationTests("businessMethod");
     }
 
-    table.put(s, methodList[i]);
-  }
+    public void txNever() {
+        TestUtil.logTrace("txNever");
+        doOperationTests("businessMethod");
+    }
 
-  // ===========================================================
+    // ===========================================================
+    // Private methods
+
+    private int testIndex(String s) {
+        TestUtil.logTrace("testIndex");
+        for (int i = 0; i < tests.length; i++) if (s.equals(tests[i])) return i;
+        return -1;
+    }
+
+    private void setTestList(int i) {
+        TestUtil.logTrace("setTestList");
+        methodList[i].setProperty("JNDI_Access", "true");
+        methodList[i].setProperty("getEJBHome", "true");
+        methodList[i].setProperty("getCallerPrincipal", "true");
+        methodList[i].setProperty("getRollbackOnly", "true");
+        methodList[i].setProperty("isCallerInRole", "true");
+        methodList[i].setProperty("setRollbackOnly", "true");
+        methodList[i].setProperty("getEJBObject", "true");
+        methodList[i].setProperty("UserTransaction", "true");
+    }
+
+    private void doOperationTests(String s) {
+        TestUtil.logTrace("doOperationTests");
+        int i = testIndex(s);
+        TestUtil.logMsg("index for " + s + " is " + i);
+        TestUtil.logMsg("methodList length=" + methodList.length);
+        TestUtil.logMsg("tests length=" + tests.length);
+        setTestList(i);
+        TestUtil.logMsg("Operations testing for " + s + " method ...");
+
+        // getEJBHome test
+        try {
+            sctx.getEJBHome();
+            TestUtil.logMsg("Operations test: getEJBHome() - allowed");
+        } catch (IllegalStateException e) {
+            methodList[i].setProperty("getEJBHome", "false");
+            TestUtil.logMsg("Operations test: getEJBHome() - not allowed");
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            methodList[i].setProperty("getEJBHome", "false");
+            TestUtil.logMsg("Operations test: getEJBHome() - not allowed (Unexpected Exception) - " + e);
+        }
+
+        // getCallerPrincipal test
+        try {
+            sctx.getCallerPrincipal();
+            TestUtil.logMsg("Operations test: getCallerPrincipal() - allowed");
+        } catch (IllegalStateException e) {
+            methodList[i].setProperty("getCallerPrincipal", "false");
+            TestUtil.logMsg("Operations test: getCallerPrincipal() - not allowed");
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            methodList[i].setProperty("getCallerPrincipal", "false");
+            TestUtil.logMsg("Operations test: getCallerPrincipal() - not allowed (Unexpected Exception) - " + e);
+        }
+
+        // getRollbackOnly test
+        try {
+            sctx.getRollbackOnly();
+            TestUtil.logMsg("Operations test: getRollbackOnly() - allowed");
+        } catch (IllegalStateException e) {
+            methodList[i].setProperty("getRollbackOnly", "false");
+            TestUtil.logMsg("Operations test: getRollbackOnly() - not allowed");
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            methodList[i].setProperty("getRollbackOnly", "false");
+            TestUtil.logMsg("Operations test: getRollbackOnly() - not allowed (Unexpected Exception) - " + e);
+        }
+
+        // isCallerInRole test
+        try {
+            sctx.isCallerInRole(role);
+            TestUtil.logMsg("Operations test: isCallerInRole() - allowed");
+        } catch (IllegalStateException e) {
+            methodList[i].setProperty("isCallerInRole", "false");
+            TestUtil.logMsg("Operations test: isCallerInRole() - not allowed");
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            methodList[i].setProperty("isCallerInRole", "false");
+            TestUtil.logMsg("Operations test: isCallerInRole() - not allowed (Unexpected Exception) - " + e);
+        }
+
+        // getEJBObject test
+        try {
+            sctx.getEJBObject();
+            TestUtil.logMsg("Operations test: getEJBObject() - allowed");
+        } catch (IllegalStateException e) {
+            methodList[i].setProperty("getEJBObject", "false");
+            TestUtil.logMsg("Operations test: getEJBObject() - not allowed");
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            methodList[i].setProperty("getEJBObject", "false");
+            TestUtil.logMsg("Operations test: getEJBObject() - not allowed (Unexpected Exception) - " + e);
+        }
+
+        // JNDI Access test
+        try {
+            Context ctx = (Context) nctx.lookup("java:comp/env");
+            TestUtil.logMsg("Operations test: JNDI_Access - allowed");
+        } catch (IllegalStateException e) {
+            methodList[i].setProperty("JNDI_Access", "false");
+            TestUtil.logMsg("Operations test: JNDI_Access - not allowed");
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            methodList[i].setProperty("JNDI_Access", "false");
+            TestUtil.logMsg("Operations test: JNDI_Access - not allowed (Unexpected Exception) - " + e);
+        }
+
+        // UserTransaction Access test
+        try {
+            ut = sctx.getUserTransaction();
+            TestUtil.logMsg("Operations test: UserTransaction - allowed");
+        } catch (IllegalStateException e) {
+            methodList[i].setProperty("UserTransaction", "false");
+            TestUtil.logMsg("Operations test: UserTransaction - not allowed");
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            methodList[i].setProperty("UserTransaction", "false");
+            TestUtil.logMsg("Operations test: UserTransaction - not allowed (Unexpected Exception) - " + e);
+        }
+
+        // setRollbackOnly test
+        try {
+            sctx.setRollbackOnly();
+            TestUtil.logMsg("Operations test: setRollbackOnly() - allowed");
+        } catch (IllegalStateException e) {
+            methodList[i].setProperty("setRollbackOnly", "false");
+            TestUtil.logMsg("Operations test: setRollbackOnly() - not allowed");
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            methodList[i].setProperty("setRollbackOnly", "false");
+            TestUtil.logMsg("Operations test: setRollbackOnly() - not allowed (Unexpected Exception) - " + e);
+        }
+
+        table.put(s, methodList[i]);
+    }
+
+    // ===========================================================
 }

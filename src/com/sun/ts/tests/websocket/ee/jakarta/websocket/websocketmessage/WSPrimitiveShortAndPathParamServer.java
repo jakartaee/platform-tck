@@ -17,28 +17,26 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.websocketmessage;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
 @ServerEndpoint("/primitiveshortpathparam/{param}")
 public class WSPrimitiveShortAndPathParamServer {
-  @OnMessage
-  public String echo(short s, @PathParam("param") short param) {
-    return String.valueOf(s) + String.valueOf(param);
-  }
+    @OnMessage
+    public String echo(short s, @PathParam("param") short param) {
+        return String.valueOf(s) + String.valueOf(param);
+    }
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in " + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+    @OnError
+    public void onError(Session session, Throwable t) throws IOException {
+        System.out.println("@OnError in " + getClass().getName());
+        t.printStackTrace(); // Write to error log, too
+        String message = "Exception: " + IOUtil.printStackTrace(t);
+        session.getBasicRemote().sendText(message);
+    }
 }

@@ -22,83 +22,74 @@ package com.sun.ts.tests.samples.ejb.ee.simpleHello;
 
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
 
 public class HelloEJB implements SessionBean {
-  private SessionContext context;
+    private SessionContext context;
 
-  private String str;
+    private String str;
 
-  private java.util.Properties p = null;
+    private java.util.Properties p = null;
 
-  public HelloEJB() {
-  }
+    public HelloEJB() {}
 
-  public void ejbCreate(String str, java.util.Properties props)
-      throws CreateException {
-    p = props;
-    try {
-      TestUtil.logTrace("ejbCreate");
-      TestUtil.init(props);
-      this.str = str;
-    } catch (Exception e) {
-      TestUtil.logErr("init failed", e);
-    }
-  }
-
-  public String sayHello() {
-    System.out.println("Hello EJB - creating another HelloEJB !!");
-
-    // create EJB
-    Hello hr = null;
-    try {
-      TSNamingContext ic = new TSNamingContext();
-      HelloHome home = (HelloHome) ic.lookup("java:comp/env/ejb/Hello",
-          HelloHome.class);
-      hr = home.create("Hello Again!!", p);
-      TestUtil.logMsg("Got the EJB!!");
-    } catch (Exception ex) {
-      TestUtil.logErr("got exception", ex);
-      throw new EJBException("unknown exception", ex);
+    public void ejbCreate(String str, java.util.Properties props) throws CreateException {
+        p = props;
+        try {
+            TestUtil.logTrace("ejbCreate");
+            TestUtil.init(props);
+            this.str = str;
+        } catch (Exception e) {
+            TestUtil.logErr("init failed", e);
+        }
     }
 
-    // invoke method on the EJB
-    TestUtil.logMsg("HelloEJB: calling HelloEJB.sayHelloAgain() on thread "
-        + Thread.currentThread());
-    String result = null;
-    try {
-      result = hr.sayHelloAgain();
-    } catch (Exception ex) {
-      TestUtil.logErr("Exception encountered ", ex);
-      throw new EJBException("Exception encountered", ex);
+    public String sayHello() {
+        System.out.println("Hello EJB - creating another HelloEJB !!");
+
+        // create EJB
+        Hello hr = null;
+        try {
+            TSNamingContext ic = new TSNamingContext();
+            HelloHome home = (HelloHome) ic.lookup("java:comp/env/ejb/Hello", HelloHome.class);
+            hr = home.create("Hello Again!!", p);
+            TestUtil.logMsg("Got the EJB!!");
+        } catch (Exception ex) {
+            TestUtil.logErr("got exception", ex);
+            throw new EJBException("unknown exception", ex);
+        }
+
+        // invoke method on the EJB
+        TestUtil.logMsg("HelloEJB: calling HelloEJB.sayHelloAgain() on thread " + Thread.currentThread());
+        String result = null;
+        try {
+            result = hr.sayHelloAgain();
+        } catch (Exception ex) {
+            TestUtil.logErr("Exception encountered ", ex);
+            throw new EJBException("Exception encountered", ex);
+        }
+
+        return result;
     }
 
-    return result;
-  }
+    public String sayHelloAgain() {
+        TestUtil.logMsg("Hello EJB - in sayHelloAgain(), thread is " + Thread.currentThread());
+        return str;
+    }
 
-  public String sayHelloAgain() {
-    TestUtil.logMsg(
-        "Hello EJB - in sayHelloAgain(), thread is " + Thread.currentThread());
-    return str;
-  }
+    public void setSessionContext(SessionContext sc) {
+        TestUtil.logTrace("setSessionContext");
+        context = sc;
+    }
 
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    context = sc;
-  }
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
+    }
 
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
+    public void ejbActivate() {}
 
-  public void ejbActivate() {
-  }
-
-  public void ejbPassivate() {
-  }
-
+    public void ejbPassivate() {}
 }

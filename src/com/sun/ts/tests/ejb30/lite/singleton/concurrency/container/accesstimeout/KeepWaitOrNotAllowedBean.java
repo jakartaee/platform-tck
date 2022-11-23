@@ -19,32 +19,30 @@
  */
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout;
 
-import java.util.concurrent.TimeUnit;
-
 import jakarta.ejb.AccessTimeout;
 import jakarta.ejb.Lock;
 import jakarta.ejb.LockType;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
+import java.util.concurrent.TimeUnit;
 
 @Singleton
 @Startup
 @AccessTimeout(unit = TimeUnit.MILLISECONDS, value = 1)
-public class KeepWaitOrNotAllowedBean extends PlainAccessTimeoutBeanBase
-    implements AccessTimeoutIF {
-  @Override
-  @Lock(LockType.WRITE)
-  @AccessTimeout(unit = TimeUnit.DAYS, value = -1)
-  // keep waiting
-  public int longRead(long waitTimeMillis, int readVal) {
-    return super.longRead(waitTimeMillis, readVal);
-  }
+public class KeepWaitOrNotAllowedBean extends PlainAccessTimeoutBeanBase implements AccessTimeoutIF {
+    @Override
+    @Lock(LockType.WRITE)
+    @AccessTimeout(unit = TimeUnit.DAYS, value = -1)
+    // keep waiting
+    public int longRead(long waitTimeMillis, int readVal) {
+        return super.longRead(waitTimeMillis, readVal);
+    }
 
-  @Override
-  @Lock(LockType.WRITE)
-  @AccessTimeout(unit = TimeUnit.MILLISECONDS, value = 0)
-  // concurrency not allowed
-  public void longWrite(long waitTimeMillis) {
-    super.longWrite(waitTimeMillis);
-  }
+    @Override
+    @Lock(LockType.WRITE)
+    @AccessTimeout(unit = TimeUnit.MILLISECONDS, value = 0)
+    // concurrency not allowed
+    public void longWrite(long waitTimeMillis) {
+        super.longWrite(waitTimeMillis);
+    }
 }

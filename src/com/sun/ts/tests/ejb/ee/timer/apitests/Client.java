@@ -20,428 +20,416 @@
 
 package com.sun.ts.tests.ejb.ee.timer.apitests;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSLoginContext;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
+import java.util.Properties;
 
 public class Client extends EETest {
-  private static final String testName = "apiTimerTests";
+    private static final String testName = "apiTimerTests";
 
-  private static final String testLookup = "java:comp/env/ejb/TimerBeanEJB";
+    private static final String testLookup = "java:comp/env/ejb/TimerBeanEJB";
 
-  private TimerBean beanRef = null;
+    private TimerBean beanRef = null;
 
-  private TimerBeanHome beanHome = null;
+    private TimerBeanHome beanHome = null;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  private long timerDuration = 0;
+    private long timerDuration = 0;
 
-  private long timerWait = 0;
+    private long timerWait = 0;
 
-  private static final String user = "user", password = "password";
+    private static final String user = "user", password = "password";
+    private String user_value, password_value;
 
-  private String user_value, password_value;
-
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup */
-
-  /*
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   * ejb_timeout; ejb_wait; user; password;
-   * 
-   * @class.testArgs:
-   */
-
-  public void setup(String[] args, Properties p) throws Fault {
-    props = p;
-    user_value = props.getProperty(user);
-    password_value = props.getProperty(password);
-
-    logMsg("user_value=" + user_value);
-    logMsg("password_value=" + password_value);
-
-    try {
-      logMsg("Obtain naming context");
-      nctx = new TSNamingContext();
-      logMsg("Obtain login context and login as: " + user_value);
-      TSLoginContext lc = new TSLoginContext();
-      lc.login(user_value, password_value);
-
-      // Get EJB Home ...
-      logMsg("Looking up home interface for EJB: " + testLookup);
-      beanHome = (TimerBeanHome) nctx.lookup(testLookup, TimerBeanHome.class);
-
-      timerDuration = Long.parseLong(p.getProperty("ejb_timeout"));
-      timerWait = Long.parseLong(p.getProperty("ejb_wait"));
-
-      logMsg("Setup ok");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Fault("Setup failed:", e);
-    }
-  }
-
-  /* Run test */
-
-  /*
-   * @testName: apiTimerTest1
-   * 
-   * @assertion_ids: EJB:JAVADOC:215
-   *
-   * @test_Strategy: Pass a negative duration value to createTimer and verify an
-   * IllegalArgumentException is thrown.
-   *
-   */
-
-  public void apiTimerTest1() throws Fault {
-    boolean pass = false;
-    try {
-      // create EJB instance
-      logMsg("Create EJB instance");
-      beanRef = (TimerBean) beanHome.create();
-      beanRef.initLogging(props);
-      pass = beanRef.test1();
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Fault("apiTimerTest1 failed", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
 
-    if (beanRef != null)
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
-      }
+    /* Test setup */
 
-    if (!pass)
-      throw new Fault("apiTimerTest1 failed");
-  }
+    /*
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     * ejb_timeout; ejb_wait; user; password;
+     *
+     * @class.testArgs:
+     */
 
-  /*
-   * @testName: apiTimerTest2
-   * 
-   * @assertion_ids: EJB:JAVADOC:219
-   * 
-   * @test_Strategy: Pass a negative initialDuration value to createTimer and
-   * verify an IllegalArgumentException is thrown.
-   * 
-   */
+    public void setup(String[] args, Properties p) throws Fault {
+        props = p;
+        user_value = props.getProperty(user);
+        password_value = props.getProperty(password);
 
-  public void apiTimerTest2() throws Fault {
-    boolean pass = false;
-    try {
-      // create EJB instance
-      logMsg("Create EJB instance");
-      beanRef = (TimerBean) beanHome.create();
-      beanRef.initLogging(props);
-      pass = beanRef.test2();
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Fault("apiTimerTest2 failed", e);
+        logMsg("user_value=" + user_value);
+        logMsg("password_value=" + password_value);
+
+        try {
+            logMsg("Obtain naming context");
+            nctx = new TSNamingContext();
+            logMsg("Obtain login context and login as: " + user_value);
+            TSLoginContext lc = new TSLoginContext();
+            lc.login(user_value, password_value);
+
+            // Get EJB Home ...
+            logMsg("Looking up home interface for EJB: " + testLookup);
+            beanHome = (TimerBeanHome) nctx.lookup(testLookup, TimerBeanHome.class);
+
+            timerDuration = Long.parseLong(p.getProperty("ejb_timeout"));
+            timerWait = Long.parseLong(p.getProperty("ejb_wait"));
+
+            logMsg("Setup ok");
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new Fault("Setup failed:", e);
+        }
     }
 
-    if (beanRef != null)
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
-      }
+    /* Run test */
 
-    if (!pass)
-      throw new Fault("apiTimerTest2 failed");
-  }
+    /*
+     * @testName: apiTimerTest1
+     *
+     * @assertion_ids: EJB:JAVADOC:215
+     *
+     * @test_Strategy: Pass a negative duration value to createTimer and verify an
+     * IllegalArgumentException is thrown.
+     *
+     */
 
-  /*
-   * @testName: apiTimerTest3
-   * 
-   * @assertion_ids: EJB:JAVADOC:219
-   * 
-   * @test_Strategy: Pass a negative intervalDuration value to createTimer and
-   * verify an IllegalArgumentException is thrown.
-   * 
-   */
+    public void apiTimerTest1() throws Fault {
+        boolean pass = false;
+        try {
+            // create EJB instance
+            logMsg("Create EJB instance");
+            beanRef = (TimerBean) beanHome.create();
+            beanRef.initLogging(props);
+            pass = beanRef.test1();
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new Fault("apiTimerTest1 failed", e);
+        }
 
-  public void apiTimerTest3() throws Fault {
-    boolean pass = false;
-    try {
-      // create EJB instance
-      logMsg("Create EJB instance");
-      beanRef = (TimerBean) beanHome.create();
-      beanRef.initLogging(props);
-      pass = beanRef.test3();
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Fault("apiTimerTest3 failed", e);
+        if (beanRef != null)
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
+            }
+
+        if (!pass) throw new Fault("apiTimerTest1 failed");
     }
 
-    if (beanRef != null)
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
-      }
+    /*
+     * @testName: apiTimerTest2
+     *
+     * @assertion_ids: EJB:JAVADOC:219
+     *
+     * @test_Strategy: Pass a negative initialDuration value to createTimer and
+     * verify an IllegalArgumentException is thrown.
+     *
+     */
 
-    if (!pass)
-      throw new Fault("apiTimerTest3 failed");
-  }
+    public void apiTimerTest2() throws Fault {
+        boolean pass = false;
+        try {
+            // create EJB instance
+            logMsg("Create EJB instance");
+            beanRef = (TimerBean) beanHome.create();
+            beanRef.initLogging(props);
+            pass = beanRef.test2();
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new Fault("apiTimerTest2 failed", e);
+        }
 
-  /*
-   * @testName: apiTimerTest4
-   * 
-   * @assertion_ids: EJB:JAVADOC:223
-   * 
-   * @test_Strategy: Pass a null expiration value to createTimer and verify an
-   * IllegalArgumentException is thrown.
-   * 
-   */
+        if (beanRef != null)
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
+            }
 
-  public void apiTimerTest4() throws Fault {
-    boolean pass = false;
-    try {
-      // create EJB instance
-      logMsg("Create EJB instance");
-      beanRef = (TimerBean) beanHome.create();
-      beanRef.initLogging(props);
-      pass = beanRef.test4();
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Fault("apiTimerTest4 failed", e);
+        if (!pass) throw new Fault("apiTimerTest2 failed");
     }
 
-    if (beanRef != null)
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
-      }
+    /*
+     * @testName: apiTimerTest3
+     *
+     * @assertion_ids: EJB:JAVADOC:219
+     *
+     * @test_Strategy: Pass a negative intervalDuration value to createTimer and
+     * verify an IllegalArgumentException is thrown.
+     *
+     */
 
-    if (!pass)
-      throw new Fault("apiTimerTest4 failed");
-  }
+    public void apiTimerTest3() throws Fault {
+        boolean pass = false;
+        try {
+            // create EJB instance
+            logMsg("Create EJB instance");
+            beanRef = (TimerBean) beanHome.create();
+            beanRef.initLogging(props);
+            pass = beanRef.test3();
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new Fault("apiTimerTest3 failed", e);
+        }
 
-  /*
-   * @testName: apiTimerTest5
-   * 
-   * @assertion_ids: EJB:JAVADOC:227
-   * 
-   * @test_Strategy: If initialExpiration is null, verify createTimer throws an
-   * IllegalArgumentException.
-   * 
-   */
+        if (beanRef != null)
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
+            }
 
-  public void apiTimerTest5() throws Fault {
-    boolean pass = false;
-    try {
-      // create EJB instance
-      logMsg("Create EJB instance");
-      beanRef = (TimerBean) beanHome.create();
-      beanRef.initLogging(props);
-      pass = beanRef.test5();
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Fault("apiTimerTest5 failed", e);
+        if (!pass) throw new Fault("apiTimerTest3 failed");
     }
 
-    if (beanRef != null)
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
-      }
+    /*
+     * @testName: apiTimerTest4
+     *
+     * @assertion_ids: EJB:JAVADOC:223
+     *
+     * @test_Strategy: Pass a null expiration value to createTimer and verify an
+     * IllegalArgumentException is thrown.
+     *
+     */
 
-    if (!pass)
-      throw new Fault("apiTimerTest5 failed");
-  }
+    public void apiTimerTest4() throws Fault {
+        boolean pass = false;
+        try {
+            // create EJB instance
+            logMsg("Create EJB instance");
+            beanRef = (TimerBean) beanHome.create();
+            beanRef.initLogging(props);
+            pass = beanRef.test4();
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new Fault("apiTimerTest4 failed", e);
+        }
 
-  /*
-   * @testName: apiTimerTest6
-   * 
-   * @assertion_ids: EJB:JAVADOC:192
-   * 
-   * @test_Strategy: Ensure that a NoSuchObjectLocalException is thrown when
-   * attempting to cancel a timer that has already been cancelled.
-   * 
-   */
+        if (beanRef != null)
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
+            }
 
-  public void apiTimerTest6() throws Fault {
-    boolean pass = false;
-    try {
-      // create EJB instance
-      logMsg("Create EJB instance");
-      beanRef = (TimerBean) beanHome.create();
-      beanRef.initLogging(props);
-      pass = beanRef.test6();
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Fault("apiTimerTest6 failed", e);
+        if (!pass) throw new Fault("apiTimerTest4 failed");
     }
 
-    if (beanRef != null)
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
-      }
+    /*
+     * @testName: apiTimerTest5
+     *
+     * @assertion_ids: EJB:JAVADOC:227
+     *
+     * @test_Strategy: If initialExpiration is null, verify createTimer throws an
+     * IllegalArgumentException.
+     *
+     */
 
-    if (!pass)
-      throw new Fault("apiTimerTest6 failed");
-  }
+    public void apiTimerTest5() throws Fault {
+        boolean pass = false;
+        try {
+            // create EJB instance
+            logMsg("Create EJB instance");
+            beanRef = (TimerBean) beanHome.create();
+            beanRef.initLogging(props);
+            pass = beanRef.test5();
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new Fault("apiTimerTest5 failed", e);
+        }
 
-  /*
-   * @testName: apiTimerTest7
-   * 
-   * @assertion_ids: EJB:JAVADOC:208
-   * 
-   * @test_Strategy: Ensure that a NoSuchObjectLocalException is thrown when
-   * attempting to getTimeRemaining on a timer that has already been cancelled.
-   * 
-   */
+        if (beanRef != null)
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
+            }
 
-  public void apiTimerTest7() throws Fault {
-    boolean pass = false;
-    try {
-      // create EJB instance
-      logMsg("Create EJB instance");
-      beanRef = (TimerBean) beanHome.create();
-      beanRef.initLogging(props);
-      pass = beanRef.test7();
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Fault("apiTimerTest7 failed", e);
+        if (!pass) throw new Fault("apiTimerTest5 failed");
     }
 
-    if (beanRef != null)
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
-      }
+    /*
+     * @testName: apiTimerTest6
+     *
+     * @assertion_ids: EJB:JAVADOC:192
+     *
+     * @test_Strategy: Ensure that a NoSuchObjectLocalException is thrown when
+     * attempting to cancel a timer that has already been cancelled.
+     *
+     */
 
-    if (!pass)
-      throw new Fault("apiTimerTest7 failed");
-  }
+    public void apiTimerTest6() throws Fault {
+        boolean pass = false;
+        try {
+            // create EJB instance
+            logMsg("Create EJB instance");
+            beanRef = (TimerBean) beanHome.create();
+            beanRef.initLogging(props);
+            pass = beanRef.test6();
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new Fault("apiTimerTest6 failed", e);
+        }
 
-  /*
-   * @testName: apiTimerTest8
-   * 
-   * @assertion_ids: EJB:JAVADOC:204
-   * 
-   * @test_Strategy: Ensure that a NoSuchObjectLocalException is thrown when
-   * attempting to getNextTimeout on a timer that has already been cancelled.
-   * 
-   */
+        if (beanRef != null)
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
+            }
 
-  public void apiTimerTest8() throws Fault {
-    boolean pass = false;
-    try {
-      // create EJB instance
-      logMsg("Create EJB instance");
-      beanRef = (TimerBean) beanHome.create();
-      beanRef.initLogging(props);
-      pass = beanRef.test8();
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Fault("apiTimerTest8 failed", e);
+        if (!pass) throw new Fault("apiTimerTest6 failed");
     }
 
-    if (beanRef != null)
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
-      }
+    /*
+     * @testName: apiTimerTest7
+     *
+     * @assertion_ids: EJB:JAVADOC:208
+     *
+     * @test_Strategy: Ensure that a NoSuchObjectLocalException is thrown when
+     * attempting to getTimeRemaining on a timer that has already been cancelled.
+     *
+     */
 
-    if (!pass)
-      throw new Fault("apiTimerTest8 failed");
-  }
+    public void apiTimerTest7() throws Fault {
+        boolean pass = false;
+        try {
+            // create EJB instance
+            logMsg("Create EJB instance");
+            beanRef = (TimerBean) beanHome.create();
+            beanRef.initLogging(props);
+            pass = beanRef.test7();
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new Fault("apiTimerTest7 failed", e);
+        }
 
-  /*
-   * @testName: apiTimerTest9
-   * 
-   * @assertion_ids: EJB:JAVADOC:200
-   * 
-   * @test_Strategy: Ensure that a NoSuchObjectLocalException is thrown when
-   * attempting to getInfo on a timer that has already been cancelled.
-   * 
-   */
+        if (beanRef != null)
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
+            }
 
-  public void apiTimerTest9() throws Fault {
-    boolean pass = false;
-    try {
-      // create EJB instance
-      logMsg("Create EJB instance");
-      beanRef = (TimerBean) beanHome.create();
-      beanRef.initLogging(props);
-      pass = beanRef.test9();
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Fault("apiTimerTest9 failed", e);
+        if (!pass) throw new Fault("apiTimerTest7 failed");
     }
 
-    if (beanRef != null)
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
-      }
+    /*
+     * @testName: apiTimerTest8
+     *
+     * @assertion_ids: EJB:JAVADOC:204
+     *
+     * @test_Strategy: Ensure that a NoSuchObjectLocalException is thrown when
+     * attempting to getNextTimeout on a timer that has already been cancelled.
+     *
+     */
 
-    if (!pass)
-      throw new Fault("apiTimerTest9 failed");
-  }
+    public void apiTimerTest8() throws Fault {
+        boolean pass = false;
+        try {
+            // create EJB instance
+            logMsg("Create EJB instance");
+            beanRef = (TimerBean) beanHome.create();
+            beanRef.initLogging(props);
+            pass = beanRef.test8();
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new Fault("apiTimerTest8 failed", e);
+        }
 
-  /*
-   * @testName: apiTimerTest10
-   * 
-   * @assertion_ids: EJB:JAVADOC:196
-   * 
-   * @test_Strategy: Ensure that a NoSuchObjectLocalException is thrown when
-   * attempting to getHandle on a timer that has already been cancelled.
-   * 
-   */
+        if (beanRef != null)
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
+            }
 
-  public void apiTimerTest10() throws Fault {
-    boolean pass = false;
-    try {
-      // create EJB instance
-      logMsg("Create EJB instance");
-      beanRef = (TimerBean) beanHome.create();
-      beanRef.initLogging(props);
-      pass = beanRef.test10();
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Fault("apiTimerTest10 failed", e);
+        if (!pass) throw new Fault("apiTimerTest8 failed");
     }
 
-    if (beanRef != null)
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
-      }
+    /*
+     * @testName: apiTimerTest9
+     *
+     * @assertion_ids: EJB:JAVADOC:200
+     *
+     * @test_Strategy: Ensure that a NoSuchObjectLocalException is thrown when
+     * attempting to getInfo on a timer that has already been cancelled.
+     *
+     */
 
-    if (!pass)
-      throw new Fault("apiTimerTest10 failed");
-  }
+    public void apiTimerTest9() throws Fault {
+        boolean pass = false;
+        try {
+            // create EJB instance
+            logMsg("Create EJB instance");
+            beanRef = (TimerBean) beanHome.create();
+            beanRef.initLogging(props);
+            pass = beanRef.test9();
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new Fault("apiTimerTest9 failed", e);
+        }
 
-  public void cleanup() throws Fault {
-    try {
-      beanRef = (TimerBean) beanHome.create();
-      beanRef.findAndCancelTimer();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception caught removing timers:" + e, e);
+        if (beanRef != null)
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
+            }
+
+        if (!pass) throw new Fault("apiTimerTest9 failed");
     }
-    logMsg("cleanup ok");
-  }
+
+    /*
+     * @testName: apiTimerTest10
+     *
+     * @assertion_ids: EJB:JAVADOC:196
+     *
+     * @test_Strategy: Ensure that a NoSuchObjectLocalException is thrown when
+     * attempting to getHandle on a timer that has already been cancelled.
+     *
+     */
+
+    public void apiTimerTest10() throws Fault {
+        boolean pass = false;
+        try {
+            // create EJB instance
+            logMsg("Create EJB instance");
+            beanRef = (TimerBean) beanHome.create();
+            beanRef.initLogging(props);
+            pass = beanRef.test10();
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new Fault("apiTimerTest10 failed", e);
+        }
+
+        if (beanRef != null)
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
+            }
+
+        if (!pass) throw new Fault("apiTimerTest10 failed");
+    }
+
+    public void cleanup() throws Fault {
+        try {
+            beanRef = (TimerBean) beanHome.create();
+            beanRef.findAndCancelTimer();
+        } catch (Exception e) {
+            TestUtil.logErr("Unexpected Exception caught removing timers:" + e, e);
+        }
+        logMsg("cleanup ok");
+    }
 }

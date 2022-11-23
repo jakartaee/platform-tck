@@ -23,30 +23,29 @@ import java.io.Serializable;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
-public class JsfClient
-    extends com.sun.ts.tests.ejb30.lite.lookup.common.JsfClientBase implements Serializable {
+public class JsfClient extends com.sun.ts.tests.ejb30.lite.lookup.common.JsfClientBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-  /*
-   * @testName: ejbPostConstructRecords
-   * 
-   * @test_Strategy: verify all ejbs are injected properly by the time
-   * post-construct method is invoked.
-   */
+    /*
+     * @testName: ejbPostConstructRecords
+     *
+     * @test_Strategy: verify all ejbs are injected properly by the time
+     * post-construct method is invoked.
+     */
 
-  /*
-   * @testName: ejb2PostConstructRecords
-   * 
-   * @test_Strategy: verify all ejbs are injected properly by the time
-   * post-construct method is invoked.
-   */
+    /*
+     * @testName: ejb2PostConstructRecords
+     *
+     * @test_Strategy: verify all ejbs are injected properly by the time
+     * post-construct method is invoked.
+     */
 
-  /*
-   * @testName: clientPostConstructRecords
-   * 
-   * @test_Strategy: verify all ejbs injected into web client. In embeddable
-   * usage, this test is noop.
-   */
+    /*
+     * @testName: clientPostConstructRecords
+     *
+     * @test_Strategy: verify all ejbs injected into web client. In embeddable
+     * usage, this test is noop.
+     */
 
 }

@@ -17,52 +17,48 @@
 
 package com.sun.ts.tests.websocket.spec.application.closing;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.OnClose;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
 @ServerEndpoint(value = "/closesession")
 public class WSCCloseSessionServer {
-  static int lastCloseCode = 0;
+    static int lastCloseCode = 0;
 
-  static final String MESSAGES[] = { "idle", "lastcode" };
+    static final String MESSAGES[] = {"idle", "lastcode"};
 
-  @OnMessage
-  public String onMessage(String msg, Session session) {
-    if (MESSAGES[0].equals(msg)) {
-      setLastCloseCode(0);
-      session.setMaxIdleTimeout(1);
-    } else if (MESSAGES[1].equals(msg))
-      msg = getLastCloseCode();
-    return msg;
-  }
+    @OnMessage
+    public String onMessage(String msg, Session session) {
+        if (MESSAGES[0].equals(msg)) {
+            setLastCloseCode(0);
+            session.setMaxIdleTimeout(1);
+        } else if (MESSAGES[1].equals(msg)) msg = getLastCloseCode();
+        return msg;
+    }
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+    @OnError
+    public void onError(Session session, Throwable thr) throws IOException {
+        thr.printStackTrace(); // Write to error log, too
+        String message = IOUtil.printStackTrace(thr);
+        session.getBasicRemote().sendText(message);
+    }
 
-  @OnClose
-  public void onClose(CloseReason reason) {
-    int lastCloseCode = reason.getCloseCode().getCode();
-    setLastCloseCode(lastCloseCode);
-  }
+    @OnClose
+    public void onClose(CloseReason reason) {
+        int lastCloseCode = reason.getCloseCode().getCode();
+        setLastCloseCode(lastCloseCode);
+    }
 
-  private static String getLastCloseCode() {
-    return String.valueOf(lastCloseCode);
-  }
+    private static String getLastCloseCode() {
+        return String.valueOf(lastCloseCode);
+    }
 
-  private static void setLastCloseCode(int lastCloseCode) {
-    WSCCloseSessionServer.lastCloseCode = lastCloseCode;
-  }
-
+    private static void setLastCloseCode(int lastCloseCode) {
+        WSCCloseSessionServer.lastCloseCode = lastCloseCode;
+    }
 }

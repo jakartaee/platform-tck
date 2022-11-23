@@ -19,32 +19,30 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.war.mbean.interceptor.lifecyclecdijsf;
 
-import java.util.List;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.HistorySingletonBean;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.EJB;
+import java.util.List;
 
 public class OverrideBeanBase {
-  private static final String simpleName = "OverrideBeanBase";
+    private static final String simpleName = "OverrideBeanBase";
 
-  @EJB(name = "historySingletonBean")
-  protected HistorySingletonBean historySingletonBean;
+    @EJB(name = "historySingletonBean")
+    protected HistorySingletonBean historySingletonBean;
 
-  @PostConstruct
-  protected void postConstructInOverrideBeanBase() {
-    historySingletonBean.addPostConstructRecordFor(this,
-        OverrideBeanBase.simpleName);
-  }
+    @PostConstruct
+    protected void postConstructInOverrideBeanBase() {
+        historySingletonBean.addPostConstructRecordFor(this, OverrideBeanBase.simpleName);
+    }
 
-  @PreDestroy
-  protected void preDestroyInOverrideBeanBase() {
-    Helper.getLogger().info("In preDestroyInOverrideBeanBase of " + this);
-  }
+    @PreDestroy
+    protected void preDestroyInOverrideBeanBase() {
+        Helper.getLogger().info("In preDestroyInOverrideBeanBase of " + this);
+    }
 
-  public List<String> getPostConstructRecords() {
-    return historySingletonBean.getPostConstructRecordsFor(this);
-  }
+    public List<String> getPostConstructRecords() {
+        return historySingletonBean.getPostConstructRecordsFor(this);
+    }
 }

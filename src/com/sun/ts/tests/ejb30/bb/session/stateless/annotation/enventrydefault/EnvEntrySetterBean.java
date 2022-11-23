@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.enventrydefault;
 
 import com.sun.ts.tests.ejb30.common.annotation.enventry.EnvEntryIF;
 import com.sun.ts.tests.ejb30.common.annotation.enventry.EnvEntryLookupFailBeanBase;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
@@ -31,366 +30,363 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateless(name = "EnvEntrySetterBean")
-@Remote({ EnvEntryIF.class })
+@Remote({EnvEntryIF.class})
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public class EnvEntrySetterBean extends EnvEntryLookupFailBeanBase
-    implements EnvEntryIF {
+public class EnvEntrySetterBean extends EnvEntryLookupFailBeanBase implements EnvEntryIF {
 
-  @Resource(name = "sessionContext")
-  private SessionContext sessionContext;
+    @Resource(name = "sessionContext")
+    private SessionContext sessionContext;
 
-  public EnvEntrySetterBean() {
-  }
+    public EnvEntrySetterBean() {}
 
-  public void remove() {
-  }
+    public void remove() {}
 
-  protected jakarta.ejb.EJBContext getEJBContext() {
-    return sessionContext;
-  }
+    protected jakarta.ejb.EJBContext getEJBContext() {
+        return sessionContext;
+    }
 
-  // This annotation is overridden in ejb-jar.xml to not inject anything.
-  // This env-entry must not be placed into naming context.
-  private String myString = "EnvEntrySetterBean";
+    // This annotation is overridden in ejb-jar.xml to not inject anything.
+    // This env-entry must not be placed into naming context.
+    private String myString = "EnvEntrySetterBean";
 
-  @Resource(name = "myString")
-  private void setMyString(String myString) {
-    this.myString = myString;
-  }
+    @Resource(name = "myString")
+    private void setMyString(String myString) {
+        this.myString = myString;
+    }
 
-  protected String getString() {
-    return myString;
-  }
+    protected String getString() {
+        return myString;
+    }
 
-  protected String getStringExpected() {
-    return "EnvEntrySetterBean";
-  }
+    protected String getStringExpected() {
+        return "EnvEntrySetterBean";
+    }
 
-  protected String getStringName() {
-    return "myString";
-  }
+    protected String getStringName() {
+        return "myString";
+    }
 
-  private char myChar = 's';
+    private char myChar = 's';
 
-  // @Resource
-  private void setMyChar(char myChar) {
-    this.myChar = myChar;
-  }
+    // @Resource
+    private void setMyChar(char myChar) {
+        this.myChar = myChar;
+    }
 
-  protected char getChar() {
-    return myChar;
-  }
+    protected char getChar() {
+        return myChar;
+    }
 
-  protected char getCharExpected() {
-    return 's';
-  }
+    protected char getCharExpected() {
+        return 's';
+    }
 
-  protected String getCharName() {
-    return "myChar";
-  }
+    protected String getCharName() {
+        return "myChar";
+    }
 
-  private int myInt = -1;
+    private int myInt = -1;
 
-  // @Resource
-  private void setMyInt(int myInt) {
-    this.myInt = myInt;
-  }
+    // @Resource
+    private void setMyInt(int myInt) {
+        this.myInt = myInt;
+    }
 
-  protected int getInt() {
-    return myInt;
-  }
+    protected int getInt() {
+        return myInt;
+    }
 
-  protected int getIntExpected() {
-    return -1;
-  }
+    protected int getIntExpected() {
+        return -1;
+    }
 
-  protected String getIntName() {
-    return "myInt";
-  }
+    protected String getIntName() {
+        return "myInt";
+    }
 
-  private boolean myBoolean = true;
+    private boolean myBoolean = true;
 
-  // @Resource
-  private void setMyBoolean(boolean myBoolean) {
-    this.myBoolean = myBoolean;
-  }
+    // @Resource
+    private void setMyBoolean(boolean myBoolean) {
+        this.myBoolean = myBoolean;
+    }
 
-  protected boolean getBoolean() {
-    return myBoolean;
-  }
+    protected boolean getBoolean() {
+        return myBoolean;
+    }
 
-  protected boolean getBooleanExpected() {
-    return true;
-  }
+    protected boolean getBooleanExpected() {
+        return true;
+    }
 
-  protected String getBooleanName() {
-    return "myBoolean";
-  }
+    protected String getBooleanName() {
+        return "myBoolean";
+    }
 
-  private double myDouble = 1.11;
+    private double myDouble = 1.11;
 
-  // @Resource
-  private void setMyDouble(double myDouble) {
-    this.myDouble = myDouble;
-  }
+    // @Resource
+    private void setMyDouble(double myDouble) {
+        this.myDouble = myDouble;
+    }
 
-  protected double getDouble() {
-    return myDouble;
-  }
+    protected double getDouble() {
+        return myDouble;
+    }
 
-  protected double getDoubleExpected() {
-    return 1.11;
-  }
+    protected double getDoubleExpected() {
+        return 1.11;
+    }
 
-  protected String getDoubleName() {
-    return "myDouble";
-  }
+    protected String getDoubleName() {
+        return "myDouble";
+    }
 
-  private byte myByte = 8;
+    private byte myByte = 8;
 
-  // @Resource
-  private void setMyByte(byte myByte) {
-    this.myByte = myByte;
-  }
+    // @Resource
+    private void setMyByte(byte myByte) {
+        this.myByte = myByte;
+    }
 
-  protected byte getByte() {
-    return myByte;
-  }
+    protected byte getByte() {
+        return myByte;
+    }
 
-  protected byte getByteExpected() {
-    return 8;
-  }
+    protected byte getByteExpected() {
+        return 8;
+    }
 
-  protected String getByteName() {
-    return "myByte";
-  }
+    protected String getByteName() {
+        return "myByte";
+    }
 
-  private short myShort = 1;
+    private short myShort = 1;
 
-  // @Resource
-  private void setMyShort(short myShort) {
-    this.myShort = myShort;
-  }
+    // @Resource
+    private void setMyShort(short myShort) {
+        this.myShort = myShort;
+    }
 
-  protected short getShort() {
-    return myShort;
-  }
+    protected short getShort() {
+        return myShort;
+    }
 
-  protected short getShortExpected() {
-    return 1;
-  }
+    protected short getShortExpected() {
+        return 1;
+    }
 
-  protected String getShortName() {
-    return "myShort";
-  }
+    protected String getShortName() {
+        return "myShort";
+    }
 
-  private long myLong = 100L;
+    private long myLong = 100L;
 
-  // @Resource
-  private void setMyLong(long myLong) {
-    this.myLong = myLong;
-  }
+    // @Resource
+    private void setMyLong(long myLong) {
+        this.myLong = myLong;
+    }
 
-  protected long getLong() {
-    return myLong;
-  }
+    protected long getLong() {
+        return myLong;
+    }
 
-  protected long getLongExpected() {
-    return 100;
-  }
+    protected long getLongExpected() {
+        return 100;
+    }
 
-  protected String getLongName() {
-    return "myLong";
-  }
+    protected String getLongName() {
+        return "myLong";
+    }
 
-  private float myFloat = 1.1F;
+    private float myFloat = 1.1F;
 
-  // @Resource
-  private void setMyFloat(float myFloat) {
-    this.myFloat = myFloat;
-  }
+    // @Resource
+    private void setMyFloat(float myFloat) {
+        this.myFloat = myFloat;
+    }
 
-  protected float getFloat() {
-    return myFloat;
-  }
+    protected float getFloat() {
+        return myFloat;
+    }
 
-  protected float getFloatExpected() {
-    return (float) 1.1;
-  }
+    protected float getFloatExpected() {
+        return (float) 1.1;
+    }
 
-  protected String getFloatName() {
-    return "myFloat";
-  }
+    protected String getFloatName() {
+        return "myFloat";
+    }
 
-  // env-entries with subcontexts
-  private String myStringDeep = "EnvEntrySetterBeanDeep";
+    // env-entries with subcontexts
+    private String myStringDeep = "EnvEntrySetterBeanDeep";
 
-  // @Resource(name="a/a/a/myString")
-  private void setMyStringDeep(String myStringDeep) {
-    this.myStringDeep = myStringDeep;
-  }
+    // @Resource(name="a/a/a/myString")
+    private void setMyStringDeep(String myStringDeep) {
+        this.myStringDeep = myStringDeep;
+    }
 
-  protected String getStringDeep() {
-    return myStringDeep;
-  }
+    protected String getStringDeep() {
+        return myStringDeep;
+    }
 
-  protected String getStringDeepExpected() {
-    return "EnvEntrySetterBeanDeep";
-  }
+    protected String getStringDeepExpected() {
+        return "EnvEntrySetterBeanDeep";
+    }
 
-  protected String getStringDeepName() {
-    return "a/a/a/myString";
-  }
+    protected String getStringDeepName() {
+        return "a/a/a/myString";
+    }
 
-  private Character myCharDeep = 'S';
+    private Character myCharDeep = 'S';
 
-  // @Resource(name="a/a/a/myChar")
-  private void setMyCharDeep(char myCharDeep) {
-    this.myCharDeep = myCharDeep;
-  }
+    // @Resource(name="a/a/a/myChar")
+    private void setMyCharDeep(char myCharDeep) {
+        this.myCharDeep = myCharDeep;
+    }
 
-  protected char getCharDeep() {
-    return myCharDeep.charValue();
-  }
+    protected char getCharDeep() {
+        return myCharDeep.charValue();
+    }
 
-  protected char getCharDeepExpected() {
-    return 'S';
-  }
+    protected char getCharDeepExpected() {
+        return 'S';
+    }
 
-  protected String getCharDeepName() {
-    return "a/a/a/myChar";
-  }
+    protected String getCharDeepName() {
+        return "a/a/a/myChar";
+    }
 
-  private Integer myIntDeep = -2;
+    private Integer myIntDeep = -2;
 
-  // @Resource(name="a/a/a/myInt")
-  private void setMyIntDeep(int myIntDeep) {
-    this.myIntDeep = myIntDeep;
-  }
+    // @Resource(name="a/a/a/myInt")
+    private void setMyIntDeep(int myIntDeep) {
+        this.myIntDeep = myIntDeep;
+    }
 
-  protected int getIntDeep() {
-    return myIntDeep.intValue();
-  }
+    protected int getIntDeep() {
+        return myIntDeep.intValue();
+    }
 
-  protected int getIntDeepExpected() {
-    return -2;
-  }
+    protected int getIntDeepExpected() {
+        return -2;
+    }
 
-  protected String getIntDeepName() {
-    return "a/a/a/myInt";
-  }
+    protected String getIntDeepName() {
+        return "a/a/a/myInt";
+    }
 
-  private Boolean myBooleanDeep = false;
+    private Boolean myBooleanDeep = false;
 
-  // @Resource(name="a/a/a/myBoolean", description="<env-entry> boolean")
-  private void setMyBooleanDeep(boolean myBooleanDeep) {
-    this.myBooleanDeep = myBooleanDeep;
-  }
+    // @Resource(name="a/a/a/myBoolean", description="<env-entry> boolean")
+    private void setMyBooleanDeep(boolean myBooleanDeep) {
+        this.myBooleanDeep = myBooleanDeep;
+    }
 
-  protected boolean getBooleanDeep() {
-    return myBooleanDeep.booleanValue();
-  }
+    protected boolean getBooleanDeep() {
+        return myBooleanDeep.booleanValue();
+    }
 
-  protected boolean getBooleanDeepExpected() {
-    return false;
-  }
+    protected boolean getBooleanDeepExpected() {
+        return false;
+    }
 
-  protected String getBooleanDeepName() {
-    return "a/a/a/myBoolean";
-  }
+    protected String getBooleanDeepName() {
+        return "a/a/a/myBoolean";
+    }
 
-  private Double myDoubleDeep = 2.22;
+    private Double myDoubleDeep = 2.22;
 
-  // @Resource(name="a/a/a/myDouble")
-  private void setMyDoubleDeep(double myDoubleDeep) {
-    this.myDoubleDeep = myDoubleDeep;
-  }
+    // @Resource(name="a/a/a/myDouble")
+    private void setMyDoubleDeep(double myDoubleDeep) {
+        this.myDoubleDeep = myDoubleDeep;
+    }
 
-  protected double getDoubleDeep() {
-    return myDoubleDeep.doubleValue();
-  }
+    protected double getDoubleDeep() {
+        return myDoubleDeep.doubleValue();
+    }
 
-  protected double getDoubleDeepExpected() {
-    return 2.22;
-  }
+    protected double getDoubleDeepExpected() {
+        return 2.22;
+    }
 
-  protected String getDoubleDeepName() {
-    return "a/a/a/myDouble";
-  }
+    protected String getDoubleDeepName() {
+        return "a/a/a/myDouble";
+    }
 
-  private Byte myByteDeep = 16;
+    private Byte myByteDeep = 16;
 
-  // @Resource(name="a/a/a/myByte")
-  private void setMyByteDeep(byte myByteDeep) {
-    this.myByteDeep = myByteDeep;
-  }
+    // @Resource(name="a/a/a/myByte")
+    private void setMyByteDeep(byte myByteDeep) {
+        this.myByteDeep = myByteDeep;
+    }
 
-  protected byte getByteDeep() {
-    return myByteDeep.byteValue();
-  }
+    protected byte getByteDeep() {
+        return myByteDeep.byteValue();
+    }
 
-  protected byte getByteDeepExpected() {
-    return 16;
-  }
+    protected byte getByteDeepExpected() {
+        return 16;
+    }
 
-  protected String getByteDeepName() {
-    return "a/a/a/myByte";
-  }
+    protected String getByteDeepName() {
+        return "a/a/a/myByte";
+    }
 
-  private Short myShortDeep = 2;
+    private Short myShortDeep = 2;
 
-  // @Resource(name="a/a/a/myShort")
-  private void setMyShortDeep(short myShortDeep) {
-    this.myShortDeep = myShortDeep;
-  }
+    // @Resource(name="a/a/a/myShort")
+    private void setMyShortDeep(short myShortDeep) {
+        this.myShortDeep = myShortDeep;
+    }
 
-  protected short getShortDeep() {
-    return myShortDeep.shortValue();
-  }
+    protected short getShortDeep() {
+        return myShortDeep.shortValue();
+    }
 
-  protected short getShortDeepExpected() {
-    return 2;
-  }
+    protected short getShortDeepExpected() {
+        return 2;
+    }
 
-  protected String getShortDeepName() {
-    return "a/a/a/myShort";
-  }
+    protected String getShortDeepName() {
+        return "a/a/a/myShort";
+    }
 
-  private Long myLongDeep = 200L;
+    private Long myLongDeep = 200L;
 
-  // @Resource(name="a/a/a/myLong")
-  private void setMyLongDeep(long myLongDeep) {
-    this.myLongDeep = myLongDeep;
-  }
+    // @Resource(name="a/a/a/myLong")
+    private void setMyLongDeep(long myLongDeep) {
+        this.myLongDeep = myLongDeep;
+    }
 
-  protected long getLongDeep() {
-    return myLongDeep.longValue();
-  }
+    protected long getLongDeep() {
+        return myLongDeep.longValue();
+    }
 
-  protected long getLongDeepExpected() {
-    return 200;
-  }
+    protected long getLongDeepExpected() {
+        return 200;
+    }
 
-  protected String getLongDeepName() {
-    return "a/a/a/myLong";
-  }
+    protected String getLongDeepName() {
+        return "a/a/a/myLong";
+    }
 
-  private Float myFloatDeep = 2.2F;
+    private Float myFloatDeep = 2.2F;
 
-  // @Resource(name="a/a/a/myFloat")
-  private void setMyFloatDeep(float myFloatDeep) {
-    this.myFloatDeep = myFloatDeep;
-  }
+    // @Resource(name="a/a/a/myFloat")
+    private void setMyFloatDeep(float myFloatDeep) {
+        this.myFloatDeep = myFloatDeep;
+    }
 
-  protected float getFloatDeep() {
-    return myFloatDeep.floatValue();
-  }
+    protected float getFloatDeep() {
+        return myFloatDeep.floatValue();
+    }
 
-  protected float getFloatDeepExpected() {
-    return (float) 2.2;
-  }
+    protected float getFloatDeepExpected() {
+        return (float) 2.2;
+    }
 
-  protected String getFloatDeepName() {
-    return "a/a/a/myFloat";
-  }
+    protected String getFloatDeepName() {
+        return "a/a/a/myFloat";
+    }
 }

@@ -24,7 +24,6 @@ import static com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NAME_KEY;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.TEST_NUMBER_KEY;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.ActivationConfigProperty;
 import jakarta.ejb.EJBContext;
@@ -34,34 +33,36 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import jakarta.jms.MessageListener;
 
-//This MDB implements jakarta.jms.MessageListener interface, so no need to
-//use annotation element messageListenerInterface, nor descritpor element
-//messaging-type
-@MessageDriven(name = "MessageBean", activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue") })
+// This MDB implements jakarta.jms.MessageListener interface, so no need to
+// use annotation element messageListenerInterface, nor descritpor element
+// messaging-type
+@MessageDriven(
+        name = "MessageBean",
+        activationConfig = {
+            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
+        })
 @TransactionManagement(TransactionManagementType.BEAN)
 public class MessageBean implements MessageListener {
-  @Resource(name = "mdc")
-  private MessageDrivenContext mdc;
+    @Resource(name = "mdc")
+    private MessageDrivenContext mdc;
 
-  public MessageBean() {
-    super();
-  }
-
-  public EJBContext getEJBContext() {
-    return this.mdc;
-  }
-
-  public void onMessage(jakarta.jms.Message msg) {
-    String info = null;
-    try {
-      String testname = msg.getStringProperty(TEST_NAME_KEY);
-      int testNumber = msg.getIntProperty(TEST_NUMBER_KEY);
-      info = TEST_NAME_KEY + "=" + testname + ", " + TEST_NUMBER_KEY + "="
-          + testNumber;
-    } catch (jakarta.jms.JMSException e) {
-      info = msg.toString();
+    public MessageBean() {
+        super();
     }
-    TLogger.log(this + " consumed message " + info);
-  }
+
+    public EJBContext getEJBContext() {
+        return this.mdc;
+    }
+
+    public void onMessage(jakarta.jms.Message msg) {
+        String info = null;
+        try {
+            String testname = msg.getStringProperty(TEST_NAME_KEY);
+            int testNumber = msg.getIntProperty(TEST_NUMBER_KEY);
+            info = TEST_NAME_KEY + "=" + testname + ", " + TEST_NUMBER_KEY + "=" + testNumber;
+        } catch (jakarta.jms.JMSException e) {
+            info = msg.toString();
+        }
+        TLogger.log(this + " consumed message " + info);
+    }
 }

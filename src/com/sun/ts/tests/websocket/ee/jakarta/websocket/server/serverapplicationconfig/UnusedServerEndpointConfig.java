@@ -17,56 +17,53 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverapplicationconfig;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-
 import jakarta.websocket.Decoder;
 import jakarta.websocket.Encoder;
 import jakarta.websocket.Extension;
 import jakarta.websocket.server.ServerEndpointConfig;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 public class UnusedServerEndpointConfig implements ServerEndpointConfig {
 
-  @Override
-  public Map<String, Object> getUserProperties() {
-    return Collections.emptyMap();
-  }
+    @Override
+    public Map<String, Object> getUserProperties() {
+        return Collections.emptyMap();
+    }
 
-  @Override
-  public Class<?> getEndpointClass() {
-    return WSConfiguredServer.class;
-  }
+    @Override
+    public Class<?> getEndpointClass() {
+        return WSConfiguredServer.class;
+    }
 
-  @Override
-  public String getPath() {
-    return "/unusedconfig";
-  }
+    @Override
+    public String getPath() {
+        return "/unusedconfig";
+    }
 
-  @Override
-  public List<String> getSubprotocols() {
-    return Collections.emptyList();
-  }
+    @Override
+    public List<String> getSubprotocols() {
+        return Collections.emptyList();
+    }
 
-  @Override
-  public List<Extension> getExtensions() {
-    return Collections.emptyList();
-  }
+    @Override
+    public List<Extension> getExtensions() {
+        return Collections.emptyList();
+    }
 
-  @Override
-  public List<Class<? extends Encoder>> getEncoders() {
-    return Collections.emptyList();
-  }
+    @Override
+    public List<Class<? extends Encoder>> getEncoders() {
+        return Collections.emptyList();
+    }
 
-  @Override
-  public List<Class<? extends Decoder>> getDecoders() {
-    return Collections.emptyList();
-  }
+    @Override
+    public List<Class<? extends Decoder>> getDecoders() {
+        return Collections.emptyList();
+    }
 
-  @Override
-  public Configurator getConfigurator() {
-    return new ServerEndpointConfig.Configurator() {
-    };
-  }
-
+    @Override
+    public Configurator getConfigurator() {
+        return new ServerEndpointConfig.Configurator() {};
+    }
 }

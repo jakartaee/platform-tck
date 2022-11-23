@@ -17,16 +17,20 @@
 package com.sun.ts.tests.webservices12.wsdlImport.file.shared3.server;
 
 import jakarta.ejb.Stateless;
-
 import jakarta.jws.WebService;
 
-@WebService(portName = "Tests2Port", serviceName = "Shared3FileSvc2", targetNamespace = "http://Shared3FileSvc2.org/wsdl", wsdlLocation = "META-INF/wsdl/Shared3FileSvc2.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.file.shared3.server.Tests2")
+@WebService(
+        portName = "Tests2Port",
+        serviceName = "Shared3FileSvc2",
+        targetNamespace = "http://Shared3FileSvc2.org/wsdl",
+        wsdlLocation = "META-INF/wsdl/Shared3FileSvc2.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.file.shared3.server.Tests2")
 @Stateless(name = "StatelessTestBean2")
 public class TestsBean2 {
-  public com.sun.ts.tests.webservices12.wsdlImport.file.shared3.server.Astring invokeTest2() {
-    com.sun.ts.tests.webservices12.wsdlImport.file.shared3.server.Astring result = new com.sun.ts.tests.webservices12.wsdlImport.file.shared3.server.Astring();
-    result.setResult("Hello");
-    return result;
-  }
-
+    public com.sun.ts.tests.webservices12.wsdlImport.file.shared3.server.Astring invokeTest2() {
+        com.sun.ts.tests.webservices12.wsdlImport.file.shared3.server.Astring result =
+                new com.sun.ts.tests.webservices12.wsdlImport.file.shared3.server.Astring();
+        result.setResult("Hello");
+        return result;
+    }
 }

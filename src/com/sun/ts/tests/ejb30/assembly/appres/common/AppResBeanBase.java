@@ -20,25 +20,24 @@
 package com.sun.ts.tests.ejb30.assembly.appres.common;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.PreDestroy;
 
 public class AppResBeanBase implements AppResCommonIF {
-  protected StringBuilder postConstructRecords = new StringBuilder();
+    protected StringBuilder postConstructRecords = new StringBuilder();
 
-  protected String myString;
+    protected String myString;
 
-  public StringBuilder getPostConstructRecords() {
-    return postConstructRecords;
-  }
+    public StringBuilder getPostConstructRecords() {
+        return postConstructRecords;
+    }
 
-  public String getName() {
-    return null;
-  }
+    public String getName() {
+        return null;
+    }
 
-  @SuppressWarnings("unused")
-  @PreDestroy
-  private void preDestroy() {
-    Helper.getLogger().info("In preDestroy of " + this);
-  }
+    @SuppressWarnings("unused")
+    @PreDestroy
+    private void preDestroy() {
+        Helper.getLogger().info("In preDestroy of " + this);
+    }
 }

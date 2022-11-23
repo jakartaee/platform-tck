@@ -27,19 +27,19 @@ import jakarta.interceptor.InvocationContext;
 
 public class Interceptor1 {
 
-  @SuppressWarnings("unused")
-  @AroundInvoke
-  private Object aroundInvoke(InvocationContext inv) throws Exception {
-    Object result = null;
-    SessionSyncIF b = (SessionSyncIF) inv.getTarget();
-    b.addToHistory(aroundInvoke1);
+    @SuppressWarnings("unused")
+    @AroundInvoke
+    private Object aroundInvoke(InvocationContext inv) throws Exception {
+        Object result = null;
+        SessionSyncIF b = (SessionSyncIF) inv.getTarget();
+        b.addToHistory(aroundInvoke1);
 
-    try {
-      result = inv.proceed();
-    } finally {
-      b.addToHistory(aroundInvoke2);
+        try {
+            result = inv.proceed();
+        } finally {
+            b.addToHistory(aroundInvoke2);
+        }
+
+        return result;
     }
-
-    return result;
-  }
 }

@@ -22,51 +22,46 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.sessioncontext.descriptor;
 
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.common.sessioncontext.SessionContextBeanBase;
-
 import jakarta.ejb.Init;
 import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
-//@Stateful(name="SessionContextBean")
-//@Remote({Three1IF.class, Three2IF.class})
-//@Local({ThreeLocal1IF.class, ThreeLocal2IF.class})
-//@RemoteHome(TwoRemoteHome.class)
-//@LocalHome(TwoLocalHome.class)
-//use bmt so that it can be safely removed from the calling bean (TestBean)
-//assembler not permitted to override transaction management type.
+// @Stateful(name="SessionContextBean")
+// @Remote({Three1IF.class, Three2IF.class})
+// @Local({ThreeLocal1IF.class, ThreeLocal2IF.class})
+// @RemoteHome(TwoRemoteHome.class)
+// @LocalHome(TwoLocalHome.class)
+// use bmt so that it can be safely removed from the calling bean (TestBean)
+// assembler not permitted to override transaction management type.
 @TransactionManagement(TransactionManagementType.BEAN)
 public class SessionContextBean extends SessionContextBeanBase
 // implements Three1IF, Three2IF
 {
 
-  // @Resource(name="sessionContext")
-  private SessionContext sessionContext;
+    // @Resource(name="sessionContext")
+    private SessionContext sessionContext;
 
-  @Override
-  protected SessionContext getSessionContext() {
-    return sessionContext;
-  }
+    @Override
+    protected SessionContext getSessionContext() {
+        return sessionContext;
+    }
 
-  public SessionContextBean() {
-  }
+    public SessionContextBean() {}
 
-  @Remove(retainIfException = false)
-  public void remove() {
-  }
+    @Remove(retainIfException = false)
+    public void remove() {}
 
-  //////////////////////////////////////////////////////////////////////
-  // optional ejbCreate() method because this bean has RemoteHome
-  // it may throw any application exception, and possibly CreateException
-  //////////////////////////////////////////////////////////////////////
-  public void ejbCreate() throws TestFailedException {
+    //////////////////////////////////////////////////////////////////////
+    // optional ejbCreate() method because this bean has RemoteHome
+    // it may throw any application exception, and possibly CreateException
+    //////////////////////////////////////////////////////////////////////
+    public void ejbCreate() throws TestFailedException {}
 
-  }
-
-  @Init
-  public void create() {
-    // do nothing since our stateful beans do not need
-    // any specific initialization.
-  }
+    @Init
+    public void create() {
+        // do nothing since our stateful beans do not need
+        // any specific initialization.
+    }
 }

@@ -23,6 +23,4 @@ package com.sun.ts.tests.ejb30.common.appexception;
 import jakarta.ejb.Local;
 
 @Local
-public interface AppExceptionLocalIF extends CommonIF {
-
-}
+public interface AppExceptionLocalIF extends CommonIF {}

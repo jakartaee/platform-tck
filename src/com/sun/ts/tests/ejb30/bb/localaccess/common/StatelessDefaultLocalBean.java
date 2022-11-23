@@ -24,19 +24,18 @@ import jakarta.annotation.Resource;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
-//@Stateless(name="StatelessDefaultLocalBean")
+// @Stateless(name="StatelessDefaultLocalBean")
 @Stateless
 // @Local({DefaultLocalIF.class})
 // only one interface is implemented. local by default.
-public class StatelessDefaultLocalBean extends CommonBase
-    implements DefaultLocalIF {
+public class StatelessDefaultLocalBean extends CommonBase implements DefaultLocalIF {
 
-  @Resource
-  private SessionContext sessionContext;
+    @Resource
+    private SessionContext sessionContext;
 
-  public StatelessDefaultLocalBean() {
-    super();
-  }
+    public StatelessDefaultLocalBean() {
+        super();
+    }
 
-  // ================== business methods ====================================
+    // ================== business methods ====================================
 }

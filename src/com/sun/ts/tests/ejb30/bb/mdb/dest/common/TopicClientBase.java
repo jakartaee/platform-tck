@@ -26,48 +26,47 @@ import jakarta.jms.QueueConnectionFactory;
 import jakarta.jms.Topic;
 import jakarta.jms.TopicConnectionFactory;
 
-abstract public class TopicClientBase
-    extends com.sun.ts.tests.ejb30.common.messaging.TopicClientBase
-    implements com.sun.ts.tests.ejb30.common.messaging.Constants {
+public abstract class TopicClientBase extends com.sun.ts.tests.ejb30.common.messaging.TopicClientBase
+        implements com.sun.ts.tests.ejb30.common.messaging.Constants {
 
-  @Resource(name = "sendTopic")
-  private static Topic sendTopic;
+    @Resource(name = "sendTopic")
+    private static Topic sendTopic;
 
-  @Resource(name = "receiveQueue")
-  private static Queue receiveQueue;
+    @Resource(name = "receiveQueue")
+    private static Queue receiveQueue;
 
-  @Resource(name = "topicConnectionFactory")
-  private static TopicConnectionFactory topicConnectionFactory;
+    @Resource(name = "topicConnectionFactory")
+    private static TopicConnectionFactory topicConnectionFactory;
 
-  @Resource(name = "queueConnectionFactory")
-  private static QueueConnectionFactory queueConnectionFactory;
+    @Resource(name = "queueConnectionFactory")
+    private static QueueConnectionFactory queueConnectionFactory;
 
-  protected void initSendTopic() {
-    setSendTopic(sendTopic);
-  }
+    protected void initSendTopic() {
+        setSendTopic(sendTopic);
+    }
 
-  protected void initReceiveQueue() {
-    setReceiveQueue(receiveQueue);
-  }
+    protected void initReceiveQueue() {
+        setReceiveQueue(receiveQueue);
+    }
 
-  protected void initTopicConnectionFactory() {
-    setTopicConnectionFactory(topicConnectionFactory);
-  }
+    protected void initTopicConnectionFactory() {
+        setTopicConnectionFactory(topicConnectionFactory);
+    }
 
-  protected void initQueueConnectionFactory() {
-    setQueueConnectionFactory(queueConnectionFactory);
-  }
+    protected void initQueueConnectionFactory() {
+        setQueueConnectionFactory(queueConnectionFactory);
+    }
 
-  /*
-   * testName: test1
-   * 
-   * @assertion_ids: EJB:SPEC:778; EJB:SPEC:779; EJB:SPEC:780
-   * 
-   * @test_Strategy: test message destination related elements in deployment
-   * descriptors: message-destination, message-destination-ref,
-   * message-destination-link
-   */
-  public void test1() throws Fault {
-    sendReceive();
-  }
+    /*
+     * testName: test1
+     *
+     * @assertion_ids: EJB:SPEC:778; EJB:SPEC:779; EJB:SPEC:780
+     *
+     * @test_Strategy: test message destination related elements in deployment
+     * descriptors: message-destination, message-destination-ref,
+     * message-destination-link
+     */
+    public void test1() throws Fault {
+        sendReceive();
+    }
 }

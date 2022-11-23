@@ -25,19 +25,18 @@ import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 
 public class TestBeanEJB extends BMPWrapper {
 
-  public boolean test1() {
-    TestUtil.logTrace("[TestBean] test1()");
-    return true;
-  }
+    public boolean test1() {
+        TestUtil.logTrace("[TestBean] test1()");
+        return true;
+    }
 
-  public boolean test2() {
-    TestUtil.logTrace("[TestBean] test2()");
-    return true;
-  }
+    public boolean test2() {
+        TestUtil.logTrace("[TestBean] test2()");
+        return true;
+    }
 
-  public boolean test1(int i) {
-    TestUtil.logTrace("[TestBean] test1(int)");
-    return true;
-  }
-
+    public boolean test1(int i) {
+        TestUtil.logTrace("[TestBean] test1(int)");
+        return true;
+    }
 }

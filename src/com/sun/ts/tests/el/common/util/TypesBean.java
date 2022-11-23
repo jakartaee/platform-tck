@@ -26,146 +26,142 @@ import java.util.HashMap;
 
 /**
  * This is a simple bean with different type values for testing Expressions.
- * 
+ *
  */
 public class TypesBean {
-  private final static String COMPARATOR = "1";
+    private static final String COMPARATOR = "1";
 
-  private static HashMap<Class<?>, String> numberMap;
+    private static HashMap<Class<?>, String> numberMap;
 
-  private BigDecimal tckBigDecimal = BigDecimal
-      .valueOf(Long.valueOf(COMPARATOR));
+    private BigDecimal tckBigDecimal = BigDecimal.valueOf(Long.valueOf(COMPARATOR));
 
-  private Double tckDouble = Double.valueOf(COMPARATOR);
+    private Double tckDouble = Double.valueOf(COMPARATOR);
 
-  private Float tckFloat = Float.valueOf(COMPARATOR);
+    private Float tckFloat = Float.valueOf(COMPARATOR);
 
-  private BigInteger tckBigInteger = BigInteger
-      .valueOf(Long.valueOf(COMPARATOR));
+    private BigInteger tckBigInteger = BigInteger.valueOf(Long.valueOf(COMPARATOR));
 
-  private Long tckLong = Long.valueOf(COMPARATOR);
+    private Long tckLong = Long.valueOf(COMPARATOR);
 
-  private Integer tckInteger = Integer.valueOf(COMPARATOR);
+    private Integer tckInteger = Integer.valueOf(COMPARATOR);
 
-  private Short tckShort = Short.valueOf(COMPARATOR);
+    private Short tckShort = Short.valueOf(COMPARATOR);
 
-  private Byte tckByte = Byte.valueOf(COMPARATOR);
+    private Byte tckByte = Byte.valueOf(COMPARATOR);
 
-  private Boolean tckBoolean = true;
+    private Boolean tckBoolean = true;
 
-  private Byte tckNull = null;
+    private Byte tckNull = null;
 
-  // Getter Setter for Type BigDeciaml
-  public BigDecimal getTckBigDecimal() {
-    return tckBigDecimal;
-  }
+    // Getter Setter for Type BigDeciaml
+    public BigDecimal getTckBigDecimal() {
+        return tckBigDecimal;
+    }
 
-  public void setTckBigDecimal(BigDecimal tckBigDecimal) {
-    this.tckBigDecimal = tckBigDecimal;
-  }
+    public void setTckBigDecimal(BigDecimal tckBigDecimal) {
+        this.tckBigDecimal = tckBigDecimal;
+    }
 
-  // Getter Setter for Type Double
-  public Double getTckDouble() {
-    return tckDouble;
-  }
+    // Getter Setter for Type Double
+    public Double getTckDouble() {
+        return tckDouble;
+    }
 
-  public void setTckDouble(Double tckDouble) {
-    this.tckDouble = tckDouble;
-  }
+    public void setTckDouble(Double tckDouble) {
+        this.tckDouble = tckDouble;
+    }
 
-  // Getter Setter for Type Float
-  public Float getTckFloat() {
-    return tckFloat;
-  }
+    // Getter Setter for Type Float
+    public Float getTckFloat() {
+        return tckFloat;
+    }
 
-  public void setTckFloat(Float tckFloat) {
-    this.tckFloat = tckFloat;
-  }
+    public void setTckFloat(Float tckFloat) {
+        this.tckFloat = tckFloat;
+    }
 
-  // Getter Setter for Type Integer
-  public BigInteger getTckBigInteger() {
-    return tckBigInteger;
-  }
+    // Getter Setter for Type Integer
+    public BigInteger getTckBigInteger() {
+        return tckBigInteger;
+    }
 
-  public void setTckBigInteger(BigInteger tckBigInteger) {
-    this.tckBigInteger = tckBigInteger;
-  }
+    public void setTckBigInteger(BigInteger tckBigInteger) {
+        this.tckBigInteger = tckBigInteger;
+    }
 
-  // Getter Setter for Type Long
-  public Long getTckLong() {
-    return tckLong;
-  }
+    // Getter Setter for Type Long
+    public Long getTckLong() {
+        return tckLong;
+    }
 
-  public void setTckLong(Long tckLong) {
-    this.tckLong = tckLong;
-  }
+    public void setTckLong(Long tckLong) {
+        this.tckLong = tckLong;
+    }
 
-  // Getter Setter for Type Integer
-  public Integer getTckInteger() {
-    return tckInteger;
-  }
+    // Getter Setter for Type Integer
+    public Integer getTckInteger() {
+        return tckInteger;
+    }
 
-  public void setTckInteger(Integer tckInt) {
-    this.tckInteger = tckInt;
-  }
+    public void setTckInteger(Integer tckInt) {
+        this.tckInteger = tckInt;
+    }
 
-  // Getter Setter for Type Short
-  public Short getTckShort() {
-    return tckShort;
-  }
+    // Getter Setter for Type Short
+    public Short getTckShort() {
+        return tckShort;
+    }
 
-  public void setTckShort(Short tchShort) {
-    this.tckShort = tchShort;
-  }
+    public void setTckShort(Short tchShort) {
+        this.tckShort = tchShort;
+    }
 
-  // Getter Setter for Type Byte
-  public Byte getTckByte() {
-    return tckByte;
-  }
+    // Getter Setter for Type Byte
+    public Byte getTckByte() {
+        return tckByte;
+    }
 
-  public void setTckByte(Byte tckByte) {
-    this.tckByte = tckByte;
-  }
+    public void setTckByte(Byte tckByte) {
+        this.tckByte = tckByte;
+    }
 
-  // Getter Setter for Type Boolean
-  public Boolean getTckBoolean() {
-    return tckBoolean;
-  }
+    // Getter Setter for Type Boolean
+    public Boolean getTckBoolean() {
+        return tckBoolean;
+    }
 
-  public void setTckBoolean(Boolean tckBoolean) {
-    this.tckBoolean = tckBoolean;
-  }
+    public void setTckBoolean(Boolean tckBoolean) {
+        this.tckBoolean = tckBoolean;
+    }
 
-  public Byte getTckNull() {
-    return tckNull;
-  }
+    public Byte getTckNull() {
+        return tckNull;
+    }
 
-  public void setTckNullString(Byte tckNull) {
-    this.tckNull = tckNull;
-  }
+    public void setTckNullString(Byte tckNull) {
+        this.tckNull = tckNull;
+    }
 
-  /**
-   * This method will return an HaashMap of Key = Class, Value = String for the
-   * purpose of using them in an ElProcessor expression.
-   * 
-   * 
-   * @return - A common List of Number types with a constant value.
-   */
-  public static HashMap<Class<?>, String> getNumberMap() {
+    /**
+     * This method will return an HaashMap of Key = Class, Value = String for the
+     * purpose of using them in an ElProcessor expression.
+     *
+     *
+     * @return - A common List of Number types with a constant value.
+     */
+    public static HashMap<Class<?>, String> getNumberMap() {
 
-    numberMap = new HashMap<Class<?>, String>();
+        numberMap = new HashMap<Class<?>, String>();
 
-    numberMap.put(BigDecimal.class, "b = types.tckBigDecimal");
-    numberMap.put(Double.class, "b = types.tckDouble");
-    numberMap.put(Float.class, "b = types.tckFloat");
-    numberMap.put(BigInteger.class, "b = types.tckBigInteger");
-    numberMap.put(Long.class, "b = types.tckLong");
-    numberMap.put(Integer.class, "b = types.tckInteger");
-    numberMap.put(Short.class, "b = types.tckShort");
-    numberMap.put(Byte.class, "b = types.tckByte");
+        numberMap.put(BigDecimal.class, "b = types.tckBigDecimal");
+        numberMap.put(Double.class, "b = types.tckDouble");
+        numberMap.put(Float.class, "b = types.tckFloat");
+        numberMap.put(BigInteger.class, "b = types.tckBigInteger");
+        numberMap.put(Long.class, "b = types.tckLong");
+        numberMap.put(Integer.class, "b = types.tckInteger");
+        numberMap.put(Short.class, "b = types.tckShort");
+        numberMap.put(Byte.class, "b = types.tckByte");
 
-    return numberMap;
-
-  }
-
+        return numberMap;
+    }
 }

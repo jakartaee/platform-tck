@@ -16,13 +16,12 @@
 
 package com.sun.ts.tests.jpa.core.relationship.bidironexmany;
 
-import java.io.Serializable;
-import java.util.Collection;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import java.io.Serializable;
+import java.util.Collection;
 
 /**
  *
@@ -30,74 +29,71 @@ import jakarta.persistence.OneToMany;
  */
 @Entity
 public class BiDir1XMPerson implements Serializable {
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Id
-  private Long id;
+    @Id
+    private Long id;
 
-  private String name;
+    private String name;
 
-  // One Person ManyProjects
-  @OneToMany(mappedBy = "biDir1XMPerson", cascade = CascadeType.ALL)
-  private Collection<BiDir1XMProject> projects;
+    // One Person ManyProjects
+    @OneToMany(mappedBy = "biDir1XMPerson", cascade = CascadeType.ALL)
+    private Collection<BiDir1XMProject> projects;
 
-  public BiDir1XMPerson() {
-  }
+    public BiDir1XMPerson() {}
 
-  public BiDir1XMPerson(long l, String string) {
-    this.id = l;
-    this.name = string;
-  }
-
-  public Collection<BiDir1XMProject> getProjects() {
-    return projects;
-  }
-
-  public void setProjects(Collection<BiDir1XMProject> projects) {
-    this.projects = projects;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  @Override
-  public int hashCode() {
-    int hash = 0;
-    hash += (id != null ? id.hashCode() : 0);
-    return hash;
-  }
-
-  @Override
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof BiDir1XMPerson)) {
-      return false;
+    public BiDir1XMPerson(long l, String string) {
+        this.id = l;
+        this.name = string;
     }
-    BiDir1XMPerson other = (BiDir1XMPerson) object;
-    if ((this.id == null && other.id != null)
-        || (this.id != null && !this.id.equals(other.id))) {
-      return false;
+
+    public Collection<BiDir1XMProject> getProjects() {
+        return projects;
     }
-    return true;
-  }
 
-  @Override
-  public String toString() {
-    return "unionexmany.Uni1XMPerson[id=" + id + "]";
-  }
+    public void setProjects(Collection<BiDir1XMProject> projects) {
+        this.projects = projects;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not
+        // set
+        if (!(object instanceof BiDir1XMPerson)) {
+            return false;
+        }
+        BiDir1XMPerson other = (BiDir1XMPerson) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "unionexmany.Uni1XMPerson[id=" + id + "]";
+    }
 }

@@ -21,7 +21,6 @@ package com.sun.ts.tests.ejb30.lite.view.stateless.annotated;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocal1Base;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
-
 import jakarta.ejb.Local;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
@@ -29,9 +28,8 @@ import jakarta.ejb.Stateless;
 @Stateless
 @LocalBean
 @Local(BusinessLocalIF1.class)
-public class LocalAndNoInterfaceBean extends BusinessLocal1Base
-    implements BusinessLocalIF1 {
-  public void remove() {
-    throw new UnsupportedOperationException("Should not reach here.");
-  }
+public class LocalAndNoInterfaceBean extends BusinessLocal1Base implements BusinessLocalIF1 {
+    public void remove() {
+        throw new UnsupportedOperationException("Should not reach here.");
+    }
 }

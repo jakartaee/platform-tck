@@ -20,40 +20,39 @@
 package com.sun.ts.tests.ejb30.timer.interceptor.lifecycle.singleton;
 
 import com.sun.ts.tests.ejb30.timer.common.ClientBase;
-
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
-  @EJB(beanName = "LifecycleTimerBean")
-  private LifecycleTimerBean bean;
+    @EJB(beanName = "LifecycleTimerBean")
+    private LifecycleTimerBean bean;
 
-  /*
-   * @testName: postConstructInBeanClass
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: create a timer in singleton PostConstruct method in bean
-   * class and its superclass. Verify they expire as expected.
-   */
-  public void postConstructInBeanClass() {
-    bean.getTimers(); // the first request to activate the singleton
-    passIfTimeout("LifecycleTimerBeanBase.postConstruct");
-    passIfTimeout("LifecycleTimerBean.postConstruct");
-  }
+    /*
+     * @testName: postConstructInBeanClass
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: create a timer in singleton PostConstruct method in bean
+     * class and its superclass. Verify they expire as expected.
+     */
+    public void postConstructInBeanClass() {
+        bean.getTimers(); // the first request to activate the singleton
+        passIfTimeout("LifecycleTimerBeanBase.postConstruct");
+        passIfTimeout("LifecycleTimerBean.postConstruct");
+    }
 
-  /*
-   * @testName: postConstructInInterceptorClasses
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: create a timer in PostConstruct methods of lifecycle
-   * interceptor classes. Verify they all expire as expected.
-   */
-  public void postConstructInInterceptorClasses() {
-    bean.getTimers(); // the first request to activate the singleton
-    passIfTimeout("Interceptor1.postConstruct"); // expecting 2 timeout records
-    passIfTimeout("Interceptor2.postConstruct"); // expecting 1 timeout records
-    passIfRecurringTimeout("InterceptorBase.postConstruct"); // expecting 3
-                                                             // timeout records
-  }
+    /*
+     * @testName: postConstructInInterceptorClasses
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: create a timer in PostConstruct methods of lifecycle
+     * interceptor classes. Verify they all expire as expected.
+     */
+    public void postConstructInInterceptorClasses() {
+        bean.getTimers(); // the first request to activate the singleton
+        passIfTimeout("Interceptor1.postConstruct"); // expecting 2 timeout records
+        passIfTimeout("Interceptor2.postConstruct"); // expecting 1 timeout records
+        passIfRecurringTimeout("InterceptorBase.postConstruct"); // expecting 3
+        // timeout records
+    }
 }

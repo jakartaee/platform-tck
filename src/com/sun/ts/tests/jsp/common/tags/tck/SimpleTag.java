@@ -24,12 +24,11 @@
 
 package com.sun.ts.tests.jsp.common.tags.tck;
 
-import java.io.IOException;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.DynamicAttributes;
 import jakarta.servlet.jsp.tagext.JspFragment;
 import jakarta.servlet.jsp.tagext.TagSupport;
+import java.io.IOException;
 
 /**
  * Simple tag that accepts a single string attribute. This tag generates no
@@ -37,85 +36,84 @@ import jakarta.servlet.jsp.tagext.TagSupport;
  */
 public class SimpleTag extends TagSupport implements DynamicAttributes {
 
-  private String _test = null;
+    private String _test = null;
 
-  private String _methods = null;
+    private String _methods = null;
 
-  private String _echo = null;
+    private String _echo = null;
 
-  private Object _dynAttr = null;
+    private Object _dynAttr = null;
 
-  private Object _dynAttr2 = null;
+    private Object _dynAttr2 = null;
 
-  private Object _dynAttr3 = null;
+    private Object _dynAttr3 = null;
 
-  private Object _dynAttr4 = null;
+    private Object _dynAttr4 = null;
 
-  private JspFragment _fragAttr = null;
+    private JspFragment _fragAttr = null;
 
-  public SimpleTag() {
-    super();
-  }
-
-  public void release() {
-    _test = null;
-    _methods = null;
-    super.release();
-  }
-
-  public int doEndTag() throws JspException {
-    if (_echo != null) {
-      try {
-        pageContext.getOut().println(_echo);
-      } catch (IOException ioe) {
-        throw new JspException("Unexpected IOException!", ioe);
-      }
+    public SimpleTag() {
+        super();
     }
-    return super.doEndTag();
-  }
 
-  public void setTest(String test) {
-    _test = test;
-  }
+    public void release() {
+        _test = null;
+        _methods = null;
+        super.release();
+    }
 
-  public String getTest() {
-    return _test;
-  }
+    public int doEndTag() throws JspException {
+        if (_echo != null) {
+            try {
+                pageContext.getOut().println(_echo);
+            } catch (IOException ioe) {
+                throw new JspException("Unexpected IOException!", ioe);
+            }
+        }
+        return super.doEndTag();
+    }
 
-  public void setDynAttribute(Object attr) {
-    _dynAttr = attr;
-  }
+    public void setTest(String test) {
+        _test = test;
+    }
 
-  public void setDynAttribute2(Object attr) {
-    _dynAttr2 = attr;
-  }
+    public String getTest() {
+        return _test;
+    }
 
-  public void setDynAttribute3(Object attr) {
-    _dynAttr3 = attr;
-  }
+    public void setDynAttribute(Object attr) {
+        _dynAttr = attr;
+    }
 
-  public void setDynAttribute4(Object attr) {
-    _dynAttr4 = attr;
-  }
+    public void setDynAttribute2(Object attr) {
+        _dynAttr2 = attr;
+    }
 
-  public void setEcho(String echo) {
-    _echo = echo;
-  }
+    public void setDynAttribute3(Object attr) {
+        _dynAttr3 = attr;
+    }
 
-  public Object getDynAttribute() {
-    return _dynAttr;
-  }
+    public void setDynAttribute4(Object attr) {
+        _dynAttr4 = attr;
+    }
 
-  public void setFragAttribute(JspFragment attr) {
-    _fragAttr = attr;
-  }
+    public void setEcho(String echo) {
+        _echo = echo;
+    }
 
-  public JspFragment getFragAttribute() {
-    return _fragAttr;
-  }
+    public Object getDynAttribute() {
+        return _dynAttr;
+    }
 
-  public void setDynamicAttribute(String s, String s1, Object o)
-      throws JspException {
-    // no-op
-  }
+    public void setFragAttribute(JspFragment attr) {
+        _fragAttr = attr;
+    }
+
+    public JspFragment getFragAttribute() {
+        return _fragAttr;
+    }
+
+    public void setDynamicAttribute(String s, String s1, Object o) throws JspException {
+        // no-op
+    }
 }

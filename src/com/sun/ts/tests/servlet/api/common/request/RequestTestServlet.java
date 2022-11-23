@@ -24,42 +24,39 @@
 
 package com.sun.ts.tests.servlet.api.common.request;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class RequestTestServlet extends GenericServlet {
 
-  private static final String TEST_HEADER = "testname";
+    private static final String TEST_HEADER = "testname";
 
-  private static final Class[] TEST_ARGS = { PrintWriter.class,
-      ServletRequest.class, ServletResponse.class };
+    private static final Class[] TEST_ARGS = {PrintWriter.class, ServletRequest.class, ServletResponse.class};
 
-  public void init(ServletConfig servletConfig) throws ServletException {
-    super.init(servletConfig);
-  }
-
-  public void service(ServletRequest servletRequest,
-      ServletResponse servletResponse) throws ServletException, IOException {
-    String test = servletRequest.getParameter(TEST_HEADER).trim();
-    try {
-      PrintWriter pw = servletResponse.getWriter();
-      Method method = RequestTests.class.getMethod(test, TEST_ARGS);
-      method.invoke(null, new Object[] { pw, servletRequest, servletResponse });
-    } catch (InvocationTargetException ite) {
-      throw new ServletException(ite.getTargetException());
-    } catch (NoSuchMethodException nsme) {
-      throw new ServletException("Test: " + test + " does not exist");
-    } catch (Throwable t) {
-      throw new ServletException("Error executing test: " + test, t);
+    public void init(ServletConfig servletConfig) throws ServletException {
+        super.init(servletConfig);
     }
 
-  }
+    public void service(ServletRequest servletRequest, ServletResponse servletResponse)
+            throws ServletException, IOException {
+        String test = servletRequest.getParameter(TEST_HEADER).trim();
+        try {
+            PrintWriter pw = servletResponse.getWriter();
+            Method method = RequestTests.class.getMethod(test, TEST_ARGS);
+            method.invoke(null, new Object[] {pw, servletRequest, servletResponse});
+        } catch (InvocationTargetException ite) {
+            throw new ServletException(ite.getTargetException());
+        } catch (NoSuchMethodException nsme) {
+            throw new ServletException("Test: " + test + " does not exist");
+        } catch (Throwable t) {
+            throw new ServletException("Error executing test: " + test, t);
+        }
+    }
 }

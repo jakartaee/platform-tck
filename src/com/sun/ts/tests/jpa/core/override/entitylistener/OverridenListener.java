@@ -17,7 +17,6 @@
 package com.sun.ts.tests.jpa.core.override.entitylistener;
 
 import com.sun.ts.tests.jpa.core.override.util.CallBackCounts;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.Id;
@@ -30,55 +29,53 @@ import jakarta.persistence.Table;
 @Table(name = "NOENTITYLISTENER_TABLE")
 public class OverridenListener implements java.io.Serializable {
 
-  private Long id;
+    private Long id;
 
-  public OverridenListener() {
-  }
+    public OverridenListener() {}
 
-  @Id
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  @PrePersist
-  public void prePersist() {
-    updateCallBackCount("prePersist");
-  }
-
-  @PostPersist
-  public void postPersist() {
-    updateCallBackCount("postPersist");
-  }
-
-  protected void updateCallBackCount(String callBackKeyName) {
-    CallBackCounts.updateCount(callBackKeyName);
-  }
-
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.id != null ? this.id.hashCode() : 0);
-    return hash;
-  }
-
-  public boolean equals(Object object) {
-    // TODO: Warning-this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof OverridenListener)) {
-      return false;
+    @Id
+    public Long getId() {
+        return id;
     }
-    OverridenListener other = (OverridenListener) object;
-    if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
-      return false;
-    }
-    return true;
-  }
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.entitylistener."
-        + "OverridenListener id=" + id;
-  }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        updateCallBackCount("prePersist");
+    }
+
+    @PostPersist
+    public void postPersist() {
+        updateCallBackCount("postPersist");
+    }
+
+    protected void updateCallBackCount(String callBackKeyName) {
+        CallBackCounts.updateCount(callBackKeyName);
+    }
+
+    public int hashCode() {
+        int hash = 0;
+        hash += (this.id != null ? this.id.hashCode() : 0);
+        return hash;
+    }
+
+    public boolean equals(Object object) {
+        // TODO: Warning-this method won't work in the case the id fields are not
+        // set
+        if (!(object instanceof OverridenListener)) {
+            return false;
+        }
+        OverridenListener other = (OverridenListener) object;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    public String toString() {
+        return "com.sun.ts.tests.jpa.core.override.entitylistener." + "OverridenListener id=" + id;
+    }
 }

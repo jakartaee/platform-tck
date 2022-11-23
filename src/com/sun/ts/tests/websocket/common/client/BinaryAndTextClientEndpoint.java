@@ -17,28 +17,26 @@
 
 package com.sun.ts.tests.websocket.common.client;
 
-import java.nio.ByteBuffer;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
+import java.nio.ByteBuffer;
 
 /**
  * Receive any of ByteBuffer (binary) and String (Text) messages, the client
  * behaves without making any difference on type of message received.
  */
 public class BinaryAndTextClientEndpoint extends ClientEndpoint<String> {
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-    session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
-      @Override
-      public void onMessage(ByteBuffer message) {
-        String msg = IOUtil.byteBufferToString(message);
-        BinaryAndTextClientEndpoint.this.onMessage(msg);
-      }
-    });
-  }
+    @Override
+    public void onOpen(Session session, EndpointConfig config) {
+        super.onOpen(session, config);
+        session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
+            @Override
+            public void onMessage(ByteBuffer message) {
+                String msg = IOUtil.byteBufferToString(message);
+                BinaryAndTextClientEndpoint.this.onMessage(msg);
+            }
+        });
+    }
 }

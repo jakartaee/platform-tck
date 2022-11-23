@@ -22,34 +22,33 @@ package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.typesubstitution;
 
 public class Ford extends Car {
 
-  private String color;
+    private String color;
 
-  private final String make = "Ford";
+    private final String make = "Ford";
 
-  public Ford() {
-    setMake("Ford");
-  }
+    public Ford() {
+        setMake("Ford");
+    }
 
-  public String getMake() {
-    return make;
-  }
+    public String getMake() {
+        return make;
+    }
 
-  public Ford(String model, String year, String color) {
-    setModel(model);
-    setYear(year);
-    this.color = color;
-  }
+    public Ford(String model, String year, String color) {
+        setModel(model);
+        setYear(year);
+        this.color = color;
+    }
 
-  public String getColor() {
-    return color;
-  }
+    public String getColor() {
+        return color;
+    }
 
-  public void setColor(String color) {
-    this.color = color;
-  }
+    public void setColor(String color) {
+        this.color = color;
+    }
 
-  public String toString() {
-    return getMake() + ":" + getModel() + ":" + getYear() + ":" + color;
-  }
-
+    public String toString() {
+        return getMake() + ":" + getModel() + ":" + getYear() + ":" + color;
+    }
 }

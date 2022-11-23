@@ -18,13 +18,13 @@ package com.sun.ts.tests.jsp.api.jakarta_el.beanelresolver;
 
 public class SimpleBean {
 
-  private String intention;
+    private String intention;
 
-  public void setIntention(String s) {
-    intention = s;
-  }
+    public void setIntention(String s) {
+        intention = s;
+    }
 
-  public String getIntention() {
-    return intention;
-  }
+    public String getIntention() {
+        return intention;
+    }
 }

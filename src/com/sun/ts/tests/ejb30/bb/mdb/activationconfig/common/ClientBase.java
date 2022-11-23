@@ -24,65 +24,64 @@ import jakarta.annotation.Resource;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
 
-abstract public class ClientBase
-    extends com.sun.ts.tests.ejb30.common.messaging.ClientBase
-    implements com.sun.ts.tests.ejb30.common.messaging.Constants {
-  @Resource(name = "sendQueue")
-  private static Queue sendQueue;
+public abstract class ClientBase extends com.sun.ts.tests.ejb30.common.messaging.ClientBase
+        implements com.sun.ts.tests.ejb30.common.messaging.Constants {
+    @Resource(name = "sendQueue")
+    private static Queue sendQueue;
 
-  @Resource(name = "receiveQueue")
-  private static Queue receiveQueue;
+    @Resource(name = "receiveQueue")
+    private static Queue receiveQueue;
 
-  @Resource(name = "queueConnectionFactory")
-  private static QueueConnectionFactory queueConnectionFactory;
+    @Resource(name = "queueConnectionFactory")
+    private static QueueConnectionFactory queueConnectionFactory;
 
-  protected void initSendQueue() {
-    setSendQueue(sendQueue);
-  }
+    protected void initSendQueue() {
+        setSendQueue(sendQueue);
+    }
 
-  protected void initReceiveQueue() {
-    setReceiveQueue(receiveQueue);
-  }
+    protected void initReceiveQueue() {
+        setReceiveQueue(receiveQueue);
+    }
 
-  protected void initQueueConnectionFactory() {
-    setQueueConnectionFactory(queueConnectionFactory);
-  }
+    protected void initQueueConnectionFactory() {
+        setQueueConnectionFactory(queueConnectionFactory);
+    }
 
-  /*
-   * testName: test1
-   * 
-   * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524
-   * 
-   * @test_Strategy: test activation-config related elements in deployment
-   * descriptors, and their annotation counterparts.
-   */
-  public void test1() throws Fault {
-    sendReceive();
-  }
+    /*
+     * testName: test1
+     *
+     * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524
+     *
+     * @test_Strategy: test activation-config related elements in deployment
+     * descriptors, and their annotation counterparts.
+     */
+    public void test1() throws Fault {
+        sendReceive();
+    }
 
-  /*
-   * testName: negativeTest1
-   * 
-   * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524
-   * 
-   * @test_Strategy: test activation-config related elements in deployment
-   * descriptors, and their annotation counterparts.
-   */
-  public void negativeTest1() throws Fault {
-    // the next messages should be filtered out by the ActivationConfigBean
-    sendReceiveNegative("test1", 1);
-  }
+    /*
+     * testName: negativeTest1
+     *
+     * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524
+     *
+     * @test_Strategy: test activation-config related elements in deployment
+     * descriptors, and their annotation counterparts.
+     */
+    public void negativeTest1() throws Fault {
+        // the next messages should be filtered out by the ActivationConfigBean
+        sendReceiveNegative("test1", 1);
+    }
 
-  /*
-   * testName: negativeTest2
-   * 
-   * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524
-   * 
-   * @test_Strategy: test activation-config related elements in deployment
-   * descriptors, and their annotation counterparts.
-   */
-  public void negativeTest2() throws Fault {
-    // the next messages should be filtered out by the ActivationConfigBean
-    sendReceiveNegative("negativeTest2", 0);
-  }
+    /*
+     * testName: negativeTest2
+     *
+     * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524
+     *
+     * @test_Strategy: test activation-config related elements in deployment
+     * descriptors, and their annotation counterparts.
+     */
+    public void negativeTest2() throws Fault {
+        // the next messages should be filtered out by the ActivationConfigBean
+        sendReceiveNegative("negativeTest2", 0);
+    }
 }

@@ -31,85 +31,84 @@ import jakarta.persistence.Table;
 @Table(name = "EMP_MAPKEYCOL2")
 public class Employee implements java.io.Serializable {
 
-  private int id;
+    private int id;
 
-  private String lastName;
+    private String lastName;
 
-  private Department department;
+    private Department department;
 
-  public Employee() {
-  }
+    public Employee() {}
 
-  public Employee(int id, String lastName) {
-    this.id = id;
-    this.lastName = lastName;
-  }
-
-  // ===========================================================
-  // getters and setters for the state fields
-
-  @Id
-  @Column(name = "ID")
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
-
-  @Column(name = "LASTNAME")
-  public String getLastName() {
-    return lastName;
-  }
-
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
-
-  // ===========================================================
-  // getters and setters for the association fields
-
-  @ManyToOne
-  @JoinColumn(name = "FK_DEPT5")
-  public Department getDepartment() {
-    return department;
-  }
-
-  public void setDepartment(Department department) {
-    this.department = department;
-  }
-
-  @Override
-  public int hashCode() {
-    return this.getId() + this.getLastName().hashCode();
-  }
-
-  public boolean equals(Object o) {
-    Employee other;
-    boolean same = true;
-
-    if (!(o instanceof Employee)) {
-      return false;
+    public Employee(int id, String lastName) {
+        this.id = id;
+        this.lastName = lastName;
     }
-    other = (Employee) o;
 
-    same &= (this.id == other.id);
+    // ===========================================================
+    // getters and setters for the state fields
 
-    return same;
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    if (getLastName() != null) {
-      result.append(", name: " + getLastName());
-    } else {
-      result.append(", name: null");
+    @Id
+    @Column(name = "ID")
+    public int getId() {
+        return id;
     }
-    result.append("]");
-    return result.toString();
-  }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Column(name = "LASTNAME")
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    // ===========================================================
+    // getters and setters for the association fields
+
+    @ManyToOne
+    @JoinColumn(name = "FK_DEPT5")
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getId() + this.getLastName().hashCode();
+    }
+
+    public boolean equals(Object o) {
+        Employee other;
+        boolean same = true;
+
+        if (!(o instanceof Employee)) {
+            return false;
+        }
+        other = (Employee) o;
+
+        same &= (this.id == other.id);
+
+        return same;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getId());
+        if (getLastName() != null) {
+            result.append(", name: " + getLastName());
+        } else {
+            result.append(", name: null");
+        }
+        result.append("]");
+        return result.toString();
+    }
 }

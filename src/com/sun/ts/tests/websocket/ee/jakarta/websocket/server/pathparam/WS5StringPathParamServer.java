@@ -17,10 +17,7 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.pathparam;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.OnClose;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
@@ -28,68 +25,84 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
 @ServerEndpoint(value = "/param/{param1}/{param2}/{param3}/{param4}/{param5}")
 public class WS5StringPathParamServer {
-  private final static String ERR = "TCK INTENDED ERROR";
+    private static final String ERR = "TCK INTENDED ERROR";
 
-  private String[] p = new String[5];
+    private String[] p = new String[5];
 
-  @OnOpen
-  public void onOpen(@PathParam("param1") String p1,
-      @PathParam("param2") String p2, @PathParam("param3") String p3,
-      @PathParam("param4") String p4, @PathParam("param5") String p5) {
-    p[0] = p1;
-    p[1] = p2;
-    p[2] = p3;
-    p[3] = p4;
-    p[4] = p5;
-  }
-
-  @OnMessage
-  public String param(@PathParam("param1") String p1,
-      @PathParam("param2") String p2, @PathParam("param3") String p3,
-      @PathParam("param4") String p4, @PathParam("param5") String p5,
-      String content) throws IOException {
-    OPS op = OPS.valueOf(content);
-    switch (op) {
-    case OPEN:
-      content = p[0] + p[1] + p[2] + p[3] + p[4];
-      break;
-    case MESSAGE:
-      content = p1 + p2 + p3 + p4 + p5;
-      break;
-    case IOEXCEPTION:
-      throw new IOException(ERR);
-    case RUNTIMEEXCEPTION:
-      throw new RuntimeException(ERR);
+    @OnOpen
+    public void onOpen(
+            @PathParam("param1") String p1,
+            @PathParam("param2") String p2,
+            @PathParam("param3") String p3,
+            @PathParam("param4") String p4,
+            @PathParam("param5") String p5) {
+        p[0] = p1;
+        p[1] = p2;
+        p[2] = p3;
+        p[3] = p4;
+        p[4] = p5;
     }
-    return content;
-  }
 
-  @OnError
-  public void onError(@PathParam("param1") String p1,
-      @PathParam("param2") String p2, @PathParam("param3") String p3,
-      @PathParam("param4") String p4, @PathParam("param5") String p5,
-      Session session, Throwable t) throws IOException {
-    String msg = t.getMessage();
-    if (ERR.equals(msg)) {
-      session.getBasicRemote().sendText(p1 + p2 + p3 + p4 + p5);
-    } else {
-      t.printStackTrace(); // Write to error log, too
-      String message = IOUtil.printStackTrace(t);
-      session.getBasicRemote().sendText(message);
+    @OnMessage
+    public String param(
+            @PathParam("param1") String p1,
+            @PathParam("param2") String p2,
+            @PathParam("param3") String p3,
+            @PathParam("param4") String p4,
+            @PathParam("param5") String p5,
+            String content)
+            throws IOException {
+        OPS op = OPS.valueOf(content);
+        switch (op) {
+            case OPEN:
+                content = p[0] + p[1] + p[2] + p[3] + p[4];
+                break;
+            case MESSAGE:
+                content = p1 + p2 + p3 + p4 + p5;
+                break;
+            case IOEXCEPTION:
+                throw new IOException(ERR);
+            case RUNTIMEEXCEPTION:
+                throw new RuntimeException(ERR);
+        }
+        return content;
     }
-  }
 
-  @OnClose
-  public void onClose(@PathParam("param1") String p1,
-      @PathParam("param2") String p2, @PathParam("param3") String p3,
-      @PathParam("param4") String p4, @PathParam("param5") String p5) {
-    WSOnClosePathParamServer.set(0, p1);
-    WSOnClosePathParamServer.set(1, p2);
-    WSOnClosePathParamServer.set(2, p3);
-    WSOnClosePathParamServer.set(3, p4);
-    WSOnClosePathParamServer.set(4, p5);
-  }
+    @OnError
+    public void onError(
+            @PathParam("param1") String p1,
+            @PathParam("param2") String p2,
+            @PathParam("param3") String p3,
+            @PathParam("param4") String p4,
+            @PathParam("param5") String p5,
+            Session session,
+            Throwable t)
+            throws IOException {
+        String msg = t.getMessage();
+        if (ERR.equals(msg)) {
+            session.getBasicRemote().sendText(p1 + p2 + p3 + p4 + p5);
+        } else {
+            t.printStackTrace(); // Write to error log, too
+            String message = IOUtil.printStackTrace(t);
+            session.getBasicRemote().sendText(message);
+        }
+    }
+
+    @OnClose
+    public void onClose(
+            @PathParam("param1") String p1,
+            @PathParam("param2") String p2,
+            @PathParam("param3") String p3,
+            @PathParam("param4") String p4,
+            @PathParam("param5") String p5) {
+        WSOnClosePathParamServer.set(0, p1);
+        WSOnClosePathParamServer.set(1, p2);
+        WSOnClosePathParamServer.set(2, p3);
+        WSOnClosePathParamServer.set(3, p4);
+        WSOnClosePathParamServer.set(4, p5);
+    }
 }

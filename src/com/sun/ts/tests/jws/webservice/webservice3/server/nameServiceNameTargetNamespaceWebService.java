@@ -24,12 +24,16 @@ package com.sun.ts.tests.jws.webservice.webservice3.server;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
 
-@WebService(name = "MyWebService", portName = "MyPort", serviceName = "MyWebService", targetNamespace = "http://bea/jsr181/tck", wsdlLocation = "WEB-INF/wsdl/MyWebService.wsdl")
+@WebService(
+        name = "MyWebService",
+        portName = "MyPort",
+        serviceName = "MyWebService",
+        targetNamespace = "http://bea/jsr181/tck",
+        wsdlLocation = "WEB-INF/wsdl/MyWebService.wsdl")
 public class nameServiceNameTargetNamespaceWebService {
 
-  @WebMethod
-  public String hello(String name) {
-    return "Hello " + name + " to Web Service";
-  }
-
+    @WebMethod
+    public String hello(String name) {
+        return "Hello " + name + " to Web Service";
+    }
 }

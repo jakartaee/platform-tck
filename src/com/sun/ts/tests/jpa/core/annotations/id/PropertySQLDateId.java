@@ -25,48 +25,47 @@ import jakarta.persistence.Table;
 @Table(name = "DATATYPES2")
 public class PropertySQLDateId implements java.io.Serializable {
 
-  protected java.sql.Date id;
+    protected java.sql.Date id;
 
-  private java.sql.Date date;
+    private java.sql.Date date;
 
-  public PropertySQLDateId() {
-  }
+    public PropertySQLDateId() {}
 
-  public PropertySQLDateId(java.sql.Date id, java.sql.Date date) {
-    this.id = id;
-    this.date = date;
-  }
-
-  @Id
-  @Column(name = "DATATYPES2_ID")
-  public java.sql.Date getId() {
-    return id;
-  }
-
-  public void setId(java.sql.Date id) {
-    this.id = id;
-  }
-
-  @Column(name = "DATEDATA")
-  public java.sql.Date getDate() {
-    return date;
-  }
-
-  public void setDate(java.sql.Date date) {
-    this.date = date;
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    if (getDate() != null) {
-      result.append(", date: " + getDate());
-    } else {
-      result.append(", date: null");
+    public PropertySQLDateId(java.sql.Date id, java.sql.Date date) {
+        this.id = id;
+        this.date = date;
     }
-    result.append("]");
-    return result.toString();
-  }
+
+    @Id
+    @Column(name = "DATATYPES2_ID")
+    public java.sql.Date getId() {
+        return id;
+    }
+
+    public void setId(java.sql.Date id) {
+        this.id = id;
+    }
+
+    @Column(name = "DATEDATA")
+    public java.sql.Date getDate() {
+        return date;
+    }
+
+    public void setDate(java.sql.Date date) {
+        this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getId());
+        if (getDate() != null) {
+            result.append(", date: " + getDate());
+        } else {
+            result.append(", date: null");
+        }
+        result.append("]");
+        return result.toString();
+    }
 }

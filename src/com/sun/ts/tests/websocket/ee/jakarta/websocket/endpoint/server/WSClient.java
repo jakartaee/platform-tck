@@ -27,84 +27,75 @@ import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
  *                     ws_wait;
  */
 public class WSClient extends WebSocketCommonClient {
-  private static final long serialVersionUID = -712294674123256741L;
+    private static final long serialVersionUID = -712294674123256741L;
 
-  public WSClient() {
-    setContextRoot("wsc_ee_endpoint_server_web");
-  }
-
-  public static void main(String[] args) {
-    new WSClient().run(args);
-  }
-
-  /* Run test */
-
-  /*
-   * @testName: onErrorWorksTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:68;WebSocket:JAVADOC:69;
-   * WebSocket:JAVADOC:66;
-   * 
-   * @test_Strategy: check @OnError works on Endpoint on Server Side
-   * jakarta.websocket.Endpoint.onOpen Endpoint.Endpoint
-   */
-  public void onErrorWorksTest() throws Fault {
-    invoke("msg", WSCMsgServer.MESSAGES[0], WSCMsgServer.EMPTY);
-    invoke("error", "anything", "anything");
-    invokeUntilFound("msg", WSCMsgServer.MESSAGES[1],
-        WSCErrorServerEndpoint.EXCEPTION);
-    logMsg(
-        "@OnError has been called after RuntimeException is thrown on @OnMessage as expected");
-  }
-
-  /*
-   * @testName: onCloseWorksTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:67;WebSocket:JAVADOC:69;
-   * WebSocket:JAVADOC:66;
-   * 
-   * @test_Strategy: check @OnClose works on Endpoint on Server side
-   * jakarta.websocket.Endpoint.onOpen Endpoint.Endpoint
-   */
-  public void onCloseWorksTest() throws Fault {
-    invoke("msg", WSCMsgServer.MESSAGES[0], WSCMsgServer.EMPTY);
-    invoke("close", "anything", "anything");
-    invokeUntilFound("msg", WSCMsgServer.MESSAGES[1],
-        WSCCloseServerEndpoint.CLOSE);
-    logMsg("@OnClose has been called after session.close() as expected");
-  }
-
-  // //////////////////////////////////////////////////////////////////////
-  private void invokeUntilFound(String endpoint, String content, String search)
-      throws Fault {
-    int sleep = 100;
-    long maxWait = _ws_wait * (1000 / sleep);
-    long count = 0;
-    boolean found = false;
-    String response = null;
-    while (!found && count < maxWait) {
-      invoke(endpoint, content, "", false);
-      response = getLastResponse(String.class);
-      if (response.equals(search))
-        found = true;
-      cleanup();
-      if (!found)
-        TestUtil.sleepMsec(sleep);
-      count++;
+    public WSClient() {
+        setContextRoot("wsc_ee_endpoint_server_web");
     }
-    if (!found) {
-      fault(search, "has not been found in response, last response was",
-          response);
-    }
-  }
 
-  @Override
-  protected com.sun.javatest.Status run(String[] args) {
-    if (args.length == 0) {
-      args = new String[] { "-p", "install/websocket/bin/ts.jte", "-t",
-          "onCloseWorksTest", "-vehicle", "servlet" };
+    public static void main(String[] args) {
+        new WSClient().run(args);
     }
-    return super.run(args);
-  }
 
+    /* Run test */
+
+    /*
+     * @testName: onErrorWorksTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:68;WebSocket:JAVADOC:69;
+     * WebSocket:JAVADOC:66;
+     *
+     * @test_Strategy: check @OnError works on Endpoint on Server Side
+     * jakarta.websocket.Endpoint.onOpen Endpoint.Endpoint
+     */
+    public void onErrorWorksTest() throws Fault {
+        invoke("msg", WSCMsgServer.MESSAGES[0], WSCMsgServer.EMPTY);
+        invoke("error", "anything", "anything");
+        invokeUntilFound("msg", WSCMsgServer.MESSAGES[1], WSCErrorServerEndpoint.EXCEPTION);
+        logMsg("@OnError has been called after RuntimeException is thrown on @OnMessage as expected");
+    }
+
+    /*
+     * @testName: onCloseWorksTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:67;WebSocket:JAVADOC:69;
+     * WebSocket:JAVADOC:66;
+     *
+     * @test_Strategy: check @OnClose works on Endpoint on Server side
+     * jakarta.websocket.Endpoint.onOpen Endpoint.Endpoint
+     */
+    public void onCloseWorksTest() throws Fault {
+        invoke("msg", WSCMsgServer.MESSAGES[0], WSCMsgServer.EMPTY);
+        invoke("close", "anything", "anything");
+        invokeUntilFound("msg", WSCMsgServer.MESSAGES[1], WSCCloseServerEndpoint.CLOSE);
+        logMsg("@OnClose has been called after session.close() as expected");
+    }
+
+    // //////////////////////////////////////////////////////////////////////
+    private void invokeUntilFound(String endpoint, String content, String search) throws Fault {
+        int sleep = 100;
+        long maxWait = _ws_wait * (1000 / sleep);
+        long count = 0;
+        boolean found = false;
+        String response = null;
+        while (!found && count < maxWait) {
+            invoke(endpoint, content, "", false);
+            response = getLastResponse(String.class);
+            if (response.equals(search)) found = true;
+            cleanup();
+            if (!found) TestUtil.sleepMsec(sleep);
+            count++;
+        }
+        if (!found) {
+            fault(search, "has not been found in response, last response was", response);
+        }
+    }
+
+    @Override
+    protected com.sun.javatest.Status run(String[] args) {
+        if (args.length == 0) {
+            args = new String[] {"-p", "install/websocket/bin/ts.jte", "-t", "onCloseWorksTest", "-vehicle", "servlet"};
+        }
+        return super.run(args);
+    }
 }

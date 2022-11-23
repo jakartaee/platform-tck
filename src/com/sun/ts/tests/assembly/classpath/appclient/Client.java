@@ -24,147 +24,146 @@
 
 package com.sun.ts.tests.assembly.classpath.appclient;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.assembly.classpath.util.ClassPathUtil;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   *
-   */
-  public void setup(String[] args, Properties p) throws Fault {
-    props = p;
-
-    try {
-      nctx = new TSNamingContext();
-      logMsg("Client: Setup succeed (got naming context).");
-    } catch (Exception e) {
-      throw new Fault("Client: Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /**
-   * @testName: testDirectLibrary
-   *
-   * @assertion_ids: JavaEE:SPEC:255
-   *
-   * @test_Strategy: We package an application with:
-   *
-   *                 - A utility .jar file containing the class ClassPathUtil.
-   *                 This .jar file is not a J2EE module and does not appear in
-   *                 the upper level application DD. It includes a "dummy" DD
-   *                 though, that must be ignored by the deployment tool.
-   *
-   *                 - An application client jar file. This jar file includes a
-   *                 Class-Path header referencing the utility .jar file in its
-   *                 manifest file, and does not contain any definition of
-   *                 ClassPathUtil.
-   *
-   *                 We check that:
-   *
-   *                 - We can deploy the application
-   *
-   *                 - The application client can create a ClassPathUtil
-   *                 instance at runtime, and invoke a method on that instance.
-   *                 This validates that the referenced .jar file appears in the
-   *                 logical classpath of the application client.
-   *
-   */
-  public void testDirectLibrary() throws Fault {
-    ClassPathUtil util = null;
+    /*
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     *
+     */
+    public void setup(String[] args, Properties p) throws Fault {
+        props = p;
 
-    try {
-      logTrace("Client: creating class instance...");
-      util = new ClassPathUtil();
-      util.testDirectLibrary();
-    } catch (Exception e) {
-      if (null == util) {
-        TestUtil.logErr("Bean: can't create instance" + e);
-      } else {
-        TestUtil.logErr("Bean: can't call instance" + e);
-      }
-
-      throw new Fault("Client: classpath test failed: " + e, e);
+        try {
+            nctx = new TSNamingContext();
+            logMsg("Client: Setup succeed (got naming context).");
+        } catch (Exception e) {
+            throw new Fault("Client: Setup failed:", e);
+        }
     }
-  }
 
-  /**
-   * @testName: testIndirectLibrary
-   *
-   * @assertion_ids: JavaEE:SPEC:255
-   *
-   * @test_Strategy: We package an application with:
-   *
-   *                 - A utility .jar file containing the class
-   *                 IndirectClassPathUtil. This .jar file is not a J2EE module
-   *                 and does not appear in the upper level application DD. It
-   *                 includes a "dummy" DD though, that must be ignored by the
-   *                 deployment tool.
-   *
-   *                 - A second utility .jar file containing the class
-   *                 ClassPathUtil. This .jar file is not a J2EE module and does
-   *                 not appear in the upper level application DD. It includes a
-   *                 "dummy" DD though, that must be ignored by the deployment
-   *                 tool. This jar file includes in its manifest file a
-   *                 Class-Path header referencing the utility .jar file
-   *                 containing IndirectClassPathUtil. It does not contain any
-   *                 definition of IndirectClassPathUtil.
-   *
-   *                 - An application client jar file. This jar file includes in
-   *                 its manifest file a Class-Path header referencing the
-   *                 second utility .jar file. It does not contain any
-   *                 definition of ClassPathUtil nor IndirectClassPathUtil.
-   *
-   *                 We check that:
-   *
-   *                 - We can deploy the application
-   *
-   *                 - The application client can create a ClassPathUtil
-   *                 instance at runtime, and invoke a method on that instance.
-   *                 This validates that the second utility .jar file appears in
-   *                 the logical classpath of the application client.
-   *
-   *                 - The application client can create a IndirectClassPathUtil
-   *                 instance at runtime, and invoke a method on that instance.
-   *                 This validates that the first utility .jar file appears in
-   *                 the logical classpath of the application client.
-   *
-   */
-  public void testIndirectLibrary() throws Fault {
-    ClassPathUtil util = null;
+    /**
+     * @testName: testDirectLibrary
+     *
+     * @assertion_ids: JavaEE:SPEC:255
+     *
+     * @test_Strategy: We package an application with:
+     *
+     *                 - A utility .jar file containing the class ClassPathUtil.
+     *                 This .jar file is not a J2EE module and does not appear in
+     *                 the upper level application DD. It includes a "dummy" DD
+     *                 though, that must be ignored by the deployment tool.
+     *
+     *                 - An application client jar file. This jar file includes a
+     *                 Class-Path header referencing the utility .jar file in its
+     *                 manifest file, and does not contain any definition of
+     *                 ClassPathUtil.
+     *
+     *                 We check that:
+     *
+     *                 - We can deploy the application
+     *
+     *                 - The application client can create a ClassPathUtil
+     *                 instance at runtime, and invoke a method on that instance.
+     *                 This validates that the referenced .jar file appears in the
+     *                 logical classpath of the application client.
+     *
+     */
+    public void testDirectLibrary() throws Fault {
+        ClassPathUtil util = null;
 
-    try {
-      logTrace("Client: creating class instance...");
-      util = new ClassPathUtil();
-      util.testIndirectLibrary();
-    } catch (Exception e) {
-      if (null == util) {
-        TestUtil.logErr("Bean: can't create instance" + e);
-      } else {
-        TestUtil.logErr("Bean: can't call instance" + e);
-      }
+        try {
+            logTrace("Client: creating class instance...");
+            util = new ClassPathUtil();
+            util.testDirectLibrary();
+        } catch (Exception e) {
+            if (null == util) {
+                TestUtil.logErr("Bean: can't create instance" + e);
+            } else {
+                TestUtil.logErr("Bean: can't call instance" + e);
+            }
 
-      throw new Fault("Client: classpath test failed: " + e, e);
+            throw new Fault("Client: classpath test failed: " + e, e);
+        }
     }
-  }
 
-  public void cleanup() throws Fault {
-    logMsg("Client: cleanup");
-  }
+    /**
+     * @testName: testIndirectLibrary
+     *
+     * @assertion_ids: JavaEE:SPEC:255
+     *
+     * @test_Strategy: We package an application with:
+     *
+     *                 - A utility .jar file containing the class
+     *                 IndirectClassPathUtil. This .jar file is not a J2EE module
+     *                 and does not appear in the upper level application DD. It
+     *                 includes a "dummy" DD though, that must be ignored by the
+     *                 deployment tool.
+     *
+     *                 - A second utility .jar file containing the class
+     *                 ClassPathUtil. This .jar file is not a J2EE module and does
+     *                 not appear in the upper level application DD. It includes a
+     *                 "dummy" DD though, that must be ignored by the deployment
+     *                 tool. This jar file includes in its manifest file a
+     *                 Class-Path header referencing the utility .jar file
+     *                 containing IndirectClassPathUtil. It does not contain any
+     *                 definition of IndirectClassPathUtil.
+     *
+     *                 - An application client jar file. This jar file includes in
+     *                 its manifest file a Class-Path header referencing the
+     *                 second utility .jar file. It does not contain any
+     *                 definition of ClassPathUtil nor IndirectClassPathUtil.
+     *
+     *                 We check that:
+     *
+     *                 - We can deploy the application
+     *
+     *                 - The application client can create a ClassPathUtil
+     *                 instance at runtime, and invoke a method on that instance.
+     *                 This validates that the second utility .jar file appears in
+     *                 the logical classpath of the application client.
+     *
+     *                 - The application client can create a IndirectClassPathUtil
+     *                 instance at runtime, and invoke a method on that instance.
+     *                 This validates that the first utility .jar file appears in
+     *                 the logical classpath of the application client.
+     *
+     */
+    public void testIndirectLibrary() throws Fault {
+        ClassPathUtil util = null;
+
+        try {
+            logTrace("Client: creating class instance...");
+            util = new ClassPathUtil();
+            util.testIndirectLibrary();
+        } catch (Exception e) {
+            if (null == util) {
+                TestUtil.logErr("Bean: can't create instance" + e);
+            } else {
+                TestUtil.logErr("Bean: can't call instance" + e);
+            }
+
+            throw new Fault("Client: classpath test failed: " + e, e);
+        }
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("Client: cleanup");
+    }
 }

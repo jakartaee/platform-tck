@@ -20,155 +20,143 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1011;
 
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.*;
+import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
+import com.sun.ts.tests.jaxws.wsi.requests.SOAPRequests;
 import java.io.InputStream;
 import java.util.Properties;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.sun.javatest.Status;
-import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
-import com.sun.ts.tests.jaxws.wsi.requests.SOAPRequests;
-
-import com.sun.ts.lib.harness.*;
-
 public class Client extends ServiceEETest implements SOAPRequests {
 
-  /**
-   * The string to be echoed for request two.
-   */
-  private static final String STRING_2 = "R1011-2";
+    /**
+     * The string to be echoed for request two.
+     */
+    private static final String STRING_2 = "R1011-2";
 
-  /**
-   * The one client.
-   */
-  private W2JRLR1011ClientOne client1;
+    /**
+     * The one client.
+     */
+    private W2JRLR1011ClientOne client1;
 
-  /**
-   * The other client.
-   */
-  private W2JRLR1011ClientTwo client2;
+    /**
+     * The other client.
+     */
+    private W2JRLR1011ClientTwo client2;
 
-  static W2JRLR1011TestService service = null;
+    static W2JRLR1011TestService service = null;
 
-  /**
-   * Test entry point.
-   * 
-   * @param args
-   *          the command-line arguments.
-   */
-  public static void main(String[] args) {
-    Client client = new Client();
-    Status status = client.run(args, System.out, System.err);
-    status.exit();
-  }
-
-  /**
-   * @class.testArgs: -ap jaxws-url-props.dat
-   * @class.setup_props: webServerHost; webServerPort; platform.mode;
-   *
-   * @param args
-   * @param properties
-   *
-   * @throws Fault
-   */
-  public void setup(String[] args, Properties properties) throws Fault {
-    client1 = (W2JRLR1011ClientOne) ClientFactory
-        .getClient(W2JRLR1011ClientOne.class, properties, this, service);
-    client2 = (W2JRLR1011ClientTwo) ClientFactory
-        .getClient(W2JRLR1011ClientTwo.class, properties, this, service);
-    logMsg("setup ok");
-  }
-
-  public void cleanup() {
-    logMsg("cleanup");
-  }
-
-  /**
-   * @testName: testResponseChildren
-   *
-   * @assertion_ids: WSI:SPEC:R1011
-   *
-   * @test_Strategy: A valid request is made to the endpoint and the returned
-   *                 response is investigated in order to determine the document
-   *                 composition.
-   *
-   * @throws Fault
-   */
-  public void testResponseChildren() throws Fault {
-    Document document;
-    try {
-      InputStream is = client1.makeHTTPRequest(R1011_REQUEST);
-      DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-      factory.setNamespaceAware(true);
-      DocumentBuilder builder = factory.newDocumentBuilder();
-      document = builder.parse(is);
-    } catch (Exception e) {
-      throw new Fault("Unable to invoke echoString operation (BP-R1011)", e);
+    /**
+     * Test entry point.
+     *
+     * @param args
+     *          the command-line arguments.
+     */
+    public static void main(String[] args) {
+        Client client = new Client();
+        Status status = client.run(args, System.out, System.err);
+        status.exit();
     }
-    Element envelope = document.getDocumentElement();
-    if (!isElement(envelope, "http://schemas.xmlsoap.org/soap/envelope/",
-        "Envelope")) {
-      throw new Fault(
-          "Expected 'env:Envelope' element not received (BP-R1011)");
-    }
-    NodeList list = envelope.getChildNodes();
-    boolean hasBody = false;
-    for (int i = 0; i < list.getLength(); i++) {
-      Node node = list.item(i);
-      if (node.getNodeType() != Node.ELEMENT_NODE) {
-        continue;
-      }
-      if (hasBody) {
-        throw new Fault(
-            "Child of 'env:Envelope' following 'env:Body' (BP-R1011)");
-      } else {
-        hasBody = isElement((Element) node,
-            "http://schemas.xmlsoap.org/soap/envelope/", "Body");
-      }
-    }
-  }
 
-  protected boolean isElement(Element element, String namespaceURI,
-      String localName) {
-    if (!namespaceURI.equals(element.getNamespaceURI())) {
-      return false;
+    /**
+     * @class.testArgs: -ap jaxws-url-props.dat
+     * @class.setup_props: webServerHost; webServerPort; platform.mode;
+     *
+     * @param args
+     * @param properties
+     *
+     * @throws Fault
+     */
+    public void setup(String[] args, Properties properties) throws Fault {
+        client1 = (W2JRLR1011ClientOne) ClientFactory.getClient(W2JRLR1011ClientOne.class, properties, this, service);
+        client2 = (W2JRLR1011ClientTwo) ClientFactory.getClient(W2JRLR1011ClientTwo.class, properties, this, service);
+        logMsg("setup ok");
     }
-    return localName.equals(element.getLocalName());
-  }
 
-  /**
-   * @testName: testRequestChildren
-   *
-   * @assertion_ids: WSI:SPEC:R1011
-   *
-   * @test_Strategy: A request is made from the generated client. A handler
-   *                 verifies the encoding. The returned string indicates the
-   *                 success or failure.
-   *
-   * @throws Fault
-   */
-  public void testRequestChildren() throws Fault {
-    String result;
-    try {
-      System.out.println("request=" + STRING_2);
-      result = client2.echoString(STRING_2);
-      System.out.println("result=" + result);
-    } catch (Exception e) {
-      throw new Fault("Unable to invoke echoString operation (BP-R1011)", e);
+    public void cleanup() {
+        logMsg("cleanup");
     }
-    if (!result.equals(STRING_2)) {
-      if (result.equals("EXCEPTION")) {
-        throw new Fault("Endpoint unable to process request (BP-R1011)");
-      } else {
-        throw new Fault(
-            "Request contains invalid 'soap:Envelope' children (BP-R1011)");
-      }
+
+    /**
+     * @testName: testResponseChildren
+     *
+     * @assertion_ids: WSI:SPEC:R1011
+     *
+     * @test_Strategy: A valid request is made to the endpoint and the returned
+     *                 response is investigated in order to determine the document
+     *                 composition.
+     *
+     * @throws Fault
+     */
+    public void testResponseChildren() throws Fault {
+        Document document;
+        try {
+            InputStream is = client1.makeHTTPRequest(R1011_REQUEST);
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setNamespaceAware(true);
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            document = builder.parse(is);
+        } catch (Exception e) {
+            throw new Fault("Unable to invoke echoString operation (BP-R1011)", e);
+        }
+        Element envelope = document.getDocumentElement();
+        if (!isElement(envelope, "http://schemas.xmlsoap.org/soap/envelope/", "Envelope")) {
+            throw new Fault("Expected 'env:Envelope' element not received (BP-R1011)");
+        }
+        NodeList list = envelope.getChildNodes();
+        boolean hasBody = false;
+        for (int i = 0; i < list.getLength(); i++) {
+            Node node = list.item(i);
+            if (node.getNodeType() != Node.ELEMENT_NODE) {
+                continue;
+            }
+            if (hasBody) {
+                throw new Fault("Child of 'env:Envelope' following 'env:Body' (BP-R1011)");
+            } else {
+                hasBody = isElement((Element) node, "http://schemas.xmlsoap.org/soap/envelope/", "Body");
+            }
+        }
     }
-  }
+
+    protected boolean isElement(Element element, String namespaceURI, String localName) {
+        if (!namespaceURI.equals(element.getNamespaceURI())) {
+            return false;
+        }
+        return localName.equals(element.getLocalName());
+    }
+
+    /**
+     * @testName: testRequestChildren
+     *
+     * @assertion_ids: WSI:SPEC:R1011
+     *
+     * @test_Strategy: A request is made from the generated client. A handler
+     *                 verifies the encoding. The returned string indicates the
+     *                 success or failure.
+     *
+     * @throws Fault
+     */
+    public void testRequestChildren() throws Fault {
+        String result;
+        try {
+            System.out.println("request=" + STRING_2);
+            result = client2.echoString(STRING_2);
+            System.out.println("result=" + result);
+        } catch (Exception e) {
+            throw new Fault("Unable to invoke echoString operation (BP-R1011)", e);
+        }
+        if (!result.equals(STRING_2)) {
+            if (result.equals("EXCEPTION")) {
+                throw new Fault("Endpoint unable to process request (BP-R1011)");
+            } else {
+                throw new Fault("Request contains invalid 'soap:Envelope' children (BP-R1011)");
+            }
+        }
+    }
 }

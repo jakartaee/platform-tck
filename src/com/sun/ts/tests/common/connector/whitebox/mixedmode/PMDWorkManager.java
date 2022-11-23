@@ -19,63 +19,59 @@ package com.sun.ts.tests.common.connector.whitebox.mixedmode;
 import com.sun.ts.tests.common.connector.whitebox.Debug;
 import com.sun.ts.tests.common.connector.whitebox.WorkImpl;
 import com.sun.ts.tests.common.connector.whitebox.WorkListenerImpl;
-
 import jakarta.resource.spi.BootstrapContext;
 import jakarta.resource.spi.work.ExecutionContext;
 import jakarta.resource.spi.work.WorkException;
 import jakarta.resource.spi.work.WorkManager;
 
 public class PMDWorkManager {
-  private BootstrapContext bsc = null;
+    private BootstrapContext bsc = null;
 
-  private WorkManager wmgr;
+    private WorkManager wmgr;
 
-  private String sicUser = "";
+    private String sicUser = "";
 
-  private String sicPwd = "";
+    private String sicPwd = "";
 
-  private String eisUser = "";
+    private String eisUser = "";
 
-  public PMDWorkManager(BootstrapContext val) {
-    debug("enterred constructor");
-    this.bsc = val;
-    this.wmgr = bsc.getWorkManager();
+    public PMDWorkManager(BootstrapContext val) {
+        debug("enterred constructor");
+        this.bsc = val;
+        this.wmgr = bsc.getWorkManager();
 
-    this.sicUser = System.getProperty("j2eelogin.name");
-    this.sicPwd = System.getProperty("j2eelogin.password");
-    this.eisUser = System.getProperty("eislogin.name");
-    debug("leaving constructor");
-  }
-
-  public void runTests() {
-    debug("enterred runTests");
-    doWork();
-    debug("leaving runTests");
-  }
-
-  public void doWork() {
-    debug("enterred doWork");
-
-    try {
-      WorkImpl workimpl = new WorkImpl(wmgr);
-
-      ExecutionContext ec = new ExecutionContext();
-      WorkListenerImpl wl = new WorkListenerImpl();
-      wmgr.doWork(workimpl, 5000, ec, wl);
-      debug("PMDWorkManager Work Object Submitted");
-    } catch (WorkException we) {
-      System.out
-          .println("PMDWorkManager WorkException thrown is " + we.getMessage());
-    } catch (Exception ex) {
-      System.out
-          .println("PMDWorkManager Exception thrown is " + ex.getMessage());
+        this.sicUser = System.getProperty("j2eelogin.name");
+        this.sicPwd = System.getProperty("j2eelogin.password");
+        this.eisUser = System.getProperty("eislogin.name");
+        debug("leaving constructor");
     }
 
-    debug("leaving doWork");
-  }
+    public void runTests() {
+        debug("enterred runTests");
+        doWork();
+        debug("leaving runTests");
+    }
 
-  public void debug(String out) {
-    Debug.trace("PMDWorkManager:  " + out);
-  }
+    public void doWork() {
+        debug("enterred doWork");
 
+        try {
+            WorkImpl workimpl = new WorkImpl(wmgr);
+
+            ExecutionContext ec = new ExecutionContext();
+            WorkListenerImpl wl = new WorkListenerImpl();
+            wmgr.doWork(workimpl, 5000, ec, wl);
+            debug("PMDWorkManager Work Object Submitted");
+        } catch (WorkException we) {
+            System.out.println("PMDWorkManager WorkException thrown is " + we.getMessage());
+        } catch (Exception ex) {
+            System.out.println("PMDWorkManager Exception thrown is " + ex.getMessage());
+        }
+
+        debug("leaving doWork");
+    }
+
+    public void debug(String out) {
+        Debug.trace("PMDWorkManager:  " + out);
+    }
 }

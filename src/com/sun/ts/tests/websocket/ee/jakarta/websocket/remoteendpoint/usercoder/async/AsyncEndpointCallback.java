@@ -17,32 +17,30 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.async;
 
-import java.util.concurrent.Future;
-
 import com.sun.ts.tests.websocket.common.client.EndpointCallback;
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient.Entity;
-
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.RemoteEndpoint;
 import jakarta.websocket.Session;
+import java.util.concurrent.Future;
 
 public class AsyncEndpointCallback extends EndpointCallback {
-  protected Entity entity;
+    protected Entity entity;
 
-  public AsyncEndpointCallback(Entity entity) {
-    super();
-    this.entity = entity;
-  }
-
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-    RemoteEndpoint.Async endpoint = session.getAsyncRemote();
-    try {
-      Future<Void> future = endpoint.sendObject(entity.getEntityAt(0));
-      future.get();
-    } catch (Exception i) {
-      throw new RuntimeException(i);
+    public AsyncEndpointCallback(Entity entity) {
+        super();
+        this.entity = entity;
     }
-  }
+
+    @Override
+    public void onOpen(Session session, EndpointConfig config) {
+        super.onOpen(session, config);
+        RemoteEndpoint.Async endpoint = session.getAsyncRemote();
+        try {
+            Future<Void> future = endpoint.sendObject(entity.getEntityAt(0));
+            future.get();
+        } catch (Exception i) {
+            throw new RuntimeException(i);
+        }
+    }
 }

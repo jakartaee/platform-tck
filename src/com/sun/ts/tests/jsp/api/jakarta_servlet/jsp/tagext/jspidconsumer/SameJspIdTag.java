@@ -20,55 +20,52 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.jspidconsumer;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.JspIdConsumer;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class SameJspIdTag extends SimpleTagSupport implements JspIdConsumer {
 
-  public static final int NUM_INVOC = 5;
+    public static final int NUM_INVOC = 5;
 
-  private static int currentInvoc = 0;
+    private static int currentInvoc = 0;
 
-  private String jspId;
+    private String jspId;
 
-  private static String[] idArray = new String[NUM_INVOC];
+    private static String[] idArray = new String[NUM_INVOC];
 
-  private JspWriter out;
+    private JspWriter out;
 
-  public void setJspId(String id) {
-    jspId = id;
-  }
-
-  public void doTag() throws JspException, IOException {
-
-    out = getJspContext().getOut();
-    currentInvoc = (currentInvoc == NUM_INVOC) ? 1 : currentInvoc + 1;
-    try {
-      out.println("SameJspIdTag: current Invocation = " + currentInvoc);
-      out.println("SameJspIdTag: JspId is " + jspId);
-      idArray[currentInvoc - 1] = jspId;
-
-      if (currentInvoc != NUM_INVOC)
-        return;
-      else {
-        for (int i = 0; i < NUM_INVOC; ++i) {
-          if (!idArray[i].equals(jspId)) {
-            out.println("SameJspIdTag: different jsp ids found");
-            out.println("Test FAILED");
-            return;
-          }
-        }
-        out.println("Test PASSED");
-      }
-
-    } catch (Throwable t) {
-      JspTestUtil.handleThrowable(t, out, "SameJspIdTag");
+    public void setJspId(String id) {
+        jspId = id;
     }
-  }
+
+    public void doTag() throws JspException, IOException {
+
+        out = getJspContext().getOut();
+        currentInvoc = (currentInvoc == NUM_INVOC) ? 1 : currentInvoc + 1;
+        try {
+            out.println("SameJspIdTag: current Invocation = " + currentInvoc);
+            out.println("SameJspIdTag: JspId is " + jspId);
+            idArray[currentInvoc - 1] = jspId;
+
+            if (currentInvoc != NUM_INVOC) return;
+            else {
+                for (int i = 0; i < NUM_INVOC; ++i) {
+                    if (!idArray[i].equals(jspId)) {
+                        out.println("SameJspIdTag: different jsp ids found");
+                        out.println("Test FAILED");
+                        return;
+                    }
+                }
+                out.println("Test PASSED");
+            }
+
+        } catch (Throwable t) {
+            JspTestUtil.handleThrowable(t, out, "SameJspIdTag");
+        }
+    }
 }

@@ -22,27 +22,26 @@ package com.sun.ts.tests.ejb30.bb.mdb.dest.topic.onejar;
 
 import com.sun.javatest.Status;
 
-public class Client
-    extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.TopicClientBase {
+public class Client extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.TopicClientBase {
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
-   * harness.log.port;
-   */
+    /*
+     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
+     * harness.log.port;
+     */
 
-  /*
-   * @testName: test1
-   * 
-   * @assertion_ids: EJB:SPEC:778; EJB:SPEC:779; EJB:SPEC:780
-   * 
-   * @test_Strategy: test message destination related elements in deployment
-   * descriptors: message-destination, message-destination-ref,
-   * message-destination-link
-   */
+    /*
+     * @testName: test1
+     *
+     * @assertion_ids: EJB:SPEC:778; EJB:SPEC:779; EJB:SPEC:780
+     *
+     * @test_Strategy: test message destination related elements in deployment
+     * descriptors: message-destination, message-destination-ref,
+     * message-destination-link
+     */
 }

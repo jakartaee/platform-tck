@@ -20,7 +20,7 @@
 package com.sun.ts.tests.ejb30.assembly.appres.common;
 
 public interface AppResCommonIF {
-  public StringBuilder getPostConstructRecords();
+    public StringBuilder getPostConstructRecords();
 
-  public String getName();
+    public String getName();
 }

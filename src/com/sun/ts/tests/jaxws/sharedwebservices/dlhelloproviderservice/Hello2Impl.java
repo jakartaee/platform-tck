@@ -20,39 +20,40 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.dlhelloproviderservice;
 
-import jakarta.xml.ws.*;
-import jakarta.xml.soap.*;
-
-import java.util.Iterator;
-
 import com.sun.ts.tests.jaxws.common.JAXWS_Util;
+import jakarta.xml.soap.*;
+import jakarta.xml.ws.*;
 
 /*
  * Provider<SOAPMessage> - req/res a SOAPMessage in Message Mode
  */
-@WebServiceProvider(serviceName = "HelloService", portName = "Hello2Port", targetNamespace = "http://helloservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSDLHelloProviderService.wsdl")
+@WebServiceProvider(
+        serviceName = "HelloService",
+        portName = "Hello2Port",
+        targetNamespace = "http://helloservice.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/WSDLHelloProviderService.wsdl")
 @BindingType(value = jakarta.xml.ws.soap.SOAPBinding.SOAP11HTTP_BINDING)
 @ServiceMode(value = jakarta.xml.ws.Service.Mode.MESSAGE)
 public class Hello2Impl implements Provider<SOAPMessage> {
 
-  public SOAPMessage invoke(SOAPMessage req) {
-    System.out.println("**** Received in Provider Impl Hello2Impl ******");
-    System.out.println("->    SOAPMessage received=" + req);
-    JAXWS_Util.dumpSOAPMessage(req, false);
-    SOAPMessage respMsg = null;
-    try {
+    public SOAPMessage invoke(SOAPMessage req) {
+        System.out.println("**** Received in Provider Impl Hello2Impl ******");
+        System.out.println("->    SOAPMessage received=" + req);
+        JAXWS_Util.dumpSOAPMessage(req, false);
+        SOAPMessage respMsg = null;
+        try {
 
-      String helloResp = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><HelloResponse xmlns=\"http://helloservice.org/types\"><argument>responseBean</argument></HelloResponse></soapenv:Body></soapenv:Envelope>";
+            String helloResp =
+                    "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><HelloResponse xmlns=\"http://helloservice.org/types\"><argument>responseBean</argument></HelloResponse></soapenv:Body></soapenv:Envelope>";
 
-      respMsg = JAXWS_Util.makeSOAPMessage(helloResp);
-      respMsg.saveChanges();
-    } catch (Exception e) {
-      System.out.println("Exception: occurred " + e);
+            respMsg = JAXWS_Util.makeSOAPMessage(helloResp);
+            respMsg.saveChanges();
+        } catch (Exception e) {
+            System.out.println("Exception: occurred " + e);
+        }
+        System.out.println("->    SOAPMessage being returned=" + respMsg);
+        JAXWS_Util.dumpSOAPMessage(respMsg, false);
+
+        return respMsg;
     }
-    System.out.println("->    SOAPMessage being returned=" + respMsg);
-    JAXWS_Util.dumpSOAPMessage(respMsg, false);
-
-    return respMsg;
-  }
-
 }

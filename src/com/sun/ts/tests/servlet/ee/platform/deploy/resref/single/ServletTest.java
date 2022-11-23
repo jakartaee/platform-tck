@@ -20,54 +20,52 @@
 
 package com.sun.ts.tests.servlet.ee.platform.deploy.resref.single;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.assembly.util.shared.resref.single.TestCode;
 import com.sun.ts.tests.common.web.ServletWrapper;
+import java.util.Properties;
 
 /** Servlet test driver */
 public class ServletTest extends ServletWrapper {
 
-  public Boolean testDatasource(Properties props) {
-    boolean pass;
+    public Boolean testDatasource(Properties props) {
+        boolean pass;
 
-    pass = TestCode.testDatasource(nctx);
-    return new Boolean(pass);
-  }
+        pass = TestCode.testDatasource(nctx);
+        return new Boolean(pass);
+    }
 
-  public Boolean testSession(Properties props) {
-    boolean pass;
+    public Boolean testSession(Properties props) {
+        boolean pass;
 
-    pass = TestCode.testSession(nctx);
-    return new Boolean(pass);
-  }
+        pass = TestCode.testSession(nctx);
+        return new Boolean(pass);
+    }
 
-  public Boolean testURL(Properties props) {
-    boolean pass;
+    public Boolean testURL(Properties props) {
+        boolean pass;
 
-    pass = TestCode.testURL(nctx);
-    return new Boolean(pass);
-  }
+        pass = TestCode.testURL(nctx);
+        return new Boolean(pass);
+    }
 
-  public Boolean testQueue(Properties props) {
-    boolean pass;
+    public Boolean testQueue(Properties props) {
+        boolean pass;
 
-    pass = TestCode.testQueue(nctx);
-    return new Boolean(pass);
-  }
+        pass = TestCode.testQueue(nctx);
+        return new Boolean(pass);
+    }
 
-  public Boolean testTopic(Properties props) {
-    boolean pass;
+    public Boolean testTopic(Properties props) {
+        boolean pass;
 
-    pass = TestCode.testTopic(nctx);
-    return new Boolean(pass);
-  }
+        pass = TestCode.testTopic(nctx);
+        return new Boolean(pass);
+    }
 
-  public Boolean testAll(Properties props) {
-    boolean pass;
+    public Boolean testAll(Properties props) {
+        boolean pass;
 
-    pass = TestCode.testAll(nctx);
-    return new Boolean(pass);
-  }
-
+        pass = TestCode.testAll(nctx);
+        return new Boolean(pass);
+    }
 }

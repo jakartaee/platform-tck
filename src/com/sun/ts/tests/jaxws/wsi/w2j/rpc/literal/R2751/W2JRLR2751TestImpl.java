@@ -16,26 +16,28 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2751;
 
-import jakarta.xml.ws.WebServiceException;
 import jakarta.jws.WebService;
+import jakarta.xml.ws.WebServiceException;
 
-@WebService(portName = "W2JRLR2751TestPort", serviceName = "W2JRLR2751TestService", targetNamespace = "http://w2jrlr2751testservice.org/W2JRLR2751TestService.wsdl", wsdlLocation = "WEB-INF/wsdl/W2JRLR2751TestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2751.W2JRLR2751Test")
-
+@WebService(
+        portName = "W2JRLR2751TestPort",
+        serviceName = "W2JRLR2751TestService",
+        targetNamespace = "http://w2jrlr2751testservice.org/W2JRLR2751TestService.wsdl",
+        wsdlLocation = "WEB-INF/wsdl/W2JRLR2751TestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2751.W2JRLR2751Test")
 public class W2JRLR2751TestImpl implements W2JRLR2751Test {
-  public String echoIt(String item, ConfigHeader ch, ConfigHeader2 ch2,
-      ConfigHeader3 ch3) {
+    public String echoIt(String item, ConfigHeader ch, ConfigHeader2 ch2, ConfigHeader3 ch3) {
 
-    System.out.println("*** in W2JRLR2751TestImpl ***");
-    String result = null;
-    if ((ch.getMessage().equals("ConfigHeader"))
-        && (ch2.getMessage().equals("ConfigHeader2"))
-        && (ch3.getMessage().equals("ConfigHeader3"))) {
-      result = "PASSED";
-    } else {
-      throw new WebServiceException(
-          "FAILED - configHeader=" + ch.getMessage() + ", configHeader2="
-              + ch2.getMessage() + ", configHeader3=" + ch3.getMessage());
+        System.out.println("*** in W2JRLR2751TestImpl ***");
+        String result = null;
+        if ((ch.getMessage().equals("ConfigHeader"))
+                && (ch2.getMessage().equals("ConfigHeader2"))
+                && (ch3.getMessage().equals("ConfigHeader3"))) {
+            result = "PASSED";
+        } else {
+            throw new WebServiceException("FAILED - configHeader=" + ch.getMessage() + ", configHeader2="
+                    + ch2.getMessage() + ", configHeader3=" + ch3.getMessage());
+        }
+        return result;
     }
-    return result;
-  }
 }

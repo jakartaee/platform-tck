@@ -20,17 +20,15 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.lrapitest;
 
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
+import java.util.Properties;
 
 public interface DLocalHome extends EJBLocalHome {
-  public DLocal createD(Properties p, int cofID, String cofName, float cofPrice)
-      throws CreateException;
+    public DLocal createD(Properties p, int cofID, String cofName, float cofPrice) throws CreateException;
 
-  public DLocal findByPrimaryKey(Integer key) throws FinderException;
+    public DLocal findByPrimaryKey(Integer key) throws FinderException;
 
-  public String addBar(String s);
+    public String addBar(String s);
 }

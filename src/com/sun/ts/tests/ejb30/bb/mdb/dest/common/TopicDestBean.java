@@ -31,19 +31,18 @@ import jakarta.jms.MessageListener;
  * annotated with messageListenerInterface, which is what we are testing here.
  */
 @MessageDriven(name = "TopicDestBean", messageListenerInterface = MessageListener.class)
-public class TopicDestBean
-    extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.DestBeanBase {
-  @Resource(name = "mdc")
-  private MessageDrivenContext mdc;
+public class TopicDestBean extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.DestBeanBase {
+    @Resource(name = "mdc")
+    private MessageDrivenContext mdc;
 
-  public TopicDestBean() {
-    super();
-  }
+    public TopicDestBean() {
+        super();
+    }
 
-  public EJBContext getEJBContext() {
-    return this.mdc;
-  }
+    public EJBContext getEJBContext() {
+        return this.mdc;
+    }
 
-  // ================== business methods ====================================
+    // ================== business methods ====================================
 
 }

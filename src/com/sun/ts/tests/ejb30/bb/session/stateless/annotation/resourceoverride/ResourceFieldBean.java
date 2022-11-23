@@ -20,13 +20,8 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.annotation.resourceoverride;
 
-import java.net.URL;
-
-import javax.sql.DataSource;
-
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceBeanBase;
 import com.sun.ts.tests.ejb30.common.annotation.resource.ResourceIF;
-
 import jakarta.annotation.Resource;
 import jakarta.annotation.Resource.AuthenticationType;
 import jakarta.ejb.Remote;
@@ -40,145 +35,178 @@ import jakarta.jms.QueueConnectionFactory;
 import jakarta.jms.Topic;
 import jakarta.jms.TopicConnectionFactory;
 import jakarta.transaction.UserTransaction;
+import java.net.URL;
+import javax.sql.DataSource;
 
 @Stateless(name = "ResourceFieldBean")
-@Remote({ ResourceIF.class })
+@Remote({ResourceIF.class})
 @TransactionManagement(TransactionManagementType.BEAN)
 public class ResourceFieldBean extends ResourceBeanBase implements ResourceIF {
 
-  @Resource(name = "sessionContext", description = "session context", type = SessionContext.class)
-  private SessionContext sessionContext;
+    @Resource(name = "sessionContext", description = "session context", type = SessionContext.class)
+    private SessionContext sessionContext;
 
-  @Resource(description = "user transaction", name = "myUserTransaction", type = UserTransaction.class)
-  // @todo declare ut in dd
-  private UserTransaction ut;
+    @Resource(description = "user transaction", name = "myUserTransaction", type = UserTransaction.class)
+    // @todo declare ut in dd
+    private UserTransaction ut;
 
-  protected String getUserTransactionName() {
-    return "myUserTransaction";
-  }
+    protected String getUserTransactionName() {
+        return "myUserTransaction";
+    }
 
-  @Resource(name = "dataSource", description = "<resource-ref>", shareable = false, authenticationType = AuthenticationType.APPLICATION, type = Object.class)
-  private DataSource dataSource;
+    @Resource(
+            name = "dataSource",
+            description = "<resource-ref>",
+            shareable = false,
+            authenticationType = AuthenticationType.APPLICATION,
+            type = Object.class)
+    private DataSource dataSource;
 
-  protected String getDataSourceName() {
-    return "dataSource";
-  }
+    protected String getDataSourceName() {
+        return "dataSource";
+    }
 
-  @Resource(name = "myDataSource2", type = DataSource.class, shareable = false, authenticationType = AuthenticationType.APPLICATION, description = "<resource-ref>")
-  private DataSource dataSource2;
+    @Resource(
+            name = "myDataSource2",
+            type = DataSource.class,
+            shareable = false,
+            authenticationType = AuthenticationType.APPLICATION,
+            description = "<resource-ref>")
+    private DataSource dataSource2;
 
-  protected String getDataSource2Name() {
-    return "myDataSource2";
-  }
+    protected String getDataSource2Name() {
+        return "myDataSource2";
+    }
 
-  @Resource(name = "mailSession", shareable = false, authenticationType = AuthenticationType.APPLICATION, description = "<resource-ref>")
-  private jakarta.mail.Session mailSession;
+    @Resource(
+            name = "mailSession",
+            shareable = false,
+            authenticationType = AuthenticationType.APPLICATION,
+            description = "<resource-ref>")
+    private jakarta.mail.Session mailSession;
 
-  protected String getMailSessionName() {
-    return "mailSession";
-  }
+    protected String getMailSessionName() {
+        return "mailSession";
+    }
 
-  @Resource(name = "url", description = "<resource-ref>", shareable = false, authenticationType = AuthenticationType.APPLICATION)
-  private URL url;
+    @Resource(
+            name = "url",
+            description = "<resource-ref>",
+            shareable = false,
+            authenticationType = AuthenticationType.APPLICATION)
+    private URL url;
 
-  protected String getUrlName() {
-    return "url";
-  }
+    protected String getUrlName() {
+        return "url";
+    }
 
-  @Resource(name = "queueConnectionFactory", description = "<resource-ref>", shareable = false, authenticationType = AuthenticationType.APPLICATION)
-  private QueueConnectionFactory queueConnectionFactory;
+    @Resource(
+            name = "queueConnectionFactory",
+            description = "<resource-ref>",
+            shareable = false,
+            authenticationType = AuthenticationType.APPLICATION)
+    private QueueConnectionFactory queueConnectionFactory;
 
-  protected String getQueueConnectionFactoryName() {
-    return "queueConnectionFactory";
-  }
+    protected String getQueueConnectionFactoryName() {
+        return "queueConnectionFactory";
+    }
 
-  @Resource(name = "topicConnectionFactory", description = "<resource-ref>", shareable = false, authenticationType = AuthenticationType.APPLICATION)
-  private TopicConnectionFactory topicConnectionFactory;
+    @Resource(
+            name = "topicConnectionFactory",
+            description = "<resource-ref>",
+            shareable = false,
+            authenticationType = AuthenticationType.APPLICATION)
+    private TopicConnectionFactory topicConnectionFactory;
 
-  protected String getTopicConnectionFactoryName() {
-    return "topicConnectionFactory";
-  }
+    protected String getTopicConnectionFactoryName() {
+        return "topicConnectionFactory";
+    }
 
-  @Resource(name = "connectionFactoryQ", description = "<resource-ref>", shareable = false, authenticationType = AuthenticationType.APPLICATION)
-  private ConnectionFactory connectionFactoryQ;
+    @Resource(
+            name = "connectionFactoryQ",
+            description = "<resource-ref>",
+            shareable = false,
+            authenticationType = AuthenticationType.APPLICATION)
+    private ConnectionFactory connectionFactoryQ;
 
-  protected String getConnectionFactoryQName() {
-    return "connectionFactoryQ";
-  }
+    protected String getConnectionFactoryQName() {
+        return "connectionFactoryQ";
+    }
 
-  protected ConnectionFactory getConnectionFactoryQ() {
-    return connectionFactoryQ;
-  }
+    protected ConnectionFactory getConnectionFactoryQ() {
+        return connectionFactoryQ;
+    }
 
-  @Resource(name = "connectionFactoryT", description = "<resource-ref>", shareable = false, authenticationType = AuthenticationType.APPLICATION)
-  private ConnectionFactory connectionFactoryT;
+    @Resource(
+            name = "connectionFactoryT",
+            description = "<resource-ref>",
+            shareable = false,
+            authenticationType = AuthenticationType.APPLICATION)
+    private ConnectionFactory connectionFactoryT;
 
-  protected String getConnectionFactoryTName() {
-    return "connectionFactoryT";
-  }
+    protected String getConnectionFactoryTName() {
+        return "connectionFactoryT";
+    }
 
-  protected ConnectionFactory getConnectionFactoryT() {
-    return connectionFactoryT;
-  }
+    protected ConnectionFactory getConnectionFactoryT() {
+        return connectionFactoryT;
+    }
 
-  @Resource(name = "topic", description = "<resource-env-ref>")
-  private Topic topic;
+    @Resource(name = "topic", description = "<resource-env-ref>")
+    private Topic topic;
 
-  protected String getTopicName() {
-    return "topic";
-  }
+    protected String getTopicName() {
+        return "topic";
+    }
 
-  @Resource(name = "queue", description = "<resource-env-ref>")
-  private Queue queue;
+    @Resource(name = "queue", description = "<resource-env-ref>")
+    private Queue queue;
 
-  protected String getQueueName() {
-    return "queue";
-  }
+    protected String getQueueName() {
+        return "queue";
+    }
 
-  public ResourceFieldBean() {
-  }
+    public ResourceFieldBean() {}
 
-  public void remove() {
-  }
+    public void remove() {}
 
-  protected jakarta.ejb.EJBContext getEJBContext() {
-    return sessionContext;
-  }
+    protected jakarta.ejb.EJBContext getEJBContext() {
+        return sessionContext;
+    }
 
-  protected DataSource getDataSource() {
-    return dataSource;
-  }
+    protected DataSource getDataSource() {
+        return dataSource;
+    }
 
-  protected DataSource getDataSource2() {
-    return dataSource2;
-  }
+    protected DataSource getDataSource2() {
+        return dataSource2;
+    }
 
-  protected jakarta.mail.Session getMailSession() {
-    return mailSession;
-  }
+    protected jakarta.mail.Session getMailSession() {
+        return mailSession;
+    }
 
-  protected URL getUrl() {
-    return url;
-  }
+    protected URL getUrl() {
+        return url;
+    }
 
-  protected QueueConnectionFactory getQueueConnectionFactory() {
-    return queueConnectionFactory;
-  }
+    protected QueueConnectionFactory getQueueConnectionFactory() {
+        return queueConnectionFactory;
+    }
 
-  protected Queue getQueue() {
-    return queue;
-  }
+    protected Queue getQueue() {
+        return queue;
+    }
 
-  protected TopicConnectionFactory getTopicConnectionFactory() {
-    return topicConnectionFactory;
-  }
+    protected TopicConnectionFactory getTopicConnectionFactory() {
+        return topicConnectionFactory;
+    }
 
-  protected Topic getTopic() {
-    return topic;
-  }
+    protected Topic getTopic() {
+        return topic;
+    }
 
-  protected UserTransaction getUserTransaction() {
-    return ut;
-  }
-
+    protected UserTransaction getUserTransaction() {
+        return ut;
+    }
 }

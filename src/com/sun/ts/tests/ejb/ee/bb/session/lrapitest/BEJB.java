@@ -20,131 +20,126 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.lrapitest;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EJBLocalObject;
 import jakarta.ejb.EJBObject;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
+import java.util.Properties;
 
 public class BEJB implements SessionBean {
 
-  private SessionContext context = null;
+    private SessionContext context = null;
 
-  private Properties harnessProps;
+    private Properties harnessProps;
 
-  private String whoami;
+    private String whoami;
 
-  // ===========================================================
-  // B interface business methods
+    // ===========================================================
+    // B interface business methods
 
-  public void init(Properties p) {
-    TestUtil.logTrace("init");
-    harnessProps = p;
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
-    }
-  }
-
-  // This method is only exposed through the Remote Interface
-  public String whoAmIRemote() {
-    return "Remote-" + whoami;
-  }
-
-  public boolean test2() {
-    TestUtil.logTrace("test2");
-    boolean pass = true;
-    if (getObjectTest())
-      TestUtil.logMsg("getEJBObject ... PASSED");
-    else {
-      TestUtil.logMsg("getEJBObject ... FAILED");
-      pass = false;
-    }
-    if (getLocalObjectTest())
-      TestUtil.logMsg("getEJBLocalObject ... PASSED");
-    else {
-      TestUtil.logMsg("getEJBLocalObject ... FAILED");
-      pass = false;
-    }
-    return pass;
-  }
-
-  // ===========================================================
-  // private methods
-
-  private boolean getObjectTest() {
-    TestUtil.logTrace("getObjectTest");
-    boolean pass = true;
-    try {
-      EJBObject object = context.getEJBObject();
-      if (object != null) {
-        TestUtil.logMsg("getEJBObject() returned EJBObject reference");
-        if (object instanceof B)
-          TestUtil.logMsg("An B object");
-        else {
-          TestUtil.logErr("Not an B object");
-          pass = false;
+    public void init(Properties p) {
+        TestUtil.logTrace("init");
+        harnessProps = p;
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
         }
-      } else {
-        TestUtil.logErr("getEJBObject() returned null reference");
-        pass = false;
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      pass = false;
     }
-    return pass;
-  }
 
-  private boolean getLocalObjectTest() {
-    TestUtil.logTrace("getLocalObjectTest");
-    boolean pass = true;
-    try {
-      TestUtil.logMsg("getEJBLocalObject() - IllegalStateException");
-      EJBLocalObject object = context.getEJBLocalObject();
-      TestUtil.logErr("getEJBLocalObject() - no IllegalStateException");
-      pass = false;
-    } catch (IllegalStateException e) {
-      TestUtil.logErr("IllegalStateException caught as expected");
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      pass = false;
+    // This method is only exposed through the Remote Interface
+    public String whoAmIRemote() {
+        return "Remote-" + whoami;
     }
-    return pass;
-  }
 
-  // ===========================================================
-  // EJB Specification Required Methods
+    public boolean test2() {
+        TestUtil.logTrace("test2");
+        boolean pass = true;
+        if (getObjectTest()) TestUtil.logMsg("getEJBObject ... PASSED");
+        else {
+            TestUtil.logMsg("getEJBObject ... FAILED");
+            pass = false;
+        }
+        if (getLocalObjectTest()) TestUtil.logMsg("getEJBLocalObject ... PASSED");
+        else {
+            TestUtil.logMsg("getEJBLocalObject ... FAILED");
+            pass = false;
+        }
+        return pass;
+    }
 
-  public void ejbCreateB(String whoAmI) throws CreateException {
-    TestUtil.logTrace("ejbCreateB");
-    whoami = whoAmI;
-  }
+    // ===========================================================
+    // private methods
 
-  public void setSessionContext(SessionContext c) {
-    TestUtil.logTrace("setSessionContext");
-    context = c;
-  }
+    private boolean getObjectTest() {
+        TestUtil.logTrace("getObjectTest");
+        boolean pass = true;
+        try {
+            EJBObject object = context.getEJBObject();
+            if (object != null) {
+                TestUtil.logMsg("getEJBObject() returned EJBObject reference");
+                if (object instanceof B) TestUtil.logMsg("An B object");
+                else {
+                    TestUtil.logErr("Not an B object");
+                    pass = false;
+                }
+            } else {
+                TestUtil.logErr("getEJBObject() returned null reference");
+                pass = false;
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+            pass = false;
+        }
+        return pass;
+    }
 
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
+    private boolean getLocalObjectTest() {
+        TestUtil.logTrace("getLocalObjectTest");
+        boolean pass = true;
+        try {
+            TestUtil.logMsg("getEJBLocalObject() - IllegalStateException");
+            EJBLocalObject object = context.getEJBLocalObject();
+            TestUtil.logErr("getEJBLocalObject() - no IllegalStateException");
+            pass = false;
+        } catch (IllegalStateException e) {
+            TestUtil.logErr("IllegalStateException caught as expected");
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+            pass = false;
+        }
+        return pass;
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
+    // ===========================================================
+    // EJB Specification Required Methods
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
+    public void ejbCreateB(String whoAmI) throws CreateException {
+        TestUtil.logTrace("ejbCreateB");
+        whoami = whoAmI;
+    }
+
+    public void setSessionContext(SessionContext c) {
+        TestUtil.logTrace("setSessionContext");
+        context = c;
+    }
+
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
+    }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
 }

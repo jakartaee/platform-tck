@@ -19,33 +19,31 @@
  */
 package com.sun.ts.tests.ejb30.lite.enventry.stateless;
 
-import java.io.Serializable;
-
 import jakarta.ejb.EJB;
+import java.io.Serializable;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
-public class JsfClient
-        extends com.sun.ts.tests.ejb30.lite.enventry.common.JsfClientBase implements Serializable {
+public class JsfClient extends com.sun.ts.tests.ejb30.lite.enventry.common.JsfClientBase implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @EJB(beanName = "EnvEntryBean", beanInterface = EnvEntryBean.class)
-  protected void setEnvEntryBean(EnvEntryBean b) {
-    this.envEntryBean = b;
-  }
+    @EJB(beanName = "EnvEntryBean", beanInterface = EnvEntryBean.class)
+    protected void setEnvEntryBean(EnvEntryBean b) {
+        this.envEntryBean = b;
+    }
 
-  /*
-   * @testName: ejbPostConstructRecords
-   * 
-   * @test_Strategy: verify all env-entry are injected properly by the time
-   * post-construct method is invoked.
-   */
+    /*
+     * @testName: ejbPostConstructRecords
+     *
+     * @test_Strategy: verify all env-entry are injected properly by the time
+     * post-construct method is invoked.
+     */
 
-  /*
-   * @testName: clientPostConstructRecords
-   * 
-   * @test_Strategy: verify all env-entry injected into ejb can also be looked
-   * up from web client. In embeddable usage, this test is noop.
-   */
+    /*
+     * @testName: clientPostConstructRecords
+     *
+     * @test_Strategy: verify all env-entry injected into ejb can also be looked
+     * up from web client. In embeddable usage, this test is noop.
+     */
 }

@@ -25,8 +25,8 @@ import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
 
 public interface ProductLocalHome extends EJBLocalHome {
-  public ProductLocal create(String id, String name, double price, int quantity,
-      long partNumber) throws CreateException;
+    public ProductLocal create(String id, String name, double price, int quantity, long partNumber)
+            throws CreateException;
 
-  public ProductLocal findByPrimaryKey(String key) throws FinderException;
+    public ProductLocal findByPrimaryKey(String key) throws FinderException;
 }

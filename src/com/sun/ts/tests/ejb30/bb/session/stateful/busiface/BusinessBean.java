@@ -25,7 +25,6 @@ import com.sun.ts.tests.ejb30.common.busiface.BusinessIF1;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessIF2;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF2;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Local;
@@ -35,42 +34,38 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 
 @Stateful(name = "BusinessBean")
-@Remote({ BusinessIF1.class, BusinessIF2.class })
-@Local({ BusinessLocalIF1.class, BusinessLocalIF2.class })
-public class BusinessBean extends BusinessBeanBase
-    implements java.io.Serializable {
-  @Resource
-  private SessionContext sessionContext;
+@Remote({BusinessIF1.class, BusinessIF2.class})
+@Local({BusinessLocalIF1.class, BusinessLocalIF2.class})
+public class BusinessBean extends BusinessBeanBase implements java.io.Serializable {
+    @Resource
+    private SessionContext sessionContext;
 
-  public BusinessBean() {
-  }
+    public BusinessBean() {}
 
-  @Remove
-  public void remove() {
-  }
+    @Remove
+    public void remove() {}
 
-  @Remove
-  public void remove2() {
-  }
+    @Remove
+    public void remove2() {}
 
-  //////////////////////////////////////////////////////////////////////
-  // These 3 methods should not be called since this bean does not
-  // implement SessionSynchronization. Their superclass implementation
-  // throws EJBException upon being called.
-  // Having these methods here to verify they must not be called.
-  //////////////////////////////////////////////////////////////////////
-  @Override
-  public void afterCompletion(boolean b) throws EJBException {
-    super.afterCompletion(b);
-  }
+    //////////////////////////////////////////////////////////////////////
+    // These 3 methods should not be called since this bean does not
+    // implement SessionSynchronization. Their superclass implementation
+    // throws EJBException upon being called.
+    // Having these methods here to verify they must not be called.
+    //////////////////////////////////////////////////////////////////////
+    @Override
+    public void afterCompletion(boolean b) throws EJBException {
+        super.afterCompletion(b);
+    }
 
-  @Override
-  public void beforeCompletion() throws EJBException {
-    super.beforeCompletion();
-  }
+    @Override
+    public void beforeCompletion() throws EJBException {
+        super.beforeCompletion();
+    }
 
-  @Override
-  public void afterBegin() throws EJBException {
-    super.afterBegin();
-  }
+    @Override
+    public void afterBegin() throws EJBException {
+        super.afterBegin();
+    }
 }

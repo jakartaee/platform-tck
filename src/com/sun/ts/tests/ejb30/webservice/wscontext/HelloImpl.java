@@ -16,8 +16,6 @@
 
 package com.sun.ts.tests.ejb30.webservice.wscontext;
 
-import java.security.Principal;
-
 import jakarta.annotation.Resource;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
@@ -25,41 +23,41 @@ import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;
 import jakarta.xml.ws.WebServiceContext;
 import jakarta.xml.ws.WebServiceException;
+import java.security.Principal;
 
 @WebService(name = "Hello", serviceName = "HelloService")
 @Stateless
 @DeclareRoles("Administrator")
 public class HelloImpl {
-  @Resource
-  private WebServiceContext wsContext;
+    @Resource
+    private WebServiceContext wsContext;
 
-  @RolesAllowed({ "Administrator" })
-  public String sayHelloProtected(String param) throws WebServiceException {
-    String output = "";
+    @RolesAllowed({"Administrator"})
+    public String sayHelloProtected(String param) throws WebServiceException {
+        String output = "";
 
-    Object msgContext = wsContext.getMessageContext();
-    if (msgContext instanceof jakarta.xml.ws.handler.MessageContext) {
-      output += " 1. MessageContext is an instance of jakarta.xml.ws.handler.MessageContext ";
-    } else {
-      throw new WebServiceException(
-          "MessageContext not an instance of jakarta.xml.ws.handler.MessageContext");
+        Object msgContext = wsContext.getMessageContext();
+        if (msgContext instanceof jakarta.xml.ws.handler.MessageContext) {
+            output += " 1. MessageContext is an instance of jakarta.xml.ws.handler.MessageContext ";
+        } else {
+            throw new WebServiceException("MessageContext not an instance of jakarta.xml.ws.handler.MessageContext");
+        }
+
+        Principal invocationPrincipal = wsContext.getUserPrincipal();
+        String principalName = invocationPrincipal.getName();
+
+        if (invocationPrincipal != null) {
+            output += " 2. Web Service invoked by user " + principalName;
+        } else {
+            throw new WebServiceException("UnExpected user principal");
+        }
+
+        if (wsContext.isUserInRole("Administrator")) {
+            output += " 3. User j2ee is in role Administrator ";
+        } else {
+            throw new WebServiceException("User not in role Administrator");
+        }
+
+        return "Hello " + param + output;
     }
-
-    Principal invocationPrincipal = wsContext.getUserPrincipal();
-    String principalName = invocationPrincipal.getName();
-
-    if (invocationPrincipal != null) {
-      output += " 2. Web Service invoked by user " + principalName;
-    } else {
-      throw new WebServiceException("UnExpected user principal");
-    }
-
-    if (wsContext.isUserInRole("Administrator")) {
-      output += " 3. User j2ee is in role Administrator ";
-    } else {
-      throw new WebServiceException("User not in role Administrator");
-    }
-
-    return "Hello " + param + output;
-  }
 }

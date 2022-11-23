@@ -20,70 +20,67 @@
 
 package com.sun.ts.tests.ejb30.tx.session.stateless.cm.covariant;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class Client extends AbstractUrlClient {
-  public static final String CONTEXT_ROOT = "/tx_stateless_covariant_web";
+    public static final String CONTEXT_ROOT = "/tx_stateless_covariant_web";
 
-  public static final String SERVLET_NAME = "TestServlet";
+    public static final String SERVLET_NAME = "TestServlet";
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-    setServletName(SERVLET_NAME);
-    setContextRoot(CONTEXT_ROOT);
-    return super.run(args, out, err);
-  }
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
+        setServletName(SERVLET_NAME);
+        setContextRoot(CONTEXT_ROOT);
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /*
-   * testName: getMessage
-   * 
-   * @test_Strategy: httpclient -> servlet -> remote and local FuzzyBean
-   */
-  public void getMessage() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "getMessage");
-    invoke();
-  }
+    /*
+     * testName: getMessage
+     *
+     * @test_Strategy: httpclient -> servlet -> remote and local FuzzyBean
+     */
+    public void getMessage() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "getMessage");
+        invoke();
+    }
 
-  /*
-   * testName: getMessages
-   * 
-   * @test_Strategy: httpclient -> servlet -> remote and local FuzzyBean
-   */
-  public void getMessages() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "getMessages");
-    invoke();
-  }
+    /*
+     * testName: getMessages
+     *
+     * @test_Strategy: httpclient -> servlet -> remote and local FuzzyBean
+     */
+    public void getMessages() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "getMessages");
+        invoke();
+    }
 
-  /*
-   * testName: getNumbers
-   * 
-   * @test_Strategy: httpclient -> servlet -> remote and local FuzzyBean
-   */
-  public void getNumbers() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "getNumbers");
-    invoke();
-  }
-
+    /*
+     * testName: getNumbers
+     *
+     * @test_Strategy: httpclient -> servlet -> remote and local FuzzyBean
+     */
+    public void getNumbers() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "getNumbers");
+        invoke();
+    }
 }

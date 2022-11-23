@@ -16,32 +16,27 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.asynccontext;
 
-import java.io.IOException;
-
 import jakarta.servlet.AsyncEvent;
 import jakarta.servlet.AsyncListener;
+import java.io.IOException;
 
 public final class ACListener1 implements AsyncListener {
 
-  public ACListener1() throws IOException {
-  }
+    public ACListener1() throws IOException {}
 
-  public void onError(AsyncEvent event) throws IOException {
-    event.getAsyncContext().getResponse().getWriter()
-        .println("in onError method of ACListener1");
-  }
+    public void onError(AsyncEvent event) throws IOException {
+        event.getAsyncContext().getResponse().getWriter().println("in onError method of ACListener1");
+    }
 
-  public void onStartAsync(AsyncEvent event) throws IOException {
-    event.getAsyncContext().getResponse().getWriter()
-        .println("in onStartAsync method of ACListener1");
-  }
+    public void onStartAsync(AsyncEvent event) throws IOException {
+        event.getAsyncContext().getResponse().getWriter().println("in onStartAsync method of ACListener1");
+    }
 
-  public void onComplete(AsyncEvent event) throws IOException {
-    throw new IOException("in onComplete method of ACListener1");
-  }
+    public void onComplete(AsyncEvent event) throws IOException {
+        throw new IOException("in onComplete method of ACListener1");
+    }
 
-  public void onTimeout(AsyncEvent event) throws IOException {
-    event.getAsyncContext().getResponse().getWriter()
-        .println("in onTimeout method of ACListener1");
-  }
+    public void onTimeout(AsyncEvent event) throws IOException {
+        event.getAsyncContext().getResponse().getWriter().println("in onTimeout method of ACListener1");
+    }
 }

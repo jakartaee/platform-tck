@@ -18,7 +18,6 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.containerprovider.vi;
 
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
-
 import jakarta.websocket.ContainerProvider;
 import jakarta.websocket.WebSocketContainer;
 
@@ -29,42 +28,39 @@ import jakarta.websocket.WebSocketContainer;
  *                     ws_wait;
  */
 public class WSClient extends WebSocketCommonClient {
-  private static final long serialVersionUID = 4245245442874605867L;
+    private static final long serialVersionUID = 4245245442874605867L;
 
-  public WSClient() {
-    setContextRoot("wsc_ee_containerprovider_vi_web");
-  }
+    public WSClient() {
+        setContextRoot("wsc_ee_containerprovider_vi_web");
+    }
 
-  public static void main(String[] args) {
-    new WSClient().run(args);
-  }
+    public static void main(String[] args) {
+        new WSClient().run(args);
+    }
 
-  /* Run test */
-  /*
-   * @testName: getWebSocketContainerOnClientTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:28;
-   * 
-   * @test_Strategy: ContainerProvider.getWebSocketContainer
-   */
-  public void getWebSocketContainerOnClientTest() throws Fault {
-    WebSocketContainer container = ContainerProvider.getWebSocketContainer();
-    assertNotNull(container, "ContainerProvider#getWebSocketContainer is null");
-    logMsg(
-        "ContainerProvider#getWebSocketContainer obtained WebSocketContainer as expected");
-  }
+    /* Run test */
+    /*
+     * @testName: getWebSocketContainerOnClientTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:28;
+     *
+     * @test_Strategy: ContainerProvider.getWebSocketContainer
+     */
+    public void getWebSocketContainerOnClientTest() throws Fault {
+        WebSocketContainer container = ContainerProvider.getWebSocketContainer();
+        assertNotNull(container, "ContainerProvider#getWebSocketContainer is null");
+        logMsg("ContainerProvider#getWebSocketContainer obtained WebSocketContainer as expected");
+    }
 
-  /*
-   * @testName: getWebSocketContainerOnServerTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:28;
-   * 
-   * @test_Strategy: ContainerProvider.getWebSocketContainer
-   */
-  public void getWebSocketContainerOnServerTest() throws Fault {
-    invoke("srv", "anything", "true");
-    logMsg(
-        "ContainerProvider#getWebSocketContainer obtained WebSocketContainer as expected");
-  }
-
+    /*
+     * @testName: getWebSocketContainerOnServerTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:28;
+     *
+     * @test_Strategy: ContainerProvider.getWebSocketContainer
+     */
+    public void getWebSocketContainerOnServerTest() throws Fault {
+        invoke("srv", "anything", "true");
+        logMsg("ContainerProvider#getWebSocketContainer obtained WebSocketContainer as expected");
+    }
 }

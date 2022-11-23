@@ -16,40 +16,38 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.directives.page;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.el.ELContext;
 import jakarta.el.ValueExpression;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class IsELIgnoredFalseActionTag extends SimpleTagSupport {
 
-  private String dollarValue;
+    private String dollarValue;
 
-  private ValueExpression poundExpr;
+    private ValueExpression poundExpr;
 
-  public void setDollarExpr(String dollarExpr) {
-    this.dollarValue = dollarExpr;
-  }
-
-  public void setPoundExpr(ValueExpression poundExpr) {
-    this.poundExpr = poundExpr;
-  }
-
-  public void doTag() throws JspException, IOException {
-    ELContext elContext = getJspContext().getELContext();
-    JspWriter out = getJspContext().getOut();
-
-    try {
-      String poundValue = (String) poundExpr.getValue(elContext);
-      out.println("Non-deferred value = " + dollarValue);
-      out.println("Deferred value = " + poundValue);
-    } catch (Throwable t) {
-      JspTestUtil.handleThrowable(t, out, "IsELIgnoredFalseActionTag");
+    public void setDollarExpr(String dollarExpr) {
+        this.dollarValue = dollarExpr;
     }
-  }
+
+    public void setPoundExpr(ValueExpression poundExpr) {
+        this.poundExpr = poundExpr;
+    }
+
+    public void doTag() throws JspException, IOException {
+        ELContext elContext = getJspContext().getELContext();
+        JspWriter out = getJspContext().getOut();
+
+        try {
+            String poundValue = (String) poundExpr.getValue(elContext);
+            out.println("Non-deferred value = " + dollarValue);
+            out.println("Deferred value = " + poundValue);
+        } catch (Throwable t) {
+            JspTestUtil.handleThrowable(t, out, "IsELIgnoredFalseActionTag");
+        }
+    }
 }

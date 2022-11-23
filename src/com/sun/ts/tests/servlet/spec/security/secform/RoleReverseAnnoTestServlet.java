@@ -16,9 +16,6 @@
 
 package com.sun.ts.tests.servlet.spec.security.secform;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.HttpConstraint;
@@ -29,44 +26,44 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /*
  * This should require employee role perms to access the Get or Post
  * methods.  This should be an equivelent to RoleReverseTest with the
  * main difference being that this uses Servlet based annotations whereas
  * RoleReverseTest uses DD for configuring its security constraints.
- * It is worth noting that all methods (besides GET and POST) do NOT 
+ * It is worth noting that all methods (besides GET and POST) do NOT
  * have a deny security constraint on them and so are protected and the
- * only allowed Http method access is to Get & POST which requires 
+ * only allowed Http method access is to Get & POST which requires
  * you to be an employee role..
- * 
+ *
  */
 
-@DeclareRoles({ "Administrator", "Manager", "VP", "Employee" })
-@ServletSecurity(value = @HttpConstraint(EmptyRoleSemantic.DENY), httpMethodConstraints = {
-    @HttpMethodConstraint(value = "GET", rolesAllowed = "Employee"),
-    @HttpMethodConstraint(value = "POST", rolesAllowed = "Employee") })
-@WebServlet(name = "RoleReverseAnnoTestLogicalName", urlPatterns = {
-    "/RoleReverseAnnoTest" })
+@DeclareRoles({"Administrator", "Manager", "VP", "Employee"})
+@ServletSecurity(
+        value = @HttpConstraint(EmptyRoleSemantic.DENY),
+        httpMethodConstraints = {
+            @HttpMethodConstraint(value = "GET", rolesAllowed = "Employee"),
+            @HttpMethodConstraint(value = "POST", rolesAllowed = "Employee")
+        })
+@WebServlet(
+        name = "RoleReverseAnnoTestLogicalName",
+        urlPatterns = {"/RoleReverseAnnoTest"})
 public class RoleReverseAnnoTestServlet extends HttpServlet {
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    PrintWriter out = response.getWriter();
-    out.println("The user principal is: " + request.getUserPrincipal().getName()
-        + "<BR>");
+        PrintWriter out = response.getWriter();
+        out.println("The user principal is: " + request.getUserPrincipal().getName() + "<BR>");
 
-    // Output whether the user is in any of the known or an unknown role.
-    // Surround these with !'s so they are easier to search for.
-    // (i.e. we can search for !true! or !false!)
-    out.println(
-        "isUserInRole(\"ADM\"): !" + request.isUserInRole("ADM") + "!<BR>");
-    out.println(
-        "isUserInRole(\"MGR\"): !" + request.isUserInRole("MGR") + "!<BR>");
-    out.println(
-        "isUserInRole(\"VP\"): !" + request.isUserInRole("VP") + "!<BR>");
-    out.println(
-        "isUserInRole(\"EMP\"): !" + request.isUserInRole("EMP") + "!<BR>");
-  }
+        // Output whether the user is in any of the known or an unknown role.
+        // Surround these with !'s so they are easier to search for.
+        // (i.e. we can search for !true! or !false!)
+        out.println("isUserInRole(\"ADM\"): !" + request.isUserInRole("ADM") + "!<BR>");
+        out.println("isUserInRole(\"MGR\"): !" + request.isUserInRole("MGR") + "!<BR>");
+        out.println("isUserInRole(\"VP\"): !" + request.isUserInRole("VP") + "!<BR>");
+        out.println("isUserInRole(\"EMP\"): !" + request.isUserInRole("EMP") + "!<BR>");
+    }
 }

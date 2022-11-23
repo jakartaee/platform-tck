@@ -59,26 +59,25 @@
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpsessionbindingevent;
 
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.http.HttpSessionAttributeListener;
 import jakarta.servlet.http.HttpSessionBindingEvent;
 
 public final class HSBindingEvent implements HttpSessionAttributeListener {
 
-  // Public Methods
+    // Public Methods
 
-  public void attributeAdded(HttpSessionBindingEvent event) {
-    StaticLog.add("attributeAdded: Name=" + event.getName() + ", Value="
-        + event.getValue() + ", sessionid=" + event.getSession().getId());
-  }
+    public void attributeAdded(HttpSessionBindingEvent event) {
+        StaticLog.add("attributeAdded: Name=" + event.getName() + ", Value=" + event.getValue() + ", sessionid="
+                + event.getSession().getId());
+    }
 
-  public void attributeRemoved(HttpSessionBindingEvent event) {
-    StaticLog.add("attributeRemoved: Name=" + event.getName() + ", Value="
-        + event.getValue() + ", sessionid=" + event.getSession().getId());
-  }
+    public void attributeRemoved(HttpSessionBindingEvent event) {
+        StaticLog.add("attributeRemoved: Name=" + event.getName() + ", Value=" + event.getValue() + ", sessionid="
+                + event.getSession().getId());
+    }
 
-  public void attributeReplaced(HttpSessionBindingEvent event) {
-    StaticLog.add("attributeReplaced: Name=" + event.getName() + ", Value="
-        + event.getValue() + ", sessionid=" + event.getSession().getId());
-  }
+    public void attributeReplaced(HttpSessionBindingEvent event) {
+        StaticLog.add("attributeReplaced: Name=" + event.getName() + ", Value=" + event.getValue() + ", sessionid="
+                + event.getSession().getId());
+    }
 }

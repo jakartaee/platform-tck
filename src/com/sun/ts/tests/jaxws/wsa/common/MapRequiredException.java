@@ -24,13 +24,13 @@ import jakarta.xml.ws.WebServiceException;
 import javax.xml.namespace.QName;
 
 public class MapRequiredException extends WebServiceException {
-  QName name;
+    QName name;
 
-  public MapRequiredException(QName name) {
-    this.name = name;
-  }
+    public MapRequiredException(QName name) {
+        this.name = name;
+    }
 
-  public QName getMapQName() {
-    return name;
-  }
+    public QName getMapQName() {
+        return name;
+    }
 }

@@ -20,57 +20,54 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.actions.attribute;
 
-import java.io.IOException;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.DynamicAttributes;
 import jakarta.servlet.jsp.tagext.JspFragment;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
-public class SimpleAttributeTestTag extends SimpleTagSupport
-    implements DynamicAttributes {
+public class SimpleAttributeTestTag extends SimpleTagSupport implements DynamicAttributes {
 
-  Object _fragment = null;
+    Object _fragment = null;
 
-  Object _dynamic = null;
+    Object _dynamic = null;
 
-  public void setFragment(Object o) {
-    _fragment = o;
-  }
-
-  public void doTag() throws JspException, IOException {
-    if (_fragment != null) {
-      JspWriter out = getJspContext().getOut();
-      try {
-        if (_fragment instanceof JspFragment) {
-          out.println("Test PASSED");
-        } else {
-          out.println("Object passed to the fragment attribute was not"
-              + "an instance of JspFragment.  Actual type: "
-              + _fragment.getClass().getName());
-        }
-      } catch (IOException ioe) {
-        throw new JspException("Unexpected IOException!", ioe);
-      }
-    } else if (_dynamic != null) {
-      JspWriter out = getJspContext().getOut();
-      try {
-        if (_dynamic instanceof String) {
-          out.println("Test PASSED");
-        } else {
-          out.println("Object passed to the fragment attribute was not"
-              + "an instance of String.  Actual type: "
-              + _fragment.getClass().getName());
-        }
-      } catch (IOException ioe) {
-        throw new JspException("Unexpected IOException!", ioe);
-      }
+    public void setFragment(Object o) {
+        _fragment = o;
     }
-  }
 
-  public void setDynamicAttribute(String s, String s1, Object o)
-      throws JspException {
-    _dynamic = o;
-  }
+    public void doTag() throws JspException, IOException {
+        if (_fragment != null) {
+            JspWriter out = getJspContext().getOut();
+            try {
+                if (_fragment instanceof JspFragment) {
+                    out.println("Test PASSED");
+                } else {
+                    out.println("Object passed to the fragment attribute was not"
+                            + "an instance of JspFragment.  Actual type: "
+                            + _fragment.getClass().getName());
+                }
+            } catch (IOException ioe) {
+                throw new JspException("Unexpected IOException!", ioe);
+            }
+        } else if (_dynamic != null) {
+            JspWriter out = getJspContext().getOut();
+            try {
+                if (_dynamic instanceof String) {
+                    out.println("Test PASSED");
+                } else {
+                    out.println("Object passed to the fragment attribute was not"
+                            + "an instance of String.  Actual type: "
+                            + _fragment.getClass().getName());
+                }
+            } catch (IOException ioe) {
+                throw new JspException("Unexpected IOException!", ioe);
+            }
+        }
+    }
+
+    public void setDynamicAttribute(String s, String s1, Object o) throws JspException {
+        _dynamic = o;
+    }
 }

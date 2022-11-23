@@ -23,7 +23,7 @@ package com.sun.ts.tests.ejb30.common.sessioncontext;
 import jakarta.ejb.EJBLocalObject;
 
 public interface TwoLocalIF extends EJBLocalObject {
-  public void noop();
+    public void noop();
 
-  public void getInvokedBusinessInterfaceLocalIllegal();
+    public void getInvokedBusinessInterfaceLocalIllegal();
 }

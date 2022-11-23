@@ -16,116 +16,104 @@
 
 package com.sun.ts.tests.jacc.ejb.methodperm;
 
-import java.security.AccessControlException;
-
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateful;
+import java.security.AccessControlException;
 
 @Stateful(name = "jacc_ejb_methodperm_MethodPermBean")
-@Remote({ MethodPermInterface.class })
+@Remote({MethodPermInterface.class})
 public class MethodPermBean implements MethodPermInterface {
 
-  /*
-   *  
-   */
-  public boolean protectedByRoleManager() {
-    boolean rval = false; // assume fail
+    /*
+     *
+     */
+    public boolean protectedByRoleManager() {
+        boolean rval = false; // assume fail
 
-    debug("Enterred: MethodPermBean.protectedByRoleManager().");
+        debug("Enterred: MethodPermBean.protectedByRoleManager().");
 
-    try {
+        try {
 
-      // XXXX: this is a placeholder methoid thats not called
+            // XXXX: this is a placeholder methoid thats not called
 
-      debug("SUCCESS:  protectedByRoleManager passed.");
-      rval = true;
-    } catch (AccessControlException ex) {
-      debug(
-          "FAILURE:  protectedByRoleManager throwing AccessControlException.");
-      ex.printStackTrace();
-      return false;
-    } catch (Exception ex) {
-      debug(
-          "FAILURE:  protectedByRoleManager(), throwing unexpected Exception.");
-      ex.printStackTrace();
-      return false;
+            debug("SUCCESS:  protectedByRoleManager passed.");
+            rval = true;
+        } catch (AccessControlException ex) {
+            debug("FAILURE:  protectedByRoleManager throwing AccessControlException.");
+            ex.printStackTrace();
+            return false;
+        } catch (Exception ex) {
+            debug("FAILURE:  protectedByRoleManager(), throwing unexpected Exception.");
+            ex.printStackTrace();
+            return false;
+        }
+
+        debug("Leaving MethodPermBean.protectedByRoleManager() with rval = " + rval);
+
+        return rval;
     }
 
-    debug(
-        "Leaving MethodPermBean.protectedByRoleManager() with rval = " + rval);
+    /*
+     *
+     */
+    public boolean protectedByRoleAdminAndManager() {
+        boolean rval = false; // assume fail
 
-    return rval;
-  }
+        debug("Enterred: MethodPermBean.protectedByRoleAdminAndManager().");
 
-  /*
-   *  
-   */
-  public boolean protectedByRoleAdminAndManager() {
-    boolean rval = false; // assume fail
+        try {
 
-    debug("Enterred: MethodPermBean.protectedByRoleAdminAndManager().");
+            // XXXX: this is a placeholder methoid thats not called
 
-    try {
+            debug("SUCCESS:  protectedByRoleAdminAndManager passed.");
+            rval = true;
+        } catch (AccessControlException ex) {
+            debug("FAILURE:  protectedByRoleAdminAndManager throwing AccessControlException.");
+            ex.printStackTrace();
+            return false;
+        } catch (Exception ex) {
+            debug("FAILURE:  protectedByRoleAdminAndManager(), throwing unexpected Exception.");
+            ex.printStackTrace();
+            return false;
+        }
 
-      // XXXX: this is a placeholder methoid thats not called
+        debug("Leaving MethodPermBean.protectedByRoleAdminAndManager() with rval = " + rval);
 
-      debug("SUCCESS:  protectedByRoleAdminAndManager passed.");
-      rval = true;
-    } catch (AccessControlException ex) {
-      debug(
-          "FAILURE:  protectedByRoleAdminAndManager throwing AccessControlException.");
-      ex.printStackTrace();
-      return false;
-    } catch (Exception ex) {
-      debug(
-          "FAILURE:  protectedByRoleAdminAndManager(), throwing unexpected Exception.");
-      ex.printStackTrace();
-      return false;
+        return rval;
     }
 
-    debug("Leaving MethodPermBean.protectedByRoleAdminAndManager() with rval = "
-        + rval);
+    /*
+     *
+     */
+    public boolean protectedByAnyAuthUser() {
+        boolean rval = false; // assume fail
 
-    return rval;
-  }
+        debug("Enterred: MethodPermBean.protectedByAnyAuthUser().");
 
-  /*
-   *  
-   */
-  public boolean protectedByAnyAuthUser() {
-    boolean rval = false; // assume fail
+        try {
 
-    debug("Enterred: MethodPermBean.protectedByAnyAuthUser().");
+            // XXXX: this is a placeholder methoid thats not called
 
-    try {
+            debug("SUCCESS:  protectedByAnyAuthUser passed.");
+            rval = true;
+        } catch (AccessControlException ex) {
+            debug("FAILURE:  protectedByAnyAuthUser throwing AccessControlException.");
+            ex.printStackTrace();
+            return false;
+        } catch (Exception ex) {
+            debug("FAILURE:  protectedByAnyAuthUser(), throwing unexpected Exception.");
+            ex.printStackTrace();
+            return false;
+        }
 
-      // XXXX: this is a placeholder methoid thats not called
+        debug("Leaving MethodPermBean.protectedByAnyAuthUser() with rval = " + rval);
 
-      debug("SUCCESS:  protectedByAnyAuthUser passed.");
-      rval = true;
-    } catch (AccessControlException ex) {
-      debug(
-          "FAILURE:  protectedByAnyAuthUser throwing AccessControlException.");
-      ex.printStackTrace();
-      return false;
-    } catch (Exception ex) {
-      debug(
-          "FAILURE:  protectedByAnyAuthUser(), throwing unexpected Exception.");
-      ex.printStackTrace();
-      return false;
+        return rval;
     }
 
-    debug(
-        "Leaving MethodPermBean.protectedByAnyAuthUser() with rval = " + rval);
-
-    return rval;
-  }
-
-  private void debug(String str) {
-    System.out.println(str);
-    TestUtil.logMsg(str);
-  }
-
+    private void debug(String str) {
+        System.out.println(str);
+        TestUtil.logMsg(str);
+    }
 }

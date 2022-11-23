@@ -20,36 +20,35 @@
 
 package com.sun.ts.tests.common.vehicle;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
+import java.util.Properties;
 
 public class EmptyVehicleRunner implements VehicleRunnable {
 
-  public Status run(String[] argv, Properties p) {
+    public Status run(String[] argv, Properties p) {
 
-    ServiceEETest theTestClient;
-    Status sTestStatus = Status.passed("");
+        ServiceEETest theTestClient;
+        Status sTestStatus = Status.passed("");
 
-    // create an instance of the test client and run here
-    try {
-      Class c = Class.forName(p.getProperty("test_classname"));
-      theTestClient = (ServiceEETest) c.newInstance();
-      theTestClient.setSharedObject(VehicleClient.getClientSharedObject());
-      sTestStatus = theTestClient.run(argv, p);
-    } catch (ClassNotFoundException cnfe) {
-      TestUtil.logErr("Failed to create the EETest instance", cnfe);
-      sTestStatus = Status.failed("Failed to create the EETest instance");
-    } catch (InstantiationException ie) {
-      TestUtil.logErr("Failed to create the EETest instance", ie);
-      sTestStatus = Status.failed("Failed to create the EETest instance");
-    } catch (Exception e) {
-      TestUtil.logErr("Failed running in a client side vehicle", e);
-      sTestStatus = Status.failed("Failed running in a client side vehicle");
+        // create an instance of the test client and run here
+        try {
+            Class c = Class.forName(p.getProperty("test_classname"));
+            theTestClient = (ServiceEETest) c.newInstance();
+            theTestClient.setSharedObject(VehicleClient.getClientSharedObject());
+            sTestStatus = theTestClient.run(argv, p);
+        } catch (ClassNotFoundException cnfe) {
+            TestUtil.logErr("Failed to create the EETest instance", cnfe);
+            sTestStatus = Status.failed("Failed to create the EETest instance");
+        } catch (InstantiationException ie) {
+            TestUtil.logErr("Failed to create the EETest instance", ie);
+            sTestStatus = Status.failed("Failed to create the EETest instance");
+        } catch (Exception e) {
+            TestUtil.logErr("Failed running in a client side vehicle", e);
+            sTestStatus = Status.failed("Failed running in a client side vehicle");
+        }
+
+        return sTestStatus;
     }
-
-    return sTestStatus;
-  }
 }

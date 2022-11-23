@@ -20,74 +20,72 @@
 
 package com.sun.ts.tests.ejb30.assembly.appres.warmbean;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class Client extends AbstractUrlClient {
 
-  public static final String CONTEXT_ROOT = "/ejb3_assembly_appres_warmbean_web";
+    public static final String CONTEXT_ROOT = "/ejb3_assembly_appres_warmbean_web";
 
-  public static final String SERVLET_NAME = "TestServlet";
+    public static final String SERVLET_NAME = "TestServlet";
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  @Override
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-    setServletName(SERVLET_NAME);
-    setContextRoot(CONTEXT_ROOT);
-    return super.run(args, out, err);
-  }
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    @Override
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
+        setServletName(SERVLET_NAME);
+        setContextRoot(CONTEXT_ROOT);
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /*
-   * @testName: clientPostConstruct
-   * 
-   * @test_Strategy: declare resources in application.xml and inject them into
-   * web client.
-   */
-  public void clientPostConstruct() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "clientPostConstruct");
-    invoke();
-  }
+    /*
+     * @testName: clientPostConstruct
+     *
+     * @test_Strategy: declare resources in application.xml and inject them into
+     * web client.
+     */
+    public void clientPostConstruct() throws Exception {
+        TEST_PROPS.setProperty(APITEST, "clientPostConstruct");
+        invoke();
+    }
 
-  /*
-   * @testName: mbeanPostConstruct
-   * 
-   * @test_Strategy: declare resources in application.xml and inject them into
-   * managed bean.
-   */
-  public void mbeanPostConstruct() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "mbeanPostConstruct");
-    invoke();
-  }
+    /*
+     * @testName: mbeanPostConstruct
+     *
+     * @test_Strategy: declare resources in application.xml and inject them into
+     * managed bean.
+     */
+    public void mbeanPostConstruct() throws Exception {
+        TEST_PROPS.setProperty(APITEST, "mbeanPostConstruct");
+        invoke();
+    }
 
-  /*
-   * @testName: ejbPostConstruct
-   * 
-   * @test_Strategy: declare resources in application.xml and inject them into
-   * AppResBean.
-   */
-  public void ejbPostConstruct() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "ejbPostConstruct");
-    invoke();
-  }
+    /*
+     * @testName: ejbPostConstruct
+     *
+     * @test_Strategy: declare resources in application.xml and inject them into
+     * AppResBean.
+     */
+    public void ejbPostConstruct() throws Exception {
+        TEST_PROPS.setProperty(APITEST, "ejbPostConstruct");
+        invoke();
+    }
 }

@@ -22,5 +22,4 @@ package com.sun.ts.tests.ejb30.assembly.appres.common;
 import jakarta.ejb.Remote;
 
 @Remote
-public interface AppResRemoteIF extends AppResCommonIF {
-}
+public interface AppResRemoteIF extends AppResCommonIF {}

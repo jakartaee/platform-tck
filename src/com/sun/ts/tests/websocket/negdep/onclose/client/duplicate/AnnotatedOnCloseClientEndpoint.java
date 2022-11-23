@@ -18,7 +18,6 @@
 package com.sun.ts.tests.websocket.negdep.onclose.client.duplicate;
 
 import com.sun.ts.tests.websocket.common.client.AnnotatedStringClientEndpoint;
-
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -29,35 +28,34 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
 @ClientEndpoint
-public class AnnotatedOnCloseClientEndpoint
-    extends AnnotatedStringClientEndpoint {
+public class AnnotatedOnCloseClientEndpoint extends AnnotatedStringClientEndpoint {
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    clientEndpoint.onOpen(session, config, false);
-  }
+    @Override
+    @OnOpen
+    public void onOpen(Session session, EndpointConfig config) {
+        clientEndpoint.onOpen(session, config, false);
+    }
 
-  @Override
-  @OnMessage
-  public void onMessage(String msg) {
-    clientEndpoint.onMessage(msg);
-  }
+    @Override
+    @OnMessage
+    public void onMessage(String msg) {
+        clientEndpoint.onMessage(msg);
+    }
 
-  @Override
-  @OnClose
-  public void onClose(Session session, CloseReason closeReason) {
-    clientEndpoint.onClose(session, closeReason);
-  }
+    @Override
+    @OnClose
+    public void onClose(Session session, CloseReason closeReason) {
+        clientEndpoint.onClose(session, closeReason);
+    }
 
-  @OnClose
-  public void onClose2(Session session, CloseReason closeReason) {
-    clientEndpoint.onClose(session, closeReason);
-  }
+    @OnClose
+    public void onClose2(Session session, CloseReason closeReason) {
+        clientEndpoint.onClose(session, closeReason);
+    }
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) {
-    clientEndpoint.onError(session, t);
-  }
+    @Override
+    @OnError
+    public void onError(Session session, Throwable t) {
+        clientEndpoint.onError(session, t);
+    }
 }

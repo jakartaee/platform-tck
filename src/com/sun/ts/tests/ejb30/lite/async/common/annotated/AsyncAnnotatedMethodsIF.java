@@ -19,16 +19,14 @@
  */
 package com.sun.ts.tests.ejb30.lite.async.common.annotated;
 
-import java.util.concurrent.Future;
-
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+import java.util.concurrent.Future;
 
 /**
  * This local interface contains 2 methods that are sync methods.
  */
 public interface AsyncAnnotatedMethodsIF extends AsyncAnnotatedMethodsCommonIF {
-  public Future<Integer> addSyncThrowException(int a, int b)
-      throws TestFailedException;
+    public Future<Integer> addSyncThrowException(int a, int b) throws TestFailedException;
 
-  public Future<Integer> addSyncReturn(int a, int b, long waitMillis);
+    public Future<Integer> addSyncReturn(int a, int b, long waitMillis);
 }

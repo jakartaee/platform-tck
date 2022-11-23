@@ -28,102 +28,101 @@ import jakarta.persistence.Table;
 @Table(name = "EMPLOYEE")
 @Access(AccessType.FIELD)
 public class Employee implements java.io.Serializable {
-  @Id
-  @Column(name = "ID")
-  private int id;
+    @Id
+    @Column(name = "ID")
+    private int id;
 
-  @Column(name = "FIRSTNAME")
-  private String firstName;
+    @Column(name = "FIRSTNAME")
+    private String firstName;
 
-  @Column(name = "LASTNAME")
-  private String lastName;
+    @Column(name = "LASTNAME")
+    private String lastName;
 
-  @Convert(converter = SalaryConverter.class)
-  @Column(name = "SALARY")
-  private String salary;
+    @Convert(converter = SalaryConverter.class)
+    @Column(name = "SALARY")
+    private String salary;
 
-  public Employee() {
-  }
+    public Employee() {}
 
-  public Employee(int id, String firstName, String lastName, String salary) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.salary = salary;
-  }
-
-  // ===========================================================
-  // getters and setters for the state fields
-
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
-
-  public String getFirstName() {
-    return firstName;
-  }
-
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
-
-  public String getSalary() {
-    return salary;
-  }
-
-  public void setSalary(String salary) {
-    this.salary = salary;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    // check for self-comparison
-    if (this == o)
-      return true;
-    if (!(o instanceof Employee))
-      return false;
-
-    Employee o1 = (Employee) o;
-
-    boolean result = false;
-
-    if (this.getId() == o1.getId()
-        && this.getFirstName().equals(o1.getFirstName())
-        && this.getLastName().equals(o1.getLastName())
-        && this.getSalary().equals(o1.getSalary())) {
-      result = true;
+    public Employee(int id, String firstName, String lastName, String salary) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.salary = salary;
     }
 
-    return result;
-  }
+    // ===========================================================
+    // getters and setters for the state fields
 
-  @Override
-  public int hashCode() {
-    return this.getId() + this.getFirstName().hashCode()
-        + this.getLastName().hashCode() + this.getSalary().hashCode();
-  }
+    public int getId() {
+        return id;
+    }
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", first: " + getFirstName());
-    result.append(", last: " + getLastName());
-    result.append(", salary: " + getSalary());
-    result.append("]");
-    return result.toString();
-  }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getSalary() {
+        return salary;
+    }
+
+    public void setSalary(String salary) {
+        this.salary = salary;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        // check for self-comparison
+        if (this == o) return true;
+        if (!(o instanceof Employee)) return false;
+
+        Employee o1 = (Employee) o;
+
+        boolean result = false;
+
+        if (this.getId() == o1.getId()
+                && this.getFirstName().equals(o1.getFirstName())
+                && this.getLastName().equals(o1.getLastName())
+                && this.getSalary().equals(o1.getSalary())) {
+            result = true;
+        }
+
+        return result;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getId()
+                + this.getFirstName().hashCode()
+                + this.getLastName().hashCode()
+                + this.getSalary().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getId());
+        result.append(", first: " + getFirstName());
+        result.append(", last: " + getLastName());
+        result.append(", salary: " + getSalary());
+        result.append("]");
+        return result.toString();
+    }
 }

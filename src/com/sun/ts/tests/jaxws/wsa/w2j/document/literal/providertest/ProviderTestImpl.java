@@ -20,79 +20,78 @@
 
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.providertest;
 
+import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 import jakarta.xml.ws.*;
-import java.io.ByteArrayInputStream;
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.transform.dom.DOMResult;
-import javax.xml.transform.dom.DOMSource;
-
+import jakarta.xml.ws.RespectBinding;
 import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.soap.MTOM;
-import jakarta.xml.ws.RespectBinding;
+import java.io.ByteArrayInputStream;
+import javax.xml.transform.Source;
+import javax.xml.transform.dom.DOMResult;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamSource;
 
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
-
-@WebServiceProvider(serviceName = "ProviderTestService", portName = "ProviderTestPort", targetNamespace = "http://providertestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/ProviderTestService.wsdl")
+@WebServiceProvider(
+        serviceName = "ProviderTestService",
+        portName = "ProviderTestPort",
+        targetNamespace = "http://providertestservice.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/ProviderTestService.wsdl")
 @BindingType(value = "http://schemas.xmlsoap.org/wsdl/soap/http")
 @Addressing(enabled = true)
 @MTOM(enabled = true)
 @RespectBinding(enabled = true)
 @ServiceMode(value = jakarta.xml.ws.Service.Mode.PAYLOAD)
-
 public class ProviderTestImpl implements Provider<Source> {
 
-  private static final jakarta.xml.bind.JAXBContext jaxbContext = createJAXBContext();
+    private static final jakarta.xml.bind.JAXBContext jaxbContext = createJAXBContext();
 
-  public jakarta.xml.bind.JAXBContext getJAXBContext() {
-    return jaxbContext;
-  }
-
-  private static jakarta.xml.bind.JAXBContext createJAXBContext() {
-    try {
-      return jakarta.xml.bind.JAXBContext.newInstance(
-          com.sun.ts.tests.jaxws.wsa.w2j.document.literal.providertest.ObjectFactory.class);
-    } catch (jakarta.xml.bind.JAXBException e) {
-      throw new WebServiceException(e.getMessage(), e);
+    public jakarta.xml.bind.JAXBContext getJAXBContext() {
+        return jaxbContext;
     }
-  }
 
-  public Source invoke(Source req) {
-    System.out.println("**** Received in Provider Impl ******");
-    DOMResult dr = null;
-    try {
-      dr = JAXWS_Util.getSourceAsDOMResult(req);
-      System.out.println("->    Source=" + JAXWS_Util.getDOMResultAsString(dr));
-
-    } catch (Exception e) {
-      System.out.println("Exception: failed getDOMResultAsString ... " + e);
+    private static jakarta.xml.bind.JAXBContext createJAXBContext() {
+        try {
+            return jakarta.xml.bind.JAXBContext.newInstance(
+                    com.sun.ts.tests.jaxws.wsa.w2j.document.literal.providertest.ObjectFactory.class);
+        } catch (jakarta.xml.bind.JAXBException e) {
+            throw new WebServiceException(e.getMessage(), e);
+        }
     }
-    try {
-      HelloRequest request = recvBean(new DOMSource(dr.getNode()));
-      String arg = request.getArgument();
-      String response = "<HelloResponse xmlns=\"http://providertestservice.org/types\"><argument>"
-          + arg + "</argument></HelloResponse>";
-      System.out.println("Sending response=" + response);
-      Source source = new StreamSource(
-          new ByteArrayInputStream(response.getBytes()));
-      return source;
-    } catch (Exception e) {
-      e.printStackTrace();
-      throw new WebServiceException("Provider endpoint failed", e);
-    }
-  }
 
-  private HelloRequest recvBean(Source req) {
-    System.out.println("*** recvBean ***");
-    HelloRequest helloReq = null;
-    try {
-      helloReq = (HelloRequest) jaxbContext.createUnmarshaller().unmarshal(req);
-      System.out.println("argument=" + helloReq.getArgument());
-    } catch (Exception e) {
-      System.out.println("Received an exception while parsing the source");
-      e.printStackTrace();
-    }
-    return helloReq;
-  }
+    public Source invoke(Source req) {
+        System.out.println("**** Received in Provider Impl ******");
+        DOMResult dr = null;
+        try {
+            dr = JAXWS_Util.getSourceAsDOMResult(req);
+            System.out.println("->    Source=" + JAXWS_Util.getDOMResultAsString(dr));
 
+        } catch (Exception e) {
+            System.out.println("Exception: failed getDOMResultAsString ... " + e);
+        }
+        try {
+            HelloRequest request = recvBean(new DOMSource(dr.getNode()));
+            String arg = request.getArgument();
+            String response = "<HelloResponse xmlns=\"http://providertestservice.org/types\"><argument>" + arg
+                    + "</argument></HelloResponse>";
+            System.out.println("Sending response=" + response);
+            Source source = new StreamSource(new ByteArrayInputStream(response.getBytes()));
+            return source;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new WebServiceException("Provider endpoint failed", e);
+        }
+    }
+
+    private HelloRequest recvBean(Source req) {
+        System.out.println("*** recvBean ***");
+        HelloRequest helloReq = null;
+        try {
+            helloReq = (HelloRequest) jaxbContext.createUnmarshaller().unmarshal(req);
+            System.out.println("argument=" + helloReq.getArgument());
+        } catch (Exception e) {
+            System.out.println("Received an exception while parsing the source");
+            e.printStackTrace();
+        }
+        return helloReq;
+    }
 }

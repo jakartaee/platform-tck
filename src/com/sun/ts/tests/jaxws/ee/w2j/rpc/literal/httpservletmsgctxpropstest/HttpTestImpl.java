@@ -20,84 +20,74 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httpservletmsgctxpropstest;
 
-import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
-
-import java.util.HashSet;
-import java.util.Set;
-
+import com.sun.ts.lib.util.*;
 import jakarta.annotation.Resource;
-
-import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
-
+import jakarta.xml.ws.WebServiceContext;
+import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.ws.handler.MessageContext;
 import java.lang.reflect.*;
 
-import jakarta.xml.ws.handler.MessageContext;
-import jakarta.xml.ws.WebServiceException;
-import jakarta.xml.ws.WebServiceContext;
-
-@WebService(portName = "HttpTestPort", serviceName = "HttpTestService", targetNamespace = "http://httptestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JRLHttpServletMsgCtxPropsTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httpservletmsgctxpropstest.HttpTest")
+@WebService(
+        portName = "HttpTestPort",
+        serviceName = "HttpTestService",
+        targetNamespace = "http://httptestservice.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/WSW2JRLHttpServletMsgCtxPropsTestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httpservletmsgctxpropstest.HttpTest")
 public class HttpTestImpl implements HttpTest {
 
-  @Resource
-  private WebServiceContext wsc;
+    @Resource
+    private WebServiceContext wsc;
 
-  public HttpTestImpl() {
-    System.out.println("WebServiceContext wsc=" + wsc);
-  }
-
-  public void testServletProperties() {
-    System.out.println("Enter testServletProperties()");
-    MessageContext ctxt = wsc.getMessageContext();
-    System.out.println("MessageContext.SERVLET_REQUEST="
-        + ctxt.get(MessageContext.SERVLET_REQUEST));
-    System.out.println("MessageContext.SERVLET_RESPONSE="
-        + ctxt.get(MessageContext.SERVLET_RESPONSE));
-    System.out.println("MessageContext.SERVLET_CONTEXT="
-        + ctxt.get(MessageContext.SERVLET_CONTEXT));
-    if (ctxt.get(MessageContext.SERVLET_REQUEST) == null
-        || ctxt.get(MessageContext.SERVLET_RESPONSE) == null
-        || ctxt.get(MessageContext.SERVLET_CONTEXT) == null) {
-      throw new WebServiceException(
-          "testServletProperties(): MessageContext is not populated.");
+    public HttpTestImpl() {
+        System.out.println("WebServiceContext wsc=" + wsc);
     }
-    System.out.println("Leave testServletProperties()");
-  }
 
-  public void testHttpProperties() {
-    System.out.println("Enter testHttpProperties()");
-    MessageContext ctxt = wsc.getMessageContext();
-    System.out.println("MessageContext.HTTP_REQUEST_HEADERS="
-        + ctxt.get(MessageContext.HTTP_REQUEST_HEADERS));
-    System.out.println("MessageContext.HTTP_REQUEST_METHOD="
-        + ctxt.get(MessageContext.HTTP_REQUEST_METHOD));
-    if (ctxt.get(MessageContext.HTTP_REQUEST_HEADERS) == null
-        || ctxt.get(MessageContext.HTTP_REQUEST_METHOD) == null
-        || !ctxt.get(MessageContext.HTTP_REQUEST_METHOD).equals("POST")) {
-      throw new WebServiceException(
-          "testHttpProperties(): MessageContext is not populated.");
+    public void testServletProperties() {
+        System.out.println("Enter testServletProperties()");
+        MessageContext ctxt = wsc.getMessageContext();
+        System.out.println("MessageContext.SERVLET_REQUEST=" + ctxt.get(MessageContext.SERVLET_REQUEST));
+        System.out.println("MessageContext.SERVLET_RESPONSE=" + ctxt.get(MessageContext.SERVLET_RESPONSE));
+        System.out.println("MessageContext.SERVLET_CONTEXT=" + ctxt.get(MessageContext.SERVLET_CONTEXT));
+        if (ctxt.get(MessageContext.SERVLET_REQUEST) == null
+                || ctxt.get(MessageContext.SERVLET_RESPONSE) == null
+                || ctxt.get(MessageContext.SERVLET_CONTEXT) == null) {
+            throw new WebServiceException("testServletProperties(): MessageContext is not populated.");
+        }
+        System.out.println("Leave testServletProperties()");
     }
-    System.out.println("Leave testHttpProperties()");
-  }
 
-  private String getClientId() {
-    String id = null;
-
-    Object o1 = wsc.getMessageContext().get(MessageContext.SERVLET_REQUEST);
-
-    try {
-      if (o1 != null) {
-        Class c1 = o1.getClass();
-        Method getSession = c1.getMethod("getSession");
-        Object o2 = getSession.invoke(o1);
-        Class c2 = o2.getClass();
-        Method getId = c2.getMethod("getId");
-        id = (String) getId.invoke(o2);
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
+    public void testHttpProperties() {
+        System.out.println("Enter testHttpProperties()");
+        MessageContext ctxt = wsc.getMessageContext();
+        System.out.println("MessageContext.HTTP_REQUEST_HEADERS=" + ctxt.get(MessageContext.HTTP_REQUEST_HEADERS));
+        System.out.println("MessageContext.HTTP_REQUEST_METHOD=" + ctxt.get(MessageContext.HTTP_REQUEST_METHOD));
+        if (ctxt.get(MessageContext.HTTP_REQUEST_HEADERS) == null
+                || ctxt.get(MessageContext.HTTP_REQUEST_METHOD) == null
+                || !ctxt.get(MessageContext.HTTP_REQUEST_METHOD).equals("POST")) {
+            throw new WebServiceException("testHttpProperties(): MessageContext is not populated.");
+        }
+        System.out.println("Leave testHttpProperties()");
     }
-    return id;
-  }
+
+    private String getClientId() {
+        String id = null;
+
+        Object o1 = wsc.getMessageContext().get(MessageContext.SERVLET_REQUEST);
+
+        try {
+            if (o1 != null) {
+                Class c1 = o1.getClass();
+                Method getSession = c1.getMethod("getSession");
+                Object o2 = getSession.invoke(o1);
+                Class c2 = o2.getClass();
+                Method getId = c2.getMethod("getId");
+                id = (String) getId.invoke(o2);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
 }

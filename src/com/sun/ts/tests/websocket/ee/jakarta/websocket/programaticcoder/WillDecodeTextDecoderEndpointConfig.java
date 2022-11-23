@@ -17,64 +17,59 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.programaticcoder;
 
+import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.WillDecodeFirstTextDecoder;
+import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.WillDecodeSecondTextDecoder;
+import jakarta.websocket.Decoder;
+import jakarta.websocket.Encoder;
+import jakarta.websocket.Extension;
+import jakarta.websocket.server.ServerEndpointConfig;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.WillDecodeFirstTextDecoder;
-import com.sun.ts.tests.websocket.ee.jakarta.websocket.coder.WillDecodeSecondTextDecoder;
+public class WillDecodeTextDecoderEndpointConfig implements ServerEndpointConfig {
 
-import jakarta.websocket.Decoder;
-import jakarta.websocket.Encoder;
-import jakarta.websocket.Extension;
-import jakarta.websocket.server.ServerEndpointConfig;
+    @Override
+    public Map<String, Object> getUserProperties() {
+        return Collections.emptyMap();
+    }
 
-public class WillDecodeTextDecoderEndpointConfig
-    implements ServerEndpointConfig {
+    @Override
+    public Class<?> getEndpointClass() {
+        return WSCWillDecodeTextDecoderServer.class;
+    }
 
-  @Override
-  public Map<String, Object> getUserProperties() {
-    return Collections.emptyMap();
-  }
+    @Override
+    public String getPath() {
+        return "/textwilldecode";
+    }
 
-  @Override
-  public Class<?> getEndpointClass() {
-    return WSCWillDecodeTextDecoderServer.class;
-  }
+    @Override
+    public List<String> getSubprotocols() {
+        return Collections.emptyList();
+    }
 
-  @Override
-  public String getPath() {
-    return "/textwilldecode";
-  }
+    @Override
+    public List<Extension> getExtensions() {
+        return Collections.emptyList();
+    }
 
-  @Override
-  public List<String> getSubprotocols() {
-    return Collections.emptyList();
-  }
+    @Override
+    public Configurator getConfigurator() {
+        return new ServerEndpointConfig.Configurator() {};
+    }
 
-  @Override
-  public List<Extension> getExtensions() {
-    return Collections.emptyList();
-  }
+    @Override
+    public List<Class<? extends Encoder>> getEncoders() {
+        return Collections.emptyList();
+    }
 
-  @Override
-  public Configurator getConfigurator() {
-    return new ServerEndpointConfig.Configurator() {
-    };
-  }
-
-  @Override
-  public List<Class<? extends Encoder>> getEncoders() {
-    return Collections.emptyList();
-  }
-
-  @Override
-  public List<Class<? extends Decoder>> getDecoders() {
-    List<Class<? extends Decoder>> list = new LinkedList<>();
-    list.add(WillDecodeFirstTextDecoder.class);
-    list.add(WillDecodeSecondTextDecoder.class);
-    return list;
-  }
-
+    @Override
+    public List<Class<? extends Decoder>> getDecoders() {
+        List<Class<? extends Decoder>> list = new LinkedList<>();
+        list.add(WillDecodeFirstTextDecoder.class);
+        list.add(WillDecodeSecondTextDecoder.class);
+        return list;
+    }
 }

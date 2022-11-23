@@ -32,19 +32,17 @@ import jakarta.ejb.TransactionAttributeType;
  */
 @Stateful
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-public class AnnotatedBean extends SessionSyncBeanBase
-    implements SessionSyncIF {
+public class AnnotatedBean extends SessionSyncBeanBase implements SessionSyncIF {
 
-  @SuppressWarnings("unused")
-  @AfterBegin()
-  private void afterBeginAnnotated() {
-    super.afterBegin();
-  }
+    @SuppressWarnings("unused")
+    @AfterBegin()
+    private void afterBeginAnnotated() {
+        super.afterBegin();
+    }
 
-  @SuppressWarnings("unused")
-  @BeforeCompletion
-  private void beforeCompletionAnnotated() {
-    super.beforeCompletion();
-  }
-
+    @SuppressWarnings("unused")
+    @BeforeCompletion
+    private void beforeCompletionAnnotated() {
+        super.beforeCompletion();
+    }
 }

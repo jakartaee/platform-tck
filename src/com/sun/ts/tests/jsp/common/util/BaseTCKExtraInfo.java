@@ -20,108 +20,106 @@
 
 package com.sun.ts.tests.jsp.common.util;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import jakarta.servlet.jsp.tagext.TagData;
 import jakarta.servlet.jsp.tagext.TagExtraInfo;
 import jakarta.servlet.jsp.tagext.ValidationMessage;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public abstract class BaseTCKExtraInfo extends TagExtraInfo {
 
-  /**
-   * Flag to determine if TEI was indeed called by the container.
-   */
-  private static boolean _wasCalled = false;
+    /**
+     * Flag to determine if TEI was indeed called by the container.
+     */
+    private static boolean _wasCalled = false;
 
-  /**
-   * TagData instanced passed to validate method.
-   */
-  private TagData _data = null;
+    /**
+     * TagData instanced passed to validate method.
+     */
+    private TagData _data = null;
 
-  /**
-   * Default constructor.
-   */
-  public BaseTCKExtraInfo() {
-  }
+    /**
+     * Default constructor.
+     */
+    public BaseTCKExtraInfo() {}
 
-  /**
-   * Called by the container to validate the page. This implementation will
-   * inspect the <tt>test</tt> attribute and invoke a method based on its value.
-   * These test methods will exist in subclasses of this base class.
-   * 
-   * @param tagData
-   *          - A TagData instance provided by the container.
-   * @return - null if the test passes, or a non-zero lenght array of
-   *         ValidationMessages if the test fails.
-   */
-  public ValidationMessage[] validate(TagData tagData) {
-    debug("In validate().  Setting _wasCalled to true.");
-    _wasCalled = true;
-    _data = tagData;
-    String message = null;
-    String testMethod = tagData.getAttributeString("test");
-    ValidationMessage[] msg = null;
+    /**
+     * Called by the container to validate the page. This implementation will
+     * inspect the <tt>test</tt> attribute and invoke a method based on its value.
+     * These test methods will exist in subclasses of this base class.
+     *
+     * @param tagData
+     *          - A TagData instance provided by the container.
+     * @return - null if the test passes, or a non-zero lenght array of
+     *         ValidationMessages if the test fails.
+     */
+    public ValidationMessage[] validate(TagData tagData) {
+        debug("In validate().  Setting _wasCalled to true.");
+        _wasCalled = true;
+        _data = tagData;
+        String message = null;
+        String testMethod = tagData.getAttributeString("test");
+        ValidationMessage[] msg = null;
 
-    // We have the test name, use reflection and invoke the test.
-    try {
-      Method tMethod = this.getClass().getMethod(testMethod);
-      debug("Invoking test method " + testMethod + "() on "
-          + this.getClass().getName());
-      String result = (String) tMethod.invoke(this);
-      if (result != null) {
-        msg = JspTestUtil.getValidationMessage(tagData.getId(), result);
-      }
-    } catch (Throwable t) {
-      if (t instanceof InvocationTargetException) {
-        Throwable root = ((InvocationTargetException) t).getTargetException();
-        message = "Test FAILED.  Unexpected TargetInvocationException.  Root cause: "
-            + root.toString() + " : " + root.getMessage();
-      } else {
-        message = "Test FAILED.  Unexpected exception during test invocation.  "
-            + t.toString() + " : " + t.getMessage();
-      }
-      msg = JspTestUtil.getValidationMessage(tagData.getId(), message);
+        // We have the test name, use reflection and invoke the test.
+        try {
+            Method tMethod = this.getClass().getMethod(testMethod);
+            debug("Invoking test method " + testMethod + "() on "
+                    + this.getClass().getName());
+            String result = (String) tMethod.invoke(this);
+            if (result != null) {
+                msg = JspTestUtil.getValidationMessage(tagData.getId(), result);
+            }
+        } catch (Throwable t) {
+            if (t instanceof InvocationTargetException) {
+                Throwable root = ((InvocationTargetException) t).getTargetException();
+                message = "Test FAILED.  Unexpected TargetInvocationException.  Root cause: " + root.toString() + " : "
+                        + root.getMessage();
+            } else {
+                message = "Test FAILED.  Unexpected exception during test invocation.  " + t.toString() + " : "
+                        + t.getMessage();
+            }
+            msg = JspTestUtil.getValidationMessage(tagData.getId(), message);
+        }
+
+        // Everything worked as expected. Return null.
+        return msg;
     }
 
-    // Everything worked as expected. Return null.
-    return msg;
-  }
+    /**
+     * Called within the test pages to verify that the TEI was indeed called.
+     *
+     * @return true if called, otherwise false
+     */
+    public static boolean teiWasCalled() {
+        return _wasCalled;
+    }
 
-  /**
-   * Called within the test pages to verify that the TEI was indeed called.
-   * 
-   * @return true if called, otherwise false
-   */
-  public static boolean teiWasCalled() {
-    return _wasCalled;
-  }
+    /**
+     * Resets the state of this TEI.
+     */
+    public static void reset() {
+        debug("Resetting _wasCalled to false.");
+        _wasCalled = false;
+    }
 
-  /**
-   * Resets the state of this TEI.
-   */
-  public static void reset() {
-    debug("Resetting _wasCalled to false.");
-    _wasCalled = false;
-  }
+    /**
+     * Returns this TEI's TagData instance.
+     *
+     * @return this TEI's TagData instance.
+     */
+    protected TagData getTagData() {
+        return _data;
+    }
 
-  /**
-   * Returns this TEI's TagData instance.
-   * 
-   * @return this TEI's TagData instance.
-   */
-  protected TagData getTagData() {
-    return _data;
-  }
-
-  /**
-   * Utility method that calls JspTestUtil.debug. This method adds this class
-   * name to the message provided.
-   * 
-   * @param message
-   *          - a debug message
-   */
-  private static void debug(String message) {
-    JspTestUtil.debug("[BaseTCKExtraInfo] " + message);
-  }
+    /**
+     * Utility method that calls JspTestUtil.debug. This method adds this class
+     * name to the message provided.
+     *
+     * @param message
+     *          - a debug message
+     */
+    private static void debug(String message) {
+        JspTestUtil.debug("[BaseTCKExtraInfo] " + message);
+    }
 }

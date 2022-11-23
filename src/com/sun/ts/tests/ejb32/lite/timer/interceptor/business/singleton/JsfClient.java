@@ -18,7 +18,6 @@ package com.sun.ts.tests.ejb32.lite.timer.interceptor.business.singleton;
 
 import com.sun.ts.tests.ejb32.lite.timer.interceptor.business.common.BusinessTimerBeanBase;
 import com.sun.ts.tests.ejb32.lite.timer.interceptor.business.common.JsfClientBase;
-
 import jakarta.ejb.EJB;
 import java.io.Serializable;
 
@@ -26,19 +25,19 @@ import java.io.Serializable;
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends JsfClientBase implements Serializable {
 
-  private static final long serialVersionUID = -256884415436327L;
+    private static final long serialVersionUID = -256884415436327L;
 
-  @EJB(beanInterface = BusinessTimerBean.class, beanName = "BusinessTimerBean")
-  protected void setBusinessTimerBean(BusinessTimerBeanBase businessTimerBean) {
-    this.businessTimerBean = businessTimerBean;
-  }
+    @EJB(beanInterface = BusinessTimerBean.class, beanName = "BusinessTimerBean")
+    protected void setBusinessTimerBean(BusinessTimerBeanBase businessTimerBean) {
+        this.businessTimerBean = businessTimerBean;
+    }
 
-  /*
-   * @testName: aroundInvokeMethods
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: create a timer in all interceptor methods. Verify they
-   * expire as expected.
-   */
+    /*
+     * @testName: aroundInvokeMethods
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: create a timer in all interceptor methods. Verify they
+     * expire as expected.
+     */
 }

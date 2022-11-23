@@ -20,17 +20,16 @@
 
 package com.sun.ts.tests.ejb30.tx.common.session.inheritance;
 
-abstract public class ABeanBase extends TxBeanBase {
+public abstract class ABeanBase extends TxBeanBase {
 
-  public ABeanBase() {
-  }
+    public ABeanBase() {}
 
-  @Override()
-  // @TransactionAttribute(TransactionAttributeType.NEVER)
-  // is annotated in super class method implementation. It
-  // must not be inherited for this method. This method has
-  // REQUIRED transaction attribute.
-  public String foo() {
-    return super.foo();
-  }
+    @Override()
+    // @TransactionAttribute(TransactionAttributeType.NEVER)
+    // is annotated in super class method implementation. It
+    // must not be inherited for this method. This method has
+    // REQUIRED transaction attribute.
+    public String foo() {
+        return super.foo();
+    }
 }

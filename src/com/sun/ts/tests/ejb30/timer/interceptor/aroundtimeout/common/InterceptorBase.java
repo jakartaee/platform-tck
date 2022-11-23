@@ -21,57 +21,54 @@ package com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common;
 
 import static com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeoutIF.STATUS_SINGLETON_BEAN_NAME;
 
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.timer.common.TimeoutStatusBean;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.Timer;
 import jakarta.interceptor.AroundTimeout;
 import jakarta.interceptor.InvocationContext;
+import java.util.logging.Level;
 
-//all EJBs need to declare at least one interceptor that extends InterceptorBase to make @EJB
-//injection work in this class.
+// all EJBs need to declare at least one interceptor that extends InterceptorBase to make @EJB
+// injection work in this class.
 @EJB(name = STATUS_SINGLETON_BEAN_NAME, beanInterface = TimeoutStatusBean.class)
 public class InterceptorBase {
-  // we cannot use a getSimpleName() method, since it will always return the
-  // simpleName of the subclass. So we have to declare a static simpleName
-  // in each layer of the class hierarchy
-  private static final String simpleName = "InterceptorBase";
+    // we cannot use a getSimpleName() method, since it will always return the
+    // simpleName of the subclass. So we have to declare a static simpleName
+    // in each layer of the class hierarchy
+    private static final String simpleName = "InterceptorBase";
 
-  @SuppressWarnings("unused")
-  @AroundTimeout
-  private Object aroundTimeoutInInterceptorBase(InvocationContext inv)
-      throws Exception {
-    return handleAroundTimeout(inv, simpleName, this,
-        "aroundTimeoutInInterceptorBase");
-  }
+    @SuppressWarnings("unused")
+    @AroundTimeout
+    private Object aroundTimeoutInInterceptorBase(InvocationContext inv) throws Exception {
+        return handleAroundTimeout(inv, simpleName, this, "aroundTimeoutInInterceptorBase");
+    }
 
-  public static Object handleAroundTimeout(InvocationContext inv, String record,
-      Object component, String methodName, TimeoutStatusBean... statusBean)
-      throws Exception {
-    addAroundInvokeRecord((Timer) inv.getTimer(), record, component, methodName,
-        statusBean);
-    return inv.proceed();
-  }
+    public static Object handleAroundTimeout(
+            InvocationContext inv, String record, Object component, String methodName, TimeoutStatusBean... statusBean)
+            throws Exception {
+        addAroundInvokeRecord((Timer) inv.getTimer(), record, component, methodName, statusBean);
+        return inv.proceed();
+    }
 
-  public static void addAroundInvokeRecord(Timer timer, String record,
-      Object component, String methodName, TimeoutStatusBean... statusBean) {
-    TimeoutStatusBean sta = (statusBean.length > 0) ? statusBean[0]
-        : (TimeoutStatusBean) ServiceLocator
-            .lookupByShortNameNoTry(STATUS_SINGLETON_BEAN_NAME);
+    public static void addAroundInvokeRecord(
+            Timer timer, String record, Object component, String methodName, TimeoutStatusBean... statusBean) {
+        TimeoutStatusBean sta = (statusBean.length > 0)
+                ? statusBean[0]
+                : (TimeoutStatusBean) ServiceLocator.lookupByShortNameNoTry(STATUS_SINGLETON_BEAN_NAME);
 
-    String recordKey = TimerUtil.getTimerName(timer)
-        + AroundTimeoutIF.AROUND_TIMEOUT_RECORD_KEY_SUFFIX;
+        String recordKey = TimerUtil.getTimerName(timer) + AroundTimeoutIF.AROUND_TIMEOUT_RECORD_KEY_SUFFIX;
 
-    Helper.getLogger().logp(Level.FINE, record, methodName,
-        "Adding around-timeout record: " + recordKey + " : " + record
-            + ", requested by : " + component);
+        Helper.getLogger()
+                .logp(
+                        Level.FINE,
+                        record,
+                        methodName,
+                        "Adding around-timeout record: " + recordKey + " : " + record + ", requested by : "
+                                + component);
 
-    sta.addRecord(recordKey, record);
-  }
-
+        sta.addRecord(recordKey, record);
+    }
 }

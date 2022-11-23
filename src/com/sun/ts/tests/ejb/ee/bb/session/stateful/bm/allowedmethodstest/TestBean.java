@@ -20,19 +20,18 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.bm.allowedmethodstest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Hashtable;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
-  public Hashtable getResults() throws RemoteException;
+    public Hashtable getResults() throws RemoteException;
 
-  public void businessMethod() throws RemoteException;
+    public void businessMethod() throws RemoteException;
 
-  public boolean testUTBegin() throws RemoteException;
+    public boolean testUTBegin() throws RemoteException;
 
-  public void setHelper(Helper ref) throws RemoteException;
+    public void setHelper(Helper ref) throws RemoteException;
 
-  public void stopTestTimer() throws RemoteException;
+    public void stopTestTimer() throws RemoteException;
 }

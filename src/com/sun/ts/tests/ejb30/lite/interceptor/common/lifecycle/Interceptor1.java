@@ -19,36 +19,32 @@
  */
 package com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle;
 
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.interceptor.InvocationContext;
+import java.util.logging.Level;
 
-//TODO Make some interceptors (e.g., 1, 5, 7) pure java classes without interceptor-
-//related annotations.  They will be declared as interceptors in descriptors.
-//Copy and modify from the generated full descriptors.
-//For both annotated and descriptor subdirs
+// TODO Make some interceptors (e.g., 1, 5, 7) pure java classes without interceptor-
+// related annotations.  They will be declared as interceptors in descriptors.
+// Copy and modify from the generated full descriptors.
+// For both annotated and descriptor subdirs
 public class Interceptor1 extends InterceptorBase {
-  private static final String simpleName = "Interceptor1";
+    private static final String simpleName = "Interceptor1";
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct(InvocationContext inv) {
-    Helper.getLogger().logp(Level.FINE, simpleName, "postConstruct",
-        "Adding postConstruct record: " + simpleName);
-    historySingletonBean.addPostConstructRecordFor(inv.getTarget(), simpleName);
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct(InvocationContext inv) {
+        Helper.getLogger().logp(Level.FINE, simpleName, "postConstruct", "Adding postConstruct record: " + simpleName);
+        historySingletonBean.addPostConstructRecordFor(inv.getTarget(), simpleName);
 
-    Object t = inv.getTimer();
-    Helper.assertEquals(null, null, t);
+        Object t = inv.getTimer();
+        Helper.assertEquals(null, null, t);
 
-    try {
-      inv.proceed();
-    } catch (Exception ex) {
-      Helper.getLogger().log(Level.SEVERE, simpleName, ex);
-      historySingletonBean.addPostConstructRecordFor(inv.getTarget(),
-          ex.toString());
+        try {
+            inv.proceed();
+        } catch (Exception ex) {
+            Helper.getLogger().log(Level.SEVERE, simpleName, ex);
+            historySingletonBean.addPostConstructRecordFor(inv.getTarget(), ex.toString());
+        }
     }
-  }
 }

@@ -20,18 +20,16 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.complexpktest;
 
+import jakarta.ejb.EJBLocalObject;
 import java.util.Collection;
 
-import jakarta.ejb.EJBLocalObject;
-
 public interface TestBeanLocal extends EJBLocalObject {
-  // Business Methods for TestBean CMP Fields
-  public Integer getId();
+    // Business Methods for TestBean CMP Fields
+    public Integer getId();
 
-  // Business Methods for CMR Fields
+    // Business Methods for CMR Fields
 
-  public Collection getLineItems();
+    public Collection getLineItems();
 
-  public void setLineItems(Collection v);
-
+    public void setLineItems(Collection v);
 }

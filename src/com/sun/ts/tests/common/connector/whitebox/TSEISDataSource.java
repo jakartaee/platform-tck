@@ -20,165 +20,156 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
-import java.io.Serializable;
-import java.util.Vector;
-
-import javax.naming.Reference;
-
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
-
 import jakarta.resource.Referenceable;
 import jakarta.resource.ResourceException;
 import jakarta.resource.spi.ConnectionManager;
 import jakarta.resource.spi.ConnectionRequestInfo;
 import jakarta.resource.spi.ManagedConnectionFactory;
+import java.io.Serializable;
+import java.util.Vector;
+import javax.naming.Reference;
 
-public class TSEISDataSource
-    implements TSDataSource, Serializable, Referenceable {
+public class TSEISDataSource implements TSDataSource, Serializable, Referenceable {
 
-  private String desc;
+    private String desc;
 
-  private ManagedConnectionFactory mcf;
+    private ManagedConnectionFactory mcf;
 
-  private ConnectionManager cm;
+    private ConnectionManager cm;
 
-  private Reference reference;
+    private Reference reference;
 
-  /*
-   * @name createTSConnectionFactory
-   * 
-   * @desc TSConnectionFactory constructor
-   * 
-   * @param ManagedConnectionFactor, ConnectionManager
-   */
-  public TSEISDataSource(ManagedConnectionFactory mcf, ConnectionManager cm) {
-    this.mcf = mcf;
-    if (cm == null) {
+    /*
+     * @name createTSConnectionFactory
+     *
+     * @desc TSConnectionFactory constructor
+     *
+     * @param ManagedConnectionFactor, ConnectionManager
+     */
+    public TSEISDataSource(ManagedConnectionFactory mcf, ConnectionManager cm) {
+        this.mcf = mcf;
+        if (cm == null) {
 
-    } else {
-      this.cm = cm;
+        } else {
+            this.cm = cm;
+        }
     }
-  }
 
-  /*
-   * @name getConnection
-   * 
-   * @desc Gets a connection to the EIS.
-   * 
-   * @return Connection
-   * 
-   * @exception Exception
-   */
-  public TSConnection getConnection() throws Exception {
-    try {
-      return (TSConnection) cm.allocateConnection(mcf, null);
-    } catch (Exception ex) {
-      throw new Exception(ex.getMessage());
+    /*
+     * @name getConnection
+     *
+     * @desc Gets a connection to the EIS.
+     *
+     * @return Connection
+     *
+     * @exception Exception
+     */
+    public TSConnection getConnection() throws Exception {
+        try {
+            return (TSConnection) cm.allocateConnection(mcf, null);
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }
     }
-  }
 
-  /*
-   * @name getConnection
-   * 
-   * @desc Gets a connection to the EIS.
-   * 
-   * @return Connection
-   * 
-   * @exception Exception
-   */
-  public TSConnection getConnection(String username, String password)
-      throws Exception {
-    try {
-      ConnectionRequestInfo info = new TSConnectionRequestInfo(username,
-          password);
-      return (TSConnection) cm.allocateConnection(mcf, info);
-    } catch (ResourceException ex) {
-      throw new Exception(ex.getMessage());
+    /*
+     * @name getConnection
+     *
+     * @desc Gets a connection to the EIS.
+     *
+     * @return Connection
+     *
+     * @exception Exception
+     */
+    public TSConnection getConnection(String username, String password) throws Exception {
+        try {
+            ConnectionRequestInfo info = new TSConnectionRequestInfo(username, password);
+            return (TSConnection) cm.allocateConnection(mcf, info);
+        } catch (ResourceException ex) {
+            throw new Exception(ex.getMessage());
+        }
     }
-  }
 
-  /*
-   * @name getLog
-   * 
-   * @desc Returns Log to client. Used for verification of callbacks.
-   * 
-   * @return Log
-   */
-  @Override
-  public Vector getLog() {
-    return (ConnectorStatus.getConnectorStatus().getLogVector());
-  }
+    /*
+     * @name getLog
+     *
+     * @desc Returns Log to client. Used for verification of callbacks.
+     *
+     * @return Log
+     */
+    @Override
+    public Vector getLog() {
+        return (ConnectorStatus.getConnectorStatus().getLogVector());
+    }
 
-  /*
-   * @name getStateLog
-   * 
-   * @desc Returns Log to client. Used for verification of callbacks.
-   * 
-   * @return Log
-   */
-  @Override
-  public Vector getStateLog() {
-    return (ConnectorStatus.getConnectorStatus().getStateLogVector());
-  }
+    /*
+     * @name getStateLog
+     *
+     * @desc Returns Log to client. Used for verification of callbacks.
+     *
+     * @return Log
+     */
+    @Override
+    public Vector getStateLog() {
+        return (ConnectorStatus.getConnectorStatus().getStateLogVector());
+    }
 
-  /*
-   * @name checkConnectionManager
-   * 
-   * @desc return true if ConnectionManager is Serializable
-   * 
-   * @return boolean
-   */
-  public boolean checkConnectionManager() {
+    /*
+     * @name checkConnectionManager
+     *
+     * @desc return true if ConnectionManager is Serializable
+     *
+     * @return boolean
+     */
+    public boolean checkConnectionManager() {
 
-    if (cm instanceof Serializable)
-      return true;
-    else
-      return false;
-  }
+        if (cm instanceof Serializable) return true;
+        else return false;
+    }
 
-  /*
-   * @name clearLog
-   * 
-   * @desc Empties the Log
-   */
-  @Override
-  public void clearLog() {
-    // In order to support the case where we want to be able to deploy one
-    // time and then run through all tests, we want to ensure that the log is
-    // not accidentally deleted by a client side test. (In the past, it was
-    // acceptable to delete this log at the end of a client tests run because
-    // rars would be undeployed and then re-deployed, thus re-creating this
-    // log.)
-    // but this may not be true for case of standalone connector.
-    // ConnectorStatus.getConnectorStatus().purge();
-  }
+    /*
+     * @name clearLog
+     *
+     * @desc Empties the Log
+     */
+    @Override
+    public void clearLog() {
+        // In order to support the case where we want to be able to deploy one
+        // time and then run through all tests, we want to ensure that the log is
+        // not accidentally deleted by a client side test. (In the past, it was
+        // acceptable to delete this log at the end of a client tests run because
+        // rars would be undeployed and then re-deployed, thus re-creating this
+        // log.)
+        // but this may not be true for case of standalone connector.
+        // ConnectorStatus.getConnectorStatus().purge();
+    }
 
-  /*
-   * @name setLogFlag
-   * 
-   * @desc Turns logging on/off
-   */
-  @Override
-  public void setLogFlag(boolean b) {
-    ConnectorStatus.getConnectorStatus().setLogFlag(b);
-  }
+    /*
+     * @name setLogFlag
+     *
+     * @desc Turns logging on/off
+     */
+    @Override
+    public void setLogFlag(boolean b) {
+        ConnectorStatus.getConnectorStatus().setLogFlag(b);
+    }
 
-  /*
-   * @name setReference
-   * 
-   * @desc
-   */
-  public void setReference(Reference reference) {
-    this.reference = reference;
-  }
+    /*
+     * @name setReference
+     *
+     * @desc
+     */
+    public void setReference(Reference reference) {
+        this.reference = reference;
+    }
 
-  /*
-   * @name getReference
-   * 
-   * @desc
-   */
-  public Reference getReference() {
-    return reference;
-  }
-
+    /*
+     * @name getReference
+     *
+     * @desc
+     */
+    public Reference getReference() {
+        return reference;
+    }
 }

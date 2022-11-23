@@ -24,23 +24,19 @@ import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeo
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.Interceptor3;
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.Interceptor4;
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.InterceptorBase;
-
 import jakarta.ejb.Singleton;
 import jakarta.interceptor.AroundTimeout;
 import jakarta.interceptor.Interceptors;
 import jakarta.interceptor.InvocationContext;
 
 @Singleton
-@Interceptors({ Interceptor4.class, Interceptor3.class })
-public class AroundTimeoutBean extends AroundTimeoutBeanBase
-    implements AroundTimeoutIF {
-  private static final String simpleName = "AroundTimeoutBean";
+@Interceptors({Interceptor4.class, Interceptor3.class})
+public class AroundTimeoutBean extends AroundTimeoutBeanBase implements AroundTimeoutIF {
+    private static final String simpleName = "AroundTimeoutBean";
 
-  @SuppressWarnings("unused")
-  @AroundTimeout
-  private Object aroundTimeoutInAroundTimeoutBean(InvocationContext inv)
-      throws Exception {
-    return InterceptorBase.handleAroundTimeout(inv, simpleName, this,
-        "aroundTimeoutInAroundTimeoutBean");
-  }
+    @SuppressWarnings("unused")
+    @AroundTimeout
+    private Object aroundTimeoutInAroundTimeoutBean(InvocationContext inv) throws Exception {
+        return InterceptorBase.handleAroundTimeout(inv, simpleName, this, "aroundTimeoutInAroundTimeoutBean");
+    }
 }

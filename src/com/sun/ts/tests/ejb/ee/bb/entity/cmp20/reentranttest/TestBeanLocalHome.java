@@ -20,15 +20,13 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.reentranttest;
 
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
+import java.util.Properties;
 
 public interface TestBeanLocalHome extends EJBLocalHome {
-  public TestBeanLocal create(Properties p, int id, String brandName,
-      float price) throws CreateException;
+    public TestBeanLocal create(Properties p, int id, String brandName, float price) throws CreateException;
 
-  public TestBeanLocal findByPrimaryKey(Integer key) throws FinderException;
+    public TestBeanLocal findByPrimaryKey(Integer key) throws FinderException;
 }

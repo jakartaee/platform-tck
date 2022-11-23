@@ -20,223 +20,214 @@
 
 package com.sun.ts.tests.ejb.ee.tx.sessionLocal.stateful.cm.TxN_Exceptions;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  private static final String testName = "TxN_Exceptions";
+    private static final String testName = "TxN_Exceptions";
 
-  private static final String testLookup = "java:comp/env/ejb/TestBean";
+    private static final String testLookup = "java:comp/env/ejb/TestBean";
 
-  private static final String envProps = "testbean.props";
+    private static final String envProps = "testbean.props";
 
-  private static final String testDir = System.getProperty("user.dir");
+    private static final String testDir = System.getProperty("user.dir");
 
-  private TestBeanHome beanHome = null;
+    private TestBeanHome beanHome = null;
 
-  private TestBean beanRef = null;
+    private TestBean beanRef = null;
 
-  private Properties testProps = new Properties();
+    private Properties testProps = new Properties();
 
-  private TSNamingContext jctx = null;
+    private TSNamingContext jctx = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup: */
-
-  /*
-   * @class.setup_props: java.naming.factory.initial;
-   *
-   * @class.testArgs: -ap tssql.stmt
-   */
-  public void setup(String[] args, Properties p) throws Fault {
-    logMsg("Setup tests");
-    this.testProps = p;
-
-    try {
-      logMsg("Get the naming context");
-      jctx = new TSNamingContext();
-
-      logMsg("Getting the EJB Home interface for " + testLookup);
-      beanHome = (TestBeanHome) jctx.lookup(testLookup, TestBeanHome.class);
-
-      logMsg("Setup ok");
-    } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /* Run test */
+    /* Test setup: */
 
-  /*
-   * @testName: test1
-   *
-   * @assertion_ids: EJB:SPEC:632.1
-   *
-   * @test_Strategy: AppException from EJB. Create an instance of a stateful
-   * session Testbean bean. Create an instance of a stateful session TxBean
-   * (Never) bean. Perform a delete row operation to a table and throw
-   * AppException. Ensure that the exception does not cause an automatic
-   * rolledback. Ensure that the client receives AppException.
-   *
-   */
-  public void test1() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
-      beanRef = (TestBean) beanHome.create();
+    /*
+     * @class.setup_props: java.naming.factory.initial;
+     *
+     * @class.testArgs: -ap tssql.stmt
+     */
+    public void setup(String[] args, Properties p) throws Fault {
+        logMsg("Setup tests");
+        this.testProps = p;
 
-      logMsg("Logging data from server");
-      beanRef.initLogging(testProps);
+        try {
+            logMsg("Get the naming context");
+            jctx = new TSNamingContext();
 
-      boolean testResult = false;
+            logMsg("Getting the EJB Home interface for " + testLookup);
+            beanHome = (TestBeanHome) jctx.lookup(testLookup, TestBeanHome.class);
 
-      logMsg("Execute TestBean:test1");
-      testResult = beanRef.test1();
-
-      if (!testResult)
-        throw new Fault("test1 failed");
-      else
-        logMsg("test1 passed");
-    } catch (Exception e) {
-      throw new Fault("test1 failed", e);
-    } finally {
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
+            logMsg("Setup ok");
+        } catch (Exception e) {
+            throw new Fault("Setup failed:", e);
+        }
     }
-  }
 
-  /*
-   * @testName: test2
-   *
-   * @assertion_ids: EJB:SPEC:633.4
-   *
-   * @test_Strategy: SystemException from EJB. Create an instance of a stateful
-   * session Testbean bean. Create an instance of a stateful session TxBean
-   * (Never) bean. Initiate a container managed transaction and perform delete
-   * row operation to a table and throw SystemException. Ensure that the
-   * instance gets discarded. Ensure that the local client receives
-   * EJBException.
-   */
-  public void test2() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
-      beanRef = (TestBean) beanHome.create();
+    /* Run test */
 
-      logMsg("Logging data from server");
-      beanRef.initLogging(testProps);
+    /*
+     * @testName: test1
+     *
+     * @assertion_ids: EJB:SPEC:632.1
+     *
+     * @test_Strategy: AppException from EJB. Create an instance of a stateful
+     * session Testbean bean. Create an instance of a stateful session TxBean
+     * (Never) bean. Perform a delete row operation to a table and throw
+     * AppException. Ensure that the exception does not cause an automatic
+     * rolledback. Ensure that the client receives AppException.
+     *
+     */
+    public void test1() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
+            beanRef = (TestBean) beanHome.create();
 
-      boolean testResult = false;
+            logMsg("Logging data from server");
+            beanRef.initLogging(testProps);
 
-      logMsg("Execute TestBean:test2");
-      testResult = beanRef.test2();
+            boolean testResult = false;
 
-      if (!testResult)
-        throw new Fault("test2 failed");
-      else
-        logMsg("test2 passed");
-    } catch (Exception e) {
-      throw new Fault("test2 failed", e);
-    } finally {
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
+            logMsg("Execute TestBean:test1");
+            testResult = beanRef.test1();
+
+            if (!testResult) throw new Fault("test1 failed");
+            else logMsg("test1 passed");
+        } catch (Exception e) {
+            throw new Fault("test1 failed", e);
+        } finally {
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
     }
-  }
 
-  /*
-   * @testName: test3
-   *
-   * @assertion_ids: EJB:SPEC:633.4
-   *
-   * @test_Strategy: EJBException from EJB. Create an instance of a stateful
-   * session Testbean bean. Create an instance of a stateful session TxBean
-   * (Never) bean. Initiate a container managed transaction and perform delete
-   * row operation to a table and throw EJBException. Ensure that the instance
-   * gets discarded. Ensure that the client receives EJBException.
-   */
-  public void test3() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
-      beanRef = (TestBean) beanHome.create();
+    /*
+     * @testName: test2
+     *
+     * @assertion_ids: EJB:SPEC:633.4
+     *
+     * @test_Strategy: SystemException from EJB. Create an instance of a stateful
+     * session Testbean bean. Create an instance of a stateful session TxBean
+     * (Never) bean. Initiate a container managed transaction and perform delete
+     * row operation to a table and throw SystemException. Ensure that the
+     * instance gets discarded. Ensure that the local client receives
+     * EJBException.
+     */
+    public void test2() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
+            beanRef = (TestBean) beanHome.create();
 
-      logMsg("Logging data from server");
-      beanRef.initLogging(testProps);
+            logMsg("Logging data from server");
+            beanRef.initLogging(testProps);
 
-      boolean testResult = false;
+            boolean testResult = false;
 
-      logMsg("Execute TestBean:test3");
-      testResult = beanRef.test3();
+            logMsg("Execute TestBean:test2");
+            testResult = beanRef.test2();
 
-      if (!testResult)
-        throw new Fault("test3 failed");
-      else
-        logMsg("test3 passed");
-    } catch (Exception e) {
-      throw new Fault("test3 failed", e);
-    } finally {
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
+            if (!testResult) throw new Fault("test2 failed");
+            else logMsg("test2 passed");
+        } catch (Exception e) {
+            throw new Fault("test2 failed", e);
+        } finally {
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
     }
-  }
 
-  /*
-   * @testName: test4
-   *
-   * @assertion_ids: EJB:SPEC:633.4
-   *
-   * @test_Strategy: Error from EJB. Create an instance of a stateful session
-   * Testbean bean. Create an instance of a stateful session TxBean (Never)
-   * bean. Initiate a container managed transaction and perform delete row
-   * operation to a table and throw Error. Ensure that the instance gets
-   * discarded. Ensure that the client receives EJBException.
-   */
-  public void test4() throws Fault {
-    try {
-      logMsg("Creating EJB TestBean instance");
-      beanRef = (TestBean) beanHome.create();
+    /*
+     * @testName: test3
+     *
+     * @assertion_ids: EJB:SPEC:633.4
+     *
+     * @test_Strategy: EJBException from EJB. Create an instance of a stateful
+     * session Testbean bean. Create an instance of a stateful session TxBean
+     * (Never) bean. Initiate a container managed transaction and perform delete
+     * row operation to a table and throw EJBException. Ensure that the instance
+     * gets discarded. Ensure that the client receives EJBException.
+     */
+    public void test3() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
+            beanRef = (TestBean) beanHome.create();
 
-      logMsg("Logging data from server");
-      beanRef.initLogging(testProps);
+            logMsg("Logging data from server");
+            beanRef.initLogging(testProps);
 
-      boolean testResult = false;
+            boolean testResult = false;
 
-      logMsg("Execute TestBean:test4");
-      testResult = beanRef.test4();
+            logMsg("Execute TestBean:test3");
+            testResult = beanRef.test3();
 
-      if (!testResult)
-        throw new Fault("test4 failed");
-      else
-        logMsg("test4 passed");
-    } catch (Exception e) {
-      throw new Fault("test4 failed", e);
-    } finally {
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
+            if (!testResult) throw new Fault("test3 failed");
+            else logMsg("test3 passed");
+        } catch (Exception e) {
+            throw new Fault("test3 failed", e);
+        } finally {
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
     }
-  }
 
-  /* Test cleanup: */
-  public void cleanup() throws Fault {
-    logMsg("cleanup ok");
-  }
+    /*
+     * @testName: test4
+     *
+     * @assertion_ids: EJB:SPEC:633.4
+     *
+     * @test_Strategy: Error from EJB. Create an instance of a stateful session
+     * Testbean bean. Create an instance of a stateful session TxBean (Never)
+     * bean. Initiate a container managed transaction and perform delete row
+     * operation to a table and throw Error. Ensure that the instance gets
+     * discarded. Ensure that the client receives EJBException.
+     */
+    public void test4() throws Fault {
+        try {
+            logMsg("Creating EJB TestBean instance");
+            beanRef = (TestBean) beanHome.create();
+
+            logMsg("Logging data from server");
+            beanRef.initLogging(testProps);
+
+            boolean testResult = false;
+
+            logMsg("Execute TestBean:test4");
+            testResult = beanRef.test4();
+
+            if (!testResult) throw new Fault("test4 failed");
+            else logMsg("test4 passed");
+        } catch (Exception e) {
+            throw new Fault("test4 failed", e);
+        } finally {
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
+    }
+
+    /* Test cleanup: */
+    public void cleanup() throws Fault {
+        logMsg("cleanup ok");
+    }
 }

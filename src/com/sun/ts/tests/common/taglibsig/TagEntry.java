@@ -32,79 +32,79 @@ import java.util.Map;
 
 public class TagEntry {
 
-  private static final AttributeEntry[] NO_DEFINED_ATTRIBUTES = {};
+    private static final AttributeEntry[] NO_DEFINED_ATTRIBUTES = {};
 
-  private static final VariableEntry[] NO_DEFINED_VARIABLES = {};
+    private static final VariableEntry[] NO_DEFINED_VARIABLES = {};
 
-  private static final String DEFAULT_BODY = "JSP";
+    private static final String DEFAULT_BODY = "JSP";
 
-  private Map attributes;
+    private Map attributes;
 
-  private Map variables;
+    private Map variables;
 
-  private String name;
+    private String name;
 
-  private String body = DEFAULT_BODY;
+    private String body = DEFAULT_BODY;
 
-  public TagEntry() {
-    attributes = new HashMap();
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getBody() {
-    return body;
-  }
-
-  public void setBody(String body) {
-    if (body != null) {
-      this.body = body;
+    public TagEntry() {
+        attributes = new HashMap();
     }
-  }
 
-  public void addVariable(VariableEntry entry) {
-    variables.put(entry.getNameGiven(), entry);
-  }
-
-  public VariableEntry getVariable(String name) {
-    return (VariableEntry) attributes.get(name);
-  }
-
-  public VariableEntry[] getVariables() {
-    if (variables.isEmpty()) {
-      return NO_DEFINED_VARIABLES;
-    } else {
-      List list = new ArrayList();
-      for (Iterator i = variables.values().iterator(); i.hasNext();) {
-        list.add(i.next());
-      }
-      return (VariableEntry[]) list.toArray(new VariableEntry[list.size()]);
+    public String getName() {
+        return name;
     }
-  }
 
-  public void addAttribute(AttributeEntry entry) {
-    attributes.put(entry.getName(), entry);
-  }
-
-  public AttributeEntry getAttribute(String name) {
-    return (AttributeEntry) attributes.get(name);
-  }
-
-  public AttributeEntry[] getAttributes() {
-    if (attributes.isEmpty()) {
-      return NO_DEFINED_ATTRIBUTES;
-    } else {
-      List list = new ArrayList();
-      for (Iterator i = attributes.values().iterator(); i.hasNext();) {
-        list.add(i.next());
-      }
-      return (AttributeEntry[]) list.toArray(new AttributeEntry[list.size()]);
+    public void setName(String name) {
+        this.name = name;
     }
-  }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        if (body != null) {
+            this.body = body;
+        }
+    }
+
+    public void addVariable(VariableEntry entry) {
+        variables.put(entry.getNameGiven(), entry);
+    }
+
+    public VariableEntry getVariable(String name) {
+        return (VariableEntry) attributes.get(name);
+    }
+
+    public VariableEntry[] getVariables() {
+        if (variables.isEmpty()) {
+            return NO_DEFINED_VARIABLES;
+        } else {
+            List list = new ArrayList();
+            for (Iterator i = variables.values().iterator(); i.hasNext(); ) {
+                list.add(i.next());
+            }
+            return (VariableEntry[]) list.toArray(new VariableEntry[list.size()]);
+        }
+    }
+
+    public void addAttribute(AttributeEntry entry) {
+        attributes.put(entry.getName(), entry);
+    }
+
+    public AttributeEntry getAttribute(String name) {
+        return (AttributeEntry) attributes.get(name);
+    }
+
+    public AttributeEntry[] getAttributes() {
+        if (attributes.isEmpty()) {
+            return NO_DEFINED_ATTRIBUTES;
+        } else {
+            List list = new ArrayList();
+            for (Iterator i = attributes.values().iterator(); i.hasNext(); ) {
+                list.add(i.next());
+            }
+            return (AttributeEntry[]) list.toArray(new AttributeEntry[list.size()]);
+        }
+    }
 }

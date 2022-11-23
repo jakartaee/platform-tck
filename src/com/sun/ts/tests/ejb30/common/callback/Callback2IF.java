@@ -23,21 +23,21 @@ package com.sun.ts.tests.ejb30.common.callback;
 import java.util.List;
 
 public interface Callback2IF {
-  public void removeFoo(); // for sfsb only
+    public void removeFoo(); // for sfsb only
 
-  /**
-   * In stateful session beans, it verifies whether PostConstruct, PreDestroy,
-   * PostActivate, or PrePassivate is called.
-   */
-  public boolean isPostConstructOrPreDestroyCalledTest();
+    /**
+     * In stateful session beans, it verifies whether PostConstruct, PreDestroy,
+     * PostActivate, or PrePassivate is called.
+     */
+    public boolean isPostConstructOrPreDestroyCalledTest();
 
-  public List getPostConstructCalls();
+    public List getPostConstructCalls();
 
-  public List getInjectionLocations();
+    public List getInjectionLocations();
 
-  public List getPostConstructCallsInContextData();
+    public List getPostConstructCallsInContextData();
 
-  public boolean isGetParametersIllegalStateExceptionThrown();
+    public boolean isGetParametersIllegalStateExceptionThrown();
 
-  public boolean isSetParametersIllegalStateExceptionThrown();
+    public boolean isSetParametersIllegalStateExceptionThrown();
 }

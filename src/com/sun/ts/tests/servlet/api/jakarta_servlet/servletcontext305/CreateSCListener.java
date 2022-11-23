@@ -20,17 +20,16 @@
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext305;
 
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 
 public class CreateSCListener implements ServletContextListener {
 
-  public void contextDestroyed(ServletContextEvent event) {
-    StaticLog.add("CreateSCListener Destroyed.");
-  }
+    public void contextDestroyed(ServletContextEvent event) {
+        StaticLog.add("CreateSCListener Destroyed.");
+    }
 
-  public void contextInitialized(ServletContextEvent event) {
-    StaticLog.add("CreateSCListener Initialized.");
-  }
+    public void contextInitialized(ServletContextEvent event) {
+        StaticLog.add("CreateSCListener Initialized.");
+    }
 }

@@ -20,100 +20,95 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp.handletest;
 
-import java.util.Properties;
-
-import javax.naming.NamingException;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
 import jakarta.ejb.RemoveException;
+import java.util.Properties;
+import javax.naming.NamingException;
 
 public class TestBeanEJB implements EntityBean {
-  private EntityContext ectx = null;
+    private EntityContext ectx = null;
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  // Entity instance data
-  public String BRAND_NAME;
+    // Entity instance data
+    public String BRAND_NAME;
 
-  public Integer KEY_ID;
+    public Integer KEY_ID;
 
-  public float PRICE;
+    public float PRICE;
 
-  public Integer ejbCreate(Properties p, int KEY_ID, String BRAND_NAME,
-      float PRICE) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    try {
-      TestUtil.logMsg("Initialize remote logging");
-      TestUtil.init(p);
-      this.KEY_ID = new Integer(KEY_ID);
-      this.BRAND_NAME = BRAND_NAME;
-      this.PRICE = PRICE;
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException(e.getMessage());
-    } catch (Exception e) {
-      TestUtil.logErr("Exception ...........");
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    public Integer ejbCreate(Properties p, int KEY_ID, String BRAND_NAME, float PRICE) throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        try {
+            TestUtil.logMsg("Initialize remote logging");
+            TestUtil.init(p);
+            this.KEY_ID = new Integer(KEY_ID);
+            this.BRAND_NAME = BRAND_NAME;
+            this.PRICE = PRICE;
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException(e.getMessage());
+        } catch (Exception e) {
+            TestUtil.logErr("Exception ...........");
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+        return this.KEY_ID;
     }
-    return this.KEY_ID;
-  }
 
-  public void ejbPostCreate(Properties p, int KEY_ID, String BRAND_NAME,
-      float PRICE) {
-    TestUtil.logTrace("ejbPostCreate");
-  }
-
-  public void setEntityContext(EntityContext c) {
-    TestUtil.logTrace("setEntityContext");
-    ectx = c;
-    try {
-      TestUtil.logMsg("Obtain naming context");
-      nctx = new TSNamingContext();
-    } catch (NamingException e) {
-      TestUtil.logErr("NamingException ... " + e, e);
-      throw new EJBException("unable to obtain naming context");
-    } catch (Exception e) {
-      TestUtil.logErr("Exception ... " + e, e);
-      throw new EJBException("Exception occurred: " + e);
+    public void ejbPostCreate(Properties p, int KEY_ID, String BRAND_NAME, float PRICE) {
+        TestUtil.logTrace("ejbPostCreate");
     }
-  }
 
-  public void unsetEntityContext() {
-    TestUtil.logTrace("unsetEntityContext");
-  }
+    public void setEntityContext(EntityContext c) {
+        TestUtil.logTrace("setEntityContext");
+        ectx = c;
+        try {
+            TestUtil.logMsg("Obtain naming context");
+            nctx = new TSNamingContext();
+        } catch (NamingException e) {
+            TestUtil.logErr("NamingException ... " + e, e);
+            throw new EJBException("unable to obtain naming context");
+        } catch (Exception e) {
+            TestUtil.logErr("Exception ... " + e, e);
+            throw new EJBException("Exception occurred: " + e);
+        }
+    }
 
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("ejbRemove");
-  }
+    public void unsetEntityContext() {
+        TestUtil.logTrace("unsetEntityContext");
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("ejbRemove");
+    }
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
 
-  public void ejbLoad() {
-    TestUtil.logTrace("ejbLoad");
-  }
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
 
-  public void ejbStore() {
-    TestUtil.logTrace("ejbStore");
-  }
+    public void ejbLoad() {
+        TestUtil.logTrace("ejbLoad");
+    }
 
-  // ===========================================================
-  // TestBean interface (our business methods)
+    public void ejbStore() {
+        TestUtil.logTrace("ejbStore");
+    }
 
-  public void ping() {
-    TestUtil.logTrace("ping");
-  }
+    // ===========================================================
+    // TestBean interface (our business methods)
+
+    public void ping() {
+        TestUtil.logTrace("ping");
+    }
 }

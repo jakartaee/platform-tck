@@ -20,12 +20,10 @@
 
 package com.sun.ts.tests.common.dao.coffee;
 
-import java.util.Collection;
-
 import com.sun.ts.tests.common.dao.DAO;
 import com.sun.ts.tests.common.dao.DAOException;
-
 import jakarta.ejb.CreateException;
+import java.util.Collection;
 
 /**
  * DAO Object for table using the "coffee" DB schema:
@@ -35,39 +33,35 @@ import jakarta.ejb.CreateException;
  */
 public interface CoffeeDAO extends DAO {
 
-  public boolean exists(int id) throws DAOException;
+    public boolean exists(int id) throws DAOException;
 
-  public void create(CoffeeBean bean) throws CreateException, DAOException;
+    public void create(CoffeeBean bean) throws CreateException, DAOException;
 
-  public void create(int id, String name, float price)
-      throws CreateException, DAOException;
+    public void create(int id, String name, float price) throws CreateException, DAOException;
 
-  public CoffeeBean load(int id) throws DAOException;
+    public CoffeeBean load(int id) throws DAOException;
 
-  public float loadPrice(int id) throws DAOException;
+    public float loadPrice(int id) throws DAOException;
 
-  public void store(CoffeeBean bean) throws DAOException;
+    public void store(CoffeeBean bean) throws DAOException;
 
-  public void storePrice(int id, float price) throws DAOException;
+    public void storePrice(int id, float price) throws DAOException;
 
-  public Collection priceToKeyCollection(float price) throws DAOException;
+    public Collection priceToKeyCollection(float price) throws DAOException;
 
-  public Collection priceRangeToCollection(float min, float max)
-      throws DAOException;
+    public Collection priceRangeToCollection(float min, float max) throws DAOException;
 
-  public Collection primaryKeyRangeToCollection(Integer min, Integer max)
-      throws DAOException;
+    public Collection primaryKeyRangeToCollection(Integer min, Integer max) throws DAOException;
 
-  public Collection nameToKeyCollection(String name) throws DAOException;
+    public Collection nameToKeyCollection(String name) throws DAOException;
 
-  public void delete(int id) throws DAOException;
+    public void delete(int id) throws DAOException;
 
-  public void deleteAll() throws DAOException;
+    public void deleteAll() throws DAOException;
 
-  /**
-   * Convenience method for test setup. Start its own session and delete all
-   * pre-existing entities
-   */
-  public void cleanup() throws DAOException;
-
+    /**
+     * Convenience method for test setup. Start its own session and delete all
+     * pre-existing entities
+     */
+    public void cleanup() throws DAOException;
 }

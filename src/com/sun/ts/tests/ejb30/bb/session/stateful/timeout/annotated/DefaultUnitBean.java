@@ -23,7 +23,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.timeout.annotated;
 import com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutBeanBase;
 import com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutIF;
 import com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutRemoteIF;
-
 import jakarta.ejb.Local;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Remote;
@@ -35,5 +34,4 @@ import jakarta.ejb.StatefulTimeout;
 @Local(StatefulTimeoutIF.class)
 @Remote(StatefulTimeoutRemoteIF.class)
 @LocalBean
-public class DefaultUnitBean extends StatefulTimeoutBeanBase {
-}
+public class DefaultUnitBean extends StatefulTimeoutBeanBase {}

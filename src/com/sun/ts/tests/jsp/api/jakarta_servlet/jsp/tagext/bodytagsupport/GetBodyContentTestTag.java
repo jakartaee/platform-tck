@@ -20,47 +20,46 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.bodytagsupport;
 
-import java.io.IOException;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.BodyContent;
 import jakarta.servlet.jsp.tagext.BodyTagSupport;
+import java.io.IOException;
 
 public class GetBodyContentTestTag extends BodyTagSupport {
 
-  /**
-   * Default constructor.
-   */
-  public GetBodyContentTestTag() {
-    super();
-  }
-
-  /**
-   * Validate the that get/setBodyContent() work as expected.
-   * 
-   * @return Tag.EVAL_PAGE
-   * @throws JspException
-   *           if an unexpected error occurs
-   */
-  public int doEndTag() throws JspException {
-    BodyContent bc = this.getBodyContent();
-    try {
-      if (bc != null) {
-        if ("body content".equals(bc.getString().trim())) {
-          pageContext.getOut().println("Test PASSED");
-        } else {
-          pageContext.getOut()
-              .println("Test FAILED.  Unexpected body"
-                  + " content returned.  Expected: 'body content', received: "
-                  + bc.getString());
-        }
-      } else {
-        pageContext.getOut().println(
-            "Test FAILED.  BodyTagSupport.getBodyContent()" + "returned null.");
-      }
-    } catch (IOException ioe) {
-      throw new JspException("Unexpected IOException!", ioe);
+    /**
+     * Default constructor.
+     */
+    public GetBodyContentTestTag() {
+        super();
     }
-    return EVAL_PAGE;
-  }
+
+    /**
+     * Validate the that get/setBodyContent() work as expected.
+     *
+     * @return Tag.EVAL_PAGE
+     * @throws JspException
+     *           if an unexpected error occurs
+     */
+    public int doEndTag() throws JspException {
+        BodyContent bc = this.getBodyContent();
+        try {
+            if (bc != null) {
+                if ("body content".equals(bc.getString().trim())) {
+                    pageContext.getOut().println("Test PASSED");
+                } else {
+                    pageContext
+                            .getOut()
+                            .println("Test FAILED.  Unexpected body"
+                                    + " content returned.  Expected: 'body content', received: "
+                                    + bc.getString());
+                }
+            } else {
+                pageContext.getOut().println("Test FAILED.  BodyTagSupport.getBodyContent()" + "returned null.");
+            }
+        } catch (IOException ioe) {
+            throw new JspException("Unexpected IOException!", ioe);
+        }
+        return EVAL_PAGE;
+    }
 }

@@ -29,78 +29,82 @@ import jakarta.persistence.Table;
 @Table(name = "SCHEMAGENEMP")
 public class Employee implements java.io.Serializable {
 
-  private int empId;
+    private int empId;
 
-  private Department department;
+    private Department department;
 
-  public Employee() {
-  }
+    public Employee() {}
 
-  public Employee(int id) {
-    this.empId = id;
-  }
-
-  public Employee(int id, Department department) {
-    this.empId = id;
-    this.department = department;
-  }
-
-  // ===========================================================
-  // getters and setters for the state fields
-
-  @Id
-  public int getEmpId() {
-    return empId;
-  }
-
-  public void setEmpId(int id) {
-    this.empId = id;
-  }
-
-  // ===========================================================
-  // getters and setters for the association fields
-
-  @ManyToOne(cascade = CascadeType.PERSIST)
-  @JoinColumn(name = "FK_DEPT", foreignKey = @ForeignKey(name = "MYCONSTRANT", value = ConstraintMode.CONSTRAINT, foreignKeyDefinition = "FOREIGN KEY (FK_DEPT) REFERENCES SCHEMAGENDEPT (DEPTID)"))
-  public Department getDepartment() {
-    return department;
-  }
-
-  public void setDepartment(Department department) {
-    this.department = department;
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getEmpId());
-    result.append("]");
-    return result.toString();
-  }
-
-  public boolean equals(Object o) {
-    Employee other;
-    boolean result = false;
-
-    if (!(o instanceof Employee)) {
-      return result;
-    }
-    other = (Employee) o;
-
-    if (this.getEmpId() == other.getEmpId()
-        && this.getDepartment().equals(other.getDepartment())) {
-      result = true;
+    public Employee(int id) {
+        this.empId = id;
     }
 
-    return result;
-  }
+    public Employee(int id, Department department) {
+        this.empId = id;
+        this.department = department;
+    }
 
-  public int hashCode() {
-    int myHash;
+    // ===========================================================
+    // getters and setters for the state fields
 
-    myHash = this.getEmpId();
+    @Id
+    public int getEmpId() {
+        return empId;
+    }
 
-    return myHash;
-  }
+    public void setEmpId(int id) {
+        this.empId = id;
+    }
+
+    // ===========================================================
+    // getters and setters for the association fields
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(
+            name = "FK_DEPT",
+            foreignKey =
+                    @ForeignKey(
+                            name = "MYCONSTRANT",
+                            value = ConstraintMode.CONSTRAINT,
+                            foreignKeyDefinition = "FOREIGN KEY (FK_DEPT) REFERENCES SCHEMAGENDEPT (DEPTID)"))
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getEmpId());
+        result.append("]");
+        return result.toString();
+    }
+
+    public boolean equals(Object o) {
+        Employee other;
+        boolean result = false;
+
+        if (!(o instanceof Employee)) {
+            return result;
+        }
+        other = (Employee) o;
+
+        if (this.getEmpId() == other.getEmpId() && this.getDepartment().equals(other.getDepartment())) {
+            result = true;
+        }
+
+        return result;
+    }
+
+    public int hashCode() {
+        int myHash;
+
+        myHash = this.getEmpId();
+
+        return myHash;
+    }
 }

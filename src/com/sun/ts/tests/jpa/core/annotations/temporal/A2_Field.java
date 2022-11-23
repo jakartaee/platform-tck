@@ -16,8 +16,6 @@
 
 package com.sun.ts.tests.jpa.core.annotations.temporal;
 
-import java.util.Date;
-
 import jakarta.persistence.Access;
 import jakarta.persistence.AccessType;
 import jakarta.persistence.Entity;
@@ -25,83 +23,82 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import java.util.Date;
 
 @Entity
 @Table(name = "DATE_TABLE")
 @Access(AccessType.FIELD)
 public class A2_Field implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+    // ===========================================================
+    // instance variables
 
-  @Id
-  @Temporal(TemporalType.DATE)
-  protected Date id;
+    @Id
+    @Temporal(TemporalType.DATE)
+    protected Date id;
 
-  protected String stringVersion = null;
+    protected String stringVersion = null;
 
-  // ===========================================================
-  // constructors
-  public A2_Field() {
-  }
+    // ===========================================================
+    // constructors
+    public A2_Field() {}
 
-  public A2_Field(Date id) {
-    this.id = id;
-  }
-
-  public A2_Field(Date id, String stringVersion) {
-    this.id = id;
-    this.stringVersion = stringVersion;
-  }
-
-  public Date getId() {
-    return id;
-  }
-
-  public void setId(Date id) {
-    this.id = id;
-  }
-
-  public String getStringVersion() {
-    return this.stringVersion;
-  }
-
-  public void setStringVersion(String stringVersion) {
-    this.stringVersion = stringVersion;
-  }
-
-  public boolean equals(Object o) {
-    A2_Field other;
-    boolean result = false;
-
-    if (!(o instanceof A2_Field)) {
-      return result;
-    }
-    other = (A2_Field) o;
-
-    if (this.getId().equals(other.getId())
-        && this.getStringVersion().equals(other.getStringVersion())) {
-      result = true;
+    public A2_Field(Date id) {
+        this.id = id;
     }
 
-    return result;
-  }
+    public A2_Field(Date id, String stringVersion) {
+        this.id = id;
+        this.stringVersion = stringVersion;
+    }
 
-  public int hashCode() {
-    int myHash;
+    public Date getId() {
+        return id;
+    }
 
-    myHash = this.getId().hashCode() + this.getStringVersion().hashCode();
+    public void setId(Date id) {
+        this.id = id;
+    }
 
-    return myHash;
-  }
+    public String getStringVersion() {
+        return this.stringVersion;
+    }
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", date: " + getStringVersion());
-    result.append("]");
-    return result.toString();
-  }
+    public void setStringVersion(String stringVersion) {
+        this.stringVersion = stringVersion;
+    }
+
+    public boolean equals(Object o) {
+        A2_Field other;
+        boolean result = false;
+
+        if (!(o instanceof A2_Field)) {
+            return result;
+        }
+        other = (A2_Field) o;
+
+        if (this.getId().equals(other.getId()) && this.getStringVersion().equals(other.getStringVersion())) {
+            result = true;
+        }
+
+        return result;
+    }
+
+    public int hashCode() {
+        int myHash;
+
+        myHash = this.getId().hashCode() + this.getStringVersion().hashCode();
+
+        return myHash;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getId());
+        result.append(", date: " + getStringVersion());
+        result.append("]");
+        return result.toString();
+    }
 }

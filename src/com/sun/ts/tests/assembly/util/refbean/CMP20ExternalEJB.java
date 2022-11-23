@@ -25,10 +25,9 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 
 public abstract class CMP20ExternalEJB extends CMP20Wrapper {
 
-  /** Method used to identify this bean */
-  public boolean isTestCMP20External() {
-    TestUtil.logTrace("CMP20External: isTestCMP20External()");
-    return true;
-  }
-
+    /** Method used to identify this bean */
+    public boolean isTestCMP20External() {
+        TestUtil.logTrace("CMP20External: isTestCMP20External()");
+        return true;
+    }
 }

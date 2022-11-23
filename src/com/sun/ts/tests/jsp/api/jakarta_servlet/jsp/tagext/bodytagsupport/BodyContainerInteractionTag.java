@@ -21,63 +21,60 @@
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.bodytagsupport;
 
 import com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagsupport.ContainerInteractionTag;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.BodyContent;
 import jakarta.servlet.jsp.tagext.BodyTag;
 
-public class BodyContainerInteractionTag extends ContainerInteractionTag
-    implements BodyTag {
+public class BodyContainerInteractionTag extends ContainerInteractionTag implements BodyTag {
 
-  protected BodyContent _content = null;
+    protected BodyContent _content = null;
 
-  /**
-   * Default constructor.
-   */
-  public BodyContainerInteractionTag() {
-    super();
-  }
-
-  /**
-   * Validate container behavior when returning either EVAL_BODY_INCLUDE,
-   * SKIP_BODY, SKIP_PAGE, or EVAL_BODY_BUFFERED.
-   * 
-   * @return an int value based on the doStartTag attribute.
-   * @throws JspException
-   *           if an error occurs
-   */
-  public int doStartTag() throws JspException {
-    int retValue = 0;
-    if ("EVAL_BODY_BUFFERED".equals(_doStartTag)) {
-      addMethodToList("doStartTag");
-      retValue = EVAL_BODY_BUFFERED;
-    } else {
-      retValue = super.doStartTag();
+    /**
+     * Default constructor.
+     */
+    public BodyContainerInteractionTag() {
+        super();
     }
-    return retValue;
-  }
 
-  /**
-   * Validate the container calls setBodyContent on tag instances when
-   * doStartTag() returns EVAL_BODY_BUFFERED.
-   * 
-   * @param content
-   *          - the body content.
-   */
-  public void setBodyContent(BodyContent content) {
-    _content = content;
-    addMethodToList("setBodyContent");
-  }
+    /**
+     * Validate container behavior when returning either EVAL_BODY_INCLUDE,
+     * SKIP_BODY, SKIP_PAGE, or EVAL_BODY_BUFFERED.
+     *
+     * @return an int value based on the doStartTag attribute.
+     * @throws JspException
+     *           if an error occurs
+     */
+    public int doStartTag() throws JspException {
+        int retValue = 0;
+        if ("EVAL_BODY_BUFFERED".equals(_doStartTag)) {
+            addMethodToList("doStartTag");
+            retValue = EVAL_BODY_BUFFERED;
+        } else {
+            retValue = super.doStartTag();
+        }
+        return retValue;
+    }
 
-  /**
-   * Validate the container calls doInitBody() before the evaluation of the
-   * body.
-   * 
-   * @throws JspException
-   *           if an error occurs
-   */
-  public void doInitBody() throws JspException {
-    addMethodToList("doInitBody");
-  }
+    /**
+     * Validate the container calls setBodyContent on tag instances when
+     * doStartTag() returns EVAL_BODY_BUFFERED.
+     *
+     * @param content
+     *          - the body content.
+     */
+    public void setBodyContent(BodyContent content) {
+        _content = content;
+        addMethodToList("setBodyContent");
+    }
 
+    /**
+     * Validate the container calls doInitBody() before the evaluation of the
+     * body.
+     *
+     * @throws JspException
+     *           if an error occurs
+     */
+    public void doInitBody() throws JspException {
+        addMethodToList("doInitBody");
+    }
 }

@@ -16,72 +16,69 @@
 
 package com.sun.ts.tests.jpa.core.annotations.ordercolumn;
 
-import java.util.List;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import java.util.List;
 
 @Entity
 public class Student implements java.io.Serializable {
-  @Id
-  int id;
+    @Id
+    int id;
 
-  String studentName;
+    String studentName;
 
-  @ManyToMany(mappedBy = "students", cascade = CascadeType.ALL)
-  List<Course> courses;
+    @ManyToMany(mappedBy = "students", cascade = CascadeType.ALL)
+    List<Course> courses;
 
-  public Student() {
-  }
+    public Student() {}
 
-  public Student(int id) {
-    this.id = id;
-  }
-
-  public Student(int id, String name) {
-    this.id = id;
-    this.studentName = name;
-  }
-
-  public List<Course> getCourses() {
-    return courses;
-  }
-
-  public void setCourses(List<Course> courses) {
-    this.courses = courses;
-  }
-
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int studentId) {
-    this.id = studentId;
-  }
-
-  public String getStudentName() {
-    return studentName;
-  }
-
-  public void setStudentName(String studentName) {
-    this.studentName = studentName;
-  }
-
-  public int hashCode() {
-
-    return this.id;
-  }
-
-  public boolean equals(Object obj) {
-    boolean result = false;
-
-    if ((obj != null) && (obj instanceof Student)) {
-      Student student = (Student) obj;
-      result = (student.id == this.id);
+    public Student(int id) {
+        this.id = id;
     }
-    return result;
-  }
 
+    public Student(int id, String name) {
+        this.id = id;
+        this.studentName = name;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int studentId) {
+        this.id = studentId;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public int hashCode() {
+
+        return this.id;
+    }
+
+    public boolean equals(Object obj) {
+        boolean result = false;
+
+        if ((obj != null) && (obj instanceof Student)) {
+            Student student = (Student) obj;
+            result = (student.id == this.id);
+        }
+        return result;
+    }
 }

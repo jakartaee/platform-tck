@@ -19,108 +19,102 @@
  */
 package com.sun.ts.tests.jms.commonee;
 
+import jakarta.ejb.Remote;
+import jakarta.jms.Queue;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import jakarta.ejb.Remote;
-import jakarta.jms.Queue;
-
 @Remote
 public interface Tests {
-  public void initLogging(Properties p);
+    public void initLogging(Properties p);
 
-  public void remove();
+    public void remove();
 
-  public ArrayList sendTextMessage_CQ(String tesname, String text);
+    public ArrayList sendTextMessage_CQ(String tesname, String text);
 
-  public ArrayList sendMessageP_CQ(String tesname, String text, boolean val);
+    public ArrayList sendMessageP_CQ(String tesname, String text, boolean val);
 
-  public ArrayList sendMessagePP_CQ(String tesname, String text, boolean val,
-      String props, String value);
+    public ArrayList sendMessagePP_CQ(String tesname, String text, boolean val, String props, String value);
 
-  public String receiveTextMessage_CQ();
+    public String receiveTextMessage_CQ();
 
-  public String receiveMessageS_CQ(String selector);
+    public String receiveMessageS_CQ(String selector);
 
-  public int browseTextMessage_CQ(int num, String msg);
+    public int browseTextMessage_CQ(int num, String msg);
 
-  public int browseMessageS_CQ(int num, String msg, String selector);
+    public int browseMessageS_CQ(int num, String msg, String selector);
 
-  public ArrayList sendTextMessage_CT(String tesname, String text);
+    public ArrayList sendTextMessage_CT(String tesname, String text);
 
-  public String receiveTextMessage_CT();
+    public String receiveTextMessage_CT();
 
-  public int getAck_CQ();
+    public int getAck_CQ();
 
-  public int getAck_CT();
+    public int getAck_CT();
 
-  public boolean getQueue();
+    public boolean getQueue();
 
-  public boolean getSelector(String selector);
+    public boolean getSelector(String selector);
 
-  public ArrayList sendTextMessage_Q(String tesname);
+    public ArrayList sendTextMessage_Q(String tesname);
 
-  public ArrayList sendTextMessage_Q(String tesname, boolean setDest);
+    public ArrayList sendTextMessage_Q(String tesname, boolean setDest);
 
-  public ArrayList sendTextMessage_Q(String tesname, String text);
+    public ArrayList sendTextMessage_Q(String tesname, String text);
 
-  public ArrayList sendTextMessage_Q(String tesname, String text,
-      Queue testQueue);
+    public ArrayList sendTextMessage_Q(String tesname, String text, Queue testQueue);
 
-  public ArrayList sendTextMessage_Q(String tesname, boolean setDest, int mode);
+    public ArrayList sendTextMessage_Q(String tesname, boolean setDest, int mode);
 
-  public ArrayList sendFullBytesMessage_Q(String tesname);
+    public ArrayList sendFullBytesMessage_Q(String tesname);
 
-  public ArrayList sendBytesMessage_Q(String tesname, boolean setDest);
+    public ArrayList sendBytesMessage_Q(String tesname, boolean setDest);
 
-  public ArrayList sendBytesMessage_Q(String tesname, boolean setDest,
-      int mode);
+    public ArrayList sendBytesMessage_Q(String tesname, boolean setDest, int mode);
 
-  public boolean verifyFullBytesMessage();
+    public boolean verifyFullBytesMessage();
 
-  public ArrayList sendFullMapMessage_Q(String tesname);
+    public ArrayList sendFullMapMessage_Q(String tesname);
 
-  public ArrayList sendMapMessage_Q(String tesname, boolean setDest);
+    public ArrayList sendMapMessage_Q(String tesname, boolean setDest);
 
-  public ArrayList sendMapMessage_Q(String tesname, boolean setDest, int mode);
+    public ArrayList sendMapMessage_Q(String tesname, boolean setDest, int mode);
 
-  public boolean verifyFullMapMessage();
+    public boolean verifyFullMapMessage();
 
-  public ArrayList sendFullStreamMessage_Q(String tesname);
+    public ArrayList sendFullStreamMessage_Q(String tesname);
 
-  public ArrayList sendStreamMessage_Q(String tesname, boolean setDest);
+    public ArrayList sendStreamMessage_Q(String tesname, boolean setDest);
 
-  public ArrayList sendStreamMessage_Q(String tesname, boolean setDest,
-      int mode);
+    public ArrayList sendStreamMessage_Q(String tesname, boolean setDest, int mode);
 
-  public boolean verifyFullStreamMessage();
+    public boolean verifyFullStreamMessage();
 
-  public ArrayList sendObjectMessage_Q(String tesname);
+    public ArrayList sendObjectMessage_Q(String tesname);
 
-  public ArrayList sendObjectMessage_Q(String tesname, boolean setDest);
+    public ArrayList sendObjectMessage_Q(String tesname, boolean setDest);
 
-  public ArrayList sendObjectMessage_Q(String tesname, boolean setDest,
-      int mode);
+    public ArrayList sendObjectMessage_Q(String tesname, boolean setDest, int mode);
 
-  public String getMessageID();
+    public String getMessageID();
 
-  public long getTimeStamp();
+    public long getTimeStamp();
 
-  public String getCorrelationID();
+    public String getCorrelationID();
 
-  public String getReplyTo();
+    public String getReplyTo();
 
-  public String getDestination_1();
+    public String getDestination_1();
 
-  public String getDestination();
+    public String getDestination();
 
-  public String getType();
+    public String getType();
 
-  public int getPriority();
+    public int getPriority();
 
-  public long getExpiration();
+    public long getExpiration();
 
-  public int getDeliveryMode();
+    public int getDeliveryMode();
 
-  public String getText();
+    public String getText();
 }

@@ -20,32 +20,36 @@
 
 package com.sun.ts.tests.jaxws.jaxws23.wsa.j2w.document.literal.anonymous;
 
-import jakarta.jws.WebService;
+import jakarta.jws.HandlerChain;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
-import jakarta.jws.HandlerChain;
+import jakarta.jws.WebService;
 import jakarta.xml.ws.Action;
 import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.soap.AddressingFeature;
 
-@WebService(name = "AddNumbersPortType23001", portName = "AddNumbersPort23001", serviceName = "AddNumbersService23001", targetNamespace = "http://example.com/")
-
+@WebService(
+        name = "AddNumbersPortType23001",
+        portName = "AddNumbersPort23001",
+        serviceName = "AddNumbersService23001",
+        targetNamespace = "http://example.com/")
 @Addressing(enabled = true, required = true, responses = AddressingFeature.Responses.ANONYMOUS)
 @HandlerChain(file = "server-handler.xml")
 public class AddNumbersImpl23001 {
 
-  @Action(input = "http://example.com/AddNumbersPortType23001/add", output = "http://example.com/AddNumbersPortType23001/addResponse")
-  @WebMethod
-  public int addNumbers(
-      @WebParam(name = "number1", targetNamespace = "http://example.com/") int number1,
-      @WebParam(name = "number2", targetNamespace = "http://example.com/") int number2,
-      @WebParam(name = "testName", targetNamespace = "http://example.com/") String testName)
-      throws AddNumbersException {
+    @Action(
+            input = "http://example.com/AddNumbersPortType23001/add",
+            output = "http://example.com/AddNumbersPortType23001/addResponse")
+    @WebMethod
+    public int addNumbers(
+            @WebParam(name = "number1", targetNamespace = "http://example.com/") int number1,
+            @WebParam(name = "number2", targetNamespace = "http://example.com/") int number2,
+            @WebParam(name = "testName", targetNamespace = "http://example.com/") String testName)
+            throws AddNumbersException {
 
-    if (number1 < 0 || number2 < 0) {
-      throw new AddNumbersException("Negative numbers can't be added!",
-          "Numbers: " + number1 + ", " + number2);
+        if (number1 < 0 || number2 < 0) {
+            throw new AddNumbersException("Negative numbers can't be added!", "Numbers: " + number1 + ", " + number2);
+        }
+        return number1 + number2;
     }
-    return number1 + number2;
-  }
 }

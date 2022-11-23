@@ -16,58 +16,54 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.basic.xa;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import com.sun.ts.tests.ejb30.timer.common.JsfClientBase;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-
 import jakarta.ejb.EJB;
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends JsfClientBase implements Serializable {
 
-  private static final long serialVersionUID = -232184412671127L;
+    private static final long serialVersionUID = -232184412671127L;
 
-  @EJB(beanName = "StatelessXATimerBean")
-  private StatelessXATimerBean statelessXaTimerBean;
+    @EJB(beanName = "StatelessXATimerBean")
+    private StatelessXATimerBean statelessXaTimerBean;
 
-  @EJB(beanName = "SingletonXATimerBean")
-  private SingletonXATimerBean singletonXaTimerBean;
+    @EJB(beanName = "SingletonXATimerBean")
+    private SingletonXATimerBean singletonXaTimerBean;
 
-  /*
-   * @testName: persistCoffeeCreateTimerRollbackStateless
-   * 
-   * @test_Strategy: persist a coffee in the first business method. In the
-   * second business method, create a timer and try to persist the same coffee.
-   * It will cause the tx and timer creation to rollback.
-   */
-  public void persistCoffeeCreateTimerRollbackStateless() {
-    persistCoffeeCreateTimerRollback(statelessXaTimerBean, "RollbackStateless");
-  }
+    /*
+     * @testName: persistCoffeeCreateTimerRollbackStateless
+     *
+     * @test_Strategy: persist a coffee in the first business method. In the
+     * second business method, create a timer and try to persist the same coffee.
+     * It will cause the tx and timer creation to rollback.
+     */
+    public void persistCoffeeCreateTimerRollbackStateless() {
+        persistCoffeeCreateTimerRollback(statelessXaTimerBean, "RollbackStateless");
+    }
 
-  /*
-   * @testName: persistCoffeeCreateTimerRollbackSingleton
-   * 
-   * @test_Strategy: see persistCoffeeCreateTimerRollbackStateless
-   */
-  public void persistCoffeeCreateTimerRollbackSingleton() {
-    persistCoffeeCreateTimerRollback(singletonXaTimerBean, "RollbackSingleton");
-  }
+    /*
+     * @testName: persistCoffeeCreateTimerRollbackSingleton
+     *
+     * @test_Strategy: see persistCoffeeCreateTimerRollbackStateless
+     */
+    public void persistCoffeeCreateTimerRollbackSingleton() {
+        persistCoffeeCreateTimerRollback(singletonXaTimerBean, "RollbackSingleton");
+    }
 
-  private void persistCoffeeCreateTimerRollback(XATimerBeanBase b,
-      String brandName) {
-    int id = 1;
-    Date expireation = TimerUtil.getCurrentDatePlus(Calendar.HOUR, 5);
-    TimerInfo info = new TimerInfo(getTestName());
-    b.persistCoffee(id, brandName);
-    boolean result = b.persistCoffeeCreateTimerRollback(id, brandName,
-        expireation, info);
-    assertEquals(null, true, result);
-    assertEquals(null, 0, b.getTimers().size());
-    passIfNoTimeout();
-  }
+    private void persistCoffeeCreateTimerRollback(XATimerBeanBase b, String brandName) {
+        int id = 1;
+        Date expireation = TimerUtil.getCurrentDatePlus(Calendar.HOUR, 5);
+        TimerInfo info = new TimerInfo(getTestName());
+        b.persistCoffee(id, brandName);
+        boolean result = b.persistCoffeeCreateTimerRollback(id, brandName, expireation, info);
+        assertEquals(null, true, result);
+        assertEquals(null, 0, b.getTimers().size());
+        passIfNoTimeout();
+    }
 }

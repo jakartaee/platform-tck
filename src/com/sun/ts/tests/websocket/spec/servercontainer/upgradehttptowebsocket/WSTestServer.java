@@ -22,14 +22,14 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/TCKTestServer")
 public class WSTestServer {
 
-  @OnMessage
-  public String echo(String message) {
-    System.out.println("TCKTestServer got String message: " + message);
-    return message;
-  }
+    @OnMessage
+    public String echo(String message) {
+        System.out.println("TCKTestServer got String message: " + message);
+        return message;
+    }
 
-  @OnError
-  public void onError(Throwable t) {
-    t.printStackTrace();
-  }
+    @OnError
+    public void onError(Throwable t) {
+        t.printStackTrace();
+    }
 }

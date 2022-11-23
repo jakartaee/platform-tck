@@ -20,28 +20,24 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpservletrequestwrapper;
 
-import java.io.IOException;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-public class TestServlet
-    extends com.sun.ts.tests.servlet.api.common.request.HttpRequestTestServlet {
+public class TestServlet extends com.sun.ts.tests.servlet.api.common.request.HttpRequestTestServlet {
 
-  public void init(ServletConfig servletConfig) throws ServletException {
-    super.init(servletConfig);
-  }
+    public void init(ServletConfig servletConfig) throws ServletException {
+        super.init(servletConfig);
+    }
 
-  // Simply validate the default behavior of the RequestWrapper is to delegate
-  // the call to the wrapped object.
-  public void service(HttpServletRequest servletRequest,
-      HttpServletResponse servletResponse)
-      throws ServletException, IOException {
-    HttpServletRequestWrapper wrapper = new HttpServletRequestWrapper(
-        servletRequest);
-    super.service(wrapper, servletResponse);
-  }
+    // Simply validate the default behavior of the RequestWrapper is to delegate
+    // the call to the wrapped object.
+    public void service(HttpServletRequest servletRequest, HttpServletResponse servletResponse)
+            throws ServletException, IOException {
+        HttpServletRequestWrapper wrapper = new HttpServletRequestWrapper(servletRequest);
+        super.service(wrapper, servletResponse);
+    }
 }

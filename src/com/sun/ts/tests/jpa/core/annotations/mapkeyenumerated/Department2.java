@@ -16,8 +16,6 @@
 
 package com.sun.ts.tests.jpa.core.annotations.mapkeyenumerated;
 
-import java.util.Map;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -25,60 +23,59 @@ import jakarta.persistence.MapKeyColumn;
 import jakarta.persistence.MapKeyEnumerated;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.Map;
 
 @Entity
 @Table(name = "DEPARTMENT")
 public class Department2 implements java.io.Serializable {
 
-  // Instance variables
-  private int id;
+    // Instance variables
+    private int id;
 
-  private String name;
+    private String name;
 
-  private Map<Offices, Employee2> lastNameEmployees;
+    private Map<Offices, Employee2> lastNameEmployees;
 
-  public Department2() {
-  }
+    public Department2() {}
 
-  public Department2(int id, String name) {
-    this.id = id;
-    this.name = name;
-  }
+    public Department2(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
-  // ===========================================================
-  // getters and setters for the state fields
+    // ===========================================================
+    // getters and setters for the state fields
 
-  @Id
-  @Column(name = "ID")
-  public int getId() {
-    return id;
-  }
+    @Id
+    @Column(name = "ID")
+    public int getId() {
+        return id;
+    }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  @Column(name = "NAME")
-  public String getName() {
-    return name;
-  }
+    @Column(name = "NAME")
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  // ===========================================================
-  // getters and setters for the association fields
+    // ===========================================================
+    // getters and setters for the association fields
 
-  @OneToMany(mappedBy = "department")
-  @MapKeyColumn(name = "OFFICE_ID")
-  @MapKeyEnumerated()
-  public Map<Offices, Employee2> getLastNameEmployees() {
-    return lastNameEmployees;
-  }
+    @OneToMany(mappedBy = "department")
+    @MapKeyColumn(name = "OFFICE_ID")
+    @MapKeyEnumerated()
+    public Map<Offices, Employee2> getLastNameEmployees() {
+        return lastNameEmployees;
+    }
 
-  public void setLastNameEmployees(Map<Offices, Employee2> lastNameEmployees) {
-    this.lastNameEmployees = lastNameEmployees;
-  }
-
+    public void setLastNameEmployees(Map<Offices, Employee2> lastNameEmployees) {
+        this.lastNameEmployees = lastNameEmployees;
+    }
 }

@@ -24,37 +24,35 @@ import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 
 public class W2JRLR2707Client extends SOAPClient {
-  public W2JRLR2707Client(String webServerHost, int webServerPort, int mode)
-      throws EETest.Fault {
-    this(webServerHost, webServerPort, mode, null);
-  }
+    public W2JRLR2707Client(String webServerHost, int webServerPort, int mode) throws EETest.Fault {
+        this(webServerHost, webServerPort, mode, null);
+    }
 
-  public W2JRLR2707Client(String webServerHost, int webServerPort, int mode,
-      jakarta.xml.ws.Service webServiceRef) throws EETest.Fault {
-    super(webServerHost, webServerPort, mode);
-    stubContext.setNamespace(
-        "http://w2jrlr2707testservice.org/W2JRLR2707TestService.wsdl");
-    stubContext.setService("W2JRLR2707TestService");
-    stubContext.setPort("W2JRLR2707TestPort");
-    stubContext.setEndpointInterface(W2JRLR2707Test.class);
-    stubContext.setWebServiceRef(webServiceRef);
-  }
+    public W2JRLR2707Client(String webServerHost, int webServerPort, int mode, jakarta.xml.ws.Service webServiceRef)
+            throws EETest.Fault {
+        super(webServerHost, webServerPort, mode);
+        stubContext.setNamespace("http://w2jrlr2707testservice.org/W2JRLR2707TestService.wsdl");
+        stubContext.setService("W2JRLR2707TestService");
+        stubContext.setPort("W2JRLR2707TestPort");
+        stubContext.setEndpointInterface(W2JRLR2707Test.class);
+        stubContext.setWebServiceRef(webServiceRef);
+    }
 
-  protected String getEndpointURLProperty() {
-    return "wsi.w2jrlr2707.endpoint.1";
-  }
+    protected String getEndpointURLProperty() {
+        return "wsi.w2jrlr2707.endpoint.1";
+    }
 
-  protected String getWSDLURLProperty() {
-    return "wsi.w2jrlr2707.wsdlloc.1";
-  }
+    protected String getWSDLURLProperty() {
+        return "wsi.w2jrlr2707.wsdlloc.1";
+    }
 
-  public String echoString(String str) throws Exception {
-    NonNullString nns = new NonNullString();
-    nns.setP1(str);
-    Header hdr = new Header();
-    hdr.setTestName("echoString");
-    hdr.setMessage("Testing echoString method call");
-    nns = ((W2JRLR2707Test) stubContext.getStub()).echoString(nns, hdr);
-    return nns.getP1();
-  }
+    public String echoString(String str) throws Exception {
+        NonNullString nns = new NonNullString();
+        nns.setP1(str);
+        Header hdr = new Header();
+        hdr.setTestName("echoString");
+        hdr.setMessage("Testing echoString method call");
+        nns = ((W2JRLR2707Test) stubContext.getStub()).echoString(nns, hdr);
+        return nns.getP1();
+    }
 }

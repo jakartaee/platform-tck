@@ -20,6 +20,4 @@
 
 package com.sun.ts.tests.ejb30.common.calc;
 
-public interface LocalCalculator extends Calculator {
-
-}
+public interface LocalCalculator extends Calculator {}

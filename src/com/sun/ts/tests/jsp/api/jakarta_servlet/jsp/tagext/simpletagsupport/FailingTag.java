@@ -24,39 +24,38 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.simpletagsupport;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.TagSupport;
+import java.io.IOException;
 
 public class FailingTag extends TagSupport {
 
-  /**
-   * Default constructor.
-   */
-  public FailingTag() {
-    super();
-  }
-
-  /**
-   * This method shouldn't be invoked.
-   * 
-   * @return Tag.SKIP_BODY
-   * @throws JspException
-   *           - if an unexpected error occurs
-   */
-  public int doEndTag() throws JspException {
-    JspTestUtil.debug("[FailingTag] in doEndTag()");
-    try {
-      pageContext.getOut().println("Test FAILED.  Default behavior of "
-          + "SimpleTagSupport.doTag() is to do nothing.  This handler should"
-          + " not have been invoked.");
-    } catch (IOException ioe) {
-      throw new JspException("Test FAILED. Unexpected IOException thrown.",
-          ioe);
+    /**
+     * Default constructor.
+     */
+    public FailingTag() {
+        super();
     }
-    return SKIP_BODY;
-  }
+
+    /**
+     * This method shouldn't be invoked.
+     *
+     * @return Tag.SKIP_BODY
+     * @throws JspException
+     *           - if an unexpected error occurs
+     */
+    public int doEndTag() throws JspException {
+        JspTestUtil.debug("[FailingTag] in doEndTag()");
+        try {
+            pageContext
+                    .getOut()
+                    .println("Test FAILED.  Default behavior of "
+                            + "SimpleTagSupport.doTag() is to do nothing.  This handler should"
+                            + " not have been invoked.");
+        } catch (IOException ioe) {
+            throw new JspException("Test FAILED. Unexpected IOException thrown.", ioe);
+        }
+        return SKIP_BODY;
+    }
 }

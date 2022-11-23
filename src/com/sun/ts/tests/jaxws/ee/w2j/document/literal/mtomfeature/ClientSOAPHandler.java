@@ -21,91 +21,77 @@
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomfeature;
 
 import com.sun.ts.tests.jaxws.common.HTTPSOAPHandler;
-import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 import com.sun.ts.tests.jaxws.common.Handler_Util;
-import jakarta.xml.ws.handler.soap.SOAPMessageContext;
+import com.sun.ts.tests.jaxws.common.JAXWS_Util;
 import jakarta.xml.ws.handler.MessageContext;
-import jakarta.xml.ws.WebServiceException;
-
-import java.util.Map;
+import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 import java.util.List;
-import java.util.Iterator;
+import java.util.Map;
 
 public class ClientSOAPHandler extends HTTPSOAPHandler {
 
-  private static final String PASSED = "PASSED";
+    private static final String PASSED = "PASSED";
 
-  private static final String FAILED = "FAILED";
+    private static final String FAILED = "FAILED";
 
-  protected void processInboundMessage(SOAPMessageContext context) {
-    System.out.println("in ClientSOAPHandler:processInboundMessage");
-    JAXWS_Util.dumpHTTPHeaders(context, false);
-    // JAXWS_Util.dumpSOAPMessage(context.getMessage(),false);
+    protected void processInboundMessage(SOAPMessageContext context) {
+        System.out.println("in ClientSOAPHandler:processInboundMessage");
+        JAXWS_Util.dumpHTTPHeaders(context, false);
+        // JAXWS_Util.dumpSOAPMessage(context.getMessage(),false);
 
-    String result = FAILED;
-    Map<String, List<String>> map = (Map<String, List<String>>) context
-        .get(MessageContext.HTTP_RESPONSE_HEADERS);
-    if (Handler_Util.checkForMsg(context,
-        "ClientDisabledServerEnabledLT2000Test")
-        || Handler_Util.checkForMsg(context,
-            "ClientDisabledServerEnabledGT2000Test")) {
-      result = PASSED;
-    } else if (Handler_Util.checkForMsg(context, "ServerEnabled")) {
-      result = verifyMTOMEnabledThresholdContentTypeHttpHeader(map);
-    } else {
-      result = verifyMTOMDisabledContentTypeHttpHeader(map);
+        String result = FAILED;
+        Map<String, List<String>> map = (Map<String, List<String>>) context.get(MessageContext.HTTP_RESPONSE_HEADERS);
+        if (Handler_Util.checkForMsg(context, "ClientDisabledServerEnabledLT2000Test")
+                || Handler_Util.checkForMsg(context, "ClientDisabledServerEnabledGT2000Test")) {
+            result = PASSED;
+        } else if (Handler_Util.checkForMsg(context, "ServerEnabled")) {
+            result = verifyMTOMEnabledThresholdContentTypeHttpHeader(map);
+        } else {
+            result = verifyMTOMDisabledContentTypeHttpHeader(map);
+        }
+        if (!result.equals(PASSED)) {
+            throw new RuntimeException("In ClientSOAPHandler:processInboundMessage: " + result);
+        }
     }
-    if (!result.equals(PASSED)) {
-      throw new RuntimeException(
-          "In ClientSOAPHandler:processInboundMessage: " + result);
-    }
-  }
 
-  protected String verifyMTOMDisabledContentTypeHttpHeader(
-      Map<String, List<String>> m) {
-    System.out.println(
-        "in ClientSOAPHandler:verifyMTOMDisabledContentTypeHttpHeader");
-    String result = FAILED;
-    Map<String, List<String>> map = JAXWS_Util.convertKeysToLowerCase(m);
-    List<String> values = map.get("content-type");
-    System.out.println("DEBUG: HTTP header Content-Type=" + values);
-    String sValues = values.toString().toLowerCase();
-    if (sValues != null) {
-      if (sValues.indexOf("text/xml") >= 0) {
-        result = PASSED;
-      } else {
-        result = FAILED + ": INVALID HTTP Content-type [" + sValues
-            + "], expected = text/xml";
-      }
-    } else {
-      result = FAILED + ": the HTTP header Content-Type was not found";
+    protected String verifyMTOMDisabledContentTypeHttpHeader(Map<String, List<String>> m) {
+        System.out.println("in ClientSOAPHandler:verifyMTOMDisabledContentTypeHttpHeader");
+        String result = FAILED;
+        Map<String, List<String>> map = JAXWS_Util.convertKeysToLowerCase(m);
+        List<String> values = map.get("content-type");
+        System.out.println("DEBUG: HTTP header Content-Type=" + values);
+        String sValues = values.toString().toLowerCase();
+        if (sValues != null) {
+            if (sValues.indexOf("text/xml") >= 0) {
+                result = PASSED;
+            } else {
+                result = FAILED + ": INVALID HTTP Content-type [" + sValues + "], expected = text/xml";
+            }
+        } else {
+            result = FAILED + ": the HTTP header Content-Type was not found";
+        }
+        System.out.println("result=" + result);
+        return result;
     }
-    System.out.println("result=" + result);
-    return result;
-  }
 
-  protected String verifyMTOMEnabledThresholdContentTypeHttpHeader(
-      Map<String, List<String>> m) {
-    System.out.println(
-        "in ClientSOAPHandler:verifyMTOMEnabledThresholdContentTypeHttpHeader");
-    String result = FAILED;
-    Map<String, List<String>> map = JAXWS_Util.convertKeysToLowerCase(m);
-    List<String> values = map.get("content-type");
-    System.out.println("DEBUG: HTTP header Content-Type=" + values);
-    String sValues = values.toString().toLowerCase();
-    if (sValues != null) {
-      if ((sValues.indexOf("multipart/related") >= 0)
-          && (sValues.indexOf("application/xop+xml") >= 0)) {
-        result = PASSED;
-      } else {
-        result = FAILED + ": INVALID HTTP Content-type [" + sValues
-            + "], expected=multipart/related,application/xop+xml";
-      }
-    } else {
-      result = FAILED + ": the HTTP header Content-Type was not found";
+    protected String verifyMTOMEnabledThresholdContentTypeHttpHeader(Map<String, List<String>> m) {
+        System.out.println("in ClientSOAPHandler:verifyMTOMEnabledThresholdContentTypeHttpHeader");
+        String result = FAILED;
+        Map<String, List<String>> map = JAXWS_Util.convertKeysToLowerCase(m);
+        List<String> values = map.get("content-type");
+        System.out.println("DEBUG: HTTP header Content-Type=" + values);
+        String sValues = values.toString().toLowerCase();
+        if (sValues != null) {
+            if ((sValues.indexOf("multipart/related") >= 0) && (sValues.indexOf("application/xop+xml") >= 0)) {
+                result = PASSED;
+            } else {
+                result = FAILED + ": INVALID HTTP Content-type [" + sValues
+                        + "], expected=multipart/related,application/xop+xml";
+            }
+        } else {
+            result = FAILED + ": the HTTP header Content-Type was not found";
+        }
+        System.out.println("result=" + result);
+        return result;
     }
-    System.out.println("result=" + result);
-    return result;
-  }
-
 }

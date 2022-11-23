@@ -22,22 +22,18 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.busiface;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocal1Base;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 
 @Stateful(name = "SerializableLocalBean")
-public class SerializableLocalBean extends BusinessLocal1Base
-    implements BusinessLocalIF1, java.io.Serializable {
-  @Resource
-  private SessionContext sessionContext;
+public class SerializableLocalBean extends BusinessLocal1Base implements BusinessLocalIF1, java.io.Serializable {
+    @Resource
+    private SessionContext sessionContext;
 
-  public SerializableLocalBean() {
-  }
+    public SerializableLocalBean() {}
 
-  @Remove
-  public void remove() {
-  }
+    @Remove
+    public void remove() {}
 }

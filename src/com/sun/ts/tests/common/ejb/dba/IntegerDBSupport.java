@@ -20,150 +20,144 @@
 
 package com.sun.ts.tests.common.ejb.dba;
 
+import com.sun.ts.lib.util.TestUtil;
+import jakarta.ejb.CreateException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.ejb.CreateException;
-
 /**
  * DB Support object for DB table using whose primary key is an 'int'.
  */
-public class IntegerDBSupport extends DBSupport
-    implements java.io.Serializable {
+public class IntegerDBSupport extends DBSupport implements java.io.Serializable {
 
-  /** Name of the property whose value is the DB table name */
-  protected static final String intTablePrefix = "intPKTable";
+    /** Name of the property whose value is the DB table name */
+    protected static final String intTablePrefix = "intPKTable";
 
-  PreparedStatement pStmt = null;
+    PreparedStatement pStmt = null;
 
-  ResultSet result = null;
+    ResultSet result = null;
 
-  /*
-   * Cached data
-   */
-  protected int cofID = 0; /* Coffee ID (Primary Key) */
+    /*
+     * Cached data
+     */
+    protected int cofID = 0; /* Coffee ID (Primary Key) */
 
-  protected String cofName = null; /* Coffee Name */
+    protected String cofName = null; /* Coffee Name */
 
-  protected float cofPrice = 0; /* Coffee Price */
+    protected float cofPrice = 0; /* Coffee Price */
 
-  /**
-   * Create a new DBSupport object. If called from an EJB or a Web component,
-   * you must make sure to call TestUtil.init() before creating a new DBSupport
-   * object.
-   */
-  public IntegerDBSupport() throws Exception {
-    super(intTablePrefix);
-  }
-
-  public static void initTable(Properties props) throws Exception {
-    DBSupport.initTable(intTablePrefix, props);
-  }
-
-  public boolean keyExists(int pkey) throws SQLException {
-    try {
-      TestUtil.logTrace("[IntegerDBSupport] keyExists(" + pkey + ")");
-
-      getDBConnection();
-      pStmt = getStmt("Select_PK");
-      pStmt.setInt(1, pkey);
-      result = pStmt.executeQuery();
-
-      return result.next();
-    } catch (SQLException e) {
-      throw new SQLException("SQLException in keyExists: " + e);
-    } finally {
-      closeStmt(pStmt, result);
-    }
-  }
-
-  public void createNewRow(int cofID, String cofName, float cofPrice)
-      throws CreateException, SQLException {
-
-    try {
-      TestUtil.logTrace("[IntegerDBSupport] createNewRow(" + cofID + ", "
-          + cofName + ", " + cofPrice + ")");
-
-      pStmt = getStmt("Insert");
-      pStmt.setInt(1, cofID);
-      pStmt.setString(2, cofName);
-      pStmt.setFloat(3, cofPrice);
-      TestUtil.logTrace("[IntegerDBSupport] Execute stmt" + pStmt);
-      if (1 != pStmt.executeUpdate()) {
-        throw new CreateException("INSERT failed in createNewRow");
-      } else {
-        /* Keep cached state */
-        this.cofID = cofID;
-        this.cofName = cofName;
-        this.cofPrice = cofPrice;
-      }
-    } catch (SQLException e) {
-      TestUtil.printStackTrace(e);
-      throw new SQLException("SQLException in createNewRow" + e);
-    } finally {
-      closeStmt(pStmt, null);
+    /**
+     * Create a new DBSupport object. If called from an EJB or a Web component,
+     * you must make sure to call TestUtil.init() before creating a new DBSupport
+     * object.
+     */
+    public IntegerDBSupport() throws Exception {
+        super(intTablePrefix);
     }
 
-    TestUtil.logTrace("[IntegerDBSupport] New row created !");
-  }
-
-  public float loadPrice(int pkey) throws SQLException {
-
-    try {
-      TestUtil.logTrace("[IntegerDBSupport] loadPrice(" + pkey + ")");
-
-      pStmt = getStmt("Select_Price");
-      pStmt.setInt(1, pkey);
-      result = pStmt.executeQuery();
-      if (!result.next()) {
-        throw new SQLException("No record for PK = " + pkey);
-      }
-
-      return result.getFloat(1);
-    } catch (SQLException e) {
-      throw new SQLException("SQLException in loadPrice(): " + e);
-    } finally {
-      closeStmt(pStmt, result);
+    public static void initTable(Properties props) throws Exception {
+        DBSupport.initTable(intTablePrefix, props);
     }
-  }
 
-  public void storePrice(int pkey, float cofPrice) throws SQLException {
+    public boolean keyExists(int pkey) throws SQLException {
+        try {
+            TestUtil.logTrace("[IntegerDBSupport] keyExists(" + pkey + ")");
 
-    try {
-      TestUtil.logTrace("[IntegerDBSupport] storePrice()");
-      pStmt = getStmt("Update");
-      pStmt.setFloat(1, cofPrice);
-      pStmt.setInt(2, pkey);
-      if (1 != pStmt.executeUpdate()) {
-        throw new SQLException("UPDATE failed in storePrice");
-      }
+            getDBConnection();
+            pStmt = getStmt("Select_PK");
+            pStmt.setInt(1, pkey);
+            result = pStmt.executeQuery();
 
-      this.cofPrice = cofPrice;
-    } catch (SQLException e) {
-      throw new SQLException("SQLException in storePrice(): " + e);
-    } finally {
-      closeStmt(pStmt, null);
+            return result.next();
+        } catch (SQLException e) {
+            throw new SQLException("SQLException in keyExists: " + e);
+        } finally {
+            closeStmt(pStmt, result);
+        }
     }
-  }
 
-  public void removeRow(int pkey) throws SQLException {
+    public void createNewRow(int cofID, String cofName, float cofPrice) throws CreateException, SQLException {
 
-    try {
-      TestUtil.logTrace("[IntegerDBSupport] removeRow()");
-      pStmt = getStmt("Delete");
-      pStmt.setInt(1, pkey);
-      if (1 != pStmt.executeUpdate()) {
-        throw new SQLException("DELETE failed in removeRow");
-      }
-    } catch (SQLException e) {
-      throw new SQLException("SQLException in removeRow(): " + e);
-    } finally {
-      closeStmt(pStmt, null);
+        try {
+            TestUtil.logTrace("[IntegerDBSupport] createNewRow(" + cofID + ", " + cofName + ", " + cofPrice + ")");
+
+            pStmt = getStmt("Insert");
+            pStmt.setInt(1, cofID);
+            pStmt.setString(2, cofName);
+            pStmt.setFloat(3, cofPrice);
+            TestUtil.logTrace("[IntegerDBSupport] Execute stmt" + pStmt);
+            if (1 != pStmt.executeUpdate()) {
+                throw new CreateException("INSERT failed in createNewRow");
+            } else {
+                /* Keep cached state */
+                this.cofID = cofID;
+                this.cofName = cofName;
+                this.cofPrice = cofPrice;
+            }
+        } catch (SQLException e) {
+            TestUtil.printStackTrace(e);
+            throw new SQLException("SQLException in createNewRow" + e);
+        } finally {
+            closeStmt(pStmt, null);
+        }
+
+        TestUtil.logTrace("[IntegerDBSupport] New row created !");
     }
-  }
 
+    public float loadPrice(int pkey) throws SQLException {
+
+        try {
+            TestUtil.logTrace("[IntegerDBSupport] loadPrice(" + pkey + ")");
+
+            pStmt = getStmt("Select_Price");
+            pStmt.setInt(1, pkey);
+            result = pStmt.executeQuery();
+            if (!result.next()) {
+                throw new SQLException("No record for PK = " + pkey);
+            }
+
+            return result.getFloat(1);
+        } catch (SQLException e) {
+            throw new SQLException("SQLException in loadPrice(): " + e);
+        } finally {
+            closeStmt(pStmt, result);
+        }
+    }
+
+    public void storePrice(int pkey, float cofPrice) throws SQLException {
+
+        try {
+            TestUtil.logTrace("[IntegerDBSupport] storePrice()");
+            pStmt = getStmt("Update");
+            pStmt.setFloat(1, cofPrice);
+            pStmt.setInt(2, pkey);
+            if (1 != pStmt.executeUpdate()) {
+                throw new SQLException("UPDATE failed in storePrice");
+            }
+
+            this.cofPrice = cofPrice;
+        } catch (SQLException e) {
+            throw new SQLException("SQLException in storePrice(): " + e);
+        } finally {
+            closeStmt(pStmt, null);
+        }
+    }
+
+    public void removeRow(int pkey) throws SQLException {
+
+        try {
+            TestUtil.logTrace("[IntegerDBSupport] removeRow()");
+            pStmt = getStmt("Delete");
+            pStmt.setInt(1, pkey);
+            if (1 != pStmt.executeUpdate()) {
+                throw new SQLException("DELETE failed in removeRow");
+            }
+        } catch (SQLException e) {
+            throw new SQLException("SQLException in removeRow(): " + e);
+        } finally {
+            closeStmt(pStmt, null);
+        }
+    }
 }

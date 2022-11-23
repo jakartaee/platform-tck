@@ -22,11 +22,11 @@ package com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common;
 import jakarta.ejb.Timer;
 
 public interface AroundTimeoutIF {
-  public static final String AROUND_TIMEOUT_RECORD_KEY_SUFFIX = ".around-timeout";
+    public static final String AROUND_TIMEOUT_RECORD_KEY_SUFFIX = ".around-timeout";
 
-  public static final String STATUS_SINGLETON_BEAN_NAME = "timeoutStatusBean";
+    public static final String STATUS_SINGLETON_BEAN_NAME = "timeoutStatusBean";
 
-  Timer createSecondLaterTimer(String name);
+    Timer createSecondLaterTimer(String name);
 
-  Timer createSecondLaterTimer(String name, int seconds);
+    Timer createSecondLaterTimer(String name, int seconds);
 }

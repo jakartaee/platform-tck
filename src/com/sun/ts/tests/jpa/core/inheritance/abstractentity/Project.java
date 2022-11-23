@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.jpa.core.inheritance.abstractentity;
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import java.math.BigDecimal;
 
 /*
  * Project
@@ -33,68 +32,65 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Project implements java.io.Serializable {
 
-  // Instance Variables
-  private long projId;
+    // Instance Variables
+    private long projId;
 
-  private String name;
+    private String name;
 
-  private BigDecimal budget;
+    private BigDecimal budget;
 
-  private Employee projectLead;
+    private Employee projectLead;
 
-  public Project() {
-  }
+    public Project() {}
 
-  public Project(long projId, String name, BigDecimal budget) {
-    this(projId, name, budget, (Employee) null);
-  }
+    public Project(long projId, String name, BigDecimal budget) {
+        this(projId, name, budget, (Employee) null);
+    }
 
-  public Project(long projId, String name, BigDecimal budget,
-      Employee projectLead) {
-    this.projId = projId;
-    this.name = name;
-    this.budget = budget;
-    this.projectLead = projectLead;
-  }
+    public Project(long projId, String name, BigDecimal budget, Employee projectLead) {
+        this.projId = projId;
+        this.name = name;
+        this.budget = budget;
+        this.projectLead = projectLead;
+    }
 
-  // ===========================================================
-  // getters and setters for the state fields
+    // ===========================================================
+    // getters and setters for the state fields
 
-  @Id
-  public long getProjId() {
-    return projId;
-  }
+    @Id
+    public long getProjId() {
+        return projId;
+    }
 
-  public void setProjId(long projId) {
-    this.projId = projId;
-  }
+    public void setProjId(long projId) {
+        this.projId = projId;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public BigDecimal getBudget() {
-    return budget;
-  }
+    public BigDecimal getBudget() {
+        return budget;
+    }
 
-  public void setBudget(BigDecimal budget) {
-    this.budget = budget;
-  }
+    public void setBudget(BigDecimal budget) {
+        this.budget = budget;
+    }
 
-  // ===========================================================
-  // getters and setters for the association fields
+    // ===========================================================
+    // getters and setters for the association fields
 
-  @OneToOne(mappedBy = "project")
-  public Employee getProjectLead() {
-    return projectLead;
-  }
+    @OneToOne(mappedBy = "project")
+    public Employee getProjectLead() {
+        return projectLead;
+    }
 
-  public void setProjectLead(Employee projectLead) {
-    this.projectLead = projectLead;
-  }
-
+    public void setProjectLead(Employee projectLead) {
+        this.projectLead = projectLead;
+    }
 }

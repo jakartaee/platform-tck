@@ -16,21 +16,19 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpservletrequest40;
 
-import java.io.IOException;
-
 import jakarta.servlet.AsyncContext;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @WebServlet(asyncSupported = true, name = "DispatchServlet", value = "/DispatchServlet", loadOnStartup = 1)
 public class DispatchServlet extends HttpServlet {
 
-  public void doGet(HttpServletRequest req, HttpServletResponse resp)
-      throws IOException {
-    AsyncContext asyncContext = req.startAsync();
-    asyncContext.setTimeout(0);
-    asyncContext.dispatch("/TestServlet");
-  }
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        AsyncContext asyncContext = req.startAsync();
+        asyncContext.setTimeout(0);
+        asyncContext.dispatch("/TestServlet");
+    }
 }

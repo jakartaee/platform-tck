@@ -25,55 +25,55 @@ import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.tx.common.session.cm.ClientBase;
 
 public class Client extends ClientBase {
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * @testName: mandatoryTest
-   * 
-   * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
-   * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
-   * 
-   * @test_Strategy: client -> remote bm slsb -> remote cm slsb
-   */
+    /*
+     * @testName: mandatoryTest
+     *
+     * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
+     * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
+     *
+     * @test_Strategy: client -> remote bm slsb -> remote cm slsb
+     */
 
-  /*
-   * @testName: localMandatoryTest
-   * 
-   * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
-   * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
-   * 
-   * @test_Strategy: client -> remote bm slsb -> local cm slsb
-   */
+    /*
+     * @testName: localMandatoryTest
+     *
+     * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
+     * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
+     *
+     * @test_Strategy: client -> remote bm slsb -> local cm slsb
+     */
 
-  /*
-   * @testName: neverTest
-   * 
-   * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
-   * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
-   * 
-   * @test_Strategy: client -> remote bm slsb -> remote cm slsb
-   */
+    /*
+     * @testName: neverTest
+     *
+     * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
+     * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
+     *
+     * @test_Strategy: client -> remote bm slsb -> remote cm slsb
+     */
 
-  /*
-   * @testName: localNeverTest
-   * 
-   * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
-   * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
-   * 
-   * @test_Strategy: client -> remote bm slsb -> local cm slsb
-   */
-  /*
-   * @testName: sameMethodDifferentTxAttr
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: client -> remote bm slsb -> local/remote cm slsb
-   */
-  public void sameMethodDifferentTxAttr() throws TestFailedException {
-    testBean.sameMethodDifferentTxAttr();
-  }
+    /*
+     * @testName: localNeverTest
+     *
+     * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
+     * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
+     *
+     * @test_Strategy: client -> remote bm slsb -> local cm slsb
+     */
+    /*
+     * @testName: sameMethodDifferentTxAttr
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: client -> remote bm slsb -> local/remote cm slsb
+     */
+    public void sameMethodDifferentTxAttr() throws TestFailedException {
+        testBean.sameMethodDifferentTxAttr();
+    }
 }

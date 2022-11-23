@@ -25,28 +25,27 @@
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.simpletagsupport;
 
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.TagSupport;
 
 public class ClassicSkipPage extends TagSupport {
 
-  /**
-   * Default Constructor.
-   */
-  public ClassicSkipPage() {
-    super();
-  }
+    /**
+     * Default Constructor.
+     */
+    public ClassicSkipPage() {
+        super();
+    }
 
-  /**
-   * Called by container to perform any at-end tag processing.
-   * 
-   * @return Tag.SKIP_PAGE
-   * @throws JspException
-   *           - not thrown by this test
-   */
-  public int doEndTag() throws JspException {
-    JspTestUtil.debug("[ClassicSkipPage] in doEndTag()");
-    return SKIP_PAGE;
-  }
+    /**
+     * Called by container to perform any at-end tag processing.
+     *
+     * @return Tag.SKIP_PAGE
+     * @throws JspException
+     *           - not thrown by this test
+     */
+    public int doEndTag() throws JspException {
+        JspTestUtil.debug("[ClassicSkipPage] in doEndTag()");
+        return SKIP_PAGE;
+    }
 }

@@ -16,8 +16,6 @@
 
 package com.sun.ts.tests.jpa.core.annotations.version;
 
-import java.sql.Timestamp;
-
 import jakarta.persistence.Access;
 import jakarta.persistence.AccessType;
 import jakarta.persistence.Basic;
@@ -25,93 +23,92 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "A_BASIC")
 @Access(AccessType.FIELD)
 public class Timestamp_Field implements java.io.Serializable {
 
-  @Id
-  protected String id;
+    @Id
+    protected String id;
 
-  @Version
-  protected Timestamp basicTimestamp;
+    @Version
+    protected Timestamp basicTimestamp;
 
-  @Basic
-  protected String name;
+    @Basic
+    protected String name;
 
-  public Timestamp_Field() {
-  }
+    public Timestamp_Field() {}
 
-  public Timestamp_Field(String id) {
-    this.id = id;
-  }
-
-  public Timestamp_Field(String id, Timestamp basicTimestamp) {
-
-    this.id = id;
-    this.basicTimestamp = basicTimestamp;
-  }
-
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return this.name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public Timestamp getVersion() {
-    return this.basicTimestamp;
-  }
-
-  public void setVersion(Timestamp basicTimestamp) {
-    this.basicTimestamp = basicTimestamp;
-  }
-
-  public boolean equals(Object o) {
-    Timestamp_Field other;
-    boolean result = false;
-
-    if (!(o instanceof Timestamp_Field)) {
-      return result;
-    }
-    other = (Timestamp_Field) o;
-
-    if (this.getId().equals(other.getId())
-        && this.basicTimestamp.equals(other.basicTimestamp)
-        && this.name.equals(other.getName())) {
-      result = true;
+    public Timestamp_Field(String id) {
+        this.id = id;
     }
 
-    return result;
-  }
+    public Timestamp_Field(String id, Timestamp basicTimestamp) {
 
-  public int hashCode() {
-    int myHash;
+        this.id = id;
+        this.basicTimestamp = basicTimestamp;
+    }
 
-    myHash = this.getId().hashCode() + this.basicTimestamp.hashCode()
-        + this.name.hashCode();
+    public String getId() {
+        return id;
+    }
 
-    return myHash;
-  }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", version: " + basicTimestamp);
-    result.append(", name: " + name);
-    result.append("]");
-    return result.toString();
-  }
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Timestamp getVersion() {
+        return this.basicTimestamp;
+    }
+
+    public void setVersion(Timestamp basicTimestamp) {
+        this.basicTimestamp = basicTimestamp;
+    }
+
+    public boolean equals(Object o) {
+        Timestamp_Field other;
+        boolean result = false;
+
+        if (!(o instanceof Timestamp_Field)) {
+            return result;
+        }
+        other = (Timestamp_Field) o;
+
+        if (this.getId().equals(other.getId())
+                && this.basicTimestamp.equals(other.basicTimestamp)
+                && this.name.equals(other.getName())) {
+            result = true;
+        }
+
+        return result;
+    }
+
+    public int hashCode() {
+        int myHash;
+
+        myHash = this.getId().hashCode() + this.basicTimestamp.hashCode() + this.name.hashCode();
+
+        return myHash;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getId());
+        result.append(", version: " + basicTimestamp);
+        result.append(", name: " + name);
+        result.append("]");
+        return result.toString();
+    }
 }

@@ -19,47 +19,43 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.war.servletcontextlistener;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase;
 import com.sun.ts.tests.ejb30.lite.basic.common.Basic1IF;
 import jakarta.annotation.PostConstruct;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  private List<Basic1IF> beans = new ArrayList<Basic1IF>();
+    private List<Basic1IF> beans = new ArrayList<Basic1IF>();
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    beans.add(
-        (Basic1IF) ServiceLocator.lookupByShortNameNoTry("ejb/statelessBean"));
-    beans.add(
-        (Basic1IF) ServiceLocator.lookupByShortNameNoTry("ejb/statefulBean"));
-    beans.add(
-        (Basic1IF) ServiceLocator.lookupByShortNameNoTry("ejb/singletonBean"));
-  }
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        beans.add((Basic1IF) ServiceLocator.lookupByShortNameNoTry("ejb/statelessBean"));
+        beans.add((Basic1IF) ServiceLocator.lookupByShortNameNoTry("ejb/statefulBean"));
+        beans.add((Basic1IF) ServiceLocator.lookupByShortNameNoTry("ejb/singletonBean"));
+    }
 
-  /*
-   * @testName: onlyOneTest
-   * 
-   * @test_Strategy: The test logic is in ServletContextListener. The webapp
-   * initialization will fail if test expectations are not met, assuming
-   * contextInitialized method is invoked. This http request by this test method
-   * does nothing else. Since a ServletContextListener is only called once per
-   * webapp loading, there should be only one test for this directory. Also
-   * verifies that ejb injected into TestServletContextListener can also be
-   * looked up inside the test client (both are web components).
-   */
-  public void onlyOneTest() {
-    appendReason("Test logics are in ServletContextListener class");
-    TestServletContextListener.add(beans);
-  }
+    /*
+     * @testName: onlyOneTest
+     *
+     * @test_Strategy: The test logic is in ServletContextListener. The webapp
+     * initialization will fail if test expectations are not met, assuming
+     * contextInitialized method is invoked. This http request by this test method
+     * does nothing else. Since a ServletContextListener is only called once per
+     * webapp loading, there should be only one test for this directory. Also
+     * verifies that ejb injected into TestServletContextListener can also be
+     * looked up inside the test client (both are web components).
+     */
+    public void onlyOneTest() {
+        appendReason("Test logics are in ServletContextListener class");
+        TestServletContextListener.add(beans);
+    }
 }

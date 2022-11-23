@@ -20,52 +20,50 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpfilter;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    setContextRoot("/servlet_jsh_httpfilter_web");
+        setContextRoot("/servlet_jsh_httpfilter_web");
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /* Run test */
-  /*
-   * @testName: dofilterTest
-   *
-   * @assertion_ids: NA;
-   *
-   * @test_Strategy: Client attempts to access a servlet and both filters
-   * extending HttpFilter configured for that servlet should be invoked.
-   */
+    /* Run test */
+    /*
+     * @testName: dofilterTest
+     *
+     * @assertion_ids: NA;
+     *
+     * @test_Strategy: Client attempts to access a servlet and both filters
+     * extending HttpFilter configured for that servlet should be invoked.
+     */
 
-  public void dofilterTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "HttpFilterTest");
-    invoke();
-  }
+    public void dofilterTest() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "HttpFilterTest");
+        invoke();
+    }
 }

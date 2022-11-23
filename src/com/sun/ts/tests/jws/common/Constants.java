@@ -25,84 +25,85 @@ package com.sun.ts.tests.jws.common;
 
 public class Constants {
 
-  // Standard namespace URI's
-  public static final String NSURI_SOAP11_ENVELOPE = "http://schemas.xmlsoap.org/soap/envelope/";
+    // Standard namespace URI's
+    public static final String NSURI_SOAP11_ENVELOPE = "http://schemas.xmlsoap.org/soap/envelope/";
 
-  public static final String NSURI_SOAP11_ENCODING = "http://schemas.xmlsoap.org/soap/encoding/";
+    public static final String NSURI_SOAP11_ENCODING = "http://schemas.xmlsoap.org/soap/encoding/";
 
-  public static final String NSURI_SOAP11_ACTOR_NEXT = "http://schema.xmlsoap.org/soap/actor/next";
+    public static final String NSURI_SOAP11_ACTOR_NEXT = "http://schema.xmlsoap.org/soap/actor/next";
 
-  public static final String NSURI_SOAP12_ENVELOPE = "http://www.w3.org/2003/05/soap-envelope";
+    public static final String NSURI_SOAP12_ENVELOPE = "http://www.w3.org/2003/05/soap-envelope";
 
-  public static final String NSURI_SOAP12_ENCODING = "http://www.w3.org/2003/05/soap-encoding";
+    public static final String NSURI_SOAP12_ENCODING = "http://www.w3.org/2003/05/soap-encoding";
 
-  public static final String NSURI_SOAP12_ROLE_NEXT = "http://www.w3.org/2003/05/soap-envelope/role/next";
+    public static final String NSURI_SOAP12_ROLE_NEXT = "http://www.w3.org/2003/05/soap-envelope/role/next";
 
-  public static final String NSURI_SOAP12_ROLE_NONE = "http://www.w3.org/2003/05/soap-envelope/role/none";
+    public static final String NSURI_SOAP12_ROLE_NONE = "http://www.w3.org/2003/05/soap-envelope/role/none";
 
-  public static final String NSURI_SOAP12_ROLE_ULTIMATE_RECEIVER = "http://www.w3.org/2003/05/soap-envelope/role/ultimateReceiver";
+    public static final String NSURI_SOAP12_ROLE_ULTIMATE_RECEIVER =
+            "http://www.w3.org/2003/05/soap-envelope/role/ultimateReceiver";
 
-  public static final String NSURI_WSDL_SOAP = "http://schemas.xmlsoap.org/wsdl/soap/";
+    public static final String NSURI_WSDL_SOAP = "http://schemas.xmlsoap.org/wsdl/soap/";
 
-  public static final String NSURI_HTTP_BINDING = "http://www.w3.org/2004/08/wsdl/http";
+    public static final String NSURI_HTTP_BINDING = "http://www.w3.org/2004/08/wsdl/http";
 
-  public static final String NSURI_SOAP11HTTP_BINDING = "http://schemas.xmlsoap.org/wsdl/soap/http";
+    public static final String NSURI_SOAP11HTTP_BINDING = "http://schemas.xmlsoap.org/wsdl/soap/http";
 
-  public static final String NSURI_SOAP12HTTP_BINDING = "http://www.w3.org/2003/05/soap/bindings/HTTP/";
+    public static final String NSURI_SOAP12HTTP_BINDING = "http://www.w3.org/2003/05/soap/bindings/HTTP/";
 
-  public static final String URI_ENVELOPE = "http://schemas.xmlsoap.org/soap/envelope/";
+    public static final String URI_ENVELOPE = "http://schemas.xmlsoap.org/soap/envelope/";
 
-  public static final String URI_BINDING = "http://schemas.xmlsoap.org/wsdl/soap/";
+    public static final String URI_BINDING = "http://schemas.xmlsoap.org/wsdl/soap/";
 
-  public static final String URI_BINDING_HTTP = "http://schemas.xmlsoap.org/wsdl/soap/http";
+    public static final String URI_BINDING_HTTP = "http://schemas.xmlsoap.org/wsdl/soap/http";
 
-  public static final String URI_ENCODING = "http://schemas.xmlsoap.org/soap/encoding/";
+    public static final String URI_ENCODING = "http://schemas.xmlsoap.org/soap/encoding/";
 
-  public static final String URI_HTTP = "http://schemas.xmlsoap.org/soap/http/";
+    public static final String URI_HTTP = "http://schemas.xmlsoap.org/soap/http/";
 
-  public static final String URI_SOAP_ACTOR_NEXT = "http://schema.xmlsoap.org/soap/actor/next";
+    public static final String URI_SOAP_ACTOR_NEXT = "http://schema.xmlsoap.org/soap/actor/next";
 
-  public static final String XSD = "http://www.w3.org/2001/XMLSchema";
+    public static final String XSD = "http://www.w3.org/2001/XMLSchema";
 
-  public static final String XSI = "http://www.w3.org/2001/XMLSchema-instance";
+    public static final String XSI = "http://www.w3.org/2001/XMLSchema-instance";
 
-  public static final String NSURI_SCHEMA_XSD = "http://www.w3.org/2001/XMLSchema";
+    public static final String NSURI_SCHEMA_XSD = "http://www.w3.org/2001/XMLSchema";
 
-  public static final String NSURI_SCHEMA_XSI = "http://www.w3.org/2001/XMLSchema-instance";
+    public static final String NSURI_SCHEMA_XSI = "http://www.w3.org/2001/XMLSchema-instance";
 
-  // Standard SOAP Element Tags
-  public static final String TAG_ENVELOPE = "Envelope";
+    // Standard SOAP Element Tags
+    public static final String TAG_ENVELOPE = "Envelope";
 
-  public static final String TAG_HEADER = "Header";
+    public static final String TAG_HEADER = "Header";
 
-  public static final String TAG_BODY = "Body";
+    public static final String TAG_BODY = "Body";
 
-  // Standard Attribute Tags
-  public static final String ATTR_ACTOR = "actor";
+    // Standard Attribute Tags
+    public static final String ATTR_ACTOR = "actor";
 
-  public static final String ATTR_MUST_UNDERSTAND = "mustUnderstand";
+    public static final String ATTR_MUST_UNDERSTAND = "mustUnderstand";
 
-  public static final String ATTR_ENCODING_STYLE = "encodingStyle";
+    public static final String ATTR_ENCODING_STYLE = "encodingStyle";
 
-  // Invalid URL's used for negative testing
-  public static final String BAD_ABSOLUTE_URL = "bogus:/foobar";
+    // Invalid URL's used for negative testing
+    public static final String BAD_ABSOLUTE_URL = "bogus:/foobar";
 
-  public static final String BAD_RELATIVE_URL = "/foobar";
+    public static final String BAD_RELATIVE_URL = "/foobar";
 
-  // Handler constants for message direction and message scope
-  public final static String INBOUND = "Inbound";
+    // Handler constants for message direction and message scope
+    public static final String INBOUND = "Inbound";
 
-  public final static String OUTBOUND = "Outbound";
+    public static final String OUTBOUND = "Outbound";
 
-  public final static String INOUTBOUND = "InOutbound";
+    public static final String INOUTBOUND = "InOutbound";
 
-  public final static String APPLICATION = "APPLICATION";
+    public static final String APPLICATION = "APPLICATION";
 
-  public final static String HANDLER = "HANDLER";
+    public static final String HANDLER = "HANDLER";
 
-  public final static String EXPECTED_HTTP_BINDING = NSURI_HTTP_BINDING;
+    public static final String EXPECTED_HTTP_BINDING = NSURI_HTTP_BINDING;
 
-  public final static String EXPECTED_SOAP11HTTP_BINDING = NSURI_SOAP11HTTP_BINDING;
+    public static final String EXPECTED_SOAP11HTTP_BINDING = NSURI_SOAP11HTTP_BINDING;
 
-  public final static String EXPECTED_SOAP12HTTP_BINDING = NSURI_SOAP12HTTP_BINDING;
+    public static final String EXPECTED_SOAP12HTTP_BINDING = NSURI_SOAP12HTTP_BINDING;
 }

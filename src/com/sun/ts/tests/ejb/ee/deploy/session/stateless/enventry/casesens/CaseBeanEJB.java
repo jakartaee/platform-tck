@@ -25,12 +25,11 @@ import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 
 public class CaseBeanEJB extends StatelessWrapper {
 
-  /**
-   * Check that two environment entries whose names differ only by case are
-   * associated with different runtime values (as specified in DD).
-   */
-  public boolean testCaseSensitivity() {
-    return TestCode.testCaseSensitivity(nctx);
-  }
-
+    /**
+     * Check that two environment entries whose names differ only by case are
+     * associated with different runtime values (as specified in DD).
+     */
+    public boolean testCaseSensitivity() {
+        return TestCode.testCaseSensitivity(nctx);
+    }
 }

@@ -20,26 +20,19 @@
 
 package com.sun.ts.tests.jaxws.sharedclients.rlhandlerclient;
 
-import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
 import com.sun.ts.tests.jaxws.common.*;
-
 import com.sun.ts.tests.jaxws.common.LogicalHandlerBase2;
-import jakarta.xml.ws.handler.LogicalMessageContext;
-import jakarta.xml.ws.soap.SOAPFaultException;
-import jakarta.xml.ws.handler.soap.SOAPMessageContext;
-import javax.xml.namespace.QName;
-import jakarta.xml.soap.SOAPFactory;
-import jakarta.xml.soap.Name;
 
 public class ClientLogicalHandler6 extends LogicalHandlerBase2 {
-  private static final String WHICHHANDLERTYPE = "Client";
+    private static final String WHICHHANDLERTYPE = "Client";
 
-  private static final String HANDLERNAME = "ClientLogicalHandler6";
+    private static final String HANDLERNAME = "ClientLogicalHandler6";
 
-  public ClientLogicalHandler6() {
-    super();
-    super.setWhichHandlerType(WHICHHANDLERTYPE);
-    super.setHandlerName(HANDLERNAME);
-  }
+    public ClientLogicalHandler6() {
+        super();
+        super.setWhichHandlerType(WHICHHANDLERTYPE);
+        super.setHandlerName(HANDLERNAME);
+    }
 }

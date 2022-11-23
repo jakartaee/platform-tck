@@ -20,13 +20,12 @@
 
 package com.sun.ts.tests.ejb.ee.timer.helper;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface CheckedMethod extends EJBObject {
-  public boolean isAuthz() throws RemoteException;
+    public boolean isAuthz() throws RemoteException;
 
-  public void initLogging(Properties p) throws RemoteException;
+    public void initLogging(Properties p) throws RemoteException;
 }

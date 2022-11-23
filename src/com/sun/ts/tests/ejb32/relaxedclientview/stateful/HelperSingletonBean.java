@@ -18,10 +18,7 @@ package com.sun.ts.tests.ejb32.relaxedclientview.stateful;
 
 import com.sun.ts.tests.ejb32.relaxedclientview.common.AbstractHelperSingleton;
 import com.sun.ts.tests.ejb32.relaxedclientview.common.HelperSingleton;
-
 import jakarta.ejb.Singleton;
 
 @Singleton
-public class HelperSingletonBean extends AbstractHelperSingleton
-    implements HelperSingleton {
-}
+public class HelperSingletonBean extends AbstractHelperSingleton implements HelperSingleton {}

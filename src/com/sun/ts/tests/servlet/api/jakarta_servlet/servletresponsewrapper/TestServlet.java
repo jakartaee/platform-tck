@@ -24,26 +24,23 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletresponsewrapper;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.servlet.api.common.response.ResponseTestServlet;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.ServletResponseWrapper;
+import java.io.IOException;
 
 public class TestServlet extends ResponseTestServlet {
 
-  public void init(ServletConfig servletConfig) throws ServletException {
-    super.init(servletConfig);
-  }
+    public void init(ServletConfig servletConfig) throws ServletException {
+        super.init(servletConfig);
+    }
 
-  public void service(ServletRequest servletRequest,
-      ServletResponse servletResponse) throws ServletException, IOException {
-    ServletResponseWrapper wrapper = new ServletResponseWrapper(
-        servletResponse);
-    super.service(servletRequest, wrapper);
-  }
+    public void service(ServletRequest servletRequest, ServletResponse servletResponse)
+            throws ServletException, IOException {
+        ServletResponseWrapper wrapper = new ServletResponseWrapper(servletResponse);
+        super.service(servletRequest, wrapper);
+    }
 }

@@ -24,10 +24,9 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagdata;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 /**
  * Test client for TagData. Implementation note, all tests are performed within
@@ -36,102 +35,96 @@ import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
  */
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /* Run tests */
+    /* Run tests */
 
-  // ============================================ Tests ======
+    // ============================================ Tests ======
 
-  /*
-   * @testName: tagDataGetAttributeTest
-   * 
-   * @assertion_ids: JSP:JAVADOC:271
-   * 
-   * @test_Strategy: Validate the behavior of TagData.getAttribute().
-   */
-  public void tagDataGetAttributeTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagdata_web/GetAttributeTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    invoke();
-  }
+    /*
+     * @testName: tagDataGetAttributeTest
+     *
+     * @assertion_ids: JSP:JAVADOC:271
+     *
+     * @test_Strategy: Validate the behavior of TagData.getAttribute().
+     */
+    public void tagDataGetAttributeTest() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagdata_web/GetAttributeTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
+        invoke();
+    }
 
-  /*
-   * @testName: tagDataSetAttributeTest
-   * 
-   * @assertion_ids: JSP:JAVADOC:272
-   * 
-   * @test_Strategy: Validate the behavior of TagData.setAttribute().
-   */
-  public void tagDataSetAttributeTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagdata_web/SetAttributeTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    invoke();
-  }
+    /*
+     * @testName: tagDataSetAttributeTest
+     *
+     * @assertion_ids: JSP:JAVADOC:272
+     *
+     * @test_Strategy: Validate the behavior of TagData.setAttribute().
+     */
+    public void tagDataSetAttributeTest() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagdata_web/SetAttributeTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
+        invoke();
+    }
 
-  /*
-   * @testName: tagDataGetAttributeStringTest
-   * 
-   * @assertion_ids: JSP:JAVADOC:273;JSP:JAVADOC:274
-   * 
-   * @test_Strategy: Validate the behavior of TagData.getAttributeString().
-   */
-  public void tagDataGetAttributeStringTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagdata_web/GetAttributeStringTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    invoke();
-  }
+    /*
+     * @testName: tagDataGetAttributeStringTest
+     *
+     * @assertion_ids: JSP:JAVADOC:273;JSP:JAVADOC:274
+     *
+     * @test_Strategy: Validate the behavior of TagData.getAttributeString().
+     */
+    public void tagDataGetAttributeStringTest() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagdata_web/GetAttributeStringTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
+        invoke();
+    }
 
-  /*
-   * @testName: tagDataGetAttributesTest
-   * 
-   * @assertion_ids: JSP:JAVADOC:275
-   * 
-   * @test_Strategy: Validate the behavior of TagData.getAttributes().
-   */
-  public void tagDataGetAttributesTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagdata_web/GetAttributesTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    invoke();
-  }
+    /*
+     * @testName: tagDataGetAttributesTest
+     *
+     * @assertion_ids: JSP:JAVADOC:275
+     *
+     * @test_Strategy: Validate the behavior of TagData.getAttributes().
+     */
+    public void tagDataGetAttributesTest() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagdata_web/GetAttributesTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
+        invoke();
+    }
 
-  /*
-   * @testName: tagDataConstructorTest
-   * 
-   * @assertion_ids: JSP:JAVADOC:268
-   * 
-   * @test_Strategy: validate the constructor TagData(Object[][]).
-   */
-  public void tagDataConstructorTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_tagdata_web/ConstructorTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    invoke();
-  }
+    /*
+     * @testName: tagDataConstructorTest
+     *
+     * @assertion_ids: JSP:JAVADOC:268
+     *
+     * @test_Strategy: validate the constructor TagData(Object[][]).
+     */
+    public void tagDataConstructorTest() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagdata_web/ConstructorTest.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
+        invoke();
+    }
 }

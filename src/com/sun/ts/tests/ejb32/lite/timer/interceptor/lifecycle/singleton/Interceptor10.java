@@ -16,57 +16,55 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.interceptor.lifecycle.singleton;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import jakarta.interceptor.AroundConstruct;
+import jakarta.interceptor.InvocationContext;
 import java.lang.reflect.Method;
 import java.util.logging.Level;
 
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-
-import jakarta.interceptor.AroundConstruct;
-import jakarta.interceptor.InvocationContext;
-
 public class Interceptor10 extends InterceptorBase {
 
-  private static final String simpleName = "Interceptor10";
+    private static final String simpleName = "Interceptor10";
 
-  @AroundConstruct
-  @SuppressWarnings("unused")
-  private void aroundConstruct(InvocationContext ic) {
+    @AroundConstruct
+    @SuppressWarnings("unused")
+    private void aroundConstruct(InvocationContext ic) {
 
-    Helper.getLogger().logp(Level.INFO, simpleName, "aroundConstruct",
-        "Adding aroundConstruct record: " + simpleName);
-    // Target should be null before proceed()
-    Object savedTarget = ic.getTarget();
+        Helper.getLogger()
+                .logp(Level.INFO, simpleName, "aroundConstruct", "Adding aroundConstruct record: " + simpleName);
+        // Target should be null before proceed()
+        Object savedTarget = ic.getTarget();
 
-    try {
-      // Only for @AroundConstruct Lifecycle callback
-      // InvocationContext.getMethod() should return null
-      assertNullGetMethod(ic);
-      ic.proceed();
-    } catch (Exception ex) {
-      ex.printStackTrace();
-      return;
+        try {
+            // Only for @AroundConstruct Lifecycle callback
+            // InvocationContext.getMethod() should return null
+            assertNullGetMethod(ic);
+            ic.proceed();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return;
+        }
     }
 
-  }
+    /**
+     * Asserts that InvocationContext.getMethod() returns null for lifecycle
+     * interceptor methods. This method should only be used for checking lifecycle
+     * interceptor methods.
+     */
+    public static void assertNullGetMethod(InvocationContext inv) throws IllegalStateException {
 
-  /**
-   * Asserts that InvocationContext.getMethod() returns null for lifecycle
-   * interceptor methods. This method should only be used for checking lifecycle
-   * interceptor methods.
-   */
-  public static void assertNullGetMethod(InvocationContext inv)
-      throws IllegalStateException {
-
-    Method meth = inv.getMethod();
-    if (meth != null) {
-      throw new IllegalStateException("InvocationContext.getMethod() must"
-          + " return null for lifecycle interceptor methods.  But the"
-          + " actual returned value is " + meth);
-    } else {
-      Helper.getLogger().logp(Level.INFO, simpleName, "assertNullGetMethod",
-          "InvocationContext.getMethod() returned null as expected: "
-              + simpleName);
+        Method meth = inv.getMethod();
+        if (meth != null) {
+            throw new IllegalStateException("InvocationContext.getMethod() must"
+                    + " return null for lifecycle interceptor methods.  But the"
+                    + " actual returned value is " + meth);
+        } else {
+            Helper.getLogger()
+                    .logp(
+                            Level.INFO,
+                            simpleName,
+                            "assertNullGetMethod",
+                            "InvocationContext.getMethod() returned null as expected: " + simpleName);
+        }
     }
-  }
-
 }

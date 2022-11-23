@@ -60,5 +60,4 @@ package com.sun.ts.tests.servlet.api.jakarta_servlet.sclistener40;
 
 import jakarta.servlet.ServletContextListener;
 
-public final class SCListener40 implements ServletContextListener {
-}
+public final class SCListener40 implements ServletContextListener {}

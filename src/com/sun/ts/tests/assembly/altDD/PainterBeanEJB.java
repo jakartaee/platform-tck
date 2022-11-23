@@ -21,16 +21,15 @@ package com.sun.ts.tests.assembly.altDD;
 
 import com.sun.ts.tests.assembly.util.shared.ejbref.common.ReferencedBeanCode;
 import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
-
 import jakarta.ejb.EJBException;
 
 public class PainterBeanEJB extends StatelessWrapper {
 
-  /**
-   * Method used to identify this bean. Return the value of bean env entry
-   * called 'myName'.
-   */
-  public String whoAreYou() throws EJBException {
-    return ReferencedBeanCode.whoAreYou(nctx);
-  }
+    /**
+     * Method used to identify this bean. Return the value of bean env entry
+     * called 'myName'.
+     */
+    public String whoAreYou() throws EJBException {
+        return ReferencedBeanCode.whoAreYou(nctx);
+    }
 }

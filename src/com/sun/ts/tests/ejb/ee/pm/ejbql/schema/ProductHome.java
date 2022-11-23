@@ -20,71 +20,54 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
-import java.rmi.RemoteException;
-import java.util.Collection;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Collection;
 
 public interface ProductHome extends EJBHome {
-  public Product create(String id, String name, double price, int quantity,
-      long partNumber) throws RemoteException, CreateException;
+    public Product create(String id, String name, double price, int quantity, long partNumber)
+            throws RemoteException, CreateException;
 
-  public Product findByPrimaryKey(String key)
-      throws RemoteException, FinderException;
+    public Product findByPrimaryKey(String key) throws RemoteException, FinderException;
 
-  public Collection findAllProducts() throws RemoteException, FinderException;
+    public Collection findAllProducts() throws RemoteException, FinderException;
 
-  public Product findProductByName(String name)
-      throws RemoteException, FinderException;
+    public Product findProductByName(String name) throws RemoteException, FinderException;
 
-  public Collection findAllProductsByQuantity()
-      throws RemoteException, FinderException;
+    public Collection findAllProductsByQuantity() throws RemoteException, FinderException;
 
-  public Collection findProductsByQuery1()
-      throws RemoteException, FinderException;
+    public Collection findProductsByQuery1() throws RemoteException, FinderException;
 
-  public Collection findProductsByHighestQuantity()
-      throws RemoteException, FinderException;
+    public Collection findProductsByHighestQuantity() throws RemoteException, FinderException;
 
-  public Collection findProductsByQuery2()
-      throws RemoteException, FinderException;
+    public Collection findProductsByQuery2() throws RemoteException, FinderException;
 
-  public Collection findProductsByQuery3()
-      throws RemoteException, FinderException;
+    public Collection findProductsByQuery3() throws RemoteException, FinderException;
 
-  public Collection findProductsByQuery4()
-      throws RemoteException, FinderException;
+    public Collection findProductsByQuery4() throws RemoteException, FinderException;
 
-  public Collection findProductsByQuery5()
-      throws RemoteException, FinderException;
+    public Collection findProductsByQuery5() throws RemoteException, FinderException;
 
-  public Collection findProductsByQuery6()
-      throws RemoteException, FinderException;
+    public Collection findProductsByQuery6() throws RemoteException, FinderException;
 
-  public Collection findProductsByQuery7(int i)
-      throws RemoteException, FinderException;
+    public Collection findProductsByQuery7(int i) throws RemoteException, FinderException;
 
-  public Collection findProductsByQuery8(String s)
-      throws RemoteException, FinderException;
+    public Collection findProductsByQuery8(String s) throws RemoteException, FinderException;
 
-  public Collection findProductsByQuery9()
-      throws RemoteException, FinderException;
+    public Collection findProductsByQuery9() throws RemoteException, FinderException;
 
-  // Miscellaneous Wrapper Home Methods for ejbSelect's
-  public Collection selectAllProducts() throws RemoteException, FinderException;
+    // Miscellaneous Wrapper Home Methods for ejbSelect's
+    public Collection selectAllProducts() throws RemoteException, FinderException;
 
-  public Product selectProductByName(String name)
-      throws RemoteException, FinderException;
+    public Product selectProductByName(String name) throws RemoteException, FinderException;
 
-  public Product selectProductByType() throws RemoteException, FinderException;
+    public Product selectProductByType() throws RemoteException, FinderException;
 
-  public Collection selectProductsByPartNumber()
-      throws RemoteException, FinderException;
+    public Collection selectProductsByPartNumber() throws RemoteException, FinderException;
 
-  public long selectCountSingle() throws RemoteException;
+    public long selectCountSingle() throws RemoteException;
 
-  public double selectSumSingle() throws RemoteException;
-
+    public double selectSumSingle() throws RemoteException;
 }

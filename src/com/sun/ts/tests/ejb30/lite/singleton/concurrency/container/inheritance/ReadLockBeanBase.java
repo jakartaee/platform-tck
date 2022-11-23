@@ -27,17 +27,17 @@ import jakarta.ejb.LockType;
  * methods in this class.
  */
 @Lock(LockType.READ)
-abstract public class ReadLockBeanBase extends DefaultLockBeanBase {
+public abstract class ReadLockBeanBase extends DefaultLockBeanBase {
 
-  public long getAndResetUnlockedSum() {
-    long result = unlockedSum;
-    unlockedSum = 0;
-    return result;
-  }
-
-  public void addUnlocked(int num) {
-    for (int i = 0; i < num; i++) {
-      unlockedSum++;
+    public long getAndResetUnlockedSum() {
+        long result = unlockedSum;
+        unlockedSum = 0;
+        return result;
     }
-  }
+
+    public void addUnlocked(int num) {
+        for (int i = 0; i < num; i++) {
+            unlockedSum++;
+        }
+    }
 }

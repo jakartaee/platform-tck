@@ -17,38 +17,36 @@
 
 package com.sun.ts.tests.servlet.spec.serverpush;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Locale;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.PushBuilder;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Locale;
 
 public class TestServlet2 extends HttpServlet {
 
-  @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, IOException {
-    PrintWriter pw = resp.getWriter();
-    req.getSession(true);
-    PushBuilder pb = req.newPushBuilder();
-    String defaultMethod = pb.getMethod();
-    pw.println("Method:" + defaultMethod);
-    PushBuilder pb2 = req.newPushBuilder();
-    pw.println("Return new instance:" + String.valueOf(pb != pb2));
-    pw.println("JSESSIONID: " + pb.getSessionId());
-    pw.println("The headers of PushBuilder: ");
-    for (String name : pb.getHeaderNames()) {
-      /*
-       * Header names are case insensitive. Force to lower case to make client
-       * side test logic simpler.
-       */
-      pw.print(name.toLowerCase(Locale.ENGLISH));
-      pw.print("=");
-      pw.println(pb.getHeader(name));
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        PrintWriter pw = resp.getWriter();
+        req.getSession(true);
+        PushBuilder pb = req.newPushBuilder();
+        String defaultMethod = pb.getMethod();
+        pw.println("Method:" + defaultMethod);
+        PushBuilder pb2 = req.newPushBuilder();
+        pw.println("Return new instance:" + String.valueOf(pb != pb2));
+        pw.println("JSESSIONID: " + pb.getSessionId());
+        pw.println("The headers of PushBuilder: ");
+        for (String name : pb.getHeaderNames()) {
+            /*
+             * Header names are case insensitive. Force to lower case to make client
+             * side test logic simpler.
+             */
+            pw.print(name.toLowerCase(Locale.ENGLISH));
+            pw.print("=");
+            pw.println(pb.getHeader(name));
+        }
     }
-  }
 }

@@ -16,41 +16,42 @@
 
 package com.sun.ts.tests.webservices12.deploy.portcomplink.ejb.inter;
 
+import com.sun.ts.tests.webservices12.deploy.portcomplink.ejb.intra.*;
 import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;
 import jakarta.xml.ws.WebServiceException;
 import javax.naming.InitialContext;
 
-import com.sun.ts.tests.webservices12.deploy.portcomplink.ejb.intra.*;
-
-@WebService(portName = "InterModuleSeiPort", serviceName = "InterModuleService", targetNamespace = "http://InterModuleService.org/wsdl", wsdlLocation = "META-INF/wsdl/InterModuleService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.deploy.portcomplink.ejb.inter.InterModuleSei")
-
+@WebService(
+        portName = "InterModuleSeiPort",
+        serviceName = "InterModuleService",
+        targetNamespace = "http://InterModuleService.org/wsdl",
+        wsdlLocation = "META-INF/wsdl/InterModuleService.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices12.deploy.portcomplink.ejb.inter.InterModuleSei")
 @Stateless(name = "InterModuleEjb")
 public class InterModuleEjbBean {
 
-  public InterResponse sayInter(InterRequest input) {
-    InterResponse response = new InterResponse();
-    IntraRequest intra_input = null;
-    IntraResponse intra_response = null;
-    try {
-      intra_input = new IntraRequest();
-      intra_input.setArgument(input.getArgument());
+    public InterResponse sayInter(InterRequest input) {
+        InterResponse response = new InterResponse();
+        IntraRequest intra_input = null;
+        IntraResponse intra_response = null;
+        try {
+            intra_input = new IntraRequest();
+            intra_input.setArgument(input.getArgument());
 
-      System.out.println(
-          "Lookup: webservice java:comp/env/service/WSportcomplinkejb/intra");
-      InitialContext ctx = new InitialContext();
-      IntraModuleService svc = (IntraModuleService) ctx
-          .lookup("java:comp/env/service/WSportcomplinkejb/intra");
-      System.out.println("service=" + svc);
-      System.out.println("Get port from service");
-      IntraModuleSei port = (IntraModuleSei) svc.getPort(IntraModuleSei.class);
-      System.out.println("port=" + port);
-      intra_response = port.sayIntra(intra_input);
-      response.setArgument("inter " + intra_response.getArgument());
-    } catch (Exception e) {
-      System.out.println("Exception: " + e);
-      throw new WebServiceException(e);
+            System.out.println("Lookup: webservice java:comp/env/service/WSportcomplinkejb/intra");
+            InitialContext ctx = new InitialContext();
+            IntraModuleService svc = (IntraModuleService) ctx.lookup("java:comp/env/service/WSportcomplinkejb/intra");
+            System.out.println("service=" + svc);
+            System.out.println("Get port from service");
+            IntraModuleSei port = (IntraModuleSei) svc.getPort(IntraModuleSei.class);
+            System.out.println("port=" + port);
+            intra_response = port.sayIntra(intra_input);
+            response.setArgument("inter " + intra_response.getArgument());
+        } catch (Exception e) {
+            System.out.println("Exception: " + e);
+            throw new WebServiceException(e);
+        }
+        return response;
     }
-    return response;
-  }
 }

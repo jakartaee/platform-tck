@@ -25,7 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 
 public class DoubleBeanEJB extends StatelessWrapper {
 
-  public boolean testDoubleEntry() {
-    return TestCode.testDoubleEntry(nctx);
-  }
+    public boolean testDoubleEntry() {
+        return TestCode.testDoubleEntry(nctx);
+    }
 }

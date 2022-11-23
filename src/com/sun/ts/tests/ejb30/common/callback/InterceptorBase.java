@@ -20,107 +20,102 @@
 
 package com.sun.ts.tests.ejb30.common.callback;
 
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
+import jakarta.interceptor.InvocationContext;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
+public abstract class InterceptorBase extends InterceptorBaseBase {
 
-import jakarta.interceptor.InvocationContext;
-
-abstract public class InterceptorBase extends InterceptorBaseBase {
-
-  private String getInjectedBaseLocation() {
-    return NOT_INJECTED;
-  }
-
-  protected String getShortName() {
-    return "BASE";
-  }
-
-  protected void myCreate0(InvocationContext inv, String symbol)
-      throws RuntimeException {
-    // assertNullGetMethod(inv); // Only for @AroundConstruct Lifecycle callback
-    // InvocationContext.getMethod() should return null
-    updateContextData(inv);
-    SharedCallbackBeanBase bean = (SharedCallbackBeanBase) inv.getTarget();
-    bean.addPostConstructCall(symbol);
-    bean.setPostConstructCalled(true);
-    TLogger.log("PostConstruct method in " + this + ", shortName=" + symbol
-        + ", called for bean " + bean);
-    if (bean.getEJBContext() != null) {
-      bean.setInjectionDone(true);
+    private String getInjectedBaseLocation() {
+        return NOT_INJECTED;
     }
 
-    bean.addInjectionLocation(getInjectedBaseBaseLocation());
-    bean.addInjectionLocation(getInjectedBaseLocation());
-    bean.addInjectionLocation(getInjectedLocation());
-
-    try {
-      inv.proceed();
-    } catch (RuntimeException e) {
-      throw e;
-    } catch (Exception e) {
-      throw new IllegalStateException(e);
+    protected String getShortName() {
+        return "BASE";
     }
-  }
 
-  protected void myRemove(InvocationContext inv) throws RuntimeException {
-    assertNullGetMethod(inv);
-    SharedCallbackBeanBase bean = (SharedCallbackBeanBase) inv.getTarget();
-    bean.setPreDestroyCalled(true);
-    TLogger.log("PreDestroy method in " + this + " called for bean " + bean);
-    try {
-      inv.proceed();
-    } catch (RuntimeException e) {
-      throw e;
-    } catch (Exception e) {
-      throw new IllegalStateException(e);
+    protected void myCreate0(InvocationContext inv, String symbol) throws RuntimeException {
+        // assertNullGetMethod(inv); // Only for @AroundConstruct Lifecycle callback
+        // InvocationContext.getMethod() should return null
+        updateContextData(inv);
+        SharedCallbackBeanBase bean = (SharedCallbackBeanBase) inv.getTarget();
+        bean.addPostConstructCall(symbol);
+        bean.setPostConstructCalled(true);
+        TLogger.log("PostConstruct method in " + this + ", shortName=" + symbol + ", called for bean " + bean);
+        if (bean.getEJBContext() != null) {
+            bean.setInjectionDone(true);
+        }
+
+        bean.addInjectionLocation(getInjectedBaseBaseLocation());
+        bean.addInjectionLocation(getInjectedBaseLocation());
+        bean.addInjectionLocation(getInjectedLocation());
+
+        try {
+            inv.proceed();
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        }
     }
-  }
 
-  /**
-   * myRemove() is declared as an @PreDestroy method in some descriptors, and
-   * overriding it would remove it from the interceptor call chain. myRemove0 is
-   * thus added to do the same thing while not overriding myRemove().
-   */
-  protected void myRemove0(InvocationContext inv) throws RuntimeException {
-    myRemove(inv);
-  }
-
-  protected Object intercept(InvocationContext inv) throws Exception {
-    return inv.proceed();
-  }
-
-  protected void updateContextData(InvocationContext inv) {
-    Map<String, Object> map = inv.getContextData();
-    // the map should not be null. If no data has been set, it should return
-    // empty Map.
-    List val = (List) map.get(POSTCONSTRUCT_CALLS_IN_CONTEXTDATA);
-
-    // if this is the first interceptor, the val List is null
-    if (val == null) {
-      val = new ArrayList();
-      map.put(POSTCONSTRUCT_CALLS_IN_CONTEXTDATA, val);
+    protected void myRemove(InvocationContext inv) throws RuntimeException {
+        assertNullGetMethod(inv);
+        SharedCallbackBeanBase bean = (SharedCallbackBeanBase) inv.getTarget();
+        bean.setPreDestroyCalled(true);
+        TLogger.log("PreDestroy method in " + this + " called for bean " + bean);
+        try {
+            inv.proceed();
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        }
     }
-    val.add(getShortName());
-    SharedCallbackBeanBase bean = (SharedCallbackBeanBase) inv.getTarget();
-    bean.setPostConstructCallsInContextData(val);
-  }
 
-  /**
-   * Asserts that InvocationContext.getMethod() returns null for lifecycle
-   * interceptor methods. This method should only be used for checking lifecycle
-   * interceptor methods.
-   */
-  public static void assertNullGetMethod(InvocationContext inv)
-      throws IllegalStateException {
-    Method meth = inv.getMethod();
-    if (meth != null) {
-      throw new IllegalStateException("InvocationContext.getMethod() must"
-          + " return null for lifecycle interceptor methods.  But the"
-          + " actual returned value is " + meth);
+    /**
+     * myRemove() is declared as an @PreDestroy method in some descriptors, and
+     * overriding it would remove it from the interceptor call chain. myRemove0 is
+     * thus added to do the same thing while not overriding myRemove().
+     */
+    protected void myRemove0(InvocationContext inv) throws RuntimeException {
+        myRemove(inv);
     }
-  }
+
+    protected Object intercept(InvocationContext inv) throws Exception {
+        return inv.proceed();
+    }
+
+    protected void updateContextData(InvocationContext inv) {
+        Map<String, Object> map = inv.getContextData();
+        // the map should not be null. If no data has been set, it should return
+        // empty Map.
+        List val = (List) map.get(POSTCONSTRUCT_CALLS_IN_CONTEXTDATA);
+
+        // if this is the first interceptor, the val List is null
+        if (val == null) {
+            val = new ArrayList();
+            map.put(POSTCONSTRUCT_CALLS_IN_CONTEXTDATA, val);
+        }
+        val.add(getShortName());
+        SharedCallbackBeanBase bean = (SharedCallbackBeanBase) inv.getTarget();
+        bean.setPostConstructCallsInContextData(val);
+    }
+
+    /**
+     * Asserts that InvocationContext.getMethod() returns null for lifecycle
+     * interceptor methods. This method should only be used for checking lifecycle
+     * interceptor methods.
+     */
+    public static void assertNullGetMethod(InvocationContext inv) throws IllegalStateException {
+        Method meth = inv.getMethod();
+        if (meth != null) {
+            throw new IllegalStateException("InvocationContext.getMethod() must"
+                    + " return null for lifecycle interceptor methods.  But the"
+                    + " actual returned value is " + meth);
+        }
+    }
 }

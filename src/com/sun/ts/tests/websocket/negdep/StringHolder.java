@@ -19,36 +19,35 @@ package com.sun.ts.tests.websocket.negdep;
 /**
  * Use rather this user specific class than a java class such as stringbuilder
  * for sake of java class being allowed in future version by default
- * 
+ *
  * @since 1.11
  */
 public class StringHolder implements CharSequence {
-  public String inner = "";
+    public String inner = "";
 
-  public StringHolder(String hold) {
-    inner = hold;
-  }
+    public StringHolder(String hold) {
+        inner = hold;
+    }
 
-  public StringHolder() {
-  }
+    public StringHolder() {}
 
-  @Override
-  public int length() {
-    return inner.length();
-  }
+    @Override
+    public int length() {
+        return inner.length();
+    }
 
-  @Override
-  public char charAt(int index) {
-    return inner.charAt(index);
-  }
+    @Override
+    public char charAt(int index) {
+        return inner.charAt(index);
+    }
 
-  @Override
-  public CharSequence subSequence(int start, int end) {
-    return inner.subSequence(start, end);
-  }
+    @Override
+    public CharSequence subSequence(int start, int end) {
+        return inner.subSequence(start, end);
+    }
 
-  @Override
-  public String toString() {
-    return inner;
-  }
+    @Override
+    public String toString() {
+        return inner;
+    }
 }

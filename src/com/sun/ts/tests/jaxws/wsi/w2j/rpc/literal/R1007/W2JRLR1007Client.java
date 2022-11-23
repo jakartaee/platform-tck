@@ -25,30 +25,29 @@ import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 
 public class W2JRLR1007Client extends SOAPClient {
 
-  public W2JRLR1007Client(String webServerHost, int port, int mode)
-      throws EETest.Fault {
-    this(webServerHost, port, mode, null);
-  }
+    public W2JRLR1007Client(String webServerHost, int port, int mode) throws EETest.Fault {
+        this(webServerHost, port, mode, null);
+    }
 
-  public W2JRLR1007Client(String webServerHost, int port, int mode,
-      jakarta.xml.ws.Service webServiceRef) throws EETest.Fault {
-    super(webServerHost, port, mode);
-    stubContext.setNamespace("http://simpletestservice.org/wsdl");
-    stubContext.setService("SimpleTest");
-    stubContext.setPort("SimpleEndpointPort");
-    stubContext.setEndpointInterface(SimpleEndpoint.class);
-    stubContext.setWebServiceRef(webServiceRef);
-  }
+    public W2JRLR1007Client(String webServerHost, int port, int mode, jakarta.xml.ws.Service webServiceRef)
+            throws EETest.Fault {
+        super(webServerHost, port, mode);
+        stubContext.setNamespace("http://simpletestservice.org/wsdl");
+        stubContext.setService("SimpleTest");
+        stubContext.setPort("SimpleEndpointPort");
+        stubContext.setEndpointInterface(SimpleEndpoint.class);
+        stubContext.setWebServiceRef(webServiceRef);
+    }
 
-  protected String getEndpointURLProperty() {
-    return "wsi.w2jrlr1007.endpoint.1";
-  }
+    protected String getEndpointURLProperty() {
+        return "wsi.w2jrlr1007.endpoint.1";
+    }
 
-  protected String getWSDLURLProperty() {
-    return "wsi.w2jrlr1007.wsdlloc.1";
-  }
+    protected String getWSDLURLProperty() {
+        return "wsi.w2jrlr1007.wsdlloc.1";
+    }
 
-  public String helloWorld() throws Exception {
-    return ((SimpleEndpoint) stubContext.getStub()).helloWorld();
-  }
+    public String helloWorld() throws Exception {
+        return ((SimpleEndpoint) stubContext.getStub()).helloWorld();
+    }
 }

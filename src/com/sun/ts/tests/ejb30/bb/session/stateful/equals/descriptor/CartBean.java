@@ -25,24 +25,21 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
-//@Stateful(name="cart-bean")
-//@Remote({CartIF.class})
-//@Local({LocalCartIF.class})
+// @Stateful(name="cart-bean")
+// @Remote({CartIF.class})
+// @Local({LocalCartIF.class})
 @TransactionManagement(TransactionManagementType.BEAN)
 public class CartBean
 // implements CartIF, ShoppingCartIF, LocalCartIF, LocalShoppingCartIF
 {
-  @Resource(name = "sessionContext")
-  private SessionContext sessionContext;
+    @Resource(name = "sessionContext")
+    private SessionContext sessionContext;
 
-  protected SessionContext getSessionContext() {
-    return sessionContext;
-  }
+    protected SessionContext getSessionContext() {
+        return sessionContext;
+    }
 
-  public CartBean() {
-  }
+    public CartBean() {}
 
-  public void remove() {
-  }
-
+    public void remove() {}
 }

@@ -17,31 +17,28 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.coder;
 
+import com.sun.ts.tests.websocket.common.stringbean.StringBean;
+import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryStreamDecoder;
+import jakarta.websocket.DecodeException;
+import jakarta.websocket.EndpointConfig;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.sun.ts.tests.websocket.common.stringbean.StringBean;
-import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryStreamDecoder;
+public class InitDestroyBinaryStreamDecoder extends StringBeanBinaryStreamDecoder {
+    @Override
+    public void init(EndpointConfig config) {
+        Logger.onInit(getClass());
+    }
 
-import jakarta.websocket.DecodeException;
-import jakarta.websocket.EndpointConfig;
+    @Override
+    public void destroy() {
+        Logger.onDestroy(getClass());
+    }
 
-public class InitDestroyBinaryStreamDecoder
-    extends StringBeanBinaryStreamDecoder {
-  @Override
-  public void init(EndpointConfig config) {
-    Logger.onInit(getClass());
-  }
-
-  @Override
-  public void destroy() {
-    Logger.onDestroy(getClass());
-  }
-
-  @Override
-  public StringBean decode(InputStream arg0)
-      throws DecodeException, IOException {
-    Logger.onCode(getClass());
-    return super.decode(arg0);
-  };
+    @Override
+    public StringBean decode(InputStream arg0) throws DecodeException, IOException {
+        Logger.onCode(getClass());
+        return super.decode(arg0);
+    }
+    ;
 }

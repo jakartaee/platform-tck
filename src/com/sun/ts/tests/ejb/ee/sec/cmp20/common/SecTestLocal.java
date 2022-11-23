@@ -23,31 +23,30 @@ package com.sun.ts.tests.ejb.ee.sec.cmp20.common;
 import jakarta.ejb.EJBLocalObject;
 
 public interface SecTestLocal extends EJBLocalObject {
-  public boolean IsCaller(String caller);
+    public boolean IsCaller(String caller);
 
-  public boolean EjbNotAuthz();
+    public boolean EjbNotAuthz();
 
-  public boolean EjbIsAuthz();
+    public boolean EjbIsAuthz();
 
-  public boolean EjbSecRoleRef(String role);
+    public boolean EjbSecRoleRef(String role);
 
-  public boolean EjbOverloadedSecRoleRefs(String role1);
+    public boolean EjbOverloadedSecRoleRefs(String role1);
 
-  public boolean EjbOverloadedSecRoleRefs(String role1, String role2);
+    public boolean EjbOverloadedSecRoleRefs(String role1, String role2);
 
-  public boolean checktest1();
+    public boolean checktest1();
 
-  public boolean excludetest1();
+    public boolean excludetest1();
 
-  // Business Methods for CMP Fields
-  public Integer getId();
+    // Business Methods for CMP Fields
+    public Integer getId();
 
-  public String getBrandName();
+    public String getBrandName();
 
-  public void setBrandName(String s);
+    public void setBrandName(String s);
 
-  public float getPrice();
+    public float getPrice();
 
-  public void setPrice(float p);
-
+    public void setPrice(float p);
 }

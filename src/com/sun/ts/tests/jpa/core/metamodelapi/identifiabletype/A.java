@@ -16,16 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.identifiabletype;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.CollectionTable;
@@ -36,97 +27,102 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Entity
 @Table(name = "COLTAB")
-@AttributeOverrides({
-    @AttributeOverride(name = "name", column = @Column(name = "NAME")) })
+@AttributeOverrides({@AttributeOverride(name = "name", column = @Column(name = "NAME"))})
 public class A extends B {
 
-  @Id
-  protected String id;
+    @Id
+    protected String id;
 
-  @Version
-  protected Integer value;
+    @Version
+    protected Integer value;
 
-  @ElementCollection
-  @CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
-  protected List<Address> lAddress = new ArrayList<Address>();
+    @ElementCollection
+    @CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
+    protected List<Address> lAddress = new ArrayList<Address>();
 
-  @ElementCollection
-  @CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
-  protected Map<Address, String> mAddress = new HashMap<Address, String>();
+    @ElementCollection
+    @CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
+    protected Map<Address, String> mAddress = new HashMap<Address, String>();
 
-  @ElementCollection
-  @CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
-  Collection<Address> cAddress = new ArrayList<Address>();
+    @ElementCollection
+    @CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
+    Collection<Address> cAddress = new ArrayList<Address>();
 
-  @ElementCollection
-  @CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
-  Set<Address> sAddress = new HashSet<Address>();
+    @ElementCollection
+    @CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
+    Set<Address> sAddress = new HashSet<Address>();
 
-  public A() {
-  }
+    public A() {}
 
-  public A(String id, String name, int value) {
-    super(name);
-    this.id = id;
-    this.value = value;
-  }
+    public A(String id, String name, int value) {
+        super(name);
+        this.id = id;
+        this.value = value;
+    }
 
-  public Set<Address> getAddressSet() {
-    TestUtil.logTrace("getAddressSet");
-    return sAddress;
-  }
+    public Set<Address> getAddressSet() {
+        TestUtil.logTrace("getAddressSet");
+        return sAddress;
+    }
 
-  public void setAddressSet(Set<Address> addr) {
-    TestUtil.logTrace("setAddressSet");
-    this.sAddress = addr;
-  }
+    public void setAddressSet(Set<Address> addr) {
+        TestUtil.logTrace("setAddressSet");
+        this.sAddress = addr;
+    }
 
-  public Collection<Address> getAddressCollection() {
-    TestUtil.logTrace("getAddressCollection");
-    return cAddress;
-  }
+    public Collection<Address> getAddressCollection() {
+        TestUtil.logTrace("getAddressCollection");
+        return cAddress;
+    }
 
-  public void setAddressCollection(Collection<Address> addr) {
-    TestUtil.logTrace("setAddressCollection");
-    this.cAddress = addr;
-  }
+    public void setAddressCollection(Collection<Address> addr) {
+        TestUtil.logTrace("setAddressCollection");
+        this.cAddress = addr;
+    }
 
-  public List<Address> getAddressList() {
-    TestUtil.logTrace("getAddressList");
-    return lAddress;
-  }
+    public List<Address> getAddressList() {
+        TestUtil.logTrace("getAddressList");
+        return lAddress;
+    }
 
-  public void setAddressList(List<Address> addr) {
-    TestUtil.logTrace("setAddressList");
-    this.lAddress = addr;
-  }
+    public void setAddressList(List<Address> addr) {
+        TestUtil.logTrace("setAddressList");
+        this.lAddress = addr;
+    }
 
-  public Map<Address, String> getAddressMap() {
-    TestUtil.logTrace("getAddressMap");
-    return mAddress;
-  }
+    public Map<Address, String> getAddressMap() {
+        TestUtil.logTrace("getAddressMap");
+        return mAddress;
+    }
 
-  public void setAddressMap(Map<Address, String> addr) {
-    TestUtil.logTrace("setAddressMap");
-    this.mAddress = addr;
-  }
+    public void setAddressMap(Map<Address, String> addr) {
+        TestUtil.logTrace("setAddressMap");
+        this.mAddress = addr;
+    }
 
-  public String getId() {
-    return id;
-  }
+    public String getId() {
+        return id;
+    }
 
-  public void setId(String id) {
-    this.id = id;
-  }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-  public Integer getValue() {
-    return value;
-  }
+    public Integer getValue() {
+        return value;
+    }
 
-  public void setValue(Integer val) {
-    this.value = val;
-  }
+    public void setValue(Integer val) {
+        this.value = val;
+    }
 }

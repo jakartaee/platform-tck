@@ -16,11 +16,8 @@
 
 package com.sun.ts.tests.jms.ee20.cditests.usecases;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBException;
@@ -36,90 +33,91 @@ import jakarta.jms.JMSConnectionFactory;
 import jakarta.jms.JMSContext;
 import jakarta.jms.Queue;
 import jakarta.jms.Topic;
+import java.util.Properties;
 
 @TransactionManagement(TransactionManagementType.CONTAINER)
 @Stateless(name = "CDIUseCasesCMBEAN2")
-@Remote({ CMBean2IF.class })
+@Remote({CMBean2IF.class})
 public class CMBean2 implements CMBean2IF {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  // JMSContext CDI injection specifying ConnectionFactory
-  @Inject
-  @JMSConnectionFactory("jms/ConnectionFactory")
-  JMSContext context;
+    // JMSContext CDI injection specifying ConnectionFactory
+    @Inject
+    @JMSConnectionFactory("jms/ConnectionFactory")
+    JMSContext context;
 
-  // JMSContext CDI injection specifying QueueConnectionFactory
-  @Inject
-  @JMSConnectionFactory("jms/QueueConnectionFactory")
-  JMSContext context2;
+    // JMSContext CDI injection specifying QueueConnectionFactory
+    @Inject
+    @JMSConnectionFactory("jms/QueueConnectionFactory")
+    JMSContext context2;
 
-  @Resource(name = "jms/MyConnectionFactory")
-  ConnectionFactory cfactory;
+    @Resource(name = "jms/MyConnectionFactory")
+    ConnectionFactory cfactory;
 
-  @Resource(name = "jms/MY_QUEUE")
-  Queue queue;
+    @Resource(name = "jms/MY_QUEUE")
+    Queue queue;
 
-  @Resource(name = "jms/MY_TOPIC")
-  Topic topic;
+    @Resource(name = "jms/MY_TOPIC")
+    Topic topic;
 
-  @PostConstruct
-  public void postConstruct() {
-    System.out.println("CMBean2:postConstruct()");
-    System.out.println("queue=" + queue);
-    System.out.println("topic=" + topic);
-    System.out.println("cfactory=" + cfactory);
-    if (queue == null || topic == null || context == null || cfactory == null) {
-      throw new EJBException("postConstruct failed: injection failure");
+    @PostConstruct
+    public void postConstruct() {
+        System.out.println("CMBean2:postConstruct()");
+        System.out.println("queue=" + queue);
+        System.out.println("topic=" + topic);
+        System.out.println("cfactory=" + cfactory);
+        if (queue == null || topic == null || context == null || cfactory == null) {
+            throw new EJBException("postConstruct failed: injection failure");
+        }
     }
-  }
 
-  @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-  public void init(Properties p) {
-    TestUtil.logMsg("CMBean2.init()");
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("CMBean2.init: failed");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("CMBean2.init: failed");
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+    public void init(Properties p) {
+        TestUtil.logMsg("CMBean2.init()");
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("CMBean2.init: failed");
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("CMBean2.init: failed");
+        }
     }
-  }
 
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  public void method2a() {
-    TestUtil.logMsg("CMBean2.method2a(): context=" + context);
-    TestUtil.logMsg("Sending message [Message 1]");
-    context.createProducer().send(queue, "Message 1");
-  }
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public void method2a() {
+        TestUtil.logMsg("CMBean2.method2a(): context=" + context);
+        TestUtil.logMsg("Sending message [Message 1]");
+        context.createProducer().send(queue, "Message 1");
+    }
 
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  public void method2b() {
-    TestUtil.logMsg("CMBean2.method2b(): context=" + context);
-    TestUtil.logMsg("Sending message [Message 2]");
-    context.createProducer().send(queue, "Message 2");
-  }
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public void method2b() {
+        TestUtil.logMsg("CMBean2.method2b(): context=" + context);
+        TestUtil.logMsg("Sending message [Message 2]");
+        context.createProducer().send(queue, "Message 2");
+    }
 
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  public void method3() {
-    TestUtil.logMsg("CMBean2.method3(): context=" + context);
-    TestUtil.logMsg("Sending message [Message 2]");
-    context.createProducer().send(queue, "Message 2");
-  }
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public void method3() {
+        TestUtil.logMsg("CMBean2.method3(): context=" + context);
+        TestUtil.logMsg("Sending message [Message 2]");
+        context.createProducer().send(queue, "Message 2");
+    }
 
-  @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-  public void method5() {
-    TestUtil.logMsg("CMBean2.method5(): context=" + context);
-    TestUtil.logMsg("Sending message [Message 2]");
-    context.createProducer().send(queue, "Message 2");
-  }
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public void method5() {
+        TestUtil.logMsg("CMBean2.method5(): context=" + context);
+        TestUtil.logMsg("Sending message [Message 2]");
+        context.createProducer().send(queue, "Message 2");
+    }
 
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  public void method6() {
-    TestUtil.logMsg("CMBean2.method6(): context=" + context);
-    TestUtil.logMsg("Sending message [Message 2]");
-    context2.createProducer().send(queue, "Message 2");
-  }
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public void method6() {
+        TestUtil.logMsg("CMBean2.method6(): context=" + context);
+        TestUtil.logMsg("Sending message [Message 2]");
+        context2.createProducer().send(queue, "Message 2");
+    }
 }

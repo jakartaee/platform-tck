@@ -20,18 +20,22 @@
 package com.sun.ts.tests.ejb30.timer.common;
 
 public enum ScheduleAttributeType {
+    SECOND("second"),
+    MINUTE("minute"),
+    HOUR("hour"),
+    MONTH("month"),
+    YEAR("year"),
+    DAY_OF_WEEK("dayOfWeek"),
+    DAY_OF_MONTH("dayOfMonth");
 
-  SECOND("second"), MINUTE("minute"), HOUR("hour"), MONTH("month"), YEAR(
-      "year"), DAY_OF_WEEK("dayOfWeek"), DAY_OF_MONTH("dayOfMonth");
+    private String display;
 
-  private String display;
+    private ScheduleAttributeType(String display) {
+        this.display = display;
+    }
 
-  private ScheduleAttributeType(String display) {
-    this.display = display;
-  }
-
-  @Override
-  public String toString() {
-    return this.display;
-  }
+    @Override
+    public String toString() {
+        return this.display;
+    }
 }

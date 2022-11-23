@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 
 public class StringBeanEJB extends BMPWrapper {
 
-  public boolean testStringEntry() {
-    return TestCode.testStringEntry(nctx);
-  }
-
+    public boolean testStringEntry() {
+        return TestCode.testStringEntry(nctx);
+    }
 }

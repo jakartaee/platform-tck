@@ -28,8 +28,6 @@ import jakarta.interceptor.Interceptors;
 
 @Singleton
 @TransactionManagement(TransactionManagementType.BEAN)
-@Interceptors({ Interceptor1.class, Interceptor2.class })
-@Local({ CSingletonIF.class, C2SingletonIF.class })
-public class CSingletonBean extends BeanBase
-    implements CSingletonIF, C2SingletonIF {
-}
+@Interceptors({Interceptor1.class, Interceptor2.class})
+@Local({CSingletonIF.class, C2SingletonIF.class})
+public class CSingletonBean extends BeanBase implements CSingletonIF, C2SingletonIF {}

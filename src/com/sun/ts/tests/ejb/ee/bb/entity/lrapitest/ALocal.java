@@ -23,19 +23,19 @@ package com.sun.ts.tests.ejb.ee.bb.entity.lrapitest;
 import jakarta.ejb.EJBLocalObject;
 
 public interface ALocal extends EJBLocalObject {
-  // Business Methods for ALocal CMP Fields
-  public String getId();
+    // Business Methods for ALocal CMP Fields
+    public String getId();
 
-  public String getName();
+    public String getName();
 
-  public void setName(String v);
+    public void setName(String v);
 
-  public int getValue();
+    public int getValue();
 
-  public void setValue(int v);
+    public void setValue(int v);
 
-  // Other Business Methods
-  public String whoAmILocal();
+    // Other Business Methods
+    public String whoAmILocal();
 
-  public EJBLocalObject getLocalRef();
+    public EJBLocalObject getLocalRef();
 }

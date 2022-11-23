@@ -60,57 +60,51 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.genericfilter;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Enumeration;
-import java.util.Vector;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.GenericFilter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
+import java.util.Vector;
 
 public final class InitFilterConfig_Filter extends GenericFilter {
 
-  // Instance Variables
-  Vector v = new Vector();
+    // Instance Variables
+    Vector v = new Vector();
 
-  public void doFilter(ServletRequest request, ServletResponse response,
-      FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-    boolean passed = false;
-    PrintWriter pw = response.getWriter();
+        boolean passed = false;
+        PrintWriter pw = response.getWriter();
 
-    if (getFilterConfig() == null) {
-      passed = false;
-      pw.println(
-          "doFilter of Filter1 was called but this filter instance is not currently configured");
-    } else {
-      passed = true;
-      pw.println("doFilter was successfully called in InitFilterConfig_Filter");
-      Enumeration filters = v.elements();
+        if (getFilterConfig() == null) {
+            passed = false;
+            pw.println("doFilter of Filter1 was called but this filter instance is not currently configured");
+        } else {
+            passed = true;
+            pw.println("doFilter was successfully called in InitFilterConfig_Filter");
+            Enumeration filters = v.elements();
 
-      while (filters.hasMoreElements()) {
-        pw.println(filters.nextElement());
-      }
+            while (filters.hasMoreElements()) {
+                pw.println(filters.nextElement());
+            }
+        }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
 
-  }
+    // remove the filter
+    public void destroy() {}
 
-  // remove the filter
-  public void destroy() {
-  }
+    // initialize the filter configuration object for this filter.
 
-  // initialize the filter configuration object for this filter.
-
-  public void init(FilterConfig filterConfig) throws ServletException {
-    super.init(filterConfig);
-    v.add("In initFilterConfig() of initFilter_Filter");
-  }
-
+    public void init(FilterConfig filterConfig) throws ServletException {
+        super.init(filterConfig);
+        v.add("In initFilterConfig() of initFilter_Filter");
+    }
 }

@@ -20,19 +20,16 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.enventry.casesens;
 
-import java.rmi.RemoteException;
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
 public interface CaseBeanHome extends EJBHome {
 
-  public CaseBean create(Properties p, int cofID, String cofName,
-      float cofPrice) throws RemoteException, CreateException;
+    public CaseBean create(Properties p, int cofID, String cofName, float cofPrice)
+            throws RemoteException, CreateException;
 
-  public CaseBean findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
-
+    public CaseBean findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 }

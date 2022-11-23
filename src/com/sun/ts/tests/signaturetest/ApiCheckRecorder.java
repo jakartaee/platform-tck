@@ -31,48 +31,42 @@ import java.util.List;
  */
 public class ApiCheckRecorder extends Recorder {
 
-  // ------------------------------------------------------------ Constructors
+    // ------------------------------------------------------------ Constructors
 
-  public ApiCheckRecorder(String[] args) {
+    public ApiCheckRecorder(String[] args) {
 
-    super(args);
-    System.setProperty("pkg.list.file.path", packageListFile);
-    System.setProperty("map.file.path", signatureMapFile);
-    System.setProperty("signature.repository.dir", signatureRepositoryDir);
+        super(args);
+        System.setProperty("pkg.list.file.path", packageListFile);
+        System.setProperty("map.file.path", signatureMapFile);
+        System.setProperty("signature.repository.dir", signatureRepositoryDir);
+    } // END ApiCheckRecorder
 
-  } // END ApiCheckRecorder
+    // ------------------------------------------------------- Protected Methods
 
-  // ------------------------------------------------------- Protected Methods
+    protected String[] createCommandLine(String version, String classpath, String outputFileName, String packageName) {
 
-  protected String[] createCommandLine(String version, String classpath,
-      String outputFileName, String packageName) {
+        List command = new ArrayList();
 
-    List command = new ArrayList();
+        command.add("-constvalues");
+        command.add("-xpriv");
 
-    command.add("-constvalues");
-    command.add("-xpriv");
+        command.add("-in");
+        command.add(classpath);
 
-    command.add("-in");
-    command.add(classpath);
+        return ((String[]) command.toArray(new String[command.size()]));
+    } // END getCommandLine
 
-    return ((String[]) command.toArray(new String[command.size()]));
+    protected void writePackageListFile(String basePackageName, String signatureFile, String packageListFile)
+            throws Exception {
 
-  } // END getCommandLine
+        // no-op as this is done internally by our version of ApiCheck
 
-  protected void writePackageListFile(String basePackageName,
-      String signatureFile, String packageListFile) throws Exception {
+    } // END writePackageListFile
 
-    // no-op as this is done internally by our version of ApiCheck
+    protected void doRecord(String[] commandLine) throws Exception {
 
-  } // END writePackageListFile
-
-  protected void doRecord(String[] commandLine) throws Exception {
-
-    Class batchSetup = Class.forName("javasoft.sqe.apiCheck.BatchSetup");
-    Method mainMethod = batchSetup.getDeclaredMethod("main",
-        new Class[] { String[].class });
-    mainMethod.invoke(null, new Object[] { commandLine });
-
-  } // END doRecord
-
+        Class batchSetup = Class.forName("javasoft.sqe.apiCheck.BatchSetup");
+        Method mainMethod = batchSetup.getDeclaredMethod("main", new Class[] {String[].class});
+        mainMethod.invoke(null, new Object[] {commandLine});
+    } // END doRecord
 } // END SigTestRecorder

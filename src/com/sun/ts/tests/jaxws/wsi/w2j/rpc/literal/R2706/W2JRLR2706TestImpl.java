@@ -22,10 +22,14 @@ package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2706;
 
 import jakarta.jws.WebService;
 
-@WebService(portName = "W2JRLR2706TestPort", serviceName = "W2JRLR2706TestService", targetNamespace = "http://w2jrlr2706testservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/W2JRLR2706TestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2706.W2JRLR2706Test")
+@WebService(
+        portName = "W2JRLR2706TestPort",
+        serviceName = "W2JRLR2706TestService",
+        targetNamespace = "http://w2jrlr2706testservice.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/W2JRLR2706TestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2706.W2JRLR2706Test")
 public class W2JRLR2706TestImpl implements W2JRLR2706Test {
-  public String echoString(String str,
-      com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2706.MyHeader mh) {
-    return mh.getMessage();
-  }
+    public String echoString(String str, com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2706.MyHeader mh) {
+        return mh.getMessage();
+    }
 }

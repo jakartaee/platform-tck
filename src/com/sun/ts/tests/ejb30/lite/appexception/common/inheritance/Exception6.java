@@ -24,7 +24,7 @@ package com.sun.ts.tests.ejb30.lite.appexception.common.inheritance;
  * A runtime exception, and ApplicationException.
  */
 public class Exception6 extends Exception5 {
-  public Exception6(String message) {
-    super(message);
-  }
+    public Exception6(String message) {
+        super(message);
+    }
 }

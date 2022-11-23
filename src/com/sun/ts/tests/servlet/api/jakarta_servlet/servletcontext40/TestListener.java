@@ -19,70 +19,67 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext40;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.ServletRegistration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestListener implements ServletContextListener {
 
-  /**
-   * Receives notification that the web application initialization process is
-   * starting.
-   *
-   * @param sce
-   *          The servlet context event
-   */
-  public void contextInitialized(ServletContextEvent sce) {
-    ServletContext context = sce.getServletContext();
+    /**
+     * Receives notification that the web application initialization process is
+     * starting.
+     *
+     * @param sce
+     *          The servlet context event
+     */
+    public void contextInitialized(ServletContextEvent sce) {
+        ServletContext context = sce.getServletContext();
 
-    ServletRegistration registration = context.addJspFile("AddJspFile",
-        "/addJspFile.jsp");
-    registration.addMapping("/servlet/addJspFile");
+        ServletRegistration registration = context.addJspFile("AddJspFile", "/addJspFile.jsp");
+        registration.addMapping("/servlet/addJspFile");
 
-    List list = new ArrayList();
+        List list = new ArrayList();
 
-    int oldTimeout = context.getSessionTimeout();
-    context.setSessionTimeout(20);
-    int newTimeout = context.getSessionTimeout();
+        int oldTimeout = context.getSessionTimeout();
+        context.setSessionTimeout(20);
+        int newTimeout = context.getSessionTimeout();
 
-    if (oldTimeout == 54 && newTimeout == 20) {
-      list.add("changeSessionTimeout_correctly");
-    } else {
-      list.add(
-          "changeSessionTimeout_fail: expected oldTimeout is 54 and expected newTimeout is 20, now they are "
-              + oldTimeout + "and" + newTimeout);
+        if (oldTimeout == 54 && newTimeout == 20) {
+            list.add("changeSessionTimeout_correctly");
+        } else {
+            list.add("changeSessionTimeout_fail: expected oldTimeout is 54 and expected newTimeout is 20, now they are "
+                    + oldTimeout + "and" + newTimeout);
+        }
+
+        // negtive test
+        try {
+            context.addJspFile("", "/addJspFile.jsp");
+            list.add("add_jsp_with_empty_name");
+        } catch (IllegalArgumentException e) {
+            list.add("IllegalArgumentException_when_empty_name");
+        }
+
+        try {
+            context.addJspFile(null, "/addJspFile.jsp");
+            list.add("add_jsp_with_null_name");
+        } catch (IllegalArgumentException e) {
+            list.add("IllegalArgumentException_when_null_name");
+        }
+        context.setAttribute("arraylist", list);
+
+        // context.addListener(AddListener.class);
     }
 
-    // negtive test
-    try {
-      context.addJspFile("", "/addJspFile.jsp");
-      list.add("add_jsp_with_empty_name");
-    } catch (IllegalArgumentException e) {
-      list.add("IllegalArgumentException_when_empty_name");
+    /**
+     * Receives notification that the servlet context is about to be shut down.
+     *
+     * @param sce
+     *          The servlet context event
+     */
+    public void contextDestroyed(ServletContextEvent sce) {
+        // Do nothing
     }
-
-    try {
-      context.addJspFile(null, "/addJspFile.jsp");
-      list.add("add_jsp_with_null_name");
-    } catch (IllegalArgumentException e) {
-      list.add("IllegalArgumentException_when_null_name");
-    }
-    context.setAttribute("arraylist", list);
-
-    // context.addListener(AddListener.class);
-  }
-
-  /**
-   * Receives notification that the servlet context is about to be shut down.
-   *
-   * @param sce
-   *          The servlet context event
-   */
-  public void contextDestroyed(ServletContextEvent sce) {
-    // Do nothing
-  }
 }

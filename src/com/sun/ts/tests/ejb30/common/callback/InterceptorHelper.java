@@ -21,67 +21,62 @@
 package com.sun.ts.tests.ejb30.common.callback;
 
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.interceptor.InvocationContext;
 
 public class InterceptorHelper {
-  private static final Object[] newParams = new Object[] {};
+    private static final Object[] newParams = new Object[] {};
 
-  private InterceptorHelper() {
-  }
+    private InterceptorHelper() {}
 
-  /**
-   * When this method is called from an interceptor's lifecycle callback method,
-   * InvocationContext should throw IllegalStateException. When called from
-   * around-invoke methods, it works as usual and the return value is ignored.
-   */
-  public static void invokeGetParameters(InvocationContext inv)
-      throws IllegalStateException {
-    inv.getParameters();
-  }
-
-  public static void recordExceptionFromGetParameters(InvocationContext inv,
-      SharedCallbackBeanBase bean, boolean throwException) {
-    String reason = "WARNING: Expecting java.lang.IllegalStateException, but got none.";
-    try {
-      invokeGetParameters(inv);
-      // failed to get the expected exception
-      if (throwException) {
-        throw new IllegalStateException(reason);
-      } else {
-        TLogger.log(reason);
-      }
-    } catch (IllegalStateException e) {
-      // expected exception
-      bean.setGetParametersIllegalStateExceptionThrown(true);
+    /**
+     * When this method is called from an interceptor's lifecycle callback method,
+     * InvocationContext should throw IllegalStateException. When called from
+     * around-invoke methods, it works as usual and the return value is ignored.
+     */
+    public static void invokeGetParameters(InvocationContext inv) throws IllegalStateException {
+        inv.getParameters();
     }
-  }
 
-  /**
-   * When this method is called from an interceptor's lifecycle callback method,
-   * InvocationContext should throw IllegalStateException. When called from
-   * around-invoke methods, it works as usual and the return value is ignored.
-   */
-  public static void invokeSetParameters(InvocationContext inv)
-      throws IllegalStateException {
-    inv.setParameters(newParams);
-  }
-
-  public static void recordExceptionFromSetParameters(InvocationContext inv,
-      SharedCallbackBeanBase bean, boolean throwException) {
-    String reason = "WARNING: Expecting java.lang.IllegalStateException, but got none.";
-    try {
-      invokeSetParameters(inv);
-      // failed to get the expected exception
-      if (throwException) {
-        throw new IllegalStateException(reason);
-      } else {
-        TLogger.log(reason);
-      }
-    } catch (IllegalStateException e) {
-      // expected exception
-      bean.setSetParametersIllegalStateExceptionThrown(true);
+    public static void recordExceptionFromGetParameters(
+            InvocationContext inv, SharedCallbackBeanBase bean, boolean throwException) {
+        String reason = "WARNING: Expecting java.lang.IllegalStateException, but got none.";
+        try {
+            invokeGetParameters(inv);
+            // failed to get the expected exception
+            if (throwException) {
+                throw new IllegalStateException(reason);
+            } else {
+                TLogger.log(reason);
+            }
+        } catch (IllegalStateException e) {
+            // expected exception
+            bean.setGetParametersIllegalStateExceptionThrown(true);
+        }
     }
-  }
 
+    /**
+     * When this method is called from an interceptor's lifecycle callback method,
+     * InvocationContext should throw IllegalStateException. When called from
+     * around-invoke methods, it works as usual and the return value is ignored.
+     */
+    public static void invokeSetParameters(InvocationContext inv) throws IllegalStateException {
+        inv.setParameters(newParams);
+    }
+
+    public static void recordExceptionFromSetParameters(
+            InvocationContext inv, SharedCallbackBeanBase bean, boolean throwException) {
+        String reason = "WARNING: Expecting java.lang.IllegalStateException, but got none.";
+        try {
+            invokeSetParameters(inv);
+            // failed to get the expected exception
+            if (throwException) {
+                throw new IllegalStateException(reason);
+            } else {
+                TLogger.log(reason);
+            }
+        } catch (IllegalStateException e) {
+            // expected exception
+            bean.setSetParametersIllegalStateExceptionThrown(true);
+        }
+    }
 }

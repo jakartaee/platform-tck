@@ -19,41 +19,38 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.war.datasource.stateful;
 
-import java.io.Serializable;
-
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase;
 import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceIF;
-
 import jakarta.ejb.EJB;
+import java.io.Serializable;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @EJB
-  private DataSourceIF dataSourceBean;
+    @EJB
+    private DataSourceIF dataSourceBean;
 
-  /*
-   * @testName: postConstructRecordsEJB
-   * 
-   * @test_Strategy: look up the data sources declared with annotation in EJB,
-   * and verify the injected datasource inside its PostConstruct method.
-   */
-  public void postConstructRecordsEJB() {
-    appendReason(dataSourceBean.getPostConstructRecords());
-  }
+    /*
+     * @testName: postConstructRecordsEJB
+     *
+     * @test_Strategy: look up the data sources declared with annotation in EJB,
+     * and verify the injected datasource inside its PostConstruct method.
+     */
+    public void postConstructRecordsEJB() {
+        appendReason(dataSourceBean.getPostConstructRecords());
+    }
 
-  /*
-   * @testName: postConstructRecordsInterceptor
-   * 
-   * @test_Strategy: look up the data sources declared with annotation in
-   * Interceptor1, and verify the injected datasource inside its PostConstruct
-   * method.
-   */
-  public void postConstructRecordsInterceptor() {
-    appendReason(dataSourceBean.getPostConstructRecords());
-  }
-
+    /*
+     * @testName: postConstructRecordsInterceptor
+     *
+     * @test_Strategy: look up the data sources declared with annotation in
+     * Interceptor1, and verify the injected datasource inside its PostConstruct
+     * method.
+     */
+    public void postConstructRecordsInterceptor() {
+        appendReason(dataSourceBean.getPostConstructRecords());
+    }
 }

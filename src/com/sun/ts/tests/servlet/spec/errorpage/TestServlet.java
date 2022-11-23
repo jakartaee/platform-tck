@@ -20,46 +20,42 @@
 
 package com.sun.ts.tests.servlet.spec.errorpage;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public class TestServlet extends HttpTCKServlet {
 
-  public void init(ServletConfig config) throws ServletException {
-    super.init(config);
-  }
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+    }
 
-  public void destroy() {
-    super.destroy();
-  }
+    public void destroy() {
+        super.destroy();
+    }
 
-  // ------------------------------------------------- Test Methods
+    // ------------------------------------------------- Test Methods
 
-  public void htmlErrorPageTest(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IllegalAccessException {
-    throw new IllegalAccessException("error page invoked");
-  }
+    public void htmlErrorPageTest(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IllegalAccessException {
+        throw new IllegalAccessException("error page invoked");
+    }
 
-  public void servletErrorPageTest(HttpServletRequest req,
-      HttpServletResponse res) throws ServletException, InstantiationException {
-    throw new IllegalStateException("error page invoked");
-  }
+    public void servletErrorPageTest(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, InstantiationException {
+        throw new IllegalStateException("error page invoked");
+    }
 
-  public void statusCodeErrorPageTest(HttpServletRequest req,
-      HttpServletResponse res) throws ServletException, IOException {
-    res.sendError(HttpServletResponse.SC_NOT_IMPLEMENTED, "error page invoked");
-  }
+    public void statusCodeErrorPageTest(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
+        res.sendError(HttpServletResponse.SC_NOT_IMPLEMENTED, "error page invoked");
+    }
 
-  public void heirarchyErrorMatchTest(HttpServletRequest req,
-      HttpServletResponse res)
-      throws ServletException, IllegalThreadStateException {
-    throw new IllegalThreadStateException("error page invoked");
-  }
-
-}// ErrorPageTestServlet
+    public void heirarchyErrorMatchTest(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IllegalThreadStateException {
+        throw new IllegalThreadStateException("error page invoked");
+    }
+} // ErrorPageTestServlet

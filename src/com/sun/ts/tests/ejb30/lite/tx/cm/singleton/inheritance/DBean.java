@@ -21,9 +21,7 @@ package com.sun.ts.tests.ejb30.lite.tx.cm.singleton.inheritance;
 
 import com.sun.ts.tests.ejb30.tx.common.session.inheritance.DBeanBase;
 import com.sun.ts.tests.ejb30.tx.common.session.inheritance.TxLocalIF;
-
 import jakarta.ejb.Singleton;
 
 @Singleton()
-public class DBean extends DBeanBase implements TxLocalIF {
-}
+public class DBean extends DBeanBase implements TxLocalIF {}

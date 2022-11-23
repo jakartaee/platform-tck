@@ -22,17 +22,12 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.busifacedd;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.common.busiface.SessionBeanLocalBeanBase;
-
 import jakarta.ejb.SessionBean;
 
-//@Stateless(name="SessionBeanLocalBean")
-public class SessionBeanLocalBean extends SessionBeanLocalBeanBase
-    implements BusinessLocalIF1, SessionBean {
+// @Stateless(name="SessionBeanLocalBean")
+public class SessionBeanLocalBean extends SessionBeanLocalBeanBase implements BusinessLocalIF1, SessionBean {
 
-  public SessionBeanLocalBean() {
-  }
+    public SessionBeanLocalBean() {}
 
-  public void remove() {
-  }
-
+    public void remove() {}
 }

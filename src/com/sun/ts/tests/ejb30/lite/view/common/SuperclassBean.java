@@ -20,7 +20,6 @@
 package com.sun.ts.tests.ejb30.lite.view.common;
 
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
-
 import jakarta.ejb.Stateless;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
 
@@ -33,23 +32,22 @@ import jakarta.interceptor.ExcludeDefaultInterceptors;
  */
 @Stateless
 @ExcludeDefaultInterceptors
-public class SuperclassBean extends SuperclassBeanBase
-    implements BusinessLocalIF1 {
+public class SuperclassBean extends SuperclassBeanBase implements BusinessLocalIF1 {
 
-  @Override
-  public String[] businessMethodLocal1(String[] s) {
-    Class<SuperclassBean> intf = SuperclassBean.class;
-    try {
-      @SuppressWarnings("unused")
-      SuperclassBean b = sessionContext.getBusinessObject(intf);
-    } catch (IllegalStateException e) {
-      s[0] = IllegalStateException.class.getSimpleName();
+    @Override
+    public String[] businessMethodLocal1(String[] s) {
+        Class<SuperclassBean> intf = SuperclassBean.class;
+        try {
+            @SuppressWarnings("unused")
+            SuperclassBean b = sessionContext.getBusinessObject(intf);
+        } catch (IllegalStateException e) {
+            s[0] = IllegalStateException.class.getSimpleName();
+        }
+
+        Class<BusinessLocalIF1> intf2 = BusinessLocalIF1.class;
+        BusinessLocalIF1 b2 = sessionContext.getBusinessObject(intf2);
+        b2.remove();
+        s[1] = intf.getSimpleName();
+        return s;
     }
-
-    Class<BusinessLocalIF1> intf2 = BusinessLocalIF1.class;
-    BusinessLocalIF1 b2 = sessionContext.getBusinessObject(intf2);
-    b2.remove();
-    s[1] = intf.getSimpleName();
-    return s;
-  }
 }

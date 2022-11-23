@@ -25,11 +25,11 @@ import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
 
 public interface SpouseLocalHome extends EJBLocalHome {
-  public SpouseLocal create(String id, String firstName, String maidenName,
-      String lastName, String sNumber, InfoLocal infoLocal)
-      throws CreateException;
+    public SpouseLocal create(
+            String id, String firstName, String maidenName, String lastName, String sNumber, InfoLocal infoLocal)
+            throws CreateException;
 
-  public SpouseLocal findByPrimaryKey(String id) throws FinderException;
+    public SpouseLocal findByPrimaryKey(String id) throws FinderException;
 
-  public String selectSpouseInfo() throws SpouseException;
+    public String selectSpouseInfo() throws SpouseException;
 }

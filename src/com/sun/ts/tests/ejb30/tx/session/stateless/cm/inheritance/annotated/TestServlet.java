@@ -22,5 +22,4 @@ package com.sun.ts.tests.ejb30.tx.session.stateless.cm.inheritance.annotated;
 
 import com.sun.ts.tests.ejb30.tx.common.session.inheritance.TestServletBase;
 
-public class TestServlet extends TestServletBase {
-}
+public class TestServlet extends TestServletBase {}

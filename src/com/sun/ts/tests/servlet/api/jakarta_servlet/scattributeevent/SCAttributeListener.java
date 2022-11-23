@@ -59,60 +59,54 @@
 package com.sun.ts.tests.servlet.api.jakarta_servlet.scattributeevent;
 
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextAttributeEvent;
 import jakarta.servlet.ServletContextAttributeListener;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 
-public final class SCAttributeListener
-    implements ServletContextAttributeListener, ServletContextListener {
+public final class SCAttributeListener implements ServletContextAttributeListener, ServletContextListener {
 
-  static ServletContext savedSC = null;
+    static ServletContext savedSC = null;
 
-  // Public Methods
+    // Public Methods
 
-  public void contextInitialized(ServletContextEvent event) {
-    savedSC = event.getServletContext();
-  }
-
-  public void contextDestroyed(ServletContextEvent event) {
-  }
-
-  public void attributeAdded(ServletContextAttributeEvent event) {
-    StaticLog.add("AttributeAdded:" + event.getName() + "," + event.getValue());
-    ServletContext sc = event.getServletContext();
-    if (savedSC != sc) {
-      StaticLog.add(getErrorMessageForInvalidContext(savedSC, sc));
+    public void contextInitialized(ServletContextEvent event) {
+        savedSC = event.getServletContext();
     }
-  }
 
-  public void attributeRemoved(ServletContextAttributeEvent event) {
-    StaticLog
-        .add("AttributeRemoved:" + event.getName() + "," + event.getValue());
-    ServletContext sc = event.getServletContext();
-    if (savedSC != sc) {
-      StaticLog.add(getErrorMessageForInvalidContext(savedSC, sc));
+    public void contextDestroyed(ServletContextEvent event) {}
+
+    public void attributeAdded(ServletContextAttributeEvent event) {
+        StaticLog.add("AttributeAdded:" + event.getName() + "," + event.getValue());
+        ServletContext sc = event.getServletContext();
+        if (savedSC != sc) {
+            StaticLog.add(getErrorMessageForInvalidContext(savedSC, sc));
+        }
     }
-  }
 
-  public void attributeReplaced(ServletContextAttributeEvent event) {
-    StaticLog
-        .add("AttributeReplaced:" + event.getName() + "," + event.getValue());
-    ServletContext sc = event.getServletContext();
-    if (savedSC != sc) {
-      StaticLog.add(getErrorMessageForInvalidContext(savedSC, sc));
+    public void attributeRemoved(ServletContextAttributeEvent event) {
+        StaticLog.add("AttributeRemoved:" + event.getName() + "," + event.getValue());
+        ServletContext sc = event.getServletContext();
+        if (savedSC != sc) {
+            StaticLog.add(getErrorMessageForInvalidContext(savedSC, sc));
+        }
     }
-  }
 
-  private String getErrorMessageForInvalidContext(ServletContext initCtx,
-      ServletContext eventCtx) {
-    StringBuffer sb = new StringBuffer(128);
-    sb.append(
-        "The ServletContext of the event is not the same ServletContext provided to the listener at initialization.\n");
-    sb.append("Initialized context: " + initCtx + "\n");
-    sb.append("Event.getServletContext returned context: " + eventCtx + "\n");
-    return sb.toString();
-  }
+    public void attributeReplaced(ServletContextAttributeEvent event) {
+        StaticLog.add("AttributeReplaced:" + event.getName() + "," + event.getValue());
+        ServletContext sc = event.getServletContext();
+        if (savedSC != sc) {
+            StaticLog.add(getErrorMessageForInvalidContext(savedSC, sc));
+        }
+    }
+
+    private String getErrorMessageForInvalidContext(ServletContext initCtx, ServletContext eventCtx) {
+        StringBuffer sb = new StringBuffer(128);
+        sb.append(
+                "The ServletContext of the event is not the same ServletContext provided to the listener at initialization.\n");
+        sb.append("Initialized context: " + initCtx + "\n");
+        sb.append("Event.getServletContext returned context: " + eventCtx + "\n");
+        return sb.toString();
+    }
 }

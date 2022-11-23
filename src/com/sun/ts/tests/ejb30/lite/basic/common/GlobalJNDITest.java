@@ -20,106 +20,102 @@
 
 package com.sun.ts.tests.ejb30.lite.basic.common;
 
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
+import java.util.logging.Level;
 
 public class GlobalJNDITest {
 
-  private GlobalJNDITest() {
-  }
+    private GlobalJNDITest() {}
 
-  // no appName or interfaceName in global jndi name. Only moduleName and
-  // beanName
-  public static String getGlobalJNDIName(String moduleName, String beanName) {
-    return getGlobalJNDIName((String) null, moduleName, beanName,
-        (Class<?>) null);
-  }
+    // no appName or interfaceName in global jndi name. Only moduleName and
+    // beanName
+    public static String getGlobalJNDIName(String moduleName, String beanName) {
+        return getGlobalJNDIName((String) null, moduleName, beanName, (Class<?>) null);
+    }
 
-  // no appName in global jndi name. Only moduleName, beanName and
-  // interfaceClass
-  public static String getGlobalJNDIName(String moduleName, String beanName,
-      Class<?> interfaceClass) {
-    return getGlobalJNDIName((String) null, moduleName, beanName,
-        interfaceClass);
-  }
+    // no appName in global jndi name. Only moduleName, beanName and
+    // interfaceClass
+    public static String getGlobalJNDIName(String moduleName, String beanName, Class<?> interfaceClass) {
+        return getGlobalJNDIName((String) null, moduleName, beanName, interfaceClass);
+    }
 
-  // no interface name in global jndi name
-  public static String getGlobalJNDIName(String appName, String moduleName,
-      String beanName) {
-    return getGlobalJNDIName(appName, moduleName, beanName, (Class<?>) null);
-  }
+    // no interface name in global jndi name
+    public static String getGlobalJNDIName(String appName, String moduleName, String beanName) {
+        return getGlobalJNDIName(appName, moduleName, beanName, (Class<?>) null);
+    }
 
-  public static String getGlobalJNDIName(String appName, String moduleName,
-      String beanName, Class<?> interfaceClass) {
-    Helper.getLogger().logp(Level.FINE, "GlobalJNDITest", "getGlobalJNDIName",
-        "appName=" + appName + ", moduleName=" + moduleName + ", beanName="
-            + beanName + ", interfaceClass=" + interfaceClass);
-    if (moduleName == null || moduleName.length() == 0) {
-      throw new IllegalArgumentException("invalid moduleName:" + moduleName);
+    public static String getGlobalJNDIName(
+            String appName, String moduleName, String beanName, Class<?> interfaceClass) {
+        Helper.getLogger()
+                .logp(
+                        Level.FINE,
+                        "GlobalJNDITest",
+                        "getGlobalJNDIName",
+                        "appName=" + appName + ", moduleName=" + moduleName + ", beanName=" + beanName
+                                + ", interfaceClass=" + interfaceClass);
+        if (moduleName == null || moduleName.length() == 0) {
+            throw new IllegalArgumentException("invalid moduleName:" + moduleName);
+        }
+        if (beanName == null || beanName.length() == 0) {
+            throw new IllegalArgumentException("invalid beanName:" + beanName);
+        }
+        String result = "java:global";
+        if (appName != null && appName.length() > 0) {
+            result += "/" + appName;
+        }
+        result += "/" + moduleName + "/" + beanName;
+        if (interfaceClass != null) {
+            result += "!" + interfaceClass.getName();
+        }
+        return result;
     }
-    if (beanName == null || beanName.length() == 0) {
-      throw new IllegalArgumentException("invalid beanName:" + beanName);
-    }
-    String result = "java:global";
-    if (appName != null && appName.length() > 0) {
-      result += "/" + appName;
-    }
-    result += "/" + moduleName + "/" + beanName;
-    if (interfaceClass != null) {
-      result += "!" + interfaceClass.getName();
-    }
-    return result;
-  }
 
-  public static String getAppJNDIName(String moduleName, String beanName) {
-    return getAppJNDIName(moduleName, beanName, (Class<?>) null);
-  }
+    public static String getAppJNDIName(String moduleName, String beanName) {
+        return getAppJNDIName(moduleName, beanName, (Class<?>) null);
+    }
 
-  /**
-   * For intra-app use.
-   * 
-   * If the app is packaged in EAR, then call this method with (moduleName,
-   * beanName, and optional interfaceClass).
-   * 
-   * If the app is packaged in WAR or JAR, then call this method with
-   * (moduleName, beanName, and optional interfaceClass). Note that module-name
-   * is still required for standalone modules.
-   */
-  public static String getAppJNDIName(String moduleName, String beanName,
-      Class<?> interfaceClass) {
-    String result = "java:app";
-    if (moduleName != null && moduleName.length() > 0) {
-      result += "/" + moduleName;
+    /**
+     * For intra-app use.
+     *
+     * If the app is packaged in EAR, then call this method with (moduleName,
+     * beanName, and optional interfaceClass).
+     *
+     * If the app is packaged in WAR or JAR, then call this method with
+     * (moduleName, beanName, and optional interfaceClass). Note that module-name
+     * is still required for standalone modules.
+     */
+    public static String getAppJNDIName(String moduleName, String beanName, Class<?> interfaceClass) {
+        String result = "java:app";
+        if (moduleName != null && moduleName.length() > 0) {
+            result += "/" + moduleName;
+        }
+        if (beanName == null || beanName.length() == 0) {
+            throw new RuntimeException("Invalid beanName " + beanName);
+        }
+        result += "/" + beanName;
+        if (interfaceClass != null) {
+            result += "!" + interfaceClass.getName();
+        }
+        return result;
     }
-    if (beanName == null || beanName.length() == 0) {
-      throw new RuntimeException("Invalid beanName " + beanName);
-    }
-    result += "/" + beanName;
-    if (interfaceClass != null) {
-      result += "!" + interfaceClass.getName();
-    }
-    return result;
-  }
 
-  public static String getModuleJNDIName(String beanName) {
-    return getModuleJNDIName(beanName, (Class<?>) null);
-  }
+    public static String getModuleJNDIName(String beanName) {
+        return getModuleJNDIName(beanName, (Class<?>) null);
+    }
 
-  /**
-   * For intra-module use
-   * 
-   * Call this method with (beanName, and optional interfaceClass)
-   */
-  public static String getModuleJNDIName(String beanName,
-      Class<?> interfaceClass) {
-    if (beanName == null || beanName.length() == 0) {
-      throw new RuntimeException("Invalid beanName " + beanName);
+    /**
+     * For intra-module use
+     *
+     * Call this method with (beanName, and optional interfaceClass)
+     */
+    public static String getModuleJNDIName(String beanName, Class<?> interfaceClass) {
+        if (beanName == null || beanName.length() == 0) {
+            throw new RuntimeException("Invalid beanName " + beanName);
+        }
+        String result = "java:module/" + beanName;
+        if (interfaceClass != null) {
+            result += "!" + interfaceClass.getName();
+        }
+        return result;
     }
-    String result = "java:module/" + beanName;
-    if (interfaceClass != null) {
-      result += "!" + interfaceClass.getName();
-    }
-    return result;
-  }
 }

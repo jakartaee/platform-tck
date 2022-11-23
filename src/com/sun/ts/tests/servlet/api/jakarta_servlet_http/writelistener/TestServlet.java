@@ -19,28 +19,26 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.writelistener;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
-
 import jakarta.servlet.AsyncContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @WebServlet(value = "/TestServlet", asyncSupported = true)
 public class TestServlet extends HttpTCKServlet {
 
-  private static final int LENGTH = 587952;
+    private static final int LENGTH = 587952;
 
-  public void nioOutputTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+    public void nioOutputTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-    AsyncContext ac = request.startAsync();
-    ServletOutputStream output = response.getOutputStream();
-    TestListener writeListener = new TestListener(output, ac);
-    output.setWriteListener(writeListener);
-  }
+        AsyncContext ac = request.startAsync();
+        ServletOutputStream output = response.getOutputStream();
+        TestListener writeListener = new TestListener(output, ac);
+        output.setWriteListener(writeListener);
+    }
 }

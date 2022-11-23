@@ -20,74 +20,69 @@
 
 package com.sun.ts.tests.ejb30.misc.sameejbclass;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.lib.deliverable.cts.resource.Dog;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.Data;
-
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(urlPatterns = "/TestServlet", loadOnStartup = 1)
 public class TestServlet extends HttpTCKServlet {
-  @EJB(beanName = "SameEJBClassBean1", name = "ejb/SameEJBClassBean1")
-  private SameEJBClassIF sameEJBClassBean1;
+    @EJB(beanName = "SameEJBClassBean1", name = "ejb/SameEJBClassBean1")
+    private SameEJBClassIF sameEJBClassBean1;
 
-  @EJB(beanName = "SameEJBClassBean2", name = "ejb/SameEJBClassBean2")
-  private SameEJBClassIF sameEJBClassBean2;
+    @EJB(beanName = "SameEJBClassBean2", name = "ejb/SameEJBClassBean2")
+    private SameEJBClassIF sameEJBClassBean2;
 
-  @EJB(beanName = "SameEJBClassBean3", name = "ejb/SameEJBClassBean3")
-  private SameEJBClassIF sameEJBClassBean3;
+    @EJB(beanName = "SameEJBClassBean3", name = "ejb/SameEJBClassBean3")
+    private SameEJBClassIF sameEJBClassBean3;
 
-  @EJB(beanName = "SameEJBClassBean4", name = "ejb/SameEJBClassBean4")
-  private SameEJBClassIF sameEJBClassBean4;
+    @EJB(beanName = "SameEJBClassBean4", name = "ejb/SameEJBClassBean4")
+    private SameEJBClassIF sameEJBClassBean4;
 
-  @EJB(beanName = "SameEJBClassBean1", name = "ejb/sameEJBClassBeanRemote1")
-  private SameEJBClassRemoteIF sameEJBClassBeanRemote1;
+    @EJB(beanName = "SameEJBClassBean1", name = "ejb/sameEJBClassBeanRemote1")
+    private SameEJBClassRemoteIF sameEJBClassBeanRemote1;
 
-  public void checkEnvEntry(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    try {
-      pw.println(sameEJBClassBean1.checkEnvEntry("sameEJBClassBean1"));
-      pw.println(sameEJBClassBean2.checkEnvEntry("sameEJBClassBean2"));
-      pw.println(sameEJBClassBean3.checkEnvEntry("sameEJBClassBean3"));
-      pw.println(
-          Data.PASSED + sameEJBClassBean4.checkEnvEntry("sameEJBClassBean4"));
-    } catch (TestFailedException ex) {
-      pw.println(Data.FAILED + ex.getMessage());
+    public void checkEnvEntry(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        try {
+            pw.println(sameEJBClassBean1.checkEnvEntry("sameEJBClassBean1"));
+            pw.println(sameEJBClassBean2.checkEnvEntry("sameEJBClassBean2"));
+            pw.println(sameEJBClassBean3.checkEnvEntry("sameEJBClassBean3"));
+            pw.println(Data.PASSED + sameEJBClassBean4.checkEnvEntry("sameEJBClassBean4"));
+        } catch (TestFailedException ex) {
+            pw.println(Data.FAILED + ex.getMessage());
+        }
     }
-  }
 
-  public void testDTO(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    try {
-      // obj and dogCopy are equal
-      Dog dogCopy = new Dog();
-      Object obj = Dog.getInstance();
-      ;
+    public void testDTO(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        try {
+            // obj and dogCopy are equal
+            Dog dogCopy = new Dog();
+            Object obj = Dog.getInstance();
+            ;
 
-      // obj2 to hold return result
-      Object obj2 = sameEJBClassBeanRemote1.testDTO(10, "object", obj);
-      // remote call should not modify the param
-      if (!obj.equals(dogCopy)) {
-        throw new TestFailedException(
-            "The param to a remote call was modified: " + obj);
-      }
-      // return value dog2 should contain the new name set in the bean class
-      if (obj2.equals(obj)) {
-        throw new TestFailedException("Unexpected return value: " + obj2);
-      }
-      pw.println(Data.PASSED);
-    } catch (Exception ex) {
-      pw.println(Data.FAILED + ex.getMessage());
+            // obj2 to hold return result
+            Object obj2 = sameEJBClassBeanRemote1.testDTO(10, "object", obj);
+            // remote call should not modify the param
+            if (!obj.equals(dogCopy)) {
+                throw new TestFailedException("The param to a remote call was modified: " + obj);
+            }
+            // return value dog2 should contain the new name set in the bean class
+            if (obj2.equals(obj)) {
+                throw new TestFailedException("Unexpected return value: " + obj2);
+            }
+            pw.println(Data.PASSED);
+        } catch (Exception ex) {
+            pw.println(Data.FAILED + ex.getMessage());
+        }
     }
-  }
 }

@@ -20,19 +20,15 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.pkey;
 
-import java.rmi.RemoteException;
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
 public interface LongBeanHome extends EJBHome {
 
-  public LongBean create(Properties p, Long id, String name, float price)
-      throws RemoteException, CreateException;
+    public LongBean create(Properties p, Long id, String name, float price) throws RemoteException, CreateException;
 
-  public LongBean findByPrimaryKey(Long key)
-      throws RemoteException, FinderException;
-
+    public LongBean findByPrimaryKey(Long key) throws RemoteException, FinderException;
 }

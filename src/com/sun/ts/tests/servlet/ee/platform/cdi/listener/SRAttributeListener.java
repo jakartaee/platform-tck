@@ -17,7 +17,6 @@
 package com.sun.ts.tests.servlet.ee.platform.cdi.listener;
 
 import com.sun.ts.tests.servlet.ee.platform.cdi.TCKTestBean;
-
 import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletRequestAttributeEvent;
@@ -25,45 +24,38 @@ import jakarta.servlet.ServletRequestAttributeListener;
 import jakarta.servlet.annotation.WebListener;
 
 @WebListener
-public final class SRAttributeListener
-    implements ServletRequestAttributeListener {
+public final class SRAttributeListener implements ServletRequestAttributeListener {
 
-  @Inject
-  TCKTestBean ttb;
+    @Inject
+    TCKTestBean ttb;
 
-  @Inject
-  BeanManager bm;
+    @Inject
+    BeanManager bm;
 
-  @Override
-  public void attributeAdded(ServletRequestAttributeEvent event) {
-    boolean passed = true;
+    @Override
+    public void attributeAdded(ServletRequestAttributeEvent event) {
+        boolean passed = true;
 
-    if (ttb == null) {
-      passed = false;
-      System.out.println(
-          "Injection of TCKTestBean in ServletRequestAttributeListener failed");
+        if (ttb == null) {
+            passed = false;
+            System.out.println("Injection of TCKTestBean in ServletRequestAttributeListener failed");
+        }
+
+        if (bm == null) {
+            passed = false;
+            System.out.println("Injection of BeanManager in ServletRequestAttributeListener failed");
+        }
+
+        if (passed) {
+            event.getServletContext().setAttribute("TEST_LOG_SAR", "Test PASSED from ServletRequestAttributeListener");
+        } else {
+            event.getServletContext().setAttribute("TEST_LOG_SAR", "Test FAILED from ServletRequestAttributeListener");
+        }
     }
 
-    if (bm == null) {
-      passed = false;
-      System.out.println(
-          "Injection of BeanManager in ServletRequestAttributeListener failed");
-    }
+    @Override
+    public void attributeRemoved(ServletRequestAttributeEvent event) {}
 
-    if (passed) {
-      event.getServletContext().setAttribute("TEST_LOG_SAR",
-          "Test PASSED from ServletRequestAttributeListener");
-    } else {
-      event.getServletContext().setAttribute("TEST_LOG_SAR",
-          "Test FAILED from ServletRequestAttributeListener");
-    }
-  }
-
-  @Override
-  public void attributeRemoved(ServletRequestAttributeEvent event) {
-  }
-
-  @Override
-  public void attributeReplaced(ServletRequestAttributeEvent event) {
-  }
+    @Override
+    public void attributeReplaced(ServletRequestAttributeEvent event) {}
 }

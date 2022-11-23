@@ -20,27 +20,25 @@
 
 package com.sun.ts.tests.ejb30.common.callback;
 
+public abstract class InterceptorBaseBase {
+    protected static final String NOT_INJECTED = "NOT_INJECTED";
 
-abstract public class InterceptorBaseBase {
-  protected static final String NOT_INJECTED = "NOT_INJECTED";
+    protected static final String POSTCONSTRUCT_CALLS_IN_CONTEXTDATA = "POSTCONSTRUCT_CALLS_IN_CONTEXTDATA";
 
-  protected static final String POSTCONSTRUCT_CALLS_IN_CONTEXTDATA = "POSTCONSTRUCT_CALLS_IN_CONTEXTDATA";
+    protected abstract String getInjectedLocation();
 
-  abstract protected String getInjectedLocation();
+    protected String getInjectedBaseBaseLocation() {
+        return NOT_INJECTED;
+    }
 
-  protected String getInjectedBaseBaseLocation() {
-    return NOT_INJECTED;
-  }
-
-  /**
-   * Note that this method may be overridden by subclasses. If so, the value
-   * returned may be different from the shortName defined in the current
-   * enclosing class. That is why we need to pass a symbol (same as shortName)
-   * to myCreate0(InvocatioinContext, String symbol), to force a hardcoded
-   * value.
-   */
-  protected String getShortName() {
-    return "BASEBASE";
-  }
-
+    /**
+     * Note that this method may be overridden by subclasses. If so, the value
+     * returned may be different from the shortName defined in the current
+     * enclosing class. That is why we need to pass a symbol (same as shortName)
+     * to myCreate0(InvocatioinContext, String symbol), to force a hardcoded
+     * value.
+     */
+    protected String getShortName() {
+        return "BASEBASE";
+    }
 }

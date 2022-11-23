@@ -31,23 +31,24 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import jakarta.jms.MessageListener;
 
-//use annotation element messageListenerInterface, nor descritpor element
-//messaging-type
-@MessageDriven(name = "DestBean", activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue") })
+// use annotation element messageListenerInterface, nor descritpor element
+// messaging-type
+@MessageDriven(
+        name = "DestBean",
+        activationConfig = {
+            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
+        })
 @TransactionManagement(TransactionManagementType.CONTAINER)
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-public class DestBean
-    extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.DestBeanBase
-    implements MessageListener {
-  @Resource(name = "mdc")
-  private MessageDrivenContext mdc;
+public class DestBean extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.DestBeanBase implements MessageListener {
+    @Resource(name = "mdc")
+    private MessageDrivenContext mdc;
 
-  public DestBean() {
-    super();
-  }
+    public DestBean() {
+        super();
+    }
 
-  public EJBContext getEJBContext() {
-    return this.mdc;
-  }
+    public EJBContext getEJBContext() {
+        return this.mdc;
+    }
 }

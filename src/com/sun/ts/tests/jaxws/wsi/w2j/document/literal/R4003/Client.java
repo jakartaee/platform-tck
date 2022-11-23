@@ -20,74 +20,70 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R4003;
 
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.*;
+import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
+import jakarta.xml.ws.*;
 import java.util.Properties;
 
-import jakarta.xml.ws.*;
-import com.sun.javatest.Status;
-import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
-
-import com.sun.ts.lib.harness.*;
-
 public class Client extends ServiceEETest {
-  /**
-   * The client.
-   */
-  private W2JDLR4003Client client;
+    /**
+     * The client.
+     */
+    private W2JDLR4003Client client;
 
-  static W2JDLR4003TestService service = null;
+    static W2JDLR4003TestService service = null;
 
-  /**
-   * Test entry point.
-   * 
-   * @param args
-   *          the command-line arguments.
-   */
-  public static void main(String[] args) {
-    Client client = new Client();
-    Status status = client.run(args, System.out, System.err);
-    status.exit();
-  }
-
-  /**
-   * @class.testArgs: -ap jaxws-url-props.dat
-   * @class.setup_props: webServerHost; webServerPort; platform.mode;
-   *
-   * @param args
-   * @param properties
-   *
-   * @throws Fault
-   */
-  public void setup(String[] args, Properties properties) throws Fault {
-    client = (W2JDLR4003Client) ClientFactory.getClient(W2JDLR4003Client.class,
-        properties, this, service);
-    logMsg("setup ok");
-  }
-
-  public void cleanup() {
-    logMsg("cleanup");
-  }
-
-  /**
-   * @testName: testDescriptionEncoding
-   *
-   * @assertion_ids: WSI:SPEC:R4003
-   *
-   * @test_Strategy: The supplied WSDL, importing UTF-8 and UTF-16 descriptions,
-   *                 has been used by the WSDL-to-Java tool to generate an end
-   *                 point. If the tool works correctly, the end-point has been
-   *                 built and deployed so it should simply be reachable.
-   *
-   * @throws Fault
-   */
-  public void testDescriptionEncoding() throws Fault {
-    try {
-      String result = client.echoString("R4003");
-      if (!"R4003".equals(result)) {
-        throw new Fault("echoString operation returns '" + result
-            + "' in stead of 'R4003' (BP-R4003)");
-      }
-    } catch (Exception e) {
-      throw new Fault("Unable to invoke echoString operation (BP-R4003)", e);
+    /**
+     * Test entry point.
+     *
+     * @param args
+     *          the command-line arguments.
+     */
+    public static void main(String[] args) {
+        Client client = new Client();
+        Status status = client.run(args, System.out, System.err);
+        status.exit();
     }
-  }
+
+    /**
+     * @class.testArgs: -ap jaxws-url-props.dat
+     * @class.setup_props: webServerHost; webServerPort; platform.mode;
+     *
+     * @param args
+     * @param properties
+     *
+     * @throws Fault
+     */
+    public void setup(String[] args, Properties properties) throws Fault {
+        client = (W2JDLR4003Client) ClientFactory.getClient(W2JDLR4003Client.class, properties, this, service);
+        logMsg("setup ok");
+    }
+
+    public void cleanup() {
+        logMsg("cleanup");
+    }
+
+    /**
+     * @testName: testDescriptionEncoding
+     *
+     * @assertion_ids: WSI:SPEC:R4003
+     *
+     * @test_Strategy: The supplied WSDL, importing UTF-8 and UTF-16 descriptions,
+     *                 has been used by the WSDL-to-Java tool to generate an end
+     *                 point. If the tool works correctly, the end-point has been
+     *                 built and deployed so it should simply be reachable.
+     *
+     * @throws Fault
+     */
+    public void testDescriptionEncoding() throws Fault {
+        try {
+            String result = client.echoString("R4003");
+            if (!"R4003".equals(result)) {
+                throw new Fault("echoString operation returns '" + result + "' in stead of 'R4003' (BP-R4003)");
+            }
+        } catch (Exception e) {
+            throw new Fault("Unable to invoke echoString operation (BP-R4003)", e);
+        }
+    }
 }

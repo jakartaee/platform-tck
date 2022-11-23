@@ -20,29 +20,28 @@
 
 package com.sun.ts.tests.ejb.ee.pm.manyXmany.bi.delete;
 
+import jakarta.ejb.EJBLocalObject;
 import java.util.Collection;
 
-import jakarta.ejb.EJBLocalObject;
-
 public interface ALocal extends EJBLocalObject {
-  // Business Methods for ALocal CMP Fields
-  public String getId();
+    // Business Methods for ALocal CMP Fields
+    public String getId();
 
-  public String getName();
+    public String getName();
 
-  public void setName(String v);
+    public void setName(String v);
 
-  public int getValue();
+    public int getValue();
 
-  public void setValue(int v);
+    public void setValue(int v);
 
-  // Business Methods for B CMR Fields
-  public Collection getB();
+    // Business Methods for B CMR Fields
+    public Collection getB();
 
-  public void setB(Collection v);
+    public void setB(Collection v);
 
-  public boolean setCmrFieldToNull();
+    public boolean setCmrFieldToNull();
 
-  // Business method to return B relationship info as Collection DVC's
-  public Collection getBInfo();
+    // Business method to return B relationship info as Collection DVC's
+    public Collection getBInfo();
 }

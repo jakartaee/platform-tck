@@ -20,51 +20,48 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.scope;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.ejb.wrappers.MDBWrapper;
+import java.util.Properties;
 
 public class MsgBean extends MDBWrapper {
 
-  private static final String lookupName = "java:comp/env/ejb/Partner";
+    private static final String lookupName = "java:comp/env/ejb/Partner";
 
-  public Boolean whoIsYourPartner(Properties props) {
+    public Boolean whoIsYourPartner(Properties props) {
 
-    boolean pass = false;
-    ReferencedBeanHome home = null;
-    ReferencedBean bean = null;
-    String partnerName = null;
-    String expectedName;
+        boolean pass = false;
+        ReferencedBeanHome home = null;
+        ReferencedBean bean = null;
+        String partnerName = null;
+        String expectedName;
 
-    try {
-      expectedName = TestUtil.getProperty("beanPartner");
+        try {
+            expectedName = TestUtil.getProperty("beanPartner");
 
-      TestUtil.logTrace("[MsgBean] looking up " + lookupName);
-      home = (ReferencedBeanHome) nctx.lookup(lookupName,
-          ReferencedBeanHome.class);
-      bean = home.create();
-      bean.initLogging(props);
-      partnerName = bean.whoAreYou();
+            TestUtil.logTrace("[MsgBean] looking up " + lookupName);
+            home = (ReferencedBeanHome) nctx.lookup(lookupName, ReferencedBeanHome.class);
+            bean = home.create();
+            bean.initLogging(props);
+            partnerName = bean.whoAreYou();
 
-      pass = expectedName.equals(partnerName);
-      if (!pass) {
-        TestUtil.logErr("[MsgBean] expected " + expectedName);
-      }
-    } catch (Exception e) {
-      pass = false;
-      TestUtil.logErr("[MsgBean] Caught exception! ", e);
-    } finally {
-      try {
-        if (null != bean) {
-          bean.remove();
+            pass = expectedName.equals(partnerName);
+            if (!pass) {
+                TestUtil.logErr("[MsgBean] expected " + expectedName);
+            }
+        } catch (Exception e) {
+            pass = false;
+            TestUtil.logErr("[MsgBean] Caught exception! ", e);
+        } finally {
+            try {
+                if (null != bean) {
+                    bean.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logErr("[MsgBean] Ignoring exception on bean " + "removal ", e);
+            }
         }
-      } catch (Exception e) {
-        TestUtil.logErr("[MsgBean] Ignoring exception on bean " + "removal ",
-            e);
-      }
-    }
 
-    return new Boolean(pass);
-  }
+        return new Boolean(pass);
+    }
 }

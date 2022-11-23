@@ -24,7 +24,6 @@ import com.sun.ts.lib.harness.RemoteStatus;
 import com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManager;
 import com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory;
 import com.sun.ts.tests.common.vehicle.servlet.ServletVehicle;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -32,56 +31,52 @@ import jakarta.persistence.PersistenceUnit;
 
 public class PUServletVehicle extends ServletVehicle {
 
-  @PersistenceUnit(unitName = "CTS-EM-NOTX")
-  EntityManagerFactory emf;
+    @PersistenceUnit(unitName = "CTS-EM-NOTX")
+    EntityManagerFactory emf;
 
-  protected RemoteStatus runTest() {
-    RemoteStatus sTestStatus = new RemoteStatus(Status.passed(""));
-    properties.put("persistence.unit.name", "CTS-EM-NOTX");
+    protected RemoteStatus runTest() {
+        RemoteStatus sTestStatus = new RemoteStatus(Status.passed(""));
+        properties.put("persistence.unit.name", "CTS-EM-NOTX");
 
-    EntityManager em = null;
-    try {
-      // call EETest impl's run method
-      if (testObj instanceof UseEntityManager) {
-        em = emf.createEntityManager();
-        if (em == null) {
-          throw new IllegalStateException("EntityManager is null");
+        EntityManager em = null;
+        try {
+            // call EETest impl's run method
+            if (testObj instanceof UseEntityManager) {
+                em = emf.createEntityManager();
+                if (em == null) {
+                    throw new IllegalStateException("EntityManager is null");
+                }
+                UseEntityManager client2 = (UseEntityManager) testObj;
+                EntityTransaction et = em.getTransaction();
+                client2.setEntityManager(em);
+                client2.setEntityTransaction(et);
+                client2.setInContainer(true);
+            }
+
+            if (testObj instanceof UseEntityManagerFactory) {
+                if (emf == null) {
+                    throw new IllegalStateException("EntityManagerFactory is null");
+                }
+                UseEntityManagerFactory client2 = (UseEntityManagerFactory) testObj;
+                client2.setEntityManagerFactory(emf);
+            }
+
+            sTestStatus = new RemoteStatus(testObj.run(arguments, properties));
+
+            if (sTestStatus.getType() == Status.PASSED) {
+                System.out.println("Test running in PersistenceUnit servlet  vehicle passed");
+            } else {
+                System.out.println("Test running in PersistenceUnit servlet vehicle failed");
+            }
+        } catch (Throwable e) {
+            sTestStatus = new RemoteStatus(Status.failed("Test running in PersistenceUnit servlet vehicle failed"));
+            e.printStackTrace();
+        } finally {
+            if (em != null) {
+                if (em.isOpen()) em.close();
+            }
         }
-        UseEntityManager client2 = (UseEntityManager) testObj;
-        EntityTransaction et = em.getTransaction();
-        client2.setEntityManager(em);
-        client2.setEntityTransaction(et);
-        client2.setInContainer(true);
-      }
 
-      if (testObj instanceof UseEntityManagerFactory) {
-        if (emf == null) {
-          throw new IllegalStateException("EntityManagerFactory is null");
-        }
-        UseEntityManagerFactory client2 = (UseEntityManagerFactory) testObj;
-        client2.setEntityManagerFactory(emf);
-      }
-
-      sTestStatus = new RemoteStatus(testObj.run(arguments, properties));
-
-      if (sTestStatus.getType() == Status.PASSED) {
-        System.out
-            .println("Test running in PersistenceUnit servlet  vehicle passed");
-      } else {
-        System.out
-            .println("Test running in PersistenceUnit servlet vehicle failed");
-      }
-    } catch (Throwable e) {
-      sTestStatus = new RemoteStatus(Status
-          .failed("Test running in PersistenceUnit servlet vehicle failed"));
-      e.printStackTrace();
-    } finally {
-      if (em != null) {
-        if (em.isOpen())
-          em.close();
-      }
+        return sTestStatus;
     }
-
-    return sTestStatus;
-  }
 }

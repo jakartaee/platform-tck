@@ -16,6 +16,15 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.schedule.tz;
 
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
+import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
+import jakarta.ejb.ScheduleExpression;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.Timeout;
+import jakarta.ejb.Timer;
+import jakarta.ejb.TimerConfig;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,149 +35,134 @@ import java.util.List;
 import java.util.TimeZone;
 import java.util.logging.Level;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
-import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-
-import jakarta.ejb.ScheduleExpression;
-import jakarta.ejb.Stateless;
-import jakarta.ejb.Timeout;
-import jakarta.ejb.Timer;
-import jakarta.ejb.TimerConfig;
-
 @Stateless
 public class TZScheduleBareBean extends TimerBeanBaseWithoutTimeOutMethod {
-  protected static final String DEFAULT_TZ = "DEFAULT_TZ";
+    protected static final String DEFAULT_TZ = "DEFAULT_TZ";
 
-  protected static final String PROGRAMMATIC_TIMER_DEFAULT_TZ = "PROGRAMMATIC_TIMER_DEFAULT_TZ";
+    protected static final String PROGRAMMATIC_TIMER_DEFAULT_TZ = "PROGRAMMATIC_TIMER_DEFAULT_TZ";
 
-  protected static final String AMERICA_ARGENTINA_SAN_LUIS = "  America/Argentina/San_Luis  ";
+    protected static final String AMERICA_ARGENTINA_SAN_LUIS = "  America/Argentina/San_Luis  ";
 
-  protected static final String AMERICA_ARGENTINA_USHUAIA = "America/Argentina/Ushuaia";
+    protected static final String AMERICA_ARGENTINA_USHUAIA = "America/Argentina/Ushuaia";
 
-  protected static final String ASIA_SHANGHAI = "Asia/Shanghai";
+    protected static final String ASIA_SHANGHAI = "Asia/Shanghai";
 
-  private static final String ZONE_TAB = "zone.tab";
+    private static final String ZONE_TAB = "zone.tab";
 
-  protected List<String> zoneTab;
+    protected List<String> zoneTab;
 
-  @Timeout
-  protected void year5000() {
-    throw new IllegalStateException("We will not see this in our life.");
-  }
-
-  public String defaultTZ() {
-    TimerConfig config = new TimerConfig(PROGRAMMATIC_TIMER_DEFAULT_TZ, false);
-    ScheduleExpression exp = new ScheduleExpression().year(5000);
-    timerService.createCalendarTimer(exp, config);
-    return verifyTZ(DEFAULT_TZ, null) + TestUtil.NEW_LINE
-        + verifyTZ(PROGRAMMATIC_TIMER_DEFAULT_TZ, null);
-  }
-
-  public String shanghaiAndArgentinaTZ() {
-    return verifyTZ(ASIA_SHANGHAI, ASIA_SHANGHAI) + TestUtil.NEW_LINE
-        + verifyTZ(AMERICA_ARGENTINA_SAN_LUIS, AMERICA_ARGENTINA_SAN_LUIS)
-        + TestUtil.NEW_LINE
-        + verifyTZ(AMERICA_ARGENTINA_USHUAIA, AMERICA_ARGENTINA_USHUAIA);
-  }
-
-  public String allTZ() {
-    StringBuilder sb = new StringBuilder();
-    List<Timer> timers = new ArrayList<Timer>();
-    TimerConfig config = new TimerConfig();
-    config.setPersistent(false);
-    ScheduleExpression exp = new ScheduleExpression().year(5000);
-
-    for (String z : zoneTab) {
-      exp = exp.timezone(z);
-      config.setInfo(z);
-      timers.add(timerService.createCalendarTimer(exp, config));
+    @Timeout
+    protected void year5000() {
+        throw new IllegalStateException("We will not see this in our life.");
     }
-    for (String z : zoneTab) {
-      verifyTZ(z, z, sb);
-      sb.append(TestUtil.NEW_LINE);
+
+    public String defaultTZ() {
+        TimerConfig config = new TimerConfig(PROGRAMMATIC_TIMER_DEFAULT_TZ, false);
+        ScheduleExpression exp = new ScheduleExpression().year(5000);
+        timerService.createCalendarTimer(exp, config);
+        return verifyTZ(DEFAULT_TZ, null) + TestUtil.NEW_LINE + verifyTZ(PROGRAMMATIC_TIMER_DEFAULT_TZ, null);
     }
-    return sb.toString();
-  }
 
-  public Timer expireInLaterTZ() {
-    TimerConfig config = new TimerConfig("expireInAnotherTZ", false);
-    Calendar cal = Calendar.getInstance();
-    cal.add(Calendar.SECOND, 1);
-    ScheduleExpression exp = TimerUtil.getPreciseScheduleExpression(cal);
-    exp.timezone(getLaterTZ());
-    Timer t = timerService.createCalendarTimer(exp, config);
-    Helper.getLogger().fine("Created a timer with schedule " + exp);
-    return t;
-  }
+    public String shanghaiAndArgentinaTZ() {
+        return verifyTZ(ASIA_SHANGHAI, ASIA_SHANGHAI)
+                + TestUtil.NEW_LINE
+                + verifyTZ(AMERICA_ARGENTINA_SAN_LUIS, AMERICA_ARGENTINA_SAN_LUIS)
+                + TestUtil.NEW_LINE
+                + verifyTZ(AMERICA_ARGENTINA_USHUAIA, AMERICA_ARGENTINA_USHUAIA);
+    }
 
-  protected String verifyTZ(String timerName, String expected,
-      StringBuilder... sbs) {
-    StringBuilder sb = (sbs.length == 0) ? new StringBuilder() : sbs[0];
-    Timer t = findTimer(timerName);
-    ScheduleExpression exp = t.getSchedule();
-    sb.append("Check TZ in schedule: ").append(TimerUtil.toString(exp));
-    String expectedTrimmedUp = (expected == null) ? expected
-        : expected.trim().toUpperCase();
-    String actualTrimmedUp = (exp.getTimezone() == null) ? null
-        : exp.getTimezone().trim().toUpperCase();
-    Helper.assertEquals(" ", expectedTrimmedUp, actualTrimmedUp, sb);
-    return sb.toString();
-  }
+    public String allTZ() {
+        StringBuilder sb = new StringBuilder();
+        List<Timer> timers = new ArrayList<Timer>();
+        TimerConfig config = new TimerConfig();
+        config.setPersistent(false);
+        ScheduleExpression exp = new ScheduleExpression().year(5000);
 
-  protected void initZoneTab() {
-    zoneTab = new ArrayList<String>();
-    InputStream is = getClass().getResourceAsStream(ZONE_TAB);
-    BufferedReader br = new BufferedReader(new InputStreamReader(is));
-    String line = null;
-    try {
-      while ((line = br.readLine()) != null) {
-        line = line.trim();
-        if (line.length() >= 3) {// the valid form is "x/y"
-          zoneTab.add(line);
+        for (String z : zoneTab) {
+            exp = exp.timezone(z);
+            config.setInfo(z);
+            timers.add(timerService.createCalendarTimer(exp, config));
         }
-      }
-    } catch (IOException e) {
-      Helper.getLogger().log(Level.WARNING, "Failed to read " + ZONE_TAB, e);
-    } finally {
-      if (is != null) {
+        for (String z : zoneTab) {
+            verifyTZ(z, z, sb);
+            sb.append(TestUtil.NEW_LINE);
+        }
+        return sb.toString();
+    }
+
+    public Timer expireInLaterTZ() {
+        TimerConfig config = new TimerConfig("expireInAnotherTZ", false);
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.SECOND, 1);
+        ScheduleExpression exp = TimerUtil.getPreciseScheduleExpression(cal);
+        exp.timezone(getLaterTZ());
+        Timer t = timerService.createCalendarTimer(exp, config);
+        Helper.getLogger().fine("Created a timer with schedule " + exp);
+        return t;
+    }
+
+    protected String verifyTZ(String timerName, String expected, StringBuilder... sbs) {
+        StringBuilder sb = (sbs.length == 0) ? new StringBuilder() : sbs[0];
+        Timer t = findTimer(timerName);
+        ScheduleExpression exp = t.getSchedule();
+        sb.append("Check TZ in schedule: ").append(TimerUtil.toString(exp));
+        String expectedTrimmedUp =
+                (expected == null) ? expected : expected.trim().toUpperCase();
+        String actualTrimmedUp =
+                (exp.getTimezone() == null) ? null : exp.getTimezone().trim().toUpperCase();
+        Helper.assertEquals(" ", expectedTrimmedUp, actualTrimmedUp, sb);
+        return sb.toString();
+    }
+
+    protected void initZoneTab() {
+        zoneTab = new ArrayList<String>();
+        InputStream is = getClass().getResourceAsStream(ZONE_TAB);
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        String line = null;
         try {
-          is.close();
-        } catch (IOException e2) {
+            while ((line = br.readLine()) != null) {
+                line = line.trim();
+                if (line.length() >= 3) { // the valid form is "x/y"
+                    zoneTab.add(line);
+                }
+            }
+        } catch (IOException e) {
+            Helper.getLogger().log(Level.WARNING, "Failed to read " + ZONE_TAB, e);
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e2) {
+                }
+            }
         }
-      }
+        if (zoneTab.size() == 0) {
+            Helper.getLogger().warning("0 entries read from " + ZONE_TAB);
+            zoneTab = null;
+        }
     }
-    if (zoneTab.size() == 0) {
-      Helper.getLogger().warning("0 entries read from " + ZONE_TAB);
-      zoneTab = null;
-    }
-  }
 
-  /**
-   * Looks for a TZ that is later than the default TZ by comparing their offset
-   * to GMT. The later TZ's offset < default TZ's offset.
-   */
-  protected String getLaterTZ() {
-    TimeZone laterTZ = null;
-    TimeZone defaultTZ = TimeZone.getDefault();
-    int defaultTZOffset = defaultTZ.getRawOffset();
-    int laterTZOffset = defaultTZOffset;
-    for (int i = 0; i < zoneTab.size()
-        && laterTZOffset >= defaultTZOffset; i++) {
-      laterTZ = TimeZone.getTimeZone(zoneTab.get(i));
-      laterTZOffset = laterTZ.getRawOffset();
+    /**
+     * Looks for a TZ that is later than the default TZ by comparing their offset
+     * to GMT. The later TZ's offset < default TZ's offset.
+     */
+    protected String getLaterTZ() {
+        TimeZone laterTZ = null;
+        TimeZone defaultTZ = TimeZone.getDefault();
+        int defaultTZOffset = defaultTZ.getRawOffset();
+        int laterTZOffset = defaultTZOffset;
+        for (int i = 0; i < zoneTab.size() && laterTZOffset >= defaultTZOffset; i++) {
+            laterTZ = TimeZone.getTimeZone(zoneTab.get(i));
+            laterTZOffset = laterTZ.getRawOffset();
+        }
+        if (laterTZOffset >= defaultTZOffset) {
+            Helper.getLogger()
+                    .warning("Searched all entries in zone.tab, but couldn't find a TZ later than the default TZ:"
+                            + defaultTZ + ", defaultTZOffset=" + defaultTZOffset
+                            + ", laterTZOffset=" + laterTZOffset);
+        } else {
+            Helper.getLogger().fine("defaultTZ=" + defaultTZ + TestUtil.NEW_LINE + "laterTZ=" + laterTZ);
+        }
+        return laterTZ.getID();
     }
-    if (laterTZOffset >= defaultTZOffset) {
-      Helper.getLogger().warning(
-          "Searched all entries in zone.tab, but couldn't find a TZ later than the default TZ:"
-              + defaultTZ + ", defaultTZOffset=" + defaultTZOffset
-              + ", laterTZOffset=" + laterTZOffset);
-    } else {
-      Helper.getLogger().fine(
-          "defaultTZ=" + defaultTZ + TestUtil.NEW_LINE + "laterTZ=" + laterTZ);
-    }
-    return laterTZ.getID();
-  }
-
 }

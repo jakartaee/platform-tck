@@ -16,167 +16,157 @@
 
 package com.sun.ts.tests.common.connector.embedded.adapter1;
 
-import java.lang.reflect.Method;
-
 import com.sun.ts.tests.common.connector.util.AppException;
 import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
 import com.sun.ts.tests.common.connector.whitebox.Debug;
-
 import jakarta.resource.ResourceException;
 import jakarta.resource.spi.UnavailableException;
 import jakarta.resource.spi.endpoint.MessageEndpoint;
 import jakarta.resource.spi.endpoint.MessageEndpointFactory;
 import jakarta.resource.spi.work.Work;
+import java.lang.reflect.Method;
 
 public class CRDMessageWork implements Work {
 
-  private String name;
+    private String name;
 
-  private boolean stop = false;
+    private boolean stop = false;
 
-  private MessageEndpointFactory factory;
+    private MessageEndpointFactory factory;
 
-  private MsgXAResource msgxa = new MsgXAResource();
+    private MsgXAResource msgxa = new MsgXAResource();
 
-  private MessageEndpoint xaep;
+    private MessageEndpoint xaep;
 
-  private MessageEndpoint ep2;
+    private MessageEndpoint ep2;
 
-  public CRDMessageWork(String name, MessageEndpointFactory factory) {
-    this.factory = factory;
-    this.name = name;
-    System.out.println("CRDMessageWork.constructor");
-  }
+    public CRDMessageWork(String name, MessageEndpointFactory factory) {
+        this.factory = factory;
+        this.name = name;
+        System.out.println("CRDMessageWork.constructor");
+    }
 
-  public void run() {
+    public void run() {
 
-    while (!stop) {
-      try {
-        Debug.trace("Inside the CRDMessageWork run ");
+        while (!stop) {
+            try {
+                Debug.trace("Inside the CRDMessageWork run ");
 
-        // creating xaep to check if the message delivery is transacted.
-        xaep = factory.createEndpoint(msgxa);
+                // creating xaep to check if the message delivery is transacted.
+                xaep = factory.createEndpoint(msgxa);
 
-        ep2 = factory.createEndpoint(null);
+                ep2 = factory.createEndpoint(null);
 
-        Method onMessagexa = getOnMessageMethod();
-        xaep.beforeDelivery(onMessagexa);
-        ((TSMessageListenerInterface) xaep)
-            .onMessage("CRD_MDB Transacted Message To MDB");
-        xaep.afterDelivery();
-        Debug.trace("CRD_MDB Transacted Message To MDB");
+                Method onMessagexa = getOnMessageMethod();
+                xaep.beforeDelivery(onMessagexa);
+                ((TSMessageListenerInterface) xaep).onMessage("CRD_MDB Transacted Message To MDB");
+                xaep.afterDelivery();
+                Debug.trace("CRD_MDB Transacted Message To MDB");
 
-        callSysExp();
-        callAppExp();
+                callSysExp();
+                callAppExp();
 
-        boolean isTransacted = factory.isDeliveryTransacted(onMessagexa);
+                boolean isTransacted = factory.isDeliveryTransacted(onMessagexa);
 
-        if (isTransacted) {
-          Debug.trace("CRD_MDB delivery is transacted");
+                if (isTransacted) {
+                    Debug.trace("CRD_MDB delivery is transacted");
+                }
+                break;
+
+            } catch (AppException ex) {
+                ex.printStackTrace();
+
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+
+            } catch (UnavailableException ex) {
+                try {
+                    Thread.currentThread().sleep(3000);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } catch (ResourceException re) {
+                re.printStackTrace();
+            }
         }
-        break;
+    }
 
-      } catch (AppException ex) {
-        ex.printStackTrace();
+    public void callSysExp() {
 
-      } catch (NoSuchMethodException e) {
-        e.printStackTrace();
-
-      } catch (UnavailableException ex) {
         try {
-          Thread.currentThread().sleep(3000);
+            Method onMessage = getOnMessageMethod();
+            ep2.beforeDelivery(onMessage);
+            ((TSMessageListenerInterface) ep2).onMessage("Throw CRDSysException from Required");
+
+        } catch (NoSuchMethodException e) {
+            System.out.println("CRDMessageWork: NoSuchMethodException");
+            e.getMessage();
+            e.printStackTrace();
+        } catch (UnavailableException e) {
+            System.out.println("CRDMessageWork: UnavailableException");
+            e.printStackTrace();
+        } catch (ResourceException re) {
+            System.out.println("CRDMessageWork: ResourceException");
+            re.printStackTrace();
+        } catch (AppException ae) {
+            System.out.println("CRDMessageWork: AppException");
+            ae.printStackTrace();
         } catch (Exception e) {
-          e.printStackTrace();
+            // if we are in here, we will assume that our exception was of type ejb
+            // but it
+            // could also be from a non-ejb POJO - thus we use this Exception type.
+            Debug.trace("CRDEJBException thrown but Required");
+        } finally {
+            try {
+                ep2.afterDelivery();
+            } catch (ResourceException re2) {
+                re2.printStackTrace();
+            }
         }
-      } catch (ResourceException re) {
-        re.printStackTrace();
-      }
-
     }
 
-  }
+    public void callAppExp() {
 
-  public void callSysExp() {
-
-    try {
-      Method onMessage = getOnMessageMethod();
-      ep2.beforeDelivery(onMessage);
-      ((TSMessageListenerInterface) ep2)
-          .onMessage("Throw CRDSysException from Required");
-
-    } catch (NoSuchMethodException e) {
-      System.out.println("CRDMessageWork: NoSuchMethodException");
-      e.getMessage();
-      e.printStackTrace();
-    } catch (UnavailableException e) {
-      System.out.println("CRDMessageWork: UnavailableException");
-      e.printStackTrace();
-    } catch (ResourceException re) {
-      System.out.println("CRDMessageWork: ResourceException");
-      re.printStackTrace();
-    } catch (AppException ae) {
-      System.out.println("CRDMessageWork: AppException");
-      ae.printStackTrace();
-    } catch (Exception e) {
-      // if we are in here, we will assume that our exception was of type ejb
-      // but it
-      // could also be from a non-ejb POJO - thus we use this Exception type.
-      Debug.trace("CRDEJBException thrown but Required");
-    } finally {
-      try {
-        ep2.afterDelivery();
-      } catch (ResourceException re2) {
-        re2.printStackTrace();
-      }
+        try {
+            Method onMessage = getOnMessageMethod();
+            ep2.beforeDelivery(onMessage);
+            ((TSMessageListenerInterface) ep2).onMessage("Throw CRDAppException from Required");
+        } catch (AppException ejbe) {
+            System.out.println("AppException thrown by Required MDB");
+        } catch (NoSuchMethodException ns) {
+            ns.printStackTrace();
+        } catch (ResourceException re) {
+            re.printStackTrace();
+        } finally {
+            try {
+                ep2.afterDelivery();
+            } catch (ResourceException re2) {
+                re2.printStackTrace();
+            }
+        }
     }
 
-  }
+    public Method getOnMessageMethod() {
 
-  public void callAppExp() {
+        Method onMessageMethod = null;
+        try {
+            Class msgListenerClass = TSMessageListenerInterface.class;
+            Class[] paramTypes = {java.lang.String.class};
+            onMessageMethod = msgListenerClass.getMethod("onMessage", paramTypes);
 
-    try {
-      Method onMessage = getOnMessageMethod();
-      ep2.beforeDelivery(onMessage);
-      ((TSMessageListenerInterface) ep2)
-          .onMessage("Throw CRDAppException from Required");
-    } catch (AppException ejbe) {
-      System.out.println("AppException thrown by Required MDB");
-    } catch (NoSuchMethodException ns) {
-      ns.printStackTrace();
-    } catch (ResourceException re) {
-      re.printStackTrace();
-    } finally {
-      try {
-        ep2.afterDelivery();
-      } catch (ResourceException re2) {
-        re2.printStackTrace();
-      }
+        } catch (NoSuchMethodException ex) {
+            ex.printStackTrace();
+        }
+        return onMessageMethod;
     }
-  }
 
-  public Method getOnMessageMethod() {
+    public void release() {}
 
-    Method onMessageMethod = null;
-    try {
-      Class msgListenerClass = TSMessageListenerInterface.class;
-      Class[] paramTypes = { java.lang.String.class };
-      onMessageMethod = msgListenerClass.getMethod("onMessage", paramTypes);
-
-    } catch (NoSuchMethodException ex) {
-      ex.printStackTrace();
+    public void stop() {
+        this.stop = true;
     }
-    return onMessageMethod;
-  }
 
-  public void release() {
-  }
-
-  public void stop() {
-    this.stop = true;
-  }
-
-  public String toString() {
-    return name;
-  }
-
+    public String toString() {
+        return name;
+    }
 }

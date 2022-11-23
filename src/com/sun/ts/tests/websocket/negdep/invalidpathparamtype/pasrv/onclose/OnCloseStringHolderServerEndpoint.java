@@ -17,37 +17,35 @@
 
 package com.sun.ts.tests.websocket.negdep.invalidpathparamtype.pasrv.onclose;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 import com.sun.ts.tests.websocket.negdep.StringHolder;
-
 import jakarta.websocket.OnClose;
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
 @ServerEndpoint("/invalid/{arg}")
 public class OnCloseStringHolderServerEndpoint {
-  private static String close = "";
+    private static String close = "";
 
-  @OnMessage
-  public String echo(String echo) {
-    return close + echo;
-  }
+    @OnMessage
+    public String echo(String echo) {
+        return close + echo;
+    }
 
-  @SuppressWarnings("unused")
-  @OnClose
-  public void onClose(Session session, @PathParam("arg") StringHolder sb) {
-    close = sb.toString();
-  }
+    @SuppressWarnings("unused")
+    @OnClose
+    public void onClose(Session session, @PathParam("arg") StringHolder sb) {
+        close = sb.toString();
+    }
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+    @OnError
+    public void onError(Session session, Throwable thr) throws IOException {
+        thr.printStackTrace(); // Write to error log, too
+        String message = IOUtil.printStackTrace(thr);
+        session.getBasicRemote().sendText(message);
+    }
 }

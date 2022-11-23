@@ -21,7 +21,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.accesstimeout.ann
 
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.AccessTimeoutIF;
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClassLevelAnnotatedAccessTimeoutBeanBase;
-
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateful;
 
@@ -31,10 +30,10 @@ import jakarta.ejb.Stateful;
  */
 @Stateful(mappedName = "stateful-concurrency-accesstimeout-annotated-AnnotatedSuperClassAccessTimeoutBean")
 @Remote(AccessTimeoutRemoteIF.class)
-public class AnnotatedSuperClassAccessTimeoutBean extends
-    ClassLevelAnnotatedAccessTimeoutBeanBase implements AccessTimeoutIF {
-  // 3 methods are declared in ejb-jar.xml as async methods:
-  // beanSuperClassLevel
-  // beanSuperClassMethodLevelOverride
-  // beanSuperClassMethodLevel
+public class AnnotatedSuperClassAccessTimeoutBean extends ClassLevelAnnotatedAccessTimeoutBeanBase
+        implements AccessTimeoutIF {
+    // 3 methods are declared in ejb-jar.xml as async methods:
+    // beanSuperClassLevel
+    // beanSuperClassMethodLevelOverride
+    // beanSuperClassMethodLevel
 }

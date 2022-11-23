@@ -19,12 +19,7 @@
  */
 package com.sun.ts.tests.servlet.spec.annotationservlet.webfilter;
 
-import java.io.IOException;
-import java.util.Collection;
-import java.util.Enumeration;
-
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.DispatcherType;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
@@ -35,49 +30,49 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.annotation.WebInitParam;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.Enumeration;
 
-@WebFilter(filterName = "filter2", dispatcherTypes = {
-    DispatcherType.FORWARD }, servletNames = { "servlet1" }, value = {
-        "/Servlet1" }, initParams = {
-            @WebInitParam(name = "name1", value = "value1"),
-            @WebInitParam(name = "name2", value = "value2") })
-
+@WebFilter(
+        filterName = "filter2",
+        dispatcherTypes = {DispatcherType.FORWARD},
+        servletNames = {"servlet1"},
+        value = {"/Servlet1"},
+        initParams = {@WebInitParam(name = "name1", value = "value1"), @WebInitParam(name = "name2", value = "value2")})
 public final class TestFilter2 implements Filter {
 
-  private FilterConfig filterConfig = null;
+    private FilterConfig filterConfig = null;
 
-  public void doFilter(ServletRequest request, ServletResponse response,
-      FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-    if (filterConfig == null) {
-      StaticLog.add("FAILED_FILTER2_INVOKED");
-    } else {
-      StaticLog.add("FILTER2_INVOKED");
-      StaticLog.add("FilterName=" + filterConfig.getFilterName());
+        if (filterConfig == null) {
+            StaticLog.add("FAILED_FILTER2_INVOKED");
+        } else {
+            StaticLog.add("FILTER2_INVOKED");
+            StaticLog.add("FilterName=" + filterConfig.getFilterName());
 
-      for (Enumeration names = filterConfig.getInitParameterNames(); names
-          .hasMoreElements();) {
-        String name = (String) names.nextElement();
-        StaticLog.add(
-            "PName=" + name + " PVALUE=" + filterConfig.getInitParameter(name));
-      }
-      StaticLog.add("AsyncSupport=" + request.isAsyncSupported());
-      FilterRegistration fr = filterConfig.getServletContext()
-          .getFilterRegistration(filterConfig.getFilterName());
-      Collection<String> mapping = fr.getServletNameMappings();
-      for (String url : mapping) {
-        StaticLog.add("URL=" + url);
-      }
-      StaticLog.add("DispatcherType=" + request.getDispatcherType());
-      StaticLog.add("From=" + request.getAttribute("from"));
+            for (Enumeration names = filterConfig.getInitParameterNames(); names.hasMoreElements(); ) {
+                String name = (String) names.nextElement();
+                StaticLog.add("PName=" + name + " PVALUE=" + filterConfig.getInitParameter(name));
+            }
+            StaticLog.add("AsyncSupport=" + request.isAsyncSupported());
+            FilterRegistration fr =
+                    filterConfig.getServletContext().getFilterRegistration(filterConfig.getFilterName());
+            Collection<String> mapping = fr.getServletNameMappings();
+            for (String url : mapping) {
+                StaticLog.add("URL=" + url);
+            }
+            StaticLog.add("DispatcherType=" + request.getDispatcherType());
+            StaticLog.add("From=" + request.getAttribute("from"));
+        }
+        chain.doFilter(request, response);
     }
-    chain.doFilter(request, response);
-  }
 
-  public void destroy() {
-  }
+    public void destroy() {}
 
-  public void init(FilterConfig filterConfig) {
-    this.filterConfig = filterConfig;
-  }
+    public void init(FilterConfig filterConfig) {
+        this.filterConfig = filterConfig;
+    }
 }

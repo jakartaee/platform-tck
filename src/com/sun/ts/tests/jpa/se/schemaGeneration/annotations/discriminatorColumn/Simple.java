@@ -30,54 +30,50 @@ import jakarta.persistence.Table;
 @DiscriminatorColumn(name = "PRODUCT_TYPE", discriminatorType = DiscriminatorType.STRING)
 public class Simple implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
-  int id;
+    // ===========================================================
+    // instance variables
+    int id;
 
-  // ===========================================================
-  // constructors
-  public Simple() {
-  }
+    // ===========================================================
+    // constructors
+    public Simple() {}
 
-  public Simple(int id) {
-    this.id = id;
-  }
-
-  @Id
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    // check for self-comparison
-    if (this == o)
-      return true;
-    if (!(o instanceof Simple))
-      return false;
-
-    Simple o1 = (Simple) o;
-
-    boolean result = false;
-
-    if (this.getId() == o1.getId()) {
-      result = true;
+    public Simple(int id) {
+        this.id = id;
     }
 
-    return result;
-  }
+    @Id
+    public int getId() {
+        return id;
+    }
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append("]");
-    return result.toString();
-  }
+    public void setId(int id) {
+        this.id = id;
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        // check for self-comparison
+        if (this == o) return true;
+        if (!(o instanceof Simple)) return false;
+
+        Simple o1 = (Simple) o;
+
+        boolean result = false;
+
+        if (this.getId() == o1.getId()) {
+            result = true;
+        }
+
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getId());
+        result.append("]");
+        return result.toString();
+    }
 }

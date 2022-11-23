@@ -23,7 +23,6 @@ import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeEJBLite;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeUtil;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTxBeanBase;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.EJB;
@@ -34,57 +33,55 @@ import jakarta.ejb.TransactionManagementType;
 @Singleton
 @TransactionManagement(TransactionManagementType.BEAN)
 public class TestBean extends RWTestBeanBase {
-  @EJB(beanInterface = TxBean.class)
-  @Override
-  public void setTxBean(RWTxBeanBase b) {
-    txBean = b;
-  }
-
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    int[] ids = { 90206, 75600 };
-    String[] brandNames = { "postConstructCoffee1", "postConstructCoffee2" };
-
-    try {
-      ut.begin();
-      for (int i = 0; i < ids.length; i++) {
-        postConstructCoffees[i] = CoffeeUtil.findDeletePersist(ids[i],
-            brandNames[i], em);
-      }
-      ut.commit();
-    } catch (RuntimeException e) {
-      throw e;
-    } catch (Exception e) {
-      throw new RuntimeException(e);
+    @EJB(beanInterface = TxBean.class)
+    @Override
+    public void setTxBean(RWTxBeanBase b) {
+        txBean = b;
     }
 
-    // try {
-    // ut.begin();
-    // boolean existingDataExpected = true;
-    // for (int i = 0; i < ids.length; i++) {
-    // CoffeeUtil.findDelete(ids[i], existingDataExpected, em);
-    // Helper.getLogger().logp(Level.FINE, "TestBean", "postConstruct",
-    // "Deleted coffee but tx will be rolled back. id=" + ids[i]);
-    // }
-    // ut.rollback();
-    // } catch (RuntimeException e) {
-    // throw e;
-    // } catch (Exception e) {
-    // throw new RuntimeException(e);
-    // }
-  }
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        int[] ids = {90206, 75600};
+        String[] brandNames = {"postConstructCoffee1", "postConstructCoffee2"};
 
-  @SuppressWarnings("unused")
-  @PreDestroy
-  private void preDestroy() {
-    if ((System.getProperty("ejbembed", null) == null)) { // means we are NOT in
-                                                          // ejbembed
-      em.getEntityManagerFactory().getCache().evictAll();
-      for (CoffeeEJBLite postConstructCoffee : postConstructCoffees) {
-        CoffeeUtil.deleteCoffeeInNewUserTransaction(postConstructCoffee.getId(),
-            em, ut);
-      }
+        try {
+            ut.begin();
+            for (int i = 0; i < ids.length; i++) {
+                postConstructCoffees[i] = CoffeeUtil.findDeletePersist(ids[i], brandNames[i], em);
+            }
+            ut.commit();
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        // try {
+        // ut.begin();
+        // boolean existingDataExpected = true;
+        // for (int i = 0; i < ids.length; i++) {
+        // CoffeeUtil.findDelete(ids[i], existingDataExpected, em);
+        // Helper.getLogger().logp(Level.FINE, "TestBean", "postConstruct",
+        // "Deleted coffee but tx will be rolled back. id=" + ids[i]);
+        // }
+        // ut.rollback();
+        // } catch (RuntimeException e) {
+        // throw e;
+        // } catch (Exception e) {
+        // throw new RuntimeException(e);
+        // }
     }
-  }
+
+    @SuppressWarnings("unused")
+    @PreDestroy
+    private void preDestroy() {
+        if ((System.getProperty("ejbembed", null) == null)) { // means we are NOT in
+            // ejbembed
+            em.getEntityManagerFactory().getCache().evictAll();
+            for (CoffeeEJBLite postConstructCoffee : postConstructCoffees) {
+                CoffeeUtil.deleteCoffeeInNewUserTransaction(postConstructCoffee.getId(), em, ut);
+            }
+        }
+    }
 }

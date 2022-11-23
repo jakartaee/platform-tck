@@ -23,5 +23,5 @@ package com.sun.ts.tests.ejb.ee.bb.entity.lrapitest;
 import jakarta.ejb.EJBLocalObject;
 
 public interface DLocal extends EJBLocalObject {
-  public String whoAmILocal();
+    public String whoAmILocal();
 }

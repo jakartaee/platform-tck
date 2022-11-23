@@ -29,36 +29,35 @@ import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
  */
 public class WSClient extends WebSocketCommonClient {
 
-  private static final long serialVersionUID = 5168766356852793713L;
+    private static final long serialVersionUID = 5168766356852793713L;
 
-  private static final String CONTEXT_ROOT = "ws_websocketcontainer_web";
+    private static final String CONTEXT_ROOT = "ws_websocketcontainer_web";
 
-  private static final String SENT_STRING_MESSAGE = "Hello World";
+    private static final String SENT_STRING_MESSAGE = "Hello World";
 
-  public static void main(String[] args) {
-    new WSClient().run(args);
-  }
+    public static void main(String[] args) {
+        new WSClient().run(args);
+    }
 
-  public WSClient() {
-    setContextRoot(CONTEXT_ROOT);
-  }
+    public WSClient() {
+        setContextRoot(CONTEXT_ROOT);
+    }
 
-  /* Run test */
-  /*
-   * @testName: simpleTest
-   * 
-   * @assertion_ids:
-   *
-   * @test_Strategy:
-   */
-  public void simpleTest() throws Fault {
-    String expected = "TCKTestServer opened|" + "TCKTestServer received: "
-        + SENT_STRING_MESSAGE + "|TCKTestServer responds";
-    setCountDownLatchCount(3);
-    setProperty(Property.REQUEST, buildRequest("TCKTestServer"));
-    setProperty(Property.SEARCH_STRING, expected);
-    setProperty(Property.CONTENT, SENT_STRING_MESSAGE);
-    invoke();
-
-  }
+    /* Run test */
+    /*
+     * @testName: simpleTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void simpleTest() throws Fault {
+        String expected =
+                "TCKTestServer opened|" + "TCKTestServer received: " + SENT_STRING_MESSAGE + "|TCKTestServer responds";
+        setCountDownLatchCount(3);
+        setProperty(Property.REQUEST, buildRequest("TCKTestServer"));
+        setProperty(Property.SEARCH_STRING, expected);
+        setProperty(Property.CONTENT, SENT_STRING_MESSAGE);
+        invoke();
+    }
 }

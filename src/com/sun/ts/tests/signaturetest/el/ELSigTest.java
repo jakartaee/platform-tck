@@ -21,12 +21,11 @@
 
 package com.sun.ts.tests.signaturetest.el;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.signaturetest.SigTest;
 import com.sun.ts.tests.signaturetest.SignatureTestDriver;
 import com.sun.ts.tests.signaturetest.SignatureTestDriverFactory;
+import java.io.PrintWriter;
 
 /*
  * This class is a simple example of a signature test that extends the
@@ -38,84 +37,81 @@ import com.sun.ts.tests.signaturetest.SignatureTestDriverFactory;
  */
 public class ELSigTest extends SigTest {
 
-  /***** Abstract Method Implementation *****/
+    /***** Abstract Method Implementation *****/
 
-  /**
-   * Returns a list of strings where each string represents a package name. Each
-   * package name will have it's signature tested by the signature test
-   * framework.
-   * 
-   * @return String[] The names of the packages whose signatures should be
-   *         verified.
-   */
-  protected String[] getPackages() {
-    return new String[] { "jakarta.el" };
-  }
+    /**
+     * Returns a list of strings where each string represents a package name. Each
+     * package name will have it's signature tested by the signature test
+     * framework.
+     *
+     * @return String[] The names of the packages whose signatures should be
+     *         verified.
+     */
+    protected String[] getPackages() {
+        return new String[] {"jakarta.el"};
+    }
 
-  /***** Boilerplate Code *****/
+    /***** Boilerplate Code *****/
 
-  /*
-   * Initial entry point for JavaTest.
-   */
-  public static void main(String[] args) {
-    ELSigTest theTests = new ELSigTest();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /*
+     * Initial entry point for JavaTest.
+     */
+    public static void main(String[] args) {
+        ELSigTest theTests = new ELSigTest();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-    return super.run(args, out, err);
-  }
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
+        return super.run(args, out, err);
+    }
 
-  /*
-   * The following comments are specified in the base class that defines the
-   * signature tests. This is done so the test finders will find the right class
-   * to run. The implementation of these methods is inherited from the super
-   * class which is part of the signature test framework.
-   */
+    /*
+     * The following comments are specified in the base class that defines the
+     * signature tests. This is done so the test finders will find the right class
+     * to run. The implementation of these methods is inherited from the super
+     * class which is part of the signature test framework.
+     */
 
-  // NOTE: If the API under test is not part of your testing runtime
-  // environment, you may use the property sigTestClasspath to specify
-  // where the API under test lives. This should almost never be used.
-  // Normally the API under test should be specified in the classpath
-  // of the VM running the signature tests. Use either the first
-  // comment or the one below it depending on which properties your
-  // signature tests need. Please do not use both comments.
+    // NOTE: If the API under test is not part of your testing runtime
+    // environment, you may use the property sigTestClasspath to specify
+    // where the API under test lives. This should almost never be used.
+    // Normally the API under test should be specified in the classpath
+    // of the VM running the signature tests. Use either the first
+    // comment or the one below it depending on which properties your
+    // signature tests need. Please do not use both comments.
 
-  /*
-   * @class.setup_props: ts_home, The base path of this TCK; sigTestClasspath;
-   */
+    /*
+     * @class.setup_props: ts_home, The base path of this TCK; sigTestClasspath;
+     */
 
-  /*
-   * @testName: signatureTest
-   * 
-   * @assertion: An EL container must implement the required classes and APIs
-   * specified in the EL Specification.
-   * 
-   * @test_Strategy: Using reflection, gather the implementation specific
-   * classes and APIs. Compare these results with the expected (required)
-   * classes and APIs.
-   *
-   */
+    /*
+     * @testName: signatureTest
+     *
+     * @assertion: An EL container must implement the required classes and APIs
+     * specified in the EL Specification.
+     *
+     * @test_Strategy: Using reflection, gather the implementation specific
+     * classes and APIs. Compare these results with the expected (required)
+     * classes and APIs.
+     *
+     */
 
-  /*
-   * Call the parent class's cleanup method.
-   */
+    /*
+     * Call the parent class's cleanup method.
+     */
 
-  /*
-   * define which sig driver we will use
-   */
-  @Override
-  protected SignatureTestDriver getSigTestDriver() {
-    driver = SignatureTestDriverFactory
-        .getInstance(SignatureTestDriverFactory.SIG_TEST);
+    /*
+     * define which sig driver we will use
+     */
+    @Override
+    protected SignatureTestDriver getSigTestDriver() {
+        driver = SignatureTestDriverFactory.getInstance(SignatureTestDriverFactory.SIG_TEST);
 
-    return driver;
-
-  } // END getSigTestDriver
+        return driver;
+    } // END getSigTestDriver
 }

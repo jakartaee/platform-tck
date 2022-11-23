@@ -23,89 +23,89 @@ import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.appexception.ClientBase;
 
 public class Client extends ClientBase {
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  } //////////////////////////////////////////////////////////////////////
-  /*
-   * @testName: atCheckedAppExceptionTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atCheckedAppExceptionTest2
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atCheckedAppExceptionTestLocal
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atUncheckedAppExceptionTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atUncheckedAppExceptionTest2
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atUncheckedAppExceptionTestLocal
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atCheckedRollbackAppExceptionTest
-   * 
-   * @assertion_ids: EJB:JAVADOC:6;
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atCheckedRollbackAppExceptionTestLocal
-   * 
-   * @assertion_ids: EJB:JAVADOC:6;
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atUncheckedRollbackAppExceptionTest
-   * 
-   * @assertion_ids: EJB:JAVADOC:6;
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: atUncheckedRollbackAppExceptionTestLocal
-   * 
-   * @assertion_ids: EJB:JAVADOC:6;
-   * 
-   * @test_Strategy:
-   *
-   */
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    } //////////////////////////////////////////////////////////////////////
+    /*
+     * @testName: atCheckedAppExceptionTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: atCheckedAppExceptionTest2
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: atCheckedAppExceptionTestLocal
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: atUncheckedAppExceptionTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: atUncheckedAppExceptionTest2
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: atUncheckedAppExceptionTestLocal
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: atCheckedRollbackAppExceptionTest
+     *
+     * @assertion_ids: EJB:JAVADOC:6;
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: atCheckedRollbackAppExceptionTestLocal
+     *
+     * @assertion_ids: EJB:JAVADOC:6;
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: atUncheckedRollbackAppExceptionTest
+     *
+     * @assertion_ids: EJB:JAVADOC:6;
+     *
+     * @test_Strategy:
+     *
+     */
+    /*
+     * @testName: atUncheckedRollbackAppExceptionTestLocal
+     *
+     * @assertion_ids: EJB:JAVADOC:6;
+     *
+     * @test_Strategy:
+     *
+     */
 }

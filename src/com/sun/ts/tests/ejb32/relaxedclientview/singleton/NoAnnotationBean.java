@@ -19,10 +19,7 @@ package com.sun.ts.tests.ejb32.relaxedclientview.singleton;
 import com.sun.ts.tests.ejb32.relaxedclientview.common.BaseBean;
 import com.sun.ts.tests.ejb32.relaxedclientview.common.NormalInterface1;
 import com.sun.ts.tests.ejb32.relaxedclientview.common.NormalInterface2;
-
 import jakarta.ejb.Singleton;
 
 @Singleton
-public class NoAnnotationBean extends BaseBean
-    implements NormalInterface1, NormalInterface2 {
-}
+public class NoAnnotationBean extends BaseBean implements NormalInterface1, NormalInterface2 {}

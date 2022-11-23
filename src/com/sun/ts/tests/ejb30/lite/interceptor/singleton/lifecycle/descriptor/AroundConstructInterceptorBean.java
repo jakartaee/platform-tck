@@ -18,7 +18,6 @@ package com.sun.ts.tests.ejb30.lite.interceptor.singleton.lifecycle.descriptor;
 
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorBeanBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorIF;
-
 import jakarta.ejb.Singleton;
 
 @Singleton
@@ -26,13 +25,12 @@ import jakarta.ejb.Singleton;
 // @Interceptors({ Interceptor9.class, InterceptorA.class }) Specified in
 // ejb-jar.xml
 @SuppressWarnings("unused")
-public class AroundConstructInterceptorBean extends InterceptorBeanBase
-    implements InterceptorIF {
+public class AroundConstructInterceptorBean extends InterceptorBeanBase implements InterceptorIF {
 
-  private static final String simpleName = "AroundConstructInterceptorBean";
+    private static final String simpleName = "AroundConstructInterceptorBean";
 
-  // @PostConstruct Specified in ejb-jar.xml
-  protected void postConstruct() {
-    historySingletonBean.addPostConstructRecordFor(this, simpleName);
-  }
+    // @PostConstruct Specified in ejb-jar.xml
+    protected void postConstruct() {
+        historySingletonBean.addPostConstructRecordFor(this, simpleName);
+    }
 }

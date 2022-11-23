@@ -19,37 +19,42 @@
  */
 package com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle;
 
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
+import java.util.logging.Level;
 
-abstract public class InterceptorBase extends InterceptorBaseBase {
-  private static final String simpleName = "InterceptorBase";
+public abstract class InterceptorBase extends InterceptorBaseBase {
+    private static final String simpleName = "InterceptorBase";
 
-  @PostConstruct
-  private void postConstruct(InvocationContext inv) {
-    Helper.getLogger().logp(Level.FINE, simpleName, "postConstruct",
-        "Adding postConstruct record: " + simpleName + ", this: " + this);
-    historySingletonBean.addPostConstructRecordFor(inv.getTarget(), simpleName);
-    try {
-      inv.proceed();
-    } catch (Exception ex) {
-      Helper.getLogger().log(Level.SEVERE, simpleName, ex);
-      historySingletonBean.addPostConstructRecordFor(inv.getTarget(),
-          ex.toString());
+    @PostConstruct
+    private void postConstruct(InvocationContext inv) {
+        Helper.getLogger()
+                .logp(
+                        Level.FINE,
+                        simpleName,
+                        "postConstruct",
+                        "Adding postConstruct record: " + simpleName + ", this: " + this);
+        historySingletonBean.addPostConstructRecordFor(inv.getTarget(), simpleName);
+        try {
+            inv.proceed();
+        } catch (Exception ex) {
+            Helper.getLogger().log(Level.SEVERE, simpleName, ex);
+            historySingletonBean.addPostConstructRecordFor(inv.getTarget(), ex.toString());
+        }
     }
-  }
 
-  // to verify lifecycle and business interceptor methods can co-exist
-  @AroundInvoke
-  private Object intercept(InvocationContext inv) throws Exception {
-    Helper.getLogger().logp(Level.FINE, simpleName, "intercept",
-        "Adding around-invoke record: " + simpleName + ", this: " + this);
-    historySingletonBean.addAroundInvokeRecord(simpleName);
-    return inv.proceed();
-  }
+    // to verify lifecycle and business interceptor methods can co-exist
+    @AroundInvoke
+    private Object intercept(InvocationContext inv) throws Exception {
+        Helper.getLogger()
+                .logp(
+                        Level.FINE,
+                        simpleName,
+                        "intercept",
+                        "Adding around-invoke record: " + simpleName + ", this: " + this);
+        historySingletonBean.addAroundInvokeRecord(simpleName);
+        return inv.proceed();
+    }
 }

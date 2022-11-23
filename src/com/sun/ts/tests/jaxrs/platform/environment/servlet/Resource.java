@@ -16,11 +16,6 @@
 
 package com.sun.ts.tests.jaxrs.platform.environment.servlet;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletRequest;
@@ -32,66 +27,67 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.Response;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 @Path("resource")
 public class Resource {
 
-  @Path("context")
-  @GET
-  public String context(@Context ServletConfig config,
-      @Context ServletContext context, @Context HttpServletRequest request,
-      @Context HttpServletResponse response) {
-    StringBuilder sb = new StringBuilder();
-    assertNull(sb, "ServletConfig", config);
-    assertNull(sb, "ServletContext", context);
-    assertNull(sb, "HttpServletRequest", request);
-    assertNull(sb, "HttpServletResponse", response);
-    return sb.toString();
-  }
+    @Path("context")
+    @GET
+    public String context(
+            @Context ServletConfig config,
+            @Context ServletContext context,
+            @Context HttpServletRequest request,
+            @Context HttpServletResponse response) {
+        StringBuilder sb = new StringBuilder();
+        assertNull(sb, "ServletConfig", config);
+        assertNull(sb, "ServletContext", context);
+        assertNull(sb, "HttpServletRequest", request);
+        assertNull(sb, "HttpServletResponse", response);
+        return sb.toString();
+    }
 
-  private static void assertNull(StringBuilder sb, String objectName,
-      Object o) {
-    if (o == null)
-      sb.append(objectName).append(" is null!").append("\n");
-  }
+    private static void assertNull(StringBuilder sb, String objectName, Object o) {
+        if (o == null) sb.append(objectName).append(" is null!").append("\n");
+    }
 
-  @Path("streamreader")
-  @POST
-  public String streamreader(@Context HttpServletRequest request)
-      throws IOException {
-    return readRequestEntity(request);
-  }
+    @Path("streamreader")
+    @POST
+    public String streamreader(@Context HttpServletRequest request) throws IOException {
+        return readRequestEntity(request);
+    }
 
-  public static final String readRequestEntity(ServletRequest request)
-      throws IOException {
-    InputStream is = request.getInputStream();
-    InputStreamReader isr = new InputStreamReader(is);
-    BufferedReader bf = new BufferedReader(isr);
-    String txt = bf.readLine();
-    // bf.close();
-    // isr.close();
-    return txt;
-  }
+    public static final String readRequestEntity(ServletRequest request) throws IOException {
+        InputStream is = request.getInputStream();
+        InputStreamReader isr = new InputStreamReader(is);
+        BufferedReader bf = new BufferedReader(isr);
+        String txt = bf.readLine();
+        // bf.close();
+        // isr.close();
+        return txt;
+    }
 
-  @Path("premature")
-  @GET
-  public Response premature(@Context HttpServletResponse response)
-      throws IOException {
-    response.setStatus(200);
-    response.flushBuffer();
-    return Response.notAcceptable(null).build();
-  }
+    @Path("premature")
+    @GET
+    public Response premature(@Context HttpServletResponse response) throws IOException {
+        response.setStatus(200);
+        response.flushBuffer();
+        return Response.notAcceptable(null).build();
+    }
 
-  @Path("consume")
-  @POST
-  public String consume(@FormParam("entity") String consumed,
-      @Context HttpServletRequest request) throws IOException {
-    return consumed;
-  }
+    @Path("consume")
+    @POST
+    public String consume(@FormParam("entity") String consumed, @Context HttpServletRequest request)
+            throws IOException {
+        return consumed;
+    }
 
-  @Path("query")
-  @POST
-  public String query(@FormParam("query") String param) {
-    return param;
-  }
+    @Path("query")
+    @POST
+    public String query(@FormParam("query") String param) {
+        return param;
+    }
 }

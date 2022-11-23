@@ -16,176 +16,160 @@
 
 package com.sun.ts.tests.common.connector.whitebox.ibanno;
 
-import java.lang.reflect.Method;
-
 import com.sun.ts.tests.common.connector.util.AppException;
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
 import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
 import com.sun.ts.tests.common.connector.whitebox.Debug;
-
 import jakarta.resource.ResourceException;
 import jakarta.resource.spi.UnavailableException;
 import jakarta.resource.spi.endpoint.MessageEndpoint;
 import jakarta.resource.spi.endpoint.MessageEndpointFactory;
 import jakarta.resource.spi.work.Work;
+import java.lang.reflect.Method;
 
 public class IBAnnoMessageWork1 implements Work {
 
-  private String name;
+    private String name;
 
-  private boolean stop = false;
+    private boolean stop = false;
 
-  private MessageEndpointFactory factory;
+    private MessageEndpointFactory factory;
 
-  private IBAnnoMessageXAResource1 msgxa = new IBAnnoMessageXAResource1();
+    private IBAnnoMessageXAResource1 msgxa = new IBAnnoMessageXAResource1();
 
-  private MessageEndpoint xaep;
+    private MessageEndpoint xaep;
 
-  private MessageEndpoint ep2;
+    private MessageEndpoint ep2;
 
-  public IBAnnoMessageWork1(String name, MessageEndpointFactory factory) {
-    this.factory = factory;
-    this.name = name;
-    System.out.println("IBAnnoMessageWork1.constructor");
-  }
+    public IBAnnoMessageWork1(String name, MessageEndpointFactory factory) {
+        this.factory = factory;
+        this.name = name;
+        System.out.println("IBAnnoMessageWork1.constructor");
+    }
 
-  public void run() {
+    public void run() {
 
-    while (!stop) {
-      try {
-        System.out.println("Inside the IBAnnoMessageWork1 run ");
-        // creating xaep to check if the message delivery is transacted.
-        xaep = factory.createEndpoint(msgxa);
+        while (!stop) {
+            try {
+                System.out.println("Inside the IBAnnoMessageWork1 run ");
+                // creating xaep to check if the message delivery is transacted.
+                xaep = factory.createEndpoint(msgxa);
 
-        ep2 = factory.createEndpoint(null);
+                ep2 = factory.createEndpoint(null);
 
-        Method onMessagexa = getOnMessageMethod();
-        xaep.beforeDelivery(onMessagexa);
-        ((TSMessageListenerInterface) xaep)
-            .onMessage("IBAnno MDB2 Transacted Message To MDB");
-        xaep.afterDelivery();
-        Debug.trace("IBAnno MDB2 Transacted Message To MDB");
+                Method onMessagexa = getOnMessageMethod();
+                xaep.beforeDelivery(onMessagexa);
+                ((TSMessageListenerInterface) xaep).onMessage("IBAnno MDB2 Transacted Message To MDB");
+                xaep.afterDelivery();
+                Debug.trace("IBAnno MDB2 Transacted Message To MDB");
 
-        callSysExp();
-        callAppExp();
+                callSysExp();
+                callAppExp();
 
-        boolean de = factory.isDeliveryTransacted(onMessagexa);
+                boolean de = factory.isDeliveryTransacted(onMessagexa);
 
-        if (de) {
-          Debug.trace("IBAnno MDB2 delivery is transacted");
+                if (de) {
+                    Debug.trace("IBAnno MDB2 delivery is transacted");
+                }
+                break;
+            } catch (AppException ex) {
+                ex.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (UnavailableException ex) {
+                try {
+                    Thread.currentThread().sleep(3000);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } catch (ResourceException re) {
+                re.printStackTrace();
+            }
         }
-        break;
-      } catch (AppException ex) {
-        ex.printStackTrace();
-      }
+    }
 
-      catch (NoSuchMethodException e) {
-        e.printStackTrace();
-      }
+    public void callSysExp() {
 
-      catch (UnavailableException ex) {
         try {
-          Thread.currentThread().sleep(3000);
+            Method onMessage = getOnMessageMethod();
+            ep2.beforeDelivery(onMessage);
+            ((TSMessageListenerInterface) ep2).onMessage("Throw IBAnnoSysException from Required");
+            // this has been moved to finally clause to ensure that before and
+            // after delivery calls are properly matched.
+            // ep2.afterDelivery();
+        } catch (NoSuchMethodException e) {
+            System.out.println("IBAnnoMessageWork1: NoSuchMethodException");
+            e.getMessage();
+            e.printStackTrace();
+        } catch (UnavailableException e) {
+            System.out.println("IBAnnoMessageWork1: UnavailableException");
+            e.printStackTrace();
+        } catch (ResourceException re) {
+            System.out.println("IBAnnoMessageWork1: ResourceException");
+            re.printStackTrace();
+        } catch (AppException ae) {
+            System.out.println("IBAnnoMessageWork1: AppException");
+            ae.printStackTrace();
         } catch (Exception e) {
-          e.printStackTrace();
+            // if we are in here, we will assume that our exception was of type ejb
+            // but it
+            // could also be from a non-ejb POJO - thus we use this Exception type.
+            Debug.trace("IBAnnoEJBException thrown but Required");
+        } finally {
+            try {
+                ep2.afterDelivery();
+            } catch (ResourceException re2) {
+                re2.printStackTrace();
+            }
         }
-      } catch (ResourceException re) {
-        re.printStackTrace();
-      }
-
     }
 
-  }
+    public void callAppExp() {
 
-  public void callSysExp() {
-
-    try {
-      Method onMessage = getOnMessageMethod();
-      ep2.beforeDelivery(onMessage);
-      ((TSMessageListenerInterface) ep2)
-          .onMessage("Throw IBAnnoSysException from Required");
-      // this has been moved to finally clause to ensure that before and
-      // after delivery calls are properly matched.
-      // ep2.afterDelivery();
-    } catch (NoSuchMethodException e) {
-      System.out.println("IBAnnoMessageWork1: NoSuchMethodException");
-      e.getMessage();
-      e.printStackTrace();
-    } catch (UnavailableException e) {
-      System.out.println("IBAnnoMessageWork1: UnavailableException");
-      e.printStackTrace();
-    } catch (ResourceException re) {
-      System.out.println("IBAnnoMessageWork1: ResourceException");
-      re.printStackTrace();
-    } catch (AppException ae) {
-      System.out.println("IBAnnoMessageWork1: AppException");
-      ae.printStackTrace();
-    } catch (Exception e) {
-      // if we are in here, we will assume that our exception was of type ejb
-      // but it
-      // could also be from a non-ejb POJO - thus we use this Exception type.
-      Debug.trace("IBAnnoEJBException thrown but Required");
-    } finally {
-      try {
-        ep2.afterDelivery();
-      } catch (ResourceException re2) {
-        re2.printStackTrace();
-      }
+        try {
+            Method onMessage = getOnMessageMethod();
+            ep2.beforeDelivery(onMessage);
+            ((TSMessageListenerInterface) ep2).onMessage("Throw IBAnnoAppException from Required");
+            // this has been moved to finally clause to ensure that before and
+            // after delivery calls are properly matched.
+            // ep2.afterDelivery();
+        } catch (AppException ejbe) {
+            System.out.println("AppException thrown by Required MDB");
+            ConnectorStatus.getConnectorStatus().logState("AppException thrown by Required");
+        } catch (NoSuchMethodException ns) {
+            ns.printStackTrace();
+        } catch (ResourceException re) {
+            re.printStackTrace();
+        } finally {
+            try {
+                ep2.afterDelivery();
+            } catch (ResourceException re2) {
+                re2.printStackTrace();
+            }
+        }
     }
 
-  }
+    public Method getOnMessageMethod() {
 
-  public void callAppExp() {
+        Method onMessageMethod = null;
+        try {
+            Class msgListenerClass = TSMessageListenerInterface.class;
+            Class[] paramTypes = {java.lang.String.class};
+            onMessageMethod = msgListenerClass.getMethod("onMessage", paramTypes);
 
-    try {
-      Method onMessage = getOnMessageMethod();
-      ep2.beforeDelivery(onMessage);
-      ((TSMessageListenerInterface) ep2)
-          .onMessage("Throw IBAnnoAppException from Required");
-      // this has been moved to finally clause to ensure that before and
-      // after delivery calls are properly matched.
-      // ep2.afterDelivery();
-    } catch (AppException ejbe) {
-      System.out.println("AppException thrown by Required MDB");
-      ConnectorStatus.getConnectorStatus()
-          .logState("AppException thrown by Required");
-    } catch (NoSuchMethodException ns) {
-      ns.printStackTrace();
-    } catch (ResourceException re) {
-      re.printStackTrace();
-    } finally {
-      try {
-        ep2.afterDelivery();
-      } catch (ResourceException re2) {
-        re2.printStackTrace();
-      }
+        } catch (NoSuchMethodException ex) {
+            ex.printStackTrace();
+        }
+        return onMessageMethod;
     }
 
-  }
+    public void release() {}
 
-  public Method getOnMessageMethod() {
-
-    Method onMessageMethod = null;
-    try {
-      Class msgListenerClass = TSMessageListenerInterface.class;
-      Class[] paramTypes = { java.lang.String.class };
-      onMessageMethod = msgListenerClass.getMethod("onMessage", paramTypes);
-
-    } catch (NoSuchMethodException ex) {
-      ex.printStackTrace();
+    public void stop() {
+        this.stop = true;
     }
-    return onMessageMethod;
-  }
 
-  public void release() {
-  }
-
-  public void stop() {
-    this.stop = true;
-  }
-
-  public String toString() {
-    return name;
-  }
-
+    public String toString() {
+        return name;
+    }
 }

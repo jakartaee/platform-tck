@@ -20,99 +20,90 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.entitycontexttest;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
 public class FastPathBean implements SessionBean {
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  public FastPathBean() {
-  }
+    public FastPathBean() {}
 
-  public void ejbCreate() throws CreateException {
-  }
+    public void ejbCreate() throws CreateException {}
 
-  public void setSessionContext(SessionContext sc) {
-    this.sctx = sc;
-  }
-
-  public void ejbRemove() {
-  }
-
-  public void ejbActivate() {
-  }
-
-  public void ejbPassivate() {
-  }
-
-  public String getIt(String envEntryName) {
-    String result = null;
-    FastPathLocal fastPathBean2Local = null;
-    try {
-      fastPathBean2Local = getFastPathBean2Local();
-      result = fastPathBean2Local.getIt(envEntryName);
-    } catch (CreateException e) {
-      result = TestUtil.printStackTraceToString(e);
-    } catch (NamingException e) {
-      result = TestUtil.printStackTraceToString(e);
+    public void setSessionContext(SessionContext sc) {
+        this.sctx = sc;
     }
-    return result;
-  }
 
-  public String setIt(String envEntryName) {
-    String result = null;
-    FastPathLocal fastPathBean2Local = null;
-    try {
-      fastPathBean2Local = getFastPathBean2Local();
-      result = fastPathBean2Local.setIt(envEntryName);
-    } catch (CreateException e) {
-      result = TestUtil.printStackTraceToString(e);
-    } catch (NamingException e) {
-      result = TestUtil.printStackTraceToString(e);
+    public void ejbRemove() {}
+
+    public void ejbActivate() {}
+
+    public void ejbPassivate() {}
+
+    public String getIt(String envEntryName) {
+        String result = null;
+        FastPathLocal fastPathBean2Local = null;
+        try {
+            fastPathBean2Local = getFastPathBean2Local();
+            result = fastPathBean2Local.getIt(envEntryName);
+        } catch (CreateException e) {
+            result = TestUtil.printStackTraceToString(e);
+        } catch (NamingException e) {
+            result = TestUtil.printStackTraceToString(e);
+        }
+        return result;
     }
-    return result;
-  }
 
-  public String getCoffeeId(String coffeeId) {
-    String result = null;
-    FastPathLocal fastPathBean2Local = null;
-    try {
-      fastPathBean2Local = getFastPathBean2Local();
-      result = fastPathBean2Local.getCoffeeId(coffeeId);
-    } catch (CreateException e) {
-      result = TestUtil.printStackTraceToString(e);
-    } catch (NamingException e) {
-      result = TestUtil.printStackTraceToString(e);
+    public String setIt(String envEntryName) {
+        String result = null;
+        FastPathLocal fastPathBean2Local = null;
+        try {
+            fastPathBean2Local = getFastPathBean2Local();
+            result = fastPathBean2Local.setIt(envEntryName);
+        } catch (CreateException e) {
+            result = TestUtil.printStackTraceToString(e);
+        } catch (NamingException e) {
+            result = TestUtil.printStackTraceToString(e);
+        }
+        return result;
     }
-    return result;
-  }
 
-  public String setCoffeeBrand(String oldBrand, String newBrand) {
-    String result = null;
-    FastPathLocal fastPathBean2Local = null;
-    try {
-      fastPathBean2Local = getFastPathBean2Local();
-      result = fastPathBean2Local.setCoffeeBrand(oldBrand, newBrand);
-    } catch (CreateException e) {
-      result = TestUtil.printStackTraceToString(e);
-    } catch (NamingException e) {
-      result = TestUtil.printStackTraceToString(e);
+    public String getCoffeeId(String coffeeId) {
+        String result = null;
+        FastPathLocal fastPathBean2Local = null;
+        try {
+            fastPathBean2Local = getFastPathBean2Local();
+            result = fastPathBean2Local.getCoffeeId(coffeeId);
+        } catch (CreateException e) {
+            result = TestUtil.printStackTraceToString(e);
+        } catch (NamingException e) {
+            result = TestUtil.printStackTraceToString(e);
+        }
+        return result;
     }
-    return result;
-  }
 
-  private FastPathLocal getFastPathBean2Local()
-      throws CreateException, NamingException {
-    InitialContext ic = new InitialContext();
-    FastPathLocalHome fastPathLocalHome = (FastPathLocalHome) ic
-        .lookup("java:comp/env/ejb/FastPathBean2");
-    FastPathLocal fastPathLocal = fastPathLocalHome.create();
-    return fastPathLocal;
-  }
+    public String setCoffeeBrand(String oldBrand, String newBrand) {
+        String result = null;
+        FastPathLocal fastPathBean2Local = null;
+        try {
+            fastPathBean2Local = getFastPathBean2Local();
+            result = fastPathBean2Local.setCoffeeBrand(oldBrand, newBrand);
+        } catch (CreateException e) {
+            result = TestUtil.printStackTraceToString(e);
+        } catch (NamingException e) {
+            result = TestUtil.printStackTraceToString(e);
+        }
+        return result;
+    }
+
+    private FastPathLocal getFastPathBean2Local() throws CreateException, NamingException {
+        InitialContext ic = new InitialContext();
+        FastPathLocalHome fastPathLocalHome = (FastPathLocalHome) ic.lookup("java:comp/env/ejb/FastPathBean2");
+        FastPathLocal fastPathLocal = fastPathLocalHome.create();
+        return fastPathLocal;
+    }
 }

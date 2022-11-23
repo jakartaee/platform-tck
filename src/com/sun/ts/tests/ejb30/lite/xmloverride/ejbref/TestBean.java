@@ -20,52 +20,51 @@
 package com.sun.ts.tests.ejb30.lite.xmloverride.ejbref;
 
 import com.sun.ts.tests.ejb30.common.lite.NumberIF;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 
 @Stateless
 public class TestBean {
-  @EJB
-  // there are 2 beans implementing NumberIF, and so this @EJB is
-  // ambiguous. It's fully resolved in ejb-jar.xml with ejb-link
-  private NumberIF overrideBean;
+    @EJB
+    // there are 2 beans implementing NumberIF, and so this @EJB is
+    // ambiguous. It's fully resolved in ejb-jar.xml with ejb-link
+    private NumberIF overrideBean;
 
-  // beanInterface is omitted here but specified in ejb-jar.xml (<local>)
-  // target EJB resolution info is only present in @EJB.beanName.
-  // Need to merge the info from both source to resolve it
-  // using beanName here to link to target does not seem to work. use <ejb-link>
-  // instead.
-  // @EJB(name="ejb/overrideInterfaceType")
-  @EJB(name = "ejb/overrideInterfaceType", beanName = "XmlOverrideBean")
-  private Object overrideInterfaceType;
+    // beanInterface is omitted here but specified in ejb-jar.xml (<local>)
+    // target EJB resolution info is only present in @EJB.beanName.
+    // Need to merge the info from both source to resolve it
+    // using beanName here to link to target does not seem to work. use <ejb-link>
+    // instead.
+    // @EJB(name="ejb/overrideInterfaceType")
+    @EJB(name = "ejb/overrideInterfaceType", beanName = "XmlOverrideBean")
+    private Object overrideInterfaceType;
 
-  // beanName is overridden with <ejb-link> in ejb-jar.xml
-  @EJB(name = "ejb/overrideBeanName", beanName = "XmlOverride2Bean")
-  private NumberIF overrideBeanName;
+    // beanName is overridden with <ejb-link> in ejb-jar.xml
+    @EJB(name = "ejb/overrideBeanName", beanName = "XmlOverride2Bean")
+    private NumberIF overrideBeanName;
 
-  private NumberIF overrideLookup;
+    private NumberIF overrideLookup;
 
-  // lookup is overridden in ejb-jar.xml with a valid value
-  @SuppressWarnings("unused")
-  @EJB(name = "ejb/overrideLookup", lookup = "java:module/XmlOverride2Bean")
-  private void setOverrideLookup(NumberIF b) {
-    this.overrideLookup = b;
-  }
+    // lookup is overridden in ejb-jar.xml with a valid value
+    @SuppressWarnings("unused")
+    @EJB(name = "ejb/overrideLookup", lookup = "java:module/XmlOverride2Bean")
+    private void setOverrideLookup(NumberIF b) {
+        this.overrideLookup = b;
+    }
 
-  public int getNumber() {
-    return overrideBean.getNumber();
-  }
+    public int getNumber() {
+        return overrideBean.getNumber();
+    }
 
-  public int overrideLookup() {
-    return overrideLookup.add(0);
-  }
+    public int overrideLookup() {
+        return overrideLookup.add(0);
+    }
 
-  public int overrideInterfaceType() {
-    return ((NumberIF) overrideInterfaceType).add(0);
-  }
+    public int overrideInterfaceType() {
+        return ((NumberIF) overrideInterfaceType).add(0);
+    }
 
-  public int overrideBeanName() {
-    return overrideBeanName.add(0);
-  }
+    public int overrideBeanName() {
+        return overrideBeanName.add(0);
+    }
 }

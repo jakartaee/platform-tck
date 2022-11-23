@@ -20,6 +20,4 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.remove.common;
 
-public interface RemoveLocal2IF extends RemoveIF {
-
-}
+public interface RemoveLocal2IF extends RemoveIF {}

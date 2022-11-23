@@ -20,12 +20,11 @@
 
 package com.sun.ts.tests.connector.xa.transaction.jta;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface JTATest extends EJBObject {
-  boolean testXAResource1() throws RemoteException;
+    boolean testXAResource1() throws RemoteException;
 
-  boolean testXAResource2() throws RemoteException;
+    boolean testXAResource2() throws RemoteException;
 }

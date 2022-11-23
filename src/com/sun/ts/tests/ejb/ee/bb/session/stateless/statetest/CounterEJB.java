@@ -20,99 +20,93 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateless.statetest;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
+import java.util.Properties;
 
 public class CounterEJB implements SessionBean {
-  private SessionContext sctx;
+    private SessionContext sctx;
 
-  public void ejbCreate() throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-  }
-
-  public void setSessionContext(SessionContext sctx) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sctx;
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  public int decrement(int value) throws InvalidTransactionException {
-    TestUtil.logTrace("decrement");
-    if ((value - 1) < 0)
-      throw new InvalidTransactionException(
-          "attempt to set counter to negative value");
-    else {
-      TestUtil.logMsg("counter value before transaction: " + value);
-      TestUtil.logMsg("decrement counter by 1");
-      value -= 1;
-      TestUtil.logMsg("counter value after transaction: " + value);
+    public void ejbCreate() throws CreateException {
+        TestUtil.logTrace("ejbCreate");
     }
-    return value;
-  }
 
-  public int decrement(int value, int n) throws InvalidTransactionException {
-    TestUtil.logTrace("decrement");
-    if ((value - n) < 0)
-      throw new InvalidTransactionException(
-          "attempt to set counter to negative value");
-    else {
-      TestUtil.logMsg("counter value before transaction: " + value);
-      TestUtil.logMsg("decrement counter by " + n);
-      value -= n;
-      TestUtil.logMsg("counter value after transaction: " + value);
+    public void setSessionContext(SessionContext sctx) {
+        TestUtil.logTrace("setSessionContext");
+        this.sctx = sctx;
     }
-    return value;
-  }
 
-  public int increment(int value) {
-    TestUtil.logTrace("increment");
-    TestUtil.logMsg("counter value before transaction: " + value);
-    TestUtil.logMsg("increment counter by 1");
-    value += 1;
-    TestUtil.logMsg("counter value after transaction: " + value);
-    return value;
-  }
-
-  public int increment(int value, int n) {
-    TestUtil.logTrace("increment");
-    TestUtil.logMsg("counter value before transaction: " + value);
-    TestUtil.logMsg("increment counter by " + n);
-    value += n;
-    TestUtil.logMsg("counter value after transaction: " + value);
-    return value;
-  }
-
-  public int value(int value) {
-    TestUtil.logTrace("value");
-    TestUtil.logMsg("counter value: " + value);
-    return value;
-  }
-
-  public void initLogging(Properties p) {
-    TestUtil.logTrace("initLogging");
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
     }
-  }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
+
+    public int decrement(int value) throws InvalidTransactionException {
+        TestUtil.logTrace("decrement");
+        if ((value - 1) < 0) throw new InvalidTransactionException("attempt to set counter to negative value");
+        else {
+            TestUtil.logMsg("counter value before transaction: " + value);
+            TestUtil.logMsg("decrement counter by 1");
+            value -= 1;
+            TestUtil.logMsg("counter value after transaction: " + value);
+        }
+        return value;
+    }
+
+    public int decrement(int value, int n) throws InvalidTransactionException {
+        TestUtil.logTrace("decrement");
+        if ((value - n) < 0) throw new InvalidTransactionException("attempt to set counter to negative value");
+        else {
+            TestUtil.logMsg("counter value before transaction: " + value);
+            TestUtil.logMsg("decrement counter by " + n);
+            value -= n;
+            TestUtil.logMsg("counter value after transaction: " + value);
+        }
+        return value;
+    }
+
+    public int increment(int value) {
+        TestUtil.logTrace("increment");
+        TestUtil.logMsg("counter value before transaction: " + value);
+        TestUtil.logMsg("increment counter by 1");
+        value += 1;
+        TestUtil.logMsg("counter value after transaction: " + value);
+        return value;
+    }
+
+    public int increment(int value, int n) {
+        TestUtil.logTrace("increment");
+        TestUtil.logMsg("counter value before transaction: " + value);
+        TestUtil.logMsg("increment counter by " + n);
+        value += n;
+        TestUtil.logMsg("counter value after transaction: " + value);
+        return value;
+    }
+
+    public int value(int value) {
+        TestUtil.logTrace("value");
+        TestUtil.logMsg("counter value: " + value);
+        return value;
+    }
+
+    public void initLogging(Properties p) {
+        TestUtil.logTrace("initLogging");
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
+        }
+    }
 }

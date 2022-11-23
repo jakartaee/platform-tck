@@ -25,57 +25,57 @@ import jakarta.ejb.SessionContext;
 
 public class LookupBeanBase extends LookupBeanPlainBase implements LookupIF {
 
-  @SuppressWarnings("unused")
-  @EJB(name = "ejb/LookupBeanBase/lookupBean", beanName = "LookupBean")
-  private void setLookupBean(LookupIF b) {
-    this.lookupBean = b;
-  }
+    @SuppressWarnings("unused")
+    @EJB(name = "ejb/LookupBeanBase/lookupBean", beanName = "LookupBean")
+    private void setLookupBean(LookupIF b) {
+        this.lookupBean = b;
+    }
 
-  @SuppressWarnings("unused")
-  @EJB(name = "ejb/LookupBeanBase/lookup2Bean", beanName = "Lookup2Bean")
-  private void setLookup2Bean(LookupIF b) {
-    this.lookup2Bean = b;
-  }
+    @SuppressWarnings("unused")
+    @EJB(name = "ejb/LookupBeanBase/lookup2Bean", beanName = "Lookup2Bean")
+    private void setLookup2Bean(LookupIF b) {
+        this.lookup2Bean = b;
+    }
 
-  @SuppressWarnings("unused")
-  @EJB(lookup = "java:comp/env/ejb/LookupBeanBase/lookupBean")
-  private void setLookupBeanComp(LookupIF b) {
-    this.lookupBeanComp = b;
-  }
+    @SuppressWarnings("unused")
+    @EJB(lookup = "java:comp/env/ejb/LookupBeanBase/lookupBean")
+    private void setLookupBeanComp(LookupIF b) {
+        this.lookupBeanComp = b;
+    }
 
-  @SuppressWarnings("unused")
-  @EJB(lookup = "java:comp/env/ejb/LookupBeanBase/lookup2Bean")
-  private void setLookup2BeanComp(LookupIF b) {
-    this.lookup2BeanComp = b;
-  }
+    @SuppressWarnings("unused")
+    @EJB(lookup = "java:comp/env/ejb/LookupBeanBase/lookup2Bean")
+    private void setLookup2BeanComp(LookupIF b) {
+        this.lookup2BeanComp = b;
+    }
 
-  @SuppressWarnings("unused")
-  @EJB(lookup = "java:module/LookupBean")
-  private void setLookupBeanModule(LookupIF b) {
-    this.lookupBeanModule = b;
-  }
+    @SuppressWarnings("unused")
+    @EJB(lookup = "java:module/LookupBean")
+    private void setLookupBeanModule(LookupIF b) {
+        this.lookupBeanModule = b;
+    }
 
-  @SuppressWarnings("unused")
-  @EJB(lookup = "java:module/Lookup2Bean")
-  private void setLookup2BeanModule(LookupIF b) {
-    this.lookup2BeanModule = b;
-  }
+    @SuppressWarnings("unused")
+    @EJB(lookup = "java:module/Lookup2Bean")
+    private void setLookup2BeanModule(LookupIF b) {
+        this.lookup2BeanModule = b;
+    }
 
-  @SuppressWarnings("unused")
-  @EJB(lookup = "java:module/LookupBean")
-  private void setLookupBeanApp(LookupIF b) {
-    this.lookupBeanApp = b;
-  }
+    @SuppressWarnings("unused")
+    @EJB(lookup = "java:module/LookupBean")
+    private void setLookupBeanApp(LookupIF b) {
+        this.lookupBeanApp = b;
+    }
 
-  @SuppressWarnings("unused")
-  @EJB(lookup = "java:module/Lookup2Bean")
-  private void setLookup2BeanApp(LookupIF b) {
-    this.lookup2BeanApp = b;
-  }
+    @SuppressWarnings("unused")
+    @EJB(lookup = "java:module/Lookup2Bean")
+    private void setLookup2BeanApp(LookupIF b) {
+        this.lookup2BeanApp = b;
+    }
 
-  @SuppressWarnings("unused")
-  @Resource(lookup = "java:comp/EJBContext")
-  private void setSctx(SessionContext sctx) {
-    this.sctx = sctx;
-  }
+    @SuppressWarnings("unused")
+    @Resource(lookup = "java:comp/EJBContext")
+    private void setSctx(SessionContext sctx) {
+        this.sctx = sctx;
+    }
 }

@@ -21,11 +21,11 @@
 package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.requestresponse;
 
 public class TestConstants {
-  public static final String ADD_NUMBERS2_IN_ACTION = "inputAction";
+    public static final String ADD_NUMBERS2_IN_ACTION = "inputAction";
 
-  public static final String ADD_NUMBERS2_OUT_ACTION = "outputAction";
+    public static final String ADD_NUMBERS2_OUT_ACTION = "outputAction";
 
-  public static final String ADD_NUMBERS_IN_ACTION = "http://example.com/AddNumbersPortType/addNumbersRequest";
+    public static final String ADD_NUMBERS_IN_ACTION = "http://example.com/AddNumbersPortType/addNumbersRequest";
 
-  public static final String ADD_NUMBERS_OUT_ACTION = "http://example.com/AddNumbersPortType/addNumbersResponse";
+    public static final String ADD_NUMBERS_OUT_ACTION = "http://example.com/AddNumbersPortType/addNumbersResponse";
 }

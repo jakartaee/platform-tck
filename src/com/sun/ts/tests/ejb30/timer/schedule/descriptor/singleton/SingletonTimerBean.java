@@ -21,7 +21,6 @@ package com.sun.ts.tests.ejb30.timer.schedule.descriptor.singleton;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
-
 import jakarta.ejb.Singleton;
 
 /**
@@ -34,10 +33,9 @@ import jakarta.ejb.Singleton;
 @Singleton
 public class SingletonTimerBean extends TimerBeanBaseWithoutTimeOutMethod {
 
-  // timeout method for auto timer declared in ejb-jar.xml
-  @SuppressWarnings("unused")
-  private void year5000() {
-    Helper.getLogger().info("In year5000, the timeout-method for auto timer.");
-  }
-
+    // timeout method for auto timer declared in ejb-jar.xml
+    @SuppressWarnings("unused")
+    private void year5000() {
+        Helper.getLogger().info("In year5000, the timeout-method for auto timer.");
+    }
 }

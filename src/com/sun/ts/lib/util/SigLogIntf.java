@@ -31,22 +31,21 @@ package com.sun.ts.lib.util;
  */
 public interface SigLogIntf {
 
-  public void println(String msg);
+    public void println(String msg);
 
-  public void println(Object obj);
+    public void println(Object obj);
 
-  public void println(char c);
+    public void println(char c);
 
-  public void println();
+    public void println();
 
-  public void print(String msg);
+    public void print(String msg);
 
-  public void print(Object obj);
+    public void print(Object obj);
 
-  public void print(char c);
+    public void print(char c);
 
-  public void flush(); // nop
+    public void flush(); // nop
 
-  public void close(); // nop
-
+    public void close(); // nop
 }

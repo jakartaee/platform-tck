@@ -20,94 +20,87 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.cm.allowed;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.ejb30.common.allowed.Constants;
 import com.sun.ts.tests.ejb30.common.allowed.MySessionSynchronization;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
+import java.util.Properties;
 
 @Stateful(name = "SetRollbackOnlyBean")
-@Remote({ SetRollbackOnlyIF.class })
-public class SetRollbackOnlyBean implements SetRollbackOnlyIF,
-    java.io.Serializable, MySessionSynchronization, Constants {
+@Remote({SetRollbackOnlyIF.class})
+public class SetRollbackOnlyBean
+        implements SetRollbackOnlyIF, java.io.Serializable, MySessionSynchronization, Constants {
 
-  @Resource(name = "ejbContext")
-  protected SessionContext sctx;
+    @Resource(name = "ejbContext")
+    protected SessionContext sctx;
 
-  private String testMethod;
+    private String testMethod;
 
-  protected Properties results = new Properties();
+    protected Properties results = new Properties();
 
-  public String getTestMethod() {
-    return testMethod;
-  }
-
-  protected void runSetRollbackOnly(String methodName) {
-    results.remove(methodName);
-    try {
-      sctx.setRollbackOnly();
-      results.setProperty(methodName, allowed);
-      System.out.println("## setRollbackOnly() ok");
-    } catch (IllegalStateException e) {
-      results.setProperty(methodName, disallowed);
-    } catch (Exception e) {
-      results.setProperty(methodName, e.toString());
+    public String getTestMethod() {
+        return testMethod;
     }
-  }
 
-  /////////////////////////////////////////////////////////////////////////
-  // SessionSynchronization methods
-  /////////////////////////////////////////////////////////////////////////
-  public void afterCompletion(boolean param) {
-    if (afterCompletionSetRollbackOnlyTest.equals(getTestMethod())) {
-      runSetRollbackOnly(getTestMethod());
-      testMethod = null;
+    protected void runSetRollbackOnly(String methodName) {
+        results.remove(methodName);
+        try {
+            sctx.setRollbackOnly();
+            results.setProperty(methodName, allowed);
+            System.out.println("## setRollbackOnly() ok");
+        } catch (IllegalStateException e) {
+            results.setProperty(methodName, disallowed);
+        } catch (Exception e) {
+            results.setProperty(methodName, e.toString());
+        }
     }
-  }
 
-  public void beforeCompletion() {
-    if (beforeCompletionSetRollbackOnlyTest.equals(getTestMethod())) {
-      runSetRollbackOnly(getTestMethod());
-      testMethod = null;
+    /////////////////////////////////////////////////////////////////////////
+    // SessionSynchronization methods
+    /////////////////////////////////////////////////////////////////////////
+    public void afterCompletion(boolean param) {
+        if (afterCompletionSetRollbackOnlyTest.equals(getTestMethod())) {
+            runSetRollbackOnly(getTestMethod());
+            testMethod = null;
+        }
     }
-  }
 
-  public void afterBegin() {
-    if (afterBeginSetRollbackOnlyTest.equals(getTestMethod())) {
-      runSetRollbackOnly(getTestMethod());
-      testMethod = null;
+    public void beforeCompletion() {
+        if (beforeCompletionSetRollbackOnlyTest.equals(getTestMethod())) {
+            runSetRollbackOnly(getTestMethod());
+            testMethod = null;
+        }
     }
-  }
 
-  // ===================== business methods ===========================
-  @Remove
-  public void remove() {
-  }
+    public void afterBegin() {
+        if (afterBeginSetRollbackOnlyTest.equals(getTestMethod())) {
+            runSetRollbackOnly(getTestMethod());
+            testMethod = null;
+        }
+    }
 
-  public String getResultFor(String testMethod) {
-    return results.getProperty(testMethod);
-  }
+    // ===================== business methods ===========================
+    @Remove
+    public void remove() {}
 
-  public void setTestMethod(String testMethod) {
-    this.testMethod = testMethod;
-  }
+    public String getResultFor(String testMethod) {
+        return results.getProperty(testMethod);
+    }
 
-  public void businessSetRollbackOnlyTest() {
-    runSetRollbackOnly(businessSetRollbackOnlyTest);
-  }
+    public void setTestMethod(String testMethod) {
+        this.testMethod = testMethod;
+    }
 
-  public void beforeCompletionSetRollbackOnlyTest() {
-  }
+    public void businessSetRollbackOnlyTest() {
+        runSetRollbackOnly(businessSetRollbackOnlyTest);
+    }
 
-  public void afterCompletionSetRollbackOnlyTest() {
-  }
+    public void beforeCompletionSetRollbackOnlyTest() {}
 
-  public void afterBeginSetRollbackOnlyTest() {
-  }
+    public void afterCompletionSetRollbackOnlyTest() {}
 
+    public void afterBeginSetRollbackOnlyTest() {}
 }

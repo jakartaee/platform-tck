@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.mdb.callback.method.annotated;
 
 import com.sun.ts.tests.ejb30.common.callback.MDBCallbackBeanBase;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
@@ -34,43 +33,44 @@ import jakarta.jms.MessageListener;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
 
-@MessageDriven(activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue") })
-public class CallbackBean extends MDBCallbackBeanBase
-    implements MessageListener {
-  @Resource(name = "mdc")
-  private MessageDrivenContext mdc;
+@MessageDriven(
+        activationConfig = {
+            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
+        })
+public class CallbackBean extends MDBCallbackBeanBase implements MessageListener {
+    @Resource(name = "mdc")
+    private MessageDrivenContext mdc;
 
-  @Resource(name = "qFactory")
-  private QueueConnectionFactory qFactory;
+    @Resource(name = "qFactory")
+    private QueueConnectionFactory qFactory;
 
-  @Resource(name = "replyQueue")
-  private Queue replyQueue;
+    @Resource(name = "replyQueue")
+    private Queue replyQueue;
 
-  public CallbackBean() {
-    super();
-  }
-
-  public EJBContext getEJBContext() {
-    return this.mdc;
-  }
-
-  // ================= callback methods ====================================
-  @PostConstruct
-  private void ejbCreate() throws RuntimeException {
-    this.setPostConstructCalled(true);
-    TLogger.log("PostConstruct method called.");
-    if (this.getEJBContext() != null) {
-      this.setInjectionDone(true);
+    public CallbackBean() {
+        super();
     }
-  }
 
-  @PreDestroy
-  private void ejbRemove() throws RuntimeException {
-    this.setPreDestroyCalled(true);
-    TLogger.log("PreDestroy method called.");
-  }
+    public EJBContext getEJBContext() {
+        return this.mdc;
+    }
 
-  // ================== business methods ====================================
+    // ================= callback methods ====================================
+    @PostConstruct
+    private void ejbCreate() throws RuntimeException {
+        this.setPostConstructCalled(true);
+        TLogger.log("PostConstruct method called.");
+        if (this.getEJBContext() != null) {
+            this.setInjectionDone(true);
+        }
+    }
+
+    @PreDestroy
+    private void ejbRemove() throws RuntimeException {
+        this.setPreDestroyCalled(true);
+        TLogger.log("PreDestroy method called.");
+    }
+
+    // ================== business methods ====================================
 
 }

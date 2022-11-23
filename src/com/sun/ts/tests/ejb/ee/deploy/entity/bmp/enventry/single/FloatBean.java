@@ -20,10 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.enventry.single;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface FloatBean extends EJBObject {
-  public boolean testFloatEntry() throws RemoteException;
+    public boolean testFloatEntry() throws RemoteException;
 }

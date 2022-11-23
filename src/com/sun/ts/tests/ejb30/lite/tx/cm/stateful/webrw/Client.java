@@ -19,7 +19,6 @@ package com.sun.ts.tests.ejb30.lite.tx.cm.stateful.webrw;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTestBeanBase;
 import com.sun.ts.tests.ejb30.lite.tx.cm.stateful.rw.TestBean;
 import com.sun.ts.tests.ejb30.lite.tx.cm.stateful.rw.TxBean;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
@@ -33,61 +32,60 @@ import jakarta.transaction.UserTransaction;
  * testBean. This should work since this web component client share the same
  * naming environment as the target ejb.
  */
-public class Client
-    extends com.sun.ts.tests.ejb30.lite.tx.cm.common.RWClientBase {
-  @PersistenceContext(unitName = "ejblite-pu")
-  private EntityManager em;
+public class Client extends com.sun.ts.tests.ejb30.lite.tx.cm.common.RWClientBase {
+    @PersistenceContext(unitName = "ejblite-pu")
+    private EntityManager em;
 
-  @Resource
-  private UserTransaction ut;
+    @Resource
+    private UserTransaction ut;
 
-  @EJB
-  private TxBean txBean;
+    @EJB
+    private TxBean txBean;
 
-  @SuppressWarnings("unused")
-  @EJB(beanInterface = TestBean.class)
-  private void setTestBean(RWTestBeanBase b) {
-    testBean = b;
-  }
+    @SuppressWarnings("unused")
+    @EJB(beanInterface = TestBean.class)
+    private void setTestBean(RWTestBeanBase b) {
+        testBean = b;
+    }
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    testBean.setEm(em);
-    testBean.setUt(ut);
-    testBean.setTxBean(txBean);
-  }
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        testBean.setEm(em);
+        testBean.setUt(ut);
+        testBean.setTxBean(txBean);
+    }
 
-  /*
-   * @testName: mandatory
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: required
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: requiredNoExistingTransaction
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: supports
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: requiresNew
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: postConstructTransaction
-   * 
-   * @test_Strategy: insert CoffeeEJBLite records in TestBean & TxBean's
-   * postConstruct methods, respectively using BMT & CMT, then check the
-   * existence of the records in test method postConstructTransaction
-   */
+    /*
+     * @testName: mandatory
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: required
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: requiredNoExistingTransaction
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: supports
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: requiresNew
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: postConstructTransaction
+     *
+     * @test_Strategy: insert CoffeeEJBLite records in TestBean & TxBean's
+     * postConstruct methods, respectively using BMT & CMT, then check the
+     * existence of the records in test method postConstructTransaction
+     */
 }

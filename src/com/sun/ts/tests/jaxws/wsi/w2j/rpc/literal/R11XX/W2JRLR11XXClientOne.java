@@ -24,30 +24,29 @@ import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 
 public class W2JRLR11XXClientOne extends SOAPClient {
-  public W2JRLR11XXClientOne(String webServerHost, int port, int mode)
-      throws EETest.Fault {
-    this(webServerHost, port, mode, null);
-  }
+    public W2JRLR11XXClientOne(String webServerHost, int port, int mode) throws EETest.Fault {
+        this(webServerHost, port, mode, null);
+    }
 
-  public W2JRLR11XXClientOne(String webServerHost, int port, int mode,
-      jakarta.xml.ws.Service webServiceRef) throws EETest.Fault {
-    super(webServerHost, port, mode);
-    stubContext.setNamespace("http://soapactionservice.org/wsdl/");
-    stubContext.setService("W2JRLR11XXTestService");
-    stubContext.setPort("W2JRLR11XXTestOnePort");
-    stubContext.setEndpointInterface(W2JRLR11XXTest.class);
-    stubContext.setWebServiceRef(webServiceRef);
-  }
+    public W2JRLR11XXClientOne(String webServerHost, int port, int mode, jakarta.xml.ws.Service webServiceRef)
+            throws EETest.Fault {
+        super(webServerHost, port, mode);
+        stubContext.setNamespace("http://soapactionservice.org/wsdl/");
+        stubContext.setService("W2JRLR11XXTestService");
+        stubContext.setPort("W2JRLR11XXTestOnePort");
+        stubContext.setEndpointInterface(W2JRLR11XXTest.class);
+        stubContext.setWebServiceRef(webServiceRef);
+    }
 
-  protected String getEndpointURLProperty() {
-    return "wsi.w2jrlr11XX.endpoint.1";
-  }
+    protected String getEndpointURLProperty() {
+        return "wsi.w2jrlr11XX.endpoint.1";
+    }
 
-  protected String getWSDLURLProperty() {
-    return "wsi.w2jrlr11XX.wsdlloc.1";
-  }
+    protected String getWSDLURLProperty() {
+        return "wsi.w2jrlr11XX.wsdlloc.1";
+    }
 
-  public String echoString(String s) throws Exception {
-    return ((W2JRLR11XXTest) stubContext.getStub()).echoString(s);
-  }
+    public String echoString(String s) throws Exception {
+        return ((W2JRLR11XXTest) stubContext.getStub()).echoString(s);
+    }
 }

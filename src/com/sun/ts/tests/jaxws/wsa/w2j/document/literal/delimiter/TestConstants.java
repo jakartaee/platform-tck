@@ -21,15 +21,16 @@
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.delimiter;
 
 public class TestConstants {
-  public static final String ADD_NUMBERS_IN_ACTION = "urn:example.com:AddNumbersPortType:add";
+    public static final String ADD_NUMBERS_IN_ACTION = "urn:example.com:AddNumbersPortType:add";
 
-  public static final String ADD_NUMBERS2_IN_ACTION = "urn:addNumbers";
+    public static final String ADD_NUMBERS2_IN_ACTION = "urn:addNumbers";
 
-  public static final String ADD_NUMBERS_OUT_ACTION = "urn:example.com:AddNumbersPortType:addResponse";
+    public static final String ADD_NUMBERS_OUT_ACTION = "urn:example.com:AddNumbersPortType:addResponse";
 
-  public static final String ADD_NUMBERS2_OUT_ACTION = "urn:addNumbersResponse";
+    public static final String ADD_NUMBERS2_OUT_ACTION = "urn:addNumbersResponse";
 
-  public static final String ADD_NUMBERS_ADDNUMBERS_ACTION = "urn:example.com:AddNumbersPortType:addNumbers:Fault:addFault";
+    public static final String ADD_NUMBERS_ADDNUMBERS_ACTION =
+            "urn:example.com:AddNumbersPortType:addNumbers:Fault:addFault";
 
-  public static final String ADD_NUMBERS2_ADDNUMBERS_ACTION = "urn:addNumbersFault";
+    public static final String ADD_NUMBERS2_ADDNUMBERS_ACTION = "urn:addNumbersFault";
 }

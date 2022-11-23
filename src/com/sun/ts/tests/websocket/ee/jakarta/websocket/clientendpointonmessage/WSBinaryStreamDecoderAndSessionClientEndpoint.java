@@ -17,13 +17,10 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpointonmessage;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.client.AnnotatedClientEndpoint;
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryStreamDecoder;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanClientEndpoint;
-
 import jakarta.websocket.ClientEndpoint;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.EndpointConfig;
@@ -32,36 +29,36 @@ import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
+import java.io.IOException;
 
-@ClientEndpoint(decoders = { StringBeanBinaryStreamDecoder.class })
-public class WSBinaryStreamDecoderAndSessionClientEndpoint
-    extends AnnotatedClientEndpoint<StringBean> {
+@ClientEndpoint(decoders = {StringBeanBinaryStreamDecoder.class})
+public class WSBinaryStreamDecoderAndSessionClientEndpoint extends AnnotatedClientEndpoint<StringBean> {
 
-  public WSBinaryStreamDecoderAndSessionClientEndpoint() {
-    super(new StringBeanClientEndpoint());
-  }
+    public WSBinaryStreamDecoderAndSessionClientEndpoint() {
+        super(new StringBeanClientEndpoint());
+    }
 
-  @OnMessage
-  public void echo(StringBean bean, Session s) throws IOException {
-    super.onMessage(bean);
-    s.getBasicRemote().sendText(bean.get());
-  }
+    @OnMessage
+    public void echo(StringBean bean, Session s) throws IOException {
+        super.onMessage(bean);
+        s.getBasicRemote().sendText(bean.get());
+    }
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+    @OnError
+    @Override
+    public void onError(Session session, Throwable t) {
+        super.onError(session, t);
+    }
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+    @OnClose
+    @Override
+    public void onClose(Session session, CloseReason closeReason) {
+        super.onClose(session, closeReason);
+    }
 
-  @OnOpen
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+    @OnOpen
+    @Override
+    public void onOpen(Session session, EndpointConfig config) {
+        super.onOpen(session, config);
+    }
 }

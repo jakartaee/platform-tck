@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.webservices12.ejb.descriptors.WSEjbOverrideWSRefWithDDsTest;
 
-import java.rmi.RemoteException;
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface TxHome extends EJBHome {
-  TxRemote create() throws RemoteException, CreateException;
+    TxRemote create() throws RemoteException, CreateException;
 }

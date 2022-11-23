@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.lite.async.stateful.metadata;
 
 import com.sun.ts.tests.ejb30.lite.async.common.metadata.BeanClassLevel3BeanBase;
 import com.sun.ts.tests.ejb30.lite.async.common.metadata.PlainInterfaceTypeLevelIF;
-
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateful;
 
@@ -37,5 +36,4 @@ import jakarta.ejb.Stateful;
  */
 @Stateful
 @Local(PlainInterfaceTypeLevelIF.class)
-public class BeanClassLevelBean extends BeanClassLevel3BeanBase {
-}
+public class BeanClassLevelBean extends BeanClassLevel3BeanBase {}

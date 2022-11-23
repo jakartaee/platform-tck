@@ -20,11 +20,8 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.basic;
 
-import java.io.Serializable;
-
 import com.sun.ts.tests.ejb30.common.calc.BaseRemoteCalculator;
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Remove;
@@ -33,33 +30,30 @@ import jakarta.ejb.Stateful;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import jakarta.transaction.UserTransaction;
+import java.io.Serializable;
 
 /**
  * A stateful base calculator session bean class that implements
  * jakarta.ejb.SessionBean. ejbCreate method is optional and not implemented here.
  */
-
 @Stateful(name = "RemoteCalculatorBean", description = "same as <description> element in ejb-jar.xml")
-@Remote({ StatefulRemoteCalculator.class })
+@Remote({StatefulRemoteCalculator.class})
 @TransactionManagement(TransactionManagementType.BEAN)
-public class RemoteCalculatorBean extends BaseRemoteCalculator
-    implements StatefulRemoteCalculator, Serializable {
+public class RemoteCalculatorBean extends BaseRemoteCalculator implements StatefulRemoteCalculator, Serializable {
 
-  @Resource
-  private SessionContext sessionContext;
+    @Resource
+    private SessionContext sessionContext;
 
-  // injected in ejb-jar.xml with <resource-env-ref>
-  private UserTransaction ut;
+    // injected in ejb-jar.xml with <resource-env-ref>
+    private UserTransaction ut;
 
-  public RemoteCalculatorBean() {
-  }
+    public RemoteCalculatorBean() {}
 
-  @Remove
-  public void remoteThrowIt() throws CalculatorException {
-    if (ut == null) {
-      throw new IllegalStateException(
-          "UserTransaction is null and has not been injected.");
+    @Remove
+    public void remoteThrowIt() throws CalculatorException {
+        if (ut == null) {
+            throw new IllegalStateException("UserTransaction is null and has not been injected.");
+        }
+        super.remoteThrowIt();
     }
-    super.remoteThrowIt();
-  }
 }

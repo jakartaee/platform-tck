@@ -25,37 +25,34 @@ import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public class Comparator {
 
-  private Comparator() {
-  }
+    private Comparator() {}
 
-  public static void compare(Object one, Object two, boolean expected,
-      boolean logIfOk) throws TestFailedException {
-    if (one.equals(two) == expected) {
-      if (logIfOk) {
-        TLogger.log("Comparing 2 beans returned " + expected
-            + ", as expected: bean1 (" + one + "), and bean2 (" + two + ").");
-      }
-    } else {
-      throw new TestFailedException("Expecting " + expected
-          + " from comparing 2 beans, " + "but got otherwise: bean1 (" + one
-          + "), and bean2 (" + two + ").");
+    public static void compare(Object one, Object two, boolean expected, boolean logIfOk) throws TestFailedException {
+        if (one.equals(two) == expected) {
+            if (logIfOk) {
+                TLogger.log("Comparing 2 beans returned " + expected + ", as expected: bean1 (" + one + "), and bean2 ("
+                        + two + ").");
+            }
+        } else {
+            throw new TestFailedException("Expecting " + expected
+                    + " from comparing 2 beans, " + "but got otherwise: bean1 (" + one
+                    + "), and bean2 (" + two + ").");
+        }
     }
-  }
 
-  public static void compare(Object one, Object two, Object three,
-      boolean expected, boolean logIfOk) throws TestFailedException {
-    boolean actual = one.equals(two) && two.equals(three);
-    if (actual == expected) {
-      if (logIfOk) {
-        TLogger.log("Comparing 3 beans returned " + expected
-            + ", as expected: bean1 (" + one + "), and bean2 (" + two
-            + "), and bean3 (" + three + ").");
-      }
-    } else {
-      throw new TestFailedException("Expecting " + expected
-          + " from comparing 3 beans, " + "but got otherwise: bean1 (" + one
-          + "), and bean2 (" + two + "), and bean3 (" + three + ").");
+    public static void compare(Object one, Object two, Object three, boolean expected, boolean logIfOk)
+            throws TestFailedException {
+        boolean actual = one.equals(two) && two.equals(three);
+        if (actual == expected) {
+            if (logIfOk) {
+                TLogger.log("Comparing 3 beans returned " + expected
+                        + ", as expected: bean1 (" + one + "), and bean2 (" + two
+                        + "), and bean3 (" + three + ").");
+            }
+        } else {
+            throw new TestFailedException("Expecting " + expected
+                    + " from comparing 3 beans, " + "but got otherwise: bean1 (" + one
+                    + "), and bean2 (" + two + "), and bean3 (" + three + ").");
+        }
     }
-  }
-
 }

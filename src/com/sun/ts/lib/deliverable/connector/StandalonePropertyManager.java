@@ -16,11 +16,9 @@
 
 package com.sun.ts.lib.deliverable.connector;
 
+import com.sun.javatest.TestEnvironment;
 import com.sun.ts.lib.deliverable.*;
 import com.sun.ts.lib.deliverable.tck.*;
-import com.sun.javatest.TestEnvironment;
-
-import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -29,74 +27,69 @@ import java.util.Properties;
  */
 public class StandalonePropertyManager extends TCKPropertyManager {
 
-  // uninitialized singleton instance
-  private static StandalonePropertyManager jteMgr = new StandalonePropertyManager();
+    // uninitialized singleton instance
+    private static StandalonePropertyManager jteMgr = new StandalonePropertyManager();
 
-  /**
-   * This method returns the singleton instance of TSPropertyManager which
-   * provides access to all ts.jte properties. This is only called once by the
-   * test harness.
-   *
-   * @param env
-   *          - TestEnvironment object from JavaTest
-   * @return TSPropertyManager - singleton property manager object
-   */
-  public final static StandalonePropertyManager getStandalonePropertyManager(
-      TestEnvironment env) throws PropertyNotSetException {
-    jteMgr.setTestEnvironment(env);
-    return jteMgr;
-  }
+    /**
+     * This method returns the singleton instance of TSPropertyManager which
+     * provides access to all ts.jte properties. This is only called once by the
+     * test harness.
+     *
+     * @param env
+     *          - TestEnvironment object from JavaTest
+     * @return TSPropertyManager - singleton property manager object
+     */
+    public static final StandalonePropertyManager getStandalonePropertyManager(TestEnvironment env)
+            throws PropertyNotSetException {
+        jteMgr.setTestEnvironment(env);
+        return jteMgr;
+    }
 
-  /**
-   * This method returns the singleton instance of StandalonePropertyManager
-   * which provides access to all ts.jte properties. This is only called by the
-   * init() method in ManualDeployment.java
-   *
-   * @param p
-   *          - Properties object from JavaTest
-   * @return StandalonePropertyManager - singleton property manager object
-   */
-  public final static StandalonePropertyManager getStandalonePropertyManager(
-      Properties p) throws PropertyNotSetException {
-    jteMgr.setJteProperties(p);
-    return jteMgr;
-  }
+    /**
+     * This method returns the singleton instance of StandalonePropertyManager
+     * which provides access to all ts.jte properties. This is only called by the
+     * init() method in ManualDeployment.java
+     *
+     * @param p
+     *          - Properties object from JavaTest
+     * @return StandalonePropertyManager - singleton property manager object
+     */
+    public static final StandalonePropertyManager getStandalonePropertyManager(Properties p)
+            throws PropertyNotSetException {
+        jteMgr.setJteProperties(p);
+        return jteMgr;
+    }
 
-  public final static StandalonePropertyManager getStandalonePropertyManager()
-      throws PropertyNotSetException {
-    return jteMgr;
-  }
+    public static final StandalonePropertyManager getStandalonePropertyManager() throws PropertyNotSetException {
+        return jteMgr;
+    }
 
-  /**
-   * This method is called by the test harness to retrieve all properties needed
-   * by a particular test.
-   *
-   * @param sPropKeys
-   *          - Properties to retrieve
-   * @return Properties - property/value pairs
-   */
-  public Properties getTestSpecificProperties(String[] sPropKeys)
-      throws PropertyNotSetException {
-    Properties pTestProps = super.getTestSpecificProperties(sPropKeys);
+    /**
+     * This method is called by the test harness to retrieve all properties needed
+     * by a particular test.
+     *
+     * @param sPropKeys
+     *          - Properties to retrieve
+     * @return Properties - property/value pairs
+     */
+    public Properties getTestSpecificProperties(String[] sPropKeys) throws PropertyNotSetException {
+        Properties pTestProps = super.getTestSpecificProperties(sPropKeys);
 
-    // if the abstract propertymanager already loaded all props, just return
-    // if (pTestProps.getProperty("all.props").equalsIgnoreCase("true")) {
-    // return pTestProps;
-    // }
+        // if the abstract propertymanager already loaded all props, just return
+        // if (pTestProps.getProperty("all.props").equalsIgnoreCase("true")) {
+        // return pTestProps;
+        // }
 
-    String sJtePropVal = "";
-    // add all porting class props so the factories can work in the server
-    pTestProps.put("porting.ts.login.class.1",
-        getProperty("porting.ts.login.class.1"));
-    pTestProps.put("porting.ts.HttpsURLConnection.class.1",
-        getProperty("porting.ts.HttpsURLConnection.class.1"));
-    pTestProps.put("porting.ts.url.class.1",
-        getProperty("porting.ts.url.class.1"));
-    pTestProps.put("namingServiceHost2", getProperty("namingServiceHost2"));
-    pTestProps.put("namingServicePort2", getProperty("namingServicePort2"));
-    pTestProps.put("namingServiceHost1", getProperty("namingServiceHost1"));
-    pTestProps.put("namingServicePort1", getProperty("namingServicePort1"));
+        String sJtePropVal = "";
+        // add all porting class props so the factories can work in the server
+        pTestProps.put("porting.ts.login.class.1", getProperty("porting.ts.login.class.1"));
+        pTestProps.put("porting.ts.HttpsURLConnection.class.1", getProperty("porting.ts.HttpsURLConnection.class.1"));
+        pTestProps.put("porting.ts.url.class.1", getProperty("porting.ts.url.class.1"));
+        pTestProps.put("namingServiceHost2", getProperty("namingServiceHost2"));
+        pTestProps.put("namingServicePort2", getProperty("namingServicePort2"));
+        pTestProps.put("namingServiceHost1", getProperty("namingServiceHost1"));
+        pTestProps.put("namingServicePort1", getProperty("namingServicePort1"));
 
-    return pTestProps;
-  }
+        return pTestProps;
+    }
 }

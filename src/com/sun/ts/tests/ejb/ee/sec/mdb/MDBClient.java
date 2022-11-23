@@ -19,180 +19,177 @@
  */
 package com.sun.ts.tests.ejb.ee.sec.mdb;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.commonee.Client;
-
 import jakarta.jms.Queue;
+import java.util.Properties;
 
 public class MDBClient extends Client {
 
-  // Naming specific member variables
-  private Queue cmtQ;
+    // Naming specific member variables
+    private Queue cmtQ;
 
-  private Queue bmtQ;
+    private Queue bmtQ;
 
-  private static final String user = "user", password = "password";
+    private static final String user = "user", password = "password";
+    private String user_value, password_value;
 
-  private String user_value, password_value;
-
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    MDBClient theTests = new MDBClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * Test setup:
-   * 
-   * @class.setup_props: jms_timeout, in milliseconds - how long to wait on
-   * synchronous receive; user;password;
-   *
-   */
-  public void setup(String[] args, Properties p) throws Fault {
-    props = p;
-    super.setup(args, p);
-
-    try {
-
-      TestUtil.logTrace("look up cmtQ");
-      cmtQ = (Queue) context.lookup("java:comp/env/jms/EJB_SEC_MDB_QUEUE_CMT");
-      TestUtil.logTrace("look up bmtQ");
-      bmtQ = (Queue) context.lookup("java:comp/env/jms/EJB_SEC_MDB_QUEUE_BMT");
-
-    } catch (Exception e) {
-      throw new Fault("Setup Failed!", e);
+    /* Run test in standalone mode */
+    public static void main(String[] args) {
+        MDBClient theTests = new MDBClient();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
-  /* Run tests */
 
-  /*
-   * @testName: Test1
-   *
-   * @assertion_ids: EJB:SPEC:513; EJB:SPEC:528; EJB:SPEC:823; JavaEE:SPEC:130;
-   * JavaEE:SPEC:10035
-   *
-   * @test_Strategy: Invoke an cmt mdb by writing to EJB_SEC_MDB_QUEUE_CMT. The
-   * mdb attempts a EJBContext getCallerPrincipal() method. Return verification
-   * message that a java.lang.IllegalStateException was not thrown and
-   * getCallerPrincipal() does not return null.
-   *
-   */
-  public void Test1() throws Fault {
-    String TestCase = "expTest1";
-    int TestNum = 1;
-    try {
-      qSender = session.createSender(cmtQ);
-      // create a text message
-      createTestMessage(TestCase, TestNum);
-      // send the message
-      qSender.send(msg);
+    /*
+     * Test setup:
+     *
+     * @class.setup_props: jms_timeout, in milliseconds - how long to wait on
+     * synchronous receive; user;password;
+     *
+     */
+    public void setup(String[] args, Properties p) throws Fault {
+        props = p;
+        super.setup(args, p);
 
-      // verify that message was requeued and pass
-      if (!checkOnResponse(TestCase)) {
-        throw new Exception("Test1 - ");
-      }
-    } catch (Exception e) {
-      throw new Fault("Test Failed!", e);
+        try {
+
+            TestUtil.logTrace("look up cmtQ");
+            cmtQ = (Queue) context.lookup("java:comp/env/jms/EJB_SEC_MDB_QUEUE_CMT");
+            TestUtil.logTrace("look up bmtQ");
+            bmtQ = (Queue) context.lookup("java:comp/env/jms/EJB_SEC_MDB_QUEUE_BMT");
+
+        } catch (Exception e) {
+            throw new Fault("Setup Failed!", e);
+        }
     }
-  }
+    /* Run tests */
 
-  /*
-   * @testName: Test2
-   *
-   * @assertion_ids: EJB:SPEC:513; EJB:SPEC:528; EJB:SPEC:823; JavaEE:SPEC:130;
-   * JavaEE:SPEC:10035
-   *
-   * @test_Strategy: Invoke an bmt mdb by writing to EJB_SEC_MDB_QUEUE_BMT. The
-   * mdb attempts a EJBContext getCallerPrincipal() method. Return verification
-   * message that a java.lang.IllegalStateException was not thrown and
-   * getCallerPrincipal() does not return null.
-   *
-   */
-  public void Test2() throws Fault {
-    String TestCase = "expTest2";
-    int TestNum = 2;
-    try {
+    /*
+     * @testName: Test1
+     *
+     * @assertion_ids: EJB:SPEC:513; EJB:SPEC:528; EJB:SPEC:823; JavaEE:SPEC:130;
+     * JavaEE:SPEC:10035
+     *
+     * @test_Strategy: Invoke an cmt mdb by writing to EJB_SEC_MDB_QUEUE_CMT. The
+     * mdb attempts a EJBContext getCallerPrincipal() method. Return verification
+     * message that a java.lang.IllegalStateException was not thrown and
+     * getCallerPrincipal() does not return null.
+     *
+     */
+    public void Test1() throws Fault {
+        String TestCase = "expTest1";
+        int TestNum = 1;
+        try {
+            qSender = session.createSender(cmtQ);
+            // create a text message
+            createTestMessage(TestCase, TestNum);
+            // send the message
+            qSender.send(msg);
 
-      qSender = session.createSender(bmtQ);
-      // create a text message
-      createTestMessage(TestCase, TestNum);
-      // send the message
-      qSender.send(msg);
-
-      // verify that message was requeued and pass
-      if (!checkOnResponse(TestCase)) {
-        throw new Exception("Test2 - ");
-      }
-    } catch (Exception e) {
-      throw new Fault("Test Failed!", e);
+            // verify that message was requeued and pass
+            if (!checkOnResponse(TestCase)) {
+                throw new Exception("Test1 - ");
+            }
+        } catch (Exception e) {
+            throw new Fault("Test Failed!", e);
+        }
     }
-  }
 
-  /*
-   * @testName: Test3
-   *
-   * @assertion_ids: EJB:SPEC:513; EJB:SPEC:528; JavaEE:SPEC:130;
-   * JavaEE:SPEC:10035
-   *
-   * @test_Strategy: Invoke an cmt mdb by writing to EJB_SEC_MDB_QUEUE_CMT. The
-   * mdb attempts a EJBContext isCallerInRole() method. Return verification
-   * message that a java.lang.IllegalStateException was thrown.
-   *
-   */
-  public void Test3() throws Fault {
-    String TestCase = "expTest3";
-    int TestNum = 3;
-    try {
-      qSender = session.createSender(cmtQ);
-      // create a text message
-      createTestMessage(TestCase, TestNum);
-      // send the message
-      qSender.send(msg);
+    /*
+     * @testName: Test2
+     *
+     * @assertion_ids: EJB:SPEC:513; EJB:SPEC:528; EJB:SPEC:823; JavaEE:SPEC:130;
+     * JavaEE:SPEC:10035
+     *
+     * @test_Strategy: Invoke an bmt mdb by writing to EJB_SEC_MDB_QUEUE_BMT. The
+     * mdb attempts a EJBContext getCallerPrincipal() method. Return verification
+     * message that a java.lang.IllegalStateException was not thrown and
+     * getCallerPrincipal() does not return null.
+     *
+     */
+    public void Test2() throws Fault {
+        String TestCase = "expTest2";
+        int TestNum = 2;
+        try {
 
-      // verify that message was requeued and pass
-      if (!checkOnResponse(TestCase)) {
-        throw new Exception("Test3 - ");
-      }
-    } catch (Exception e) {
-      throw new Fault("Test Failed!", e);
+            qSender = session.createSender(bmtQ);
+            // create a text message
+            createTestMessage(TestCase, TestNum);
+            // send the message
+            qSender.send(msg);
+
+            // verify that message was requeued and pass
+            if (!checkOnResponse(TestCase)) {
+                throw new Exception("Test2 - ");
+            }
+        } catch (Exception e) {
+            throw new Fault("Test Failed!", e);
+        }
     }
-  }
 
-  /*
-   * @testName: Test4
-   *
-   * @assertion_ids: EJB:SPEC:513; EJB:SPEC:528; JavaEE:SPEC:130;
-   * JavaEE:SPEC:10035
-   *
-   * @test_Strategy: Invoke an bmt mdb by writing to EJB_SEC_MDB_QUEUE_BMT. The
-   * mdb attempts a EJBContext isCallerInRole() method. Return verification
-   * message that a java.lang.IllegalStateException was thrown.
-   *
-   */
-  public void Test4() throws Fault {
-    String TestCase = "expTest4";
-    int TestNum = 4;
-    try {
+    /*
+     * @testName: Test3
+     *
+     * @assertion_ids: EJB:SPEC:513; EJB:SPEC:528; JavaEE:SPEC:130;
+     * JavaEE:SPEC:10035
+     *
+     * @test_Strategy: Invoke an cmt mdb by writing to EJB_SEC_MDB_QUEUE_CMT. The
+     * mdb attempts a EJBContext isCallerInRole() method. Return verification
+     * message that a java.lang.IllegalStateException was thrown.
+     *
+     */
+    public void Test3() throws Fault {
+        String TestCase = "expTest3";
+        int TestNum = 3;
+        try {
+            qSender = session.createSender(cmtQ);
+            // create a text message
+            createTestMessage(TestCase, TestNum);
+            // send the message
+            qSender.send(msg);
 
-      qSender = session.createSender(bmtQ);
-      // create a text message
-      createTestMessage(TestCase, TestNum);
-      // send the message
-      qSender.send(msg);
-
-      // verify that message was requeued and pass
-      if (!checkOnResponse(TestCase)) {
-        throw new Exception("Test4 - ");
-      }
-    } catch (Exception e) {
-      throw new Fault("Test Failed!", e);
+            // verify that message was requeued and pass
+            if (!checkOnResponse(TestCase)) {
+                throw new Exception("Test3 - ");
+            }
+        } catch (Exception e) {
+            throw new Fault("Test Failed!", e);
+        }
     }
-  }
 
-  /* cleanup -- use super cleanup */
+    /*
+     * @testName: Test4
+     *
+     * @assertion_ids: EJB:SPEC:513; EJB:SPEC:528; JavaEE:SPEC:130;
+     * JavaEE:SPEC:10035
+     *
+     * @test_Strategy: Invoke an bmt mdb by writing to EJB_SEC_MDB_QUEUE_BMT. The
+     * mdb attempts a EJBContext isCallerInRole() method. Return verification
+     * message that a java.lang.IllegalStateException was thrown.
+     *
+     */
+    public void Test4() throws Fault {
+        String TestCase = "expTest4";
+        int TestNum = 4;
+        try {
+
+            qSender = session.createSender(bmtQ);
+            // create a text message
+            createTestMessage(TestCase, TestNum);
+            // send the message
+            qSender.send(msg);
+
+            // verify that message was requeued and pass
+            if (!checkOnResponse(TestCase)) {
+                throw new Exception("Test4 - ");
+            }
+        } catch (Exception e) {
+            throw new Fault("Test Failed!", e);
+        }
+    }
+
+    /* cleanup -- use super cleanup */
 
 }

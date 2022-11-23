@@ -20,12 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.enventry.casesens;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.EJBObject;
+import java.rmi.RemoteException;
 
 public interface CaseBean extends EJBObject {
 
-  public boolean testCaseSensitivity() throws RemoteException;
-
+    public boolean testCaseSensitivity() throws RemoteException;
 }

@@ -26,32 +26,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TrailerTestServlet extends HttpServlet {
-  @Override
-  protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, IOException {
-    Writer writer = resp.getWriter();
-    if (!req.getProtocol().equals("HTTP/1.0")) {
-      resp.setHeader("Transfer-Encoding", "chunked");
-    }
-
-    try {
-      resp.setTrailerFields(() -> {
-        Map m = new HashMap();
-        m.put("myTrailer", "foo");
-        return m;
-      });
-      writer.write("Current trailer field: ");
-      resp.getTrailerFields().get().forEach((key, value) -> {
-        try {
-          writer.write(key + ":" + value);
-        } catch (IOException e) {
-          throw new RuntimeException(e);
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Writer writer = resp.getWriter();
+        if (!req.getProtocol().equals("HTTP/1.0")) {
+            resp.setHeader("Transfer-Encoding", "chunked");
         }
-      });
-    } catch (IllegalStateException e) {
-      String s = "Get IllegalStateException when call setTrailerFields";
-      resp.setHeader("Content-Length", String.valueOf(s.length()));
-      writer.write(s);
+
+        try {
+            resp.setTrailerFields(() -> {
+                Map m = new HashMap();
+                m.put("myTrailer", "foo");
+                return m;
+            });
+            writer.write("Current trailer field: ");
+            resp.getTrailerFields().get().forEach((key, value) -> {
+                try {
+                    writer.write(key + ":" + value);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        } catch (IllegalStateException e) {
+            String s = "Get IllegalStateException when call setTrailerFields";
+            resp.setHeader("Content-Length", String.valueOf(s.length()));
+            writer.write(s);
+        }
     }
-  }
 }

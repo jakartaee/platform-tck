@@ -20,34 +20,27 @@
 
 package com.sun.ts.tests.ejb.ee.tx.txEPMbean;
 
+import jakarta.ejb.CreateException;
+import jakarta.ejb.DuplicateKeyException;
+import jakarta.ejb.EJBHome;
+import jakarta.ejb.FinderException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Properties;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.DuplicateKeyException;
-import jakarta.ejb.EJBHome;
-import jakarta.ejb.FinderException;
-
 public interface TxEPMBeanHome extends EJBHome {
 
-  public TxEPMBean create(String tName, Integer key, String brand, float price,
-      Properties p) throws CreateException, DuplicateKeyException,
-      RemoteException, SQLException;
+    public TxEPMBean create(String tName, Integer key, String brand, float price, Properties p)
+            throws CreateException, DuplicateKeyException, RemoteException, SQLException;
 
-  public TxEPMBean findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
+    public TxEPMBean findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 
-  public Collection findByName(String name)
-      throws RemoteException, FinderException;
+    public Collection findByName(String name) throws RemoteException, FinderException;
 
-  public Collection findByPrice(float price)
-      throws RemoteException, FinderException;
+    public Collection findByPrice(float price) throws RemoteException, FinderException;
 
-  public Collection findWithinPriceRange(float pmin, float pmax)
-      throws RemoteException, FinderException;
+    public Collection findWithinPriceRange(float pmin, float pmax) throws RemoteException, FinderException;
 
-  public Collection findWithinPrimaryKeyRange(Integer kmin, Integer kmax)
-      throws RemoteException, FinderException;
+    public Collection findWithinPrimaryKeyRange(Integer kmin, Integer kmax) throws RemoteException, FinderException;
 }

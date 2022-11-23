@@ -20,165 +20,147 @@ import com.sun.ts.tests.ejb30.common.busiface.AnnotatedLocalBusinessInterface1;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF2;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase;
-
 import jakarta.ejb.EJB;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends EJBLiteJsfClientBase {
 
-  @EJB(name = "noInterfaceStateless", beanName = "StatelessEqualsBean")
-  private StatelessEqualsBean noInterfaceStateless;
+    @EJB(name = "noInterfaceStateless", beanName = "StatelessEqualsBean")
+    private StatelessEqualsBean noInterfaceStateless;
 
-  @EJB(name = "noInterfaceStatelessAgain", beanName = "StatelessEqualsBean")
-  private StatelessEqualsBean noInterfaceStatelessAgain;
+    @EJB(name = "noInterfaceStatelessAgain", beanName = "StatelessEqualsBean")
+    private StatelessEqualsBean noInterfaceStatelessAgain;
 
-  @EJB(beanName = "StatelessEqualsBean", name = "businessLocalIF1Stateless")
-  private BusinessLocalIF1 businessLocalIF1Stateless;
+    @EJB(beanName = "StatelessEqualsBean", name = "businessLocalIF1Stateless")
+    private BusinessLocalIF1 businessLocalIF1Stateless;
 
-  @EJB(beanName = "StatelessEqualsBean", name = "businessLocalIF2Stateless")
-  private BusinessLocalIF2 businessLocalIF2Stateless;
+    @EJB(beanName = "StatelessEqualsBean", name = "businessLocalIF2Stateless")
+    private BusinessLocalIF2 businessLocalIF2Stateless;
 
-  @EJB(beanName = "StatelessEqualsBean", name = "annotatedLocalBusinessInterface1Stateless")
-  private AnnotatedLocalBusinessInterface1 annotatedLocalBusinessInterface1Stateless;
+    @EJB(beanName = "StatelessEqualsBean", name = "annotatedLocalBusinessInterface1Stateless")
+    private AnnotatedLocalBusinessInterface1 annotatedLocalBusinessInterface1Stateless;
 
-  @EJB(name = "noInterfaceStateful", beanName = "StatefulEqualsBean")
-  private StatefulEqualsBean noInterfaceStateful;
+    @EJB(name = "noInterfaceStateful", beanName = "StatefulEqualsBean")
+    private StatefulEqualsBean noInterfaceStateful;
 
-  @EJB(name = "noInterfaceStatefulAgain", beanName = "StatefulEqualsBean")
-  private StatefulEqualsBean noInterfaceStatefulAgain;
+    @EJB(name = "noInterfaceStatefulAgain", beanName = "StatefulEqualsBean")
+    private StatefulEqualsBean noInterfaceStatefulAgain;
 
-  @EJB(beanName = "StatefulEqualsBean", name = "businessLocalIF1Stateful")
-  private BusinessLocalIF1 businessLocalIF1Stateful;
+    @EJB(beanName = "StatefulEqualsBean", name = "businessLocalIF1Stateful")
+    private BusinessLocalIF1 businessLocalIF1Stateful;
 
-  @EJB(beanName = "StatefulEqualsBean", name = "businessLocalIF2Stateful")
-  private BusinessLocalIF2 businessLocalIF2Stateful;
+    @EJB(beanName = "StatefulEqualsBean", name = "businessLocalIF2Stateful")
+    private BusinessLocalIF2 businessLocalIF2Stateful;
 
-  @EJB(beanName = "SingletonEqualsBean", name = "businessLocalIF1Singleton")
-  private BusinessLocalIF1 businessLocalIF1Singleton;
+    @EJB(beanName = "SingletonEqualsBean", name = "businessLocalIF1Singleton")
+    private BusinessLocalIF1 businessLocalIF1Singleton;
 
-  @EJB(beanName = "SingletonEqualsBean", name = "businessLocalIF1SingletonAgain")
-  private BusinessLocalIF1 businessLocalIF1SingletonAgain;
+    @EJB(beanName = "SingletonEqualsBean", name = "businessLocalIF1SingletonAgain")
+    private BusinessLocalIF1 businessLocalIF1SingletonAgain;
 
-  @EJB(beanName = "SingletonEqualsBean", name = "businessLocalIF2Singleton")
-  private BusinessLocalIF2 businessLocalIF2Singleton;
+    @EJB(beanName = "SingletonEqualsBean", name = "businessLocalIF2Singleton")
+    private BusinessLocalIF2 businessLocalIF2Singleton;
 
-  /*
-   * @testName: statelessEquals
-   */
-  public void statelessEquals() {
-    StatelessEqualsBean b0 = (StatelessEqualsBean) lookup(
-        "noInterfaceStateless", "StatelessEqualsBean",
-        StatelessEqualsBean.class);
-    StatelessEqualsBean b00 = (StatelessEqualsBean) lookup(
-        "noInterfaceStatelessAgain", "StatelessEqualsBean",
-        StatelessEqualsBean.class);
+    /*
+     * @testName: statelessEquals
+     */
+    public void statelessEquals() {
+        StatelessEqualsBean b0 =
+                (StatelessEqualsBean) lookup("noInterfaceStateless", "StatelessEqualsBean", StatelessEqualsBean.class);
+        StatelessEqualsBean b00 = (StatelessEqualsBean)
+                lookup("noInterfaceStatelessAgain", "StatelessEqualsBean", StatelessEqualsBean.class);
 
-    // self equals, equals among bean refs to the same EJB of the same business
-    // interface
-    assertEquals(null, noInterfaceStateless, noInterfaceStateless);
-    assertEquals(null, b0, b0);
-    assertEquals(null, b0, b00);
-    assertEquals(null, noInterfaceStateless, b0);
-    assertEquals(null, noInterfaceStateless, noInterfaceStatelessAgain);
+        // self equals, equals among bean refs to the same EJB of the same business
+        // interface
+        assertEquals(null, noInterfaceStateless, noInterfaceStateless);
+        assertEquals(null, b0, b0);
+        assertEquals(null, b0, b00);
+        assertEquals(null, noInterfaceStateless, b0);
+        assertEquals(null, noInterfaceStateless, noInterfaceStatelessAgain);
 
-    // not equals if having different business interface
-    assertNotEquals(null, noInterfaceStateless, businessLocalIF1Stateless);
-    assertNotEquals(null, noInterfaceStateless, businessLocalIF2Stateless);
-    assertNotEquals(null, noInterfaceStateless,
-        annotatedLocalBusinessInterface1Stateless);
+        // not equals if having different business interface
+        assertNotEquals(null, noInterfaceStateless, businessLocalIF1Stateless);
+        assertNotEquals(null, noInterfaceStateless, businessLocalIF2Stateless);
+        assertNotEquals(null, noInterfaceStateless, annotatedLocalBusinessInterface1Stateless);
 
-    assertNotEquals(null, businessLocalIF1Stateless, businessLocalIF2Stateless);
-    assertNotEquals(null, businessLocalIF1Stateless,
-        annotatedLocalBusinessInterface1Stateless);
+        assertNotEquals(null, businessLocalIF1Stateless, businessLocalIF2Stateless);
+        assertNotEquals(null, businessLocalIF1Stateless, annotatedLocalBusinessInterface1Stateless);
 
-    assertNotEquals(null, annotatedLocalBusinessInterface1Stateless,
-        businessLocalIF2Stateless);
+        assertNotEquals(null, annotatedLocalBusinessInterface1Stateless, businessLocalIF2Stateless);
 
-    // different bean types of the same business interface are not equal
-    assertNotEquals(null, businessLocalIF1Singleton, businessLocalIF1Stateless);
-    assertNotEquals(null, businessLocalIF1Stateful, businessLocalIF1Stateless);
-    assertNotEquals(null, businessLocalIF1Stateful, businessLocalIF1Singleton);
+        // different bean types of the same business interface are not equal
+        assertNotEquals(null, businessLocalIF1Singleton, businessLocalIF1Stateless);
+        assertNotEquals(null, businessLocalIF1Stateful, businessLocalIF1Stateless);
+        assertNotEquals(null, businessLocalIF1Stateful, businessLocalIF1Singleton);
 
-    // bean ref from calling getBusinessObject
-    StatelessEqualsBean bob0 = noInterfaceStateless
-        .getBusinessObject(StatelessEqualsBean.class);
-    StatelessEqualsBean bob00 = noInterfaceStateless
-        .getBusinessObject(StatelessEqualsBean.class);
+        // bean ref from calling getBusinessObject
+        StatelessEqualsBean bob0 = noInterfaceStateless.getBusinessObject(StatelessEqualsBean.class);
+        StatelessEqualsBean bob00 = noInterfaceStateless.getBusinessObject(StatelessEqualsBean.class);
 
-    assertEquals(null, bob0, bob00);
-    assertEquals(null, bob00, noInterfaceStatelessAgain);
+        assertEquals(null, bob0, bob00);
+        assertEquals(null, bob00, noInterfaceStatelessAgain);
 
-    StatelessEqualsBean boba = noInterfaceStatelessAgain
-        .getBusinessObject(StatelessEqualsBean.class);
-    StatelessEqualsBean bobaa = noInterfaceStatelessAgain
-        .getBusinessObject(StatelessEqualsBean.class);
+        StatelessEqualsBean boba = noInterfaceStatelessAgain.getBusinessObject(StatelessEqualsBean.class);
+        StatelessEqualsBean bobaa = noInterfaceStatelessAgain.getBusinessObject(StatelessEqualsBean.class);
 
-    assertEquals(null, boba, bob0);
-    assertEquals(null, bobaa, noInterfaceStateless);
-  }
+        assertEquals(null, boba, bob0);
+        assertEquals(null, bobaa, noInterfaceStateless);
+    }
 
-  /*
-   * @testName: statefulEquals
-   */
-  public void statefulEquals() {
-    StatefulEqualsBean b0 = (StatefulEqualsBean) lookup("noInterfaceStateful",
-        "StatefulEqualsBean", StatefulEqualsBean.class);
-    StatefulEqualsBean b00 = (StatefulEqualsBean) lookup(
-        "noInterfaceStatefulAgain", "StatefulEqualsBean",
-        StatefulEqualsBean.class);
+    /*
+     * @testName: statefulEquals
+     */
+    public void statefulEquals() {
+        StatefulEqualsBean b0 =
+                (StatefulEqualsBean) lookup("noInterfaceStateful", "StatefulEqualsBean", StatefulEqualsBean.class);
+        StatefulEqualsBean b00 =
+                (StatefulEqualsBean) lookup("noInterfaceStatefulAgain", "StatefulEqualsBean", StatefulEqualsBean.class);
 
-    // self equals, not equals among bean refs to the same EJB of the same
-    // business interface
-    assertEquals(null, noInterfaceStateful, noInterfaceStateful);
-    assertEquals(null, b0, b0);
-    assertNotEquals(null, b00, b0);
-    assertNotEquals(null, noInterfaceStateful, b0);
-    assertNotEquals(null, noInterfaceStateful, noInterfaceStatefulAgain);
+        // self equals, not equals among bean refs to the same EJB of the same
+        // business interface
+        assertEquals(null, noInterfaceStateful, noInterfaceStateful);
+        assertEquals(null, b0, b0);
+        assertNotEquals(null, b00, b0);
+        assertNotEquals(null, noInterfaceStateful, b0);
+        assertNotEquals(null, noInterfaceStateful, noInterfaceStatefulAgain);
 
-    // not equals if having different business interface
-    assertNotEquals(null, noInterfaceStateful, businessLocalIF1Stateful);
-    assertNotEquals(null, noInterfaceStateful, businessLocalIF2Stateful);
+        // not equals if having different business interface
+        assertNotEquals(null, noInterfaceStateful, businessLocalIF1Stateful);
+        assertNotEquals(null, noInterfaceStateful, businessLocalIF2Stateful);
 
-    assertNotEquals(null, businessLocalIF1Stateful, businessLocalIF2Stateful);
+        assertNotEquals(null, businessLocalIF1Stateful, businessLocalIF2Stateful);
 
-    // bean ref from calling getBusinessObject
-    StatefulEqualsBean bob0 = noInterfaceStateful
-        .getBusinessObject(StatefulEqualsBean.class);
-    StatefulEqualsBean bob00 = noInterfaceStateful
-        .getBusinessObject(StatefulEqualsBean.class);
+        // bean ref from calling getBusinessObject
+        StatefulEqualsBean bob0 = noInterfaceStateful.getBusinessObject(StatefulEqualsBean.class);
+        StatefulEqualsBean bob00 = noInterfaceStateful.getBusinessObject(StatefulEqualsBean.class);
 
-    assertEquals(null, bob0, bob00);
-    assertEquals(null, bob00, noInterfaceStateful);
+        assertEquals(null, bob0, bob00);
+        assertEquals(null, bob00, noInterfaceStateful);
 
-    StatefulEqualsBean boba = noInterfaceStatefulAgain
-        .getBusinessObject(StatefulEqualsBean.class);
-    StatefulEqualsBean bobaa = noInterfaceStatefulAgain
-        .getBusinessObject(StatefulEqualsBean.class);
+        StatefulEqualsBean boba = noInterfaceStatefulAgain.getBusinessObject(StatefulEqualsBean.class);
+        StatefulEqualsBean bobaa = noInterfaceStatefulAgain.getBusinessObject(StatefulEqualsBean.class);
 
-    assertNotEquals(null, boba, bob0);
-    assertNotEquals(null, bobaa, noInterfaceStateful);
-  }
+        assertNotEquals(null, boba, bob0);
+        assertNotEquals(null, bobaa, noInterfaceStateful);
+    }
 
-  /*
-   * @testName: singletonEquals
-   */
-  public void singletonEquals() {
-    BusinessLocalIF1 b0 = (BusinessLocalIF1) lookup("businessLocalIF1Singleton",
-        "SingletonEqualsBean", BusinessLocalIF1.class);
-    BusinessLocalIF1 b00 = (BusinessLocalIF1) lookup(
-        "businessLocalIF1SingletonAgain", "SingletonEqualsBean",
-        BusinessLocalIF1.class);
+    /*
+     * @testName: singletonEquals
+     */
+    public void singletonEquals() {
+        BusinessLocalIF1 b0 =
+                (BusinessLocalIF1) lookup("businessLocalIF1Singleton", "SingletonEqualsBean", BusinessLocalIF1.class);
+        BusinessLocalIF1 b00 = (BusinessLocalIF1)
+                lookup("businessLocalIF1SingletonAgain", "SingletonEqualsBean", BusinessLocalIF1.class);
 
-    // self equals, equals among bean refs to the same EJB of the same business
-    // interface
-    assertEquals(null, b0, b0);
-    assertEquals(null, b0, b00);
-    assertEquals(null, businessLocalIF1Singleton,
-        businessLocalIF1SingletonAgain);
+        // self equals, equals among bean refs to the same EJB of the same business
+        // interface
+        assertEquals(null, b0, b0);
+        assertEquals(null, b0, b00);
+        assertEquals(null, businessLocalIF1Singleton, businessLocalIF1SingletonAgain);
 
-    // not equals if having different business interface
-    assertNotEquals(null, businessLocalIF1Singleton, businessLocalIF2Singleton);
-  }
-
+        // not equals if having different business interface
+        assertNotEquals(null, businessLocalIF1Singleton, businessLocalIF2Singleton);
+    }
 }

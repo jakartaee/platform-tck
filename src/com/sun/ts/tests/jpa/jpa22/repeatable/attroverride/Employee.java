@@ -16,8 +16,6 @@
 
 package com.sun.ts.tests.jpa.jpa22.repeatable.attroverride;
 
-import java.sql.Date;
-
 import jakarta.persistence.Access;
 import jakarta.persistence.AccessType;
 import jakarta.persistence.Column;
@@ -25,6 +23,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.OneToOne;
+import java.sql.Date;
 
 /*
  * Employee as mapped superclass, which can be concrete or abstract.
@@ -35,82 +34,80 @@ import jakarta.persistence.OneToOne;
 @Access(AccessType.PROPERTY)
 public abstract class Employee extends AbstractPersonnel {
 
-  private int id;
+    private int id;
 
-  private String firstName;
+    private String firstName;
 
-  private String lastName;
+    private String lastName;
 
-  private Date hireDate;
+    private Date hireDate;
 
-  /** the project this Employee leads */
-  protected Project project;
+    /** the project this Employee leads */
+    protected Project project;
 
-  /** the department this Employee belongs to */
-  protected Department department;
+    /** the department this Employee belongs to */
+    protected Department department;
 
-  protected Employee() {
-  }
+    protected Employee() {}
 
-  protected Employee(int id, String firstName, String lastName, Date hireDate) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.hireDate = (Date) hireDate.clone();
-  }
+    protected Employee(int id, String firstName, String lastName, Date hireDate) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.hireDate = (Date) hireDate.clone();
+    }
 
-  // ===========================================================
-  // getters and setters for the state fields
+    // ===========================================================
+    // getters and setters for the state fields
 
-  @Id
-  @Column(name = "IDxx")
-  public int getId() {
-    return id;
-  }
+    @Id
+    @Column(name = "IDxx")
+    public int getId() {
+        return id;
+    }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  @Column(name = "FIRSTNAMExx")
-  public String getFirstName() {
-    return firstName;
-  }
+    @Column(name = "FIRSTNAMExx")
+    public String getFirstName() {
+        return firstName;
+    }
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-  @Column(name = "LASTNAMExx")
-  public String getLastName() {
-    return lastName;
-  }
+    @Column(name = "LASTNAMExx")
+    public String getLastName() {
+        return lastName;
+    }
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-  @Column(name = "HIREDATExx")
-  public Date getHireDate() {
-    return hireDate;
-  }
+    @Column(name = "HIREDATExx")
+    public Date getHireDate() {
+        return hireDate;
+    }
 
-  public void setHireDate(Date hireDate) {
-    this.hireDate = hireDate;
-  }
+    public void setHireDate(Date hireDate) {
+        this.hireDate = hireDate;
+    }
 
-  public void setDepartment(Department department) {
-    this.department = department;
-  }
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 
-  @OneToOne
-  @JoinColumn(name = "FK_PROJECT")
-  public Project getProject() {
-    return project;
-  }
+    @OneToOne
+    @JoinColumn(name = "FK_PROJECT")
+    public Project getProject() {
+        return project;
+    }
 
-  public void setProject(Project project) {
-    this.project = project;
-  }
-
+    public void setProject(Project project) {
+        this.project = project;
+    }
 }

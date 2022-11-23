@@ -57,43 +57,37 @@
  */
 
 /* @Author : Ramesh.Mandava
-*/
+ */
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servlet;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.UnavailableException;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * Negative Test for Servlet.init(ServletConfig) method
  */
-
 public class DoInit1TestServlet extends CoreServletTest {
 
-  /**
-   * We will throw UnavailableException from inside init The Servlet should not
-   * be initialized
-   */
+    /**
+     * We will throw UnavailableException from inside init The Servlet should not
+     * be initialized
+     */
+    public void init(ServletConfig sc) throws ServletException {
+        // throw new UnavailableException(this,"Negative Init Test");
+        throw new UnavailableException("Negative Init Test");
+    }
 
-  public void init(ServletConfig sc) throws ServletException {
-    // throw new UnavailableException(this,"Negative Init Test");
-    throw new UnavailableException("Negative Init Test");
-  }
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
-  public void service(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-
-    PrintWriter pw = response.getWriter();
-    pw.println(
-        "service method getting called even when we throw UnavailableException in init()");
-    ServletTestUtil.printResult(pw, false);
-  }
+        PrintWriter pw = response.getWriter();
+        pw.println("service method getting called even when we throw UnavailableException in init()");
+        ServletTestUtil.printResult(pw, false);
+    }
 }

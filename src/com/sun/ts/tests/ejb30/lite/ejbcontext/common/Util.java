@@ -19,44 +19,41 @@
  */
 package com.sun.ts.tests.ejb30.lite.ejbcontext.common;
 
-import java.util.List;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
-
 import jakarta.ejb.EJBContext;
+import java.util.List;
 
 public class Util {
-  static String[] lookupNames = { "java:comp/EJBContext",
-      "java:comp/env/ejbContextFromDescriptorInjection",
-      "java:comp/env/com.sun.ts.tests.ejb30.lite.ejbcontext.common.EJBContextBeanBase/ejbContext",
-      "java:comp/env/com.sun.ts.tests.ejb30.lite.ejbcontext.common.EJBContextBeanBase/sessionContext",
-      "java:comp/env/com.sun.ts.tests.ejb30.lite.ejbcontext.common.Interceptor1/ejbContext",
-      "java:comp/env/com.sun.ts.tests.ejb30.lite.ejbcontext.common.Interceptor1/sessionContext" };
+    static String[] lookupNames = {
+        "java:comp/EJBContext",
+        "java:comp/env/ejbContextFromDescriptorInjection",
+        "java:comp/env/com.sun.ts.tests.ejb30.lite.ejbcontext.common.EJBContextBeanBase/ejbContext",
+        "java:comp/env/com.sun.ts.tests.ejb30.lite.ejbcontext.common.EJBContextBeanBase/sessionContext",
+        "java:comp/env/com.sun.ts.tests.ejb30.lite.ejbcontext.common.Interceptor1/ejbContext",
+        "java:comp/env/com.sun.ts.tests.ejb30.lite.ejbcontext.common.Interceptor1/sessionContext"
+    };
 
-  // called by bean base and interceptor class
-  public static void postConstruct0(List<String> injectionRecords,
-      List<EJBContext> lookupValuesInPostConstruct, EJBContext... ecs) {
-    for (EJBContext ec : ecs) {
-      injectionRecords.add(Helper.assertNotEquals(
-          "Check field-, setter-, or descriptor-injected EJBContext ", null,
-          ec));
+    // called by bean base and interceptor class
+    public static void postConstruct0(
+            List<String> injectionRecords, List<EJBContext> lookupValuesInPostConstruct, EJBContext... ecs) {
+        for (EJBContext ec : ecs) {
+            injectionRecords.add(
+                    Helper.assertNotEquals("Check field-, setter-, or descriptor-injected EJBContext ", null, ec));
+        }
+        for (String nm : lookupNames) { // to be verified in a business method
+            EJBContext ec = (EJBContext) ServiceLocator.lookupNoTry(nm);
+            lookupValuesInPostConstruct.add(ec);
+        }
     }
-    for (String nm : lookupNames) { // to be verified in a business method
-      EJBContext ec = (EJBContext) ServiceLocator.lookupNoTry(nm);
-      lookupValuesInPostConstruct.add(ec);
-    }
-  }
 
-  // called by concrete bean classes
-  public static void postConstruct1(List<String> injectionRecords,
-      EJBContext... ecs) {
-    Helper.assertEquals("", 3, injectionRecords.size()); // 3 records inserted
-                                                         // by bean base
-    for (EJBContext ec : ecs) {
-      injectionRecords.add(Helper.assertNotEquals(
-          "Check field-, setter-, or descriptor-injected EJBContext ", null,
-          ec));
+    // called by concrete bean classes
+    public static void postConstruct1(List<String> injectionRecords, EJBContext... ecs) {
+        Helper.assertEquals("", 3, injectionRecords.size()); // 3 records inserted
+        // by bean base
+        for (EJBContext ec : ecs) {
+            injectionRecords.add(
+                    Helper.assertNotEquals("Check field-, setter-, or descriptor-injected EJBContext ", null, ec));
+        }
     }
-  }
 }

@@ -16,6 +16,11 @@
 
 package com.sun.ts.tests.common.vehicle.jaspicservlet;
 
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.RemoteStatus;
+import com.sun.ts.lib.porting.TSURL;
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -24,136 +29,129 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.RemoteStatus;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.vehicle.VehicleRunnable;
-
 public class JaspicVehicleRunner implements VehicleRunnable {
 
-  protected String sVehicle = "jaspicservlet";
+    protected String sVehicle = "jaspicservlet";
 
-  protected Status sTestStatus = Status.passed("");
+    protected Status sTestStatus = Status.passed("");
 
-  String urlSuffix = "";
+    String urlSuffix = "";
 
-  Status sServletStatus = Status.passed("");
+    Status sServletStatus = Status.passed("");
 
-  String sVehicleArchiveName = "";
+    String sVehicleArchiveName = "";
 
-  String contextRootPrefix;
+    String contextRootPrefix;
 
-  String[] argv;
+    String[] argv;
 
-  Properties p;
+    Properties p;
 
-  public Status run(String[] argv, Properties p) {
-    this.argv = argv;
-    this.p = p;
-    sVehicle = p.getProperty("vehicle");
+    public Status run(String[] argv, Properties p) {
+        this.argv = argv;
+        this.p = p;
+        sVehicle = p.getProperty("vehicle");
 
-    // use this name for the context root or jndi name to eliminate
-    // naming conflicts for apps deployed at the same time
-    sVehicleArchiveName = p.getProperty("vehicle_archive_name");
+        // use this name for the context root or jndi name to eliminate
+        // naming conflicts for apps deployed at the same time
+        sVehicleArchiveName = p.getProperty("vehicle_archive_name");
 
-    if (sVehicleArchiveName.indexOf("_vehicles") != -1) {
-      contextRootPrefix = sVehicleArchiveName.substring(0,
-          sVehicleArchiveName.indexOf("_vehicles") + 1) + sVehicle
-          + "_vehicle_web";
-    } else {
-      if (sVehicleArchiveName.endsWith("_web")) {
-        contextRootPrefix = sVehicleArchiveName;
-      } else {
-        contextRootPrefix = sVehicleArchiveName + "_web";
-      }
-    }
-
-    // default urlSuffix
-    urlSuffix = "/" + contextRootPrefix + "/" + sVehicle + "_vehicle";
-
-    return run();
-  } // run
-
-  protected Status run() {
-    // run in a jaspicservlet
-    urlSuffix = "/" + contextRootPrefix + "/jaspicservlet_vehicle";
-    sServletStatus = runWebVehicleTest("jaspicservlet");
-
-    TestUtil.logMsg("Test: returning from running in jaspicservlet vehicles");
-
-    if (sServletStatus.isPassed()) {
-      sTestStatus = Status.passed("Test passed in a jaspicservlet ");
-    } else {
-      sTestStatus = Status.failed("Test failed in a jaspicservlet ");
-    }
-    return sTestStatus;
-  }
-
-  protected Status runWebVehicleTest(String vehicle) {
-    URLConnection connection = null;
-    URL url = null;
-    ObjectOutputStream objOut = null;
-    ObjectInputStream objIn = null;
-    Status status;
-
-    try {
-      TSURL ctsURL = new TSURL();
-      url = ctsURL.getURL("http", p.getProperty("webServerHost"),
-          Integer.parseInt(p.getProperty("webServerPort")), urlSuffix);
-      connection = url.openConnection();
-      TestUtil.logMsg("Opened connection to " + url);
-      connection.setDoOutput(true);
-      connection.setDoInput(true);
-      connection.setUseCaches(false);
-      connection.setRequestProperty("Content-Type",
-          "java-internal/" + p.getClass().getName());
-      // connection.connect();
-      objOut = new ObjectOutputStream(connection.getOutputStream());
-      TestUtil.logTrace("got outputstream");
-      objOut.writeObject(p);
-      objOut.writeObject(argv);
-      TestUtil.logTrace("wrote objects to the " + vehicle + " vehicle");
-      objOut.flush();
-      objOut.close();
-      objOut = null;
-
-      // read the status when it comes back
-      objIn = new ObjectInputStream(connection.getInputStream());
-      status = ((RemoteStatus) objIn.readObject()).toStatus();
-      TestUtil.logMsg("Test status from a " + vehicle + ":  " + status.getType()
-          + ":" + status.getReason());
-
-    } catch (MalformedURLException e) {
-      e.printStackTrace();
-      status = Status.failed("Fatal: Improper URL");
-    } catch (NumberFormatException e) {
-      e.printStackTrace();
-      status = Status.failed(
-          "Please set an appropriate value for the property:  webServerPort");
-    } catch (IOException e) {
-      e.printStackTrace();
-      status = Status.failed("Fatal: Problem with connection: " + e);
-    } catch (Exception e) {
-      e.printStackTrace();
-      status = Status.failed(
-          "ServiceTest failed inside a " + vehicle + ": " + e.getMessage());
-    } finally {
-
-      if (objOut != null) {
-        try {
-          objOut.close();
-        } catch (Exception e) {
+        if (sVehicleArchiveName.indexOf("_vehicles") != -1) {
+            contextRootPrefix = sVehicleArchiveName.substring(0, sVehicleArchiveName.indexOf("_vehicles") + 1)
+                    + sVehicle + "_vehicle_web";
+        } else {
+            if (sVehicleArchiveName.endsWith("_web")) {
+                contextRootPrefix = sVehicleArchiveName;
+            } else {
+                contextRootPrefix = sVehicleArchiveName + "_web";
+            }
         }
-      }
 
-      if (objIn != null) {
-        try {
-          objIn.close();
-        } catch (Exception e) {
+        // default urlSuffix
+        urlSuffix = "/" + contextRootPrefix + "/" + sVehicle + "_vehicle";
+
+        return run();
+    } // run
+
+    protected Status run() {
+        // run in a jaspicservlet
+        urlSuffix = "/" + contextRootPrefix + "/jaspicservlet_vehicle";
+        sServletStatus = runWebVehicleTest("jaspicservlet");
+
+        TestUtil.logMsg("Test: returning from running in jaspicservlet vehicles");
+
+        if (sServletStatus.isPassed()) {
+            sTestStatus = Status.passed("Test passed in a jaspicservlet ");
+        } else {
+            sTestStatus = Status.failed("Test failed in a jaspicservlet ");
         }
-      }
+        return sTestStatus;
     }
-    return status;
-  }
+
+    protected Status runWebVehicleTest(String vehicle) {
+        URLConnection connection = null;
+        URL url = null;
+        ObjectOutputStream objOut = null;
+        ObjectInputStream objIn = null;
+        Status status;
+
+        try {
+            TSURL ctsURL = new TSURL();
+            url = ctsURL.getURL(
+                    "http",
+                    p.getProperty("webServerHost"),
+                    Integer.parseInt(p.getProperty("webServerPort")),
+                    urlSuffix);
+            connection = url.openConnection();
+            TestUtil.logMsg("Opened connection to " + url);
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+            connection.setUseCaches(false);
+            connection.setRequestProperty(
+                    "Content-Type", "java-internal/" + p.getClass().getName());
+            // connection.connect();
+            objOut = new ObjectOutputStream(connection.getOutputStream());
+            TestUtil.logTrace("got outputstream");
+            objOut.writeObject(p);
+            objOut.writeObject(argv);
+            TestUtil.logTrace("wrote objects to the " + vehicle + " vehicle");
+            objOut.flush();
+            objOut.close();
+            objOut = null;
+
+            // read the status when it comes back
+            objIn = new ObjectInputStream(connection.getInputStream());
+            status = ((RemoteStatus) objIn.readObject()).toStatus();
+            TestUtil.logMsg("Test status from a " + vehicle + ":  " + status.getType() + ":" + status.getReason());
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            status = Status.failed("Fatal: Improper URL");
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            status = Status.failed("Please set an appropriate value for the property:  webServerPort");
+        } catch (IOException e) {
+            e.printStackTrace();
+            status = Status.failed("Fatal: Problem with connection: " + e);
+        } catch (Exception e) {
+            e.printStackTrace();
+            status = Status.failed("ServiceTest failed inside a " + vehicle + ": " + e.getMessage());
+        } finally {
+
+            if (objOut != null) {
+                try {
+                    objOut.close();
+                } catch (Exception e) {
+                }
+            }
+
+            if (objIn != null) {
+                try {
+                    objIn.close();
+                } catch (Exception e) {
+                }
+            }
+        }
+        return status;
+    }
 }

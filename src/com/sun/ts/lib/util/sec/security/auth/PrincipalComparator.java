@@ -42,13 +42,13 @@ package com.sun.ts.lib.util.sec.security.auth;
  * @see javax.security.auth.Subject
  */
 public interface PrincipalComparator {
-  /**
-   * Check if the specified <code>Subject</code> is implied by this object.
-   *
-   * <p>
-   *
-   * @return true if the specified <code>Subject</code> is implied by this
-   *         object, or false otherwise.
-   */
-  boolean implies(javax.security.auth.Subject subject);
+    /**
+     * Check if the specified <code>Subject</code> is implied by this object.
+     *
+     * <p>
+     *
+     * @return true if the specified <code>Subject</code> is implied by this
+     *         object, or false otherwise.
+     */
+    boolean implies(javax.security.auth.Subject subject);
 }

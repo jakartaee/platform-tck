@@ -17,43 +17,37 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.containerprovider.metainf;
 
+import jakarta.websocket.ContainerProvider;
+import jakarta.websocket.WebSocketContainer;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 
-import jakarta.websocket.ContainerProvider;
-import jakarta.websocket.WebSocketContainer;
-
 public class LibrariedQuestionaire {
-  public String getContainerProviderName() {
-    WebSocketContainer origContainer = ContainerProvider
-        .getWebSocketContainer();
-    TCKContainerProvider.setOriginalContainer(origContainer);
+    public String getContainerProviderName() {
+        WebSocketContainer origContainer = ContainerProvider.getWebSocketContainer();
+        TCKContainerProvider.setOriginalContainer(origContainer);
 
-    String name = null;
-
-    name = AccessController.doPrivileged(new PrivilegedAction<String>() {
-      @Override
-      public String run() {
         String name = null;
-        ClassLoader origCl = Thread.currentThread().getContextClassLoader();
-        try {
-          TCKClassLoader myCl = new TCKClassLoader(origCl);
-          Thread.currentThread().setContextClassLoader(myCl);
 
-          WebSocketContainer container = ContainerProvider
-              .getWebSocketContainer();
+        name = AccessController.doPrivileged(new PrivilegedAction<String>() {
+            @Override
+            public String run() {
+                String name = null;
+                ClassLoader origCl = Thread.currentThread().getContextClassLoader();
+                try {
+                    TCKClassLoader myCl = new TCKClassLoader(origCl);
+                    Thread.currentThread().setContextClassLoader(myCl);
 
-          if (TCKWebSocketContainer.class.isInstance(container))
-            name = TCKWebSocketContainer.class.getName();
-          else
-            name = container.getClass().getName();
-        } finally {
-          Thread.currentThread().setContextClassLoader(origCl);
-        }
+                    WebSocketContainer container = ContainerProvider.getWebSocketContainer();
+
+                    if (TCKWebSocketContainer.class.isInstance(container)) name = TCKWebSocketContainer.class.getName();
+                    else name = container.getClass().getName();
+                } finally {
+                    Thread.currentThread().setContextClassLoader(origCl);
+                }
+                return name;
+            }
+        });
         return name;
-      }
-    });
-    return name;
-  }
-
+    }
 }

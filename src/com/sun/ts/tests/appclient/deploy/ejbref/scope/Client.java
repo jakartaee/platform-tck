@@ -20,106 +20,102 @@
 
 package com.sun.ts.tests.appclient.deploy.ejbref.scope;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  private static final String prefix = "java:comp/env/ejb/";
+    private static final String prefix = "java:comp/env/ejb/";
 
-  /** Bean lookup */
-  private static final String beanLookup = prefix + "Verona";
+    /** Bean lookup */
+    private static final String beanLookup = prefix + "Verona";
 
-  /** Expected value for the bean name */
-  private static final String beanRefName = "Romeo";
+    /** Expected value for the bean name */
+    private static final String beanRefName = "Romeo";
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   * generateSQL;
-   *
-   * @class.testArgs: -ap tssql.stmt
-   *
-   */
-  public void setup(String[] args, Properties props) throws Fault {
-    this.props = props;
-
-    try {
-      nctx = new TSNamingContext();
-      logMsg("[Client] Setup succeed (got naming context).");
-    } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /**
-   * @testName: testScope
-   *
-   * @assertion_ids: JavaEE:SPEC:117
-   *
-   * @test_Strategy:
-   *
-   *                 We package in the same .ear file:
-   *
-   *                 - Two application clients's using the same ejb-ref-name
-   *                 ('ejb/Verona') to reference two distinct ReferencedBean's.
-   *
-   *                 - One EJB jar, containing two distinct beans, whose
-   *                 identity is defined by a String environment entry
-   *                 ('myName').
-   *
-   *                 We check that:
-   *
-   *                 - We can deploy the application. - We can run one of the
-   *                 two application clients. - This application client can
-   *                 lookup its referenced bean and get the bean identity. -
-   *                 Check this runtime identity against the one specified in
-   *                 the application client DD (validates that this EJB
-   *                 reference is resolved correctly).
-   */
-  public void testScope() throws Fault {
-    ReferencedBeanHome home = null;
-    ReferencedBean bean = null;
-    String beanName;
-    boolean pass = false;
+    /*
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     * generateSQL;
+     *
+     * @class.testArgs: -ap tssql.stmt
+     *
+     */
+    public void setup(String[] args, Properties props) throws Fault {
+        this.props = props;
 
-    try {
-      TestUtil.logTrace("[Client] Looking up '" + beanLookup + "'...");
-      home = (ReferencedBeanHome) nctx.lookup(beanLookup,
-          ReferencedBeanHome.class);
-      bean = home.create();
-      bean.initLogging(props);
-      beanName = bean.whoAreYou();
-      TestUtil.logTrace(beanLookup + "name is '" + beanName + "'");
-      bean.remove();
-
-      pass = beanName.equals(beanRefName);
-      if (!pass) {
-        TestUtil.logErr("[Client] " + beanLookup + "name is '" + beanName
-            + "' expected '" + beanRefName + "'");
-
-        throw new Fault("ejb-ref scope test failed!");
-      }
-    } catch (Exception e) {
-      throw new Fault("ejb-ref scope test failed: " + e, e);
+        try {
+            nctx = new TSNamingContext();
+            logMsg("[Client] Setup succeed (got naming context).");
+        } catch (Exception e) {
+            throw new Fault("Setup failed:", e);
+        }
     }
-  }
 
-  public void cleanup() throws Fault {
-    logMsg("[Client] cleanup()");
-  }
+    /**
+     * @testName: testScope
+     *
+     * @assertion_ids: JavaEE:SPEC:117
+     *
+     * @test_Strategy:
+     *
+     *                 We package in the same .ear file:
+     *
+     *                 - Two application clients's using the same ejb-ref-name
+     *                 ('ejb/Verona') to reference two distinct ReferencedBean's.
+     *
+     *                 - One EJB jar, containing two distinct beans, whose
+     *                 identity is defined by a String environment entry
+     *                 ('myName').
+     *
+     *                 We check that:
+     *
+     *                 - We can deploy the application. - We can run one of the
+     *                 two application clients. - This application client can
+     *                 lookup its referenced bean and get the bean identity. -
+     *                 Check this runtime identity against the one specified in
+     *                 the application client DD (validates that this EJB
+     *                 reference is resolved correctly).
+     */
+    public void testScope() throws Fault {
+        ReferencedBeanHome home = null;
+        ReferencedBean bean = null;
+        String beanName;
+        boolean pass = false;
 
+        try {
+            TestUtil.logTrace("[Client] Looking up '" + beanLookup + "'...");
+            home = (ReferencedBeanHome) nctx.lookup(beanLookup, ReferencedBeanHome.class);
+            bean = home.create();
+            bean.initLogging(props);
+            beanName = bean.whoAreYou();
+            TestUtil.logTrace(beanLookup + "name is '" + beanName + "'");
+            bean.remove();
+
+            pass = beanName.equals(beanRefName);
+            if (!pass) {
+                TestUtil.logErr("[Client] " + beanLookup + "name is '" + beanName + "' expected '" + beanRefName + "'");
+
+                throw new Fault("ejb-ref scope test failed!");
+            }
+        } catch (Exception e) {
+            throw new Fault("ejb-ref scope test failed: " + e, e);
+        }
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("[Client] cleanup()");
+    }
 }

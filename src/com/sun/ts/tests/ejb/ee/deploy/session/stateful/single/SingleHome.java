@@ -20,12 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.single;
 
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJBHome;
-
 public interface SingleHome extends EJBHome {
-  Single create(Properties p) throws RemoteException, CreateException;
+    Single create(Properties p) throws RemoteException, CreateException;
 }

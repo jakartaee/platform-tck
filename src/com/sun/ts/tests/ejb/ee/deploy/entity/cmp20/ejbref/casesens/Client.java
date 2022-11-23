@@ -20,88 +20,86 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.ejbref.casesens;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  private static final String beanName = "java:comp/env/ejb/TestBean";
+    private static final String beanName = "java:comp/env/ejb/TestBean";
 
-  private TSNamingContext ctx = null;
+    private TSNamingContext ctx = null;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  private TestBeanHome home = null;
+    private TestBeanHome home = null;
 
-  private TestBean bean = null;
+    private TestBean bean = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   * generateSQL;
-   *
-   */
-  public void setup(String[] args, Properties props) throws Fault {
-
-    try {
-      this.props = props;
-      logTrace("[Client] Getting naming context...");
-      ctx = new TSNamingContext();
-      logTrace("[Client] Looking up home...");
-      home = (TestBeanHome) ctx.lookup(beanName, TestBeanHome.class);
-      logMsg("[Client] Setup OK!");
-    } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /**
-   * @testName: testCaseSensitivity
-   *
-   * @assertion_ids: EJB:SPEC:872
-   *
-   * @test_Strategy: Deploy a CMP 2.0 Entity bean (TestBean) with two EJB
-   *                 references whose names differ only by case and are assigned
-   *                 to two distinct beans (Same type of bean, but the two beans
-   *                 are packaged with different values for a String environment
-   *                 entry called 'myName').
-   *
-   *                 Check that TestBean can lookup the two beans. Check that
-   *                 their runtime value for the 'myName' env. entry are
-   *                 distinct and match the ones specified in the DD (check that
-   *                 the EJB references were resolved correctly).
-   */
-  public void testCaseSensitivity() throws Fault {
+    /*
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     * generateSQL;
+     *
+     */
+    public void setup(String[] args, Properties props) throws Fault {
 
-    boolean pass = true;
-    TestBean bean = null;
-
-    try {
-      logTrace("[Client] creating TestBean instance...");
-      bean = home.create(props, 1, "columbian", 8);
-      logTrace("[Client] Calling TestBean...");
-      pass = bean.testCaseSensitivity(props);
-      logTrace("[Client] Removing TestBean...");
-      bean.remove();
-
-      if (!pass) {
-        throw new Fault("ejb-ref case sensitivity test failed");
-      }
-    } catch (Exception e) {
-      throw new Fault("ejb-ref casesens test failed: ", e);
+        try {
+            this.props = props;
+            logTrace("[Client] Getting naming context...");
+            ctx = new TSNamingContext();
+            logTrace("[Client] Looking up home...");
+            home = (TestBeanHome) ctx.lookup(beanName, TestBeanHome.class);
+            logMsg("[Client] Setup OK!");
+        } catch (Exception e) {
+            throw new Fault("Setup failed:", e);
+        }
     }
-  }
 
-  public void cleanup() throws Fault {
-    logMsg("[Client] cleanup()");
-  }
+    /**
+     * @testName: testCaseSensitivity
+     *
+     * @assertion_ids: EJB:SPEC:872
+     *
+     * @test_Strategy: Deploy a CMP 2.0 Entity bean (TestBean) with two EJB
+     *                 references whose names differ only by case and are assigned
+     *                 to two distinct beans (Same type of bean, but the two beans
+     *                 are packaged with different values for a String environment
+     *                 entry called 'myName').
+     *
+     *                 Check that TestBean can lookup the two beans. Check that
+     *                 their runtime value for the 'myName' env. entry are
+     *                 distinct and match the ones specified in the DD (check that
+     *                 the EJB references were resolved correctly).
+     */
+    public void testCaseSensitivity() throws Fault {
 
+        boolean pass = true;
+        TestBean bean = null;
+
+        try {
+            logTrace("[Client] creating TestBean instance...");
+            bean = home.create(props, 1, "columbian", 8);
+            logTrace("[Client] Calling TestBean...");
+            pass = bean.testCaseSensitivity(props);
+            logTrace("[Client] Removing TestBean...");
+            bean.remove();
+
+            if (!pass) {
+                throw new Fault("ejb-ref case sensitivity test failed");
+            }
+        } catch (Exception e) {
+            throw new Fault("ejb-ref casesens test failed: ", e);
+        }
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("[Client] cleanup()");
+    }
 }

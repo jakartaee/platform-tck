@@ -24,13 +24,13 @@ import jakarta.xml.ws.WebServiceException;
 import javax.xml.namespace.QName;
 
 public class MissingAddressingHeaderException extends WebServiceException {
-  QName name;
+    QName name;
 
-  public MissingAddressingHeaderException(QName name) {
-    this.name = name;
-  }
+    public MissingAddressingHeaderException(QName name) {
+        this.name = name;
+    }
 
-  public QName getMapQName() {
-    return name;
-  }
+    public QName getMapQName() {
+        return name;
+    }
 }

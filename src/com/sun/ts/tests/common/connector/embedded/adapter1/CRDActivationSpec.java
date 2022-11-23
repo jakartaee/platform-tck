@@ -17,7 +17,6 @@
 package com.sun.ts.tests.common.connector.embedded.adapter1;
 
 import com.sun.ts.tests.common.connector.whitebox.Debug;
-
 import jakarta.resource.spi.Activation;
 import jakarta.resource.spi.ActivationSpec;
 import jakarta.resource.spi.ConfigProperty;
@@ -28,66 +27,63 @@ import jakarta.resource.spi.ResourceAdapter;
  * In this ActivationSpec, we set a listener of WorkListener.
  *
  */
-@Activation(messageListeners = { jakarta.resource.spi.work.WorkListener.class })
+@Activation(messageListeners = {jakarta.resource.spi.work.WorkListener.class})
 public class CRDActivationSpec implements ActivationSpec, java.io.Serializable {
 
-  private String annoDestinationName;
+    private String annoDestinationName;
 
-  private String annoDestinationType;
+    private String annoDestinationType;
 
-  @ConfigProperty()
-  protected String propName = "CRDConfigPropVal";
+    @ConfigProperty()
+    protected String propName = "CRDConfigPropVal";
 
-  private ResourceAdapter resourceAdapter;
+    private ResourceAdapter resourceAdapter;
 
-  /**
-   * Default constructor.
-   */
-  public CRDActivationSpec() {
-    Debug.trace("CRDActivationSpec.constructor");
-  }
+    /**
+     * Default constructor.
+     */
+    public CRDActivationSpec() {
+        Debug.trace("CRDActivationSpec.constructor");
+    }
 
-  public String getAnnoDestinationName() {
-    Debug.trace("CRDActivationSpec.getAnnoDestinationName :"
-        + this.annoDestinationName);
-    return this.annoDestinationName;
-  }
+    public String getAnnoDestinationName() {
+        Debug.trace("CRDActivationSpec.getAnnoDestinationName :" + this.annoDestinationName);
+        return this.annoDestinationName;
+    }
 
-  public void setAnnoDestinationName(String name) {
-    this.annoDestinationName = name;
-    Debug.trace("CRDActivationSpec.setAnnoDestinationName :" + name);
-  }
+    public void setAnnoDestinationName(String name) {
+        this.annoDestinationName = name;
+        Debug.trace("CRDActivationSpec.setAnnoDestinationName :" + name);
+    }
 
-  public String getAnnoDestinationType() {
-    Debug.trace(
-        "CRDActivationSpec.getDestinationType :" + this.annoDestinationType);
-    return this.annoDestinationType;
-  }
+    public String getAnnoDestinationType() {
+        Debug.trace("CRDActivationSpec.getDestinationType :" + this.annoDestinationType);
+        return this.annoDestinationType;
+    }
 
-  public void setAnnoDestinationType(String type) {
-    Debug.trace("CRDActivationSpec.setAnnoDestinationType :" + type);
-    this.annoDestinationType = type;
-  }
+    public void setAnnoDestinationType(String type) {
+        Debug.trace("CRDActivationSpec.setAnnoDestinationType :" + type);
+        this.annoDestinationType = type;
+    }
 
-  public ResourceAdapter getResourceAdapter() {
-    return this.resourceAdapter;
-  }
+    public ResourceAdapter getResourceAdapter() {
+        return this.resourceAdapter;
+    }
 
-  public void setResourceAdapter(ResourceAdapter ra) {
-    Debug.trace("CRDActivationSpec.setResourceAdatper called");
-    this.resourceAdapter = ra;
-  }
+    public void setResourceAdapter(ResourceAdapter ra) {
+        Debug.trace("CRDActivationSpec.setResourceAdatper called");
+        this.resourceAdapter = ra;
+    }
 
-  public void validate() throws InvalidPropertyException {
-    Debug.trace("CRDActivationSpec.validate called");
-  }
+    public void validate() throws InvalidPropertyException {
+        Debug.trace("CRDActivationSpec.validate called");
+    }
 
-  public void setPropName(String name) {
-    propName = name;
-  }
+    public void setPropName(String name) {
+        propName = name;
+    }
 
-  public String getPropName() {
-    return propName;
-  }
-
+    public String getPropName() {
+        return propName;
+    }
 }

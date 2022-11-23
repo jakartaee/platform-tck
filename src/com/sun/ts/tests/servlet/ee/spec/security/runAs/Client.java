@@ -20,243 +20,253 @@
 
 package com.sun.ts.tests.servlet.ee.spec.security.runAs;
 
-import java.net.InetAddress;
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.util.WebUtil;
+import java.net.InetAddress;
+import java.util.Properties;
 
 public class Client extends EETest {
-  // Configurable constants:
-  private String protocol = "http";
+    // Configurable constants:
+    private String protocol = "http";
 
-  private String hostname = null;
+    private String hostname = null;
 
-  private int portnum = 0;
+    private int portnum = 0;
 
-  private String ctxroot = "/first_module_cntxt_root";
+    private String ctxroot = "/first_module_cntxt_root";
 
-  private String ctxroot1 = "/second_module_cntxt_root";
+    private String ctxroot1 = "/second_module_cntxt_root";
 
-  private String pageWebToEjbDDRunAs = ctxroot + "/ServletOneTest";
+    private String pageWebToEjbDDRunAs = ctxroot + "/ServletOneTest";
 
-  private String pageWebToEjbAnnotationRunAs = ctxroot1 + "/ServletTwoTest";
+    private String pageWebToEjbAnnotationRunAs = ctxroot1 + "/ServletTwoTest";
 
-  private String username = "";
+    private String username = "";
 
-  private String password = "";
+    private String password = "";
 
-  private String authusername = "";
+    private String authusername = "";
 
-  private String authpassword = "";
+    private String authpassword = "";
 
-  // Constants:
-  private final String WEBHOSTPROP = "webServerHost";
+    // Constants:
+    private final String WEBHOSTPROP = "webServerHost";
 
-  private final String WEBPORTPROP = "webServerPort";
+    private final String WEBPORTPROP = "webServerPort";
 
-  private final String USERNAMEPROP = "user";
+    private final String USERNAMEPROP = "user";
 
-  private final String PASSWORDPROP = "password";
+    private final String PASSWORDPROP = "password";
 
-  private final String AUTHUSERNAMEPROP = "authuser";
+    private final String AUTHUSERNAMEPROP = "authuser";
 
-  private final String AUTHPASSWORDPROP = "authpassword";
+    private final String AUTHPASSWORDPROP = "authpassword";
 
-  // Shared test variables:
-  private Properties props = null;
+    // Shared test variables:
+    private Properties props = null;
 
-  private String request = null;
+    private String request = null;
 
-  private WebUtil.Response response = null;
+    private WebUtil.Response response = null;
 
-  private TSURL ctsurl = new TSURL();
+    private TSURL ctsurl = new TSURL();
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @class.setup_props: webServerHost; webServerPort; user; password; authuser;
-   * authpassword;
-   */
-
-  public void setup(String[] args, Properties p) throws Fault {
-    props = p;
-
-    try {
-      hostname = p.getProperty(WEBHOSTPROP);
-      portnum = Integer.parseInt(p.getProperty(WEBPORTPROP));
-      username = p.getProperty(USERNAMEPROP);
-      password = p.getProperty(PASSWORDPROP);
-      authusername = p.getProperty(AUTHUSERNAMEPROP);
-      authpassword = p.getProperty(AUTHPASSWORDPROP);
-
-      TestUtil.logMsg("setup complete");
-    } catch (Exception e) {
-      TestUtil.logErr("Error: got exception: ", e);
-      throw new Fault("Got Exception " + e.getMessage() + " during setup.", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /*
-   * @testName: web_to_ejb_dd_runAs
-   *
-   * @assertion_ids: Servlet:SPEC:190; JavaEE:SPEC:31; JavaEE:SPEC:30
-   *
-   * @test_Strategy: 1. Configure a servlet(ServletOne) with the following
-   * configurations a) BASIC authentication b) accessible only by rolename
-   * "Administrator" c) use deployment descriptor in ServletOne to configure it
-   * to runAs rolename "Manager" (use principal name javajoe for this)
-   *
-   * 2. Configure SecTestEJB.getCallerPrincipalName() to be be accessible only
-   * by role name "Manager" using annotation.
-   *
-   * 3. Send a http request and invoke ServletOne with j2ee as username and
-   * password. ( Note: j2ee is mapped to rolename "Administrator" )
-   *
-   * 4. From ServletOne look up SecTestEJB a stateless session bean and invoke a
-   * method getCallerPrincipalName() on it
-   *
-   * 5. From within ServletOne obtain the CallerPrincipal using
-   * request.getUserPrincipal().getName()
-   *
-   * 6. From within SecTestEJB obtain the CallerPrincipal using
-   * sessionContext.getCallerPrincipal().getName()
-   *
-   * 7. From the client make sure ServletOne is accessed as user "j2ee" and
-   * SecTestEJB accessed as user "javajoe" ( Note:User "javajoe" is mapped to
-   * rolename "Manager")
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; user; password; authuser;
+     * authpassword;
+     */
 
-  public void web_to_ejb_dd_runAs() throws Fault {
-    try {
-      String webSearch = username;
-      String ejbSearch = authusername;
+    public void setup(String[] args, Properties p) throws Fault {
+        props = p;
 
-      TestUtil.logMsg("Invoking ServletOne as User :" + username);
+        try {
+            hostname = p.getProperty(WEBHOSTPROP);
+            portnum = Integer.parseInt(p.getProperty(WEBPORTPROP));
+            username = p.getProperty(USERNAMEPROP);
+            password = p.getProperty(PASSWORDPROP);
+            authusername = p.getProperty(AUTHUSERNAMEPROP);
+            authpassword = p.getProperty(AUTHPASSWORDPROP);
 
-      // Send request for ServletOne, passing in j2ee as
-      // username and password:
-      request = pageWebToEjbDDRunAs;
-      TestUtil.logMsg("Sending request \"" + request + "\"");
-      response = WebUtil.sendAuthenticatedRequest("GET",
-          InetAddress.getByName(hostname), portnum, ctsurl.getRequest(request),
-          null, null, username, password);
-
-      // Check that the page was retrieved (no error)
-      if (response.isError()) {
-        TestUtil.logErr("Could not access " + request);
-        throw new Fault("test failed.");
-      }
-
-      TestUtil.logMsg("Received following Response \n");
-      TestUtil.logMsg(response.content);
-
-      // Test to make sure we are authenticated properly by checking
-      // the page content. The page should contain "j2ee"
-      if (response.content.indexOf(webSearch) == -1) {
-        TestUtil.logErr("Web User Principal incorrect");
-        throw new Fault("test failed.");
-      }
-      TestUtil.logMsg("Web User Principal correct.");
-
-      // Test to make sure SecTestEJB accessed as user "javajoe"
-      if (response.content.indexOf(ejbSearch) == -1) {
-        TestUtil.logErr("Ejb User Principal incorrect");
-        throw new Fault("test failed.");
-      }
-      TestUtil.logMsg("Ejb User Principal correct.");
-
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      throw new Fault("test failed: ", e);
+            TestUtil.logMsg("setup complete");
+        } catch (Exception e) {
+            TestUtil.logErr("Error: got exception: ", e);
+            throw new Fault("Got Exception " + e.getMessage() + " during setup.", e);
+        }
     }
-  }
 
-  /*
-   * @testName: web_to_ejb_annotation_runAs
-   *
-   * @assertion_ids: Servlet:SPEC:199.7; JavaEE:SPEC:31; JavaEE:SPEC:30
-   *
-   * @test_Strategy: 1. Configure a servlet(ServletTwo) with the following
-   * configurations a) BASIC authentication b) accessible only by rolename
-   * "Administrator" c) use annotation in ServletTwo to configure it to runAs
-   * rolename "Manager" (use principal name javajoe for this)
-   *
-   * 2. Configure SecTestEJB.getCallerPrincipalName() to be be accessible only
-   * by role name "Manager" using annotation.
-   *
-   * 3. Send a http request and invoke ServletTwo with j2ee as username and
-   * password. ( Note: j2ee is mapped to rolename "Administrator" )
-   *
-   * 4. From ServletTwo look up SecTestEJB a stateless session bean and invoke a
-   * method getCallerPrincipalName() on it
-   *
-   * 5. From within ServletTwo obtain the CallerPrincipal using
-   * request.getUserPrincipal().getName()
-   *
-   * 6. From within SecTestEJB obtain the CallerPrincipal using
-   * sessionContext.getCallerPrincipal().getName()
-   *
-   * 7. From the client make sure ServletTwo is accessed as user "j2ee" and
-   * SecTestEJB accessed as user "javajoe" ( Note:User "javajoe" is mapped to
-   * rolename "Manager")
-   */
+    /*
+     * @testName: web_to_ejb_dd_runAs
+     *
+     * @assertion_ids: Servlet:SPEC:190; JavaEE:SPEC:31; JavaEE:SPEC:30
+     *
+     * @test_Strategy: 1. Configure a servlet(ServletOne) with the following
+     * configurations a) BASIC authentication b) accessible only by rolename
+     * "Administrator" c) use deployment descriptor in ServletOne to configure it
+     * to runAs rolename "Manager" (use principal name javajoe for this)
+     *
+     * 2. Configure SecTestEJB.getCallerPrincipalName() to be be accessible only
+     * by role name "Manager" using annotation.
+     *
+     * 3. Send a http request and invoke ServletOne with j2ee as username and
+     * password. ( Note: j2ee is mapped to rolename "Administrator" )
+     *
+     * 4. From ServletOne look up SecTestEJB a stateless session bean and invoke a
+     * method getCallerPrincipalName() on it
+     *
+     * 5. From within ServletOne obtain the CallerPrincipal using
+     * request.getUserPrincipal().getName()
+     *
+     * 6. From within SecTestEJB obtain the CallerPrincipal using
+     * sessionContext.getCallerPrincipal().getName()
+     *
+     * 7. From the client make sure ServletOne is accessed as user "j2ee" and
+     * SecTestEJB accessed as user "javajoe" ( Note:User "javajoe" is mapped to
+     * rolename "Manager")
+     */
 
-  public void web_to_ejb_annotation_runAs() throws Fault {
-    try {
-      String webSearch = username;
-      String ejbSearch = authusername;
+    public void web_to_ejb_dd_runAs() throws Fault {
+        try {
+            String webSearch = username;
+            String ejbSearch = authusername;
 
-      TestUtil.logMsg("Invoking ServletTwo as User :" + username);
+            TestUtil.logMsg("Invoking ServletOne as User :" + username);
 
-      // Send request for ServletTwo, passing in j2ee as
-      // username and password:
-      request = pageWebToEjbAnnotationRunAs;
-      TestUtil.logMsg("Sending request \"" + request + "\"");
-      response = WebUtil.sendAuthenticatedRequest("GET",
-          InetAddress.getByName(hostname), portnum, ctsurl.getRequest(request),
-          null, null, username, password);
+            // Send request for ServletOne, passing in j2ee as
+            // username and password:
+            request = pageWebToEjbDDRunAs;
+            TestUtil.logMsg("Sending request \"" + request + "\"");
+            response = WebUtil.sendAuthenticatedRequest(
+                    "GET",
+                    InetAddress.getByName(hostname),
+                    portnum,
+                    ctsurl.getRequest(request),
+                    null,
+                    null,
+                    username,
+                    password);
 
-      // Check that the page was retrieved (no error)
-      if (response.isError()) {
-        TestUtil.logErr("Could not access " + request);
-        throw new Fault("test failed.");
-      }
+            // Check that the page was retrieved (no error)
+            if (response.isError()) {
+                TestUtil.logErr("Could not access " + request);
+                throw new Fault("test failed.");
+            }
 
-      TestUtil.logMsg("Received following Response \n");
-      TestUtil.logMsg(response.content);
+            TestUtil.logMsg("Received following Response \n");
+            TestUtil.logMsg(response.content);
 
-      // Test to make sure we are authenticated properly by checking
-      // the page content. The page should contain "j2ee"
-      if (response.content.indexOf(webSearch) == -1) {
-        TestUtil.logErr("Web User Principal incorrect");
-        throw new Fault("test failed.");
-      }
+            // Test to make sure we are authenticated properly by checking
+            // the page content. The page should contain "j2ee"
+            if (response.content.indexOf(webSearch) == -1) {
+                TestUtil.logErr("Web User Principal incorrect");
+                throw new Fault("test failed.");
+            }
+            TestUtil.logMsg("Web User Principal correct.");
 
-      TestUtil.logMsg("Web User Principal correct.");
+            // Test to make sure SecTestEJB accessed as user "javajoe"
+            if (response.content.indexOf(ejbSearch) == -1) {
+                TestUtil.logErr("Ejb User Principal incorrect");
+                throw new Fault("test failed.");
+            }
+            TestUtil.logMsg("Ejb User Principal correct.");
 
-      // Test to make sure SecTestEJB accessed as user "javajoe"
-      if (response.content.indexOf(ejbSearch) == -1) {
-        TestUtil.logErr("Ejb Principal incorrect");
-        throw new Fault("test failed.");
-      }
-      TestUtil.logMsg("Ejb User Principal correct.");
-
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      throw new Fault("test failed: ", e);
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            throw new Fault("test failed: ", e);
+        }
     }
-  }
 
-  public void cleanup() throws Fault {
-    logMsg("cleanup complete");
-  }
+    /*
+     * @testName: web_to_ejb_annotation_runAs
+     *
+     * @assertion_ids: Servlet:SPEC:199.7; JavaEE:SPEC:31; JavaEE:SPEC:30
+     *
+     * @test_Strategy: 1. Configure a servlet(ServletTwo) with the following
+     * configurations a) BASIC authentication b) accessible only by rolename
+     * "Administrator" c) use annotation in ServletTwo to configure it to runAs
+     * rolename "Manager" (use principal name javajoe for this)
+     *
+     * 2. Configure SecTestEJB.getCallerPrincipalName() to be be accessible only
+     * by role name "Manager" using annotation.
+     *
+     * 3. Send a http request and invoke ServletTwo with j2ee as username and
+     * password. ( Note: j2ee is mapped to rolename "Administrator" )
+     *
+     * 4. From ServletTwo look up SecTestEJB a stateless session bean and invoke a
+     * method getCallerPrincipalName() on it
+     *
+     * 5. From within ServletTwo obtain the CallerPrincipal using
+     * request.getUserPrincipal().getName()
+     *
+     * 6. From within SecTestEJB obtain the CallerPrincipal using
+     * sessionContext.getCallerPrincipal().getName()
+     *
+     * 7. From the client make sure ServletTwo is accessed as user "j2ee" and
+     * SecTestEJB accessed as user "javajoe" ( Note:User "javajoe" is mapped to
+     * rolename "Manager")
+     */
 
+    public void web_to_ejb_annotation_runAs() throws Fault {
+        try {
+            String webSearch = username;
+            String ejbSearch = authusername;
+
+            TestUtil.logMsg("Invoking ServletTwo as User :" + username);
+
+            // Send request for ServletTwo, passing in j2ee as
+            // username and password:
+            request = pageWebToEjbAnnotationRunAs;
+            TestUtil.logMsg("Sending request \"" + request + "\"");
+            response = WebUtil.sendAuthenticatedRequest(
+                    "GET",
+                    InetAddress.getByName(hostname),
+                    portnum,
+                    ctsurl.getRequest(request),
+                    null,
+                    null,
+                    username,
+                    password);
+
+            // Check that the page was retrieved (no error)
+            if (response.isError()) {
+                TestUtil.logErr("Could not access " + request);
+                throw new Fault("test failed.");
+            }
+
+            TestUtil.logMsg("Received following Response \n");
+            TestUtil.logMsg(response.content);
+
+            // Test to make sure we are authenticated properly by checking
+            // the page content. The page should contain "j2ee"
+            if (response.content.indexOf(webSearch) == -1) {
+                TestUtil.logErr("Web User Principal incorrect");
+                throw new Fault("test failed.");
+            }
+
+            TestUtil.logMsg("Web User Principal correct.");
+
+            // Test to make sure SecTestEJB accessed as user "javajoe"
+            if (response.content.indexOf(ejbSearch) == -1) {
+                TestUtil.logErr("Ejb Principal incorrect");
+                throw new Fault("test failed.");
+            }
+            TestUtil.logMsg("Ejb User Principal correct.");
+
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            throw new Fault("test failed: ", e);
+        }
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("cleanup complete");
+    }
 }

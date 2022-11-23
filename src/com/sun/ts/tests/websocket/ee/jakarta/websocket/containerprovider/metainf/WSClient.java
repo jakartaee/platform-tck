@@ -26,29 +26,28 @@ import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
  *                     ws_wait;
  */
 public class WSClient extends WebSocketCommonClient {
-  private static final long serialVersionUID = 8387217970724424176L;
+    private static final long serialVersionUID = 8387217970724424176L;
 
-  public WSClient() {
-    setContextRoot("wsc_ee_containerprovider_metainf_web");
-  }
+    public WSClient() {
+        setContextRoot("wsc_ee_containerprovider_metainf_web");
+    }
 
-  public static void main(String[] args) {
-    new WSClient().run(args);
-  }
+    public static void main(String[] args) {
+        new WSClient().run(args);
+    }
 
-  /* Run test */
-  /*
-   * @testName: getWebSocketContainerOnServerTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:27;
-   * 
-   * @test_Strategy: Check the TCKContainerProvider is used, as order by
-   * META-INF/services/jakarta.websocket.ContainerProvider file
-   * 
-   * ContainerProvider.ContainerProvider()
-   */
-  public void getWebSocketContainerOnServerTest() throws Fault {
-    invoke("srv", "anything", TCKWebSocketContainer.class.getName());
-  }
-
+    /* Run test */
+    /*
+     * @testName: getWebSocketContainerOnServerTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:27;
+     *
+     * @test_Strategy: Check the TCKContainerProvider is used, as order by
+     * META-INF/services/jakarta.websocket.ContainerProvider file
+     *
+     * ContainerProvider.ContainerProvider()
+     */
+    public void getWebSocketContainerOnServerTest() throws Fault {
+        invoke("srv", "anything", TCKWebSocketContainer.class.getName());
+    }
 }

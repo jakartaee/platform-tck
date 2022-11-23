@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
 
 public class ByteBeanEJB extends StatefulWrapper {
 
-  public boolean testByteEntry() {
-    return TestCode.testByteEntry(nctx);
-  }
-
+    public boolean testByteEntry() {
+        return TestCode.testByteEntry(nctx);
+    }
 }

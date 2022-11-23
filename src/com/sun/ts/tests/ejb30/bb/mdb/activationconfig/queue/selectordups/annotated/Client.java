@@ -22,47 +22,46 @@ package com.sun.ts.tests.ejb30.bb.mdb.activationconfig.queue.selectordups.annota
 
 import com.sun.javatest.Status;
 
-public class Client
-    extends com.sun.ts.tests.ejb30.bb.mdb.activationconfig.common.ClientBase {
+public class Client extends com.sun.ts.tests.ejb30.bb.mdb.activationconfig.common.ClientBase {
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
-   * harness.log.port;
-   */
+    /*
+     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
+     * harness.log.port;
+     */
 
-  /*
-   * @testName: test1
-   * 
-   * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524; EJB:JAVADOC:4;
-   * EJB:JAVADOC:5; EJB:JAVADOC:127
-   * 
-   * @test_Strategy: test activation-config related elements in deployment
-   * descriptors, and their annotation counterparts.
-   */
+    /*
+     * @testName: test1
+     *
+     * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524; EJB:JAVADOC:4;
+     * EJB:JAVADOC:5; EJB:JAVADOC:127
+     *
+     * @test_Strategy: test activation-config related elements in deployment
+     * descriptors, and their annotation counterparts.
+     */
 
-  /*
-   * @testName: negativeTest1
-   * 
-   * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524; EJB:JAVADOC:4;
-   * EJB:JAVADOC:5; EJB:JAVADOC:127
-   * 
-   * @test_Strategy: test activation-config related elements in deployment
-   * descriptors, and their annotation counterparts.
-   */
+    /*
+     * @testName: negativeTest1
+     *
+     * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524; EJB:JAVADOC:4;
+     * EJB:JAVADOC:5; EJB:JAVADOC:127
+     *
+     * @test_Strategy: test activation-config related elements in deployment
+     * descriptors, and their annotation counterparts.
+     */
 
-  /*
-   * @testName: negativeTest2
-   * 
-   * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524; EJB:JAVADOC:4;
-   * EJB:JAVADOC:5; EJB:JAVADOC:127
-   * 
-   * @test_Strategy: test activation-config related elements in deployment
-   * descriptors, and their annotation counterparts.
-   */
+    /*
+     * @testName: negativeTest2
+     *
+     * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524; EJB:JAVADOC:4;
+     * EJB:JAVADOC:5; EJB:JAVADOC:127
+     *
+     * @test_Strategy: test activation-config related elements in deployment
+     * descriptors, and their annotation counterparts.
+     */
 }

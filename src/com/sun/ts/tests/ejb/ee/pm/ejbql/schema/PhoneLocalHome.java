@@ -25,11 +25,9 @@ import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
 
 public interface PhoneLocalHome extends EJBLocalHome {
-  public PhoneLocal create(String id, String area, String number)
-      throws CreateException;
+    public PhoneLocal create(String id, String area, String number) throws CreateException;
 
-  public PhoneLocal create(String id, String area, String number,
-      AddressLocal a) throws CreateException;
+    public PhoneLocal create(String id, String area, String number, AddressLocal a) throws CreateException;
 
-  public PhoneLocal findByPrimaryKey(String id) throws FinderException;
+    public PhoneLocal findByPrimaryKey(String id) throws FinderException;
 }

@@ -25,9 +25,7 @@ import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
 
 public interface SecTestLocalHome extends EJBLocalHome {
-  public SecTestLocal create(int id, String brandName, float price)
-      throws CreateException;
+    public SecTestLocal create(int id, String brandName, float price) throws CreateException;
 
-  public SecTestLocal findByPrimaryKey(Integer key) throws FinderException;
-
+    public SecTestLocal findByPrimaryKey(Integer key) throws FinderException;
 }

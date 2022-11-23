@@ -21,48 +21,46 @@
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2113;
 
 import com.sun.ts.tests.jaxws.common.RequestConformanceChecker;
-
-import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 import jakarta.xml.soap.*;
+import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 import java.util.Iterator;
 
 public class R2113ConformanceChecker extends RequestConformanceChecker {
 
-  public void test(SOAPMessageContext context) throws SOAPException {
-    test(context.getMessage().getSOAPPart().getEnvelope());
-  }
+    public void test(SOAPMessageContext context) throws SOAPException {
+        test(context.getMessage().getSOAPPart().getEnvelope());
+    }
 
-  private void test(SOAPElement elem) {
-    boolean fails = false;
-    fails = hasSoapEncArrayTypeAttr(elem);
-    if (!fails) {
-      Iterator children = elem.getChildElements();
-      while (children.hasNext()) {
-        Node n = (Node) children.next();
-        if (n instanceof SOAPElement) {
-          test((SOAPElement) n);
+    private void test(SOAPElement elem) {
+        boolean fails = false;
+        fails = hasSoapEncArrayTypeAttr(elem);
+        if (!fails) {
+            Iterator children = elem.getChildElements();
+            while (children.hasNext()) {
+                Node n = (Node) children.next();
+                if (n instanceof SOAPElement) {
+                    test((SOAPElement) n);
+                }
+            }
+        } else {
+            response = "failed. Cannot use soapenc:arrayType attribute.";
         }
-      }
-    } else {
-      response = "failed. Cannot use soapenc:arrayType attribute.";
     }
-  }
 
-  private boolean hasSoapEncArrayTypeAttr(SOAPElement elem) {
-    Iterator attrs = elem.getAllAttributes();
-    Name name;
-    String uri;
-    while (attrs.hasNext()) {
-      name = (Name) attrs.next();
-      uri = name.getURI();
-      if (uri == null) {
-        uri = "";
-      }
-      if (name.getLocalName().equals(SOAP_ENC_ARRAY_TYPE)
-          && uri.equals(SOAP_ENV_NS)) {
-        return true;
-      }
+    private boolean hasSoapEncArrayTypeAttr(SOAPElement elem) {
+        Iterator attrs = elem.getAllAttributes();
+        Name name;
+        String uri;
+        while (attrs.hasNext()) {
+            name = (Name) attrs.next();
+            uri = name.getURI();
+            if (uri == null) {
+                uri = "";
+            }
+            if (name.getLocalName().equals(SOAP_ENC_ARRAY_TYPE) && uri.equals(SOAP_ENV_NS)) {
+                return true;
+            }
+        }
+        return false;
     }
-    return false;
-  }
 }

@@ -16,41 +16,38 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_el.listelresolver;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.el.ELContext;
 import jakarta.el.ListELResolver;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class ListELResolverTag extends SimpleTagSupport {
 
-  public void doTag() throws JspException, IOException {
+    public void doTag() throws JspException, IOException {
 
-    StringBuffer buf = new StringBuffer();
-    ArrayList<String> superheroes = new ArrayList<String>();
-    superheroes.add("Batman");
-    superheroes.add("Superman");
-    superheroes.add("Spiderman");
-    JspWriter out = getJspContext().getOut();
-    ELContext context = getJspContext().getELContext();
-    ListELResolver listResolver = new ListELResolver();
+        StringBuffer buf = new StringBuffer();
+        ArrayList<String> superheroes = new ArrayList<String>();
+        superheroes.add("Batman");
+        superheroes.add("Superman");
+        superheroes.add("Spiderman");
+        JspWriter out = getJspContext().getOut();
+        ELContext context = getJspContext().getELContext();
+        ListELResolver listResolver = new ListELResolver();
 
-    try {
-      boolean pass = ResolverTest.testELResolver(context, listResolver,
-          superheroes, Integer.valueOf(1), "Kryptonite", buf, false);
-      out.println(buf.toString());
-      if (pass == true)
-        out.println("Test PASSED");
+        try {
+            boolean pass = ResolverTest.testELResolver(
+                    context, listResolver, superheroes, Integer.valueOf(1), "Kryptonite", buf, false);
+            out.println(buf.toString());
+            if (pass == true) out.println("Test PASSED");
 
-    } catch (Throwable t) {
-      out.println("buffer is " + buf.toString());
-      JspTestUtil.handleThrowable(t, out, "ListELResolverTag");
+        } catch (Throwable t) {
+            out.println("buffer is " + buf.toString());
+            JspTestUtil.handleThrowable(t, out, "ListELResolverTag");
+        }
     }
-  }
 }

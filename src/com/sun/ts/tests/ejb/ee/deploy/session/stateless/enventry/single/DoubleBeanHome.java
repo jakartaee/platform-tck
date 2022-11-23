@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateless.enventry.single;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface DoubleBeanHome extends EJBHome {
-  public DoubleBean create() throws RemoteException, CreateException;
+    public DoubleBean create() throws RemoteException, CreateException;
 }

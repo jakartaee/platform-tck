@@ -16,11 +16,11 @@
 
 package com.sun.ts.lib.deliverable.jms;
 
+import com.sun.javatest.*;
 import com.sun.ts.lib.deliverable.*;
 import com.sun.ts.lib.util.*;
-import com.sun.javatest.*;
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
 /**
  * This class serves as a well known place for harness, util, and porting
@@ -29,57 +29,52 @@ import java.io.*;
  * @author Dianne Jiao
  */
 public class JMSPropertyManager extends AbstractPropertyManager {
-  private static JMSPropertyManager jteMgr = new JMSPropertyManager();
+    private static JMSPropertyManager jteMgr = new JMSPropertyManager();
 
-  private JMSPropertyManager() {
-  }
+    private JMSPropertyManager() {}
 
-  /**
-   * This method returns the singleton instance of JMSPropertyManager which
-   * provides access to all ts.jte properties. This is only called once by the
-   * test harness.
-   *
-   * @param env
-   *          - TestEnvironment object from JavaTest
-   * @return JMSPropertyManager - singleton property manager object
-   */
-  public final static JMSPropertyManager getJMSPropertyManager(
-      TestEnvironment env) throws Exception {
-    jteMgr.setTestEnvironment(env);
-    return jteMgr;
-  }
+    /**
+     * This method returns the singleton instance of JMSPropertyManager which
+     * provides access to all ts.jte properties. This is only called once by the
+     * test harness.
+     *
+     * @param env
+     *          - TestEnvironment object from JavaTest
+     * @return JMSPropertyManager - singleton property manager object
+     */
+    public static final JMSPropertyManager getJMSPropertyManager(TestEnvironment env) throws Exception {
+        jteMgr.setTestEnvironment(env);
+        return jteMgr;
+    }
 
-  /**
-   * This method returns the singleton instance of JMSPropertyManager which
-   * provides access to all ts.jte properties. This is only called by the init()
-   * method in ManualDeployment.java
-   *
-   * @param p
-   *          - Properties object from JavaTest
-   * @return JMSPropertyManager - singleton property manager object
-   */
-  public final static JMSPropertyManager getJMSPropertyManager(Properties p)
-      throws Exception {
-    jteMgr.setJteProperties(p);
-    return jteMgr;
-  }
+    /**
+     * This method returns the singleton instance of JMSPropertyManager which
+     * provides access to all ts.jte properties. This is only called by the init()
+     * method in ManualDeployment.java
+     *
+     * @param p
+     *          - Properties object from JavaTest
+     * @return JMSPropertyManager - singleton property manager object
+     */
+    public static final JMSPropertyManager getJMSPropertyManager(Properties p) throws Exception {
+        jteMgr.setJteProperties(p);
+        return jteMgr;
+    }
 
-  public final static JMSPropertyManager getJMSPropertyManager()
-      throws Exception {
-    return jteMgr;
-  }
+    public static final JMSPropertyManager getJMSPropertyManager() throws Exception {
+        return jteMgr;
+    }
 
-  /**
-   * This method is called by the test harness to retrieve all properties needed
-   * by a particular test.
-   *
-   * @param sPropKeys
-   *          - Properties to retrieve
-   * @return Properties - all property/value pairs from the ts.jte file
-   */
-  public Properties getTestSpecificProperties(String[] sPropKeys)
-      throws PropertyNotSetException {
-    Properties pTestProps = getJteProperties();
-    return pTestProps;
-  }
+    /**
+     * This method is called by the test harness to retrieve all properties needed
+     * by a particular test.
+     *
+     * @param sPropKeys
+     *          - Properties to retrieve
+     * @return Properties - all property/value pairs from the ts.jte file
+     */
+    public Properties getTestSpecificProperties(String[] sPropKeys) throws PropertyNotSetException {
+        Properties pTestProps = getJteProperties();
+        return pTestProps;
+    }
 }

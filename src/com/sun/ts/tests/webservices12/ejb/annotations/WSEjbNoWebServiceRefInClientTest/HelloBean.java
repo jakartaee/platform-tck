@@ -19,15 +19,20 @@ package com.sun.ts.tests.webservices12.ejb.annotations.WSEjbNoWebServiceRefInCli
 import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;
 
-@WebService(portName = "Hello", serviceName = "HelloService", targetNamespace = "http://Hello.org", wsdlLocation = "META-INF/wsdl/HelloService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.ejb.annotations.WSEjbNoWebServiceRefInClientTest.Hello")
+@WebService(
+        portName = "Hello",
+        serviceName = "HelloService",
+        targetNamespace = "http://Hello.org",
+        wsdlLocation = "META-INF/wsdl/HelloService.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices12.ejb.annotations.WSEjbNoWebServiceRefInClientTest.Hello")
 @Stateless(name = "WSEjbNoWebServiceRefInClientTest")
 public class HelloBean {
 
-  public String hello(String str) {
-    return str + " to you too!";
-  }
+    public String hello(String str) {
+        return str + " to you too!";
+    }
 
-  public String bye(String str) {
-    return str + " and take care!";
-  }
+    public String bye(String str) {
+        return str + " and take care!";
+    }
 }

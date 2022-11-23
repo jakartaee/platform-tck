@@ -20,33 +20,26 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice;
 
-import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
 import com.sun.ts.tests.jaxws.common.*;
-
 import com.sun.ts.tests.jaxws.common.LogicalHandlerBase2;
-import jakarta.xml.ws.handler.LogicalMessageContext;
-import jakarta.xml.ws.soap.SOAPFaultException;
-import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 import javax.xml.namespace.QName;
-import jakarta.xml.soap.SOAPFactory;
 
 public class ServerLogicalHandler5 extends LogicalHandlerBase2 {
-  private static final String WHICHHANDLERTYPE = "Server";
+    private static final String WHICHHANDLERTYPE = "Server";
 
-  private static final String HANDLERNAME = "ServerLogicalHandler5";
+    private static final String HANDLERNAME = "ServerLogicalHandler5";
 
-  private static final String NAMESPACEURI = "http://rlhandlerservice.org/wsdl";
+    private static final String NAMESPACEURI = "http://rlhandlerservice.org/wsdl";
 
-  private final QName FAULTCODE = new QName(NAMESPACEURI, "ItsASoapFault",
-      "tns");
+    private final QName FAULTCODE = new QName(NAMESPACEURI, "ItsASoapFault", "tns");
 
-  private static final String FAULTACTOR = "faultActor";
+    private static final String FAULTACTOR = "faultActor";
 
-  public ServerLogicalHandler5() {
-    super();
-    super.setWhichHandlerType(WHICHHANDLERTYPE);
-    super.setHandlerName(HANDLERNAME);
-  }
-
+    public ServerLogicalHandler5() {
+        super();
+        super.setWhichHandlerType(WHICHHANDLERTYPE);
+        super.setHandlerName(HANDLERNAME);
+    }
 }

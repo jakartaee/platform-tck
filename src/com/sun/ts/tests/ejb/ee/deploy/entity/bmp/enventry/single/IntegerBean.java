@@ -20,10 +20,9 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.enventry.single;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
-import jakarta.ejb.EJBObject;
-
 public interface IntegerBean extends EJBObject {
-  public boolean testIntegerEntry() throws RemoteException;
+    public boolean testIntegerEntry() throws RemoteException;
 }

@@ -23,6 +23,4 @@ package com.sun.ts.tests.ejb30.common.generics;
 import jakarta.ejb.Local;
 
 @Local
-public interface LocalIntGreetingIF extends IntGreetingIF {
-
-}
+public interface LocalIntGreetingIF extends IntGreetingIF {}

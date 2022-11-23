@@ -20,8 +20,6 @@
 
 package com.sun.ts.lib.porting;
 
-import com.sun.ts.lib.deliverable.PropertyManagerInterface;
-import com.sun.ts.lib.deliverable.DeliverableFactory;
 import java.io.*;
 import java.util.*;
 
@@ -49,102 +47,100 @@ import java.util.*;
  * information.
  *
  */
-
 public interface DeploymentInfo extends java.io.Serializable {
-  /**
-   * Sets the value of the given property. This method should be temporary,
-   * until all important information can be provided by the API.
-   */
-  public void setProperty(String key, String value);
+    /**
+     * Sets the value of the given property. This method should be temporary,
+     * until all important information can be provided by the API.
+     */
+    public void setProperty(String key, String value);
 
-  /**
-   * Returns the value of the given property. This method should be temporary,
-   * until all important information can be provided by the API.
-   */
-  public String getProperty(String key);
+    /**
+     * Returns the value of the given property. This method should be temporary,
+     * until all important information can be provided by the API.
+     */
+    public String getProperty(String key);
 
-  /**
-   * Sets/gets an array of deploymentInfo objects from previously deployed apps
-   * in the currrent directory along with all common apps
-   */
-  public void setPreviousInfos(DeploymentInfo[] infos);
+    /**
+     * Sets/gets an array of deploymentInfo objects from previously deployed apps
+     * in the currrent directory along with all common apps
+     */
+    public void setPreviousInfos(DeploymentInfo[] infos);
 
-  public DeploymentInfo[] getPreviousInfos();
+    public DeploymentInfo[] getPreviousInfos();
 
-  /**
-   * Returns the ear file to deploy
-   */
-  public String getEarFile();
+    /**
+     * Returns the ear file to deploy
+     */
+    public String getEarFile();
 
-  /**
-   * Returns the list of runtime files to be deployed
-   */
-  public String[] getRuntimeFiles();
+    /**
+     * Returns the list of runtime files to be deployed
+     */
+    public String[] getRuntimeFiles();
 
-  /**
-   * Returns a Map that maps runtimne deployment descriptor filename Strings to
-   * concrete implementations of the com.sun.ts.lib.porting.ejb.SunEjbJar
-   * interface.
-   */
-  public Map getEjbRuntimeData();
+    /**
+     * Returns a Map that maps runtimne deployment descriptor filename Strings to
+     * concrete implementations of the com.sun.ts.lib.porting.ejb.SunEjbJar
+     * interface.
+     */
+    public Map getEjbRuntimeData();
 
-  /**
-   * Returns a Map that maps runtimne deployment descriptor filename Strings to
-   * concrete implementations of the com.sun.ts.lib.porting.web.SunWebApp
-   * interface.
-   */
-  public Map getWebRuntimeData();
+    /**
+     * Returns a Map that maps runtimne deployment descriptor filename Strings to
+     * concrete implementations of the com.sun.ts.lib.porting.web.SunWebApp
+     * interface.
+     */
+    public Map getWebRuntimeData();
 
-  /**
-   * Returns a Map that maps runtimne deployment descriptor filename Strings to
-   * concrete implementations of the com.sun.ts.lib.porting.app.SunApplication
-   * interface.
-   */
-  public Map getAppRuntimeData();
+    /**
+     * Returns a Map that maps runtimne deployment descriptor filename Strings to
+     * concrete implementations of the com.sun.ts.lib.porting.app.SunApplication
+     * interface.
+     */
+    public Map getAppRuntimeData();
 
-  /**
-   * Returns a Map that maps runtimne deployment descriptor filename Strings to
-   * concrete implementations of the
-   * com.sun.ts.lib.porting.appclient.SunApplicationClient interface.
-   */
-  public Map getAppClientRuntimeData();
+    /**
+     * Returns a Map that maps runtimne deployment descriptor filename Strings to
+     * concrete implementations of the
+     * com.sun.ts.lib.porting.appclient.SunApplicationClient interface.
+     */
+    public Map getAppClientRuntimeData();
 
-  /**
-   * Returns a List of concrete implementations of the
-   * com.sun.ts.lib.porting.appclient.SunApplicationClient interface.
-   */
-  public List getAppClientRuntimeDDs();
+    /**
+     * Returns a List of concrete implementations of the
+     * com.sun.ts.lib.porting.appclient.SunApplicationClient interface.
+     */
+    public List getAppClientRuntimeDDs();
 
-  /**
-   * Returns a List of concrete implementations of the
-   * com.sun.ts.lib.porting.app.SunApplication interface.
-   */
-  public List getAppRuntimeDDs();
+    /**
+     * Returns a List of concrete implementations of the
+     * com.sun.ts.lib.porting.app.SunApplication interface.
+     */
+    public List getAppRuntimeDDs();
 
-  /**
-   * Returns a List of concrete implementations of the
-   * com.sun.ts.lib.porting.web.SunWebApp interface.
-   */
-  public List getWebRuntimeDDs();
+    /**
+     * Returns a List of concrete implementations of the
+     * com.sun.ts.lib.porting.web.SunWebApp interface.
+     */
+    public List getWebRuntimeDDs();
 
-  /**
-   * Returns a List of concrete implementations of the
-   * com.sun.ts.lib.porting.ejb.SunEjbJar interface.
-   */
-  public List getEjbRuntimeDDs();
+    /**
+     * Returns a List of concrete implementations of the
+     * com.sun.ts.lib.porting.ejb.SunEjbJar interface.
+     */
+    public List getEjbRuntimeDDs();
 
-  /**
-   * Returns a String that conatains the contents of all the runtime XML files.
-   */
-  public String getContentAsXml();
+    /**
+     * Returns a String that conatains the contents of all the runtime XML files.
+     */
+    public String getContentAsXml();
 
-  /**
-   * Exception thrown if an error occured parsing the XML
-   */
-  public class ParseException extends Exception implements Serializable {
-    public ParseException(String message) {
-      super(message);
+    /**
+     * Exception thrown if an error occured parsing the XML
+     */
+    public class ParseException extends Exception implements Serializable {
+        public ParseException(String message) {
+            super(message);
+        }
     }
-  }
-
 }

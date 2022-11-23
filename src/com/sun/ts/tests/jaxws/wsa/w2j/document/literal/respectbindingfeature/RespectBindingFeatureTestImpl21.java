@@ -19,31 +19,32 @@
  */
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.respectbindingfeature;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
 import jakarta.jws.WebService;
 import jakarta.xml.ws.BindingType;
-import jakarta.xml.ws.soap.SOAPBinding;
 import jakarta.xml.ws.Holder;
 import jakarta.xml.ws.RespectBinding;
+import jakarta.xml.ws.soap.SOAPBinding;
 
-@WebService(portName = "RespectBindingFeatureTest21Port", serviceName = "RespectBindingFeatureTestService", targetNamespace = "http://respectbindingfeatureservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/RespectBindingFeatureTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.respectbindingfeature.RespectBindingFeatureTest21")
+@WebService(
+        portName = "RespectBindingFeatureTest21Port",
+        serviceName = "RespectBindingFeatureTestService",
+        targetNamespace = "http://respectbindingfeatureservice.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/RespectBindingFeatureTestService.wsdl",
+        endpointInterface =
+                "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.respectbindingfeature.RespectBindingFeatureTest21")
 @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)
 @RespectBinding(enabled = false)
+public class RespectBindingFeatureTestImpl21 implements RespectBindingFeatureTest21 {
 
-public class RespectBindingFeatureTestImpl21
-    implements RespectBindingFeatureTest21 {
-
-  public int addNumbers(Holder<String> testname, int number1, int number2) {
-    if (number1 < 0 || number2 < 0) {
-      throw new RespectBindingFeatureException(
-          "One of the numbers received was negative:" + number1 + ", "
-              + number2);
+    public int addNumbers(Holder<String> testname, int number1, int number2) {
+        if (number1 < 0 || number2 < 0) {
+            throw new RespectBindingFeatureException(
+                    "One of the numbers received was negative:" + number1 + ", " + number2);
+        }
+        System.out.printf("Adding %s and %s\n", number1, number2);
+        return number1 + number2;
     }
-    System.out.printf("Adding %s and %s\n", number1, number2);
-    return number1 + number2;
-  }
-
 }

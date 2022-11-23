@@ -23,11 +23,11 @@ package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.entitycontexttest;
 import jakarta.ejb.EJBLocalObject;
 
 public interface FastPathLocal extends EJBLocalObject {
-  public String getIt(String envEntryName);
+    public String getIt(String envEntryName);
 
-  public String setIt(String envEntryName);
+    public String setIt(String envEntryName);
 
-  public String getCoffeeId(String coffeeId);
+    public String getCoffeeId(String coffeeId);
 
-  public String setCoffeeBrand(String oldBrand, String newBrand);
+    public String setCoffeeBrand(String oldBrand, String newBrand);
 }

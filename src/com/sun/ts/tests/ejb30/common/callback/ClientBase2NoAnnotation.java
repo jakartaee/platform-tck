@@ -20,83 +20,78 @@
 
 package com.sun.ts.tests.ejb30.common.callback;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
+public abstract class ClientBase2NoAnnotation extends ClientBase {
 
-abstract public class ClientBase2NoAnnotation extends ClientBase {
+    protected static final String BASE2 = "BASE2";
 
-  protected static final String BASE2 = "BASE2";
+    protected static final String BASE3 = "BASE3";
 
-  protected static final String BASE3 = "BASE3";
+    protected static final String CLIENT = "CLIENT";
 
-  protected static final String CLIENT = "CLIENT";
+    protected static final String[] BASE2_BASE3_CLIENT = new String[] {BASE2, BASE3, CLIENT};
 
-  protected static final String[] BASE2_BASE3_CLIENT = new String[] { BASE2,
-      BASE3, CLIENT };
+    private static final List postConstructCalls = new ArrayList();
 
-  private static final List postConstructCalls = new ArrayList();
+    private static final List injectedFields = new ArrayList();
 
-  private static final List injectedFields = new ArrayList();
+    public ClientBase2NoAnnotation() {}
 
-  public ClientBase2NoAnnotation() {
-  }
-
-  public static List getPostConstructCalls() {
-    return postConstructCalls;
-  }
-
-  public static void addPostConstructCall(String s) {
-    postConstructCalls.add(s);
-  }
-
-  /**
-   * When this method is invoked, all injections, including those in this class,
-   * and all of its subclasses, should have been completed.
-   */
-  // @PostConstruct
-  private static void postConstructInBase2NoAnnotation() {
-    addPostConstructCall(BASE2);
-  }
-
-  public static List getInjectedFields() {
-    return injectedFields;
-  }
-
-  public static void addInjectedField(Object obj) {
-    injectedFields.add(obj);
-  }
-
-  //////////////////////////////////////////////////////////////////////
-
-  /*
-   * testName: appclientPostConstructCallsCount
-   * 
-   * @test_Strategy:
-   */
-  public void appclientPostConstructCallsCount() throws Fault {
-    int expectedAppclientPostConstructCallsCount = 3;
-    int actual = getPostConstructCalls().size();
-    if (expectedAppclientPostConstructCallsCount == actual) {
-      TLogger.log("Got expected appclientPostConstructCallsCount:"
-          + expectedAppclientPostConstructCallsCount);
-    } else {
-      throw new Fault("Expecting appclientPostConstructCallsCount "
-          + expectedAppclientPostConstructCallsCount + ", but actual is "
-          + actual);
+    public static List getPostConstructCalls() {
+        return postConstructCalls;
     }
-  }
 
-  /*
-   * testName: appclientPostConstructCallOrder
-   * 
-   * @test_Strategy:
-   */
-  public void appclientPostConstructCallOrder() throws Fault {
-    List actual = getPostConstructCalls();
-    Helper.compareResultList(BASE2_BASE3_CLIENT, actual);
-  }
+    public static void addPostConstructCall(String s) {
+        postConstructCalls.add(s);
+    }
 
+    /**
+     * When this method is invoked, all injections, including those in this class,
+     * and all of its subclasses, should have been completed.
+     */
+    // @PostConstruct
+    private static void postConstructInBase2NoAnnotation() {
+        addPostConstructCall(BASE2);
+    }
+
+    public static List getInjectedFields() {
+        return injectedFields;
+    }
+
+    public static void addInjectedField(Object obj) {
+        injectedFields.add(obj);
+    }
+
+    //////////////////////////////////////////////////////////////////////
+
+    /*
+     * testName: appclientPostConstructCallsCount
+     *
+     * @test_Strategy:
+     */
+    public void appclientPostConstructCallsCount() throws Fault {
+        int expectedAppclientPostConstructCallsCount = 3;
+        int actual = getPostConstructCalls().size();
+        if (expectedAppclientPostConstructCallsCount == actual) {
+            TLogger.log("Got expected appclientPostConstructCallsCount:" + expectedAppclientPostConstructCallsCount);
+        } else {
+            throw new Fault("Expecting appclientPostConstructCallsCount "
+                    + expectedAppclientPostConstructCallsCount + ", but actual is "
+                    + actual);
+        }
+    }
+
+    /*
+     * testName: appclientPostConstructCallOrder
+     *
+     * @test_Strategy:
+     */
+    public void appclientPostConstructCallOrder() throws Fault {
+        List actual = getPostConstructCalls();
+        Helper.compareResultList(BASE2_BASE3_CLIENT, actual);
+    }
 }

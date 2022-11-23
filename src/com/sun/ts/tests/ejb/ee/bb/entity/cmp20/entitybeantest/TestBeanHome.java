@@ -20,20 +20,17 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.entitybeantest;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.DuplicateKeyException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
 
 public interface TestBeanHome extends EJBHome {
-  public TestBean create(int id, Helper r)
-      throws RemoteException, DuplicateKeyException, CreateException;
+    public TestBean create(int id, Helper r) throws RemoteException, DuplicateKeyException, CreateException;
 
-  public TestBean create(int id, String brandName, float PRICE, Helper r)
-      throws RemoteException, DuplicateKeyException, CreateException;
+    public TestBean create(int id, String brandName, float PRICE, Helper r)
+            throws RemoteException, DuplicateKeyException, CreateException;
 
-  public TestBean findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
+    public TestBean findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 }

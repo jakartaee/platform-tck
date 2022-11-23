@@ -20,37 +20,35 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.jspidconsumer;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.JspIdConsumer;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class MultiOneTag extends SimpleTagSupport implements JspIdConsumer {
 
-  private static String jspId;
+    private static String jspId;
 
-  private JspWriter out;
+    private JspWriter out;
 
-  public void setJspId(String id) {
-    jspId = id;
-  }
-
-  public static String getJspId() {
-    return jspId;
-  }
-
-  public void doTag() throws JspException, IOException {
-
-    out = getJspContext().getOut();
-
-    try {
-      out.println("MultiOneTag: JspId is " + jspId);
-    } catch (Throwable t) {
-      JspTestUtil.handleThrowable(t, out, "MultiOneTag");
+    public void setJspId(String id) {
+        jspId = id;
     }
-  }
+
+    public static String getJspId() {
+        return jspId;
+    }
+
+    public void doTag() throws JspException, IOException {
+
+        out = getJspContext().getOut();
+
+        try {
+            out.println("MultiOneTag: JspId is " + jspId);
+        } catch (Throwable t) {
+            JspTestUtil.handleThrowable(t, out, "MultiOneTag");
+        }
+    }
 }

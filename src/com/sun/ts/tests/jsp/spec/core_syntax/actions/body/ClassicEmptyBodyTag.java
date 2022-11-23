@@ -20,32 +20,29 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.actions.body;
 
-import java.io.IOException;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.BodyTagSupport;
 import jakarta.servlet.jsp.tagext.DynamicAttributes;
+import java.io.IOException;
 
-public class ClassicEmptyBodyTag extends BodyTagSupport
-    implements DynamicAttributes {
+public class ClassicEmptyBodyTag extends BodyTagSupport implements DynamicAttributes {
 
-  public void setDynamicAttribute(String s, String s1, Object o)
-      throws JspException {
-    // no-op
-  }
-
-  public int doEndTag() throws JspException {
-    JspWriter out = pageContext.getOut();
-    try {
-      if (getBodyContent() == null) {
-        out.println("Test PASSED");
-      } else {
-        out.println("Test FAILED.  The body of the action was not empty");
-      }
-    } catch (IOException ioe) {
-      throw new JspException("Unexpected IOException!", ioe);
+    public void setDynamicAttribute(String s, String s1, Object o) throws JspException {
+        // no-op
     }
-    return EVAL_PAGE;
-  }
+
+    public int doEndTag() throws JspException {
+        JspWriter out = pageContext.getOut();
+        try {
+            if (getBodyContent() == null) {
+                out.println("Test PASSED");
+            } else {
+                out.println("Test FAILED.  The body of the action was not empty");
+            }
+        } catch (IOException ioe) {
+            throw new JspException("Unexpected IOException!", ioe);
+        }
+        return EVAL_PAGE;
+    }
 }

@@ -61,65 +61,60 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.filterconfig;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Enumeration;
-
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
 
 public final class GetInitParamNamesNull_Filter implements Filter {
 
-  // The filter configuration object we are associated with. If this value
-  // is null, this filter instance is not currently configured.
-  private FilterConfig filterConfig = null;
+    // The filter configuration object we are associated with. If this value
+    // is null, this filter instance is not currently configured.
+    private FilterConfig filterConfig = null;
 
-  public void doFilter(ServletRequest request, ServletResponse response,
-      FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-    boolean passed = false;
-    PrintWriter pw = response.getWriter();
-    pw.println(
-        "doFilter was successfully called in GetInitParamNamesNull_Filter");
+        boolean passed = false;
+        PrintWriter pw = response.getWriter();
+        pw.println("doFilter was successfully called in GetInitParamNamesNull_Filter");
 
-    if (filterConfig == null) {
-      passed = false;
-      pw.println(
-          "doFilter of GetInitParamNamesNull_Filter was called but this filter instance is not currently configured ");
-    } else {
+        if (filterConfig == null) {
+            passed = false;
+            pw.println(
+                    "doFilter of GetInitParamNamesNull_Filter was called but this filter instance is not currently configured ");
+        } else {
 
-      Object o = filterConfig.getInitParameterNames();
+            Object o = filterConfig.getInitParameterNames();
 
-      if (o == null) {
-        passed = true;
-      } else if (!((Enumeration) o).hasMoreElements()) {
-        passed = true;
-      } else {
-        passed = false;
-        pw.println("The following initialization parameters exist:");
+            if (o == null) {
+                passed = true;
+            } else if (!((Enumeration) o).hasMoreElements()) {
+                passed = true;
+            } else {
+                passed = false;
+                pw.println("The following initialization parameters exist:");
 
-        while (((Enumeration) o).hasMoreElements()) {
-          String name = (String) ((Enumeration) o).nextElement();
-          pw.println(name);
+                while (((Enumeration) o).hasMoreElements()) {
+                    String name = (String) ((Enumeration) o).nextElement();
+                    pw.println(name);
+                }
+            }
         }
-      }
+        ServletTestUtil.printResult(pw, passed);
     }
-    ServletTestUtil.printResult(pw, passed);
 
-  }
+    // remove the filter configuration object for this filter.
+    public void destroy() {}
 
-  // remove the filter configuration object for this filter.
-  public void destroy() {
-  }
-
-  // initialize the filter configuration object for this filter.
-  public void init(FilterConfig filterConfig) {
-    this.filterConfig = filterConfig;
-  }
+    // initialize the filter configuration object for this filter.
+    public void init(FilterConfig filterConfig) {
+        this.filterConfig = filterConfig;
+    }
 }

@@ -20,84 +20,73 @@
 
 package com.sun.ts.tests.jaxws.sharedclients;
 
-import java.io.IOException;
+import com.sun.ts.lib.harness.EETest;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.FactoryConfigurationError;
 import javax.xml.parsers.ParserConfigurationException;
-
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import com.sun.ts.lib.harness.EETest;
-
-import java.io.Serializable;
-
 public class DescriptionClient implements Serializable {
 
-  private String url;
+    private String url;
 
-  public URL getAsURL() {
-    if (url == null)
-      return null;
-    try {
-      return new URL(url);
-    } catch (Exception e) {
-      return null;
+    public URL getAsURL() {
+        if (url == null) return null;
+        try {
+            return new URL(url);
+        } catch (Exception e) {
+            return null;
+        }
     }
-  }
 
-  public String getURL() {
-    return url;
-  }
-
-  public void setURL(String url) {
-    this.url = url;
-  }
-
-  public Document getDocument() throws EETest.Fault {
-    try {
-      DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-      factory.setNamespaceAware(true);
-      DocumentBuilder builder = factory.newDocumentBuilder();
-      InputSource is = new InputSource(new URL(url).openStream());
-      return builder.parse(is);
-    } catch (FactoryConfigurationError e) {
-      throw new EETest.Fault(
-          "XML document builder factory configuration problem", e);
-    } catch (ParserConfigurationException e) {
-      throw new EETest.Fault("XML parser configuration problem", e);
-    } catch (IOException e) {
-      throw new EETest.Fault("Unable to read description from '" + url + "'",
-          e);
-    } catch (SAXException e) {
-      throw new EETest.Fault("Unable to parse description from '" + url + "'",
-          e);
+    public String getURL() {
+        return url;
     }
-  }
 
-  public Document getDocument(String file) throws EETest.Fault {
-    try {
-      DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-      factory.setNamespaceAware(true);
-      DocumentBuilder builder = factory.newDocumentBuilder();
-      InputSource is = new InputSource(new FileInputStream(file));
-      return builder.parse(is);
-    } catch (FactoryConfigurationError e) {
-      throw new EETest.Fault(
-          "XML document builder factory configuration problem", e);
-    } catch (ParserConfigurationException e) {
-      throw new EETest.Fault("XML parser configuration problem", e);
-    } catch (IOException e) {
-      throw new EETest.Fault("Unable to read description from '" + url + "'",
-          e);
-    } catch (SAXException e) {
-      throw new EETest.Fault("Unable to parse description from '" + url + "'",
-          e);
+    public void setURL(String url) {
+        this.url = url;
     }
-  }
+
+    public Document getDocument() throws EETest.Fault {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setNamespaceAware(true);
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            InputSource is = new InputSource(new URL(url).openStream());
+            return builder.parse(is);
+        } catch (FactoryConfigurationError e) {
+            throw new EETest.Fault("XML document builder factory configuration problem", e);
+        } catch (ParserConfigurationException e) {
+            throw new EETest.Fault("XML parser configuration problem", e);
+        } catch (IOException e) {
+            throw new EETest.Fault("Unable to read description from '" + url + "'", e);
+        } catch (SAXException e) {
+            throw new EETest.Fault("Unable to parse description from '" + url + "'", e);
+        }
+    }
+
+    public Document getDocument(String file) throws EETest.Fault {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setNamespaceAware(true);
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            InputSource is = new InputSource(new FileInputStream(file));
+            return builder.parse(is);
+        } catch (FactoryConfigurationError e) {
+            throw new EETest.Fault("XML document builder factory configuration problem", e);
+        } catch (ParserConfigurationException e) {
+            throw new EETest.Fault("XML parser configuration problem", e);
+        } catch (IOException e) {
+            throw new EETest.Fault("Unable to read description from '" + url + "'", e);
+        } catch (SAXException e) {
+            throw new EETest.Fault("Unable to parse description from '" + url + "'", e);
+        }
+    }
 }

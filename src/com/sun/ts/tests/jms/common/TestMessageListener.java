@@ -19,75 +19,73 @@
  */
 package com.sun.ts.tests.jms.common;
 
-import java.util.ArrayList;
-
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.jms.Message;
 import jakarta.jms.MessageConsumer;
 import jakarta.jms.TextMessage;
+import java.util.ArrayList;
 
 /**
  * Message Listener implementation for JMS testing
  */
 public class TestMessageListener implements jakarta.jms.MessageListener {
-  public MessageConsumer mConsumer;
+    public MessageConsumer mConsumer;
 
-  public DoneLatch monitor;
+    public DoneLatch monitor;
 
-  public ArrayList messageArray = new ArrayList();
+    public ArrayList messageArray = new ArrayList();
 
-  /**
-   * Constructor takes a MessageConsumer argument
-   * 
-   * @param MessageConsumer
-   */
-  public TestMessageListener(MessageConsumer mc, DoneLatch dl) {
-    mConsumer = mc;
-    monitor = dl;
-  }
-
-  /**
-   * Returns the list of messages received.
-   * 
-   * @return ArrayList the list of Messages that have been received
-   */
-  public ArrayList getMessageArray() {
-    return messageArray;
-  }
-
-  /**
-   * Clears the list of messages received.
-   * 
-   */
-  public DoneLatch getLatch() {
-    return monitor;
-  }
-
-  /**
-   * Clears the list of messages received.
-   * 
-   */
-  public void clearMessageArray() {
-    messageArray.clear();
-  }
-
-  /**
-   * Responds to incoming Messages. A TextMessage is the end of stream signal.
-   * 
-   * @param Message
-   *          the message passed to the listener
-   */
-  public void onMessage(Message message) {
-    try {
-      TestUtil.logTrace("MessageListener for " + mConsumer.toString()
-          + " received message: " + message.toString());
-      messageArray.add(message);
-    } catch (Exception e) {
-      TestUtil.logErr("Error in MessageListener: " + e.toString(), e);
+    /**
+     * Constructor takes a MessageConsumer argument
+     *
+     * @param MessageConsumer
+     */
+    public TestMessageListener(MessageConsumer mc, DoneLatch dl) {
+        mConsumer = mc;
+        monitor = dl;
     }
-    if (message instanceof TextMessage) {
-      monitor.allDone();
+
+    /**
+     * Returns the list of messages received.
+     *
+     * @return ArrayList the list of Messages that have been received
+     */
+    public ArrayList getMessageArray() {
+        return messageArray;
     }
-  }
+
+    /**
+     * Clears the list of messages received.
+     *
+     */
+    public DoneLatch getLatch() {
+        return monitor;
+    }
+
+    /**
+     * Clears the list of messages received.
+     *
+     */
+    public void clearMessageArray() {
+        messageArray.clear();
+    }
+
+    /**
+     * Responds to incoming Messages. A TextMessage is the end of stream signal.
+     *
+     * @param Message
+     *          the message passed to the listener
+     */
+    public void onMessage(Message message) {
+        try {
+            TestUtil.logTrace(
+                    "MessageListener for " + mConsumer.toString() + " received message: " + message.toString());
+            messageArray.add(message);
+        } catch (Exception e) {
+            TestUtil.logErr("Error in MessageListener: " + e.toString(), e);
+        }
+        if (message instanceof TextMessage) {
+            monitor.allDone();
+        }
+    }
 }

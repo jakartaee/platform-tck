@@ -58,23 +58,21 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.srattributelistener40;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet extends GenericTCKServlet {
 
-  public void defaultMethodsTest(ServletRequest request,
-      ServletResponse response) throws ServletException, IOException {
+    public void defaultMethodsTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
-    pw.println("In ServletRequestAttributeListener40.TestServlet");
-    ServletTestUtil.printResult(pw, true);
-  }
+        PrintWriter pw = response.getWriter();
+        pw.println("In ServletRequestAttributeListener40.TestServlet");
+        ServletTestUtil.printResult(pw, true);
+    }
 }

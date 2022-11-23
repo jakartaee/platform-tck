@@ -19,5 +19,4 @@ package com.sun.ts.tests.ejb32.lite.timer.schedule.auto.attr.stateless;
 import jakarta.ejb.Stateless;
 
 @Stateless
-public class ScheduleBean extends ScheduleBeanBase3 {
-}
+public class ScheduleBean extends ScheduleBeanBase3 {}

@@ -16,50 +16,48 @@
 
 package com.sun.ts.tests.jsp.spec.el.language;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.el.ELContext;
 import jakarta.el.MethodExpression;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class MethodStringLiteralTag extends SimpleTagSupport {
 
-  private static final String EXPECTED_VALUE = "literal";
+    private static final String EXPECTED_VALUE = "literal";
 
-  private MethodExpression mexp;
+    private MethodExpression mexp;
 
-  public void setLiteralMethExpr(MethodExpression mexp) {
-    this.mexp = mexp;
-  }
-
-  public void doTag() throws JspException, IOException {
-
-    JspWriter out = getJspContext().getOut();
-    ELContext elContext = getJspContext().getELContext();
-
-    try {
-      Object result = mexp.invoke(elContext, null);
-      if (!(result instanceof String)) {
-        out.println("Test FAILED.  Return value is not a String:\n");
-        out.println(result.getClass() + "\n");
-        return;
-      }
-      String resultStr = (String) result;
-      if (!(resultStr.equals(EXPECTED_VALUE))) {
-        out.println("Test FAILED.  Incorrect return value.\n");
-        out.println("Expected value = " + EXPECTED_VALUE + "\n");
-        out.println("Value returned = " + resultStr + "\n");
-        return;
-      }
-      out.println("Test PASSED.");
-
-    } catch (Throwable t) {
-      out.println("Test FAILED: Exception in tag handler\n");
-      JspTestUtil.handleThrowable(t, out, "MethodStringLiteralTag");
+    public void setLiteralMethExpr(MethodExpression mexp) {
+        this.mexp = mexp;
     }
-  }
+
+    public void doTag() throws JspException, IOException {
+
+        JspWriter out = getJspContext().getOut();
+        ELContext elContext = getJspContext().getELContext();
+
+        try {
+            Object result = mexp.invoke(elContext, null);
+            if (!(result instanceof String)) {
+                out.println("Test FAILED.  Return value is not a String:\n");
+                out.println(result.getClass() + "\n");
+                return;
+            }
+            String resultStr = (String) result;
+            if (!(resultStr.equals(EXPECTED_VALUE))) {
+                out.println("Test FAILED.  Incorrect return value.\n");
+                out.println("Expected value = " + EXPECTED_VALUE + "\n");
+                out.println("Value returned = " + resultStr + "\n");
+                return;
+            }
+            out.println("Test PASSED.");
+
+        } catch (Throwable t) {
+            out.println("Test FAILED: Exception in tag handler\n");
+            JspTestUtil.handleThrowable(t, out, "MethodStringLiteralTag");
+        }
+    }
 }

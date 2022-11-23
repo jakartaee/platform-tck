@@ -24,61 +24,59 @@ package com.sun.ts.tests.el.common.util;
 // and the value to which the variable is to be set.
 public class NameValuePair {
 
-  private final String name;
+    private final String name;
 
-  private final Object value;
+    private final Object value;
 
-  public NameValuePair(String name, Object value) {
-    this.name = name;
-    this.value = value;
-  }
+    public NameValuePair(String name, Object value) {
+        this.name = name;
+        this.value = value;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public Object getValue() {
-    return value;
-  }
+    public Object getValue() {
+        return value;
+    }
 
-  /*
-   * Builds a NameValuePair[] with values assigned to Tag Names A and B.
-   */
-  public static NameValuePair[] buildNameValuePair(Object a, Object b) {
+    /*
+     * Builds a NameValuePair[] with values assigned to Tag Names A and B.
+     */
+    public static NameValuePair[] buildNameValuePair(Object a, Object b) {
 
-    NameValuePair value1 = new NameValuePair("A", a);
-    NameValuePair value2 = new NameValuePair("B", b);
+        NameValuePair value1 = new NameValuePair("A", a);
+        NameValuePair value2 = new NameValuePair("B", b);
 
-    NameValuePair values[] = { value1, value2 };
+        NameValuePair values[] = {value1, value2};
 
-    return values;
-  }
+        return values;
+    }
 
-  /*
-   * Builds a NameValuePair[] with a value assigned to Tag Name A.
-   */
-  public static NameValuePair[] buildUnaryNameValue(Object a) {
+    /*
+     * Builds a NameValuePair[] with a value assigned to Tag Name A.
+     */
+    public static NameValuePair[] buildUnaryNameValue(Object a) {
 
-    NameValuePair value1 = new NameValuePair("A", a);
+        NameValuePair value1 = new NameValuePair("A", a);
 
-    NameValuePair value[] = { value1 };
+        NameValuePair value[] = {value1};
 
-    return value;
-  }
+        return value;
+    }
 
-  /*
-   * Builds a NameValuePair[] with values assigned to Tag Names A, B, and C.
-   */
-  public static NameValuePair[] buildConditionalNameValue(Object a, Object b,
-      Object c) {
+    /*
+     * Builds a NameValuePair[] with values assigned to Tag Names A, B, and C.
+     */
+    public static NameValuePair[] buildConditionalNameValue(Object a, Object b, Object c) {
 
-    NameValuePair value1 = new NameValuePair("A", a);
-    NameValuePair value2 = new NameValuePair("B", b);
-    NameValuePair value3 = new NameValuePair("C", c);
+        NameValuePair value1 = new NameValuePair("A", a);
+        NameValuePair value2 = new NameValuePair("B", b);
+        NameValuePair value3 = new NameValuePair("C", c);
 
-    NameValuePair values[] = { value1, value2, value3 };
+        NameValuePair values[] = {value1, value2, value3};
 
-    return values;
-  }
-
+        return values;
+    }
 }

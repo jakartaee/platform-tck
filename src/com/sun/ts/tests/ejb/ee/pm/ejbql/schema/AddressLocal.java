@@ -20,34 +20,32 @@
 
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
+import jakarta.ejb.EJBLocalObject;
 import java.util.Collection;
 
-import jakarta.ejb.EJBLocalObject;
-
 public interface AddressLocal extends EJBLocalObject {
-  // Methods for AddressLocal CMP fields
-  public String getId();
+    // Methods for AddressLocal CMP fields
+    public String getId();
 
-  public String getStreet();
+    public String getStreet();
 
-  public void setStreet(String v);
+    public void setStreet(String v);
 
-  public String getCity();
+    public String getCity();
 
-  public void setCity(String v);
+    public void setCity(String v);
 
-  public String getState();
+    public String getState();
 
-  public void setState(String v);
+    public void setState(String v);
 
-  public String getZip();
+    public String getZip();
 
-  public void setZip(String v);
+    public void setZip(String v);
 
-  // Methods for AddressLocal CMR fields
+    // Methods for AddressLocal CMR fields
 
-  public Collection getPhones();
+    public Collection getPhones();
 
-  public void setPhones(Collection v);
-
+    public void setPhones(Collection v);
 }

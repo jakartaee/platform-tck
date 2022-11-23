@@ -17,7 +17,6 @@
 package com.sun.ts.tests.common.connector.whitebox;
 
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
-
 import jakarta.resource.spi.work.WorkContextLifecycleListener;
 
 /*
@@ -29,42 +28,37 @@ import jakarta.resource.spi.work.WorkContextLifecycleListener;
  * to increment each count.
  *
  */
-public class TSSICWithListener extends TSSecurityContext
-    implements WorkContextLifecycleListener {
+public class TSSICWithListener extends TSSecurityContext implements WorkContextLifecycleListener {
 
-  private Counter count = new Counter();
+    private Counter count = new Counter();
 
-  public TSSICWithListener(String userName, String password,
-      String principalName, boolean translationRequired) {
-    super(userName, password, principalName, translationRequired);
-    debug("TSSICWithListener:  constructor");
-  }
+    public TSSICWithListener(String userName, String password, String principalName, boolean translationRequired) {
+        super(userName, password, principalName, translationRequired);
+        debug("TSSICWithListener:  constructor");
+    }
 
-  @Override
-  public void contextSetupComplete() {
-    debug("TSSICWithListener.contextSetupComplete() " + this.toString());
+    @Override
+    public void contextSetupComplete() {
+        debug("TSSICWithListener.contextSetupComplete() " + this.toString());
 
-    String str = "notifications test: contextSetupComplete(): count="
-        + count.getCount(Counter.Action.INCREMENT);
-    ConnectorStatus.getConnectorStatus().logState(str);
-    debug(str);
-  }
+        String str = "notifications test: contextSetupComplete(): count=" + count.getCount(Counter.Action.INCREMENT);
+        ConnectorStatus.getConnectorStatus().logState(str);
+        debug(str);
+    }
 
-  @Override
-  public void contextSetupFailed(String string) {
-    debug("TSSICWithListener.contextSetupFailed with following: " + string);
+    @Override
+    public void contextSetupFailed(String string) {
+        debug("TSSICWithListener.contextSetupFailed with following: " + string);
 
-    String str = "notifications test: contextSetupFailed(): count="
-        + count.getCount(Counter.Action.INCREMENT);
-    ConnectorStatus.getConnectorStatus().logState(str);
+        String str = "notifications test: contextSetupFailed(): count=" + count.getCount(Counter.Action.INCREMENT);
+        ConnectorStatus.getConnectorStatus().logState(str);
 
-    str = "contextSetupFailed() due to errorCode=" + string;
-    ConnectorStatus.getConnectorStatus().logState(str);
-    debug(str);
-  }
+        str = "contextSetupFailed() due to errorCode=" + string;
+        ConnectorStatus.getConnectorStatus().logState(str);
+        debug(str);
+    }
 
-  public void debug(String message) {
-    Debug.trace(message);
-  }
-
+    public void debug(String message) {
+        Debug.trace(message);
+    }
 }

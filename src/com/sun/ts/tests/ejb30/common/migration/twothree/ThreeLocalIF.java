@@ -20,5 +20,4 @@
 
 package com.sun.ts.tests.ejb30.common.migration.twothree;
 
-public interface ThreeLocalIF extends ThreeIF {
-}
+public interface ThreeLocalIF extends ThreeIF {}

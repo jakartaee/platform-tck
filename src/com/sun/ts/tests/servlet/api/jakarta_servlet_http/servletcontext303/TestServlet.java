@@ -19,95 +19,91 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.servletcontext303;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet extends HttpTCKServlet {
 
-  public void negativeaddHListenerClassTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    Boolean passed = false;
+    public void negativeaddHListenerClassTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        Boolean passed = false;
 
-    try {
-      getServletContext().addListener(
-          com.sun.ts.tests.servlet.api.common.sharedfiles.HSessionListener.class);
-    } catch (Exception exf) {
-      if (exf instanceof java.lang.IllegalStateException) {
-        passed = true;
-        pw.print("Expected IllegalStateException is thrown: ");
-      } else {
-        pw.print("Unexpected Exception type is thrown: ");
-      }
-      exf.printStackTrace(pw);
-      ServletTestUtil.printResult(pw, passed);
+        try {
+            getServletContext().addListener(com.sun.ts.tests.servlet.api.common.sharedfiles.HSessionListener.class);
+        } catch (Exception exf) {
+            if (exf instanceof java.lang.IllegalStateException) {
+                passed = true;
+                pw.print("Expected IllegalStateException is thrown: ");
+            } else {
+                pw.print("Unexpected Exception type is thrown: ");
+            }
+            exf.printStackTrace(pw);
+            ServletTestUtil.printResult(pw, passed);
+        }
     }
-  }
 
-  public void negativeaddHListenerStringTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    Boolean passed = false;
+    public void negativeaddHListenerStringTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        Boolean passed = false;
 
-    try {
-      getServletContext().addListener(
-          "com.sun.ts.tests.servlet.api.common.sharedfiles.HSessionListener");
-    } catch (Exception exf) {
-      if (exf instanceof java.lang.IllegalStateException) {
-        passed = true;
-        pw.print("Expected IllegalStateException is thrown: ");
-      } else {
-        pw.print("Unexpected Exception type is thrown: ");
-      }
-      exf.printStackTrace(pw);
-      ServletTestUtil.printResult(pw, passed);
+        try {
+            getServletContext().addListener("com.sun.ts.tests.servlet.api.common.sharedfiles.HSessionListener");
+        } catch (Exception exf) {
+            if (exf instanceof java.lang.IllegalStateException) {
+                passed = true;
+                pw.print("Expected IllegalStateException is thrown: ");
+            } else {
+                pw.print("Unexpected Exception type is thrown: ");
+            }
+            exf.printStackTrace(pw);
+            ServletTestUtil.printResult(pw, passed);
+        }
     }
-  }
 
-  public void negativeaddHAListenerClassTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    Boolean passed = false;
+    public void negativeaddHAListenerClassTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        Boolean passed = false;
 
-    try {
-      getServletContext().addListener(
-          com.sun.ts.tests.servlet.api.common.sharedfiles.HSessionAttributeListener.class);
-    } catch (Exception exf) {
-      if (exf instanceof java.lang.IllegalStateException) {
-        passed = true;
-        pw.print("Expected IllegalStateException is thrown: ");
-      } else {
-        pw.print("Unexpected Exception type is thrown: ");
-      }
-      exf.printStackTrace(pw);
-      ServletTestUtil.printResult(pw, passed);
+        try {
+            getServletContext()
+                    .addListener(com.sun.ts.tests.servlet.api.common.sharedfiles.HSessionAttributeListener.class);
+        } catch (Exception exf) {
+            if (exf instanceof java.lang.IllegalStateException) {
+                passed = true;
+                pw.print("Expected IllegalStateException is thrown: ");
+            } else {
+                pw.print("Unexpected Exception type is thrown: ");
+            }
+            exf.printStackTrace(pw);
+            ServletTestUtil.printResult(pw, passed);
+        }
     }
-  }
 
-  public void negativeaddHAListenerStringTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    Boolean passed = false;
+    public void negativeaddHAListenerStringTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        Boolean passed = false;
 
-    try {
-      getServletContext().addListener(
-          "com.sun.ts.tests.servlet.api.common.sharedfiles.HSessionAttributeListener");
-    } catch (Exception exf) {
-      if (exf instanceof java.lang.IllegalStateException) {
-        passed = true;
-        pw.print("Expected IllegalStateException is thrown: ");
-      } else {
-        pw.print("Unexpected Exception type is thrown: ");
-      }
-      exf.printStackTrace(pw);
-      ServletTestUtil.printResult(pw, passed);
+        try {
+            getServletContext()
+                    .addListener("com.sun.ts.tests.servlet.api.common.sharedfiles.HSessionAttributeListener");
+        } catch (Exception exf) {
+            if (exf instanceof java.lang.IllegalStateException) {
+                passed = true;
+                pw.print("Expected IllegalStateException is thrown: ");
+            } else {
+                pw.print("Unexpected Exception type is thrown: ");
+            }
+            exf.printStackTrace(pw);
+            ServletTestUtil.printResult(pw, passed);
+        }
     }
-  }
 }

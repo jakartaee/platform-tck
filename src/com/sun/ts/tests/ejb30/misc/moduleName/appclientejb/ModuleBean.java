@@ -25,7 +25,6 @@ import static com.sun.ts.tests.ejb30.common.helper.ServiceLocator.lookupShouldFa
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
@@ -33,53 +32,46 @@ import jakarta.ejb.Singleton;
 
 @Singleton
 public class ModuleBean extends AppResBeanBase implements AppResRemoteIF {
-  @EJB
-  private AppResRemoteIF moduleBean;
+    @EJB
+    private AppResRemoteIF moduleBean;
 
-  @Resource
-  private ModuleMBean moduleMBean;
+    @Resource
+    private ModuleMBean moduleMBean;
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    lookupShouldFail(
-        "java:app/ejb3_misc_moduleName_appclientejb_client/ModuleMBean",
-        postConstructRecords);
-    lookupShouldFail(
-        "java:app/ejb3_misc_moduleName_appclientejb_ejb/ModuleMBean",
-        postConstructRecords);
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        lookupShouldFail("java:app/ejb3_misc_moduleName_appclientejb_client/ModuleMBean", postConstructRecords);
+        lookupShouldFail("java:app/ejb3_misc_moduleName_appclientejb_ejb/ModuleMBean", postConstructRecords);
 
-    lookupShouldFail(
-        "java:app/ejb3_misc_moduleName_appclientejb_client/ModuleBean",
-        postConstructRecords);
-    lookupShouldFail(
-        "java:app/ejb3_misc_moduleName_appclientejb_ejb/ModuleBean",
-        postConstructRecords);
-    lookupShouldFail(
-        "java:global/ejb3_misc_moduleName_appclientejb/ejb3_misc_moduleName_appclientejb_ejb/ModuleBean",
-        postConstructRecords);
+        lookupShouldFail("java:app/ejb3_misc_moduleName_appclientejb_client/ModuleBean", postConstructRecords);
+        lookupShouldFail("java:app/ejb3_misc_moduleName_appclientejb_ejb/ModuleBean", postConstructRecords);
+        lookupShouldFail(
+                "java:global/ejb3_misc_moduleName_appclientejb/ejb3_misc_moduleName_appclientejb_ejb/ModuleBean",
+                postConstructRecords);
 
-    Helper.getLogger().info(postConstructRecords.toString());
+        Helper.getLogger().info(postConstructRecords.toString());
 
-    Helper.assertNotEquals(null, null, moduleBean, postConstructRecords);
-    Helper.assertNotEquals(null, null, moduleMBean, postConstructRecords);
+        Helper.assertNotEquals(null, null, moduleBean, postConstructRecords);
+        Helper.assertNotEquals(null, null, moduleMBean, postConstructRecords);
 
-    AppResRemoteIF lookupResult = null;
-    String[] names = { "java:module/ModuleMBean", "java:module/ModuleBean",
-        "java:app/renamed_appclientejb_ejb/ModuleMBean",
-        "java:app/renamed_appclientejb_ejb/ModuleBean",
-        "java:global/ejb3_misc_moduleName_appclientejb/renamed_appclientejb_ejb/ModuleBean" };
-    for (String name : names) {
-      postConstructRecords.append("About to look up " + name);
-      lookupResult = (AppResRemoteIF) lookupNoTry(name);
-      Helper.assertNotEquals(null, null, lookupResult, postConstructRecords);
-      lookupResult = null;
+        AppResRemoteIF lookupResult = null;
+        String[] names = {
+            "java:module/ModuleMBean",
+            "java:module/ModuleBean",
+            "java:app/renamed_appclientejb_ejb/ModuleMBean",
+            "java:app/renamed_appclientejb_ejb/ModuleBean",
+            "java:global/ejb3_misc_moduleName_appclientejb/renamed_appclientejb_ejb/ModuleBean"
+        };
+        for (String name : names) {
+            postConstructRecords.append("About to look up " + name);
+            lookupResult = (AppResRemoteIF) lookupNoTry(name);
+            Helper.assertNotEquals(null, null, lookupResult, postConstructRecords);
+            lookupResult = null;
+        }
+
+        String lookup = "java:module/ModuleName";
+        String moduleName = (String) lookupNoTry(lookup);
+        Helper.assertEquals("Check " + lookup, "renamed_appclientejb_ejb", moduleName, postConstructRecords);
     }
-
-    String lookup = "java:module/ModuleName";
-    String moduleName = (String) lookupNoTry(lookup);
-    Helper.assertEquals("Check " + lookup, "renamed_appclientejb_ejb",
-        moduleName, postConstructRecords);
-  }
-
 }

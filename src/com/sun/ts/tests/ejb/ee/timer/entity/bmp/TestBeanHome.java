@@ -20,20 +20,18 @@
 
 package com.sun.ts.tests.ejb.ee.timer.entity.bmp;
 
-import java.rmi.RemoteException;
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
 public interface TestBeanHome extends EJBHome {
-  public TestBean create(Properties props, int id, String coffeName,
-      float price) throws RemoteException, CreateException;
+    public TestBean create(Properties props, int id, String coffeName, float price)
+            throws RemoteException, CreateException;
 
-  public TestBean create(Properties props, int id, String coffeName,
-      float price, int flag) throws RemoteException, CreateException;
+    public TestBean create(Properties props, int id, String coffeName, float price, int flag)
+            throws RemoteException, CreateException;
 
-  public TestBean findByPrimaryKey(Integer key)
-      throws RemoteException, FinderException;
+    public TestBean findByPrimaryKey(Integer key) throws RemoteException, FinderException;
 }

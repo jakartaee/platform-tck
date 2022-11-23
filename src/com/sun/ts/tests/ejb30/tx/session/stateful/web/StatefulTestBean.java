@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.tx.session.stateful.web;
 
 import com.sun.ts.tests.ejb30.tx.common.web.LocalIF;
 import com.sun.ts.tests.ejb30.tx.common.web.RemoteIF;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
@@ -33,40 +32,35 @@ import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 
 @Stateful(name = "StatefulTestBean")
-@Remote({ RemoteIF.class })
-@Local({ LocalIF.class })
-
+@Remote({RemoteIF.class})
+@Local({LocalIF.class})
 public class StatefulTestBean implements LocalIF {
-  public StatefulTestBean() {
-  }
+    public StatefulTestBean() {}
 
-  @Remove
-  public void remove() {
-  }
+    @Remove
+    public void remove() {}
 
-  @Resource(name = "sessionContext")
-  private SessionContext sessionContext;
+    @Resource(name = "sessionContext")
+    private SessionContext sessionContext;
 
-  protected SessionContext getSessionContext() {
-    return sessionContext;
-  }
+    protected SessionContext getSessionContext() {
+        return sessionContext;
+    }
 
-  public void required() {
-    getSessionContext().setRollbackOnly();
-  }
+    public void required() {
+        getSessionContext().setRollbackOnly();
+    }
 
-  @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-  public void requiresNew() {
-    getSessionContext().setRollbackOnly();
-  }
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public void requiresNew() {
+        getSessionContext().setRollbackOnly();
+    }
 
-  @TransactionAttribute(TransactionAttributeType.MANDATORY)
-  public void mandatory() {
-    getSessionContext().setRollbackOnly();
-  }
+    @TransactionAttribute(TransactionAttributeType.MANDATORY)
+    public void mandatory() {
+        getSessionContext().setRollbackOnly();
+    }
 
-  @TransactionAttribute(TransactionAttributeType.NEVER)
-  public void never() {
-  }
-
+    @TransactionAttribute(TransactionAttributeType.NEVER)
+    public void never() {}
 }

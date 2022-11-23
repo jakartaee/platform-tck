@@ -20,130 +20,122 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.entitycontexttest;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
 public class FastPathBean2 implements SessionBean {
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  public FastPathBean2() {
-  }
+    public FastPathBean2() {}
 
-  public void ejbCreate() throws CreateException {
-  }
+    public void ejbCreate() throws CreateException {}
 
-  public void setSessionContext(SessionContext sc) {
-    this.sctx = sc;
-  }
-
-  public void ejbRemove() {
-  }
-
-  public void ejbActivate() {
-  }
-
-  public void ejbPassivate() {
-  }
-
-  public String getIt(String envEntryName) {
-    String result = null;
-    TestBeanLocal testBeanLocal = null;
-    try {
-      testBeanLocal = getTestBeanLocal("FastPathBean2-getIt");
-      result = testBeanLocal.getIt(envEntryName);
-    } catch (CreateException e) {
-      result = TestUtil.printStackTraceToString(e);
-    } catch (NamingException e) {
-      result = TestUtil.printStackTraceToString(e);
-    } finally {
-      try {
-        if (testBeanLocal != null) {
-          testBeanLocal.remove();
-        }
-      } catch (Exception ignore) {
-      }
+    public void setSessionContext(SessionContext sc) {
+        this.sctx = sc;
     }
-    return result;
-  }
 
-  public String setIt(String envEntryName) {
-    String result = null;
-    TestBeanLocal testBeanLocal = null;
-    try {
-      testBeanLocal = getTestBeanLocal("FastPathBean2-setIt");
-      result = testBeanLocal.setIt(envEntryName);
-    } catch (CreateException e) {
-      result = TestUtil.printStackTraceToString(e);
-    } catch (NamingException e) {
-      result = TestUtil.printStackTraceToString(e);
-    } finally {
-      try {
-        if (testBeanLocal != null) {
-          testBeanLocal.remove();
+    public void ejbRemove() {}
+
+    public void ejbActivate() {}
+
+    public void ejbPassivate() {}
+
+    public String getIt(String envEntryName) {
+        String result = null;
+        TestBeanLocal testBeanLocal = null;
+        try {
+            testBeanLocal = getTestBeanLocal("FastPathBean2-getIt");
+            result = testBeanLocal.getIt(envEntryName);
+        } catch (CreateException e) {
+            result = TestUtil.printStackTraceToString(e);
+        } catch (NamingException e) {
+            result = TestUtil.printStackTraceToString(e);
+        } finally {
+            try {
+                if (testBeanLocal != null) {
+                    testBeanLocal.remove();
+                }
+            } catch (Exception ignore) {
+            }
         }
-      } catch (Exception ignore) {
-      }
+        return result;
     }
-    return result;
-  }
 
-  public String getCoffeeId(String coffeeId) {
-    String result = null;
-    TestBeanLocal testBeanLocal = null;
-    try {
-      testBeanLocal = getTestBeanLocal(coffeeId);
-      result = testBeanLocal.getId();
-    } catch (CreateException e) {
-      result = TestUtil.printStackTraceToString(e);
-    } catch (NamingException e) {
-      result = TestUtil.printStackTraceToString(e);
-    } finally {
-      try {
-        if (testBeanLocal != null) {
-          testBeanLocal.remove();
+    public String setIt(String envEntryName) {
+        String result = null;
+        TestBeanLocal testBeanLocal = null;
+        try {
+            testBeanLocal = getTestBeanLocal("FastPathBean2-setIt");
+            result = testBeanLocal.setIt(envEntryName);
+        } catch (CreateException e) {
+            result = TestUtil.printStackTraceToString(e);
+        } catch (NamingException e) {
+            result = TestUtil.printStackTraceToString(e);
+        } finally {
+            try {
+                if (testBeanLocal != null) {
+                    testBeanLocal.remove();
+                }
+            } catch (Exception ignore) {
+            }
         }
-      } catch (Exception ignore) {
-      }
+        return result;
     }
-    return result;
-  }
 
-  public String setCoffeeBrand(String oldBrand, String newBrand) {
-    String result = null;
-    TestBeanLocal testBeanLocal = null;
-    try {
-      testBeanLocal = getTestBeanLocal(oldBrand);
-      testBeanLocal.setBrandName(newBrand);
-      result = testBeanLocal.getBrandName();
-    } catch (CreateException e) {
-      result = TestUtil.printStackTraceToString(e);
-    } catch (NamingException e) {
-      result = TestUtil.printStackTraceToString(e);
-    } finally {
-      try {
-        if (testBeanLocal != null) {
-          testBeanLocal.remove();
+    public String getCoffeeId(String coffeeId) {
+        String result = null;
+        TestBeanLocal testBeanLocal = null;
+        try {
+            testBeanLocal = getTestBeanLocal(coffeeId);
+            result = testBeanLocal.getId();
+        } catch (CreateException e) {
+            result = TestUtil.printStackTraceToString(e);
+        } catch (NamingException e) {
+            result = TestUtil.printStackTraceToString(e);
+        } finally {
+            try {
+                if (testBeanLocal != null) {
+                    testBeanLocal.remove();
+                }
+            } catch (Exception ignore) {
+            }
         }
-      } catch (Exception ignore) {
-      }
+        return result;
     }
-    return result;
-  }
 
-  private TestBeanLocal getTestBeanLocal(String coffeeId)
-      throws NamingException, CreateException {
-    TestBeanLocalHome testBeanLocalHome = null;
-    TestBeanLocal testBeanLocal = null;
-    InitialContext ic = new InitialContext();
-    Object obj = ic.lookup("java:comp/env/ejb/TestBean");
-    testBeanLocalHome = (TestBeanLocalHome) (obj);
-    testBeanLocal = testBeanLocalHome.create(coffeeId, coffeeId);
-    return testBeanLocal;
-  }
+    public String setCoffeeBrand(String oldBrand, String newBrand) {
+        String result = null;
+        TestBeanLocal testBeanLocal = null;
+        try {
+            testBeanLocal = getTestBeanLocal(oldBrand);
+            testBeanLocal.setBrandName(newBrand);
+            result = testBeanLocal.getBrandName();
+        } catch (CreateException e) {
+            result = TestUtil.printStackTraceToString(e);
+        } catch (NamingException e) {
+            result = TestUtil.printStackTraceToString(e);
+        } finally {
+            try {
+                if (testBeanLocal != null) {
+                    testBeanLocal.remove();
+                }
+            } catch (Exception ignore) {
+            }
+        }
+        return result;
+    }
+
+    private TestBeanLocal getTestBeanLocal(String coffeeId) throws NamingException, CreateException {
+        TestBeanLocalHome testBeanLocalHome = null;
+        TestBeanLocal testBeanLocal = null;
+        InitialContext ic = new InitialContext();
+        Object obj = ic.lookup("java:comp/env/ejb/TestBean");
+        testBeanLocalHome = (TestBeanLocalHome) (obj);
+        testBeanLocal = testBeanLocalHome.create(coffeeId, coffeeId);
+        return testBeanLocal;
+    }
 }

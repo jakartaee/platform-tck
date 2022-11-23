@@ -21,11 +21,11 @@
 package com.sun.ts.tests.jaxws.wsa.common;
 
 public interface AddressingConstants {
-  public static final String CLIENT_INBOUND = "client.inbound";
+    public static final String CLIENT_INBOUND = "client.inbound";
 
-  public static final String CLIENT_OUTBOUND = "client.outbound";
+    public static final String CLIENT_OUTBOUND = "client.outbound";
 
-  public static final String SERVER_INBOUND = "server.inbound";
+    public static final String SERVER_INBOUND = "server.inbound";
 
-  public static final String SERVER_OUTBOUND = "server.outbound";
+    public static final String SERVER_OUTBOUND = "server.outbound";
 }

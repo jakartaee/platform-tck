@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb30.bb.mdb.callback.listener.annotated;
 
 import com.sun.ts.tests.ejb30.common.callback.MDBCallbackBeanBase;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.ActivationConfigProperty;
 import jakarta.ejb.EJBContext;
@@ -32,30 +31,31 @@ import jakarta.jms.MessageListener;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
 
-@MessageDriven(activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue") })
-@Interceptors({ MDBCallbackListener.class })
-public class CallbackBean extends MDBCallbackBeanBase
-    implements MessageListener {
-  @Resource(name = "mdc")
-  private MessageDrivenContext mdc;
+@MessageDriven(
+        activationConfig = {
+            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
+        })
+@Interceptors({MDBCallbackListener.class})
+public class CallbackBean extends MDBCallbackBeanBase implements MessageListener {
+    @Resource(name = "mdc")
+    private MessageDrivenContext mdc;
 
-  @Resource(name = "qFactory")
-  private QueueConnectionFactory qFactory;
+    @Resource(name = "qFactory")
+    private QueueConnectionFactory qFactory;
 
-  @Resource(name = "replyQueue")
-  private Queue replyQueue;
+    @Resource(name = "replyQueue")
+    private Queue replyQueue;
 
-  public CallbackBean() {
-    super();
-  }
+    public CallbackBean() {
+        super();
+    }
 
-  public EJBContext getEJBContext() {
-    return this.mdc;
-  }
+    public EJBContext getEJBContext() {
+        return this.mdc;
+    }
 
-  // ================= callback methods ====================================
+    // ================= callback methods ====================================
 
-  // ================== business methods ====================================
+    // ================== business methods ====================================
 
 }

@@ -20,76 +20,73 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.mdb.ejblink.casesens;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.jms.Queue;
+import java.util.Properties;
 
 public class Client extends com.sun.ts.tests.jms.commonee.Client {
 
-  private Queue mdbQ;
+    private Queue mdbQ;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /**
-   * @class.setup_props:
-   * 
-   *                     jms_timeout; user; password;
-   *
-   */
-  public void setup(String[] args, Properties props) throws Fault {
-
-    try {
-      this.props = props;
-      super.setup(args, props);
-      mdbQ = (Queue) context.lookup("java:comp/env/jms/MDBTest");
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] Setup failed!", e);
-      throw new Fault("Setup Failed!", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /**
-   * @testName: testEjblinkCaseSensitivity
-   *
-   * @assertion_ids: EJB:SPEC:872
-   *
-   * @test_Strategy: Have two Stateless Beans whose ejb-name's differ only by
-   *                 case and whose identity is defined by a String environment
-   *                 entry ('myName').
-   *
-   *                 A message-driven queue bean references these two beans
-   *                 using ejb-link elements. Check that MDB can lookup the two
-   *                 beans and check each bean identity based on their value for
-   *                 the 'myName' environment entry. Check that this identity
-   *                 correspond to the references specified in the DD (validate
-   *                 that the EJB references were resolved correctly).
-   *
-   */
-  public void testEjblinkCaseSensitivity() throws Fault {
+    /**
+     * @class.setup_props:
+     *
+     *                     jms_timeout; user; password;
+     *
+     */
+    public void setup(String[] args, Properties props) throws Fault {
 
-    String testCase = "testEjblinkCaseSensitivity";
-    int testNum = 10;
-
-    try {
-      qSender = session.createSender(mdbQ);
-      createTestMessage(testCase, testNum);
-      qSender.send(msg);
-
-      if (!checkOnResponse(testCase)) {
-        TestUtil.logErr("[Client] " + testCase + " failed!");
-        throw new Exception(testCase + " failed!");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] " + testCase + " failed!", e);
-      throw new Fault(testCase + " failed!", e);
+        try {
+            this.props = props;
+            super.setup(args, props);
+            mdbQ = (Queue) context.lookup("java:comp/env/jms/MDBTest");
+        } catch (Exception e) {
+            TestUtil.logErr("[Client] Setup failed!", e);
+            throw new Fault("Setup Failed!", e);
+        }
     }
-  }
 
+    /**
+     * @testName: testEjblinkCaseSensitivity
+     *
+     * @assertion_ids: EJB:SPEC:872
+     *
+     * @test_Strategy: Have two Stateless Beans whose ejb-name's differ only by
+     *                 case and whose identity is defined by a String environment
+     *                 entry ('myName').
+     *
+     *                 A message-driven queue bean references these two beans
+     *                 using ejb-link elements. Check that MDB can lookup the two
+     *                 beans and check each bean identity based on their value for
+     *                 the 'myName' environment entry. Check that this identity
+     *                 correspond to the references specified in the DD (validate
+     *                 that the EJB references were resolved correctly).
+     *
+     */
+    public void testEjblinkCaseSensitivity() throws Fault {
+
+        String testCase = "testEjblinkCaseSensitivity";
+        int testNum = 10;
+
+        try {
+            qSender = session.createSender(mdbQ);
+            createTestMessage(testCase, testNum);
+            qSender.send(msg);
+
+            if (!checkOnResponse(testCase)) {
+                TestUtil.logErr("[Client] " + testCase + " failed!");
+                throw new Exception(testCase + " failed!");
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("[Client] " + testCase + " failed!", e);
+            throw new Fault(testCase + " failed!", e);
+        }
+    }
 }

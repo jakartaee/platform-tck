@@ -17,31 +17,28 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.client;
 
-import java.io.InputStream;
-
 import com.sun.ts.tests.websocket.common.client.ClientEndpoint;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.MessageHandler;
+import java.io.InputStream;
 
-public class InputStreamMessageHandler
-    implements MessageHandler.Whole<InputStream> {
+public class InputStreamMessageHandler implements MessageHandler.Whole<InputStream> {
 
-  ClientEndpoint<String> endpoint;
+    ClientEndpoint<String> endpoint;
 
-  public static final String HANDLER_SAYS = "InputStreamMessageHandler says: ";
+    public static final String HANDLER_SAYS = "InputStreamMessageHandler says: ";
 
-  public InputStreamMessageHandler(ClientEndpoint<String> endpoint) {
-    super();
-    this.endpoint = endpoint;
-  }
-
-  @Override
-  public void onMessage(InputStream message) {
-    try {
-      endpoint.onMessage(HANDLER_SAYS + IOUtil.readFromStream(message));
-    } catch (Exception e) {
-      throw new RuntimeException(e);
+    public InputStreamMessageHandler(ClientEndpoint<String> endpoint) {
+        super();
+        this.endpoint = endpoint;
     }
-  }
+
+    @Override
+    public void onMessage(InputStream message) {
+        try {
+            endpoint.onMessage(HANDLER_SAYS + IOUtil.readFromStream(message));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

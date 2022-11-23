@@ -23,65 +23,64 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.migration.threetwo.annotated;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.migration.threetwo.ClientBase;
 import com.sun.ts.tests.ejb30.common.migration.threetwo.ThreeTestIF;
-
 import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
-  @EJB
-  private static ThreeTestIF threeTestBean;
+    @EJB
+    private static ThreeTestIF threeTestBean;
 
-  @Override
-  protected ThreeTestIF getTestBean() {
-    return threeTestBean;
-  }
+    @Override
+    protected ThreeTestIF getTestBean() {
+        return threeTestBean;
+    }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  @Override
-  public void cleanup() throws Fault {
-    removeBeans();
-  }
+    @Override
+    public void cleanup() throws Fault {
+        removeBeans();
+    }
 
-  //////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////
 
-  /*
-   * @testName: callRemoteTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: callRemoteTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: callLocalTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: callLocalTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: callRemoteSameTxContextTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: callRemoteSameTxContextTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
-  /*
-   * @testName: callLocalSameTxContextTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
+    /*
+     * @testName: callLocalSameTxContextTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     *
+     */
 
 }

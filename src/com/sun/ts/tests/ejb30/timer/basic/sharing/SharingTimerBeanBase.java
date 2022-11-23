@@ -19,27 +19,23 @@
  */
 package com.sun.ts.tests.ejb30.timer.basic.sharing;
 
-import java.util.Collection;
-
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
-
 import jakarta.ejb.TimedObject;
 import jakarta.ejb.Timer;
+import java.util.Collection;
 
-abstract public class SharingTimerBeanBase
-    extends TimerBeanBaseWithoutTimeOutMethod implements TimerIF, TimedObject {
+public abstract class SharingTimerBeanBase extends TimerBeanBaseWithoutTimeOutMethod implements TimerIF, TimedObject {
 
-  public void ejbTimeout(Timer timer) {
-    timeout(timer);
-  }
-
-  public String accessTimers() throws TestFailedException {
-    Collection<Timer> timers = timerService.getTimers();
-    if (timers.size() == 1) {
-      return "Timer in bean class: " + this + "\n";
+    public void ejbTimeout(Timer timer) {
+        timeout(timer);
     }
-    throw new TestFailedException("Expecting 1 timer, but actual "
-        + timers.size() + ", bean class: " + this);
-  }
+
+    public String accessTimers() throws TestFailedException {
+        Collection<Timer> timers = timerService.getTimers();
+        if (timers.size() == 1) {
+            return "Timer in bean class: " + this + "\n";
+        }
+        throw new TestFailedException("Expecting 1 timer, but actual " + timers.size() + ", bean class: " + this);
+    }
 }

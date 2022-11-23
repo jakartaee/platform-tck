@@ -20,40 +20,40 @@ import com.sun.ts.tests.ejb30.bb.async.common.descriptor.DescriptorClientBase;
 
 public class Client extends DescriptorClientBase {
 
-  /*
-   * @testName: allViews
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: localViews
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: remoteViews
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: allParams
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: noParams
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: intParams
-   * 
-   * @test_Strategy:
-   */
-  /*
-   * @testName: intParamsLocalViews
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: allViews
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: localViews
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: remoteViews
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: allParams
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: noParams
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: intParams
+     *
+     * @test_Strategy:
+     */
+    /*
+     * @testName: intParamsLocalViews
+     *
+     * @test_Strategy:
+     */
 
 }

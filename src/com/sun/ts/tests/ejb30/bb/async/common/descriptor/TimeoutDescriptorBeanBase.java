@@ -18,15 +18,14 @@ package com.sun.ts.tests.ejb30.bb.async.common.descriptor;
 
 import static com.sun.ts.tests.ejb30.bb.async.common.descriptor.DescriptorIF.EXCEPTION_MESSAGE;
 
-import java.util.concurrent.TimeUnit;
-
 import jakarta.ejb.AccessTimeout;
+import java.util.concurrent.TimeUnit;
 
 public class TimeoutDescriptorBeanBase {
 
-  // declared as async method in ejb-jar.xml
-  @AccessTimeout(value = 1, unit = TimeUnit.DAYS)
-  public void voidRuntimeException() {
-    throw new RuntimeException(EXCEPTION_MESSAGE);
-  }
+    // declared as async method in ejb-jar.xml
+    @AccessTimeout(value = 1, unit = TimeUnit.DAYS)
+    public void voidRuntimeException() {
+        throw new RuntimeException(EXCEPTION_MESSAGE);
+    }
 }

@@ -20,22 +20,19 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.dofilter;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.servlet.common.servlets.GenericTCKServlet;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
 
 public class TestServlet extends GenericTCKServlet {
 
-  public void wrapResponseTest(ServletRequest request, ServletResponse response)
-      throws ServletException, IOException {
-    String path = "/forward/ForwardedServlet";
-    RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-    rd.forward(request, response);
-  }
-
+    public void wrapResponseTest(ServletRequest request, ServletResponse response)
+            throws ServletException, IOException {
+        String path = "/forward/ForwardedServlet";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
+        rd.forward(request, response);
+    }
 }

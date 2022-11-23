@@ -18,11 +18,9 @@ package com.sun.ts.tests.ejb32.lite.timer.service.common;
 
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBase;
 import com.sun.ts.tests.ejb32.timer.service.common.TimerIF;
-
 import jakarta.ejb.Local;
 import jakarta.ejb.Singleton;
 
 @Singleton
 @Local(TimerIF.class)
-public class TimersSingletonBean extends TimerBeanBase {
-}
+public class TimersSingletonBean extends TimerBeanBase {}

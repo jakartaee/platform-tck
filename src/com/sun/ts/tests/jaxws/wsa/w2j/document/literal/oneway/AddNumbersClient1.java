@@ -20,31 +20,30 @@
 
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.oneway;
 
-import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.tests.jaxws.sharedclients.SOAPClient;
 
 public class AddNumbersClient1 extends SOAPClient {
 
-  public AddNumbersClient1(String webServerHost, int port, int mode)
-      throws EETest.Fault {
-    this(webServerHost, port, mode, null);
-  }
+    public AddNumbersClient1(String webServerHost, int port, int mode) throws EETest.Fault {
+        this(webServerHost, port, mode, null);
+    }
 
-  public AddNumbersClient1(String webServerHost, int port, int mode,
-      jakarta.xml.ws.Service webServiceRef) throws EETest.Fault {
-    super(webServerHost, port, mode);
-    stubContext.setNamespace("http://example.com/");
-    stubContext.setService("AddNumbersService");
-    stubContext.setPort("AddNumbersPort");
-    stubContext.setEndpointInterface(AddNumbersPortType.class);
-    stubContext.setWebServiceRef(webServiceRef);
-  }
+    public AddNumbersClient1(String webServerHost, int port, int mode, jakarta.xml.ws.Service webServiceRef)
+            throws EETest.Fault {
+        super(webServerHost, port, mode);
+        stubContext.setNamespace("http://example.com/");
+        stubContext.setService("AddNumbersService");
+        stubContext.setPort("AddNumbersPort");
+        stubContext.setEndpointInterface(AddNumbersPortType.class);
+        stubContext.setWebServiceRef(webServiceRef);
+    }
 
-  protected String getEndpointURLProperty() {
-    return "wsaw2jdlonewaytest.endpoint.1";
-  }
+    protected String getEndpointURLProperty() {
+        return "wsaw2jdlonewaytest.endpoint.1";
+    }
 
-  protected String getWSDLURLProperty() {
-    return "wsaw2jdlonewaytest.wsdlloc.1";
-  }
+    protected String getWSDLURLProperty() {
+        return "wsaw2jdlonewaytest.wsdlloc.1";
+    }
 }

@@ -20,52 +20,50 @@
 
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.requiredfalse;
 
-import com.sun.ts.tests.jaxws.wsa.common.WsaBaseSOAPHandler;
-import com.sun.ts.tests.jaxws.wsa.common.ActionNotSupportedException;
-import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 import com.sun.ts.lib.util.*;
+import com.sun.ts.tests.jaxws.wsa.common.ActionNotSupportedException;
+import com.sun.ts.tests.jaxws.wsa.common.WsaBaseSOAPHandler;
+import jakarta.xml.ws.handler.soap.SOAPMessageContext;
 
 public class ClientSOAPHandler extends WsaBaseSOAPHandler {
-  protected void checkInboundAction(SOAPMessageContext context, String oper,
-      String action) {
-    TestUtil.logMsg("ClientSOAPHandler.checkInboundAction: [operation=" + oper
-        + ", action=" + action + "]");
-    if (oper.equals("addNumbersResponse")) {
-      if (!action.equals(TestConstants.ADD_NUMBERS_OUT_ACTION)) {
-        throw new ActionNotSupportedException(action);
-      }
-    } else if (oper.equals("addNumbers2Response")) {
-      if (!action.equals(TestConstants.ADD_NUMBERS2_OUT_ACTION)) {
-        throw new ActionNotSupportedException(action);
-      }
-    } else if (oper.equals("addNumbers3Response")) {
-      if (!action.equals(TestConstants.ADD_NUMBERS3_OUT_ACTION)) {
-        throw new ActionNotSupportedException(action);
-      }
-    } else if (oper.equals("addNumbers4Response")) {
-      if (!action.equals(TestConstants.ADD_NUMBERS4_OUT_ACTION)) {
-        throw new ActionNotSupportedException(action);
-      }
-    } else if (oper.equals("addNumbers5Response")) {
-      if (!action.equals(TestConstants.ADD_NUMBERS5_OUT_ACTION)) {
-        throw new ActionNotSupportedException(action);
-      }
-    } else if (oper.equals("addNumbers6Response")) {
-      if (!action.equals(TestConstants.ADD_NUMBERS6_OUT_ACTION)) {
-        throw new ActionNotSupportedException(action);
-      }
-    } else if (oper.equals("addNumbers7Response")) {
-      if (!action.equals(TestConstants.ADD_NUMBERS7_OUT_ACTION)) {
-        throw new ActionNotSupportedException(action);
-      }
-    } else if (oper.equals("addNumbers8Response")) {
-      if (!action.equals(TestConstants.ADD_NUMBERS8_OUT_ACTION)) {
-        throw new ActionNotSupportedException(action);
-      }
+    protected void checkInboundAction(SOAPMessageContext context, String oper, String action) {
+        TestUtil.logMsg("ClientSOAPHandler.checkInboundAction: [operation=" + oper + ", action=" + action + "]");
+        if (oper.equals("addNumbersResponse")) {
+            if (!action.equals(TestConstants.ADD_NUMBERS_OUT_ACTION)) {
+                throw new ActionNotSupportedException(action);
+            }
+        } else if (oper.equals("addNumbers2Response")) {
+            if (!action.equals(TestConstants.ADD_NUMBERS2_OUT_ACTION)) {
+                throw new ActionNotSupportedException(action);
+            }
+        } else if (oper.equals("addNumbers3Response")) {
+            if (!action.equals(TestConstants.ADD_NUMBERS3_OUT_ACTION)) {
+                throw new ActionNotSupportedException(action);
+            }
+        } else if (oper.equals("addNumbers4Response")) {
+            if (!action.equals(TestConstants.ADD_NUMBERS4_OUT_ACTION)) {
+                throw new ActionNotSupportedException(action);
+            }
+        } else if (oper.equals("addNumbers5Response")) {
+            if (!action.equals(TestConstants.ADD_NUMBERS5_OUT_ACTION)) {
+                throw new ActionNotSupportedException(action);
+            }
+        } else if (oper.equals("addNumbers6Response")) {
+            if (!action.equals(TestConstants.ADD_NUMBERS6_OUT_ACTION)) {
+                throw new ActionNotSupportedException(action);
+            }
+        } else if (oper.equals("addNumbers7Response")) {
+            if (!action.equals(TestConstants.ADD_NUMBERS7_OUT_ACTION)) {
+                throw new ActionNotSupportedException(action);
+            }
+        } else if (oper.equals("addNumbers8Response")) {
+            if (!action.equals(TestConstants.ADD_NUMBERS8_OUT_ACTION)) {
+                throw new ActionNotSupportedException(action);
+            }
+        }
     }
-  }
 
-  protected String whichHandler() {
-    return "ClientSOAPHandler";
-  }
+    protected String whichHandler() {
+        return "ClientSOAPHandler";
+    }
 }

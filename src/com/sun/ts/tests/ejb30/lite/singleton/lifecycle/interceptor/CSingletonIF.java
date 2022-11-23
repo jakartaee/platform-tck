@@ -20,5 +20,4 @@
 
 package com.sun.ts.tests.ejb30.lite.singleton.lifecycle.interceptor;
 
-public interface CSingletonIF extends CommonSingletonIF {
-}
+public interface CSingletonIF extends CommonSingletonIF {}

@@ -23,16 +23,15 @@ package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 import jakarta.ejb.EJBLocalObject;
 
 public interface OrderLocal extends EJBLocalObject {
-  // Business Methods for CMP Fields
-  public String getId();
+    // Business Methods for CMP Fields
+    public String getId();
 
-  public double getTotalPrice();
+    public double getTotalPrice();
 
-  public void setTotalPrice(double v);
+    public void setTotalPrice(double v);
 
-  // Business Methods for CMR Fields
-  public CustomerLocal getCustomer();
+    // Business Methods for CMR Fields
+    public CustomerLocal getCustomer();
 
-  public void setCustomer(CustomerLocal v);
-
+    public void setCustomer(CustomerLocal v);
 }

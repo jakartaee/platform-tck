@@ -21,8 +21,6 @@
 
 package com.sun.ts.tests.el.api.jakarta_el.methodinfo;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
@@ -30,92 +28,81 @@ import com.sun.ts.tests.common.el.api.expression.ExpressionTest;
 import com.sun.ts.tests.el.common.elcontext.SimpleELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 import com.sun.ts.tests.el.common.util.ResolverType;
-
 import jakarta.el.ELContext;
 import jakarta.el.ExpressionFactory;
 import jakarta.el.MethodExpression;
 import jakarta.el.MethodInfo;
+import java.util.Properties;
 
 public class ELClient extends ServiceEETest {
 
-  private Properties testProps;
+    private Properties testProps;
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  public void setup(String[] args, Properties p) throws Fault {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
-  }
-
-  public void cleanup() throws Fault {
-  }
-
-  /**
-   * @testName: methodInfoTest
-   * 
-   * @assertion_ids: EL:JAVADOC:411;EL:JAVADOC:412;EL:JAVADOC:413
-   * @test_Strategy: Validate the behavior of MethodInfo MethodInfo class
-   *                 methods: MethodInfo.getName() MethodInfo.getReturnType()
-   *                 MethodInfo.getParamTypes()
-   */
-
-  public void methodInfoTest() throws Fault {
-
-    StringBuffer buf = new StringBuffer();
-
-    boolean pass1, pass2, pass3, pass4 = false;
-
-    try {
-      ExpressionFactory expFactory = ExpressionFactory.newInstance();
-
-      SimpleELContext simpleContext = new SimpleELContext(
-          ResolverType.VECT_ELRESOLVER);
-      ELContext context = simpleContext.getELContext();
-
-      // case 1: non-null return value
-      Class<?>[] paramTypes1 = { Object.class };
-      MethodExpression mexp1 = expFactory.createMethodExpression(context,
-          "#{vect.add}", boolean.class, paramTypes1);
-      MethodInfo minfo1 = mexp1.getMethodInfo(context);
-      pass1 = ExpressionTest.testMethodInfo(minfo1, "add", boolean.class, 1,
-          paramTypes1, buf);
-
-      // case 2: null return value
-      Class<?>[] paramTypes2 = { int.class, Object.class };
-
-      MethodExpression mexp2 = expFactory.createMethodExpression(context,
-          "#{vect.add}", null, paramTypes2);
-      MethodInfo minfo2 = mexp2.getMethodInfo(context);
-      pass2 = ExpressionTest.testMethodInfo(minfo2, "add", void.class, 2,
-          paramTypes2, buf);
-
-      // case 3: literal expression returning String
-      Class<?>[] paramTypes3 = {};
-
-      MethodExpression mexp3 = expFactory.createMethodExpression(context,
-          "true", String.class, paramTypes3);
-      MethodInfo minfo3 = mexp3.getMethodInfo(context);
-      pass3 = ExpressionTest.testMethodInfo(minfo3, "true", String.class, 0,
-          paramTypes3, buf);
-
-      // case 4: literal expression returning non-String value
-      Class<?>[] paramTypes4 = {};
-
-      MethodExpression mexp4 = expFactory.createMethodExpression(context,
-          "true", Boolean.class, paramTypes4);
-      MethodInfo minfo4 = mexp4.getMethodInfo(context);
-      pass4 = ExpressionTest.testMethodInfo(minfo4, "true", Boolean.class, 0,
-          paramTypes4, buf);
-
-    } catch (Exception ex) {
-      throw new Fault(ex);
+    public static void main(String[] args) {
+        ELClient theTests = new ELClient();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
 
-    if (!(pass1 && pass2 && pass3 && pass4))
-      throw new Fault(ELTestUtil.FAIL + buf.toString());
-  }
+    public void setup(String[] args, Properties p) throws Fault {
+        TestUtil.logTrace("Setup method called");
+        this.testProps = p;
+    }
+
+    public void cleanup() throws Fault {}
+
+    /**
+     * @testName: methodInfoTest
+     *
+     * @assertion_ids: EL:JAVADOC:411;EL:JAVADOC:412;EL:JAVADOC:413
+     * @test_Strategy: Validate the behavior of MethodInfo MethodInfo class
+     *                 methods: MethodInfo.getName() MethodInfo.getReturnType()
+     *                 MethodInfo.getParamTypes()
+     */
+    public void methodInfoTest() throws Fault {
+
+        StringBuffer buf = new StringBuffer();
+
+        boolean pass1, pass2, pass3, pass4 = false;
+
+        try {
+            ExpressionFactory expFactory = ExpressionFactory.newInstance();
+
+            SimpleELContext simpleContext = new SimpleELContext(ResolverType.VECT_ELRESOLVER);
+            ELContext context = simpleContext.getELContext();
+
+            // case 1: non-null return value
+            Class<?>[] paramTypes1 = {Object.class};
+            MethodExpression mexp1 =
+                    expFactory.createMethodExpression(context, "#{vect.add}", boolean.class, paramTypes1);
+            MethodInfo minfo1 = mexp1.getMethodInfo(context);
+            pass1 = ExpressionTest.testMethodInfo(minfo1, "add", boolean.class, 1, paramTypes1, buf);
+
+            // case 2: null return value
+            Class<?>[] paramTypes2 = {int.class, Object.class};
+
+            MethodExpression mexp2 = expFactory.createMethodExpression(context, "#{vect.add}", null, paramTypes2);
+            MethodInfo minfo2 = mexp2.getMethodInfo(context);
+            pass2 = ExpressionTest.testMethodInfo(minfo2, "add", void.class, 2, paramTypes2, buf);
+
+            // case 3: literal expression returning String
+            Class<?>[] paramTypes3 = {};
+
+            MethodExpression mexp3 = expFactory.createMethodExpression(context, "true", String.class, paramTypes3);
+            MethodInfo minfo3 = mexp3.getMethodInfo(context);
+            pass3 = ExpressionTest.testMethodInfo(minfo3, "true", String.class, 0, paramTypes3, buf);
+
+            // case 4: literal expression returning non-String value
+            Class<?>[] paramTypes4 = {};
+
+            MethodExpression mexp4 = expFactory.createMethodExpression(context, "true", Boolean.class, paramTypes4);
+            MethodInfo minfo4 = mexp4.getMethodInfo(context);
+            pass4 = ExpressionTest.testMethodInfo(minfo4, "true", Boolean.class, 0, paramTypes4, buf);
+
+        } catch (Exception ex) {
+            throw new Fault(ex);
+        }
+
+        if (!(pass1 && pass2 && pass3 && pass4)) throw new Fault(ELTestUtil.FAIL + buf.toString());
+    }
 }

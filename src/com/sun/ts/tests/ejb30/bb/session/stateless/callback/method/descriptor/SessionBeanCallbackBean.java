@@ -23,7 +23,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.callback.method.descriptor;
 import com.sun.ts.tests.ejb30.common.callback.CallbackBeanBase;
 import com.sun.ts.tests.ejb30.common.callback.CallbackIF;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.Remote;
@@ -31,48 +30,44 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
 @Stateless(name = "SessionBeanCallbackBean")
-@Remote({ CallbackIF.class })
-public class SessionBeanCallbackBean extends CallbackBeanBase
-    implements CallbackIF, jakarta.ejb.SessionBean {
+@Remote({CallbackIF.class})
+public class SessionBeanCallbackBean extends CallbackBeanBase implements CallbackIF, jakarta.ejb.SessionBean {
 
-  @Resource
-  private SessionContext sctx;
+    @Resource
+    private SessionContext sctx;
 
-  public SessionBeanCallbackBean() {
-    super();
-  }
-
-  public EJBContext getEJBContext() {
-    return this.sctx;
-  }
-
-  public void setSessionContext(SessionContext sessionContext) {
-  }
-
-  public void ejbPassivate() {
-  }
-
-  public void ejbActivate() {
-  }
-
-  // ================= callback methods ====================================
-  // @PostConstruct
-  private void ejbCreate() throws RuntimeException {
-    this.setPostConstructCalled(true);
-    TLogger.log("PostConstruct method called: " + this);
-    if (this.getEJBContext() != null) {
-      this.setInjectionDone(true);
-    } else {
-      TLogger.log("Inside PostConstruct method SessionContext is null.");
+    public SessionBeanCallbackBean() {
+        super();
     }
-  }
 
-  // @PreDestroy
-  public void ejbRemove() throws RuntimeException {
-    this.setPreDestroyCalled(true);
-    TLogger.log("PreDestroy method called: " + this);
-  }
+    public EJBContext getEJBContext() {
+        return this.sctx;
+    }
 
-  // ================== business methods ====================================
+    public void setSessionContext(SessionContext sessionContext) {}
+
+    public void ejbPassivate() {}
+
+    public void ejbActivate() {}
+
+    // ================= callback methods ====================================
+    // @PostConstruct
+    private void ejbCreate() throws RuntimeException {
+        this.setPostConstructCalled(true);
+        TLogger.log("PostConstruct method called: " + this);
+        if (this.getEJBContext() != null) {
+            this.setInjectionDone(true);
+        } else {
+            TLogger.log("Inside PostConstruct method SessionContext is null.");
+        }
+    }
+
+    // @PreDestroy
+    public void ejbRemove() throws RuntimeException {
+        this.setPreDestroyCalled(true);
+        TLogger.log("PreDestroy method called: " + this);
+    }
+
+    // ================== business methods ====================================
 
 }

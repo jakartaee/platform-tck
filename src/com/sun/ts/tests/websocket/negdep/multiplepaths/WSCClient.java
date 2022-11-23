@@ -30,79 +30,77 @@ import com.sun.ts.tests.websocket.negdep.NegativeDeploymentClient;
  */
 public class WSCClient extends NegativeDeploymentClient {
 
-  private static final long serialVersionUID = 111L;
+    private static final long serialVersionUID = 111L;
 
-  public WSCClient() {
-    setContextRoot("wsc_negdep_multiplepaths_web");
-  }
-
-  public static void main(String[] args) {
-    new WSCClient().run(args);
-  }
-
-  /*
-   * @testName: twoEndpointsWithTheSamePathThirdEndpointTest
-   * 
-   * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3; WebSocket:SPEC:WSC-4.1.1-4;
-   * 
-   * @test_Strategy: In both cases, a deployment error raised during the
-   * deployment process must halt the deployment of the application, any well
-   * formed endpoints deployed prior to the error being raised must be removed
-   * from service and no more websocket endpoints from that application may be
-   * deployed by the container, even if they are valid.
-   * 
-   * The websocket implementation must reject such an application at deployment
-   * time with an informative error message that there is a duplicate path that
-   * it cannot resolve. [WSC-4.1.1-4]
-   * 
-   * To verify the test fails when the deployment was successful, change path in
-   * SamePathServerEndpoint2
-   */
-  public void twoEndpointsWithTheSamePathThirdEndpointTest() throws Fault {
-    setProperty(Property.CONTENT, "anything");
-    setProperty(Property.REQUEST, buildRequest("echo"));
-    setProperty(Property.STATUS_CODE, "-1");
-    // logExceptionOnInvocation(false);
-    try {
-      invoke(false);
-    } catch (Fault tfe) {
-      // DeploymentException
+    public WSCClient() {
+        setContextRoot("wsc_negdep_multiplepaths_web");
     }
-    String response = getResponseAsString();
-    if ("anything".equals(response))
-      throwValidEndpointMustBeRemoved();
-  }
 
-  /*
-   * @testName: twoEndpointsWithTheSamePathTest
-   * 
-   * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3; WebSocket:SPEC:WSC-4.1.1-4;
-   * 
-   * @test_Strategy: In both cases, a deployment error raised during the
-   * deployment process must halt the deployment of the application, any well
-   * formed endpoints deployed prior to the error being raised must be removed
-   * from service and no more websocket endpoints from that application may be
-   * deployed by the container, even if they are valid.
-   * 
-   * The websocket implementation must reject such an application at deployment
-   * time with an informative error message that there is a duplicate path that
-   * it cannot resolve. [WSC-4.1.1-4]
-   * 
-   * To verify the test fails when the deployment was successful, change path in
-   * SamePathServerEndpoint2
-   */
-  public void twoEndpointsWithTheSamePathTest() throws Fault {
-    setProperty(Property.CONTENT, "anything");
-    setProperty(Property.REQUEST, buildRequest("path"));
-    setProperty(Property.STATUS_CODE, "-1");
-    // logExceptionOnInvocation(false);
-    try {
-      invoke(false);
-    } catch (Fault tfe) {
-      // DeploymentException
+    public static void main(String[] args) {
+        new WSCClient().run(args);
     }
-    String response = getResponseAsString();
-    if ("anything".equals(response))
-      throwValidEndpointMustBeRemoved();
-  }
+
+    /*
+     * @testName: twoEndpointsWithTheSamePathThirdEndpointTest
+     *
+     * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3; WebSocket:SPEC:WSC-4.1.1-4;
+     *
+     * @test_Strategy: In both cases, a deployment error raised during the
+     * deployment process must halt the deployment of the application, any well
+     * formed endpoints deployed prior to the error being raised must be removed
+     * from service and no more websocket endpoints from that application may be
+     * deployed by the container, even if they are valid.
+     *
+     * The websocket implementation must reject such an application at deployment
+     * time with an informative error message that there is a duplicate path that
+     * it cannot resolve. [WSC-4.1.1-4]
+     *
+     * To verify the test fails when the deployment was successful, change path in
+     * SamePathServerEndpoint2
+     */
+    public void twoEndpointsWithTheSamePathThirdEndpointTest() throws Fault {
+        setProperty(Property.CONTENT, "anything");
+        setProperty(Property.REQUEST, buildRequest("echo"));
+        setProperty(Property.STATUS_CODE, "-1");
+        // logExceptionOnInvocation(false);
+        try {
+            invoke(false);
+        } catch (Fault tfe) {
+            // DeploymentException
+        }
+        String response = getResponseAsString();
+        if ("anything".equals(response)) throwValidEndpointMustBeRemoved();
+    }
+
+    /*
+     * @testName: twoEndpointsWithTheSamePathTest
+     *
+     * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3; WebSocket:SPEC:WSC-4.1.1-4;
+     *
+     * @test_Strategy: In both cases, a deployment error raised during the
+     * deployment process must halt the deployment of the application, any well
+     * formed endpoints deployed prior to the error being raised must be removed
+     * from service and no more websocket endpoints from that application may be
+     * deployed by the container, even if they are valid.
+     *
+     * The websocket implementation must reject such an application at deployment
+     * time with an informative error message that there is a duplicate path that
+     * it cannot resolve. [WSC-4.1.1-4]
+     *
+     * To verify the test fails when the deployment was successful, change path in
+     * SamePathServerEndpoint2
+     */
+    public void twoEndpointsWithTheSamePathTest() throws Fault {
+        setProperty(Property.CONTENT, "anything");
+        setProperty(Property.REQUEST, buildRequest("path"));
+        setProperty(Property.STATUS_CODE, "-1");
+        // logExceptionOnInvocation(false);
+        try {
+            invoke(false);
+        } catch (Fault tfe) {
+            // DeploymentException
+        }
+        String response = getResponseAsString();
+        if ("anything".equals(response)) throwValidEndpointMustBeRemoved();
+    }
 }

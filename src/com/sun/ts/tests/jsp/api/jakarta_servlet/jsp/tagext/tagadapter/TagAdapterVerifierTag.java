@@ -24,15 +24,13 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagadapter;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.SimpleTag;
 import jakarta.servlet.jsp.tagext.Tag;
 import jakarta.servlet.jsp.tagext.TagAdapter;
 import jakarta.servlet.jsp.tagext.TagSupport;
+import java.io.IOException;
 
 /**
  * Simple tag to verify adpated SimpleTag instance is provided though a call to
@@ -40,48 +38,49 @@ import jakarta.servlet.jsp.tagext.TagSupport;
  */
 public class TagAdapterVerifierTag extends TagSupport {
 
-  /**
-   * Default Constructor
-   */
-  public TagAdapterVerifierTag() {
-    super();
-    JspTestUtil.debug("[TagAdapterVerifierTag] new instance");
-  }
-
-  /**
-   * Validates that the parent of this Classic tag handler is an instance of
-   * SimpleTag adapted with a TagAdapter.
-   * 
-   * @return Tag.EVAL_PAGE
-   * @throws JspException
-   *           if an unexpected error occurs.
-   */
-  public int doEndTag() throws JspException {
-    JspTestUtil.debug("[TagAdapterVerifierTag] in doEndTag()");
-    Tag tag = this.getParent();
-    try {
-      if (tag != null) {
-        if (tag instanceof TagAdapter) {
-          SimpleTag simpleTag = (SimpleTag) ((TagAdapter) tag).getAdaptee();
-          if (simpleTag != null) {
-            pageContext.getOut().println("Test PASSED.");
-          } else {
-            pageContext.getOut().println("Test FAILED.  Received a null"
-                + " value from TagAdapter.getAdaptee()");
-          }
-        } else {
-          pageContext.getOut().println("Test FAILED.  Tag.getParent() didn't"
-              + " returned the TagAdapter instance that was expected.");
-        }
-      } else {
-        pageContext.getOut().println(
-            "Test FAILED.  Received a null value " + "from Tag.getParent()");
-      }
-    } catch (IOException ioe) {
-      throw new JspException("[TagAdapterVeriferTag] Unexpected IOException.",
-          ioe);
+    /**
+     * Default Constructor
+     */
+    public TagAdapterVerifierTag() {
+        super();
+        JspTestUtil.debug("[TagAdapterVerifierTag] new instance");
     }
-    JspTestUtil.debug("[TagAdapterVerifierTag] leaving doEndTag()");
-    return EVAL_PAGE;
-  }
+
+    /**
+     * Validates that the parent of this Classic tag handler is an instance of
+     * SimpleTag adapted with a TagAdapter.
+     *
+     * @return Tag.EVAL_PAGE
+     * @throws JspException
+     *           if an unexpected error occurs.
+     */
+    public int doEndTag() throws JspException {
+        JspTestUtil.debug("[TagAdapterVerifierTag] in doEndTag()");
+        Tag tag = this.getParent();
+        try {
+            if (tag != null) {
+                if (tag instanceof TagAdapter) {
+                    SimpleTag simpleTag = (SimpleTag) ((TagAdapter) tag).getAdaptee();
+                    if (simpleTag != null) {
+                        pageContext.getOut().println("Test PASSED.");
+                    } else {
+                        pageContext
+                                .getOut()
+                                .println("Test FAILED.  Received a null" + " value from TagAdapter.getAdaptee()");
+                    }
+                } else {
+                    pageContext
+                            .getOut()
+                            .println("Test FAILED.  Tag.getParent() didn't"
+                                    + " returned the TagAdapter instance that was expected.");
+                }
+            } else {
+                pageContext.getOut().println("Test FAILED.  Received a null value " + "from Tag.getParent()");
+            }
+        } catch (IOException ioe) {
+            throw new JspException("[TagAdapterVeriferTag] Unexpected IOException.", ioe);
+        }
+        JspTestUtil.debug("[TagAdapterVerifierTag] leaving doEndTag()");
+        return EVAL_PAGE;
+    }
 }

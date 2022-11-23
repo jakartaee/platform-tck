@@ -20,21 +20,17 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp11.pkey;
 
-import java.rmi.RemoteException;
-import java.util.Properties;
-
 import com.sun.ts.tests.common.dao.coffee.variants.CompoundPK;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
 import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
 public interface CompoundBeanHome extends EJBHome {
 
-  public CompoundBean create(Properties p, CompoundPK id, String name,
-      float price) throws RemoteException, CreateException;
+    public CompoundBean create(Properties p, CompoundPK id, String name, float price)
+            throws RemoteException, CreateException;
 
-  public CompoundBean findByPrimaryKey(CompoundPK key)
-      throws RemoteException, FinderException;
-
+    public CompoundBean findByPrimaryKey(CompoundPK key) throws RemoteException, FinderException;
 }

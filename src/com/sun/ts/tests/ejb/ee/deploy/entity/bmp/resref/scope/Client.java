@@ -20,125 +20,122 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.bmp.resref.scope;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.dao.DAOFactory;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  protected static final String prefix = "java:comp/env/ejb/";
+    protected static final String prefix = "java:comp/env/ejb/";
 
-  protected static final String qBeanLookup = prefix + "QueueBean";
+    protected static final String qBeanLookup = prefix + "QueueBean";
 
-  protected static final String tBeanLookup = prefix + "TopicBean";
+    protected static final String tBeanLookup = prefix + "TopicBean";
 
-  protected TSNamingContext nctx = null;
+    protected TSNamingContext nctx = null;
 
-  protected Properties props = null;
+    protected Properties props = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /**
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   *
-   * @class.testArgs: -ap tssql.stmt
-   */
-  public void setup(String[] args, Properties props) throws Fault {
-
-    try {
-      this.props = props;
-      logTrace("[Client] Getting naming context...");
-      nctx = new TSNamingContext();
-
-      logTrace("[Client] Initializing BMP table...");
-      DAOFactory.getInstance().getCoffeeDAO().cleanup();
-
-      logMsg("[Client] Setup OK!");
-    } catch (Exception e) {
-      throw new Fault("[Client] Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /**
-   * @testName: testScope
-   *
-   * @assertion_ids: EJB:SPEC:757.5
-   *
-   * @test_Strategy:
-   *
-   *                 We package in the same jar:
-   *
-   *                 - Two BMP beans using the same res-ref-name
-   *                 ('jms/myFactory') to reference two distinct resource
-   *                 manager connection factories (a QueueConnectionFactory and
-   *                 a TopicConnectionFactory).
-   *
-   *                 We check that:
-   *
-   *                 - We can deploy the application. - We can lookup each bean.
-   *                 - Each bean can lookup its resource manager connection
-   *                 factory. - We can cast that factory to its expected java
-   *                 type and use it to create a connection. This validates the
-   *                 resolution of the resource manager connection factories
-   *                 references.
-   *
-   */
-  public void testScope() throws Fault {
-    QueueBeanHome qHome = null;
-    TopicBeanHome tHome = null;
-    QueueBean qBean = null;
-    TopicBean tBean = null;
-    boolean pass;
+    /**
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     *
+     * @class.testArgs: -ap tssql.stmt
+     */
+    public void setup(String[] args, Properties props) throws Fault {
 
-    try {
-      logTrace("[Client] Looking up " + qBeanLookup);
-      qHome = (QueueBeanHome) nctx.lookup(qBeanLookup, QueueBeanHome.class);
-      logTrace("[Client] creating QueueBean instance...");
-      qBean = qHome.create(props, 1, "cappuccino", 11);
+        try {
+            this.props = props;
+            logTrace("[Client] Getting naming context...");
+            nctx = new TSNamingContext();
 
-      logTrace("[Client] Looking up " + qBeanLookup);
-      tHome = (TopicBeanHome) nctx.lookup(tBeanLookup, TopicBeanHome.class);
-      logTrace("[Client] creating TopicBean instance...");
-      tBean = tHome.create(props, 2, "expresso", 24);
+            logTrace("[Client] Initializing BMP table...");
+            DAOFactory.getInstance().getCoffeeDAO().cleanup();
 
-      logTrace("[Client] Calling beans...");
-      pass = qBean.checkYourQueue();
-      pass &= tBean.checkYourTopic();
-
-      if (!pass) {
-        throw new Fault("res-ref scope test failed");
-      }
-    } catch (Exception e) {
-      throw new Fault("res-ref scope test failed: ", e);
-    } finally {
-
-      try {
-        if (null != qBean) {
-          TestUtil.logTrace("[Client] Removing " + qBeanLookup);
-          qBean.remove();
+            logMsg("[Client] Setup OK!");
+        } catch (Exception e) {
+            throw new Fault("[Client] Setup failed:", e);
         }
-
-        if (null != tBean) {
-          TestUtil.logTrace("[Client] Removing " + tBeanLookup);
-          tBean.remove();
-        }
-      } catch (Exception e) {
-        TestUtil
-            .logTrace("[Client] Ignore exception on bean " + "remove: " + e);
-      }
     }
-  }
 
-  public void cleanup() throws Fault {
-    logMsg("[Client] cleanup()");
-  }
+    /**
+     * @testName: testScope
+     *
+     * @assertion_ids: EJB:SPEC:757.5
+     *
+     * @test_Strategy:
+     *
+     *                 We package in the same jar:
+     *
+     *                 - Two BMP beans using the same res-ref-name
+     *                 ('jms/myFactory') to reference two distinct resource
+     *                 manager connection factories (a QueueConnectionFactory and
+     *                 a TopicConnectionFactory).
+     *
+     *                 We check that:
+     *
+     *                 - We can deploy the application. - We can lookup each bean.
+     *                 - Each bean can lookup its resource manager connection
+     *                 factory. - We can cast that factory to its expected java
+     *                 type and use it to create a connection. This validates the
+     *                 resolution of the resource manager connection factories
+     *                 references.
+     *
+     */
+    public void testScope() throws Fault {
+        QueueBeanHome qHome = null;
+        TopicBeanHome tHome = null;
+        QueueBean qBean = null;
+        TopicBean tBean = null;
+        boolean pass;
 
+        try {
+            logTrace("[Client] Looking up " + qBeanLookup);
+            qHome = (QueueBeanHome) nctx.lookup(qBeanLookup, QueueBeanHome.class);
+            logTrace("[Client] creating QueueBean instance...");
+            qBean = qHome.create(props, 1, "cappuccino", 11);
+
+            logTrace("[Client] Looking up " + qBeanLookup);
+            tHome = (TopicBeanHome) nctx.lookup(tBeanLookup, TopicBeanHome.class);
+            logTrace("[Client] creating TopicBean instance...");
+            tBean = tHome.create(props, 2, "expresso", 24);
+
+            logTrace("[Client] Calling beans...");
+            pass = qBean.checkYourQueue();
+            pass &= tBean.checkYourTopic();
+
+            if (!pass) {
+                throw new Fault("res-ref scope test failed");
+            }
+        } catch (Exception e) {
+            throw new Fault("res-ref scope test failed: ", e);
+        } finally {
+
+            try {
+                if (null != qBean) {
+                    TestUtil.logTrace("[Client] Removing " + qBeanLookup);
+                    qBean.remove();
+                }
+
+                if (null != tBean) {
+                    TestUtil.logTrace("[Client] Removing " + tBeanLookup);
+                    tBean.remove();
+                }
+            } catch (Exception e) {
+                TestUtil.logTrace("[Client] Ignore exception on bean " + "remove: " + e);
+            }
+        }
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("[Client] cleanup()");
+    }
 }

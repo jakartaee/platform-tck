@@ -30,34 +30,33 @@ import com.sun.ts.lib.util.*;
  */
 public class TSJMSObjects {
 
-  private static final String DEFAULT_PORTING_CLASS = "com.sun.ts.lib.implementation.sun.jms.SunRIJMSObjects";
+    private static final String DEFAULT_PORTING_CLASS = "com.sun.ts.lib.implementation.sun.jms.SunRIJMSObjects";
 
-  private static String portingPropName = "porting.ts.jmsObjects.class.1";
+    private static String portingPropName = "porting.ts.jmsObjects.class.1";
 
-  private static String portingClass = null;
+    private static String portingClass = null;
 
-  private static TSJMSObjectsInterface tsJmsObjects = null;
+    private static TSJMSObjectsInterface tsJmsObjects = null;
 
-  public static TSJMSObjectsInterface getJMSObjectsInstance() throws Exception {
-    try {
-      // Create instance of the TSJMSObjectsInterface implementation
-      // class
-      TestUtil.logMsg("TSJMSObjects.getJMSObjectsInstance()");
-      portingClass = TestUtil.getProperty(portingPropName);
-      if (portingClass == null) {
-        portingClass = DEFAULT_PORTING_CLASS;
-        TestUtil.logMsg("Property " + portingPropName + " not set. "
-            + "Using default porting class. ");
-      }
-      TestUtil.logMsg("Porting implementation class=" + portingClass);
-      if (tsJmsObjects == null) {
-        Class c = Class.forName(portingClass);
-        tsJmsObjects = (TSJMSObjectsInterface) c.newInstance();
-      }
-      return tsJmsObjects;
-    } catch (Exception e) {
-      e.printStackTrace();
-      throw e;
+    public static TSJMSObjectsInterface getJMSObjectsInstance() throws Exception {
+        try {
+            // Create instance of the TSJMSObjectsInterface implementation
+            // class
+            TestUtil.logMsg("TSJMSObjects.getJMSObjectsInstance()");
+            portingClass = TestUtil.getProperty(portingPropName);
+            if (portingClass == null) {
+                portingClass = DEFAULT_PORTING_CLASS;
+                TestUtil.logMsg("Property " + portingPropName + " not set. " + "Using default porting class. ");
+            }
+            TestUtil.logMsg("Porting implementation class=" + portingClass);
+            if (tsJmsObjects == null) {
+                Class c = Class.forName(portingClass);
+                tsJmsObjects = (TSJMSObjectsInterface) c.newInstance();
+            }
+            return tsJmsObjects;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
-  }
 }

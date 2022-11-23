@@ -17,29 +17,24 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.client;
 
+import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.ListHashSetTextEncoder;
+import jakarta.websocket.MessageHandler;
 import java.util.HashSet;
 import java.util.LinkedList;
 
-import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.ListHashSetTextEncoder;
+public class LinkedListHashSetMessageHandler implements MessageHandler.Whole<LinkedList<HashSet<String>>> {
 
-import jakarta.websocket.MessageHandler;
+    MixedProgramaticEndpoint endpoint;
 
-public class LinkedListHashSetMessageHandler
-    implements MessageHandler.Whole<LinkedList<HashSet<String>>> {
+    public static final String HANDLER_SAYS = "LinkedListHashSetMessageHandler says: ";
 
-  MixedProgramaticEndpoint endpoint;
+    public LinkedListHashSetMessageHandler(MixedProgramaticEndpoint endpoint) {
+        super();
+        this.endpoint = endpoint;
+    }
 
-  public static final String HANDLER_SAYS = "LinkedListHashSetMessageHandler says: ";
-
-  public LinkedListHashSetMessageHandler(MixedProgramaticEndpoint endpoint) {
-    super();
-    this.endpoint = endpoint;
-  }
-
-  @Override
-  public void onMessage(LinkedList<HashSet<String>> arg0) {
-    endpoint.onMessage(
-        HANDLER_SAYS + ListHashSetTextEncoder.listHashSetToString(arg0));
-  }
-
+    @Override
+    public void onMessage(LinkedList<HashSet<String>> arg0) {
+        endpoint.onMessage(HANDLER_SAYS + ListHashSetTextEncoder.listHashSetToString(arg0));
+    }
 }

@@ -21,8 +21,6 @@
 
 package com.sun.ts.tests.el.api.jakarta_el.elresolver;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
@@ -30,184 +28,167 @@ import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.elcontext.BarELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 import com.sun.ts.tests.el.common.util.SimpleBean;
-
 import jakarta.el.ArrayELResolver;
 import jakarta.el.BeanELResolver;
 import jakarta.el.CompositeELResolver;
 import jakarta.el.ELContext;
 import jakarta.el.ELManager;
 import jakarta.el.ELResolver;
+import java.util.Properties;
 
 public class ELClient extends ServiceEETest {
 
-  private Properties testProps;
+    private Properties testProps;
 
-  private static final String[] names = { "doug", "nick", "roger", "ryan",
-      "ed" };
+    private static final String[] names = {"doug", "nick", "roger", "ryan", "ed"};
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  public void setup(String[] args, Properties p) throws Fault {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
-  }
-
-  public void cleanup() throws Fault {
-    // does nothing at this point
-  }
-
-  /**
-   * @testName: elResolverTest
-   * 
-   * @assertion_ids: EL:JAVADOC:50; EL:JAVADOC:51; EL:JAVADOC:52; EL:JAVADOC:53;
-   *                 EL:JAVADOC:54; EL:JAVADOC:55; EL:JAVADOC:229
-   * 
-   * @test_Strategy: Create an ELContext and get its ELResolver. Verify that API
-   *                 calls work as expected: getValue() getType() setValue()
-   *                 isReadOnly() getCommonPropertyType()
-   *                 getFeatureDescriptors()
-   */
-
-  public void elResolverTest() throws Fault {
-
-    boolean pass = false;
-    StringBuffer buf = new StringBuffer();
-
-    try {
-      BarELContext barContext = new BarELContext();
-      ELContext context = barContext.getELContext();
-
-      if (barContext != null) {
-        ELResolver resolver = barContext.getELResolver();
-        pass = ResolverTest.testELResolver(context, resolver, null, "Bar",
-            "Foo", buf, true);
-      }
-    } catch (Exception ex) {
-      throw new Fault(ex);
+    public static void main(String[] args) {
+        ELClient theTests = new ELClient();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
 
-    if (!pass)
-      throw new Fault(ELTestUtil.FAIL + buf.toString());
-    TestUtil.logTrace(buf.toString());
-
-  } // end elResolverTest
-
-  /**
-   * @testName: elResolverNPETest
-   * 
-   * @assertion_ids: EL:JAVADOC:233; EL:JAVADOC:239; EL:JAVADOC:242
-   * 
-   * @test_Strategy: Verify that a NullPointerException is thrown as expected
-   *                 for the following methods: getValue() getType() setValue()
-   *                 isReadOnly()
-   * 
-   * @since: 3.0
-   */
-  public void elResolverNPETest() throws Fault {
-    boolean pass = false;
-    StringBuffer buf = new StringBuffer();
-
-    ELContext context = new ELManager().getELContext();
-
-    // Create dummy ELResolvers to populate the CompositeELResolver.
-    ELResolver aResolver = new ArrayELResolver();
-    ELResolver bResolver = new BeanELResolver();
-
-    // Create the CompositeELResolver & add the dummy ELResolvers to it.
-    CompositeELResolver compResolver = (CompositeELResolver) context
-        .getELResolver();
-    compResolver.add(aResolver);
-    compResolver.add(bResolver);
-
-    try {
-      pass = ResolverTest.testELResolverNPE(compResolver, names,
-          Integer.valueOf(2), "steve", buf);
-
-    } catch (Exception ex) {
-      throw new Fault(ex);
+    public void setup(String[] args, Properties p) throws Fault {
+        TestUtil.logTrace("Setup method called");
+        this.testProps = p;
     }
 
-    if (!pass)
-      throw new Fault(ELTestUtil.FAIL + buf.toString());
-    TestUtil.logTrace(buf.toString());
-
-  }// end elResolverNPETest
-
-  /**
-   * @testName: elResolverPNFETest
-   * 
-   * @assertion_ids: EL:JAVADOC:231; EL:JAVADOC:234; EL:JAVADOC:240
-   * 
-   * @test_Strategy: Verify that API calls throw PropertyNotFoundException as
-   *                 expected: getType() setValue() isReadOnly()
-   */
-  public void elResolverPNFETest() throws Fault {
-    boolean pass = true;
-    StringBuffer buf = new StringBuffer();
-
-    ELContext context = new ELManager().getELContext();
-
-    // Create an ArrayELResolver to populate the CompositeELResolver.
-    ELResolver aResolver = new ArrayELResolver();
-
-    // Create the CompositeELResolver & add the ELResolver to it.
-    CompositeELResolver compResolver = (CompositeELResolver) context
-        .getELResolver();
-    compResolver.add(aResolver);
-
-    try {
-      pass = ResolverTest.testELResolverPNFE(context, compResolver, names,
-          Integer.valueOf(10), buf);
-
-    } catch (Exception ex) {
-      throw new Fault(ex);
+    public void cleanup() throws Fault {
+        // does nothing at this point
     }
 
-    if (!pass)
-      throw new Fault(ELTestUtil.FAIL + buf.toString());
-    TestUtil.logTrace(buf.toString());
+    /**
+     * @testName: elResolverTest
+     *
+     * @assertion_ids: EL:JAVADOC:50; EL:JAVADOC:51; EL:JAVADOC:52; EL:JAVADOC:53;
+     *                 EL:JAVADOC:54; EL:JAVADOC:55; EL:JAVADOC:229
+     *
+     * @test_Strategy: Create an ELContext and get its ELResolver. Verify that API
+     *                 calls work as expected: getValue() getType() setValue()
+     *                 isReadOnly() getCommonPropertyType()
+     *                 getFeatureDescriptors()
+     */
+    public void elResolverTest() throws Fault {
 
-  }// end elResolverPNFETest
+        boolean pass = false;
+        StringBuffer buf = new StringBuffer();
 
-  /**
-   * @testName: elResolverPNWETest
-   * 
-   * @assertion_ids: EL:JAVADOC:50; EL:JAVADOC:244
-   * 
-   * @test_Strategy: Verify that the setValue() method throws a
-   *                 PropertyNotWritableException, if the resolver was
-   *                 constructed in read-only mode.
-   * 
-   *                 setValue()
-   */
-  public void elResolverPNWETest() throws Fault {
-    boolean pass = false;
-    StringBuffer buf = new StringBuffer();
-    SimpleBean sb = new SimpleBean();
+        try {
+            BarELContext barContext = new BarELContext();
+            ELContext context = barContext.getELContext();
 
-    ELContext context = new ELManager().getELContext();
+            if (barContext != null) {
+                ELResolver resolver = barContext.getELResolver();
+                pass = ResolverTest.testELResolver(context, resolver, null, "Bar", "Foo", buf, true);
+            }
+        } catch (Exception ex) {
+            throw new Fault(ex);
+        }
 
-    ELResolver resolver = new BeanELResolver(true);
-    CompositeELResolver compResolver = (CompositeELResolver) context
-        .getELResolver();
-    compResolver.add(resolver);
+        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
+        TestUtil.logTrace(buf.toString());
+    } // end elResolverTest
 
-    try {
-      pass = ResolverTest.testELResolverPNWE(context, resolver, sb, "intention",
-          "billy", buf);
-    } catch (Exception ex) {
-      throw new Fault(ex);
-    }
+    /**
+     * @testName: elResolverNPETest
+     *
+     * @assertion_ids: EL:JAVADOC:233; EL:JAVADOC:239; EL:JAVADOC:242
+     *
+     * @test_Strategy: Verify that a NullPointerException is thrown as expected
+     *                 for the following methods: getValue() getType() setValue()
+     *                 isReadOnly()
+     *
+     * @since: 3.0
+     */
+    public void elResolverNPETest() throws Fault {
+        boolean pass = false;
+        StringBuffer buf = new StringBuffer();
 
-    if (!pass) {
-      throw new Fault(ELTestUtil.FAIL + buf.toString());
-    }
-    TestUtil.logTrace(buf.toString());
+        ELContext context = new ELManager().getELContext();
 
-  } // end elResolverPNWETest
+        // Create dummy ELResolvers to populate the CompositeELResolver.
+        ELResolver aResolver = new ArrayELResolver();
+        ELResolver bResolver = new BeanELResolver();
 
+        // Create the CompositeELResolver & add the dummy ELResolvers to it.
+        CompositeELResolver compResolver = (CompositeELResolver) context.getELResolver();
+        compResolver.add(aResolver);
+        compResolver.add(bResolver);
+
+        try {
+            pass = ResolverTest.testELResolverNPE(compResolver, names, Integer.valueOf(2), "steve", buf);
+
+        } catch (Exception ex) {
+            throw new Fault(ex);
+        }
+
+        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
+        TestUtil.logTrace(buf.toString());
+    } // end elResolverNPETest
+
+    /**
+     * @testName: elResolverPNFETest
+     *
+     * @assertion_ids: EL:JAVADOC:231; EL:JAVADOC:234; EL:JAVADOC:240
+     *
+     * @test_Strategy: Verify that API calls throw PropertyNotFoundException as
+     *                 expected: getType() setValue() isReadOnly()
+     */
+    public void elResolverPNFETest() throws Fault {
+        boolean pass = true;
+        StringBuffer buf = new StringBuffer();
+
+        ELContext context = new ELManager().getELContext();
+
+        // Create an ArrayELResolver to populate the CompositeELResolver.
+        ELResolver aResolver = new ArrayELResolver();
+
+        // Create the CompositeELResolver & add the ELResolver to it.
+        CompositeELResolver compResolver = (CompositeELResolver) context.getELResolver();
+        compResolver.add(aResolver);
+
+        try {
+            pass = ResolverTest.testELResolverPNFE(context, compResolver, names, Integer.valueOf(10), buf);
+
+        } catch (Exception ex) {
+            throw new Fault(ex);
+        }
+
+        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
+        TestUtil.logTrace(buf.toString());
+    } // end elResolverPNFETest
+
+    /**
+     * @testName: elResolverPNWETest
+     *
+     * @assertion_ids: EL:JAVADOC:50; EL:JAVADOC:244
+     *
+     * @test_Strategy: Verify that the setValue() method throws a
+     *                 PropertyNotWritableException, if the resolver was
+     *                 constructed in read-only mode.
+     *
+     *                 setValue()
+     */
+    public void elResolverPNWETest() throws Fault {
+        boolean pass = false;
+        StringBuffer buf = new StringBuffer();
+        SimpleBean sb = new SimpleBean();
+
+        ELContext context = new ELManager().getELContext();
+
+        ELResolver resolver = new BeanELResolver(true);
+        CompositeELResolver compResolver = (CompositeELResolver) context.getELResolver();
+        compResolver.add(resolver);
+
+        try {
+            pass = ResolverTest.testELResolverPNWE(context, resolver, sb, "intention", "billy", buf);
+        } catch (Exception ex) {
+            throw new Fault(ex);
+        }
+
+        if (!pass) {
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
+        }
+        TestUtil.logTrace(buf.toString());
+    } // end elResolverPNWETest
 }

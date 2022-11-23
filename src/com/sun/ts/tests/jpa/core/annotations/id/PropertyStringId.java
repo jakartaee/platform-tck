@@ -25,54 +25,52 @@ import jakarta.persistence.Table;
 @Table(name = "A_BASIC")
 public class PropertyStringId implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+    // ===========================================================
+    // instance variables
 
-  protected String id;
+    protected String id;
 
-  protected String name;
+    protected String name;
 
-  // ===========================================================
-  // constructors
-  public PropertyStringId() {
-  }
+    // ===========================================================
+    // constructors
+    public PropertyStringId() {}
 
-  public PropertyStringId(String id, String name) {
+    public PropertyStringId(String id, String name) {
 
-    this.id = id;
-    this.name = name;
-
-  }
-
-  @Id
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  @Basic
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    if (getName() != null) {
-      result.append(", name: " + getName());
-    } else {
-      result.append(", name: null");
+        this.id = id;
+        this.name = name;
     }
-    result.append("]");
-    return result.toString();
-  }
+
+    @Id
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Basic
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getId());
+        if (getName() != null) {
+            result.append(", name: " + getName());
+        } else {
+            result.append(", name: null");
+        }
+        result.append("]");
+        return result.toString();
+    }
 }

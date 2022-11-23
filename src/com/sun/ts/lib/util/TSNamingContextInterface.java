@@ -28,7 +28,7 @@ import java.util.*;
  * intial naming context and perform object lookups.
  */
 public interface TSNamingContextInterface {
-  public Object lookup(String s, Class c) throws Exception;
+    public Object lookup(String s, Class c) throws Exception;
 
-  public Object lookup(String s) throws Exception;
+    public Object lookup(String s) throws Exception;
 }

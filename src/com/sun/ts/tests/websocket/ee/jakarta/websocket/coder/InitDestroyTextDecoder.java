@@ -19,30 +19,30 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.coder;
 
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextDecoder;
-
 import jakarta.websocket.DecodeException;
 import jakarta.websocket.EndpointConfig;
 
 public class InitDestroyTextDecoder extends StringBeanTextDecoder {
-  @Override
-  public void init(EndpointConfig config) {
-    Logger.onInit(getClass());
-  }
+    @Override
+    public void init(EndpointConfig config) {
+        Logger.onInit(getClass());
+    }
 
-  @Override
-  public void destroy() {
-    Logger.onDestroy(getClass());
-  }
+    @Override
+    public void destroy() {
+        Logger.onDestroy(getClass());
+    }
 
-  @Override
-  public StringBean decode(String s) throws DecodeException {
-    Logger.onCode(getClass());
-    return super.decode(s);
-  };
+    @Override
+    public StringBean decode(String s) throws DecodeException {
+        Logger.onCode(getClass());
+        return super.decode(s);
+    }
+    ;
 
-  @Override
-  public boolean willDecode(String s) {
-    Logger.onWillCode(getClass());
-    return super.willDecode(s);
-  }
+    @Override
+    public boolean willDecode(String s) {
+        Logger.onWillCode(getClass());
+        return super.willDecode(s);
+    }
 }

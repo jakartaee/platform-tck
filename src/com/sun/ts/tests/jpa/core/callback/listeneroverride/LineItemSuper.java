@@ -24,26 +24,23 @@ import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusIF;
 import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusImpl;
 import com.sun.ts.tests.jpa.core.callback.common.ListenerA;
 import com.sun.ts.tests.jpa.core.callback.common.ListenerB;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
-@EntityListeners({ ListenerA.class, ListenerB.class })
-public class LineItemSuper extends CallbackStatusImpl
-    implements java.io.Serializable, CallbackStatusIF {
-  public int quantity;
+@EntityListeners({ListenerA.class, ListenerB.class})
+public class LineItemSuper extends CallbackStatusImpl implements java.io.Serializable, CallbackStatusIF {
+    public int quantity;
 
-  public LineItemSuper() {
-  }
+    public LineItemSuper() {}
 
-  @Column(name = "QUANTITY")
-  public int getQuantity() {
-    return quantity;
-  }
+    @Column(name = "QUANTITY")
+    public int getQuantity() {
+        return quantity;
+    }
 
-  public void setQuantity(int v) {
-    quantity = v;
-  }
+    public void setQuantity(int v) {
+        quantity = v;
+    }
 }

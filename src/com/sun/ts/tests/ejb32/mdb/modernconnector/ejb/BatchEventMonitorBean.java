@@ -18,37 +18,31 @@ package com.sun.ts.tests.ejb32.mdb.modernconnector.ejb;
 
 import com.sun.ts.tests.ejb32.mdb.modernconnector.connector.EventMonitor;
 import com.sun.ts.tests.ejb32.mdb.modernconnector.connector.NoUseListener;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.ActivationConfigProperty;
 import jakarta.ejb.MessageDriven;
 import jakarta.ejb.MessageDrivenContext;
 import jakarta.interceptor.Interceptors;
 
-@MessageDriven(activationConfig = {
-    @ActivationConfigProperty(propertyName = "category", propertyValue = "batch") })
+@MessageDriven(activationConfig = {@ActivationConfigProperty(propertyName = "category", propertyValue = "batch")})
 @Interceptors(LoggerInterceptor.class)
 public class BatchEventMonitorBean implements NoUseListener {
 
-  @Resource
-  private MessageDrivenContext messageDrivenContext;
+    @Resource
+    private MessageDrivenContext messageDrivenContext;
 
-  @EventMonitor(priority = "high")
-  public void consumeHigh(String event) {
-    messageDrivenContext.getContextData().put("data",
-        event + " is processed by high-priority batch monitor");
-  }
+    @EventMonitor(priority = "high")
+    public void consumeHigh(String event) {
+        messageDrivenContext.getContextData().put("data", event + " is processed by high-priority batch monitor");
+    }
 
-  @EventMonitor(priority = "normal")
-  public void consumeNormal(String event) {
-    messageDrivenContext.getContextData().put("data",
-        event + " is processed by normal-priority batch monitor");
-  }
+    @EventMonitor(priority = "normal")
+    public void consumeNormal(String event) {
+        messageDrivenContext.getContextData().put("data", event + " is processed by normal-priority batch monitor");
+    }
 
-  @EventMonitor(priority = "low")
-  public void consumeLow(String event) {
-    messageDrivenContext.getContextData().put("data",
-        event + " is processed by low-priority batch monitor");
-  }
-
+    @EventMonitor(priority = "low")
+    public void consumeLow(String event) {
+        messageDrivenContext.getContextData().put("data", event + " is processed by low-priority batch monitor");
+    }
 }

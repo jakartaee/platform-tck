@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 
 public class LongBeanEJB extends BMPWrapper {
 
-  public boolean testLongEntry() {
-    return TestCode.testLongEntry(nctx);
-  }
-
+    public boolean testLongEntry() {
+        return TestCode.testLongEntry(nctx);
+    }
 }

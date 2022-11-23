@@ -20,102 +20,99 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.bm.allowed;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.ejb30.common.allowed.Constants;
 import com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulOperations;
-
 import jakarta.ejb.SessionContext;
 import jakarta.transaction.UserTransaction;
+import java.util.Properties;
 
-public class StatefulBMTOperations extends StatefulOperations
-    implements Constants {
+public class StatefulBMTOperations extends StatefulOperations implements Constants {
 
-  private static StatefulBMTOperations instance = new StatefulBMTOperations();
+    private static StatefulBMTOperations instance = new StatefulBMTOperations();
 
-  protected StatefulBMTOperations() {
-    super();
-  }
-
-  public static StatefulBMTOperations getInstance() {
-    return instance;
-  }
-
-  @Override
-  public void runRollbackOnly(SessionContext sctx, Properties results) {
-    getSetRollbackOnly(sctx, results);
-  }
-
-  @Override
-  public void runUserTransaction(SessionContext sctx, Properties results) {
-    // UserTransaction Access test
-    try {
-      UserTransaction ut = sctx.getUserTransaction();
-      results.setProperty(UserTransaction, allowed);
-    } catch (IllegalStateException e) {
-      results.setProperty(UserTransaction, disallowed);
-    } catch (Exception e) {
-      results.setProperty(UserTransaction, e.toString());
+    protected StatefulBMTOperations() {
+        super();
     }
 
-    // UserTransaction Methods Test1
-    try {
-      sctx.getUserTransaction().begin();
-      results.setProperty(UserTransaction_Methods_Test1, allowed);
-    } catch (IllegalStateException e) {
-      results.setProperty(UserTransaction_Methods_Test1, disallowed);
-    } catch (Exception e) {
-      results.setProperty(UserTransaction_Methods_Test1, e.toString());
+    public static StatefulBMTOperations getInstance() {
+        return instance;
     }
 
-    // UserTransaction Methods Test2
-    try {
-      sctx.getUserTransaction().commit();
-      results.setProperty(UserTransaction_Methods_Test2, allowed);
-    } catch (IllegalStateException e) {
-      results.setProperty(UserTransaction_Methods_Test2, disallowed);
-    } catch (Exception e) {
-      results.setProperty(UserTransaction_Methods_Test2, e.toString());
+    @Override
+    public void runRollbackOnly(SessionContext sctx, Properties results) {
+        getSetRollbackOnly(sctx, results);
     }
 
-    // UserTransaction Methods Test3
-    try {
-      sctx.getUserTransaction().getStatus();
-      results.setProperty(UserTransaction_Methods_Test3, allowed);
-    } catch (IllegalStateException e) {
-      results.setProperty(UserTransaction_Methods_Test3, disallowed);
-    } catch (Exception e) {
-      results.setProperty(UserTransaction_Methods_Test3, e.toString());
-    }
+    @Override
+    public void runUserTransaction(SessionContext sctx, Properties results) {
+        // UserTransaction Access test
+        try {
+            UserTransaction ut = sctx.getUserTransaction();
+            results.setProperty(UserTransaction, allowed);
+        } catch (IllegalStateException e) {
+            results.setProperty(UserTransaction, disallowed);
+        } catch (Exception e) {
+            results.setProperty(UserTransaction, e.toString());
+        }
 
-    // UserTransaction Methods Test4
-    // try {
-    // sctx.getUserTransaction().rollback();
-    // results.setProperty(UserTransaction_Methods_Test4, allowed);
-    // } catch (IllegalStateException e) {
-    // results.setProperty(UserTransaction_Methods_Test4, disallowed);
-    // } catch (Exception e) {
-    // results.setProperty(UserTransaction_Methods_Test4, e.toString());
-    // }
-    //
-    // // UserTransaction Methods Test5
-    // try {
-    // sctx.getUserTransaction().setRollbackOnly();
-    // results.setProperty(UserTransaction_Methods_Test5, allowed);
-    // } catch (IllegalStateException e) {
-    // results.setProperty(UserTransaction_Methods_Test5, disallowed);
-    // } catch (Exception e) {
-    // results.setProperty(UserTransaction_Methods_Test5, e.toString());
-    // }
+        // UserTransaction Methods Test1
+        try {
+            sctx.getUserTransaction().begin();
+            results.setProperty(UserTransaction_Methods_Test1, allowed);
+        } catch (IllegalStateException e) {
+            results.setProperty(UserTransaction_Methods_Test1, disallowed);
+        } catch (Exception e) {
+            results.setProperty(UserTransaction_Methods_Test1, e.toString());
+        }
 
-    // UserTransaction Methods Test6
-    try {
-      sctx.getUserTransaction().setTransactionTimeout(0);
-      results.setProperty(UserTransaction_Methods_Test6, allowed);
-    } catch (IllegalStateException e) {
-      results.setProperty(UserTransaction_Methods_Test6, disallowed);
-    } catch (Exception e) {
-      results.setProperty(UserTransaction_Methods_Test6, e.toString());
+        // UserTransaction Methods Test2
+        try {
+            sctx.getUserTransaction().commit();
+            results.setProperty(UserTransaction_Methods_Test2, allowed);
+        } catch (IllegalStateException e) {
+            results.setProperty(UserTransaction_Methods_Test2, disallowed);
+        } catch (Exception e) {
+            results.setProperty(UserTransaction_Methods_Test2, e.toString());
+        }
+
+        // UserTransaction Methods Test3
+        try {
+            sctx.getUserTransaction().getStatus();
+            results.setProperty(UserTransaction_Methods_Test3, allowed);
+        } catch (IllegalStateException e) {
+            results.setProperty(UserTransaction_Methods_Test3, disallowed);
+        } catch (Exception e) {
+            results.setProperty(UserTransaction_Methods_Test3, e.toString());
+        }
+
+        // UserTransaction Methods Test4
+        // try {
+        // sctx.getUserTransaction().rollback();
+        // results.setProperty(UserTransaction_Methods_Test4, allowed);
+        // } catch (IllegalStateException e) {
+        // results.setProperty(UserTransaction_Methods_Test4, disallowed);
+        // } catch (Exception e) {
+        // results.setProperty(UserTransaction_Methods_Test4, e.toString());
+        // }
+        //
+        // // UserTransaction Methods Test5
+        // try {
+        // sctx.getUserTransaction().setRollbackOnly();
+        // results.setProperty(UserTransaction_Methods_Test5, allowed);
+        // } catch (IllegalStateException e) {
+        // results.setProperty(UserTransaction_Methods_Test5, disallowed);
+        // } catch (Exception e) {
+        // results.setProperty(UserTransaction_Methods_Test5, e.toString());
+        // }
+
+        // UserTransaction Methods Test6
+        try {
+            sctx.getUserTransaction().setTransactionTimeout(0);
+            results.setProperty(UserTransaction_Methods_Test6, allowed);
+        } catch (IllegalStateException e) {
+            results.setProperty(UserTransaction_Methods_Test6, disallowed);
+        } catch (Exception e) {
+            results.setProperty(UserTransaction_Methods_Test6, e.toString());
+        }
     }
-  }
 }

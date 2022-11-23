@@ -21,5 +21,5 @@
 package com.sun.ts.tests.ejb30.common.annotation.enventry;
 
 public interface Constants {
-  public static final String PREFIX = "java:comp/env/";
+    public static final String PREFIX = "java:comp/env/";
 }

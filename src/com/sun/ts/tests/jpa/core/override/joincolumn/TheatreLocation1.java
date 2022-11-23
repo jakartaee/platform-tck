@@ -16,70 +16,67 @@
 
 package com.sun.ts.tests.jpa.core.override.joincolumn;
 
-import java.io.Serializable;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import java.io.Serializable;
 
 @Entity
 public class TheatreLocation1 implements Serializable {
 
-  @Id
-  private Long id;
+    @Id
+    private Long id;
 
-  private String code;
+    private String code;
 
-  private TheatreCompany1 company;
+    private TheatreCompany1 company;
 
-  public TheatreLocation1() {
-  }
+    public TheatreLocation1() {}
 
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.getId() != null ? this.getId().hashCode() : 0);
-    return hash;
-  }
-
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof TheatreLocation1)) {
-      return false;
+    public Long getId() {
+        return id;
     }
-    TheatreLocation1 other = (TheatreLocation1) object;
-    if (this.getId() != other.getId()
-        && (this.getId() == null || !this.getId().equals(other.getId()))) {
-      return false;
+
+    public void setId(Long id) {
+        this.id = id;
     }
-    return true;
-  }
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.joincolumn."
-        + "TheatreLocation1[id=" + getId() + "]";
-  }
+    public int hashCode() {
+        int hash = 0;
+        hash += (this.getId() != null ? this.getId().hashCode() : 0);
+        return hash;
+    }
 
-  public String getCode() {
-    return code;
-  }
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not
+        // set
+        if (!(object instanceof TheatreLocation1)) {
+            return false;
+        }
+        TheatreLocation1 other = (TheatreLocation1) object;
+        if (this.getId() != other.getId()
+                && (this.getId() == null || !this.getId().equals(other.getId()))) {
+            return false;
+        }
+        return true;
+    }
 
-  public void setCode(String code) {
-    this.code = code;
-  }
+    public String toString() {
+        return "com.sun.ts.tests.jpa.core.override.joincolumn." + "TheatreLocation1[id=" + getId() + "]";
+    }
 
-  public TheatreCompany1 getCompany() {
-    return company;
-  }
+    public String getCode() {
+        return code;
+    }
 
-  public void setCompany(TheatreCompany1 company) {
-    this.company = company;
-  }
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public TheatreCompany1 getCompany() {
+        return company;
+    }
+
+    public void setCompany(TheatreCompany1 company) {
+        this.company = company;
+    }
 }

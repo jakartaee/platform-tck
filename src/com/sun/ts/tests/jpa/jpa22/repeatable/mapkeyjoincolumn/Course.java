@@ -21,49 +21,48 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Course implements java.io.Serializable {
-  private static final long serialVersionUID = 22L;
+    private static final long serialVersionUID = 22L;
 
-  @Id
-  int id;
+    @Id
+    int id;
 
-  String courseName;
+    String courseName;
 
-  public Course() {
-  }
+    public Course() {}
 
-  public Course(int id, String name) {
-    this.id = id;
-    this.courseName = name;
-  }
-
-  public String getCourseName() {
-    return courseName;
-  }
-
-  public void setCourseName(String courseName) {
-    this.courseName = courseName;
-  }
-
-  public int hashCode() {
-
-    return this.id;
-  }
-
-  public boolean equals(Object obj) {
-    boolean result = false;
-
-    if ((obj != null) && (obj instanceof Course)) {
-      Course course = (Course) obj;
-      result = (course.id == this.id);
+    public Course(int id, String name) {
+        this.id = id;
+        this.courseName = name;
     }
-    return result;
-  }
 
-  public int getId() {
-    return id;
-  }
+    public String getCourseName() {
+        return courseName;
+    }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public int hashCode() {
+
+        return this.id;
+    }
+
+    public boolean equals(Object obj) {
+        boolean result = false;
+
+        if ((obj != null) && (obj instanceof Course)) {
+            Course course = (Course) obj;
+            result = (course.id == this.id);
+        }
+        return result;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

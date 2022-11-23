@@ -22,18 +22,18 @@ package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.respectbindingfeature;
 import jakarta.xml.ws.WebServiceException;
 
 public class RespectBindingFeatureException extends WebServiceException {
-  String detail;
+    String detail;
 
-  public RespectBindingFeatureException(String message) {
-    super(message);
-  }
+    public RespectBindingFeatureException(String message) {
+        super(message);
+    }
 
-  public RespectBindingFeatureException(String message, String detail) {
-    super(message);
-    this.detail = detail;
-  }
+    public RespectBindingFeatureException(String message, String detail) {
+        super(message);
+        this.detail = detail;
+    }
 
-  public String getDetail() {
-    return detail;
-  }
+    public String getDetail() {
+        return detail;
+    }
 }

@@ -20,89 +20,88 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.ejblink.scope;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  private static final String prefix = "java:comp/env/ejb/";
+    private static final String prefix = "java:comp/env/ejb/";
 
-  private static final String lookupName = prefix + "TestBean";
+    private static final String lookupName = prefix + "TestBean";
 
-  private TestBeanHome home = null;
+    private TestBeanHome home = null;
 
-  private TestBean bean = null;
+    private TestBean bean = null;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /**
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   */
-  public void setup(String[] args, Properties p) throws Fault {
-    props = p;
-
-    try {
-      logTrace("Client: Getting Naming Context...");
-      nctx = new TSNamingContext();
-      logTrace("Client: Looking up " + lookupName);
-      home = (TestBeanHome) nctx.lookup(lookupName, TestBeanHome.class);
-    } catch (Exception e) {
-      logErr("Client: Failed to obtain Naming Context:" + e);
-      throw new Fault("Client: Setup failed:" + e, e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /**
-   * @testName: testScope
-   *
-   * @assertion_ids: EJB:SPEC:766
-   *
-   * @test_Strategy: A Stateful Session bean references two other beans. One in
-   *                 the same JAR file, the other in a distinct JAR file. Both
-   *                 referenced beans use the same ejb-name in their respective
-   *                 JAR file, and are identified by a String environment entry
-   *                 ('myName').
-   *
-   *                 The ejb-link for the external bean is in the form
-   *                 'external.jar#BeanName'.
-   *
-   *                 Check that we can deploy the application, that the
-   *                 referencing bean can lookup the two other ones. Check that
-   *                 referenced beans identities (as reported by the String env.
-   *                 entry) match the ones specified in the DD.
-   */
-  public void testScope() throws Fault {
-    boolean pass = false;
+    /**
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     */
+    public void setup(String[] args, Properties p) throws Fault {
+        props = p;
 
-    try {
-      logTrace("Client: Creating bean...");
-      bean = home.create(props);
-
-      logTrace("Client: Checking referenced EJB...");
-      pass = bean.testSimpleLinkScope();
-      bean.remove();
-
-      if (!pass) {
-        throw new Fault("Client: EJB reference scope test failed!");
-      }
-    } catch (Exception e) {
-      logErr("Client: Caught exception: " + e);
-      throw new Fault("Client: EJB link scope test failed!" + e, e);
+        try {
+            logTrace("Client: Getting Naming Context...");
+            nctx = new TSNamingContext();
+            logTrace("Client: Looking up " + lookupName);
+            home = (TestBeanHome) nctx.lookup(lookupName, TestBeanHome.class);
+        } catch (Exception e) {
+            logErr("Client: Failed to obtain Naming Context:" + e);
+            throw new Fault("Client: Setup failed:" + e, e);
+        }
     }
-  }
 
-  public void cleanup() {
-    logTrace("Client: Cleanup.");
-  }
+    /**
+     * @testName: testScope
+     *
+     * @assertion_ids: EJB:SPEC:766
+     *
+     * @test_Strategy: A Stateful Session bean references two other beans. One in
+     *                 the same JAR file, the other in a distinct JAR file. Both
+     *                 referenced beans use the same ejb-name in their respective
+     *                 JAR file, and are identified by a String environment entry
+     *                 ('myName').
+     *
+     *                 The ejb-link for the external bean is in the form
+     *                 'external.jar#BeanName'.
+     *
+     *                 Check that we can deploy the application, that the
+     *                 referencing bean can lookup the two other ones. Check that
+     *                 referenced beans identities (as reported by the String env.
+     *                 entry) match the ones specified in the DD.
+     */
+    public void testScope() throws Fault {
+        boolean pass = false;
+
+        try {
+            logTrace("Client: Creating bean...");
+            bean = home.create(props);
+
+            logTrace("Client: Checking referenced EJB...");
+            pass = bean.testSimpleLinkScope();
+            bean.remove();
+
+            if (!pass) {
+                throw new Fault("Client: EJB reference scope test failed!");
+            }
+        } catch (Exception e) {
+            logErr("Client: Caught exception: " + e);
+            throw new Fault("Client: EJB link scope test failed!" + e, e);
+        }
+    }
+
+    public void cleanup() {
+        logTrace("Client: Cleanup.");
+    }
 }

@@ -23,7 +23,6 @@ package com.sun.ts.tests.ejb30.tx.session.stateless.cm.inheritance.annotated;
 import com.sun.ts.tests.ejb30.tx.common.session.inheritance.FBeanBase;
 import com.sun.ts.tests.ejb30.tx.common.session.inheritance.TxLocalIF;
 import com.sun.ts.tests.ejb30.tx.common.session.inheritance.TxRemoteIF;
-
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
@@ -32,7 +31,5 @@ import jakarta.ejb.TransactionAttributeType;
 @TransactionAttribute(TransactionAttributeType.NEVER)
 public class FBean extends FBeanBase implements TxRemoteIF, TxLocalIF {
 
-  public FBean() {
-  }
-
+    public FBean() {}
 }

@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 
 public abstract class QueueBeanEJB extends CMP20Wrapper {
 
-  public boolean checkYourQueue() {
-    return QueueCode.checkYourQueue(nctx);
-  }
-
+    public boolean checkYourQueue() {
+        return QueueCode.checkYourQueue(nctx);
+    }
 }

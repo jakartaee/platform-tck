@@ -20,22 +20,23 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.asynctest.server;
 
-import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
-
-import jakarta.xml.ws.WebServiceException;
-
+import com.sun.ts.lib.util.*;
 import jakarta.jws.WebService;
 
-@WebService(portName = "HelloPort", serviceName = "HelloService", targetNamespace = "http://helloservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JDLAsyncTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.asynctest.server.Hello")
-
+@WebService(
+        portName = "HelloPort",
+        serviceName = "HelloService",
+        targetNamespace = "http://helloservice.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/WSW2JDLAsyncTestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.asynctest.server.Hello")
 public class HelloImpl implements Hello {
 
-  public HelloResponse hello(HelloRequest request) {
-    HelloResponse response = null;
-    System.out.println("Hello, " + request.getString() + "!");
-    response = new HelloResponse();
-    response.setResult("Hello, " + request.getString() + "!");
-    return response;
-  }
+    public HelloResponse hello(HelloRequest request) {
+        HelloResponse response = null;
+        System.out.println("Hello, " + request.getString() + "!");
+        response = new HelloResponse();
+        response.setResult("Hello, " + request.getString() + "!");
+        return response;
+    }
 }

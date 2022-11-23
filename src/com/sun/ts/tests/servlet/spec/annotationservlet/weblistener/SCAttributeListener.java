@@ -19,36 +19,33 @@
  */
 package com.sun.ts.tests.servlet.spec.annotationservlet.weblistener;
 
-import java.util.ArrayList;
-
 import jakarta.servlet.ServletContextAttributeEvent;
 import jakarta.servlet.ServletContextAttributeListener;
 import jakarta.servlet.annotation.WebListener;
+import java.util.ArrayList;
 
 @WebListener(value = "ServletContextAttributeListener")
-public final class SCAttributeListener
-    implements ServletContextAttributeListener {
+public final class SCAttributeListener implements ServletContextAttributeListener {
 
-  public void attributeAdded(ServletContextAttributeEvent event) {
-    ArrayList al = null;
-    al = (ArrayList) event.getServletContext().getAttribute("SCAList");
-    if (al == null) {
-      al = new ArrayList();
+    public void attributeAdded(ServletContextAttributeEvent event) {
+        ArrayList al = null;
+        al = (ArrayList) event.getServletContext().getAttribute("SCAList");
+        if (al == null) {
+            al = new ArrayList();
+        }
+        al.add("SCAAdded:" + event.getName() + "," + event.getValue());
+        event.getServletContext().setAttribute("SCAList", al);
     }
-    al.add("SCAAdded:" + event.getName() + "," + event.getValue());
-    event.getServletContext().setAttribute("SCAList", al);
-  }
 
-  public void attributeRemoved(ServletContextAttributeEvent event) {
-    ArrayList al = null;
-    al = (ArrayList) event.getServletContext().getAttribute("SCAList");
-    if (al == null) {
-      al = new ArrayList();
+    public void attributeRemoved(ServletContextAttributeEvent event) {
+        ArrayList al = null;
+        al = (ArrayList) event.getServletContext().getAttribute("SCAList");
+        if (al == null) {
+            al = new ArrayList();
+        }
+        al.add("SCARemoved:" + event.getName() + "," + event.getValue());
+        event.getServletContext().setAttribute("SCAList", al);
     }
-    al.add("SCARemoved:" + event.getName() + "," + event.getValue());
-    event.getServletContext().setAttribute("SCAList", al);
-  }
 
-  public void attributeReplaced(ServletContextAttributeEvent event) {
-  }
+    public void attributeReplaced(ServletContextAttributeEvent event) {}
 }

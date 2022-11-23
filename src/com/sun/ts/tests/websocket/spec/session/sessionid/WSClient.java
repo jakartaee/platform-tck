@@ -20,14 +20,8 @@
  */
 package com.sun.ts.tests.websocket.spec.session.sessionid;
 
-import java.net.URI;
-import java.nio.ByteBuffer;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.ClientEndpointConfig;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.ContainerProvider;
@@ -36,244 +30,227 @@ import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
 import jakarta.websocket.WebSocketContainer;
+import java.net.URI;
+import java.nio.ByteBuffer;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 public class WSClient extends WebSocketCommonClient {
 
-  private static final long serialVersionUID = 10L;
+    private static final long serialVersionUID = 10L;
 
-  private static final String CONTEXT_ROOT = "/ws_spec_sessionid_web";
+    private static final String CONTEXT_ROOT = "/ws_spec_sessionid_web";
 
-  private static StringBuffer receivedMessageString = new StringBuffer();
+    private static StringBuffer receivedMessageString = new StringBuffer();
 
-  static CountDownLatch messageLatch, onCloseLatch;
+    static CountDownLatch messageLatch, onCloseLatch;
+    static volatile String session_id, session_id_endpoint_onOpen, session_id_endpoint_onClose;
+    static volatile Session session, session_endpoint_onOpen, session_endpoint_onClose;
 
-  static volatile String session_id, session_id_endpoint_onOpen,
-      session_id_endpoint_onClose;
-
-  static volatile Session session, session_endpoint_onOpen,
-      session_endpoint_onClose;
-
-  public static void main(String[] args) {
-    new WSClient().run(args);
-  }
-
-  public WSClient() {
-    setContextRoot("ws_session_web");
-  }
-
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ws_wait; ts_home;
-   */
-  /* Run test */
-
-  /*
-   * @testName: getIdTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-   * WebSocket:JAVADOC:10; WebSocket:JAVADOC:162; WebSocket:JAVADOC:67;
-   * WebSocket:JAVADOC:69; WebSocket:JAVADOC:130; WebSocket:SPEC:WSC-2.1.2-1;
-   *
-   * @test_Strategy:
-   */
-  public void getIdTest() throws Fault {
-    boolean passed = true;
-
-    try {
-      WebSocketContainer clientContainer = ContainerProvider
-          .getWebSocketContainer();
-      ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
-          .build();
-
-      messageLatch = new CountDownLatch(1);
-      session = clientContainer.connectToServer(
-          com.sun.ts.tests.websocket.spec.session.sessionid.WSClient.TCKGetIdEndpoint.class,
-          config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
-              + "/TCKTestServer"));
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
-
-      session_id = session.getId();
-
-      onCloseLatch = new CountDownLatch(1);
-      session.close();
-      onCloseLatch.await(_ws_wait, TimeUnit.SECONDS);
-
-      if (session_id != session_id_endpoint_onOpen
-          || session_id != session_id_endpoint_onClose) {
-        passed = false;
-        System.out.print("Session IDs are not the same.");
-      }
-      System.out.println("session_id                 =" + session_id);
-      System.out.println(
-          "session_id_endpoint_onClose=" + session_id_endpoint_onClose);
-      System.out
-          .println("session_id_endpoint_onOpen =" + session_id_endpoint_onOpen);
-    } catch (Exception e) {
-      e.printStackTrace();
-      throw new Fault(e);
+    public static void main(String[] args) {
+        new WSClient().run(args);
     }
-    if (!passed) {
-      throw new Fault("Test failed with incorrect response");
+
+    public WSClient() {
+        setContextRoot("ws_session_web");
     }
-  }
 
-  /*
-   * @testName: instanceTest
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-   * WebSocket:JAVADOC:10; WebSocket:JAVADOC:162; WebSocket:JAVADOC:67;
-   * WebSocket:JAVADOC:69; WebSocket:JAVADOC:130; WebSocket:SPEC:WSC-2.1.2-1;
-   *
-   * @test_Strategy:
-   */
-  public void instanceTest() throws Fault {
-    boolean passed = true;
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ws_wait; ts_home;
+     */
+    /* Run test */
 
-    try {
-      WebSocketContainer clientContainer = ContainerProvider
-          .getWebSocketContainer();
-      ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
-          .build();
+    /*
+     * @testName: getIdTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
+     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:162; WebSocket:JAVADOC:67;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:130; WebSocket:SPEC:WSC-2.1.2-1;
+     *
+     * @test_Strategy:
+     */
+    public void getIdTest() throws Fault {
+        boolean passed = true;
 
-      messageLatch = new CountDownLatch(1);
-      session = clientContainer.connectToServer(
-          com.sun.ts.tests.websocket.spec.session.sessionid.WSClient.TCKGetIdEndpoint.class,
-          config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
-              + "/TCKTestServer"));
-      messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+        try {
+            WebSocketContainer clientContainer = ContainerProvider.getWebSocketContainer();
+            ClientEndpointConfig config = ClientEndpointConfig.Builder.create().build();
 
-      onCloseLatch = new CountDownLatch(1);
-      session.close();
-      onCloseLatch.await(_ws_wait, TimeUnit.SECONDS);
+            messageLatch = new CountDownLatch(1);
+            session = clientContainer.connectToServer(
+                    com.sun.ts.tests.websocket.spec.session.sessionid.WSClient.TCKGetIdEndpoint.class,
+                    config,
+                    new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT + "/TCKTestServer"));
+            messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
-      if (session != session_endpoint_onOpen
-          || session != session_endpoint_onClose) {
-        passed = false;
-        System.out.print("Sessions are not the same.");
-      }
-      System.out.println("session                 =" + session);
-      System.out
-          .println("session_endpoint_onClose=" + session_endpoint_onClose);
-      System.out.println("session_endpoint_onOpen =" + session_endpoint_onOpen);
-    } catch (Exception e) {
-      e.printStackTrace();
-      throw new Fault(e);
-    }
-    if (!passed) {
-      throw new Fault("Test failed with incorrect response");
-    }
-  }
+            session_id = session.getId();
 
-  /*
-   * @testName: unique
-   * 
-   * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-   * WebSocket:JAVADOC:10; WebSocket:JAVADOC:162; WebSocket:JAVADOC:67;
-   * WebSocket:JAVADOC:69; WebSocket:JAVADOC:130; WebSocket:SPEC:WSC-2.1.2-1;
-   *
-   * @test_Strategy:
-   */
-  public void unique() throws Fault {
-    int size = 5;
-    boolean passed = true;
-    Session[] sessions = new Session[size];
+            onCloseLatch = new CountDownLatch(1);
+            session.close();
+            onCloseLatch.await(_ws_wait, TimeUnit.SECONDS);
 
-    try {
-      WebSocketContainer clientContainer = ContainerProvider
-          .getWebSocketContainer();
-      ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
-          .build();
-
-      for (int i = 0; i < size; i++) {
-        messageLatch = new CountDownLatch(1);
-        session = clientContainer.connectToServer(
-            com.sun.ts.tests.websocket.spec.session.sessionid.WSClient.TCKGetIdEndpoint.class,
-            config, new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT
-                + "/TCKTestServer"));
-        sessions[i] = session;
-        messageLatch.await(_ws_wait, TimeUnit.SECONDS);
-
-        onCloseLatch = new CountDownLatch(1);
-        session.close();
-        onCloseLatch.await(_ws_wait, TimeUnit.SECONDS);
-
-        System.out.println("Session " + i);
-
-        if (session != session_endpoint_onOpen
-            || session != session_endpoint_onClose) {
-          passed = false;
-          System.out.print("Sessions are not the same.");
+            if (session_id != session_id_endpoint_onOpen || session_id != session_id_endpoint_onClose) {
+                passed = false;
+                System.out.print("Session IDs are not the same.");
+            }
+            System.out.println("session_id                 =" + session_id);
+            System.out.println("session_id_endpoint_onClose=" + session_id_endpoint_onClose);
+            System.out.println("session_id_endpoint_onOpen =" + session_id_endpoint_onOpen);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Fault(e);
         }
-
-        System.out.println("session                 =" + session);
-        System.out
-            .println("session_endpoint_onClose=" + session_endpoint_onClose);
-        System.out
-            .println("session_endpoint_onOpen =" + session_endpoint_onOpen);
-      }
-
-      for (int i = 0; i < size; i++) {
-        for (int j = i + 1; j < size; j++) {
-          if (sessions[i] == sessions[j]) {
-            passed = false;
-            System.out.println("two sessions are the same: ");
-            System.out.println("session " + i + " " + sessions[i]);
-            System.out.println("session " + j + " " + sessions[j]);
-          }
+        if (!passed) {
+            throw new Fault("Test failed with incorrect response");
         }
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-      throw new Fault(e);
     }
-    if (!passed) {
-      throw new Fault("Test failed with incorrect response");
+
+    /*
+     * @testName: instanceTest
+     *
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
+     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:162; WebSocket:JAVADOC:67;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:130; WebSocket:SPEC:WSC-2.1.2-1;
+     *
+     * @test_Strategy:
+     */
+    public void instanceTest() throws Fault {
+        boolean passed = true;
+
+        try {
+            WebSocketContainer clientContainer = ContainerProvider.getWebSocketContainer();
+            ClientEndpointConfig config = ClientEndpointConfig.Builder.create().build();
+
+            messageLatch = new CountDownLatch(1);
+            session = clientContainer.connectToServer(
+                    com.sun.ts.tests.websocket.spec.session.sessionid.WSClient.TCKGetIdEndpoint.class,
+                    config,
+                    new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT + "/TCKTestServer"));
+            messageLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+            onCloseLatch = new CountDownLatch(1);
+            session.close();
+            onCloseLatch.await(_ws_wait, TimeUnit.SECONDS);
+
+            if (session != session_endpoint_onOpen || session != session_endpoint_onClose) {
+                passed = false;
+                System.out.print("Sessions are not the same.");
+            }
+            System.out.println("session                 =" + session);
+            System.out.println("session_endpoint_onClose=" + session_endpoint_onClose);
+            System.out.println("session_endpoint_onOpen =" + session_endpoint_onOpen);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Fault(e);
+        }
+        if (!passed) {
+            throw new Fault("Test failed with incorrect response");
+        }
     }
-  }
 
-  @Override
-  public void cleanup() throws Fault {
-    super.cleanup();
-  }
+    /*
+     * @testName: unique
+     *
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
+     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:162; WebSocket:JAVADOC:67;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:130; WebSocket:SPEC:WSC-2.1.2-1;
+     *
+     * @test_Strategy:
+     */
+    public void unique() throws Fault {
+        int size = 5;
+        boolean passed = true;
+        Session[] sessions = new Session[size];
 
-  public final static class TCKGetIdEndpoint extends Endpoint {
+        try {
+            WebSocketContainer clientContainer = ContainerProvider.getWebSocketContainer();
+            ClientEndpointConfig config = ClientEndpointConfig.Builder.create().build();
 
-    @Override
-    public void onOpen(Session session, EndpointConfig config) {
-      session_id_endpoint_onOpen = session.getId();
-      session_endpoint_onOpen = session;
+            for (int i = 0; i < size; i++) {
+                messageLatch = new CountDownLatch(1);
+                session = clientContainer.connectToServer(
+                        com.sun.ts.tests.websocket.spec.session.sessionid.WSClient.TCKGetIdEndpoint.class,
+                        config,
+                        new URI("ws://" + _hostname + ":" + _port + CONTEXT_ROOT + "/TCKTestServer"));
+                sessions[i] = session;
+                messageLatch.await(_ws_wait, TimeUnit.SECONDS);
 
-      session.addMessageHandler(new MessageHandler.Whole<String>() {
+                onCloseLatch = new CountDownLatch(1);
+                session.close();
+                onCloseLatch.await(_ws_wait, TimeUnit.SECONDS);
 
-        @Override
-        public void onMessage(String message) {
-          receivedMessageString.append(message);
-          messageLatch.countDown();
+                System.out.println("Session " + i);
+
+                if (session != session_endpoint_onOpen || session != session_endpoint_onClose) {
+                    passed = false;
+                    System.out.print("Sessions are not the same.");
+                }
+
+                System.out.println("session                 =" + session);
+                System.out.println("session_endpoint_onClose=" + session_endpoint_onClose);
+                System.out.println("session_endpoint_onOpen =" + session_endpoint_onOpen);
+            }
+
+            for (int i = 0; i < size; i++) {
+                for (int j = i + 1; j < size; j++) {
+                    if (sessions[i] == sessions[j]) {
+                        passed = false;
+                        System.out.println("two sessions are the same: ");
+                        System.out.println("session " + i + " " + sessions[i]);
+                        System.out.println("session " + j + " " + sessions[j]);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Fault(e);
         }
-      });
-
-      session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
-
-        @Override
-        public void onMessage(ByteBuffer data) {
-          String message_string = IOUtil.byteBufferToString(data);
-
-          receivedMessageString
-              .append("========Basic ByteBuffer MessageHander received="
-                  + message_string);
-          messageLatch.countDown();
+        if (!passed) {
+            throw new Fault("Test failed with incorrect response");
         }
-      });
     }
 
     @Override
-    public void onClose(Session session, CloseReason closeReason) {
-      session_id_endpoint_onClose = session.getId();
-      session_endpoint_onClose = session;
-
-      receivedMessageString.append("CloseCode=" + closeReason.getCloseCode());
-      receivedMessageString
-          .append("ReasonPhrase=" + closeReason.getReasonPhrase());
-      onCloseLatch.countDown();
+    public void cleanup() throws Fault {
+        super.cleanup();
     }
-  }
+
+    public static final class TCKGetIdEndpoint extends Endpoint {
+
+        @Override
+        public void onOpen(Session session, EndpointConfig config) {
+            session_id_endpoint_onOpen = session.getId();
+            session_endpoint_onOpen = session;
+
+            session.addMessageHandler(new MessageHandler.Whole<String>() {
+
+                @Override
+                public void onMessage(String message) {
+                    receivedMessageString.append(message);
+                    messageLatch.countDown();
+                }
+            });
+
+            session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
+
+                @Override
+                public void onMessage(ByteBuffer data) {
+                    String message_string = IOUtil.byteBufferToString(data);
+
+                    receivedMessageString.append("========Basic ByteBuffer MessageHander received=" + message_string);
+                    messageLatch.countDown();
+                }
+            });
+        }
+
+        @Override
+        public void onClose(Session session, CloseReason closeReason) {
+            session_id_endpoint_onClose = session.getId();
+            session_endpoint_onClose = session;
+
+            receivedMessageString.append("CloseCode=" + closeReason.getCloseCode());
+            receivedMessageString.append("ReasonPhrase=" + closeReason.getReasonPhrase());
+            onCloseLatch.countDown();
+        }
+    }
 }

@@ -21,106 +21,102 @@
 package com.sun.ts.tests.common.connector.whitebox;
 
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
-
 import jakarta.resource.ResourceException;
 import jakarta.resource.spi.EISSystemException;
 import jakarta.resource.spi.LocalTransaction;
 
 public class LocalTransactionImpl implements LocalTransaction {
 
-  private TSManagedConnection mc;
+    private TSManagedConnection mc;
 
-  /*
-   * @name LocalTransactionImpl
-   * 
-   * @desc LocalTransactionImpl constructor
-   * 
-   * @param TSManagedConnection
-   */
-  public LocalTransactionImpl(TSManagedConnection mc) {
-    this.mc = mc;
-  }
-
-  /*
-   * @name begin
-   * 
-   * @desc sends the event that local transaction has started
-   * 
-   * @exception ResourceException
-   * 
-   */
-  @Override
-  public void begin() throws ResourceException {
-    try {
-      TSConnection con = mc.getTSConnection();
-      ConnectorStatus.getConnectorStatus().logAPI("LocalTransaction.begin", "",
-          "");
-      con.setAutoCommit(false);
-      System.out.println("LocalTransaction.begin");
-    } catch (Exception ex) {
-      ResourceException re = new EISSystemException(ex.getMessage());
-      re.initCause(ex);
-      throw re;
+    /*
+     * @name LocalTransactionImpl
+     *
+     * @desc LocalTransactionImpl constructor
+     *
+     * @param TSManagedConnection
+     */
+    public LocalTransactionImpl(TSManagedConnection mc) {
+        this.mc = mc;
     }
-  }
 
-  /*
-   * @name commit
-   * 
-   * @desc Sends an event that local transaction has been commited.
-   * 
-   * @exception ResourceException
-   */
-  @Override
-  public void commit() throws ResourceException {
-    TSConnection con = null;
-    try {
-      con = mc.getTSConnection();
-      ConnectorStatus.getConnectorStatus().logAPI("LocalTransaction.commit", "",
-          "");
-      System.out.println("LocalTransaction.commit");
-      con.commit();
-    } catch (Exception ex) {
-      ResourceException re = new EISSystemException(ex.getMessage());
-      re.initCause(ex);
-      throw re;
-    } finally {
-      try {
-        if (con != null) {
-          con.setAutoCommit(true);
+    /*
+     * @name begin
+     *
+     * @desc sends the event that local transaction has started
+     *
+     * @exception ResourceException
+     *
+     */
+    @Override
+    public void begin() throws ResourceException {
+        try {
+            TSConnection con = mc.getTSConnection();
+            ConnectorStatus.getConnectorStatus().logAPI("LocalTransaction.begin", "", "");
+            con.setAutoCommit(false);
+            System.out.println("LocalTransaction.begin");
+        } catch (Exception ex) {
+            ResourceException re = new EISSystemException(ex.getMessage());
+            re.initCause(ex);
+            throw re;
         }
-      } catch (Exception ex) {
-        ex.getMessage();
-      }
     }
-  }
 
-  /*
-   * @name rollback
-   * 
-   * @desc Sends an event to rollback the transaction
-   * 
-   * @exception ResourceException
-   */
-  @Override
-  public void rollback() throws ResourceException {
-    TSConnection con = null;
-    try {
-      con = mc.getTSConnection();
-      ConnectorStatus.getConnectorStatus().logAPI("LocalTransaction.rollback",
-          "", "");
-      con.rollback();
-    } catch (Exception ex) {
-      ResourceException re = new EISSystemException(ex.getMessage());
-      re.initCause(ex);
-      throw re;
-    } finally {
-      try {
-        if (con != null) {
-          con.setAutoCommit(true);
+    /*
+     * @name commit
+     *
+     * @desc Sends an event that local transaction has been commited.
+     *
+     * @exception ResourceException
+     */
+    @Override
+    public void commit() throws ResourceException {
+        TSConnection con = null;
+        try {
+            con = mc.getTSConnection();
+            ConnectorStatus.getConnectorStatus().logAPI("LocalTransaction.commit", "", "");
+            System.out.println("LocalTransaction.commit");
+            con.commit();
+        } catch (Exception ex) {
+            ResourceException re = new EISSystemException(ex.getMessage());
+            re.initCause(ex);
+            throw re;
+        } finally {
+            try {
+                if (con != null) {
+                    con.setAutoCommit(true);
+                }
+            } catch (Exception ex) {
+                ex.getMessage();
+            }
         }
-      } catch (Exception ex) {
-      }
     }
-  }
+
+    /*
+     * @name rollback
+     *
+     * @desc Sends an event to rollback the transaction
+     *
+     * @exception ResourceException
+     */
+    @Override
+    public void rollback() throws ResourceException {
+        TSConnection con = null;
+        try {
+            con = mc.getTSConnection();
+            ConnectorStatus.getConnectorStatus().logAPI("LocalTransaction.rollback", "", "");
+            con.rollback();
+        } catch (Exception ex) {
+            ResourceException re = new EISSystemException(ex.getMessage());
+            re.initCause(ex);
+            throw re;
+        } finally {
+            try {
+                if (con != null) {
+                    con.setAutoCommit(true);
+                }
+            } catch (Exception ex) {
+            }
+        }
+    }
 }

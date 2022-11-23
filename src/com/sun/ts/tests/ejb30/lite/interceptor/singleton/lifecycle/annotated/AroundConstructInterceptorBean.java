@@ -20,7 +20,6 @@ import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.Interceptor9;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorA;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorBeanBase;
 import com.sun.ts.tests.ejb30.lite.interceptor.common.lifecycle.InterceptorIF;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.Singleton;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
@@ -28,15 +27,14 @@ import jakarta.interceptor.Interceptors;
 
 @Singleton
 @ExcludeDefaultInterceptors
-@Interceptors({ Interceptor9.class, InterceptorA.class })
+@Interceptors({Interceptor9.class, InterceptorA.class})
 @SuppressWarnings("unused")
-public class AroundConstructInterceptorBean extends InterceptorBeanBase
-    implements InterceptorIF {
+public class AroundConstructInterceptorBean extends InterceptorBeanBase implements InterceptorIF {
 
-  private static final String simpleName = "AroundConstructInterceptorBean";
+    private static final String simpleName = "AroundConstructInterceptorBean";
 
-  @PostConstruct
-  protected void postConstruct() {
-    historySingletonBean.addPostConstructRecordFor(this, simpleName);
-  }
+    @PostConstruct
+    protected void postConstruct() {
+        historySingletonBean.addPostConstructRecordFor(this, simpleName);
+    }
 }

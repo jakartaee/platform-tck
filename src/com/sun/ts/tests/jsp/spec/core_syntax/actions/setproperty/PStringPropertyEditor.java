@@ -23,20 +23,17 @@ package com.sun.ts.tests.jsp.spec.core_syntax.actions.setproperty;
 import java.beans.PropertyEditorSupport;
 
 public class PStringPropertyEditor extends PropertyEditorSupport {
-  public PStringPropertyEditor() {
+    public PStringPropertyEditor() {}
 
-  }
-
-  /**
-   *
-   * @param param1
-   *          a string value. The String "PString" will be prepended to any
-   *          value passed.
-   * @exception java.lang.IllegalArgumentException
-   *              if unable to set the property.
-   */
-  public void setAsText(String param1) throws IllegalArgumentException {
-    setValue("PString " + param1);
-  }
-
-}// PStringPropertyEditor
+    /**
+     *
+     * @param param1
+     *          a string value. The String "PString" will be prepended to any
+     *          value passed.
+     * @exception java.lang.IllegalArgumentException
+     *              if unable to set the property.
+     */
+    public void setAsText(String param1) throws IllegalArgumentException {
+        setValue("PString " + param1);
+    }
+} // PStringPropertyEditor

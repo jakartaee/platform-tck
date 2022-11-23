@@ -16,8 +16,6 @@
 
 package com.sun.ts.tests.servlet.spec.security.denyUncovered;
 
-import java.io.IOException;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.HttpConstraint;
 import jakarta.servlet.annotation.ServletSecurity;
@@ -25,45 +23,42 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /*
  * This servlet will be used to assist in testing the deny-uncovered-http-methods
- * security support (as listed in Servlet 3.1 spec, section 13.8.4).  
- * 
+ * security support (as listed in Servlet 3.1 spec, section 13.8.4).
+ *
  * This is intended to be called from a Client, and will have specific settings
  * set on the web.xml that will allow (or disallow) certain http method calls
  * to be made based on the web.xml settings.
  *
  */
 
-@ServletSecurity(@HttpConstraint(rolesAllowed = { "Administrator", "Manager",
-    "Employee" }))
-@WebServlet(name = "AllMethodsAllowedAnno", urlPatterns = {
-    "/AllMethodsAllowedAnno" })
+@ServletSecurity(@HttpConstraint(rolesAllowed = {"Administrator", "Manager", "Employee"}))
+@WebServlet(
+        name = "AllMethodsAllowedAnno",
+        urlPatterns = {"/AllMethodsAllowedAnno"})
 public class AllMethodsAllowedAnno extends HttpServlet {
 
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    debug("in AllMethodsAllowedAnno.doGet()");
-  }
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        debug("in AllMethodsAllowedAnno.doGet()");
+    }
 
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    debug("in AllMethodsAllowedAnno.doPost()");
-  }
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        debug("in AllMethodsAllowedAnno.doPost()");
+    }
 
-  public void doDelete(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    debug("in AllMethodsAllowedAnno.doDelete()");
-  }
+    public void doDelete(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        debug("in AllMethodsAllowedAnno.doDelete()");
+    }
 
-  public void doPut(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    debug("in AllMethodsAllowedAnno.doPut()");
-  }
+    public void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        debug("in AllMethodsAllowedAnno.doPut()");
+    }
 
-  public void debug(String str) {
-    System.out.println(str);
-  }
-
+    public void debug(String str) {
+        System.out.println(str);
+    }
 }

@@ -20,117 +20,112 @@
 
 package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1006;
 
+import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.*;
-
 import com.sun.ts.tests.jaxws.sharedclients.ClientFactory;
 import com.sun.ts.tests.jaxws.wsi.requests.SOAPRequests;
-import com.sun.javatest.Status;
-
-import jakarta.xml.soap.SOAPMessage;
-import jakarta.xml.soap.SOAPException;
 import jakarta.xml.soap.SOAPElement;
-import java.util.Properties;
+import jakarta.xml.soap.SOAPException;
+import jakarta.xml.soap.SOAPMessage;
 import java.util.Iterator;
+import java.util.Properties;
 
 public class Client extends ServiceEETest implements SOAPRequests {
 
-  private W2JRLR1006Client client;
+    private W2JRLR1006Client client;
 
-  static SimpleTest service = null;
+    static SimpleTest service = null;
 
-  /**
-   * Test entry point.
-   *
-   * @param args
-   *          the command-line arguments.
-   */
-  public static void main(String[] args) {
-    Client tests = new Client();
-    Status status = tests.run(args, System.out, System.err);
-    status.exit();
-  }
-
-  /**
-   * @class.testArgs: -ap jaxws-url-props.dat
-   * @class.setup_props: webServerHost; webServerPort; platform.mode;
-   *
-   * @param args
-   * @param properties
-   *
-   * @throws com.sun.ts.lib.harness.EETest.Fault
-   */
-  public void setup(String[] args, Properties properties) throws EETest.Fault {
-    client = (W2JRLR1006Client) ClientFactory.getClient(W2JRLR1006Client.class,
-        properties, this, service);
-    logMsg("setup ok");
-  }
-
-  public void cleanup() {
-    logMsg("cleanup");
-  }
-
-  /**
-   * @testName: testNoEncodingStyleOnResponseBodyChildren
-   *
-   * @assertion_ids: WSI:SPEC:R1006
-   *
-   * @test_Strategy: Make a request and inspect response soap:Body children to
-   *                 ensure they don't have soap:encodingStyle attribute.
-   *
-   * @throws com.sun.ts.lib.harness.EETest.Fault
-   */
-  public void testNoEncodingStyleOnResponseBodyChildren() throws EETest.Fault {
-    SOAPMessage response = null;
-    try {
-      response = client.makeSaajRequest(HELLOWORLD_WITH_HANDLER);
-    } catch (Exception e) {
-      throw new EETest.Fault("Test didn't complete properly: ", e);
+    /**
+     * Test entry point.
+     *
+     * @param args
+     *          the command-line arguments.
+     */
+    public static void main(String[] args) {
+        Client tests = new Client();
+        Status status = tests.run(args, System.out, System.err);
+        status.exit();
     }
-    try {
-      validateNoEncodingStyleOnBodyChildren(response);
-    } catch (SOAPException se) {
-      throw new EETest.Fault("Error creating response object", se);
-    }
-    client.logMessageInHarness(response);
-  }
 
-  /**
-   * @testName: testNoEncodingStyleOnRequestBodyChildren
-   *
-   * @assertion_ids: WSI:SPEC:R1006
-   *
-   * @test_Strategy: Make a request and inspect request soap:Body children to
-   *                 ensure they don't have soap:encodingStyle attribute.
-   *
-   * @throws com.sun.ts.lib.harness.EETest.Fault
-   */
-  public void testNoEncodingStyleOnRequestBodyChildren() throws EETest.Fault {
-    String response = "";
-    try {
-      response = client.helloWorld();
-    } catch (Exception e) {
-      throw new EETest.Fault("Test didn't complete properly: ", e);
+    /**
+     * @class.testArgs: -ap jaxws-url-props.dat
+     * @class.setup_props: webServerHost; webServerPort; platform.mode;
+     *
+     * @param args
+     * @param properties
+     *
+     * @throws com.sun.ts.lib.harness.EETest.Fault
+     */
+    public void setup(String[] args, Properties properties) throws EETest.Fault {
+        client = (W2JRLR1006Client) ClientFactory.getClient(W2JRLR1006Client.class, properties, this, service);
+        logMsg("setup ok");
     }
-    if (response.startsWith("failed")) {
-      throw new EETest.Fault(response);
-    }
-  }
 
-  private void validateNoEncodingStyleOnBodyChildren(SOAPMessage response)
-      throws EETest.Fault, SOAPException {
-    Iterator bodyChildren = response.getSOAPPart().getEnvelope().getBody()
-        .getChildElements();
-    SOAPElement child;
-    String encodingStyle;
-    while (bodyChildren.hasNext()) {
-      child = (SOAPElement) bodyChildren.next();
-      encodingStyle = child.getEncodingStyle();
-      if (!(encodingStyle == null || encodingStyle.equals(""))) {
+    public void cleanup() {
+        logMsg("cleanup");
+    }
+
+    /**
+     * @testName: testNoEncodingStyleOnResponseBodyChildren
+     *
+     * @assertion_ids: WSI:SPEC:R1006
+     *
+     * @test_Strategy: Make a request and inspect response soap:Body children to
+     *                 ensure they don't have soap:encodingStyle attribute.
+     *
+     * @throws com.sun.ts.lib.harness.EETest.Fault
+     */
+    public void testNoEncodingStyleOnResponseBodyChildren() throws EETest.Fault {
+        SOAPMessage response = null;
+        try {
+            response = client.makeSaajRequest(HELLOWORLD_WITH_HANDLER);
+        } catch (Exception e) {
+            throw new EETest.Fault("Test didn't complete properly: ", e);
+        }
+        try {
+            validateNoEncodingStyleOnBodyChildren(response);
+        } catch (SOAPException se) {
+            throw new EETest.Fault("Error creating response object", se);
+        }
         client.logMessageInHarness(response);
-        throw new EETest.Fault("Invalid element: child elements of soap:Body"
-            + " cannot have soap:encodingStyle attribute (BP-R1006):  "
-            + child.getElementName().getQualifiedName());
-      }
     }
-  }
+
+    /**
+     * @testName: testNoEncodingStyleOnRequestBodyChildren
+     *
+     * @assertion_ids: WSI:SPEC:R1006
+     *
+     * @test_Strategy: Make a request and inspect request soap:Body children to
+     *                 ensure they don't have soap:encodingStyle attribute.
+     *
+     * @throws com.sun.ts.lib.harness.EETest.Fault
+     */
+    public void testNoEncodingStyleOnRequestBodyChildren() throws EETest.Fault {
+        String response = "";
+        try {
+            response = client.helloWorld();
+        } catch (Exception e) {
+            throw new EETest.Fault("Test didn't complete properly: ", e);
+        }
+        if (response.startsWith("failed")) {
+            throw new EETest.Fault(response);
+        }
+    }
+
+    private void validateNoEncodingStyleOnBodyChildren(SOAPMessage response) throws EETest.Fault, SOAPException {
+        Iterator bodyChildren = response.getSOAPPart().getEnvelope().getBody().getChildElements();
+        SOAPElement child;
+        String encodingStyle;
+        while (bodyChildren.hasNext()) {
+            child = (SOAPElement) bodyChildren.next();
+            encodingStyle = child.getEncodingStyle();
+            if (!(encodingStyle == null || encodingStyle.equals(""))) {
+                client.logMessageInHarness(response);
+                throw new EETest.Fault("Invalid element: child elements of soap:Body"
+                        + " cannot have soap:encodingStyle attribute (BP-R1006):  "
+                        + child.getElementName().getQualifiedName());
+            }
+        }
+    }
 }

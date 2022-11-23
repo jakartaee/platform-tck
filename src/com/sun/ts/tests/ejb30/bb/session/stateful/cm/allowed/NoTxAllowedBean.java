@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.cm.allowed;
 
 import com.sun.ts.tests.ejb30.common.allowed.NoTxAllowedIF;
 import com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulOperations;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Remove;
@@ -32,33 +31,28 @@ import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 
 @Stateful(name = "NoTxAllowedBean")
-@Remote({ NoTxAllowedIF.class })
+@Remote({NoTxAllowedIF.class})
 public class NoTxAllowedBean implements NoTxAllowedIF, java.io.Serializable {
 
-  @Resource(name = "ejbContext")
-  SessionContext sctx;
+    @Resource(name = "ejbContext")
+    SessionContext sctx;
 
-  // ===================== business methods ===========================
-  @Remove
-  public void remove() {
-  }
+    // ===================== business methods ===========================
+    @Remove
+    public void remove() {}
 
-  @TransactionAttribute(TransactionAttributeType.SUPPORTS)
-  public void txSupports()
-      throws com.sun.ts.tests.ejb30.common.helper.TestFailedException {
-    StatefulOperations.getInstance().tryRollback(sctx);
-  }
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+    public void txSupports() throws com.sun.ts.tests.ejb30.common.helper.TestFailedException {
+        StatefulOperations.getInstance().tryRollback(sctx);
+    }
 
-  @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-  public void txNotSupported()
-      throws com.sun.ts.tests.ejb30.common.helper.TestFailedException {
-    StatefulOperations.getInstance().tryRollback(sctx);
-  }
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+    public void txNotSupported() throws com.sun.ts.tests.ejb30.common.helper.TestFailedException {
+        StatefulOperations.getInstance().tryRollback(sctx);
+    }
 
-  @TransactionAttribute(TransactionAttributeType.NEVER)
-  public void txNever()
-      throws com.sun.ts.tests.ejb30.common.helper.TestFailedException {
-    StatefulOperations.getInstance().tryRollback(sctx);
-  }
-
+    @TransactionAttribute(TransactionAttributeType.NEVER)
+    public void txNever() throws com.sun.ts.tests.ejb30.common.helper.TestFailedException {
+        StatefulOperations.getInstance().tryRollback(sctx);
+    }
 }

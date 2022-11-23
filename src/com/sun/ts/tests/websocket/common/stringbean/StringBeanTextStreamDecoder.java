@@ -17,28 +17,24 @@
 
 package com.sun.ts.tests.websocket.common.stringbean;
 
-import java.io.IOException;
-import java.io.Reader;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.DecodeException;
 import jakarta.websocket.Decoder.TextStream;
 import jakarta.websocket.EndpointConfig;
+import java.io.IOException;
+import java.io.Reader;
 
 public class StringBeanTextStreamDecoder implements TextStream<StringBean> {
 
-  @Override
-  public void init(EndpointConfig config) {
-  }
+    @Override
+    public void init(EndpointConfig config) {}
 
-  @Override
-  public StringBean decode(Reader r) throws DecodeException, IOException {
-    String text = IOUtil.readFromReader(r);
-    return new StringBean(text);
-  }
+    @Override
+    public StringBean decode(Reader r) throws DecodeException, IOException {
+        String text = IOUtil.readFromReader(r);
+        return new StringBean(text);
+    }
 
-  @Override
-  public void destroy() {
-  }
+    @Override
+    public void destroy() {}
 }

@@ -20,32 +20,26 @@
 
 package com.sun.ts.tests.jaxws.mapping.w2jmapping.document.literal.annotations;
 
-import jakarta.xml.soap.*;
-import jakarta.xml.ws.soap.*;
-import jakarta.xml.ws.handler.*;
-import jakarta.xml.ws.LogicalMessage;
-
-import jakarta.annotation.PreDestroy;
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.xml.soap.*;
+import jakarta.xml.ws.handler.*;
+import jakarta.xml.ws.soap.*;
 
-public class Handler
-    implements jakarta.xml.ws.handler.LogicalHandler<LogicalMessageContext> {
-  @PostConstruct
-  public void myInit() {
-  }
+public class Handler implements jakarta.xml.ws.handler.LogicalHandler<LogicalMessageContext> {
+    @PostConstruct
+    public void myInit() {}
 
-  @PreDestroy
-  public void myDestroy() {
-  }
+    @PreDestroy
+    public void myDestroy() {}
 
-  public boolean handleMessage(LogicalMessageContext context) {
-    return true;
-  }
+    public boolean handleMessage(LogicalMessageContext context) {
+        return true;
+    }
 
-  public void close(MessageContext context) {
-  }
+    public void close(MessageContext context) {}
 
-  public boolean handleFault(LogicalMessageContext context) {
-    return true;
-  }
+    public boolean handleFault(LogicalMessageContext context) {
+        return true;
+    }
 }

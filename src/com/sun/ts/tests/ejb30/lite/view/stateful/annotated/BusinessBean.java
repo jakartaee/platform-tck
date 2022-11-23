@@ -23,37 +23,34 @@ package com.sun.ts.tests.ejb30.lite.view.stateful.annotated;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessBeanBase;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF1;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessLocalIF2;
-
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateful;
 
 @Stateful
-@Local({ BusinessLocalIF1.class, BusinessLocalIF2.class })
+@Local({BusinessLocalIF1.class, BusinessLocalIF2.class})
 public class BusinessBean extends BusinessBeanBase {
-  public void remove() {
-  }
+    public void remove() {}
 
-  public void remove2() {
-  }
+    public void remove2() {}
 
-  //////////////////////////////////////////////////////////////////////
-  // These 3 methods should not be called since this bean does not
-  // implement SessionSynchronization. Their superclass implementation
-  // throws EJBException upon being called.
-  // Having these methods here to verify they must not be called.
-  //////////////////////////////////////////////////////////////////////
-  @Override
-  public void afterCompletion(boolean b) {
-    super.afterCompletion(b);
-  }
+    //////////////////////////////////////////////////////////////////////
+    // These 3 methods should not be called since this bean does not
+    // implement SessionSynchronization. Their superclass implementation
+    // throws EJBException upon being called.
+    // Having these methods here to verify they must not be called.
+    //////////////////////////////////////////////////////////////////////
+    @Override
+    public void afterCompletion(boolean b) {
+        super.afterCompletion(b);
+    }
 
-  @Override
-  public void beforeCompletion() {
-    super.beforeCompletion();
-  }
+    @Override
+    public void beforeCompletion() {
+        super.beforeCompletion();
+    }
 
-  @Override
-  public void afterBegin() {
-    super.afterBegin();
-  }
+    @Override
+    public void afterBegin() {
+        super.afterBegin();
+    }
 }

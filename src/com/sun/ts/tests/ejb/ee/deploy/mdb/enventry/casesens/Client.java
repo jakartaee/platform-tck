@@ -20,68 +20,65 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.mdb.enventry.casesens;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.jms.Queue;
+import java.util.Properties;
 
 public class Client extends com.sun.ts.tests.jms.commonee.Client {
 
-  Queue mdbQ = null;
+    Queue mdbQ = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /**
-   * @class.setup_props: jms_timeout; user; password;
-   */
-  public void setup(String[] args, Properties props) throws Fault {
-
-    try {
-      this.props = props;
-      super.setup(args, props);
-
-      TestUtil.logTrace("[Client] Looking up MDB...");
-      mdbQ = (Queue) context.lookup("java:comp/env/jms/MDBTest");
-    } catch (Exception e) {
-      throw new Fault("Setup Failed!", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /**
-   * @testName: testEntryCaseSensitivity
-   *
-   * @assertion_ids: EJB:SPEC:872
-   *
-   * @test_Strategy: Deploy a bean with two String environment entries whose
-   *                 name differ only by case and are assigned to two distinct
-   *                 values. Check that we can lookup the two environment
-   *                 entries. Check that their runtime values are distinct and
-   *                 correspond the the ones specified in the DD.
-   */
-  public void testEntryCaseSensitivity() throws Fault {
+    /**
+     * @class.setup_props: jms_timeout; user; password;
+     */
+    public void setup(String[] args, Properties props) throws Fault {
 
-    String testCase = "testEntryCaseSensitivity";
-    int testNum = 1;
+        try {
+            this.props = props;
+            super.setup(args, props);
 
-    try {
-      qSender = session.createSender(mdbQ);
-      createTestMessage(testCase, testNum);
-      qSender.send(msg);
-
-      if (!checkOnResponse(testCase)) {
-        TestUtil.logErr("[Client] " + testCase + " failed");
-        throw new Exception(testCase + " Failed");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] " + testCase + " failed: ", e);
-      throw new Fault(testCase + " failed!", e);
+            TestUtil.logTrace("[Client] Looking up MDB...");
+            mdbQ = (Queue) context.lookup("java:comp/env/jms/MDBTest");
+        } catch (Exception e) {
+            throw new Fault("Setup Failed!", e);
+        }
     }
-  }
 
+    /**
+     * @testName: testEntryCaseSensitivity
+     *
+     * @assertion_ids: EJB:SPEC:872
+     *
+     * @test_Strategy: Deploy a bean with two String environment entries whose
+     *                 name differ only by case and are assigned to two distinct
+     *                 values. Check that we can lookup the two environment
+     *                 entries. Check that their runtime values are distinct and
+     *                 correspond the the ones specified in the DD.
+     */
+    public void testEntryCaseSensitivity() throws Fault {
+
+        String testCase = "testEntryCaseSensitivity";
+        int testNum = 1;
+
+        try {
+            qSender = session.createSender(mdbQ);
+            createTestMessage(testCase, testNum);
+            qSender.send(msg);
+
+            if (!checkOnResponse(testCase)) {
+                TestUtil.logErr("[Client] " + testCase + " failed");
+                throw new Exception(testCase + " Failed");
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("[Client] " + testCase + " failed: ", e);
+            throw new Fault(testCase + " failed!", e);
+        }
+    }
 }

@@ -27,158 +27,148 @@ import java.util.Properties;
  */
 public class JaspicJakartaEEPropertyManager extends AbstractPropertyManager {
 
-  private static JaspicJakartaEEPropertyManager jteMgr = new JaspicJakartaEEPropertyManager();
+    private static JaspicJakartaEEPropertyManager jteMgr = new JaspicJakartaEEPropertyManager();
 
-  private String sDeployClass1;
+    private String sDeployClass1;
 
-  private String sDeployClass2;
+    private String sDeployClass2;
 
-  private String sLoginClass1;
+    private String sLoginClass1;
 
-  private String sURLClass1;
+    private String sURLClass1;
 
-  private String sURLClass2;
+    private String sURLClass2;
 
-  private String sJMSClass1;
+    private String sJMSClass1;
 
-  private String sDeployHost1;
+    private String sDeployHost1;
 
-  private String sDeployHost2;
+    private String sDeployHost2;
 
-  private String sWebServerHost;
+    private String sWebServerHost;
 
-  private String sWebServerPort;
+    private String sWebServerPort;
 
-  private String sWebServerHost2;
+    private String sWebServerHost2;
 
-  private String sWebServerPort2;
+    private String sWebServerPort2;
 
-  private String sSecuredWebServicePort;
+    private String sSecuredWebServicePort;
 
-  private String sSecuredWebServicePort2;
+    private String sSecuredWebServicePort2;
 
-  private String sHttpsURLConnectionClass1;
+    private String sHttpsURLConnectionClass1;
 
-  private String sWSDLRepository1;
+    private String sWSDLRepository1;
 
-  private String sWSDLRepository2;
+    private String sWSDLRepository2;
 
-  private String user1;
+    private String user1;
 
-  private String password1;
+    private String password1;
 
-  private String user2;
+    private String user2;
 
-  private String password2;
+    private String password2;
 
-  private JaspicJakartaEEPropertyManager() {
-  }
+    private JaspicJakartaEEPropertyManager() {}
 
-  /**
-   * This method returns the singleton instance of JaspicJakartaEEPropertyManager
-   * which provides access to all ts.jte properties. This is only called once by
-   * the test harness.
-   *
-   * @param env
-   *          - TestEnvironment object from JavaTest
-   * @return JaspicJakartaEEPropertyManager - singleton property manager object
-   */
-  public final static JaspicJakartaEEPropertyManager getJaspicJakartaEEPropertyManager(
-      TestEnvironment env) throws PropertyNotSetException {
-    jteMgr.setTestEnvironment(env);
-    jteMgr.initInteropProperties(); // TODO: why init interop only here?
-    return jteMgr;
-  }
-
-  /**
-   * This method returns the singleton instance of JaspicJakartaEEPropertyManager
-   * which provides access to all ts.jte properties. This is only called by the
-   * init() method in ManualDeployment.java
-   *
-   * @param p
-   *          - Properties object from JavaTest
-   * @return JaspicJakartaEEPropertyManager - singleton property manager object
-   */
-  public final static JaspicJakartaEEPropertyManager getJaspicJakartaEEPropertyManager(
-      Properties p) throws PropertyNotSetException {
-    jteMgr.setJteProperties(p);
-    return jteMgr;
-  }
-
-  public final static JaspicJakartaEEPropertyManager getJaspicJakartaEEPropertyManager()
-      throws PropertyNotSetException {
-    return jteMgr;
-  }
-
-  private void initInteropProperties() {
-  }
-
-  public void forwardValues() {
-    // reverse all interop props
-    setProperty("user1", user1);
-    setProperty("password1", password1);
-    setProperty("user2", user2);
-    setProperty("password2", password2);
-
-    setProperty("porting.ts.deploy.class.1", sDeployClass1);
-    setProperty("porting.ts.deploy.class.2", sDeployClass2);
-    setProperty("porting.ts.login.class.1", sLoginClass1);
-    setProperty("porting.ts.url.class.1", sURLClass1);
-    setProperty("porting.ts.jms.class.1", sJMSClass1);
-    setProperty("deployment_host.1", sDeployHost1);
-    setProperty("deployment_host.2", sDeployHost2);
-    setProperty("webServerHost", sWebServerHost);
-    setProperty("webServerHost.2", sWebServerHost2);
-    setProperty("webServerPort", sWebServerPort);
-    setProperty("webServerPort.2", sWebServerPort2);
-    setProperty("securedWebServicePort", sSecuredWebServicePort);
-    setProperty("securedWebServicePort.2", sSecuredWebServicePort2);
-    setProperty("porting.ts.HttpsURLConnection.class.1",
-        sHttpsURLConnectionClass1);
-    setProperty("wsdlRepository1", sWSDLRepository1);
-    setProperty("wsdlRepository2", sWSDLRepository2);
-
-    super.forwardValues();
-  }
-
-  public void reverseValues() {
-    // reverse all interop props
-  }
-
-  /**
-   * This method is called by the test harness to retrieve all properties needed
-   * by a particular test.
-   *
-   * @param sPropKeys
-   *          - Properties to retrieve
-   * @return Properties - property/value pairs
-   */
-  public Properties getTestSpecificProperties(String[] sPropKeys)
-      throws PropertyNotSetException {
-    Properties pTestProps = super.getTestSpecificProperties(sPropKeys);
-
-    // if the abstract propertymanager already loaded all props, just return
-    if (pTestProps.getProperty("all.props").equalsIgnoreCase("true")) {
-      return pTestProps;
+    /**
+     * This method returns the singleton instance of JaspicJakartaEEPropertyManager
+     * which provides access to all ts.jte properties. This is only called once by
+     * the test harness.
+     *
+     * @param env
+     *          - TestEnvironment object from JavaTest
+     * @return JaspicJakartaEEPropertyManager - singleton property manager object
+     */
+    public static final JaspicJakartaEEPropertyManager getJaspicJakartaEEPropertyManager(TestEnvironment env)
+            throws PropertyNotSetException {
+        jteMgr.setTestEnvironment(env);
+        jteMgr.initInteropProperties(); // TODO: why init interop only here?
+        return jteMgr;
     }
 
-    String sJtePropVal = "";
-    // add all porting class props so the factories can work in the server
-    pTestProps.put("porting.ts.deploy.class.1",
-        getProperty("porting.ts.deploy.class.1"));
-    pTestProps.put("porting.ts.deploy.class.2",
-        getProperty("porting.ts.deploy.class.2"));
-    pTestProps.put("porting.ts.login.class.1",
-        getProperty("porting.ts.login.class.1"));
-    pTestProps.put("porting.ts.HttpsURLConnection.class.1",
-        getProperty("porting.ts.HttpsURLConnection.class.1"));
-    pTestProps.put("porting.ts.url.class.1",
-        getProperty("porting.ts.url.class.1"));
-    pTestProps.put("porting.ts.jms.class.1",
-        getProperty("porting.ts.jms.class.1"));
-    pTestProps.put("wsdlRepository1", getProperty("wsdlRepository1"));
-    pTestProps.put("wsdlRepository2", getProperty("wsdlRepository2"));
+    /**
+     * This method returns the singleton instance of JaspicJakartaEEPropertyManager
+     * which provides access to all ts.jte properties. This is only called by the
+     * init() method in ManualDeployment.java
+     *
+     * @param p
+     *          - Properties object from JavaTest
+     * @return JaspicJakartaEEPropertyManager - singleton property manager object
+     */
+    public static final JaspicJakartaEEPropertyManager getJaspicJakartaEEPropertyManager(Properties p)
+            throws PropertyNotSetException {
+        jteMgr.setJteProperties(p);
+        return jteMgr;
+    }
 
-    return pTestProps;
-  }
+    public static final JaspicJakartaEEPropertyManager getJaspicJakartaEEPropertyManager()
+            throws PropertyNotSetException {
+        return jteMgr;
+    }
+
+    private void initInteropProperties() {}
+
+    public void forwardValues() {
+        // reverse all interop props
+        setProperty("user1", user1);
+        setProperty("password1", password1);
+        setProperty("user2", user2);
+        setProperty("password2", password2);
+
+        setProperty("porting.ts.deploy.class.1", sDeployClass1);
+        setProperty("porting.ts.deploy.class.2", sDeployClass2);
+        setProperty("porting.ts.login.class.1", sLoginClass1);
+        setProperty("porting.ts.url.class.1", sURLClass1);
+        setProperty("porting.ts.jms.class.1", sJMSClass1);
+        setProperty("deployment_host.1", sDeployHost1);
+        setProperty("deployment_host.2", sDeployHost2);
+        setProperty("webServerHost", sWebServerHost);
+        setProperty("webServerHost.2", sWebServerHost2);
+        setProperty("webServerPort", sWebServerPort);
+        setProperty("webServerPort.2", sWebServerPort2);
+        setProperty("securedWebServicePort", sSecuredWebServicePort);
+        setProperty("securedWebServicePort.2", sSecuredWebServicePort2);
+        setProperty("porting.ts.HttpsURLConnection.class.1", sHttpsURLConnectionClass1);
+        setProperty("wsdlRepository1", sWSDLRepository1);
+        setProperty("wsdlRepository2", sWSDLRepository2);
+
+        super.forwardValues();
+    }
+
+    public void reverseValues() {
+        // reverse all interop props
+    }
+
+    /**
+     * This method is called by the test harness to retrieve all properties needed
+     * by a particular test.
+     *
+     * @param sPropKeys
+     *          - Properties to retrieve
+     * @return Properties - property/value pairs
+     */
+    public Properties getTestSpecificProperties(String[] sPropKeys) throws PropertyNotSetException {
+        Properties pTestProps = super.getTestSpecificProperties(sPropKeys);
+
+        // if the abstract propertymanager already loaded all props, just return
+        if (pTestProps.getProperty("all.props").equalsIgnoreCase("true")) {
+            return pTestProps;
+        }
+
+        String sJtePropVal = "";
+        // add all porting class props so the factories can work in the server
+        pTestProps.put("porting.ts.deploy.class.1", getProperty("porting.ts.deploy.class.1"));
+        pTestProps.put("porting.ts.deploy.class.2", getProperty("porting.ts.deploy.class.2"));
+        pTestProps.put("porting.ts.login.class.1", getProperty("porting.ts.login.class.1"));
+        pTestProps.put("porting.ts.HttpsURLConnection.class.1", getProperty("porting.ts.HttpsURLConnection.class.1"));
+        pTestProps.put("porting.ts.url.class.1", getProperty("porting.ts.url.class.1"));
+        pTestProps.put("porting.ts.jms.class.1", getProperty("porting.ts.jms.class.1"));
+        pTestProps.put("wsdlRepository1", getProperty("wsdlRepository1"));
+        pTestProps.put("wsdlRepository2", getProperty("wsdlRepository2"));
+
+        return pTestProps;
+    }
 }

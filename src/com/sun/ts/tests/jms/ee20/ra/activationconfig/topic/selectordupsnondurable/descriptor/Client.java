@@ -23,104 +23,97 @@ package com.sun.ts.tests.jms.ee20.ra.activationconfig.topic.selectordupsnondurab
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 
-public class Client extends
-    com.sun.ts.tests.jms.ee20.ra.activationconfig.common.TopicClientBase {
+public class Client extends com.sun.ts.tests.jms.ee20.ra.activationconfig.common.TopicClientBase {
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
-   * harness.log.port;
-   */
+    /*
+     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
+     * harness.log.port;
+     */
 
-  /*
-   * @testName: test1
-   * 
-   * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2;
-   * JMS:SPEC:276.3; JMS:SPEC:276.4; JMS:SPEC:276.5; JMS:SPEC:276.6;
-   * 
-   * @test_Strategy: test activation-config related elements in deployment
-   * descriptors, and their annotation counterparts.
-   *
-   * Sends message and waits for response. The message should reach the target
-   * MDB, and a response should be received by this client.
-   */
-  public void test1() throws Fault {
-    TestUtil.logMsg("Testing the following activationConfig properties");
-    TestUtil.logMsg("  connectionFactoryLookup=jms/QueueConnectionFactory");
-    TestUtil.logMsg("  destinationLookup=MDB_TOPIC");
-    TestUtil.logMsg("  destinationType=jakarta.jms.Topic");
-    TestUtil.logMsg("  acknowledgeMode=Dups-ok-acknowledge");
-    TestUtil.logMsg("  subscriptionDurability=NonDurable");
-    TestUtil.logMsg(
-        "  messageSelector=\"(COM_SUN_JMS_TESTNAME='test1' AND TestCaseNum NOT BETWEEN 1 AND 9999)\"");
-    TestUtil.logMsg("Send message that MATCHES the message selector");
-    TestUtil.logMsg("Set message property: COM_SUN_JMS_TESTNAME=test1");
-    TestUtil.logMsg("Set message property: TestCaseNum=0");
-    TestUtil
-        .logMsg("Must receive message back since it MATCHES message selector");
-    super.test1();
-  }
+    /*
+     * @testName: test1
+     *
+     * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2;
+     * JMS:SPEC:276.3; JMS:SPEC:276.4; JMS:SPEC:276.5; JMS:SPEC:276.6;
+     *
+     * @test_Strategy: test activation-config related elements in deployment
+     * descriptors, and their annotation counterparts.
+     *
+     * Sends message and waits for response. The message should reach the target
+     * MDB, and a response should be received by this client.
+     */
+    public void test1() throws Fault {
+        TestUtil.logMsg("Testing the following activationConfig properties");
+        TestUtil.logMsg("  connectionFactoryLookup=jms/QueueConnectionFactory");
+        TestUtil.logMsg("  destinationLookup=MDB_TOPIC");
+        TestUtil.logMsg("  destinationType=jakarta.jms.Topic");
+        TestUtil.logMsg("  acknowledgeMode=Dups-ok-acknowledge");
+        TestUtil.logMsg("  subscriptionDurability=NonDurable");
+        TestUtil.logMsg("  messageSelector=\"(COM_SUN_JMS_TESTNAME='test1' AND TestCaseNum NOT BETWEEN 1 AND 9999)\"");
+        TestUtil.logMsg("Send message that MATCHES the message selector");
+        TestUtil.logMsg("Set message property: COM_SUN_JMS_TESTNAME=test1");
+        TestUtil.logMsg("Set message property: TestCaseNum=0");
+        TestUtil.logMsg("Must receive message back since it MATCHES message selector");
+        super.test1();
+    }
 
-  /*
-   * @testName: negativeTest1
-   * 
-   * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2;
-   * JMS:SPEC:276.3; JMS:SPEC:276.4; JMS:SPEC:276.5; JMS:SPEC:276.6;
-   * 
-   * @test_Strategy: test activation-config related elements in deployment
-   * descriptors, and their annotation counterparts.
-   *
-   * Sends message and waits for response. The message should not reach the
-   * target MDB, and no response should be received by this client.
-   */
-  public void negativeTest1() throws Fault {
-    TestUtil.logMsg("Testing the following activationConfig properties");
-    TestUtil.logMsg("  connectionFactoryLookup=jms/QueueConnectionFactory");
-    TestUtil.logMsg("  destinationLookup=MDB_TOPIC");
-    TestUtil.logMsg("  destinationType=jakarta.jms.Topic");
-    TestUtil.logMsg("  acknowledgeMode=Dups-ok-acknowledge");
-    TestUtil.logMsg("  subscriptionDurability=NonDurable");
-    TestUtil.logMsg(
-        "  messageSelector=\"(COM_SUN_JMS_TESTNAME='test1' AND TestCaseNum NOT BETWEEN 1 AND 9999)\"");
-    TestUtil.logMsg("Send message that DOES NOT MATCH the message selector");
-    TestUtil.logMsg("Set message property: COM_SUN_JMS_TESTNAME=test1");
-    TestUtil.logMsg("Set message property: TestCaseNum=1");
-    TestUtil.logMsg(
-        "Must not receive message back since it DOES NOT MATCH message selector");
-    super.negativeTest1();
-  }
+    /*
+     * @testName: negativeTest1
+     *
+     * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2;
+     * JMS:SPEC:276.3; JMS:SPEC:276.4; JMS:SPEC:276.5; JMS:SPEC:276.6;
+     *
+     * @test_Strategy: test activation-config related elements in deployment
+     * descriptors, and their annotation counterparts.
+     *
+     * Sends message and waits for response. The message should not reach the
+     * target MDB, and no response should be received by this client.
+     */
+    public void negativeTest1() throws Fault {
+        TestUtil.logMsg("Testing the following activationConfig properties");
+        TestUtil.logMsg("  connectionFactoryLookup=jms/QueueConnectionFactory");
+        TestUtil.logMsg("  destinationLookup=MDB_TOPIC");
+        TestUtil.logMsg("  destinationType=jakarta.jms.Topic");
+        TestUtil.logMsg("  acknowledgeMode=Dups-ok-acknowledge");
+        TestUtil.logMsg("  subscriptionDurability=NonDurable");
+        TestUtil.logMsg("  messageSelector=\"(COM_SUN_JMS_TESTNAME='test1' AND TestCaseNum NOT BETWEEN 1 AND 9999)\"");
+        TestUtil.logMsg("Send message that DOES NOT MATCH the message selector");
+        TestUtil.logMsg("Set message property: COM_SUN_JMS_TESTNAME=test1");
+        TestUtil.logMsg("Set message property: TestCaseNum=1");
+        TestUtil.logMsg("Must not receive message back since it DOES NOT MATCH message selector");
+        super.negativeTest1();
+    }
 
-  /*
-   * @testName: negativeTest2
-   * 
-   * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2;
-   * JMS:SPEC:276.3; JMS:SPEC:276.4; JMS:SPEC:276.5; JMS:SPEC:276.6;
-   * 
-   * @test_Strategy: test activation-config related elements in deployment
-   * descriptors, and their annotation counterparts.
-   *
-   * Sends message and waits for response. The message should not reach the
-   * target MDB, and no response should be received by this client.
-   */
-  public void negativeTest2() throws Fault {
-    TestUtil.logMsg("Testing the following activationConfig properties");
-    TestUtil.logMsg("  connectionFactoryLookup=jms/QueueConnectionFactory");
-    TestUtil.logMsg("  destinationLookup=MDB_TOPIC");
-    TestUtil.logMsg("  destinationType=jakarta.jms.Topic");
-    TestUtil.logMsg("  acknowledgeMode=Dups-ok-acknowledge");
-    TestUtil.logMsg("  subscriptionDurability=NonDurable");
-    TestUtil.logMsg(
-        "  messageSelector=\"(COM_SUN_JMS_TESTNAME='test1' AND TestCaseNum NOT BETWEEN 1 AND 9999)\"");
-    TestUtil.logMsg("Send message that DOES NOT MATCH the message selector");
-    TestUtil.logMsg("Set message property: COM_SUN_JMS_TESTNAME=negativeTest2");
-    TestUtil.logMsg("Set message property: TestCaseNum=0");
-    TestUtil.logMsg(
-        "Must not receive message back since it DOES NOT MATCH message selector");
-    super.negativeTest2();
-  }
+    /*
+     * @testName: negativeTest2
+     *
+     * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2;
+     * JMS:SPEC:276.3; JMS:SPEC:276.4; JMS:SPEC:276.5; JMS:SPEC:276.6;
+     *
+     * @test_Strategy: test activation-config related elements in deployment
+     * descriptors, and their annotation counterparts.
+     *
+     * Sends message and waits for response. The message should not reach the
+     * target MDB, and no response should be received by this client.
+     */
+    public void negativeTest2() throws Fault {
+        TestUtil.logMsg("Testing the following activationConfig properties");
+        TestUtil.logMsg("  connectionFactoryLookup=jms/QueueConnectionFactory");
+        TestUtil.logMsg("  destinationLookup=MDB_TOPIC");
+        TestUtil.logMsg("  destinationType=jakarta.jms.Topic");
+        TestUtil.logMsg("  acknowledgeMode=Dups-ok-acknowledge");
+        TestUtil.logMsg("  subscriptionDurability=NonDurable");
+        TestUtil.logMsg("  messageSelector=\"(COM_SUN_JMS_TESTNAME='test1' AND TestCaseNum NOT BETWEEN 1 AND 9999)\"");
+        TestUtil.logMsg("Send message that DOES NOT MATCH the message selector");
+        TestUtil.logMsg("Set message property: COM_SUN_JMS_TESTNAME=negativeTest2");
+        TestUtil.logMsg("Set message property: TestCaseNum=0");
+        TestUtil.logMsg("Must not receive message back since it DOES NOT MATCH message selector");
+        super.negativeTest2();
+    }
 }

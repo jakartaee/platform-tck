@@ -20,47 +20,35 @@
 
 package com.sun.ts.tests.jaxws.ee.w2j.document.literal.onewayhandlertest.server;
 
-import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
-
+import com.sun.ts.lib.util.*;
 import com.sun.ts.tests.jaxws.common.*;
-
+import jakarta.jws.WebService;
 import jakarta.xml.ws.*;
 import jakarta.xml.ws.handler.*;
 import jakarta.xml.ws.handler.soap.*;
-
-import jakarta.xml.ws.WebServiceException;
-
 import java.io.*;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.List;
-import java.util.Vector;
-import jakarta.xml.ws.handler.MessageContext;
-import jakarta.activation.DataHandler;
-import java.util.Properties;
 
-// Service Implementation Class - as outlined in JAX-WS Specification
-
-import jakarta.jws.WebService;
-import jakarta.annotation.Resource;
-
-@WebService(portName = "HelloPort", targetNamespace = "http://dlowhandlertestservice.org/wsdl", serviceName = "DLOWHandlerTestService", wsdlLocation = "WEB-INF/wsdl/WSDLOWHandlerTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.onewayhandlertest.server.Hello")
-
+@WebService(
+        portName = "HelloPort",
+        targetNamespace = "http://dlowhandlertestservice.org/wsdl",
+        serviceName = "DLOWHandlerTestService",
+        wsdlLocation = "WEB-INF/wsdl/WSDLOWHandlerTestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.onewayhandlertest.server.Hello")
 public class HelloImpl implements Hello {
 
-  public void doHandlerTest1(
-      com.sun.ts.tests.jaxws.ee.w2j.document.literal.onewayhandlertest.server.MyAction action) {
+    public void doHandlerTest1(
+            com.sun.ts.tests.jaxws.ee.w2j.document.literal.onewayhandlertest.server.MyAction action) {
 
-    Handler_Util.setTraceFlag(action.getHarnesslogtraceflag());
+        Handler_Util.setTraceFlag(action.getHarnesslogtraceflag());
 
-    Handler_Util.initTestUtil("HelloImpl", action.getHarnessloghost(),
-        action.getHarnesslogport(), action.getHarnesslogtraceflag());
+        Handler_Util.initTestUtil(
+                "HelloImpl", action.getHarnessloghost(), action.getHarnesslogport(), action.getHarnesslogtraceflag());
 
-    TestUtil.logTrace("*** in HelloImpl:doHandlerTest1 ***");
-    String theAction = action.getAction();
-    TestUtil.logTrace("*** action = " + theAction + " ***");
-    String testType = action.getTestType();
-    TestUtil.logTrace("*** testType = " + testType + " ***");
-  }
+        TestUtil.logTrace("*** in HelloImpl:doHandlerTest1 ***");
+        String theAction = action.getAction();
+        TestUtil.logTrace("*** action = " + theAction + " ***");
+        String testType = action.getTestType();
+        TestUtil.logTrace("*** testType = " + testType + " ***");
+    }
 }

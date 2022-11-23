@@ -23,80 +23,78 @@ import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 import com.sun.ts.tests.ejb30.tx.common.session.cm.LocalTestBeanBase;
 
-abstract public class ClientBase extends EJBLiteClientBase {
-  protected LocalTestBeanBase testBean; // injected in subclass
+public abstract class ClientBase extends EJBLiteClientBase {
+    protected LocalTestBeanBase testBean; // injected in subclass
 
-  /*
-   * testName: localMandatoryTest
-   * 
-   * @test_Strategy: client -> remote bm slsb -> local cm slsb
-   */
-  public void localMandatoryTest() throws TestFailedException {
-    appendReason(testBean.localMandatoryTest());
-  }
+    /*
+     * testName: localMandatoryTest
+     *
+     * @test_Strategy: client -> remote bm slsb -> local cm slsb
+     */
+    public void localMandatoryTest() throws TestFailedException {
+        appendReason(testBean.localMandatoryTest());
+    }
 
-  /*
-   * testName: localNeverTest
-   * 
-   * @test_Strategy: client -> remote bm slsb -> local cm slsb
-   */
-  public void localNeverTest() throws TestFailedException {
-    appendReason(testBean.localNeverTest());
-  }
+    /*
+     * testName: localNeverTest
+     *
+     * @test_Strategy: client -> remote bm slsb -> local cm slsb
+     */
+    public void localNeverTest() throws TestFailedException {
+        appendReason(testBean.localNeverTest());
+    }
 
-  /*
-   * testName: localSupportsTest
-   * 
-   * @test_Strategy: client -> remote bm slsb -> local cm slsb
-   */
-  public void localSupportsTest() throws TestFailedException {
-    appendReason(testBean.localSupportsTest());
-  }
+    /*
+     * testName: localSupportsTest
+     *
+     * @test_Strategy: client -> remote bm slsb -> local cm slsb
+     */
+    public void localSupportsTest() throws TestFailedException {
+        appendReason(testBean.localSupportsTest());
+    }
 
-  /*
-   * testName: localIllegalGetSetRollbackOnlyNeverTest
-   * 
-   * @test_Strategy: client -> remote bm bean -> local cm bean
-   */
-  public void localIllegalGetSetRollbackOnlyNeverTest()
-      throws TestFailedException {
-    appendReason(testBean.localIllegalGetSetRollbackOnlyNeverTest());
-  }
+    /*
+     * testName: localIllegalGetSetRollbackOnlyNeverTest
+     *
+     * @test_Strategy: client -> remote bm bean -> local cm bean
+     */
+    public void localIllegalGetSetRollbackOnlyNeverTest() throws TestFailedException {
+        appendReason(testBean.localIllegalGetSetRollbackOnlyNeverTest());
+    }
 
-  /*
-   * testName: localIllegalGetSetRollbackOnlyNotSupportedTest
-   * 
-   * @test_Strategy: client -> remote bm bean -> local cm bean
-   */
-  public void localIllegalGetSetRollbackOnlyNotSupportedTest()
-      throws TestFailedException {
-    appendReason(testBean.localIllegalGetSetRollbackOnlyNotSupportedTest());
-  }
+    /*
+     * testName: localIllegalGetSetRollbackOnlyNotSupportedTest
+     *
+     * @test_Strategy: client -> remote bm bean -> local cm bean
+     */
+    public void localIllegalGetSetRollbackOnlyNotSupportedTest() throws TestFailedException {
+        appendReason(testBean.localIllegalGetSetRollbackOnlyNotSupportedTest());
+    }
 
-  /*
-   * testName: localRequiresNewRemoveTest
-   * 
-   * @test_Strategy: client -> remote bm slsb -> local cm sfsb
-   */
-  public void localRequiresNewRemoveTest() throws TestFailedException {
-    appendReason(testBean.localRequiresNewRemoveTest());
-  }
+    /*
+     * testName: localRequiresNewRemoveTest
+     *
+     * @test_Strategy: client -> remote bm slsb -> local cm sfsb
+     */
+    public void localRequiresNewRemoveTest() throws TestFailedException {
+        appendReason(testBean.localRequiresNewRemoveTest());
+    }
 
-  /*
-   * testName: localRequiresNewTest
-   * 
-   * @test_Strategy: client -> remote bm slsb -> local cm slsb
-   */
-  public void localRequiresNewTest() throws TestFailedException {
-    appendReason(testBean.localRequiresNewTest());
-  }
+    /*
+     * testName: localRequiresNewTest
+     *
+     * @test_Strategy: client -> remote bm slsb -> local cm slsb
+     */
+    public void localRequiresNewTest() throws TestFailedException {
+        appendReason(testBean.localRequiresNewTest());
+    }
 
-  /*
-   * testName: localSystemExceptionTest
-   * 
-   * @test_Strategy: client -> remote bm slsb -> local cm sfsb
-   */
-  public void localSystemExceptionTest() throws TestFailedException {
-    appendReason(testBean.localSystemExceptionTest());
-  }
+    /*
+     * testName: localSystemExceptionTest
+     *
+     * @test_Strategy: client -> remote bm slsb -> local cm sfsb
+     */
+    public void localSystemExceptionTest() throws TestFailedException {
+        appendReason(testBean.localSystemExceptionTest());
+    }
 }

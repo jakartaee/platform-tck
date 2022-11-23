@@ -22,79 +22,71 @@ package com.sun.ts.tests.ejb.ee.sec.stateless.common;
 
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
 
 public class SecTestEJB implements SessionBean {
 
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  public void ejbCreate() throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-  }
-
-  public void initLogging(java.util.Properties p) {
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      TestUtil.logMsg("SecTestEJB initLogging failed.");
+    public void ejbCreate() throws CreateException {
+        TestUtil.logTrace("ejbCreate");
     }
-  }
 
-  public boolean IsCaller(String caller) {
-    if (sctx.getCallerPrincipal().getName().indexOf(caller) < 0)
-      return false;
-    else
-      return true;
-  }
+    public void initLogging(java.util.Properties p) {
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            TestUtil.logMsg("SecTestEJB initLogging failed.");
+        }
+    }
 
-  public boolean EjbNotAuthz() {
-    return true;
-  }
+    public boolean IsCaller(String caller) {
+        if (sctx.getCallerPrincipal().getName().indexOf(caller) < 0) return false;
+        else return true;
+    }
 
-  public boolean EjbIsAuthz() {
-    return true;
-  }
+    public boolean EjbNotAuthz() {
+        return true;
+    }
 
-  public boolean EjbSecRoleRef(String role) {
-    return sctx.isCallerInRole(role);
-  }
+    public boolean EjbIsAuthz() {
+        return true;
+    }
 
-  public boolean EjbOverloadedSecRoleRefs(String role1) {
-    TestUtil.logMsg(
-        "isCallerInRole(" + role1 + ") = " + sctx.isCallerInRole(role1));
-    return sctx.isCallerInRole(role1);
-  }
+    public boolean EjbSecRoleRef(String role) {
+        return sctx.isCallerInRole(role);
+    }
 
-  public boolean EjbOverloadedSecRoleRefs(String role1, String role2) {
-    TestUtil
-        .logMsg("isCallerInRole(" + role1 + ")= " + sctx.isCallerInRole(role1)
-            + "isCallerInRole(" + role2 + ")= " + sctx.isCallerInRole(role2));
-    return sctx.isCallerInRole(role1) && sctx.isCallerInRole(role2);
-  }
+    public boolean EjbOverloadedSecRoleRefs(String role1) {
+        TestUtil.logMsg("isCallerInRole(" + role1 + ") = " + sctx.isCallerInRole(role1));
+        return sctx.isCallerInRole(role1);
+    }
 
-  public boolean checktest1() {
-    TestUtil.logTrace("In checktest1!");
-    return true;
-  }
+    public boolean EjbOverloadedSecRoleRefs(String role1, String role2) {
+        TestUtil.logMsg("isCallerInRole(" + role1 + ")= " + sctx.isCallerInRole(role1) + "isCallerInRole(" + role2
+                + ")= " + sctx.isCallerInRole(role2));
+        return sctx.isCallerInRole(role1) && sctx.isCallerInRole(role2);
+    }
 
-  public boolean excludetest1() {
-    return true;
-  }
+    public boolean checktest1() {
+        TestUtil.logTrace("In checktest1!");
+        return true;
+    }
 
-  public void setSessionContext(SessionContext sc) {
-    sctx = sc;
-  }
+    public boolean excludetest1() {
+        return true;
+    }
 
-  public void ejbRemove() {
-  }
+    public void setSessionContext(SessionContext sc) {
+        sctx = sc;
+    }
 
-  public void ejbActivate() {
-  }
+    public void ejbRemove() {}
 
-  public void ejbPassivate() {
-  }
+    public void ejbActivate() {}
+
+    public void ejbPassivate() {}
 }

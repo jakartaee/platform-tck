@@ -26,67 +26,66 @@ import jakarta.persistence.Embeddable;
 @Access(AccessType.FIELD)
 public class Country implements java.io.Serializable {
 
-  // Instance variables
-  @Basic
-  @Convert(converter = SpaceConverter.class)
-  private String country;
+    // Instance variables
+    @Basic
+    @Convert(converter = SpaceConverter.class)
+    private String country;
 
-  @Basic
-  private String code;
+    @Basic
+    private String code;
 
-  public Country() {
-  }
+    public Country() {}
 
-  public Country(String v1, String v2) {
-    country = v1;
-    code = v2;
-  }
-
-  public String getCountry() {
-    return country;
-  }
-
-  public void setCountry(String v) {
-    country = v;
-  }
-
-  public String getCode() {
-    return code;
-  }
-
-  public void setCode(String v) {
-    code = v;
-  }
-
-  public boolean equals(Object o) {
-    Country other;
-    boolean same = false;
-
-    if (!(o instanceof Country)) {
-      return false;
+    public Country(String v1, String v2) {
+        country = v1;
+        code = v2;
     }
-    other = (Country) o;
 
-    same = this.country.equals(other.country) && (this.code.equals(other.code));
+    public String getCountry() {
+        return country;
+    }
 
-    return same;
-  }
+    public void setCountry(String v) {
+        country = v;
+    }
 
-  public int hashCode() {
-    int myHash;
+    public String getCode() {
+        return code;
+    }
 
-    myHash = this.country.hashCode() + this.code.hashCode();
+    public void setCode(String v) {
+        code = v;
+    }
 
-    return myHash;
-  }
+    public boolean equals(Object o) {
+        Country other;
+        boolean same = false;
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("country: " + getCountry());
-    result.append(", code: " + getCode());
-    result.append("]");
-    return result.toString();
-  }
+        if (!(o instanceof Country)) {
+            return false;
+        }
+        other = (Country) o;
+
+        same = this.country.equals(other.country) && (this.code.equals(other.code));
+
+        return same;
+    }
+
+    public int hashCode() {
+        int myHash;
+
+        myHash = this.country.hashCode() + this.code.hashCode();
+
+        return myHash;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("country: " + getCountry());
+        result.append(", code: " + getCode());
+        result.append("]");
+        return result.toString();
+    }
 }

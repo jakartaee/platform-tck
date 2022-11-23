@@ -23,13 +23,13 @@ package com.sun.ts.tests.ejb30.common.migration.threetwo;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface ThreeTestIF {
-  public void remove();
+    public void remove();
 
-  public void callRemote() throws TestFailedException;
+    public void callRemote() throws TestFailedException;
 
-  public void callLocal() throws TestFailedException;
+    public void callLocal() throws TestFailedException;
 
-  public void callRemoteSameTxContext() throws TestFailedException;
+    public void callRemoteSameTxContext() throws TestFailedException;
 
-  public void callLocalSameTxContext() throws TestFailedException;
+    public void callLocalSameTxContext() throws TestFailedException;
 }

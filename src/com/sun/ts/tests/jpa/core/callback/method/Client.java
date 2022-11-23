@@ -20,570 +20,563 @@
 
 package com.sun.ts.tests.jpa.core.callback.method;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.core.callback.common.Constants;
 import com.sun.ts.tests.jpa.core.callback.common.EntityCallbackClientBase;
-
 import jakarta.persistence.Query;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Properties;
 
 public class Client extends EntityCallbackClientBase {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  private Product product;
+    private Product product;
 
-  private Order order;
+    private Order order;
 
-  private LineItem lineItem;
+    private LineItem lineItem;
 
-  public Client() {
-    super();
-  }
-
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  public void setup(String[] args, Properties p) throws Fault {
-    TestUtil.logTrace("setup");
-    try {
-
-      super.setup(args, p);
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+    public Client() {
+        super();
     }
-  }
 
-  /*
-   * @testName: prePersistTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:699
-   * 
-   * @test_Strategy:
-   */
-  public void prePersistTest() throws Fault {
-    String reason;
-    final String testName = Constants.prePersistTest;
-    try {
-      getEntityTransaction().begin();
-      product = newProduct(testName);
-      getEntityManager().persist(product);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-      if (product.isPrePersistCalled()) {
-        reason = "Product: prePersist was called.";
-        TestUtil.logTrace(reason);
-      } else {
-        reason = "Product: prePersist was not called.";
-        throw new Fault(reason);
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception caught during prePersistTest", e);
-      throw new Fault(e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
+    public void setup(String[] args, Properties p) throws Fault {
+        TestUtil.logTrace("setup");
+        try {
+
+            super.setup(args, p);
+            removeTestData();
+        } catch (Exception e) {
+            TestUtil.logErr("Exception: ", e);
+            throw new Fault("Setup failed:", e);
         }
-      } catch (Exception re) {
-        TestUtil.logErr("Exception caught while rolling back TX", re);
-      }
     }
-  }
 
-  /*
-   * @testName: prePersistMultiTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:697;
-   * PERSISTENCE:SPEC:722
-   * 
-   * @test_Strategy:
-   */
-  public void prePersistMultiTest() throws Fault {
-    final String testName = Constants.prePersistMultiTest;
-    try {
-      getEntityTransaction().begin();
-      product = newProduct(testName);
-      getEntityManager().persist(product);
+    /*
+     * @testName: prePersistTest
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:699
+     *
+     * @test_Strategy:
+     */
+    public void prePersistTest() throws Fault {
+        String reason;
+        final String testName = Constants.prePersistTest;
+        try {
+            getEntityTransaction().begin();
+            product = newProduct(testName);
+            getEntityManager().persist(product);
 
-      final List expected = Arrays.asList(Constants.LISTENER_A,
-          Constants.LISTENER_B, Constants.LISTENER_C, Constants.PRODUCT);
-      final List actual = product.getPrePersistCalls();
-      compareResultList(expected, actual);
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      throw new Fault(e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
+            if (product.isPrePersistCalled()) {
+                reason = "Product: prePersist was called.";
+                TestUtil.logTrace(reason);
+            } else {
+                reason = "Product: prePersist was not called.";
+                throw new Fault(reason);
+            }
+            getEntityTransaction().commit();
+        } catch (Exception e) {
+            TestUtil.logErr("Exception caught during prePersistTest", e);
+            throw new Fault(e);
+        } finally {
+            try {
+                if (getEntityTransaction().isActive()) {
+                    getEntityTransaction().rollback();
+                }
+            } catch (Exception re) {
+                TestUtil.logErr("Exception caught while rolling back TX", re);
+            }
         }
-      } catch (Exception re) {
-        TestUtil.logErr("Exception caught while rolling back TX", re);
-      }
     }
-  }
 
-  /*
-   * @testName: prePersistCascadeTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:697
-   * 
-   * @test_Strategy:
-   */
-  public void prePersistCascadeTest() throws Fault {
-    String reason;
-    final String testName = Constants.prePersistCascadeTest;
-    try {
-      getEntityTransaction().begin();
-      order = newOrder(testName);
-      product = newProduct(testName);
-      lineItem = newLineItem(testName);
-      lineItem.setOrder(order);
-      lineItem.setProduct(product);
-      order.addLineItem(lineItem);
-      getEntityManager().persist(product);
-      getEntityManager().persist(order);
+    /*
+     * @testName: prePersistMultiTest
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:697;
+     * PERSISTENCE:SPEC:722
+     *
+     * @test_Strategy:
+     */
+    public void prePersistMultiTest() throws Fault {
+        final String testName = Constants.prePersistMultiTest;
+        try {
+            getEntityTransaction().begin();
+            product = newProduct(testName);
+            getEntityManager().persist(product);
 
-      if (order.isPrePersistCalled()) {
-        reason = "Order: prePersist was called.";
-        TestUtil.logTrace(reason);
-      } else {
-        reason = "Order: prePersist was not called.";
-        throw new Fault(reason);
-      }
-
-      if (lineItem.isPrePersistCalled()) {
-        reason = "LineItem: prePersist was called.";
-        TestUtil.logTrace(reason);
-      } else {
-        reason = "LineItem: prePersist was not called.";
-        throw new Fault(reason);
-      }
-      getEntityTransaction().commit();
-
-    } catch (Exception e) {
-      TestUtil.logErr("Exception caught during prePersistCascadeTest", e);
-      throw new Fault(e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
+            final List expected =
+                    Arrays.asList(Constants.LISTENER_A, Constants.LISTENER_B, Constants.LISTENER_C, Constants.PRODUCT);
+            final List actual = product.getPrePersistCalls();
+            compareResultList(expected, actual);
+            getEntityTransaction().commit();
+        } catch (Exception e) {
+            throw new Fault(e);
+        } finally {
+            try {
+                if (getEntityTransaction().isActive()) {
+                    getEntityTransaction().rollback();
+                }
+            } catch (Exception re) {
+                TestUtil.logErr("Exception caught while rolling back TX", re);
+            }
         }
-      } catch (Exception re) {
-        TestUtil.logErr("Exception caught while rolling back TX", re);
-      }
     }
-  }
 
-  /*
-   * @testName: prePersistMultiCascadeTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:697;
-   * PERSISTENCE:SPEC:708
-   * 
-   * @test_Strategy:
-   */
-  public void prePersistMultiCascadeTest() throws Fault {
-    final String testName = Constants.prePersistMultiCascadeTest;
-    try {
-      getEntityTransaction().begin();
-      order = newOrder(testName);
-      product = newProduct(testName);
-      lineItem = newLineItem(testName);
-      lineItem.setOrder(order);
-      lineItem.setProduct(product);
-      order.addLineItem(lineItem);
-      getEntityManager().persist(product);
-      getEntityManager().persist(order);
+    /*
+     * @testName: prePersistCascadeTest
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:697
+     *
+     * @test_Strategy:
+     */
+    public void prePersistCascadeTest() throws Fault {
+        String reason;
+        final String testName = Constants.prePersistCascadeTest;
+        try {
+            getEntityTransaction().begin();
+            order = newOrder(testName);
+            product = newProduct(testName);
+            lineItem = newLineItem(testName);
+            lineItem.setOrder(order);
+            lineItem.setProduct(product);
+            order.addLineItem(lineItem);
+            getEntityManager().persist(product);
+            getEntityManager().persist(order);
 
-      List expected = Arrays.asList(Constants.LISTENER_A, Constants.LISTENER_B,
-          Constants.LISTENER_C, Constants.ORDER);
-      List actual = order.getPrePersistCalls();
-      compareResultList(expected, actual);
+            if (order.isPrePersistCalled()) {
+                reason = "Order: prePersist was called.";
+                TestUtil.logTrace(reason);
+            } else {
+                reason = "Order: prePersist was not called.";
+                throw new Fault(reason);
+            }
 
-      expected = Arrays.asList(Constants.LISTENER_A, Constants.LISTENER_B,
-          Constants.LISTENER_C, Constants.LINE_ITEM);
-      actual = lineItem.getPrePersistCalls();
-      compareResultList(expected, actual);
+            if (lineItem.isPrePersistCalled()) {
+                reason = "LineItem: prePersist was called.";
+                TestUtil.logTrace(reason);
+            } else {
+                reason = "LineItem: prePersist was not called.";
+                throw new Fault(reason);
+            }
+            getEntityTransaction().commit();
 
-      getEntityTransaction().commit();
-
-    } catch (Exception e) {
-      throw new Fault(e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
+        } catch (Exception e) {
+            TestUtil.logErr("Exception caught during prePersistCascadeTest", e);
+            throw new Fault(e);
+        } finally {
+            try {
+                if (getEntityTransaction().isActive()) {
+                    getEntityTransaction().rollback();
+                }
+            } catch (Exception re) {
+                TestUtil.logErr("Exception caught while rolling back TX", re);
+            }
         }
-      } catch (Exception re) {
-        TestUtil.logErr("Exception caught while rolling back TX", re);
-      }
     }
-  }
 
-  /*
-   * @testName: preRemoveTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:709
-   * 
-   * @test_Strategy:
-   */
-  public void preRemoveTest() throws Fault {
-    String reason;
-    final String testName = Constants.preRemoveTest;
-    try {
-      getEntityTransaction().begin();
-      product = newProduct(testName);
-      getEntityManager().persist(product);
-      getEntityManager().remove(product);
+    /*
+     * @testName: prePersistMultiCascadeTest
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:697;
+     * PERSISTENCE:SPEC:708
+     *
+     * @test_Strategy:
+     */
+    public void prePersistMultiCascadeTest() throws Fault {
+        final String testName = Constants.prePersistMultiCascadeTest;
+        try {
+            getEntityTransaction().begin();
+            order = newOrder(testName);
+            product = newProduct(testName);
+            lineItem = newLineItem(testName);
+            lineItem.setOrder(order);
+            lineItem.setProduct(product);
+            order.addLineItem(lineItem);
+            getEntityManager().persist(product);
+            getEntityManager().persist(order);
 
-      if (product.isPreRemoveCalled()) {
-        reason = "Product: preRemove was called.";
-        TestUtil.logTrace(reason);
-      } else {
-        reason = "Product: preRemove was not called.";
-        throw new Fault(reason);
-      }
-      product = null;
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception caught during preRemoveTest", e);
-      throw new Fault(e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
+            List expected =
+                    Arrays.asList(Constants.LISTENER_A, Constants.LISTENER_B, Constants.LISTENER_C, Constants.ORDER);
+            List actual = order.getPrePersistCalls();
+            compareResultList(expected, actual);
+
+            expected = Arrays.asList(
+                    Constants.LISTENER_A, Constants.LISTENER_B, Constants.LISTENER_C, Constants.LINE_ITEM);
+            actual = lineItem.getPrePersistCalls();
+            compareResultList(expected, actual);
+
+            getEntityTransaction().commit();
+
+        } catch (Exception e) {
+            throw new Fault(e);
+        } finally {
+            try {
+                if (getEntityTransaction().isActive()) {
+                    getEntityTransaction().rollback();
+                }
+            } catch (Exception re) {
+                TestUtil.logErr("Exception caught while rolling back TX", re);
+            }
         }
-      } catch (Exception re) {
-        TestUtil.logErr("Exception caught while rolling back TX", re);
-      }
     }
-  }
 
-  /*
-   * @testName: preRemoveMultiTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:709;
-   * PERSISTENCE:SPEC:722
-   * 
-   * @test_Strategy:
-   */
-  public void preRemoveMultiTest() throws Fault {
-    final String testName = Constants.preRemoveMultiTest;
-    try {
-      getEntityTransaction().begin();
-      product = newProduct(testName);
-      getEntityManager().persist(product);
-      getEntityManager().remove(product);
+    /*
+     * @testName: preRemoveTest
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:709
+     *
+     * @test_Strategy:
+     */
+    public void preRemoveTest() throws Fault {
+        String reason;
+        final String testName = Constants.preRemoveTest;
+        try {
+            getEntityTransaction().begin();
+            product = newProduct(testName);
+            getEntityManager().persist(product);
+            getEntityManager().remove(product);
 
-      final List expected = Arrays.asList(Constants.LISTENER_A,
-          Constants.LISTENER_B, Constants.LISTENER_C, Constants.PRODUCT);
-      final List actual = product.getPreRemoveCalls();
-      compareResultList(expected, actual);
-
-      product = null;
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      throw new Fault(e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
+            if (product.isPreRemoveCalled()) {
+                reason = "Product: preRemove was called.";
+                TestUtil.logTrace(reason);
+            } else {
+                reason = "Product: preRemove was not called.";
+                throw new Fault(reason);
+            }
+            product = null;
+            getEntityTransaction().commit();
+        } catch (Exception e) {
+            TestUtil.logErr("Exception caught during preRemoveTest", e);
+            throw new Fault(e);
+        } finally {
+            try {
+                if (getEntityTransaction().isActive()) {
+                    getEntityTransaction().rollback();
+                }
+            } catch (Exception re) {
+                TestUtil.logErr("Exception caught while rolling back TX", re);
+            }
         }
-      } catch (Exception re) {
-        TestUtil.logErr("Exception caught while rolling back TX", re);
-      }
     }
-  }
 
-  /*
-   * @testName: preRemoveCascadeTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:708
-   * 
-   * @test_Strategy:
-   */
-  public void preRemoveCascadeTest() throws Fault {
-    String reason;
-    final String testName = Constants.preRemoveCascadeTest;
-    try {
-      getEntityTransaction().begin();
-      order = newOrder(testName);
-      product = newProduct(testName);
-      lineItem = newLineItem(testName);
-      lineItem.setOrder(order);
-      lineItem.setProduct(product);
-      order.addLineItem(lineItem);
-      getEntityManager().persist(product);
-      getEntityManager().persist(order);
-      getEntityManager().remove(order);
-      final boolean b = order.isPreRemoveCalled();
-      order = null;
+    /*
+     * @testName: preRemoveMultiTest
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:709;
+     * PERSISTENCE:SPEC:722
+     *
+     * @test_Strategy:
+     */
+    public void preRemoveMultiTest() throws Fault {
+        final String testName = Constants.preRemoveMultiTest;
+        try {
+            getEntityTransaction().begin();
+            product = newProduct(testName);
+            getEntityManager().persist(product);
+            getEntityManager().remove(product);
 
-      if (b) {
-        reason = "Order: preRemove was called.";
-        TestUtil.logTrace(reason);
-      } else {
-        reason = "Order: preRemove was not called.";
-        throw new Fault(reason);
-      }
+            final List expected =
+                    Arrays.asList(Constants.LISTENER_A, Constants.LISTENER_B, Constants.LISTENER_C, Constants.PRODUCT);
+            final List actual = product.getPreRemoveCalls();
+            compareResultList(expected, actual);
 
-      if (lineItem.isPreRemoveCalled()) {
-        reason = "LineItem: preRemove was called.";
-        TestUtil.logTrace(reason);
-      } else {
-        reason = "LineItem: preRemove was not called.";
-        throw new Fault(reason);
-      }
-
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception caught during preRemoveCascadeTest", e);
-      throw new Fault(e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
+            product = null;
+            getEntityTransaction().commit();
+        } catch (Exception e) {
+            throw new Fault(e);
+        } finally {
+            try {
+                if (getEntityTransaction().isActive()) {
+                    getEntityTransaction().rollback();
+                }
+            } catch (Exception re) {
+                TestUtil.logErr("Exception caught while rolling back TX", re);
+            }
         }
-      } catch (Exception re) {
-        TestUtil.logErr("Exception caught while rolling back TX", re);
-      }
     }
-  }
 
-  /*
-   * @testName: preRemoveMultiCascadeTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:708;
-   * PERSISTENCE:SPEC:722
-   * 
-   * @test_Strategy:
-   */
-  public void preRemoveMultiCascadeTest() throws Fault {
-    final String testName = Constants.preRemoveMultiCascadeTest;
-    try {
-      getEntityTransaction().begin();
-      order = newOrder(testName);
-      product = newProduct(testName);
-      lineItem = newLineItem(testName);
-      lineItem.setOrder(order);
-      lineItem.setProduct(product);
-      order.addLineItem(lineItem);
-      getEntityManager().persist(product);
-      getEntityManager().persist(order);
-      getEntityManager().remove(order);
-      final boolean b = order.isPreRemoveCalled();
+    /*
+     * @testName: preRemoveCascadeTest
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:708
+     *
+     * @test_Strategy:
+     */
+    public void preRemoveCascadeTest() throws Fault {
+        String reason;
+        final String testName = Constants.preRemoveCascadeTest;
+        try {
+            getEntityTransaction().begin();
+            order = newOrder(testName);
+            product = newProduct(testName);
+            lineItem = newLineItem(testName);
+            lineItem.setOrder(order);
+            lineItem.setProduct(product);
+            order.addLineItem(lineItem);
+            getEntityManager().persist(product);
+            getEntityManager().persist(order);
+            getEntityManager().remove(order);
+            final boolean b = order.isPreRemoveCalled();
+            order = null;
 
-      List expected = Arrays.asList(Constants.LISTENER_A, Constants.LISTENER_B,
-          Constants.LISTENER_C, Constants.ORDER);
-      List actual = order.getPreRemoveCalls();
-      compareResultList(expected, actual);
+            if (b) {
+                reason = "Order: preRemove was called.";
+                TestUtil.logTrace(reason);
+            } else {
+                reason = "Order: preRemove was not called.";
+                throw new Fault(reason);
+            }
 
-      expected = Arrays.asList(Constants.LISTENER_A, Constants.LISTENER_B,
-          Constants.LISTENER_C, Constants.LINE_ITEM);
-      actual = lineItem.getPreRemoveCalls();
-      compareResultList(expected, actual);
+            if (lineItem.isPreRemoveCalled()) {
+                reason = "LineItem: preRemove was called.";
+                TestUtil.logTrace(reason);
+            } else {
+                reason = "LineItem: preRemove was not called.";
+                throw new Fault(reason);
+            }
 
-      order = null;
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception caught during preRemoveMultiCascadeTest", e);
-      throw new Fault(e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
+            getEntityTransaction().commit();
+        } catch (Exception e) {
+            TestUtil.logErr("Exception caught during preRemoveCascadeTest", e);
+            throw new Fault(e);
+        } finally {
+            try {
+                if (getEntityTransaction().isActive()) {
+                    getEntityTransaction().rollback();
+                }
+            } catch (Exception re) {
+                TestUtil.logErr("Exception caught while rolling back TX", re);
+            }
         }
-      } catch (Exception re) {
-        TestUtil.logErr("Exception caught while rolling back TX", re);
-      }
     }
-  }
 
-  /*
-   * @testName: preUpdateTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:716
-   * 
-   * @test_Strategy:
-   */
-  public void preUpdateTest() throws Fault {
-    final String testName = Constants.preUpdateTest;
-    try {
-      getEntityTransaction().begin();
-      product = newProduct(testName);
-      getEntityManager().persist(product);
-      product.setPrice(2D);
-      getEntityManager().persist(product);
-      getEntityTransaction().commit();
+    /*
+     * @testName: preRemoveMultiCascadeTest
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:708;
+     * PERSISTENCE:SPEC:722
+     *
+     * @test_Strategy:
+     */
+    public void preRemoveMultiCascadeTest() throws Fault {
+        final String testName = Constants.preRemoveMultiCascadeTest;
+        try {
+            getEntityTransaction().begin();
+            order = newOrder(testName);
+            product = newProduct(testName);
+            lineItem = newLineItem(testName);
+            lineItem.setOrder(order);
+            lineItem.setProduct(product);
+            order.addLineItem(lineItem);
+            getEntityManager().persist(product);
+            getEntityManager().persist(order);
+            getEntityManager().remove(order);
+            final boolean b = order.isPreRemoveCalled();
 
-    } catch (Exception e) {
-      TestUtil.logErr("Exception caught during preUpdateTest", e);
-      throw new Fault(e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
+            List expected =
+                    Arrays.asList(Constants.LISTENER_A, Constants.LISTENER_B, Constants.LISTENER_C, Constants.ORDER);
+            List actual = order.getPreRemoveCalls();
+            compareResultList(expected, actual);
+
+            expected = Arrays.asList(
+                    Constants.LISTENER_A, Constants.LISTENER_B, Constants.LISTENER_C, Constants.LINE_ITEM);
+            actual = lineItem.getPreRemoveCalls();
+            compareResultList(expected, actual);
+
+            order = null;
+            getEntityTransaction().commit();
+        } catch (Exception e) {
+            TestUtil.logErr("Exception caught during preRemoveMultiCascadeTest", e);
+            throw new Fault(e);
+        } finally {
+            try {
+                if (getEntityTransaction().isActive()) {
+                    getEntityTransaction().rollback();
+                }
+            } catch (Exception re) {
+                TestUtil.logErr("Exception caught while rolling back TX", re);
+            }
         }
-      } catch (Exception re) {
-        TestUtil.logErr("Exception caught while rolling back TX", re);
-      }
     }
-  }
 
-  /*
-   * @testName: postLoadTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:719
-   * 
-   * @test_Strategy:
-   */
-  public void postLoadTest() throws Fault {
-    String reason;
-    final String testName = Constants.postLoadTest;
-    try {
-      getEntityTransaction().begin();
-      product = newProduct(testName);
-      getEntityManager().persist(product);
-      getEntityManager().flush();
-      getEntityManager().refresh(product);
-      final Query q = getEntityManager()
-          .createQuery("select distinct p from Product p");
-      final java.util.List results = q.getResultList();
-      // for(int i = 0, n = results.size(); i < n; i++) {
-      //
-      // }
-      TestUtil.logTrace(results.toString());
+    /*
+     * @testName: preUpdateTest
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:716
+     *
+     * @test_Strategy:
+     */
+    public void preUpdateTest() throws Fault {
+        final String testName = Constants.preUpdateTest;
+        try {
+            getEntityTransaction().begin();
+            product = newProduct(testName);
+            getEntityManager().persist(product);
+            product.setPrice(2D);
+            getEntityManager().persist(product);
+            getEntityTransaction().commit();
 
-      if (product.isPostLoadCalled()) {
-        reason = "Product: postLoad was called after the query result was returned.";
-        TestUtil.logTrace(reason);
-      } else {
-        reason = "Product: postLoad was not called even after the query result was returned.";
-        throw new Fault(reason);
-      }
-      getEntityTransaction().commit();
-
-    } catch (Exception e) {
-      TestUtil.logErr("Exception caught during postLoadTest", e);
-      throw new Fault(e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
+        } catch (Exception e) {
+            TestUtil.logErr("Exception caught during preUpdateTest", e);
+            throw new Fault(e);
+        } finally {
+            try {
+                if (getEntityTransaction().isActive()) {
+                    getEntityTransaction().rollback();
+                }
+            } catch (Exception re) {
+                TestUtil.logErr("Exception caught while rolling back TX", re);
+            }
         }
-      } catch (Exception re) {
-        TestUtil.logErr("Exception caught while rolling back TX", re);
-      }
     }
-  }
 
-  /*
-   * @testName: postLoadMultiTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:719;
-   * PERSISTENCE:SPEC:722
-   * 
-   * @test_Strategy:
-   */
-  public void postLoadMultiTest() throws Fault {
-    final String testName = Constants.postLoadMultiTest;
-    try {
-      getEntityTransaction().begin();
-      product = newProduct(testName);
-      getEntityManager().persist(product);
-      getEntityManager().flush();
-      getEntityManager().refresh(product);
-      final Query q = getEntityManager()
-          .createQuery("select distinct p from Product p");
-      final java.util.List results = q.getResultList();
-      TestUtil.logTrace(results.toString());
+    /*
+     * @testName: postLoadTest
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:719
+     *
+     * @test_Strategy:
+     */
+    public void postLoadTest() throws Fault {
+        String reason;
+        final String testName = Constants.postLoadTest;
+        try {
+            getEntityTransaction().begin();
+            product = newProduct(testName);
+            getEntityManager().persist(product);
+            getEntityManager().flush();
+            getEntityManager().refresh(product);
+            final Query q = getEntityManager().createQuery("select distinct p from Product p");
+            final java.util.List results = q.getResultList();
+            // for(int i = 0, n = results.size(); i < n; i++) {
+            //
+            // }
+            TestUtil.logTrace(results.toString());
 
-      final List expected = Arrays.asList(Constants.LISTENER_A,
-          Constants.LISTENER_B, Constants.LISTENER_C, Constants.PRODUCT);
-      final List actual = product.getPostLoadCalls();
-      compareResultList(expected, actual);
+            if (product.isPostLoadCalled()) {
+                reason = "Product: postLoad was called after the query result was returned.";
+                TestUtil.logTrace(reason);
+            } else {
+                reason = "Product: postLoad was not called even after the query result was returned.";
+                throw new Fault(reason);
+            }
+            getEntityTransaction().commit();
 
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      throw new Fault(e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
+        } catch (Exception e) {
+            TestUtil.logErr("Exception caught during postLoadTest", e);
+            throw new Fault(e);
+        } finally {
+            try {
+                if (getEntityTransaction().isActive()) {
+                    getEntityTransaction().rollback();
+                }
+            } catch (Exception re) {
+                TestUtil.logErr("Exception caught while rolling back TX", re);
+            }
         }
-      } catch (Exception re) {
-        TestUtil.logErr("Exception caught while rolling back TX", re);
-      }
     }
-  }
 
-  private Product newProduct(final String testName) {
-    Product product = new Product();
-    product.setTestName(testName);
-    product.setId(testName);
-    product.setName(testName);
-    product.setPartNumber(1L);
-    product.setPrice(1D);
-    product.setQuantity(1);
-    return product;
-  }
+    /*
+     * @testName: postLoadMultiTest
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:719;
+     * PERSISTENCE:SPEC:722
+     *
+     * @test_Strategy:
+     */
+    public void postLoadMultiTest() throws Fault {
+        final String testName = Constants.postLoadMultiTest;
+        try {
+            getEntityTransaction().begin();
+            product = newProduct(testName);
+            getEntityManager().persist(product);
+            getEntityManager().flush();
+            getEntityManager().refresh(product);
+            final Query q = getEntityManager().createQuery("select distinct p from Product p");
+            final java.util.List results = q.getResultList();
+            TestUtil.logTrace(results.toString());
 
-  private Order newOrder(final String testName) {
-    Order order = new Order(testName, 1D);
-    order.setTestName(testName);
-    return order;
-  }
+            final List expected =
+                    Arrays.asList(Constants.LISTENER_A, Constants.LISTENER_B, Constants.LISTENER_C, Constants.PRODUCT);
+            final List actual = product.getPostLoadCalls();
+            compareResultList(expected, actual);
 
-  private LineItem newLineItem(final String testName) {
-    LineItem lineItem = new LineItem();
-    lineItem.setTestName(testName);
-    lineItem.setId(testName);
-    lineItem.setQuantity(1);
-    return lineItem;
-  }
-
-  public void cleanup() throws Fault {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
-
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM LINEITEM_TABLE")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM ORDER_TABLE")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM PRODUCT_TABLE")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
+            getEntityTransaction().commit();
+        } catch (Exception e) {
+            throw new Fault(e);
+        } finally {
+            try {
+                if (getEntityTransaction().isActive()) {
+                    getEntityTransaction().rollback();
+                }
+            } catch (Exception re) {
+                TestUtil.logErr("Exception caught while rolling back TX", re);
+            }
         }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
     }
-  }
+
+    private Product newProduct(final String testName) {
+        Product product = new Product();
+        product.setTestName(testName);
+        product.setId(testName);
+        product.setName(testName);
+        product.setPartNumber(1L);
+        product.setPrice(1D);
+        product.setQuantity(1);
+        return product;
+    }
+
+    private Order newOrder(final String testName) {
+        Order order = new Order(testName, 1D);
+        order.setTestName(testName);
+        return order;
+    }
+
+    private LineItem newLineItem(final String testName) {
+        LineItem lineItem = new LineItem();
+        lineItem.setTestName(testName);
+        lineItem.setId(testName);
+        lineItem.setQuantity(1);
+        return lineItem;
+    }
+
+    public void cleanup() throws Fault {
+        TestUtil.logTrace("cleanup");
+        removeTestData();
+        TestUtil.logTrace("cleanup complete, calling super.cleanup");
+        super.cleanup();
+    }
+
+    private void removeTestData() {
+        TestUtil.logTrace("removeTestData");
+        if (getEntityTransaction().isActive()) {
+            getEntityTransaction().rollback();
+        }
+        try {
+            getEntityTransaction().begin();
+            getEntityManager().createNativeQuery("DELETE FROM LINEITEM_TABLE").executeUpdate();
+            getEntityManager().createNativeQuery("DELETE FROM ORDER_TABLE").executeUpdate();
+            getEntityManager().createNativeQuery("DELETE FROM PRODUCT_TABLE").executeUpdate();
+            getEntityTransaction().commit();
+        } catch (Exception e) {
+            TestUtil.logErr("Exception encountered while removing entities:", e);
+        } finally {
+            try {
+                if (getEntityTransaction().isActive()) {
+                    getEntityTransaction().rollback();
+                }
+            } catch (Exception re) {
+                TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+            }
+        }
+    }
 }

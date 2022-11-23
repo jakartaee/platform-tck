@@ -21,53 +21,51 @@
 package com.sun.ts.tests.ejb30.bb.mdb.dest.fullpath;
 
 import com.sun.javatest.Status;
-
 import jakarta.annotation.Resource;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
 
-public class Client
-    extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.ClientBase {
-  @Resource(name = "sendQueue")
-  private static Queue sendQueue;
+public class Client extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.ClientBase {
+    @Resource(name = "sendQueue")
+    private static Queue sendQueue;
 
-  @Resource(name = "receiveQueue")
-  private static Queue receiveQueue;
+    @Resource(name = "receiveQueue")
+    private static Queue receiveQueue;
 
-  @Resource(name = "queueConnectionFactory")
-  private static QueueConnectionFactory queueConnectionFactory;
+    @Resource(name = "queueConnectionFactory")
+    private static QueueConnectionFactory queueConnectionFactory;
 
-  protected void initSendQueue() {
-    setSendQueue(sendQueue);
-  }
+    protected void initSendQueue() {
+        setSendQueue(sendQueue);
+    }
 
-  protected void initReceiveQueue() {
-    setReceiveQueue(receiveQueue);
-  }
+    protected void initReceiveQueue() {
+        setReceiveQueue(receiveQueue);
+    }
 
-  protected void initQueueConnectionFactory() {
-    setQueueConnectionFactory(queueConnectionFactory);
-  }
+    protected void initQueueConnectionFactory() {
+        setQueueConnectionFactory(queueConnectionFactory);
+    }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
-   * harness.log.port;
-   */
+    /*
+     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
+     * harness.log.port;
+     */
 
-  /*
-   * @testName: test1
-   * 
-   * @assertion_ids: EJB:SPEC:778; EJB:SPEC:779; EJB:SPEC:780
-   * 
-   * @test_Strategy: test message destination related elements in deployment
-   * descriptors: message-destination, message-destination-ref,
-   * message-destination-link message-destination is declared in two.jar, and
-   * must be accessible from one.jar, two.jar, and appclient-client.jar
-   */
+    /*
+     * @testName: test1
+     *
+     * @assertion_ids: EJB:SPEC:778; EJB:SPEC:779; EJB:SPEC:780
+     *
+     * @test_Strategy: test message destination related elements in deployment
+     * descriptors: message-destination, message-destination-ref,
+     * message-destination-link message-destination is declared in two.jar, and
+     * must be accessible from one.jar, two.jar, and appclient-client.jar
+     */
 }

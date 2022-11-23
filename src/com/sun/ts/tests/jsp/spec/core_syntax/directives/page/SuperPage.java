@@ -55,8 +55,6 @@
 
 package com.sun.ts.tests.jsp.spec.core_syntax.directives.page;
 
-import java.io.IOException;
-
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
@@ -65,48 +63,44 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.jsp.HttpJspPage;
+import java.io.IOException;
 
 public abstract class SuperPage extends HttpServlet implements HttpJspPage {
-  private ServletConfig config;
+    private ServletConfig config;
 
-  final public void init(ServletConfig config) throws ServletException {
-    this.config = config;
-    jspInit();
-  }
+    public final void init(ServletConfig config) throws ServletException {
+        this.config = config;
+        jspInit();
+    }
 
-  final public ServletConfig getServletConfig() {
-    return config;
-  }
+    public final ServletConfig getServletConfig() {
+        return config;
+    }
 
-  /**
-   * Here is the entry point to service
-   */
+    /**
+     * Here is the entry point to service
+     */
+    public final void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
 
-  final public void service(ServletRequest req, ServletResponse res)
-      throws ServletException, IOException {
+        HttpServletRequest request = (HttpServletRequest) req;
+        HttpServletResponse response = (HttpServletResponse) res;
+        _jspService(request, response);
+    }
 
-    HttpServletRequest request = (HttpServletRequest) req;
-    HttpServletResponse response = (HttpServletResponse) res;
-    _jspService(request, response);
-  }
+    public String getServletInfo() {
+        return "This is for JCK testing";
+    }
 
-  public String getServletInfo() {
-    return "This is for JCK testing";
-  }
+    public final void destroy() {
+        jspDestroy();
+    }
 
-  final public void destroy() {
-    jspDestroy();
-  }
+    public void jspInit() {}
 
-  public void jspInit() {
-  }
+    public void jspDestroy() {}
 
-  public void jspDestroy() {
-  }
+    // to be provided by JSP processor
 
-  // to be provided by JSP processor
-
-  abstract public void _jspService(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException;
-
+    public abstract void _jspService(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException;
 }

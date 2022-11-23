@@ -26,17 +26,15 @@ import jakarta.servlet.ServletRequestListener;
 
 public final class BadListener implements ServletRequestListener {
 
-  // Non-zero argument constructor
-  public BadListener(String x) throws ServletException {
-    throw new ServletException("Negative Test for createListener");
-  }
+    // Non-zero argument constructor
+    public BadListener(String x) throws ServletException {
+        throw new ServletException("Negative Test for createListener");
+    }
 
-  // Public Methods
-  public void requestDestroyed(ServletRequestEvent event) {
-    // do nothing
-  }
+    // Public Methods
+    public void requestDestroyed(ServletRequestEvent event) {
+        // do nothing
+    }
 
-  public void requestInitialized(ServletRequestEvent event) {
-  }
-
+    public void requestInitialized(ServletRequestEvent event) {}
 }

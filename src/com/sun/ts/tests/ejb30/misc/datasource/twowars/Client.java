@@ -20,77 +20,75 @@
 
 package com.sun.ts.tests.ejb30.misc.datasource.twowars;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class Client extends AbstractUrlClient {
 
-  private static final String CONTEXT_ROOT = "/ejb3_misc_datasource_twowars_web";
+    private static final String CONTEXT_ROOT = "/ejb3_misc_datasource_twowars_web";
 
-  private static final String SERVLET_NAME = "TestServlet";
+    private static final String SERVLET_NAME = "TestServlet";
 
-  private static final String CONTEXT_ROOT_2 = "/two_standalone_component_web";
+    private static final String CONTEXT_ROOT_2 = "/two_standalone_component_web";
 
-  private static final String SERVLET_NAME_2 = "TestServlet2";
+    private static final String SERVLET_NAME_2 = "TestServlet2";
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  @Override
-  public Status run(String args[], PrintWriter out, PrintWriter pw) {
-    setServletName(SERVLET_NAME);
-    setContextRoot(CONTEXT_ROOT);
-    return super.run(args, out, pw);
-  }
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    @Override
+    public Status run(String args[], PrintWriter out, PrintWriter pw) {
+        setServletName(SERVLET_NAME);
+        setContextRoot(CONTEXT_ROOT);
+        return super.run(args, out, pw);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
 
-  /*
-   * @testName: servletPostConstruct
-   * 
-   * @test_Strategy: access various data sources from servlet.
-   */
-  public void servletPostConstruct() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "servletPostConstruct");
-    invoke();
-  }
+    /*
+     * @testName: servletPostConstruct
+     *
+     * @test_Strategy: access various data sources from servlet.
+     */
+    public void servletPostConstruct() throws Exception {
+        TEST_PROPS.setProperty(APITEST, "servletPostConstruct");
+        invoke();
+    }
 
-  /*
-   * @testName: servletPostConstruct2
-   * 
-   * @test_Strategy: access various data sources from servlet2.
-   */
-  public void servletPostConstruct2() throws Exception {
-    setServletName(SERVLET_NAME_2);
-    setContextRoot(CONTEXT_ROOT_2);
-    TEST_PROPS.setProperty(APITEST, "servletPostConstruct2");
-    invoke();
-  }
+    /*
+     * @testName: servletPostConstruct2
+     *
+     * @test_Strategy: access various data sources from servlet2.
+     */
+    public void servletPostConstruct2() throws Exception {
+        setServletName(SERVLET_NAME_2);
+        setContextRoot(CONTEXT_ROOT_2);
+        TEST_PROPS.setProperty(APITEST, "servletPostConstruct2");
+        invoke();
+    }
 
-  /*
-   * @testName: ejbPostConstruct
-   * 
-   * @test_Strategy: access various data sources from ejb.
-   */
-  public void ejbPostConstruct() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "ejbPostConstruct");
-    invoke();
-  }
+    /*
+     * @testName: ejbPostConstruct
+     *
+     * @test_Strategy: access various data sources from ejb.
+     */
+    public void ejbPostConstruct() throws Exception {
+        TEST_PROPS.setProperty(APITEST, "ejbPostConstruct");
+        invoke();
+    }
 }

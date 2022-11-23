@@ -23,9 +23,9 @@ package com.sun.ts.tests.ejb30.tx.session.stateless.cm.varargs;
 import com.sun.ts.lib.deliverable.cts.resource.Dog;
 
 public interface VarargsCommonIF {
-  public String format(String s, Object... o);
+    public String format(String s, Object... o);
 
-  public int add(int... i);
+    public int add(int... i);
 
-  public String listDogs(Dog... dogs);
+    public String listDogs(Dog... dogs);
 }

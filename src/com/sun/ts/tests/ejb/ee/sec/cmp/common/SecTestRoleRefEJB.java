@@ -22,83 +22,80 @@
 
 package com.sun.ts.tests.ejb.ee.sec.cmp.common;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
 import jakarta.ejb.RemoveException;
+import java.util.Properties;
 
 public class SecTestRoleRefEJB implements EntityBean {
 
-  private EntityContext ectx = null;
+    private EntityContext ectx = null;
 
-  public String BRAND_NAME;
+    public String BRAND_NAME;
 
-  public Integer KEY_ID;
+    public Integer KEY_ID;
 
-  public float PRICE;
+    public float PRICE;
 
-  public void SecTestRoleRefEJB() throws CreateException {
-    TestUtil.logTrace("In constructor");
-  }
-
-  public boolean EjbSecRoleRefScope(String role) {
-    return ectx.isCallerInRole(role);
-  }
-
-  public Integer ejbCreate(Properties p, boolean newTable, int KEY_ID,
-      String BRAND_NAME, float PRICE) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    try {
-      TestUtil.init(p);
-      this.KEY_ID = new Integer(KEY_ID);
-      this.BRAND_NAME = BRAND_NAME;
-      this.PRICE = PRICE;
-
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException(e.getMessage());
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    public void SecTestRoleRefEJB() throws CreateException {
+        TestUtil.logTrace("In constructor");
     }
-    return this.KEY_ID;
-  }
 
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("ejbRemove");
-  }
+    public boolean EjbSecRoleRefScope(String role) {
+        return ectx.isCallerInRole(role);
+    }
 
-  public void ejbPostCreate(Properties p, boolean newTable, int KEY_ID,
-      String BRAND_NAME, float PRICE) {
-    TestUtil.logTrace("In ejbPostCreate !!");
-  }
+    public Integer ejbCreate(Properties p, boolean newTable, int KEY_ID, String BRAND_NAME, float PRICE)
+            throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        try {
+            TestUtil.init(p);
+            this.KEY_ID = new Integer(KEY_ID);
+            this.BRAND_NAME = BRAND_NAME;
+            this.PRICE = PRICE;
 
-  public void ejbLoad() {
-    TestUtil.logTrace("ejbLoad");
-  }
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException(e.getMessage());
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+        return this.KEY_ID;
+    }
 
-  public void ejbStore() {
-    TestUtil.logTrace("ejbStore");
-  }
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("ejbRemove");
+    }
 
-  public void setEntityContext(EntityContext sc) {
-    ectx = sc;
-  }
+    public void ejbPostCreate(Properties p, boolean newTable, int KEY_ID, String BRAND_NAME, float PRICE) {
+        TestUtil.logTrace("In ejbPostCreate !!");
+    }
 
-  public void unsetEntityContext() {
-    TestUtil.logTrace("ejb.unsetEntityContext");
-  }
+    public void ejbLoad() {
+        TestUtil.logTrace("ejbLoad");
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
+    public void ejbStore() {
+        TestUtil.logTrace("ejbStore");
+    }
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
+    public void setEntityContext(EntityContext sc) {
+        ectx = sc;
+    }
+
+    public void unsetEntityContext() {
+        TestUtil.logTrace("ejb.unsetEntityContext");
+    }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
 }

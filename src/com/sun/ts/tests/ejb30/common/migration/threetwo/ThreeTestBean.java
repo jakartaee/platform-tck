@@ -30,30 +30,28 @@ import jakarta.ejb.Stateless;
 @Remote(ThreeTestIF.class)
 public class ThreeTestBean extends ThreeTestBeanBase implements ThreeTestIF {
 
-  @EJB(name = "twoRemoteHome")
-  private TwoRemoteHome twoRemoteHome;
+    @EJB(name = "twoRemoteHome")
+    private TwoRemoteHome twoRemoteHome;
 
-  @EJB(name = "twoLocalHome")
-  private TwoLocalHome twoLocalHome;
+    @EJB(name = "twoLocalHome")
+    private TwoLocalHome twoLocalHome;
 
-  @Resource(name = "sctx")
-  private SessionContext sctx;
+    @Resource(name = "sctx")
+    private SessionContext sctx;
 
-  public ThreeTestBean() {
-  }
+    public ThreeTestBean() {}
 
-  public void remove() {
-  }
+    public void remove() {}
 
-  protected TwoRemoteHome getTwoRemoteHome() {
-    return (TwoRemoteHome) (sctx.lookup("twoRemoteHome"));
-  }
+    protected TwoRemoteHome getTwoRemoteHome() {
+        return (TwoRemoteHome) (sctx.lookup("twoRemoteHome"));
+    }
 
-  protected TwoLocalHome getTwoLocalHome() {
-    return (TwoLocalHome) (sctx.lookup("twoLocalHome"));
-  }
+    protected TwoLocalHome getTwoLocalHome() {
+        return (TwoLocalHome) (sctx.lookup("twoLocalHome"));
+    }
 
-  protected jakarta.ejb.EJBContext getEJBContext() {
-    return sctx;
-  }
+    protected jakarta.ejb.EJBContext getEJBContext() {
+        return sctx;
+    }
 }

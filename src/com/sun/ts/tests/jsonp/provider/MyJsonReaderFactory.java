@@ -20,15 +20,13 @@
 
 package com.sun.ts.tests.jsonp.provider;
 
+import com.sun.ts.lib.util.TestUtil;
+import jakarta.json.JsonReader;
+import jakarta.json.JsonReaderFactory;
 import java.io.InputStream;
 import java.io.Reader;
 import java.nio.charset.Charset;
 import java.util.Map;
-
-import com.sun.ts.lib.util.TestUtil;
-
-import jakarta.json.JsonReader;
-import jakarta.json.JsonReaderFactory;
 
 /*
  * MyJsonReaderFactory is a Json Test ReaderFactory used by the pluggability tests
@@ -37,65 +35,65 @@ import jakarta.json.JsonReaderFactory;
  */
 
 public class MyJsonReaderFactory implements JsonReaderFactory {
-  private InputStream in = null;
+    private InputStream in = null;
 
-  private Charset charset = null;
+    private Charset charset = null;
 
-  private Reader reader = null;
+    private Reader reader = null;
 
-  private Map<String, ?> config = null;
+    private Map<String, ?> config = null;
 
-  private void dumpInstanceVars() {
-    TestUtil.logTrace("reader=" + reader);
-    TestUtil.logTrace("in=" + in);
-    TestUtil.logTrace("charset=" + charset);
-    TestUtil.logTrace("config=" + config);
-  }
+    private void dumpInstanceVars() {
+        TestUtil.logTrace("reader=" + reader);
+        TestUtil.logTrace("in=" + in);
+        TestUtil.logTrace("charset=" + charset);
+        TestUtil.logTrace("config=" + config);
+    }
 
-  // call methods
-  private static StringBuilder calls = new StringBuilder();
+    // call methods
+    private static StringBuilder calls = new StringBuilder();
 
-  public static String getCalls() {
-    return calls.toString();
-  }
+    public static String getCalls() {
+        return calls.toString();
+    }
 
-  public static void clearCalls() {
-    calls.delete(0, calls.length());
-  }
+    public static void clearCalls() {
+        calls.delete(0, calls.length());
+    }
 
-  private static void addCalls(String s) {
-    calls.append(s);
-  }
+    private static void addCalls(String s) {
+        calls.append(s);
+    }
 
-  public MyJsonReaderFactory(Map<String, ?> config) {
-    this.config = config;
-  }
+    public MyJsonReaderFactory(Map<String, ?> config) {
+        this.config = config;
+    }
 
-  public Map<String, ?> getConfigInUse() {
-    TestUtil.logTrace("public Map<String, ?> getConfigInUse()");
-    addCalls("public Map<String, ?> getConfigInUse()");
-    return config;
-  }
+    public Map<String, ?> getConfigInUse() {
+        TestUtil.logTrace("public Map<String, ?> getConfigInUse()");
+        addCalls("public Map<String, ?> getConfigInUse()");
+        return config;
+    }
 
-  public JsonReader createReader(InputStream in) {
-    TestUtil.logTrace("public JsonReader createReader(InputStream)");
-    addCalls("public JsonReader createReader(InputStream)");
-    this.in = in;
-    return null;
-  }
+    public JsonReader createReader(InputStream in) {
+        TestUtil.logTrace("public JsonReader createReader(InputStream)");
+        addCalls("public JsonReader createReader(InputStream)");
+        this.in = in;
+        return null;
+    }
 
-  public JsonReader createReader(InputStream in, Charset charset) {
-    TestUtil.logTrace("public JsonReader createReader(InputStream, Charset)");
-    addCalls("public JsonReader createReader(InputStream, Charset)");
-    this.in = in;
-    this.charset = charset;
-    return null;
-  }
+    public JsonReader createReader(InputStream in, Charset charset) {
+        TestUtil.logTrace("public JsonReader createReader(InputStream, Charset)");
+        addCalls("public JsonReader createReader(InputStream, Charset)");
+        this.in = in;
+        this.charset = charset;
+        return null;
+    }
 
-  public JsonReader createReader(Reader reader) {
-    TestUtil.logTrace("public JsonReader createReader(Reader)");
-    addCalls("public JsonReader createReader(Reader)");
-    this.reader = reader;
-    return null;
-  }
+    public JsonReader createReader(Reader reader) {
+        TestUtil.logTrace("public JsonReader createReader(Reader)");
+        addCalls("public JsonReader createReader(Reader)");
+        this.reader = reader;
+        return null;
+    }
 }

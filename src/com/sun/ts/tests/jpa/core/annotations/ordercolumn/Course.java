@@ -16,8 +16,6 @@
 
 package com.sun.ts.tests.jpa.core.annotations.ordercolumn;
 
-import java.util.List;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -25,64 +23,66 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OrderColumn;
+import java.util.List;
 
 @Entity
 public class Course implements java.io.Serializable {
-  @Id
-  int id;
+    @Id
+    int id;
 
-  String courseName;
+    String courseName;
 
-  @JoinTable(name = "COURSE_STUDENT", joinColumns = @JoinColumn(name = "COURSE_ID"), inverseJoinColumns = @JoinColumn(name = "STUDENT_ID"))
-  @OrderColumn(name = "STUDENTS_ORDER", nullable = true, updatable = true, insertable = true)
-  @ManyToMany(cascade = CascadeType.ALL)
-  List<Student> students;
+    @JoinTable(
+            name = "COURSE_STUDENT",
+            joinColumns = @JoinColumn(name = "COURSE_ID"),
+            inverseJoinColumns = @JoinColumn(name = "STUDENT_ID"))
+    @OrderColumn(name = "STUDENTS_ORDER", nullable = true, updatable = true, insertable = true)
+    @ManyToMany(cascade = CascadeType.ALL)
+    List<Student> students;
 
-  public Course() {
-  }
+    public Course() {}
 
-  public Course(int id, String name) {
-    this.id = id;
-    this.courseName = name;
-  }
-
-  public String getCourseName() {
-    return courseName;
-  }
-
-  public void setCourseName(String courseName) {
-    this.courseName = courseName;
-  }
-
-  public List<Student> getStudents() {
-    return students;
-  }
-
-  public void setStudents(List<Student> students) {
-    this.students = students;
-  }
-
-  public int hashCode() {
-
-    return this.id;
-  }
-
-  public boolean equals(Object obj) {
-    boolean result = false;
-
-    if ((obj != null) && (obj instanceof Course)) {
-      Course course = (Course) obj;
-      result = (course.id == this.id);
+    public Course(int id, String name) {
+        this.id = id;
+        this.courseName = name;
     }
-    return result;
-  }
 
-  public int getId() {
-    return id;
-  }
+    public String getCourseName() {
+        return courseName;
+    }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
 
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    public int hashCode() {
+
+        return this.id;
+    }
+
+    public boolean equals(Object obj) {
+        boolean result = false;
+
+        if ((obj != null) && (obj instanceof Course)) {
+            Course course = (Course) obj;
+            result = (course.id == this.id);
+        }
+        return result;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

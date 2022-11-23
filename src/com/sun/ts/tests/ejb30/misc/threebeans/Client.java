@@ -19,178 +19,167 @@
  */
 package com.sun.ts.tests.ejb30.misc.threebeans;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBException;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  @EJB
-  private static OneRemoteIF oneRemote;
+    @EJB
+    private static OneRemoteIF oneRemote;
 
-  @EJB
-  private static TwoRemoteIF twoRemote;
+    @EJB
+    private static TwoRemoteIF twoRemote;
 
-  @EJB(beanName = "ThreeBean")
-  private static ThreeRemoteIF threeRemote;
+    @EJB(beanName = "ThreeBean")
+    private static ThreeRemoteIF threeRemote;
 
-  @EJB(beanName = "FourBean")
-  private static ThreeRemoteIF fourRemote;
+    @EJB(beanName = "FourBean")
+    private static ThreeRemoteIF fourRemote;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
-   * @class.setup_props:
-   */
-  public void setup(String[] args, Properties p) throws Fault {
-  }
-
-  public void cleanup() throws Fault {
-
-  }
-
-  /*
-   * @testName: testOne
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-  public void testOne() throws Fault {
-    final String expected = "OneBean";
-    String beanName = oneRemote.getShortName();
-    if (expected.equals(beanName)) {
-      TLogger.log("Got expected beanName: " + expected);
-    } else {
-      throw new Fault("Expecting " + expected + ", but got " + beanName);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /*
-   * @testName: testException
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-  public void testException() throws TestFailedException {
-    final String expected = "testException";
-    String result = oneRemote.testException();
-    if (expected.equals(result)) {
-      TLogger.log("Got expected result: " + expected);
-    } else {
-      throw new TestFailedException(
-          "Expecting " + expected + ", but got " + result);
-    }
-    result = twoRemote.testException();
-    if (expected.equals(result)) {
-      TLogger.log("Got expected result: " + expected);
-    } else {
-      throw new TestFailedException(
-          "Expecting " + expected + ", but got " + result);
-    }
-  }
+    /*
+     * @class.setup_props:
+     */
+    public void setup(String[] args, Properties p) throws Fault {}
 
-  /*
-   * @testName: testNumber
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-  public void testNumber() throws Fault {
-    String expected = int.class.getName();
-    String result = oneRemote.testNumber(2);
-    if (expected.equals(result)) {
-      TLogger.log(
-          "Got expected return value from method testNumber(int):" + expected);
-    } else {
-      throw new Fault("Expecting " + expected + ", but got " + result);
-    }
-    expected = Integer.class.getName();
-    result = oneRemote.testNumber(new Integer(2));
-    if (expected.equals(result)) {
-      TLogger.log("Got expected return value from method testNumber(Integer):"
-          + expected);
-    } else {
-      throw new Fault("Expecting " + expected + ", but got " + result);
-    }
-    expected = double.class.getName();
-    result = oneRemote.testNumber(2D);
-    if (expected.equals(result)) {
-      TLogger.log("Got expected return value from method testNumber(double):"
-          + expected);
-    } else {
-      throw new Fault("Expecting " + expected + ", but got " + result);
-    }
-    try {
-      result = oneRemote.testNumber(new Double(2D));
-      throw new Fault(
-          "Expecting EJBException, but got return value: " + result);
-    } catch (EJBException e) {
-      TLogger.log("Got expected EJBException", e.toString());
-    }
-  }
+    public void cleanup() throws Fault {}
 
-  /*
-   * @testName: testTwo
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-  public void testTwo() throws Fault {
-    final String expected = "TwoBean";
-    String beanName = twoRemote.getShortName();
-    if (expected.equals(beanName)) {
-      TLogger.log("Got expected beanName: " + expected);
-    } else {
-      throw new Fault("Expecting " + expected + ", but got " + beanName);
+    /*
+     * @testName: testOne
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void testOne() throws Fault {
+        final String expected = "OneBean";
+        String beanName = oneRemote.getShortName();
+        if (expected.equals(beanName)) {
+            TLogger.log("Got expected beanName: " + expected);
+        } else {
+            throw new Fault("Expecting " + expected + ", but got " + beanName);
+        }
     }
-  }
 
-  /*
-   * @testName: testThree
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   */
-  public void testThree() throws Fault {
-    final String expected = "ThreeBean";
-    String beanName = threeRemote.getShortName();
-    if (expected.equals(beanName)) {
-      TLogger.log("Got expected beanName: " + expected);
-    } else {
-      throw new Fault("Expecting " + expected + ", but got " + beanName);
+    /*
+     * @testName: testException
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void testException() throws TestFailedException {
+        final String expected = "testException";
+        String result = oneRemote.testException();
+        if (expected.equals(result)) {
+            TLogger.log("Got expected result: " + expected);
+        } else {
+            throw new TestFailedException("Expecting " + expected + ", but got " + result);
+        }
+        result = twoRemote.testException();
+        if (expected.equals(result)) {
+            TLogger.log("Got expected result: " + expected);
+        } else {
+            throw new TestFailedException("Expecting " + expected + ", but got " + result);
+        }
     }
-  }
 
-  /*
-   * @testName: testFour
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: FourBean and ThreeBean implement the same interfaces, and
-   * inject each other.
-   */
-  public void testFour() throws Fault {
-    final String expected = "FourBean";
-    String beanName = fourRemote.getShortName();
-    if (expected.equals(beanName)) {
-      TLogger.log("Got expected beanName: " + expected);
-    } else {
-      throw new Fault("Expecting " + expected + ", but got " + beanName);
+    /*
+     * @testName: testNumber
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void testNumber() throws Fault {
+        String expected = int.class.getName();
+        String result = oneRemote.testNumber(2);
+        if (expected.equals(result)) {
+            TLogger.log("Got expected return value from method testNumber(int):" + expected);
+        } else {
+            throw new Fault("Expecting " + expected + ", but got " + result);
+        }
+        expected = Integer.class.getName();
+        result = oneRemote.testNumber(new Integer(2));
+        if (expected.equals(result)) {
+            TLogger.log("Got expected return value from method testNumber(Integer):" + expected);
+        } else {
+            throw new Fault("Expecting " + expected + ", but got " + result);
+        }
+        expected = double.class.getName();
+        result = oneRemote.testNumber(2D);
+        if (expected.equals(result)) {
+            TLogger.log("Got expected return value from method testNumber(double):" + expected);
+        } else {
+            throw new Fault("Expecting " + expected + ", but got " + result);
+        }
+        try {
+            result = oneRemote.testNumber(new Double(2D));
+            throw new Fault("Expecting EJBException, but got return value: " + result);
+        } catch (EJBException e) {
+            TLogger.log("Got expected EJBException", e.toString());
+        }
     }
-  }
+
+    /*
+     * @testName: testTwo
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void testTwo() throws Fault {
+        final String expected = "TwoBean";
+        String beanName = twoRemote.getShortName();
+        if (expected.equals(beanName)) {
+            TLogger.log("Got expected beanName: " + expected);
+        } else {
+            throw new Fault("Expecting " + expected + ", but got " + beanName);
+        }
+    }
+
+    /*
+     * @testName: testThree
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy:
+     */
+    public void testThree() throws Fault {
+        final String expected = "ThreeBean";
+        String beanName = threeRemote.getShortName();
+        if (expected.equals(beanName)) {
+            TLogger.log("Got expected beanName: " + expected);
+        } else {
+            throw new Fault("Expecting " + expected + ", but got " + beanName);
+        }
+    }
+
+    /*
+     * @testName: testFour
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: FourBean and ThreeBean implement the same interfaces, and
+     * inject each other.
+     */
+    public void testFour() throws Fault {
+        final String expected = "FourBean";
+        String beanName = fourRemote.getShortName();
+        if (expected.equals(beanName)) {
+            TLogger.log("Got expected beanName: " + expected);
+        } else {
+            throw new Fault("Expecting " + expected + ", but got " + beanName);
+        }
+    }
 }

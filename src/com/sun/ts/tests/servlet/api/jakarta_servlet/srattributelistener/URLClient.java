@@ -24,86 +24,84 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.srattributelistener;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    setServletName("TestServlet");
-    setContextRoot("/servlet_js_srattributelistener_web");
+        setServletName("TestServlet");
+        setContextRoot("/servlet_js_srattributelistener_web");
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   *
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     *
+     */
 
-  /* Run test */
+    /* Run test */
 
-  /*
-   * @testName: addedTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:169
-   * 
-   * @test_Strategy: Servlet adds an attribute. The listener should detect the
-   * add and write a message out to a static log. Servlet then reads the log and
-   * verifys the result.
-   *
-   */
+    /*
+     * @testName: addedTest
+     *
+     * @assertion_ids: Servlet:JAVADOC:169
+     *
+     * @test_Strategy: Servlet adds an attribute. The listener should detect the
+     * add and write a message out to a static log. Servlet then reads the log and
+     * verifys the result.
+     *
+     */
 
-  public void addedTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "addedTest");
-    invoke();
-  }
+    public void addedTest() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "addedTest");
+        invoke();
+    }
 
-  /*
-   * @testName: removedTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:170
-   * 
-   * @test_Strategy: Servlet adds/removes an attribute. The listener should
-   * detect the add and write a message out to a static log. Servlet then reads
-   * the log and verifys the result.
-   */
+    /*
+     * @testName: removedTest
+     *
+     * @assertion_ids: Servlet:JAVADOC:170
+     *
+     * @test_Strategy: Servlet adds/removes an attribute. The listener should
+     * detect the add and write a message out to a static log. Servlet then reads
+     * the log and verifys the result.
+     */
 
-  public void removedTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "removedTest");
-    invoke();
-  }
+    public void removedTest() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "removedTest");
+        invoke();
+    }
 
-  /*
-   * @testName: replacedTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:171
-   * 
-   * @test_Strategy: Servlet adds/replaces an attribute. The listener should
-   * detect the add and write a message out to a static log. Servlet then reads
-   * the log and verifys the result.
-   */
+    /*
+     * @testName: replacedTest
+     *
+     * @assertion_ids: Servlet:JAVADOC:171
+     *
+     * @test_Strategy: Servlet adds/replaces an attribute. The listener should
+     * detect the add and write a message out to a static log. Servlet then reads
+     * the log and verifys the result.
+     */
 
-  public void replacedTest() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "replacedTest");
-    invoke();
-  }
+    public void replacedTest() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "replacedTest");
+        invoke();
+    }
 }

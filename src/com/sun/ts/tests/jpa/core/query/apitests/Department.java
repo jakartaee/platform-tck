@@ -15,12 +15,10 @@
  */
 
 /*
-* $Id$
-*/
+ * $Id$
+ */
 
 package com.sun.ts.tests.jpa.core.query.apitests;
-
-import java.util.Collection;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -28,6 +26,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.Collection;
 
 /*
  * Department
@@ -37,88 +36,83 @@ import jakarta.persistence.Table;
 @Table(name = "DEPARTMENT")
 public class Department implements java.io.Serializable {
 
-  // Instance variables
-  private int id;
+    // Instance variables
+    private int id;
 
-  private String name;
+    private String name;
 
-  private Collection<Employee> employees = new java.util.ArrayList<Employee>();
+    private Collection<Employee> employees = new java.util.ArrayList<Employee>();
 
-  public Department() {
-  }
+    public Department() {}
 
-  public Department(int id, String name) {
-    this.id = id;
-    this.name = name;
-  }
-
-  // ===========================================================
-  // getters and setters for the state fields
-
-  @Id
-  @Column(name = "ID")
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
-
-  @Column(name = "NAME")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  // ===========================================================
-  // getters and setters for the association fields
-
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
-  public Collection<Employee> getEmployees() {
-    return employees;
-  }
-
-  public void setEmployees(Collection<Employee> employees) {
-    this.employees = employees;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    // check for self-comparison
-    if (this == o)
-      return true;
-    if (!(o instanceof Department))
-      return false;
-
-    Department o1 = (Department) o;
-
-    boolean result = false;
-
-    if (this.getId() == o1.getId() && this.getName().equals(o1.getName())) {
-      result = true;
+    public Department(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
-    return result;
+    // ===========================================================
+    // getters and setters for the state fields
 
-  }
+    @Id
+    @Column(name = "ID")
+    public int getId() {
+        return id;
+    }
 
-  @Override
-  public int hashCode() {
-    return this.getId() + this.getName().hashCode();
-  }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", name: " + getName());
-    result.append("]");
-    return result.toString();
-  }
+    @Column(name = "NAME")
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // ===========================================================
+    // getters and setters for the association fields
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
+    public Collection<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Collection<Employee> employees) {
+        this.employees = employees;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        // check for self-comparison
+        if (this == o) return true;
+        if (!(o instanceof Department)) return false;
+
+        Department o1 = (Department) o;
+
+        boolean result = false;
+
+        if (this.getId() == o1.getId() && this.getName().equals(o1.getName())) {
+            result = true;
+        }
+
+        return result;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getId() + this.getName().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(this.getClass().getSimpleName() + "[");
+        result.append("id: " + getId());
+        result.append(", name: " + getName());
+        result.append("]");
+        return result.toString();
+    }
 }

@@ -21,6 +21,5 @@ import jakarta.ejb.Remote;
 @Remote
 public interface RemoteAnnotationInterface1 {
 
-  public int businessMethod1();
-
+    public int businessMethod1();
 }

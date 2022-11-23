@@ -17,45 +17,42 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.endpoint.server;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
 @ServerEndpoint(value = "/msg")
 public class WSCMsgServer {
-  static final String EMPTY = "empty";
+    static final String EMPTY = "empty";
 
-  static final String MESSAGES[] = { "reset", "lastmsg" };
+    static final String MESSAGES[] = {"reset", "lastmsg"};
 
-  static String message = EMPTY;
+    static String message = EMPTY;
 
-  @OnMessage
-  public String onMessage(String msg) {
-    if (MESSAGES[0].equals(msg)) {
-      setLastMessage(EMPTY);
+    @OnMessage
+    public String onMessage(String msg) {
+        if (MESSAGES[0].equals(msg)) {
+            setLastMessage(EMPTY);
+        }
+        msg = getLastMessage();
+        return msg;
     }
-    msg = getLastMessage();
-    return msg;
-  }
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+    @OnError
+    public void onError(Session session, Throwable thr) throws IOException {
+        thr.printStackTrace(); // Write to error log, too
+        String message = IOUtil.printStackTrace(thr);
+        session.getBasicRemote().sendText(message);
+    }
 
-  private static String getLastMessage() {
-    return message;
-  }
+    private static String getLastMessage() {
+        return message;
+    }
 
-  public static void setLastMessage(String lastMessage) {
-    WSCMsgServer.message = lastMessage;
-  }
-
+    public static void setLastMessage(String lastMessage) {
+        WSCMsgServer.message = lastMessage;
+    }
 }

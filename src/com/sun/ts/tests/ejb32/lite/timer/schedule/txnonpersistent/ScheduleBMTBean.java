@@ -22,6 +22,4 @@ import jakarta.ejb.TransactionManagementType;
 
 @Singleton(name = "txnonpersistent-ScheduleBMTBean")
 @TransactionManagement(TransactionManagementType.BEAN)
-public class ScheduleBMTBean
-    extends com.sun.ts.tests.ejb32.lite.timer.schedule.tx.ScheduleBMTBean {
-}
+public class ScheduleBMTBean extends com.sun.ts.tests.ejb32.lite.timer.schedule.tx.ScheduleBMTBean {}

@@ -32,31 +32,31 @@ import jakarta.interceptor.InvocationContext;
  */
 public class InterceptorC extends InterceptorBase {
 
-  public InterceptorC() {
-    super();
-  }
+    public InterceptorC() {
+        super();
+    }
 
-  public String getInjectedLocation() {
-    return NOT_INJECTED;
-  }
+    public String getInjectedLocation() {
+        return NOT_INJECTED;
+    }
 
-  @Override
-  protected String getShortName() {
-    return "C";
-  }
+    @Override
+    protected String getShortName() {
+        return "C";
+    }
 
-  @PostConstruct
-  protected void myCreate(InvocationContext inv) throws RuntimeException {
-    myCreate0(inv, "C");
-  }
+    @PostConstruct
+    protected void myCreate(InvocationContext inv) throws RuntimeException {
+        myCreate0(inv, "C");
+    }
 
-  @PreDestroy
-  protected void myRemove(InvocationContext inv) throws RuntimeException {
-    super.myRemove(inv);
-  }
+    @PreDestroy
+    protected void myRemove(InvocationContext inv) throws RuntimeException {
+        super.myRemove(inv);
+    }
 
-  @AroundInvoke
-  protected Object intercept(InvocationContext inv) throws Exception {
-    return super.intercept(inv);
-  }
+    @AroundInvoke
+    protected Object intercept(InvocationContext inv) throws Exception {
+        return super.intercept(inv);
+    }
 }

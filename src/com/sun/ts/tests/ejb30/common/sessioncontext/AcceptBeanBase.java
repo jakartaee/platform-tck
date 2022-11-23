@@ -24,49 +24,45 @@ import static com.sun.ts.tests.ejb30.common.sessioncontext.Constants.FROM_BEAN;
 import static com.sun.ts.tests.ejb30.common.sessioncontext.Constants.FROM_CLIENT;
 
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.ejb.SessionContext;
 
-abstract public class AcceptBeanBase implements AcceptLocalIF, AcceptIF {
-  abstract protected SessionContext getSessionContext();
+public abstract class AcceptBeanBase implements AcceptLocalIF, AcceptIF {
+    protected abstract SessionContext getSessionContext();
 
-  private void verifyRemote(String[] m) throws TestFailedException {
-    if (FROM_CLIENT.equals(m[0])) {
-      // ok
-    } else {
-      throw new TestFailedException(
-          "Expecting '" + FROM_CLIENT + "', but actual '" + m[0] + "'");
+    private void verifyRemote(String[] m) throws TestFailedException {
+        if (FROM_CLIENT.equals(m[0])) {
+            // ok
+        } else {
+            throw new TestFailedException("Expecting '" + FROM_CLIENT + "', but actual '" + m[0] + "'");
+        }
     }
-  }
 
-  private void verifyLocal(String[] m) throws TestFailedException {
-    if (FROM_BEAN.equals(m[0])) {
-      // ok
-    } else {
-      throw new TestFailedException(
-          "Expecting '" + FROM_BEAN + "', but actual '" + m[0] + "'");
+    private void verifyLocal(String[] m) throws TestFailedException {
+        if (FROM_BEAN.equals(m[0])) {
+            // ok
+        } else {
+            throw new TestFailedException("Expecting '" + FROM_BEAN + "', but actual '" + m[0] + "'");
+        }
     }
-  }
 
-  public void accept(CommonIF bean) throws TestFailedException {
-    final String[] m = new String[] { FROM_CLIENT };
-    if (bean instanceof Three1IF) {
-      Three1IF bob = (Three1IF) bean;
-      bob.hi(m);
-      verifyRemote(m);
-    } else if (bean instanceof Three2IF) {
-      Three2IF bob = (Three2IF) bean;
-      bob.hi(m);
-      verifyRemote(m);
-    } else if (bean instanceof ThreeLocal1IF) {
-      ThreeLocal1IF bob = (ThreeLocal1IF) bean;
-      bob.hi(m);
-      verifyLocal(m);
-    } else if (bean instanceof ThreeLocal2IF) {
-      ThreeLocal2IF bob = (ThreeLocal2IF) bean;
-      bob.hi(m);
-      verifyLocal(m);
+    public void accept(CommonIF bean) throws TestFailedException {
+        final String[] m = new String[] {FROM_CLIENT};
+        if (bean instanceof Three1IF) {
+            Three1IF bob = (Three1IF) bean;
+            bob.hi(m);
+            verifyRemote(m);
+        } else if (bean instanceof Three2IF) {
+            Three2IF bob = (Three2IF) bean;
+            bob.hi(m);
+            verifyRemote(m);
+        } else if (bean instanceof ThreeLocal1IF) {
+            ThreeLocal1IF bob = (ThreeLocal1IF) bean;
+            bob.hi(m);
+            verifyLocal(m);
+        } else if (bean instanceof ThreeLocal2IF) {
+            ThreeLocal2IF bob = (ThreeLocal2IF) bean;
+            bob.hi(m);
+            verifyLocal(m);
+        }
     }
-  }
-
 }

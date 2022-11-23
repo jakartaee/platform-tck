@@ -20,73 +20,71 @@
 
 package com.sun.ts.tests.appclient.deploy.resref.casesens;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.assembly.util.shared.resref.casesens.TestCode;
+import java.util.Properties;
 
 public class Client extends EETest {
 
-  private Properties props = null;
+    private Properties props = null;
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /**
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   *                     webServerHost; webServerPort; mailuser1;
-   */
-  public void setup(String[] args, Properties props) throws Fault {
-    this.props = props;
-
-    try {
-      nctx = new TSNamingContext();
-    } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /**
-   * @testName: testCaseSensitivity
-   *
-   * @assertion_ids: JavaEE:SPEC:279
-   *
-   * @test_Strategy: Deploy an application client declaring two resource
-   *                 references whose names differ only by case and are assigned
-   *                 to two distinct factory types: a
-   *                 jakarta.jms.QueueConnectionFactory and a
-   *                 jakarta.jms.TopicConnectionFactory.
-   *
-   *                 Check that the application client can lookup the two
-   *                 factories, cast them to their respective Java types, and
-   *                 create a connection (corresponding to the factory type).
-   *                 This validates that the resource references were resolved
-   *                 correctly.
-   */
-  public void testCaseSensitivity() throws Fault {
-    boolean pass;
+    /**
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     *                     webServerHost; webServerPort; mailuser1;
+     */
+    public void setup(String[] args, Properties props) throws Fault {
+        this.props = props;
 
-    try {
-      pass = TestCode.testCaseSensitivity(nctx);
-      if (!pass) {
-        throw new Fault("casesens res-ref test failed!");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] Caught exception: " + e);
-      throw new Fault("casesens res-ref test failed!", e);
+        try {
+            nctx = new TSNamingContext();
+        } catch (Exception e) {
+            throw new Fault("Setup failed:", e);
+        }
     }
-  }
 
-  public void cleanup() {
-    logTrace("[Client] cleanup()");
-  }
+    /**
+     * @testName: testCaseSensitivity
+     *
+     * @assertion_ids: JavaEE:SPEC:279
+     *
+     * @test_Strategy: Deploy an application client declaring two resource
+     *                 references whose names differ only by case and are assigned
+     *                 to two distinct factory types: a
+     *                 jakarta.jms.QueueConnectionFactory and a
+     *                 jakarta.jms.TopicConnectionFactory.
+     *
+     *                 Check that the application client can lookup the two
+     *                 factories, cast them to their respective Java types, and
+     *                 create a connection (corresponding to the factory type).
+     *                 This validates that the resource references were resolved
+     *                 correctly.
+     */
+    public void testCaseSensitivity() throws Fault {
+        boolean pass;
 
+        try {
+            pass = TestCode.testCaseSensitivity(nctx);
+            if (!pass) {
+                throw new Fault("casesens res-ref test failed!");
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("[Client] Caught exception: " + e);
+            throw new Fault("casesens res-ref test failed!", e);
+        }
+    }
+
+    public void cleanup() {
+        logTrace("[Client] cleanup()");
+    }
 }

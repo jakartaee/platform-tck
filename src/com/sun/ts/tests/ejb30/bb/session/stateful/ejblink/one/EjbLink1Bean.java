@@ -20,60 +20,55 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.ejblink.one;
 
-import javax.naming.NamingException;
-
 import com.sun.ts.tests.ejb30.common.ejblink.Constants;
 import com.sun.ts.tests.ejb30.common.ejblink.EjbLinkBeanBase;
 import com.sun.ts.tests.ejb30.common.ejblink.EjbLinkIF;
 import com.sun.ts.tests.ejb30.common.ejblink.EjbLinkLocalIF;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
+import javax.naming.NamingException;
 
 @Stateful(name = "EjbLink1Bean")
-@Remote({ EjbLinkIF.class })
+@Remote({EjbLinkIF.class})
 @Local(EjbLinkLocalIF.class)
-public class EjbLink1Bean extends EjbLinkBeanBase
-    implements EjbLinkIF, EjbLinkLocalIF, Constants {
+public class EjbLink1Bean extends EjbLinkBeanBase implements EjbLinkIF, EjbLinkLocalIF, Constants {
 
-  @Resource
-  private SessionContext sessionContext;
+    @Resource
+    private SessionContext sessionContext;
 
-  public EjbLink1Bean() {
-  }
+    public EjbLink1Bean() {}
 
-  @Remove
-  public void remove() {
-  }
+    @Remove
+    public void remove() {}
 
-  //////////////////////////////////////////////////////////////////////
-  public void callOne() throws TestFailedException {
-    throw new IllegalStateException("Cannot call bean1 from bean1");
-  }
-
-  public void callThree() throws TestFailedException {
-    throw new IllegalStateException("Cannot call local bean3 from bean1");
-  }
-
-  public void callTwo() throws TestFailedException {
-    Object obj = null;
-    EjbLinkIF bean2 = null;
-    try {
-      obj = ServiceLocator.lookup(BEAN2_REF_NAME);
-      bean2 = (EjbLinkIF) obj;
-      bean2.call();
-    } catch (NamingException e) {
-      throw new TestFailedException(e);
-    } finally {
-      if (bean2 != null) {
-        bean2.remove();
-      }
+    //////////////////////////////////////////////////////////////////////
+    public void callOne() throws TestFailedException {
+        throw new IllegalStateException("Cannot call bean1 from bean1");
     }
-  }
+
+    public void callThree() throws TestFailedException {
+        throw new IllegalStateException("Cannot call local bean3 from bean1");
+    }
+
+    public void callTwo() throws TestFailedException {
+        Object obj = null;
+        EjbLinkIF bean2 = null;
+        try {
+            obj = ServiceLocator.lookup(BEAN2_REF_NAME);
+            bean2 = (EjbLinkIF) obj;
+            bean2.call();
+        } catch (NamingException e) {
+            throw new TestFailedException(e);
+        } finally {
+            if (bean2 != null) {
+                bean2.remove();
+            }
+        }
+    }
 }

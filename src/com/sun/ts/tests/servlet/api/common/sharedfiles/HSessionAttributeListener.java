@@ -20,22 +20,20 @@
 package com.sun.ts.tests.servlet.api.common.sharedfiles;
 
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.http.HttpSessionAttributeListener;
 import jakarta.servlet.http.HttpSessionBindingEvent;
 
-public final class HSessionAttributeListener
-    implements HttpSessionAttributeListener {
+public final class HSessionAttributeListener implements HttpSessionAttributeListener {
 
-  public void attributeAdded(HttpSessionBindingEvent arg0) {
-    StaticLog.add("HSessionAttribute Added.");
-  }
+    public void attributeAdded(HttpSessionBindingEvent arg0) {
+        StaticLog.add("HSessionAttribute Added.");
+    }
 
-  public void attributeRemoved(HttpSessionBindingEvent arg0) {
-    StaticLog.add("HSessionAttribute Removed.");
-  }
+    public void attributeRemoved(HttpSessionBindingEvent arg0) {
+        StaticLog.add("HSessionAttribute Removed.");
+    }
 
-  public void attributeReplaced(HttpSessionBindingEvent arg0) {
-    StaticLog.add("HSessionAttribute Replaced.");
-  }
+    public void attributeReplaced(HttpSessionBindingEvent arg0) {
+        StaticLog.add("HSessionAttribute Replaced.");
+    }
 }

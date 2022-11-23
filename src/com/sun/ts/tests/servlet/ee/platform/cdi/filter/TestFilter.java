@@ -16,10 +16,7 @@
 
 package com.sun.ts.tests.servlet.ee.platform.cdi.filter;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.servlet.ee.platform.cdi.TCKTestBean;
-
 import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.inject.Inject;
 import jakarta.servlet.Filter;
@@ -29,42 +26,40 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
+import java.io.IOException;
 
 @WebFilter(urlPatterns = "/*")
 public class TestFilter implements Filter {
 
-  static FilterConfig config;
+    static FilterConfig config;
 
-  @Inject
-  TCKTestBean ttb;
+    @Inject
+    TCKTestBean ttb;
 
-  @Inject
-  BeanManager bm;
+    @Inject
+    BeanManager bm;
 
-  @Override
-  public void destroy() {
-    System.out.println("TestFilter:destroy()");
-  }
-
-  @Override
-  public void doFilter(ServletRequest request, ServletResponse response,
-      FilterChain fc) throws IOException, ServletException {
-    if (ttb == null) {
-      throw new ServletException(
-          "Injection of TCKTestBean in TestFilter failed");
+    @Override
+    public void destroy() {
+        System.out.println("TestFilter:destroy()");
     }
-    if (bm == null) {
-      throw new ServletException(
-          "Injection of BeanManager in TestFilter failed");
-    }
-    config.getServletContext().setAttribute("TEST_LOG",
-        "Test PASSED from TestFilter");
-    fc.doFilter(request, response);
-  }
 
-  @Override
-  public void init(FilterConfig config1) throws ServletException {
-    System.out.println("TestFilter:init()");
-    this.config = config1;
-  }
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain fc)
+            throws IOException, ServletException {
+        if (ttb == null) {
+            throw new ServletException("Injection of TCKTestBean in TestFilter failed");
+        }
+        if (bm == null) {
+            throw new ServletException("Injection of BeanManager in TestFilter failed");
+        }
+        config.getServletContext().setAttribute("TEST_LOG", "Test PASSED from TestFilter");
+        fc.doFilter(request, response);
+    }
+
+    @Override
+    public void init(FilterConfig config1) throws ServletException {
+        System.out.println("TestFilter:init()");
+        this.config = config1;
+    }
 }

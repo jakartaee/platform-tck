@@ -19,37 +19,34 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.servletcontext304;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class TestServlet extends HttpTCKServlet {
 
-  public void addListenerTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
+    public void addListenerTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    String name = "LISTENER_TEST";
+        String name = "LISTENER_TEST";
 
-    pw.println(
-        name + "=" + getServletContext().getInitParameter(name).toUpperCase());
-    getServletContext().removeAttribute(name);
+        pw.println(name + "=" + getServletContext().getInitParameter(name).toUpperCase());
+        getServletContext().removeAttribute(name);
 
-    HttpSession hs = request.getSession();
-    hs.invalidate();
+        HttpSession hs = request.getSession();
+        hs.invalidate();
 
-    ArrayList result = StaticLog.getClear();
-    pw.println(result);
-    ServletTestUtil.printResult(pw, true);
-    getServletContext().removeAttribute("arraylist");
-  }
+        ArrayList result = StaticLog.getClear();
+        pw.println(result);
+        ServletTestUtil.printResult(pw, true);
+        getServletContext().removeAttribute("arraylist");
+    }
 }

@@ -26,41 +26,41 @@ import jakarta.servlet.ServletException;
 
 public class TestListener implements ServletContextListener {
 
-  /**
-   * Receives notification that the web application initialization process is
-   * starting.
-   *
-   * @param sce
-   *          The ServletContextEvent
-   */
-  public void contextInitialized(ServletContextEvent sce) {
-    boolean passed = true;
-    ServletContext context = sce.getServletContext();
-    StringBuilder log = new StringBuilder();
+    /**
+     * Receives notification that the web application initialization process is
+     * starting.
+     *
+     * @param sce
+     *          The ServletContextEvent
+     */
+    public void contextInitialized(ServletContextEvent sce) {
+        boolean passed = true;
+        ServletContext context = sce.getServletContext();
+        StringBuilder log = new StringBuilder();
 
-    try {
-      context.createFilter(
-          com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.createfilter.CreateFilter.class);
-      passed = false;
-      log.append("Expected UnsupportedOperationException not thrown.");
-    } catch (UnsupportedOperationException ex) {
-      log.append("Expected UnsupportedOperationException thrown.");
-    } catch (ServletException ex) {
-      passed = false;
-      System.out.println("Error creating Servlet");
+        try {
+            context.createFilter(
+                    com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.createfilter.CreateFilter.class);
+            passed = false;
+            log.append("Expected UnsupportedOperationException not thrown.");
+        } catch (UnsupportedOperationException ex) {
+            log.append("Expected UnsupportedOperationException thrown.");
+        } catch (ServletException ex) {
+            passed = false;
+            System.out.println("Error creating Servlet");
+        }
+
+        context.setAttribute("TCK_TEST_STATUS", log.toString());
+        context.setAttribute("TCK_TEST_PASS_STATUS", passed);
     }
 
-    context.setAttribute("TCK_TEST_STATUS", log.toString());
-    context.setAttribute("TCK_TEST_PASS_STATUS", passed);
-  }
-
-  /**
-   * Receives notification that the servlet context is about to be shut down.
-   *
-   * @param sce
-   *          The servlet context event
-   */
-  public void contextDestroyed(ServletContextEvent sce) {
-    // Do nothing
-  }
+    /**
+     * Receives notification that the servlet context is about to be shut down.
+     *
+     * @param sce
+     *          The servlet context event
+     */
+    public void contextDestroyed(ServletContextEvent sce) {
+        // Do nothing
+    }
 }

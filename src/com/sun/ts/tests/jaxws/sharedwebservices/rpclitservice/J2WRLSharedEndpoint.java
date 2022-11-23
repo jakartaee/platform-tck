@@ -21,23 +21,23 @@
 package com.sun.ts.tests.jaxws.sharedwebservices.rpclitservice;
 
 @jakarta.jws.WebService(targetNamespace = "http://rpclitservice.org/wsdl")
-@jakarta.jws.soap.SOAPBinding(style = jakarta.jws.soap.SOAPBinding.Style.RPC, use = jakarta.jws.soap.SOAPBinding.Use.LITERAL, parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
+@jakarta.jws.soap.SOAPBinding(
+        style = jakarta.jws.soap.SOAPBinding.Style.RPC,
+        use = jakarta.jws.soap.SOAPBinding.Use.LITERAL,
+        parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
 public interface J2WRLSharedEndpoint {
 
-  @jakarta.jws.WebMethod(operationName = "arrayOperationFromClient")
-  @jakarta.jws.WebResult(name = "return", targetNamespace = "http://rpclitservice.org/wsdl")
-  public java.lang.String arrayOperationFromClient(
-      @jakarta.jws.WebParam(name = "arg0") java.lang.String[] arg0);
+    @jakarta.jws.WebMethod(operationName = "arrayOperationFromClient")
+    @jakarta.jws.WebResult(name = "return", targetNamespace = "http://rpclitservice.org/wsdl")
+    public java.lang.String arrayOperationFromClient(@jakarta.jws.WebParam(name = "arg0") java.lang.String[] arg0);
 
-  public com.sun.ts.tests.jaxws.sharedwebservices.rpclitservice.J2WRLSharedBean getBean();
+    public com.sun.ts.tests.jaxws.sharedwebservices.rpclitservice.J2WRLSharedBean getBean();
 
-  public java.lang.String[] arrayOperation();
+    public java.lang.String[] arrayOperation();
 
-  @jakarta.jws.WebMethod(operationName = "stringOperation")
-  @jakarta.jws.WebResult(name = "return", targetNamespace = "http://rpclitservice.org/wsdl")
-  public java.lang.String stringOperation(
-      @jakarta.jws.WebParam(name = "arg0") java.lang.String arg0);
+    @jakarta.jws.WebMethod(operationName = "stringOperation")
+    @jakarta.jws.WebResult(name = "return", targetNamespace = "http://rpclitservice.org/wsdl")
+    public java.lang.String stringOperation(@jakarta.jws.WebParam(name = "arg0") java.lang.String arg0);
 
-  public java.lang.String helloWorld();
-
+    public java.lang.String helloWorld();
 }

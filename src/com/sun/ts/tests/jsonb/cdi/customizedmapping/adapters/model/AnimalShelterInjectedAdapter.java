@@ -20,44 +20,39 @@
 
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model;
 
+import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.InjectedListAdapter;
+import jakarta.json.bind.annotation.JsonbTypeAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.InjectedListAdapter;
-
-import jakarta.json.bind.annotation.JsonbTypeAdapter;
-
 public class AnimalShelterInjectedAdapter {
-  @JsonbTypeAdapter(InjectedListAdapter.class)
-  private List<Animal> animals = new ArrayList<>();
+    @JsonbTypeAdapter(InjectedListAdapter.class)
+    private List<Animal> animals = new ArrayList<>();
 
-  public List<Animal> getAnimals() {
-    return animals;
-  }
+    public List<Animal> getAnimals() {
+        return animals;
+    }
 
-  public void setAnimals(List<Animal> animals) {
-    this.animals = animals;
-  }
+    public void setAnimals(List<Animal> animals) {
+        this.animals = animals;
+    }
 
-  public boolean addAnimal(Animal animal) {
-    return animals.add(animal);
-  }
+    public boolean addAnimal(Animal animal) {
+        return animals.add(animal);
+    }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o)
-      return true;
-    if (!(o instanceof AnimalShelterInjectedAdapter))
-      return false;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AnimalShelterInjectedAdapter)) return false;
 
-    AnimalShelterInjectedAdapter that = (AnimalShelterInjectedAdapter) o;
+        AnimalShelterInjectedAdapter that = (AnimalShelterInjectedAdapter) o;
 
-    return animals != null ? animals.equals(that.animals)
-        : that.animals == null;
-  }
+        return animals != null ? animals.equals(that.animals) : that.animals == null;
+    }
 
-  @Override
-  public int hashCode() {
-    return animals != null ? animals.hashCode() : 0;
-  }
+    @Override
+    public int hashCode() {
+        return animals != null ? animals.hashCode() : 0;
+    }
 }

@@ -12,16 +12,15 @@
  * https://www.gnu.org/software/classpath/license.html.
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
- */ 
+ */
 
-package  com.sun.ts.lib.deliverable.jsonp;
+package com.sun.ts.lib.deliverable.jsonp;
 
-import  com.sun.ts.lib.deliverable.*;
-import  com.sun.ts.lib.util.*;
-import  com.sun.javatest.*;
-import  java.util.*;
-import  java.io.*;
-
+import com.sun.javatest.*;
+import com.sun.ts.lib.deliverable.*;
+import com.sun.ts.lib.util.*;
+import java.io.*;
+import java.util.*;
 
 /**
  * This class serves as a well known place for harness, util, and porting
@@ -40,9 +39,9 @@ public class JSONPPropertyManager extends AbstractPropertyManager {
      * @param	env - TestEnvironment object from JavaTest
      * @return	JSONPPropertyManager - singleton property manager object
      */
-    public final static JSONPPropertyManager getJSONPPropertyManager (TestEnvironment env) throws Exception {
+    public static final JSONPPropertyManager getJSONPPropertyManager(TestEnvironment env) throws Exception {
         jteMgr.setTestEnvironment(env);
-        return  jteMgr;
+        return jteMgr;
     }
 
     /**
@@ -54,13 +53,13 @@ public class JSONPPropertyManager extends AbstractPropertyManager {
      * @param	p - Properties object from JavaTest
      * @return	JSONPPropertyManager - singleton property manager object
      */
-    public final static JSONPPropertyManager getJSONPPropertyManager (Properties p) throws Exception {
+    public static final JSONPPropertyManager getJSONPPropertyManager(Properties p) throws Exception {
         jteMgr.setJteProperties(p);
-        return  jteMgr;
+        return jteMgr;
     }
 
-    public final static JSONPPropertyManager getJSONPPropertyManager () throws Exception {
-        return  jteMgr;
+    public static final JSONPPropertyManager getJSONPPropertyManager() throws Exception {
+        return jteMgr;
     }
 
     /**
@@ -70,19 +69,14 @@ public class JSONPPropertyManager extends AbstractPropertyManager {
      * @param	sPropKeys - Properties to retrieve
      * @return	Properties - property/value pairs
      */
-    public Properties getTestSpecificProperties (String[] sPropKeys) throws PropertyNotSetException {
+    public Properties getTestSpecificProperties(String[] sPropKeys) throws PropertyNotSetException {
         Properties pTestProps = super.getTestSpecificProperties(sPropKeys);
         String sJtePropVal = "";
         pTestProps.put("porting.ts.url.class.1", getProperty("porting.ts.url.class.1"));
-	String tsHome = getProperty("TS_HOME", null);
-	if(tsHome == null)
-	    tsHome = getProperty("cts_home", null);
-	if(tsHome != null)
-            pTestProps.put("cts_home", tsHome);
+        String tsHome = getProperty("TS_HOME", null);
+        if (tsHome == null) tsHome = getProperty("cts_home", null);
+        if (tsHome != null) pTestProps.put("cts_home", tsHome);
 
-        return  pTestProps;
+        return pTestProps;
     }
 }
-
-
-

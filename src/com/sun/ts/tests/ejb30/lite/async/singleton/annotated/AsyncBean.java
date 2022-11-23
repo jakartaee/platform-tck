@@ -20,11 +20,9 @@
 package com.sun.ts.tests.ejb30.lite.async.singleton.annotated;
 
 import com.sun.ts.tests.ejb30.lite.async.common.annotated.AsyncBeanBase;
-
 import jakarta.ejb.Asynchronous;
 import jakarta.ejb.Singleton;
 
 @Singleton
 @Asynchronous
-public class AsyncBean extends AsyncBeanBase {
-}
+public class AsyncBean extends AsyncBeanBase {}

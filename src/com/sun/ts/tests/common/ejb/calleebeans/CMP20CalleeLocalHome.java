@@ -20,20 +20,17 @@
 
 package com.sun.ts.tests.common.ejb.calleebeans;
 
-import java.util.Properties;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBLocalHome;
 import jakarta.ejb.FinderException;
+import java.util.Properties;
 
 public interface CMP20CalleeLocalHome extends EJBLocalHome {
 
-  public CMP20CalleeLocal create(Properties props, int id, String name,
-      float value) throws CreateException;
+    public CMP20CalleeLocal create(Properties props, int id, String name, float value) throws CreateException;
 
-  public CMP20CalleeLocal create(Properties props, int id, String name,
-      float value, SimpleArgument arg) throws CreateException;
+    public CMP20CalleeLocal create(Properties props, int id, String name, float value, SimpleArgument arg)
+            throws CreateException;
 
-  public CMP20CalleeLocal findByPrimaryKey(Integer id) throws FinderException;
-
+    public CMP20CalleeLocal findByPrimaryKey(Integer id) throws FinderException;
 }

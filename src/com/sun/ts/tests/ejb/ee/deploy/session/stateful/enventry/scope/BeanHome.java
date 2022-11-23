@@ -20,14 +20,12 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.enventry.scope;
 
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJBHome;
-
 public interface BeanHome extends EJBHome {
 
-  public Bean create(Properties props) throws RemoteException, CreateException;
-
+    public Bean create(Properties props) throws RemoteException, CreateException;
 }

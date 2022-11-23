@@ -20,12 +20,11 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp.entitybeantest;
 
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJBHome;
-
 public interface HelperHome extends EJBHome {
-  public Helper create(Properties p) throws RemoteException, CreateException;
+    public Helper create(Properties p) throws RemoteException, CreateException;
 }

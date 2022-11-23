@@ -20,135 +20,132 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp.reentranttest;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
+import java.util.Properties;
 
 public class Client extends EETest {
-  private static final String testName = "ReEntrantTest";
+    private static final String testName = "ReEntrantTest";
 
-  private static final String testBean = "java:comp/env/ejb/TestBean";
+    private static final String testBean = "java:comp/env/ejb/TestBean";
 
-  private static final String loopBack = "java:comp/env/ejb/LoopBackBean";
+    private static final String loopBack = "java:comp/env/ejb/LoopBackBean";
 
-  private static final String testProps = "reentranttest.properties";
+    private static final String testProps = "reentranttest.properties";
 
-  private TestBean beanRef = null;
+    private TestBean beanRef = null;
 
-  private TestBeanHome beanHome = null;
+    private TestBeanHome beanHome = null;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup */
-
-  /*
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   * generateSQL;
-   */
-
-  public void setup(String[] args, Properties p) throws Fault {
-    props = p;
-    try {
-      logMsg("Obtain naming context");
-      nctx = new TSNamingContext();
-
-      // Get EJB Home ...
-      logMsg("Looking up home interface for EJB: " + testBean);
-      beanHome = (TestBeanHome) nctx.lookup(testBean, TestBeanHome.class);
-      logMsg("Setup ok");
-    } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /* Run test */
+    /* Test setup */
 
-  /*
-   * @testName: test2
-   * 
-   * @assertion_ids: EJB:SPEC:473
-   * 
-   * @test_Strategy: Create a CMP 1.1 Entity Bean. Deploy it on the J2EE server.
-   * Call loopback test on same bean. Verify the Container allows the loopback
-   * call. Self referential test.
-   *
-   */
+    /*
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     * generateSQL;
+     */
 
-  public void test2() throws Fault {
-    try {
-      // create EJB instance
-      logMsg("Create EJB instance");
-      beanRef = (TestBean) beanHome.create(props, 2, "coffee-2", 2);
-      logMsg("Calling loopback test via same bean");
-      boolean pass = beanRef.loopBackSameBean();
-      if (!pass)
-        throw new Fault("test2 failed");
-    } catch (Exception e) {
-      throw new Fault("test2 failed", e);
-    } finally {
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
+    public void setup(String[] args, Properties p) throws Fault {
+        props = p;
+        try {
+            logMsg("Obtain naming context");
+            nctx = new TSNamingContext();
+
+            // Get EJB Home ...
+            logMsg("Looking up home interface for EJB: " + testBean);
+            beanHome = (TestBeanHome) nctx.lookup(testBean, TestBeanHome.class);
+            logMsg("Setup ok");
+        } catch (Exception e) {
+            throw new Fault("Setup failed:", e);
+        }
     }
-  }
 
-  /*
-   * @testName: test3
-   * 
-   * @assertion_ids: EJB:SPEC:473
-   * 
-   * @test_Strategy: Create a CMP 1.1 Entity Bean. Deploy it on the J2EE server.
-   * Verify the Container allows the loopback call. This test uses another bean
-   * instance.
-   *
-   */
+    /* Run test */
 
-  public void test3() throws Fault {
-    LoopBackHome loopHome = null;
-    LoopBack loopRef = null;
+    /*
+     * @testName: test2
+     *
+     * @assertion_ids: EJB:SPEC:473
+     *
+     * @test_Strategy: Create a CMP 1.1 Entity Bean. Deploy it on the J2EE server.
+     * Call loopback test on same bean. Verify the Container allows the loopback
+     * call. Self referential test.
+     *
+     */
 
-    try {
-      // create EJB instance
-      logMsg("Create EJB instance");
-      beanRef = (TestBean) beanHome.create(props, 3, "coffee-3", 3);
-
-      // Get EJB Home for LoopBack ...
-      logMsg("Looking up home interface for EJB: " + loopBack);
-      loopHome = (LoopBackHome) nctx.lookup(loopBack, LoopBackHome.class);
-
-      logMsg("Creating EJB for: " + loopBack);
-      loopRef = (LoopBack) loopHome.create(beanRef);
-
-      logMsg("Calling loopback test via different bean");
-      boolean pass = beanRef.loopBackAnotherBean(loopRef);
-      if (!pass)
-        throw new Fault("test3 failed");
-    } catch (Exception e) {
-      throw new Fault("test3 failed", e);
-    } finally {
-      try {
-        loopRef.remove();
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
+    public void test2() throws Fault {
+        try {
+            // create EJB instance
+            logMsg("Create EJB instance");
+            beanRef = (TestBean) beanHome.create(props, 2, "coffee-2", 2);
+            logMsg("Calling loopback test via same bean");
+            boolean pass = beanRef.loopBackSameBean();
+            if (!pass) throw new Fault("test2 failed");
+        } catch (Exception e) {
+            throw new Fault("test2 failed", e);
+        } finally {
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
     }
-  }
 
-  public void cleanup() throws Fault {
-    logMsg("cleanup ok");
-  }
+    /*
+     * @testName: test3
+     *
+     * @assertion_ids: EJB:SPEC:473
+     *
+     * @test_Strategy: Create a CMP 1.1 Entity Bean. Deploy it on the J2EE server.
+     * Verify the Container allows the loopback call. This test uses another bean
+     * instance.
+     *
+     */
+
+    public void test3() throws Fault {
+        LoopBackHome loopHome = null;
+        LoopBack loopRef = null;
+
+        try {
+            // create EJB instance
+            logMsg("Create EJB instance");
+            beanRef = (TestBean) beanHome.create(props, 3, "coffee-3", 3);
+
+            // Get EJB Home for LoopBack ...
+            logMsg("Looking up home interface for EJB: " + loopBack);
+            loopHome = (LoopBackHome) nctx.lookup(loopBack, LoopBackHome.class);
+
+            logMsg("Creating EJB for: " + loopBack);
+            loopRef = (LoopBack) loopHome.create(beanRef);
+
+            logMsg("Calling loopback test via different bean");
+            boolean pass = beanRef.loopBackAnotherBean(loopRef);
+            if (!pass) throw new Fault("test3 failed");
+        } catch (Exception e) {
+            throw new Fault("test3 failed", e);
+        } finally {
+            try {
+                loopRef.remove();
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("cleanup ok");
+    }
 }

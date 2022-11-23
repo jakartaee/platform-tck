@@ -18,9 +18,9 @@ package com.sun.ts.tests.jsp.spec.el.language;
 
 public class Count {
 
-  private static int num = 0;
+    private static int num = 0;
 
-  public static final int count() {
-    return ++num;
-  }
+    public static final int count() {
+        return ++num;
+    }
 }

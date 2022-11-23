@@ -16,68 +16,64 @@
 
 package com.sun.ts.tests.jsp.spec.el.jsp;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.el.ELContext;
 import jakarta.el.MethodExpression;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class ELDeferredMethodStringLiteralTag extends SimpleTagSupport {
-  private static final String NL = System.getProperty("line.separator", "\n");
+    private static final String NL = System.getProperty("line.separator", "\n");
 
-  private static final String EXPECTEDSTR = "hello";
+    private static final String EXPECTEDSTR = "hello";
 
-  private static final double EXPECTEDDBL = 3.1415926;
+    private static final double EXPECTEDDBL = 3.1415926;
 
-  private final static double EPSILON = 0.00000001;
+    private static final double EPSILON = 0.00000001;
 
-  private MethodExpression strExpr, dblExpr;
+    private MethodExpression strExpr, dblExpr;
 
-  public void setStrExpr(MethodExpression strExpr) {
-    this.strExpr = strExpr;
-  }
-
-  public void setDblExpr(MethodExpression dblExpr) {
-    this.dblExpr = dblExpr;
-  }
-
-  public void doTag() throws JspException, IOException {
-    ELContext elContext = getJspContext().getELContext();
-    JspWriter out = getJspContext().getOut();
-    boolean pass = true;
-
-    try {
-      String strResult = (String) strExpr.invoke(elContext, null);
-      if (!strResult.equals(EXPECTEDSTR)) {
-        pass = false;
-        out.println("Test FAILED. Incorrect return value for strResult." + NL
-            + "Expected value: " + EXPECTEDSTR + NL + "Value returned: "
-            + strResult);
-      }
-
-      Object objResult = dblExpr.invoke(elContext, null);
-      if (!(objResult instanceof Double)) {
-        pass = false;
-        out.println("Test FAILED. Return value is not a Double:" + NL
-            + objResult.getClass() + NL);
-      }
-      double dblResult = ((Double) objResult).doubleValue();
-      if (!(Math.abs(dblResult - EXPECTEDDBL) < EPSILON)) {
-        pass = false;
-        out.println("Test FAILED. Incorrect value for dblResult." + NL
-            + "Expected value: " + EXPECTEDDBL + NL + "Value returned: "
-            + dblResult);
-      }
-
-      if (pass == true)
-        out.println("Test PASSED.");
-
-    } catch (Throwable t) {
-      JspTestUtil.handleThrowable(t, out, "ELDeferredMethodStringLiteralTag");
+    public void setStrExpr(MethodExpression strExpr) {
+        this.strExpr = strExpr;
     }
-  }
+
+    public void setDblExpr(MethodExpression dblExpr) {
+        this.dblExpr = dblExpr;
+    }
+
+    public void doTag() throws JspException, IOException {
+        ELContext elContext = getJspContext().getELContext();
+        JspWriter out = getJspContext().getOut();
+        boolean pass = true;
+
+        try {
+            String strResult = (String) strExpr.invoke(elContext, null);
+            if (!strResult.equals(EXPECTEDSTR)) {
+                pass = false;
+                out.println("Test FAILED. Incorrect return value for strResult." + NL
+                        + "Expected value: " + EXPECTEDSTR + NL + "Value returned: "
+                        + strResult);
+            }
+
+            Object objResult = dblExpr.invoke(elContext, null);
+            if (!(objResult instanceof Double)) {
+                pass = false;
+                out.println("Test FAILED. Return value is not a Double:" + NL + objResult.getClass() + NL);
+            }
+            double dblResult = ((Double) objResult).doubleValue();
+            if (!(Math.abs(dblResult - EXPECTEDDBL) < EPSILON)) {
+                pass = false;
+                out.println("Test FAILED. Incorrect value for dblResult." + NL
+                        + "Expected value: " + EXPECTEDDBL + NL + "Value returned: "
+                        + dblResult);
+            }
+
+            if (pass == true) out.println("Test PASSED.");
+
+        } catch (Throwable t) {
+            JspTestUtil.handleThrowable(t, out, "ELDeferredMethodStringLiteralTag");
+        }
+    }
 }

@@ -17,20 +17,18 @@
 package com.sun.ts.tests.jpa.core.override.entitylistener;
 
 import com.sun.ts.tests.jpa.core.override.util.CallBackCounts;
-
 import jakarta.persistence.PreRemove;
 
 public class ListenerA {
 
-  public ListenerA() {
-  }
+    public ListenerA() {}
 
-  @PreRemove
-  public void preRemove(Object obj) {
-    updateCallBackCount("preRemove");
-  }
+    @PreRemove
+    public void preRemove(Object obj) {
+        updateCallBackCount("preRemove");
+    }
 
-  protected void updateCallBackCount(String callBackKeyName) {
-    CallBackCounts.updateCount(callBackKeyName);
-  }
+    protected void updateCallBackCount(String callBackKeyName) {
+        CallBackCounts.updateCount(callBackKeyName);
+    }
 }

@@ -21,14 +21,12 @@ package com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.annotated
 
 import static com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.AccessTimeoutIF.BEAN_CLASS_LEVEL_TIMEOUT_MILLIS;
 
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.AccessTimeoutIF;
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.PlainAccessTimeoutBeanBase;
-
 import jakarta.ejb.AccessTimeout;
 import jakarta.ejb.Stateful;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 /**
  * All @AccessTimeout metadata are specified in bean class itself at class
@@ -36,17 +34,15 @@ import jakarta.ejb.Stateful;
  */
 @AccessTimeout(value = BEAN_CLASS_LEVEL_TIMEOUT_MILLIS, unit = TimeUnit.MILLISECONDS)
 @Stateful
-public class BeanClassLevelAccessTimeoutBean extends PlainAccessTimeoutBeanBase
-    implements AccessTimeoutIF {
+public class BeanClassLevelAccessTimeoutBean extends PlainAccessTimeoutBeanBase implements AccessTimeoutIF {
 
-  @Override
-  public Future<String> beanClassLevel() {
-    return ping();
-  }
+    @Override
+    public Future<String> beanClassLevel() {
+        return ping();
+    }
 
-  @Override
-  public Future<String> beanClassLevel2() {
-    return ping();
-  }
-
+    @Override
+    public Future<String> beanClassLevel2() {
+        return ping();
+    }
 }

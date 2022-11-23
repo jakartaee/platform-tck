@@ -22,107 +22,103 @@
 
 package com.sun.ts.tests.ejb.ee.bb.session.stateful.bean2beanmultijartest.bean1;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb.ee.bb.session.stateful.bean2beanmultijartest.bean2.TestBean2;
 import com.sun.ts.tests.ejb.ee.bb.session.stateful.bean2beanmultijartest.bean2.TestBean2Home;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
+import java.util.Properties;
 
 public class TestBean1EJB implements SessionBean {
-  private static final String PINGMSG = "ping from bean1";
+    private static final String PINGMSG = "ping from bean1";
 
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  private Properties harnessProps = null;
+    private Properties harnessProps = null;
 
-  private static final String testBean2 = "java:comp/env/ejb/TestBean2";
+    private static final String testBean2 = "java:comp/env/ejb/TestBean2";
 
-  public void ejbCreate(Properties p) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    harnessProps = p;
-    try {
-      TestUtil.logMsg("initialize remote logging");
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException(e.getMessage());
+    public void ejbCreate(Properties p) throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        harnessProps = p;
+        try {
+            TestUtil.logMsg("initialize remote logging");
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException(e.getMessage());
+        }
     }
-  }
 
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
-
-  // ===========================================================
-  // TestBean1 interface (our business methods)
-
-  public void ping() {
-    TestUtil.logTrace("ping");
-  }
-
-  public boolean callOtherBeanTest() {
-    TestUtil.logTrace("callOtherBeanTest");
-    boolean pass = true;
-    TestBean2Home beanHome = null;
-    TestBean2 beanRef = null;
-    try {
-      // lookup EJB home
-      TestUtil.logMsg("lookup home interface for EJB: " + testBean2);
-      beanHome = (TestBean2Home) lookup(testBean2, TestBean2Home.class);
-      // create EJB instance
-      TestUtil.logMsg("Create EJB instance");
-      beanRef = (TestBean2) beanHome.create(harnessProps);
-      TestUtil.logMsg("bean1 calling bean2");
-      String s = beanRef.ping(PINGMSG);
-      TestUtil.logMsg("Received: " + s);
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      pass = false;
-    } finally {
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
+    public void setSessionContext(SessionContext sc) {
+        TestUtil.logTrace("setSessionContext");
+        this.sctx = sc;
     }
-    return pass;
-  }
 
-  // ===========================================================
-
-  private Object lookup(String s, Class c) {
-    TSNamingContext nctx = null;
-    try {
-      TestUtil.logMsg("obtain naming context");
-      nctx = new TSNamingContext();
-      if (c != null)
-        return nctx.lookup(s, c);
-      else
-        return nctx.lookup(s);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("lookup failed: " + e);
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
     }
-  }
+
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
+
+    // ===========================================================
+    // TestBean1 interface (our business methods)
+
+    public void ping() {
+        TestUtil.logTrace("ping");
+    }
+
+    public boolean callOtherBeanTest() {
+        TestUtil.logTrace("callOtherBeanTest");
+        boolean pass = true;
+        TestBean2Home beanHome = null;
+        TestBean2 beanRef = null;
+        try {
+            // lookup EJB home
+            TestUtil.logMsg("lookup home interface for EJB: " + testBean2);
+            beanHome = (TestBean2Home) lookup(testBean2, TestBean2Home.class);
+            // create EJB instance
+            TestUtil.logMsg("Create EJB instance");
+            beanRef = (TestBean2) beanHome.create(harnessProps);
+            TestUtil.logMsg("bean1 calling bean2");
+            String s = beanRef.ping(PINGMSG);
+            TestUtil.logMsg("Received: " + s);
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+            pass = false;
+        } finally {
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.printStackTrace(e);
+            }
+        }
+        return pass;
+    }
+
+    // ===========================================================
+
+    private Object lookup(String s, Class c) {
+        TSNamingContext nctx = null;
+        try {
+            TestUtil.logMsg("obtain naming context");
+            nctx = new TSNamingContext();
+            if (c != null) return nctx.lookup(s, c);
+            else return nctx.lookup(s);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("lookup failed: " + e);
+        }
+    }
 }

@@ -34,11 +34,10 @@ import jakarta.servlet.jsp.tagext.SimpleTagSupport;
  */
 public class DefaultSimpleTag extends SimpleTagSupport {
 
-  /**
-   * Default constructor.
-   */
-  public DefaultSimpleTag() {
-    super();
-  }
-
+    /**
+     * Default constructor.
+     */
+    public DefaultSimpleTag() {
+        super();
+    }
 }

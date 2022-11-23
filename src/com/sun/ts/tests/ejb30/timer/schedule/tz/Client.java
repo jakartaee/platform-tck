@@ -19,84 +19,80 @@
  */
 package com.sun.ts.tests.ejb30.timer.schedule.tz;
 
-import java.util.Date;
-
-import org.apache.commons.lang3.time.DateUtils;
-
 import com.sun.ts.tests.ejb30.timer.common.ClientBase;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.ScheduleExpression;
 import jakarta.ejb.Timer;
+import java.util.Date;
+import org.apache.commons.lang3.time.DateUtils;
 
 public class Client extends ClientBase {
 
-  @EJB(beanName = "TZScheduleBareBean")
-  protected TZScheduleBareBean tzBareBean;
+    @EJB(beanName = "TZScheduleBareBean")
+    protected TZScheduleBareBean tzBareBean;
 
-  @EJB(beanName = "TZScheduleBean")
-  protected TZScheduleBean tzBean;
+    @EJB(beanName = "TZScheduleBean")
+    protected TZScheduleBean tzBean;
 
-  /*
-   * @testName: defaultTZ
-   * 
-   * @test_Strategy: default TZ on a auto timer
-   */
-  public void defaultTZ() {
-    appendReason(tzBareBean.defaultTZ());
-    appendReason(tzBean.defaultTZ());
-  }
+    /*
+     * @testName: defaultTZ
+     *
+     * @test_Strategy: default TZ on a auto timer
+     */
+    public void defaultTZ() {
+        appendReason(tzBareBean.defaultTZ());
+        appendReason(tzBean.defaultTZ());
+    }
 
-  /*
-   * @testName: shanghaiAndArgentinaTZ
-   * 
-   * @test_Strategy: check 2 auto timers with Argentina TZ
-   */
-  public void shanghaiAndArgentinaTZ() {
-    appendReason(tzBareBean.shanghaiAndArgentinaTZ());
-    appendReason(tzBean.shanghaiAndArgentinaTZ());
-  }
+    /*
+     * @testName: shanghaiAndArgentinaTZ
+     *
+     * @test_Strategy: check 2 auto timers with Argentina TZ
+     */
+    public void shanghaiAndArgentinaTZ() {
+        appendReason(tzBareBean.shanghaiAndArgentinaTZ());
+        appendReason(tzBean.shanghaiAndArgentinaTZ());
+    }
 
-  /*
-   * @testName: onlyForTZScheduleBareBean
-   * 
-   * @test_Strategy: declare a timer in ejb-jar.xml for TZScheduleBareBean only.
-   * Verify this timer is not available in TZScheduleBean.
-   */
-  public void onlyForTZScheduleBareBean() {
-    final String timerName = "TZScheduleBareBean.only";
-    assertEquals(null, null, tzBean.findTimer(timerName));
-    Timer t = tzBareBean.findTimer(timerName);
-    ScheduleExpression schedule = tzBareBean.getSchedule(t);
-    appendReason("Found the timer with schedule: " + schedule);
-    assertEquals(null, true, tzBareBean.isCalendarTimer(t));
-    assertEquals(null, false, tzBareBean.isPersistent(t));
-  }
+    /*
+     * @testName: onlyForTZScheduleBareBean
+     *
+     * @test_Strategy: declare a timer in ejb-jar.xml for TZScheduleBareBean only.
+     * Verify this timer is not available in TZScheduleBean.
+     */
+    public void onlyForTZScheduleBareBean() {
+        final String timerName = "TZScheduleBareBean.only";
+        assertEquals(null, null, tzBean.findTimer(timerName));
+        Timer t = tzBareBean.findTimer(timerName);
+        ScheduleExpression schedule = tzBareBean.getSchedule(t);
+        appendReason("Found the timer with schedule: " + schedule);
+        assertEquals(null, true, tzBareBean.isCalendarTimer(t));
+        assertEquals(null, false, tzBareBean.isPersistent(t));
+    }
 
-  /*
-   * @testName: allTZ
-   * 
-   * @test_Strategy: create programmatic timers with all required TZ values
-   */
-  public void allTZ() {
-    appendReason(tzBean.allTZ());
-  }
+    /*
+     * @testName: allTZ
+     *
+     * @test_Strategy: create programmatic timers with all required TZ values
+     */
+    public void allTZ() {
+        appendReason(tzBean.allTZ());
+    }
 
-  /*
-   * @testName: expireInLaterTZ
-   * 
-   * @test_Strategy: create programmatic timers with a TZ that is later than the
-   * default TZ. The timer should not expire now.
-   */
-  public void expireInLaterTZ() {
-    Timer t = tzBean.expireInLaterTZ();
-    Date nextTimeout = tzBean.getNextTimeout(t);
-    long currentTimeMillis = System.currentTimeMillis();
-    long diff = nextTimeout.getTime() - currentTimeMillis;
+    /*
+     * @testName: expireInLaterTZ
+     *
+     * @test_Strategy: create programmatic timers with a TZ that is later than the
+     * default TZ. The timer should not expire now.
+     */
+    public void expireInLaterTZ() {
+        Timer t = tzBean.expireInLaterTZ();
+        Date nextTimeout = tzBean.getNextTimeout(t);
+        long currentTimeMillis = System.currentTimeMillis();
+        long diff = nextTimeout.getTime() - currentTimeMillis;
 
-    // The diff should be more than 20 minutes
-    assertGreaterThan(null, diff, DateUtils.MILLIS_PER_MINUTE * 20);
-    passIfNoTimeout();
-  }
-
+        // The diff should be more than 20 minutes
+        assertGreaterThan(null, diff, DateUtils.MILLIS_PER_MINUTE * 20);
+        passIfNoTimeout();
+    }
 }

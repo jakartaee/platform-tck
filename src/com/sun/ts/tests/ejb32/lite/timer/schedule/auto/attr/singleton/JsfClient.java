@@ -22,87 +22,87 @@ import com.sun.ts.tests.ejb30.timer.common.JsfClientBase;
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends JsfClientBase {
 
-  // some timeout records are recorded before starting the test (e.g,
-  // postConstruct test) So override setup method not to remove status.
-  @Override
-  protected boolean needToRemoveStatusAndRecords() {
-    return false;
-  }
+    // some timeout records are recorded before starting the test (e.g,
+    // postConstruct test) So override setup method not to remove status.
+    @Override
+    protected boolean needToRemoveStatusAndRecords() {
+        return false;
+    }
 
-  /*
-   * @testName: postConstruct
-   * 
-   * @test_Strategy: check the number of auto timers inside bean's
-   * post-construct method. All auto timers should have been created when
-   * post-construct method is invoked.
-   */
-  public void postConstruct() {
-    passIfTimeout("postConstruct");
-  }
+    /*
+     * @testName: postConstruct
+     *
+     * @test_Strategy: check the number of auto timers inside bean's
+     * post-construct method. All auto timers should have been created when
+     * post-construct method is invoked.
+     */
+    public void postConstruct() {
+        passIfTimeout("postConstruct");
+    }
 
-  /*
-   * @testName: autoTimerInSuperClassNoParam
-   * 
-   * @test_Strategy: an auto-timer is declared in bean superclass. Its time- out
-   * method takes no Timer param.
-   */
+    /*
+     * @testName: autoTimerInSuperClassNoParam
+     *
+     * @test_Strategy: an auto-timer is declared in bean superclass. Its time- out
+     * method takes no Timer param.
+     */
 
-  /*
-   * @testName: autoTimerNonPersistent
-   * 
-   * @test_Strategy: a non-persistent auto-timer is declared in bean class.
-   */
+    /*
+     * @testName: autoTimerNonPersistent
+     *
+     * @test_Strategy: a non-persistent auto-timer is declared in bean class.
+     */
 
-  /*
-   * @testName: autoTimerWithInfo
-   * 
-   * @test_Strategy: verify the auto timer that was created with @Schedule in
-   * bean class with info attr
-   */
+    /*
+     * @testName: autoTimerWithInfo
+     *
+     * @test_Strategy: verify the auto timer that was created with @Schedule in
+     * bean class with info attr
+     */
 
-  /*
-   * @testName: autoTimerWithoutInfo
-   * 
-   * @test_Strategy: verify the auto timer that was created with @Schedule in
-   * bean class without info attr
-   */
-  
-  /*
-   * @testName: autoTimerInSuperClassNoParam
-   * 
-   * @test_Strategy: an auto-timer is declared in bean superclass. Its time- out
-   * method takes no Timer param.
-   */
-  public void autoTimerInSuperClassNoParam() {
-    passIfRecurringTimeout("autoTimerInSuperClassNoParam");
-  }
+    /*
+     * @testName: autoTimerWithoutInfo
+     *
+     * @test_Strategy: verify the auto timer that was created with @Schedule in
+     * bean class without info attr
+     */
 
-  /*
-   * @testName: autoTimerNonPersistent
-   * 
-   * @test_Strategy: a non-persistent auto-timer is declared in bean class.
-   */
-  public void autoTimerNonPersistent() {
-    passIfRecurringTimeout("autoTimerNonPersistent");
-  }
+    /*
+     * @testName: autoTimerInSuperClassNoParam
+     *
+     * @test_Strategy: an auto-timer is declared in bean superclass. Its time- out
+     * method takes no Timer param.
+     */
+    public void autoTimerInSuperClassNoParam() {
+        passIfRecurringTimeout("autoTimerInSuperClassNoParam");
+    }
 
-  /*
-   * @testName: autoTimerWithInfo
-   * 
-   * @test_Strategy: verify the auto timer that was created with @Schedule in
-   * bean class with info attr
-   */
-  public void autoTimerWithInfo() {
-    passIfRecurringTimeout("autoTimerWithInfo");
-  }
+    /*
+     * @testName: autoTimerNonPersistent
+     *
+     * @test_Strategy: a non-persistent auto-timer is declared in bean class.
+     */
+    public void autoTimerNonPersistent() {
+        passIfRecurringTimeout("autoTimerNonPersistent");
+    }
 
-  /*
-   * @testName: autoTimerWithoutInfo
-   * 
-   * @test_Strategy: verify the auto timer that was created with @Schedule in
-   * bean class without info attr
-   */
-  public void autoTimerWithoutInfo() {
-    passIfRecurringTimeout("autoTimerWithoutInfo");
-  }
+    /*
+     * @testName: autoTimerWithInfo
+     *
+     * @test_Strategy: verify the auto timer that was created with @Schedule in
+     * bean class with info attr
+     */
+    public void autoTimerWithInfo() {
+        passIfRecurringTimeout("autoTimerWithInfo");
+    }
+
+    /*
+     * @testName: autoTimerWithoutInfo
+     *
+     * @test_Strategy: verify the auto timer that was created with @Schedule in
+     * bean class without info attr
+     */
+    public void autoTimerWithoutInfo() {
+        passIfRecurringTimeout("autoTimerWithoutInfo");
+    }
 }

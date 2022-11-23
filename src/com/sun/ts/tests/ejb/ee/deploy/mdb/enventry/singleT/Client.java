@@ -20,335 +20,331 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.mdb.enventry.singleT;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.jms.Topic;
+import java.util.Properties;
 
 public class Client extends com.sun.ts.tests.jms.commonee.Client {
 
-  private Topic stringT;
+    private Topic stringT;
 
-  private Topic boolT;
+    private Topic boolT;
 
-  private Topic byteT;
+    private Topic byteT;
 
-  private Topic shortT;
+    private Topic shortT;
 
-  private Topic intT;
+    private Topic intT;
 
-  private Topic longT;
+    private Topic longT;
 
-  private Topic floatT;
+    private Topic floatT;
 
-  private Topic doubleT;
+    private Topic doubleT;
 
-  private Topic allT;
+    private Topic allT;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /**
-   * @class.setup_props: jms_timeout; user; password;
-   */
-  public void setup(String[] args, Properties props) throws Fault {
-
-    try {
-      this.props = props;
-      super.setup(args, props);
-
-      TestUtil.logTrace("[Client] Looking up Destinations...");
-
-      stringT = (Topic) context.lookup("java:comp/env/jms/MDBString");
-      boolT = (Topic) context.lookup("java:comp/env/jms/MDBBoolean");
-      byteT = (Topic) context.lookup("java:comp/env/jms/MDBByte");
-      shortT = (Topic) context.lookup("java:comp/env/jms/MDBShort");
-      intT = (Topic) context.lookup("java:comp/env/jms/MDBInteger");
-      longT = (Topic) context.lookup("java:comp/env/jms/MDBLong");
-      floatT = (Topic) context.lookup("java:comp/env/jms/MDBFloat");
-      doubleT = (Topic) context.lookup("java:comp/env/jms/MDBDouble");
-      allT = (Topic) context.lookup("java:comp/env/jms/MDBAll");
-
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] Setup failed! ", e);
-      throw new Fault("Setup Failed!", e);
-    }
-  }
-
-  /**
-   * @testName: testString
-   *
-   * @assertion_ids: EJB:SPEC:762
-   *
-   * @test_Strategy: Deploy and create a MDB Topic Bean whose DD declares a
-   *                 String environment entry. Lookup this entry and check that
-   *                 its runtime value match the DD value.
-   *
-   */
-  public void testString() throws Fault {
-
-    String testCase = "testString";
-    int testNum = 1;
-
-    try {
-      tPub = tSession.createPublisher(stringT);
-      createTestMessage(testCase, testNum);
-      tPub.publish(msg);
-
-      if (!checkOnResponse(testCase)) {
-        TestUtil.logErr("[Client] " + testCase + " failed");
-        throw new Exception(testCase + " Failed");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] " + testCase + " failed: ", e);
-      throw new Fault(testCase + " failed!", e);
-    }
-  }
-
-  /**
-   * @testName: testBoolean
-   *
-   * @assertion_ids: EJB:SPEC:762
-   *
-   * @test_Strategy: Deploy and create a MDB Topic Bean whose DD declares a
-   *                 Boolean environment entry. Lookup this entry and check that
-   *                 its runtime value match the DD value.
-   *
-   */
-  public void testBoolean() throws Fault {
-
-    String testCase = "testBoolean";
-    int testNum = 2;
-
-    try {
-      tPub = tSession.createPublisher(boolT);
-      createTestMessage(testCase, testNum);
-      tPub.publish(msg);
-
-      if (!checkOnResponse(testCase)) {
-        TestUtil.logErr("[Client] " + testCase + " failed");
-        throw new Exception(testCase + " Failed");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] " + testCase + " failed: ", e);
-      throw new Fault(testCase + " failed!", e);
-    }
-  }
-
-  /**
-   * @testName: testByte
-   *
-   * @assertion_ids: EJB:SPEC:762
-   *
-   * @test_Strategy: Deploy and create a MDB Topic Bean whose DD declares a Byte
-   *                 environment entry. Lookup this entry and check that its
-   *                 runtime value match the DD value.
-   *
-   */
-  public void testByte() throws Fault {
-
-    String testCase = "testByte";
-    int testNum = 3;
-
-    try {
-      tPub = tSession.createPublisher(byteT);
-      createTestMessage(testCase, testNum);
-      tPub.publish(msg);
-
-      if (!checkOnResponse(testCase)) {
-        TestUtil.logErr("[Client] " + testCase + " failed");
-        throw new Exception(testCase + " Failed");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] " + testCase + " failed: ", e);
-      throw new Fault(testCase + " failed!", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
 
-  }
+    /**
+     * @class.setup_props: jms_timeout; user; password;
+     */
+    public void setup(String[] args, Properties props) throws Fault {
 
-  /**
-   * @testName: testShort
-   *
-   * @assertion_ids: EJB:SPEC:762
-   *
-   * @test_Strategy: Deploy and create a MDB Topic Bean whose DD declares a
-   *                 Short environment entry. Lookup this entry and check that
-   *                 its runtime value match the DD value.
-   *
-   */
-  public void testShort() throws Fault {
+        try {
+            this.props = props;
+            super.setup(args, props);
 
-    String testCase = "testShort";
-    int testNum = 4;
+            TestUtil.logTrace("[Client] Looking up Destinations...");
 
-    try {
-      tPub = tSession.createPublisher(shortT);
-      createTestMessage(testCase, testNum);
-      tPub.publish(msg);
+            stringT = (Topic) context.lookup("java:comp/env/jms/MDBString");
+            boolT = (Topic) context.lookup("java:comp/env/jms/MDBBoolean");
+            byteT = (Topic) context.lookup("java:comp/env/jms/MDBByte");
+            shortT = (Topic) context.lookup("java:comp/env/jms/MDBShort");
+            intT = (Topic) context.lookup("java:comp/env/jms/MDBInteger");
+            longT = (Topic) context.lookup("java:comp/env/jms/MDBLong");
+            floatT = (Topic) context.lookup("java:comp/env/jms/MDBFloat");
+            doubleT = (Topic) context.lookup("java:comp/env/jms/MDBDouble");
+            allT = (Topic) context.lookup("java:comp/env/jms/MDBAll");
 
-      if (!checkOnResponse(testCase)) {
-        TestUtil.logErr("[Client] " + testCase + " failed");
-        throw new Exception(testCase + " Failed");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] " + testCase + " failed: ", e);
-      throw new Fault(testCase + " failed!", e);
+        } catch (Exception e) {
+            TestUtil.logErr("[Client] Setup failed! ", e);
+            throw new Fault("Setup Failed!", e);
+        }
     }
-  }
 
-  /**
-   * @testName: testInteger
-   *
-   * @assertion_ids: EJB:SPEC:762
-   *
-   * @test_Strategy: Deploy and create a MDB Topic Bean whose DD declares a
-   *                 Integer environment entry. Lookup this entry and check that
-   *                 its runtime value match the DD value.
-   *
-   */
-  public void testInteger() throws Fault {
+    /**
+     * @testName: testString
+     *
+     * @assertion_ids: EJB:SPEC:762
+     *
+     * @test_Strategy: Deploy and create a MDB Topic Bean whose DD declares a
+     *                 String environment entry. Lookup this entry and check that
+     *                 its runtime value match the DD value.
+     *
+     */
+    public void testString() throws Fault {
 
-    String testCase = "testInteger";
-    int testNum = 5;
+        String testCase = "testString";
+        int testNum = 1;
 
-    try {
-      tPub = tSession.createPublisher(intT);
-      createTestMessage(testCase, testNum);
-      tPub.publish(msg);
+        try {
+            tPub = tSession.createPublisher(stringT);
+            createTestMessage(testCase, testNum);
+            tPub.publish(msg);
 
-      if (!checkOnResponse(testCase)) {
-        TestUtil.logErr("[Client] " + testCase + " failed");
-        throw new Exception(testCase + " Failed");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] " + testCase + " failed: ", e);
-      throw new Fault(testCase + " failed!", e);
+            if (!checkOnResponse(testCase)) {
+                TestUtil.logErr("[Client] " + testCase + " failed");
+                throw new Exception(testCase + " Failed");
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("[Client] " + testCase + " failed: ", e);
+            throw new Fault(testCase + " failed!", e);
+        }
     }
-  }
 
-  /**
-   * @testName: testLong
-   *
-   * @assertion_ids: EJB:SPEC:762
-   *
-   * @test_Strategy: Deploy and create a MDB Topic Bean whose DD declares a Long
-   *                 environment entry. Lookup this entry and check that its
-   *                 runtime value match the DD value.
-   *
-   */
-  public void testLong() throws Fault {
+    /**
+     * @testName: testBoolean
+     *
+     * @assertion_ids: EJB:SPEC:762
+     *
+     * @test_Strategy: Deploy and create a MDB Topic Bean whose DD declares a
+     *                 Boolean environment entry. Lookup this entry and check that
+     *                 its runtime value match the DD value.
+     *
+     */
+    public void testBoolean() throws Fault {
 
-    String testCase = "testLong";
-    int testNum = 6;
+        String testCase = "testBoolean";
+        int testNum = 2;
 
-    try {
-      tPub = tSession.createPublisher(longT);
-      createTestMessage(testCase, testNum);
-      tPub.publish(msg);
+        try {
+            tPub = tSession.createPublisher(boolT);
+            createTestMessage(testCase, testNum);
+            tPub.publish(msg);
 
-      if (!checkOnResponse(testCase)) {
-        TestUtil.logErr("[Client] " + testCase + " failed");
-        throw new Exception(testCase + " Failed");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] " + testCase + " failed: ", e);
-      throw new Fault(testCase + " failed!", e);
+            if (!checkOnResponse(testCase)) {
+                TestUtil.logErr("[Client] " + testCase + " failed");
+                throw new Exception(testCase + " Failed");
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("[Client] " + testCase + " failed: ", e);
+            throw new Fault(testCase + " failed!", e);
+        }
     }
-  }
 
-  /**
-   * @testName: testFloat
-   *
-   * @assertion_ids: EJB:SPEC:762
-   *
-   * @test_Strategy: Deploy and create a MDB Topic Bean whose DD declares a
-   *                 Float environment entry. Lookup this entry and check that
-   *                 its runtime value match the DD value.
-   *
-   */
-  public void testFloat() throws Fault {
+    /**
+     * @testName: testByte
+     *
+     * @assertion_ids: EJB:SPEC:762
+     *
+     * @test_Strategy: Deploy and create a MDB Topic Bean whose DD declares a Byte
+     *                 environment entry. Lookup this entry and check that its
+     *                 runtime value match the DD value.
+     *
+     */
+    public void testByte() throws Fault {
 
-    String testCase = "testFloat";
-    int testNum = 7;
+        String testCase = "testByte";
+        int testNum = 3;
 
-    try {
-      tPub = tSession.createPublisher(floatT);
-      createTestMessage(testCase, testNum);
-      tPub.publish(msg);
+        try {
+            tPub = tSession.createPublisher(byteT);
+            createTestMessage(testCase, testNum);
+            tPub.publish(msg);
 
-      if (!checkOnResponse(testCase)) {
-        TestUtil.logErr("[Client] " + testCase + " failed");
-        throw new Exception(testCase + " Failed");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] " + testCase + " failed: ", e);
-      throw new Fault(testCase + " failed!", e);
+            if (!checkOnResponse(testCase)) {
+                TestUtil.logErr("[Client] " + testCase + " failed");
+                throw new Exception(testCase + " Failed");
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("[Client] " + testCase + " failed: ", e);
+            throw new Fault(testCase + " failed!", e);
+        }
     }
-  }
 
-  /**
-   * @testName: testDouble
-   *
-   * @assertion_ids: EJB:SPEC:762
-   *
-   * @test_Strategy: Deploy and create a MDB Topic Bean whose DD declares a
-   *                 Double environment entry. Lookup this entry and check that
-   *                 its runtime value match the DD value.
-   *
-   */
-  public void testDouble() throws Fault {
+    /**
+     * @testName: testShort
+     *
+     * @assertion_ids: EJB:SPEC:762
+     *
+     * @test_Strategy: Deploy and create a MDB Topic Bean whose DD declares a
+     *                 Short environment entry. Lookup this entry and check that
+     *                 its runtime value match the DD value.
+     *
+     */
+    public void testShort() throws Fault {
 
-    String testCase = "testDouble";
-    int testNum = 8;
+        String testCase = "testShort";
+        int testNum = 4;
 
-    try {
-      tPub = tSession.createPublisher(doubleT);
-      createTestMessage(testCase, testNum);
-      tPub.publish(msg);
+        try {
+            tPub = tSession.createPublisher(shortT);
+            createTestMessage(testCase, testNum);
+            tPub.publish(msg);
 
-      if (!checkOnResponse(testCase)) {
-        TestUtil.logErr("[Client] " + testCase + " failed");
-        throw new Exception(testCase + " Failed");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] " + testCase + " failed: ", e);
-      throw new Fault(testCase + " failed!", e);
+            if (!checkOnResponse(testCase)) {
+                TestUtil.logErr("[Client] " + testCase + " failed");
+                throw new Exception(testCase + " Failed");
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("[Client] " + testCase + " failed: ", e);
+            throw new Fault(testCase + " failed!", e);
+        }
     }
-  }
 
-  /**
-   * @testName: testAll
-   *
-   * @assertion_ids: EJB:SPEC:762
-   *
-   * @test_Strategy: Deploy and create a MDB Topic bean whose DD declares an
-   *                 environment entry of each type. Lookup these entries and
-   *                 check that their runtime value match their DD value.
-   *
-   */
-  public void testAll() throws Fault {
+    /**
+     * @testName: testInteger
+     *
+     * @assertion_ids: EJB:SPEC:762
+     *
+     * @test_Strategy: Deploy and create a MDB Topic Bean whose DD declares a
+     *                 Integer environment entry. Lookup this entry and check that
+     *                 its runtime value match the DD value.
+     *
+     */
+    public void testInteger() throws Fault {
 
-    String testCase = "testAll";
-    int testNum = 9;
+        String testCase = "testInteger";
+        int testNum = 5;
 
-    try {
-      tPub = tSession.createPublisher(allT);
-      createTestMessage(testCase, testNum);
-      tPub.publish(msg);
+        try {
+            tPub = tSession.createPublisher(intT);
+            createTestMessage(testCase, testNum);
+            tPub.publish(msg);
 
-      if (!checkOnResponse(testCase)) {
-        TestUtil.logErr("[Client] " + testCase + " failed");
-        throw new Exception(testCase + " Failed");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] " + testCase + " failed: ", e);
-      throw new Fault(testCase + " failed!", e);
+            if (!checkOnResponse(testCase)) {
+                TestUtil.logErr("[Client] " + testCase + " failed");
+                throw new Exception(testCase + " Failed");
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("[Client] " + testCase + " failed: ", e);
+            throw new Fault(testCase + " failed!", e);
+        }
     }
-  }
 
+    /**
+     * @testName: testLong
+     *
+     * @assertion_ids: EJB:SPEC:762
+     *
+     * @test_Strategy: Deploy and create a MDB Topic Bean whose DD declares a Long
+     *                 environment entry. Lookup this entry and check that its
+     *                 runtime value match the DD value.
+     *
+     */
+    public void testLong() throws Fault {
+
+        String testCase = "testLong";
+        int testNum = 6;
+
+        try {
+            tPub = tSession.createPublisher(longT);
+            createTestMessage(testCase, testNum);
+            tPub.publish(msg);
+
+            if (!checkOnResponse(testCase)) {
+                TestUtil.logErr("[Client] " + testCase + " failed");
+                throw new Exception(testCase + " Failed");
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("[Client] " + testCase + " failed: ", e);
+            throw new Fault(testCase + " failed!", e);
+        }
+    }
+
+    /**
+     * @testName: testFloat
+     *
+     * @assertion_ids: EJB:SPEC:762
+     *
+     * @test_Strategy: Deploy and create a MDB Topic Bean whose DD declares a
+     *                 Float environment entry. Lookup this entry and check that
+     *                 its runtime value match the DD value.
+     *
+     */
+    public void testFloat() throws Fault {
+
+        String testCase = "testFloat";
+        int testNum = 7;
+
+        try {
+            tPub = tSession.createPublisher(floatT);
+            createTestMessage(testCase, testNum);
+            tPub.publish(msg);
+
+            if (!checkOnResponse(testCase)) {
+                TestUtil.logErr("[Client] " + testCase + " failed");
+                throw new Exception(testCase + " Failed");
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("[Client] " + testCase + " failed: ", e);
+            throw new Fault(testCase + " failed!", e);
+        }
+    }
+
+    /**
+     * @testName: testDouble
+     *
+     * @assertion_ids: EJB:SPEC:762
+     *
+     * @test_Strategy: Deploy and create a MDB Topic Bean whose DD declares a
+     *                 Double environment entry. Lookup this entry and check that
+     *                 its runtime value match the DD value.
+     *
+     */
+    public void testDouble() throws Fault {
+
+        String testCase = "testDouble";
+        int testNum = 8;
+
+        try {
+            tPub = tSession.createPublisher(doubleT);
+            createTestMessage(testCase, testNum);
+            tPub.publish(msg);
+
+            if (!checkOnResponse(testCase)) {
+                TestUtil.logErr("[Client] " + testCase + " failed");
+                throw new Exception(testCase + " Failed");
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("[Client] " + testCase + " failed: ", e);
+            throw new Fault(testCase + " failed!", e);
+        }
+    }
+
+    /**
+     * @testName: testAll
+     *
+     * @assertion_ids: EJB:SPEC:762
+     *
+     * @test_Strategy: Deploy and create a MDB Topic bean whose DD declares an
+     *                 environment entry of each type. Lookup these entries and
+     *                 check that their runtime value match their DD value.
+     *
+     */
+    public void testAll() throws Fault {
+
+        String testCase = "testAll";
+        int testNum = 9;
+
+        try {
+            tPub = tSession.createPublisher(allT);
+            createTestMessage(testCase, testNum);
+            tPub.publish(msg);
+
+            if (!checkOnResponse(testCase)) {
+                TestUtil.logErr("[Client] " + testCase + " failed");
+                throw new Exception(testCase + " Failed");
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("[Client] " + testCase + " failed: ", e);
+            throw new Fault(testCase + " failed!", e);
+        }
+    }
 }

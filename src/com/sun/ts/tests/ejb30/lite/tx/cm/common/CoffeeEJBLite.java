@@ -29,74 +29,71 @@ import jakarta.persistence.Table;
 @Table(name = "COFFEEEJBLITE")
 public class CoffeeEJBLite implements java.io.Serializable {
 
-  private Integer id;
+    private Integer id;
 
-  private String brandName;
+    private String brandName;
 
-  private float price;
+    private float price;
 
-  public CoffeeEJBLite() {
-  }
+    public CoffeeEJBLite() {}
 
-  public CoffeeEJBLite(Integer id, String brandName, float price) {
-    this.id = id;
-    this.brandName = brandName;
-    this.price = price;
-  }
-
-  @Id
-  @Column(name = "ID")
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  @Column(name = "BRANDNAME")
-  public String getBrandName() {
-    return brandName;
-  }
-
-  public void setBrandName(String bName) {
-    this.brandName = bName;
-  }
-
-  @Column(name = "PRICE")
-  public float getPrice() {
-    return price;
-  }
-
-  public void setPrice(float price) {
-    this.price = price;
-  }
-
-  @Override
-  public String toString() {
-    return "CoffeeEJBLite id=" + getId() + ", brandName=" + getBrandName()
-        + ", price=" + getPrice();
-  }
-
-  @Override
-  public int hashCode() {
-    int hash = 0;
-    hash += (id != null ? id.hashCode() : 0);
-    return hash;
-  }
-
-  @Override
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof CoffeeEJBLite)) {
-      return false;
+    public CoffeeEJBLite(Integer id, String brandName, float price) {
+        this.id = id;
+        this.brandName = brandName;
+        this.price = price;
     }
-    CoffeeEJBLite other = (CoffeeEJBLite) object;
-    if ((this.id == null && other.id != null)
-        || (this.id != null && !this.id.equals(other.id))) {
-      return false;
+
+    @Id
+    @Column(name = "ID")
+    public Integer getId() {
+        return id;
     }
-    return true;
-  }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @Column(name = "BRANDNAME")
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String bName) {
+        this.brandName = bName;
+    }
+
+    @Column(name = "PRICE")
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "CoffeeEJBLite id=" + getId() + ", brandName=" + getBrandName() + ", price=" + getPrice();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not
+        // set
+        if (!(object instanceof CoffeeEJBLite)) {
+            return false;
+        }
+        CoffeeEJBLite other = (CoffeeEJBLite) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
 }

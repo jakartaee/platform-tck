@@ -21,40 +21,35 @@
 package com.sun.ts.tests.ejb30.bb.session.stateless.basic;
 
 import com.sun.ts.tests.ejb30.common.calc.BaseRemoteCalculator;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionContext;
 
-//@Stateless(name="RemoteCalculatorBean5",
+// @Stateless(name="RemoteCalculatorBean5",
 //        description="a simple stateless session bean without component-defining annotations")
-//@Remote({RemoteCalculator.class})
+// @Remote({RemoteCalculator.class})
 public class RemoteCalculatorBean5 extends BaseRemoteCalculator {
-  private boolean postConstructCalled;
+    private boolean postConstructCalled;
 
-  @Resource
-  private SessionContext sessionContext;
+    @Resource
+    private SessionContext sessionContext;
 
-  public RemoteCalculatorBean5() {
-  }
+    public RemoteCalculatorBean5() {}
 
-  @PostConstruct
-  public void postConstruct() {
-    postConstructCalled = true;
-  }
-
-  @Override
-  public int remoteAdd(int a, int b) {
-    if (sessionContext == null) {
-      throw new EJBException(
-          "SessionContext is null in business method remoteAdd: " + this);
+    @PostConstruct
+    public void postConstruct() {
+        postConstructCalled = true;
     }
-    if (!postConstructCalled) {
-      throw new EJBException(
-          "PostConstruct method has not been called when the business method is invoked.");
-    }
-    return super.remoteAdd(a, b);
-  }
 
+    @Override
+    public int remoteAdd(int a, int b) {
+        if (sessionContext == null) {
+            throw new EJBException("SessionContext is null in business method remoteAdd: " + this);
+        }
+        if (!postConstructCalled) {
+            throw new EJBException("PostConstruct method has not been called when the business method is invoked.");
+        }
+        return super.remoteAdd(a, b);
+    }
 }

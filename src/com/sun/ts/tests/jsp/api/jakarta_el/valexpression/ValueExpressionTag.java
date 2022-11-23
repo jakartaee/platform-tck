@@ -16,48 +16,44 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_el.valexpression;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.common.el.api.expression.ExpressionTest;
 import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-
 import jakarta.el.ELContext;
 import jakarta.el.ValueExpression;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+import java.io.IOException;
 
 public class ValueExpressionTag extends SimpleTagSupport {
 
-  private ValueExpression vexp;
+    private ValueExpression vexp;
 
-  private static final String VALUE = "bar";
+    private static final String VALUE = "bar";
 
-  private static final boolean READONLY = false;
+    private static final boolean READONLY = false;
 
-  private static final boolean LITERAL_TEXT = false;
+    private static final boolean LITERAL_TEXT = false;
 
-  public void setValExpr(ValueExpression vexp) {
-    this.vexp = vexp;
-  }
-
-  public void doTag() throws JspException, IOException {
-
-    ELContext elContext = getJspContext().getELContext();
-    StringBuffer buf = new StringBuffer("");
-    JspWriter out = getJspContext().getOut();
-
-    try {
-      boolean pass = ExpressionTest.testValueExpression(vexp, elContext,
-          "#{foo}", String.class, VALUE, READONLY, LITERAL_TEXT, buf);
-      out.println(buf.toString());
-      if (pass)
-        out.println("Test PASSED.");
-      else
-        out.println("Test FAILED.");
-    } catch (Throwable t) {
-      out.println(buf.toString());
-      JspTestUtil.handleThrowable(t, out, "ValueExpressionTag");
+    public void setValExpr(ValueExpression vexp) {
+        this.vexp = vexp;
     }
-  }
+
+    public void doTag() throws JspException, IOException {
+
+        ELContext elContext = getJspContext().getELContext();
+        StringBuffer buf = new StringBuffer("");
+        JspWriter out = getJspContext().getOut();
+
+        try {
+            boolean pass = ExpressionTest.testValueExpression(
+                    vexp, elContext, "#{foo}", String.class, VALUE, READONLY, LITERAL_TEXT, buf);
+            out.println(buf.toString());
+            if (pass) out.println("Test PASSED.");
+            else out.println("Test FAILED.");
+        } catch (Throwable t) {
+            out.println(buf.toString());
+            JspTestUtil.handleThrowable(t, out, "ValueExpressionTag");
+        }
+    }
 }

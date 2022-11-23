@@ -20,21 +20,18 @@
 
 package com.sun.ts.tests.ejb30.common.callback;
 
-import com.sun.ts.tests.ejb30.common.helper.TLogger;
-
 import jakarta.annotation.PostConstruct;
 
-abstract public class ClientBase2 extends ClientBase2NoAnnotation {
+public abstract class ClientBase2 extends ClientBase2NoAnnotation {
 
-  public ClientBase2() {
-  }
+    public ClientBase2() {}
 
-  /**
-   * When this method is invoked, all injections, including those in this class,
-   * and all of its subclasses, should have been completed.
-   */
-  @PostConstruct
-  private static void postConstructInBase2() {
-    addPostConstructCall(BASE2);
-  }
+    /**
+     * When this method is invoked, all injections, including those in this class,
+     * and all of its subclasses, should have been completed.
+     */
+    @PostConstruct
+    private static void postConstructInBase2() {
+        addPostConstructCall(BASE2);
+    }
 }

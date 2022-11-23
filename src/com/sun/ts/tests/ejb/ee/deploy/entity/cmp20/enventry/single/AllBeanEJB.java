@@ -25,40 +25,39 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 
 public abstract class AllBeanEJB extends CMP20Wrapper {
 
-  public boolean testCharacterEntry() {
-    return TestCode.testCharacterEntry(nctx);
-  }
+    public boolean testCharacterEntry() {
+        return TestCode.testCharacterEntry(nctx);
+    }
 
-  public boolean testStringEntry() {
-    return TestCode.testStringEntry(nctx);
-  }
+    public boolean testStringEntry() {
+        return TestCode.testStringEntry(nctx);
+    }
 
-  public boolean testBooleanEntry() {
-    return TestCode.testBooleanEntry(nctx);
-  }
+    public boolean testBooleanEntry() {
+        return TestCode.testBooleanEntry(nctx);
+    }
 
-  public boolean testByteEntry() {
-    return TestCode.testByteEntry(nctx);
-  }
+    public boolean testByteEntry() {
+        return TestCode.testByteEntry(nctx);
+    }
 
-  public boolean testShortEntry() {
-    return TestCode.testShortEntry(nctx);
-  }
+    public boolean testShortEntry() {
+        return TestCode.testShortEntry(nctx);
+    }
 
-  public boolean testIntegerEntry() {
-    return TestCode.testIntegerEntry(nctx);
-  }
+    public boolean testIntegerEntry() {
+        return TestCode.testIntegerEntry(nctx);
+    }
 
-  public boolean testLongEntry() {
-    return TestCode.testLongEntry(nctx);
-  }
+    public boolean testLongEntry() {
+        return TestCode.testLongEntry(nctx);
+    }
 
-  public boolean testFloatEntry() {
-    return TestCode.testFloatEntry(nctx);
-  }
+    public boolean testFloatEntry() {
+        return TestCode.testFloatEntry(nctx);
+    }
 
-  public boolean testDoubleEntry() {
-    return TestCode.testDoubleEntry(nctx);
-  }
-
+    public boolean testDoubleEntry() {
+        return TestCode.testDoubleEntry(nctx);
+    }
 }

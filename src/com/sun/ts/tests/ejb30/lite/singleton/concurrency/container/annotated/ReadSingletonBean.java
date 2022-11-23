@@ -19,91 +19,89 @@
  */
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.annotated;
 
-import java.util.LinkedList;
-
 import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.BeanBase;
 import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ConcurrencyIF;
-
 import jakarta.ejb.Lock;
 import jakarta.ejb.LockType;
 import jakarta.ejb.Singleton;
+import java.util.LinkedList;
 
 @Singleton
 @Lock(LockType.READ)
 public class ReadSingletonBean extends BeanBase implements ConcurrencyIF {
-  private long unlockedSum;
+    private long unlockedSum;
 
-  private long lockedSum;
+    private long lockedSum;
 
-  private LinkedList<Integer> data = new LinkedList<Integer>();
+    private LinkedList<Integer> data = new LinkedList<Integer>();
 
-  @Lock(LockType.WRITE)
-  public void addToLinkedList(Integer i) {
-    data.add(i);
-  }
-
-  @Lock(LockType.WRITE)
-  public int getLinkedListSizeAndClear() {
-    int i = data.size();
-    data.clear();
-    return i;
-  }
-
-  @Lock(LockType.WRITE)
-  public long getAndResetLockedSum() {
-    long result = lockedSum;
-    lockedSum = 0;
-    return result;
-  }
-
-  @Lock(LockType.WRITE)
-  public void addLocked(int num) {
-    for (int i = 0; i < num; i++) {
-      lockedSum++;
+    @Lock(LockType.WRITE)
+    public void addToLinkedList(Integer i) {
+        data.add(i);
     }
-  }
 
-  public long getAndResetUnlockedSum() {
-    long result = unlockedSum;
-    unlockedSum = 0;
-    return result;
-  }
-
-  public void addUnlocked(int num) {
-    for (int i = 0; i < num; i++) {
-      unlockedSum++;
+    @Lock(LockType.WRITE)
+    public int getLinkedListSizeAndClear() {
+        int i = data.size();
+        data.clear();
+        return i;
     }
-  }
 
-  // these overridings are not needed; method-level interceptors are
-  // already specified in ejb-jar.xml, but somehow ignored.
-  // Remove these method once issue 6948 is fixed.
-  // If these methods are kept here, @Lock must also be set explicitly on
-  // these methods.
+    @Lock(LockType.WRITE)
+    public long getAndResetLockedSum() {
+        long result = lockedSum;
+        lockedSum = 0;
+        return result;
+    }
 
-  @Override
-  // @Interceptors(Interceptor3.class)
-  @Lock(LockType.WRITE)
-  public void addLockedFromInterceptor(String interceptorName, int num) {
-    super.addLockedFromInterceptor(interceptorName, num);
-  }
+    @Lock(LockType.WRITE)
+    public void addLocked(int num) {
+        for (int i = 0; i < num; i++) {
+            lockedSum++;
+        }
+    }
 
-  @Override
-  // @Interceptors(Interceptor3.class)
-  public void addUnlockedFromInterceptor(String interceptorName, int num) {
-    super.addUnlockedFromInterceptor(interceptorName, num);
-  }
+    public long getAndResetUnlockedSum() {
+        long result = unlockedSum;
+        unlockedSum = 0;
+        return result;
+    }
 
-  @Override
-  // @Interceptors(Interceptor3.class)
-  @Lock(LockType.WRITE)
-  public long getAndResetLockedSumFromInterceptor(String interceptorName) {
-    return super.getAndResetLockedSumFromInterceptor(interceptorName);
-  }
+    public void addUnlocked(int num) {
+        for (int i = 0; i < num; i++) {
+            unlockedSum++;
+        }
+    }
 
-  @Override
-  // @Interceptors(Interceptor3.class)
-  public long getAndResetUnlockedSumFromInterceptor(String interceptorName) {
-    return super.getAndResetUnlockedSumFromInterceptor(interceptorName);
-  }
+    // these overridings are not needed; method-level interceptors are
+    // already specified in ejb-jar.xml, but somehow ignored.
+    // Remove these method once issue 6948 is fixed.
+    // If these methods are kept here, @Lock must also be set explicitly on
+    // these methods.
+
+    @Override
+    // @Interceptors(Interceptor3.class)
+    @Lock(LockType.WRITE)
+    public void addLockedFromInterceptor(String interceptorName, int num) {
+        super.addLockedFromInterceptor(interceptorName, num);
+    }
+
+    @Override
+    // @Interceptors(Interceptor3.class)
+    public void addUnlockedFromInterceptor(String interceptorName, int num) {
+        super.addUnlockedFromInterceptor(interceptorName, num);
+    }
+
+    @Override
+    // @Interceptors(Interceptor3.class)
+    @Lock(LockType.WRITE)
+    public long getAndResetLockedSumFromInterceptor(String interceptorName) {
+        return super.getAndResetLockedSumFromInterceptor(interceptorName);
+    }
+
+    @Override
+    // @Interceptors(Interceptor3.class)
+    public long getAndResetUnlockedSumFromInterceptor(String interceptorName) {
+        return super.getAndResetUnlockedSumFromInterceptor(interceptorName);
+    }
 }

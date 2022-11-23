@@ -20,7 +20,7 @@ import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
 public interface ChokeRemote extends EJBObject {
-  public void chokeMandatory() throws RemoteException;
+    public void chokeMandatory() throws RemoteException;
 
-  public void chokeNever() throws RemoteException;
+    public void chokeNever() throws RemoteException;
 }

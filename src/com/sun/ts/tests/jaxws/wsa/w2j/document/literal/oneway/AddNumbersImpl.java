@@ -19,34 +19,35 @@
  */
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.oneway;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-
-import jakarta.jws.WebService;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
 import com.sun.ts.tests.jaxws.wsa.common.ActionNotSupportedException;
+import jakarta.jws.WebService;
 
 /**
  * @author JAX-WSA Development Team
  */
-@WebService(portName = "AddNumbersPort", serviceName = "AddNumbersService", targetNamespace = "http://example.com", wsdlLocation = "WEB-INF/wsdl/WSAW2JDLOneWayTest.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.oneway.AddNumbersPortType")
+@WebService(
+        portName = "AddNumbersPort",
+        serviceName = "AddNumbersService",
+        targetNamespace = "http://example.com",
+        wsdlLocation = "WEB-INF/wsdl/WSAW2JDLOneWayTest.wsdl",
+        endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.oneway.AddNumbersPortType")
 public class AddNumbersImpl implements AddNumbersPortType {
-  public void addNumbers(int number1, int number2) {
-    if (number1 < 0 || number2 < 0) {
-      throw new ActionNotSupportedException(
-          "One of the numbers received was negative:" + number1 + ", "
-              + number2);
+    public void addNumbers(int number1, int number2) {
+        if (number1 < 0 || number2 < 0) {
+            throw new ActionNotSupportedException(
+                    "One of the numbers received was negative:" + number1 + ", " + number2);
+        }
+        System.out.printf("Adding %s and %s\n", number1, number2);
     }
-    System.out.printf("Adding %s and %s\n", number1, number2);
-  }
 
-  public void addNumbers2(int number1, int number2) {
-    if (number1 < 0 || number2 < 0) {
-      throw new ActionNotSupportedException(
-          "One of the numbers received was negative:" + number1 + ", "
-              + number2);
+    public void addNumbers2(int number1, int number2) {
+        if (number1 < 0 || number2 < 0) {
+            throw new ActionNotSupportedException(
+                    "One of the numbers received was negative:" + number1 + ", " + number2);
+        }
+        System.out.printf("Adding %s and %s\n", number1, number2);
     }
-    System.out.printf("Adding %s and %s\n", number1, number2);
-  }
-
 }

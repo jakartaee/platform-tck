@@ -20,186 +20,179 @@
 
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.unknownpktest;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
+import java.util.Properties;
 
 public class Client extends EETest {
-  private static final String testName = "UnknownPKTest";
+    private static final String testName = "UnknownPKTest";
 
-  private static final String testBean = "java:comp/env/ejb/TestBean";
+    private static final String testBean = "java:comp/env/ejb/TestBean";
 
-  private static final String testProps = "unknownpktest.properties";
+    private static final String testProps = "unknownpktest.properties";
 
-  private TestBean beanRef = null;
+    private TestBean beanRef = null;
 
-  private TestBean beanRef1 = null;
+    private TestBean beanRef1 = null;
 
-  private TestBean beanRef2 = null;
+    private TestBean beanRef2 = null;
 
-  private TestBeanHome beanHome = null;
+    private TestBeanHome beanHome = null;
 
-  private Properties props = null;
+    private Properties props = null;
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup */
-
-  /*
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   * generateSQL;
-   */
-
-  public void setup(String[] args, Properties p) throws Fault {
-    props = p;
-    try {
-      logMsg("Obtain naming context");
-      nctx = new TSNamingContext();
-
-      // Get EJB Home ...
-      logMsg("Looking up home interface for EJB: " + testBean);
-      beanHome = (TestBeanHome) nctx.lookup(testBean, TestBeanHome.class);
-      logMsg("Setup ok");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Fault("Setup failed:", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /* Run test */
+    /* Test setup */
 
-  /*
-   * @testName: unknownPKTest1
-   * 
-   * @assertion_ids: EJB:SPEC:311
-   * 
-   * @test_Strategy: Call the create method of an Entity Bean and verify the
-   * instance can be retrieved via the Primary Key.
-   */
+    /*
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     * generateSQL;
+     */
 
-  public void unknownPKTest1() throws Fault {
-    boolean pass = true;
-    Object PK = null;
-    try {
-      TestUtil.logMsg("Create EJB instance");
-      beanRef = (TestBean) beanHome.create("John", "Edward", "Brown",
-          "100-200-300");
-      TestUtil.logMsg("Instance Created");
-      beanRef.initLogging(props);
+    public void setup(String[] args, Properties p) throws Fault {
+        props = p;
+        try {
+            logMsg("Obtain naming context");
+            nctx = new TSNamingContext();
 
-      TestUtil.logMsg("Create another EJB instance");
-      beanRef1 = (TestBean) beanHome.create("William", "James", "Black",
-          "450-978-568");
-      TestUtil.logMsg("Instance Created");
-      beanRef1.initLogging(props);
-
-      TestUtil.logMsg("Get Customer's Primary Key");
-      PK = beanRef.getPrimaryKey();
-
-      TestUtil.logMsg("Find Customer's Primary Key");
-      beanRef2 = (TestBean) beanHome.findByPrimaryKey(PK);
-
-      TestUtil.logMsg("Check references");
-      if (beanRef.isIdentical(beanRef2)) {
-        TestUtil.logMsg("Customer references are identical");
-        pass = true;
-      } else {
-        TestUtil.logErr("Incorrect reference returned");
-        pass = false;
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception unknownPKTest1: " + e);
-      TestUtil.printStackTrace(e);
-      pass = false;
-    } finally {
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.logErr("Caught exception removing beanRef: " + e);
-        TestUtil.printStackTrace(e);
-      }
-      try {
-        beanRef1.remove();
-      } catch (Exception e) {
-        TestUtil.logErr("Caught exception removing beanRef1: " + e);
-        TestUtil.printStackTrace(e);
-      }
+            // Get EJB Home ...
+            logMsg("Looking up home interface for EJB: " + testBean);
+            beanHome = (TestBeanHome) nctx.lookup(testBean, TestBeanHome.class);
+            logMsg("Setup ok");
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new Fault("Setup failed:", e);
+        }
     }
-    if (!pass)
-      throw new Fault("unknownPKTest1 failed");
-  }
 
-  /*
-   * @testName: unknownPKTest2
-   * 
-   * @assertion_ids: EJB:SPEC:311
-   * 
-   * @test_Strategy: Call the createHomeAddress method of an Entity Bean and
-   * verify the instance can be retrieved via the Primary Key.
-   */
+    /* Run test */
 
-  public void unknownPKTest2() throws Fault {
-    boolean pass = true;
-    Object PK = null;
-    try {
-      TestUtil.logMsg("Create EJB instance");
-      beanRef = (TestBean) beanHome.createHomeAddress("10 Circle Street",
-          "Weston", "Utah", 91877);
-      TestUtil.logMsg("Instance Created");
-      beanRef.initLogging(props);
+    /*
+     * @testName: unknownPKTest1
+     *
+     * @assertion_ids: EJB:SPEC:311
+     *
+     * @test_Strategy: Call the create method of an Entity Bean and verify the
+     * instance can be retrieved via the Primary Key.
+     */
 
-      TestUtil.logMsg("Create AnotherEJB instance");
-      beanRef1 = (TestBean) beanHome.createHomeAddress("9 Lowell Avenue",
-          "Charleton", "Nevada", 84375);
-      TestUtil.logMsg("Second Instance Created");
-      beanRef1.initLogging(props);
+    public void unknownPKTest1() throws Fault {
+        boolean pass = true;
+        Object PK = null;
+        try {
+            TestUtil.logMsg("Create EJB instance");
+            beanRef = (TestBean) beanHome.create("John", "Edward", "Brown", "100-200-300");
+            TestUtil.logMsg("Instance Created");
+            beanRef.initLogging(props);
 
-      TestUtil.logMsg("Get Primary Key");
-      PK = beanRef1.getPrimaryKey();
+            TestUtil.logMsg("Create another EJB instance");
+            beanRef1 = (TestBean) beanHome.create("William", "James", "Black", "450-978-568");
+            TestUtil.logMsg("Instance Created");
+            beanRef1.initLogging(props);
 
-      TestUtil.logMsg("Find By Primary Key");
-      beanRef2 = (TestBean) beanHome.findByPrimaryKey(PK);
+            TestUtil.logMsg("Get Customer's Primary Key");
+            PK = beanRef.getPrimaryKey();
 
-      TestUtil.logMsg("Check References");
-      if (beanRef1.isIdentical(beanRef2)) {
-        TestUtil.logMsg("Address references are identical");
-        pass = true;
-      } else {
-        TestUtil.logErr("Incorrect reference returned");
-        pass = false;
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception unknownPKTest2: " + e);
-      TestUtil.printStackTrace(e);
-      pass = false;
-    } finally {
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.logErr("Caught exception removing beanRef: " + e);
-        TestUtil.printStackTrace(e);
-      }
-      try {
-        beanRef1.remove();
-      } catch (Exception e) {
-        TestUtil.logErr("Caught exception removing beanRef1: " + e);
-        TestUtil.printStackTrace(e);
-      }
+            TestUtil.logMsg("Find Customer's Primary Key");
+            beanRef2 = (TestBean) beanHome.findByPrimaryKey(PK);
+
+            TestUtil.logMsg("Check references");
+            if (beanRef.isIdentical(beanRef2)) {
+                TestUtil.logMsg("Customer references are identical");
+                pass = true;
+            } else {
+                TestUtil.logErr("Incorrect reference returned");
+                pass = false;
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception unknownPKTest1: " + e);
+            TestUtil.printStackTrace(e);
+            pass = false;
+        } finally {
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.logErr("Caught exception removing beanRef: " + e);
+                TestUtil.printStackTrace(e);
+            }
+            try {
+                beanRef1.remove();
+            } catch (Exception e) {
+                TestUtil.logErr("Caught exception removing beanRef1: " + e);
+                TestUtil.printStackTrace(e);
+            }
+        }
+        if (!pass) throw new Fault("unknownPKTest1 failed");
     }
-    if (!pass)
-      throw new Fault("unknownPKTest2 failed");
-  }
 
-  public void cleanup() throws Fault {
-    logMsg("cleanup ok");
-  }
+    /*
+     * @testName: unknownPKTest2
+     *
+     * @assertion_ids: EJB:SPEC:311
+     *
+     * @test_Strategy: Call the createHomeAddress method of an Entity Bean and
+     * verify the instance can be retrieved via the Primary Key.
+     */
+
+    public void unknownPKTest2() throws Fault {
+        boolean pass = true;
+        Object PK = null;
+        try {
+            TestUtil.logMsg("Create EJB instance");
+            beanRef = (TestBean) beanHome.createHomeAddress("10 Circle Street", "Weston", "Utah", 91877);
+            TestUtil.logMsg("Instance Created");
+            beanRef.initLogging(props);
+
+            TestUtil.logMsg("Create AnotherEJB instance");
+            beanRef1 = (TestBean) beanHome.createHomeAddress("9 Lowell Avenue", "Charleton", "Nevada", 84375);
+            TestUtil.logMsg("Second Instance Created");
+            beanRef1.initLogging(props);
+
+            TestUtil.logMsg("Get Primary Key");
+            PK = beanRef1.getPrimaryKey();
+
+            TestUtil.logMsg("Find By Primary Key");
+            beanRef2 = (TestBean) beanHome.findByPrimaryKey(PK);
+
+            TestUtil.logMsg("Check References");
+            if (beanRef1.isIdentical(beanRef2)) {
+                TestUtil.logMsg("Address references are identical");
+                pass = true;
+            } else {
+                TestUtil.logErr("Incorrect reference returned");
+                pass = false;
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception unknownPKTest2: " + e);
+            TestUtil.printStackTrace(e);
+            pass = false;
+        } finally {
+            try {
+                beanRef.remove();
+            } catch (Exception e) {
+                TestUtil.logErr("Caught exception removing beanRef: " + e);
+                TestUtil.printStackTrace(e);
+            }
+            try {
+                beanRef1.remove();
+            } catch (Exception e) {
+                TestUtil.logErr("Caught exception removing beanRef1: " + e);
+                TestUtil.printStackTrace(e);
+            }
+        }
+        if (!pass) throw new Fault("unknownPKTest2 failed");
+    }
+
+    public void cleanup() throws Fault {
+        logMsg("cleanup ok");
+    }
 }

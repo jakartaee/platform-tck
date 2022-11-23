@@ -19,17 +19,15 @@
  */
 package com.sun.ts.tests.jsonb.pluggability.jsonbprovidertests;
 
+import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
+import jakarta.json.bind.JsonbBuilder;
+import jakarta.json.bind.spi.JsonbProvider;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 import java.util.ServiceLoader;
-
-import jakarta.json.bind.JsonbBuilder;
-import jakarta.json.bind.spi.JsonbProvider;
-
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
 
 public class Client extends ServiceEETest {
     private static final String MY_JSONBROVIDER_CLASS = "com.sun.ts.tests.jsonb.provider.MyJsonbProvider";
@@ -40,7 +38,6 @@ public class Client extends ServiceEETest {
         Status s = theTests.run(args, System.out, System.err);
         s.exit();
     }
-
 
     /* Test setup */
 
@@ -87,24 +84,22 @@ public class Client extends ServiceEETest {
             JsonbProvider provider = JsonbProvider.provider(MY_JSONBROVIDER_CLASS);
             String providerClass = provider.getClass().getName();
             logMsg("provider class=" + providerClass);
-            if (providerClass.equals(MY_JSONBROVIDER_CLASS))
-                logMsg("Current provider is my provider - expected.");
+            if (providerClass.equals(MY_JSONBROVIDER_CLASS)) logMsg("Current provider is my provider - expected.");
             else {
                 logErr("Current provider is not my provider - unexpected.");
                 pass = false;
                 ServiceLoader<JsonbProvider> loader = ServiceLoader.load(JsonbProvider.class);
                 Iterator<JsonbProvider> it = loader.iterator();
                 List<JsonbProvider> providers = new ArrayList<>();
-                while(it.hasNext()) {
+                while (it.hasNext()) {
                     providers.add(it.next());
                 }
-                logMsg("Providers: "+providers);
+                logMsg("Providers: " + providers);
             }
         } catch (Exception e) {
             throw new Fault("jsonbProviderTest2 Failed: ", e);
         }
-        if (!pass)
-            throw new Fault("jsonbProviderTest2 Failed");
+        if (!pass) throw new Fault("jsonbProviderTest2 Failed");
     }
 
     /*
@@ -118,8 +113,7 @@ public class Client extends ServiceEETest {
             JsonbBuilder builder = JsonbProvider.provider(MY_JSONBROVIDER_CLASS).create();
             String providerClass = builder.getClass().getName();
             logMsg("jsonb builder class=" + providerClass);
-            if (providerClass.equals(MY_JSONBBUILDER_CLASS))
-                logMsg("Current jsonb builder is my builder - expected.");
+            if (providerClass.equals(MY_JSONBBUILDER_CLASS)) logMsg("Current jsonb builder is my builder - expected.");
             else {
                 logErr("Current jsonb builder is not my builder - unexpected.");
                 throw new Fault("jsonbProviderTest3 Failed");
@@ -128,5 +122,4 @@ public class Client extends ServiceEETest {
             throw new Fault("jsonbProviderTest3 Failed: ", e);
         }
     }
-
 }

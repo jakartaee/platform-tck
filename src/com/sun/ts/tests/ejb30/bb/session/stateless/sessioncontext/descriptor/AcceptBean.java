@@ -21,24 +21,20 @@
 package com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.descriptor;
 
 import com.sun.ts.tests.ejb30.common.sessioncontext.AcceptBeanBase;
-
 import jakarta.ejb.SessionContext;
 
-//@Stateless(name="AcceptBean")
-//@Remote({AcceptIF.class})
-//@Local({AcceptLocalIF.class})
+// @Stateless(name="AcceptBean")
+// @Remote({AcceptIF.class})
+// @Local({AcceptLocalIF.class})
 public class AcceptBean extends AcceptBeanBase {
-  // @Resource(name="sessionContext")
-  private SessionContext sessionContext;
+    // @Resource(name="sessionContext")
+    private SessionContext sessionContext;
 
-  protected SessionContext getSessionContext() {
-    return sessionContext;
-  }
+    protected SessionContext getSessionContext() {
+        return sessionContext;
+    }
 
-  public AcceptBean() {
-  }
+    public AcceptBean() {}
 
-  public void remove() {
-  }
-
+    public void remove() {}
 }

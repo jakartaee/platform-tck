@@ -19,43 +19,40 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public final class DuplicateFilterClass implements Filter {
 
-  // The filter configuration object we are associated with. If this value
-  // is null, this filter instance is not currently configured.
-  private FilterConfig filterConfig = null;
+    // The filter configuration object we are associated with. If this value
+    // is null, this filter instance is not currently configured.
+    private FilterConfig filterConfig = null;
 
-  public void doFilter(ServletRequest request, ServletResponse response,
-      FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-    if (filterConfig == null)
-      throw new ServletException(
-          "doFilter of DuplicateFilterClass was called but this filter instance is not currently configured");
+        if (filterConfig == null)
+            throw new ServletException(
+                    "doFilter of DuplicateFilterClass was called but this filter instance is not currently configured");
 
-    ArrayList result = (ArrayList) filterConfig.getServletContext()
-        .getAttribute("arraylist");
-    result.add("DUPLICATE_FILTER_CLASS_INVOKED");
+        ArrayList result = (ArrayList) filterConfig.getServletContext().getAttribute("arraylist");
+        result.add("DUPLICATE_FILTER_CLASS_INVOKED");
 
-    filterConfig.getServletContext().setAttribute("arraylist", result);
-    chain.doFilter(request, response);
-  }
+        filterConfig.getServletContext().setAttribute("arraylist", result);
+        chain.doFilter(request, response);
+    }
 
-  // Remove the filter configuration object for this filter.
-  public void destroy() {
-  }
+    // Remove the filter configuration object for this filter.
+    public void destroy() {}
 
-  // initialize the filter configuration object for this filter.
-  public void init(FilterConfig filterConfig) {
-    this.filterConfig = filterConfig;
-  }
+    // initialize the filter configuration object for this filter.
+    public void init(FilterConfig filterConfig) {
+        this.filterConfig = filterConfig;
+    }
 }

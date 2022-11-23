@@ -20,121 +20,115 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.entity.cmp20.pkey;
 
-import java.util.Properties;
-
-import javax.naming.NamingException;
-
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.dao.coffee.variants.CompoundPK;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
 import jakarta.ejb.RemoveException;
+import java.util.Properties;
+import javax.naming.NamingException;
 
 public abstract class CompoundBeanEJB implements EntityBean {
 
-  /* Entity instance data */
-  public abstract Integer getPmIDInteger();
+    /* Entity instance data */
+    public abstract Integer getPmIDInteger();
 
-  public abstract void setPmIDInteger(Integer i);
+    public abstract void setPmIDInteger(Integer i);
 
-  public abstract String getPmIDString();
+    public abstract String getPmIDString();
 
-  public abstract void setPmIDString(String s);
+    public abstract void setPmIDString(String s);
 
-  public abstract Float getPmIDFloat();
+    public abstract Float getPmIDFloat();
 
-  public abstract void setPmIDFloat(Float f);
+    public abstract void setPmIDFloat(Float f);
 
-  public abstract String getBrandName();
+    public abstract String getBrandName();
 
-  public abstract void setBrandName(String s);
+    public abstract void setBrandName(String s);
 
-  public abstract float getPrice();
+    public abstract float getPrice();
 
-  public abstract void setPrice(float p);
+    public abstract void setPrice(float p);
 
-  protected EntityContext ectx = null;
+    protected EntityContext ectx = null;
 
-  protected TSNamingContext nctx = null;
+    protected TSNamingContext nctx = null;
 
-  public void ping() {
-    TestUtil.logTrace("[CompoundBean] ping()");
-  }
-
-  /*
-   * Bean life cycle.
-   */
-
-  public CompoundPK ejbCreate(Properties props, CompoundPK id, String brandName,
-      float price) throws CreateException {
-
-    TestUtil.logTrace("[CompoundBean] ejbCreate()");
-
-    try {
-      TestUtil.logTrace("[CompoundBean] Initialize logging...");
-      TestUtil.init(props);
-
-      setPmIDInteger(id.pmIDInteger);
-      setPmIDString(id.pmIDString);
-      setPmIDFloat(id.pmIDFloat);
-      setBrandName(brandName);
-      setPrice(price);
-    } catch (Exception e) {
-      TestUtil.logErr("[CompoundBean] Caught exception: " + e, e);
-      throw new CreateException("Exception occurred: " + e);
+    public void ping() {
+        TestUtil.logTrace("[CompoundBean] ping()");
     }
 
-    return null;
-  }
+    /*
+     * Bean life cycle.
+     */
 
-  public void ejbPostCreate(Properties props, CompoundPK id, String brandName,
-      float price) {
+    public CompoundPK ejbCreate(Properties props, CompoundPK id, String brandName, float price) throws CreateException {
 
-    TestUtil.logTrace("[CompoundBean] ejbPostCreate()");
-  }
+        TestUtil.logTrace("[CompoundBean] ejbCreate()");
 
-  public void setEntityContext(EntityContext c) {
-    try {
-      TestUtil.logTrace("[CompoundBean] setEntityContext()");
-      ectx = c;
+        try {
+            TestUtil.logTrace("[CompoundBean] Initialize logging...");
+            TestUtil.init(props);
 
-      TestUtil.logMsg("[CompoundBean] Getting Naming Context...");
-      nctx = new TSNamingContext();
-    } catch (NamingException e) {
-      TestUtil.logErr("[CompoundBean] Naming Exception : " + e);
-      throw new EJBException("Cannot obtain Naming Context", e);
-    } catch (Exception e) {
-      TestUtil.logErr("[CompoundBean] Caught exception: " + e);
-      throw new EJBException("Caught exception: ", e);
+            setPmIDInteger(id.pmIDInteger);
+            setPmIDString(id.pmIDString);
+            setPmIDFloat(id.pmIDFloat);
+            setBrandName(brandName);
+            setPrice(price);
+        } catch (Exception e) {
+            TestUtil.logErr("[CompoundBean] Caught exception: " + e, e);
+            throw new CreateException("Exception occurred: " + e);
+        }
+
+        return null;
     }
-  }
 
-  public void unsetEntityContext() {
-    TestUtil.logTrace("[CompoundBean] unsetEntityContext()");
-  }
+    public void ejbPostCreate(Properties props, CompoundPK id, String brandName, float price) {
 
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("[CompoundBean] ejbRemove()");
-  }
+        TestUtil.logTrace("[CompoundBean] ejbPostCreate()");
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("[CompoundBean] ejbActivate()");
-  }
+    public void setEntityContext(EntityContext c) {
+        try {
+            TestUtil.logTrace("[CompoundBean] setEntityContext()");
+            ectx = c;
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("[CompoundBean] ejbPassivate()");
-  }
+            TestUtil.logMsg("[CompoundBean] Getting Naming Context...");
+            nctx = new TSNamingContext();
+        } catch (NamingException e) {
+            TestUtil.logErr("[CompoundBean] Naming Exception : " + e);
+            throw new EJBException("Cannot obtain Naming Context", e);
+        } catch (Exception e) {
+            TestUtil.logErr("[CompoundBean] Caught exception: " + e);
+            throw new EJBException("Caught exception: ", e);
+        }
+    }
 
-  public void ejbLoad() {
-    TestUtil.logTrace("[CompoundBean] ejbLoad()");
-  }
+    public void unsetEntityContext() {
+        TestUtil.logTrace("[CompoundBean] unsetEntityContext()");
+    }
 
-  public void ejbStore() {
-    TestUtil.logTrace("[CompoundBean] ejbStore()");
-  }
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("[CompoundBean] ejbRemove()");
+    }
 
+    public void ejbActivate() {
+        TestUtil.logTrace("[CompoundBean] ejbActivate()");
+    }
+
+    public void ejbPassivate() {
+        TestUtil.logTrace("[CompoundBean] ejbPassivate()");
+    }
+
+    public void ejbLoad() {
+        TestUtil.logTrace("[CompoundBean] ejbLoad()");
+    }
+
+    public void ejbStore() {
+        TestUtil.logTrace("[CompoundBean] ejbStore()");
+    }
 }

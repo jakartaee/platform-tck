@@ -17,35 +17,32 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.websocketmessage;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
 @ServerEndpoint(value = "/partialbytearraysession")
 public class WSByteArrayPartialAndSessionServer {
 
-  StringBuffer sb = new StringBuffer();
+    StringBuffer sb = new StringBuffer();
 
-  @OnMessage
-  public void bytesToString(byte[] array, Session s, boolean finito)
-      throws IOException {
-    sb.append(new String(array)).append("(").append(finito).append(")");
-    if (finito) {
-      s.getBasicRemote().sendText(sb.toString());
-      sb = new StringBuffer();
+    @OnMessage
+    public void bytesToString(byte[] array, Session s, boolean finito) throws IOException {
+        sb.append(new String(array)).append("(").append(finito).append(")");
+        if (finito) {
+            s.getBasicRemote().sendText(sb.toString());
+            sb = new StringBuffer();
+        }
     }
-  }
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in" + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+    @OnError
+    public void onError(Session session, Throwable t) throws IOException {
+        System.out.println("@OnError in" + getClass().getName());
+        t.printStackTrace(); // Write to error log, too
+        String message = "Exception: " + IOUtil.printStackTrace(t);
+        session.getBasicRemote().sendText(message);
+    }
 }

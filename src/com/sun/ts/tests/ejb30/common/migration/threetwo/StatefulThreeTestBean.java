@@ -28,35 +28,32 @@ import jakarta.ejb.Stateful;
 
 @Stateful(name = "StatefulThreeTestBean")
 @Remote(ThreeTestIF.class)
-public class StatefulThreeTestBean extends ThreeTestBeanBase
-    implements ThreeTestIF {
+public class StatefulThreeTestBean extends ThreeTestBeanBase implements ThreeTestIF {
 
-  @EJB(name = "twoRemoteHome")
-  private TwoRemoteHome twoRemoteHome;
+    @EJB(name = "twoRemoteHome")
+    private TwoRemoteHome twoRemoteHome;
 
-  // need to override it in ejb-jar.xml to provide the target ejb type info
-  @EJB(name = "twoLocalHome")
-  // private TwoLocalHome twoLocalHome;
-  private Object twoLocalHome;
+    // need to override it in ejb-jar.xml to provide the target ejb type info
+    @EJB(name = "twoLocalHome")
+    // private TwoLocalHome twoLocalHome;
+    private Object twoLocalHome;
 
-  @Resource(name = "sctx")
-  private SessionContext sctx;
+    @Resource(name = "sctx")
+    private SessionContext sctx;
 
-  public StatefulThreeTestBean() {
-  }
+    public StatefulThreeTestBean() {}
 
-  public void remove() {
-  }
+    public void remove() {}
 
-  protected TwoRemoteHome getTwoRemoteHome() {
-    return (TwoRemoteHome) (sctx.lookup("twoRemoteHome"));
-  }
+    protected TwoRemoteHome getTwoRemoteHome() {
+        return (TwoRemoteHome) (sctx.lookup("twoRemoteHome"));
+    }
 
-  protected TwoLocalHome getTwoLocalHome() {
-    return (TwoLocalHome) (sctx.lookup("twoLocalHome"));
-  }
+    protected TwoLocalHome getTwoLocalHome() {
+        return (TwoLocalHome) (sctx.lookup("twoLocalHome"));
+    }
 
-  protected jakarta.ejb.EJBContext getEJBContext() {
-    return sctx;
-  }
+    protected jakarta.ejb.EJBContext getEJBContext() {
+        return sctx;
+    }
 }

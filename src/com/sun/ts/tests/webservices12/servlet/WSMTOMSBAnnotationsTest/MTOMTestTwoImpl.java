@@ -20,35 +20,28 @@
 
 package com.sun.ts.tests.webservices12.servlet.WSMTOMSBAnnotationsTest;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
-
-import jakarta.xml.ws.WebServiceException;
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
 import jakarta.jws.WebService;
-
-import jakarta.xml.ws.Holder;
 import jakarta.xml.ws.BindingType;
 import jakarta.xml.ws.soap.SOAPBinding;
-import java.awt.Image;
-import com.sun.ts.tests.jaxws.common.AttachmentHelper;
-import java.net.URL;
-import jakarta.activation.DataHandler;
-import javax.xml.transform.Source;
 
-@WebService(portName = "MTOMTestTwoPort", serviceName = "MTOMTestService", targetNamespace = "http://mtomtestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/MTOMTestService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.servlet.WSMTOMSBAnnotationsTest.MTOMTestTwo")
+@WebService(
+        portName = "MTOMTestTwoPort",
+        serviceName = "MTOMTestService",
+        targetNamespace = "http://mtomtestservice.org/wsdl",
+        wsdlLocation = "WEB-INF/wsdl/MTOMTestService.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices12.servlet.WSMTOMSBAnnotationsTest.MTOMTestTwo")
 @BindingType(SOAPBinding.SOAP11HTTP_MTOM_BINDING)
-
 public class MTOMTestTwoImpl implements MTOMTestTwo {
 
-  private TSURL ctsurl = new TSURL();
+    private TSURL ctsurl = new TSURL();
 
-  public String mtomIn2(
-      com.sun.ts.tests.webservices12.servlet.WSMTOMSBAnnotationsTest.DataType3 data) {
-    System.out.println("--------------------------");
-    System.out.println("In mtomIn2");
+    public String mtomIn2(com.sun.ts.tests.webservices12.servlet.WSMTOMSBAnnotationsTest.DataType3 data) {
+        System.out.println("--------------------------");
+        System.out.println("In mtomIn2");
 
-    return "PASSED";
-  }
-
+        return "PASSED";
+    }
 }

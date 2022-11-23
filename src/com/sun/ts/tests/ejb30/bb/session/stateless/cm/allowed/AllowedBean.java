@@ -20,15 +20,12 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.cm.allowed;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.ejb30.common.allowed.AllowedBeanBase;
 import com.sun.ts.tests.ejb30.common.allowed.AllowedIF;
 import com.sun.ts.tests.ejb30.common.allowed.AllowedLocalIF;
 import com.sun.ts.tests.ejb30.common.allowed.Operations;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
@@ -40,48 +37,48 @@ import jakarta.ejb.TransactionAttributeType;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.Interceptors;
 import jakarta.interceptor.InvocationContext;
+import java.util.Properties;
 
 @Stateless(name = "AllowedBean")
-@Remote({ AllowedIF.class })
-@Local({ AllowedLocalIF.class })
-@Interceptors({ com.sun.ts.tests.ejb30.common.allowed.CancelInterceptor.class })
-public class AllowedBean extends AllowedBeanBase
-    implements AllowedIF, AllowedLocalIF {
+@Remote({AllowedIF.class})
+@Local({AllowedLocalIF.class})
+@Interceptors({com.sun.ts.tests.ejb30.common.allowed.CancelInterceptor.class})
+public class AllowedBean extends AllowedBeanBase implements AllowedIF, AllowedLocalIF {
 
-  @Resource(name = "ejbContext")
-  public void setSessionContext(SessionContext sc) {
-    super.setSessionContext(sc);
-  }
+    @Resource(name = "ejbContext")
+    public void setSessionContext(SessionContext sc) {
+        super.setSessionContext(sc);
+    }
 
-  @Timeout
-  @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-  public void timeout(jakarta.ejb.Timer timer) {
-    TLogger.log("timeout: " + this.getClass().getName());
-  }
+    @Timeout
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public void timeout(jakarta.ejb.Timer timer) {
+        TLogger.log("timeout: " + this.getClass().getName());
+    }
 
-  @AroundInvoke
-  public Object intercept(InvocationContext inv) throws Exception {
-    return super.intercept(inv);
-  }
+    @AroundInvoke
+    public Object intercept(InvocationContext inv) throws Exception {
+        return super.intercept(inv);
+    }
 
-  @Override
-  public Properties runOperations(SessionContext sctx) {
-    return Operations.getInstance().run2(sctx, AllowedIF.class);
-  }
+    @Override
+    public Properties runOperations(SessionContext sctx) {
+        return Operations.getInstance().run2(sctx, AllowedIF.class);
+    }
 
-  // ===================== business methods ===========================
-  @TransactionAttribute(TransactionAttributeType.SUPPORTS)
-  public void txSupports() throws TestFailedException {
-    Operations.getInstance().tryRollback(sessionContext);
-  }
+    // ===================== business methods ===========================
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+    public void txSupports() throws TestFailedException {
+        Operations.getInstance().tryRollback(sessionContext);
+    }
 
-  @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-  public void txNotSupported() throws TestFailedException {
-    Operations.getInstance().tryRollback(sessionContext);
-  }
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+    public void txNotSupported() throws TestFailedException {
+        Operations.getInstance().tryRollback(sessionContext);
+    }
 
-  @TransactionAttribute(TransactionAttributeType.NEVER)
-  public void txNever() throws TestFailedException {
-    Operations.getInstance().tryRollback(sessionContext);
-  }
+    @TransactionAttribute(TransactionAttributeType.NEVER)
+    public void txNever() throws TestFailedException {
+        Operations.getInstance().tryRollback(sessionContext);
+    }
 }

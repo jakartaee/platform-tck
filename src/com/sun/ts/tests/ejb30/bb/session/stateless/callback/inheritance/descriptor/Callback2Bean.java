@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.callback.inheritance.descrip
 
 import com.sun.ts.tests.ejb30.common.callback.Callback2IF;
 import com.sun.ts.tests.ejb30.common.callback.InterceptorI;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.Remote;
@@ -38,23 +37,21 @@ import jakarta.interceptor.Interceptors;
  * re-annotated as @PreDestroy method.
  */
 @Stateless(name = "Callback2Bean")
-@Remote({ Callback2IF.class })
-@Interceptors({ InterceptorI.class })
+@Remote({Callback2IF.class})
+@Interceptors({InterceptorI.class})
 @ExcludeDefaultInterceptors
 public class Callback2Bean extends Callback2BeanSuper {
-  public Callback2Bean() {
-    super();
-  }
+    public Callback2Bean() {
+        super();
+    }
 
-  @Override
-  @PostConstruct
-  protected void postConstructMethodInSuperSuper() throws RuntimeException {
-    postConstructMethod();
-  }
+    @Override
+    @PostConstruct
+    protected void postConstructMethodInSuperSuper() throws RuntimeException {
+        postConstructMethod();
+    }
 
-  @Override
-  @PreDestroy
-  protected void postConstructMethodInSuper() throws RuntimeException {
-  }
-
+    @Override
+    @PreDestroy
+    protected void postConstructMethodInSuper() throws RuntimeException {}
 }

@@ -20,200 +20,198 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.mdb.resref.single;
 
-import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.jms.Queue;
+import java.util.Properties;
 
 public class Client extends com.sun.ts.tests.jms.commonee.Client {
 
-  private String recipient = null;
+    private String recipient = null;
 
-  private Queue mdbQ = null;
+    private Queue mdbQ = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /**
-   * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-   *                     mailuser1; webServerHost; webServerPort; mailFrom;
-   *                     mailHost; jms_timeout; user; password;
-   */
-  public void setup(String[] args, Properties props) throws Fault {
-
-    try {
-      this.props = props;
-      super.setup(args, props);
-      recipient = TestUtil.getProperty("mailuser1");
-
-      mdbQ = (Queue) context.lookup("java:comp/env/jms/MDBTest");
-    } catch (Exception e) {
-      throw new Fault("Setup Failed!", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
-  }
 
-  /**
-   * @testName: testSession
-   *
-   * @assertion_ids: EJB:SPEC:10766
-   *
-   * @test_Strategy: Create a message-driven Bean declaring a resource reference
-   *                 for a jakarta.mail.Session.
-   * 
-   *                 Check that: - We can deploy the application. - We can
-   *                 lookup the mail session. - We can use this factory to send
-   *                 a mail.
-   */
-  public void testSession() throws Fault {
+    /**
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
+     *                     mailuser1; webServerHost; webServerPort; mailFrom;
+     *                     mailHost; jms_timeout; user; password;
+     */
+    public void setup(String[] args, Properties props) throws Fault {
 
-    boolean pass = false;
-    String testCase = "testSession";
-    int testNum = 2;
+        try {
+            this.props = props;
+            super.setup(args, props);
+            recipient = TestUtil.getProperty("mailuser1");
 
-    try {
-      qSender = session.createSender(mdbQ);
-      createTestMessage(testCase, testNum);
-      msg.setStringProperty("recipient", recipient);
-      qSender.send(msg);
-
-      if (!checkOnResponse(testCase)) {
-        throw new Fault("[Client] " + testCase + " failed ");
-      }
-    } catch (Exception e) {
-      logErr("[Client] " + testCase + " failed: " + e);
-      throw new Fault("[Client] " + testCase + " failed: ", e);
+            mdbQ = (Queue) context.lookup("java:comp/env/jms/MDBTest");
+        } catch (Exception e) {
+            throw new Fault("Setup Failed!", e);
+        }
     }
-  }
 
-  /**
-   * @testName: testURL
-   *
-   * @assertion_ids: EJB:SPEC:10766
-   *
-   * @test_Strategy: Create a message-driven Bean declaring a resource reference
-   *                 for a java.net.URL.
-   * 
-   *                 Check that: - We can deploy the application. - We can
-   *                 lookup the URL. - We can use this URL factory to open a
-   *                 connection to a HTML page bundled in the application.
-   */
-  public void testURL() throws Fault {
+    /**
+     * @testName: testSession
+     *
+     * @assertion_ids: EJB:SPEC:10766
+     *
+     * @test_Strategy: Create a message-driven Bean declaring a resource reference
+     *                 for a jakarta.mail.Session.
+     *
+     *                 Check that: - We can deploy the application. - We can
+     *                 lookup the mail session. - We can use this factory to send
+     *                 a mail.
+     */
+    public void testSession() throws Fault {
 
-    boolean pass = false;
-    String testCase = "testURL";
-    int testNum = 3;
+        boolean pass = false;
+        String testCase = "testSession";
+        int testNum = 2;
 
-    try {
-      qSender = session.createSender(mdbQ);
-      createTestMessage(testCase, testNum);
-      qSender.send(msg);
+        try {
+            qSender = session.createSender(mdbQ);
+            createTestMessage(testCase, testNum);
+            msg.setStringProperty("recipient", recipient);
+            qSender.send(msg);
 
-      if (!checkOnResponse(testCase)) {
-        throw new Fault("[Client] " + testCase + " failed ");
-      }
-    } catch (Exception e) {
-      logErr("[Client] " + testCase + " failed: " + e);
-      throw new Fault("[Client] " + testCase + " failed: ", e);
+            if (!checkOnResponse(testCase)) {
+                throw new Fault("[Client] " + testCase + " failed ");
+            }
+        } catch (Exception e) {
+            logErr("[Client] " + testCase + " failed: " + e);
+            throw new Fault("[Client] " + testCase + " failed: ", e);
+        }
     }
-  }
 
-  /**
-   * @testName: testQueue
-   *
-   * @assertion_ids: EJB:SPEC:10766
-   *
-   * @test_Strategy: Create a message-driven Bean declaring a resource reference
-   *                 for a jakarta.jms.QueueConnectionFactory.
-   * 
-   *                 Check that: - We can deploy the application. - We can
-   *                 lookup the JMS Queue Connection Factory.
-   */
-  public void testQueue() throws Fault {
+    /**
+     * @testName: testURL
+     *
+     * @assertion_ids: EJB:SPEC:10766
+     *
+     * @test_Strategy: Create a message-driven Bean declaring a resource reference
+     *                 for a java.net.URL.
+     *
+     *                 Check that: - We can deploy the application. - We can
+     *                 lookup the URL. - We can use this URL factory to open a
+     *                 connection to a HTML page bundled in the application.
+     */
+    public void testURL() throws Fault {
 
-    boolean pass = false;
-    String testCase = "testQueue";
-    int testNum = 4;
+        boolean pass = false;
+        String testCase = "testURL";
+        int testNum = 3;
 
-    try {
-      qSender = session.createSender(mdbQ);
-      createTestMessage(testCase, testNum);
+        try {
+            qSender = session.createSender(mdbQ);
+            createTestMessage(testCase, testNum);
+            qSender.send(msg);
 
-      qSender.send(msg);
-
-      if (!checkOnResponse(testCase)) {
-        throw new Fault("[Client] " + testCase + " failed ");
-      }
-    } catch (Exception e) {
-      logErr("[Client] " + testCase + " failed: " + e);
-      throw new Fault("[Client] " + testCase + " failed: ", e);
+            if (!checkOnResponse(testCase)) {
+                throw new Fault("[Client] " + testCase + " failed ");
+            }
+        } catch (Exception e) {
+            logErr("[Client] " + testCase + " failed: " + e);
+            throw new Fault("[Client] " + testCase + " failed: ", e);
+        }
     }
-  }
 
-  /**
-   * @testName: testTopic
-   *
-   * @assertion_ids: EJB:SPEC:10766
-   *
-   * @test_Strategy: Create a message-driven Bean declaring a resource reference
-   *                 for a jakarta.jms.TopicConnectionFactory.
-   * 
-   *                 Check that: - We can deploy the application. - We can
-   *                 lookup the JMS Topic Connection Factory.
-   */
-  public void testTopic() throws Fault {
+    /**
+     * @testName: testQueue
+     *
+     * @assertion_ids: EJB:SPEC:10766
+     *
+     * @test_Strategy: Create a message-driven Bean declaring a resource reference
+     *                 for a jakarta.jms.QueueConnectionFactory.
+     *
+     *                 Check that: - We can deploy the application. - We can
+     *                 lookup the JMS Queue Connection Factory.
+     */
+    public void testQueue() throws Fault {
 
-    boolean pass = false;
-    String testCase = "testTopic";
-    int testNum = 5;
+        boolean pass = false;
+        String testCase = "testQueue";
+        int testNum = 4;
 
-    try {
-      qSender = session.createSender(mdbQ);
-      createTestMessage(testCase, testNum);
-      qSender.send(msg);
+        try {
+            qSender = session.createSender(mdbQ);
+            createTestMessage(testCase, testNum);
 
-      if (!checkOnResponse(testCase)) {
-        throw new Fault("[Client] " + testCase + " failed ");
-      }
-    } catch (Exception e) {
-      logErr("[Client] " + testCase + " failed: " + e);
-      throw new Fault("[Client] " + testCase + " failed: ", e);
+            qSender.send(msg);
+
+            if (!checkOnResponse(testCase)) {
+                throw new Fault("[Client] " + testCase + " failed ");
+            }
+        } catch (Exception e) {
+            logErr("[Client] " + testCase + " failed: " + e);
+            throw new Fault("[Client] " + testCase + " failed: ", e);
+        }
     }
-  }
 
-  /**
-   * @testName: testAll
-   *
-   * @assertion_ids: EJB:SPEC:10766
-   *
-   * @test_Strategy: Create a message-driven bean declaring a resource reference
-   *                 for all the standard resource manager connection factory
-   *                 types.
-   * 
-   *                 Check that: - We can deploy the application. - We can
-   *                 lookup all the declared resource factories.
-   */
-  public void testAll() throws Fault {
-    boolean pass = false;
-    String testCase = "testAll";
-    int testNum = 6;
+    /**
+     * @testName: testTopic
+     *
+     * @assertion_ids: EJB:SPEC:10766
+     *
+     * @test_Strategy: Create a message-driven Bean declaring a resource reference
+     *                 for a jakarta.jms.TopicConnectionFactory.
+     *
+     *                 Check that: - We can deploy the application. - We can
+     *                 lookup the JMS Topic Connection Factory.
+     */
+    public void testTopic() throws Fault {
 
-    try {
-      qSender = session.createSender(mdbQ);
-      createTestMessage(testCase, testNum);
-      msg.setStringProperty("recipient", recipient);
-      qSender.send(msg);
+        boolean pass = false;
+        String testCase = "testTopic";
+        int testNum = 5;
 
-      if (!checkOnResponse(testCase)) {
-        throw new Fault("[Client] " + testCase + " failed ");
-      }
-    } catch (Exception e) {
-      logErr("[Client] " + testCase + " failed: " + e);
-      throw new Fault("[Client] " + testCase + " failed: ", e);
+        try {
+            qSender = session.createSender(mdbQ);
+            createTestMessage(testCase, testNum);
+            qSender.send(msg);
+
+            if (!checkOnResponse(testCase)) {
+                throw new Fault("[Client] " + testCase + " failed ");
+            }
+        } catch (Exception e) {
+            logErr("[Client] " + testCase + " failed: " + e);
+            throw new Fault("[Client] " + testCase + " failed: ", e);
+        }
     }
-  }
+
+    /**
+     * @testName: testAll
+     *
+     * @assertion_ids: EJB:SPEC:10766
+     *
+     * @test_Strategy: Create a message-driven bean declaring a resource reference
+     *                 for all the standard resource manager connection factory
+     *                 types.
+     *
+     *                 Check that: - We can deploy the application. - We can
+     *                 lookup all the declared resource factories.
+     */
+    public void testAll() throws Fault {
+        boolean pass = false;
+        String testCase = "testAll";
+        int testNum = 6;
+
+        try {
+            qSender = session.createSender(mdbQ);
+            createTestMessage(testCase, testNum);
+            msg.setStringProperty("recipient", recipient);
+            qSender.send(msg);
+
+            if (!checkOnResponse(testCase)) {
+                throw new Fault("[Client] " + testCase + " failed ");
+            }
+        } catch (Exception e) {
+            logErr("[Client] " + testCase + " failed: " + e);
+            throw new Fault("[Client] " + testCase + " failed: ", e);
+        }
+    }
 }

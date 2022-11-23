@@ -16,12 +16,12 @@
 
 package com.sun.ts.lib.implementation.sun.jms;
 
-import java.util.*;
-import java.io.*;
-import javax.naming.*;
-import jakarta.jms.*;
-import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
+import jakarta.jms.*;
+import java.io.*;
+import java.util.*;
+import javax.naming.*;
 
 /**
  * This is an implementation of the TSJMSObjectsInterface. An implementation of
@@ -30,120 +30,112 @@ import com.sun.ts.lib.porting.*;
  *
  * @author Dianne Jiao
  */
-
 public class SunRIJMSObjects implements TSJMSObjectsInterface {
-  private static Context jndiContext = null;
+    private static Context jndiContext = null;
 
-  private static QueueConnectionFactory qcf = null;
+    private static QueueConnectionFactory qcf = null;
 
-  private static TopicConnectionFactory tcf = null;
+    private static TopicConnectionFactory tcf = null;
 
-  private static ConnectionFactory cf = null;
+    private static ConnectionFactory cf = null;
 
-  private jakarta.jms.Topic testTopic = null;
+    private jakarta.jms.Topic testTopic = null;
 
-  private jakarta.jms.Queue testQueue = null;
+    private jakarta.jms.Queue testQueue = null;
 
-  private void getJNDIContext() throws Exception {
+    private void getJNDIContext() throws Exception {
 
-    if (jndiContext == null) {
-      try {
-        TestUtil.logTrace("Getting initial context");
-        jndiContext = new InitialContext();
-      } catch (javax.naming.NamingException ne) {
-        TestUtil.logErr("Could not create JNDI context because: ", ne);
-        TestUtil.printStackTrace(ne);
-        throw ne;
-      }
+        if (jndiContext == null) {
+            try {
+                TestUtil.logTrace("Getting initial context");
+                jndiContext = new InitialContext();
+            } catch (javax.naming.NamingException ne) {
+                TestUtil.logErr("Could not create JNDI context because: ", ne);
+                TestUtil.printStackTrace(ne);
+                throw ne;
+            }
+        }
     }
-  }
 
-  /**
-   * This method allows individual implementation to get the Queue
-   */
+    /**
+     * This method allows individual implementation to get the Queue
+     */
+    public jakarta.jms.Queue getQueue(String name) throws Exception {
+        getJNDIContext();
 
-  public jakarta.jms.Queue getQueue(String name) throws Exception {
-    getJNDIContext();
-
-    try {
-      testQueue = (jakarta.jms.Queue) jndiContext.lookup(name);
-    } catch (Exception e) {
-      TestUtil.logErr("Failed to lookup Queue");
-      TestUtil.printStackTrace(e);
-      throw e;
+        try {
+            testQueue = (jakarta.jms.Queue) jndiContext.lookup(name);
+        } catch (Exception e) {
+            TestUtil.logErr("Failed to lookup Queue");
+            TestUtil.printStackTrace(e);
+            throw e;
+        }
+        return testQueue;
     }
-    return testQueue;
-  }
 
-  /**
-   * This method allows individual implementation to get the Topic
-   */
+    /**
+     * This method allows individual implementation to get the Topic
+     */
+    public Topic getTopic(String name) throws Exception {
+        getJNDIContext();
 
-  public Topic getTopic(String name) throws Exception {
-    getJNDIContext();
-
-    try {
-      testTopic = (Topic) jndiContext.lookup(name);
-    } catch (Exception e) {
-      TestUtil.logErr("Failed to lookup Topic");
-      TestUtil.printStackTrace(e);
-      throw e;
+        try {
+            testTopic = (Topic) jndiContext.lookup(name);
+        } catch (Exception e) {
+            TestUtil.logErr("Failed to lookup Topic");
+            TestUtil.printStackTrace(e);
+            throw e;
+        }
+        return testTopic;
     }
-    return testTopic;
-  }
 
-  /**
-   * This method allows individual implementation to get the
-   * QueueConnectionFactory
-   */
+    /**
+     * This method allows individual implementation to get the
+     * QueueConnectionFactory
+     */
+    public QueueConnectionFactory getQueueConnectionFactory(String name) throws Exception {
+        getJNDIContext();
 
-  public QueueConnectionFactory getQueueConnectionFactory(String name)
-      throws Exception {
-    getJNDIContext();
-
-    try {
-      qcf = (QueueConnectionFactory) jndiContext.lookup(name);
-    } catch (Exception e) {
-      TestUtil.logErr("Failed to lookup QueueConnectionFactory");
-      TestUtil.printStackTrace(e);
-      throw e;
+        try {
+            qcf = (QueueConnectionFactory) jndiContext.lookup(name);
+        } catch (Exception e) {
+            TestUtil.logErr("Failed to lookup QueueConnectionFactory");
+            TestUtil.printStackTrace(e);
+            throw e;
+        }
+        return qcf;
     }
-    return qcf;
-  }
 
-  /**
-   * This method allows individual implementation to get the
-   * TopicConnectionFactory
-   */
+    /**
+     * This method allows individual implementation to get the
+     * TopicConnectionFactory
+     */
+    public TopicConnectionFactory getTopicConnectionFactory(String name) throws Exception {
+        getJNDIContext();
 
-  public TopicConnectionFactory getTopicConnectionFactory(String name)
-      throws Exception {
-    getJNDIContext();
-
-    try {
-      tcf = (TopicConnectionFactory) jndiContext.lookup(name);
-    } catch (Exception e) {
-      TestUtil.logErr("Failed to lookup TopicConnectionFactory");
-      TestUtil.printStackTrace(e);
-      throw e;
+        try {
+            tcf = (TopicConnectionFactory) jndiContext.lookup(name);
+        } catch (Exception e) {
+            TestUtil.logErr("Failed to lookup TopicConnectionFactory");
+            TestUtil.printStackTrace(e);
+            throw e;
+        }
+        return tcf;
     }
-    return tcf;
-  }
 
-  /**
-   * This method allows individual implementation to get the ConnectionFactory
-   */
+    /**
+     * This method allows individual implementation to get the ConnectionFactory
+     */
+    public ConnectionFactory getConnectionFactory(String name) throws Exception {
+        getJNDIContext();
 
-  public ConnectionFactory getConnectionFactory(String name) throws Exception {
-    getJNDIContext();
-
-    try {
-      cf = (ConnectionFactory) jndiContext.lookup(name);
-    } catch (Exception e) {
-      TestUtil.logErr("Failed to lookup ConnectionFactory");
-      TestUtil.printStackTrace(e);
-      throw e;
+        try {
+            cf = (ConnectionFactory) jndiContext.lookup(name);
+        } catch (Exception e) {
+            TestUtil.logErr("Failed to lookup ConnectionFactory");
+            TestUtil.printStackTrace(e);
+            throw e;
+        }
+        return cf;
     }
-    return cf;
-  }
 }

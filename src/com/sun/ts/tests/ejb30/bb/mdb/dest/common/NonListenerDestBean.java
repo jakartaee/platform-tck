@@ -26,29 +26,31 @@ import jakarta.ejb.EJBContext;
 import jakarta.ejb.MessageDriven;
 import jakarta.ejb.MessageDrivenContext;
 
-//This MDB does not implement jakarta.jms.MessageListener interface, doesn't
-//use annotation element messageListenerInterface, nor descritpor element
-//messaging-type.
-//the default is jakarta.jms.MessageListener
-//destinationType is also annotated here, though it should also be optional.
-//optional destinationType is tested in mdb/dest/optional and mdb/dest/optional2.
+// This MDB does not implement jakarta.jms.MessageListener interface, doesn't
+// use annotation element messageListenerInterface, nor descritpor element
+// messaging-type.
+// the default is jakarta.jms.MessageListener
+// destinationType is also annotated here, though it should also be optional.
+// optional destinationType is tested in mdb/dest/optional and mdb/dest/optional2.
 //
-@MessageDriven(name = "NonListenerDestBean", activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue") })
-public class NonListenerDestBean
-    extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.DestBeanBase {
-  // implements MessageListener {
-  @Resource(name = "mdc")
-  private MessageDrivenContext mdc;
+@MessageDriven(
+        name = "NonListenerDestBean",
+        activationConfig = {
+            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
+        })
+public class NonListenerDestBean extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.DestBeanBase {
+    // implements MessageListener {
+    @Resource(name = "mdc")
+    private MessageDrivenContext mdc;
 
-  public NonListenerDestBean() {
-    super();
-  }
+    public NonListenerDestBean() {
+        super();
+    }
 
-  public EJBContext getEJBContext() {
-    return this.mdc;
-  }
+    public EJBContext getEJBContext() {
+        return this.mdc;
+    }
 
-  // ================== business methods ====================================
+    // ================== business methods ====================================
 
 }

@@ -19,17 +19,15 @@
  */
 package com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated;
 
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF;
-
 import jakarta.ejb.AccessTimeout;
 import jakarta.ejb.Asynchronous;
 import jakarta.ejb.Local;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Remote;
 import jakarta.ejb.Stateful;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 @Stateful(mappedName = "stateful-concurrency-metada-annotated-NotAllowedConcurrencyBean")
 @Local(StatefulConcurrencyIF.class)
@@ -38,10 +36,9 @@ import jakarta.ejb.Stateful;
 @AccessTimeout(unit = TimeUnit.SECONDS, value = 0)
 public class NotAllowedConcurrencyBean extends StatefulConcurrencyBeanBase2 {
 
-  @Override
-  @Asynchronous
-  public Future<String> ping() {
-    return super.ping();
-  }
-
+    @Override
+    @Asynchronous
+    public Future<String> ping() {
+        return super.ping();
+    }
 }

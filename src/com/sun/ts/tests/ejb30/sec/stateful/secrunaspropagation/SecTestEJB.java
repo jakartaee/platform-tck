@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/* 
+/*
  * $Id$
  */
 
@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.sec.stateful.secrunaspropagation;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.sec.stateful.common.SecTest;
-
 import jakarta.annotation.Resource;
 import jakarta.annotation.security.DenyAll;
 import jakarta.annotation.security.RolesAllowed;
@@ -36,67 +35,64 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateful(name = "SecTestEJB")
-@Remote({ SecTest.class })
+@Remote({SecTest.class})
 @TransactionManagement(TransactionManagementType.CONTAINER)
 // @RolesReferenced(("Administrator", "VP", "Manager", "Employee")
 
 public class SecTestEJB implements SecTest {
 
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  @RolesAllowed({ "Administrator" })
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  @Remove
-  public boolean EjbNotAuthz() {
-    return true;
-  }
+    @RolesAllowed({"Administrator"})
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    @Remove
+    public boolean EjbNotAuthz() {
+        return true;
+    }
 
-  @RolesAllowed({ "Administrator", "Manager", "VP", "Employee" })
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  @Remove
-  public boolean EjbIsAuthz() {
-    return true;
-  }
+    @RolesAllowed({"Administrator", "Manager", "VP", "Employee"})
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    @Remove
+    public boolean EjbIsAuthz() {
+        return true;
+    }
 
-  @RolesAllowed({ "Manager", "Employee" })
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  public boolean EjbSecRoleRef(String role) {
-    return sctx.isCallerInRole(role);
-  }
+    @RolesAllowed({"Manager", "Employee"})
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public boolean EjbSecRoleRef(String role) {
+        return sctx.isCallerInRole(role);
+    }
 
-  @RolesAllowed({ "Administrator", "Manager", "VP", "Employee" })
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  public boolean EjbOverloadedSecRoleRefs(String role1) {
-    TestUtil.logMsg(
-        "isCallerInRole(" + role1 + ") = " + sctx.isCallerInRole(role1));
-    return sctx.isCallerInRole(role1);
-  }
+    @RolesAllowed({"Administrator", "Manager", "VP", "Employee"})
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public boolean EjbOverloadedSecRoleRefs(String role1) {
+        TestUtil.logMsg("isCallerInRole(" + role1 + ") = " + sctx.isCallerInRole(role1));
+        return sctx.isCallerInRole(role1);
+    }
 
-  @RolesAllowed({ "Administrator", "Manager", "VP", "Employee" })
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  @Remove
-  public boolean EjbOverloadedSecRoleRefs(String role1, String role2) {
-    TestUtil
-        .logMsg("isCallerInRole(" + role1 + ")= " + sctx.isCallerInRole(role1)
-            + "isCallerInRole(" + role2 + ")= " + sctx.isCallerInRole(role2));
-    return sctx.isCallerInRole(role1) && sctx.isCallerInRole(role2);
-  }
+    @RolesAllowed({"Administrator", "Manager", "VP", "Employee"})
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    @Remove
+    public boolean EjbOverloadedSecRoleRefs(String role1, String role2) {
+        TestUtil.logMsg("isCallerInRole(" + role1 + ")= " + sctx.isCallerInRole(role1) + "isCallerInRole(" + role2
+                + ")= " + sctx.isCallerInRole(role2));
+        return sctx.isCallerInRole(role1) && sctx.isCallerInRole(role2);
+    }
 
-  @Remove
-  public boolean checktest1() {
-    return true;
-  }
+    @Remove
+    public boolean checktest1() {
+        return true;
+    }
 
-  @DenyAll
-  @TransactionAttribute(TransactionAttributeType.REQUIRED)
-  @Remove
-  public boolean excludetest1() {
-    return true;
-  }
+    @DenyAll
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    @Remove
+    public boolean excludetest1() {
+        return true;
+    }
 
-  @Resource
-  public void setSessionContext(SessionContext sc) {
-    sctx = sc;
-  }
-
+    @Resource
+    public void setSessionContext(SessionContext sc) {
+        sctx = sc;
+    }
 }

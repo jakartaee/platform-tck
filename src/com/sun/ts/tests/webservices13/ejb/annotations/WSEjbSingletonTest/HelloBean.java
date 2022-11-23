@@ -16,19 +16,23 @@
 
 package com.sun.ts.tests.webservices13.ejb.annotations.WSEjbSingletonTest;
 
-import jakarta.ejb.Stateless;
 import jakarta.ejb.Singleton;
 import jakarta.jws.WebService;
 
-@WebService(portName = "HelloPort", serviceName = "WSEjbSingletonTestHelloService", targetNamespace = "http://Hello.org", wsdlLocation = "META-INF/wsdl/HelloService.wsdl", endpointInterface = "com.sun.ts.tests.webservices13.ejb.annotations.WSEjbSingletonTest.Hello")
+@WebService(
+        portName = "HelloPort",
+        serviceName = "WSEjbSingletonTestHelloService",
+        targetNamespace = "http://Hello.org",
+        wsdlLocation = "META-INF/wsdl/HelloService.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices13.ejb.annotations.WSEjbSingletonTest.Hello")
 @Singleton(name = "WSEjbSingletonTest")
 public class HelloBean {
 
-  public String hello(String str) {
-    return str + " to you too!";
-  }
+    public String hello(String str) {
+        return str + " to you too!";
+    }
 
-  public String bye(String str) {
-    return str + " and take care";
-  }
+    public String bye(String str) {
+        return str + " and take care";
+    }
 }

@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb30.misc.metadataComplete.appclientejbjars;
 
 import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
@@ -32,37 +31,33 @@ import jakarta.ejb.Stateless;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
 import jakarta.interceptor.Interceptors;
 
-//annotations to be ignored
+// annotations to be ignored
 @Stateless(name = "StatelessRemoteCalculatorBean")
-@Remote({ RemoteCalculator.class })
-@Interceptors({ InterceptorNotUsed.class })
+@Remote({RemoteCalculator.class})
+@Interceptors({InterceptorNotUsed.class})
 @ExcludeDefaultInterceptors
+public class StatelessRemoteCalculatorBean extends RemoteCalculatorBean0 implements RemoteCalculator {
 
-public class StatelessRemoteCalculatorBean extends RemoteCalculatorBean0
-    implements RemoteCalculator {
+    @Resource(name = "sessionContext") // to be ignored
+    private SessionContext sessionContext;
 
-  @Resource(name = "sessionContext") // to be ignored
-  private SessionContext sessionContext;
+    public StatelessRemoteCalculatorBean() {}
 
-  public StatelessRemoteCalculatorBean() {
-  }
+    protected EJBContext getEJBContext() {
+        return sessionContext;
+    }
 
-  protected EJBContext getEJBContext() {
-    return sessionContext;
-  }
+    @PostConstruct // to be ignored
+    public void postConstruct() {
+        throw new IllegalStateException("Should not get here. Annotations in the "
+                + "bean class should not be processed, since the descriptor is "
+                + "metadata-complete.");
+    }
 
-  @PostConstruct // to be ignored
-  public void postConstruct() {
-    throw new IllegalStateException("Should not get here. Annotations in the "
-        + "bean class should not be processed, since the descriptor is "
-        + "metadata-complete.");
-  }
-
-  @PreDestroy // to be ignored
-  public void preDestroy() {
-    throw new IllegalStateException("Should not get here. Annotations in the "
-        + "bean class should not be processed, since the descriptor is "
-        + "metadata-complete.");
-  }
-
+    @PreDestroy // to be ignored
+    public void preDestroy() {
+        throw new IllegalStateException("Should not get here. Annotations in the "
+                + "bean class should not be processed, since the descriptor is "
+                + "metadata-complete.");
+    }
 }

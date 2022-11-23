@@ -21,24 +21,20 @@
 package com.sun.ts.tests.ejb30.assembly.common;
 
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import jakarta.interceptor.Interceptors;
 
 @Stateless
-@Interceptors({ AssemblyInterceptor.class })
-public class AssemblyBean extends AssemblyBeanBase
-    implements AssemblyRemoteIF, AssemblyLocalIF {
-  @EJB(name = "helloBean") // this ejb-ref is resolved in sun-ejb-jar.xml
-  private HelloRemoteIF helloBean;
+@Interceptors({AssemblyInterceptor.class})
+public class AssemblyBean extends AssemblyBeanBase implements AssemblyRemoteIF, AssemblyLocalIF {
+    @EJB(name = "helloBean") // this ejb-ref is resolved in sun-ejb-jar.xml
+    private HelloRemoteIF helloBean;
 
-  public AssemblyBean() {
-  }
+    public AssemblyBean() {}
 
-  @Override
-  protected HelloRemoteIF getHelloBean() {
-    return helloBean;
-  }
-
+    @Override
+    protected HelloRemoteIF getHelloBean() {
+        return helloBean;
+    }
 }

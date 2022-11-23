@@ -17,29 +17,24 @@
 
 package com.sun.ts.tests.websocket.common.stringbean;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.DecodeException;
 import jakarta.websocket.Decoder.BinaryStream;
 import jakarta.websocket.EndpointConfig;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class StringBeanBinaryStreamDecoder implements BinaryStream<StringBean> {
 
-  @Override
-  public void init(EndpointConfig config) {
-  }
+    @Override
+    public void init(EndpointConfig config) {}
 
-  @Override
-  public StringBean decode(InputStream arg0)
-      throws DecodeException, IOException {
-    String data = IOUtil.readFromStream(arg0);
-    return new StringBean(data);
-  }
+    @Override
+    public StringBean decode(InputStream arg0) throws DecodeException, IOException {
+        String data = IOUtil.readFromStream(arg0);
+        return new StringBean(data);
+    }
 
-  @Override
-  public void destroy() {
-  }
+    @Override
+    public void destroy() {}
 }

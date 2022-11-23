@@ -20,240 +20,233 @@
 
 package com.sun.ts.tests.connector.xa.transaction.jta;
 
-import java.util.Properties;
-import java.util.Vector;
-
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
 import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
 import com.sun.ts.tests.connector.util.DBSupport;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
+import java.util.Properties;
+import java.util.Vector;
 
 public class JTATestEJB implements SessionBean {
-  private TSNamingContext context;
+    private TSNamingContext context;
 
-  private String str;
+    private String str;
 
-  private Properties p = null;
+    private Properties p = null;
 
-  // con will be used for the table1 connection
-  private transient TSConnection con;
+    // con will be used for the table1 connection
+    private transient TSConnection con;
 
-  private DBSupport dbutil = null;
+    private DBSupport dbutil = null;
 
-  // TSDataSources
-  private TSDataSource ds1;
+    // TSDataSources
+    private TSDataSource ds1;
 
-  private String whitebox_xa = null;
+    private String whitebox_xa = null;
 
-  private String uname = null;
+    private String uname = null;
 
-  private String password = null;
+    private String password = null;
 
-  public JTATestEJB() {
-  }
+    public JTATestEJB() {}
 
-  public void ejbCreate(Properties props) throws CreateException {
-    p = props;
-    try {
-      TestUtil.logTrace("ejbCreate");
-      System.out.println("ejbCreate done");
-      TestUtil.init(props);
-      whitebox_xa = p.getProperty("whitebox-xa");
-      System.out.println("got props");
-      uname = p.getProperty("rauser1");
-      password = p.getProperty("rapassword1");
-      System.out.println("whitebox_xa is : " + whitebox_xa);
-      // Get the TSDataSource
-      ds1 = (TSDataSource) context.lookup(whitebox_xa);
-      TestUtil.logTrace("ds1: " + ds1);
-      System.out.println("TSDataSource lookup OK!");
-      TestUtil.logTrace("TSDataSource lookup OK!");
-      dbutil = new DBSupport();
-      this.str = str;
-    } catch (Exception e) {
-      TestUtil.logErr("init failed", e);
-    }
-  }
-
-  public boolean testXAResource1() {
-    System.out.println("JTATest EJB");
-    boolean b1 = false;
-    Vector log = null;
-    boolean results = true;
-
-    try {
-      // create EJB
-      JTATest hr = null;
-      try {
-        ds1.clearLog();
-        TSNamingContext ic = new TSNamingContext();
-        TestUtil.logMsg("Got the EJB!!");
-        TestUtil.logMsg("Got RA log.");
-        ds1.setLogFlag(true);
-        con = ds1.getConnection();
-        ds1.setLogFlag(false);
-        log = ds1.getLog();
-        TestUtil.logTrace("Got connection.");
-      } catch (Exception sqle) {
-        TestUtil.printStackTrace(sqle);
-        TestUtil.logMsg("Exception caught on creating connection:");
-      }
-
-      // Need to link these strings to assertion
-      String toCheck1 = "TSManagedConnection.getXAResource";
-      String toCheck2 = "XAResourceImpl.start";
-
-      // Verify connection object works by doing some end to end tests.
-      TestUtil.logMsg("Checking for Connection Validity.");
-
-      // Insert into table
-      try {
-        dbutil.insertIntoTable(con);
-        TestUtil.logMsg("Values inserted into table!");
-      } catch (Exception sqle) {
-        TestUtil.printStackTrace(sqle);
-        TestUtil.logMsg("Exception inserting into table.");
-      }
-
-      // Drop the table
-      try {
-        dbutil.dropTable(con);
-        TestUtil.logMsg("Table has been dropped!");
-      } catch (Exception sqle) {
-        TestUtil.printStackTrace(sqle);
-        TestUtil.logMsg("Exception dropping table.");
-      }
-      for (int i = 0; i < log.size(); i++) {
-        String str = (String) log.elementAt(i);
-        if (str.startsWith(toCheck1)) {
-          b1 = true;
+    public void ejbCreate(Properties props) throws CreateException {
+        p = props;
+        try {
+            TestUtil.logTrace("ejbCreate");
+            System.out.println("ejbCreate done");
+            TestUtil.init(props);
+            whitebox_xa = p.getProperty("whitebox-xa");
+            System.out.println("got props");
+            uname = p.getProperty("rauser1");
+            password = p.getProperty("rapassword1");
+            System.out.println("whitebox_xa is : " + whitebox_xa);
+            // Get the TSDataSource
+            ds1 = (TSDataSource) context.lookup(whitebox_xa);
+            TestUtil.logTrace("ds1: " + ds1);
+            System.out.println("TSDataSource lookup OK!");
+            TestUtil.logTrace("TSDataSource lookup OK!");
+            dbutil = new DBSupport();
+            this.str = str;
+        } catch (Exception e) {
+            TestUtil.logErr("init failed", e);
         }
-      }
+    }
 
-      if (b1) {
-        results = true;
-        TestUtil.logMsg("Methods called correctly");
-      }
-    } catch (Exception ex) {
-      ex.printStackTrace();
-    } finally {
-      try {
-        if (con != null) {
-          con.close();
+    public boolean testXAResource1() {
+        System.out.println("JTATest EJB");
+        boolean b1 = false;
+        Vector log = null;
+        boolean results = true;
+
+        try {
+            // create EJB
+            JTATest hr = null;
+            try {
+                ds1.clearLog();
+                TSNamingContext ic = new TSNamingContext();
+                TestUtil.logMsg("Got the EJB!!");
+                TestUtil.logMsg("Got RA log.");
+                ds1.setLogFlag(true);
+                con = ds1.getConnection();
+                ds1.setLogFlag(false);
+                log = ds1.getLog();
+                TestUtil.logTrace("Got connection.");
+            } catch (Exception sqle) {
+                TestUtil.printStackTrace(sqle);
+                TestUtil.logMsg("Exception caught on creating connection:");
+            }
+
+            // Need to link these strings to assertion
+            String toCheck1 = "TSManagedConnection.getXAResource";
+            String toCheck2 = "XAResourceImpl.start";
+
+            // Verify connection object works by doing some end to end tests.
+            TestUtil.logMsg("Checking for Connection Validity.");
+
+            // Insert into table
+            try {
+                dbutil.insertIntoTable(con);
+                TestUtil.logMsg("Values inserted into table!");
+            } catch (Exception sqle) {
+                TestUtil.printStackTrace(sqle);
+                TestUtil.logMsg("Exception inserting into table.");
+            }
+
+            // Drop the table
+            try {
+                dbutil.dropTable(con);
+                TestUtil.logMsg("Table has been dropped!");
+            } catch (Exception sqle) {
+                TestUtil.printStackTrace(sqle);
+                TestUtil.logMsg("Exception dropping table.");
+            }
+            for (int i = 0; i < log.size(); i++) {
+                String str = (String) log.elementAt(i);
+                if (str.startsWith(toCheck1)) {
+                    b1 = true;
+                }
+            }
+
+            if (b1) {
+                results = true;
+                TestUtil.logMsg("Methods called correctly");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
-      } catch (Exception ex) {
-        ex.printStackTrace();
-      }
+        return results;
     }
-    return results;
-  }
 
-  public boolean testXAResource2() {
+    public boolean testXAResource2() {
 
-    Vector log = null;
-    boolean b1 = false;
-    boolean b2 = false;
-    boolean results = true;
+        Vector log = null;
+        boolean b1 = false;
+        boolean b2 = false;
+        boolean results = true;
 
-    try {
-      // Obtain connection, perform API verification
-      TestUtil.logMsg("Performing callback verification...");
-      try {
-        ds1.clearLog();
-        TestUtil.logMsg("Got RA log.");
-        ds1.setLogFlag(true);
-        con = ds1.getConnection();
-        ds1.setLogFlag(false);
-        log = ds1.getLog();
-        TestUtil.logTrace("Got connection.");
-      } catch (Exception sqle) {
-        TestUtil.printStackTrace(sqle);
-        TestUtil.logMsg("Exception caught on creating connection:");
-      }
+        try {
+            // Obtain connection, perform API verification
+            TestUtil.logMsg("Performing callback verification...");
+            try {
+                ds1.clearLog();
+                TestUtil.logMsg("Got RA log.");
+                ds1.setLogFlag(true);
+                con = ds1.getConnection();
+                ds1.setLogFlag(false);
+                log = ds1.getLog();
+                TestUtil.logTrace("Got connection.");
+            } catch (Exception sqle) {
+                TestUtil.printStackTrace(sqle);
+                TestUtil.logMsg("Exception caught on creating connection:");
+            }
 
-      // Need to link these strings to assertion
-      String toCheck1 = "XAResourceImpl.commit";
+            // Need to link these strings to assertion
+            String toCheck1 = "XAResourceImpl.commit";
 
-      // Turn tracing on if you want to see the log contents
-      TestUtil.logTrace(log.toString());
+            // Turn tracing on if you want to see the log contents
+            TestUtil.logTrace(log.toString());
 
-      // Verify connection object works by doing some end to end tests.
-      TestUtil.logMsg("Performing end to end verification...");
+            // Verify connection object works by doing some end to end tests.
+            TestUtil.logMsg("Performing end to end verification...");
 
-      // Insert into table
-      try {
-        dbutil.insertIntoTable(con);
-        TestUtil.logMsg("Values inserted into table!");
-      } catch (Exception sqle) {
-        TestUtil.printStackTrace(sqle);
-        TestUtil.logMsg("Exception inserting into table.");
-      }
+            // Insert into table
+            try {
+                dbutil.insertIntoTable(con);
+                TestUtil.logMsg("Values inserted into table!");
+            } catch (Exception sqle) {
+                TestUtil.printStackTrace(sqle);
+                TestUtil.logMsg("Exception inserting into table.");
+            }
 
-      // Drop the table
-      try {
-        dbutil.dropTable(con);
-        TestUtil.logMsg("Table has been dropped!");
-      } catch (Exception sqle) {
-        TestUtil.printStackTrace(sqle);
-        TestUtil.logMsg("Exception dropping table.");
-      }
-      for (int i = 0; i < log.size(); i++) {
-        String str = (String) log.elementAt(i);
-        if (str.startsWith(toCheck1)) {
-          b1 = true;
+            // Drop the table
+            try {
+                dbutil.dropTable(con);
+                TestUtil.logMsg("Table has been dropped!");
+            } catch (Exception sqle) {
+                TestUtil.printStackTrace(sqle);
+                TestUtil.logMsg("Exception dropping table.");
+            }
+            for (int i = 0; i < log.size(); i++) {
+                String str = (String) log.elementAt(i);
+                if (str.startsWith(toCheck1)) {
+                    b1 = true;
+                }
+            }
+
+            if (b1) {
+                results = true;
+                TestUtil.logMsg("Methods called correctly");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
-      }
+        return results;
+    }
 
-      if (b1) {
-        results = true;
-        TestUtil.logMsg("Methods called correctly");
-      }
-    } catch (Exception ex) {
-      ex.printStackTrace();
-    } finally {
-      try {
-        if (con != null) {
-          con.close();
+    public void setSessionContext(SessionContext sc) {
+
+        try {
+            TestUtil.logTrace("setSessionContext");
+            this.context = new TSNamingContext();
+        } catch (Exception sqle) {
+            TestUtil.printStackTrace(sqle);
+            sqle.getMessage();
         }
-      } catch (Exception ex) {
-        ex.printStackTrace();
-      }
-    }
-    return results;
-  }
-
-  public void setSessionContext(SessionContext sc) {
-
-    try {
-      TestUtil.logTrace("setSessionContext");
-      this.context = new TSNamingContext();
-    } catch (Exception sqle) {
-      TestUtil.printStackTrace(sqle);
-      sqle.getMessage();
     }
 
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-    try {
-      if (con != null) {
-        con.close();
-      }
-    } catch (Exception ex) {
-      ex.printStackTrace();
+    public void ejbRemove() {
+        TestUtil.logTrace("ejbRemove");
+        try {
+            if (con != null) {
+                con.close();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
-  }
 
-  public void ejbActivate() {
-  }
+    public void ejbActivate() {}
 
-  public void ejbPassivate() {
-  }
-
+    public void ejbPassivate() {}
 }

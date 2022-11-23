@@ -20,126 +20,102 @@
 
 package com.sun.ts.tests.ejb30.common.interceptor;
 
+import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
+import jakarta.ejb.EJBContext;
 import java.util.ArrayList;
 
-import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
+public abstract class AroundInvokeBase implements AroundInvokeIF, java.io.Serializable {
+    protected AroundInvokeBase() {}
 
-import jakarta.ejb.EJBContext;
+    protected abstract EJBContext getEJBContext();
 
-public abstract class AroundInvokeBase
-    implements AroundInvokeIF, java.io.Serializable {
-  protected AroundInvokeBase() {
-  }
-
-  abstract protected EJBContext getEJBContext();
-
-  protected void ensureRollbackOnly() throws CalculatorException {
-    // the tx should have been marked as rollback only in interceptor.
-    boolean txStatus = getEJBContext().getRollbackOnly();
-    if (!txStatus) {
-      throw new CalculatorException(
-          "the tx should have been marked as rollback only in interceptor, but getRollbackOnly() in business method returns false.");
+    protected void ensureRollbackOnly() throws CalculatorException {
+        // the tx should have been marked as rollback only in interceptor.
+        boolean txStatus = getEJBContext().getRollbackOnly();
+        if (!txStatus) {
+            throw new CalculatorException(
+                    "the tx should have been marked as rollback only in interceptor, but getRollbackOnly() in business method returns false.");
+        }
     }
-  }
 
-  // ===================== business methods ===========================
-  public void remove() {
-  }
+    // ===================== business methods ===========================
+    public void remove() {}
 
-  public boolean sameSecContextTest() throws CalculatorException {
-    return true;
-    // the check occurs inside the interceptor prior to invoking this method.
-    // exceptions will be thrown if the check failed.
-  }
+    public boolean sameSecContextTest() throws CalculatorException {
+        return true;
+        // the check occurs inside the interceptor prior to invoking this method.
+        // exceptions will be thrown if the check failed.
+    }
 
-  public void getBeanTest() throws CalculatorException {
+    public void getBeanTest() throws CalculatorException {}
 
-  }
+    public String getParametersTest(String param) throws CalculatorException {
+        return param;
+    }
 
-  public String getParametersTest(String param) throws CalculatorException {
-    return param;
-  }
+    public void getParametersEmptyTest() throws CalculatorException {}
 
-  public void getParametersEmptyTest() throws CalculatorException {
+    public String setParametersTest(String param) throws CalculatorException {
+        return param;
+    }
 
-  }
+    public void getEJBContextTest() throws CalculatorException {}
 
-  public String setParametersTest(String param) throws CalculatorException {
-    return param;
-  }
+    public void getContextDataTest() throws CalculatorException {}
 
-  public void getEJBContextTest() throws CalculatorException {
+    public void getMethodTest() throws CalculatorException {}
 
-  }
+    public String exceptionTest() throws CalculatorException {
+        return "This test failed if you see this.  A CalculatorException should have been thrown from the interceptor.";
+    }
 
-  public void getContextDataTest() throws CalculatorException {
+    public void suppressExceptionTest() throws CalculatorException {
+        throw new CalculatorException(
+                "This test failed if you see this. This exception should have been supressed by interceptor method.");
+    }
 
-  }
+    public void sameInvocationContextTest() throws CalculatorException {}
 
-  public void getMethodTest() throws CalculatorException {
+    public void orderTest() throws CalculatorException {}
 
-  }
+    public void txRollbackOnlyTest() throws CalculatorException {
+        ensureRollbackOnly();
+    }
 
-  public String exceptionTest() throws CalculatorException {
-    return "This test failed if you see this.  A CalculatorException should have been thrown from the interceptor.";
-  }
+    public void txRollbackOnlyAfterTest() throws CalculatorException {
+        // tx will be marked for rollback only after proceed(), i.e.,
+        // after this method invocation.
+    }
 
-  public void suppressExceptionTest() throws CalculatorException {
-    throw new CalculatorException(
-        "This test failed if you see this. This exception should have been supressed by interceptor method.");
-  }
+    public void runtimeExceptionTest() throws CalculatorException {
+        ensureRollbackOnly();
+    }
 
-  public void sameInvocationContextTest() throws CalculatorException {
-  }
+    public void runtimeExceptionAfterTest() throws CalculatorException {}
 
-  public void orderTest() throws CalculatorException {
-  }
+    public void beforeCompletionTest() throws CalculatorException {}
 
-  public void txRollbackOnlyTest() throws CalculatorException {
-    ensureRollbackOnly();
-  }
+    public void afterBeginTest() throws CalculatorException {}
 
-  public void txRollbackOnlyAfterTest() throws CalculatorException {
-    // tx will be marked for rollback only after proceed(), i.e.,
-    // after this method invocation.
-  }
+    public ArrayList<String> methodLevelInterceptorMixedTest(ArrayList<String> alist) throws CalculatorException {
+        return addBeanName(alist);
+    }
 
-  public void runtimeExceptionTest() throws CalculatorException {
-    ensureRollbackOnly();
-  }
+    public ArrayList<String> methodLevelClassLevelInterceptorMixedTest(ArrayList<String> alist)
+            throws CalculatorException {
+        return addBeanName(alist);
+    }
 
-  public void runtimeExceptionAfterTest() throws CalculatorException {
-  }
+    public ArrayList<String> repeatedInterceptors(ArrayList<String> alist) throws CalculatorException {
+        return addBeanName(alist);
+    }
 
-  public void beforeCompletionTest() throws CalculatorException {
-  }
+    public ArrayList<String> interceptorOrderingOverride(ArrayList<String> alist) throws CalculatorException {
+        return addBeanName(alist);
+    }
 
-  public void afterBeginTest() throws CalculatorException {
-  }
-
-  public ArrayList<String> methodLevelInterceptorMixedTest(
-      ArrayList<String> alist) throws CalculatorException {
-    return addBeanName(alist);
-  }
-
-  public ArrayList<String> methodLevelClassLevelInterceptorMixedTest(
-      ArrayList<String> alist) throws CalculatorException {
-    return addBeanName(alist);
-  }
-
-  public ArrayList<String> repeatedInterceptors(ArrayList<String> alist)
-      throws CalculatorException {
-    return addBeanName(alist);
-  }
-
-  public ArrayList<String> interceptorOrderingOverride(ArrayList<String> alist)
-      throws CalculatorException {
-    return addBeanName(alist);
-  }
-
-  protected ArrayList<String> addBeanName(ArrayList<String> alist) {
-    alist.add("AroundInvokeBean");
-    return alist;
-  }
-
+    protected ArrayList<String> addBeanName(ArrayList<String> alist) {
+        alist.add("AroundInvokeBean");
+        return alist;
+    }
 }

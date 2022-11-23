@@ -23,17 +23,17 @@ package com.sun.ts.tests.jaxws.api.jakarta_xml_ws.Service;
 import jakarta.xml.ws.WebServiceFeature;
 
 public final class TCKFeature extends WebServiceFeature {
-  public static final String ID = "http://www.w3.org/2004/08/soap/features/tck-feature";
+    public static final String ID = "http://www.w3.org/2004/08/soap/features/tck-feature";
 
-  public TCKFeature() {
-    this.enabled = true;
-  }
+    public TCKFeature() {
+        this.enabled = true;
+    }
 
-  public TCKFeature(boolean enabled) {
-    this.enabled = enabled;
-  }
+    public TCKFeature(boolean enabled) {
+        this.enabled = enabled;
+    }
 
-  public String getID() {
-    return ID;
-  }
+    public String getID() {
+        return ID;
+    }
 }

@@ -20,25 +20,23 @@
 package com.sun.ts.tests.ejb30.timer.interceptor.lifecycle.singleton;
 
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.interceptor.InvocationContext;
 
 public class Interceptor1 extends InterceptorBase {
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  @PreDestroy
-  private void postConstruct(InvocationContext inv) {
-    TimerUtil.createMillisecondLaterTimer(timerService,
-        "Interceptor1.postConstruct");
-    try {
-      inv.proceed();
-    } catch (RuntimeException e) {
-      throw e;
-    } catch (Exception ex) {
-      throw new RuntimeException(ex);
+    @SuppressWarnings("unused")
+    @PostConstruct
+    @PreDestroy
+    private void postConstruct(InvocationContext inv) {
+        TimerUtil.createMillisecondLaterTimer(timerService, "Interceptor1.postConstruct");
+        try {
+            inv.proceed();
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
     }
-  }
 }

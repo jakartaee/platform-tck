@@ -23,9 +23,6 @@ package com.sun.ts.tests.ejb30.bb.mdb.dest.jarwar;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.FAILED;
 import static com.sun.ts.tests.ejb30.common.messaging.Constants.PASSED;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.annotation.Resource;
 import jakarta.jms.Queue;
 import jakarta.servlet.GenericServlet;
@@ -33,33 +30,31 @@ import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class TestServlet extends GenericServlet {
 
-  @Resource(name = "replyQueue")
-  private Queue replyQueue;
+    @Resource(name = "replyQueue")
+    private Queue replyQueue;
 
-  public void init(ServletConfig config) throws ServletException {
-    super.init(config);
-  }
-
-  public void service(ServletRequest req, ServletResponse res)
-      throws ServletException, IOException {
-    invokeTest(req, res);
-  }
-
-  protected void invokeTest(ServletRequest req, ServletResponse res)
-      throws ServletException, IOException {
-    PrintWriter pw = res.getWriter();
-    String reason = "";
-    boolean status = true;
-    if (replyQueue == null) {
-      reason += "replyQueue is null. ";
-      status = false;
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
     }
-    pw.println(status ? PASSED : FAILED);
-    pw.println("replyQueue: " + replyQueue);
 
-  }
+    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+        invokeTest(req, res);
+    }
 
+    protected void invokeTest(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+        PrintWriter pw = res.getWriter();
+        String reason = "";
+        boolean status = true;
+        if (replyQueue == null) {
+            reason += "replyQueue is null. ";
+            status = false;
+        }
+        pw.println(status ? PASSED : FAILED);
+        pw.println("replyQueue: " + replyQueue);
+    }
 }

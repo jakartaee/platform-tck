@@ -22,29 +22,25 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.migration.twothree.descripto
 
 import com.sun.ts.tests.ejb30.common.migration.twothree.MigrationBeanBase;
 import com.sun.ts.tests.ejb30.common.migration.twothree.ThreeIF;
-
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.SessionContext;
 
-//meta data declared in descriptor
-//@Stateless(name="MigrationBean")
-//@Remote({ThreeIF.class})
-//@Local({ThreeLocalIF.class})
-//@RemoteHome(TwoRemoteHome.class)
-//@LocalHome(TwoLocalHome.class)
+// meta data declared in descriptor
+// @Stateless(name="MigrationBean")
+// @Remote({ThreeIF.class})
+// @Local({ThreeLocalIF.class})
+// @RemoteHome(TwoRemoteHome.class)
+// @LocalHome(TwoLocalHome.class)
 public class MigrationBean extends MigrationBeanBase implements ThreeIF {
 
-  // injection declared in descriptor
-  private SessionContext sessionContext;
+    // injection declared in descriptor
+    private SessionContext sessionContext;
 
-  protected EJBContext getEJBContext() {
-    return sessionContext;
-  }
+    protected EJBContext getEJBContext() {
+        return sessionContext;
+    }
 
-  public MigrationBean() {
-  }
+    public MigrationBean() {}
 
-  public void remove() {
-  }
-
+    public void remove() {}
 }

@@ -17,27 +17,25 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.websocketmessagereturntype;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
 @ServerEndpoint(value = "/bytearray")
 public class WSByteArrayServer {
 
-  @OnMessage
-  public byte[] bytesToString(String data) {
-    return data.getBytes();
-  }
+    @OnMessage
+    public byte[] bytesToString(String data) {
+        return data.getBytes();
+    }
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+    @OnError
+    public void onError(Session session, Throwable t) throws IOException {
+        t.printStackTrace(); // Write to error log, too
+        String message = "Exception: " + IOUtil.printStackTrace(t);
+        session.getBasicRemote().sendText(message);
+    }
 }

@@ -24,42 +24,37 @@ package com.sun.ts.tests.ejb.ee.sec.stateless.common;
 
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
 
 public class SecTestRoleRefEJB implements SessionBean {
 
-  private SessionContext sctx = null;
+    private SessionContext sctx = null;
 
-  public void ejbCreate() throws CreateException {
-    TestUtil.logTrace("SecTestRoleRefEJB ejbCreate OK!");
-  }
-
-  public void initLogging(java.util.Properties p) {
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.logErr("SecTestRoleRefEJB initLogging failed.", e);
+    public void ejbCreate() throws CreateException {
+        TestUtil.logTrace("SecTestRoleRefEJB ejbCreate OK!");
     }
-  }
 
-  public boolean EjbSecRoleRefScope(String role) {
-    return sctx.isCallerInRole(role);
-  }
+    public void initLogging(java.util.Properties p) {
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.logErr("SecTestRoleRefEJB initLogging failed.", e);
+        }
+    }
 
-  public void setSessionContext(SessionContext sc) {
-    sctx = sc;
-  }
+    public boolean EjbSecRoleRefScope(String role) {
+        return sctx.isCallerInRole(role);
+    }
 
-  public void ejbRemove() {
-  }
+    public void setSessionContext(SessionContext sc) {
+        sctx = sc;
+    }
 
-  public void ejbActivate() {
-  }
+    public void ejbRemove() {}
 
-  public void ejbPassivate() {
-  }
+    public void ejbActivate() {}
 
+    public void ejbPassivate() {}
 }

@@ -17,51 +17,48 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.basic;
 
-import java.io.IOException;
-
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.OPS;
 import com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.WSCSuperEndpoint;
-
 import jakarta.websocket.EncodeException;
 import jakarta.websocket.Session;
+import java.io.IOException;
 
 public abstract class WSCCommonServer implements WSCSuperEndpoint {
-  public void onMessage(String msg, Session session)
-      throws IOException, EncodeException {
-    OPS op = OPS.valueOf(msg);
-    switch (op) {
-    case BOOL:
-      session.getBasicRemote().sendObject(BOOL);
-      break;
-    case BYTE:
-      session.getBasicRemote().sendObject(NUMERIC.byteValue());
-      break;
-    case CHAR:
-      session.getBasicRemote().sendObject(CHAR);
-      break;
-    case DOUBLE:
-      session.getBasicRemote().sendObject(NUMERIC.doubleValue());
-      break;
-    case FLOAT:
-      session.getBasicRemote().sendObject(NUMERIC.floatValue());
-      break;
-    case INT:
-      session.getBasicRemote().sendObject(NUMERIC.intValue());
-      break;
-    case LONG:
-      session.getBasicRemote().sendObject(NUMERIC.longValue());
-      break;
-    case SHORT:
-      session.getBasicRemote().sendObject(NUMERIC.shortValue());
-      break;
+    public void onMessage(String msg, Session session) throws IOException, EncodeException {
+        OPS op = OPS.valueOf(msg);
+        switch (op) {
+            case BOOL:
+                session.getBasicRemote().sendObject(BOOL);
+                break;
+            case BYTE:
+                session.getBasicRemote().sendObject(NUMERIC.byteValue());
+                break;
+            case CHAR:
+                session.getBasicRemote().sendObject(CHAR);
+                break;
+            case DOUBLE:
+                session.getBasicRemote().sendObject(NUMERIC.doubleValue());
+                break;
+            case FLOAT:
+                session.getBasicRemote().sendObject(NUMERIC.floatValue());
+                break;
+            case INT:
+                session.getBasicRemote().sendObject(NUMERIC.intValue());
+                break;
+            case LONG:
+                session.getBasicRemote().sendObject(NUMERIC.longValue());
+                break;
+            case SHORT:
+                session.getBasicRemote().sendObject(NUMERIC.shortValue());
+                break;
+        }
     }
-  }
 
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in " + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+    public void onError(Session session, Throwable t) throws IOException {
+        System.out.println("@OnError in " + getClass().getName());
+        t.printStackTrace(); // Write to error log, too
+        String message = "Exception: " + IOUtil.printStackTrace(t);
+        session.getBasicRemote().sendText(message);
+    }
 }

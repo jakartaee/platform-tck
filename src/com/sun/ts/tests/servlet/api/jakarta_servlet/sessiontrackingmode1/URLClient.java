@@ -19,99 +19,97 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.sessiontrackingmode1;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    setContextRoot("/servlet_js_sessiontrackingmode1_web");
-    setServletName("TestServlet");
+        setContextRoot("/servlet_js_sessiontrackingmode1_web");
+        setServletName("TestServlet");
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
-  /* Run test */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     */
+    /* Run test */
 
-  /*
-   * @testName: setSessionTrackingModes1
-   *
-   * @assertion_ids: Servlet:JAVADOC:695.2;
-   *
-   * @test_Strategy: Negative test for method
-   * ServletContext.setSessionTrackingModes. Call
-   * ServletContext.setSessionTrackingModes inside a servlet; verify
-   * IllegalStateException is thrown.
-   */
-  public void setSessionTrackingModes1() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "setSessionTrackingModes1");
-    invoke();
-  }
+    /*
+     * @testName: setSessionTrackingModes1
+     *
+     * @assertion_ids: Servlet:JAVADOC:695.2;
+     *
+     * @test_Strategy: Negative test for method
+     * ServletContext.setSessionTrackingModes. Call
+     * ServletContext.setSessionTrackingModes inside a servlet; verify
+     * IllegalStateException is thrown.
+     */
+    public void setSessionTrackingModes1() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "setSessionTrackingModes1");
+        invoke();
+    }
 
-  /*
-   * @testName: setSessionTrackingModes2
-   *
-   * @assertion_ids: Servlet:JAVADOC:695.2;
-   *
-   * @test_Strategy: Negative test for method
-   * ServletContext.setSessionTrackingModes. Call
-   * ServletContext.setSessionTrackingModes inside a servlet; verify
-   * IllegalStateException is thrown.
-   */
-  public void setSessionTrackingModes2() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "setSessionTrackingModes2");
-    invoke();
-  }
-  /*
-   * @testName: setSessionTrackingModes3
-   *
-   * @assertion_ids: Servlet:JAVADOC:695.2;
-   *
-   * @test_Strategy: Negative test for method
-   * ServletContext.setSessionTrackingModes. Call
-   * ServletContext.setSessionTrackingModes inside a servlet; verify
-   * IllegalStateException is thrown.
-   */
+    /*
+     * @testName: setSessionTrackingModes2
+     *
+     * @assertion_ids: Servlet:JAVADOC:695.2;
+     *
+     * @test_Strategy: Negative test for method
+     * ServletContext.setSessionTrackingModes. Call
+     * ServletContext.setSessionTrackingModes inside a servlet; verify
+     * IllegalStateException is thrown.
+     */
+    public void setSessionTrackingModes2() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "setSessionTrackingModes2");
+        invoke();
+    }
+    /*
+     * @testName: setSessionTrackingModes3
+     *
+     * @assertion_ids: Servlet:JAVADOC:695.2;
+     *
+     * @test_Strategy: Negative test for method
+     * ServletContext.setSessionTrackingModes. Call
+     * ServletContext.setSessionTrackingModes inside a servlet; verify
+     * IllegalStateException is thrown.
+     */
 
-  public void setSessionTrackingModes3() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "setSessionTrackingModes3");
-    invoke();
-  }
+    public void setSessionTrackingModes3() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "setSessionTrackingModes3");
+        invoke();
+    }
 
-  /*
-   * @testName: setSessionTrackingModes4
-   *
-   * @assertion_ids: Servlet:JAVADOC:695.2;
-   *
-   * @test_Strategy: Negative test for method
-   * ServletContext.setSessionTrackingModes. Call
-   * ServletContext.setSessionTrackingModes inside a servlet; verify
-   * IllegalStateException is thrown.
-   */
-  public void setSessionTrackingModes4() throws Fault {
-    TEST_PROPS.setProperty(APITEST, "setSessionTrackingModes4");
-    invoke();
-  }
+    /*
+     * @testName: setSessionTrackingModes4
+     *
+     * @assertion_ids: Servlet:JAVADOC:695.2;
+     *
+     * @test_Strategy: Negative test for method
+     * ServletContext.setSessionTrackingModes. Call
+     * ServletContext.setSessionTrackingModes inside a servlet; verify
+     * IllegalStateException is thrown.
+     */
+    public void setSessionTrackingModes4() throws Fault {
+        TEST_PROPS.setProperty(APITEST, "setSessionTrackingModes4");
+        invoke();
+    }
 }

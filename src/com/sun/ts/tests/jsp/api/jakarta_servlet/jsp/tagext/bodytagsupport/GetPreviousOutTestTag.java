@@ -20,38 +20,37 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.bodytagsupport;
 
-import java.io.IOException;
-
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.tagext.BodyTagSupport;
+import java.io.IOException;
 
 public class GetPreviousOutTestTag extends BodyTagSupport {
 
-  /**
-   * Default constructor.
-   */
-  public GetPreviousOutTestTag() {
-    super();
-  }
-
-  /**
-   * Validates getPreviousOut().
-   * 
-   * @return Tag.EVAL_PAGE
-   * @throws JspException
-   *           - if an error occurs
-   */
-  public int doEndTag() throws JspException {
-    try {
-      JspWriter out = this.getPreviousOut();
-
-      // clear the buffer from the page
-      out.clear();
-      out.println("Test PASSED");
-    } catch (IOException ioe) {
-      throw new JspException("Unexpected Exception!", ioe);
+    /**
+     * Default constructor.
+     */
+    public GetPreviousOutTestTag() {
+        super();
     }
-    return EVAL_PAGE;
-  }
+
+    /**
+     * Validates getPreviousOut().
+     *
+     * @return Tag.EVAL_PAGE
+     * @throws JspException
+     *           - if an error occurs
+     */
+    public int doEndTag() throws JspException {
+        try {
+            JspWriter out = this.getPreviousOut();
+
+            // clear the buffer from the page
+            out.clear();
+            out.println("Test PASSED");
+        } catch (IOException ioe) {
+            throw new JspException("Unexpected Exception!", ioe);
+        }
+        return EVAL_PAGE;
+    }
 }

@@ -20,9 +20,7 @@
 package com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.singleton.annotated;
 
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeoutExceptionBeanBase;
-
 import jakarta.ejb.Singleton;
 
 @Singleton
-public class AroundTimeoutExceptionBean extends AroundTimeoutExceptionBeanBase {
-}
+public class AroundTimeoutExceptionBean extends AroundTimeoutExceptionBeanBase {}

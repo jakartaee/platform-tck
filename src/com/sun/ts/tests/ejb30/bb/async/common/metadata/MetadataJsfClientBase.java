@@ -16,135 +16,122 @@
 
 package com.sun.ts.tests.ejb30.bb.async.common.metadata;
 
+import com.sun.ts.tests.ejb30.bb.async.common.AsyncJsfClientBase;
+import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import com.sun.ts.tests.ejb30.bb.async.common.AsyncJsfClientBase;
-import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
-
-import jakarta.ejb.EJB;
-import jakarta.ejb.EJBException;
-
 /**
  * These tests verify various ways of specifying @Asynchronous on interfaces and
  * bean class and their superclasses. Some of these requirements are also
  * covered in ../annotated directory. This test directory focuses on type-level
- * 
+ *
  * @Asynchronous on business interface and super-interfaces, and type-level
  * @Asynchronous on bean superclasses.
  */
-
 public class MetadataJsfClientBase extends AsyncJsfClientBase {
-  @EJB(name = "beanClassLevel", beanName = "BeanClassLevelBean")
-  protected PlainInterfaceTypeLevelIF beanClassLevel;
+    @EJB(name = "beanClassLevel", beanName = "BeanClassLevelBean")
+    protected PlainInterfaceTypeLevelIF beanClassLevel;
 
-  @EJB(name = "beanClassLevelRemote", beanName = "BeanClassLevelBean")
-  protected PlainInterfaceTypeLevelRemoteIF beanClassLevelRemote;
+    @EJB(name = "beanClassLevelRemote", beanName = "BeanClassLevelBean")
+    protected PlainInterfaceTypeLevelRemoteIF beanClassLevelRemote;
 
-  protected PlainInterfaceTypeLevelIF getBeanClassLevel() {
-    return beanClassLevel;
-  }
-
-  protected PlainInterfaceTypeLevelRemoteIF getBeanClassLevelRemote() {
-    return beanClassLevelRemote;
-  }
-
-  // for stateful, after calling voidRuntimeException, the bean instance will be
-  // discarded,
-  // and the subsequent b.futureRuntimeException will generate EJBException("not
-  // such ejb...")
-  // so pass in b2 for use in the second call.
-  protected void beanClassLevelRuntimeException(PlainInterfaceTypeLevelIF b,
-      PlainInterfaceTypeLevelIF b2)
-      throws InterruptedException, TimeoutException {
-    b.voidRuntimeException();
-    try {
-      b2.futureRuntimeException().get(1, TimeUnit.MINUTES);
-      throw new RuntimeException("Expecting ExecutionException, but got none.");
-    } catch (final ExecutionException ex) {
-      final EJBException ejbException = (EJBException) ex.getCause();
-      final RuntimeException runtimeException = (RuntimeException) ejbException
-          .getCause();
-      assertEquals(null, "futureRuntimeException",
-          runtimeException.getMessage());
+    protected PlainInterfaceTypeLevelIF getBeanClassLevel() {
+        return beanClassLevel;
     }
-  }
 
-  protected void customFutureImpl(PlainInterfaceTypeLevelIF b)
-      throws InterruptedException, ExecutionException {
-    final TimeUnit timeUnit = TimeUnit.NANOSECONDS;
-    final Future<TimeUnit> result = b.customFutureImpl(timeUnit);
-    for (int i = 0; i < 2; i++) {
-      assertEquals(result.toString(), timeUnit, result.get());
+    protected PlainInterfaceTypeLevelRemoteIF getBeanClassLevelRemote() {
+        return beanClassLevelRemote;
     }
-  }
 
-  protected void beanClassLevelSyncMethod(PlainInterfaceTypeLevelIF b) {
-    try {
-      b.syncMethodException0();
-      throw new RuntimeException(
-          "Expecting CalculatorException, but got none.");
-    } catch (final CalculatorException ex) {
-      appendReason("Got expected " + ex);
+    // for stateful, after calling voidRuntimeException, the bean instance will be
+    // discarded,
+    // and the subsequent b.futureRuntimeException will generate EJBException("not
+    // such ejb...")
+    // so pass in b2 for use in the second call.
+    protected void beanClassLevelRuntimeException(PlainInterfaceTypeLevelIF b, PlainInterfaceTypeLevelIF b2)
+            throws InterruptedException, TimeoutException {
+        b.voidRuntimeException();
+        try {
+            b2.futureRuntimeException().get(1, TimeUnit.MINUTES);
+            throw new RuntimeException("Expecting ExecutionException, but got none.");
+        } catch (final ExecutionException ex) {
+            final EJBException ejbException = (EJBException) ex.getCause();
+            final RuntimeException runtimeException = (RuntimeException) ejbException.getCause();
+            assertEquals(null, "futureRuntimeException", runtimeException.getMessage());
+        }
     }
-    try {
-      b.syncMethodException3();
-      throw new RuntimeException(
-          "Expecting CalculatorException, but got none.");
-    } catch (final CalculatorException ex) {
-      appendReason("Got expected " + ex);
+
+    protected void customFutureImpl(PlainInterfaceTypeLevelIF b) throws InterruptedException, ExecutionException {
+        final TimeUnit timeUnit = TimeUnit.NANOSECONDS;
+        final Future<TimeUnit> result = b.customFutureImpl(timeUnit);
+        for (int i = 0; i < 2; i++) {
+            assertEquals(result.toString(), timeUnit, result.get());
+        }
     }
-  }
 
-  /*
-   * testName: beanClassLevelReturnType
-   * 
-   * @test_Strategy:verify 2 types of return types in bean class: Future<T> and
-   * T.
-   */
-  public void beanClassLevelReturnType()
-      throws InterruptedException, ExecutionException {
-    final boolean expected = true;
-    assertEquals(null, expected, getBeanClassLevel().futureReturnType().get());
-    assertEquals(null, expected,
-        getBeanClassLevelRemote().futureReturnType().get());
-  }
+    protected void beanClassLevelSyncMethod(PlainInterfaceTypeLevelIF b) {
+        try {
+            b.syncMethodException0();
+            throw new RuntimeException("Expecting CalculatorException, but got none.");
+        } catch (final CalculatorException ex) {
+            appendReason("Got expected " + ex);
+        }
+        try {
+            b.syncMethodException3();
+            throw new RuntimeException("Expecting CalculatorException, but got none.");
+        } catch (final CalculatorException ex) {
+            appendReason("Got expected " + ex);
+        }
+    }
 
-  /*
-   * testName: beanClassLevelRuntimeException
-   * 
-   * @test_Strategy: for async method with void return type, RuntimeException is
-   * not visible to the client. For Future return type, RuntimeException is
-   * wrapped as EJBException and then as ExecutionException.
-   */
-  public void beanClassLevelRuntimeException()
-      throws InterruptedException, TimeoutException {
-    beanClassLevelRuntimeException(getBeanClassLevel(), getBeanClassLevel());
-    beanClassLevelRuntimeException(getBeanClassLevelRemote(),
-        getBeanClassLevelRemote());
-  }
+    /*
+     * testName: beanClassLevelReturnType
+     *
+     * @test_Strategy:verify 2 types of return types in bean class: Future<T> and
+     * T.
+     */
+    public void beanClassLevelReturnType() throws InterruptedException, ExecutionException {
+        final boolean expected = true;
+        assertEquals(null, expected, getBeanClassLevel().futureReturnType().get());
+        assertEquals(
+                null, expected, getBeanClassLevelRemote().futureReturnType().get());
+    }
 
-  /*
-   * testName: customFutureImpl
-   * 
-   * @test_Strategy: Async method returning a custom Future impl.
-   */
-  public void customFutureImpl()
-      throws InterruptedException, ExecutionException {
-    customFutureImpl(getBeanClassLevel());
-    customFutureImpl(getBeanClassLevelRemote());
-  }
+    /*
+     * testName: beanClassLevelRuntimeException
+     *
+     * @test_Strategy: for async method with void return type, RuntimeException is
+     * not visible to the client. For Future return type, RuntimeException is
+     * wrapped as EJBException and then as ExecutionException.
+     */
+    public void beanClassLevelRuntimeException() throws InterruptedException, TimeoutException {
+        beanClassLevelRuntimeException(getBeanClassLevel(), getBeanClassLevel());
+        beanClassLevelRuntimeException(getBeanClassLevelRemote(), getBeanClassLevelRemote());
+    }
 
-  /*
-   * testName: beanClassLevelSyncMethod
-   * 
-   * @test_Strategy: syncMethodException is implemented in a bean superclass
-   * that is not annotated with @Asynchronous.
-   */
-  public void beanClassLevelSyncMethod() {
-    beanClassLevelSyncMethod(getBeanClassLevel());
-    beanClassLevelSyncMethod(getBeanClassLevelRemote());
-  }
+    /*
+     * testName: customFutureImpl
+     *
+     * @test_Strategy: Async method returning a custom Future impl.
+     */
+    public void customFutureImpl() throws InterruptedException, ExecutionException {
+        customFutureImpl(getBeanClassLevel());
+        customFutureImpl(getBeanClassLevelRemote());
+    }
+
+    /*
+     * testName: beanClassLevelSyncMethod
+     *
+     * @test_Strategy: syncMethodException is implemented in a bean superclass
+     * that is not annotated with @Asynchronous.
+     */
+    public void beanClassLevelSyncMethod() {
+        beanClassLevelSyncMethod(getBeanClassLevel());
+        beanClassLevelSyncMethod(getBeanClassLevelRemote());
+    }
 }

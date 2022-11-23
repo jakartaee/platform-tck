@@ -58,92 +58,89 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpsessionattributelistener;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-
 import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
 import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
 import com.sun.ts.tests.servlet.common.util.StaticLog;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class TestServlet extends HttpTCKServlet {
 
-  public void attributeAddedTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+    public void attributeAddedTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-    PrintWriter pw = response.getWriter();
+        PrintWriter pw = response.getWriter();
 
-    StaticLog.clear();
+        StaticLog.clear();
 
-    String[] expected = { "attributeAdded:attributeAddedTest,Attribute1" };
+        String[] expected = {"attributeAdded:attributeAddedTest,Attribute1"};
 
-    HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(true);
 
-    session.setAttribute("attributeAddedTest", "Attribute1");
+        session.setAttribute("attributeAddedTest", "Attribute1");
 
-    ArrayList result = StaticLog.getClear();
-    boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);
-    if (!b) {
-      ServletTestUtil.printFailureData(pw, result, expected);
+        ArrayList result = StaticLog.getClear();
+        boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);
+        if (!b) {
+            ServletTestUtil.printFailureData(pw, result, expected);
+        }
+        ServletTestUtil.printResult(pw, b);
+
+        session.invalidate();
     }
-    ServletTestUtil.printResult(pw, b);
 
-    session.invalidate();
+    public void attributeRemovedTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-  }
+        PrintWriter pw = response.getWriter();
 
-  public void attributeRemovedTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+        StaticLog.clear();
 
-    PrintWriter pw = response.getWriter();
+        String[] expected = {
+            "attributeAdded:attributeRemovedTest,Attribute1", "attributeRemoved:attributeRemovedTest,Attribute1"
+        };
 
-    StaticLog.clear();
+        HttpSession session = request.getSession(true);
 
-    String[] expected = { "attributeAdded:attributeRemovedTest,Attribute1",
-        "attributeRemoved:attributeRemovedTest,Attribute1" };
+        session.setAttribute("attributeRemovedTest", "Attribute1");
+        session.removeAttribute("attributeRemovedTest");
 
-    HttpSession session = request.getSession(true);
-
-    session.setAttribute("attributeRemovedTest", "Attribute1");
-    session.removeAttribute("attributeRemovedTest");
-
-    ArrayList result = StaticLog.getClear();
-    boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);
-    if (!b) {
-      ServletTestUtil.printFailureData(pw, result, expected);
+        ArrayList result = StaticLog.getClear();
+        boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);
+        if (!b) {
+            ServletTestUtil.printFailureData(pw, result, expected);
+        }
+        ServletTestUtil.printResult(pw, b);
+        session.invalidate();
     }
-    ServletTestUtil.printResult(pw, b);
-    session.invalidate();
 
-  }
+    public void attributeReplacedTest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-  public void attributeReplacedTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
 
-    PrintWriter pw = response.getWriter();
+        StaticLog.clear();
 
-    StaticLog.clear();
+        String[] expected = {
+            "attributeAdded:attributeReplacedTest,Attribute1", "attributeReplaced:attributeReplacedTest,Attribute1"
+        };
 
-    String[] expected = { "attributeAdded:attributeReplacedTest,Attribute1",
-        "attributeReplaced:attributeReplacedTest,Attribute1" };
+        HttpSession session = request.getSession(true);
 
-    HttpSession session = request.getSession(true);
+        session.setAttribute("attributeReplacedTest", "Attribute1");
+        session.setAttribute("attributeReplacedTest", "Attribute2");
 
-    session.setAttribute("attributeReplacedTest", "Attribute1");
-    session.setAttribute("attributeReplacedTest", "Attribute2");
-
-    ArrayList result = StaticLog.getClear();
-    boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);
-    if (!b) {
-      ServletTestUtil.printFailureData(pw, result, expected);
+        ArrayList result = StaticLog.getClear();
+        boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);
+        if (!b) {
+            ServletTestUtil.printFailureData(pw, result, expected);
+        }
+        ServletTestUtil.printResult(pw, b);
+        session.invalidate();
     }
-    ServletTestUtil.printResult(pw, b);
-    session.invalidate();
-
-  }
 }

@@ -20,7 +20,6 @@
 package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.accesstimeout;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.ejb.Lock;
 import jakarta.ejb.LockType;
 
@@ -28,20 +27,20 @@ import jakarta.ejb.LockType;
  * This class does not specify any @AccessTimeout metadata. Its subclass can
  * specify it at class- or method-level.
  */
-abstract public class PlainAccessTimeoutBeanBase implements AccessTimeoutIF {
-  @Lock(LockType.READ)
-  public int longRead(long waitTimeMillis, int readVal) {
-    Helper.busyWait(waitTimeMillis);
-    return readVal;
-  }
+public abstract class PlainAccessTimeoutBeanBase implements AccessTimeoutIF {
+    @Lock(LockType.READ)
+    public int longRead(long waitTimeMillis, int readVal) {
+        Helper.busyWait(waitTimeMillis);
+        return readVal;
+    }
 
-  @Lock(LockType.READ)
-  public int longRead2(long waitTimeMillis, int readVal) {
-    return longRead(waitTimeMillis, readVal);
-  }
+    @Lock(LockType.READ)
+    public int longRead2(long waitTimeMillis, int readVal) {
+        return longRead(waitTimeMillis, readVal);
+    }
 
-  @Lock(LockType.WRITE)
-  public void longWrite(long waitTimeMillis) {
-    Helper.busyWait(waitTimeMillis);
-  }
+    @Lock(LockType.WRITE)
+    public void longWrite(long waitTimeMillis) {
+        Helper.busyWait(waitTimeMillis);
+    }
 }

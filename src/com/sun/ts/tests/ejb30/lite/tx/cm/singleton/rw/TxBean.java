@@ -19,42 +19,40 @@
  */
 package com.sun.ts.tests.ejb30.lite.tx.cm.singleton.rw;
 
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeEJBLite;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeUtil;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.RWTxBeanBase;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.Singleton;
+import java.util.logging.Level;
 
 @Singleton
 public class TxBean extends RWTxBeanBase {
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    int id = 9582176;
-    String brandName = "postConstruct";
-    float price = id;
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        int id = 9582176;
+        String brandName = "postConstruct";
+        float price = id;
 
-    CoffeeUtil.findDelete(id, false, em);
-    postConstructCoffee = new CoffeeEJBLite(id, brandName, price);
-    updatePersist(postConstructCoffee, false);
-    Helper.getLogger().logp(Level.FINE, "TxBean", "postConstruct",
-        "Updated and persisted coffee: " + postConstructCoffee);
-  }
-
-  @SuppressWarnings("unused")
-  @PreDestroy
-  private void preDestroy() {
-    if ((System.getProperty("ejbembed", null) == null)) { // means we are NOT in
-                                                          // ejbembed
-      Helper.getLogger().logp(Level.FINE, "TxBean", "preDestroy",
-          "About to merge and remove: " + postConstructCoffee);
-      em.remove(em.merge(postConstructCoffee));
-      em.getEntityManagerFactory().getCache().evictAll();
+        CoffeeUtil.findDelete(id, false, em);
+        postConstructCoffee = new CoffeeEJBLite(id, brandName, price);
+        updatePersist(postConstructCoffee, false);
+        Helper.getLogger()
+                .logp(Level.FINE, "TxBean", "postConstruct", "Updated and persisted coffee: " + postConstructCoffee);
     }
-  }
+
+    @SuppressWarnings("unused")
+    @PreDestroy
+    private void preDestroy() {
+        if ((System.getProperty("ejbembed", null) == null)) { // means we are NOT in
+            // ejbembed
+            Helper.getLogger()
+                    .logp(Level.FINE, "TxBean", "preDestroy", "About to merge and remove: " + postConstructCoffee);
+            em.remove(em.merge(postConstructCoffee));
+            em.getEntityManagerFactory().getCache().evictAll();
+        }
+    }
 }

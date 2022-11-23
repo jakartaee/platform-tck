@@ -20,22 +20,24 @@
 
 package com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations;
 
-@jakarta.xml.ws.WebFault(name = "MyOtherFault", targetNamespace = "http://rpclitservice.org/wsdl", faultBean = "MyOtherFaultBean")
+@jakarta.xml.ws.WebFault(
+        name = "MyOtherFault",
+        targetNamespace = "http://rpclitservice.org/wsdl",
+        faultBean = "MyOtherFaultBean")
 public class MyOtherFault extends Exception {
-  private MyOtherFaultBean faultInfo;
+    private MyOtherFaultBean faultInfo;
 
-  public MyOtherFault(String message, MyOtherFaultBean faultInfo) {
-    super(message);
-    this.faultInfo = faultInfo;
-  }
+    public MyOtherFault(String message, MyOtherFaultBean faultInfo) {
+        super(message);
+        this.faultInfo = faultInfo;
+    }
 
-  public MyOtherFault(String message, MyOtherFaultBean faultInfo,
-      Throwable cause) {
-    super(message, cause);
-    this.faultInfo = faultInfo;
-  }
+    public MyOtherFault(String message, MyOtherFaultBean faultInfo, Throwable cause) {
+        super(message, cause);
+        this.faultInfo = faultInfo;
+    }
 
-  public MyOtherFaultBean getFaultInfo() {
-    return faultInfo;
-  }
+    public MyOtherFaultBean getFaultInfo() {
+        return faultInfo;
+    }
 }

@@ -23,5 +23,4 @@ package com.sun.ts.tests.ejb30.misc.threebeans;
 import jakarta.ejb.Local;
 
 @Local
-public interface TwoLocalIF extends CommonIF {
-}
+public interface TwoLocalIF extends CommonIF {}

@@ -21,7 +21,6 @@
 package com.sun.ts.tests.ejb30.tx.common.session.cm;
 
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionAttribute;
@@ -30,29 +29,27 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateless
-@Local({ LocalTxIF.class })
+@Local({LocalTxIF.class})
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class LocalTxBean extends LocalTxBeanBase implements LocalTxIF {
-  @TransactionAttribute(TransactionAttributeType.MANDATORY)
-  public void localMandatoryTest() {
-    super.localMandatoryTest();
-  }
+    @TransactionAttribute(TransactionAttributeType.MANDATORY)
+    public void localMandatoryTest() {
+        super.localMandatoryTest();
+    }
 
-  @TransactionAttribute(TransactionAttributeType.NEVER)
-  public void neverTest() {
-    super.neverTest();
-  }
+    @TransactionAttribute(TransactionAttributeType.NEVER)
+    public void neverTest() {
+        super.neverTest();
+    }
 
-  public void requiresNewNoop() throws TestFailedException {
-    super.requiresNewNoop();
-  }
+    public void requiresNewNoop() throws TestFailedException {
+        super.requiresNewNoop();
+    }
 
-  public void localRequiresNewTest() {
-    super.localRequiresNewTest();
-  }
+    public void localRequiresNewTest() {
+        super.localRequiresNewTest();
+    }
 
-  public void localRequiresNewRemoveTest() {
-  }
-
+    public void localRequiresNewRemoveTest() {}
 }

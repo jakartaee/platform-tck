@@ -19,59 +19,58 @@
  */
 package com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common;
 
-import java.util.concurrent.Future;
-
 import com.sun.ts.tests.ejb30.lite.stateful.concurrency.common.StatefulConcurrencyIF;
+import java.util.concurrent.Future;
 
 public interface AccessTimeoutIF extends StatefulConcurrencyIF {
 
-  public static final long SUPER_CLASS_METHOD_LEVEL_TIMEOUT_MILLIS = 1000;
+    public static final long SUPER_CLASS_METHOD_LEVEL_TIMEOUT_MILLIS = 1000;
 
-  public static final long SUPER_CLASS_LEVEL_TIMEOUT_MILLIS = PING_WAIT_MILLIS
-      / 2;
+    public static final long SUPER_CLASS_LEVEL_TIMEOUT_MILLIS = PING_WAIT_MILLIS / 2;
 
-  public static final long SUPER_CLASS_METHOD_LEVEL_OVERRIDE_TIMEOUT_MILLIS = PING_WAIT_MILLIS
-      * 2;
+    public static final long SUPER_CLASS_METHOD_LEVEL_OVERRIDE_TIMEOUT_MILLIS = PING_WAIT_MILLIS * 2;
 
-  public static final long BEAN_CLASS_LEVEL_TIMEOUT_MILLIS = PING_WAIT_MILLIS
-      / 2;
+    public static final long BEAN_CLASS_LEVEL_TIMEOUT_MILLIS = PING_WAIT_MILLIS / 2;
 
-  public static final long BEAN_METHOD_LEVEL_TIMEOUT_MILLIS = PING_WAIT_MILLIS
-      / 2;
+    public static final long BEAN_METHOD_LEVEL_TIMEOUT_MILLIS = PING_WAIT_MILLIS / 2;
 
-  public static final long BEAN_METHOD_LEVEL_OVERRIDE_TIMEOUT_MILLIS = PING_WAIT_MILLIS
-      * 2;
+    public static final long BEAN_METHOD_LEVEL_OVERRIDE_TIMEOUT_MILLIS = PING_WAIT_MILLIS * 2;
 
-  public static final String annotatedSuperClassAccessTimeoutBeanLocal = "annotatedSuperClassAccessTimeoutBeanLocal";
+    public static final String annotatedSuperClassAccessTimeoutBeanLocal = "annotatedSuperClassAccessTimeoutBeanLocal";
 
-  public static final String beanClassLevelAccessTimeoutBeanLocal = "beanClassLevelAccessTimeoutBeanLocal";
+    public static final String beanClassLevelAccessTimeoutBeanLocal = "beanClassLevelAccessTimeoutBeanLocal";
 
-  public static final String beanClassMethodLevelAccessTimeoutBeanLocal = "beanClassMethodLevelAccessTimeoutBeanLocal";
+    public static final String beanClassMethodLevelAccessTimeoutBeanLocal =
+            "beanClassMethodLevelAccessTimeoutBeanLocal";
 
-  public static final String beanClassMethodLevelOverrideAccessTimeoutBeanLocal = "beanClassMethodLevelOverrideAccessTimeoutBeanLocal";
+    public static final String beanClassMethodLevelOverrideAccessTimeoutBeanLocal =
+            "beanClassMethodLevelOverrideAccessTimeoutBeanLocal";
 
-  public static final String annotatedSuperClassAccessTimeoutBeanRemote = "annotatedSuperClassAccessTimeoutBeanRemote";
+    public static final String annotatedSuperClassAccessTimeoutBeanRemote =
+            "annotatedSuperClassAccessTimeoutBeanRemote";
 
-  public static final String beanClassLevelAccessTimeoutBeanRemote = "beanClassLevelAccessTimeoutBeanRemote";
+    public static final String beanClassLevelAccessTimeoutBeanRemote = "beanClassLevelAccessTimeoutBeanRemote";
 
-  public static final String beanClassMethodLevelAccessTimeoutBeanRemote = "beanClassMethodLevelAccessTimeoutBeanRemote";
+    public static final String beanClassMethodLevelAccessTimeoutBeanRemote =
+            "beanClassMethodLevelAccessTimeoutBeanRemote";
 
-  public static final String beanClassMethodLevelOverrideAccessTimeoutBeanRemote = "beanClassMethodLevelOverrideAccessTimeoutBeanRemote";
+    public static final String beanClassMethodLevelOverrideAccessTimeoutBeanRemote =
+            "beanClassMethodLevelOverrideAccessTimeoutBeanRemote";
 
-  /**
-   * These methods are not async method unless declared as such in subclasses.
-   */
-  Future<String> beanClassLevel();
+    /**
+     * These methods are not async method unless declared as such in subclasses.
+     */
+    Future<String> beanClassLevel();
 
-  Future<String> beanClassLevel2();
+    Future<String> beanClassLevel2();
 
-  Future<String> beanSuperClassLevel();
+    Future<String> beanSuperClassLevel();
 
-  Future<String> beanClassMethodLevel();
+    Future<String> beanClassMethodLevel();
 
-  Future<String> beanSuperClassMethodLevel();
+    Future<String> beanSuperClassMethodLevel();
 
-  Future<String> beanClassMethodLevelOverride();
+    Future<String> beanClassMethodLevelOverride();
 
-  Future<String> beanSuperClassMethodLevelOverride();
+    Future<String> beanSuperClassMethodLevelOverride();
 }

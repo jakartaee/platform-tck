@@ -20,30 +20,30 @@ import jakarta.ejb.EJB;
 
 public class Client extends com.sun.ts.tests.ejb30.timer.common.ClientBase {
 
-  @EJB(beanName = "AroundTimeoutBean")
-  protected AroundTimeoutBean aroundTimeoutBean;
+    @EJB(beanName = "AroundTimeoutBean")
+    protected AroundTimeoutBean aroundTimeoutBean;
 
-  /*
-   * @testName: asBusiness
-   * 
-   * @test_Strategy: timeout method can also be exposed as business methods.
-   * When invoked as a business method, the around-invoke method in the
-   * method-level interceptor is to be invoked, not the around-timeout method.
-   */
-  public void asBusiness() {
-    // There should be no exception
-    aroundTimeoutBean.asBusiness();
-    appendReason("Invoked business method without errors.");
-  }
+    /*
+     * @testName: asBusiness
+     *
+     * @test_Strategy: timeout method can also be exposed as business methods.
+     * When invoked as a business method, the around-invoke method in the
+     * method-level interceptor is to be invoked, not the around-timeout method.
+     */
+    public void asBusiness() {
+        // There should be no exception
+        aroundTimeoutBean.asBusiness();
+        appendReason("Invoked business method without errors.");
+    }
 
-  /*
-   * @testName: asTimeout
-   * 
-   * @test_Strategy: When invoked as a timeout method, the around-timeout method
-   * in the method-level interceptor is to be invoked, not the around-invoke
-   * method.
-   */
-  public void asTimeout() {
-    passIfRecurringTimeout();
-  }
+    /*
+     * @testName: asTimeout
+     *
+     * @test_Strategy: When invoked as a timeout method, the around-timeout method
+     * in the method-level interceptor is to be invoked, not the around-invoke
+     * method.
+     */
+    public void asTimeout() {
+        passIfRecurringTimeout();
+    }
 }

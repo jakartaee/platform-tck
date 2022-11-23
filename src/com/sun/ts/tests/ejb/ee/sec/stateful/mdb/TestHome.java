@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.ejb.ee.sec.stateful.mdb;
 
-import java.rmi.RemoteException;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBHome;
+import java.rmi.RemoteException;
 
 public interface TestHome extends EJBHome {
-  Test create() throws RemoteException, CreateException;
+    Test create() throws RemoteException, CreateException;
 }

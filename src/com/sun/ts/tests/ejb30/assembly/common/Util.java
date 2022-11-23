@@ -20,41 +20,35 @@
 
 package com.sun.ts.tests.ejb30.assembly.common;
 
-import java.net.URL;
-
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+import java.net.URL;
 
 public class Util {
 
-  private Util() {
-  }
+    private Util() {}
 
-  public static void verifyGetResource(Class cls, String name, URL expected)
-      throws TestFailedException {
-    URL url = cls.getResource(name);
-    verifyResource(cls, name, expected, url);
-  }
-
-  public static void verifyResource(Object target, String name, URL expected,
-      URL url) throws TestFailedException {
-    String pass = "Got expected result " + expected + " from getResource("
-        + name + ") on target " + target;
-    String fail = "Expecting " + expected + " from getResource(" + name
-        + "), but actual " + url + ".  The target object is " + target;
-    if (expected == null) {
-      if (url == null) {
-        TLogger.log(pass);
-      } else {
-        throw new TestFailedException(fail);
-      }
-    } else {
-      if (expected.equals(url)) {
-        TLogger.log(pass);
-      } else {
-        throw new TestFailedException(fail);
-      }
+    public static void verifyGetResource(Class cls, String name, URL expected) throws TestFailedException {
+        URL url = cls.getResource(name);
+        verifyResource(cls, name, expected, url);
     }
-  }
 
+    public static void verifyResource(Object target, String name, URL expected, URL url) throws TestFailedException {
+        String pass = "Got expected result " + expected + " from getResource(" + name + ") on target " + target;
+        String fail = "Expecting " + expected + " from getResource(" + name + "), but actual " + url
+                + ".  The target object is " + target;
+        if (expected == null) {
+            if (url == null) {
+                TLogger.log(pass);
+            } else {
+                throw new TestFailedException(fail);
+            }
+        } else {
+            if (expected.equals(url)) {
+                TLogger.log(pass);
+            } else {
+                throw new TestFailedException(fail);
+            }
+        }
+    }
 }

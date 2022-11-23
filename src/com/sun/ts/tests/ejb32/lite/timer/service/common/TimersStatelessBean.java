@@ -17,11 +17,9 @@
 package com.sun.ts.tests.ejb32.lite.timer.service.common;
 
 import com.sun.ts.tests.ejb32.timer.service.common.TimerIF;
-
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateless;
 
 @Stateless
 @Local(TimerIF.class)
-public class TimersStatelessBean extends NonPersistentTimerServiceBeanBase {
-}
+public class TimersStatelessBean extends NonPersistentTimerServiceBeanBase {}

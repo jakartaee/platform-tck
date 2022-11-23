@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.CMP20Wrapper;
 
 public abstract class BooleanBeanEJB extends CMP20Wrapper {
 
-  public boolean testBooleanEntry() {
-    return TestCode.testBooleanEntry(nctx);
-  }
-
+    public boolean testBooleanEntry() {
+        return TestCode.testBooleanEntry(nctx);
+    }
 }

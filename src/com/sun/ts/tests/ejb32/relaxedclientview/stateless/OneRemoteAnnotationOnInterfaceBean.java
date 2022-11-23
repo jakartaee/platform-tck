@@ -19,10 +19,8 @@ package com.sun.ts.tests.ejb32.relaxedclientview.stateless;
 import com.sun.ts.tests.ejb32.relaxedclientview.common.BaseBean;
 import com.sun.ts.tests.ejb32.relaxedclientview.common.NormalInterface2;
 import com.sun.ts.tests.ejb32.relaxedclientview.common.RemoteAnnotationInterface1;
-
 import jakarta.ejb.Stateless;
 
 @Stateless
 public class OneRemoteAnnotationOnInterfaceBean extends BaseBean
-    implements RemoteAnnotationInterface1, NormalInterface2 {
-}
+        implements RemoteAnnotationInterface1, NormalInterface2 {}

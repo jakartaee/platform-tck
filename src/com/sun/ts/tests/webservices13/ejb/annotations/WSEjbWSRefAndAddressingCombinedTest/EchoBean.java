@@ -18,15 +18,18 @@ package com.sun.ts.tests.webservices13.ejb.annotations.WSEjbWSRefAndAddressingCo
 
 import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;
-import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.Holder;
 
-@WebService(portName = "EchoPort", serviceName = "EchoService", targetNamespace = "http://Echo.org", wsdlLocation = "META-INF/wsdl/EchoService.wsdl", endpointInterface = "com.sun.ts.tests.webservices13.ejb.annotations.WSEjbWSRefAndAddressingCombinedTest.Echo")
+@WebService(
+        portName = "EchoPort",
+        serviceName = "EchoService",
+        targetNamespace = "http://Echo.org",
+        wsdlLocation = "META-INF/wsdl/EchoService.wsdl",
+        endpointInterface = "com.sun.ts.tests.webservices13.ejb.annotations.WSEjbWSRefAndAddressingCombinedTest.Echo")
 @Stateless(name = "WSEjbWSRefAndAddressingCombinedTest")
-
 public class EchoBean {
 
-  public String echo(String string, Holder<String> testName) {
-    return string;
-  }
+    public String echo(String string, Holder<String> testName) {
+        return string;
+    }
 }

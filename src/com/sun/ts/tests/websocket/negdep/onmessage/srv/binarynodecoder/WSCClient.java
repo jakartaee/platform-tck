@@ -16,9 +16,8 @@
 
 package com.sun.ts.tests.websocket.negdep.onmessage.srv.binarynodecoder;
 
-import java.nio.ByteBuffer;
-
 import com.sun.ts.tests.websocket.negdep.NegativeDeploymentClient;
+import java.nio.ByteBuffer;
 
 /*
  * @class.setup_props: webServerHost;
@@ -34,81 +33,79 @@ import com.sun.ts.tests.websocket.negdep.NegativeDeploymentClient;
  */
 public class WSCClient extends NegativeDeploymentClient {
 
-  private static final long serialVersionUID = 111L;
+    private static final long serialVersionUID = 111L;
 
-  public WSCClient() {
-    setContextRoot("wsc_negdep_onmessage_srv_binarynodecoder_web");
-  }
-
-  public static void main(String[] args) {
-    new WSCClient().run(args);
-  }
-
-  /*
-   * @testName: noDecoderOnMessageUndeployOtherEndpointTest
-   * 
-   * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3;WebSocket:SPEC:WSC-4.7-1;
-   * 
-   * @test_Strategy: In both cases, a deployment error raised during the
-   * deployment process must halt the deployment of the application, any well
-   * formed endpoints deployed prior to the error being raised must be removed
-   * from service and no more websocket endpoints from that application may be
-   * deployed by the container, even if they are valid.
-   * 
-   * Any method annotated with @OnMessage that does not conform to the forms
-   * defied therein is invalid. The websocket implementation must not deploy
-   * such an endpoint and must raise a deployment error if an attempt is made to
-   * deploy such an annotated endpoint. [WSC-4.7-1]
-   * 
-   * To check the test fails when deployment pass, switch StringHolder argument
-   * to byte[] in @OnMessage of OnMessageServerEndpoint
-   */
-  public void noDecoderOnMessageUndeployOtherEndpointTest() throws Fault {
-    setEntity(ByteBuffer.wrap("anything".getBytes()));
-    setProperty(Property.REQUEST, buildRequest("echo"));
-    setProperty(Property.STATUS_CODE, "-1");
-    // logExceptionOnInvocation(false);
-    try {
-      invoke(false);
-    } catch (Fault tfe) {
-      // DeploymentException
+    public WSCClient() {
+        setContextRoot("wsc_negdep_onmessage_srv_binarynodecoder_web");
     }
-    String response = getResponseAsString();
-    if ("anything".equals(response))
-      throwValidEndpointMustBeRemoved();
-  }
 
-  /*
-   * @testName: noDecoderOnMessageTest
-   * 
-   * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3;WebSocket:SPEC:WSC-4.7-1;
-   * 
-   * @test_Strategy: In both cases, a deployment error raised during the
-   * deployment process must halt the deployment of the application, any well
-   * formed endpoints deployed prior to the error being raised must be removed
-   * from service and no more websocket endpoints from that application may be
-   * deployed by the container, even if they are valid.
-   * 
-   * Any method annotated with @OnMessage that does not conform to the forms
-   * defied therein is invalid. The websocket implementation must not deploy
-   * such an endpoint and must raise a deployment error if an attempt is made to
-   * deploy such an annotated endpoint. [WSC-4.7-1]
-   * 
-   * To check the test fails when deployment pass, switch StringHolder argument
-   * to byte[] in @OnMessage of OnMessageServerEndpoint
-   */
-  public void noDecoderOnMessageTest() throws Fault {
-    setEntity(ByteBuffer.wrap("anything".getBytes()));
-    setProperty(Property.REQUEST, buildRequest("invalid"));
-    setProperty(Property.STATUS_CODE, "-1");
-    // logExceptionOnInvocation(false);
-    try {
-      invoke(false);
-    } catch (Fault tfe) {
-      // DeploymentException
+    public static void main(String[] args) {
+        new WSCClient().run(args);
     }
-    String response = getResponseAsString();
-    if (response != null && response.contains("anything"))
-      throwValidEndpointMustBeRemoved();
-  }
+
+    /*
+     * @testName: noDecoderOnMessageUndeployOtherEndpointTest
+     *
+     * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3;WebSocket:SPEC:WSC-4.7-1;
+     *
+     * @test_Strategy: In both cases, a deployment error raised during the
+     * deployment process must halt the deployment of the application, any well
+     * formed endpoints deployed prior to the error being raised must be removed
+     * from service and no more websocket endpoints from that application may be
+     * deployed by the container, even if they are valid.
+     *
+     * Any method annotated with @OnMessage that does not conform to the forms
+     * defied therein is invalid. The websocket implementation must not deploy
+     * such an endpoint and must raise a deployment error if an attempt is made to
+     * deploy such an annotated endpoint. [WSC-4.7-1]
+     *
+     * To check the test fails when deployment pass, switch StringHolder argument
+     * to byte[] in @OnMessage of OnMessageServerEndpoint
+     */
+    public void noDecoderOnMessageUndeployOtherEndpointTest() throws Fault {
+        setEntity(ByteBuffer.wrap("anything".getBytes()));
+        setProperty(Property.REQUEST, buildRequest("echo"));
+        setProperty(Property.STATUS_CODE, "-1");
+        // logExceptionOnInvocation(false);
+        try {
+            invoke(false);
+        } catch (Fault tfe) {
+            // DeploymentException
+        }
+        String response = getResponseAsString();
+        if ("anything".equals(response)) throwValidEndpointMustBeRemoved();
+    }
+
+    /*
+     * @testName: noDecoderOnMessageTest
+     *
+     * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3;WebSocket:SPEC:WSC-4.7-1;
+     *
+     * @test_Strategy: In both cases, a deployment error raised during the
+     * deployment process must halt the deployment of the application, any well
+     * formed endpoints deployed prior to the error being raised must be removed
+     * from service and no more websocket endpoints from that application may be
+     * deployed by the container, even if they are valid.
+     *
+     * Any method annotated with @OnMessage that does not conform to the forms
+     * defied therein is invalid. The websocket implementation must not deploy
+     * such an endpoint and must raise a deployment error if an attempt is made to
+     * deploy such an annotated endpoint. [WSC-4.7-1]
+     *
+     * To check the test fails when deployment pass, switch StringHolder argument
+     * to byte[] in @OnMessage of OnMessageServerEndpoint
+     */
+    public void noDecoderOnMessageTest() throws Fault {
+        setEntity(ByteBuffer.wrap("anything".getBytes()));
+        setProperty(Property.REQUEST, buildRequest("invalid"));
+        setProperty(Property.STATUS_CODE, "-1");
+        // logExceptionOnInvocation(false);
+        try {
+            invoke(false);
+        } catch (Fault tfe) {
+            // DeploymentException
+        }
+        String response = getResponseAsString();
+        if (response != null && response.contains("anything")) throwValidEndpointMustBeRemoved();
+    }
 }

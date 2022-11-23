@@ -20,94 +20,88 @@
 
 package com.sun.ts.tests.jsp.spec.configuration.general;
 
-import java.io.PrintWriter;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
-  private static final String CONTEXT_ROOT = "/jsp_config_general_web";
+    private static final String CONTEXT_ROOT = "/jsp_config_general_web";
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method
+     * run(String[], PrintWriter, PrintWriter), and this method should not contain
+     * any test configuration.
+     */
+    public static void main(String[] args) {
+        URLClient theTests = new URLClient();
+        Status s = theTests.run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+        s.exit();
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    /**
+     * Entry point for same-VM execution. In different-VM execution, the main
+     * method delegates to this method.
+     */
+    public Status run(String args[], PrintWriter out, PrintWriter err) {
 
-    setContextRoot(CONTEXT_ROOT);
+        setContextRoot(CONTEXT_ROOT);
 
-    return super.run(args, out, err);
-  }
+        return super.run(args, out, err);
+    }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   *
-   */
+    /*
+     * @class.setup_props: webServerHost; webServerPort; ts_home;
+     *
+     */
 
-  /* Run test */
+    /* Run test */
 
-  /*
-   * @testName: moreSpecificMappingTest
-   * 
-   * @assertion_ids: PENDING
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: moreSpecificMappingTest
+     *
+     * @assertion_ids: PENDING
+     *
+     * @test_Strategy:
+     */
 
-  public void moreSpecificMappingTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET " + CONTEXT_ROOT + "/specific/svr/willNotSee.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "In mapped servlet");
-    invoke();
-    TEST_PROPS.setProperty(REQUEST,
-        "GET " + CONTEXT_ROOT + "/specific/svr/page/willSee.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "In coda1|In coda1");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "In mapped servlet");
-    invoke();
-  }
+    public void moreSpecificMappingTest() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET " + CONTEXT_ROOT + "/specific/svr/willNotSee.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "In mapped servlet");
+        invoke();
+        TEST_PROPS.setProperty(REQUEST, "GET " + CONTEXT_ROOT + "/specific/svr/page/willSee.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "In coda1|In coda1");
+        TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "In mapped servlet");
+        invoke();
+    }
 
-  /*
-   * @testName: identicalMappingTest
-   * 
-   * @assertion_ids: PENDING
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: identicalMappingTest
+     *
+     * @assertion_ids: PENDING
+     *
+     * @test_Strategy:
+     */
 
-  public void identicalMappingTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET " + CONTEXT_ROOT + "/identical/willSee.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "In coda1");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "In mapped servlet");
-    invoke();
-  }
+    public void identicalMappingTest() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET " + CONTEXT_ROOT + "/identical/willSee.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(SEARCH_STRING, "In coda1");
+        TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "In mapped servlet");
+        invoke();
+    }
 
-  /*
-   * @testName: mostSpecificMappingTest
-   * 
-   * @assertion_ids: PENDING
-   * 
-   * @test_Strategy:
-   */
+    /*
+     * @testName: mostSpecificMappingTest
+     *
+     * @assertion_ids: PENDING
+     *
+     * @test_Strategy:
+     */
 
-  public void mostSpecificMappingTest() throws Fault {
-    TEST_PROPS.setProperty(REQUEST,
-        "GET " + CONTEXT_ROOT + "/mostSpecific/page/willSee.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING,
-        "In prelude1|In prelude2|In prelude3|el is enabled|In coda1|In coda2|In coda3");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "In mapped servlet");
-    invoke();
-  }
+    public void mostSpecificMappingTest() throws Fault {
+        TEST_PROPS.setProperty(REQUEST, "GET " + CONTEXT_ROOT + "/mostSpecific/page/willSee.jsp HTTP/1.1");
+        TEST_PROPS.setProperty(
+                SEARCH_STRING, "In prelude1|In prelude2|In prelude3|el is enabled|In coda1|In coda2|In coda3");
+        TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "In mapped servlet");
+        invoke();
+    }
 }

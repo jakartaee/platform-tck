@@ -16,9 +16,6 @@
 
 package com.sun.ts.tests.jpa.core.annotations.orderby;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import jakarta.persistence.Access;
 import jakarta.persistence.AccessType;
 import jakarta.persistence.AttributeOverride;
@@ -32,12 +29,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "COLTAB")
-@AttributeOverrides({
-    @AttributeOverride(name = "name", column = @Column(name = "NAME"))
-})
+@AttributeOverrides({@AttributeOverride(name = "name", column = @Column(name = "NAME"))})
 @Access(AccessType.FIELD)
 public class A2 implements java.io.Serializable {
 
@@ -45,6 +42,7 @@ public class A2 implements java.io.Serializable {
 
     @Id
     protected String id;
+
     protected String name;
 
     @ElementCollection(fetch = FetchType.EAGER)
@@ -52,8 +50,7 @@ public class A2 implements java.io.Serializable {
     @OrderBy("zipcode.zip DESC")
     protected List<Address2> lAddress = new ArrayList<Address2>();
 
-    public A2() {
-    }
+    public A2() {}
 
     public A2(String id, String name) {
         this.id = id;
@@ -90,5 +87,4 @@ public class A2 implements java.io.Serializable {
     public void setAddressList(List<Address2> addr) {
         this.lAddress = addr;
     }
-
 }

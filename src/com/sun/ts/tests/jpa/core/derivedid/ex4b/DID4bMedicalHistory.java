@@ -16,13 +16,12 @@
 
 package com.sun.ts.tests.jpa.core.derivedid.ex4b;
 
-import java.io.Serializable;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
+import java.io.Serializable;
 
 /**
  *
@@ -31,79 +30,77 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class DID4bMedicalHistory implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Id
-  String id;
+    @Id
+    String id;
 
-  @MapsId
-  @JoinColumn(name = "ID")
-  @OneToOne
-  private DID4bPerson patient;
+    @MapsId
+    @JoinColumn(name = "ID")
+    @OneToOne
+    private DID4bPerson patient;
 
-  private String doctorName;
+    private String doctorName;
 
-  public DID4bMedicalHistory() {
-  }
+    public DID4bMedicalHistory() {}
 
-  public DID4bMedicalHistory(DID4bPerson patient, String doctorName) {
-    this.patient = patient;
-    this.doctorName = doctorName;
-  }
-
-  public DID4bMedicalHistory(String id, DID4bPerson patient,
-      String doctorName) {
-    this.id = id;
-    this.patient = patient;
-    this.doctorName = doctorName;
-  }
-
-  public DID4bPerson getPatient() {
-    return patient;
-  }
-
-  public void setPatient(DID4bPerson patient) {
-    this.patient = patient;
-  }
-
-  @Override
-  public int hashCode() {
-    int hash = 0;
-    hash += (patient != null ? patient.hashCode() : 0);
-    return hash;
-  }
-
-  public String getDoctorName() {
-    return doctorName;
-  }
-
-  public void setDoctorName(String doctorName) {
-    this.doctorName = doctorName;
-  }
-
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  @Override
-  public boolean equals(Object object) {
-    if (!(object instanceof DID4bMedicalHistory)) {
-      return false;
+    public DID4bMedicalHistory(DID4bPerson patient, String doctorName) {
+        this.patient = patient;
+        this.doctorName = doctorName;
     }
-    DID4bMedicalHistory other = (DID4bMedicalHistory) object;
-    if ((this.patient == null && other.patient != null)
-        || (this.patient != null && !this.patient.equals(other.patient))) {
-      return false;
-    }
-    return true;
-  }
 
-  @Override
-  public String toString() {
-    return "derivedpatient4.DID4MedicalHistory[patient=" + patient + "]";
-  }
+    public DID4bMedicalHistory(String id, DID4bPerson patient, String doctorName) {
+        this.id = id;
+        this.patient = patient;
+        this.doctorName = doctorName;
+    }
+
+    public DID4bPerson getPatient() {
+        return patient;
+    }
+
+    public void setPatient(DID4bPerson patient) {
+        this.patient = patient;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (patient != null ? patient.hashCode() : 0);
+        return hash;
+    }
+
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof DID4bMedicalHistory)) {
+            return false;
+        }
+        DID4bMedicalHistory other = (DID4bMedicalHistory) object;
+        if ((this.patient == null && other.patient != null)
+                || (this.patient != null && !this.patient.equals(other.patient))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "derivedpatient4.DID4MedicalHistory[patient=" + patient + "]";
+    }
 }

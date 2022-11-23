@@ -21,56 +21,65 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.datasource.stateful;
 
 import static com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest.verifyDataSource;
 
-import java.sql.Connection;
-
-import javax.sql.DataSource;
-
 import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.ComponentBase;
 import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceIF;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.annotation.sql.DataSourceDefinition;
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateful;
 import jakarta.interceptor.Interceptors;
+import java.sql.Connection;
+import javax.sql.DataSource;
 
 @Stateful
 @Local(DataSourceIF.class)
-@DataSourceDefinition(name = "java:app/env/appds2", description = "override with <data-source> in ejb-jar.xml", className = "jdbc.ClientDataSource", portNumber = 8080, serverName = "x", databaseName = "x", user = "x", password = "x",
-
-    initialPoolSize = 1, isolationLevel = Connection.TRANSACTION_SERIALIZABLE, loginTimeout = 300, maxIdleTime = 1000, maxPoolSize = 2, minPoolSize = 1, transactional = true, url = "jdbc:derby://${derby.server}:${derby.port}/${derby.dbName};create=true")
+@DataSourceDefinition(
+        name = "java:app/env/appds2",
+        description = "override with <data-source> in ejb-jar.xml",
+        className = "jdbc.ClientDataSource",
+        portNumber = 8080,
+        serverName = "x",
+        databaseName = "x",
+        user = "x",
+        password = "x",
+        initialPoolSize = 1,
+        isolationLevel = Connection.TRANSACTION_SERIALIZABLE,
+        loginTimeout = 300,
+        maxIdleTime = 1000,
+        maxPoolSize = 2,
+        minPoolSize = 1,
+        transactional = true,
+        url = "jdbc:derby://${derby.server}:${derby.port}/${derby.dbName};create=true")
 public class DataSourceBean extends ComponentBase {
 
-  @Resource(lookup = "java:app/env/appds")
-  private DataSource appds;
+    @Resource(lookup = "java:app/env/appds")
+    private DataSource appds;
 
-  @Resource(lookup = "java:app/env/appds2")
-  private DataSource appds2;
+    @Resource(lookup = "java:app/env/appds2")
+    private DataSource appds2;
 
-  @Resource(lookup = "java:module/env/moduleds")
-  private DataSource moduleds;
+    @Resource(lookup = "java:module/env/moduleds")
+    private DataSource moduleds;
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    // transactional is overridden to false in descriptor. So connections
-    // will not participate in any transaction, if one is active.
-    boolean c = true;
-    getPostConstructRecords()
-        .append(String.format("In postConstruct of %s%n", this));
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        // transactional is overridden to false in descriptor. So connections
+        // will not participate in any transaction, if one is active.
+        boolean c = true;
+        getPostConstructRecords().append(String.format("In postConstruct of %s%n", this));
 
-    verifyDataSource(getPostConstructRecords(), c, "java:app/env/appds",
-        "java:app/env/appds2", "java:module/env/moduleds");
-    verifyDataSource(getPostConstructRecords(), c, appds, appds2, moduleds);
+        verifyDataSource(
+                getPostConstructRecords(), c, "java:app/env/appds", "java:app/env/appds2", "java:module/env/moduleds");
+        verifyDataSource(getPostConstructRecords(), c, appds, appds2, moduleds);
 
-    verifyDataSource(getPostConstructRecords(), c, appds, appds2);
-  }
+        verifyDataSource(getPostConstructRecords(), c, appds, appds2);
+    }
 
-  @Override
-  @Interceptors(Interceptor1.class)
-  public StringBuilder getPostConstructRecordsFromInterceptor() {
-    throw new RuntimeException("Should not reach here.");
-  }
-
+    @Override
+    @Interceptors(Interceptor1.class)
+    public StringBuilder getPostConstructRecordsFromInterceptor() {
+        throw new RuntimeException("Should not reach here.");
+    }
 }

@@ -20,59 +20,56 @@
 
 package com.sun.ts.tests.ejb30.tx.common.session.inheritance;
 
-import javax.naming.NamingException;
-
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
-
 import jakarta.ejb.EJBContext;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
+import javax.naming.NamingException;
 
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
-abstract public class TxBeanBase implements TxCommonIF {
+public abstract class TxBeanBase implements TxCommonIF {
 
-  public TxBeanBase() {
-  }
+    public TxBeanBase() {}
 
-  @TransactionAttribute(TransactionAttributeType.NEVER)
-  public String foo() {
-    fooImpl();
-    return "foo";
-  }
-
-  public String foo(String s) {
-    return s;
-  }
-
-  public String foo(String s, String ss) {
-    return s + ss;
-  }
-
-  public String bar() {
-    barImpl();
-    return "bar";
-  }
-
-  /**
-   * subclass may override this method to customize the behavior of foo(),
-   * without overriding foo(), because overriding foo may affect foo's
-   * transaction attribute.
-   */
-  protected void fooImpl() {
-    // noop
-  }
-
-  protected void barImpl() {
-    // noop
-  }
-
-  protected void setRollbackOnly() {
-    EJBContext ejbContext = null;
-    try {
-      ejbContext = (EJBContext) ServiceLocator.lookup("java:comp/EJBContext");
-    } catch (NamingException ex) {
-      throw new IllegalArgumentException(ex);
+    @TransactionAttribute(TransactionAttributeType.NEVER)
+    public String foo() {
+        fooImpl();
+        return "foo";
     }
-    ejbContext.setRollbackOnly();
-  }
+
+    public String foo(String s) {
+        return s;
+    }
+
+    public String foo(String s, String ss) {
+        return s + ss;
+    }
+
+    public String bar() {
+        barImpl();
+        return "bar";
+    }
+
+    /**
+     * subclass may override this method to customize the behavior of foo(),
+     * without overriding foo(), because overriding foo may affect foo's
+     * transaction attribute.
+     */
+    protected void fooImpl() {
+        // noop
+    }
+
+    protected void barImpl() {
+        // noop
+    }
+
+    protected void setRollbackOnly() {
+        EJBContext ejbContext = null;
+        try {
+            ejbContext = (EJBContext) ServiceLocator.lookup("java:comp/EJBContext");
+        } catch (NamingException ex) {
+            throw new IllegalArgumentException(ex);
+        }
+        ejbContext.setRollbackOnly();
+    }
 }

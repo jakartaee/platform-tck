@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.mdb.callback.method.ejbcreate;
 
 import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.callback.MDBClientBase;
-
 import jakarta.annotation.Resource;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
@@ -33,58 +32,58 @@ import jakarta.jms.QueueConnectionFactory;
  * through the returned value.
  */
 public class Client extends MDBClientBase {
-  @Resource(name = "sendQueue")
-  private static Queue sendQueue;
+    @Resource(name = "sendQueue")
+    private static Queue sendQueue;
 
-  @Resource(name = "receiveQueue")
-  private static Queue receiveQueue;
+    @Resource(name = "receiveQueue")
+    private static Queue receiveQueue;
 
-  @Resource(name = "queueConnectionFactory")
-  private static QueueConnectionFactory queueConnectionFactory;
+    @Resource(name = "queueConnectionFactory")
+    private static QueueConnectionFactory queueConnectionFactory;
 
-  protected void initSendQueue() {
-    setSendQueue(sendQueue);
-  }
+    protected void initSendQueue() {
+        setSendQueue(sendQueue);
+    }
 
-  protected void initReceiveQueue() {
-    setReceiveQueue(receiveQueue);
-  }
+    protected void initReceiveQueue() {
+        setReceiveQueue(receiveQueue);
+    }
 
-  protected void initQueueConnectionFactory() {
-    setQueueConnectionFactory(queueConnectionFactory);
-  }
+    protected void initQueueConnectionFactory() {
+        setQueueConnectionFactory(queueConnectionFactory);
+    }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  /*
-   * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
-   * harness.log.port;
-   */
+    /*
+     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
+     * harness.log.port;
+     */
 
-  /*
-   * @testName: isPostConstructCalledTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: ejbCreate() in MDB is treated as PostConstruct, even when
-   * it's not annotated with @PostConstruct, or when the bean class does not
-   * implement MessageDrivenBean interface. (ejb3 spec section 4.5.8, 4.3.10.2)
-   * 
-   * callback methods can be in the superclass of the bean class.
-   */
+    /*
+     * @testName: isPostConstructCalledTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: ejbCreate() in MDB is treated as PostConstruct, even when
+     * it's not annotated with @PostConstruct, or when the bean class does not
+     * implement MessageDrivenBean interface. (ejb3 spec section 4.5.8, 4.3.10.2)
+     *
+     * callback methods can be in the superclass of the bean class.
+     */
 
-  /*
-   * @testName: isInjectionDoneTest
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-   * PreDestroy o Resource o verify dependency injection has occurred when
-   * callback method is called
-   */
+    /*
+     * @testName: isInjectionDoneTest
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
+     * PreDestroy o Resource o verify dependency injection has occurred when
+     * callback method is called
+     */
 
 }

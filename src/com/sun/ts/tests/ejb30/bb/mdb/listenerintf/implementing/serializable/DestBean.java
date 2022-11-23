@@ -28,40 +28,40 @@ import jakarta.ejb.MessageDrivenBean;
 import jakarta.ejb.MessageDrivenContext;
 import jakarta.jms.MessageListener;
 
-//This MDB implements jakarta.jms.MessageListener interface, so no need to
-//use annotation element messageListenerInterface, nor descritpor element
-//messaging-type
-//It also implements java.io.Serializable, jakarta.ejb.MessageDrivenBean, 
-//but it should not be considered
-//when determining the messaging type.
+// This MDB implements jakarta.jms.MessageListener interface, so no need to
+// use annotation element messageListenerInterface, nor descritpor element
+// messaging-type
+// It also implements java.io.Serializable, jakarta.ejb.MessageDrivenBean,
+// but it should not be considered
+// when determining the messaging type.
 //
-@MessageDriven(name = "DestBean", description = "a simple MDB", activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue") })
-public class DestBean
-    extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.DestBeanBase
-    implements java.io.Serializable, MessageDrivenBean, MessageListener {
-  private MessageDrivenContext messageDrivenContext;
+@MessageDriven(
+        name = "DestBean",
+        description = "a simple MDB",
+        activationConfig = {
+            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
+        })
+public class DestBean extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.DestBeanBase
+        implements java.io.Serializable, MessageDrivenBean, MessageListener {
+    private MessageDrivenContext messageDrivenContext;
 
-  public DestBean() {
-    super();
-  }
+    public DestBean() {
+        super();
+    }
 
-  public EJBContext getEJBContext() {
-    return messageDrivenContext;
-  }
+    public EJBContext getEJBContext() {
+        return messageDrivenContext;
+    }
 
-  // ================== business methods ====================================
+    // ================== business methods ====================================
 
-  //////////////////////////////////////////////////////////////////////
-  // methods from MessageDrivenBean
-  //////////////////////////////////////////////////////////////////////
-  @Resource(name = "messageDrivenContext")
-  public void setMessageDrivenContext(MessageDrivenContext messageDrivenContext)
-      throws jakarta.ejb.EJBException {
-    this.messageDrivenContext = messageDrivenContext;
-  }
+    //////////////////////////////////////////////////////////////////////
+    // methods from MessageDrivenBean
+    //////////////////////////////////////////////////////////////////////
+    @Resource(name = "messageDrivenContext")
+    public void setMessageDrivenContext(MessageDrivenContext messageDrivenContext) throws jakarta.ejb.EJBException {
+        this.messageDrivenContext = messageDrivenContext;
+    }
 
-  public void ejbRemove() throws jakarta.ejb.EJBException {
-  }
-
+    public void ejbRemove() throws jakarta.ejb.EJBException {}
 }

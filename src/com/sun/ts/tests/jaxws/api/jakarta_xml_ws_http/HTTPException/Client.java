@@ -20,110 +20,104 @@
 
 package com.sun.ts.tests.jaxws.api.jakarta_xml_ws_http.HTTPException;
 
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.*;
-
+import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.util.*;
+import jakarta.xml.ws.http.*;
 import java.io.*;
 import java.net.*;
-import java.util.*;
 import java.rmi.*;
-
-import jakarta.xml.ws.http.*;
-
-import com.sun.javatest.Status;
+import java.util.*;
 
 public class Client extends ServiceEETest {
 
-  private final static int MY_HTTP_STATUS_CODE = 100;
+    private static final int MY_HTTP_STATUS_CODE = 100;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup */
-
-  /*
-   * @class.setup_props:
-   */
-
-  public void setup(String[] args, Properties p) throws Fault {
-    logMsg("setup ok");
-  }
-
-  public void cleanup() throws Fault {
-    logMsg("cleanup ok");
-  }
-
-  /*
-   * @testName: HTTPExceptionConstructorTest
-   *
-   * @assertion_ids: JAXWS:JAVADOC:105;
-   *
-   * @test_Strategy: Create instance via HTTPException(int statusCode)
-   * constructor. Verify HTTPException object created successfully.
-   */
-  public void HTTPExceptionConstructorTest() throws Fault {
-    TestUtil.logTrace("HTTPExceptionConstructorTest");
-    boolean pass = true;
-    try {
-      TestUtil.logMsg("Create instance via HTTPException() ...");
-      HTTPException e = new HTTPException(MY_HTTP_STATUS_CODE);
-      if (e != null) {
-        TestUtil.logMsg("HTTPException object created successfully");
-      } else {
-        TestUtil.logErr("HTTPException object not created");
-        pass = false;
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      throw new Fault("HTTPExceptionConstructorTest failed", e);
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
     }
 
-    if (!pass)
-      throw new Fault("HTTPExceptionConstructorTest failed");
-  }
+    /* Test setup */
 
-  /*
-   * @testName: getStatusCodeTest
-   *
-   * @assertion_ids: JAXWS:JAVADOC:104;
-   *
-   * @test_Strategy: Create instance via HTTPException(int statusCode)
-   * constructor. Verify HTTPException.getStatusCode() returns expected code.
-   */
-  public void getStatusCodeTest() throws Fault {
-    TestUtil.logTrace("getStatusCodeTest");
-    boolean pass = true;
-    int code;
-    try {
-      TestUtil.logMsg("Create instance via HTTPException() ...");
-      HTTPException e = new HTTPException(MY_HTTP_STATUS_CODE);
-      if (e != null) {
-        TestUtil.logMsg("HTTPException object created successfully");
-      } else {
-        TestUtil.logErr("HTTPException object not created");
-        pass = false;
-      }
-      code = e.getStatusCode();
-      if (code == MY_HTTP_STATUS_CODE)
-        TestUtil.logMsg(
-            "getStatusCode returned expected code " + MY_HTTP_STATUS_CODE);
-      else {
-        TestUtil.logErr("getStatusCode returned unexpected code, expected "
-            + MY_HTTP_STATUS_CODE + ", received " + code);
-      }
+    /*
+     * @class.setup_props:
+     */
 
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      throw new Fault("getStatusCodeTest failed", e);
+    public void setup(String[] args, Properties p) throws Fault {
+        logMsg("setup ok");
     }
 
-    if (!pass)
-      throw new Fault("getStatusCodeTest failed");
-  }
+    public void cleanup() throws Fault {
+        logMsg("cleanup ok");
+    }
+
+    /*
+     * @testName: HTTPExceptionConstructorTest
+     *
+     * @assertion_ids: JAXWS:JAVADOC:105;
+     *
+     * @test_Strategy: Create instance via HTTPException(int statusCode)
+     * constructor. Verify HTTPException object created successfully.
+     */
+    public void HTTPExceptionConstructorTest() throws Fault {
+        TestUtil.logTrace("HTTPExceptionConstructorTest");
+        boolean pass = true;
+        try {
+            TestUtil.logMsg("Create instance via HTTPException() ...");
+            HTTPException e = new HTTPException(MY_HTTP_STATUS_CODE);
+            if (e != null) {
+                TestUtil.logMsg("HTTPException object created successfully");
+            } else {
+                TestUtil.logErr("HTTPException object not created");
+                pass = false;
+            }
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+            throw new Fault("HTTPExceptionConstructorTest failed", e);
+        }
+
+        if (!pass) throw new Fault("HTTPExceptionConstructorTest failed");
+    }
+
+    /*
+     * @testName: getStatusCodeTest
+     *
+     * @assertion_ids: JAXWS:JAVADOC:104;
+     *
+     * @test_Strategy: Create instance via HTTPException(int statusCode)
+     * constructor. Verify HTTPException.getStatusCode() returns expected code.
+     */
+    public void getStatusCodeTest() throws Fault {
+        TestUtil.logTrace("getStatusCodeTest");
+        boolean pass = true;
+        int code;
+        try {
+            TestUtil.logMsg("Create instance via HTTPException() ...");
+            HTTPException e = new HTTPException(MY_HTTP_STATUS_CODE);
+            if (e != null) {
+                TestUtil.logMsg("HTTPException object created successfully");
+            } else {
+                TestUtil.logErr("HTTPException object not created");
+                pass = false;
+            }
+            code = e.getStatusCode();
+            if (code == MY_HTTP_STATUS_CODE)
+                TestUtil.logMsg("getStatusCode returned expected code " + MY_HTTP_STATUS_CODE);
+            else {
+                TestUtil.logErr("getStatusCode returned unexpected code, expected " + MY_HTTP_STATUS_CODE
+                        + ", received " + code);
+            }
+
+        } catch (Exception e) {
+            TestUtil.logErr("Caught exception: " + e.getMessage());
+            TestUtil.printStackTrace(e);
+            throw new Fault("getStatusCodeTest failed", e);
+        }
+
+        if (!pass) throw new Fault("getStatusCodeTest failed");
+    }
 }

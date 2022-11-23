@@ -21,24 +21,23 @@ package com.sun.ts.tests.ejb30.lite.singleton.concurrency.common;
 
 public interface ConcurrencyIF {
 
-  public void addToLinkedList(Integer i);
+    public void addToLinkedList(Integer i);
 
-  public int getLinkedListSizeAndClear();
+    public int getLinkedListSizeAndClear();
 
-  public long getAndResetLockedSum();
+    public long getAndResetLockedSum();
 
-  public void addLocked(int num);
+    public void addLocked(int num);
 
-  public long getAndResetUnlockedSum();
+    public long getAndResetUnlockedSum();
 
-  public void addUnlocked(int num);
+    public void addUnlocked(int num);
 
-  public long getAndResetLockedSumFromInterceptor(String interceptorName);
+    public long getAndResetLockedSumFromInterceptor(String interceptorName);
 
-  public void addLockedFromInterceptor(String interceptorName, int num);
+    public void addLockedFromInterceptor(String interceptorName, int num);
 
-  public long getAndResetUnlockedSumFromInterceptor(String interceptorName);
+    public long getAndResetUnlockedSumFromInterceptor(String interceptorName);
 
-  public void addUnlockedFromInterceptor(String interceptorName, int num);
-
+    public void addUnlockedFromInterceptor(String interceptorName, int num);
 }

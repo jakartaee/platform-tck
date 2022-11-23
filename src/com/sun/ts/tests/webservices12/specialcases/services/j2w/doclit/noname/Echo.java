@@ -19,18 +19,18 @@
  */
 package com.sun.ts.tests.webservices12.specialcases.services.j2w.doclit.noname;
 
-import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
+import jakarta.jws.WebService;
 
 @WebService
 public class Echo {
-  @WebMethod
-  public String echoString(String str) {
-    return str;
-  }
+    @WebMethod
+    public String echoString(String str) {
+        return str;
+    }
 
-  @WebMethod
-  public String[] echoStringArray(String[] str) {
-    return str;
-  }
+    @WebMethod
+    public String[] echoStringArray(String[] str) {
+        return str;
+    }
 }

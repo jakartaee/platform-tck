@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.session.stateful.equals.annotated;
 
 import com.sun.ts.tests.ejb30.common.equals.LocalShoppingCartIF;
 import com.sun.ts.tests.ejb30.common.equals.ShoppingCartIF;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Local;
 import jakarta.ejb.Remote;
@@ -33,25 +32,22 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateful(name = "shopping-cart-bean")
-@Remote({ ShoppingCartIF.class })
-@Local({ LocalShoppingCartIF.class })
+@Remote({ShoppingCartIF.class})
+@Local({LocalShoppingCartIF.class})
 @TransactionManagement(TransactionManagementType.BEAN)
 // use BMT so we can safely remove beans
 public class ShoppingCartBean
 // implements CartIF, ShoppingCartIF, LocalCartIF, LocalShoppingCartIF
 {
-  @Resource(name = "sessionContext")
-  private SessionContext sessionContext;
+    @Resource(name = "sessionContext")
+    private SessionContext sessionContext;
 
-  protected SessionContext getSessionContext() {
-    return sessionContext;
-  }
+    protected SessionContext getSessionContext() {
+        return sessionContext;
+    }
 
-  public ShoppingCartBean() {
-  }
+    public ShoppingCartBean() {}
 
-  @Remove
-  public void remove() {
-  }
-
+    @Remove
+    public void remove() {}
 }

@@ -17,7 +17,6 @@
 package com.sun.ts.tests.ejb32.lite.timer.interceptor.lifecycle.singleton;
 
 import com.sun.ts.tests.ejb30.timer.common.JsfClientBase;
-
 import jakarta.ejb.EJB;
 import java.io.Serializable;
 
@@ -25,56 +24,56 @@ import java.io.Serializable;
 @jakarta.enterprise.context.RequestScoped
 public class JsfClient extends JsfClientBase implements Serializable {
 
-  private static final long serialVersionUID = -25218441589327L;
+    private static final long serialVersionUID = -25218441589327L;
 
-  @EJB(beanName = "LifecycleTimerBean")
-  private LifecycleTimerBean bean;
+    @EJB(beanName = "LifecycleTimerBean")
+    private LifecycleTimerBean bean;
 
-  @EJB(beanName = "LifecycleAroundConstructTimerBean")
-  private LifecycleAroundConstructTimerBean aroundConstructTimerBean;
+    @EJB(beanName = "LifecycleAroundConstructTimerBean")
+    private LifecycleAroundConstructTimerBean aroundConstructTimerBean;
 
-  /*
-   * @testName: postConstructInBeanClass
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: create a timer in singleton PostConstruct method in bean
-   * class and its superclass. Verify they expire as expected.
-   */
-  public void postConstructInBeanClass() {
-    bean.getTimers(); // the first request to activate the singleton
-    passIfTimeout("LifecycleTimerBeanBase.postConstruct");
-    passIfTimeout("LifecycleTimerBean.postConstruct");
-  }
+    /*
+     * @testName: postConstructInBeanClass
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: create a timer in singleton PostConstruct method in bean
+     * class and its superclass. Verify they expire as expected.
+     */
+    public void postConstructInBeanClass() {
+        bean.getTimers(); // the first request to activate the singleton
+        passIfTimeout("LifecycleTimerBeanBase.postConstruct");
+        passIfTimeout("LifecycleTimerBean.postConstruct");
+    }
 
-  /*
-   * @testName: postConstructInInterceptorClasses
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: create a timer in PostConstruct methods of lifecycle
-   * interceptor classes. Verify they all expire as expected.
-   */
-  public void postConstructInInterceptorClasses() {
-    bean.getTimers(); // the first request to activate the singleton
-    passIfTimeout("Interceptor1.postConstruct"); // expecting 2 timeout records
-    passIfTimeout("Interceptor2.postConstruct"); // expecting 1 timeout records
-    passIfRecurringTimeout("InterceptorBase.postConstruct"); // expecting 3
-                                                             // timeout records
-  }
+    /*
+     * @testName: postConstructInInterceptorClasses
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: create a timer in PostConstruct methods of lifecycle
+     * interceptor classes. Verify they all expire as expected.
+     */
+    public void postConstructInInterceptorClasses() {
+        bean.getTimers(); // the first request to activate the singleton
+        passIfTimeout("Interceptor1.postConstruct"); // expecting 2 timeout records
+        passIfTimeout("Interceptor2.postConstruct"); // expecting 1 timeout records
+        passIfRecurringTimeout("InterceptorBase.postConstruct"); // expecting 3
+        // timeout records
+    }
 
-  /*
-   * @testName: aroundConstructInBeanClass
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy: create a timer in singleton PostConstruct method in bean
-   * class and its superclass. Verify they expire as expected.
-   */
-  public void aroundConstructInBeanClass() {
-    aroundConstructTimerBean.getTimers(); // the first request to activate the
-                                          // singleton
-    passIfTimeout("LifecycleTimerBeanBase.postConstruct");
-    passIfTimeout("LifecycleAroundConstructTimerBean.postConstruct");
-  }
+    /*
+     * @testName: aroundConstructInBeanClass
+     *
+     * @assertion_ids:
+     *
+     * @test_Strategy: create a timer in singleton PostConstruct method in bean
+     * class and its superclass. Verify they expire as expected.
+     */
+    public void aroundConstructInBeanClass() {
+        aroundConstructTimerBean.getTimers(); // the first request to activate the
+        // singleton
+        passIfTimeout("LifecycleTimerBeanBase.postConstruct");
+        passIfTimeout("LifecycleAroundConstructTimerBean.postConstruct");
+    }
 }

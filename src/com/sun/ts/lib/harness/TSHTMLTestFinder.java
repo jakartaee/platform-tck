@@ -16,11 +16,10 @@
 
 package com.sun.ts.lib.harness;
 
-import java.io.*;
-import java.util.*;
 import com.sun.javatest.*;
 import com.sun.javatest.finder.*;
-import com.sun.ts.lib.util.TestUtil;
+import java.io.*;
+import java.util.*;
 
 /**
  * A adapter between html test description and cts tag test description. It is
@@ -30,50 +29,47 @@ import com.sun.ts.lib.util.TestUtil;
  * @created November 1, 2002
  */
 public class TSHTMLTestFinder extends HTMLTestFinder {
-  public void foundTestDescription(Map entries, File file, int line) {
-    VehicleVerifier vehicleVerifier = VehicleVerifier.getInstance(file);
-    String[] vehicles = vehicleVerifier.getVehicleSet();
-    for (int i = 0; i < vehicles.length; i++) {
-      TestDescription td = createTestDescription(entries, file, vehicles[i]);
-      // System.out.println("### TestDesciption: " + td.toString());
-      foundTestDescription(td);
+    public void foundTestDescription(Map entries, File file, int line) {
+        VehicleVerifier vehicleVerifier = VehicleVerifier.getInstance(file);
+        String[] vehicles = vehicleVerifier.getVehicleSet();
+        for (int i = 0; i < vehicles.length; i++) {
+            TestDescription td = createTestDescription(entries, file, vehicles[i]);
+            // System.out.println("### TestDesciption: " + td.toString());
+            foundTestDescription(td);
+        }
     }
-  }
 
-  private TestDescription createTestDescription(Map map, File file,
-      String vehicle) {
-    Map result = new Hashtable(13);
-    String id = (String) map.get("id");
-    if (id == null) {
-      id = (String) map.get("name");
-    }
-    if (id == null) {
-      System.out.println("### id or name is null");
-      Thread.dumpStack();
-    }
-    id = new StringBuffer(50).append(id).append("_from_").append(vehicle)
-        .toString();
-    // String executeClass = (String) map.get("executeClass");
-    String executeClass = "com.sun.ts.tests.jaxp.api.xml_schema.XmlSchemaRunner";
-    String executeArgs = (String) map.get("executeArgs");
-    if (id != null) {
-      result.put("testName", id);
-      result.put("id", id);
-    }
-    if (executeClass != null) {
-      result.put("classname", executeClass);
-    }
-    if (executeArgs != null) {
-      result.put("testArgs", executeArgs);
-    }
-    result.put("service_eetest", "yes");
+    private TestDescription createTestDescription(Map map, File file, String vehicle) {
+        Map result = new Hashtable(13);
+        String id = (String) map.get("id");
+        if (id == null) {
+            id = (String) map.get("name");
+        }
+        if (id == null) {
+            System.out.println("### id or name is null");
+            Thread.dumpStack();
+        }
+        id = new StringBuffer(50).append(id).append("_from_").append(vehicle).toString();
+        // String executeClass = (String) map.get("executeClass");
+        String executeClass = "com.sun.ts.tests.jaxp.api.xml_schema.XmlSchemaRunner";
+        String executeArgs = (String) map.get("executeArgs");
+        if (id != null) {
+            result.put("testName", id);
+            result.put("id", id);
+        }
+        if (executeClass != null) {
+            result.put("classname", executeClass);
+        }
+        if (executeArgs != null) {
+            result.put("testArgs", executeArgs);
+        }
+        result.put("service_eetest", "yes");
 
-    String testDir = file.getParent();
-    // result.put("test_directory", TestUtil.getRelativePath(testDir));
-    result.put("test_directory", "com/sun/ts/tests/jaxp/api/xml_schema");
+        String testDir = file.getParent();
+        // result.put("test_directory", TestUtil.getRelativePath(testDir));
+        result.put("test_directory", "com/sun/ts/tests/jaxp/api/xml_schema");
 
-    File root = this.getRoot();
-    return new TestDescription(root, file, result);
-  }
-
+        File root = this.getRoot();
+        return new TestDescription(root, file, result);
+    }
 }

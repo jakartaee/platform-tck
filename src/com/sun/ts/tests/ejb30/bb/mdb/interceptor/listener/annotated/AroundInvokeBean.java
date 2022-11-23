@@ -22,7 +22,6 @@ package com.sun.ts.tests.ejb30.bb.mdb.interceptor.listener.annotated;
 
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeBase;
 import com.sun.ts.tests.ejb30.common.interceptor.AroundInvokeTestMDBImpl;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
@@ -39,55 +38,56 @@ import jakarta.jms.MessageListener;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
 
-@MessageDriven(name = "AroundInvokeBean", description = "a simple MDB AroundInvokeBean", messageListenerInterface = MessageListener.class, activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue") })
+@MessageDriven(
+        name = "AroundInvokeBean",
+        description = "a simple MDB AroundInvokeBean",
+        messageListenerInterface = MessageListener.class,
+        activationConfig = {
+            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
+        })
 
 // This bean must use cmt, since it uses setRollbackOnly
 @TransactionManagement(TransactionManagementType.CONTAINER)
-@Interceptors({ com.sun.ts.tests.ejb30.common.interceptor.InterceptorMDB1.class,
-    com.sun.ts.tests.ejb30.common.interceptor.InterceptorMDB2.class })
+@Interceptors({
+    com.sun.ts.tests.ejb30.common.interceptor.InterceptorMDB1.class,
+    com.sun.ts.tests.ejb30.common.interceptor.InterceptorMDB2.class
+})
+public class AroundInvokeBean extends AroundInvokeBase implements MessageListener {
+    @Resource(name = "ejbContext")
+    private MessageDrivenContext ejbContext;
 
-public class AroundInvokeBean extends AroundInvokeBase
-    implements MessageListener {
-  @Resource(name = "ejbContext")
-  private MessageDrivenContext ejbContext;
+    @Resource(name = "qFactory")
+    private QueueConnectionFactory qFactory;
 
-  @Resource(name = "qFactory")
-  private QueueConnectionFactory qFactory;
+    @Resource(name = "replyQueue")
+    private Queue replyQueue;
 
-  @Resource(name = "replyQueue")
-  private Queue replyQueue;
+    public AroundInvokeBean() {
+        super();
+    }
 
-  public AroundInvokeBean() {
-    super();
-  }
+    public void onMessage(Message msg) {
+        AroundInvokeTestMDBImpl.ensureRollbackOnly(msg, getEJBContext());
+    }
 
-  public void onMessage(Message msg) {
-    AroundInvokeTestMDBImpl.ensureRollbackOnly(msg, getEJBContext());
-  }
+    @AroundInvoke
+    public Object intercept(InvocationContext ctx) throws Exception {
+        // this interceptor should be invoked last, unless overrid by deployment
+        // descriptor.
+        Object result = null;
+        int orderInChain = 3;
+        result = AroundInvokeTestMDBImpl.intercept2(ctx, orderInChain);
+        return result;
+    }
 
-  @AroundInvoke
-  public Object intercept(InvocationContext ctx) throws Exception {
-    // this interceptor should be invoked last, unless overrid by deployment
-    // descriptor.
-    Object result = null;
-    int orderInChain = 3;
-    result = AroundInvokeTestMDBImpl.intercept2(ctx, orderInChain);
-    return result;
-  }
+    @PostConstruct
+    private void postConstruct() {}
 
-  @PostConstruct
-  private void postConstruct() {
+    @PreDestroy
+    private void preDestroy() {}
 
-  }
-
-  @PreDestroy
-  private void preDestroy() {
-
-  }
-
-  // ============ abstract methods from super ==========================
-  protected jakarta.ejb.EJBContext getEJBContext() {
-    return this.ejbContext;
-  }
+    // ============ abstract methods from super ==========================
+    protected jakarta.ejb.EJBContext getEJBContext() {
+        return this.ejbContext;
+    }
 }

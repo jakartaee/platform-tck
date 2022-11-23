@@ -20,31 +20,30 @@
 
 package com.sun.ts.tests.ejb.ee.bb.localaccess.ebaccesstest;
 
+import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
-
 public interface TestBean extends EJBObject {
-  // Business Methods for CMP Fields
-  public Integer getId() throws RemoteException;
+    // Business Methods for CMP Fields
+    public Integer getId() throws RemoteException;
 
-  public String getName() throws RemoteException;
+    public String getName() throws RemoteException;
 
-  public void setName(String v) throws RemoteException;
+    public void setName(String v) throws RemoteException;
 
-  public float getPrice() throws RemoteException;
+    public float getPrice() throws RemoteException;
 
-  public void setPrice(float v) throws RemoteException;
+    public void setPrice(float v) throws RemoteException;
 
-  // Business Methods
-  public boolean test1() throws RemoteException;
+    // Business Methods
+    public boolean test1() throws RemoteException;
 
-  public boolean test2() throws RemoteException;
+    public boolean test2() throws RemoteException;
 
-  public boolean test3(Properties p) throws RemoteException;
+    public boolean test3(Properties p) throws RemoteException;
 
-  public boolean test4() throws RemoteException;
+    public boolean test4() throws RemoteException;
 
-  public void cleanUpStatefulBean() throws RemoteException;
+    public void cleanUpStatefulBean() throws RemoteException;
 }

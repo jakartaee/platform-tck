@@ -19,58 +19,50 @@
  */
 package com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common;
 
+import com.sun.ts.tests.ejb30.common.helper.Helper;
+import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
-
 import javax.sql.DataSource;
-
-import com.sun.ts.tests.ejb30.common.helper.Helper;
-import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 
 public final class DataSourceTest {
 
-  private DataSourceTest() {
-  }
+    private DataSourceTest() {}
 
-  public static void verifyDataSource(StringBuilder reason, boolean connect,
-      String... names) {
-    for (String name : names) {
-      DataSource ds = (DataSource) ServiceLocator.lookupNoTry(name);
-      reason
-          .append(String.format("%nLooked up DataSource with name %s%n", name));
-      verifyDataSource(reason, connect, ds);
-    }
-  }
-
-  public static void verifyDataSource(StringBuilder reason, boolean connect,
-      DataSource... dss) {
-    if (!connect) {
-      for (DataSource ds : dss) {
-        // if the ds is null, it will cause NPE and thus fail the test
-        reason.append(String.format("%nGot DataSource %s", ds.toString()));
-      }
-    } else {
-      for (DataSource ds : dss) {
-        Connection connection = null;
-        try {
-          Helper.getLogger().info("About to getConnection from " + ds);
-          connection = ds.getConnection();
-          reason.append(String.format(
-              "Got DataSource %s and opened connection %s%n", ds, connection));
-        } catch (SQLException e) {
-          throw new RuntimeException(e);
-        } finally {
-          if (connection != null) {
-            try {
-              connection.close();
-            } catch (SQLException e) {
-              Helper.getLogger().log(Level.WARNING,
-                  "Failed to close the connection", e);
-            }
-          }
+    public static void verifyDataSource(StringBuilder reason, boolean connect, String... names) {
+        for (String name : names) {
+            DataSource ds = (DataSource) ServiceLocator.lookupNoTry(name);
+            reason.append(String.format("%nLooked up DataSource with name %s%n", name));
+            verifyDataSource(reason, connect, ds);
         }
-      }
     }
-  }
+
+    public static void verifyDataSource(StringBuilder reason, boolean connect, DataSource... dss) {
+        if (!connect) {
+            for (DataSource ds : dss) {
+                // if the ds is null, it will cause NPE and thus fail the test
+                reason.append(String.format("%nGot DataSource %s", ds.toString()));
+            }
+        } else {
+            for (DataSource ds : dss) {
+                Connection connection = null;
+                try {
+                    Helper.getLogger().info("About to getConnection from " + ds);
+                    connection = ds.getConnection();
+                    reason.append(String.format("Got DataSource %s and opened connection %s%n", ds, connection));
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                } finally {
+                    if (connection != null) {
+                        try {
+                            connection.close();
+                        } catch (SQLException e) {
+                            Helper.getLogger().log(Level.WARNING, "Failed to close the connection", e);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

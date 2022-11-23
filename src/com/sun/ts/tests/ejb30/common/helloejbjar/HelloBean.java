@@ -25,16 +25,13 @@ import jakarta.ejb.Singleton;
 import jakarta.ejb.TimerService;
 
 @Singleton
-public class HelloBean extends HelloBeanBase
-    implements HelloRemoteIF, HelloLocalIF {
-  // timerService not used. Just to verify this resource is available when
-  // helloBean is injected to and referenced from various containers.
-  @Resource
-  private TimerService timerService;
+public class HelloBean extends HelloBeanBase implements HelloRemoteIF, HelloLocalIF {
+    // timerService not used. Just to verify this resource is available when
+    // helloBean is injected to and referenced from various containers.
+    @Resource
+    private TimerService timerService;
 
-  // implement 2 intf are needed so appserver can infer its remote and local
-  // intf.
-  public HelloBean() {
-  }
-
+    // implement 2 intf are needed so appserver can infer its remote and local
+    // intf.
+    public HelloBean() {}
 }

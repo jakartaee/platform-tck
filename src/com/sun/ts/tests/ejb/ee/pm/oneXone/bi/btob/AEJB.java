@@ -20,129 +20,122 @@
 
 package com.sun.ts.tests.ejb.ee.pm.oneXone.bi.btob;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.EntityBean;
 import jakarta.ejb.EntityContext;
 import jakarta.ejb.RemoveException;
+import java.util.Properties;
 
 public abstract class AEJB implements EntityBean {
 
-  private EntityContext context = null;
+    private EntityContext context = null;
 
-  // ===========================================================
-  // getters and setters for cmp fields
+    // ===========================================================
+    // getters and setters for cmp fields
 
-  public abstract String getId();
+    public abstract String getId();
 
-  public abstract void setId(String v);
+    public abstract void setId(String v);
 
-  public abstract String getName();
+    public abstract String getName();
 
-  public abstract void setName(String v);
+    public abstract void setName(String v);
 
-  public abstract int getValue();
+    public abstract int getValue();
 
-  public abstract void setValue(int v);
+    public abstract void setValue(int v);
 
-  // ===========================================================
-  // getters and setters for relationship fields
+    // ===========================================================
+    // getters and setters for relationship fields
 
-  // 1x1
-  public abstract BLocal getB();
+    // 1x1
+    public abstract BLocal getB();
 
-  public abstract void setB(BLocal v);
+    public abstract void setB(BLocal v);
 
-  // ===========================================================
-  // A interface business methods
+    // ===========================================================
+    // A interface business methods
 
-  public void init(Properties p) {
-    TestUtil.logTrace("init");
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
+    public void init(Properties p) {
+        TestUtil.logTrace("init");
+        try {
+            TestUtil.init(p);
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException(e.getMessage());
+        }
     }
-  }
 
-  public boolean isB() {
-    TestUtil.logTrace("isB");
-    if (getB() != null)
-      TestUtil.logMsg("Relationship set for B ...");
-    else
-      TestUtil.logMsg("Relationship not set for B ...");
-    return getB() != null;
-  }
+    public boolean isB() {
+        TestUtil.logTrace("isB");
+        if (getB() != null) TestUtil.logMsg("Relationship set for B ...");
+        else TestUtil.logMsg("Relationship not set for B ...");
+        return getB() != null;
+    }
 
-  public BDVC getBInfo() {
-    TestUtil.logTrace("getBInfo");
-    try {
-      if (isB()) {
-        BLocal b = getB();
-        BDVC bDVC = new BDVC(b.getId(), b.getName(), b.getValue());
-        return bDVC;
-      } else
+    public BDVC getBInfo() {
+        TestUtil.logTrace("getBInfo");
+        try {
+            if (isB()) {
+                BLocal b = getB();
+                BDVC bDVC = new BDVC(b.getId(), b.getName(), b.getValue());
+                return bDVC;
+            } else return null;
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("Exception occurred: " + e);
+        }
+    }
+
+    // ===========================================================
+    // EJB Specification Required Methods
+
+    public String ejbCreate(String id, String name, int value) throws CreateException {
+        TestUtil.logTrace("ejbCreate");
+        try {
+            setId(id);
+            setName(name);
+            setValue(value);
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new CreateException("Exception occurred: " + e);
+        }
         return null;
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("Exception occurred: " + e);
     }
-  }
 
-  // ===========================================================
-  // EJB Specification Required Methods
-
-  public String ejbCreate(String id, String name, int value)
-      throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-    try {
-      setId(id);
-      setName(name);
-      setValue(value);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new CreateException("Exception occurred: " + e);
+    public void ejbPostCreate(String id, String name, int value) throws CreateException {
+        TestUtil.logTrace("ejbPostCreate");
     }
-    return null;
-  }
 
-  public void ejbPostCreate(String id, String name, int value)
-      throws CreateException {
-    TestUtil.logTrace("ejbPostCreate");
-  }
+    public void setEntityContext(EntityContext c) {
+        TestUtil.logTrace("setEntityContext");
+        context = c;
+    }
 
-  public void setEntityContext(EntityContext c) {
-    TestUtil.logTrace("setEntityContext");
-    context = c;
-  }
+    public void unsetEntityContext() {
+        TestUtil.logTrace("unsetEntityContext");
+    }
 
-  public void unsetEntityContext() {
-    TestUtil.logTrace("unsetEntityContext");
-  }
+    public void ejbRemove() throws RemoveException {
+        TestUtil.logTrace("ejbRemove");
+    }
 
-  public void ejbRemove() throws RemoveException {
-    TestUtil.logTrace("ejbRemove");
-  }
+    public void ejbActivate() {
+        TestUtil.logTrace("ejbActivate");
+    }
 
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
+    public void ejbPassivate() {
+        TestUtil.logTrace("ejbPassivate");
+    }
 
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
+    public void ejbLoad() {
+        TestUtil.logTrace("ejbLoad");
+    }
 
-  public void ejbLoad() {
-    TestUtil.logTrace("ejbLoad");
-  }
-
-  public void ejbStore() {
-    TestUtil.logTrace("ejbStore");
-  }
+    public void ejbStore() {
+        TestUtil.logTrace("ejbStore");
+    }
 }

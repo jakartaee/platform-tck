@@ -20,21 +20,18 @@
 
 package com.sun.ts.tests.ejb30.common.callback;
 
-
 public class InterceptorB extends InterceptorBase {
 
-  @Override
-  protected String getShortName() {
-    return "B";
-  }
+    @Override
+    protected String getShortName() {
+        return "B";
+    }
 
-  protected String getInjectedLocation() {
-    return NOT_INJECTED;
-  }
+    protected String getInjectedLocation() {
+        return NOT_INJECTED;
+    }
 
-  protected void myCreate(jakarta.interceptor.InvocationContext inv)
-      throws RuntimeException {
-    myCreate0(inv, "B");
-  }
-
+    protected void myCreate(jakarta.interceptor.InvocationContext inv) throws RuntimeException {
+        myCreate0(inv, "B");
+    }
 }

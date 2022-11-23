@@ -16,13 +16,12 @@
 
 package com.sun.ts.tests.jpa.core.relationship.unimanyxone;
 
-import java.io.Serializable;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import java.io.Serializable;
 
 /**
  *
@@ -31,75 +30,72 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class UniMX1Person implements Serializable {
 
-  public UniMX1Person() {
-  }
+    public UniMX1Person() {}
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  @Id
-  private Long id;
+    @Id
+    private Long id;
 
-  private String name;
+    private String name;
 
-  // Many Persons One Project
-  @ManyToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "UNIMX1PROJECT_ID")
-  private UniMX1Project project;
+    // Many Persons One Project
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "UNIMX1PROJECT_ID")
+    private UniMX1Project project;
 
-  public UniMX1Person(long l, String string) {
-    this.id = l;
-    this.name = string;
-  }
-
-  public UniMX1Project getProject() {
-    return project;
-  }
-
-  public void setProject(UniMX1Project project) {
-    this.project = project;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  @Override
-  public int hashCode() {
-    int hash = 0;
-    hash += (id != null ? id.hashCode() : 0);
-    return hash;
-  }
-
-  @Override
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof UniMX1Person)) {
-      return false;
+    public UniMX1Person(long l, String string) {
+        this.id = l;
+        this.name = string;
     }
-    UniMX1Person other = (UniMX1Person) object;
-    if ((this.id == null && other.id != null)
-        || (this.id != null && !this.id.equals(other.id))) {
-      return false;
+
+    public UniMX1Project getProject() {
+        return project;
     }
-    return true;
-  }
 
-  @Override
-  public String toString() {
-    return "unimanyxone.UniMX1Person[id=" + id + "]";
-  }
+    public void setProject(UniMX1Project project) {
+        this.project = project;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not
+        // set
+        if (!(object instanceof UniMX1Person)) {
+            return false;
+        }
+        UniMX1Person other = (UniMX1Person) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "unimanyxone.UniMX1Person[id=" + id + "]";
+    }
 }

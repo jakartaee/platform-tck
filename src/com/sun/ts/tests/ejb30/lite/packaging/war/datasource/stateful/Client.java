@@ -21,32 +21,30 @@ package com.sun.ts.tests.ejb30.lite.packaging.war.datasource.stateful;
 
 import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
 import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceIF;
-
 import jakarta.ejb.EJB;
 
 public class Client extends EJBLiteClientBase {
-  @EJB
-  private DataSourceIF dataSourceBean;
+    @EJB
+    private DataSourceIF dataSourceBean;
 
-  /*
-   * @testName: postConstructRecordsEJB
-   * 
-   * @test_Strategy: look up the data sources declared with annotation in EJB,
-   * and verify the injected datasource inside its PostConstruct method.
-   */
-  public void postConstructRecordsEJB() {
-    appendReason(dataSourceBean.getPostConstructRecords());
-  }
+    /*
+     * @testName: postConstructRecordsEJB
+     *
+     * @test_Strategy: look up the data sources declared with annotation in EJB,
+     * and verify the injected datasource inside its PostConstruct method.
+     */
+    public void postConstructRecordsEJB() {
+        appendReason(dataSourceBean.getPostConstructRecords());
+    }
 
-  /*
-   * @testName: postConstructRecordsInterceptor
-   * 
-   * @test_Strategy: look up the data sources declared with annotation in
-   * Interceptor1, and verify the injected datasource inside its PostConstruct
-   * method.
-   */
-  public void postConstructRecordsInterceptor() {
-    appendReason(dataSourceBean.getPostConstructRecords());
-  }
-
+    /*
+     * @testName: postConstructRecordsInterceptor
+     *
+     * @test_Strategy: look up the data sources declared with annotation in
+     * Interceptor1, and verify the injected datasource inside its PostConstruct
+     * method.
+     */
+    public void postConstructRecordsInterceptor() {
+        appendReason(dataSourceBean.getPostConstructRecords());
+    }
 }

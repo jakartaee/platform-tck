@@ -20,14 +20,11 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.bm.allowed;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.ejb30.common.allowed.AllowedIF;
 import com.sun.ts.tests.ejb30.common.allowed.AllowedLocalIF;
 import com.sun.ts.tests.ejb30.common.allowed.stateful.TimerLocalIF;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Local;
@@ -41,71 +38,67 @@ import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.Interceptors;
 import jakarta.interceptor.InvocationContext;
 import jakarta.transaction.Status;
+import java.util.Properties;
 
 @Stateful(name = "AllowedBean")
-@Remote({ AllowedIF.class })
-@Local({ AllowedLocalIF.class })
+@Remote({AllowedIF.class})
+@Local({AllowedLocalIF.class})
 @TransactionManagement(TransactionManagementType.BEAN)
-@Interceptors({
-    com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulCancelInterceptor.class })
-
+@Interceptors({com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulCancelInterceptor.class})
 @EJB(name = "ejb/TimerEJB", beanName = "TimerEJB", beanInterface = TimerLocalIF.class)
 public class AllowedBean extends AllowedBeanNonSessionSynchronizationBase
-    implements AllowedIF, AllowedLocalIF, java.io.Serializable {
+        implements AllowedIF, AllowedLocalIF, java.io.Serializable {
 
-  @Resource(name = "ejbContext")
-  @Override
-  public void setSessionContext(SessionContext sc) {
-    super.setSessionContext(sc);
-  }
+    @Resource(name = "ejbContext")
+    @Override
+    public void setSessionContext(SessionContext sc) {
+        super.setSessionContext(sc);
+    }
 
-  @AroundInvoke
-  public Object intercept(InvocationContext inv) throws Exception {
-    return super.intercept(inv);
-  }
+    @AroundInvoke
+    public Object intercept(InvocationContext inv) throws Exception {
+        return super.intercept(inv);
+    }
 
-  @Override
-  public Properties runOperations(SessionContext sctx) {
-    return StatefulBMTOperations.getInstance().run2(sctx, AllowedIF.class);
-  }
+    @Override
+    public Properties runOperations(SessionContext sctx) {
+        return StatefulBMTOperations.getInstance().run2(sctx, AllowedIF.class);
+    }
 
-  // ===================== business methods ===========================
-  @Remove
-  public void remove() {
-    super.remove();
-  }
+    // ===================== business methods ===========================
+    @Remove
+    public void remove() {
+        super.remove();
+    }
 
-  public void utBeginTest() throws TestFailedException {
-    boolean pass = false;
-    String reason = null;
-    try {
-      sessionContext.getUserTransaction().begin();
-      TLogger.logMsg("UserTransaction.begin - allowed");
-      TLogger.logTrace(
-          "Attempt to call begin again before commit() or rollback()");
-      sessionContext.getUserTransaction().begin();
-      reason = "Was able to call begin again before commit() or rollback()";
-    } catch (jakarta.transaction.NotSupportedException nse) {
-      pass = true;
-      reason = "jakarta.transaction.NotSupportedException caught as expected";
-      TLogger.log(reason);
-    } catch (Exception e) {
-      reason = "Unexpected Exception - " + e;
-    } finally {
-      try {
-        if (sessionContext.getUserTransaction()
-            .getStatus() != Status.STATUS_NO_TRANSACTION) {
-          TLogger.logTrace("Rollback the active TX from the first begin call");
-          sessionContext.getUserTransaction().rollback();
+    public void utBeginTest() throws TestFailedException {
+        boolean pass = false;
+        String reason = null;
+        try {
+            sessionContext.getUserTransaction().begin();
+            TLogger.logMsg("UserTransaction.begin - allowed");
+            TLogger.logTrace("Attempt to call begin again before commit() or rollback()");
+            sessionContext.getUserTransaction().begin();
+            reason = "Was able to call begin again before commit() or rollback()";
+        } catch (jakarta.transaction.NotSupportedException nse) {
+            pass = true;
+            reason = "jakarta.transaction.NotSupportedException caught as expected";
+            TLogger.log(reason);
+        } catch (Exception e) {
+            reason = "Unexpected Exception - " + e;
+        } finally {
+            try {
+                if (sessionContext.getUserTransaction().getStatus() != Status.STATUS_NO_TRANSACTION) {
+                    TLogger.logTrace("Rollback the active TX from the first begin call");
+                    sessionContext.getUserTransaction().rollback();
+                }
+            } catch (Exception re) {
+                TLogger.logMsg("Exception caught on ut.rollback() - " + re);
+            }
         }
-      } catch (Exception re) {
-        TLogger.logMsg("Exception caught on ut.rollback() - " + re);
-      }
-    }
 
-    if (!pass) {
-      throw new TestFailedException(reason);
+        if (!pass) {
+            throw new TestFailedException(reason);
+        }
     }
-  }
-
 }

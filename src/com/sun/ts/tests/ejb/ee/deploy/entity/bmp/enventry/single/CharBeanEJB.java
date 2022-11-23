@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.ejb.wrappers.BMPWrapper;
 
 public class CharBeanEJB extends BMPWrapper {
 
-  public boolean testCharacterEntry() {
-    return TestCode.testCharacterEntry(nctx);
-  }
-
+    public boolean testCharacterEntry() {
+        return TestCode.testCharacterEntry(nctx);
+    }
 }
