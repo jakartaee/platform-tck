@@ -125,11 +125,19 @@ public class Client extends PMClientBase {
     expected.add("NAME");
     expected.add("PRIMARY KEY (ID)");
     pass1a = findDataInFile(f1, expected);
+	
+    expected.clear();
+    expected.add("CREATE TABLE SCHEMAGENSIMPLE");
+    expected.add("ID");
+    expected.add("NAME");
+    expected.add("PRIMARY KEY (ID)");
+    expected.add("CONSTRAINT MYUNIQUECONSTRAINT UNIQUE (ID, NAME)");
+    pass1b = findDataInFile(f1, expected);
 
     expected.clear();
     expected.add("ALTER TABLE SCHEMAGENSIMPLE ADD");
     expected.add("CONSTRAINT MYUNIQUECONSTRAINT UNIQUE (ID, NAME)");
-    pass1b = findDataInFile(f1, expected);
+    pass1b = pass1b || findDataInFile(f1, expected);
 
     pass1b = pass1b || findDataInFile(f1,
         "CREATE UNIQUE INDEX MYUNIQUECONSTRAINT ON SCHEMAGENSIMPLE (ID, NAME)");

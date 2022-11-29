@@ -166,6 +166,15 @@ public class Client extends PMClientBase {
     pass1c = findDataInFile(f1,
         "CREATE INDEX SCHEMAGENSIMPLE_SVALUE2_DESC ON SCHEMAGENSIMPLE (SVALUE2 DESC)");
     pass1c = pass1c || findDataInFile(f1, expected);
+	
+    expected.clear();
+    expected.add("CREATE TABLE SCHEMAGENSIMPLE");
+    expected.add("SVALUE VARCHAR");
+    expected.add("SVALUE2 VARCHAR");
+    expected.add("SVALUE3 VARCHAR");
+    expected.add("PRIMARY KEY (ID)");
+    expected.add("CONSTRAINT SCHEMAGENSIMPLE_SVALUE3 UNIQUE (SVALUE3)");
+    pass1d = findDataInFile(f1, expected);
 
     expected.clear();
     expected.add("ALTER TABLE SCHEMAGENSIMPLE");
@@ -173,7 +182,7 @@ public class Client extends PMClientBase {
     expected.add("UNIQUE");
     expected.add("INDEX SCHEMAGENSIMPLE_SVALUE3");
 
-    pass1d = findDataInFile(f1,
+    pass1d = pass1d || findDataInFile(f1,
         "CREATE UNIQUE INDEX SCHEMAGENSIMPLE_SVALUE3 ON SCHEMAGENSIMPLE (SVALUE3)");
     pass1d = pass1d || findDataInFile(f1, expected);
 
