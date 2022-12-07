@@ -142,7 +142,6 @@
 <!-- not needed anymore -->
 <!--        <module>docker</module>-->
         <module>core-profile-tck</module>
-<!--         <module>glassfish-runner</module> -->
     </modules>
 
     <dependencyManagement>
@@ -696,4 +695,14 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>glassfish-runner</id>
+            <modules>
+                <module>glassfish-runner</module>
+            </modules>
+        </profile>
+    </profiles>
+
 </project>

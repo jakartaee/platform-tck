@@ -54,7 +54,7 @@ jobs:
         run: mvn -ntp install:install-file -Dfile=./lib/javatest.jar -DgroupId=javatest -DartifactId=javatest -Dversion=5.0 -Dpackaging=jar
 
       - name: Build TCK Run with Maven
-        run: mvn -V -B -U -am clean install -Dmaven.test.failure.ignore=true
+        run: mvn -V -B -U -am clean install -Dmaven.test.failure.ignore=true -Pglassfish-runner
 
       - name: Publish Test Report
         uses: scacap/action-surefire-report@v1
