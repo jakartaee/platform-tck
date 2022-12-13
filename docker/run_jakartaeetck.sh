@@ -197,7 +197,7 @@ on_exit () {
       sed -i.bak "s/name=\"${TEST_SUITE}\"/name=\"${TEST_SUITE}_${vehicle_name}\"/g" "${WORKSPACE}/results/junitreports/${TEST_SUITE}-junit-report.xml"
       mv "${WORKSPACE}/results/junitreports/${TEST_SUITE}-junit-report.xml" "${WORKSPACE}/results/junitreports/${TEST_SUITE}_${vehicle_name}-junit-report.xml"
     fi
-    tar zcf "${JUNIT_REPORT_FILE_NAME}" -C "${WORKSPACE}" "results/junitreports/" || true
+    tar zcf "${WORKSPACE}/${JUNIT_REPORT_FILE_NAME}" -C "${WORKSPACE}" "results/junitreports/" || true
   fi
 
   if [ -z "${vehicle}" ]; then
