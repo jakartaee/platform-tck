@@ -163,6 +163,7 @@ on_exit () {
 
 "
   set +e;
+  ps -lAf | grep java;
   if [ -d "${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}" ]; then
     "${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin" stop-domain --kill || true;
   fi
@@ -190,17 +191,20 @@ on_exit () {
     rm -f "${CTS_HOME}/args.txt"
 
     if [ -z "${vehicle}" ]; then
-      RESULT_FILE_NAME="${TEST_SUITE}-results.tar.gz"
       JUNIT_REPORT_FILE_NAME="${TEST_SUITE}-junitreports.tar.gz"
     else
-      RESULT_FILE_NAME="${TEST_SUITE}_${vehicle_name}-results.tar.gz"
       JUNIT_REPORT_FILE_NAME="${TEST_SUITE}_${vehicle_name}-junitreports.tar.gz"
       sed -i.bak "s/name=\"${TEST_SUITE}\"/name=\"${TEST_SUITE}_${vehicle_name}\"/g" "${WORKSPACE}/results/junitreports/${TEST_SUITE}-junit-report.xml"
       mv "${WORKSPACE}/results/junitreports/${TEST_SUITE}-junit-report.xml" "${WORKSPACE}/results/junitreports/${TEST_SUITE}_${vehicle_name}-junit-report.xml"
     fi
-    tar zcf "${JUNIT_REPORT_FILE_NAME}" -C "${WORKSPACE}" "results/junitreports/" || true
+    tar zcf "${WORKSPACE}/${JUNIT_REPORT_FILE_NAME}" -C "${WORKSPACE}" "results/junitreports/" || true
   fi
 
+  if [ -z "${vehicle}" ]; then
+    RESULT_FILE_NAME="${TEST_SUITE}-results.tar.gz"
+  else
+    RESULT_FILE_NAME="${TEST_SUITE}_${vehicle_name}-results.tar.gz"
+  fi
   tar zcf "${WORKSPACE}/${RESULT_FILE_NAME}" --ignore-failed-read -C "${WORKSPACE}"\
     "${CTS_HOME}/*.log"\
     "${JT_REPORT_DIR}"\
@@ -230,7 +234,7 @@ if [ -n "$GF_LOGGING_CFG_RI" ]; then
 fi
 "${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin" --user admin --passwordfile ${ADMIN_PASSWORD_FILE} start-domain
 "${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin" --user admin --passwordfile ${CTS_HOME}/change-admin-password.txt change-admin-password
-"${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin" --user admin --passwordfile ${ADMIN_PASSWORD_FILE} stop-domain
+"${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin" --user admin --passwordfile ${ADMIN_PASSWORD_FILE} stop-domain --kill
 "${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin" --user admin --passwordfile ${ADMIN_PASSWORD_FILE} start-domain
 "${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin" --user admin --passwordfile ${ADMIN_PASSWORD_FILE} enable-secure-admin
 # secure admin will be applied after the restart, so we can still continue.
@@ -249,8 +253,7 @@ fi
 "${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin" --user admin --passwordfile ${ADMIN_PASSWORD_FILE} set server-config.network-config.network-listeners.network-listener.admin-listener.port=5858
 
 echo "Stopping RI domain"
-# We changed the admin port, server is not listening on port asadmin expects. Kill uses pid.
-"${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin" stop-domain --kill
+"${CTS_HOME}/ri/${GF_RI_TOPLEVEL_DIR}/glassfish/bin/asadmin" --port 4848 stop-domain --kill
 
 ### Update ts.jte for CTS run
 cat "${TS_HOME}/bin/ts.jte" | sed "s/-Doracle.jdbc.mapDateToTimestamp/-Doracle.jdbc.mapDateToTimestamp -Djava.security.manager/"  > ts.save
@@ -292,7 +295,7 @@ fi
 "${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin" --user admin --passwordfile ${CTS_HOME}/change-admin-password.txt change-admin-password
 "${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin" --user admin --passwordfile ${ADMIN_PASSWORD_FILE} version
 "${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin" --user admin --passwordfile ${ADMIN_PASSWORD_FILE} create-jvm-options -Djava.security.manager
-"${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin" --user admin --passwordfile ${ADMIN_PASSWORD_FILE} stop-domain
+"${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin" --user admin --passwordfile ${ADMIN_PASSWORD_FILE} stop-domain --kill
 
 if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]];then
   KEYWORDS="javaee_web_profile|jacc_web_profile|jaspic_web_profile|javamail_web_profile|connector_web_profile"
