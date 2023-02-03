@@ -31,6 +31,7 @@ public class URLClient extends AbstractUrlClient {
 
   @BeforeEach
   public void setupServletName() throws Exception {
+    setContextRoot("/servlet_spec_fragment_web");
     setServletName("TestServlet");
   }
 
