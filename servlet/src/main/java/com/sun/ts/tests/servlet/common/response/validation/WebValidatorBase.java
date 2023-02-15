@@ -549,9 +549,9 @@ public class WebValidatorBase implements ValidationStrategy {
     }
     if (!found) {
       StringBuilder sb = new StringBuilder(255);
-      sb.append(" Test {} Unable to find the following header");
+      sb.append(" Test %s Unable to find the following header");
       sb.append(" in the server's response: ");
-      sb.append("{}").append("\n");
+      sb.append("%s").append("\n");
       sb.append(" Response headers received from");
       sb.append(" server:");
 
