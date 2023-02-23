@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -116,7 +116,9 @@ public class TSURL implements TSURLInterface, Serializable {
     if (ctsURL == null) {
       try {
         // create and initialize a new instance of TSURLInterface
-        Class c = Class.forName(TestUtil.getProperty(sClass));
+        // Class c = Class.forName(TestUtil.getProperty(sClass));
+        // Use the system property porting.ts.url.class.1
+        Class c = Class.forName(System.getProperty(sClass, "com.sun.ts.tests.jaxrs.lib.implementation.sun.common.SunRIURL"));
         ctsURL = (TSURLInterface) c.newInstance();
       } catch (Exception e) {
         e.printStackTrace();

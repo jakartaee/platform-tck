@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2012, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -189,11 +189,11 @@ public class JaxrsCommonClient extends JAXRSCommonClient {
    * stored in TEST_PROPS.  Once the test has completed,
    * the properties in TEST_PROPS will be cleared.
    * </PRE>
-   * 
-   * @throws Exception
+   *   
+   *  @throws Fault
    *           If an error occurs during the test run
    */
-  protected void invoke() throws Exception {
+  protected void invoke() throws Fault {
     TestUtil.logTrace("[JAXRSCommonClient] invoke");
     try {
       getTestCase().setPort(_port);
@@ -217,7 +217,7 @@ public class JaxrsCommonClient extends JAXRSCommonClient {
       if (t != null) {
         TestUtil.logErr("Root cause of Failure: " + t.getMessage(), t);
       }
-      throw new Exception("[JAXRSCommonClient] " + _testName
+      throw new Fault("[JAXRSCommonClient] " + _testName
           + " failed!  Check output for cause of failure.", tfe);
     } finally {
       _useSavedState = false;
@@ -229,7 +229,7 @@ public class JaxrsCommonClient extends JAXRSCommonClient {
   }
 
   @Override
-  public void cleanup() throws Exception {
+  public void cleanup() throws Fault{
     super.cleanup();
     // The client.close has to be called on cleanup, because after invoke,
     // some methods are called and resources might not be available then
@@ -241,9 +241,9 @@ public class JaxrsCommonClient extends JAXRSCommonClient {
     clients.clear();
   }
 
-  public void setup(String[] args, Properties p) throws Exception {
-    super.setup(args, p);
-    String property = System.getProperty("cts.tmp");
+  public void setup() {
+    super.setup();
+    String property = System.getProperty("cts.tmp", "/tmp");
     if (property != null)
       System.setProperty("java.io.tmpdir", property);
   }
@@ -300,7 +300,7 @@ public class JaxrsCommonClient extends JAXRSCommonClient {
   }
 
   @Override
-  protected String[] getResponseHeaders() throws Exception {
+  protected String[] getResponseHeaders() throws Fault {
     return getMetadata(getResponse().getMetadata());
   }
 

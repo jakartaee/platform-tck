@@ -116,7 +116,7 @@
         <module>jacc</module>
         <module>javaee</module>
         <module>javamail</module>
-        <module>jaxrs</module>
+        <module>jaxrs-platform-tck</module>
         <module>jaxws-common</module>
         <module>jaxws</module>
         <module>jdbc</module>
@@ -248,7 +248,7 @@
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>jaxrs</artifactId>
+                <artifactId>jaxrs-platform-tck</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

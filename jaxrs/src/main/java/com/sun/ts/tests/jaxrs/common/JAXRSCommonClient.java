@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ /*
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -14,18 +14,22 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $Id$
- */
 package com.sun.ts.tests.jaxrs.common;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Properties;
+import java.util.stream.Collectors;
+import java.nio.charset.StandardCharsets;
+
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpState;
@@ -36,6 +40,7 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.webclient.TestFailureException;
 import com.sun.ts.tests.common.webclient.WebTestCase;
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
+import com.sun.ts.tests.common.webclient.http.HttpResponse;
 import com.sun.ts.tests.common.webclient.validation.CheckOneOfStatusesTokenizedValidator;
 import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
 import com.sun.ts.tests.servlet.common.util.Data;
@@ -43,13 +48,14 @@ import com.sun.ts.tests.servlet.common.util.Data;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-/**
- * 
- * @author dianne jiao
- * @author jan supol
- */
-public abstract class JAXRSCommonClient extends ServiceEETest {
-
+ /**
+  * 
+  * @author dianne jiao
+  * @author jan supol
+  */
+ //public abstract class JAXRSCommonClient extends ServiceEETest {
+public abstract class JAXRSCommonClient {
+  @SuppressWarnings("unused")
   private static final long serialVersionUID = 1L;
 
   /**
@@ -133,74 +139,76 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
   protected static final String GF_SUFFIX = ".gf";
 
   /**
-   * JSP suffix
-   */
+  * JSP suffix
+  */
   /**
-   * Current test name
-   */
+  * Current test name
+  */
   protected String _testName = null;
 
   /**
-   * location of _tsHome
-   */
+  * location of _tsHome
+  */
   protected String _tsHome = null;
 
   /**
-   * Context root of target tests
-   */
+  * Context root of target tests
+  */
   public String _contextRoot = null;
 
   /**
-   * General file/request URI for both gfiles and tests
-   */
+  * General file/request URI for both gfiles and tests
+  */
   protected String _generalURI = null;
 
   /**
-   * Target webserver hostname
-   */
+  * Target webserver hostname
+  */
   protected String _hostname = null;
 
   /**
-   * Target webserver port
-   */
+  * Target webserver port
+  */
   protected int _port = 0;
 
   /**
-   * HttpState that may be used for multiple invocations requiring state.
-   */
+  * HttpState that may be used for multiple invocations requiring state.
+  */
   protected HttpState _state = null;
 
   /**
-   * Test case.
-   */
+  * Test case.
+  */
   protected WebTestCase _testCase = null;
 
   /**
-   * Use saved state.
-   */
+  * Use saved state.
+  */
   protected boolean _useSavedState = false;
 
   /**
-   * Save state.
-   */
+  * Save state.
+  */
   protected boolean _saveState = false;
 
   protected boolean _redirect = false;
 
   public static final String newline = System.getProperty("line.separator");
 
+  public static final String servletAdaptor = System.getProperty("servlet_adaptor", "org.glassfish.jersey.servlet.ServletContainer");
+
   public static final String indent = "    ";
 
   /**
-   * List of possible requests
-   */
+  * List of possible requests
+  */
   protected enum Request {
     GET, PUT, POST, HEAD, OPTIONS, DELETE, TRACE
   }
 
   /**
-   * the list of properties to be put into a property table
-   */
+  * the list of properties to be put into a property table
+  */
   protected enum Property {
     APITEST, BASIC_AUTH_PASSWD, BASIC_AUTH_REALM, BASIC_AUTH_USER, //
     CONTENT, DONOTUSEServletName, EXPECT_RESPONSE_BODY, EXPECTED_HEADERS, //
@@ -212,15 +220,15 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
   }
 
   /*
-   * public methods
-   * ========================================================================
-   */
+  * public methods
+  * ========================================================================
+  */
   /**
-   * <code>setTestDir</code> sets the current test directory.
-   * 
-   * @param testDir
-   *          a <code>String</code> value
-   */
+  * <code>setTestDir</code> sets the current test directory.
+  * 
+  * @param testDir
+  *          a <code>String</code> value
+  */
   public void setTestDir(String testDir) {
     TestUtil.logTrace("[JAXRSCommonClient] setTestDir");
     TESTDIR = testDir;
@@ -237,61 +245,63 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
   }
 
   /**
-   * <code>setup</code> is by the test harness to initialize the tests.
-   * 
-   * @param args
-   *          a <code>String[]</code> value
-   * @param p
-   *          a <code>Properties</code> value
-   * @exception Fault
-   *              if an error occurs
-   */
-  public void setup(String[] args, Properties p) throws Exception {
+  * <code>setup</code> is by the test harness to initialize the tests.
+  * 
+  * @param args
+  *          a <code>String[]</code> value
+  * @param p
+  *          a <code>Properties</code> value
+  * @exception Fault
+  *              if an error occurs
+  */
+  //public void setup(String[] args, Properties p)   {
+  public void setup()   {
     TestUtil.logTrace("setup method JAXRSCommonClient");
 
-    String hostname = p.getProperty(SERVLETHOSTPROP);
-    String portnum = p.getProperty(SERVLETPORTPROP);
-    String tshome = p.getProperty(TSHOME);
+    String hostname = System.getProperty(SERVLETHOSTPROP);
+    String portnum = System.getProperty(SERVLETPORTPROP);
+    //String tshome = p.getProperty(TSHOME);
 
-    assertFault(!isNullOrEmpty(hostname),
-        "[JAXRSCommonClient] 'webServerHost' was not set in the build.properties.");
+    assertTrue(!isNullOrEmpty(hostname),
+        "[JAXRSCommonClient] 'webServerHost' was not set.");
     _hostname = hostname.trim();
-    assertFault(!isNullOrEmpty(portnum),
-        "[JAXRSCommonClient] 'webServerPort' was not set in the build.properties.");
+    assertTrue(!isNullOrEmpty(portnum),
+        "[JAXRSCommonClient] 'webServerPort' was not set.");
     _port = Integer.parseInt(portnum.trim());
-    assertFault(!isNullOrEmpty(tshome),
-        "[JAXRSCommonClient] 'tshome' was not set in the build.properties.");
-    _tsHome = tshome.trim();
+
+    //assertTrue(!isNullOrEmpty(tshome),
+    //    "[JAXRSCommonClient] 'tshome' was not set in the build.properties.");
+    //_tsHome = tshome.trim();
 
     TestUtil.logMsg("[JAXRSCommonClient] Test setup OK");
   }
 
   /**
-   * <code>cleanup</code> is called by the test harness to cleanup after text
-   * execution
-   * 
-   * @exception Fault
-   *              if an error occurs
-   */
-  public void cleanup() throws Exception {
+  * <code>cleanup</code> is called by the test harness to cleanup after text
+  * execution
+  * 
+  * @exception Fault
+  *              if an error occurs
+  */
+  public void cleanup() throws Fault  {
     TestUtil.logMsg("[JAXRSCommonClient] Test cleanup OK");
   }
 
   /*
-   * protected methods
-   * ========================================================================
-   */
+  * protected methods
+  * ========================================================================
+  */
   /**
-   * <PRE>
-   * Invokes a test based on the properties
-   * stored in TEST_PROPS.  Once the test has completed,
-   * the properties in TEST_PROPS will be cleared.
-   * </PRE>
-   * 
-   * @throws Exception
-   *           If an error occurs during the test run
-   */
-  protected void invoke() throws Exception {
+  * <PRE>
+  * Invokes a test based on the properties
+  * stored in TEST_PROPS.  Once the test has completed,
+  * the properties in TEST_PROPS will be cleared.
+  * </PRE>
+  * 
+  * @throws Fault
+  *           If an error occurs during the test run
+  */
+  protected void invoke() throws Fault {
     TestUtil.logTrace("[JAXRSCommonClient] invoke");
     try {
       _testCase = new WebTestCase();
@@ -312,8 +322,15 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
       Throwable t = tfe.getRootCause();
       if (t != null) {
         TestUtil.logErr("Root cause of Failure: " + t.getMessage(), t);
+        if (t instanceof RuntimeException) {
+          throw (RuntimeException) t;
+        } else if (t instanceof Error) {
+          throw (Error) t;
+        } else {
+          throw new RuntimeException(t);
+        }
       }
-      throw new Exception("[JAXRSCommonClient] " + _testName
+      throw new Fault("[JAXRSCommonClient] " + _testName
           + " failed!  Check output for cause of failure.", tfe);
     } finally {
       _useSavedState = false;
@@ -324,11 +341,11 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
   }
 
   /**
-   * <PRE>
-   * Sets the appropriate test properties based
-   * on the values stored in TEST_PROPS
-   * </PRE>
-   */
+  * <PRE>
+  * Sets the appropriate test properties based
+  * on the values stored in TEST_PROPS
+  * </PRE>
+  */
   protected void setTestProperties(WebTestCase testCase) {
     TestUtil.logTrace("[JAXRSCommonClient] setTestProperties");
 
@@ -469,15 +486,15 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
   }
 
   /**
-   * Create request <type> /<contextroot>/<path> HTTP/1.1. ContextRoot is
-   * defined in every client.
-   * 
-   * @param type
-   *          PUT, GET, POST, ...
-   * @param path
-   *          path defined in a servlet
-   * @return String representing HTTP request
-   */
+  * Create request <type> /<contextroot>/<path> HTTP/1.1. ContextRoot is
+  * defined in every client.
+  * 
+  * @param type
+  *          PUT, GET, POST, ...
+  * @param path
+  *          path defined in a servlet
+  * @return String representing HTTP request
+  */
   protected String buildRequest(String type, String... path) {
     StringBuilder sb = new StringBuilder();
     sb.append(type).append(" ").append(_contextRoot).append(SL);
@@ -496,21 +513,21 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
   }
 
   /**
-   * Create counterpart to @Produces
-   * 
-   * @param type
-   * @return Accept:{@code type}.{@link #toString()}
-   */
+  * Create counterpart to @Produces
+  * 
+  * @param type
+  * @return Accept:{@code type}.{@link #toString()}
+  */
   protected static String buildAccept(MediaType type) {
     return buildHeaderMediaType("Accept", type);
   }
 
   /**
-   * Create counterpart to @Consumes
-   * 
-   * @param type
-   * @return
-   */
+  * Create counterpart to @Consumes
+  * 
+  * @param type
+  * @return
+  */
   protected static String buildContentType(MediaType type) {
     return buildHeaderMediaType("Content-Type", type);
   }
@@ -522,28 +539,38 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
     return sb.toString();
   }
 
+  public static String toString(InputStream inStream) throws IOException{
+    try (BufferedReader bufReader = new BufferedReader(new InputStreamReader(inStream, StandardCharsets.UTF_8))) {
+      return bufReader.lines().collect(Collectors.joining(System.lineSeparator()));
+    }
+  }
+
+  public static String editWebXmlString(InputStream inStream) throws IOException{
+    return toString(inStream).replaceAll("servlet_adaptor", servletAdaptor);
+  }
+
   /**
-   * @return http response body as string
-   * @throws Exception
-   *           when an error occur
-   */
-  protected String getResponseBody() throws Exception {
+  * @return http response body as string
+  * @throws Fault
+  *           when an error occur
+  */
+  protected String getResponseBody() throws Fault  {
     try {
-      com.sun.ts.tests.common.webclient.http.HttpResponse response;
+      HttpResponse response;
       response = _testCase.getResponse();
       boolean isNull = response.getResponseBodyAsRawStream() == null;
       return isNull ? null : response.getResponseBodyAsString();
     } catch (IOException e) {
-      throw new Exception(e);
+        throw new Fault(e);
     }
   }
 
   /**
-   * @return http response body as string
-   * @throws Exception
-   *           when an error occur
-   */
-  protected String[] getResponseHeaders() throws Exception {
+  * @return http response body as string
+  * @throws Fault
+  *           when an error occur
+  */
+  protected String[] getResponseHeaders() throws Fault  {
     Header[] headerEntities = _testCase.getResponse().getResponseHeaders();
     String[] headers = new String[headerEntities.length];
     for (int i = 0; i != headerEntities.length; i++)
@@ -552,53 +579,53 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
   }
 
   /**
-   * @param s
-   *          the header to search
-   * @throws Exception
-   *           when header not found
-   */
-  protected void assertResponseHeadersContain(String s) throws Exception {
+  * @param s
+  *          the header to search
+  * @throws Fault
+  *           when header not found
+  */
+  protected void assertResponseHeadersContain(String s) throws Fault  {
     boolean found = false;
     for (String header : getResponseHeaders())
       if (header.contains(s)) {
         found = true;
         break;
       }
-    assertFault(found, "Response headers do not contain", s);
+    assertTrue(found, "Response headers do not contain"+ s);
   }
 
   /**
-   * @param s
-   *          the entity to search
-   * @throws Exception
-   *           when entity not found
-   */
-  protected void assertResponseBodyContain(String s) throws Exception {
+  * @param s
+  *          the entity to search
+  * @throws Fault
+  *           when entity not found
+  */
+  protected void assertResponseBodyContain(String s)  throws Fault {
     boolean found = getResponseBody().contains(s);
-    assertFault(found, "Response body does not contain", s);
+    assertTrue(found, "Response body does not contain"+ s);
   }
 
   /**
-   * get HttpResponse#statusCode
-   * 
-   * @return JAXRS Response.Status equivalent of HttpResponse#statusCode
-   */
+  * get HttpResponse#statusCode
+  * 
+  * @return JAXRS Response.Status equivalent of HttpResponse#statusCode
+  */
   protected Response.Status getResponseStatusCode() {
     String status = _testCase.getResponse().getStatusCode();
     return Response.Status.fromStatusCode(Integer.parseInt(status));
   }
 
   /**
-   * Set TEST_PROPS property value. If it already exists, the value is appended
-   */
+  * Set TEST_PROPS property value. If it already exists, the value is appended
+  */
   protected void setProperty(String key, String value) {
     Property property = Property.valueOf(key);
     setProperty(property, value);
   }
 
   /*
-   * @since 2.0.1
-   */
+  * @since 2.0.1
+  */
   protected void setProperty(Property key, String... value) {
     setProperty(key, objectsToString("", (Object[]) value));
   }
@@ -620,225 +647,217 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
   }
 
   /**
-   * This pattern is used in all subclasses
-   */
-  protected Status run(String[] args) {
-    Status s;
-    s = run(args, new PrintWriter(System.out), new PrintWriter(System.err));
-    s.exit();
-    return s;
-  }
+  * This pattern is used in all subclasses
+  */
+  //protected Status run(String[] args) {
+  //  Status s;
+  //  s = run(args, new PrintWriter(System.out), new PrintWriter(System.err));
+  //  s.exit();
+  //  return s;
+  //}
 
   /**
-   * Asserts that a condition is true.
-   * 
-   * @param conditionTrue
-   *          tested condition
-   * @param message
-   *          a space separated message[i].toString() compilation for
-   *          i=<0,message.length)
-   * @throws Exception
-   *           when conditionTrue is not met with message provided
-   */
-  public static void //
-      assertFault(boolean conditionTrue, Object... message) throws Exception {
+  * Asserts that a condition is true.
+  * 
+  * @param conditionTrue
+  *          tested condition
+  * @param message
+  *          a space separated message[i].toString() compilation for
+  *          i=<0,message.length)
+  * @ 
+  *           when conditionTrue is not met with message provided
+  */
+  /*public static void //
+      assertFault(boolean conditionTrue, Object... message)   {
     assertTrue(conditionTrue, message);
-  }
+  }*/
 
   /**
-   * Asserts that a condition is true.
-   * 
-   * @param condition
-   *          tested condition
-   * @param message
-   *          a space separated message[i].toString() compilation for
-   *          i=<0,message.length)
-   * @throws Exception
-   *           when conditionTrue is not met with message provided
-   */
-  public static void //
-      assertTrue(boolean condition, Object... message) throws Exception {
-    if (!condition)
-      fault(message);
-  }
+  * Asserts that a condition is true.
+  * 
+  * @param condition
+  *          tested condition
+  * @param message
+  *          a space separated message[i].toString() compilation for
+  *          i=<0,message.length)
+  */
+  //public static void //
+  //    assertTrue(boolean condition, Object... message)   {
+  //  if (!condition)
+  //    fail(message);
+  //}
 
   /**
-   * Asserts that a condition is false.
-   * 
-   * @param condition
-   *          tested condition
-   * @param message
-   *          a space separated message[i].toString() compilation for
-   *          i=<0,message.length)
-   * @throws Exception
-   *           when condition is not false with message provided
-   */
-  public static void //
-      assertFalse(boolean condition, Object... message) throws Exception {
-    assertTrue(!condition, message);
-  }
+  * Asserts that a condition is false.
+  * 
+  * @param condition
+  *          tested condition
+  * @param message
+  *          a space separated message[i].toString() compilation for
+  *          i=<0,message.length)
+  */
+  // public static void //
+  //     assertFalse(boolean condition, Object... message)   {
+  //   assertTrue(!condition, message);
+  // }
 
   /**
-   * Asserts that two objects are equal. When instances of Comparable, such as
-   * String, compareTo is used.
-   * 
-   * @param first
-   *          first object
-   * @param second
-   *          second object
-   * @param message
-   *          a space separated message[i].toString() compilation for
-   *          i=<0,message.length)
-   * @throws Exception
-   *           when objects are not equal with message provided
-   */
+  * Asserts that two objects are equal. When instances of Comparable, such as
+  * String, compareTo is used.
+  * 
+  * @param first
+  *          first object
+  * @param second
+  *          second object
+  * @param message
+  *          a space separated message[i].toString() compilation for
+  *          i=<0,message.length)
+  * @ 
+  *           when objects are not equal with message provided
+  */
   @SuppressWarnings("unchecked")
   public static <T> void //
-      assertEquals(T first, T second, Object... message) throws Exception {
+      assertEquals(T first, T second, Object... message)   {
     if (first == null && second == null)
       return;
-    assertFalse(first == null && second != null, message);
-    assertFalse(first != null && second == null, message);
+    assertFalse(first == null && second != null, message.toString());
+    assertFalse(first != null && second == null, message.toString());
     if (first instanceof Comparable)
-      assertTrue(((Comparable<T>) first).compareTo(second) == 0, message);
+      assertTrue(((Comparable<T>) first).compareTo(second) == 0, message.toString());
     else
-      assertTrue(first.equals(second), message);
+      assertTrue(first.equals(second), message.toString());
   }
 
   public static <T> void //
-      assertEqualsInt(int first, int second, Object... message) throws Exception {
-    assertTrue(first == second, message);
+      assertEqualsInt(int first, int second, Object... message)   {
+    assertTrue(first == second, message.toString());
   }
 
   public static <T> void //
       assertEqualsLong(long first, long second, Object... message)
-          throws Exception {
-    assertTrue(first == second, message);
+            {
+    assertTrue(first == second, message.toString());
   }
 
   public static <T> void //
       assertEqualsBool(boolean first, boolean second, Object... message)
-          throws Exception {
-    assertTrue(first == second, message);
+            {
+    assertTrue(first == second, message.toString());
   }
 
   /**
-   * Asserts that an object is null.
-   * 
-   * @param object
-   *          Assert that object is not null
-   * @param message
-   *          a space separated message[i].toString() compilation for
-   *          i=<0,message.length)
-   * @throws Exception
-   *           when condition is not met with message provided
-   */
+  * Asserts that an object is null.
+  * 
+  * @param object
+  *          Assert that object is not null
+  * @param message
+  *          a space separated message[i].toString() compilation for
+  *          i=<0,message.length)
+  */
   public static void //
-      assertNull(Object object, Object... message) throws Exception {
-    assertTrue(object == null, message);
+      assertNull(Object object, Object... message) {
+    assertTrue(object == null, message.toString());
   }
 
   /**
-   * Asserts that an object is not null.
-   * 
-   * @param object
-   *          Assert that object is not null
-   * @param message
-   *          a space separated message[i].toString() compilation for
-   *          i=<0,message.length)
-   * @throws Exception
-   *           when condition is not met with message provided
-   */
+  * Asserts that an object is not null.
+  * 
+  * @param object
+  *          Assert that object is not null
+  * @param message
+  *          a space separated message[i].toString() compilation for
+  *          i=<0,message.length)
+  */
   public static void //
-      assertNotNull(Object object, Object... message) throws Exception {
-    assertTrue(object != null, message);
+      assertNotNull(Object object, Object... message) {
+    assertTrue(object != null, message.toString());
   }
 
   /**
-   * Throws Fault with space separated objects[1],object[2],...,object[n]
-   * message
-   * 
-   * @param objects
-   *          objects whose toString() results will be added to Fault message
-   * @throws Exception
-   *           fault with space separated objects.toString values
-   */
-  public static void fault(Object... objects) throws Exception {
-    throw new Exception(objectsToString(objects));
+  * Throws Fault with space separated objects[1],object[2],...,object[n]
+  * message
+  * 
+  * @param objects
+  *          objects whose toString() results will be added to Fault message
+  * @throws Fault
+  *           fault with space separated objects.toString values
+  */
+  public static void fault(Object... objects) throws Fault  {
+    throw new Fault(objectsToString(objects));
   }
 
   /**
-   * Assert that given substring is a substring of given string
-   * 
-   * @param string
-   *          the string to search substring in
-   * @param substring
-   *          the substring to be searched in a given string
-   * @param message
-   *          space separated message values to be thrown
-   * @throws Exception
-   *           throws
-   */
+  * Assert that given substring is a substring of given string
+  * 
+  * @param string
+  *          the string to search substring in
+  * @param substring
+  *          the substring to be searched in a given string
+  * @param message
+  *          space separated message values to be thrown
+  * @ 
+  *           throws
+  */
   public static void assertContains(String string, String substring,
-      Object... message) throws Exception {
-    assertTrue(string.contains(substring), message);
+      Object... message)   {
+    assertTrue(string.contains(substring), message.toString());
   }
 
   /**
-   * Assert that given substring is a substring of given string, case
-   * insensitive
-   * 
-   * @param string
-   *          the string to search substring in
-   * @param substring
-   *          the substring to be searched in a given string
-   * @param message
-   *          space separated message values to be thrown
-   * @throws Exception
-   */
+  * Assert that given substring is a substring of given string, case
+  * insensitive
+  * 
+  * @param string
+  *          the string to search substring in
+  * @param substring
+  *          the substring to be searched in a given string
+  * @param message
+  *          space separated message values to be thrown
+  * @ 
+  */
   public static void assertContainsIgnoreCase(String string, String substring,
-      Object... message) throws Exception {
-    assertTrue(string.toLowerCase().contains(substring.toLowerCase()), message);
+      Object... message)   {
+    assertTrue(string.toLowerCase().contains(substring.toLowerCase()), message.toString());
   }
 
   /**
-   * Assert that given subtext.toString() subject is a substring of given text
-   * 
-   * @param text
-   *          the text.toString() object to search subtext.toString() in
-   * @param subtext
-   *          the subtext.toString() to be searched in a given text.toString()
-   * @param message
-   *          space separated message values to be thrown
-   * @throws Exception
-   */
+  * Assert that given subtext.toString() subject is a substring of given text
+  * 
+  * @param text
+  *          the text.toString() object to search subtext.toString() in
+  * @param subtext
+  *          the subtext.toString() to be searched in a given text.toString()
+  * @param message
+  *          space separated message values to be thrown
+  * @ 
+  */
   public static <T> void assertContains(T text, T subtext, Object... message)
-      throws Exception {
-    assertContains(text.toString(), subtext.toString(), message);
+        {
+    assertContains(text.toString(), subtext.toString(), message.toString());
   }
 
   /**
-   * Assert that given subtext.toString() subject is a substring of given text,
-   * case insensitive
-   * 
-   * @param text
-   *          the text.toString() object to search subtext.toString() in
-   * @param subtext
-   *          the subtext.toString() to be searched in a given text.toString()
-   * @param message
-   *          space separated message values to be thrown
-   * @throws Exception
-   */
+  * Assert that given subtext.toString() subject is a substring of given text,
+  * case insensitive
+  * 
+  * @param text
+  *          the text.toString() object to search subtext.toString() in
+  * @param subtext
+  *          the subtext.toString() to be searched in a given text.toString()
+  * @param message
+  *          space separated message values to be thrown
+  * @ 
+  */
   public static <T> void assertContainsIgnoreCase(T text, T subtext,
-      Object... message) throws Exception {
-    assertContainsIgnoreCase(text.toString(), subtext.toString(), message);
+      Object... message)   {
+    assertContainsIgnoreCase(text.toString(), subtext.toString(), message.toString());
   }
 
   /**
-   * Searches an encapsulated exception cause in parent exception
-   */
+  * Searches an encapsulated exception cause in parent exception
+  */
   protected static <T extends Throwable> T assertCause(Throwable parent,
-      Class<T> wrapped, Object... msg) throws Exception {
+      Class<T> wrapped, Object... msg)   {
     T t = hasCause(parent, wrapped);
     assertNotNull(t, msg);
     return t;
@@ -868,20 +887,20 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
   }
 
   /**
-   * Use rather this method than
-   * {@link JaxrsUtil#iterableToString(String, Iterable)} since not all wars
-   * (for servlet vehicle, api) do contain JaxrsUtil
-   * 
-   * @param objects
-   * @return objects in a single string , each object separated by " "
-   */
+  * Use rather this method than
+  * {@link JaxrsUtil#iterableToString(String, Iterable)} since not all wars
+  * (for servlet vehicle, api) do contain JaxrsUtil
+  * 
+  * @param objects
+  * @return objects in a single string , each object separated by " "
+  */
   protected static String objectsToString(Object... objects) {
     return objectsToString(" ", objects);
   }
 
   /**
-   * @since 2.0.1
-   */
+  * @since 2.0.1
+  */
   protected static String objectsToString(String delimiter, Object... objects) {
     StringBuilder sb = new StringBuilder();
     for (Object o : objects)
@@ -890,9 +909,9 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
   }
 
   /*
-   * private methods
-   * ========================================================================
-   */
+  * private methods
+  * ========================================================================
+  */
   private String getTSRequest(String request) {
     TestUtil.logTrace("[JAXRSCommonClient] getTSRequest");
     StringBuffer finReq = new StringBuffer(50);
@@ -902,8 +921,8 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
   }
 
   /**
-   * Clears the contents of TEST_PROPS
-   */
+  * Clears the contents of TEST_PROPS
+  */
   protected void clearTestProperties() {
     TEST_PROPS.clear();
   }
@@ -917,14 +936,14 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
   protected String _servlet = null;
 
   /**
-   * Sets the request, testname, and a search string for test passed. A search
-   * is also added for test failure. If found, the test will fail.
-   * 
-   * @param testValue
-   *          - a logical test identifier
-   * @param testCase
-   *          - the current test case
-   */
+  * Sets the request, testname, and a search string for test passed. A search
+  * is also added for test failure. If found, the test will fail.
+  * 
+  * @param testValue
+  *          - a logical test identifier
+  * @param testCase
+  *          - the current test case
+  */
   private void setApiTestProperties(String testValue, WebTestCase testCase) {
     TestUtil.logTrace("[JAXRSCommonClient] setApiTestProperties");
 
@@ -967,13 +986,13 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
   }
 
   /**
-   * Consists of a test name, a request, and a goldenfile.
-   * 
-   * @param testValue
-   *          - a logical test identifier
-   * @param testCase
-   *          - the current test case
-   */
+  * Consists of a test name, a request, and a goldenfile.
+  * 
+  * @param testValue
+  *          - a logical test identifier
+  * @param testCase
+  *          - the current test case
+  */
   private void setStandardProperties(String testValue, WebTestCase testCase) {
     TestUtil.logTrace("[JAXRSCommonClient] setStandardProperties");
 
@@ -1008,12 +1027,12 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
   }
 
   /**
-   * Sets the name of the servlet to use when building a request for a single
-   * servlet API test.
-   * 
-   * @param servlet
-   *          - the name of the servlet
-   */
+  * Sets the name of the servlet to use when building a request for a single
+  * servlet API test.
+  * 
+  * @param servlet
+  *          - the name of the servlet
+  */
   protected void setServletName(String servlet) {
     TestUtil.logTrace("[JAXRSCommonClient] setServletName");
     _servlet = servlet;
@@ -1086,4 +1105,107 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
       sb.append("/").append(method);
     return sb.toString();
   }
+
+  /**
+  * This exception must be thrown to signify a
+  * test failure. Overrides 3 printStackTrace methods to preserve the original
+  * stack trace.
+  *
+  * @author Kyle Grucci
+  */
+
+  public static class Fault extends Exception {
+    private static final long serialVersionUID = -1574745208867827913L;
+
+    public Throwable t;
+
+    /**
+    * creates a Fault with a message
+    */
+    public Fault(String msg) {
+      super(msg);
+      TestUtil.logErr(msg);
+    }
+
+    /**
+    * creates a Fault with a message.
+    *
+    * @param msg
+    *          the message
+    * @param t
+    *          prints this exception's stacktrace
+    */
+    public Fault(String msg, Throwable t) {
+      super(msg);
+      this.t = t;
+      TestUtil.logErr(msg, t);
+    }
+
+    /**
+    * creates a Fault with a Throwable.
+    *
+    * @param t
+    *          the Throwable
+    */
+    public Fault(Throwable t) {
+      super(t);
+      this.t = t;
+    }
+
+    /**
+    * Prints this Throwable and its backtrace to the standard error stream.
+    *
+    */
+    public void printStackTrace() {
+      if (this.t != null) {
+        this.t.printStackTrace();
+      } else {
+        super.printStackTrace();
+      }
+    }
+
+    /**
+    * Prints this throwable and its backtrace to the specified print stream.
+    *
+    * @param s
+    *          <code>PrintStream</code> to use for output
+    */
+    public void printStackTrace(PrintStream s) {
+      if (this.t != null) {
+        this.t.printStackTrace(s);
+      } else {
+        super.printStackTrace(s);
+      }
+    }
+
+    /**
+    * Prints this throwable and its backtrace to the specified print writer.
+    *
+    * @param s
+    *          <code>PrintWriter</code> to use for output
+    */
+    public void printStackTrace(PrintWriter s) {
+      if (this.t != null) {
+        this.t.printStackTrace(s);
+      } else {
+        super.printStackTrace(s);
+      }
+    }
+
+    @Override
+    public Throwable getCause() {
+      return t;
+    }
+
+    @Override
+    public synchronized Throwable initCause(Throwable cause) {
+      if (t != null)
+        throw new IllegalStateException("Can't overwrite cause");
+      if (!Exception.class.isInstance(cause))
+        throw new IllegalArgumentException("Cause not permitted");
+      this.t = (Exception) cause;
+      return this;
+    }
+  }
+
 }
