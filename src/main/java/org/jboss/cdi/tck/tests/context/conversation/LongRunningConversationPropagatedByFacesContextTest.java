@@ -21,15 +21,24 @@ import static org.jboss.cdi.tck.cdi.Sections.BUILTIN_SCOPES;
 import static org.jboss.cdi.tck.cdi.Sections.CONVERSATION_CONTEXT_EE;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
+import java.time.Duration;
+
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.cdi.tck.selenium.DriverPool;
+import org.jboss.cdi.tck.selenium.ExtendedWebDriver;
+import org.jboss.cdi.tck.selenium.WebPage;
 import org.jboss.cdi.tck.shrinkwrap.ee.WebArchiveBuilder;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.test.audit.annotations.SpecAssertion;
 import org.jboss.test.audit.annotations.SpecAssertions;
 import org.jboss.test.audit.annotations.SpecVersion;
 import org.testng.annotations.Test;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
 import com.gargoylesoftware.htmlunit.WebClient;
@@ -116,28 +125,66 @@ public class LongRunningConversationPropagatedByFacesContextTest extends Abstrac
     @SpecAssertion(section = CONVERSATION_CONTEXT_EE, id = "l")
     public void testConversationPropagatedAjax() throws Exception {
 
-        WebClient webClient = new WebClient();
-        webClient.setAjaxController(new NicelyResynchronizingAjaxController());
+        String selenium = System.getProperty("run.selenium", "false");
+        if ("true".equals(selenium)) {
+            DriverPool driverPool = new DriverPool();
+            ExtendedWebDriver webDriver = driverPool.getOrNewInstance();
 
-        HtmlPage storm = webClient.getPage(getPath("storm-ajax.jsf"));
+            webDriver.get(getPath("storm-ajax.jsf"));
+            WebPage page = new WebPage(webDriver);
+            page.waitForPageToLoad(Duration.ofSeconds(120));
 
-        // Begin long-running conversation - note that we use ajax
-        HtmlSubmitInput beginConversationButton = getFirstMatchingElement(storm, HtmlSubmitInput.class,
-                "beginConversationButton");
-        storm = beginConversationButton.click();
-        String cid = getFirstMatchingElement(storm, HtmlInput.class, "conversationId").getValueAttribute();
-        assertFalse(cid.isEmpty());
+            WebElement beginConversationButton = page.findElement(By.id("ajaxForm:beginConversationButton"));
+            assertNotNull(beginConversationButton);
+            beginConversationButton.click();
 
-        // Set input value
-        HtmlTextInput stormStrength = getFirstMatchingElement(storm, HtmlTextInput.class, "stormStrength");
-        stormStrength.setValueAttribute(AJAX_STORM_STRENGTH);
-        // Submit value - note that we use ajax
-        HtmlSubmitInput thunderButton = getFirstMatchingElement(storm, HtmlSubmitInput.class, "thunderButton");
-        thunderButton.click();
+            page.waitReqJs();
 
-        HtmlPage thunder = webClient.getPage(getPath("thunder.jsf", cid));
-        stormStrength = getFirstMatchingElement(thunder, HtmlTextInput.class, "stormStrength");
-        assertEquals(stormStrength.getValueAttribute(), AJAX_STORM_STRENGTH);
+            WebElement conversationId = page.findElement(By.id("ajaxForm:conversationId"));
+            String cid = conversationId.getAttribute("value");
+            assertFalse(cid.isEmpty());
+
+            WebElement stormStrength = page.findElement(By.id("ajaxForm:stormStrength"));
+            stormStrength.sendKeys(AJAX_STORM_STRENGTH);
+            WebElement thunderButton = page.findElement(By.id("ajaxForm:thunderButton"));
+            assertNotNull(thunderButton);
+            thunderButton.click();
+
+            page.waitReqJs();
+
+            webDriver.get(getPath("thunder.jsf", cid));
+            WebPage thunderPage = new WebPage(webDriver);
+            thunderPage.waitForPageToLoad(Duration.ofSeconds(120));
+
+            stormStrength = thunderPage.findElement(By.id("form:stormStrength"));
+            assertEquals(stormStrength.getAttribute("value"), AJAX_STORM_STRENGTH);
+
+            driverPool.returnInstance(webDriver);
+            driverPool.quitAll();
+        } else {
+            WebClient webClient = new WebClient();
+            webClient.setAjaxController(new NicelyResynchronizingAjaxController());
+
+            HtmlPage storm = webClient.getPage(getPath("storm-ajax.jsf"));
+
+            // Begin long-running conversation - note that we use ajax
+            HtmlSubmitInput beginConversationButton = getFirstMatchingElement(storm, HtmlSubmitInput.class,
+                    "beginConversationButton");
+            storm = beginConversationButton.click();
+            String cid = getFirstMatchingElement(storm, HtmlInput.class, "conversationId").getValueAttribute();
+            assertFalse(cid.isEmpty());
+
+            // Set input value
+            HtmlTextInput stormStrength = getFirstMatchingElement(storm, HtmlTextInput.class, "stormStrength");
+            stormStrength.setValueAttribute(AJAX_STORM_STRENGTH);
+            // Submit value - note that we use ajax
+            HtmlSubmitInput thunderButton = getFirstMatchingElement(storm, HtmlSubmitInput.class, "thunderButton");
+            thunderButton.click();
+
+            HtmlPage thunder = webClient.getPage(getPath("thunder.jsf", cid));
+            stormStrength = getFirstMatchingElement(thunder, HtmlTextInput.class, "stormStrength");
+            assertEquals(stormStrength.getValueAttribute(), AJAX_STORM_STRENGTH);
+	    }
     }
 
 }
