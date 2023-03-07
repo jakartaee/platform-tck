@@ -3647,7 +3647,7 @@ public class Client extends PMClientBase {
     CriteriaQuery<A> cquery = cbuilder.createQuery(A.class);
     Root<A> a = cquery.from(A.class);
     cquery.select(a);
-    ParameterExpression<Integer> param1 = cbuilder.parameter(Integer.class,
+    ParameterExpression<String> param1 = cbuilder.parameter(String.class,
         "idParam");
     cquery.where(cbuilder.equal(a.get("id"), param1));
     TypedQuery<A> tquery = getEntityManager().createQuery(cquery);
