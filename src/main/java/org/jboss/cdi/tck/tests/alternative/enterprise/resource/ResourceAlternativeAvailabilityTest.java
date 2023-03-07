@@ -61,10 +61,8 @@ public class ResourceAlternativeAvailabilityTest extends AbstractTest {
     @SpecAssertion(section = DECLARING_SELECTED_ALTERNATIVES_BEAN_ARCHIVE, id = "cc")
     public void testResourceAvailability() {
 
-        AnnotationLiteral<DatabaseTest> testLiteral = new AnnotationLiteral<DatabaseTest>() {
-        };
-        AnnotationLiteral<DatabaseProduction> productionLiteral = new AnnotationLiteral<DatabaseProduction>() {
-        };
+        AnnotationLiteral<DatabaseTest> testLiteral = new DatabaseTest.Literal();
+        AnnotationLiteral<DatabaseProduction> productionLiteral = new DatabaseProduction.Literal();
         Set<Bean<EntityManager>> beans = getBeans(EntityManager.class, testLiteral);
         assertEquals(beans.size(), 1);
         beans = getBeans(EntityManager.class, productionLiteral);

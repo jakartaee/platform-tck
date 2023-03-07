@@ -46,26 +46,21 @@ public class EnterpriseProducerMethodDefinitionTest extends AbstractTest {
     @Test(groups = INTEGRATION, expectedExceptions = UnsatisfiedResolutionException.class)
     @SpecAssertion(section = MEMBER_LEVEL_INHERITANCE_EE, id = "dd")
     public void testNonStaticProducerMethodNotInheritedBySpecializingSubclass() {
-        assertEquals(getBeans(Egg.class, new AnnotationLiteral<Yummy>() {
-        }).size(), 0);
-        getContextualReference(Egg.class, new AnnotationLiteral<Yummy>() {
-        }).getMother();
+        assertEquals(getBeans(Egg.class, new Yummy.Literal()).size(), 0);
+        getContextualReference(Egg.class, new Yummy.Literal()).getMother();
     }
 
     @Test(groups = INTEGRATION)
     @SpecAssertion(section = MEMBER_LEVEL_INHERITANCE_EE, id = "dd")
     public void testNonStaticProducerMethodNotInherited() {
-        assertEquals(getBeans(Apple.class, new AnnotationLiteral<Yummy>() {
-        }).size(), 1);
-        assertTrue(getContextualReference(Apple.class, new AnnotationLiteral<Yummy>() {
-        }).getTree() instanceof AppleTree);
+        assertEquals(getBeans(Apple.class, new Yummy.Literal()).size(), 1);
+        assertTrue(getContextualReference(Apple.class, new Yummy.Literal()).getTree() instanceof AppleTree);
     }
 
     @Test(groups = INTEGRATION)
     @SpecAssertion(section = MEMBER_LEVEL_INHERITANCE_EE, id = "dj")
     public void testNonStaticProducerMethodNotIndirectlyInherited() {
-        Set<Bean<Pear>> beans = getBeans(Pear.class, new AnnotationLiteral<Yummy>() {
-        });
+        Set<Bean<Pear>> beans = getBeans(Pear.class, new Yummy.Literal());
         assertEquals(beans.size(), 2);
     }
 }

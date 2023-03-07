@@ -51,8 +51,7 @@ public class InterceptorExtension implements Extension {
                 methods = new HashSet<AnnotatedMethod<? super Suffixed>>();
                 for (AnnotatedMethod<? super Suffixed> method : super.getMethods()) {
                     if ("value".equals(method.getJavaMember().getName())) {
-                        methods.add(new AnnotatedMethodWrapper<Suffixed>((AnnotatedMethod<Suffixed>) method, this, true, new AnnotationLiteral<Nonbinding>() {
-                        }));
+                        methods.add(new AnnotatedMethodWrapper<Suffixed>((AnnotatedMethod<Suffixed>) method, this, true, new Nonbinding.Literal()));
                     } else {
                         methods.add(new AnnotatedMethodWrapper<Suffixed>((AnnotatedMethod<Suffixed>) method, this, true));
                     }

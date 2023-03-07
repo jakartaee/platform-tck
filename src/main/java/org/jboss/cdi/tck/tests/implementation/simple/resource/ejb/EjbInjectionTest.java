@@ -74,8 +74,7 @@ public class EjbInjectionTest extends AbstractTest {
     @SpecAssertions({ @SpecAssertion(section = RESOURCE_TYPES, id = "ad") })
     public void testResourceBeanTypes() {
         @SuppressWarnings("serial")
-        Bean<BeanRemote> beanRemote = getBeans(BeanRemote.class, new AnnotationLiteral<Lazy>() {
-        }).iterator().next();
+        Bean<BeanRemote> beanRemote = getBeans(BeanRemote.class, new Lazy.Literal()).iterator().next();
         assert beanRemote.getTypes().size() == 3;
         assert typeSetMatches(beanRemote.getTypes(), BeanRemote.class, Object.class, AnotherInterface.class);
     }

@@ -73,15 +73,13 @@ public class EnterpriseBeanLifecycleTest extends AbstractTest {
         GrossStadt frankfurt = getContextualReference(GrossStadt.class);
         Bean<KleinStadt> stadtBean = getBeans(KleinStadt.class).iterator().next();
         assert stadtBean != null : "Expected a bean for stateful session bean Kassel";
-        KleinStadt stadtInstance = getContextualReference(KleinStadt.class, new AnnotationLiteral<Important>() {
-        });
+        KleinStadt stadtInstance = getContextualReference(KleinStadt.class, new Important.Literal());
         assert stadtInstance != null : "Expected instance to be created by container";
         assert frankfurt.isKleinStadtCreated() : "PostConstruct should be invoked when bean instance is created";
         frankfurt.resetCreatedFlags();
 
         // Create a second one to make sure create always does create a new session bean
-        KleinStadt anotherStadtInstance = getContextualReference(KleinStadt.class, new AnnotationLiteral<Important>() {
-        });
+        KleinStadt anotherStadtInstance = getContextualReference(KleinStadt.class, new Important.Literal());
         assert anotherStadtInstance != null : "Expected second instance of session bean";
         assert frankfurt.isKleinStadtCreated();
         assert anotherStadtInstance != stadtInstance : "create() should not return same bean as before";
@@ -99,8 +97,7 @@ public class EnterpriseBeanLifecycleTest extends AbstractTest {
     @SpecAssertions({ @SpecAssertion(section = PASSIVATION_CAPABLE_DEPENDENCY_EE, id = "ac") })
     public void testSerializeSFSB() throws Exception {
 
-        KleinStadt stadtInstance = getContextualReference(KleinStadt.class, new AnnotationLiteral<Important>() {
-        });
+        KleinStadt stadtInstance = getContextualReference(KleinStadt.class, new Important.Literal());
 
         byte[] bytes = passivate(stadtInstance);
         Object object = activate(bytes);
@@ -130,8 +127,7 @@ public class EnterpriseBeanLifecycleTest extends AbstractTest {
     @Test(groups =  INTEGRATION)
     @SpecAssertions({ @SpecAssertion(section = STATELESS_LIFECYCLE, id = "c"), @SpecAssertion(section = SESSION_BEAN_EJB_REMOVE_METHOD, id = "dba") })
     public void testRemovedEjbIgnored() {
-        KleinStadt stadtInstance = getContextualReference(KleinStadt.class, new AnnotationLiteral<Important>() {
-        });
+        KleinStadt stadtInstance = getContextualReference(KleinStadt.class, new Important.Literal());
         assert stadtInstance != null : "Expected instance to be created by container";
         stadtInstance.setName("Kassel-Wilhelmshoehe");
         stadtInstance.zustandVergessen();

@@ -24,6 +24,7 @@ import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import jakarta.enterprise.util.AnnotationLiteral;
 import jakarta.interceptor.InterceptorBinding;
 
 @Target({ TYPE })
@@ -32,4 +33,6 @@ import jakarta.interceptor.InterceptorBinding;
 @Documented
 @InterceptorBinding
 public @interface LoggedBinding {
+    class Literal extends AnnotationLiteral<LoggedBinding> implements LoggedBinding {
+    }
 }

@@ -71,12 +71,12 @@ public class EnterpriseInterceptorBindingResolutionTest extends AbstractTest {
         // Test interceptor is resolved (note non-binding member of BallBinding)
         assertEquals(
                 getCurrentManager().resolveInterceptors(InterceptionType.AROUND_INVOKE,
-                        new AnnotationLiteral<MessageBinding>() {
-                        }, new AnnotationLiteral<LoggedBinding>() {
-                        }, new AnnotationLiteral<TransactionalBinding>() {
-                        }, new AnnotationLiteral<PingBinding>() {
-                        }, new AnnotationLiteral<PongBinding>() {
-                        }, new BallBindingLiteral(true, true)).size(), 1);
+                        new MessageBinding.Literal(),
+                        new LoggedBinding.Literal(),
+                        new TransactionalBinding.Literal(),
+                        new PingBinding.Literal(),
+                        new PongBinding.Literal(),
+                        new BallBindingLiteral(true, true)).size(), 1);
 
         // Test the set of interceptor bindings
         assertNotNull(messageService);
@@ -115,15 +115,15 @@ public class EnterpriseInterceptorBindingResolutionTest extends AbstractTest {
         // Test interceptor is resolved (note non-binding member of BallBinding)
         assertEquals(
                 getCurrentManager().resolveInterceptors(InterceptionType.POST_CONSTRUCT,
-                        new AnnotationLiteral<MessageBinding>() {
-                        }, new AnnotationLiteral<LoggedBinding>() {
-                        }, new AnnotationLiteral<TransactionalBinding>() {
-                        }, new BasketBindingLiteral(true, true)).size(), 1);
+                        new MessageBinding.Literal(),
+                        new LoggedBinding.Literal(),
+                        new TransactionalBinding.Literal(),
+                        new BasketBindingLiteral(true, true)).size(), 1);
         assertEquals(
-                getCurrentManager().resolveInterceptors(InterceptionType.PRE_DESTROY, new AnnotationLiteral<MessageBinding>() {
-                }, new AnnotationLiteral<LoggedBinding>() {
-                }, new AnnotationLiteral<TransactionalBinding>() {
-                }, new BasketBindingLiteral(true, true)).size(), 1);
+                getCurrentManager().resolveInterceptors(InterceptionType.PRE_DESTROY, new MessageBinding.Literal(),
+                new LoggedBinding.Literal(),
+                new TransactionalBinding.Literal(),
+                new BasketBindingLiteral(true, true)).size(), 1);
 
         // Test the set of interceptor bindings
         ComplicatedLifecycleInterceptor.reset();

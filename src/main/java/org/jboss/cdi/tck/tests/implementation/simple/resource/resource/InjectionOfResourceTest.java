@@ -58,8 +58,7 @@ public class InjectionOfResourceTest extends AbstractTest {
     @SpecAssertions({ @SpecAssertion(section = RESOURCE_LIFECYCLE, id = "la"), @SpecAssertion(section = RESOURCE_LIFECYCLE, id = "ma"),
             @SpecAssertion(section = RESOURCE_LIFECYCLE, id = "o") })
     public void testProduceResourceProxy() {
-        Bean<BeanManager> beanManagerBean = getBeans(BeanManager.class, new AnnotationLiteral<Another>() {
-        }).iterator().next();
+        Bean<BeanManager> beanManagerBean = getBeans(BeanManager.class, new Another.Literal()).iterator().next();
         CreationalContext<BeanManager> beanManagerCc = getCurrentManager().createCreationalContext(beanManagerBean);
         BeanManager beanManager = beanManagerBean.create(beanManagerCc);
         assert beanManager != null;
@@ -78,8 +77,7 @@ public class InjectionOfResourceTest extends AbstractTest {
     @Test
     @SpecAssertions({ @SpecAssertion(section = RESOURCE_TYPES, id = "aa") })
     public void testResourceBeanTypes() {
-        Bean<BeanManager> beanRemote = getBeans(BeanManager.class, new AnnotationLiteral<Another>() {
-        }).iterator().next();
+        Bean<BeanManager> beanRemote = getBeans(BeanManager.class, new Another.Literal()).iterator().next();
         assert beanRemote.getTypes().size() == 3;
         assert beanRemote.getTypes().contains(BeanManager.class);
         assert beanRemote.getTypes().contains(BeanContainer.class);

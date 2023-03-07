@@ -99,8 +99,7 @@ public class SessionBeanTypesTest extends AbstractTest {
     @SpecAssertion(section = SESSION_BEAN_TYPES, id = "ba")
     public void testSessionBeanExtendingSessionBeanWithLocalClientView() {
         // no-interface view
-        Bean<MockLoginActionBean> loginBean = getUniqueBean(MockLoginActionBean.class, new AnnotationLiteral<Mock>() {
-        });
+        Bean<MockLoginActionBean> loginBean = getUniqueBean(MockLoginActionBean.class, new Mock.Literal());
         assertNotNull(loginBean);
         // MockLoginActionBean, LoginActionBean, Object
         assertEquals(loginBean.getTypes().size(), 3);

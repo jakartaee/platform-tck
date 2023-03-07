@@ -27,6 +27,7 @@ import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import jakarta.enterprise.util.AnnotationLiteral;
 import jakarta.inject.Qualifier;
 
 /**
@@ -38,4 +39,6 @@ import jakarta.inject.Qualifier;
 @Qualifier
 @Inherited
 public @interface Important {
+    class Literal extends AnnotationLiteral<Important> implements Important {
+    }
 }

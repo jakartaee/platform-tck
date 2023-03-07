@@ -47,11 +47,9 @@ import org.testng.annotations.Test;
 public class EnterpriseProducerMethodSpecializationTest extends AbstractTest {
 
     @SuppressWarnings("serial")
-    private static Annotation EXPENSIVE_LITERAL = new AnnotationLiteral<Expensive>() {
-    };
+    private static Annotation EXPENSIVE_LITERAL = new Expensive.Literal();
     @SuppressWarnings("serial")
-    private static Annotation SPARKLY_LITERAL = new AnnotationLiteral<Sparkly>() {
-    };
+    private static Annotation SPARKLY_LITERAL = new Sparkly.Literal();
 
     @Deployment
     public static WebArchive createTestArchive() {

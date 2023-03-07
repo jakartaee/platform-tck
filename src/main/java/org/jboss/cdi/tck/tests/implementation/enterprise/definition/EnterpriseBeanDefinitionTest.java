@@ -140,8 +140,7 @@ public class EnterpriseBeanDefinitionTest extends AbstractTest {
     @Test
     @SpecAssertion(section = DECLARING_SESSION_BEAN, id = "be")
     public void testBeanWithQualifiers() {
-        Annotation tame = new AnnotationLiteral<Tame>() {
-        };
+        Annotation tame = new Tame.Literal();
         Bean<ApeLocal> apeBean = getBeans(ApeLocal.class, tame).iterator().next();
         assert apeBean.getQualifiers().contains(tame);
     }

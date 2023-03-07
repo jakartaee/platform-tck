@@ -51,8 +51,7 @@ public class RemoteInterfaceNotInAPITypesTest extends AbstractTest {
             @SpecAssertion(section = SESSION_BEAN_TYPES, id = "c"), @SpecAssertion(section = SESSION_BEAN_TYPES, id = "aa") })
     public void testRemoteInterfacesAreNotInAPITypes() {
         // only remote view
-        Bean<Object> collieBean = getUniqueBean(Object.class, new AnnotationLiteral<Tame>() {
-        });
+        Bean<Object> collieBean = getUniqueBean(Object.class, new Tame.Literal());
         assertNotNull(collieBean);
         assertTypeSetMatches(collieBean.getTypes(), Object.class);
 

@@ -67,8 +67,7 @@ public class EnvInjectionTest extends AbstractTest {
             @SpecAssertion(section = RESOURCE_LIFECYCLE, id = "o") })
     public void testProduceEnvProxy() {
         @SuppressWarnings("serial")
-        Bean<String> greetingEnvBean = getBeans(String.class, new AnnotationLiteral<Greeting>() {
-        }).iterator().next();
+        Bean<String> greetingEnvBean = getBeans(String.class, new Greeting.Literal()).iterator().next();
         CreationalContext<String> greetingEnvCc = getCurrentManager().createCreationalContext(greetingEnvBean);
         String greeting = greetingEnvBean.create(greetingEnvCc);
         assert greeting != null;
@@ -79,8 +78,7 @@ public class EnvInjectionTest extends AbstractTest {
     @SpecAssertions({ @SpecAssertion(section = RESOURCE_TYPES, id = "aa") })
     public void testResourceBeanTypes() {
         @SuppressWarnings("serial")
-        Bean<Boolean> check = getBeans(Boolean.class, new AnnotationLiteral<Greeting>() {
-        }).iterator().next();
+        Bean<Boolean> check = getBeans(Boolean.class, new Greeting.Literal()).iterator().next();
 
         // Build the expected types from the JVM Boolean.class to avoid issues as the java.lang types evolve
         ArrayList<Class<?>> classes = new ArrayList<>();

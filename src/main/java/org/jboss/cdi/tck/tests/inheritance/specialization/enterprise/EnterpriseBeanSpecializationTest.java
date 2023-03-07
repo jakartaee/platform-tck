@@ -44,8 +44,7 @@ import org.testng.annotations.Test;
 public class EnterpriseBeanSpecializationTest extends AbstractTest {
 
     @SuppressWarnings("serial")
-    private static Annotation LANDOWNER_LITERAL = new AnnotationLiteral<Landowner>() {
-    };
+    private static Annotation LANDOWNER_LITERAL = new Landowner.Literal();
 
     @Deployment
     public static WebArchive createTestArchive() {

@@ -100,8 +100,7 @@ public class PersistenceContextInjectionTest extends AbstractTest {
     @Test
     @SpecAssertions({ @SpecAssertion(section = DECLARING_RESOURCE, id = "hh"), @SpecAssertion(section = RESOURCE_TYPES, id = "ab") })
     public void testBeanTypesAndBindingTypesOfPersistenceContext() {
-        Bean<EntityManager> manager = getBeans(EntityManager.class, new AnnotationLiteral<Database>() {
-        }).iterator().next();
+        Bean<EntityManager> manager = getBeans(EntityManager.class, new Database.Literal()).iterator().next();
         assert manager.getTypes().size() == 3;
         assert typeSetMatches(manager.getTypes(), EntityManager.class, Object.class, AutoCloseable.class);
         assert manager.getQualifiers().size() == 2;
@@ -111,8 +110,7 @@ public class PersistenceContextInjectionTest extends AbstractTest {
     @Test
     @SpecAssertions({ @SpecAssertion(section = RESOURCE_TYPES, id = "ac") })
     public void testBeanTypesOfPersistenceUnit() {
-        Bean<EntityManagerFactory> factory = getBeans(EntityManagerFactory.class, new AnnotationLiteral<Database>() {
-        }).iterator().next();
+        Bean<EntityManagerFactory> factory = getBeans(EntityManagerFactory.class, new Database.Literal()).iterator().next();
         assert factory.getTypes().size() == 3;
         assert typeSetMatches(factory.getTypes(), EntityManagerFactory.class, Object.class, AutoCloseable.class);
     }

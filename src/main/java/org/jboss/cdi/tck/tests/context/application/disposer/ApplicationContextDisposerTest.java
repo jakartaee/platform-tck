@@ -57,8 +57,7 @@ public class ApplicationContextDisposerTest extends AbstractTest {
     public void testApplicationContextActiveDuringDispose() {
         logger.log("Injected forest: {0}", forest.toString());
         @SuppressWarnings("serial")
-        Bean<Mushroom> bean = getUniqueBean(Mushroom.class, new AnnotationLiteral<Edible>() {
-        });
+        Bean<Mushroom> bean = getUniqueBean(Mushroom.class, new Edible.Literal());
         CreationalContext<Mushroom> ctx = getCurrentManager().createCreationalContext(bean);
         Mushroom mushroom = bean.create(ctx);
         assertEquals(mushroom.getName(), "Boletus");
