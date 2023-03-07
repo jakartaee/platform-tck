@@ -34,3 +34,8 @@ com/sun/ts/tests/jpa/core/query/language/Client.java#resultContainsFetchReferenc
 com/sun/ts/tests/jpa/se/schemaGeneration/annotations/index/Client.java#indexTest_from_standalone
 com/sun/ts/tests/jpa/se/schemaGeneration/annotations/uniqueConstraint/Client.java#uniqueConstraintTest_from_standalone
 
+# https://github.com/jakartaee/persistence/issues/391 Wrong typed comparison expressions in TCK
+com/sun/ts/tests/jpa/core/query/apitests/Client.java#queryAPITest27_from_standalone
+com/sun/ts/tests/jpa/core/query/apitests/Client.java#queryAPITest29_from_standalone
+com/sun/ts/tests/jpa/se/entityManager/Client.java#typedQueryMethodsAfterClose16Test_from_standalone
+

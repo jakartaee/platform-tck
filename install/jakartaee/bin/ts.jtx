@@ -68,6 +68,15 @@ com/sun/ts/tests/jpa/core/annotations/mapkeyenumerated/Client.java#elementCollec
 com/sun/ts/tests/jpa/core/annotations/mapkeytemporal/Client.java#elementCollectionTest_from_pmservlet
 com/sun/ts/tests/jpa/core/annotations/mapkeytemporal/Client.java#elementCollectionTest_from_stateless3
 
+# https://github.com/jakartaee/persistence/issues/391 Wrong typed comparison expressions in TCK
+com/sun/ts/tests/jpa/core/query/apitests/Client.java#queryAPITest27_from_appmanagedNoTx
+com/sun/ts/tests/jpa/core/query/apitests/Client.java#queryAPITest27_from_pmservlet
+com/sun/ts/tests/jpa/core/query/apitests/Client.java#queryAPITest27_from_puservlet
+com/sun/ts/tests/jpa/core/query/apitests/Client.java#queryAPITest27_from_stateless3
+com/sun/ts/tests/jpa/core/query/apitests/Client.java#queryAPITest29_from_appmanagedNoTx
+com/sun/ts/tests/jpa/core/query/apitests/Client.java#queryAPITest29_from_pmservlet
+com/sun/ts/tests/jpa/core/query/apitests/Client.java#queryAPITest29_from_puservlet
+com/sun/ts/tests/jpa/core/query/apitests/Client.java#queryAPITest29_from_stateless3
 
 ################
 # Security API
