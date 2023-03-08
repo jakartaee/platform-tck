@@ -27,9 +27,8 @@ import jakarta.websocket.EncodeException;
 
 public class ThrowingIOTextStreamEncoder extends StringBeanTextStreamEncoder {
 
-  @Override
-  public void encode(StringBean bean, Writer writer)
-      throws EncodeException, IOException {
-    throw new IOException(ThrowingTextDecoder.IO_ERR_MSG);
-  }
+	@Override
+	public void encode(StringBean bean, Writer writer) throws EncodeException, IOException {
+		throw new IOException(ThrowingTextDecoder.IO_ERR_MSG);
+	}
 }

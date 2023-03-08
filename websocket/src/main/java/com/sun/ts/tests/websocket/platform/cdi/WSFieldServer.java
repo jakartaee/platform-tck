@@ -18,6 +18,7 @@
 package com.sun.ts.tests.websocket.platform.cdi;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 
@@ -31,22 +32,25 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint("/field")
 @ApplicationScoped
 public class WSFieldServer {
-  @Inject
-  private WSInjectableServer injectableServer;
 
-  @OnMessage
-  public String inject(String echo) {
-    if (injectableServer == null)
-      return "Nothing injected using CDI";
-    return injectableServer.getName(echo);
-  }
+	private static final Logger logger = System.getLogger(WSFieldServer.class.getName());
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in " + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@Inject
+	private WSInjectableServer injectableServer;
+
+	@OnMessage
+	public String inject(String echo) {
+		if (injectableServer == null)
+			return "Nothing injected using CDI";
+		return injectableServer.getName(echo);
+	}
+
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		logger.log(Logger.Level.INFO,"@OnError in " + getClass().getName());
+		t.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

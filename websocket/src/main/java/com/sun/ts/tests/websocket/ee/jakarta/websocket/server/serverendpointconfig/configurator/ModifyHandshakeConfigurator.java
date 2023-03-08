@@ -23,63 +23,60 @@ import jakarta.websocket.server.ServerEndpointConfig;
 import jakarta.websocket.server.ServerEndpointConfig.Configurator;
 
 public class ModifyHandshakeConfigurator extends Configurator {
-  private static ServerEndpointConfig config;
+	private static ServerEndpointConfig config;
 
-  private static HandshakeRequest request;
+	private static HandshakeRequest request;
 
-  private static HandshakeResponse response;
+	private static HandshakeResponse response;
 
-  private boolean isCheckedOrigin = false;
+	private boolean isCheckedOrigin = false;
 
-  private static boolean isCheckedOriginBeforeModifyHandshake = false;
+	private static boolean isCheckedOriginBeforeModifyHandshake = false;
 
-  @Override
-  public boolean checkOrigin(String originHeaderValue) {
-    isCheckedOrigin = true;
-    return super.checkOrigin(originHeaderValue);
-  }
+	@Override
+	public boolean checkOrigin(String originHeaderValue) {
+		isCheckedOrigin = true;
+		return super.checkOrigin(originHeaderValue);
+	}
 
-  @Override
-  public void modifyHandshake(ServerEndpointConfig sec,
-      HandshakeRequest request, HandshakeResponse response) {
-    ModifyHandshakeConfigurator
-        .setCheckedOriginBeforeModifyHandshake(isCheckedOrigin);
-    ModifyHandshakeConfigurator.setConfig(sec);
-    ModifyHandshakeConfigurator.setRequest(request);
-    ModifyHandshakeConfigurator.setResponse(response);
-    super.modifyHandshake(sec, request, response);
-  }
+	@Override
+	public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
+		ModifyHandshakeConfigurator.setCheckedOriginBeforeModifyHandshake(isCheckedOrigin);
+		ModifyHandshakeConfigurator.setConfig(sec);
+		ModifyHandshakeConfigurator.setRequest(request);
+		ModifyHandshakeConfigurator.setResponse(response);
+		super.modifyHandshake(sec, request, response);
+	}
 
-  static ServerEndpointConfig getConfig() {
-    return config;
-  }
+	static ServerEndpointConfig getConfig() {
+		return config;
+	}
 
-  static HandshakeRequest getRequest() {
-    return request;
-  }
+	static HandshakeRequest getRequest() {
+		return request;
+	}
 
-  static HandshakeResponse getResponse() {
-    return response;
-  }
+	static HandshakeResponse getResponse() {
+		return response;
+	}
 
-  static boolean isCheckedOriginBeforeModifyHandshake() {
-    return isCheckedOriginBeforeModifyHandshake;
-  }
+	static boolean isCheckedOriginBeforeModifyHandshake() {
+		return isCheckedOriginBeforeModifyHandshake;
+	}
 
-  private static void setConfig(ServerEndpointConfig config) {
-    ModifyHandshakeConfigurator.config = config;
-  }
+	private static void setConfig(ServerEndpointConfig config) {
+		ModifyHandshakeConfigurator.config = config;
+	}
 
-  private static void setRequest(HandshakeRequest request) {
-    ModifyHandshakeConfigurator.request = request;
-  }
+	private static void setRequest(HandshakeRequest request) {
+		ModifyHandshakeConfigurator.request = request;
+	}
 
-  private static void setResponse(HandshakeResponse response) {
-    ModifyHandshakeConfigurator.response = response;
-  }
+	private static void setResponse(HandshakeResponse response) {
+		ModifyHandshakeConfigurator.response = response;
+	}
 
-  private static void setCheckedOriginBeforeModifyHandshake(
-      boolean isCheckedOriginBeforeModifyHandshake) {
-    ModifyHandshakeConfigurator.isCheckedOriginBeforeModifyHandshake = isCheckedOriginBeforeModifyHandshake;
-  }
+	private static void setCheckedOriginBeforeModifyHandshake(boolean isCheckedOriginBeforeModifyHandshake) {
+		ModifyHandshakeConfigurator.isCheckedOriginBeforeModifyHandshake = isCheckedOriginBeforeModifyHandshake;
+	}
 }

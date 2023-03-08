@@ -37,56 +37,49 @@ import jakarta.websocket.server.ServerEndpointConfig;
 
 public class AppConfig implements ServerApplicationConfig {
 
-  @Override
-  public Set<ServerEndpointConfig> getEndpointConfigs(
-      Set<Class<? extends Endpoint>> endpointClasses) {
-    Set<ServerEndpointConfig> set = new HashSet<>();
-    addServerEndpoint(set, LinkedListHashSetTextDecoder.class,
-        TypeEnum.LINKEDLIST_HASHSET_TEXT);
-    addServerEndpoint(set, StringListTextDecoder.class, TypeEnum.LIST_TEXT);
-    addServerEndpoint(set, StringBeanTextDecoder.class, TypeEnum.STRINGBEAN);
-    addServerEndpoint(set, StringBeanTextStreamDecoder.class,
-        TypeEnum.STRINGBEANSTREAM);
-    addServerEndpoint(set, StringBeanBinaryDecoder.class,
-        TypeEnum.STRINGBEANBINARY);
-    addServerEndpoint(set, StringBeanBinaryStreamDecoder.class,
-        TypeEnum.STRINGBEANBINARYSTREAM);
-    addServerEndpoint(set, null, TypeEnum.STRING_WHOLE);
-    addServerEndpoint(set, null, TypeEnum.STRING_PARTIAL);
-    addServerEndpoint(set, null, TypeEnum.PONG);
-    addServerEndpoint(set, null, TypeEnum.BYTEBUFFER_WHOLE);
-    addServerEndpoint(set, null, TypeEnum.BYTEARRAY_WHOLE);
-    addServerEndpoint(set, null, TypeEnum.BYTEBUFFER_PARTIAL);
-    addServerEndpoint(set, null, TypeEnum.BYTEARRAY_PARTIAL);
-    addServerEndpoint(set, null, TypeEnum.INPUTSTREAM);
-    addServerEndpoint(set, null, TypeEnum.READER);
-    return set;
-  }
+	@Override
+	public Set<ServerEndpointConfig> getEndpointConfigs(Set<Class<? extends Endpoint>> endpointClasses) {
+		Set<ServerEndpointConfig> set = new HashSet<>();
+		addServerEndpoint(set, LinkedListHashSetTextDecoder.class, TypeEnum.LINKEDLIST_HASHSET_TEXT);
+		addServerEndpoint(set, StringListTextDecoder.class, TypeEnum.LIST_TEXT);
+		addServerEndpoint(set, StringBeanTextDecoder.class, TypeEnum.STRINGBEAN);
+		addServerEndpoint(set, StringBeanTextStreamDecoder.class, TypeEnum.STRINGBEANSTREAM);
+		addServerEndpoint(set, StringBeanBinaryDecoder.class, TypeEnum.STRINGBEANBINARY);
+		addServerEndpoint(set, StringBeanBinaryStreamDecoder.class, TypeEnum.STRINGBEANBINARYSTREAM);
+		addServerEndpoint(set, null, TypeEnum.STRING_WHOLE);
+		addServerEndpoint(set, null, TypeEnum.STRING_PARTIAL);
+		addServerEndpoint(set, null, TypeEnum.PONG);
+		addServerEndpoint(set, null, TypeEnum.BYTEBUFFER_WHOLE);
+		addServerEndpoint(set, null, TypeEnum.BYTEARRAY_WHOLE);
+		addServerEndpoint(set, null, TypeEnum.BYTEBUFFER_PARTIAL);
+		addServerEndpoint(set, null, TypeEnum.BYTEARRAY_PARTIAL);
+		addServerEndpoint(set, null, TypeEnum.INPUTSTREAM);
+		addServerEndpoint(set, null, TypeEnum.READER);
+		return set;
+	}
 
-  private Set<ServerEndpointConfig> addServerEndpoint(
-      Set<ServerEndpointConfig> set, Class<? extends Decoder> decoder,
-      final TypeEnum typeEnum) {
-    List<Class<? extends Decoder>> decoders = new LinkedList<>();
-    decoders.add(decoder);
-    ServerEndpointConfig.Configurator configurator = new ServerEndpointConfig.Configurator() {
-      @SuppressWarnings("unchecked")
-      @Override
-      public <T> T getEndpointInstance(Class<T> endpointClass)
-          throws InstantiationException {
-        return (T) new WSCServerEndpoint(typeEnum);
-      }
-    };
-    ServerEndpointConfig.Builder builder = ServerEndpointConfig.Builder
-        .create(WSCServerEndpoint.class, "/" + typeEnum.name().toLowerCase());
-    if (decoder != null)
-      builder = builder.decoders(decoders);
-    ServerEndpointConfig config = builder.configurator(configurator).build();
-    set.add(config);
-    return set;
-  }
+	private Set<ServerEndpointConfig> addServerEndpoint(Set<ServerEndpointConfig> set, Class<? extends Decoder> decoder,
+			final TypeEnum typeEnum) {
+		List<Class<? extends Decoder>> decoders = new LinkedList<>();
+		decoders.add(decoder);
+		ServerEndpointConfig.Configurator configurator = new ServerEndpointConfig.Configurator() {
+			@SuppressWarnings("unchecked")
+			@Override
+			public <T> T getEndpointInstance(Class<T> endpointClass) throws InstantiationException {
+				return (T) new WSCServerEndpoint(typeEnum);
+			}
+		};
+		ServerEndpointConfig.Builder builder = ServerEndpointConfig.Builder.create(WSCServerEndpoint.class,
+				"/" + typeEnum.name().toLowerCase());
+		if (decoder != null)
+			builder = builder.decoders(decoders);
+		ServerEndpointConfig config = builder.configurator(configurator).build();
+		set.add(config);
+		return set;
+	}
 
-  @Override
-  public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scanned) {
-    return scanned;
-  }
+	@Override
+	public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scanned) {
+		return scanned;
+	}
 }

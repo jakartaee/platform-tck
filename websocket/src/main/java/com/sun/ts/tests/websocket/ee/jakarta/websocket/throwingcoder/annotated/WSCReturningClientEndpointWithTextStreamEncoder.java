@@ -33,37 +33,36 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
 @ClientEndpoint(encoders = ThrowingTextStreamEncoder.class)
-public class WSCReturningClientEndpointWithTextStreamEncoder
-    extends AnnotatedClientEndpoint<String> {
+public class WSCReturningClientEndpointWithTextStreamEncoder extends AnnotatedClientEndpoint<String> {
 
-  public WSCReturningClientEndpointWithTextStreamEncoder() {
-    super(new StringClientEndpoint());
-  }
+	public WSCReturningClientEndpointWithTextStreamEncoder() {
+		super(new StringClientEndpoint());
+	}
 
-  @SuppressWarnings("unused")
-  @OnMessage
-  public StringBean onMessage(String msg, Session session) {
-    return new StringBean(msg);
-  }
+	@SuppressWarnings("unused")
+	@OnMessage
+	public StringBean onMessage(String msg, Session session) {
+		return new StringBean(msg);
+	}
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config); // throwing encoder is not used here!
-  }
+	@Override
+	@OnOpen
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config); // throwing encoder is not used here!
+	}
 
-  @Override
-  @OnClose
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@Override
+	@OnClose
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) {
-    String error = WebSocketCommonClient.getCauseMessage(t);
-    super.onMessage(error);
-    super.onMessage(error);
-  }
+	@Override
+	@OnError
+	public void onError(Session session, Throwable t) {
+		String error = WebSocketCommonClient.getCauseMessage(t);
+		super.onMessage(error);
+		super.onMessage(error);
+	}
 
 }

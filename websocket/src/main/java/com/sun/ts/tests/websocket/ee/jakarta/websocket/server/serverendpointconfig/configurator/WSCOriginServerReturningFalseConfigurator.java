@@ -28,17 +28,17 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/originreturnsfalseconfig")
 public class WSCOriginServerReturningFalseConfigurator {
-  @OnMessage
-  public String onMessage(String msg) {
-    OriginConfiguratorReturningFalse.setOrigin(Boolean.parseBoolean(msg));
-    return msg;
-  }
+	@OnMessage
+	public String onMessage(String msg) {
+		OriginConfiguratorReturningFalse.setOrigin(Boolean.parseBoolean(msg));
+		return msg;
+	}
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable thr) throws IOException {
+		thr.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(thr);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

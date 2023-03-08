@@ -17,6 +17,8 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint;
 
+import java.lang.System.Logger;
+
 import com.sun.ts.tests.websocket.common.client.BinaryAndTextClientEndpoint;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 
@@ -26,15 +28,18 @@ import jakarta.websocket.PongMessage;
 import jakarta.websocket.Session;
 
 public class PongMessageClientEndpoint extends BinaryAndTextClientEndpoint {
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-    session.addMessageHandler(new MessageHandler.Whole<PongMessage>() {
-      @Override
-      public void onMessage(PongMessage message) {
-        String msg = IOUtil.byteBufferToString(message.getApplicationData());
-        PongMessageClientEndpoint.this.onMessage(msg);
-      }
-    });
-  }
+
+	private static final Logger logger = System.getLogger(PongMessageClientEndpoint.class.getName());
+
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+		session.addMessageHandler(new MessageHandler.Whole<PongMessage>() {
+			@Override
+			public void onMessage(PongMessage message) {
+				String msg = IOUtil.byteBufferToString(message.getApplicationData());
+				PongMessageClientEndpoint.this.onMessage(msg);
+			}
+		});
+	}
 }

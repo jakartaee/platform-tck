@@ -29,16 +29,16 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint("/fullbyte")
 public class WSFullByteServer {
 
-  @OnMessage
-  public Byte echo(String data) {
-    return Byte.valueOf(data);
-  }
+	@OnMessage
+	public Byte echo(String data) {
+		return Byte.valueOf(data);
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		t.printStackTrace(); // Write to error log, too
+		String message = "Exception: " + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

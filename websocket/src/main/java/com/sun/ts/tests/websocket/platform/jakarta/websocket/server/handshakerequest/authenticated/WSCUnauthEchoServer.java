@@ -28,16 +28,16 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/unauth/echo")
 public class WSCUnauthEchoServer {
-  @OnMessage
-  public String onMessage(String msg) {
-    return msg;
-  }
+	@OnMessage
+	public String onMessage(String msg) {
+		return msg;
+	}
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable thr) throws IOException {
+		thr.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(thr);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

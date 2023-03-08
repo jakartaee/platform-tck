@@ -18,6 +18,7 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder.async;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -29,43 +30,46 @@ import jakarta.websocket.EncodeException;
 import jakarta.websocket.Session;
 
 public abstract class WSCCommonServer implements WSCSuperEndpoint {
-  public void onMessage(String msg, Session session) throws IOException,
-      EncodeException, InterruptedException, ExecutionException {
-    OPS op = OPS.valueOf(msg);
-    Future<Void> future = null;
-    switch (op) {
-    case BOOL:
-      future = session.getAsyncRemote().sendObject(BOOL);
-      break;
-    case BYTE:
-      future = session.getAsyncRemote().sendObject(NUMERIC.byteValue());
-      break;
-    case CHAR:
-      future = session.getAsyncRemote().sendObject(CHAR);
-      break;
-    case DOUBLE:
-      future = session.getAsyncRemote().sendObject(NUMERIC.doubleValue());
-      break;
-    case FLOAT:
-      future = session.getAsyncRemote().sendObject(NUMERIC.floatValue());
-      break;
-    case INT:
-      future = session.getAsyncRemote().sendObject(NUMERIC.intValue());
-      break;
-    case LONG:
-      future = session.getAsyncRemote().sendObject(NUMERIC.longValue());
-      break;
-    case SHORT:
-      future = session.getAsyncRemote().sendObject(NUMERIC.shortValue());
-      break;
-    }
-    future.get();
-  }
 
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in " + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	private static final Logger logger = System.getLogger(WSCCommonServer.class.getName());
+
+	public void onMessage(String msg, Session session)
+			throws IOException, EncodeException, InterruptedException, ExecutionException {
+		OPS op = OPS.valueOf(msg);
+		Future<Void> future = null;
+		switch (op) {
+		case BOOL:
+			future = session.getAsyncRemote().sendObject(BOOL);
+			break;
+		case BYTE:
+			future = session.getAsyncRemote().sendObject(NUMERIC.byteValue());
+			break;
+		case CHAR:
+			future = session.getAsyncRemote().sendObject(CHAR);
+			break;
+		case DOUBLE:
+			future = session.getAsyncRemote().sendObject(NUMERIC.doubleValue());
+			break;
+		case FLOAT:
+			future = session.getAsyncRemote().sendObject(NUMERIC.floatValue());
+			break;
+		case INT:
+			future = session.getAsyncRemote().sendObject(NUMERIC.intValue());
+			break;
+		case LONG:
+			future = session.getAsyncRemote().sendObject(NUMERIC.longValue());
+			break;
+		case SHORT:
+			future = session.getAsyncRemote().sendObject(NUMERIC.shortValue());
+			break;
+		}
+		future.get();
+	}
+
+	public void onError(Session session, Throwable t) throws IOException {
+		logger.log(Logger.Level.INFO,"@OnError in " + getClass().getName());
+		t.printStackTrace(); // Write to error log, too
+		String message = "Exception: " + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 }

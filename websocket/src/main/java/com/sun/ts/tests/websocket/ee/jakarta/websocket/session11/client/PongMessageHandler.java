@@ -25,18 +25,17 @@ import jakarta.websocket.PongMessage;
 
 public class PongMessageHandler implements MessageHandler.Whole<PongMessage> {
 
-  ClientEndpoint<String> endpoint;
+	ClientEndpoint<String> endpoint;
 
-  public static final String HANDLER_SAYS = "PongMessageHandler says: ";
+	public static final String HANDLER_SAYS = "PongMessageHandler says: ";
 
-  public PongMessageHandler(ClientEndpoint<String> endpoint) {
-    this.endpoint = endpoint;
-  }
+	public PongMessageHandler(ClientEndpoint<String> endpoint) {
+		this.endpoint = endpoint;
+	}
 
-  @Override
-  public void onMessage(PongMessage msg) {
-    endpoint.onMessage(
-        HANDLER_SAYS + IOUtil.byteBufferToString(msg.getApplicationData()));
-  }
+	@Override
+	public void onMessage(PongMessage msg) {
+		endpoint.onMessage(HANDLER_SAYS + IOUtil.byteBufferToString(msg.getApplicationData()));
+	}
 
 }

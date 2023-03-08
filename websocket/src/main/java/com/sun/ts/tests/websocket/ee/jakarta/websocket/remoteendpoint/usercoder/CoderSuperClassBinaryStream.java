@@ -25,13 +25,12 @@ import jakarta.websocket.EncodeException;
 import jakarta.websocket.Encoder;
 
 public abstract class CoderSuperClassBinaryStream<T> extends CoderSuperClass
-    implements Encoder.BinaryStream<T>, Decoder.BinaryStream<T> {
+		implements Encoder.BinaryStream<T>, Decoder.BinaryStream<T> {
 
-  @Override
-  public void encode(T object, OutputStream os)
-      throws EncodeException, IOException {
-    os.write(COMMON_CODED_STRING.getBytes());
-    os.close();
-  }
+	@Override
+	public void encode(T object, OutputStream os) throws EncodeException, IOException {
+		os.write(COMMON_CODED_STRING.getBytes());
+		os.close();
+	}
 
 }

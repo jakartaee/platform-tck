@@ -28,10 +28,8 @@ import jakarta.websocket.DecodeException;
 
 public class ThrowingBinaryStreamDecoder extends StringBeanBinaryStreamDecoder {
 
-  @Override
-  public StringBean decode(InputStream arg0)
-      throws DecodeException, IOException {
-    throw new DecodeException(IOUtil.readFromStream(arg0),
-        ThrowingTextDecoder.ERR_MSG);
-  }
+	@Override
+	public StringBean decode(InputStream arg0) throws DecodeException, IOException {
+		throw new DecodeException(IOUtil.readFromStream(arg0), ThrowingTextDecoder.ERR_MSG);
+	}
 }

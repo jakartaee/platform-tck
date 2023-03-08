@@ -22,28 +22,27 @@ import java.io.IOException;
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
 
-public class ByteArrayPartialMessageHandler
-    implements MessageHandler.Partial<byte[]> {
+public class ByteArrayPartialMessageHandler implements MessageHandler.Partial<byte[]> {
 
-  private Session session;
+	private Session session;
 
-  public static final String HANDLER_SAYS = "ByteArrayPartialMessageHandler says: ";
+	public static final String HANDLER_SAYS = "ByteArrayPartialMessageHandler says: ";
 
-  StringBuilder sb = new StringBuilder();
+	StringBuilder sb = new StringBuilder();
 
-  public ByteArrayPartialMessageHandler(Session session) {
-    super();
-    this.session = session;
-  }
+	public ByteArrayPartialMessageHandler(Session session) {
+		super();
+		this.session = session;
+	}
 
-  @Override
-  public void onMessage(byte[] message, boolean finite) {
-    sb.append(new String(message));
-    try {
-      if (finite)
-        session.getBasicRemote().sendText(HANDLER_SAYS + sb.toString());
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
+	@Override
+	public void onMessage(byte[] message, boolean finite) {
+		sb.append(new String(message));
+		try {
+			if (finite)
+				session.getBasicRemote().sendText(HANDLER_SAYS + sb.toString());
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

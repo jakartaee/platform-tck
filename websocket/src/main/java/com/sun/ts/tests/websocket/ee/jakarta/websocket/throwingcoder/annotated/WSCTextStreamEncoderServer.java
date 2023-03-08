@@ -31,24 +31,22 @@ import jakarta.websocket.SendResult;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 
-@ServerEndpoint(value = "/textstreamencoder", encoders = {
-    ThrowingTextStreamEncoder.class })
+@ServerEndpoint(value = "/textstreamencoder", encoders = { ThrowingTextStreamEncoder.class })
 public class WSCTextStreamEncoderServer {
 
-  @OnMessage
-  public void echo(String data, Session session)
-      throws InterruptedException, ExecutionException {
-    WaitingSendHandler handler = new WaitingSendHandler();
-    session.getAsyncRemote().sendObject(new StringBean(data), handler);
-    SendResult result = handler.waitForResult(4);
-    if (result.getException() != null)
-      throw new RuntimeException(result.getException());
-  }
+	@OnMessage
+	public void echo(String data, Session session) throws InterruptedException, ExecutionException {
+		WaitingSendHandler handler = new WaitingSendHandler();
+		session.getAsyncRemote().sendObject(new StringBean(data), handler);
+		SendResult result = handler.waitForResult(4);
+		if (result.getException() != null)
+			throw new RuntimeException(result.getException());
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    String message = ThrowingTextDecoder.getCauseMessage(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		String message = ThrowingTextDecoder.getCauseMessage(t);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

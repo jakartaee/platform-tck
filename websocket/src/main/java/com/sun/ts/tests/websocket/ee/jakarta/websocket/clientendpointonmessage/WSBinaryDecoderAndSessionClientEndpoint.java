@@ -34,34 +34,33 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
 @ClientEndpoint(decoders = { StringBeanBinaryDecoder.class })
-public class WSBinaryDecoderAndSessionClientEndpoint
-    extends AnnotatedClientEndpoint<StringBean> {
+public class WSBinaryDecoderAndSessionClientEndpoint extends AnnotatedClientEndpoint<StringBean> {
 
-  public WSBinaryDecoderAndSessionClientEndpoint() {
-    super(new StringBeanClientEndpoint());
-  }
+	public WSBinaryDecoderAndSessionClientEndpoint() {
+		super(new StringBeanClientEndpoint());
+	}
 
-  @OnMessage
-  public void echo(StringBean bean, Session session) throws IOException {
-    super.onMessage(bean);
-    session.getBasicRemote().sendText(bean.get());
-  }
+	@OnMessage
+	public void echo(StringBean bean, Session session) throws IOException {
+		super.onMessage(bean);
+		session.getBasicRemote().sendText(bean.get());
+	}
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+	@OnError
+	@Override
+	public void onError(Session session, Throwable t) {
+		super.onError(session, t);
+	}
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@OnClose
+	@Override
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @OnOpen
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+	@OnOpen
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+	}
 }

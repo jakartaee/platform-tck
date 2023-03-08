@@ -21,8 +21,8 @@ import jakarta.websocket.DecodeException;
 
 public class TextCoderBool extends CoderSuperClassText<Boolean> {
 
-  @Override
-  public Boolean decode(String s) throws DecodeException {
-    return BOOL;
-  }
+	@Override
+	public Boolean decode(String s) throws DecodeException {
+		return BOOL;
+	}
 }

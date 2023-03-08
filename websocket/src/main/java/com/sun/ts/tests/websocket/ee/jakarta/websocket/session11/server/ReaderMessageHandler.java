@@ -27,22 +27,22 @@ import jakarta.websocket.Session;
 
 public class ReaderMessageHandler implements MessageHandler.Whole<Reader> {
 
-  public static final String HANDLER_SAYS = "ReaderMessageHandler says: ";
+	public static final String HANDLER_SAYS = "ReaderMessageHandler says: ";
 
-  protected Session session;
+	protected Session session;
 
-  public ReaderMessageHandler(Session session) {
-    this.session = session;
-  }
+	public ReaderMessageHandler(Session session) {
+		this.session = session;
+	}
 
-  @Override
-  public void onMessage(Reader message) {
-    String msg = null;
-    try {
-      msg = IOUtil.readFromReader(message);
-      session.getBasicRemote().sendText(HANDLER_SAYS + msg);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
+	@Override
+	public void onMessage(Reader message) {
+		String msg = null;
+		try {
+			msg = IOUtil.readFromReader(message);
+			session.getBasicRemote().sendText(HANDLER_SAYS + msg);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

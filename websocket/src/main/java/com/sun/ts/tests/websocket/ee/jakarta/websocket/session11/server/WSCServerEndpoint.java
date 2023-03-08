@@ -35,89 +35,78 @@ import jakarta.websocket.PongMessage;
 import jakarta.websocket.Session;
 
 public class WSCServerEndpoint extends Endpoint {
-  public WSCServerEndpoint(TypeEnum typeEnum) {
-    super();
-    this.typeEnum = typeEnum;
-  }
 
-  private TypeEnum typeEnum;
+	public WSCServerEndpoint(TypeEnum typeEnum) {
+		super();
+		this.typeEnum = typeEnum;
+	}
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    switch (typeEnum) {
-    case LINKEDLIST_HASHSET_TEXT:
-      LinkedList<HashSet<String>> list = new LinkedList<>();
-      Class<LinkedList<HashSet<String>>> clzLLHS = (Class<LinkedList<HashSet<String>>>) list
-          .getClass();
-      session.addMessageHandler(clzLLHS,
-          new LinkedListHashSetMessageHandler(session));
-      break;
-    case LIST_TEXT:
-      session.addMessageHandler(StringList.class,
-          new StringListWholeMessageHandler(session));
-      break;
-    case STRINGBEAN:
-    case STRINGBEANSTREAM:
-    case STRINGBEANBINARY:
-    case STRINGBEANBINARYSTREAM:
-      session.addMessageHandler(StringBean.class,
-          new StringBeanMessageHandler(session));
-      break;
-    case STRING_WHOLE:
-      session.addMessageHandler(String.class,
-          new StringWholeMessageHandler(session));
-      break;
-    case STRING_PARTIAL:
-      session.addMessageHandler(String.class,
-          new StringPartialMessageHandler(session));
-      break;
-    case READER:
-      session.addMessageHandler(Reader.class,
-          new ReaderMessageHandler(session));
-      break;
-    case PONG:
-      session.addMessageHandler(PongMessage.class,
-          new PongMessageHandler(session));
-      // send pingmessage to receive pongmessage
-      break;
-    case BYTEBUFFER_WHOLE:
-      session.addMessageHandler(ByteBuffer.class,
-          new ByteBufferMessageHandler(session));
-      break;
-    case BYTEBUFFER_PARTIAL:
-      session.addMessageHandler(ByteBuffer.class,
-          new ByteBufferPartialMessageHandler(session));
-      break;
-    case BYTEARRAY_WHOLE:
-      byte[] ba = new byte[0];
-      Class<byte[]> baclz = (Class<byte[]>) ba.getClass();
-      session.addMessageHandler(baclz, new ByteArrayMessageHandler(session));
-      break;
-    case BYTEARRAY_PARTIAL:
-      ba = new byte[0];
-      baclz = (Class<byte[]>) ba.getClass();
-      session.addMessageHandler(baclz,
-          new ByteArrayPartialMessageHandler(session));
-      break;
-    case INPUTSTREAM:
-      session.addMessageHandler(InputStream.class,
-          new InputStreamMessageHandler(session));
-      break;
-    default:
-      break;
-    }
-  }
+	private TypeEnum typeEnum;
 
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-    t.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(t);
-    try {
-      session.getBasicRemote().sendText(message);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
+	@SuppressWarnings("unchecked")
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		switch (typeEnum) {
+		case LINKEDLIST_HASHSET_TEXT:
+			LinkedList<HashSet<String>> list = new LinkedList<>();
+			Class<LinkedList<HashSet<String>>> clzLLHS = (Class<LinkedList<HashSet<String>>>) list.getClass();
+			session.addMessageHandler(clzLLHS, new LinkedListHashSetMessageHandler(session));
+			break;
+		case LIST_TEXT:
+			session.addMessageHandler(StringList.class, new StringListWholeMessageHandler(session));
+			break;
+		case STRINGBEAN:
+		case STRINGBEANSTREAM:
+		case STRINGBEANBINARY:
+		case STRINGBEANBINARYSTREAM:
+			session.addMessageHandler(StringBean.class, new StringBeanMessageHandler(session));
+			break;
+		case STRING_WHOLE:
+			session.addMessageHandler(String.class, new StringWholeMessageHandler(session));
+			break;
+		case STRING_PARTIAL:
+			session.addMessageHandler(String.class, new StringPartialMessageHandler(session));
+			break;
+		case READER:
+			session.addMessageHandler(Reader.class, new ReaderMessageHandler(session));
+			break;
+		case PONG:
+			session.addMessageHandler(PongMessage.class, new PongMessageHandler(session));
+			// send pingmessage to receive pongmessage
+			break;
+		case BYTEBUFFER_WHOLE:
+			session.addMessageHandler(ByteBuffer.class, new ByteBufferMessageHandler(session));
+			break;
+		case BYTEBUFFER_PARTIAL:
+			session.addMessageHandler(ByteBuffer.class, new ByteBufferPartialMessageHandler(session));
+			break;
+		case BYTEARRAY_WHOLE:
+			byte[] ba = new byte[0];
+			Class<byte[]> baclz = (Class<byte[]>) ba.getClass();
+			session.addMessageHandler(baclz, new ByteArrayMessageHandler(session));
+			break;
+		case BYTEARRAY_PARTIAL:
+			ba = new byte[0];
+			baclz = (Class<byte[]>) ba.getClass();
+			session.addMessageHandler(baclz, new ByteArrayPartialMessageHandler(session));
+			break;
+		case INPUTSTREAM:
+			session.addMessageHandler(InputStream.class, new InputStreamMessageHandler(session));
+			break;
+		default:
+			break;
+		}
+	}
+
+	@Override
+	public void onError(Session session, Throwable t) {
+		super.onError(session, t);
+		t.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(t);
+		try {
+			session.getBasicRemote().sendText(message);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

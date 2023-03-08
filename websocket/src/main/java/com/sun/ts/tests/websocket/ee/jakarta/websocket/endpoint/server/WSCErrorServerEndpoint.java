@@ -28,53 +28,52 @@ import jakarta.websocket.MessageHandler;
 import jakarta.websocket.OnClose;
 import jakarta.websocket.Session;
 
-public class WSCErrorServerEndpoint extends Endpoint
-    implements MessageHandler.Whole<String> {
-  static final String EXCEPTION = "TCK test throwable";
+public class WSCErrorServerEndpoint extends Endpoint implements MessageHandler.Whole<String> {
+	static final String EXCEPTION = "TCK test throwable";
 
-  private Session session;
+	private Session session;
 
-  @Override
-  public void onMessage(String msg) {
-    session.getAsyncRemote().sendText(msg);
-    throw new RuntimeException(EXCEPTION);
-  }
+	@Override
+	public void onMessage(String msg) {
+		session.getAsyncRemote().sendText(msg);
+		throw new RuntimeException(EXCEPTION);
+	}
 
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    session.addMessageHandler(this);
-    this.session = session;
-  }
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		session.addMessageHandler(this);
+		this.session = session;
+	}
 
-  @Override
-  @OnClose
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@Override
+	@OnClose
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @Override
-  public void onError(Session session, Throwable t) {
-    String msg = getCauseMessage(t);
-    if (EXCEPTION.equals(msg)) {
-      WSCMsgServer.setLastMessage(EXCEPTION);
-    } else {
-      t.printStackTrace(); // Write to error log, too
-      String message = IOUtil.printStackTrace(t);
-      try {
-        session.getBasicRemote().sendText(message);
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-    }
-  }
+	@Override
+	public void onError(Session session, Throwable t) {
+		String msg = getCauseMessage(t);
+		if (EXCEPTION.equals(msg)) {
+			WSCMsgServer.setLastMessage(EXCEPTION);
+		} else {
+			t.printStackTrace(); // Write to error log, too
+			String message = IOUtil.printStackTrace(t);
+			try {
+				session.getBasicRemote().sendText(message);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
-  private static String getCauseMessage(Throwable t) {
-    String msg = null;
-    while (t != null) {
-      msg = t.getMessage();
-      t = t.getCause();
-    }
-    return msg;
-  }
+	private static String getCauseMessage(Throwable t) {
+		String msg = null;
+		while (t != null) {
+			msg = t.getMessage();
+			t = t.getCause();
+		}
+		return msg;
+	}
 
 }

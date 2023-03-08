@@ -25,28 +25,27 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
 
-public class ByteBufferPartialMessageHandler
-    implements MessageHandler.Partial<ByteBuffer> {
+public class ByteBufferPartialMessageHandler implements MessageHandler.Partial<ByteBuffer> {
 
-  private Session session;
+	private Session session;
 
-  public static final String HANDLER_SAYS = "ByteBufferPartialMessageHandler says: ";
+	public static final String HANDLER_SAYS = "ByteBufferPartialMessageHandler says: ";
 
-  StringBuilder sb = new StringBuilder();
+	StringBuilder sb = new StringBuilder();
 
-  public ByteBufferPartialMessageHandler(Session session) {
-    super();
-    this.session = session;
-  }
+	public ByteBufferPartialMessageHandler(Session session) {
+		super();
+		this.session = session;
+	}
 
-  @Override
-  public void onMessage(ByteBuffer message, boolean finite) {
-    sb.append(IOUtil.byteBufferToString(message));
-    try {
-      if (finite)
-        session.getBasicRemote().sendText(HANDLER_SAYS + sb.toString());
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
+	@Override
+	public void onMessage(ByteBuffer message, boolean finite) {
+		sb.append(IOUtil.byteBufferToString(message));
+		try {
+			if (finite)
+				session.getBasicRemote().sendText(HANDLER_SAYS + sb.toString());
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

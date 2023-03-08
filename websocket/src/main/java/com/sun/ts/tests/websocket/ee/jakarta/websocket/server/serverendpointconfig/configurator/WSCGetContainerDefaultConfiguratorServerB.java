@@ -17,27 +17,27 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverendpointcon
 
 import java.io.IOException;
 
+import com.sun.ts.tests.websocket.common.util.IOUtil;
+
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 
-import com.sun.ts.tests.websocket.common.util.IOUtil;
-
 @ServerEndpoint(value = "/containerdefaultconfiguratorB", configurator = ContainerDefaultConfiguratorB.class)
 public class WSCGetContainerDefaultConfiguratorServerB {
 
-  @SuppressWarnings("unused")
-  @OnMessage
-  public String onMessage(String msg) {
-    String response = ContainerDefaultConfiguratorB.getPlatformDefaultConfiguratorID();
-    return response;
-  }
+	@SuppressWarnings("unused")
+	@OnMessage
+	public String onMessage(String msg) {
+		String response = ContainerDefaultConfiguratorB.getPlatformDefaultConfiguratorID();
+		return response;
+	}
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable thr) throws IOException {
+		thr.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(thr);
+		session.getBasicRemote().sendText(message);
+	}
 }

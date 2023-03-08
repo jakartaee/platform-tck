@@ -26,34 +26,33 @@ import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
 
-public class EchoServerEndpoint extends Endpoint
-    implements MessageHandler.Whole<String> {
-  private Session session;
+public class EchoServerEndpoint extends Endpoint implements MessageHandler.Whole<String> {
+	private Session session;
 
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    this.session = session;
-    session.addMessageHandler(this);
-  }
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		this.session = session;
+		session.addMessageHandler(this);
+	}
 
-  @Override
-  public void onMessage(String message) {
-    try {
-      session.getBasicRemote().sendText(message);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
+	@Override
+	public void onMessage(String message) {
+		try {
+			session.getBasicRemote().sendText(message);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
-  @Override
-  public void onError(Session session, Throwable thr) {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    try {
-      session.getBasicRemote().sendText(message);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
+	@Override
+	public void onError(Session session, Throwable thr) {
+		thr.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(thr);
+		try {
+			session.getBasicRemote().sendText(message);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

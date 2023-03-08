@@ -33,38 +33,37 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
 @ClientEndpoint(decoders = ThrowingIOTextStreamDecoder.class)
-public class WSCClientEndpointWithIOTextStreamDecoder
-    extends AnnotatedClientEndpoint<StringBean> {
+public class WSCClientEndpointWithIOTextStreamDecoder extends AnnotatedClientEndpoint<StringBean> {
 
-  public WSCClientEndpointWithIOTextStreamDecoder() {
-    super(new StringBeanClientEndpoint());
-  }
+	public WSCClientEndpointWithIOTextStreamDecoder() {
+		super(new StringBeanClientEndpoint());
+	}
 
-  @Override
-  @OnMessage
-  public void onMessage(StringBean msg) {
-    super.onMessage(msg);
-  }
+	@Override
+	@OnMessage
+	public void onMessage(StringBean msg) {
+		super.onMessage(msg);
+	}
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+	@Override
+	@OnOpen
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+	}
 
-  @Override
-  @OnClose
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@Override
+	@OnClose
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) {
-    String error = WebSocketCommonClient.getCauseMessage(t);
-    StringBean bean = new StringBean(error);
-    onMessage(bean);
-    onMessage(bean);
-  }
+	@Override
+	@OnError
+	public void onError(Session session, Throwable t) {
+		String error = WebSocketCommonClient.getCauseMessage(t);
+		StringBean bean = new StringBean(error);
+		onMessage(bean);
+		onMessage(bean);
+	}
 
 }

@@ -30,39 +30,40 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/closesession")
 public class WSCCloseSessionServer {
-  static int lastCloseCode = 0;
 
-  static final String MESSAGES[] = { "idle", "lastcode" };
+	static int lastCloseCode = 0;
 
-  @OnMessage
-  public String onMessage(String msg, Session session) {
-    if (MESSAGES[0].equals(msg)) {
-      setLastCloseCode(0);
-      session.setMaxIdleTimeout(1);
-    } else if (MESSAGES[1].equals(msg))
-      msg = getLastCloseCode();
-    return msg;
-  }
+	static final String MESSAGES[] = { "idle", "lastcode" };
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnMessage
+	public String onMessage(String msg, Session session) {
+		if (MESSAGES[0].equals(msg)) {
+			setLastCloseCode(0);
+			session.setMaxIdleTimeout(1);
+		} else if (MESSAGES[1].equals(msg))
+			msg = getLastCloseCode();
+		return msg;
+	}
 
-  @OnClose
-  public void onClose(CloseReason reason) {
-    int lastCloseCode = reason.getCloseCode().getCode();
-    setLastCloseCode(lastCloseCode);
-  }
+	@OnError
+	public void onError(Session session, Throwable thr) throws IOException {
+		thr.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(thr);
+		session.getBasicRemote().sendText(message);
+	}
 
-  private static String getLastCloseCode() {
-    return String.valueOf(lastCloseCode);
-  }
+	@OnClose
+	public void onClose(CloseReason reason) {
+		int lastCloseCode = reason.getCloseCode().getCode();
+		setLastCloseCode(lastCloseCode);
+	}
 
-  private static void setLastCloseCode(int lastCloseCode) {
-    WSCCloseSessionServer.lastCloseCode = lastCloseCode;
-  }
+	private static String getLastCloseCode() {
+		return String.valueOf(lastCloseCode);
+	}
+
+	private static void setLastCloseCode(int lastCloseCode) {
+		WSCCloseSessionServer.lastCloseCode = lastCloseCode;
+	}
 
 }

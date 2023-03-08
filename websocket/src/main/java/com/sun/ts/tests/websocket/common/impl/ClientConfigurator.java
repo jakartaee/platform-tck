@@ -31,77 +31,70 @@ import jakarta.websocket.HandshakeResponse;
 
 public class ClientConfigurator extends Configurator {
 
-  private Map<String, List<String>> requestMap = new TreeMap<>();
+	private Map<String, List<String>> requestMap = new TreeMap<>();
 
-  private Map<String, List<String>> responseMap = new TreeMap<>();
+	private Map<String, List<String>> responseMap = new TreeMap<>();
 
-  private boolean hasBeenAfterResponse = false;
+	private boolean hasBeenAfterResponse = false;
 
-  private boolean hasBeenBeforeRequest = false;
+	private boolean hasBeenBeforeRequest = false;
 
-  public boolean hasBeenBeforeRequest() {
-    return hasBeenBeforeRequest;
-  }
+	public boolean hasBeenBeforeRequest() {
+		return hasBeenBeforeRequest;
+	}
 
-  public boolean hasBeenAfterResponse() {
-    return hasBeenAfterResponse;
-  }
+	public boolean hasBeenAfterResponse() {
+		return hasBeenAfterResponse;
+	}
 
-  public void addToRequest(String key, String... values) {
-    requestMap.put(key, Arrays.asList(values));
-  }
+	public void addToRequest(String key, String... values) {
+		requestMap.put(key, Arrays.asList(values));
+	}
 
-  public void addToResponse(String key, String... values) {
-    responseMap.put(key, Arrays.asList(values));
-  }
+	public void addToResponse(String key, String... values) {
+		responseMap.put(key, Arrays.asList(values));
+	}
 
-  public void addToRequestAndResponse(String key, String... values) {
-    addToRequest(key, values);
-    addToResponse(key, values);
-  }
+	public void addToRequestAndResponse(String key, String... values) {
+		addToRequest(key, values);
+		addToResponse(key, values);
+	}
 
-  @Override
-  public void beforeRequest(Map<String, List<String>> headers) {
-    super.beforeRequest(headers);
-    for (Entry<String, List<String>> set : requestMap.entrySet())
-      headers.put(set.getKey(), set.getValue());
-    hasBeenBeforeRequest = true;
-  }
+	@Override
+	public void beforeRequest(Map<String, List<String>> headers) {
+		super.beforeRequest(headers);
+		for (Entry<String, List<String>> set : requestMap.entrySet())
+			headers.put(set.getKey(), set.getValue());
+		hasBeenBeforeRequest = true;
+	}
 
-  @Override
-  public void afterResponse(HandshakeResponse hr) {
-    super.afterResponse(hr);
-    Map<String, List<String>> headers = hr.getHeaders();
-    for (Entry<String, List<String>> set : responseMap.entrySet()) {
-      String key = set.getKey();
-      assertTrue(headers.containsKey(key), "key", key,
-          "was not found in HandshakeResponse headers");
-      assertTrue(StringUtil.contains(headers.get(key), set.getValue(), false),
-          "value \"", StringUtil.collectionToString(set.getValue()), "\"",
-          "was not found for key", key, "only \"",
-          StringUtil.collectionToString(headers.get(key)), "\" has been found");
-      WebSocketCommonClient.logTrace("found expected pair [", key, ",",
-          headers.get(key), "]");
-    }
-    hasBeenAfterResponse = true;
-  }
+	@Override
+	public void afterResponse(HandshakeResponse hr) {
+		super.afterResponse(hr);
+		Map<String, List<String>> headers = hr.getHeaders();
+		for (Entry<String, List<String>> set : responseMap.entrySet()) {
+			String key = set.getKey();
+			assertTrue(headers.containsKey(key), "key", key, "was not found in HandshakeResponse headers");
+			assertTrue(StringUtil.contains(headers.get(key), set.getValue(), false), "value \"",
+					StringUtil.collectionToString(set.getValue()), "\"", "was not found for key", key, "only \"",
+					StringUtil.collectionToString(headers.get(key)), "\" has been found");
+			WebSocketCommonClient.logTrace("found expected pair [", key, ",", headers.get(key), "]");
+		}
+		hasBeenAfterResponse = true;
+	}
 
-  public void assertAfterResponseHasBeenCalled() {
-    assertTrue(hasBeenAfterResponse(),
-        "Configurator#afterResponse has not been called");
-    WebSocketCommonClient
-        .logTrace("Configurator#afterResponse has been called as expected", "");
-  }
+	public void assertAfterResponseHasBeenCalled() {
+		assertTrue(hasBeenAfterResponse(), "Configurator#afterResponse has not been called");
+		WebSocketCommonClient.logTrace("Configurator#afterResponse has been called as expected", "");
+	}
 
-  public void assertBeforeRequestHasBeenCalled() {
-    assertTrue(hasBeenBeforeRequest(),
-        "Configurator#beforeRequest has not been called");
-    WebSocketCommonClient
-        .logTrace("Configurator#beforeRequest has been called as expected", "");
-  }
+	public void assertBeforeRequestHasBeenCalled() {
+		assertTrue(hasBeenBeforeRequest(), "Configurator#beforeRequest has not been called");
+		WebSocketCommonClient.logTrace("Configurator#beforeRequest has been called as expected", "");
+	}
 
-  protected static void assertTrue(boolean t, String... msg) {
-    if (!t)
-      throw new RuntimeException(StringUtil.objectsToString((Object[]) msg));
-  }
+	protected static void assertTrue(boolean t, String... msg) {
+		if (!t)
+			throw new RuntimeException(StringUtil.objectsToString((Object[]) msg));
+	}
 }

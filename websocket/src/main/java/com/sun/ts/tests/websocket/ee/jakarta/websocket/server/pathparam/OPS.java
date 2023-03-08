@@ -17,5 +17,5 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.pathparam;
 
 public enum OPS {
-  OPEN, MESSAGE, IOEXCEPTION, RUNTIMEEXCEPTION
+	OPEN, MESSAGE, IOEXCEPTION, RUNTIMEEXCEPTION
 }

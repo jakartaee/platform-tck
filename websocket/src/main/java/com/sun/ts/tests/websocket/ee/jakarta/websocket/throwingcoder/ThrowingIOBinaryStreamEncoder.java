@@ -25,12 +25,10 @@ import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryStreamEncode
 
 import jakarta.websocket.EncodeException;
 
-public class ThrowingIOBinaryStreamEncoder
-    extends StringBeanBinaryStreamEncoder {
+public class ThrowingIOBinaryStreamEncoder extends StringBeanBinaryStreamEncoder {
 
-  @Override
-  public void encode(StringBean bean, OutputStream stream)
-      throws EncodeException, IOException {
-    throw new IOException(ThrowingTextDecoder.IO_ERR_MSG);
-  }
+	@Override
+	public void encode(StringBean bean, OutputStream stream) throws EncodeException, IOException {
+		throw new IOException(ThrowingTextDecoder.IO_ERR_MSG);
+	}
 }

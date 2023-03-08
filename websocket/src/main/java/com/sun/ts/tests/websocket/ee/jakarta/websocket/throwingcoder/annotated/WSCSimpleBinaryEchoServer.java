@@ -18,6 +18,7 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.throwingcoder.annotated;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 import java.nio.ByteBuffer;
 
 import com.sun.ts.tests.websocket.common.util.IOUtil;
@@ -30,17 +31,19 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint("/simplebin")
 public class WSCSimpleBinaryEchoServer {
 
-  @OnMessage
-  public ByteBuffer echo(String echo) {
-    return ByteBuffer.wrap(echo.getBytes());
-  }
+	private static final Logger logger = System.getLogger(WSCSimpleBinaryEchoServer.class.getName());
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in" + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnMessage
+	public ByteBuffer echo(String echo) {
+		return ByteBuffer.wrap(echo.getBytes());
+	}
+
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		logger.log(Logger.Level.INFO,"@OnError in" + getClass().getName());
+		t.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

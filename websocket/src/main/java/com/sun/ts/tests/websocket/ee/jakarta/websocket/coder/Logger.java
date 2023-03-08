@@ -17,64 +17,64 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.coder;
 
 public class Logger {
-  private static final StringBuilder destroyLog = new StringBuilder();
+	private static final StringBuilder destroyLog = new StringBuilder();
 
-  private static final StringBuilder initLog = new StringBuilder();
+	private static final StringBuilder initLog = new StringBuilder();
 
-  private static final StringBuilder codeLog = new StringBuilder();
+	private static final StringBuilder codeLog = new StringBuilder();
 
-  private static final StringBuilder willCodeLog = new StringBuilder();
+	private static final StringBuilder willCodeLog = new StringBuilder();
 
-  public static void onDestroy(Class<?> clazz) {
-    destroyLog.append(clazz.getName()).append(" ");
-  }
+	public static void onDestroy(Class<?> clazz) {
+		destroyLog.append(clazz.getName()).append(" ");
+	}
 
-  public static void onInit(Class<?> clazz) {
-    initLog.append(clazz.getName()).append(" ");
-  }
+	public static void onInit(Class<?> clazz) {
+		initLog.append(clazz.getName()).append(" ");
+	}
 
-  public static void clearDestroyLog() {
-    int len = destroyLog.length();
-    destroyLog.delete(0, len);
-  }
+	public static void clearDestroyLog() {
+		int len = destroyLog.length();
+		destroyLog.delete(0, len);
+	}
 
-  public static void clearInitLog() {
-    int len = initLog.length();
-    initLog.delete(0, len);
-  }
+	public static void clearInitLog() {
+		int len = initLog.length();
+		initLog.delete(0, len);
+	}
 
-  public static String getInitLog() {
-    return initLog.toString();
-  }
+	public static String getInitLog() {
+		return initLog.toString();
+	}
 
-  public static String getDestroyLog() {
-    return initLog.toString();
-  }
+	public static String getDestroyLog() {
+		return initLog.toString();
+	}
 
-  public static void clearCodeLog() {
-    int len = codeLog.length();
-    codeLog.delete(0, len);
-  }
+	public static void clearCodeLog() {
+		int len = codeLog.length();
+		codeLog.delete(0, len);
+	}
 
-  public static void clearWillCodeLog() {
-    int len = willCodeLog.length();
-    willCodeLog.delete(0, len);
-  }
+	public static void clearWillCodeLog() {
+		int len = willCodeLog.length();
+		willCodeLog.delete(0, len);
+	}
 
-  public static void onCode(Class<?> clazz) {
-    codeLog.append(clazz.getName()).append(" ");
-  }
+	public static void onCode(Class<?> clazz) {
+		codeLog.append(clazz.getName()).append(" ");
+	}
 
-  public static void onWillCode(Class<?> clazz) {
-    willCodeLog.append(clazz.getName()).append(" ");
-  }
+	public static void onWillCode(Class<?> clazz) {
+		willCodeLog.append(clazz.getName()).append(" ");
+	}
 
-  public static String getCodeLog() {
-    return codeLog.toString();
-  }
+	public static String getCodeLog() {
+		return codeLog.toString();
+	}
 
-  public static String getWillCodeLog() {
-    return willCodeLog.toString();
-  }
+	public static String getWillCodeLog() {
+		return willCodeLog.toString();
+	}
 
 }

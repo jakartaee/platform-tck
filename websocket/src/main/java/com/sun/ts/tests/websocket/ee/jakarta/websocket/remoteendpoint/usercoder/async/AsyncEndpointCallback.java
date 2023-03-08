@@ -27,22 +27,22 @@ import jakarta.websocket.RemoteEndpoint;
 import jakarta.websocket.Session;
 
 public class AsyncEndpointCallback extends EndpointCallback {
-  protected Entity entity;
+	protected Entity entity;
 
-  public AsyncEndpointCallback(Entity entity) {
-    super();
-    this.entity = entity;
-  }
+	public AsyncEndpointCallback(Entity entity) {
+		super();
+		this.entity = entity;
+	}
 
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-    RemoteEndpoint.Async endpoint = session.getAsyncRemote();
-    try {
-      Future<Void> future = endpoint.sendObject(entity.getEntityAt(0));
-      future.get();
-    } catch (Exception i) {
-      throw new RuntimeException(i);
-    }
-  }
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+		RemoteEndpoint.Async endpoint = session.getAsyncRemote();
+		try {
+			Future<Void> future = endpoint.sendObject(entity.getEntityAt(0));
+			future.get();
+		} catch (Exception i) {
+			throw new RuntimeException(i);
+		}
+	}
 }

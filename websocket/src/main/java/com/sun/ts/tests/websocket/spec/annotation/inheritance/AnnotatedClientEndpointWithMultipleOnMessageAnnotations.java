@@ -22,11 +22,11 @@ import jakarta.websocket.OnMessage;
 
 @ClientEndpoint
 public class AnnotatedClientEndpointWithMultipleOnMessageAnnotations
-    extends AnnotatedClientEndpointSuperclassWithAnnotations {
+		extends AnnotatedClientEndpointSuperclassWithAnnotations {
 
-  @OnMessage
-  public void gotMessage(String msg) {
-    super.onMessage(msg);
-  }
+	@OnMessage
+	public void gotMessage(String msg) {
+		super.onMessage(msg);
+	}
 
 }

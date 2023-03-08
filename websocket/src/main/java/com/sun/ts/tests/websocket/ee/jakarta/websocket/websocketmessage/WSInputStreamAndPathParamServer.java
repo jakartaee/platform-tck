@@ -19,6 +19,7 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.websocketmessage;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.System.Logger;
 
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 
@@ -31,19 +32,20 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint("/inputstreampathparam/{param}")
 public class WSInputStreamAndPathParamServer {
 
-  @OnMessage
-  public String echo(@PathParam("param") String param, InputStream stream)
-      throws IOException {
-    String message = IOUtil.readFromStream(stream) + param;
-    return message;
-  }
+	private static final Logger logger = System.getLogger(WSInputStreamAndPathParamServer.class.getName());
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in " + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnMessage
+	public String echo(@PathParam("param") String param, InputStream stream) throws IOException {
+		String message = IOUtil.readFromStream(stream) + param;
+		return message;
+	}
+
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		logger.log(Logger.Level.INFO,"@OnError in " + getClass().getName());
+		t.printStackTrace(); // Write to error log, too
+		String message = "Exception: " + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

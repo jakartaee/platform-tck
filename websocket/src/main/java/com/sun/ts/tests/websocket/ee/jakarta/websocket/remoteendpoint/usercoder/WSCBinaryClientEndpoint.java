@@ -28,33 +28,33 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
-@ClientEndpoint(encoders = { BinaryCoderBool.class, BinaryCoderByte.class,
-    BinaryCoderChar.class, BinaryCoderDouble.class, BinaryCoderInt.class,
-    BinaryCoderLong.class, BinaryCoderFloat.class, BinaryCoderShort.class })
+@ClientEndpoint(encoders = { BinaryCoderBool.class, BinaryCoderByte.class, BinaryCoderChar.class,
+		BinaryCoderDouble.class, BinaryCoderInt.class, BinaryCoderLong.class, BinaryCoderFloat.class,
+		BinaryCoderShort.class })
 public class WSCBinaryClientEndpoint extends AnnotatedStringClientEndpoint {
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+	@Override
+	@OnOpen
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+	}
 
-  @Override
-  @OnMessage
-  public void onMessage(String msg) {
-    super.onMessage(msg);
-  }
+	@Override
+	@OnMessage
+	public void onMessage(String msg) {
+		super.onMessage(msg);
+	}
 
-  @Override
-  @OnClose
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@Override
+	@OnClose
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+	@Override
+	@OnError
+	public void onError(Session session, Throwable t) {
+		super.onError(session, t);
+	}
 
 }

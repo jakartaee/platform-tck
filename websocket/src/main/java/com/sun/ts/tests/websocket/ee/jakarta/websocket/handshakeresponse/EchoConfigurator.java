@@ -27,19 +27,18 @@ import jakarta.websocket.server.ServerEndpointConfig;
 import jakarta.websocket.server.ServerEndpointConfig.Configurator;
 
 public class EchoConfigurator extends Configurator {
-  static final String KEY = "ReadOnlyKey";
+	static final String KEY = "ReadOnlyKey";
 
-  static final String[] VALUES = { "ReadOnlyValue1", "ReadOnlyValue2" };
+	static final String[] VALUES = { "ReadOnlyValue1", "ReadOnlyValue2" };
 
-  @Override
-  public void modifyHandshake(ServerEndpointConfig sec,
-      HandshakeRequest request, HandshakeResponse response) {
-    Map<String, List<String>> map = request.getHeaders();
-    try {
-      map.put(KEY, Arrays.asList(VALUES));
-    } catch (Exception e) {
-      // possible, but not mandatory
-    }
-    response.getHeaders().putAll(map);
-  }
+	@Override
+	public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
+		Map<String, List<String>> map = request.getHeaders();
+		try {
+			map.put(KEY, Arrays.asList(VALUES));
+		} catch (Exception e) {
+			// possible, but not mandatory
+		}
+		response.getHeaders().putAll(map);
+	}
 }

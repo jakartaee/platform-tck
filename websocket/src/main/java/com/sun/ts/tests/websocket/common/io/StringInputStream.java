@@ -20,7 +20,7 @@ import java.io.ByteArrayInputStream;
 
 public class StringInputStream extends ByteArrayInputStream {
 
-  public StringInputStream(String string) {
-    super(string.getBytes());
-  }
+	public StringInputStream(String string) {
+		super(string.getBytes());
+	}
 }

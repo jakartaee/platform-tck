@@ -25,21 +25,21 @@ import jakarta.websocket.EndpointConfig;
 
 public class StringBeanBinaryDecoder implements Binary<StringBean> {
 
-  @Override
-  public void init(EndpointConfig config) {
-  }
+	@Override
+	public void init(EndpointConfig config) {
+	}
 
-  @Override
-  public StringBean decode(ByteBuffer arg0) throws DecodeException {
-    return new StringBean(new String(arg0.array()));
-  }
+	@Override
+	public StringBean decode(ByteBuffer arg0) throws DecodeException {
+		return new StringBean(new String(arg0.array()));
+	}
 
-  @Override
-  public boolean willDecode(ByteBuffer arg0) {
-    return true;
-  }
+	@Override
+	public boolean willDecode(ByteBuffer arg0) {
+		return true;
+	}
 
-  @Override
-  public void destroy() {
-  }
+	@Override
+	public void destroy() {
+	}
 }

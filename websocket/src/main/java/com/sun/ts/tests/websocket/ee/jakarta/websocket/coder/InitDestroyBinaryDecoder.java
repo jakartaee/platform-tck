@@ -26,25 +26,25 @@ import jakarta.websocket.DecodeException;
 import jakarta.websocket.EndpointConfig;
 
 public class InitDestroyBinaryDecoder extends StringBeanBinaryDecoder {
-  @Override
-  public void init(EndpointConfig config) {
-    Logger.onInit(getClass());
-  }
+	@Override
+	public void init(EndpointConfig config) {
+		Logger.onInit(getClass());
+	}
 
-  @Override
-  public void destroy() {
-    Logger.onDestroy(getClass());
-  }
+	@Override
+	public void destroy() {
+		Logger.onDestroy(getClass());
+	}
 
-  @Override
-  public StringBean decode(ByteBuffer arg0) throws DecodeException {
-    Logger.onCode(getClass());
-    return super.decode(arg0);
-  };
+	@Override
+	public StringBean decode(ByteBuffer arg0) throws DecodeException {
+		Logger.onCode(getClass());
+		return super.decode(arg0);
+	};
 
-  @Override
-  public boolean willDecode(ByteBuffer arg0) {
-    Logger.onWillCode(getClass());
-    return super.willDecode(arg0);
-  }
+	@Override
+	public boolean willDecode(ByteBuffer arg0) {
+		Logger.onWillCode(getClass());
+		return super.willDecode(arg0);
+	}
 }

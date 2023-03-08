@@ -22,11 +22,10 @@ import java.io.InputStream;
 
 import jakarta.websocket.DecodeException;
 
-public class BinaryStreamCoderChar
-    extends CoderSuperClassBinaryStream<Character> {
+public class BinaryStreamCoderChar extends CoderSuperClassBinaryStream<Character> {
 
-  @Override
-  public Character decode(InputStream is) throws DecodeException, IOException {
-    return CHAR;
-  }
+	@Override
+	public Character decode(InputStream is) throws DecodeException, IOException {
+		return CHAR;
+	}
 }

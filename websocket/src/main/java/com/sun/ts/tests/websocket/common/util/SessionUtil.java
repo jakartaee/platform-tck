@@ -21,21 +21,21 @@ import jakarta.websocket.Session;
 
 public class SessionUtil {
 
-  private SessionUtil() {
-  }
+	private SessionUtil() {
+	}
 
-  public static void waitUntilClosed(Session session, long timeout, TimeUnit unit) {
-    long timeoutMillis = unit.toMillis(timeout);
-    while (session.isOpen() && timeoutMillis > 0) {
-      try {
-        Thread.sleep(100);
-      } catch (InterruptedException e) {
-        // Clear the interrupt flag
-        Thread.interrupted();
-        // Exit the loop
-        break;
-      }
-      timeoutMillis -= 100;
-    }
-  }
+	public static void waitUntilClosed(Session session, long timeout, TimeUnit unit) {
+		long timeoutMillis = unit.toMillis(timeout);
+		while (session.isOpen() && timeoutMillis > 0) {
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// Clear the interrupt flag
+				Thread.interrupted();
+				// Exit the loop
+				break;
+			}
+			timeoutMillis -= 100;
+		}
+	}
 }

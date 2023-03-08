@@ -18,6 +18,7 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.coder;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
@@ -27,21 +28,23 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 
-@ServerEndpoint(value = "/binarywilldecode", decoders = {
-    WillDecodeFirstBinaryDecoder.class, WillDecodeSecondBinaryDecoder.class })
+@ServerEndpoint(value = "/binarywilldecode", decoders = { WillDecodeFirstBinaryDecoder.class,
+		WillDecodeSecondBinaryDecoder.class })
 public class WSWillDecodeBinaryDecoderServer {
 
-  @OnMessage
-  public String echo(StringBean bean) {
-    return bean.get();
-  }
+	private static final Logger logger = System.getLogger(WSWillDecodeBinaryDecoderServer.class.getName());
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in" + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnMessage
+	public String echo(StringBean bean) {
+		return bean.get();
+	}
+
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		logger.log(Logger.Level.INFO,"@OnError in" + getClass().getName());
+		t.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

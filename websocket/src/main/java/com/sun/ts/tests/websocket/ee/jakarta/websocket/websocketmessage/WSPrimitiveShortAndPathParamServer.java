@@ -18,6 +18,7 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.websocketmessage;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 
@@ -29,16 +30,19 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint("/primitiveshortpathparam/{param}")
 public class WSPrimitiveShortAndPathParamServer {
-  @OnMessage
-  public String echo(short s, @PathParam("param") short param) {
-    return String.valueOf(s) + String.valueOf(param);
-  }
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in " + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	private static final Logger logger = System.getLogger(WSPrimitiveShortAndPathParamServer.class.getName());
+
+	@OnMessage
+	public String echo(short s, @PathParam("param") short param) {
+		return String.valueOf(s) + String.valueOf(param);
+	}
+
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		logger.log(Logger.Level.INFO,"@OnError in " + getClass().getName());
+		t.printStackTrace(); // Write to error log, too
+		String message = "Exception: " + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 }

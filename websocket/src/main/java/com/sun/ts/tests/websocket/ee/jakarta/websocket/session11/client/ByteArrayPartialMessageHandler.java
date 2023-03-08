@@ -19,24 +19,23 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.client;
 
 import jakarta.websocket.MessageHandler;
 
-public class ByteArrayPartialMessageHandler
-    implements MessageHandler.Partial<byte[]> {
+public class ByteArrayPartialMessageHandler implements MessageHandler.Partial<byte[]> {
 
-  MixedProgramaticEndpoint endpoint;
+	MixedProgramaticEndpoint endpoint;
 
-  public static final String HANDLER_SAYS = "ByteArrayPartialMessageHandler says: ";
+	public static final String HANDLER_SAYS = "ByteArrayPartialMessageHandler says: ";
 
-  StringBuilder sb = new StringBuilder();
+	StringBuilder sb = new StringBuilder();
 
-  public ByteArrayPartialMessageHandler(MixedProgramaticEndpoint endpoint) {
-    super();
-    this.endpoint = endpoint;
-  }
+	public ByteArrayPartialMessageHandler(MixedProgramaticEndpoint endpoint) {
+		super();
+		this.endpoint = endpoint;
+	}
 
-  @Override
-  public void onMessage(byte[] message, boolean finite) {
-    sb.append(new String(message));
-    if (finite)
-      endpoint.onMessage(HANDLER_SAYS + sb.toString());
-  }
+	@Override
+	public void onMessage(byte[] message, boolean finite) {
+		sb.append(new String(message));
+		if (finite)
+			endpoint.onMessage(HANDLER_SAYS + sb.toString());
+	}
 }

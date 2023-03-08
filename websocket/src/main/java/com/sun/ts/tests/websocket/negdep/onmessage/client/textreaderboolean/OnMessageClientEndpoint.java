@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2015, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -33,21 +33,21 @@ import jakarta.websocket.Session;
 @ClientEndpoint
 public class OnMessageClientEndpoint extends AnnotatedStringClientEndpoint {
 
-  @SuppressWarnings("unused")
-  @OnMessage
-  public void onMessage(Reader reader, boolean finito) throws IOException {
-    clientEndpoint.onMessage(IOUtil.readFromReader(reader));
-  }
+	@SuppressWarnings("unused")
+	@OnMessage
+	public void onMessage(Reader reader, boolean finito) throws IOException {
+		clientEndpoint.onMessage(IOUtil.readFromReader(reader));
+	}
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) {
-    clientEndpoint.onError(session, t);
-  }
+	@Override
+	@OnError
+	public void onError(Session session, Throwable t) {
+		clientEndpoint.onError(session, t);
+	}
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    clientEndpoint.onOpen(session, config, false);
-  }
+	@Override
+	@OnOpen
+	public void onOpen(Session session, EndpointConfig config) {
+		clientEndpoint.onOpen(session, config, false);
+	}
 }

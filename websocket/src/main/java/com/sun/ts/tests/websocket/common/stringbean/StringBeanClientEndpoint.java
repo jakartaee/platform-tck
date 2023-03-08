@@ -19,8 +19,8 @@ package com.sun.ts.tests.websocket.common.stringbean;
 import com.sun.ts.tests.websocket.common.client.ClientEndpoint;
 
 public class StringBeanClientEndpoint extends ClientEndpoint<StringBean> {
-  @Override
-  protected void appendMessage(StringBean message) {
-    getMessageBuilder().append(message.get());
-  }
+	@Override
+	protected void appendMessage(StringBean message) {
+		getMessageBuilder().append(message.get());
+	}
 }

@@ -26,19 +26,17 @@ import jakarta.websocket.server.ServerEndpointConfig.Configurator;
 
 public class GetHttpSessionConfigurator extends Configurator {
 
-  @Override
-  public void modifyHandshake(ServerEndpointConfig sec,
-      HandshakeRequest request, HandshakeResponse response) {
-    boolean hasHttpSession = request.getHttpSession() != null;
-    response.getHeaders().put(RESPONSE_KEY,
-        Arrays.asList(String.valueOf(hasHttpSession)));
-    super.modifyHandshake(sec, request, response);
-  }
+	@Override
+	public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
+		boolean hasHttpSession = request.getHttpSession() != null;
+		response.getHeaders().put(RESPONSE_KEY, Arrays.asList(String.valueOf(hasHttpSession)));
+		super.modifyHandshake(sec, request, response);
+	}
 
-  /*
-   * The value of this key is set to be checked on a client and the value should
-   * reflect boolean value of having httpSession or not
-   */
-  static final String RESPONSE_KEY = "hasHttpSession";
+	/*
+	 * The value of this key is set to be checked on a client and the value should
+	 * reflect boolean value of having httpSession or not
+	 */
+	static final String RESPONSE_KEY = "hasHttpSession";
 
 }

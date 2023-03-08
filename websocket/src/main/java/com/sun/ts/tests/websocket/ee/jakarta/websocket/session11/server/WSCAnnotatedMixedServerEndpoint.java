@@ -34,84 +34,79 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint("/exception")
 public class WSCAnnotatedMixedServerEndpoint {
 
-  public static final String EXCEPTION = "Exception: ";
+	public static final String EXCEPTION = "Exception: ";
 
-  static class StringThrowingPartialMessageHandler
-      extends StringPartialMessageHandler {
-    public StringThrowingPartialMessageHandler(Session session) {
-      super(session);
-    }
+	static class StringThrowingPartialMessageHandler extends StringPartialMessageHandler {
+		public StringThrowingPartialMessageHandler(Session session) {
+			super(session);
+		}
 
-    @Override
-    public void onMessage(String partialMessage, boolean last) {
-      if (TypeEnum.STRING_PARTIAL.name().equals(partialMessage)) {
-        if (last)
-          session.addMessageHandler(String.class, this);
-      } else
-        super.onMessage(partialMessage, last);
-    }
-  }
+		@Override
+		public void onMessage(String partialMessage, boolean last) {
+			if (TypeEnum.STRING_PARTIAL.name().equals(partialMessage)) {
+				if (last)
+					session.addMessageHandler(String.class, this);
+			} else
+				super.onMessage(partialMessage, last);
+		}
+	}
 
-  static class InputStreamThrowingMessageHandler
-      extends InputStreamMessageHandler {
-    public InputStreamThrowingMessageHandler(Session session) {
-      super(session);
-    }
+	static class InputStreamThrowingMessageHandler extends InputStreamMessageHandler {
+		public InputStreamThrowingMessageHandler(Session session) {
+			super(session);
+		}
 
-    @Override
-    public void onMessage(InputStream message) {
-      String msg = null;
-      try {
-        msg = IOUtil.readFromStream(message);
-      } catch (IOException e) {
-        // do nothing
-      }
-      if (TypeEnum.INPUTSTREAM.name().equals(msg))
-        session.addMessageHandler(InputStream.class, this);
-      else
-        super.onMessage(new StringInputStream(msg));
-    }
-  }
+		@Override
+		public void onMessage(InputStream message) {
+			String msg = null;
+			try {
+				msg = IOUtil.readFromStream(message);
+			} catch (IOException e) {
+				// do nothing
+			}
+			if (TypeEnum.INPUTSTREAM.name().equals(msg))
+				session.addMessageHandler(InputStream.class, this);
+			else
+				super.onMessage(new StringInputStream(msg));
+		}
+	}
 
-  static class PongMessageThrowingMessageHandler extends PongMessageHandler {
-    public PongMessageThrowingMessageHandler(Session session) {
-      super(session);
-    }
+	static class PongMessageThrowingMessageHandler extends PongMessageHandler {
+		public PongMessageThrowingMessageHandler(Session session) {
+			super(session);
+		}
 
-    @Override
-    public void onMessage(PongMessage message) {
-      String msg = null;
-      msg = IOUtil.byteBufferToString(message.getApplicationData());
-      if (TypeEnum.PONG.name().equals(msg))
-        session.addMessageHandler(PongMessage.class, this);
-      else
-        super.onMessage(new StringPongMessage(msg));
-    }
-  }
+		@Override
+		public void onMessage(PongMessage message) {
+			String msg = null;
+			msg = IOUtil.byteBufferToString(message.getApplicationData());
+			if (TypeEnum.PONG.name().equals(msg))
+				session.addMessageHandler(PongMessage.class, this);
+			else
+				super.onMessage(new StringPongMessage(msg));
+		}
+	}
 
-  @OnOpen
-  public void onOpen(Session session) {
-    session.addMessageHandler(String.class,
-        new StringThrowingPartialMessageHandler(session));
-    session.addMessageHandler(InputStream.class,
-        new InputStreamThrowingMessageHandler(session));
-    session.addMessageHandler(PongMessage.class,
-        new PongMessageThrowingMessageHandler(session));
-  }
+	@OnOpen
+	public void onOpen(Session session) {
+		session.addMessageHandler(String.class, new StringThrowingPartialMessageHandler(session));
+		session.addMessageHandler(InputStream.class, new InputStreamThrowingMessageHandler(session));
+		session.addMessageHandler(PongMessage.class, new PongMessageThrowingMessageHandler(session));
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    // this @OnError should catch RuntimeException thrown by second
-    // session.addMessageHandler call
-    sendException(session, t);
-  }
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		// this @OnError should catch RuntimeException thrown by second
+		// session.addMessageHandler call
+		sendException(session, t);
+	}
 
-  static void sendException(Session session, Throwable t) {
-    String ex = EXCEPTION + t.getMessage();
-    try {
-      session.getBasicRemote().sendText(ex);
-    } catch (IOException ioe) {
-      throw new RuntimeException(ioe);
-    }
-  }
+	static void sendException(Session session, Throwable t) {
+		String ex = EXCEPTION + t.getMessage();
+		try {
+			session.getBasicRemote().sendText(ex);
+		} catch (IOException ioe) {
+			throw new RuntimeException(ioe);
+		}
+	}
 }

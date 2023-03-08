@@ -31,49 +31,47 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/param/{param1}")
 public class WS1StringPathParamServer {
-  private final static String ERR = "TCK INTENDED ERROR";
+	private final static String ERR = "TCK INTENDED ERROR";
 
-  private String p;
+	private String p;
 
-  @OnOpen
-  public void onOpen(@PathParam("param1") String p1) {
-    p = p1;
-  }
+	@OnOpen
+	public void onOpen(@PathParam("param1") String p1) {
+		p = p1;
+	}
 
-  @OnMessage
-  public String param(@PathParam("param1") String p1, String content)
-      throws IOException {
-    OPS op = OPS.valueOf(content);
-    switch (op) {
-    case OPEN:
-      content = p;
-      break;
-    case MESSAGE:
-      content = p1;
-      break;
-    case IOEXCEPTION:
-      throw new IOException(ERR);
-    case RUNTIMEEXCEPTION:
-      throw new RuntimeException(ERR);
-    }
-    return content;
-  }
+	@OnMessage
+	public String param(@PathParam("param1") String p1, String content) throws IOException {
+		OPS op = OPS.valueOf(content);
+		switch (op) {
+		case OPEN:
+			content = p;
+			break;
+		case MESSAGE:
+			content = p1;
+			break;
+		case IOEXCEPTION:
+			throw new IOException(ERR);
+		case RUNTIMEEXCEPTION:
+			throw new RuntimeException(ERR);
+		}
+		return content;
+	}
 
-  @OnError
-  public void onError(@PathParam("param1") String p1, Session session,
-      Throwable t) throws IOException {
-    String msg = t.getMessage();
-    if (ERR.equals(msg)) {
-      session.getBasicRemote().sendText(p1);
-    } else {
-      t.printStackTrace(); // Write to error log, too
-      String message = IOUtil.printStackTrace(t);
-      session.getBasicRemote().sendText(message);
-    }
-  }
+	@OnError
+	public void onError(@PathParam("param1") String p1, Session session, Throwable t) throws IOException {
+		String msg = t.getMessage();
+		if (ERR.equals(msg)) {
+			session.getBasicRemote().sendText(p1);
+		} else {
+			t.printStackTrace(); // Write to error log, too
+			String message = IOUtil.printStackTrace(t);
+			session.getBasicRemote().sendText(message);
+		}
+	}
 
-  @OnClose
-  public void onClose(@PathParam("param1") String p1) {
-    WSOnClosePathParamServer.set(0, p1);
-  }
+	@OnClose
+	public void onClose(@PathParam("param1") String p1) {
+		WSOnClosePathParamServer.set(0, p1);
+	}
 }

@@ -21,11 +21,10 @@ import java.nio.ByteBuffer;
 /**
  * @since 1.11
  */
-public class AnnotatedByteBufferClientEndpoint
-    extends AnnotatedClientEndpoint<ByteBuffer> {
+public class AnnotatedByteBufferClientEndpoint extends AnnotatedClientEndpoint<ByteBuffer> {
 
-  public AnnotatedByteBufferClientEndpoint() {
-    super(new ByteBufferClientEndpoint());
-  }
+	public AnnotatedByteBufferClientEndpoint() {
+		super(new ByteBufferClientEndpoint());
+	}
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2015, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -30,28 +30,28 @@ import jakarta.websocket.Session;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
 
-@ServerEndpoint(value = "/invalid/{arg}", decoders = {
-    StringBeanTextDecoder.class })
+@ServerEndpoint(value = "/invalid/{arg}", decoders = { StringBeanTextDecoder.class })
 public class OnOpenServerEndpoint {
-  private String open;
 
-  @OnMessage
-  public String echo(String echo) {
-    return open + echo;
-  }
+	private String open;
 
-  // This header makes the endpoint invalid, since only Strings can be
-  // @PathParams
-  @SuppressWarnings("unused")
-  @OnOpen
-  public void onOpen(Session session, @PathParam("arg") StringBean sb) {
-    open = sb.get();
-  }
+	@OnMessage
+	public String echo(String echo) {
+		return open + echo;
+	}
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+	// This header makes the endpoint invalid, since only Strings can be
+	// @PathParams
+	@SuppressWarnings("unused")
+	@OnOpen
+	public void onOpen(Session session, @PathParam("arg") StringBean sb) {
+		open = sb.get();
+	}
+
+	@OnError
+	public void onError(Session session, Throwable thr) throws IOException {
+		thr.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(thr);
+		session.getBasicRemote().sendText(message);
+	}
 }

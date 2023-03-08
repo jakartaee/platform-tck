@@ -31,43 +31,41 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
 @ClientEndpoint
-public class WSStringPartialClientEndpoint
-    extends AnnotatedStringClientEndpoint {
+public class WSStringPartialClientEndpoint extends AnnotatedStringClientEndpoint {
 
-  protected Session session;
+	protected Session session;
 
-  /**
-   * Buffer the messages until they are all received
-   */
-  private StringBuilder sb = new StringBuilder();
+	/**
+	 * Buffer the messages until they are all received
+	 */
+	private StringBuilder sb = new StringBuilder();
 
-  @OnMessage
-  public void partial(String msg, boolean finito) throws IOException {
-    sb.append(msg).append("(").append(finito).append(")");
-    if (finito) {
-      session.getBasicRemote()
-          .sendText(sb.toString().replaceAll("[(][a-z]*[)]", ""));
-      super.onMessage(sb.toString());
-      sb = new StringBuilder();
-    }
-  }
+	@OnMessage
+	public void partial(String msg, boolean finito) throws IOException {
+		sb.append(msg).append("(").append(finito).append(")");
+		if (finito) {
+			session.getBasicRemote().sendText(sb.toString().replaceAll("[(][a-z]*[)]", ""));
+			super.onMessage(sb.toString());
+			sb = new StringBuilder();
+		}
+	}
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+	@OnError
+	@Override
+	public void onError(Session session, Throwable t) {
+		super.onError(session, t);
+	}
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@OnClose
+	@Override
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @OnOpen
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    this.session = session;
-    super.onOpen(session, config);
-  }
+	@OnOpen
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		this.session = session;
+		super.onOpen(session, config);
+	}
 }

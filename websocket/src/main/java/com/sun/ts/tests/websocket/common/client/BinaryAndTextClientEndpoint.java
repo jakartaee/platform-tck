@@ -30,15 +30,15 @@ import jakarta.websocket.Session;
  * behaves without making any difference on type of message received.
  */
 public class BinaryAndTextClientEndpoint extends ClientEndpoint<String> {
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-    session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
-      @Override
-      public void onMessage(ByteBuffer message) {
-        String msg = IOUtil.byteBufferToString(message);
-        BinaryAndTextClientEndpoint.this.onMessage(msg);
-      }
-    });
-  }
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+		session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
+			@Override
+			public void onMessage(ByteBuffer message) {
+				String msg = IOUtil.byteBufferToString(message);
+				BinaryAndTextClientEndpoint.this.onMessage(msg);
+			}
+		});
+	}
 }

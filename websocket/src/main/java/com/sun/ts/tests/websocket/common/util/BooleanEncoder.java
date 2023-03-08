@@ -26,17 +26,17 @@ import jakarta.websocket.EndpointConfig;
 
 public class BooleanEncoder implements Encoder.Text<Boolean> {
 
-  @Override
-  public void init(EndpointConfig config) {
-  }
+	@Override
+	public void init(EndpointConfig config) {
+	}
 
-  @Override
-  public String encode(Boolean b) throws EncodeException {
+	@Override
+	public String encode(Boolean b) throws EncodeException {
 
-    return b.toString();
-  }
+		return b.toString();
+	}
 
-  @Override
-  public void destroy() {
-  }
+	@Override
+	public void destroy() {
+	}
 }

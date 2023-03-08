@@ -31,35 +31,34 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
 @ClientEndpoint(decoders = InitDestroyBinaryDecoder.class)
-public class WSCEndpointWithBinaryDecoder
-    extends AnnotatedClientEndpoint<StringBean> {
+public class WSCEndpointWithBinaryDecoder extends AnnotatedClientEndpoint<StringBean> {
 
-  public WSCEndpointWithBinaryDecoder() {
-    super(new StringBeanClientEndpoint());
-  }
+	public WSCEndpointWithBinaryDecoder() {
+		super(new StringBeanClientEndpoint());
+	}
 
-  @Override
-  @OnMessage
-  public void onMessage(StringBean msg) {
-    super.onMessage(msg);
-  }
+	@Override
+	@OnMessage
+	public void onMessage(StringBean msg) {
+		super.onMessage(msg);
+	}
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+	@Override
+	@OnOpen
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+	}
 
-  @Override
-  @OnClose
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@Override
+	@OnClose
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+	@Override
+	@OnError
+	public void onError(Session session, Throwable t) {
+		super.onError(session, t);
+	}
 
 }

@@ -20,8 +20,8 @@ import java.io.InputStreamReader;
 
 public class StringReader extends InputStreamReader {
 
-  public StringReader(String string) {
-    super(new StringInputStream(string));
-  }
+	public StringReader(String string) {
+		super(new StringInputStream(string));
+	}
 
 }

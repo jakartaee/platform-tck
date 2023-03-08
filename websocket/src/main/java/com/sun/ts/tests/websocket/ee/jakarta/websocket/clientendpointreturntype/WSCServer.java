@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -18,6 +18,7 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpointreturntype;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 import java.nio.ByteBuffer;
 
 import com.sun.ts.tests.websocket.common.util.IOUtil;
@@ -32,64 +33,66 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint("/srv")
 public class WSCServer {
 
-  private enum State {
-    INIT, SECOND, FINAL
-  };
+	private static final Logger logger = System.getLogger(WSCServer.class.getName());
 
-  // endpoint instance is created once per connection
-  private State state = State.INIT;
+	private enum State {
+		INIT, SECOND, FINAL
+	};
 
-  @OnOpen
-  public void onOpen(final Session session) {
-    session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
-      @Override
-      public void onMessage(ByteBuffer message) {
-        echo(IOUtil.byteBufferToString(message), session);
-      }
-    });
-  }
+	// endpoint instance is created once per connection
+	private State state = State.INIT;
 
-  @OnMessage
-  public void echo(String echo, Session session) {
-    switch (state) {
-    case INIT:
-      state = State.SECOND;
-      op(echo, session);
-      break;
-    case SECOND:
-      state = State.FINAL;
-      op(echo, session);
-      break;
-    case FINAL:
-      // do not send anything, otherwise it would not ever stop
-      try {
-        session.close();
-      } catch (IOException e) {
-        onError(session, e);
-      }
-      break;
-    }
-  }
+	@OnOpen
+	public void onOpen(final Session session) {
+		session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
+			@Override
+			public void onMessage(ByteBuffer message) {
+				echo(IOUtil.byteBufferToString(message), session);
+			}
+		});
+	}
 
-  private void op(String echo, Session session) {
-    try {
-      session.getBasicRemote().sendText(echo);
-    } catch (IOException e) {
-      onError(session, e);
-    }
-  }
+	@OnMessage
+	public void echo(String echo, Session session) {
+		switch (state) {
+		case INIT:
+			state = State.SECOND;
+			op(echo, session);
+			break;
+		case SECOND:
+			state = State.FINAL;
+			op(echo, session);
+			break;
+		case FINAL:
+			// do not send anything, otherwise it would not ever stop
+			try {
+				session.close();
+			} catch (IOException e) {
+				onError(session, e);
+			}
+			break;
+		}
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) {
-    System.out.println("@OnError in" + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(t);
-    try {
-      if (session.isOpen())
-        session.getBasicRemote().sendText(message);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
+	private void op(String echo, Session session) {
+		try {
+			session.getBasicRemote().sendText(echo);
+		} catch (IOException e) {
+			onError(session, e);
+		}
+	}
+
+	@OnError
+	public void onError(Session session, Throwable t) {
+		logger.log(Logger.Level.INFO,"@OnError in" + getClass().getName());
+		t.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(t);
+		try {
+			if (session.isOpen())
+				session.getBasicRemote().sendText(message);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

@@ -18,6 +18,7 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.server;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 import java.nio.ByteBuffer;
 
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
@@ -32,17 +33,18 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/annotatedbinary", decoders = StringBeanBinaryDecoder.class)
 public class WSCAnnotatedBinaryServerEndpoint {
 
-  @OnOpen
-  public void onOpen(Session session) {
-    session.addMessageHandler(StringBean.class,
-        new StringBeanMessageHandler(session));
-  }
+	private static final Logger logger = System.getLogger(WSCAnnotatedBinaryServerEndpoint.class.getName());
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in " + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendBinary(ByteBuffer.wrap(message.getBytes()));
-  }
+	@OnOpen
+	public void onOpen(Session session) {
+		session.addMessageHandler(StringBean.class, new StringBeanMessageHandler(session));
+	}
+
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		logger.log(Logger.Level.INFO,"@OnError in " + getClass().getName());
+		t.printStackTrace(); // Write to error log, too
+		String message = "Exception: " + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendBinary(ByteBuffer.wrap(message.getBytes()));
+	}
 }

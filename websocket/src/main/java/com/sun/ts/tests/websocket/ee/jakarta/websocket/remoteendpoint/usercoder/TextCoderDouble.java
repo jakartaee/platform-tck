@@ -21,8 +21,8 @@ import jakarta.websocket.DecodeException;
 
 public class TextCoderDouble extends CoderSuperClassText<Double> {
 
-  @Override
-  public Double decode(String s) throws DecodeException {
-    return NUMERIC.doubleValue();
-  }
+	@Override
+	public Double decode(String s) throws DecodeException {
+		return NUMERIC.doubleValue();
+	}
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -17,7 +17,6 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.async;
 
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.tests.websocket.common.client.EndpointCallback;
 
 import jakarta.websocket.EndpointConfig;
@@ -25,16 +24,16 @@ import jakarta.websocket.RemoteEndpoint.Async;
 import jakarta.websocket.Session;
 
 public abstract class AsyncEndpointCallback extends EndpointCallback {
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-    Async asyncRemote = session.getAsyncRemote();
-    try {
-      doAsync(asyncRemote);
-    } catch (Exception f) {
-      throw new RuntimeException(f);
-    }
-  }
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+		Async asyncRemote = session.getAsyncRemote();
+		try {
+			doAsync(asyncRemote);
+		} catch (Exception f) {
+			throw new RuntimeException(f);
+		}
+	}
 
-  abstract void doAsync(Async async) throws Exception;
+	abstract void doAsync(Async async) throws Exception;
 }

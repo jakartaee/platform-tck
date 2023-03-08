@@ -24,25 +24,23 @@ import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.StringLi
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
 
-public class StringListWholeMessageHandler
-    implements MessageHandler.Whole<StringList> {
+public class StringListWholeMessageHandler implements MessageHandler.Whole<StringList> {
 
-  private Session session;
+	private Session session;
 
-  public static final String HANDLER_SAYS = "StringListWholeMessageHandler says: ";
+	public static final String HANDLER_SAYS = "StringListWholeMessageHandler says: ";
 
-  public StringListWholeMessageHandler(Session session) {
-    super();
-    this.session = session;
-  }
+	public StringListWholeMessageHandler(Session session) {
+		super();
+		this.session = session;
+	}
 
-  @Override
-  public void onMessage(StringList message) {
-    try {
-      session.getBasicRemote()
-          .sendText(HANDLER_SAYS + message.get(0).toString());
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
+	@Override
+	public void onMessage(StringList message) {
+		try {
+			session.getBasicRemote().sendText(HANDLER_SAYS + message.get(0).toString());
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

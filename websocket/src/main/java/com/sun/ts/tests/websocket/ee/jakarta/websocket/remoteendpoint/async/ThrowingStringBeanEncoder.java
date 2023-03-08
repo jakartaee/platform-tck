@@ -23,17 +23,17 @@ import jakarta.websocket.EndpointConfig;
 
 public class ThrowingStringBeanEncoder implements Text<ThrowingStringBean> {
 
-  @Override
-  public void init(EndpointConfig config) {
-  }
+	@Override
+	public void init(EndpointConfig config) {
+	}
 
-  @Override
-  public void destroy() {
-  }
+	@Override
+	public void destroy() {
+	}
 
-  @Override
-  public String encode(ThrowingStringBean object) throws EncodeException {
-    return object.get();
-  }
+	@Override
+	public String encode(ThrowingStringBean object) throws EncodeException {
+		return object.get();
+	}
 
 }

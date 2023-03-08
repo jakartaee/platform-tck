@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2015, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -31,34 +31,32 @@ import jakarta.websocket.Session;
 @ClientEndpoint
 public class OnMessageClientEndpoint extends AnnotatedStringClientEndpoint {
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) {
-    clientEndpoint.onError(session, t);
-  }
+	@Override
+	@OnError
+	public void onError(Session session, Throwable t) {
+		clientEndpoint.onError(session, t);
+	}
 
-  @OnMessage
-  public void onMessage(PongMessage msg) {
-    clientEndpoint
-        .onMessage(IOUtil.byteBufferToString(msg.getApplicationData()));
-  }
+	@OnMessage
+	public void onMessage(PongMessage msg) {
+		clientEndpoint.onMessage(IOUtil.byteBufferToString(msg.getApplicationData()));
+	}
 
-  @SuppressWarnings("unused")
-  @OnMessage
-  public void onMessage(PongMessage msg, Session session) {
-    clientEndpoint
-        .onMessage(IOUtil.byteBufferToString(msg.getApplicationData()));
-  }
+	@SuppressWarnings("unused")
+	@OnMessage
+	public void onMessage(PongMessage msg, Session session) {
+		clientEndpoint.onMessage(IOUtil.byteBufferToString(msg.getApplicationData()));
+	}
 
-  @Override
-  @OnMessage
-  public void onMessage(String msg) {
-    clientEndpoint.onMessage(msg);
-  }
+	@Override
+	@OnMessage
+	public void onMessage(String msg) {
+		clientEndpoint.onMessage(msg);
+	}
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    clientEndpoint.onOpen(session, config, false);
-  }
+	@Override
+	@OnOpen
+	public void onOpen(Session session, EndpointConfig config) {
+		clientEndpoint.onOpen(session, config, false);
+	}
 }

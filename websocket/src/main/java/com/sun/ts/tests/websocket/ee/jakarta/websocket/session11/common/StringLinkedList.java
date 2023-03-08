@@ -19,5 +19,5 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common;
 import java.util.LinkedList;
 
 public class StringLinkedList extends LinkedList<String> implements StringList {
-  private static final long serialVersionUID = -38485068447284390L;
+	private static final long serialVersionUID = -38485068447284390L;
 }

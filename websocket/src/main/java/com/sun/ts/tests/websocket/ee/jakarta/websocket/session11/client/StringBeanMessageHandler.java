@@ -21,20 +21,19 @@ import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 
 import jakarta.websocket.MessageHandler;
 
-public class StringBeanMessageHandler
-    implements MessageHandler.Whole<StringBean> {
+public class StringBeanMessageHandler implements MessageHandler.Whole<StringBean> {
 
-  MixedProgramaticEndpoint endpoint;
+	MixedProgramaticEndpoint endpoint;
 
-  public static final String HANDLER_SAYS = "StringBeanMessageHandler says: ";
+	public static final String HANDLER_SAYS = "StringBeanMessageHandler says: ";
 
-  public StringBeanMessageHandler(MixedProgramaticEndpoint endpoint) {
-    this.endpoint = endpoint;
-  }
+	public StringBeanMessageHandler(MixedProgramaticEndpoint endpoint) {
+		this.endpoint = endpoint;
+	}
 
-  @Override
-  public void onMessage(StringBean message) {
-    endpoint.onMessage(HANDLER_SAYS + message.get());
-  }
+	@Override
+	public void onMessage(StringBean message) {
+		endpoint.onMessage(HANDLER_SAYS + message.get());
+	}
 
 }

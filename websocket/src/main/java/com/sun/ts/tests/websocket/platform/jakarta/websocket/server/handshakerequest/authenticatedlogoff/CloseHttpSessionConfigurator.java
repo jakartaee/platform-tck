@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -25,21 +25,19 @@ import jakarta.websocket.server.ServerEndpointConfig.Configurator;
 
 public class CloseHttpSessionConfigurator extends Configurator {
 
-  private static HttpSession session;
+	private static HttpSession session;
 
-  @Override
-  public void modifyHandshake(ServerEndpointConfig sec,
-      HandshakeRequest request, HandshakeResponse response) {
-    CloseHttpSessionConfigurator
-        .setSession((HttpSession) request.getHttpSession());
-    super.modifyHandshake(sec, request, response);
-  }
+	@Override
+	public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
+		CloseHttpSessionConfigurator.setSession((HttpSession) request.getHttpSession());
+		super.modifyHandshake(sec, request, response);
+	}
 
-  static HttpSession getSession() {
-    return session;
-  }
+	static HttpSession getSession() {
+		return session;
+	}
 
-  private static void setSession(HttpSession session) {
-    CloseHttpSessionConfigurator.session = session;
-  }
+	private static void setSession(HttpSession session) {
+		CloseHttpSessionConfigurator.session = session;
+	}
 }

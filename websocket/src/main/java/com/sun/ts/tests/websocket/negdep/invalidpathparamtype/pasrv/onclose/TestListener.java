@@ -26,38 +26,36 @@ import jakarta.websocket.server.ServerContainer;
 @WebListener
 public class TestListener implements ServletContextListener {
 
-  /**
-   * Receives notification that the web application initialization process is
-   * starting.
-   *
-   * @param sce
-   *          The ServletContextEvent
-   */
-  @Override
-  public void contextInitialized(ServletContextEvent sce) {
-    ServletContext context = sce.getServletContext();
-    try {
-      final ServerContainer serverContainer = (ServerContainer) context
-          .getAttribute("jakarta.websocket.server.ServerContainer");
-      serverContainer.addEndpoint(OnCloseStringHolderServerEndpoint.class);
-    } catch (Exception ex) {
-      // The DeploymentException thrown here should remove all
-      // endpoints including the EchoServerEndpoint and no more
-      // endpoint is allowed to be deployed. Because of that,
-      // the error cannot be passed to client side and it only
-      // can be logged in into appserver log.
-      ex.printStackTrace();
-    }
-  }
+	/**
+	 * Receives notification that the web application initialization process is
+	 * starting.
+	 *
+	 * @param sce The ServletContextEvent
+	 */
+	@Override
+	public void contextInitialized(ServletContextEvent sce) {
+		ServletContext context = sce.getServletContext();
+		try {
+			final ServerContainer serverContainer = (ServerContainer) context
+					.getAttribute("jakarta.websocket.server.ServerContainer");
+			serverContainer.addEndpoint(OnCloseStringHolderServerEndpoint.class);
+		} catch (Exception ex) {
+			// The DeploymentException thrown here should remove all
+			// endpoints including the EchoServerEndpoint and no more
+			// endpoint is allowed to be deployed. Because of that,
+			// the error cannot be passed to client side and it only
+			// can be logged in into appserver log.
+			ex.printStackTrace();
+		}
+	}
 
-  /**
-   * Receives notification that the servlet context is about to be shut down.
-   * 
-   * @param sce
-   *          The servlet context event
-   */
-  @Override
-  public void contextDestroyed(ServletContextEvent sce) {
-    // Do nothing
-  }
+	/**
+	 * Receives notification that the servlet context is about to be shut down.
+	 * 
+	 * @param sce The servlet context event
+	 */
+	@Override
+	public void contextDestroyed(ServletContextEvent sce) {
+		// Do nothing
+	}
 }

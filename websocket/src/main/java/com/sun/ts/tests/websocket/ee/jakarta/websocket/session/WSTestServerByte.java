@@ -21,6 +21,7 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 import java.nio.ByteBuffer;
 
 import com.sun.ts.tests.websocket.common.util.IOUtil;
@@ -34,46 +35,43 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/TCKTestServerByte")
 public class WSTestServerByte {
 
-  @OnOpen
-  public void init(Session session) throws IOException {
-    String message = "========TCKTestServerByte opened";
-    ByteBuffer data = ByteBuffer.allocate(message.getBytes().length);
-    data.put(message.getBytes());
-    data.flip();
-    session.getBasicRemote().sendBinary(data);
-  }
+	private static final Logger logger = System.getLogger(WSTestServerByte.class.getName());
 
-  @OnMessage
-  public void respond(ByteBuffer message, Session session) {
-    String message_string = IOUtil.byteBufferToString(message);
+	@OnOpen
+	public void init(Session session) throws IOException {
+		String message = "========TCKTestServerByte opened";
+		ByteBuffer data = ByteBuffer.allocate(message.getBytes().length);
+		data.put(message.getBytes());
+		data.flip();
+		session.getBasicRemote().sendBinary(data);
+	}
 
-    System.out.println("TCKTestServerByte got ByteBuffer message: "
-        + message_string + " from session " + session);
-    try {
-      ByteBuffer data = ByteBuffer
-          .allocate(("========TCKTestServerByte received ByteBuffer: "
-              + "========TCKTestServerByte responds: Message in bytes")
-                  .getBytes().length
-              + message.capacity());
-      data.put(("========TCKTestServerByte received ByteBuffer: ").getBytes());
-      data.put(message_string.getBytes());
-      data.put(
-          ("========TCKTestServerByte responds: Message in bytes").getBytes());
-      data.flip();
-      session.getBasicRemote().sendBinary(data);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
+	@OnMessage
+	public void respond(ByteBuffer message, Session session) {
+		String message_string = IOUtil.byteBufferToString(message);
 
-  @OnError
-  public void onError(Session session, Throwable t) {
-    System.out.println("TCKTestServerByte onError");
-    try {
-      session.getBasicRemote().sendText("========TCKTestServerByte onError");
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    t.printStackTrace();
-  }
+		logger.log(Logger.Level.INFO,"TCKTestServerByte got ByteBuffer message: " + message_string + " from session " + session);
+		try {
+			ByteBuffer data = ByteBuffer.allocate(("========TCKTestServerByte received ByteBuffer: "
+					+ "========TCKTestServerByte responds: Message in bytes").getBytes().length + message.capacity());
+			data.put(("========TCKTestServerByte received ByteBuffer: ").getBytes());
+			data.put(message_string.getBytes());
+			data.put(("========TCKTestServerByte responds: Message in bytes").getBytes());
+			data.flip();
+			session.getBasicRemote().sendBinary(data);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@OnError
+	public void onError(Session session, Throwable t) {
+		logger.log(Logger.Level.INFO,"TCKTestServerByte onError");
+		try {
+			session.getBasicRemote().sendText("========TCKTestServerByte onError");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		t.printStackTrace();
+	}
 }

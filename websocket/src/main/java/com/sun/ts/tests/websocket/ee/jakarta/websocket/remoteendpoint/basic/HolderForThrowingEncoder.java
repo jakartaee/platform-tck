@@ -17,19 +17,19 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.basic;
 
 public class HolderForThrowingEncoder {
-  public String getWrapped() {
-    return wrapped;
-  }
+	public String getWrapped() {
+		return wrapped;
+	}
 
-  public void setWrapped(String wrapped) {
-    this.wrapped = wrapped;
-  }
+	public void setWrapped(String wrapped) {
+		this.wrapped = wrapped;
+	}
 
-  public HolderForThrowingEncoder(String wrapped) {
-    super();
-    this.wrapped = wrapped;
-  }
+	public HolderForThrowingEncoder(String wrapped) {
+		super();
+		this.wrapped = wrapped;
+	}
 
-  private String wrapped;
+	private String wrapped;
 
 }

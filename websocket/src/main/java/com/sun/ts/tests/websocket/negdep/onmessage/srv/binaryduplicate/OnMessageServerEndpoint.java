@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2015, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -20,6 +20,9 @@ package com.sun.ts.tests.websocket.negdep.onmessage.srv.binaryduplicate;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 import jakarta.websocket.OnError;
@@ -28,23 +31,24 @@ import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint("/invalid")
+@ExtendWith(ArquillianExtension.class)
 public class OnMessageServerEndpoint {
 
-  @OnMessage
-  public String echo(InputStream stream) throws IOException {
-    return IOUtil.readFromStream(stream);
-  }
+	@OnMessage
+	public String echo(InputStream stream) throws IOException {
+		return IOUtil.readFromStream(stream);
+	}
 
-  @SuppressWarnings("unused")
-  @OnMessage
-  public String echo(byte[] data, boolean finito) {
-    return new String(data);
-  }
+	@SuppressWarnings("unused")
+	@OnMessage
+	public String echo(byte[] data, boolean finito) {
+		return new String(data);
+	}
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable thr) throws IOException {
+		thr.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(thr);
+		session.getBasicRemote().sendText(message);
+	}
 }

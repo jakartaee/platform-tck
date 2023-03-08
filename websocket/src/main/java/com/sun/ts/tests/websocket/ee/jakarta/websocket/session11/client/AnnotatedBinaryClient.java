@@ -34,28 +34,27 @@ import jakarta.websocket.Session;
 @ClientEndpoint(decoders = { AlternativeInputStreamDecoder.class })
 public class AnnotatedBinaryClient extends AnnotatedClientEndpoint<String> {
 
-  public AnnotatedBinaryClient() {
-    super(new StringClientEndpoint());
-  }
+	public AnnotatedBinaryClient() {
+		super(new StringClientEndpoint());
+	}
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    session.addMessageHandler(InputStream.class,
-        new InputStreamMessageHandler(clientEndpoint));
-    super.onOpen(session, config);
-  }
+	@Override
+	@OnOpen
+	public void onOpen(Session session, EndpointConfig config) {
+		session.addMessageHandler(InputStream.class, new InputStreamMessageHandler(clientEndpoint));
+		super.onOpen(session, config);
+	}
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@OnClose
+	@Override
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+	@OnError
+	@Override
+	public void onError(Session session, Throwable t) {
+		super.onError(session, t);
+	}
 
 }

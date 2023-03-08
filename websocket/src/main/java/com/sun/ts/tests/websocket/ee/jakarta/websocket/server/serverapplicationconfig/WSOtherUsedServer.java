@@ -29,15 +29,15 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint("/other")
 public class WSOtherUsedServer {
 
-  @OnMessage
-  public String echo(String echo) {
-    return echo;
-  }
+	@OnMessage
+	public String echo(String echo) {
+		return echo;
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    t.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		t.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 }

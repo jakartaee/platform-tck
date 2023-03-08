@@ -22,19 +22,19 @@ import jakarta.websocket.Encoder;
 import jakarta.websocket.EndpointConfig;
 
 public class ThrowingEncoder implements Encoder.Text<HolderForThrowingEncoder> {
-  static final String ERR_MSG = "Meant TCK EncodeException";
+	static final String ERR_MSG = "Meant TCK EncodeException";
 
-  @Override
-  public void init(EndpointConfig config) {
-  }
+	@Override
+	public void init(EndpointConfig config) {
+	}
 
-  @Override
-  public void destroy() {
-  }
+	@Override
+	public void destroy() {
+	}
 
-  @Override
-  public String encode(HolderForThrowingEncoder object) throws EncodeException {
-    throw new EncodeException(object, ERR_MSG);
-  }
+	@Override
+	public String encode(HolderForThrowingEncoder object) throws EncodeException {
+		throw new EncodeException(object, ERR_MSG);
+	}
 
 }

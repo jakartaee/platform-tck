@@ -30,51 +30,50 @@ import jakarta.websocket.Encoder;
 import jakarta.websocket.Extension;
 import jakarta.websocket.server.ServerEndpointConfig;
 
-public class WillDecodeTextDecoderEndpointConfig
-    implements ServerEndpointConfig {
+public class WillDecodeTextDecoderEndpointConfig implements ServerEndpointConfig {
 
-  @Override
-  public Map<String, Object> getUserProperties() {
-    return Collections.emptyMap();
-  }
+	@Override
+	public Map<String, Object> getUserProperties() {
+		return Collections.emptyMap();
+	}
 
-  @Override
-  public Class<?> getEndpointClass() {
-    return WSCWillDecodeTextDecoderServer.class;
-  }
+	@Override
+	public Class<?> getEndpointClass() {
+		return WSCWillDecodeTextDecoderServer.class;
+	}
 
-  @Override
-  public String getPath() {
-    return "/textwilldecode";
-  }
+	@Override
+	public String getPath() {
+		return "/textwilldecode";
+	}
 
-  @Override
-  public List<String> getSubprotocols() {
-    return Collections.emptyList();
-  }
+	@Override
+	public List<String> getSubprotocols() {
+		return Collections.emptyList();
+	}
 
-  @Override
-  public List<Extension> getExtensions() {
-    return Collections.emptyList();
-  }
+	@Override
+	public List<Extension> getExtensions() {
+		return Collections.emptyList();
+	}
 
-  @Override
-  public Configurator getConfigurator() {
-    return new ServerEndpointConfig.Configurator() {
-    };
-  }
+	@Override
+	public Configurator getConfigurator() {
+		return new ServerEndpointConfig.Configurator() {
+		};
+	}
 
-  @Override
-  public List<Class<? extends Encoder>> getEncoders() {
-    return Collections.emptyList();
-  }
+	@Override
+	public List<Class<? extends Encoder>> getEncoders() {
+		return Collections.emptyList();
+	}
 
-  @Override
-  public List<Class<? extends Decoder>> getDecoders() {
-    List<Class<? extends Decoder>> list = new LinkedList<>();
-    list.add(WillDecodeFirstTextDecoder.class);
-    list.add(WillDecodeSecondTextDecoder.class);
-    return list;
-  }
+	@Override
+	public List<Class<? extends Decoder>> getDecoders() {
+		List<Class<? extends Decoder>> list = new LinkedList<>();
+		list.add(WillDecodeFirstTextDecoder.class);
+		list.add(WillDecodeSecondTextDecoder.class);
+		return list;
+	}
 
 }

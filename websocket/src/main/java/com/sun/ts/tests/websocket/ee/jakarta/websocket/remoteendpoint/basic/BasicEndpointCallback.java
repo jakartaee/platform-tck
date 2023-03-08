@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -17,7 +17,6 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.basic;
 
-import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.tests.websocket.common.client.EndpointCallback;
 
 import jakarta.websocket.EndpointConfig;
@@ -25,16 +24,16 @@ import jakarta.websocket.RemoteEndpoint.Basic;
 import jakarta.websocket.Session;
 
 public abstract class BasicEndpointCallback extends EndpointCallback {
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-    Basic basicRemote = session.getBasicRemote();
-    try {
-      doBasic(basicRemote);
-    } catch (Exception f) {
-      throw new RuntimeException(f);
-    }
-  }
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+		Basic basicRemote = session.getBasicRemote();
+		try {
+			doBasic(basicRemote);
+		} catch (Exception f) {
+			throw new RuntimeException(f);
+		}
+	}
 
-  abstract void doBasic(Basic basicRemote) throws Exception;
+	abstract void doBasic(Basic basicRemote) throws Exception;
 }

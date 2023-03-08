@@ -24,8 +24,8 @@ import jakarta.websocket.DecodeException;
 
 public class BinaryStreamCoderLong extends CoderSuperClassBinaryStream<Long> {
 
-  @Override
-  public Long decode(InputStream is) throws DecodeException, IOException {
-    return NUMERIC.longValue();
-  }
+	@Override
+	public Long decode(InputStream is) throws DecodeException, IOException {
+		return NUMERIC.longValue();
+	}
 }

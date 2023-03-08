@@ -28,30 +28,28 @@ import jakarta.websocket.server.ServerEndpointConfig.Configurator;
 
 public class CaseInsensitiveHeaderNamesConfigurator extends Configurator {
 
-  @Override
-  public void modifyHandshake(ServerEndpointConfig sec,
-      HandshakeRequest request, HandshakeResponse response) {
-    Map<String, List<String>> headers = request.getHeaders();
-    boolean isCaseSensitive = true;
-    isCaseSensitive &= headers.containsKey(REQUEST_KEY);
-    isCaseSensitive &= headers.containsKey(REQUEST_KEY.toLowerCase());
-    isCaseSensitive &= headers.containsKey(REQUEST_KEY.toUpperCase());
-    response.getHeaders().put(RESPONSE_KEY,
-        Arrays.asList(String.valueOf(isCaseSensitive)));
-    super.modifyHandshake(sec, request, response);
-  }
+	@Override
+	public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
+		Map<String, List<String>> headers = request.getHeaders();
+		boolean isCaseSensitive = true;
+		isCaseSensitive &= headers.containsKey(REQUEST_KEY);
+		isCaseSensitive &= headers.containsKey(REQUEST_KEY.toLowerCase());
+		isCaseSensitive &= headers.containsKey(REQUEST_KEY.toUpperCase());
+		response.getHeaders().put(RESPONSE_KEY, Arrays.asList(String.valueOf(isCaseSensitive)));
+		super.modifyHandshake(sec, request, response);
+	}
 
-  /*
-   * Request sets this key with REQUEST_VALUES and case sensitivity is checked
-   * afterwards in modifyHandshake()
-   */
-  static final String REQUEST_KEY = "caseInsensitiveKey";
+	/*
+	 * Request sets this key with REQUEST_VALUES and case sensitivity is checked
+	 * afterwards in modifyHandshake()
+	 */
+	static final String REQUEST_KEY = "caseInsensitiveKey";
 
-  /*
-   * The value of this key is set to be checked on a client and the value should
-   * reflect boolean value of being case sensitive or not
-   */
-  static final String RESPONSE_KEY = "isCaseSensitive";
+	/*
+	 * The value of this key is set to be checked on a client and the value should
+	 * reflect boolean value of being case sensitive or not
+	 */
+	static final String RESPONSE_KEY = "isCaseSensitive";
 
-  static final String[] REQUEST_VALUES = { "RequestValue1", "RequestValue2" };
+	static final String[] REQUEST_VALUES = { "RequestValue1", "RequestValue2" };
 }

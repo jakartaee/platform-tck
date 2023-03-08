@@ -26,22 +26,20 @@ import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryStreamEncode
 import jakarta.websocket.EncodeException;
 import jakarta.websocket.EndpointConfig;
 
-public class InitDestroyBinaryStreamEncoder
-    extends StringBeanBinaryStreamEncoder {
-  @Override
-  public void init(EndpointConfig config) {
-    Logger.onInit(getClass());
-  }
+public class InitDestroyBinaryStreamEncoder extends StringBeanBinaryStreamEncoder {
+	@Override
+	public void init(EndpointConfig config) {
+		Logger.onInit(getClass());
+	}
 
-  @Override
-  public void destroy() {
-    Logger.onDestroy(getClass());
-  }
+	@Override
+	public void destroy() {
+		Logger.onDestroy(getClass());
+	}
 
-  @Override
-  public void encode(StringBean bean, OutputStream stream)
-      throws EncodeException, IOException {
-    Logger.onCode(getClass());
-    super.encode(bean, stream);
-  }
+	@Override
+	public void encode(StringBean bean, OutputStream stream) throws EncodeException, IOException {
+		Logger.onCode(getClass());
+		super.encode(bean, stream);
+	}
 }

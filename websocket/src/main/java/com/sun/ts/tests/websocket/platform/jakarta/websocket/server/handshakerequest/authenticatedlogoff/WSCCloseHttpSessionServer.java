@@ -30,43 +30,43 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/closehttpsession", configurator = CloseHttpSessionConfigurator.class)
 public class WSCCloseHttpSessionServer {
-  private static int lastCloseCode = 0;
+	private static int lastCloseCode = 0;
 
-  static final String MESSAGES[] = { "invalidate", "interval", "lastcode" };
+	static final String MESSAGES[] = { "invalidate", "interval", "lastcode" };
 
-  @OnMessage
-  public String onMessage(String msg) {
-    if (MESSAGES[0].equals(msg)) {
-      WSCCloseHttpSessionServer.setLastCloseCode(0);
-      CloseHttpSessionConfigurator.getSession().invalidate();
-    } else if (MESSAGES[1].equals(msg)) {
-      WSCCloseHttpSessionServer.setLastCloseCode(0);
-      CloseHttpSessionConfigurator.getSession().setMaxInactiveInterval(1);
-    } else if (MESSAGES[2].equals(msg))
-      msg = String.valueOf(lastCloseCode);
-    return msg;
-  }
+	@OnMessage
+	public String onMessage(String msg) {
+		if (MESSAGES[0].equals(msg)) {
+			WSCCloseHttpSessionServer.setLastCloseCode(0);
+			CloseHttpSessionConfigurator.getSession().invalidate();
+		} else if (MESSAGES[1].equals(msg)) {
+			WSCCloseHttpSessionServer.setLastCloseCode(0);
+			CloseHttpSessionConfigurator.getSession().setMaxInactiveInterval(1);
+		} else if (MESSAGES[2].equals(msg))
+			msg = String.valueOf(lastCloseCode);
+		return msg;
+	}
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable thr) throws IOException {
+		thr.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(thr);
+		session.getBasicRemote().sendText(message);
+	}
 
-  @OnClose
-  public void onClose(CloseReason reason) {
-    WSCCloseHttpSessionServer.setLastCloseCode(reason.getCloseCode().getCode());
-    String msg = "Close code: " + WSCCloseHttpSessionServer.getLastCloseCode();
-    CloseHttpSessionConfigurator.getSession().getServletContext().log(msg);
-  }
+	@OnClose
+	public void onClose(CloseReason reason) {
+		WSCCloseHttpSessionServer.setLastCloseCode(reason.getCloseCode().getCode());
+		String msg = "Close code: " + WSCCloseHttpSessionServer.getLastCloseCode();
+		CloseHttpSessionConfigurator.getSession().getServletContext().log(msg);
+	}
 
-  private static int getLastCloseCode() {
-    return lastCloseCode;
-  }
+	private static int getLastCloseCode() {
+		return lastCloseCode;
+	}
 
-  private static void setLastCloseCode(int lastCloseCode) {
-    WSCCloseHttpSessionServer.lastCloseCode = lastCloseCode;
-  }
+	private static void setLastCloseCode(int lastCloseCode) {
+		WSCCloseHttpSessionServer.lastCloseCode = lastCloseCode;
+	}
 
 }

@@ -27,16 +27,15 @@ import jakarta.websocket.server.ServerEndpointConfig;
 import jakarta.websocket.server.ServerEndpointConfig.Configurator;
 
 public class SetHeadersConfigurator extends Configurator {
-  static final String KEY = "aFirstKey";
+	static final String KEY = "aFirstKey";
 
-  static final String[] HEADERS = { "header1", "header2", "header3", "header4",
-      "header5", "header6", "header7", "header8" };
+	static final String[] HEADERS = { "header1", "header2", "header3", "header4", "header5", "header6", "header7",
+			"header8" };
 
-  @Override
-  public void modifyHandshake(ServerEndpointConfig sec,
-      HandshakeRequest request, HandshakeResponse response) {
-    Map<String, List<String>> map = request.getHeaders();
-    response.getHeaders().putAll(map);
-    response.getHeaders().put(KEY, Arrays.asList(HEADERS));
-  }
+	@Override
+	public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
+		Map<String, List<String>> map = request.getHeaders();
+		response.getHeaders().putAll(map);
+		response.getHeaders().put(KEY, Arrays.asList(HEADERS));
+	}
 }

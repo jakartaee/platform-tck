@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -18,6 +18,7 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpointonmessage;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 import java.nio.ByteBuffer;
 
 import com.sun.ts.tests.websocket.common.util.IOUtil;
@@ -33,119 +34,119 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint("/srv/{param}")
 public class WSCServer {
 
-  private enum State {
-    INIT, SECOND, FINAL
-  };
+	private static final Logger logger = System.getLogger(WSCServer.class.getName());
 
-  // endpoint instance is created once per connection
-  private State state = State.INIT;
+	private enum State {
+		INIT, SECOND, FINAL
+	};
 
-  @OnOpen
-  public void onOpen(final Session session,
-      final @PathParam("param") String op) {
-    session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
-      @Override
-      public void onMessage(ByteBuffer message) {
-        echo(op, IOUtil.byteBufferToString(message), session);
-      }
-    });
-  }
+	// endpoint instance is created once per connection
+	private State state = State.INIT;
 
-  @OnMessage
-  public void echo(@PathParam("param") String op, String echo,
-      Session session) {
-    switch (state) {
-    case INIT:
-      state = State.SECOND;
-      op(op, echo, session);
-      break;
-    case SECOND:
-      state = State.FINAL;
-      op(op, echo, session);
-      break;
-    case FINAL:
-      // do not send anything, otherwise it would not ever stop
-      try {
-        session.close();
-      } catch (IOException e) {
-        onError(session, e);
-      }
-      break;
-    }
-  }
+	@OnOpen
+	public void onOpen(final Session session, final @PathParam("param") String op) {
+		session.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
+			@Override
+			public void onMessage(ByteBuffer message) {
+				echo(op, IOUtil.byteBufferToString(message), session);
+			}
+		});
+	}
 
-  private void op(String param, String echo, Session session) {
-    if (param == null)
-      throw new RuntimeException("Path param is null");
-    OPS op = OPS.valueOf(param);
-    switch (op) {
-    case TEXT:
-      try {
-        session.getBasicRemote().sendText(echo);
-      } catch (IOException e) {
-        onError(session, e);
-      }
-      break;
-    case TEXTPARTIAL:
-      String[] tokens = echo.split("_");
-      for (int i = 0; i != tokens.length; i++)
-        try {
-          boolean isLast = i == tokens.length - 1;
-          if (isLast)
-            session.getBasicRemote().sendText(tokens[i], true);
-          else
-            session.getBasicRemote().sendText(tokens[i] + "_", false);
-        } catch (IOException e) {
-          onError(session, e);
-        }
-      break;
-    case BINARY:
-      try {
-        session.getBasicRemote().sendBinary(ByteBuffer.wrap(echo.getBytes()));
-      } catch (IOException e) {
-        onError(session, e);
-      }
-      break;
-    case BINARYPARTIAL:
-      tokens = echo.split("_");
-      for (int i = 0; i != tokens.length; i++)
-        try {
-          boolean isLast = i == tokens.length - 1;
-          ByteBuffer buf;
-          if (isLast) {
-            buf = ByteBuffer.wrap(tokens[i].getBytes());
-            session.getBasicRemote().sendBinary(buf, true);
-          } else {
-            buf = ByteBuffer.wrap((tokens[i] + "_").getBytes());
-            session.getBasicRemote().sendBinary(buf, false);
-          }
-        } catch (IOException e) {
-          onError(session, e);
-        }
-      break;
-    case PONG:
-      try {
-        session.getBasicRemote().sendPong(ByteBuffer.wrap(echo.getBytes()));
-      } catch (IOException e) {
-        onError(session, e);
-      }
-      break;
-    default:
-      throw new IllegalStateException(op + " not implemented");
-    }
-  }
+	@OnMessage
+	public void echo(@PathParam("param") String op, String echo, Session session) {
+		switch (state) {
+		case INIT:
+			state = State.SECOND;
+			op(op, echo, session);
+			break;
+		case SECOND:
+			state = State.FINAL;
+			op(op, echo, session);
+			break;
+		case FINAL:
+			// do not send anything, otherwise it would not ever stop
+			try {
+				session.close();
+			} catch (IOException e) {
+				onError(session, e);
+			}
+			break;
+		}
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) {
-    System.out.println("@OnError in" + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(t);
-    try {
-      if (session.isOpen())
-        session.getBasicRemote().sendText(message);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
+	private void op(String param, String echo, Session session) {
+		if (param == null)
+			throw new RuntimeException("Path param is null");
+		OPS op = OPS.valueOf(param);
+		switch (op) {
+		case TEXT:
+			try {
+				session.getBasicRemote().sendText(echo);
+			} catch (IOException e) {
+				onError(session, e);
+			}
+			break;
+		case TEXTPARTIAL:
+			String[] tokens = echo.split("_");
+			for (int i = 0; i != tokens.length; i++)
+				try {
+					boolean isLast = i == tokens.length - 1;
+					if (isLast)
+						session.getBasicRemote().sendText(tokens[i], true);
+					else
+						session.getBasicRemote().sendText(tokens[i] + "_", false);
+				} catch (IOException e) {
+					onError(session, e);
+				}
+			break;
+		case BINARY:
+			try {
+				session.getBasicRemote().sendBinary(ByteBuffer.wrap(echo.getBytes()));
+			} catch (IOException e) {
+				onError(session, e);
+			}
+			break;
+		case BINARYPARTIAL:
+			tokens = echo.split("_");
+			for (int i = 0; i != tokens.length; i++)
+				try {
+					boolean isLast = i == tokens.length - 1;
+					ByteBuffer buf;
+					if (isLast) {
+						buf = ByteBuffer.wrap(tokens[i].getBytes());
+						session.getBasicRemote().sendBinary(buf, true);
+					} else {
+						buf = ByteBuffer.wrap((tokens[i] + "_").getBytes());
+						session.getBasicRemote().sendBinary(buf, false);
+					}
+				} catch (IOException e) {
+					onError(session, e);
+				}
+			break;
+		case PONG:
+			try {
+				session.getBasicRemote().sendPong(ByteBuffer.wrap(echo.getBytes()));
+			} catch (IOException e) {
+				onError(session, e);
+			}
+			break;
+		default:
+			throw new IllegalStateException(op + " not implemented");
+		}
+	}
+
+	@OnError
+	public void onError(Session session, Throwable t) {
+		logger.log(Logger.Level.INFO,"@OnError in" + getClass().getName());
+		t.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(t);
+		try {
+			if (session.isOpen())
+				session.getBasicRemote().sendText(message);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

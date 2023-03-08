@@ -25,25 +25,23 @@ import jakarta.websocket.EncodeException;
 import jakarta.websocket.Encoder;
 import jakarta.websocket.EndpointConfig;
 
-public class ListHashSetTextEncoder
-    implements Encoder.Text<LinkedList<HashSet<String>>> {
+public class ListHashSetTextEncoder implements Encoder.Text<LinkedList<HashSet<String>>> {
 
-  @Override
-  public void destroy() {
-  }
+	@Override
+	public void destroy() {
+	}
 
-  @Override
-  public void init(EndpointConfig arg0) {
-  }
+	@Override
+	public void init(EndpointConfig arg0) {
+	}
 
-  @Override
-  public String encode(LinkedList<HashSet<String>> arg0)
-      throws EncodeException {
-    return listHashSetToString(arg0);
-  }
+	@Override
+	public String encode(LinkedList<HashSet<String>> arg0) throws EncodeException {
+		return listHashSetToString(arg0);
+	}
 
-  public static final String listHashSetToString(List<HashSet<String>> arg0) {
-    return arg0.get(0).iterator().next();
-  }
+	public static final String listHashSetToString(List<HashSet<String>> arg0) {
+		return arg0.get(0).iterator().next();
+	}
 
 }

@@ -26,50 +26,49 @@ import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
 
-public class InnerEndpoint extends Endpoint
-    implements MessageHandler.Whole<String> {
+public class InnerEndpoint extends Endpoint implements MessageHandler.Whole<String> {
 
-  protected String receivedMessage = "";
+	protected String receivedMessage = "";
 
-  protected CountDownLatch latch;
+	protected CountDownLatch latch;
 
-  private Session session;
+	private Session session;
 
-  public InnerEndpoint(CountDownLatch latch) {
-    super();
-    this.latch = latch;
-  }
+	public InnerEndpoint(CountDownLatch latch) {
+		super();
+		this.latch = latch;
+	}
 
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    session.addMessageHandler(this);
-    this.session = session;
-  }
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		session.addMessageHandler(this);
+		this.session = session;
+	}
 
-  @Override
-  public void onMessage(String message) {
-    this.receivedMessage += message;
-    latch.countDown();
-  }
+	@Override
+	public void onMessage(String message) {
+		this.receivedMessage += message;
+		latch.countDown();
+	}
 
-  public String getReceivedMessage() {
-    return receivedMessage;
-  }
+	public String getReceivedMessage() {
+		return receivedMessage;
+	}
 
-  public void sendMessage(String message) {
-    try {
-      session.getBasicRemote().sendText(message);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
+	public void sendMessage(String message) {
+		try {
+			session.getBasicRemote().sendText(message);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
-  public void await(long seconds) {
-    try {
-      latch.await(seconds, TimeUnit.SECONDS);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
-  }
+	public void await(long seconds) {
+		try {
+			latch.await(seconds, TimeUnit.SECONDS);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 }

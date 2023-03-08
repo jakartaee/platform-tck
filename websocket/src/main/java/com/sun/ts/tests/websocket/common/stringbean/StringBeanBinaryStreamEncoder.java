@@ -26,17 +26,16 @@ import jakarta.websocket.EndpointConfig;
 
 public class StringBeanBinaryStreamEncoder implements BinaryStream<StringBean> {
 
-  @Override
-  public void init(EndpointConfig config) {
-  }
+	@Override
+	public void init(EndpointConfig config) {
+	}
 
-  @Override
-  public void encode(StringBean bean, OutputStream stream)
-      throws EncodeException, IOException {
-    stream.write(bean.get().getBytes());
-  }
+	@Override
+	public void encode(StringBean bean, OutputStream stream) throws EncodeException, IOException {
+		stream.write(bean.get().getBytes());
+	}
 
-  @Override
-  public void destroy() {
-  }
+	@Override
+	public void destroy() {
+	}
 }

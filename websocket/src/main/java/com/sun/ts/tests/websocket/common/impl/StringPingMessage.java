@@ -26,7 +26,7 @@ package com.sun.ts.tests.websocket.common.impl;
  */
 public class StringPingMessage extends StringPongMessage {
 
-  public StringPingMessage(String message) {
-    super(message);
-  }
+	public StringPingMessage(String message) {
+		super(message);
+	}
 }

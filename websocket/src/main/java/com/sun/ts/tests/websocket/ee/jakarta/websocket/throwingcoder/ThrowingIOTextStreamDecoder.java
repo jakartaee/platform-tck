@@ -27,8 +27,8 @@ import jakarta.websocket.DecodeException;
 
 public class ThrowingIOTextStreamDecoder extends StringBeanTextStreamDecoder {
 
-  @Override
-  public StringBean decode(Reader r) throws DecodeException, IOException {
-    throw new IOException(ThrowingTextDecoder.IO_ERR_MSG);
-  }
+	@Override
+	public StringBean decode(Reader r) throws DecodeException, IOException {
+		throw new IOException(ThrowingTextDecoder.IO_ERR_MSG);
+	}
 }

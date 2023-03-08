@@ -27,19 +27,18 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 
-@ServerEndpoint(value = "/textdecoder", decoders = {
-    ThrowingTextDecoder.class })
+@ServerEndpoint(value = "/textdecoder", decoders = { ThrowingTextDecoder.class })
 public class WSCTextDecoderServer {
 
-  @OnMessage
-  public String echo(StringBean bean) {
-    return bean.get();
-  }
+	@OnMessage
+	public String echo(StringBean bean) {
+		return bean.get();
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    String message = ThrowingTextDecoder.getCauseMessage(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		String message = ThrowingTextDecoder.getCauseMessage(t);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

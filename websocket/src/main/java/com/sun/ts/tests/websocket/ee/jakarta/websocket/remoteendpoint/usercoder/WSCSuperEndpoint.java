@@ -17,12 +17,11 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder;
 
 public interface WSCSuperEndpoint {
-  public static final String ENCODED_STRING = "Anything. What ever. Does not matter.";
+	public static final String ENCODED_STRING = "Anything. What ever. Does not matter.";
 
-  public static final Byte NUMERIC = (byte) (CoderSuperClass.NUMERIC.byteValue()
-      + 100);
+	public static final Byte NUMERIC = (byte) (CoderSuperClass.NUMERIC.byteValue() + 100);
 
-  public static final char CHAR = '1';
+	public static final char CHAR = '1';
 
-  public static final boolean BOOL = !CoderSuperClass.BOOL;
+	public static final boolean BOOL = !CoderSuperClass.BOOL;
 }

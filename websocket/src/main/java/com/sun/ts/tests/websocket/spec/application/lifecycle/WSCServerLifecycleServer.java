@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -28,19 +28,20 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/lifecycle")
 public class WSCServerLifecycleServer {
-  int hitCount = 0;
 
-  @SuppressWarnings("unused")
-  @OnMessage
-  public int onMessage(String msg, Session session) {
-    return hitCount++;
-  }
+	int hitCount = 0;
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+	@SuppressWarnings("unused")
+	@OnMessage
+	public int onMessage(String msg, Session session) {
+		return hitCount++;
+	}
+
+	@OnError
+	public void onError(Session session, Throwable thr) throws IOException {
+		thr.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(thr);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

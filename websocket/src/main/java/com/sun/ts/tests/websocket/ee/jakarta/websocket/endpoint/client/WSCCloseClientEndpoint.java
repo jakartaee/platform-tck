@@ -27,38 +27,38 @@ import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.Session;
 
 public class WSCCloseClientEndpoint extends StringClientEndpoint {
-  boolean onCloseCalled = false;
+	boolean onCloseCalled = false;
 
-  private CountDownLatch countDown = new CountDownLatch(1);
+	private CountDownLatch countDown = new CountDownLatch(1);
 
-  @Override
-  public void onMessage(String msg) {
-    super.onMessage(msg);
-  }
+	@Override
+	public void onMessage(String msg) {
+		super.onMessage(msg);
+	}
 
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+	}
 
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-    onCloseCalled = true;
-    countDown.countDown();
-  }
+	@Override
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+		onCloseCalled = true;
+		countDown.countDown();
+	}
 
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+	@Override
+	public void onError(Session session, Throwable t) {
+		super.onError(session, t);
+	}
 
-  public void waitForClose(long seconds) {
-    try {
-      countDown.await(seconds, TimeUnit.SECONDS);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
-  }
+	public void waitForClose(long seconds) {
+		try {
+			countDown.await(seconds, TimeUnit.SECONDS);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 }

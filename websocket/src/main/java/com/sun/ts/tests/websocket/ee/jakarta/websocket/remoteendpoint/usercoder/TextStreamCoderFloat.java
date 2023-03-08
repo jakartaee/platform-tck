@@ -24,8 +24,8 @@ import jakarta.websocket.DecodeException;
 
 public class TextStreamCoderFloat extends CoderSuperClassTextStream<Float> {
 
-  @Override
-  public Float decode(Reader reader) throws DecodeException, IOException {
-    return NUMERIC.floatValue();
-  }
+	@Override
+	public Float decode(Reader reader) throws DecodeException, IOException {
+		return NUMERIC.floatValue();
+	}
 }

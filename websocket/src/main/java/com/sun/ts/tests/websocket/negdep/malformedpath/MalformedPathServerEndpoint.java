@@ -29,16 +29,16 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint("")
 public class MalformedPathServerEndpoint {
 
-  @OnMessage
-  public String echo(String echo) {
-    return echo;
-  }
+	@OnMessage
+	public String echo(String echo) {
+		return echo;
+	}
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable thr) throws IOException {
+		thr.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(thr);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

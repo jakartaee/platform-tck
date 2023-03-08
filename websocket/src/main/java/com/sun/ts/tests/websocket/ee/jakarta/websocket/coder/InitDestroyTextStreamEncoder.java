@@ -27,20 +27,19 @@ import jakarta.websocket.EncodeException;
 import jakarta.websocket.EndpointConfig;
 
 public class InitDestroyTextStreamEncoder extends StringBeanTextStreamEncoder {
-  @Override
-  public void init(EndpointConfig config) {
-    Logger.onInit(getClass());
-  }
+	@Override
+	public void init(EndpointConfig config) {
+		Logger.onInit(getClass());
+	}
 
-  @Override
-  public void destroy() {
-    Logger.onDestroy(getClass());
-  }
+	@Override
+	public void destroy() {
+		Logger.onDestroy(getClass());
+	}
 
-  @Override
-  public void encode(StringBean bean, Writer writer)
-      throws EncodeException, IOException {
-    Logger.onCode(getClass());
-    super.encode(bean, writer);
-  }
+	@Override
+	public void encode(StringBean bean, Writer writer) throws EncodeException, IOException {
+		Logger.onCode(getClass());
+		super.encode(bean, writer);
+	}
 }

@@ -25,16 +25,16 @@ import jakarta.websocket.EndpointConfig;
 
 public class StringBeanBinaryEncoder implements Binary<StringBean> {
 
-  @Override
-  public void init(EndpointConfig config) {
-  }
+	@Override
+	public void init(EndpointConfig config) {
+	}
 
-  @Override
-  public ByteBuffer encode(StringBean bean) throws EncodeException {
-    return ByteBuffer.wrap(bean.get().getBytes());
-  }
+	@Override
+	public ByteBuffer encode(StringBean bean) throws EncodeException {
+		return ByteBuffer.wrap(bean.get().getBytes());
+	}
 
-  @Override
-  public void destroy() {
-  }
+	@Override
+	public void destroy() {
+	}
 }

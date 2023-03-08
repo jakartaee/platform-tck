@@ -23,20 +23,19 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 import jakarta.websocket.MessageHandler;
 
-public class ByteBufferMessageHandler
-    implements MessageHandler.Whole<ByteBuffer> {
+public class ByteBufferMessageHandler implements MessageHandler.Whole<ByteBuffer> {
 
-  MixedProgramaticEndpoint endpoint;
+	MixedProgramaticEndpoint endpoint;
 
-  public static final String HANDLER_SAYS = "ByteBufferMessageHandler says: ";
+	public static final String HANDLER_SAYS = "ByteBufferMessageHandler says: ";
 
-  public ByteBufferMessageHandler(MixedProgramaticEndpoint endpoint) {
-    super();
-    this.endpoint = endpoint;
-  }
+	public ByteBufferMessageHandler(MixedProgramaticEndpoint endpoint) {
+		super();
+		this.endpoint = endpoint;
+	}
 
-  @Override
-  public void onMessage(ByteBuffer message) {
-    endpoint.onMessage(HANDLER_SAYS + IOUtil.byteBufferToString(message));
-  }
+	@Override
+	public void onMessage(ByteBuffer message) {
+		endpoint.onMessage(HANDLER_SAYS + IOUtil.byteBufferToString(message));
+	}
 }

@@ -16,11 +16,10 @@
 
 package com.sun.ts.tests.websocket.common.client;
 
-public abstract class AnnotatedStringClientEndpoint
-    extends AnnotatedClientEndpoint<String> {
+public abstract class AnnotatedStringClientEndpoint extends AnnotatedClientEndpoint<String> {
 
-  public AnnotatedStringClientEndpoint() {
-    super(new StringClientEndpoint());
-  }
+	public AnnotatedStringClientEndpoint() {
+		super(new StringClientEndpoint());
+	}
 
 }

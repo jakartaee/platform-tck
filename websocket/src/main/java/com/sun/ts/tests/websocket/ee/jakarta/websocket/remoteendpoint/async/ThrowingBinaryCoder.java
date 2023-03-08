@@ -24,19 +24,19 @@ import jakarta.websocket.Encoder;
 import jakarta.websocket.EndpointConfig;
 
 public class ThrowingBinaryCoder implements Encoder.Binary<ByteBuffer> {
-  public static final String ERROR = "TCK intended Exception on transmition";
+	public static final String ERROR = "TCK intended Exception on transmition";
 
-  @Override
-  public void init(EndpointConfig config) {
-  }
+	@Override
+	public void init(EndpointConfig config) {
+	}
 
-  @Override
-  public void destroy() {
-  }
+	@Override
+	public void destroy() {
+	}
 
-  @Override
-  public ByteBuffer encode(ByteBuffer object) throws EncodeException {
-    throw new EncodeException(object, ERROR);
-  }
+	@Override
+	public ByteBuffer encode(ByteBuffer object) throws EncodeException {
+		throw new EncodeException(object, ERROR);
+	}
 
 }

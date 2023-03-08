@@ -34,22 +34,20 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 
-@ServerEndpoint(value = "/binary", encoders = { BinaryCoderBool.class,
-    BinaryCoderByte.class, BinaryCoderChar.class, BinaryCoderDouble.class,
-    BinaryCoderInt.class, BinaryCoderLong.class, BinaryCoderFloat.class,
-    BinaryCoderShort.class })
+@ServerEndpoint(value = "/binary", encoders = { BinaryCoderBool.class, BinaryCoderByte.class, BinaryCoderChar.class,
+		BinaryCoderDouble.class, BinaryCoderInt.class, BinaryCoderLong.class, BinaryCoderFloat.class,
+		BinaryCoderShort.class })
 public class WSCBinaryServer extends WSCCommonServer {
 
-  @Override
-  @OnMessage
-  public void onMessage(String msg, Session session)
-      throws IOException, EncodeException {
-    super.onMessage(msg, session);
-  }
+	@Override
+	@OnMessage
+	public void onMessage(String msg, Session session) throws IOException, EncodeException {
+		super.onMessage(msg, session);
+	}
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    super.onError(session, t);
-  }
+	@Override
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		super.onError(session, t);
+	}
 }

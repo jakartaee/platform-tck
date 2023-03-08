@@ -23,8 +23,8 @@ import jakarta.websocket.DecodeException;
 
 public class BinaryCoderBool extends CoderSuperClassBinary<Boolean> {
 
-  @Override
-  public Boolean decode(ByteBuffer bytes) throws DecodeException {
-    return BOOL;
-  }
+	@Override
+	public Boolean decode(ByteBuffer bytes) throws DecodeException {
+		return BOOL;
+	}
 }

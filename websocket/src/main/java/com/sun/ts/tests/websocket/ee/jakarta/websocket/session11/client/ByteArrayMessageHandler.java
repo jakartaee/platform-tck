@@ -21,17 +21,17 @@ import jakarta.websocket.MessageHandler;
 
 public class ByteArrayMessageHandler implements MessageHandler.Whole<byte[]> {
 
-  MixedProgramaticEndpoint endpoint;
+	MixedProgramaticEndpoint endpoint;
 
-  public static final String HANDLER_SAYS = "ByteArrayMessageHandler says: ";
+	public static final String HANDLER_SAYS = "ByteArrayMessageHandler says: ";
 
-  public ByteArrayMessageHandler(MixedProgramaticEndpoint endpoint) {
-    super();
-    this.endpoint = endpoint;
-  }
+	public ByteArrayMessageHandler(MixedProgramaticEndpoint endpoint) {
+		super();
+		this.endpoint = endpoint;
+	}
 
-  @Override
-  public void onMessage(byte[] message) {
-    endpoint.onMessage(HANDLER_SAYS + new String(message));
-  }
+	@Override
+	public void onMessage(byte[] message) {
+		endpoint.onMessage(HANDLER_SAYS + new String(message));
+	}
 }

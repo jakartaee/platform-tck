@@ -24,8 +24,8 @@ import jakarta.websocket.DecodeException;
 
 public class TextStreamCoderByte extends CoderSuperClassTextStream<Byte> {
 
-  @Override
-  public Byte decode(Reader reader) throws DecodeException, IOException {
-    return NUMERIC;
-  }
+	@Override
+	public Byte decode(Reader reader) throws DecodeException, IOException {
+		return NUMERIC;
+	}
 }

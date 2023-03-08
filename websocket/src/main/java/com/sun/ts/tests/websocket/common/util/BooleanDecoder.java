@@ -26,21 +26,21 @@ import jakarta.websocket.EndpointConfig;
 
 public class BooleanDecoder implements Decoder.Text<Boolean> {
 
-  @Override
-  public void init(EndpointConfig config) {
-  }
+	@Override
+	public void init(EndpointConfig config) {
+	}
 
-  @Override
-  public Boolean decode(String s) throws DecodeException {
-    return Boolean.valueOf(s);
-  }
+	@Override
+	public Boolean decode(String s) throws DecodeException {
+		return Boolean.valueOf(s);
+	}
 
-  @Override
-  public boolean willDecode(String s) {
-    return true;
-  }
+	@Override
+	public boolean willDecode(String s) {
+		return true;
+	}
 
-  @Override
-  public void destroy() {
-  }
+	@Override
+	public void destroy() {
+	}
 }

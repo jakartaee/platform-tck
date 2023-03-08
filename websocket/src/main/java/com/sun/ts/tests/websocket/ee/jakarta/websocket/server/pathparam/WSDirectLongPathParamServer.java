@@ -31,49 +31,48 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/{param1}")
 public class WSDirectLongPathParamServer {
-  private final static String ERR = "TCK INTENDED ERROR";
 
-  private String p;
+	private final static String ERR = "TCK INTENDED ERROR";
 
-  @OnOpen
-  public void onOpen(@PathParam("param1") Long p1) {
-    p = p1.toString();
-  }
+	private String p;
 
-  @OnMessage
-  public String param(@PathParam("param1") Long p1, String content)
-      throws IOException {
-    OPS op = OPS.valueOf(content);
-    switch (op) {
-    case OPEN:
-      content = p;
-      break;
-    case MESSAGE:
-      content = p1.toString();
-      break;
-    case IOEXCEPTION:
-      throw new IOException(ERR);
-    case RUNTIMEEXCEPTION:
-      throw new RuntimeException(ERR);
-    }
-    return content;
-  }
+	@OnOpen
+	public void onOpen(@PathParam("param1") Long p1) {
+		p = p1.toString();
+	}
 
-  @OnError
-  public void onError(@PathParam("param1") Long p1, Session session,
-      Throwable t) throws IOException {
-    String msg = t.getMessage();
-    if (ERR.equals(msg)) {
-      session.getBasicRemote().sendText(p1.toString());
-    } else {
-      t.printStackTrace(); // Write to error log, too
-      String message = IOUtil.printStackTrace(t);
-      session.getBasicRemote().sendText(message);
-    }
-  }
+	@OnMessage
+	public String param(@PathParam("param1") Long p1, String content) throws IOException {
+		OPS op = OPS.valueOf(content);
+		switch (op) {
+		case OPEN:
+			content = p;
+			break;
+		case MESSAGE:
+			content = p1.toString();
+			break;
+		case IOEXCEPTION:
+			throw new IOException(ERR);
+		case RUNTIMEEXCEPTION:
+			throw new RuntimeException(ERR);
+		}
+		return content;
+	}
 
-  @OnClose
-  public void onClose(@PathParam("param1") Long p1) {
-    WSOnClosePathParamServer.set(0, p1.toString());
-  }
+	@OnError
+	public void onError(@PathParam("param1") Long p1, Session session, Throwable t) throws IOException {
+		String msg = t.getMessage();
+		if (ERR.equals(msg)) {
+			session.getBasicRemote().sendText(p1.toString());
+		} else {
+			t.printStackTrace(); // Write to error log, too
+			String message = IOUtil.printStackTrace(t);
+			session.getBasicRemote().sendText(message);
+		}
+	}
+
+	@OnClose
+	public void onClose(@PathParam("param1") Long p1) {
+		WSOnClosePathParamServer.set(0, p1.toString());
+	}
 }

@@ -29,15 +29,15 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint("/bytebuffer")
 public class WSByteBufferServer {
-  @OnMessage
-  public ByteBuffer echo(String data) {
-    return ByteBuffer.wrap(data.getBytes());
-  }
+	@OnMessage
+	public ByteBuffer echo(String data) {
+		return ByteBuffer.wrap(data.getBytes());
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		t.printStackTrace(); // Write to error log, too
+		String message = "Exception: " + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 }

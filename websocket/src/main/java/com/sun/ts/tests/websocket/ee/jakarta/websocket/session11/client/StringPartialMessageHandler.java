@@ -21,25 +21,24 @@ import com.sun.ts.tests.websocket.common.client.ClientEndpoint;
 
 import jakarta.websocket.MessageHandler;
 
-public class StringPartialMessageHandler
-    implements MessageHandler.Partial<String> {
+public class StringPartialMessageHandler implements MessageHandler.Partial<String> {
 
-  ClientEndpoint<String> endpoint;
+	ClientEndpoint<String> endpoint;
 
-  public static final String HANDLER_SAYS = "StringPartialMessageHandler says: ";
+	public static final String HANDLER_SAYS = "StringPartialMessageHandler says: ";
 
-  StringBuilder sb = new StringBuilder();
+	StringBuilder sb = new StringBuilder();
 
-  public StringPartialMessageHandler(ClientEndpoint<String> endpoint) {
-    super();
-    this.endpoint = endpoint;
-  }
+	public StringPartialMessageHandler(ClientEndpoint<String> endpoint) {
+		super();
+		this.endpoint = endpoint;
+	}
 
-  @Override
-  public void onMessage(String message, boolean finite) {
-    sb.append(message);
-    if (finite)
-      endpoint.onMessage(HANDLER_SAYS + sb.toString());
-  }
+	@Override
+	public void onMessage(String message, boolean finite) {
+		sb.append(message);
+		if (finite)
+			endpoint.onMessage(HANDLER_SAYS + sb.toString());
+	}
 
 }

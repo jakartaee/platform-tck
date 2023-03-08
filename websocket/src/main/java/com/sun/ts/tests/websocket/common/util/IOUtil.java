@@ -30,48 +30,47 @@ import java.nio.ByteBuffer;
  */
 public abstract class IOUtil {
 
-  public static final//
-  String readFromReader(Reader reader) throws IOException {
-    BufferedReader br = new BufferedReader(reader);
-    StringBuilder sb = new StringBuilder();
-    String line = null;
-    while ((line = br.readLine()) != null) {
-      if (sb.length() != 0)
-        sb.append("\n");
-      sb.append(line);
-    }
-    br.close();
-    return sb.toString();
-  }
+	public static final//
+	String readFromReader(Reader reader) throws IOException {
+		BufferedReader br = new BufferedReader(reader);
+		StringBuilder sb = new StringBuilder();
+		String line = null;
+		while ((line = br.readLine()) != null) {
+			if (sb.length() != 0)
+				sb.append("\n");
+			sb.append(line);
+		}
+		br.close();
+		return sb.toString();
+	}
 
-  public static final//
-  String printStackTrace(Throwable t) {
-    StringWriter sw = new StringWriter();
-    PrintWriter pw = new PrintWriter(sw);
-    t.printStackTrace(pw);
-    String value = sw.toString();
-    pw.close();
-    return value;
-  }
+	public static final//
+	String printStackTrace(Throwable t) {
+		StringWriter sw = new StringWriter();
+		PrintWriter pw = new PrintWriter(sw);
+		t.printStackTrace(pw);
+		String value = sw.toString();
+		pw.close();
+		return value;
+	}
 
-  public static final//
-  String readFromStream(InputStream stream) throws IOException {
-    InputStreamReader isr = new InputStreamReader(stream);
-    return readFromReader(isr);
-  }
+	public static final//
+	String readFromStream(InputStream stream) throws IOException {
+		InputStreamReader isr = new InputStreamReader(stream);
+		return readFromReader(isr);
+	}
 
-  public static final//
-  String byteBufferToString(ByteBuffer buffer) {
-    byte[] ret = new byte[buffer.remaining()];
+	public static final//
+	String byteBufferToString(ByteBuffer buffer) {
+		byte[] ret = new byte[buffer.remaining()];
 
-    if (buffer.hasArray()) {
-      byte[] array = buffer.array();
-      System.arraycopy(array, buffer.arrayOffset() + buffer.position(), ret, 0,
-          ret.length);
-    } else {
-      buffer.asReadOnlyBuffer().get(ret);
-    }
+		if (buffer.hasArray()) {
+			byte[] array = buffer.array();
+			System.arraycopy(array, buffer.arrayOffset() + buffer.position(), ret, 0, ret.length);
+		} else {
+			buffer.asReadOnlyBuffer().get(ret);
+		}
 
-    return new String(ret);
-  }
+		return new String(ret);
+	}
 }

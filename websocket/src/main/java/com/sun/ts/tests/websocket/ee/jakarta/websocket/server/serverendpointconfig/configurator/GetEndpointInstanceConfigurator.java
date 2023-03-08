@@ -20,26 +20,25 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverendpointcon
 import jakarta.websocket.server.ServerEndpointConfig.Configurator;
 
 public class GetEndpointInstanceConfigurator extends Configurator {
-  private static String instanceName;
+	private static String instanceName;
 
-  static final String ADDITIONAL_INFORMATION = "Additional information passed to instance";
+	static final String ADDITIONAL_INFORMATION = "Additional information passed to instance";
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public <T> T getEndpointInstance(Class<T> endpointClass)
-      throws InstantiationException {
-    T t = super.getEndpointInstance(endpointClass);
-    GetEndpointInstanceConfigurator.setInstanceName(t.getClass().getName());
-    if (endpointClass == WSCGetEndpointInstanceServer.class)
-      t = (T) new WSCGetEndpointInstanceServer(ADDITIONAL_INFORMATION);
-    return t;
-  }
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T> T getEndpointInstance(Class<T> endpointClass) throws InstantiationException {
+		T t = super.getEndpointInstance(endpointClass);
+		GetEndpointInstanceConfigurator.setInstanceName(t.getClass().getName());
+		if (endpointClass == WSCGetEndpointInstanceServer.class)
+			t = (T) new WSCGetEndpointInstanceServer(ADDITIONAL_INFORMATION);
+		return t;
+	}
 
-  static String getInstanceName() {
-    return instanceName;
-  }
+	static String getInstanceName() {
+		return instanceName;
+	}
 
-  static void setInstanceName(String instanceName) {
-    GetEndpointInstanceConfigurator.instanceName = instanceName;
-  }
+	static void setInstanceName(String instanceName) {
+		GetEndpointInstanceConfigurator.instanceName = instanceName;
+	}
 }

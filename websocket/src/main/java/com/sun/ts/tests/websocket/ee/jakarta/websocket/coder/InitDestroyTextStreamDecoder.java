@@ -27,19 +27,19 @@ import jakarta.websocket.DecodeException;
 import jakarta.websocket.EndpointConfig;
 
 public class InitDestroyTextStreamDecoder extends StringBeanTextStreamDecoder {
-  @Override
-  public void init(EndpointConfig config) {
-    Logger.onInit(getClass());
-  }
+	@Override
+	public void init(EndpointConfig config) {
+		Logger.onInit(getClass());
+	}
 
-  @Override
-  public void destroy() {
-    Logger.onDestroy(getClass());
-  }
+	@Override
+	public void destroy() {
+		Logger.onDestroy(getClass());
+	}
 
-  @Override
-  public StringBean decode(Reader r) throws DecodeException, IOException {
-    Logger.onCode(getClass());
-    return super.decode(r);
-  };
+	@Override
+	public StringBean decode(Reader r) throws DecodeException, IOException {
+		Logger.onCode(getClass());
+		return super.decode(r);
+	};
 }

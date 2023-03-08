@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -34,22 +34,19 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 
-@ServerEndpoint(value = "/text", encoders = { TextCoderBool.class,
-    TextCoderByte.class, TextCoderChar.class, TextCoderDouble.class,
-    TextCoderInt.class, TextCoderLong.class, TextCoderFloat.class,
-    TextCoderShort.class })
+@ServerEndpoint(value = "/text", encoders = { TextCoderBool.class, TextCoderByte.class, TextCoderChar.class,
+		TextCoderDouble.class, TextCoderInt.class, TextCoderLong.class, TextCoderFloat.class, TextCoderShort.class })
 public class WSCTextServer extends WSCCommonServer {
 
-  @Override
-  @OnMessage
-  public void onMessage(String msg, Session session)
-      throws IOException, EncodeException {
-    super.onMessage(msg, session);
-  }
+	@Override
+	@OnMessage
+	public void onMessage(String msg, Session session) throws IOException, EncodeException {
+		super.onMessage(msg, session);
+	}
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    super.onError(session, t);
-  }
+	@Override
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		super.onError(session, t);
+	}
 }

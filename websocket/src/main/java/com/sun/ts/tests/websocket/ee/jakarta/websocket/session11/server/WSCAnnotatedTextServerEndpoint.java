@@ -18,6 +18,7 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.server;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextDecoder;
@@ -31,17 +32,18 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/annotatedtext", decoders = StringBeanTextDecoder.class)
 public class WSCAnnotatedTextServerEndpoint {
 
-  @OnOpen
-  public void onOpen(Session session) {
-    session.addMessageHandler(StringBean.class,
-        new StringBeanMessageHandler(session));
-  }
+	private static final Logger logger = System.getLogger(WSCAnnotatedTextServerEndpoint.class.getName());
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in " + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnOpen
+	public void onOpen(Session session) {
+		session.addMessageHandler(StringBean.class, new StringBeanMessageHandler(session));
+	}
+
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		logger.log(Logger.Level.INFO,"@OnError in " + getClass().getName());
+		t.printStackTrace(); // Write to error log, too
+		String message = "Exception: " + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 }

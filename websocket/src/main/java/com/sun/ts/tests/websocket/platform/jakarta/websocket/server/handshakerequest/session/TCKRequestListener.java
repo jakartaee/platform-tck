@@ -26,15 +26,15 @@ import jakarta.servlet.http.HttpServletRequest;
 @WebListener
 public class TCKRequestListener implements ServletRequestListener {
 
-  @Override
-  public void requestDestroyed(ServletRequestEvent arg0) {
-  }
+	@Override
+	public void requestDestroyed(ServletRequestEvent arg0) {
+	}
 
-  @Override
-  public void requestInitialized(ServletRequestEvent evnt) {
-    ServletRequest request = evnt.getServletRequest();
-    HttpServletRequest httpRequest = (HttpServletRequest) request;
-    httpRequest.getSession(true); // create
-  }
+	@Override
+	public void requestInitialized(ServletRequestEvent evnt) {
+		ServletRequest request = evnt.getServletRequest();
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		httpRequest.getSession(true); // create
+	}
 
 }

@@ -33,33 +33,32 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
 @ClientEndpoint
-public class WSByteBufferClientEndpoint
-    extends AnnotatedClientEndpoint<ByteBuffer> {
-  public WSByteBufferClientEndpoint() {
-    super(new ByteBufferClientEndpoint());
-  }
+public class WSByteBufferClientEndpoint extends AnnotatedClientEndpoint<ByteBuffer> {
+	public WSByteBufferClientEndpoint() {
+		super(new ByteBufferClientEndpoint());
+	}
 
-  @OnMessage
-  public String echo(ByteBuffer b) {
-    super.onMessage(b);
-    return IOUtil.byteBufferToString(b);
-  }
+	@OnMessage
+	public String echo(ByteBuffer b) {
+		super.onMessage(b);
+		return IOUtil.byteBufferToString(b);
+	}
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+	@OnError
+	@Override
+	public void onError(Session session, Throwable t) {
+		super.onError(session, t);
+	}
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@OnClose
+	@Override
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @OnOpen
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+	@OnOpen
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+	}
 }

@@ -25,26 +25,25 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
 
-public class ByteBufferMessageHandler
-    implements MessageHandler.Whole<ByteBuffer> {
+public class ByteBufferMessageHandler implements MessageHandler.Whole<ByteBuffer> {
 
-  private Session session;
+	private Session session;
 
-  public static final String HANDLER_SAYS = "ByteBufferMessageHandler says: ";
+	public static final String HANDLER_SAYS = "ByteBufferMessageHandler says: ";
 
-  public ByteBufferMessageHandler(Session session) {
-    super();
-    this.session = session;
-  }
+	public ByteBufferMessageHandler(Session session) {
+		super();
+		this.session = session;
+	}
 
-  @Override
-  public void onMessage(ByteBuffer message) {
-    String msg = null;
-    try {
-      msg = IOUtil.byteBufferToString(message);
-      session.getBasicRemote().sendText(HANDLER_SAYS + msg);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
+	@Override
+	public void onMessage(ByteBuffer message) {
+		String msg = null;
+		try {
+			msg = IOUtil.byteBufferToString(message);
+			session.getBasicRemote().sendText(HANDLER_SAYS + msg);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

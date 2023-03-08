@@ -21,6 +21,7 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.websocketcontainer;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 
 import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
@@ -31,23 +32,24 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/TCKTestServer")
 public class WSTestServer {
 
-  @OnOpen
-  public void init(Session session) throws IOException {
-    System.out.println("===============================");
-    session.getBasicRemote().sendText("TCKTestServer opened");
-  }
+	private static final Logger logger = System.getLogger(WSTestServer.class.getName());
 
-  @OnMessage
-  public void respond(String message, Session session) throws IOException {
-    System.out.println(
-        "TCKTestServer got  message: " + message + " from session " + session);
-    session.getBasicRemote().sendText("TCKTestServer received: " + message);
-    session.getBasicRemote().sendText("TCKTestServer responds");
-  }
+	@OnOpen
+	public void init(Session session) throws IOException {
+		logger.log(Logger.Level.INFO,"===============================");
+		session.getBasicRemote().sendText("TCKTestServer opened");
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    session.getBasicRemote().sendText("TCKTestServer onError");
-    t.printStackTrace();
-  }
+	@OnMessage
+	public void respond(String message, Session session) throws IOException {
+		logger.log(Logger.Level.INFO,"TCKTestServer got  message: " + message + " from session " + session);
+		session.getBasicRemote().sendText("TCKTestServer received: " + message);
+		session.getBasicRemote().sendText("TCKTestServer responds");
+	}
+
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		session.getBasicRemote().sendText("TCKTestServer onError");
+		t.printStackTrace();
+	}
 }

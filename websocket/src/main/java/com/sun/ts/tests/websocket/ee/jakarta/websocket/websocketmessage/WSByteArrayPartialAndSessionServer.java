@@ -18,6 +18,7 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.websocketmessage;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 
@@ -29,23 +30,24 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/partialbytearraysession")
 public class WSByteArrayPartialAndSessionServer {
 
-  StringBuffer sb = new StringBuffer();
+	private static final Logger logger = System.getLogger(WSByteArrayPartialAndSessionServer.class.getName());
 
-  @OnMessage
-  public void bytesToString(byte[] array, Session s, boolean finito)
-      throws IOException {
-    sb.append(new String(array)).append("(").append(finito).append(")");
-    if (finito) {
-      s.getBasicRemote().sendText(sb.toString());
-      sb = new StringBuffer();
-    }
-  }
+	StringBuffer sb = new StringBuffer();
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in" + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnMessage
+	public void bytesToString(byte[] array, Session s, boolean finito) throws IOException {
+		sb.append(new String(array)).append("(").append(finito).append(")");
+		if (finito) {
+			s.getBasicRemote().sendText(sb.toString());
+			sb = new StringBuffer();
+		}
+	}
+
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		logger.log(Logger.Level.INFO,"@OnError in" + getClass().getName());
+		t.printStackTrace(); // Write to error log, too
+		String message = "Exception: " + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 }

@@ -20,14 +20,18 @@
  */
 package com.sun.ts.tests.websocket.api.jakarta.websocket.server.serverendpointconfig;
 
+import java.lang.System.Logger;
+
 import jakarta.websocket.Endpoint;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.Session;
 
 public class TCKEndpoint extends Endpoint {
 
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    System.out.println("========TCKEndpoint");
-  }
+	private static final Logger logger = System.getLogger(TCKEndpoint.class.getName());
+
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		logger.log(Logger.Level.INFO,"========TCKEndpoint");
+	}
 }

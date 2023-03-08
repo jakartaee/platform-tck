@@ -20,18 +20,18 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverendpointcon
 import jakarta.websocket.server.ServerEndpointConfig.Configurator;
 
 public class OriginConfiguratorReturningFalse extends Configurator {
-  private static boolean origin = true;
+	private static boolean origin = true;
 
-  @Override
-  public boolean checkOrigin(String originHeaderValue) {
-    return origin;
-  }
+	@Override
+	public boolean checkOrigin(String originHeaderValue) {
+		return origin;
+	}
 
-  static boolean isOrigin() {
-    return origin;
-  }
+	static boolean isOrigin() {
+		return origin;
+	}
 
-  static void setOrigin(boolean origin) {
-    OriginConfiguratorReturningFalse.origin = origin;
-  }
+	static void setOrigin(boolean origin) {
+		OriginConfiguratorReturningFalse.origin = origin;
+	}
 }

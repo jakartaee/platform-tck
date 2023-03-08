@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2015, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.websocket.negdep;
 
-import java.util.Properties;
+import org.junit.jupiter.api.BeforeEach;
 
 import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
 
@@ -29,30 +29,29 @@ import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
  */
 public class NegativeDeploymentClient extends WebSocketCommonClient {
 
-  private static final long serialVersionUID = 111;
+	private static final long serialVersionUID = 111;
 
-  protected String tslib_name;
+	protected String lib_name;
 
-  @Override
-  public void setup(String[] args, Properties p) throws Exception {
-    super.setup(args, p);
-    tslib_name = p.getProperty("tslib.name");
-    assertFalse(isNullOrEmpty(tslib_name),
-        "'tslib.name' was not set in the build.properties.");
-  }
+	@Override
+	@BeforeEach
+	public void setup() throws Exception {
+		super.setup();
+		lib_name = System.getProperty("lib.name");
+		assertFalse(isNullOrEmpty(lib_name), "'lib.name' was not set in the properties.");
+	}
 
-  protected void throwWhenCts() throws Exception {
-    if (tslib_name.equalsIgnoreCase("cts"))
-      throwDeploymentDidNotFail();
-  }
+	protected void throwWhenCts() throws Exception {
+		if (lib_name.equalsIgnoreCase("cts"))
+			throwDeploymentDidNotFail();
+	}
 
-  protected void throwValidEndpointMustBeRemoved() throws Exception {
-    String msg = "Test Failed - a deployment error raised during the deployment process must halt the deployment of the application, any well formed endpoints deployed prior to the error being raised must be removed from service and no more websocket endpoints from that application may be deployed by the container, even if they are valid";
-    throw new Exception(msg);
-  }
+	protected void throwValidEndpointMustBeRemoved() throws Exception {
+		String msg = "Test Failed - a deployment error raised during the deployment process must halt the deployment of the application, any well formed endpoints deployed prior to the error being raised must be removed from service and no more websocket endpoints from that application may be deployed by the container, even if they are valid";
+		throw new Exception(msg);
+	}
 
-  protected void throwDeploymentDidNotFail() throws Exception {
-    throw new Exception(
-        "Test Failed - expected deployment to fail, but it succeeded!");
-  }
+	protected void throwDeploymentDidNotFail() throws Exception {
+		throw new Exception("Test Failed - expected deployment to fail, but it succeeded!");
+	}
 }

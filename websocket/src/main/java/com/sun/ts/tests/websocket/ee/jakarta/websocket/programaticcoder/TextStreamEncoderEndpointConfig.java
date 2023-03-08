@@ -31,48 +31,48 @@ import jakarta.websocket.server.ServerEndpointConfig;
 
 public class TextStreamEncoderEndpointConfig implements ServerEndpointConfig {
 
-  @Override
-  public Map<String, Object> getUserProperties() {
-    return Collections.emptyMap();
-  }
+	@Override
+	public Map<String, Object> getUserProperties() {
+		return Collections.emptyMap();
+	}
 
-  @Override
-  public Class<?> getEndpointClass() {
-    return WSCTextStreamEncoderServer.class;
-  }
+	@Override
+	public Class<?> getEndpointClass() {
+		return WSCTextStreamEncoderServer.class;
+	}
 
-  @Override
-  public String getPath() {
-    return "/textstreamencoder";
-  }
+	@Override
+	public String getPath() {
+		return "/textstreamencoder";
+	}
 
-  @Override
-  public List<String> getSubprotocols() {
-    return Collections.emptyList();
-  }
+	@Override
+	public List<String> getSubprotocols() {
+		return Collections.emptyList();
+	}
 
-  @Override
-  public List<Extension> getExtensions() {
-    return Collections.emptyList();
-  }
+	@Override
+	public List<Extension> getExtensions() {
+		return Collections.emptyList();
+	}
 
-  @Override
-  public Configurator getConfigurator() {
-    return new ServerEndpointConfig.Configurator() {
-    };
-  }
+	@Override
+	public Configurator getConfigurator() {
+		return new ServerEndpointConfig.Configurator() {
+		};
+	}
 
-  @Override
-  public List<Class<? extends Encoder>> getEncoders() {
-    Class<? extends Encoder> clz = InitDestroyTextStreamEncoder.class;
-    List<Class<? extends Encoder>> list = new LinkedList<>();
-    list.add(clz);
-    return list;
-  }
+	@Override
+	public List<Class<? extends Encoder>> getEncoders() {
+		Class<? extends Encoder> clz = InitDestroyTextStreamEncoder.class;
+		List<Class<? extends Encoder>> list = new LinkedList<>();
+		list.add(clz);
+		return list;
+	}
 
-  @Override
-  public List<Class<? extends Decoder>> getDecoders() {
-    return Collections.emptyList();
-  }
+	@Override
+	public List<Class<? extends Decoder>> getDecoders() {
+		return Collections.emptyList();
+	}
 
 }

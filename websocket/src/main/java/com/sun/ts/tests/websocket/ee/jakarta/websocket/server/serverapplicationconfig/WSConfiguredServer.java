@@ -27,29 +27,28 @@ import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
 
-public class WSConfiguredServer extends Endpoint
-    implements MessageHandler.Whole<StringBean> {
+public class WSConfiguredServer extends Endpoint implements MessageHandler.Whole<StringBean> {
 
-  Session session;
+	Session session;
 
-  @Override
-  public void onMessage(StringBean bean) {
-    try {
-      session.getBasicRemote().sendText(bean.get());
-    } catch (IOException e) {
-      e.printStackTrace();
-      try {
-        session.getBasicRemote().sendText(IOUtil.printStackTrace(e));
-      } catch (IOException e1) {
-        e1.printStackTrace();
-      }
-    }
-  }
+	@Override
+	public void onMessage(StringBean bean) {
+		try {
+			session.getBasicRemote().sendText(bean.get());
+		} catch (IOException e) {
+			e.printStackTrace();
+			try {
+				session.getBasicRemote().sendText(IOUtil.printStackTrace(e));
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
 
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    this.session = session;
-    session.addMessageHandler(this);
-  }
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		this.session = session;
+		session.addMessageHandler(this);
+	}
 
 }

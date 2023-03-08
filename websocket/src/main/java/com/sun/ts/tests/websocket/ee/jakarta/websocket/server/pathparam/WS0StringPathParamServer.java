@@ -31,53 +31,51 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/nonused/{nonusedparam}")
 public class WS0StringPathParamServer {
-  private final static String ERR = "TCK INTENDED ERROR";
+	private final static String ERR = "TCK INTENDED ERROR";
 
-  private String p1;
+	private String p1;
 
-  @OnOpen
-  public void onOpen(@PathParam("param1") String p1) {
-    this.p1 = p1;
-  }
+	@OnOpen
+	public void onOpen(@PathParam("param1") String p1) {
+		this.p1 = p1;
+	}
 
-  @OnMessage
-  public String param(@PathParam("param1") String p1, String content)
-      throws IOException {
-    OPS o = OPS.valueOf(content);
-    switch (o) {
-    case OPEN:
-      content = getPathParam(this.p1);
-      break;
-    case MESSAGE:
-      content = getPathParam(p1);
-      break;
-    case IOEXCEPTION:
-      throw new IOException(ERR);
-    case RUNTIMEEXCEPTION:
-      throw new RuntimeException(ERR);
-    }
-    return content;
-  }
+	@OnMessage
+	public String param(@PathParam("param1") String p1, String content) throws IOException {
+		OPS o = OPS.valueOf(content);
+		switch (o) {
+		case OPEN:
+			content = getPathParam(this.p1);
+			break;
+		case MESSAGE:
+			content = getPathParam(p1);
+			break;
+		case IOEXCEPTION:
+			throw new IOException(ERR);
+		case RUNTIMEEXCEPTION:
+			throw new RuntimeException(ERR);
+		}
+		return content;
+	}
 
-  @OnError
-  public void onError(@PathParam("param1") String p1, Session session,
-      Throwable t) throws IOException {
-    String msg = t.getMessage();
-    if (ERR.equals(msg)) {
-      session.getBasicRemote().sendText(getPathParam(p1));
-    } else {
-      t.printStackTrace(); // Write to error log, too
-      String message = IOUtil.printStackTrace(t);
-      session.getBasicRemote().sendText(message);
-    }
-  }
+	@OnError
+	public void onError(@PathParam("param1") String p1, Session session, Throwable t) throws IOException {
+		String msg = t.getMessage();
+		if (ERR.equals(msg)) {
+			session.getBasicRemote().sendText(getPathParam(p1));
+		} else {
+			t.printStackTrace(); // Write to error log, too
+			String message = IOUtil.printStackTrace(t);
+			session.getBasicRemote().sendText(message);
+		}
+	}
 
-  @OnClose
-  public void onClose(@PathParam("param1") String p1) {
-    WSOnClosePathParamServer.set(0, getPathParam(p1));
-  }
+	@OnClose
+	public void onClose(@PathParam("param1") String p1) {
+		WSOnClosePathParamServer.set(0, getPathParam(p1));
+	}
 
-  private static String getPathParam(String p) {
-    return p == null ? "null" : p;
-  }
+	private static String getPathParam(String p) {
+		return p == null ? "null" : p;
+	}
 }

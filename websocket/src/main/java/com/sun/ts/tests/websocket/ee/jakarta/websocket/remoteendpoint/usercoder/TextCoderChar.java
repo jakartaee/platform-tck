@@ -21,8 +21,8 @@ import jakarta.websocket.DecodeException;
 
 public class TextCoderChar extends CoderSuperClassText<Character> {
 
-  @Override
-  public Character decode(String s) throws DecodeException {
-    return CHAR;
-  }
+	@Override
+	public Character decode(String s) throws DecodeException {
+		return CHAR;
+	}
 }

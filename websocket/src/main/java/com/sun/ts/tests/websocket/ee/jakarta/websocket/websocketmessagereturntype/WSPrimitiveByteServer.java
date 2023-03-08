@@ -28,15 +28,15 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint("/primitivebyte")
 public class WSPrimitiveByteServer {
-  @OnMessage
-  public byte echo(String data) {
-    return Byte.parseByte(data);
-  }
+	@OnMessage
+	public byte echo(String data) {
+		return Byte.parseByte(data);
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		t.printStackTrace(); // Write to error log, too
+		String message = "Exception: " + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 }

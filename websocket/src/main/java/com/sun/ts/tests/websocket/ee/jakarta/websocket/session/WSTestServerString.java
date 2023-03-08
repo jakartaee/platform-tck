@@ -31,29 +31,28 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/TCKTestServerString")
 public class WSTestServerString {
 
-  @OnOpen
-  public void init(Session session) throws IOException {
-    session.getBasicRemote().sendText("========TCKTestServerString opened");
-  }
+	@OnOpen
+	public void init(Session session) throws IOException {
+		session.getBasicRemote().sendText("========TCKTestServerString opened");
+	}
 
-  @OnMessage
-  public void respond(String message, Session session) {
-    try {
-      session.getBasicRemote()
-          .sendText("========TCKTestServerString received String: " + message);
-      session.getBasicRemote().sendText("========TCKTestServerString responds");
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
+	@OnMessage
+	public void respond(String message, Session session) {
+		try {
+			session.getBasicRemote().sendText("========TCKTestServerString received String: " + message);
+			session.getBasicRemote().sendText("========TCKTestServerString responds");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) {
-    try {
-      session.getBasicRemote().sendText("========TCKTestServerString onError");
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    t.printStackTrace();
-  }
+	@OnError
+	public void onError(Session session, Throwable t) {
+		try {
+			session.getBasicRemote().sendText("========TCKTestServerString onError");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		t.printStackTrace();
+	}
 }
