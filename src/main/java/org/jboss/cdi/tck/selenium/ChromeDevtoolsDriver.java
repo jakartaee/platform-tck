@@ -515,6 +515,7 @@ public class ChromeDevtoolsDriver implements ExtendedWebDriver {
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-web-security");
         options.addArguments("--allow-insecure-localhost");
+        options.addArguments("--remote-allow-origins=*");
         options.addArguments("--ignore-urlfetcher-cert-requests");
         options.addArguments("--auto-open-devtools-for-tabs");
         options.addArguments("--disable-gpu");
