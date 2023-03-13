@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009, 2021 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -154,7 +154,7 @@ ri.asenv.loc=${connector.home}/config
 ri.imqbin.loc=${connector.home}/imq/bin
 ri.lib=${connector.home}/modules
 ri.imq.share.lib=${connector.home}/imq/lib
-ri.jvm.options=-Doracle.jdbc.J2EE13Compliant=true:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}
+ri.jvm.options=-Doracle.jdbc.J2EE13Compliant=true:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}:-DnoSecurityManager=true
 ri.java.endorsed.dirs=${endorsed.dirs}
 ri.applicationRoot=c:
 
@@ -171,7 +171,7 @@ s1as.domain=${s1as.domain.dir}/${s1as.domain.name}
 s1as.asenv.loc=${connector.home}/config
 s1as.imqbin.loc=${connector.home}/imq/bin
 s1as.imq.share.lib=${connector.home}/imq/lib
-s1as.jvm.options=-Doracle.jdbc.J2EE13Compliant=true:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}
+s1as.jvm.options=-Doracle.jdbc.J2EE13Compliant=true:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}:-DnoSecurityManager=true
 s1as.java.endorsed.dirs=${endorsed.dirs}
 s1as.applicationRoot=c:
 
@@ -327,6 +327,7 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         -Dcom.sun.aas.configRoot=${connector.home}/config \
         -Djava.util.logging.config.file=${TS_HOME}/bin/client-logging.properties \
         -Dlogical.hostname.servlet=${logical.hostname.servlet} \
+        -DnoSecurityManager=true \
         -Ddeliverable.class=${deliverable.class} $testExecuteClass $testExecuteArgs
 
 

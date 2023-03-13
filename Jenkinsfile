@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -182,8 +182,8 @@ spec:
            description: 'List of standalone TCK bundle file names to be appended to the base url' )
     choice(name: 'PROFILE', choices: 'FULL\nWEB', 
            description: 'Profile to be used for running CTS either web/full' )
-    choice(name: 'JDK', choices: 'JDK11\nJDK17',
-           description: 'Java SE Version to be used for running TCK either JDK11/JDK17' )
+    choice(name: 'JDK', choices: 'JDK21',
+           description: 'Java SE Version to be used for running TCK either JDK21' )
     choice(name: 'LICENSE', choices: 'EPL\nEFTL',
            description: 'License file to be used to build the TCK bundle(s) either EPL(default) or Eclipse Foundation TCK License' )
     choice(name: 'AS_TRACE', choices: 'false\ntrue',

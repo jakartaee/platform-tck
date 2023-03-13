@@ -18,6 +18,13 @@ if [ -z "$ANT_HOME" ]; then
   export ANT_HOME=/usr/share/ant/
 fi
 
+cd $WORKSPACE
+
+wget https://download.java.net/java/early_access/jdk21/15/GPL/openjdk-21-ea+15_linux-x64_bin.tar.gz -O jdk-21.tar.gz
+tar -xvf jdk-21.tar.gz
+export JAVA_HOME=$WORKSPACE/jdk-21
+
+
 export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
 
 if [ -z "$WORKSPACE" ]; then

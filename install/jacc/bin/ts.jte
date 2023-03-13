@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008, 2021 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2008, 2023 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -309,6 +309,7 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         -Djava.protocol.handler.pkgs=javax.net.ssl \
         -Djavax.net.ssl.keyStore=${bin.dir}/certificates/clientcert.jks \
         -Djavax.net.ssl.keyStorePassword=changeit \
+        -DnoSecurityManager=true \
         -Djavax.net.ssl.trustStore=${jacc.home}/domains/domain1/config/cacerts.jks \
         -Ddeliverable.class=${deliverable.class} $testExecuteClass $testExecuteArgs
 

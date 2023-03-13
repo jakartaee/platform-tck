@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009, 2022 Oracle and/or its affiliates and others.
+# Copyright (c) 2009, 2023 Oracle and/or its affiliates and others.
 # All rights reserved.
 #
 # This program and the accompanying materials are made available under the
@@ -175,6 +175,7 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
                     -Djavax.net.ssl.keyStore=${ts.home}/bin/certificates/clientcert.jks \
                     -Djavax.net.ssl.keyStorePassword=changeit \
                     -Djavax.net.ssl.trustStore=${web.home}/domains/domain1/config/cacerts.jks \
+                    -DnoSecurityManager=true \
                     ${JAVA_OPTIONS} $testExecuteClass $testExecuteArgs
 
 ########################################################################

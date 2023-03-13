@@ -59,12 +59,18 @@ rm -f $TS_HOME/lib/js-1.6R1.jar
 rm -f $TS_HOME/lib/jax-qname.jar
 
 chmod -R 777 $TS_HOME
-cd $TS_HOME/bin
 
-if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]];then
-  export JAVA_HOME=${JDK17_HOME}
-fi
+cd $WORKSPACE
+
+if [[ "$JDK" == "JDK21" || "$JDK" == "jdk21" ]];then
+  wget https://download.java.net/java/early_access/jdk21/15/GPL/openjdk-21-ea+15_linux-x64_bin.tar.gz -O jdk-21.tar.gz
+  tar -xvf jdk-21.tar.gz
+  export JAVA_HOME=$WORKSPACE/jdk-21
+fi  
+
 export PATH=$JAVA_HOME/bin:$PATH
+
+cd $TS_HOME/bin
 
 which java
 java -version

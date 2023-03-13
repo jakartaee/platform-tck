@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-# Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2023 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,6 +26,13 @@ fi
 if [ -z "$JAKARTA_JARS" ]; then
   export JAKARTA_JARS=$BASEDIR
 fi
+
+
+cd $WORKSPACE
+
+wget https://download.java.net/java/early_access/jdk21/15/GPL/openjdk-21-ea+15_linux-x64_bin.tar.gz -O jdk-21.tar.gz
+tar -xvf jdk-21.tar.gz
+export JAVA_HOME=$WORKSPACE/jdk-21
 
 export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
 

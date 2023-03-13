@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006, 2022 Oracle and/or its affiliates and others.
+# Copyright (c) 2006, 2023 Oracle and/or its affiliates and others.
 # All rights reserved.
 #
 # This program and the accompanying materials are made available under the
@@ -408,7 +408,7 @@ s1as.imqbin.loc=${javaee.home}/../mq/bin
 s1as.lib=${javaee.home}/lib
 s1as.modules=${javaee.home}/modules
 s1as.imq.share.lib=${javaee.home}/../mq/lib
-s1as.jvm.options=-Doracle.jdbc.J2EE13Compliant=true:-Xmx4096m:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}:-Dtest.ejb.stateful.timeout.wait.seconds=${test.ejb.stateful.timeout.wait.seconds}:-DwebServerPort.2=${webServerPort.2}:-DwebServerHost.2=${webServerHost.2}
+s1as.jvm.options=-Doracle.jdbc.J2EE13Compliant=true:-Xmx4096m:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}:-Dtest.ejb.stateful.timeout.wait.seconds=${test.ejb.stateful.timeout.wait.seconds}:-DwebServerPort.2=${webServerPort.2}:-DwebServerHost.2=${webServerHost.2}:-DnoSecurityManager=true
 s1as.jvm.options.remove=-Xmx512m:${s1as.jvm.options}
 s1as.java.endorsed.dirs=${endorsed.dirs}
 s1as.applicationRoot=c:
@@ -1146,8 +1146,9 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         -Dprovider.configuration.file=${provider.configuration.file} \
         -Djava.security.properties=${s1as.domain}/${sjsas.instance.config.dir}/ts.java.security \
         -Dlogical.hostname.servlet=${logical.hostname.servlet} \
+        -DnoSecurityManager=true \
         -Dcom.sun.aas.configRoot=${javaee.home}/config \
-        -Ddeliverable.class=${deliverable.class} $testExecuteClass $testExecuteArgs
+        -Ddeliverable.class=${deliverable.class} -DnoSecurityManager=true $testExecuteClass $testExecuteArgs
 
 ########################################################################
 ## Appclient Command line for the App Server under test
@@ -1200,6 +1201,7 @@ command.testExecuteAppClient= \
         -Dprovider.configuration.file=${provider.configuration.file} \
         -Djava.security.properties=${s1as.domain}/${sjsas.instance.config.dir}/ts.java.security \
         -Dcom.sun.aas.configRoot=${javaee.home}/config \
+        -DnoSecurityManager=true \
         -Ddeliverable.class=${deliverable.class} -javaagent:${javaee.home}/lib/gf-client.jar=arg=-configxml,arg=${ts.home}/tmp/appclient/s1as.sun-acc.xml,client=jar=$testExecuteArgs
 
 #-Ddeliverable.class=${deliverable.class} -javaagent:${javaee.home}/modules/gf-client.jar=arg=-configxml,arg=${s1as.domain}/config/sun-acc.xml,client=jar=$testExecuteArgs
@@ -1244,8 +1246,10 @@ command.testExecuteEjbEmbed=com.sun.ts.lib.harness.ExecTSTestCmd \
         SYSTEMROOT=${SYSTEMROOT} \
         ${JAVA_HOME}/bin/java \
         ${JVMOPTS_RUNTESTCOMMAND} \
+        -DnoSecurityManager=true \
         -Dcts.tmp=$harness.temp.directory \
         -Djava.util.logging.config.file=${TS_HOME}/bin/client-logging.properties \
+        -DnoSecurityManager=true \
         -Dtest.ejb.stateful.timeout.wait.seconds=${test.ejb.stateful.timeout.wait.seconds} \
         -Ddeliverable.class=${deliverable.class} $testExecuteClass $testExecuteArgs
 
@@ -1289,6 +1293,7 @@ command.testExecuteAppClient2= \
         -DwebServerHost.2=${webServerHost.2} \
         -DwebServerPort.2=${webServerPort.2} \
         -Dprovider.configuration.file=${provider.configuration.file} \
+        -DnoSecurityManager=true \
         -Djava.security.properties=${s1as.domain}/${sjsas.instance.config.dir}/ts.java.security \
         -Dcom.sun.aas.configRoot=${javaee.home.ri}/config \
         -Ddeliverable.class=${deliverable.class} -javaagent:${javaee.home.ri}/lib/gf-client.jar=arg=-configxml,arg=${ts.home}/tmp/appclient/ri.sun-acc.xml,client=jar=$testExecuteArgs
@@ -1329,6 +1334,7 @@ command.testExecute2=com.sun.ts.lib.harness.ExecTSTestCmd \
         ${RI_JAVA_HOME}/bin/java \
         ${JVMOPTS_RUNTESTCOMMAND} \
         -Dcts.tmp=$harness.temp.directory \
+        -DnoSecurityManager=true \
         -Djava.protocol.handler.pkgs=javax.net.ssl \
         -Djavax.net.ssl.keyStore=${bin.dir}/certificates/clientcert.jks \
         -Djavax.net.ssl.keyStorePassword=changeit \

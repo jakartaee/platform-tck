@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Copyright (c) 2022 Contributors to the Eclipse Foundation
-# Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
-# Copyright (c) 2019, 2022 Payara Foundation and/or its affiliates. All rights reserved.
+# Copyright (c) 2022, 2023 Contributors to the Eclipse Foundation
+# Copyright (c) 2018, 2023 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2019, 2023 Payara Foundation and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -51,9 +51,17 @@ if [ -z "${GF_VI_TOPLEVEL_DIR}" ]; then
     export GF_VI_TOPLEVEL_DIR=glassfish7
 fi
 
-if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]];then
-  export JAVA_HOME=${JDK17_HOME}
+
+if [[ "$JDK" == "JDK19" || "$JDK" == "jdk19" ]];then
+  wget -q https://download.java.net/java/GA/jdk19.0.2/fdb695a9d9064ad6b064dc6df578380c/7/GPL/openjdk-19.0.2_linux-x64_bin.tar.gz -O jdk-19.tar.gz
+  tar -xvf jdk-19.tar.gz
+  export JAVA_HOME=$PWD/jdk-19.0.2
+elif [[ "$JDK" == "JDK20" || "$JDK" == "jdk20" ]];then
+  export JAVA_HOME=${JDK20_HOME}
+elif [[ "$JDK" == "JDK21" || "$JDK" == "jdk21" ]];then
+  export JAVA_HOME=${JDK21_HOME}
 fi
+
 export PATH=$JAVA_HOME/bin:$PATH
 
 export ANT_OPTS="-Xmx2G \
@@ -279,13 +287,13 @@ if [[ $test_suite == ejb30/lite* ]] || [[ "ejb30" == $test_suite ]] ; then
 fi
 
 # do ts.jte parameter substitution here of ${JVMOPTS_RUNTESTCOMMAND}
-if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]];then
-  echo "update ts.jte for GlassFish to use --add-opens options for Java SE 17"
-  search="..JVMOPTS_RUNTESTCOMMAND."
-  replace="--add-opens=java.base\\/java.io=ALL-UNNAMED --add-opens=java.base\\/java.lang=ALL-UNNAMED --add-opens=java.base\\/java.util=ALL-UNNAMED --add-opens=java.base\\/sun.net.www.protocol.jrt=ALL-UNNAMED --add-opens=java.naming\\/javax.naming.spi=ALL-UNNAMED --add-opens=java.rmi\\/sun.rmi.transport=ALL-UNNAMED --add-opens=jdk.management\\/com.sun.management.internal=ALL-UNNAMED --add-exports=java.naming\\/com.sun.jndi.ldap=ALL-UNNAMED"
-  sed -i.bak "s/$search/$replace/" ${TS_HOME}/bin/ts.jte
-  echo "updated ts.jte to use -add-opens for Java SE 17 "
-fi
+#if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]];then
+echo "update ts.jte for GlassFish to use --add-opens options for Java SE 17"
+search="..JVMOPTS_RUNTESTCOMMAND."
+replace="--add-opens=java.base\\/java.io=ALL-UNNAMED --add-opens=java.base\\/java.lang=ALL-UNNAMED --add-opens=java.base\\/java.util=ALL-UNNAMED --add-opens=java.base\\/sun.net.www.protocol.jrt=ALL-UNNAMED --add-opens=java.naming\\/javax.naming.spi=ALL-UNNAMED --add-opens=java.rmi\\/sun.rmi.transport=ALL-UNNAMED --add-opens=jdk.management\\/com.sun.management.internal=ALL-UNNAMED --add-exports=java.naming\\/com.sun.jndi.ldap=ALL-UNNAMED"
+sed -i.bak "s/$search/$replace/" ${TS_HOME}/bin/ts.jte
+echo "updated ts.jte to use -add-opens for Java SE "
+#fi
 
 echo "Configuring VI domain at ${CTS_HOME}/ri/${GF_VI_TOPLEVEL_DIR}/glassfish/domains/domain1"
 if [ -n "$GF_LOGGING_CFG_VI" ]; then

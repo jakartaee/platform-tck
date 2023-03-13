@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2013, 2022 Oracle and/or its affiliates and others.
+# Copyright (c) 2013, 2023 Oracle and/or its affiliates and others.
 # All rights reserved.
 #
 # This program and the accompanying materials are made available under the
@@ -122,7 +122,7 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
                     windir=${windir} \
                     SYSTEMROOT=${SYSTEMROOT} \
                     ${JAVA_HOME}/bin/java \
-                    ${JAVA_OPTIONS} $testExecuteClass $testExecuteArgs
+                    ${JAVA_OPTIONS} -DnoSecurityManager=true $testExecuteClass $testExecuteArgs
 
 
 ########################################################
