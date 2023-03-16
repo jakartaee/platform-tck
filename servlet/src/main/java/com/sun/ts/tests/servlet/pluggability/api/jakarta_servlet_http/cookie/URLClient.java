@@ -345,7 +345,6 @@ public class URLClient extends AbstractUrlClient {
    * sent back to client and client verifies them
    */
   @Test
-  @Disabled
   public void setMaxAgePositiveTest() throws Exception {
     // version 0 cookie
     String testName = "setMaxAgePositiveTest";

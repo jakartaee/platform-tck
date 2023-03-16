@@ -303,7 +303,6 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Servlet sets values and client verifies them
    */
   @Test
-  @Disabled
   public void setMaxAgePositiveTest() throws Exception {
     String testName = "setMaxAgePositiveTest";
     HttpResponse response = null;
