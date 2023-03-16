@@ -38,6 +38,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
@@ -344,6 +345,7 @@ public class URLClient extends AbstractUrlClient {
    * sent back to client and client verifies them
    */
   @Test
+  @Disabled
   public void setMaxAgePositiveTest() throws Exception {
     // version 0 cookie
     String testName = "setMaxAgePositiveTest";

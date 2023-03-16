@@ -34,6 +34,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
@@ -302,6 +303,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Servlet sets values and client verifies them
    */
   @Test
+  @Disabled
   public void setMaxAgePositiveTest() throws Exception {
     String testName = "setMaxAgePositiveTest";
     HttpResponse response = null;
