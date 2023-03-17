@@ -51,7 +51,7 @@ public class URLClient extends AbstractUrlClient {
    */
   @Deployment(testable = false)
   public static WebArchive getTestArchive() throws Exception {
-    return ShrinkWrap.create(WebArchive.class, "servlet_jsh_readlistener1.war")
+    return ShrinkWrap.create(WebArchive.class, "servlet_jsh_readlistener1_web.war")
             .addAsLibraries(CommonServlets.getCommonServletsArchive())
             .addClasses(TestServlet.class, TestListener.class);
   }
