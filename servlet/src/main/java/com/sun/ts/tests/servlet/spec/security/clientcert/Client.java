@@ -32,8 +32,6 @@ import org.slf4j.LoggerFactory;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -45,7 +43,6 @@ import java.net.URLConnection;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.KeyStore;
@@ -53,11 +50,7 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
 import java.time.Duration;
-import java.util.AbstractMap;
-import java.util.Collection;
-import java.util.Map;
 import java.util.Properties;
 
 import static org.apache.commons.io.FileUtils.readFileToByteArray;
@@ -79,38 +72,45 @@ public class Client extends AbstractUrlClient {
     @Deployment(testable = false, name = "webapp-https")
     @TargetsContainer("https")
     public static WebArchive getTestArchive() throws Exception {
+        System.setProperty("jdk.internal.httpclient.disableHostnameVerification", Boolean.TRUE.toString());
 
-        {
-            // specific glassfish
-            File clientKeyStoreFile = new File("target/test-classes/certificates/clientcert.jks");
-            assertTrue(clientKeyStoreFile.exists());
-
-            File clientPublicCertFile = new File("target/test-classes/certificates/cts_cert");
-            assertTrue(clientPublicCertFile.exists());
-
-            Path trustStorePath = Paths.get(System.getProperty("keystore.path"));
-            assertNotNull(trustStorePath);
-            assertTrue(Files.exists(trustStorePath));
-
-            Collection<? extends Certificate> clientPublicCertificates;
-            try {
-                clientPublicCertificates = CertificateFactory.getInstance("X.509")
-                        .generateCertificates(new ByteArrayInputStream(readFileToByteArray(clientPublicCertFile)));
-            } catch (CertificateException | IOException e) {
-                throw new IllegalStateException(e);
-            }
-
-            for (Certificate certificate : clientPublicCertificates) {
-                addCertificateToContainerTrustStore("tcktest", certificate);
-            }
-
-            LOGGER.info("Using truststore from: {}", trustStorePath.toAbsolutePath());
-
-            System.setProperty("javax.net.ssl.keyStore", clientKeyStoreFile.getAbsolutePath());
-            System.setProperty("javax.net.ssl.keyStorePassword", "changeit");
-            System.setProperty("javax.net.ssl.trustStore", trustStorePath.toAbsolutePath().toString());
-            System.setProperty("jdk.tls.client.protocols", "TLSv1.2");
-        }
+//        try {
+//            // specific glassfish so ignore any issue with
+//            File clientKeyStoreFile = new File("target/test-classes/certificates/clientcert.jks");
+//            assertTrue(clientKeyStoreFile.exists());
+//            System.setProperty("javax.net.ssl.keyStore", clientKeyStoreFile.getAbsolutePath());
+//            System.setProperty("javax.net.ssl.keyStorePassword", "changeit");
+//
+//            File clientPublicCertFile = new File("target/test-classes/certificates/cts_cert");
+//            assertTrue(clientPublicCertFile.exists());
+//
+//            Collection<? extends Certificate> clientPublicCertificates;
+//            try {
+//                clientPublicCertificates = CertificateFactory.getInstance("X.509")
+//                        .generateCertificates(new ByteArrayInputStream(readFileToByteArray(clientPublicCertFile)));
+//            } catch (CertificateException | IOException e) {
+//                throw new IllegalStateException(e);
+//            }
+//
+//            for (Certificate certificate : clientPublicCertificates) {
+//                addCertificateToContainerTrustStore("tcktest", certificate);
+//            }
+//
+//            String keystorePath = System.getProperty("keystore.path");
+//            if (keystorePath!=null) {
+//                Path trustStorePath = Paths.get(keystorePath);
+//                assertNotNull(trustStorePath);
+//                assertTrue(Files.exists(trustStorePath));
+//
+//                LOGGER.info("Using truststore from: {}", trustStorePath.toAbsolutePath());
+//
+//                System.setProperty("javax.net.ssl.trustStore", trustStorePath.toAbsolutePath().toString());
+//            }
+//
+//            System.setProperty("jdk.tls.client.protocols", "TLSv1.2");
+//        } catch (Throwable e) {
+//            LOGGER.debug("ignore glassfish specific", e);
+//        }
         return ShrinkWrap.create(WebArchive.class, "clientcert_web.war")
                 .addClasses(ServletSecTestServlet.class)
                 .addAsWebInfResource("com/sun/ts/tests/servlet/spec/security/clientcert/clientcert_web.war.sun-web.xml",
@@ -201,8 +201,7 @@ public class Client extends AbstractUrlClient {
         if ("localhost".equals(hostname)) {
             hostnameVerifier = HttpsURLConnection.getDefaultHostnameVerifier();
             //for localhost testing only
-            HttpsURLConnection
-                    .setDefaultHostnameVerifier((hostname, sslSession) -> hostname.equals("localhost")? true : false);
+            HttpsURLConnection.setDefaultHostnameVerifier((hostname, sslSession) -> hostname.equals("localhost"));
         }
 
         p.setProperty(webHostProp, hostname);

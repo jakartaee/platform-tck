@@ -109,7 +109,7 @@ public class Client extends AbstractUrlClient {
 
     p.setProperty(webHostProp, hostname);
 
-    portnum = urlHttps.getPort();// Integer.parseInt(p.getProperty("securedWebServicePort"));
+    portnum = urlHttps.getPort();
     p.setProperty("securedWebServicePort", Integer.toString(portnum));
     tlsVersion = p.getProperty("client.cert.test.jdk.tls.client.protocols");
 
