@@ -259,16 +259,6 @@ public class Client extends AbstractUrlClient {
         }
 
         URL newURL = new URL(url);
-
-        logger.debug("use url: {}", newURL);
-
-        HttpRequest httpRequest = HttpRequest.newBuilder(new URI(url)).timeout(Duration.ofSeconds(5)).build();
-
-        HttpResponse<String> response = HttpClient.newHttpClient().send(httpRequest, HttpResponse.BodyHandlers.ofString());
-        logger.debug("response: {}", response.body());
-
-
-
         // open HttpsURLConnection using TSHttpsURLConnection
         URLConnection httpsURLConn = getHttpsURLConnection(newURL);
         try (InputStream content = httpsURLConn.getInputStream();
