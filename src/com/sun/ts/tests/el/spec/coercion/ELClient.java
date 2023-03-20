@@ -1752,7 +1752,7 @@ public class ELClient extends ServiceEETest {
   public void elCoerceLambdaExpressionToFunctionalInterfaceTest() throws Fault {
 
     boolean fail = false;
-    boolean[] pass = { false, false, false, false, false };
+    boolean[] pass = { false, false, false, false, false, false };
     Object result = null;
 
     try {
@@ -1796,6 +1796,12 @@ public class ELClient extends ServiceEETest {
       elp4.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClient", "testPredicateString");
       result = elp4.eval("testPredicateString(x -> x.compareTo(1234) == 0)");
       pass[4] = ExprEval.compareClass(result, String.class) && ExprEval.compareValue(result, "BLOCK");
+
+      // Coercible lambda expression with coercible type but coercion rules mean this test fails
+      ELProcessor elp5 = new ELProcessor();
+      elp5.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClient", "testPredicateLong");
+      result = elp5.eval("testPredicateLong(x -> x.compareTo('1234') == 0)");
+      pass[5] = ExprEval.compareClass(result, String.class) && ExprEval.compareValue(result, "BLOCK");
 
     } catch (Exception e) {
       TestUtil.logErr("Testing coercion of lambda expressions to functional interfaces " +
