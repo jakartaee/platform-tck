@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -1760,40 +1760,42 @@ public class ELClient extends ServiceEETest {
       ELProcessor elp0 = new ELProcessor();
       elp0.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClient", "testPredicateString");
       result = elp0.eval("testPredicateString(x -> x.equals('data'))");
-      pass[0] = ExprEval.compareClass(result, String.class)
-          && ExprEval.compareValue(result, "PASS");
+      pass[0] = ExprEval.compareClass(result, String.class) && ExprEval.compareValue(result, "PASS");
       
       // Coercible lambda expression where filter does not match
       ELProcessor elp1 = new ELProcessor();
       elp1.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClient", "testPredicateString");
       result = elp1.eval("testPredicateString(x -> x.equals('other'))");
-      pass[1] = ExprEval.compareClass(result, String.class)
-          && ExprEval.compareValue(result, "BLOCK");
+      pass[1] = ExprEval.compareClass(result, String.class) && ExprEval.compareValue(result, "BLOCK");
 
       // Not a lambda expression
       ELProcessor elp2 = new ELProcessor();
       elp2.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClient", "testPredicateString");
       try {
-        result = elp2.eval("testPredicateString('notLambdaExpression)");
+        result = elp2.eval("testPredicateString('notLambdaExpression')");
       } catch (ELException e) {
         pass[2] = true;
       }
 
+      /*
+       * Note: The following tests use compareTo(). When the target object (Long or String) is examined by reflection
+       * both compareTo(Object) and compareTo(Long)/compareTo(String) methods will be found as potential matches. The
+       * method matching rules (see section 1.2.1.2 of the specification) require that overload resolution has a higher
+       * precedence than coercion resolution so it is always the compareTo(Object) method that will be used for the
+       * followingtests.
+       */
+
       // Coercible lambda expression with wrong type
       ELProcessor elp3 = new ELProcessor();
-      elp3.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClient", "testPredicateString");
-      try {
-        result = elp3.eval("testPredicateLong(x -> x.equals('data'))");
-      } catch (ELException e) {
-        pass[3] = true;
-      }
+      elp3.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClient", "testPredicateLong");
+      result = elp3.eval("testPredicateLong(x -> x.compareTo('data') == 0)");
+      pass[3] = ExprEval.compareClass(result, String.class) && ExprEval.compareValue(result, "BLOCK");
       
       // Coercible lambda expression where filter does not match and parameter needs to be coerced
       ELProcessor elp4 = new ELProcessor();
       elp4.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClient", "testPredicateString");
-      result = elp4.eval("testPredicateString(x -> x.equals(1234))");
-      pass[4] = ExprEval.compareClass(result, String.class)
-          && ExprEval.compareValue(result, "BLOCK");
+      result = elp4.eval("testPredicateString(x -> x.compareTo(1234) == 0)");
+      pass[4] = ExprEval.compareClass(result, String.class) && ExprEval.compareValue(result, "BLOCK");
 
     } catch (Exception e) {
       TestUtil.logErr("Testing coercion of lambda expressions to functional interfaces " +
