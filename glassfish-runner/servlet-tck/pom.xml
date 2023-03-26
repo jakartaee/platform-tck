@@ -88,7 +88,7 @@
                 <glassfish.bin.directory>${glassfish.home}/bin</glassfish.bin.directory>
                 <!-- home depends on version number -->
                 <glassfish.home>${glassfish.root}/glassfish6</glassfish.home>
-                <glassfish.version>7.0.2</glassfish.version>
+                <glassfish.version>6.2.5</glassfish.version>
                 <classesNamesTests></classesNamesTests>
                 <http2.timeout></http2.timeout>
                 <fork.argLine>-Xmx4g -Xms4g</fork.argLine>
