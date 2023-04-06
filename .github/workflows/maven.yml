@@ -41,11 +41,15 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
+      - name: Set up Maven
+        run:
+          mvn --errors --batch-mode --show-version org.apache.maven.plugins:maven-wrapper-plugin:3.1.0:wrapper -Dmaven=3.9.1
+
       - name: Install legacy javatest jar
-        run: mvn -ntp install:install-file -Dfile=./lib/javatest.jar -DgroupId=javatest -DartifactId=javatest -Dversion=5.0 -Dpackaging=jar
+        run: ./mvnw -e -ntp install:install-file -Dfile=./lib/javatest.jar -DgroupId=javatest -DartifactId=javatest -Dversion=5.0 -Dpackaging=jar
 
       - name: Build TCK Run with Maven
-        run: mvn -V -B -U -am clean install -e -pl :servlet-tck -am -Pglassfish-ci-managed -Pglassfish-runner -B -Dmaven.test.failure.ignore=true
+        run: ./mvnw -e -V -B -U -am clean install -e -pl :servlet-tck -am -Pglassfish-ci-managed -Pglassfish-runner -B -Dmaven.test.failure.ignore=true
 
       - name: Publish Test Report
         uses: scacap/action-surefire-report@v1
