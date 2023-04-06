@@ -71,17 +71,19 @@ public class URLClient extends AbstractUrlClient {
    */
   @Test
   public void nioInputTest1() throws Exception {
-    Boolean passed = true;
+    boolean passed = true;
     int sleepInSeconds = Integer
-        .parseInt(_props.getProperty("servlet_async_wait").trim());
+            .parseInt(_props.getProperty("servlet_async_wait").trim());
     String testName = "nioInputTest1";
     String EXPECTED_RESPONSE = "Test PASSED|NullPointerException";
 
-    String requestUrl = getContextRoot() + "/" + getServletName() + "?testname=" + testName;
+    //BufferedReader input = null;
+
+    String requestUrl = "http://" + _hostname + ":" + _port +  getContextRoot() + "/" + getServletName() + "?testname="
+            + testName;
+    URL url = new URL(requestUrl);
 
     try {
-      URL url = getURL("http", _hostname, _port, requestUrl.substring(1));
-
       HttpURLConnection conn = (HttpURLConnection) url.openConnection();
       logger.trace("======= Connecting {}", url.toExternalForm());
       conn.setChunkedStreamingMode(5);
@@ -91,9 +93,7 @@ public class URLClient extends AbstractUrlClient {
       logger.trace("======= Header {}", conn);
       conn.connect();
 
-      try (BufferedWriter output = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
-           BufferedReader input = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
-
+      try (BufferedWriter output = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()))) {
         try {
           String data = "Hello";
           output.write(data);
@@ -103,24 +103,27 @@ public class URLClient extends AbstractUrlClient {
           data = "World";
           output.write(data);
           output.flush();
+          output.close();
         } catch (Exception ex) {
           passed = false;
-          logger.error("======= Exception sending message: " + ex.getMessage(), ex);
+          logger.error("======= Exception sending message: " + ex.getMessage());
         }
-;
-        String line = null;
-        StringBuffer message_received = new StringBuffer();
 
-        while ((line = input.readLine()) != null) {
-          logger.trace("======= message received: {}", line);
-          message_received.append(line);
+        try (BufferedReader input = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+          String line;
+          StringBuilder message_received = new StringBuilder();
+
+          while ((line = input.readLine()) != null) {
+            logger.trace("======= message received: {}", line);
+            message_received.append(line);
+          }
+          passed = ServletTestUtil.compareString(EXPECTED_RESPONSE,
+                  message_received.toString());
         }
-        passed = ServletTestUtil.compareString(EXPECTED_RESPONSE,
-            message_received.toString());
       }
     } catch (Exception ex3) {
       passed = false;
-      logger.error("Test" + ex3.getMessage(), ex3);
+      logger.error("Test" + ex3.getMessage());
     }
 
     if (!passed) {
@@ -139,17 +142,16 @@ public class URLClient extends AbstractUrlClient {
    */
   @Test
   public void nioInputTest2() throws Exception {
-    Boolean passed = true;
+    boolean passed = true;
     int sleepInSeconds = Integer
-        .parseInt(_props.getProperty("servlet_async_wait").trim());
+            .parseInt(_props.getProperty("servlet_async_wait").trim());
     String testName = "nioInputTest2";
     String EXPECTED_RESPONSE = "Test PASSED|IllegalStateException";
 
-    String requestUrl = getContextRoot() + "/" + getServletName() + "?testname="
-        + testName;
-
-    URL url = getURL("http", _hostname, _port, requestUrl.substring(1));
+    String requestUrl = "http://" + _hostname + ":" + _port + getContextRoot() + "/" + getServletName() + "?testname="
+            + testName;
     try {
+      URL url = new URL(requestUrl);
 
       HttpURLConnection conn = (HttpURLConnection) url.openConnection();
       logger.trace("======= Connecting {}", url.toExternalForm());
@@ -160,38 +162,34 @@ public class URLClient extends AbstractUrlClient {
       logger.trace("======= Header {}", conn);
       conn.connect();
 
-      try (BufferedWriter output = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
-           BufferedReader input = new BufferedReader(
-                   new InputStreamReader(conn.getInputStream()))) {
+      try (BufferedWriter output = new BufferedWriter(
+              new OutputStreamWriter(conn.getOutputStream()))) {
+        String data = "Hello";
+        output.write(data);
+        output.flush();
+        Thread.sleep(sleepInSeconds * 1000);
 
-        try {
-          String data = "Hello";
-          output.write(data);
-          output.flush();
-          Thread.sleep(sleepInSeconds * 1000);
+        data = "World";
+        output.write(data);
+        output.flush();
+        output.close();
 
-          data = "World";
-          output.write(data);
-          output.flush();
-          output.close();
-        } catch (Exception ex) {
-          passed = false;
-          logger.error("======= Exception sending message: {}", ex.getMessage(), ex);
+        try (BufferedReader input = new BufferedReader(
+                new InputStreamReader(conn.getInputStream()))) {
+          String line;
+          StringBuilder message_received = new StringBuilder();
+
+          while ((line = input.readLine()) != null) {
+            logger.trace("======= message received: {}", line);
+            message_received.append(line);
+          }
+          passed = ServletTestUtil.compareString(EXPECTED_RESPONSE,
+                  message_received.toString());
         }
-
-        String line = null;
-        StringBuffer message_received = new StringBuffer();
-
-        while ((line = input.readLine()) != null) {
-          logger.trace("======= message received: {}", line);
-          message_received.append(line);
-        }
-        passed = ServletTestUtil.compareString(EXPECTED_RESPONSE,
-            message_received.toString());
       }
     } catch (Exception ex3) {
       passed = false;
-      logger.error("Test:" + ex3.getMessage(), ex3);
+      logger.error("Test" + ex3.getMessage());
     }
 
     if (!passed) {
