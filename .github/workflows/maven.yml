@@ -52,6 +52,6 @@ jobs:
         run: ./mvnw -e -V -B -U -am clean install -e -pl :servlet-tck -am -Pglassfish-ci-managed -Pglassfish-runner -B -Dmaven.test.failure.ignore=true
 
       - name: Publish Test Report
-        uses: scacap/action-surefire-report@v1
+        uses: ScaCap/action-surefire-report@v1.7.0
         with:
           report_paths: '**/target/surefire-reports/TEST-**.xml'
