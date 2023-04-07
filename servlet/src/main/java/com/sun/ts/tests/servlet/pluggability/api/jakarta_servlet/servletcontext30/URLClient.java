@@ -85,6 +85,7 @@ public class URLClient extends AbstractUrlClient {
                     CreateFilter.class, CreateSCAttributeListener.class, CreateSCListener.class, CreateServlet.class, CreateSRAttributeListener.class,
                     CreateSRListener.class, DuplicateFilterClass.class, DuplicateFilterString.class, DuplicateServletClass.class, DuplicateServletString.class,
                     FilterTestServlet.class, TestListener.class, TestServlet.class)
+            .setWebXML(URLClient.class.getResource("web.xml"))
             .addAsLibraries(javaArchive);
   }
 
