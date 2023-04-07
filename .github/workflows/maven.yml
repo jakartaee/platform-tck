@@ -48,7 +48,7 @@ jobs:
       - name: Install legacy javatest jar
         run: ./mvnw -e -ntp install:install-file -Dfile=./lib/javatest.jar -DgroupId=javatest -DartifactId=javatest -Dversion=5.0 -Dpackaging=jar
 
-      - name: Build TCK Run with Maven
+      - name: Build & Run TCK Servlet TCK
         run: ./mvnw -e -V -B -U -am clean install -e -pl :servlet-tck -am -Pglassfish-ci-managed -Pglassfish-runner -B -Dmaven.test.failure.ignore=true
 
       - name: Publish Test Report
