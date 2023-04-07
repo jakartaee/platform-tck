@@ -23,6 +23,8 @@ permissions:
   security-events: read
   contents: write
   actions: read
+  id-token: write
+  checks: write
 
 jobs:
   build:
