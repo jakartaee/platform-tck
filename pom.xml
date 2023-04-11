@@ -432,9 +432,7 @@
             <dependency>
                 <groupId>javatest</groupId>
                 <artifactId>javatest</artifactId>
-                <version>1.0</version>
-                <scope>system</scope>
-                <systemPath>${basedir}/../lib/javatest.jar</systemPath>
+                <version>${javatest.version}</version>
             </dependency>
 
             <dependency>
