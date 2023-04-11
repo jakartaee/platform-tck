@@ -92,6 +92,7 @@
         <webservices-osgi.version>3.0.0</webservices-osgi.version>
         <webservices-tools.version>3.0.0</webservices-tools.version>
         <javatest.version>5.0</javatest.version>
+        <slf4j.version>2.0.0</slf4j.version>
     </properties>
 
     <modules>
@@ -116,7 +117,7 @@
         <module>jacc</module>
         <module>javaee</module>
         <module>javamail</module>
-        <module>jaxrs-platform-tck</module>
+        <module>jaxrs</module>
         <module>jaxws-common</module>
         <module>jaxws</module>
         <module>jdbc</module>
@@ -399,9 +400,24 @@
             </dependency>
             
             <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
                 <version>5.9.1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            
+
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>1.7.0.Alpha10</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
