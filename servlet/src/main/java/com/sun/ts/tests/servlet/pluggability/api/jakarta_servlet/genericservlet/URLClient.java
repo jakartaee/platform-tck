@@ -19,35 +19,48 @@
  */
 package com.sun.ts.tests.servlet.pluggability.api.jakarta_servlet.genericservlet;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
+import com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpservlet.ServiceTestServlet;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.genericservlet.DestroyTestServlet;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.genericservlet.InitServletExceptionTestServlet;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.genericservlet.InitTestServlet;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.genericservlet.Init_ServletConfigServletExceptionTestServlet;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.genericservlet.Init_ServletConfigTestServlet;
+//import com.sun.ts.tests.servlet.api.jakarta_servlet.genericservlet.ServiceTestServlet;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.genericservlet.ServletErrorPage;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.genericservlet.TestServlet;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import com.sun.ts.tests.servlet.pluggability.common.RequestListener1;
+import com.sun.ts.tests.servlet.pluggability.common.TestServlet1;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+  @BeforeEach
+  public void setupServletName() throws Exception {
+    setServletName("TestServlet");
   }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setServletName("TestServlet");
-    setContextRoot("/servlet_plu_genericservlet_web");
-
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    JavaArchive javaArchive = ShrinkWrap.create(JavaArchive.class, "fragment-1.jar")
+            .addClasses(TestServlet1.class, RequestListener1.class)
+            .addAsResource(URLClient.class.getResource("servlet_plu_genericservlet_web-fragment.xml"),
+                    "META-INF/web-fragment.xml");
+    return ShrinkWrap.create(WebArchive.class, "servlet_plu_genericservlet_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(DestroyTestServlet.class, Init_ServletConfigServletExceptionTestServlet.class,
+                    Init_ServletConfigTestServlet.class, InitServletExceptionTestServlet.class,
+                    InitTestServlet.class, ServiceTestServlet.class, ServletErrorPage.class, TestServlet.class)
+            .addAsLibraries(javaArchive);
   }
 
   /*
@@ -66,6 +79,7 @@ public class URLClient extends AbstractUrlClient {
    * destroy method
    *
    */
+  @Test
   public void destroyTest() throws Exception {
     String testName = "destroyTest";
     TEST_PROPS.setProperty(TEST_NAME, testName);
@@ -88,6 +102,7 @@ public class URLClient extends AbstractUrlClient {
    * object existence
    *
    */
+  @Test
   public void getServletConfigTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getServletConfigTest");
     invoke();
@@ -102,6 +117,7 @@ public class URLClient extends AbstractUrlClient {
    * object existence
    *
    */
+  @Test
   public void getServletContextTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getServletContextTest");
     invoke();
@@ -116,6 +132,7 @@ public class URLClient extends AbstractUrlClient {
    * object values
    *
    */
+  @Test
   public void getServletInfoTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getServletInfoTest");
     invoke();
@@ -128,6 +145,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Servlet tries to access a parameter that exists
    */
+  @Test
   public void getInitParameterTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getInitParameterTest");
     invoke();
@@ -140,6 +158,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Servlet tries to get all parameter names
    */
+  @Test
   public void getInitParameterNamesTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getInitParameterNamesTest");
     invoke();
@@ -152,6 +171,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Servlet gets name of servlet
    */
+  @Test
   public void getServletNameTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getServletNameTest");
     invoke();
@@ -164,6 +184,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Servlet throws a ServletException
    */
+  @Test
   public void initServletExceptionTest() throws Exception {
     String testName = "initServletExceptionTest";
     TEST_PROPS.setProperty(TEST_NAME, testName);
@@ -183,6 +204,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Servlet has init method that puts a value into the context.
    * Servlet when called reads value from context
    */
+  @Test
   public void initTest() throws Exception {
     String testName = "initTest";
     TEST_PROPS.setProperty(TEST_NAME, testName);
@@ -198,6 +220,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Servlet throws a ServletException
    */
+  @Test
   public void init_ServletConfigServletExceptionTest() throws Exception {
     String testName = "init_ServletConfigServletExceptionTest";
     TEST_PROPS.setProperty(TEST_NAME, testName);
@@ -217,6 +240,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Servlet has init method that puts a value into the context.
    * Servlet when called reads value from context
    */
+  @Test
   public void init_ServletConfigTest() throws Exception {
     String testName = "init_ServletConfigTest";
     TEST_PROPS.setProperty(TEST_NAME, testName);
@@ -232,6 +256,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Servlet which has a service method that is called
    */
+  @Test
   public void serviceTest() throws Exception {
     String testName = "serviceTest";
     TEST_PROPS.setProperty(TEST_NAME, testName);

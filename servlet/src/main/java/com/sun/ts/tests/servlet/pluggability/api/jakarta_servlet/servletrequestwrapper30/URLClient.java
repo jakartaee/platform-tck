@@ -19,36 +19,42 @@
  */
 package com.sun.ts.tests.servlet.pluggability.api.jakarta_servlet.servletrequestwrapper30;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequest30.AsyncTestServlet;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequest30.AsyncTests;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequest30.SecondServlet;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequest30.TestServlet;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequestwrapper30.AsyncTestServletWrapper;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequestwrapper30.ErrorServletWrapper;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequestwrapper30.TestServletWrapper;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import com.sun.ts.tests.servlet.pluggability.common.RequestListener1;
+import com.sun.ts.tests.servlet.pluggability.common.TestServlet1;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  private static final String CONTEXT_ROOT = "/servlet_plu_servletrequestwrapper30_web";
 
   /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
+   * Deployment for the test
    */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    JavaArchive javaArchive1 = ShrinkWrap.create(JavaArchive.class, "fragment-1.jar")
+            .addClasses(TestServlet1.class, RequestListener1.class)
+            .addAsResource(URLClient.class.getResource("servlet_plu_servletrequestwrapper30_web-fragment.xml"),
+                    "META-INF/web-fragment.xml");
+    return ShrinkWrap.create(WebArchive.class, "servlet_plu_servletrequestwrapper30_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(AsyncTestServletWrapper.class, ErrorServletWrapper.class, TestServletWrapper.class,
+                    TestServlet.class, AsyncTestServlet.class, AsyncTests.class, SecondServlet.class)
+            .addAsLibraries(javaArchive1);
   }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-    setContextRoot(CONTEXT_ROOT);
-
-    return super.run(args, out, err);
-  }
 
   /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
@@ -66,6 +72,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletContext instance is consistent with the one stored in
    * ServletConfigs.
    */
+  @Test
   public void getServletContextTest() throws Exception {
     setServletName("TestServletWrapper");
     TEST_PROPS.setProperty(APITEST, "getServletContextTest");
@@ -85,6 +92,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequestWrapper.getDispatcherType() verifies that
    * DispatcherType.REQUEST is returned.
    */
+  @Test
   public void getDispatcherTypeTestRequest() throws Exception {
     setServletName("TestServletWrapper");
     TEST_PROPS.setProperty(APITEST, "getDispatcherTypeTestRequest");
@@ -102,6 +110,7 @@ public class URLClient extends AbstractUrlClient {
    * call ServletRequestWrapper.getDispatcherType() verifies that
    * DispatcherType.FORWARD is returned.
    */
+  @Test
   public void getDispatcherTypeTestForward() throws Exception {
     setServletName("TestServletWrapper");
     TEST_PROPS.setProperty(APITEST, "getDispatcherTypeTestForward");
@@ -119,6 +128,7 @@ public class URLClient extends AbstractUrlClient {
    * call ServletRequestWrapper.getDispatcherType() verifies that
    * DispatcherType.INCLUDE is returned.
    */
+  @Test
   public void getDispatcherTypeTestInclude() throws Exception {
     setServletName("TestServletWrapper");
     TEST_PROPS.setProperty(APITEST, "getDispatcherTypeTestInclude");
@@ -137,6 +147,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequestWrapper.getDispatcherType() verifies that
    * DispatcherType.ERROR is returned.
    */
+  @Test
   public void getDispatcherTypeTestError() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET " + getContextRoot() + "/nowheretobefound/  HTTP/1.1");
@@ -159,6 +170,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequestWrapper.getDispatcherType() verifies that
    * DispatcherType.ASYNC is returned.
    */
+  @Test
   public void getDispatcherTypeTestAsync() throws Exception {
     setServletName("AsyncTestServletWrapper");
     TEST_PROPS.setProperty(APITEST, "getDispatcherTypeTestAsync");
@@ -177,6 +189,7 @@ public class URLClient extends AbstractUrlClient {
    * StartAsync in AsyncTestServlet ServletRequestWrapper.startAsync(); call
    * ServletRequestWrapper.isAsyncStarted() verifies that true is returned.
    */
+  @Test
   public void asyncStartedTest1() throws Exception {
     setServletName("AsyncTestServletWrapper");
     TEST_PROPS.setProperty(APITEST, "asyncStartedTest1");
@@ -195,6 +208,7 @@ public class URLClient extends AbstractUrlClient {
    * call ServletRequestWrapper.isAsyncStarted() without start async mode
    * verifies that false is returned.
    */
+  @Test
   public void asyncStartedTest2() throws Exception {
     setServletName("AsyncTestServletWrapper");
     TEST_PROPS.setProperty(APITEST, "asyncStartedTest2");
@@ -215,6 +229,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequestWrapper.isAsyncStarted() after AsyncContext.complete() called
    * verifies that true is returned before it dispatch return to the container
    */
+  @Test
   public void asyncStartedTest3() throws Exception {
     setServletName("AsyncTestServletWrapper");
     TEST_PROPS.setProperty(APITEST, "asyncStartedTest3");
@@ -235,6 +250,7 @@ public class URLClient extends AbstractUrlClient {
    * AsyncTests using AsyncContext.dispatch(String) call
    * ServletRequestWrapper.isAsyncStarted() verifies that false is returned.
    */
+  @Test
   public void asyncStartedTest4() throws Exception {
     setServletName("AsyncTestServletWrapper");
     TEST_PROPS.setProperty(APITEST, "asyncStartedTest4");
@@ -252,6 +268,7 @@ public class URLClient extends AbstractUrlClient {
    * AsyncTestServlet; Client send a request to AsyncTestServletWrapper; call
    * ServletRequestWrapper.isAsyncSupported() verifies that true is returned.
    */
+  @Test
   public void isAsyncSupportedTest1() throws Exception {
     setServletName("AsyncTestServletWrapper");
     TEST_PROPS.setProperty(APITEST, "isAsyncSupportedTest");
@@ -269,6 +286,7 @@ public class URLClient extends AbstractUrlClient {
    * request to TestServletWrapper; call
    * ServletRequestWrapper.isAsyncSupported() verifies that false is returned.
    */
+  @Test
   public void isAsyncSupportedTest2() throws Exception {
     setServletName("TestServletWrapper");
     TEST_PROPS.setProperty(APITEST, "isAsyncSupportedTest");
@@ -286,6 +304,7 @@ public class URLClient extends AbstractUrlClient {
    * request to TestServletWrapper; call ServletRequestWrapper.startAsyncTest()
    * verifies that IllegalStateException is thrown.
    */
+  @Test
   public void startAsyncTest1() throws Exception {
     setServletName("TestServletWrapper");
     TEST_PROPS.setProperty(APITEST, "startAsyncTest");
@@ -305,6 +324,7 @@ public class URLClient extends AbstractUrlClient {
    * AsyncContext.dispatch(String) Call ServletRequestWrapper.startAsyncTest()
    * outside of dispatch verifies that IllegalStateException is thrown.
    */
+  @Test
   public void startAsyncTest2() throws Exception {
     setServletName("AsyncTestServletWrapper");
     TEST_PROPS.setProperty(APITEST, "startAsyncTest");
@@ -324,6 +344,7 @@ public class URLClient extends AbstractUrlClient {
    * Async in AsyncTestServlet; call ServletRequestWrapper.getAsyncContext()
    * verifies it works.
    */
+  @Test
   public void getAsyncContextTest() throws Exception {
     setServletName("AsyncTestServletWrapper");
     TEST_PROPS.setProperty(APITEST, "getAsyncContextTest");

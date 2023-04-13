@@ -60,6 +60,7 @@ package com.sun.ts.tests.servlet.api.jakarta_servlet.servletrequestwrapper;
 
 import java.io.IOException;
 
+import com.sun.ts.tests.servlet.common.servlets.RequestTestServlet;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
@@ -67,7 +68,7 @@ import jakarta.servlet.ServletRequestWrapper;
 import jakarta.servlet.ServletResponse;
 
 public class TestServlet
-    extends com.sun.ts.tests.servlet.api.common.request.RequestTestServlet {
+    extends RequestTestServlet {
 
   public void init(ServletConfig servletConfig) throws ServletException {
     super.init(servletConfig);

@@ -13,51 +13,39 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-
 /*
  * $Id:$
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpservletresponse30;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
-import com.sun.ts.tests.servlet.api.common.response.HttpResponseClient;
+import com.sun.ts.tests.servlet.common.response.HttpResponseClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends HttpResponseClient {
 
-  private static final String CONTEXT_ROOT = "/servlet_jsh_httpservletresponse30_web";
+    @BeforeEach
+    public void setupServletName() throws Exception {
+        setServletName("TestServlet");
+    }
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    /**
+     * Deployment for the test
+     */
+    @Deployment(testable = false)
+    public static WebArchive getTestArchive() throws Exception {
+        return ShrinkWrap.create(WebArchive.class, "servlet_jsh_httpservletresponse30_web.war").addAsLibraries(CommonServlets.getCommonServletsArchive()).setWebXML(URLClient.class.getResource("servlet_jsh_httpservletresponse30_web.xml"));
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setServletName("TestServlet");
-    setContextRoot(CONTEXT_ROOT);
-
-    return super.run(args, out, err);
-  }
-
-  /*
+    /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
    */
-
-  /* Run test */
-  /*
+    /* Run test */
+    /*
    * @testName: getHeadersTest
    *
    * @assertion_ids: Servlet:JAVADOC:523; Servlet:JAVADOC:525;
@@ -66,8 +54,7 @@ public class URLClient extends HttpResponseClient {
    * @test_Strategy: Create a Servlet, In the servlet, set a header value; then
    * add multiple values to it; verify that getHeaders(String) works properly
    */
-
-  /*
+    /*
    * @testName: getHeaderTest
    *
    * @assertion_ids: Servlet:JAVADOC:523; Servlet:JAVADOC:523;
@@ -76,8 +63,7 @@ public class URLClient extends HttpResponseClient {
    * @test_Strategy: Create a Servlet, In the servlet, set a header value; then
    * add multiple values to it; verify that getHeader(String) works properly
    */
-
-  /*
+    /*
    * @testName: getHeaderNamesTest
    *
    * @assertion_ids: Servlet:JAVADOC:520; Servlet:JAVADOC:522;
@@ -89,8 +75,7 @@ public class URLClient extends HttpResponseClient {
    * #setIntHeader, and #addIntHeader, verify that getHeaderNames() works
    * properly
    */
-
-  /*
+    /*
    * @testName: getStatusTest
    *
    * @assertion_ids: Servlet:JAVADOC:780;
@@ -98,4 +83,23 @@ public class URLClient extends HttpResponseClient {
    * @test_Strategy: Create a Servlet, In the servlet, set a status value;
    * verify that getStatus() works properly
    */
+    @Test()
+    public void getHeaderNamesTest() throws Exception {
+        super.getHeaderNamesTest();
+    }
+
+    @Test()
+    public void getHeaderTest() throws Exception {
+        super.getHeaderTest();
+    }
+
+    @Test()
+    public void getHeadersTest() throws Exception {
+        super.getHeadersTest();
+    }
+
+    @Test()
+    public void getStatusTest() throws Exception {
+        super.getStatusTest();
+    }
 }

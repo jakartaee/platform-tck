@@ -32,7 +32,6 @@
 
     <name>lib util</name>
     <description>contains com.sun.ts.lib.util</description>
-
     <dependencies>
         <dependency>
             <groupId>org.apache.ant</groupId>

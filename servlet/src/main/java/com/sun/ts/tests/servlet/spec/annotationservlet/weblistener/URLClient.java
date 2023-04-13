@@ -19,34 +19,31 @@
  */
 package com.sun.ts.tests.servlet.spec.annotationservlet.weblistener;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+  @BeforeEach
+  public void setupServletName() throws Exception {
+    setServletName("TestServlet");
   }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-    setServletName("TestServlet");
-    setContextRoot("/servlet_annotationservlet_weblistener_web");
-
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_annotationservlet_weblistener_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(ContextListener.class, HSAttributeListener.class, HSListener.class, HttpTestServlet.class,
+                    SCAttributeListener.class, SRAttributeListener.class, SRListener.class, TestServlet.class)
+            .setWebXML(URLClient.class.getResource("servlet_annotationservlet_weblistener_web.xml"));
   }
 
   /*
@@ -64,6 +61,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletContextListener using @WebListener; Send request to TestServlet;
    * Veriy ServletContextListener is invoked properly.
    */
+  @Test
   public void ContextListenerTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "ContextListenerTest");
     TEST_PROPS.setProperty(SEARCH_STRING, "ContextInitialized");
@@ -79,6 +77,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletContextAttributeListener using @WebListener; Send request to
    * TestServlet; Veriy ServletContextAttributeListener is invoked properly.
    */
+  @Test
   public void ContextAttributeListenerTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "ContextAttributeListenerTest");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -97,6 +96,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequestListener using @WebListener; Send request to TestServlet;
    * Veriy ServletRequestListener is invoked properly.
    */
+  @Test
   public void RequsetListenerTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "RequsetListenerTest");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -114,6 +114,7 @@ public class URLClient extends AbstractUrlClient {
    * Send a second request to TestServlet; Veriy ServletRequestListener is
    * invoked properly.
    */
+  @Test
   public void RepeatRequsetListenerTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "RepeatRequsetListenerTest");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -137,6 +138,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequestListener using @WebListener; Send request to TestServlet;
    * Veriy ServletRequestListener is invoked properly.
    */
+  @Test
   public void RequsetAttributeListenerTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "RequsetAttributeListenerTest");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -154,6 +156,7 @@ public class URLClient extends AbstractUrlClient {
    * Create a HttpSession and then invlalidate it; Veriy HttpSessionListener is
    * invoked properly.
    */
+  @Test
   public void HttpSessionListenerTest() throws Exception {
     setServletName("HttpTestServlet");
     TEST_PROPS.setProperty(APITEST, "HttpSessionListenerTest");
@@ -176,6 +179,7 @@ public class URLClient extends AbstractUrlClient {
    * Verification of; the 3 triggered event methods is then checked in the 2nd;
    * invocation to HttpSessionAttributeListenerTest below.
    */
+  @Test
   public void HttpSessionAttributeListenerTest() throws Exception {
 
     // first invocation is to do some session attribute manipulations

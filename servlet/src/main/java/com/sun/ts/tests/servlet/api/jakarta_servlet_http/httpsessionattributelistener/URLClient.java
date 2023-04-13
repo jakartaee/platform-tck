@@ -20,36 +20,30 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpsessionattributelistener;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
+  @BeforeEach
+  public void setupServletName() throws Exception {
     setServletName("TestServlet");
-    setContextRoot("/servlet_jsh_httpsessionattributelistener_web");
-
-    return super.run(args, out, err);
   }
 
+  /**
+   * Deployment for the test
+   */
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_jsh_httpsessionattributelistener_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(HSAttributeListener.class, TestServlet.class)
+            .setWebXML(URLClient.class.getResource("servlet_jsh_httpsessionattributelistener_web.xml"));
+  }
   /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
    *
@@ -67,7 +61,7 @@ public class URLClient extends AbstractUrlClient {
    * then reads the log and verifies the result
    *
    */
-
+  @Test
   public void attributeAddedTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "attributeAddedTest");
     invoke();
@@ -82,7 +76,7 @@ public class URLClient extends AbstractUrlClient {
    * listener should detect the changes and writes a message out to a static
    * log. Servlet then reads the log and verifies the result
    */
-
+  @Test
   public void attributeRemovedTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "attributeRemovedTest");
     invoke();
@@ -97,7 +91,7 @@ public class URLClient extends AbstractUrlClient {
    * listener should detect the changes and writes a message out to a static
    * log. Servlet then reads the log and verifies the result
    */
-
+  @Test
   public void attributeReplacedTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "attributeReplacedTest");
     invoke();

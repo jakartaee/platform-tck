@@ -70,8 +70,7 @@ public class WebUtil {
    * testDriver object. The test method is "discovered" at runtime using the
    * reflection API. The testDriver could be any java object.
    */
-  public static Properties executeTest(Object testDriver, TSNamingContext nctx,
-      HttpServletRequest req) throws ServletException {
+  public static Properties executeTest(Object testDriver, HttpServletRequest req) throws ServletException {
 
     Boolean pass = Boolean.FALSE;
     Properties webProps = null;

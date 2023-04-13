@@ -24,35 +24,30 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletoutputstream;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+  @BeforeEach
+  public void setupServletName() throws Exception {
+    setServletName("TestServlet");
   }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setContextRoot("/servlet_js_servletoutputstream_web");
-    setServletName("TestServlet");
-
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_js_servletoutputstream_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(TestServlet.class)
+            .setWebXML(URLClient.class.getResource("servlet_js_servletoutputstream_web.xml"));
   }
 
   /*
@@ -69,7 +64,7 @@ public class URLClient extends AbstractUrlClient {
    *
    * @test_Strategy: Test for print(java.lang.String s) method
    */
-
+  @Test
   public void print_StringTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "some text");
 
@@ -84,12 +79,11 @@ public class URLClient extends AbstractUrlClient {
    *
    * @test_Strategy: Test for print(boolean b) method
    */
-
+  @Test
   public void print_booleanTest() throws Exception {
     String s = Boolean.TRUE.toString();
 
-    StringBuffer ss = new StringBuffer(s);
-    ss = ss.append(s);
+    StringBuffer ss = new StringBuffer(s).append(s);
 
     TEST_PROPS.setProperty(SEARCH_STRING, ss.toString());
 
@@ -104,7 +98,7 @@ public class URLClient extends AbstractUrlClient {
    *
    * @test_Strategy: Test for print(char c) method
    */
-
+  @Test
   public void print_charTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "TEXT");
 
@@ -119,7 +113,7 @@ public class URLClient extends AbstractUrlClient {
    *
    * @test_Strategy: Test for print(double d) method
    */
-
+  @Test
   public void print_doubleTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "12345.612345.6");
 
@@ -134,7 +128,7 @@ public class URLClient extends AbstractUrlClient {
    *
    * @test_Strategy: Test for println(float f) method
    */
-
+  @Test
   public void print_floatTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "1234.51234.5");
 
@@ -149,7 +143,7 @@ public class URLClient extends AbstractUrlClient {
    *
    * @test_Strategy: Test for print(integer i) method
    */
-
+  @Test
   public void print_intTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "11");
 
@@ -164,7 +158,7 @@ public class URLClient extends AbstractUrlClient {
    *
    * @test_Strategy: Test for print(long l) method
    */
-
+  @Test
   public void print_longTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "12345678901234567890");
 
@@ -180,7 +174,7 @@ public class URLClient extends AbstractUrlClient {
    *
    * @test_Strategy: Test for println () method
    */
-
+  @Test
   public void printlnTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "some test");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "some test text");
@@ -196,7 +190,7 @@ public class URLClient extends AbstractUrlClient {
    *
    * @test_Strategy: Test for println(java.lang.String s) method
    */
-
+  @Test
   public void println_StringTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "some|text");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "sometext");
@@ -212,7 +206,7 @@ public class URLClient extends AbstractUrlClient {
    *
    * @test_Strategy: Test for println(boolean b) method
    */
-
+  @Test
   public void println_booleanTest() throws Exception {
     String s = Boolean.TRUE.toString();
 
@@ -233,7 +227,7 @@ public class URLClient extends AbstractUrlClient {
    *
    * @test_Strategy: Test for println(char c) method
    */
-
+  @Test
   public void println_charTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "T|E|X|T");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "TEXT");
@@ -249,7 +243,7 @@ public class URLClient extends AbstractUrlClient {
    *
    * @test_Strategy: Test for println(double d) method
    */
-
+  @Test
   public void println_doubleTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "12345.6");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "12345.612345.6");
@@ -265,7 +259,7 @@ public class URLClient extends AbstractUrlClient {
    *
    * @test_Strategy: Test for print(float f) method
    */
-
+  @Test
   public void println_floatTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "1234.5");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "1234.51234.5");
@@ -281,7 +275,7 @@ public class URLClient extends AbstractUrlClient {
    *
    * @test_Strategy: Test for println(integer i) method
    */
-
+  @Test
   public void println_intTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "1");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "11");
@@ -297,7 +291,7 @@ public class URLClient extends AbstractUrlClient {
    *
    * @test_Strategy: Test for println(long l) method
    */
-
+  @Test
   public void println_longTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "1234567890");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "12345678901234567890");

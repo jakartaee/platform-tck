@@ -19,36 +19,32 @@
  */
 package com.sun.ts.tests.servlet.spec.srlistener;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+  @BeforeEach
+  public void setupServletName() throws Exception {
+    setServletName("TestServlet");
   }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setServletName("TestServlet");
-    setContextRoot("/servlet_spec_srlistener_web");
-
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_spec_srlistener_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(ForwardedServlet.class, IncludedServlet.class, SecondForwardedServlet.class,
+                    SecondIncludedServlet.class, SRListener.class, TestServlet.class)
+            .setWebXML(URLClient.class.getResource("servlet_spec_srlistener_web.xml"));
   }
 
   /*
@@ -65,6 +61,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy:
    */
+  @Test
   public void simpleinclude() throws Exception {
     Boolean pass = true;
     try {
@@ -72,7 +69,7 @@ public class URLClient extends AbstractUrlClient {
       TEST_PROPS.setProperty(SEARCH_STRING,
           "IncludedServlet Invoked|simple method");
       invoke();
-    } catch (Fault flt) {
+    } catch (Exception flt) {
       pass = false;
       TestUtil.logErr("Test failed at the first invocation."
           + "catch it here so the cleanup can continue", flt);
@@ -93,6 +90,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy:
    */
+  @Test
   public void multipleincludes() throws Exception {
     Boolean pass = true;
     try {
@@ -100,7 +98,7 @@ public class URLClient extends AbstractUrlClient {
       TEST_PROPS.setProperty(SEARCH_STRING,
           "SecondIncludedServlet Invoked|simple method");
       invoke();
-    } catch (Fault flt) {
+    } catch (Exception flt) {
       pass = false;
       TestUtil.logErr("Test failed at the first invocation."
           + "catch it here so the cleanup can continue", flt);
@@ -122,6 +120,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy:
    */
+  @Test
   public void includeforward() throws Exception {
     Boolean pass = true;
     try {
@@ -129,7 +128,7 @@ public class URLClient extends AbstractUrlClient {
       TEST_PROPS.setProperty(SEARCH_STRING,
           "ForwardedServlet Invoked|simple method");
       invoke();
-    } catch (Fault flt) {
+    } catch (Exception flt) {
       pass = false;
       TestUtil.logErr("Test failed at the first invocation."
           + "catch it here so the cleanup can continue", flt);
@@ -151,6 +150,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy:
    */
+  @Test
   public void includeerror() throws Exception {
     Boolean pass = true;
     try {
@@ -158,7 +158,7 @@ public class URLClient extends AbstractUrlClient {
           + "/TestServlet?testname=includeerror HTTP/1.1");
       TEST_PROPS.setProperty(STATUS_CODE, "403");
       invoke();
-    } catch (Fault flt) {
+    } catch (Exception flt) {
       pass = false;
       TestUtil.logErr("Test failed at the first invocation."
           + "catch it here so the cleanup can continue", flt);
@@ -180,6 +180,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy:
    */
+  @Test
   public void simpleforward() throws Exception {
     Boolean pass = true;
     try {
@@ -187,7 +188,7 @@ public class URLClient extends AbstractUrlClient {
       TEST_PROPS.setProperty(SEARCH_STRING,
           "ForwardedServlet Invoked|simple method");
       invoke();
-    } catch (Fault flt) {
+    } catch (Exception flt) {
       pass = false;
       TestUtil.logErr("Test failed at the first invocation."
           + "catch it here so the cleanup can continue", flt);
@@ -209,6 +210,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy:
    */
+  @Test
   public void multipleforwards() throws Exception {
     Boolean pass = true;
     try {
@@ -216,7 +218,7 @@ public class URLClient extends AbstractUrlClient {
       TEST_PROPS.setProperty(SEARCH_STRING,
           "SecondForwardedServlet Invoked|simple method");
       invoke();
-    } catch (Fault flt) {
+    } catch (Exception flt) {
       pass = false;
       TestUtil.logErr("Test failed at the first invocation."
           + "catch it here so the cleanup can continue", flt);
@@ -238,6 +240,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy:
    */
+  @Test
   public void forwardinclude() throws Exception {
     Boolean pass = true;
     try {
@@ -245,7 +248,7 @@ public class URLClient extends AbstractUrlClient {
       TEST_PROPS.setProperty(SEARCH_STRING,
           "IncludedServlet Invoked|simple method");
       invoke();
-    } catch (Fault flt) {
+    } catch (Exception flt) {
       pass = false;
       TestUtil.logErr("Test failed at the first invocation."
           + "catch it here so the cleanup can continue", flt);
@@ -267,6 +270,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy:
    */
+  @Test
   public void forwarderror() throws Exception {
     Boolean pass = true;
     try {
@@ -274,7 +278,7 @@ public class URLClient extends AbstractUrlClient {
           + "/TestServlet?testname=forwarderror HTTP/1.1");
       TEST_PROPS.setProperty(STATUS_CODE, "403");
       invoke();
-    } catch (Fault flt) {
+    } catch (Exception flt) {
       pass = false;
       TestUtil.logErr("Test failed at the first invocation."
           + "catch it here so the cleanup can continue", flt);
@@ -296,6 +300,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy:
    */
+  @Test
   public void simpleasync() throws Exception {
     Boolean pass = true;
     try {
@@ -303,7 +308,7 @@ public class URLClient extends AbstractUrlClient {
       TEST_PROPS.setProperty(SEARCH_STRING,
           "TestServlet Invoked|method async|TestServlet_Async=STARTED");
       invoke();
-    } catch (Fault flt) {
+    } catch (Exception flt) {
       pass = false;
       TestUtil.logErr("Test failed at the first invocation."
           + "catch it here so the cleanup can continue", flt);
@@ -325,6 +330,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy:
    */
+  @Test
   public void simpleasyncinclude() throws Exception {
     Boolean pass = true;
     try {
@@ -334,7 +340,7 @@ public class URLClient extends AbstractUrlClient {
               + "|TestServlet_Async=STARTED"
               + "|IncludedServlet Invoked||simple method");
       invoke();
-    } catch (Fault flt) {
+    } catch (Exception flt) {
       pass = false;
       TestUtil.logErr("Test failed at the first invocation."
           + "catch it here so the cleanup can continue", flt);
@@ -356,6 +362,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy:
    */
+  @Test
   public void simpleasyncforward() throws Exception {
     Boolean pass = true;
     try {
@@ -363,7 +370,7 @@ public class URLClient extends AbstractUrlClient {
       TEST_PROPS.setProperty(SEARCH_STRING,
           "ForwardedServlet Invoked||simple method");
       invoke();
-    } catch (Fault flt) {
+    } catch (Exception flt) {
       pass = false;
       TestUtil.logErr("Test failed at the first invocation."
           + "catch it here so the cleanup can continue", flt);
@@ -385,6 +392,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy:
    */
+  @Test
   public void simpleasyncerror() throws Exception {
     Boolean pass = true;
     try {
@@ -392,7 +400,7 @@ public class URLClient extends AbstractUrlClient {
           + "/TestServlet?testname=simpleasyncerror HTTP/1.1");
       TEST_PROPS.setProperty(STATUS_CODE, "403");
       invoke();
-    } catch (Fault flt) {
+    } catch (Exception flt) {
       pass = false;
       TestUtil.logErr("Test failed at the first invocation."
           + "catch it here so the cleanup can continue", flt);
@@ -414,6 +422,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy:
    */
+  @Test
   public void error() throws Exception {
     Boolean pass = true;
     try {
@@ -422,7 +431,7 @@ public class URLClient extends AbstractUrlClient {
 
       TEST_PROPS.setProperty(STATUS_CODE, "403");
       invoke();
-    } catch (Fault flt) {
+    } catch (Exception flt) {
       pass = false;
       TestUtil.logErr("Test failed at the first invocation."
           + "catch it here so the cleanup can continue", flt);

@@ -19,34 +19,44 @@
  */
 package com.sun.ts.tests.servlet.pluggability.api.jakarta_servlet.dofilter;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.dofilter.CTSResponseWrapper;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.dofilter.ForwardedServlet;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.dofilter.IncludedServlet;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.dofilter.TestServlet;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.dofilter.WrapResponseFilter;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import com.sun.ts.tests.servlet.pluggability.common.RequestListener1;
+import com.sun.ts.tests.servlet.pluggability.common.TestServlet1;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.dofilter.SetHeaderResponseFilter;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+  @BeforeEach
+  public void setupServletName() throws Exception {
+    setServletName("TestServlet");
   }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-    setContextRoot("/servlet_plu_dofilter_web");
-    setServletName("TestServlet");
-
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    JavaArchive javaArchive = ShrinkWrap.create(JavaArchive.class, "fragment-1.jar")
+            .addClasses(TestServlet1.class, RequestListener1.class)
+            .addAsResource(URLClient.class.getResource("servlet_plu_dofilter_web-fragment.xml"),
+                    "META-INF/web-fragment.xml");
+    return ShrinkWrap.create(WebArchive.class, "servlet_plu_dofilter_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(SetHeaderResponseFilter.class, WrapResponseFilter.class, TestServlet.class,
+                    IncludedServlet.class, ForwardedServlet.class, CTSResponseWrapper.class)
+            .addAsLibraries(javaArchive);
   }
 
   /*
@@ -66,6 +76,7 @@ public class URLClient extends AbstractUrlClient {
    * wrap the response with custom implementation of ServletResponse
    * CTSResponseWrapper 5. Verify that filter is properly invoked.
    */
+  @Test
   public void wrapResponseTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "wrapResponseTest");
     TEST_PROPS.setProperty(SEARCH_STRING,

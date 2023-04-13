@@ -27,6 +27,8 @@ import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class AddFilterString implements Filter {
 
@@ -34,14 +36,16 @@ public final class AddFilterString implements Filter {
   // is null, this filter instance is not currently configured.
   private FilterConfig filterConfig = null;
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(AddFilterString.class);
+
   public void doFilter(ServletRequest request, ServletResponse response,
       FilterChain chain) throws IOException, ServletException {
 
     if (filterConfig == null) {
-      System.out.println(
+      LOGGER.info(
           "doFilter of AddFilterString was called but this filter instance is not currently configured");
     } else {
-      System.out.println("ADD_FILTER_STRING_INVOKED");
+      LOGGER.info("ADD_FILTER_STRING_INVOKED");
     }
 
     chain.doFilter(request, response);

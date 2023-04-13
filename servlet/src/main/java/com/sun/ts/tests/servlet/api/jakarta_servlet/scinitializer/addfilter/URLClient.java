@@ -19,35 +19,33 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addfilter;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+
+  @BeforeEach
+  public void setupServletName() throws Exception {
+    setServletName("TestServlet");
   }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setContextRoot("/servlet_sci_addfilter_web");
-    setServletName("TestServlet");
-
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_sci_addfilter_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addAsResource(URLClient.class.getResource("jakarta.servlet.ServletContainerInitializer"),
+                    "META-INF/services/jakarta.servlet.ServletContainerInitializer")
+            .addClasses(AddFilterString.class, TCKServletContainerInitializer.class, TestListener.class, TestServlet.class)
+            .setWebXML(URLClient.class.getResource("servlet_sci_addfilter_web.xml"));
   }
 
   /*
@@ -64,6 +62,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletContextListener call ServletContext.addFilter(String, String) Verify
    * that UnsupportedOperationException is thrown.
    */
+  @Test
   public void addFilterTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "addFilterTest");
     invoke();

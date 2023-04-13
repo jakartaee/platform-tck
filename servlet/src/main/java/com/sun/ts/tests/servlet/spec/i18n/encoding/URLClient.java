@@ -20,34 +20,30 @@
 
 package com.sun.ts.tests.servlet.spec.i18n.encoding;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+
+  @BeforeEach
+  public void setupServletName() throws Exception {
+    setServletName("TestServlet");
   }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setServletName("TestServlet");
-    setContextRoot("/servlet_spec_i18n_encoding_web");
-
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_spec_i18n_encoding_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(TestServlet.class)
+            .setWebXML(URLClient.class.getResource("servlet_spec_i18n_encoding_web.xml"));
   }
 
   /*
@@ -65,6 +61,7 @@ public class URLClient extends AbstractUrlClient {
    *
    * @test_Strategy:
    */
+  @Test
   public void spec1Test() throws Exception {
     TEST_PROPS.setProperty(APITEST, "spec1Test");
     invoke();
@@ -78,6 +75,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy:
    */
+  @Test
   public void spec2Test() throws Exception {
     TEST_PROPS.setProperty(APITEST, "spec2Test");
     invoke();
@@ -91,6 +89,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy:
    */
+  @Test
   public void spec3Test() throws Exception {
     TEST_PROPS.setProperty(APITEST, "spec3Test");
     invoke();

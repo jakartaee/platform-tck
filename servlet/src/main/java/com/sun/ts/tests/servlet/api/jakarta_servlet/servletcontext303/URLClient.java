@@ -19,35 +19,35 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext303;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
+import com.sun.ts.tests.servlet.api.common.sharedfiles.SCAttributeListener;
+import com.sun.ts.tests.servlet.api.common.sharedfiles.SCListener;
+import com.sun.ts.tests.servlet.api.common.sharedfiles.SRAttributeListener;
+import com.sun.ts.tests.servlet.api.common.sharedfiles.SRListener;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+  @BeforeEach
+  public void setupServletName() throws Exception {
+    setServletName("TestServlet");
   }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setContextRoot("/servlet_js_servletcontext303_web");
-    setServletName("TestServlet");
-
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_js_servletcontext303_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(TestServlet.class, SRAttributeListener.class, SRListener.class, SRListener.class,
+                    SCAttributeListener.class, SCListener.class)
+            .setWebXML(URLClient.class.getResource("servlet_js_servletcontext303_web.xml"));
   }
 
   /*
@@ -64,6 +64,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequestAttributeListener is added; Verify in servlet that
    * java.lang.IllegalStateException is thrown.
    */
+  @Test
   public void negativeaddSRAListenerClassTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "negativeaddSRAListenerClassTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "SRAttributeListener");
@@ -79,6 +80,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequestAttributeListener is added; Verify in servlet that
    * java.lang.IllegalStateException is thrown.
    */
+  @Test
   public void negativeaddSRAListenerStringTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "negativeaddSRAListenerStringTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "SRAttributeListener");
@@ -93,6 +95,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Create a Servlet, in which, a ServletRequestListener is
    * added; Verify in servlet that java.lang.IllegalStateException is thrown.
    */
+  @Test
   public void negativeaddSRListenerClassTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "negativeaddSRListenerClassTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "SRListener");
@@ -107,6 +110,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Create a Servlet, in which, a ServletRequestListener is
    * added; Verify in servlet that java.lang.IllegalStateException is thrown.
    */
+  @Test
   public void negativeaddSRListenerStringTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "negativeaddSRListenerStringTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "SRListener");
@@ -122,6 +126,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletContextAttributeListener is added; Verify in servlet that
    * java.lang.IllegalStateException is thrown.
    */
+  @Test
   public void negativeaddSCAListenerClassTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "negativeaddSCAListenerClassTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "SRListener");
@@ -137,6 +142,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletContextAttributeListener is added; Verify in servlet that
    * java.lang.IllegalStateException is thrown.
    */
+  @Test
   public void negativeaddSCAListenerStringTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "negativeaddSCAListenerStringTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "SCAttributeListener");
@@ -151,6 +157,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Create a Servlet, in which, a ServletContextListener is
    * added; Verify in servlet that java.lang.IllegalStateException is thrown.
    */
+  @Test
   public void negativeaddSCListenerClassTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "negativeaddSCListenerClassTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "SCListener");
@@ -165,6 +172,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Create a Servlet, in which, a ServletContextListener is
    * added; Verify in servlet that java.lang.IllegalStateException is thrown.
    */
+  @Test
   public void negativeaddSCListenerStringTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "negativeaddSCListenerStringTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "SCListener");

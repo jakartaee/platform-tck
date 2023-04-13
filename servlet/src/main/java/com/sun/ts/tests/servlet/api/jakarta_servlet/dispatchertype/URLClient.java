@@ -20,34 +20,31 @@
 
 package com.sun.ts.tests.servlet.api.jakarta_servlet.dispatchertype;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+  @BeforeEach
+  public void setupServletName() throws Exception {
+    setServletName("TestServlet");
   }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-    setContextRoot("/servlet_js_dispatchertype_web");
-    setServletName("TestServlet");
-
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_js_dispatchertype_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClass(TestServlet.class)
+            .setWebXML(URLClient.class.getResource("servlet_js_dispatchertype_web.xml"));
   }
 
   /*
@@ -65,7 +62,7 @@ public class URLClient extends AbstractUrlClient {
    * to TestServlet 3. In TestServlet, call DispatcherType.values 4. Verify that
    * DispatcherType.values works properly.
    */
-
+  @Test
   public void valuesTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "valuesTest");
     invoke();
@@ -80,7 +77,7 @@ public class URLClient extends AbstractUrlClient {
    * to TestServlet 3. In TestServlet, call DispatcherType.valueOf 4. Verify
    * that DispatcherType.valueOf works properly.
    */
-
+  @Test
   public void valueOfTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "valueOfTest");
     invoke();
@@ -95,7 +92,7 @@ public class URLClient extends AbstractUrlClient {
    * 4. Verify that DispatcherType.valueOf throws NullPointerException when name
    * is null
    */
-
+  @Test
   public void valueOfNullTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "valueOfNullTest");
     invoke();
@@ -110,7 +107,7 @@ public class URLClient extends AbstractUrlClient {
    * 4. Verify that DispatcherType.valueOf throws IllegalArgumentException when
    * name is invalid Dispatcher type
    */
-
+  @Test
   public void valueOfInvalidTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "valueOfInvalidTest");
     invoke();

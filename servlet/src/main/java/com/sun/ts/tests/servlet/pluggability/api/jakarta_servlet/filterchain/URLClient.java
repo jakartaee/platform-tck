@@ -19,34 +19,35 @@
  */
 package com.sun.ts.tests.servlet.pluggability.api.jakarta_servlet.filterchain;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.filterchain.FilterChainTestServlet;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.filterchain.FilterChain_Filter1;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.filterchain.FilterChain_Filter2;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import com.sun.ts.tests.servlet.pluggability.common.RequestListener1;
+import com.sun.ts.tests.servlet.pluggability.common.TestServlet1;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setContextRoot("/servlet_plu_filterchain_web");
-
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    JavaArchive javaArchive = ShrinkWrap.create(JavaArchive.class, "fragment-1.jar")
+            .addClasses(TestServlet1.class, RequestListener1.class)
+            .addAsResource(URLClient.class.getResource("servlet_plu_filterchain_web-fragment.xml"),
+                    "META-INF/web-fragment.xml");
+    return ShrinkWrap.create(WebArchive.class, "servlet_plu_filterchain_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(FilterChain_Filter1.class, FilterChain_Filter2.class, FilterChainTestServlet.class)
+            .addAsLibraries(javaArchive);
   }
 
   /*
@@ -62,6 +63,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Client attempts to access a servlet and both filters
    * configured for that servlet should be invoked.
    */
+  @Test
   public void filterChainTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "FilterChainTest");
     invoke();

@@ -78,5 +78,6 @@
         <module>jaxrs-tck</module>
         <module>jsonp-tck</module>
         <module>jsonb-tck</module>
+        <module>servlet-tck</module>
     </modules>
 </project>

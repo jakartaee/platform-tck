@@ -32,8 +32,8 @@ public class TestListener implements ServletContextListener {
     StringBuffer testData = new StringBuffer("Testing_Session_Cookie_Config");
     String domain = "sun.com";
     String path = "/servlet_jsh_sessioncookieconfig_web/TestServlet";
-    Boolean isSecure = true;
-    Boolean httpOnly = false;
+    boolean isSecure = true;
+    boolean httpOnly = false;
     int maxage = 50000;
     String attrName = "a1";
     String attrValue= "b2";

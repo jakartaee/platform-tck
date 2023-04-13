@@ -13,18 +13,17 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-
 /*
  * $Id$
  */
-
 package com.sun.ts.tests.servlet.spec.security.secform;
 
-import java.io.PrintWriter;
+import com.sun.ts.tests.servlet.common.request.SecformClient;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
 import java.util.Properties;
-
-import com.sun.javatest.Status;
-import com.sun.ts.tests.common.jspservletsec.secformClient;
 
 /*
  * This  class uses the SecformClient to do most of its actual testing.
@@ -38,66 +37,41 @@ import com.sun.ts.tests.common.jspservletsec.secformClient;
  * the servlet under test is annotation or DD based.
  *
  */
-public class Client extends secformClient {
-  // Shared test variables:
-  private Properties props = null;
+public class Client extends SecformClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    // TOFIX
+    /**
+     * Deployment for the test
+     */
+    @Deployment(testable = false)
+    public static WebArchive getTestArchive() throws Exception {
+        return ShrinkWrap.create(WebArchive.class, "servlet_sec_secform_web.war").addAsWebResource("spec/security/secform/login.jsp", "login.jsp").addAsWebResource("spec/security/secform/error.jsp", "error.jsp").addClasses(allRolesTestServlet.class, ControlServlet.class, ForwardedServlet.class, GuestPageAnnoTestServlet.class, GuestPageTestServlet.class, IncludedServlet.class, OneTestServlet.class, RoleReverseTestServlet.class, RoleReverseAnnoTestServlet.class, SampleTestServlet.class, ServletProgrammaticAuthen.class, ServletProgrammaticLogin.class, ServletProgrammaticLogout.class, ServletSecAnnoTestServlet.class, ServletSecTestServlet.class, TwoTestServlet.class, UnProtectedAnnoTestServlet.class, UnProtectedTestServlet.class).setWebXML(Client.class.getResource("servlet_sec_secform_web.xml"));
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+    // Shared test variables:
+    private Properties props = null;
 
-    Client theTests = new Client();
-
-    return super.run(args, out, err);
-  }
-
-  // Note: To share the commoncode between servlet and JSP,
-  // the commoncode is kept under
-  // (TS_HOME)/src/com/sun/ts/tests/common/jspservletsec/secformClient.java
-  // This subclass(Client.java) is used to flag the superclass
-  // to run servlet related secform tests
-  //
-
-  /*
+    // Note: To share the commoncode between servlet and JSP,
+    // the commoncode is kept under
+    // (TS_HOME)/src/com/sun/ts/tests/common/jspservletsec/secformClient.java
+    // This subclass(Client.java) is used to flag the superclass
+    // to run servlet related secform tests
+    // 
+    /*
    * setup() passes "servlet" as the argument to its parent class setup()
    *
    */
-
-  /*
+    /*
    * @class.setup_props: webServerHost; webServerPort; user; password; authuser;
    * authpassword;
    *
    */
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
+    public void setup(String[] args, Properties p) throws Exception {
+        super.setup(args, p);
+        props = p;
+    }
 
-    // create newarguments to pass into superclass setup method.
-    String[] newargs = new String[2];
-
-    // "servlet" flag is passed to the superclass
-    String argExt = new String("servlet");
-    newargs[0] = argExt;
-    newargs[1] = argExt; // dummy argument
-
-    // Inform the super class to run JSP related tests
-    super.setup(newargs, p);
-  }
-
-  /*
+    /*
    * @testName: test1
    *
    * @assertion_ids: Servlet:SPEC:142; JavaEE:SPEC:21
@@ -111,8 +85,7 @@ public class Client extends secformClient {
    * isUserInRole() is still working properly.
    *
    */
-
-  /*
+    /*
    * @testName: test1_anno
    *
    * @assertion_ids: Servlet:SPEC:142; JavaEE:SPEC:21; Servlet:SPEC:290;
@@ -131,22 +104,22 @@ public class Client extends secformClient {
    * isUserInRole() is still working properly.
    *
    */
-  public void test1_anno() throws Exception {
-    // save off pageSec so that we can reuse it
-    String tempPageSec = pageSec;
-    pageSec = "/servlet_sec_secform_web/ServletSecAnnoTest";
-
-    try {
-      super.test1();
-    } catch (Fault e) {
-      throw e;
-    } finally {
-      // reset pageSec to orig value
-      pageSec = tempPageSec;
+    @Test
+    public void test1_anno() throws Exception {
+        // save off pageSec so that we can reuse it
+        String tempPageSec = pageSec;
+        pageSec = "/servlet_sec_secform_web/ServletSecAnnoTest";
+        try {
+            super.test1();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            // reset pageSec to orig value
+            pageSec = tempPageSec;
+        }
     }
-  }
 
-  /*
+    /*
    * @testName: test2
    *
    * @assertion_ids: Servlet:SPEC:142.4.3
@@ -156,8 +129,7 @@ public class Client extends secformClient {
    * page (make sure it is the expected error page)
    *
    */
-
-  /*
+    /*
    * @testName: test2_anno
    *
    * @assertion_ids: Servlet:SPEC:142.4.3; Servlet:SPEC:290; Servlet:SPEC:291;
@@ -171,22 +143,22 @@ public class Client extends secformClient {
    * the expected error page)
    *
    */
-  public void test2_anno() throws Exception {
-    // save off pageSec so that we can reuse it
-    String tempPageSec = pageSec;
-    pageSec = "/servlet_sec_secform_web/ServletSecAnnoTest";
-
-    try {
-      super.test2();
-    } catch (Fault e) {
-      throw e;
-    } finally {
-      // reset pageSec to orig value
-      pageSec = tempPageSec;
+    @Test
+    public void test2_anno() throws Exception {
+        // save off pageSec so that we can reuse it
+        String tempPageSec = pageSec;
+        pageSec = "/servlet_sec_secform_web/ServletSecAnnoTest";
+        try {
+            super.test2();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            // reset pageSec to orig value
+            pageSec = tempPageSec;
+        }
     }
-  }
 
-  /*
+    /*
    * @testName: test3
    *
    * @assertion_ids: Servlet:SPEC:142
@@ -202,8 +174,7 @@ public class Client extends secformClient {
    *
    *
    */
-
-  /*
+    /*
    * @testName: test3_anno
    *
    * @assertion_ids: Servlet:SPEC:142; Servlet:SPEC:290; Servlet:SPEC:291;
@@ -224,22 +195,22 @@ public class Client extends secformClient {
    * the javajoe user is set up properly.
    *
    */
-  public void test3_anno() throws Exception {
-    // save off pageGuest so that we can reuse it
-    String tempPageGuest = pageGuest;
-    pageGuest = "/servlet_sec_secform_web/GuestPageAnnoTest";
-
-    try {
-      super.test3();
-    } catch (Fault e) {
-      throw e;
-    } finally {
-      // reset pageGuest to orig value
-      pageGuest = tempPageGuest;
+    @Test
+    public void test3_anno() throws Exception {
+        // save off pageGuest so that we can reuse it
+        String tempPageGuest = pageGuest;
+        pageGuest = "/servlet_sec_secform_web/GuestPageAnnoTest";
+        try {
+            super.test3();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            // reset pageGuest to orig value
+            pageGuest = tempPageGuest;
+        }
     }
-  }
 
-  /*
+    /*
    * @testName: test4
    *
    * @assertion_ids: Servlet:SPEC:149;Servlet:SPEC:160;Servlet:SPEC:162
@@ -254,8 +225,7 @@ public class Client extends secformClient {
    * denied access to an unprotected page.
    *
    */
-
-  /*
+    /*
    * @testName: test4_anno
    *
    * @assertion_ids: Servlet:SPEC:149;Servlet:SPEC:160;Servlet:SPEC:162;
@@ -274,22 +244,22 @@ public class Client extends secformClient {
    * unprotected page.
    *
    */
-  public void test4_anno() throws Exception {
-    // save off pageSec so that we can reuse it
-    String tempPageSec = pageSec;
-    pageSec = "/servlet_sec_secform_web/ServletSecAnnoTest";
-
-    try {
-      super.test4();
-    } catch (Fault e) {
-      throw e;
-    } finally {
-      // reset pageSec to orig value
-      pageSec = tempPageSec;
+    @Test
+    public void test4_anno() throws Exception {
+        // save off pageSec so that we can reuse it
+        String tempPageSec = pageSec;
+        pageSec = "/servlet_sec_secform_web/ServletSecAnnoTest";
+        try {
+            super.test4();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            // reset pageSec to orig value
+            pageSec = tempPageSec;
+        }
     }
-  }
 
-  /*
+    /*
    * @testName: test5
    *
    * @assertion_ids: Servlet:JAVADOC:368; Servlet:JAVADOC:369;Servlet:SPEC:154.1
@@ -305,8 +275,7 @@ public class Client extends secformClient {
    * return null.
    *
    */
-
-  /*
+    /*
    * @testName: test5_anno
    *
    * @assertion_ids: Servlet:JAVADOC:368;
@@ -326,22 +295,22 @@ public class Client extends secformClient {
    * call to getRemoteUser() must return null.
    *
    */
-  public void test5_anno() throws Exception {
-    // save off pageUnprotected so that we can reuse it
-    String tempPageUnprotected = pageUnprotected;
-    pageUnprotected = "/servlet_sec_secform_web/UnProtectedAnnoTest";
-
-    try {
-      super.test5();
-    } catch (Fault e) {
-      throw e;
-    } finally {
-      // reset to orig value
-      pageUnprotected = tempPageUnprotected;
+    @Test
+    public void test5_anno() throws Exception {
+        // save off pageUnprotected so that we can reuse it
+        String tempPageUnprotected = pageUnprotected;
+        pageUnprotected = "/servlet_sec_secform_web/UnProtectedAnnoTest";
+        try {
+            super.test5();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            // reset to orig value
+            pageUnprotected = tempPageUnprotected;
+        }
     }
-  }
 
-  /*
+    /*
    * @testName: test6
    *
    * @assertion_ids: Servlet:SPEC:149
@@ -364,8 +333,7 @@ public class Client extends secformClient {
    * isUserInRole for all known roles)
    *
    */
-
-  /*
+    /*
    * @testName: test6_anno
    *
    * @assertion_ids: Servlet:SPEC:149; Servlet:SPEC:290; Servlet:SPEC:291;
@@ -393,22 +361,22 @@ public class Client extends secformClient {
    * isUserInRole for all known roles)
    *
    */
-  public void test6_anno() throws Exception {
-    // save off pageRoleReverse so that we can reuse it
-    String tempPageReverse = pageRoleReverse;
-    pageSec = "/servlet_sec_secform_web/RoleReverseAnnoTest";
-
-    try {
-      super.test6();
-    } catch (Fault e) {
-      throw e;
-    } finally {
-      // reset tempPageReverse to orig value
-      pageRoleReverse = tempPageReverse;
+    @Test
+    public void test6_anno() throws Exception {
+        // save off pageRoleReverse so that we can reuse it
+        String tempPageReverse = pageRoleReverse;
+        pageSec = "/servlet_sec_secform_web/RoleReverseAnnoTest";
+        try {
+            super.test6();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            // reset tempPageReverse to orig value
+            pageRoleReverse = tempPageReverse;
+        }
     }
-  }
 
-  /*
+    /*
    * @testName: test7
    *
    * @assertion_ids: Servlet:SPEC:89
@@ -419,8 +387,7 @@ public class Client extends secformClient {
    * the http return code, report test status
    *
    */
-
-  /*
+    /*
    * @testName: test8
    *
    * @assertion_ids: Servlet:SPEC:92.1
@@ -431,8 +398,7 @@ public class Client extends secformClient {
    * based on the http return code, report test status
    *
    */
-
-  /*
+    /*
    * @testName: test9
    *
    * @assertion_ids: Servlet:SPEC:134
@@ -447,13 +413,12 @@ public class Client extends secformClient {
    * used as a path mapping. 2) A string beginning with a *. prefix is used as
    * an extension mapping. 3) All other strings are used as exact matches only
    * 4) A string containing only the / character indicates that servlet
-   * specified by the mapping becomes the "default" servlet of the application.
+   * specified by the mapping becomes the "deException" servlet of the application.
    * In this case the servlet path is the request URI minus the context path and
    * the path info is null.
    *
    */
-
-  /*
+    /*
    * @testName: test10
    *
    * @assertion_ids: Servlet:SPEC:138; Servlet:SPEC:139; Servlet:SPEC:294;
@@ -468,8 +433,7 @@ public class Client extends secformClient {
    * properly)
    *
    */
-
-  /*
+    /*
    * @testName: test11
    *
    * @assertion_ids: Servlet:SPEC:150
@@ -488,10 +452,8 @@ public class Client extends secformClient {
    * as all roles.
    *
    */
-
-  /* ***NOTE:test12 is only for JSP */
-
-  /*
+    /* ***NOTE:test12 is only for JSP */
+    /*
    * @testName: test13
    *
    * @assertion_ids: Servlet:SPEC:137; JavaEE:SPEC:24
@@ -521,8 +483,7 @@ public class Client extends secformClient {
    * Note: test13 is ONLY for SERVLET Area
    *
    */
-
-  /*
+    /*
    * @testName: test14
    *
    * @assertion_ids: Servlet:SPEC:144
@@ -545,8 +506,7 @@ public class Client extends secformClient {
    * security identity.
    *
    */
-
-  /*
+    /*
    * @testName: test14_anno
    *
    * @assertion_ids: Servlet:SPEC:144; Servlet:SPEC:290; Servlet:SPEC:291;
@@ -572,22 +532,22 @@ public class Client extends secformClient {
    * permitted to the same security identity.
    *
    */
-  public void test14_anno() throws Exception {
-    // save off pageSec so that we can reuse it
-    String tempPageSec = pageSec;
-    pageSec = "/servlet_sec_secform_web/ServletSecAnnoTest";
-
-    try {
-      super.test14();
-    } catch (Fault e) {
-      throw e;
-    } finally {
-      // reset pageSec to orig value
-      pageSec = tempPageSec;
+    @Test
+    public void test14_anno() throws Exception {
+        // save off pageSec so that we can reuse it
+        String tempPageSec = pageSec;
+        pageSec = "/servlet_sec_secform_web/ServletSecAnnoTest";
+        try {
+            super.test14();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            // reset pageSec to orig value
+            pageSec = tempPageSec;
+        }
     }
-  }
 
-  /*
+    /*
    * @testName: test15
    *
    * @test_Strategy: This is similar to test14 except this is validating that we
@@ -604,8 +564,7 @@ public class Client extends secformClient {
    * requested(and restricted) form back from server.
    *
    */
-
-  /*
+    /*
    * @testName: test15_anno
    *
    * @assertion_ids: Servlet:SPEC:144; Servlet:SPEC:290; Servlet:SPEC:291;
@@ -630,22 +589,22 @@ public class Client extends secformClient {
    * requested(and restricted) form back from server.
    *
    */
-  public void test15_anno() throws Exception {
-    // save off pageSec so that we can reuse it
-    String tempPageSec = pageSec;
-    pageSec = "/servlet_sec_secform_web/ServletSecAnnoTest";
-
-    try {
-      super.test15();
-    } catch (Fault e) {
-      throw e;
-    } finally {
-      // reset pageSec to orig value
-      pageSec = tempPageSec;
+    @Test
+    public void test15_anno() throws Exception {
+        // save off pageSec so that we can reuse it
+        String tempPageSec = pageSec;
+        pageSec = "/servlet_sec_secform_web/ServletSecAnnoTest";
+        try {
+            super.test15();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            // reset pageSec to orig value
+            pageSec = tempPageSec;
+        }
     }
-  }
 
-  /*
+    /*
    * @testName: test16
    *
    * @assertion: Test ability to login via the HttpServletRequst.login() method.
@@ -664,8 +623,7 @@ public class Client extends secformClient {
    * see if we got desired output
    *
    */
-
-  /*
+    /*
    * @testName: test17
    *
    * @assertion: Test FORM-based authentication, specified in the Java Servlet
@@ -682,8 +640,7 @@ public class Client extends secformClient {
    * occurrred on pageServletProgLogout and that it actually did log us out.
    *
    */
-
-  /*
+    /*
    * @testName: test18
    *
    * @assertion: Test ability to authenticate using
@@ -703,5 +660,88 @@ public class Client extends secformClient {
    * see if we got desired output
    *
    */
+    @Test()
+    public void test1() throws Exception {
+        super.test1();
+    }
 
+    @Test()
+    public void test10() throws Exception {
+        super.test10();
+    }
+
+    @Test()
+    public void test11() throws Exception {
+        super.test11();
+    }
+
+    @Test()
+    public void test13() throws Exception {
+        super.test13();
+    }
+
+    @Test()
+    public void test14() throws Exception {
+        super.test14();
+    }
+
+    @Test()
+    public void test15() throws Exception {
+        super.test15();
+    }
+
+    @Test()
+    public void test16() throws Exception {
+        super.test16();
+    }
+
+    @Test()
+    public void test17() throws Exception {
+        super.test17();
+    }
+
+    @Test()
+    public void test18() throws Exception {
+        super.test18();
+    }
+
+    @Test()
+    public void test2() throws Exception {
+        super.test2();
+    }
+
+    @Test()
+    public void test3() throws Exception {
+        super.test3();
+    }
+
+    @Test()
+    public void test4() throws Exception {
+        super.test4();
+    }
+
+    @Test()
+    public void test5() throws Exception {
+        super.test5();
+    }
+
+    @Test()
+    public void test6() throws Exception {
+        super.test6();
+    }
+
+    @Test()
+    public void test7() throws Exception {
+        super.test7();
+    }
+
+    @Test()
+    public void test8() throws Exception {
+        super.test8();
+    }
+
+    @Test()
+    public void test9() throws Exception {
+        super.test9();
+    }
 }

@@ -19,33 +19,48 @@
  */
 package com.sun.ts.tests.servlet.spec.pluggability.ordering.test1;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.spec.pluggability.common.RequestListener;
+import com.sun.ts.tests.servlet.spec.pluggability.common.TestServlet4;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+  public static JavaArchive getFragment1() {
+    return ShrinkWrap.create(JavaArchive.class, "fragment-1.jar")
+            .addClasses(RequestListener.class, TestServlet4.class)
+            .addAsResource(URLClient.class.getResource("web-fragment_1.xml"),
+                    "META-INF/web-fragment.xml");
+  }
+
+  public static JavaArchive getFragment2() {
+    return ShrinkWrap.create(JavaArchive.class, "fragment-2.jar")
+            .addClasses(TestServlet4.class)
+            .addAsResource(URLClient.class.getResource("web-fragment_2.xml"),
+                    "META-INF/web-fragment.xml");
+  }
+
+  public static JavaArchive getFragment3() {
+    return ShrinkWrap.create(JavaArchive.class, "fragment-3.jar")
+            .addClasses(TestServlet4.class)
+            .addAsResource(URLClient.class.getResource("web-fragment_3.xml"),
+                    "META-INF/web-fragment.xml");
   }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String[] args, PrintWriter out, PrintWriter err) {
-    setContextRoot("/servlet_spec_ordering1_web");
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_spec_ordering1_web.war")
+            .addAsLibraries(getFragment1(), getFragment2(), getFragment3())
+            .setWebXML(URLClient.class.getResource("servlet_spec_ordering1_web.xml"));
   }
+
 
   /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
@@ -63,6 +78,7 @@ public class URLClient extends AbstractUrlClient {
    * web-fragment.xml are considered, and the one defined in web.xml take
    * precedence.
    */
+  @Test
   public void initParamTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet4|"
         + "msg1=first|msg2=second|msg3=third|msg4=fourth|" + "RequestListener");

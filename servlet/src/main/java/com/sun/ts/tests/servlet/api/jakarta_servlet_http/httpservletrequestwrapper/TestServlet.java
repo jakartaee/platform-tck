@@ -22,6 +22,7 @@ package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpservletrequestwrap
 
 import java.io.IOException;
 
+import com.sun.ts.tests.servlet.common.servlets.HttpRequestTestServlet;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,7 +30,7 @@ import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class TestServlet
-    extends com.sun.ts.tests.servlet.api.common.request.HttpRequestTestServlet {
+    extends HttpRequestTestServlet {
 
   public void init(ServletConfig servletConfig) throws ServletException {
     super.init(servletConfig);

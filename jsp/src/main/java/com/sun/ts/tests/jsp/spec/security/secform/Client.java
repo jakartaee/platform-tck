@@ -13,62 +13,54 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-
 /*
  * $Id$
  */
-
 package com.sun.ts.tests.jsp.spec.security.secform;
 
 import java.util.Properties;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.common.jspservletsec.secformClient;
 
 public class Client extends secformClient {
-  // Shared test variables:
-  private Properties props = null;
 
-  public static void main(String[] args) {
+    // Shared test variables:
+    private Properties props = null;
 
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+    public static void main(String[] args) {
+        Client theTests = new Client();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
-  // Note: To share the commoncode between servlet and JSP,
-  // the commoncode is kept under
-  // (TS_HOME)/src/com/sun/ts/tests/common/jspservletsec/secformClient.java
-  // This subclass(Client.java) is used to flag the superclass
-  // to run JSP related secform tests
-  //
-
-  /*
+    // Note: To share the commoncode between servlet and JSP,
+    // the commoncode is kept under
+    // (TS_HOME)/src/com/sun/ts/tests/common/jspservletsec/secformClient.java
+    // This subclass(Client.java) is used to flag the superclass
+    // to run JSP related secform tests
+    // 
+    /*
    * setup() passes "jsp" as the argument to its parent class setup()
    *
    */
-
-  /*
+    /*
    * @class.setup_props: webServerHost; webServerPort; user; password; authuser;
    * authpassword; ts_home;
    *
    */
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
-
-    // create newarguments to pass into superclass setup method.
-    String[] newargs = new String[2];
-
-    // "jsp" is the flag passed to superclass
-    String argExt = new String("jsp");
-    newargs[0] = argExt;
-    newargs[1] = argExt; // dummy argument
-
-    // Inform the super class to run JSP related tests
-    super.setup(newargs, p);
-  }
-
-  /*
+    public void setup(String[] args, Properties p) throws Exception {
+        props = p;
+        // create newarguments to pass into superclass setup method.
+        String[] newargs = new String[2];
+        // "jsp" is the flag passed to superclass
+        String argExt = new String("jsp");
+        newargs[0] = argExt;
+        // dummy argument
+        newargs[1] = argExt;
+        // Inform the super class to run JSP related tests
+        super.setup(newargs, p);
+    }
+    /*
    * @testName: test1
    *
    * @assertion_ids: Servlet:SPEC:142
@@ -81,8 +73,7 @@ public class Client extends secformClient {
    * correct and getRemoteUser() still returns the correct username. Also ensure
    * isUserInRole() is still working properly.
    */
-
-  /*
+    /*
    * @testName: test2
    *
    * @assertion_ids: Servlet:SPEC:142.4.3
@@ -91,8 +82,7 @@ public class Client extends secformClient {
    * 3. Send form response with username and incorrect password 4. Receive error
    * page (make sure it is the expected error page)
    */
-
-  /*
+    /*
    * @testName: test3
    *
    * @assertion_ids: Servlet:SPEC:142
@@ -107,8 +97,7 @@ public class Client extends secformClient {
    * properly.
    * 
    */
-
-  /*
+    /*
    * @testName: test4
    *
    * @assertion_ids: Servlet:SPEC:149; Servlet:SPEC:160; Servlet:SPEC:162
@@ -123,8 +112,7 @@ public class Client extends secformClient {
    * resource, the resource is not returned. The authenticated user is not
    * denied access to an unprotected page.
    */
-
-  /*
+    /*
    * @testName: test5
    *
    * @assertion_ids: Servlet:JAVADOC:368; Servlet:JAVADOC:369;
@@ -140,8 +128,7 @@ public class Client extends secformClient {
    * for any valid or invalid role reference. A call to getRemoteUser() must
    * return null.
    */
-
-  /*
+    /*
    * @testName: test6
    *
    * @assertion_ids: Servlet:SPEC:149
@@ -163,8 +150,7 @@ public class Client extends secformClient {
    * form response with username and password 4. Receive resource (check
    * isUserInRole for all known roles)
    */
-
-  /*
+    /*
    * @testName: test7
    *
    * @assertion_ids: Servlet:SPEC:89
@@ -175,8 +161,7 @@ public class Client extends secformClient {
    * the http return code, report test status
    *
    */
-
-  /*
+    /*
    * @testName: test8
    *
    * @assertion_ids: Servlet:SPEC:92.1
@@ -186,8 +171,7 @@ public class Client extends secformClient {
    * insensitive platforms) b) META-INF/MANIFEST.MF c) meta-inf/manifest.mf 4)
    * based on the http return code, report test status
    */
-
-  /*
+    /*
    * @testName: test9
    *
    * @assertion_ids: Servlet:SPEC:134
@@ -207,8 +191,7 @@ public class Client extends secformClient {
    * the path info is null.
    *
    */
-
-  /*
+    /*
    * @testName: test10
    *
    * @assertion_ids: Servlet:SPEC:138; Servlet:SPEC:139
@@ -221,8 +204,7 @@ public class Client extends secformClient {
    * getRemoteUser() returns the username, and ensure isUserInRole() is working
    * properly)
    */
-
-  /*
+    /*
    * @testName: test11
    *
    * @assertion_ids: Servlet:SPEC:150
@@ -241,10 +223,8 @@ public class Client extends secformClient {
    * as all roles.
    *
    */
-
-  /* ***NOTE: test13 is only for Servlet *** */
-
-  /*
+    /* ***NOTE: test13 is only for Servlet *** */
+    /*
    * @testName: test14
    *
    * @assertion_ids: Servlet:SPEC:144

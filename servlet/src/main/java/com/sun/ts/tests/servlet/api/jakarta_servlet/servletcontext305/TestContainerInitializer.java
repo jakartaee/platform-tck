@@ -31,8 +31,12 @@ import jakarta.servlet.ServletContainerInitializer;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRegistration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestContainerInitializer implements ServletContainerInitializer {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(TestContainerInitializer.class);
 
   public void onStartup(Set<Class<?>> arg0, ServletContext context)
       throws ServletException {
@@ -106,7 +110,7 @@ public class TestContainerInitializer implements ServletContainerInitializer {
       frFilter.setInitParameter(addServletName3,
           DispatcherType.REQUEST.toString());
     } catch (ServletException ex) {
-      System.out.println("Error creating Servlet");
+      LOGGER.error("Error creating Servlet");
     }
 
     /*
@@ -140,8 +144,8 @@ public class TestContainerInitializer implements ServletContainerInitializer {
           com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext305.CreateSCListener.class);
       context.addListener(sclistener);
     } catch (ServletException ex) {
-      System.out.println(
-          "Error creating Listener CreateSCListener: " + ex.getMessage());
+      LOGGER.error(
+          "Error creating Listener CreateSCListener: " + ex.getMessage(), ex);
       ex.printStackTrace();
     }
 
@@ -158,9 +162,8 @@ public class TestContainerInitializer implements ServletContainerInitializer {
           com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.CreateSCAttributeListener.class);
       context.addListener(scalistener);
     } catch (ServletException ex) {
-      System.out.println("Error creating Listener CreateSCAttributeListener: "
-          + ex.getMessage());
-      ex.printStackTrace();
+      LOGGER.error("Error creating Listener CreateSCAttributeListener: "
+          + ex.getMessage(), ex);
     }
 
     /*

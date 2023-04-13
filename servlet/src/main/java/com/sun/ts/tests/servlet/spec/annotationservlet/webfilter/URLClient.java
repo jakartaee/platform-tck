@@ -19,34 +19,30 @@
  */
 package com.sun.ts.tests.servlet.spec.annotationservlet.webfilter;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+  @BeforeEach
+  public void setupServletName() throws Exception {
+    setServletName("TestServlet");
   }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-    setServletName("TestServlet");
-    setContextRoot("/servlet_annotationservlet_webfilter_web");
-
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_annotationservlet_webfilter_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(Servlet1.class, TestFilter1.class, TestFilter2.class, TestServlet.class)
+            .setWebXML(URLClient.class.getResource("servlet_annotationservlet_webfilter_web.xml"));
   }
 
   /*
@@ -67,6 +63,7 @@ public class URLClient extends AbstractUrlClient {
    * @WebFilter(...,urlPatterns="servlet1",...,); Send a request to Servlet1;
    * Veriy TestFilter1 is invoked properly.
    */
+  @Test
   public void test1() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet1 HTTP/1.1");
@@ -92,6 +89,7 @@ public class URLClient extends AbstractUrlClient {
    * another Servlet which forward to Servlet1 Send a request to the second
    * Servlet; Veriy TestFilter2 is invoked. Veriy TestFilter1 is not invoked.
    */
+  @Test
   public void test2() throws Exception {
     TEST_PROPS.setProperty(APITEST, "forward1");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "FILTER1_INVOKED");
@@ -116,6 +114,7 @@ public class URLClient extends AbstractUrlClient {
    * another Servlet which include to Servlet1 Send a request to the second
    * Servlet; Veriy TestFilter1 is not invoked.
    */
+  @Test
   public void test3() throws Exception {
     TEST_PROPS.setProperty(APITEST, "include1");
     TEST_PROPS.setProperty(SEARCH_STRING, "Servlet1_INVOKED");

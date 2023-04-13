@@ -18,18 +18,18 @@
 -->
 
 <application xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="10" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application_10.xsd">
-<description>Application description</description>
-<display-name>servlet_ee_spec_crosscontext</display-name>
-<module>
-<web>
-<web-uri>servlet_ee_spec_crosscontext1_web.war</web-uri>
-<context-root>servlet_ee_spec_crosscontext1_web</context-root>
-</web>
-</module>
-<module>
-<web>
-<web-uri>servlet_ee_spec_crosscontext2_web.war</web-uri>
-<context-root>servlet_ee_spec_crosscontext2_web</context-root>
-</web>
-</module>
+  <description>Application description</description>
+  <display-name>servlet_ee_spec_crosscontext</display-name>
+  <module>
+    <web>
+      <web-uri>servlet_ee_spec_crosscontext1_web.war</web-uri>
+      <context-root>servlet_ee_spec_crosscontext1_web</context-root>
+    </web>
+  </module>
+  <module>
+    <web>
+      <web-uri>servlet_ee_spec_crosscontext2_web.war</web-uri>
+      <context-root>servlet_ee_spec_crosscontext2_web</context-root>
+    </web>
+  </module>
 </application>

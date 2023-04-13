@@ -26,11 +26,14 @@ import java.util.Properties;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.RemoteStatus;
-import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.VehicleRunnable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ConnectorVehicleRunner implements VehicleRunnable {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(ConnectorVehicleRunner.class);
 
   protected String sVehicle = "connectorservlet";
 
@@ -80,8 +83,7 @@ public class ConnectorVehicleRunner implements VehicleRunnable {
     urlSuffix = "/" + contextRootPrefix + "/connectorservlet_vehicle";
     sServletStatus = runWebVehicleTest("connectorservlet");
 
-    TestUtil
-        .logMsg("Test: returning from running in connectorservlet vehicles");
+    LOGGER.info("Test: returning from running in connectorservlet vehicles");
 
     if (sServletStatus.isPassed()) {
       sTestStatus = Status.passed("Test passed in a connectorservlet ");
@@ -99,11 +101,10 @@ public class ConnectorVehicleRunner implements VehicleRunnable {
     Status status;
 
     try {
-      TSURL ctsURL = new TSURL();
-      url = ctsURL.getURL("http", p.getProperty("webServerHost"),
-          Integer.parseInt(p.getProperty("webServerPort")), urlSuffix);
+      url = new URL("http://" + p.getProperty("webServerHost") + ":"
+          + Integer.parseInt(p.getProperty("webServerPort")) + urlSuffix);
       connection = url.openConnection();
-      TestUtil.logMsg("Opened connection to " + url);
+      LOGGER.info("Opened connection to {}", url);
       connection.setDoOutput(true);
       connection.setDoInput(true);
       connection.setUseCaches(false);
@@ -111,10 +112,10 @@ public class ConnectorVehicleRunner implements VehicleRunnable {
           "java-internal/" + p.getClass().getName());
       // connection.connect();
       objOut = new ObjectOutputStream(connection.getOutputStream());
-      TestUtil.logTrace("got outputstream");
+      LOGGER.trace("got outputstream");
       objOut.writeObject(p);
       objOut.writeObject(argv);
-      TestUtil.logTrace("wrote objects to the " + vehicle + " vehicle");
+      LOGGER.trace("wrote objects to the {} vehicle", vehicle);
       objOut.flush();
       objOut.close();
       objOut = null;

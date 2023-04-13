@@ -32,7 +32,7 @@ public class URLClient extends AbstractUrlClient {
    * Entry point for different-VM execution.
    */
   public static void main(String[] args) {
-    new URLClient().run(args);
+    // TODO remove
   }
 
   /*

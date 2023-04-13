@@ -26,7 +26,7 @@ package com.sun.ts.tests.servlet.api.jakarta_servlet.servletresponsewrapper;
 
 import java.io.IOException;
 
-import com.sun.ts.tests.servlet.api.common.response.ResponseTestServlet;
+import com.sun.ts.tests.servlet.common.response.ResponseTestServlet;
 
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;

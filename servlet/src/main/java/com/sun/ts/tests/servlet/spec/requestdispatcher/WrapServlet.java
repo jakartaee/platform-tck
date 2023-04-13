@@ -33,20 +33,24 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class WrapServlet extends HttpServlet {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(WrapServlet.class);
 
   ServletContext ctx = null;
 
   public void init(ServletConfig servletConfig) throws ServletException {
     super.init(servletConfig);
-    System.out.println("WRAP INIT...");
+    LOGGER.info("WRAP INIT...");
     ctx = servletConfig.getServletContext();
   }
 
   public void service(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    System.out.println("IN WRAP SERVLET...");
+    LOGGER.info("IN WRAP SERVLET...");
     Object ctxRequest = ctx.getAttribute("tck.request");
     Object ctxResponse = ctx.getAttribute("tck.response");
     ctx.removeAttribute("tck.request");

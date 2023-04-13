@@ -20,6 +20,11 @@
 
 package com.sun.ts.tests.servlet.common.util;
 
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.Cookie;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -28,19 +33,15 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
-
-import jakarta.servlet.ServletOutputStream;
-import jakarta.servlet.http.Cookie;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * A set of useful utility methods to help perform test functions.
  */
 public class ServletTestUtil {
 
-  /**
-   * Flag to enabled the printing of debug statements.
-   */
-  public final static boolean DEBUG = true;
+  private static Logger LOGGER = LoggerFactory.getLogger(ServletTestUtil.class);
 
   /**
    * Private as this class contains only public static methods.
@@ -99,9 +100,9 @@ public class ServletTestUtil {
    *
    * @return true if all the expected values are found, otherwise false.
    */
-  public static boolean checkEnumeration(Enumeration e, String[] values,
+  public static boolean checkEnumeration(Enumeration<?> e, String[] values,
       boolean enforceSizes, boolean allowDuplicates) {
-    List foundValues = null;
+    List<Object> foundValues = null;
 
     if (e == null || !e.hasMoreElements() || values == null) {
       return false;
@@ -115,15 +116,15 @@ public class ServletTestUtil {
     Arrays.sort(values);
     int count = 0;
     while (e.hasMoreElements()) {
-      Object val = null;
+      Object val;
       try {
         val = e.nextElement();
         count++;
         if (!allowDuplicates) {
           if (foundValues.contains(val)) {
-            debug("[ServletTestUtil] Duplicate values found in "
+            LOGGER.debug("[ServletTestUtil] Duplicate values found in "
                 + "Enumeration when duplicates are not allowed."
-                + "Values found in the Enumeration: " + getAsString(e));
+                + "Values found in the Enumeration: {}", getAsString(e));
             valuesFound = false;
             break;
           }
@@ -131,15 +132,14 @@ public class ServletTestUtil {
         }
 
       } catch (NoSuchElementException nsee) {
-        debug("[ServletTestUtil] There were less elements in the "
+        LOGGER.info("[ServletTestUtil] There were less elements in the "
             + "Enumeration than expected");
         valuesFound = false;
         break;
       }
-      debug("[ServletTestUtil] Looking for '" + val + "' in values: "
-          + getAsString(values));
+      LOGGER.debug("[ServletTestUtil] Looking for '{}' in values: {}", val, getAsString(values));
       if ((Arrays.binarySearch(values, val) < 0) && (enforceSizes)) {
-        debug("[ServletTestUtil] Value '" + val + "' not found.");
+        LOGGER.info("[ServletTestUtil] Value '{}' not found.", val);
         valuesFound = false;
         continue;
       }
@@ -148,15 +148,12 @@ public class ServletTestUtil {
     if (enforceSizes) {
       if (e.hasMoreElements()) {
         // more elements than should have been.
-        debug("[ServletTestUtil] There were more elements in the Enumeration "
-            + "than expected.");
+        LOGGER.info("[ServletTestUtil] There were more elements in the Enumeration than expected.");
         valuesFound = false;
       }
       if (count != values.length) {
-        debug("[ServletTestUtil] There number of elements in the Enumeration "
-            + "did not match number of expected values."
-            + "Expected number of Values=" + values.length
-            + ", Actual number of Enumeration elements=" + count);
+        LOGGER.info("[ServletTestUtil] There number of elements in the Enumeration did not match number of expected values."
+            + "Expected number of Values= {}, Actual number of Enumeration elements= {}", values.length, count);
 
         valuesFound = false;
       }
@@ -183,21 +180,19 @@ public class ServletTestUtil {
     for (int i = 0; i < len; i++) {
       Object val = null;
       val = (String) al.get(i);
-      debug("[ServletTestUtil] val=" + val);
+      LOGGER.debug("[ServletTestUtil] val= {}", val);
       if (!allowDuplicates) {
         if (foundValues.contains(val)) {
-          debug("[ServletTestUtil] Duplicate values found in "
-              + "ArrayList when duplicates are not allowed."
-              + "Values found in the ArrayList: " + getAsString(al));
+          LOGGER.info("[ServletTestUtil] Duplicate values found in ArrayList when duplicates are not allowed."
+              + "Values found in the ArrayList: {}", getAsString(al));
           valuesFound = false;
           break;
         }
         foundValues.add(val);
       }
-      debug("[ServletTestUtil] Looking for '" + val + "' in values: "
-          + getAsString(values));
+      LOGGER.debug("[ServletTestUtil] Looking for '{}' in values: {}", val, getAsString(values));
       if ((Arrays.binarySearch(values, val) < 0) && (enforceSizes)) {
-        debug("[ServletTestUtil] Value '" + val + "' not found.");
+        LOGGER.info("[ServletTestUtil] Value '{}' not found.", val);
         valuesFound = false;
         continue;
       }
@@ -205,10 +200,9 @@ public class ServletTestUtil {
 
     if (enforceSizes) {
       if (len != values.length) {
-        debug("[ServletTestUtil] There number of elements in the ArrayList "
+        LOGGER.info("[ServletTestUtil] There number of elements in the ArrayList "
             + "did not match number of expected values."
-            + "Expected number of Values=" + values.length
-            + ", Actual number of ArrayList elements=" + len);
+            + "Expected number of Values= {}, Actual number of ArrayList elements= {}", values.length, len);
 
         valuesFound = false;
       }
@@ -230,25 +224,24 @@ public class ServletTestUtil {
       int searchIdx = actual.toLowerCase().indexOf(search.toLowerCase(),
           startIdx);
 
-      debug("[ServletTestUtil] Scanning response for " + "search string: '"
-          + search + "' starting at index " + "location: " + startIdx);
+      LOGGER.debug("[ServletTestUtil] Scanning response for search string: '{}' starting at index " + "location: {}",
+              search , startIdx);
       if (searchIdx < 0) {
         found = false;
         StringBuffer sb = new StringBuffer(255);
-        sb.append("[ServletTestUtil] Unable to find the following ");
-        sb.append("search string in the server's ");
-        sb.append("response: '").append(search).append("' at index: ");
-        sb.append(startIdx);
-        sb.append("\n[ServletTestUtil] Server's response:\n");
-        sb.append("-------------------------------------------\n");
-        sb.append(actual);
-        sb.append("\n-------------------------------------------\n");
-        debug(sb.toString());
+        sb.append("[ServletTestUtil] Unable to find the following search string in the server's response: '")
+          .append(search).append("' at index: ")
+          .append(startIdx)
+          .append("\n[ServletTestUtil] Server's response:\n")
+          .append("-------------------------------------------\n")
+          .append(actual)
+          .append("\n-------------------------------------------\n");
+        LOGGER.debug(sb.toString());
         break;
       }
 
-      debug("[ServletTestUtil] Found search string: '" + search + "' at index '"
-          + searchIdx + "' in the server's " + "response");
+      LOGGER.debug("[ServletTestUtil] Found search string: '{}' at index '{}' in the server's response",
+              search, searchIdx);
       // the new searchIdx is the old index plus the lenght of the
       // search string.
       startIdx = searchIdx + search.length();
@@ -265,36 +258,13 @@ public class ServletTestUtil {
    * @return - a String based off the values in the array
    */
   public static String getAsString(Object[] sArray) {
-    if (sArray == null) {
-      return null;
-    }
-    StringBuffer buf = new StringBuffer();
-    buf.append("[");
-    for (int i = 0; i < sArray.length; i++) {
-      buf.append(sArray[i].toString());
-      if ((i + 1) != sArray.length) {
-        buf.append(",");
-      }
-    }
-    buf.append("]");
-    return buf.toString();
+    return sArray == null ? null : Stream.of(sArray).map(Object::toString).collect(Collectors.joining(",","[","]"));
+
   }
 
-  public static String getAsString(ArrayList al) {
-    if (al == null) {
-      return null;
-    }
-    StringBuffer buf = new StringBuffer();
-    buf.append("[");
-    al.trimToSize();
-    for (int i = 0, len = al.size(); i < len; i++) {
-      buf.append((String) al.get(i));
-      if ((i + 1) != len) {
-        buf.append(",");
-      }
-    }
-    buf.append("]");
-    return buf.toString();
+  public static String getAsString(List<String> al) {
+    return al == null ? null : al.stream().collect(Collectors.joining(",","[","]"));
+
   }
 
   /**
@@ -316,19 +286,18 @@ public class ServletTestUtil {
    *          - an Enumeration
    * @return - the elements of the Enumeration as an array of Objects
    */
-  public static Object[] getAsArray(Enumeration e) {
-    List list = new ArrayList();
+  public static Object[] getAsArray(Enumeration<Object> e) {
+    List<Object> list = new ArrayList<>();
     while (e.hasMoreElements()) {
       list.add(e.nextElement());
     }
-    return list.toArray(new Object[list.size()]);
+    return list.toArray(new Object[0]);
   }
 
   /**
    * Returnes the provided string as an Array of Strings.
    * 
-   * @param e
-   *          - a String
+   * @param value String
    * @return - the elements of the String as an array of Strings
    */
   public static String[] getAsArray(String value) {
@@ -338,18 +307,6 @@ public class ServletTestUtil {
       retValues[i] = st.nextToken();
     }
     return retValues;
-  }
-
-  /**
-   * Writes the provided message to System.out when the <tt>debug</tt> is set.
-   * 
-   * @param message
-   *          - the message to write to System.out
-   */
-  public static void debug(String message) {
-    if (DEBUG) {
-      System.out.println(message);
-    }
   }
 
   public static void printResult(PrintWriter pw, String s) {
@@ -400,7 +357,6 @@ public class ServletTestUtil {
     int i = 0;
     if (cookie != null) {
       while ((!found) && (i < cookie.length)) {
-        // System.out.println("cookie["+i+"]="+cookie[i].getName());
         if (cookie[i].getName().equals(name)) {
           found = true;
         } else {

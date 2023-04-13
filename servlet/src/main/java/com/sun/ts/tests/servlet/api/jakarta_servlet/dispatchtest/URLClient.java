@@ -19,37 +19,57 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.dispatchtest;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OperateOnDeployment;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.net.URL;
 
 public class URLClient extends AbstractUrlClient {
 
-  String CONTEXT_ROOT = "/servlet_js_dispatchtest_web";
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+  @BeforeEach
+  public void setupServletName() throws Exception {
     setServletName("DispatchTestServlet");
-    setContextRoot(CONTEXT_ROOT);
-
-    return super.run(args, out, err);
   }
+
+  @ArquillianResource
+  @OperateOnDeployment("servlet_js_dispatchtest_web1")
+  public URL url2;
+
+  /**
+   * Deployment for the test
+   */
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_js_dispatchtest_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(DispatchTestServlet.class, DispatchTests.class, DispatchTests1.class, DispatchTests2.class,
+                        DispatchTests3.class, DispatchTests4.class, DispatchTests5.class, DispatchTests6.class, TestListener.class,
+                        TestListener0.class, TestListener1.class, TestListener2.class, TestListener3.class,
+                        DispatchTestServlet.class)
+            .setWebXML(URLClient.class.getResource("servlet_js_dispatchtest_web.xml"));
+  }
+
+  @Deployment(testable = false, name = "servlet_js_dispatchtest_web1")
+  public static WebArchive getTestArchive1() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_js_dispatchtest1_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(DispatchTests10.class, DispatchTests11.class, DispatchTests12.class,
+                        DispatchTests13.class, DispatchTests14.class, DispatchTests15.class,
+                        DispatchTests16.class, DispatchTests17.class, DispatchTests18.class,
+                        DispatchTests19.class,DispatchTests20.class,
+                        DispatchTestServlet.class)
+            .setWebXML(URLClient.class.getResource("servlet_js_dispatchtest1_web.xml"));
+  }
+
+
+
 
   /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
@@ -72,6 +92,7 @@ public class URLClient extends AbstractUrlClient {
    * dispatch; dispatch returns dispatch operation starts. verifies all work
    * accordingly.
    */
+  @Test
   public void dispatchReturnTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "dispatchReturnTest");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -99,6 +120,7 @@ public class URLClient extends AbstractUrlClient {
    * check System times: before calling dispatch; dispatch returns dispatch
    * operation starts. verifies all work accordingly.
    */
+  @Test
   public void dispatchReturnTest1() throws Exception {
     TEST_PROPS.setProperty(APITEST, "dispatchReturnTest1");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -125,6 +147,7 @@ public class URLClient extends AbstractUrlClient {
    * dispatch; dispatch returns dispatch operation starts. verifies all work
    * accordingly.
    */
+  @Test
   public void dispatchReturnTest2() throws Exception {
     TEST_PROPS.setProperty(APITEST, "dispatchReturnTest2");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -151,6 +174,7 @@ public class URLClient extends AbstractUrlClient {
    * check System times: before calling dispatch; dispatch returns dispatch
    * operation starts. verifies all work accordingly.
    */
+  @Test
   public void dispatchReturnTest3() throws Exception {
     TEST_PROPS.setProperty(APITEST, "dispatchReturnTest3");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -178,6 +202,7 @@ public class URLClient extends AbstractUrlClient {
    * dispatch; dispatch returns dispatch operation starts. verifies all work
    * accordingly.
    */
+  @Test
   public void dispatchReturnTest4() throws Exception {
     TEST_PROPS.setProperty(APITEST, "dispatchReturnTest4");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -205,6 +230,7 @@ public class URLClient extends AbstractUrlClient {
    * dispatch; dispatch returns dispatch operation starts. verifies all work
    * accordingly.
    */
+  @Test
   public void dispatchReturnTest5() throws Exception {
     TEST_PROPS.setProperty(APITEST, "dispatchReturnTest5");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -232,6 +258,7 @@ public class URLClient extends AbstractUrlClient {
    * dispatch; dispatch returns dispatch operation starts. StartAsync and
    * dispatch again, and check all above; verifies all work accordingly.
    */
+  @Test
   public void startAsyncAgainTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "startAsyncAgainTest");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -265,6 +292,7 @@ public class URLClient extends AbstractUrlClient {
    * operation starts. StartAsync and dispatch again, and check all above;
    * verifies all work accordingly.
    */
+  @Test
   public void startAsyncAgainTest1() throws Exception {
     TEST_PROPS.setProperty(APITEST, "startAsyncAgainTest1");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -298,6 +326,7 @@ public class URLClient extends AbstractUrlClient {
    * dispatched thread, and check all above; ac.complete(); verifies all work
    * accordingly.
    */
+  @Test
   public void startAsyncAgainTest2() throws Exception {
     TEST_PROPS.setProperty(APITEST, "startAsyncAgainTest2");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -327,6 +356,7 @@ public class URLClient extends AbstractUrlClient {
    * operation starts. StartAsync again in dispatched thread, and check all
    * above; call ac.complete(); verifies all work accordingly.
    */
+  @Test
   public void startAsyncAgainTest3() throws Exception {
     TEST_PROPS.setProperty(APITEST, "startAsyncAgainTest3");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -356,6 +386,7 @@ public class URLClient extends AbstractUrlClient {
    * dispatched thread, and check all above; StartAsync again in the
    * asynchrounous thread verifies all work accordingly.
    */
+  @Test
   public void startAsyncAgainTest4() throws Exception {
     TEST_PROPS.setProperty(APITEST, "startAsyncAgainTest4");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -388,6 +419,7 @@ public class URLClient extends AbstractUrlClient {
    * operation starts. StartAsync in dispatched thread, and check all above;
    * StartAsync again in the asynchrounous thread verifies all work accordingly.
    */
+  @Test
   public void startAsyncAgainTest5() throws Exception {
     TEST_PROPS.setProperty(APITEST, "startAsyncAgainTest5");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -421,6 +453,7 @@ public class URLClient extends AbstractUrlClient {
    * returns dispatch operation starts. StartAsync again, and check all above;
    * call ac.dispatch(URI); verifies all work accordingly.
    */
+  @Test
   public void startAsyncAgainTest6() throws Exception {
     TEST_PROPS.setProperty(APITEST, "startAsyncAgainTest6");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -454,6 +487,7 @@ public class URLClient extends AbstractUrlClient {
    * dispatch; dispatch returns dispatch operation starts. StartAsync again, and
    * check all above; call ac.dispatch(URI); verifies all work accordingly.
    */
+  @Test
   public void startAsyncAgainTest7() throws Exception {
     TEST_PROPS.setProperty(APITEST, "startAsyncAgainTest7");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -487,6 +521,7 @@ public class URLClient extends AbstractUrlClient {
    * returns dispatch operation starts. StartAsync again in dispatched thread,
    * and check all above; ac.complete(); verifies all work accordingly.
    */
+  @Test
   public void startAsyncAgainTest8() throws Exception {
     TEST_PROPS.setProperty(APITEST, "startAsyncAgainTest8");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -518,6 +553,7 @@ public class URLClient extends AbstractUrlClient {
    * dispatched thread, and check all above; call ac.complete(); verifies all
    * work accordingly.
    */
+  @Test
   public void startAsyncAgainTest9() throws Exception {
     TEST_PROPS.setProperty(APITEST, "startAsyncAgainTest9");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -549,6 +585,7 @@ public class URLClient extends AbstractUrlClient {
    * check all above; StartAsync again in the asynchrounous thread verifies all
    * work accordingly.
    */
+  @Test
   public void startAsyncAgainTest10() throws Exception {
     TEST_PROPS.setProperty(APITEST, "startAsyncAgainTest10");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -583,6 +620,7 @@ public class URLClient extends AbstractUrlClient {
    * dispatched thread, and check all above; StartAsync again in the
    * asynchrounous thread verifies all work accordingly.
    */
+  @Test
   public void startAsyncAgainTest11() throws Exception {
     TEST_PROPS.setProperty(APITEST, "startAsyncAgainTest11");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -615,6 +653,7 @@ public class URLClient extends AbstractUrlClient {
    * dispatch; dispatch returns dispatch operation starts. StartAsync and
    * dispatch again, and check all above; verifies all work accordingly.
    */
+  @Test
   public void startAsyncAgainTest12() throws Exception {
     TEST_PROPS.setProperty(APITEST, "startAsyncAgainTest12");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -647,6 +686,7 @@ public class URLClient extends AbstractUrlClient {
    * dispatch; dispatch returns dispatch operation starts. StartAsync and
    * dispatch again, and check all above; verifies all work accordingly.
    */
+  @Test
   public void startAsyncAgainTest13() throws Exception {
     TEST_PROPS.setProperty(APITEST, "startAsyncAgainTest13");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -680,6 +720,7 @@ public class URLClient extends AbstractUrlClient {
    * dispatched thread, and check all above; ac.complete(); verifies all work
    * accordingly.
    */
+  @Test
   public void startAsyncAgainTest14() throws Exception {
     TEST_PROPS.setProperty(APITEST, "startAsyncAgainTest14");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -709,6 +750,7 @@ public class URLClient extends AbstractUrlClient {
    * operation starts. StartAsync again in dispatched thread, and check all
    * above; call ac.complete(); verifies all work accordingly.
    */
+  @Test
   public void startAsyncAgainTest15() throws Exception {
     TEST_PROPS.setProperty(APITEST, "startAsyncAgainTest15");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -738,6 +780,7 @@ public class URLClient extends AbstractUrlClient {
    * dispatched thread, and check all above; StartAsync again in the
    * asynchrounous thread verifies all work accordingly.
    */
+  @Test
   public void startAsyncAgainTest16() throws Exception {
     TEST_PROPS.setProperty(APITEST, "startAsyncAgainTest16");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -770,6 +813,7 @@ public class URLClient extends AbstractUrlClient {
    * dispatched thread, and check all above; StartAsync again in the
    * asynchrounous thread verifies all work accordingly.
    */
+  @Test
   public void startAsyncAgainTest17() throws Exception {
     TEST_PROPS.setProperty(APITEST, "startAsyncAgainTest17");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -801,6 +845,7 @@ public class URLClient extends AbstractUrlClient {
    * before calling dispatch; dispatch returns dispatch operation starts. call
    * ac.dispatch() again verifies all work accordingly.
    */
+  @Test
   public void negativeDispatchTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "negativeDispatchTest");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -830,6 +875,7 @@ public class URLClient extends AbstractUrlClient {
    * before calling dispatch; dispatch returns dispatch operation starts. call
    * ac.dispatch() again verifies all work accordingly.
    */
+  @Test
   public void negativeDispatchTest1() throws Exception {
     TEST_PROPS.setProperty(APITEST, "negativeDispatchTest1");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -858,6 +904,7 @@ public class URLClient extends AbstractUrlClient {
    * times: before calling dispatch; dispatch returns dispatch operation starts.
    * call ac.dispatch(URI) again verifies all work accordingly.
    */
+  @Test
   public void negativeDispatchTest4() throws Exception {
     TEST_PROPS.setProperty(APITEST, "negativeDispatchTest4");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -886,6 +933,7 @@ public class URLClient extends AbstractUrlClient {
    * times: before calling dispatch; dispatch returns dispatch operation starts.
    * call ac.dispatch(URI) again verifies all work accordingly.
    */
+  @Test
   public void negativeDispatchTest5() throws Exception {
     TEST_PROPS.setProperty(APITEST, "negativeDispatchTest5");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -916,6 +964,7 @@ public class URLClient extends AbstractUrlClient {
    * operation starts. call ac.dispatch(ServletContext, URI) again verifies all
    * work accordingly.
    */
+  @Test
   public void negativeDispatchTest8() throws Exception {
     TEST_PROPS.setProperty(APITEST, "negativeDispatchTest8");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -946,6 +995,7 @@ public class URLClient extends AbstractUrlClient {
    * operation starts. call ac.dispatch(ServletContext, URI) again verifies all
    * work accordingly.
    */
+  @Test
   public void negativeDispatchTest9() throws Exception {
     TEST_PROPS.setProperty(APITEST, "negativeDispatchTest9");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -976,6 +1026,7 @@ public class URLClient extends AbstractUrlClient {
    * operation starts. call ac.dispatch(URI) again verifies all work
    * accordingly.
    */
+  @Test
   public void negativeDispatchTest12() throws Exception {
     TEST_PROPS.setProperty(APITEST, "negativeDispatchTest12");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -1006,6 +1057,7 @@ public class URLClient extends AbstractUrlClient {
    * operation starts. call ac.dispatch(URI) again verifies all work
    * accordingly.
    */
+  @Test
   public void negativeDispatchTest13() throws Exception {
     TEST_PROPS.setProperty(APITEST, "negativeDispatchTest13");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -1031,6 +1083,7 @@ public class URLClient extends AbstractUrlClient {
    * the response; StartAsync in DispatchTestServlet
    * ServletRequest.startAsync(); call ac.dispatch(); verifies all works
    */
+  @Test
   public void dispatchAfterCommitTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "dispatchAfterCommitTest");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -1056,6 +1109,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(request, response); call ac.dispatch(); verifies
    * all works
    */
+  @Test
   public void dispatchAfterCommitTest1() throws Exception {
     TEST_PROPS.setProperty(APITEST, "dispatchAfterCommitTest1");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -1079,6 +1133,7 @@ public class URLClient extends AbstractUrlClient {
    * the response; StartAsync in DispatchTestServlet
    * ServletRequest.startAsync(); call ac.dispatch(URI); verifies all works
    */
+  @Test
   public void dispatchAfterCommitTest2() throws Exception {
     TEST_PROPS.setProperty(APITEST, "dispatchAfterCommitTest2");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -1103,6 +1158,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(request, response); call ac.dispatch(URI);
    * verifies all works
    */
+  @Test
   public void dispatchAfterCommitTest3() throws Exception {
     TEST_PROPS.setProperty(APITEST, "dispatchAfterCommitTest3");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -1127,6 +1183,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(); call ac.dispatch(ServletContext,URI); verifies
    * all works
    */
+  @Test
   public void dispatchAfterCommitTest4() throws Exception {
     TEST_PROPS.setProperty(APITEST, "dispatchAfterCommitTest4");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -1151,6 +1208,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(request, response); call
    * ac.dispatch(ServletContext,URI); verifies all works
    */
+  @Test
   public void dispatchAfterCommitTest5() throws Exception {
     TEST_PROPS.setProperty(APITEST, "dispatchAfterCommitTest5");
     TEST_PROPS.setProperty(SEARCH_STRING,

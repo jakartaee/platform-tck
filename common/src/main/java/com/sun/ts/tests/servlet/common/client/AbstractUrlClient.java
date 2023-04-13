@@ -20,22 +20,27 @@
 
 package com.sun.ts.tests.servlet.common.client;
 
-import java.io.PrintWriter;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.webclient.BaseUrlClient;
-import com.sun.ts.tests.common.webclient.WebTestCase;
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
+import com.sun.ts.tests.common.webclient.WebTestCase;
 import com.sun.ts.tests.servlet.common.util.Data;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.UnknownHostException;
 
 /**
  * Base client for Servlet tests.
  */
 
 public abstract class AbstractUrlClient extends BaseUrlClient {
+
+  protected final Logger logger = LoggerFactory.getLogger(getClass());
 
   protected static final String APITEST = "apitest";
 
@@ -60,17 +65,7 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
     setContextRoot(cname);
   }
 
-  /**
-   * Convenience method for the common use case.
-   */
-  public void run(String args[]) {
-    Status s = super.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
   protected void setTestProperties(WebTestCase testCase) {
-
     setStandardProperties(TEST_PROPS.getProperty(STANDARD), testCase);
     setApiTestProperties(TEST_PROPS.getProperty(APITEST), testCase);
     super.setTestProperties(testCase);
@@ -97,9 +92,9 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
     _testName = testValue;
 
     // set the request
-    StringBuffer sb = new StringBuffer(50);
+    StringBuilder sb = new StringBuilder(50);
     if ((_servlet != null)
-        && (TEST_PROPS.getProperty(DONOTUSEServletName) == null)) {
+            && (TEST_PROPS.getProperty(DONOTUSEServletName) == null)) {
       sb.append(GET).append(_contextRoot).append(SL);
       sb.append(_servlet).append("?testname=").append(testValue);
       sb.append(HTTP11);
@@ -107,13 +102,13 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
       sb.append(GET).append(_contextRoot).append(SL);
       sb.append(testValue).append(HTTP10);
     }
-    System.out.println("REQUEST LINE: " + sb.toString());
+    logger.debug("REQUEST LINE: {}", sb);
 
     HttpRequest req = new HttpRequest(sb.toString(), _hostname, _port);
     testCase.setRequest(req);
 
     if ((TEST_PROPS.getProperty(SEARCH_STRING) == null)
-        || ((TEST_PROPS.getProperty(SEARCH_STRING)).equals(""))) {
+            || ((TEST_PROPS.getProperty(SEARCH_STRING)).equals(""))) {
       testCase.setResponseSearchString(Data.PASSED);
       testCase.setUnexpectedResponseSearchString(Data.FAILED);
     }
@@ -157,16 +152,9 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
       sb.append(GET).append(_contextRoot).append(SL);
       sb.append(testValue).append(HTTP10);
     }
-    System.out.println("REQUEST LINE: " + sb.toString());
+    logger.debug("REQUEST LINE: {}", sb);
     HttpRequest req = new HttpRequest(sb.toString(), _hostname, _port);
     testCase.setRequest(req);
-
-    // set the goldenfile
-    sb = new StringBuffer(50);
-    sb.append(_tsHome).append(GOLDENFILEDIR);
-    sb.append(_generalURI).append(SL);
-    sb.append(testValue).append(GF_SUFFIX);
-    testCase.setGoldenFilePath(sb.toString());
   }
 
   /**
@@ -188,7 +176,7 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
     String result = null;
     initInetAddress();
     if (_addrs.length != 0) {
-      StringBuffer sb = new StringBuffer(32);
+      StringBuilder sb = new StringBuilder(32);
       if (!returnAddresses) {
         // localhost might not show up if aliased
         sb.append("localhost,");
@@ -218,7 +206,7 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
         }
       }
       result = sb.toString();
-      TestUtil.logTrace("[AbstractUrlClient] Interface info: " + result);
+      logger.trace("[AbstractUrlClient] Interface info: {}", result);
     }
     return result;
   }
@@ -229,9 +217,41 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
         _addrs = InetAddress
             .getAllByName(InetAddress.getLocalHost().getCanonicalHostName());
       } catch (UnknownHostException uhe) {
-        TestUtil.logMsg(
+        logger.info(
             "[AbstractUrlClient][WARNING] Unable to obtain local host information.");
       }
     }
   }
+
+  protected String getRequest(String rq) {
+    return rq;
+  }
+
+  protected String getURLString(String protocol, String hostname, int portnum, String sContext) {
+    return protocol + "://" + hostname + ":" + portnum + "/" + sContext;
+  }
+
+  protected URL getURL(String protocol, String hostname, int portnum, String sContext) throws MalformedURLException {
+    return new URL(protocol + "://" + hostname + ":" + portnum + "/" + sContext);
+  }
+
+
+  public URLConnection getHttpsURLConnection(URL newURL)
+          throws IOException {
+    // open HttpsURLConnection using TSHttpsURLConnection
+    URLConnection httpsURLConn = null;
+
+    httpsURLConn = newURL.openConnection();
+    if (httpsURLConn != null) {
+      httpsURLConn.setDoInput(true);
+      httpsURLConn.setDoOutput(true);
+      httpsURLConn.setUseCaches(false);
+
+    } else
+      throw new IOException("Error opening httsURLConnection");
+
+    return httpsURLConn;
+  }
+
 }
+

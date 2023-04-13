@@ -19,32 +19,24 @@
  */
 package com.sun.ts.tests.servlet.spec.listenerorder;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String[] args, PrintWriter out, PrintWriter err) {
-    setContextRoot("/servlet_spec_listenerorder_web");
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_spec_listenerorder_web.war")
+            .addClasses(ServletRequestListener1.class, ServletRequestListener2.class, ServletRequestListener3.class,
+                    TestServlet.class)
+            .setWebXML(URLClient.class.getResource("servlet_spec_listenerorder_web.xml"));
   }
 
   /*
@@ -61,6 +53,7 @@ public class URLClient extends AbstractUrlClient {
    * /TestServlet, verify TestServlet is invoked 3. Also verify in all
    * RequestListeners that they are invoked in the order declared in web.xml
    */
+  @Test
   public void requestListenerOrderTest() throws Exception {
     TEST_PROPS.setProperty(STATUS_CODE, OK);
     TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet is invoked");

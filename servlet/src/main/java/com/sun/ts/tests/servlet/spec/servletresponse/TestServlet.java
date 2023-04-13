@@ -27,8 +27,12 @@ import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestServlet extends GenericServlet {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(TestServlet.class);
 
   public void service(ServletRequest request, ServletResponse response)
       throws ServletException, IOException {
@@ -37,7 +41,7 @@ public class TestServlet extends GenericServlet {
     PrintWriter pw = response.getWriter();
 
     pw.write("flushBufferTest for compatibility\n\r");
-    System.out.println("flushBufferTest for compatibility");
+    LOGGER.info("flushBufferTest for compatibility");
     response.flushBuffer();
 
     try {

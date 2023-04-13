@@ -19,37 +19,36 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.asynccontext;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  String CONTEXT_ROOT = "/servlet_js_asynccontext_web";
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+  @BeforeEach
+  public void setupServletName() throws Exception {
     setServletName("AsyncTestServlet");
-    setContextRoot(CONTEXT_ROOT);
-
-    return super.run(args, out, err);
   }
+
+  /**
+   * Deployment for the test
+   */
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_js_asynccontext_web.war")
+            .addClasses(ACListener.class, ACListener1.class, ACListener2.class)
+            .addClasses(ACListenerBad.class, AsyncTests.class, AsyncTestServlet.class)
+            .addClasses(RequestWrapper.class, ResponseWrapper.class)
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .setWebXML(URLClient.class.getResource("servlet_js_asynccontext_web.xml"));
+  }
+
+
+
 
   /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
@@ -81,6 +80,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.isAsyncSupported() call ServletRequest.isAsyncStarted() call
    * ServletRequest.getDispatcherType() verifies all work accordingly.
    */
+  @Test
   public void dispatchZeroArgTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "dispatchZeroArgTest");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -105,6 +105,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.isAsyncStarted() call ServletRequest.getDispatcherType()
    * verifies all work accordingly.
    */
+  @Test
   public void dispatchZeroArgTest1() throws Exception {
     TEST_PROPS.setProperty(APITEST, "dispatchZeroArgTest1");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -129,6 +130,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.isAsyncStarted() call ServletRequest.getDispatcherType()
    * verifies all work accordingly.
    */
+  @Test
   public void dispatchZeroArgTest2() throws Exception {
     TEST_PROPS.setProperty(APITEST, "dispatchZeroArgTest2");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -152,6 +154,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.isAsyncSupported() call ServletRequest.isAsyncStarted() call
    * ServletRequest.getDispatcherType() verifies all work accordingly.
    */
+  @Test
   public void dispatchContextPathTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "dispatchContextPathTest");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -175,6 +178,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.isAsyncSupported() call ServletRequest.isAsyncStarted() call
    * ServletRequest.getDispatcherType() verifies all work accordingly.
    */
+  @Test
   public void dispatchContextPathTest1() throws Exception {
     TEST_PROPS.setProperty(APITEST, "dispatchContextPathTest1");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -199,6 +203,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.isAsyncStarted() call ServletRequest.getDispatcherType()
    * verifies all work accordingly.
    */
+  @Test
   public void dispatchContextPathTest2() throws Exception {
     TEST_PROPS.setProperty(APITEST, "dispatchContextPathTest2");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -224,6 +229,7 @@ public class URLClient extends AbstractUrlClient {
    * request.startAsync(request, response); ac.dispatch(); verifies that it
    * dispatches to "/AsyncTestServlet?testname=forwardDummy1".
    */
+  @Test
   public void forwardTest1() throws Exception {
     TEST_PROPS.setProperty(APITEST, "forwardTest1");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -248,6 +254,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(); call AsyncContext.getRequest() verifies it
    * works.
    */
+  @Test
   public void getRequestTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getRequestTest");
     invoke();
@@ -264,6 +271,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(Request, Response); call
    * AsyncContext.getRequest() verifies it works.
    */
+  @Test
   public void getRequestTest1() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getRequestTest1");
     invoke();
@@ -280,6 +288,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(RequestWrapper, ResponseWrapper); call
    * AsyncContext.getRequest() verifies it works.
    */
+  @Test
   public void getRequestTest2() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getRequestTest2");
     invoke();
@@ -296,6 +305,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(Request, ResponseWrapper); call
    * AsyncContext.getRequest() verifies it works.
    */
+  @Test
   public void getRequestTest3() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getRequestTest3");
     invoke();
@@ -312,6 +322,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(RequestWrapper, Response); call
    * AsyncContext.getRequest() verifies it works.
    */
+  @Test
   public void getRequestTest4() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getRequestTest4");
     invoke();
@@ -328,6 +339,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(); In a separate thread, call
    * AsyncContext.getRequest() verifies it works.
    */
+  @Test
   public void getRequestTest6() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getRequestTest6");
     invoke();
@@ -344,6 +356,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(Request, Response); In a separate thread, call
    * AsyncContext.getRequest() verifies it works.
    */
+  @Test
   public void getRequestTest7() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getRequestTest7");
     invoke();
@@ -360,6 +373,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(RequestWrapper, ResponseWrapper); In a separate
    * thread, call AsyncContext.getRequest() verifies it works.
    */
+  @Test
   public void getRequestTest8() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getRequestTest8");
     invoke();
@@ -376,6 +390,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(Request, ResponseWrapper); In a separate thread,
    * call AsyncContext.getRequest() verifies it works.
    */
+  @Test
   public void getRequestTest9() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getRequestTest9");
     invoke();
@@ -392,6 +407,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(RequestWrapper, Response); In a separate thread,
    * call AsyncContext.getRequest() verifies it works.
    */
+  @Test
   public void getRequestTest10() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getRequestTest10");
     invoke();
@@ -408,6 +424,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(); In a separate thread, call
    * AsyncContext.getRequest() verifies it works.
    */
+  @Test
   public void getRequestTest12() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getRequestTest12");
     invoke();
@@ -424,6 +441,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(Request, Response); In a separate thread, call
    * AsyncContext.getRequest() verifies it works.
    */
+  @Test
   public void getRequestTest13() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getRequestTest13");
     invoke();
@@ -440,6 +458,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(RequestWrapper, ResponseWrapper); In a separate
    * thread, call AsyncContext.getRequest() verifies it works.
    */
+  @Test
   public void getRequestTest14() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getRequestTest14");
     invoke();
@@ -456,6 +475,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(Request, ResponseWrapper); In a separate thread,
    * call AsyncContext.getRequest() verifies it works.
    */
+  @Test
   public void getRequestTest15() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getRequestTest15");
     invoke();
@@ -472,6 +492,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(RequestWrapper, Response); In a separate thread,
    * call AsyncContext.getRequest() verifies it works.
    */
+  @Test
   public void getRequestTest16() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getRequestTest16");
     invoke();
@@ -488,6 +509,7 @@ public class URLClient extends AbstractUrlClient {
    * StartAsync in AsyncTestServlet; AsyncContext.createistener(clazz) verifies
    * ServletException is thrown when clazz fails to be instantiated.
    */
+  @Test
   public void asyncListenerTest1() throws Exception {
     TEST_PROPS.setProperty(APITEST, "asyncListenerTest1");
     invoke();
@@ -506,6 +528,7 @@ public class URLClient extends AbstractUrlClient {
    * separate thread, call AsyncContext.complete(); verifies ServletException is
    * thrown when clazz fails to be instantiated.
    */
+  @Test
   public void asyncListenerTest6() throws Exception {
     TEST_PROPS.setProperty(APITEST, "asyncListenerTest6");
     invoke();
@@ -521,6 +544,7 @@ public class URLClient extends AbstractUrlClient {
    * Client send a request to AsyncTestServlet; StartAsync in AsyncTestServlet;
    * AsyncContext.setTimeout(L) verifies it works using getTimeout.
    */
+  @Test
   public void timeOutTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "timeOutTest");
     invoke();
@@ -537,6 +561,7 @@ public class URLClient extends AbstractUrlClient {
    * Client send a request to AsyncTestServlet; StartAsync in AsyncTestServlet;
    * AsyncContext.setTimeout(0L) verifies it works using getTimeout.
    */
+  @Test
   public void timeOutTest1() throws Exception {
     TEST_PROPS.setProperty(APITEST, "timeOutTest1");
     invoke();
@@ -553,6 +578,7 @@ public class URLClient extends AbstractUrlClient {
    * Client send a request to AsyncTestServlet; StartAsync in AsyncTestServlet;
    * AsyncContext.setTimeout(L) verifies it works by letting it timeout.
    */
+  @Test
   public void timeOutTest2() throws Exception {
     TEST_PROPS.setProperty(APITEST, "timeOutTest2");
     TEST_PROPS.setProperty(SEARCH_STRING, "in onTimeout method of ACListener2");
@@ -570,6 +596,7 @@ public class URLClient extends AbstractUrlClient {
    * Client send a request to AsyncTestServlet; StartAsync in AsyncTestServlet;
    * verifies it times out at default timeout.
    */
+  @Test
   public void timeOutTest4() throws Exception {
     TEST_PROPS.setProperty(APITEST, "timeOutTest4");
     TEST_PROPS.setProperty(SEARCH_STRING, "in onTimeout method of ACListener2");
@@ -588,6 +615,7 @@ public class URLClient extends AbstractUrlClient {
    * in AsyncTestServlet; verifies AsyncContext.hasOriginalRequestAndResponse
    * works.
    */
+  @Test
   public void originalRequestTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "originalRequestTest");
     invoke();
@@ -604,6 +632,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(ServletRequest, ServletResponse); verifies
    * AsyncContext.hasOriginalRequestAndResponse works.
    */
+  @Test
   public void originalRequestTest1() throws Exception {
     TEST_PROPS.setProperty(APITEST, "originalRequestTest1");
     invoke();
@@ -620,6 +649,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(ServletRequestWrapper, ServletResponseWrapper);
    * verifies AsyncContext.hasOriginalRequestAndResponse works.
    */
+  @Test
   public void originalRequestTest2() throws Exception {
     TEST_PROPS.setProperty(APITEST, "originalRequestTest2");
     invoke();
@@ -636,6 +666,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(ServletRequestWrapper, ServletResponse); verifies
    * AsyncContext.hasOriginalRequestAndResponse works.
    */
+  @Test
   public void originalRequestTest3() throws Exception {
     TEST_PROPS.setProperty(APITEST, "originalRequestTest3");
     invoke();
@@ -652,6 +683,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(ServletRequest, ServletResponseWrapper); verifies
    * AsyncContext.hasOriginalRequestAndResponse works.
    */
+  @Test
   public void originalRequestTest4() throws Exception {
     TEST_PROPS.setProperty(APITEST, "originalRequestTest4");
     invoke();
@@ -668,6 +700,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(); call AsyncContext.getResponse() verifies it
    * works.
    */
+  @Test
   public void getResponseTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getResponseTest");
     invoke();
@@ -684,6 +717,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(Request, Response); call
    * AsyncContext.getResponse() verifies it works.
    */
+  @Test
   public void getResponseTest1() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getResponseTest1");
     invoke();
@@ -700,6 +734,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(RequestWrapper, ResponseWrapper); call
    * AsyncContext.getResponse() verifies it works.
    */
+  @Test
   public void getResponseTest2() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getResponseTest2");
     invoke();
@@ -716,6 +751,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(Request, ResponseWrapper); call
    * AsyncContext.getResponse() verifies it works.
    */
+  @Test
   public void getResponseTest3() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getResponseTest3");
     invoke();
@@ -732,6 +768,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.startAsync(RequestWrapper, Response); call
    * AsyncContext.getResponse() verifies it works.
    */
+  @Test
   public void getResponseTest4() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getResponseTest4");
     invoke();
@@ -751,6 +788,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.isAsyncStarted() call ServletRequest.getDispatcherType()
    * StartAsync again verifies all work accordingly.
    */
+  @Test
   public void startAsyncAgainTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "startAsyncAgainTest");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -778,6 +816,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletRequest.getDispatcherType() StartAsync again verifies all work
    * accordingly.
    */
+  @Test
   public void startAsyncAgainTest1() throws Exception {
     TEST_PROPS.setProperty(APITEST, "startAsyncAgainTest1");
     TEST_PROPS.setProperty(SEARCH_STRING,

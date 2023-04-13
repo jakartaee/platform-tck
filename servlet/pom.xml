@@ -18,7 +18,8 @@
 
 -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -43,10 +44,6 @@
             <artifactId>assembly</artifactId>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>jsp</artifactId>
-        </dependency>
-        <dependency>
             <groupId>javatest</groupId>
             <artifactId>javatest</artifactId>
         </dependency>
@@ -66,31 +63,71 @@
             <groupId>jakarta.enterprise</groupId>
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
         </dependency>
+      <dependency>
+        <groupId>jakartatck</groupId>
+        <artifactId>libutil</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>web-servlet</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>web-jsp</artifactId>
+      </dependency>
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+      </dependency>
+
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <scope>compile</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.jboss.arquillian.junit5</groupId>
+        <artifactId>arquillian-junit5-container</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.arquillian.junit</groupId>
+        <artifactId>arquillian-junit-core</artifactId>
+      </dependency>
+
+      <dependency>
+        <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+        <artifactId>shrinkwrap-descriptors-impl-javaee</artifactId>
+        <version>2.0.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.shrinkwrap</groupId>
+        <artifactId>shrinkwrap-api</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.shrinkwrap.resolver</groupId>
+        <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+      </dependency>
+
     </dependencies>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>com.sun.xml.ws</groupId>
-                <artifactId>jaxws-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <wsdlDirectory>${project.basedir}/src/main/java/com/sun/ts/tests/servlet/ee/common/sharedwebservices/servlethttptestservice</wsdlDirectory>
-                            <wsdlFiles>
-                                <wsdlFile>ServletHttpTestService.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <packageName>com.sun.ts.tests.servlet.ee.common.sharedwebservices.servlethttptestservice</packageName>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
+      <resources>
+        <resource>
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/**.xml</include>
+            <include>**/jakarta.servlet.ServletContainerInitializer</include>
+            <include>**/web-fragment*.xml</include>
+            <include>**/*.txt</include>
+            <include>**/*.tld</include>
+          </includes>
+        </resource>
+        <resource>
+          <directory>src/main/resources</directory>
+        </resource>
+      </resources>
     </build>
 
 </project>

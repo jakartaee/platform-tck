@@ -20,37 +20,30 @@
 
 package com.sun.ts.tests.servlet.spec.httpservletresponse;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  private static final String CONTEXT_ROOT = "/servlet_spec_httpservletresponse_web";
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+  @BeforeEach
+  public void setupServletName() throws Exception {
+    setServletName("HttpTestServlet");
   }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setContextRoot(CONTEXT_ROOT);
-    setServletName("HttpTestServlet");
-
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_spec_httpservletresponse_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(HttpTestServlet.class, RedirectedTestServlet.class)
+            .setWebXML(URLClient.class.getResource("servlet_spec_httpservletresponse_web.xml"));
   }
 
   /*
@@ -67,7 +60,7 @@ public class URLClient extends AbstractUrlClient {
    * the header again; 3. Verify that only the first header value is set, the
    * second set is ignored
    */
-
+  @Test
   public void intHeaderTest() throws Exception {
     TEST_PROPS.setProperty(EXPECTED_HEADERS, "header1: 12345");
     TEST_PROPS.setProperty(UNEXPECTED_HEADERS, "header2: 56789");
@@ -85,7 +78,7 @@ public class URLClient extends AbstractUrlClient {
    * content; 2. Then write to the buffer to fill up the buffer. 2. Call
    * setIntHeader to set header 3. Verify that the header value is not set,
    */
-
+  @Test
   public void flushBufferTest() throws Exception {
     TEST_PROPS.setProperty(UNEXPECTED_HEADERS, "header1: 12345");
     TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/"
@@ -102,7 +95,7 @@ public class URLClient extends AbstractUrlClient {
    * then write to buffer; 4. Verify that the header value is not set, content
    * wrote to buffer is ignored
    */
-
+  @Test
   public void sendErrorCommitTest() throws Exception {
     String testname = "sendErrorCommitTest";
     TEST_PROPS.setProperty(UNEXPECTED_HEADERS, "header1: 12345");
@@ -122,6 +115,7 @@ public class URLClient extends AbstractUrlClient {
    * wrote to buffer is ignored
    */
 
+  @Test
   public void sendRedirectCommitTest() throws Exception {
     String testname = "sendRedirectCommitTest";
     TEST_PROPS.setProperty(UNEXPECTED_HEADERS, "header1: 12345");
@@ -140,7 +134,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: 1. First write to buffer 2. Call sendRedirect; 3. Verify
    * that content wrote to buffer is cleared
    */
-
+  @Test
   public void sendRedirectClearBufferTest() throws Exception {
     String testname = "sendRedirectClearBufferTest";
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");

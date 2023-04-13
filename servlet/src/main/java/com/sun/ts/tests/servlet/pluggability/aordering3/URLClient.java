@@ -19,32 +19,33 @@
  */
 package com.sun.ts.tests.servlet.pluggability.aordering3;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.pluggability.common.CommonArchives;
+import com.sun.ts.tests.servlet.pluggability.common.RequestListener;
+import com.sun.ts.tests.servlet.pluggability.common.RequestListener6;
+import com.sun.ts.tests.servlet.pluggability.common.TestServlet1;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
   /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
+   * Deployment for the test
    */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String[] args, PrintWriter out, PrintWriter err) {
-    setContextRoot("/servlet_spec_aordering3_web");
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    JavaArchive javaArchive6 = ShrinkWrap.create(JavaArchive.class, "fragment-6.jar")
+            .addClasses(RequestListener6.class, TestServlet1.class)
+            .addAsResource("com/sun/ts/tests/servlet/pluggability/common/web-fragment_6.xml",
+                    "META-INF/web-fragment.xml");
+    return ShrinkWrap.create(WebArchive.class, "servlet_spec_aordering3_web.war")
+            .addAsLibraries(CommonArchives.getCommonWebFragmentArchives())
+            .addAsLibraries(javaArchive6)
+            .addClasses(RequestListener.class, TestServlet1.class)
+            .setWebXML(URLClient.class.getResource("servlet_spec_aordering3_web.xml"));
   }
 
   /*
@@ -68,6 +69,7 @@ public class URLClient extends AbstractUrlClient {
    * Verify that <absolute-ordering> works accordingly when empty, that all
    * fragnments are ignored.
    */
+  @Test
   public void absoluteOrderingTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "msg1=first|RequestListener");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH,

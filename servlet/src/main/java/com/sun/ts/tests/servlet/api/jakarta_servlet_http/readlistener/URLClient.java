@@ -19,45 +19,38 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.readlistener;
 
+import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
-import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
-
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setContextRoot("/servlet_jsh_readlistener_web");
+  @BeforeEach
+  public void setupServletName() throws Exception {
     setServletName("TestServlet");
-
-    return super.run(args, out, err);
   }
+
+  /**
+   * Deployment for the test
+   */
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_jsh_readlistener.war")
+            .addClasses(TestServlet.class, TestListener.class);
+  }
+
 
   /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
@@ -77,10 +70,11 @@ public class URLClient extends AbstractUrlClient {
    * ReadListener; From Client, sends two batch of messages use stream; Verify
    * all message received; Verify ReadListener works accordingly
    */
+  @Test
   public void nioInputTest() throws Exception {
     int sleepInSeconds = Integer
         .parseInt(_props.getProperty("servlet_async_wait").trim());
-    Boolean passed = true;
+    boolean passed = true;
 
     String EXPECTED_RESPONSE = "=onDataAvailable|=Hello|=onDataAvailable|=World"
         + "|=onAllDataRead";
@@ -89,19 +83,17 @@ public class URLClient extends AbstractUrlClient {
     BufferedWriter output = null;
 
     String requestUrl = getContextRoot() + "/" + getServletName();
-    URL url = null;
 
     try {
-      TSURL ctsURL = new TSURL();
-      url = ctsURL.getURL("http", _hostname, _port, requestUrl);
+      URL url = getURL("http", _hostname, _port, requestUrl.substring(1));
 
       HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-      TestUtil.logTrace("======= Connecting " + url.toExternalForm());
+      logger.debug("Connecting {}", url.toExternalForm());
       conn.setRequestProperty("Content-type", "text/plain; charset=utf-8");
       conn.setChunkedStreamingMode(5);
       conn.setRequestMethod("POST");
       conn.setDoOutput(true);
-      TestUtil.logTrace("======= Header " + conn.toString());
+      logger.debug(" Header {}", conn);
       conn.connect();
 
       try {
@@ -119,17 +111,16 @@ public class URLClient extends AbstractUrlClient {
           output.close();
         } catch (Exception ex) {
           passed = false;
-          TestUtil
-              .logErr("======= Exception sending message: " + ex.getMessage());
+          logger.error("======= Exception sending message: " + ex.getMessage(), ex);
         }
 
         input = new BufferedReader(
             new InputStreamReader(conn.getInputStream()));
-        String line = null;
-        StringBuffer message_received = new StringBuffer();
+        String line;
+        StringBuilder message_received = new StringBuilder();
 
         while ((line = input.readLine()) != null) {
-          TestUtil.logTrace("======= message received: " + line);
+          logger.debug("======= message received: {}", line);
           message_received.append(line);
         }
         passed = ServletTestUtil.compareString(EXPECTED_RESPONSE,
@@ -137,14 +128,14 @@ public class URLClient extends AbstractUrlClient {
 
       } catch (Exception ex) {
         passed = false;
-        TestUtil.logErr("Exception: " + ex.getMessage());
+        logger.error("Exception: " + ex.getMessage(), ex);
       } finally {
         try {
           if (input != null) {
             input.close();
           }
         } catch (Exception ex) {
-          TestUtil.logErr("Fail to close BufferedReader" + ex.getMessage());
+          logger.error("Fail to close BufferedReader" + ex.getMessage(), ex);
         }
 
         try {
@@ -152,12 +143,12 @@ public class URLClient extends AbstractUrlClient {
             output.close();
           }
         } catch (Exception ex) {
-          TestUtil.logErr("Fail to close BufferedWriter" + ex.getMessage());
+          logger.error("Fail to close BufferedWriter" + ex.getMessage(), ex);
         }
       }
     } catch (Exception ex3) {
       passed = false;
-      TestUtil.logErr("Test" + ex3.getMessage());
+      logger.error("Test" + ex3.getMessage(), ex3);
     }
 
     if (!passed) {

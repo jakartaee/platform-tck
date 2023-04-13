@@ -63,6 +63,8 @@ public class ServletSecTestServlet extends HttpServlet {
   public void service(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
+    System.out.println("in service");
+
     PrintWriter out = response.getWriter();
 
     out.println("getRemoteUser(): " + request.getRemoteUser() + "<BR>");
@@ -117,20 +119,17 @@ public class ServletSecTestServlet extends HttpServlet {
       } else
         out.println(testName + ": key-size : " + keySize.toString());
 
-      certificates = (X509Certificate[]) request
-          .getAttribute(certificateAttrib);
+      certificates = (X509Certificate[]) request.getAttribute(certificateAttrib);
 
       // verify SSL certificate attribute
       if (certificates != null) {
         for (int i = 0; i < certificates.length; i++) {
 
           X509Certificate x509Certificate = certificates[i];
-          out.println(testName + ": certificate [" + i + "]="
-              + x509Certificate.toString());
+          out.println(testName + ": certificate [" + i + "]=" + x509Certificate.toString());
         }
       } else {
-        out.println(
-            testName + ": " + FAILSTRING + " - No SSL certificate found");
+        out.println(testName + ": " + FAILSTRING + " - No SSL certificate found");
         fail = true;
 
       }

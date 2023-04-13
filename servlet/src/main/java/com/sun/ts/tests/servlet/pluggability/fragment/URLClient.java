@@ -19,32 +19,48 @@
  */
 package com.sun.ts.tests.servlet.pluggability.fragment;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+  @BeforeEach
+  public void setupServletName() throws Exception {
+    setContextRoot("/servlet_spec_fragment_web");
+    setServletName("TestServlet");
   }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String[] args, PrintWriter out, PrintWriter err) {
-    setContextRoot("/servlet_spec_fragment_web");
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+
+    JavaArchive javaArchive1 = ShrinkWrap.create(JavaArchive.class, "fragment-1.jar")
+            .addClasses(TestServlet1.class, TestServlet2.class, TestFilter.class)
+            .addAsResource(URLClient.class.getResource("servlet_spec_fragment_web-fragment.xml"),
+                    "META-INF/web-fragment.xml");
+    JavaArchive javaArchive2 = ShrinkWrap.create(JavaArchive.class, "fragment-2.jar")
+            .addClasses(TestServlet3.class, TestFilter1.class)
+            .addAsResource(URLClient.class.getResource("servlet_spec_fragment_web-fragment_1.xml"),
+                    "META-INF/web-fragment.xml");
+    JavaArchive javaArchive3 = ShrinkWrap.create(JavaArchive.class, "fragment-3.jar")
+            .addClasses(TestServlet4.class, TestFilter2.class)
+            .addAsResource(URLClient.class.getResource("servlet_spec_fragment_web-fragment_2.xml"),
+                    "META-INF/web-fragment.xml");
+    JavaArchive javaArchive4 = ShrinkWrap.create(JavaArchive.class, "fragment-4.jar")
+            .addClasses(TestServlet5.class, TestFilter3.class)
+            .addAsResource(URLClient.class.getResource("servlet_spec_fragment_web-fragment_3.xml"),
+                    "META-INF/web-fragment.xml");
+    return ShrinkWrap.create(WebArchive.class, "servlet_spec_fragment_web.war")
+            .addAsLibraries(javaArchive1, javaArchive2, javaArchive3, javaArchive4)
+            .addClasses(TestFilter.class, TestServlet1.class, TestServlet2.class)
+            .setWebXML(URLClient.class.getResource("servlet_spec_fragment_web.xml"));
   }
 
   /*
@@ -62,6 +78,7 @@ public class URLClient extends AbstractUrlClient {
    * web-fragment.xml are considered, and the one defined in web.xml take
    * precedence.
    */
+  @Test
   public void initParamTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING,
         "TestServlet1|msg1=first|msg2=second");
@@ -80,6 +97,7 @@ public class URLClient extends AbstractUrlClient {
    * request to /TestServlet3, verify TestServlet3 is invoked 3. Also verify
    * that filter is invoked too.
    */
+  @Test
   public void addServletTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING,
         "TestFilter3|fragment|three|TestServlet3|msg1=third|msg2=third");
@@ -100,6 +118,7 @@ public class URLClient extends AbstractUrlClient {
    * TestServlet2 is invoked 3. Send request to URL /TestServlet22 defined in
    * web-fragment.xml, verify 404 is returned.
    */
+  @Test
   public void addServletURLTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet2");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "ignore");
@@ -122,6 +141,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: 1. Define servlet TestServlet4 web-fragment.xml in
    * <welcome-file>; 2. Send request to URL /, verify TestServlet4 is invoked
    */
+  @Test
   public void welcomefileTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet4");
     TEST_PROPS.setProperty(REQUEST,
@@ -142,6 +162,7 @@ public class URLClient extends AbstractUrlClient {
    * that web.xml is always processed first; 4. Verify that <ordering> works
    * accordingly.
    */
+  @Test
   public void filterOrderingTest() throws Exception {
     TEST_PROPS.setProperty(SEARCH_STRING,
         "TestFilter|fragment|none|" + "TestFilter3|fragment|three|"

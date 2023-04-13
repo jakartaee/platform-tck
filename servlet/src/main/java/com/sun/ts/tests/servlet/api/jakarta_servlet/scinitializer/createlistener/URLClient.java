@@ -19,35 +19,37 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.createlistener;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addlistener.SCAttributeListener;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addlistener.SRAttributeListener;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addlistener.SRListener;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addlistener.SCListener;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+  @BeforeEach
+  public void setupServletName() throws Exception {
+    setServletName("TestServlet");
   }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setContextRoot("/servlet_sci_createlistener_web");
-    setServletName("TestServlet");
-
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_sci_createlistener_web.war")
+            .addAsResource(URLClient.class.getResource("jakarta.servlet.ServletContainerInitializer"),
+                    "META-INF/services/jakarta.servlet.ServletContainerInitializer")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(TCKServletContainerInitializer.class, TestListener.class, TestServlet.class, SCListener.class,
+                    SCAttributeListener.class, SRListener.class, SRAttributeListener.class)
+            .setWebXML(URLClient.class.getResource("servlet_sci_createlistener_web.xml"));
   }
 
   /*
@@ -64,6 +66,7 @@ public class URLClient extends AbstractUrlClient {
    * ServletContextListener call ServletContext.createListener(Class) Verify
    * that UnsupportedOperationException is thrown.
    */
+  @Test
   public void createListenerTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "createListenerTest");
     invoke();

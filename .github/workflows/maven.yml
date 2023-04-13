@@ -1,0 +1,72 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+name: Build and run TCK Servlet
+
+on: [push, pull_request]
+
+permissions:
+  security-events: read
+  contents: write
+  actions: read
+  id-token: write
+  checks: write
+
+jobs:
+  build:
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        java: [11]
+      fail-fast: false
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Set up Maven
+        run:
+          mvn --errors --batch-mode --show-version org.apache.maven.plugins:maven-wrapper-plugin:3.1.0:wrapper -Dmaven=3.9.1
+
+      - name: Install legacy javatest jar
+        run: ./mvnw -e -ntp install:install-file -Dfile=./lib/javatest.jar -DgroupId=javatest -DartifactId=javatest -Dversion=5.0 -Dpackaging=jar
+
+      - name: Build & Run TCK Servlet TCK
+        run: ./mvnw -e -V -B -U -am clean install -e -pl :servlet-tck -am -Pglassfish-ci-managed -Pglassfish-runner -B -Dmaven.test.failure.ignore=true
+
+      #- name: Publish Test Report
+      #  uses: ScaCap/action-surefire-report@v1.7.0
+      #  with:
+      #    report_paths: '**/target/surefire-reports/TEST-**.xml'
+
+      - name: Publish Test Report
+        uses: dorny/test-reporter@v1
+        with:
+          name: Tests Report
+          path: '**/target/surefire-reports/TEST-**.xml'
+          reporter: java-junit
+          fail-on-error: false

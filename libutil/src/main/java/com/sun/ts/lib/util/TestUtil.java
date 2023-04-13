@@ -357,19 +357,10 @@ public final class TestUtil {
   }
 
   private static void savePropsToFile(Properties p) {
-    FileOutputStream out = null;
-    try {
-      out = new FileOutputStream(PROPS_FILE);
+    try (FileOutputStream out = new FileOutputStream(PROPS_FILE)) {
       p.store(out, "CTS Test Properties File");
     } catch (Exception e) {
       logErr("Error saving the Properties object", e);
-    } finally {
-      if (out != null) {
-        try {
-          out.close();
-        } catch (Exception e) {
-        }
-      }
     }
   }
 
@@ -405,9 +396,7 @@ public final class TestUtil {
         }
         if (true) {
           // System.out.println("INIT_CALLED AND SOCKET = NULL");
-          traceflag = Boolean
-              .valueOf(p.getProperty("harness.log.traceflag", "true"))
-              .booleanValue();
+          traceflag = Boolean.parseBoolean(p.getProperty("harness.log.traceflag", "true"));
           hostOfHarness = p.getProperty("harness.host");
           portOfHarness = Integer
               .parseInt(p.getProperty("harness.log.port", "2000"));
@@ -443,9 +432,7 @@ public final class TestUtil {
         try {
           // System.out.println("INIT_CALLED AND TRYING TO ESABLISH CONN. AFTER
           // IOEXCEPTION");
-          traceflag = Boolean
-              .valueOf(p.getProperty("harness.log.traceflag", "true"))
-              .booleanValue();
+          traceflag = Boolean.parseBoolean(p.getProperty("harness.log.traceflag", "true"));
           hostOfHarness = p.getProperty("harness.host");
           portOfHarness = Integer
               .parseInt(p.getProperty("harness.log.port", "2000"));
@@ -506,8 +493,7 @@ public final class TestUtil {
 
     testProps = p;
     NEW_LINE = p.getProperty("line.separator");
-    traceflag = Boolean.valueOf(p.getProperty("harness.log.traceflag", "true"))
-        .booleanValue();
+    traceflag = Boolean.parseBoolean(p.getProperty("harness.log.traceflag", "true"));
     iWhereAreWe = VM_HARNESS;
     bAlreadyInitialized = true;
   }
@@ -527,9 +513,7 @@ public final class TestUtil {
     try {
       testProps = p;
       NEW_LINE = p.getProperty("line.separator");
-      traceflag = Boolean
-          .valueOf(p.getProperty("harness.log.traceflag", "true"))
-          .booleanValue();
+      traceflag = Boolean.parseBoolean(p.getProperty("harness.log.traceflag", "true"));
       iWhereAreWe = VM_HARNESS;
       ServerSocket ss = getServerSocket(p);
       new Acceptor(ss);

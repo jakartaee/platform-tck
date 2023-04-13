@@ -20,33 +20,22 @@
 
 package com.sun.ts.tests.servlet.spec.webapps.accesswebinf;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setContextRoot("/servlet_spec_webapps_accesswebinf_web");
-
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_spec_webapps_accesswebinf_web.war")
+            .addAsWebInfResource("spec/webapps/accesswebinf/test.html", "test.html")
+            .setWebXML(URLClient.class.getResource("servlet_spec_webapps_accesswebinf_web.xml"));
   }
 
   /*
@@ -63,6 +52,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy:
    */
+  @Test
   public void accessWebInfTest() throws Exception {
     String testName = "accessWebInfTest";
     TEST_PROPS.setProperty(TEST_NAME, testName);

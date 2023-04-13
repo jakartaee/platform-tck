@@ -13,18 +13,19 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-
 /*
  * $Id$
  */
-
 package com.sun.ts.tests.servlet.spec.security.secbasic;
 
-import java.io.PrintWriter;
+import com.sun.ts.tests.servlet.common.request.SecBasicClient;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.tests.common.jspservletsec.SecBasicClient;
 
 /*
  * This  class uses the SecBasicClient to do most of its actual testing.  
@@ -39,40 +40,17 @@ import com.sun.ts.tests.common.jspservletsec.SecBasicClient;
  *
  */
 public class Client extends SecBasicClient {
-  // Shared test variables:
-  private Properties props = null;
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+    // TOFIX
+    /**
+     * Deployment for the test
+     */
+    @Deployment(testable = false)
+    public static WebArchive getTestArchive() throws Exception {
+        return ShrinkWrap.create(WebArchive.class, "servlet_sec_secbasic_web.war").addClasses(GuestPageAnnoTestServlet.class, GuestPageTestServlet.class, RoleReverseAnnoTestServlet.class, RoleReverseTestServlet.class, ServletSecAnnoTestServlet.class, ServletSecTestServlet.class, UnProtectedAnnoTestServlet.class, UnProtectedTestServlet.class).setWebXML(Client.class.getResource("servlet_sec_secbasic_web.xml"));
+    }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    Client theTests = new Client();
-
-    return super.run(args, out, err);
-  }
-
-  // Note: To share the commoncode between servlet and JSP,
-  // the commoncode is kept under
-  // <TS_HOME>/src/com/sun/ts/tests/common/jspservletsec/secbasicClient.java
-  // This subclass(Client.java) is used to flag the superclass
-  // to run servlet related secbasic tests
-  //
-
-  /*
+    /*
    * setup() passes "servlet" as the argument to its parent class setup()
    *
    */
@@ -83,7 +61,7 @@ public class Client extends SecBasicClient {
    *
    */
   public void setup(String[] args, Properties p) throws Exception {
-    props = p;
+    _props = p;
 
     // create newarguments to pass into superclass setup method.
     String[] newargs = new String[2];
@@ -97,7 +75,7 @@ public class Client extends SecBasicClient {
     super.setup(newargs, p);
   }
 
-  /*
+   /*
    * @testName: test1
    *
    * @assertion_ids:Servlet:SPEC:140; JavaEE:SPEC:21
@@ -107,7 +85,7 @@ public class Client extends SecBasicClient {
    *
    */
 
-  /*
+   /*
    * @testName: test1_anno
    *
    * @assertion_ids:Servlet:SPEC:140; JavaEE:SPEC:21; Servlet:SPEC:290;
@@ -120,22 +98,22 @@ public class Client extends SecBasicClient {
    * unauthenticated user 2. Receive authentication request.
    *
    */
-  public void test1_anno() throws Exception {
-    // save off pageSec so that we can reuse it
-    String tempPageSec = pageSec;
-    pageSec = "/servlet_sec_secbasic_web/ServletSecAnnoTest";
-
-    try {
-      super.test1();
-    } catch (Fault e) {
-      throw e;
-    } finally {
-      // reset pageSec to orig value
-      pageSec = tempPageSec;
+    @Test
+    public void test1_anno() throws Exception {
+        // save off pageSec so that we can reuse it
+        String tempPageSec = pageSec;
+        pageSec = "/servlet_sec_secbasic_web/ServletSecAnnoTest";
+        try {
+            super.test1();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            // reset pageSec to orig value
+            pageSec = tempPageSec;
+        }
     }
-  }
 
-  /*
+    /*
    * @testName: test2
    *
    * @assertion_ids: Servlet:SPEC:140;Servlet:JAVADOC:368; JavaEE:SPEC:281
@@ -153,8 +131,7 @@ public class Client extends SecBasicClient {
    * with.
    *
    */
-
-  /*
+    /*
    * @testName: test2_anno
    *
    * @assertion_ids: Servlet:SPEC:140; JavaEE:SPEC:21; Servlet:SPEC:290;
@@ -179,22 +156,22 @@ public class Client extends SecBasicClient {
    * "ADM" role (as defined in the DD via the role-link element.)
    *
    */
-  public void test2_anno() throws Exception {
-    // save off pageSec so that we can reuse it
-    String tempPageSec = pageSec;
-    pageSec = "/servlet_sec_secbasic_web/ServletSecAnnoTest";
-
-    try {
-      super.test2();
-    } catch (Fault e) {
-      throw e;
-    } finally {
-      // reset pageSec to orig value
-      pageSec = tempPageSec;
+    @Test
+    public void test2_anno() throws Exception {
+        // save off pageSec so that we can reuse it
+        String tempPageSec = pageSec;
+        pageSec = "/servlet_sec_secbasic_web/ServletSecAnnoTest";
+        try {
+            super.test2();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            // reset pageSec to orig value
+            pageSec = tempPageSec;
+        }
     }
-  }
 
-  /*
+    /*
    * @testName: test3
    *
    * @assertion_ids: Servlet:SPEC:162; JavaEE:SPEC:30; JavaEE:SPEC:281
@@ -207,8 +184,7 @@ public class Client extends SecBasicClient {
    * the container denies access to the web resource.
    *
    */
-
-  /*
+    /*
    * @testName: test3_anno
    *
    * @assertion_ids: Servlet:SPEC:162; JavaEE:SPEC:30; JavaEE:SPEC:281;
@@ -226,22 +202,22 @@ public class Client extends SecBasicClient {
    * the container denies access to the web resource.
    *
    */
-  public void test3_anno() throws Exception {
-    // save off pageSec so that we can reuse it
-    String tempPageSec = pageSec;
-    pageSec = "/servlet_sec_secbasic_web/ServletSecAnnoTest";
-
-    try {
-      super.test3();
-    } catch (Fault e) {
-      throw e;
-    } finally {
-      // reset pageSec to orig value
-      pageSec = tempPageSec;
+    @Test
+    public void test3_anno() throws Exception {
+        // save off pageSec so that we can reuse it
+        String tempPageSec = pageSec;
+        pageSec = "/servlet_sec_secbasic_web/ServletSecAnnoTest";
+        try {
+            super.test3();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            // reset pageSec to orig value
+            pageSec = tempPageSec;
+        }
     }
-  }
 
-  /*
+    /*
    * @testName: test4
    *
    * @assertion_ids: Servlet:SPEC:162; JavaEE:SPEC:30; JavaEE:SPEC:281
@@ -258,8 +234,7 @@ public class Client extends SecBasicClient {
    * denies access to the web resource.
    *
    */
-
-  /*
+    /*
    * @testName: test4_anno
    *
    * @assertion_ids: Servlet:SPEC:162; JavaEE:SPEC:30; JavaEE:SPEC:281;
@@ -279,25 +254,25 @@ public class Client extends SecBasicClient {
    * denies access to the web resource.
    *
    */
-  public void test4_anno() throws Exception {
-    // save off pageSec so that we can reuse it
-    String tempPageSec = pageSec;
-    String tempPageGuest = pageGuest;
-    pageSec = "/servlet_sec_secbasic_web/ServletSecAnnoTest";
-    pageGuest = "/servlet_sec_secbasic_web/GuestPageAnnoTest";
-
-    try {
-      super.test4();
-    } catch (Fault e) {
-      throw e;
-    } finally {
-      // reset pageSec to orig value
-      pageSec = tempPageSec;
-      pageGuest = tempPageGuest;
+    @Test
+    public void test4_anno() throws Exception {
+        // save off pageSec so that we can reuse it
+        String tempPageSec = pageSec;
+        String tempPageGuest = pageGuest;
+        pageSec = "/servlet_sec_secbasic_web/ServletSecAnnoTest";
+        pageGuest = "/servlet_sec_secbasic_web/GuestPageAnnoTest";
+        try {
+            super.test4();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            // reset pageSec to orig value
+            pageSec = tempPageSec;
+            pageGuest = tempPageGuest;
+        }
     }
-  }
 
-  /*
+    /*
    * @testName: test5
    *
    * @assertion_ids: Servlet:JAVADOC:368; Servlet:JAVADOC:369; JavaEE:SPEC:30;
@@ -314,8 +289,7 @@ public class Client extends SecBasicClient {
    * role reference. 3. getRemoteUser() must return false
    *
    */
-
-  /*
+    /*
    * @testName: test5_anno
    *
    * @assertion_ids: Servlet:JAVADOC:368; Servlet:JAVADOC:369; JavaEE:SPEC:30;
@@ -335,22 +309,22 @@ public class Client extends SecBasicClient {
    * role reference. 3. getRemoteUser() must return false
    *
    */
-  public void test5_anno() throws Exception {
-    // save off pageSec so that we can reuse it
-    String tempPageUnprotected = pageUnprotected;
-    pageUnprotected = "/servlet_sec_secbasic_web/UnProtectedAnnoTest";
-
-    try {
-      super.test5();
-    } catch (Fault e) {
-      throw e;
-    } finally {
-      // reset pageSec to orig value
-      pageUnprotected = tempPageUnprotected;
+    @Test
+    public void test5_anno() throws Exception {
+        // save off pageSec so that we can reuse it
+        String tempPageUnprotected = pageUnprotected;
+        pageUnprotected = "/servlet_sec_secbasic_web/UnProtectedAnnoTest";
+        try {
+            super.test5();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            // reset pageSec to orig value
+            pageUnprotected = tempPageUnprotected;
+        }
     }
-  }
 
-  /*
+    /*
    * @testName: test6
    *
    * @assertion_ids: Servlet:SPEC:149
@@ -375,8 +349,7 @@ public class Client extends SecBasicClient {
    * 8. Receive resource (check isUserInRole for all known roles)
    *
    */
-
-  /*
+    /*
    * @testName: test6_anno
    *
    * @assertion_ids: Servlet:SPEC:149; Servlet:SPEC:290; Servlet:SPEC:293;
@@ -405,22 +378,22 @@ public class Client extends SecBasicClient {
    * 8. Receive resource (check isUserInRole for all known roles)
    *
    */
-  public void test6_anno() throws Exception {
-    // save off pageSec so that we can reuse it
-    String tempPageRoleReverse = pageRoleReverse;
-    pageRoleReverse = "/servlet_sec_secbasic_web/RoleReverseAnnoTest";
-
-    try {
-      super.test6();
-    } catch (Fault e) {
-      throw e;
-    } finally {
-      // reset pageSec to orig value
-      pageRoleReverse = tempPageRoleReverse;
+    @Test
+    public void test6_anno() throws Exception {
+        // save off pageSec so that we can reuse it
+        String tempPageRoleReverse = pageRoleReverse;
+        pageRoleReverse = "/servlet_sec_secbasic_web/RoleReverseAnnoTest";
+        try {
+            super.test6();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            // reset pageSec to orig value
+            pageRoleReverse = tempPageRoleReverse;
+        }
     }
-  }
 
-  /*
+    /*
    * @testName: test7
    *
    * @assertion_ids: Servlet:SPEC:162; JavaEE:SPEC:30; JavaEE:SPEC:281
@@ -433,8 +406,7 @@ public class Client extends SecBasicClient {
    * the container denies access to the web resource.
    *
    */
-
-  /*
+    /*
    * @testName: test7_anno
    *
    * @assertion_ids: Servlet:SPEC:162; JavaEE:SPEC:30; JavaEE:SPEC:281;
@@ -451,19 +423,53 @@ public class Client extends SecBasicClient {
    * the container denies access to the web resource.
    *
    */
-  public void test7_anno() throws Exception {
-    // save off pageSec so that we can reuse it
-    String tempPageSec = pageSec;
-    pageSec = "/servlet_sec_secbasic_web/ServletSecAnnoTest";
-
-    try {
-      super.test7();
-    } catch (Fault e) {
-      throw e;
-    } finally {
-      // reset pageSec to orig value
-      pageSec = tempPageSec;
+    @Test
+    public void test7_anno() throws Exception {
+        // save off pageSec so that we can reuse it
+        String tempPageSec = pageSec;
+        pageSec = "/servlet_sec_secbasic_web/ServletSecAnnoTest";
+        try {
+            super.test7();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            // reset pageSec to orig value
+            pageSec = tempPageSec;
+        }
     }
-  }
 
+    @Test()
+    public void test1() throws Exception {
+        super.test1();
+    }
+
+    @Test()
+    public void test2() throws Exception {
+        super.test2();
+    }
+
+    @Test()
+    public void test3() throws Exception {
+        super.test3();
+    }
+
+    @Test()
+    public void test4() throws Exception {
+        super.test4();
+    }
+
+    @Test()
+    public void test5() throws Exception {
+        super.test5();
+    }
+
+    @Test()
+    public void test6() throws Exception {
+        super.test6();
+    }
+
+    @Test()
+    public void test7() throws Exception {
+        super.test7();
+    }
 }

@@ -19,35 +19,30 @@
  */
 package com.sun.ts.tests.servlet.api.jakarta_servlet_http.servletcontext303;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
+import com.sun.ts.tests.servlet.common.servlets.CommonServlets;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+  @BeforeEach
+  public void setupServletName() throws Exception {
+    setServletName("TestServlet");
   }
 
   /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
+   * Deployment for the test
    */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setContextRoot("/servlet_jsh_servletcontext303_web");
-    setServletName("TestServlet");
-
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive getTestArchive() throws Exception {
+    return ShrinkWrap.create(WebArchive.class, "servlet_jsh_servletcontext303_web.war")
+            .addAsLibraries(CommonServlets.getCommonServletsArchive())
+            .addClasses(TestServlet.class)
+            .setWebXML(URLClient.class.getResource("servlet_jsh_servletcontext303_web.xml"));
   }
 
   /*
@@ -62,6 +57,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Create a Servlet, in which, a HttpSessionListener is added;
    * Verify in servlet that java.lang.IllegalStateException is thrown.
    */
+  @Test
   public void negativeaddHListenerClassTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "negativeaddHListenerClassTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "HttpSessionListener");
@@ -76,6 +72,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Create a Servlet, in which, a HttpSessionListener is added;
    * Verify in servlet that java.lang.IllegalStateException is thrown.
    */
+  @Test
   public void negativeaddHListenerStringTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "negativeaddHListenerStringTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "HttpSessionListener");
@@ -90,6 +87,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Create a Servlet, in which, a HttpSessionAttributeListener
    * is added; Verify in servlet that java.lang.IllegalStateException is thrown.
    */
+  @Test
   public void negativeaddHAListenerClassTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "negativeaddHAListenerClassTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "HSessionAttribute");
@@ -104,6 +102,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Create a Servlet, in which, a HttpSessionAttributeListener
    * is added; Verify in servlet that java.lang.IllegalStateException is thrown.
    */
+  @Test
   public void negativeaddHAListenerStringTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "negativeaddHAListenerClassTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "HSessionAttribute");

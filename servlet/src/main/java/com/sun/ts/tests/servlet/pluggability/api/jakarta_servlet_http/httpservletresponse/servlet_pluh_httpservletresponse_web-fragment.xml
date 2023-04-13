@@ -24,7 +24,7 @@
               version="5.0" >
     <servlet>
         <servlet-name>TestServlet</servlet-name>
-        <servlet-class>com.sun.ts.tests.servlet.api.common.response.HttpResponseTestServlet</servlet-class>
+        <servlet-class>com.sun.ts.tests.servlet.common.response.HttpResponseTestServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>GetContentTypeNullTestServlet</servlet-name>

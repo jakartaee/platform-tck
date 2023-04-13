@@ -20,13 +20,15 @@
 
 package com.sun.ts.tests.common.webclient;
 
+import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.Properties;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
+import com.sun.javatest.Status;
 import org.apache.commons.httpclient.HttpState;
 
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
 
 /**
@@ -38,7 +40,9 @@ import com.sun.ts.tests.common.webclient.http.HttpRequest;
  * that particular technology.
  * </PRE>
  */
-public abstract class BaseUrlClient extends EETest {
+public abstract class BaseUrlClient {
+
+  private static final Logger LOGGER = Logger.getLogger(BaseUrlClient.class.getName());
 
   /**
    * Properties parameters
@@ -382,8 +386,6 @@ public abstract class BaseUrlClient extends EETest {
    *          a <code>String[]</code> value
    * @param p
    *          a <code>Properties</code> value
-   * @exception Fault
-   *              if an error occurs
    */
   public void setup(String[] args, Properties p) throws Exception {
     _props = p;
@@ -412,18 +414,16 @@ public abstract class BaseUrlClient extends EETest {
           "[BaseUrlClient] 'tshome' was not set in the " + " ts.jte.");
     }
 
-    TestUtil.logMsg("[BaseUrlClient] Test setup OK");
+    LOGGER.log(Level.INFO,"[BaseUrlClient] Test setup OK");
   }
 
   /**
    * <code>cleanup</code> is called by the test harness to cleanup after text
    * execution
    *
-   * @exception Fault
-   *              if an error occurs
    */
   public void cleanup() throws Exception {
-    TestUtil.logMsg("[BaseUrlClient] Test cleanup OK");
+    LOGGER.log(Level.INFO, "[BaseUrlClient] Test cleanup OK");
   }
 
   /*
@@ -437,7 +437,7 @@ public abstract class BaseUrlClient extends EETest {
     * stored in TEST_PROPS.  Once the test has completed,
     * the properties in TEST_PROPS will be cleared.
    * </PRE>
-   * 
+   *
    * @throws Exception
    *           If an error occurs during the test run
    */
@@ -445,12 +445,12 @@ public abstract class BaseUrlClient extends EETest {
     try {
       _testCase = new WebTestCase();
       setTestProperties(_testCase);
-      TestUtil.logTrace("[BaseUrlClient] EXECUTING");
+      LOGGER.fine("[BaseUrlClient] EXECUTING");
       if (_useSavedState && _state != null) {
         _testCase.getRequest().setState(_state);
       }
       if (_redirect != false) {
-        TestUtil.logTrace("##########Call setFollowRedirects");
+        LOGGER.fine("##########Call setFollowRedirects");
         _testCase.getRequest().setFollowRedirects(_redirect);
       }
       _testCase.execute();
@@ -460,7 +460,7 @@ public abstract class BaseUrlClient extends EETest {
     } catch (TestFailureException tfe) {
       Throwable t = tfe.getRootCause();
       if (t != null) {
-        TestUtil.logErr("Root cause of Failure: " + t.getMessage(), t);
+        LOGGER.log(Level.WARNING, "Root cause of Failure: " + t.getMessage(), t);
       }
       throw new Exception("[BaseUrlClient] " + _testName
           + " failed!  Check output for cause of failure.", tfe);
@@ -553,7 +553,7 @@ public abstract class BaseUrlClient extends EETest {
       } else if (key.equals(SAVE_STATE)) {
         _saveState = true;
       } else if (key.equals(FOLLOW_REDIRECT)) {
-        TestUtil.logTrace("##########Found redirect Property");
+        LOGGER.fine("##########Found redirect Property");
         _redirect = true;
       } else if (key.equals(BASIC_AUTH_USER) || key.equals(BASIC_AUTH_PASSWD)
           || key.equals(BASIC_AUTH_REALM)) {
@@ -594,4 +594,10 @@ public abstract class BaseUrlClient extends EETest {
     }
     return false;
   }
+
+  public Status run(String args[], PrintWriter out, PrintWriter err)  {
+    // TODO remove
+    return new Status(0, "");
+  }
+
 }
