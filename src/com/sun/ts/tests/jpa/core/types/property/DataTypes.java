@@ -37,7 +37,7 @@ public class DataTypes implements java.io.Serializable {
 
   private Integer id;
 
-  private Character characterData;
+  private char characterData;
 
   private Boolean booleanData;
 
@@ -53,16 +53,16 @@ public class DataTypes implements java.io.Serializable {
 
   private Grade enumData;
 
-  private Byte[] byteArrayData;
+  private byte[] byteArrayData;
 
-  private Character[] charArrayData;
+  private char[] charArrayData;
 
   public DataTypes() {
   }
 
-  public DataTypes(Integer id, Character characterData, Boolean booleanData,
+  public DataTypes(Integer id, char characterData, Boolean booleanData,
       Short shortData, Integer integerData, Long longData, Double doubleData,
-      Float floatData, Character[] charArrayData, Byte[] byteArrayData) {
+      Float floatData, char[] charArrayData, byte[] byteArrayData) {
     this.id = id;
     this.characterData = characterData;
     this.booleanData = booleanData;
@@ -86,11 +86,11 @@ public class DataTypes implements java.io.Serializable {
   }
 
   @Column(name = "CHARDATA")
-  public Character getCharacterData() {
+  public char getCharacterData() {
     return characterData;
   }
 
-  public void setCharacterData(Character characterData) {
+  public void setCharacterData(char characterData) {
     this.characterData = characterData;
   }
 
@@ -160,21 +160,21 @@ public class DataTypes implements java.io.Serializable {
   }
 
   @Column(name = "CHARARRAYDATA")
-  public Character[] getCharArrayData() {
+  public char[] getCharArrayData() {
     return charArrayData;
   }
 
-  public void setCharArrayData(Character[] charArrayData) {
+  public void setCharArrayData(char[] charArrayData) {
     this.charArrayData = charArrayData;
   }
 
   @Lob
   @Column(name = "BYTEARRAYDATA")
-  public Byte[] getByteArrayData() {
+  public byte[] getByteArrayData() {
     return byteArrayData;
   }
 
-  public void setByteArrayData(Byte[] byteArrayData) {
+  public void setByteArrayData(byte[] byteArrayData) {
     this.byteArrayData = byteArrayData;
   }
 
