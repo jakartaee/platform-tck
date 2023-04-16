@@ -114,7 +114,6 @@
         <configuration>
           <systemPropertyVariables>
             <arquillian.launch>mock</arquillian.launch>
-
           </systemPropertyVariables>
         </configuration>
       </plugin>

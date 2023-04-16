@@ -91,7 +91,6 @@
     <!-- Test tools/dependencies -->
     <testng.version>7.4.0</testng.version>
     <junit.version>5.8.2</junit.version>
-    <arquillian.version>1.7.0.Alpha10</arquillian.version>
     <arquillian.container.se.api.version>1.0.1.Final</arquillian.container.se.api.version>
     <apache.httpclient.version>3.1</apache.httpclient.version>
     <!-- Required for distribution build, should be overriden for each build -->
@@ -171,16 +170,5 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-
-  <scm>
-    <connection>scm:git:git@github.com:eclipse-ee4j/cdi-tck.git</connection>
-    <developerConnection>scm:git:git@github.com:eclipse-ee4j/cdi-tck.git</developerConnection>
-    <url>https://github.com/eclipse-ee4j/cdi-tck</url>
-  </scm>
-
-  <profiles>
-
-
-  </profiles>
 
 </project>
