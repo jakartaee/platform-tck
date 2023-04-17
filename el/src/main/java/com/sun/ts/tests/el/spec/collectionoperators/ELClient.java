@@ -24,7 +24,7 @@ package com.sun.ts.tests.el.spec.collectionoperators;
 import java.lang.reflect.Array;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.lib.util.TestUtil;
@@ -32,6 +32,11 @@ import com.sun.ts.tests.el.common.util.DataBase;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 
 import jakarta.el.ELProcessor;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 
 public class ELClient extends ServiceEETest {
 
@@ -41,20 +46,32 @@ public class ELClient extends ServiceEETest {
 
   Properties testProps;
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+  // public static void main(String[] args) {
+  //   ELClient theTests = new ELClient();
+  //   Status s = theTests.run(args, System.out, System.err);
+  //   s.exit();
+  // }
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
-  }
+  // public void setup(String[] args, Properties p) throws Exception {
+  //   TestUtil.logTrace("Setup method called");
+  //   this.testProps = p;
+  // }
 
+  @AfterEach
   public void cleanup() throws Exception {
-    // does nothing at this point
+    TestUtil.logTrace("Cleanup method called");
   }
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+  }
+
 
   /**
    * @testName: elCollectionMapFilterTest
@@ -68,6 +85,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elCollectionMapFilterTest() throws Exception {
     buildELContext();
 
@@ -97,6 +115,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elCollectionMinTest() throws Exception {
     buildELContext();
 
@@ -124,6 +143,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elCollectionMaxTest() throws Exception {
     buildELContext();
 
@@ -150,6 +170,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elCollectionDistinctTest() throws Exception {
     buildELContext();
 
@@ -169,6 +190,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elCollectionForEachTest() throws Exception {
     buildELContext();
 
@@ -191,6 +213,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elCollectionFindFirstTest() throws Exception {
     buildELContext();
 
@@ -211,6 +234,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elCollectionLimitTest() throws Exception {
     buildELContext();
 
@@ -307,6 +331,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elCollectionSumTest() throws Exception {
     buildELContext();
 
@@ -327,6 +352,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elCollectionCountTest() throws Exception {
     buildELContext();
 
@@ -344,6 +370,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elCollectionAverageTest() throws Exception {
 
     buildELContext();
@@ -363,6 +390,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elCollectionToArrayTest() throws Exception {
     buildELContext();
 
@@ -389,6 +417,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elCollectionReduceTest() throws Exception {
     buildELContext();
 
@@ -417,6 +446,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elCollectionSubStreamTest() throws Exception {
     buildELContext();
 
@@ -439,6 +469,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elCollectionPeekTest() throws Exception {
     buildELContext();
 
@@ -460,6 +491,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elCollectionFlatMapTest() throws Exception {
     buildELContext();
 
@@ -482,6 +514,7 @@ public class ELClient extends ServiceEETest {
    * @test+Strategy: Verify that a value in a literal List constructed from
    *                 variables can be retrieved using the associated index.
    */
+  @Test
   public void elCollectionSetLiteralTest() throws Exception {
     boolean pass = false;
     
@@ -517,6 +550,7 @@ public class ELClient extends ServiceEETest {
    * @test+Strategy: Verify that a value in a literal List constructed from
    *                 variables can be retrieved using the associated index.
    */
+  @Test
   public void elCollectionListLiteralTest() throws Exception {
     boolean pass = false;
     
@@ -552,6 +586,7 @@ public class ELClient extends ServiceEETest {
    * @test+Strategy: Verify that a value in a literal Map constructed from
    *                 variables can be retrieved using the associated key.
    */
+  @Test
   public void elCollectionMapLiteralTest() throws Exception {
     boolean pass = false;
     

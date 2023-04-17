@@ -21,7 +21,7 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.el.api.expression.ExpressionTest;
@@ -37,25 +37,46 @@ import jakarta.el.PropertyNotFoundException;
 import jakarta.el.ValueExpression;
 import jakarta.el.ValueReference;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+
 public class ELClient extends ServiceEETest {
   private Hashtable<Class<?>, Object> testValueTable;
 
   private Properties testProps;
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
+  public ELClient(){
     this.initializeTable();
+    this.testProps=System.getProperties();
   }
 
+  // public static void main(String[] args) {
+  //   ELClient theTests = new ELClient();
+  //   Status s = theTests.run(args, System.out, System.err);
+  //   s.exit();
+  // }
+
+  // public void setup(String[] args, Properties p) throws Exception {
+  //   TestUtil.logTrace("Setup method called");
+  //   this.testProps = p;
+  //   this.initializeTable();
+  // }
+
+  @AfterEach
   public void cleanup() throws Exception {
-    // does nothing at this point
+    TestUtil.logTrace("Cleanup method called");
+  }
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -69,6 +90,7 @@ public class ELClient extends ServiceEETest {
    *                 ValueExpression.isReadOTestUtil.NEW_LINEy()
    *                 Expression.isLiteralText() Expression.getExpressionString()
    */
+  @Test
   public void positiveValueExpressionTest() throws Exception {
 
     StringBuffer buf = new StringBuffer();
@@ -168,6 +190,7 @@ public class ELClient extends ServiceEETest {
    *                 is not the same as the one with which the ValueExpression
    *                 was created, a PropertyNotFoundException is thrown.
    */
+  @Test
   public void negativeValueExpressionTest() throws Exception {
 
     boolean pass = true;
@@ -347,6 +370,7 @@ public class ELClient extends ServiceEETest {
    *                 that a ValueExpression can be manually serialized and
    *                 deserialized.
    */
+  @Test
   public void valueExpressionSerializableTest() throws Exception {
 
     boolean pass;
@@ -425,6 +449,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate that ValueExpression implements equals() and that
    *                 the behavior is as expected
    */
+  @Test
   public void valueExpressionEqualsTest() throws Exception {
 
     StringBuffer buf = new StringBuffer();

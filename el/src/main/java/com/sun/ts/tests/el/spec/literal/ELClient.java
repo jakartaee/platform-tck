@@ -28,29 +28,46 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
-import com.sun.javatest.Status;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.util.ExprEval;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 
 public class ELClient extends ServiceEETest {
 
   Properties testProps;
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+  // public static void main(String[] args) {
+  //   ELClient theTests = new ELClient();
+  //   Status s = theTests.run(args, System.out, System.err);
+  //   s.exit();
+  // }
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
-  }
+  // public void setup(String[] args, Properties p) throws Exception {
+  //   TestUtil.logTrace("Setup method called");
+  //   this.testProps = p;
+  // }
 
+  @AfterEach
   public void cleanup() throws Exception {
-    // does nothing at this point
+    TestUtil.logTrace("Cleanup method called");
   }
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+  }
+
 
   // ------------------------------------------------------------- Test
   // Methods
@@ -61,6 +78,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate that the EL Boolean literal: - 'true' is evaluated
    *                 as expected. - 'false' is evaluated as expected.
    */
+  @Test
   public void elBooleanLiteralTest() throws Exception {
 
     boolean pass1, pass2;
@@ -108,6 +126,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate that the EL Integer literal with the: - '$' is
    *                 evaluated as expected. - '#' is evaluated as expected.
    */
+  @Test
   public void elIntegerLiteralTest() throws Exception {
 
     boolean pass1, pass2;
@@ -163,6 +182,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate that the EL Float literal with the: - '$' is
    *                 evaluated as expected. - '#' is evaluated as expected.
    */
+  @Test
   public void elFloatingPointLiteralTest() throws Exception {
 
     boolean pass1, pass2;
@@ -217,6 +237,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate that the EL String literal with the: - '$' is
    *                 evaluated as expected. - '#' is evaluated as expected.
    */
+  @Test
   public void elStringLiteralTest() throws Exception {
 
     boolean pass1, pass2;
@@ -274,6 +295,7 @@ public class ELClient extends ServiceEETest {
    * @assertion_ids: EL:SPEC:13.6
    * @test_Strategy: Validate that the EL 'null' literal evalutes correctly.
    */
+  @Test
   public void elNullLiteralTest() throws Exception {
 
     boolean pass1, pass2;
@@ -316,6 +338,7 @@ public class ELClient extends ServiceEETest {
    *                 that include the character sequence "${" or "#{" a
    *                 composite expression can be used.
    */
+  @Test
   public void elSyntaxAsLiteralTest() throws Exception {
     boolean pass = false;
 

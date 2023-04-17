@@ -25,31 +25,48 @@ import java.math.BigInteger;
 import java.util.Iterator;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.util.ExprEval;
 import com.sun.ts.tests.el.common.util.TestNum;
 import com.sun.ts.tests.el.common.util.Validator;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+
 public class ELClient extends ServiceEETest {
 
   Properties testProps;
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+  // public static void main(String[] args) {
+  //   ELClient theTests = new ELClient();
+  //   Status s = theTests.run(args, System.out, System.err);
+  //   s.exit();
+  // }
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
-  }
+  // public void setup(String[] args, Properties p) throws Exception {
+  //   TestUtil.logTrace("Setup method called");
+  //   this.testProps = p;
+  // }
 
+  @AfterEach
   public void cleanup() throws Exception {
-    // does nothing at this point
+    TestUtil.logTrace("Cleanup method called");
   }
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+  }
+
 
   /**
    * @testName: elNullOperandAddTest
@@ -57,6 +74,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate that if both of the operands in an EL "+"
    *                 (addition) operation are null, the result is (Long) 0.
    */
+  @Test
   public void elNullOperandAddTest() throws Exception {
 
     boolean pass = false;
@@ -86,6 +104,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate that if both of the operands in an EL "-"
    *                 (subtraction) operation are null, the result is (Long) 0.
    */
+  @Test
   public void elNullOperandSubtractTest() throws Exception {
 
     boolean pass = false;
@@ -116,6 +135,7 @@ public class ELClient extends ServiceEETest {
    *                 (multiplication) operation are null, the result is (Long)
    *                 0.
    */
+  @Test
   public void elNullOperandMultiplyTest() throws Exception {
 
     boolean pass = false;
@@ -146,6 +166,7 @@ public class ELClient extends ServiceEETest {
    *                 (division) operation are null, the result is (Long) 0.
    * 
    */
+  @Test
   public void elNullOperandDivisionTest() throws Exception {
 
     boolean pass = false;
@@ -176,6 +197,7 @@ public class ELClient extends ServiceEETest {
    *                 operation are null, the result is (Long) 0.
    * 
    */
+  @Test
   public void elNullOperandModulusTest() throws Exception {
 
     boolean pass = false;
@@ -212,6 +234,7 @@ public class ELClient extends ServiceEETest {
    *                 Integer BigDecimal + Long BigDecimal + Short BigDecimal +
    *                 Byte
    */
+  @Test
   public void elBigDecimalAddTest() throws Exception {
 
     BigDecimal testValue = BigDecimal.valueOf(10.531);
@@ -235,6 +258,7 @@ public class ELClient extends ServiceEETest {
    *                 Integer BigDecimal - Long BigDecimal - Short BigDecimal -
    *                 Byte
    */
+  @Test
   public void elBigDecimalSubtractTest() throws Exception {
 
     BigDecimal testValue = BigDecimal.valueOf(10.531);
@@ -257,6 +281,7 @@ public class ELClient extends ServiceEETest {
    *                 Integer BigDecimal * Long BigDecimal * Short BigDecimal *
    *                 Byte
    */
+  @Test
   public void elBigDecimalMultiplyTest() throws Exception {
 
     BigDecimal testValue = BigDecimal.valueOf(1.5);
@@ -279,6 +304,7 @@ public class ELClient extends ServiceEETest {
    *                 Integer BigDecimal / Long BigDecimal / Short BigDecimal /
    *                 Byte
    */
+  @Test
   public void elBigDecimalDivisionTest() throws Exception {
 
     BigDecimal testValue = BigDecimal.valueOf(3.0);
@@ -301,6 +327,7 @@ public class ELClient extends ServiceEETest {
    *                 Integer BigDecimal % Long BigDecimal % Short BigDecimal %
    *                 Byte
    */
+  @Test
   public void elBigDecimalModulusTest() throws Exception {
 
     BigDecimal testValue = BigDecimal.valueOf(2.5);
@@ -321,6 +348,7 @@ public class ELClient extends ServiceEETest {
    *                 Integer BigInteger + Long BigInteger + Short BigInteger +
    *                 Byte
    */
+  @Test
   public void elBigIntegerAddTest() throws Exception {
 
     BigInteger testValue = BigInteger.valueOf(10531);
@@ -342,6 +370,7 @@ public class ELClient extends ServiceEETest {
    *                 Integer BigInteger - Long BigInteger - Short BigInteger -
    *                 Byte
    */
+  @Test
   public void elBigIntegerSubtractTest() throws Exception {
 
     BigInteger testValue = BigInteger.valueOf(10531);
@@ -361,6 +390,7 @@ public class ELClient extends ServiceEETest {
    *                 BigInteger * BigInteger BigInteger * Integer BigInteger *
    *                 Long BigInteger * Short BigInteger * Byte
    */
+  @Test
   public void elBigIntegerMultiplyTest() throws Exception {
 
     BigInteger testValue = BigInteger.valueOf(10531);
@@ -380,6 +410,7 @@ public class ELClient extends ServiceEETest {
    *                 BigInteger / BigInteger BigInteger / Integer BigInteger /
    *                 Long BigInteger / Short BigInteger / Byte
    */
+  @Test
   public void elBigIntegerDivisionTest() throws Exception {
 
     BigInteger testValue = BigInteger.valueOf(10531);
@@ -400,6 +431,7 @@ public class ELClient extends ServiceEETest {
    *                 BigInteger % BigInteger BigInteger % Integer BigInteger %
    *                 Long BigInteger % Short BigInteger % Byte
    */
+  @Test
   public void elBigIntegerModulusTest() throws Exception {
 
     BigInteger testValue = BigInteger.valueOf(10531);
@@ -420,6 +452,7 @@ public class ELClient extends ServiceEETest {
    *                 String containing ".", "e", or "E" Float + BigInteger Float
    *                 + Integer Float + Long Float + Short Float + Byte
    */
+  @Test
   public void elFloatAddTest() throws Exception {
 
     Float expectedResult;
@@ -443,6 +476,7 @@ public class ELClient extends ServiceEETest {
    *                 String containing ".", "e", or "E" Float - BigInteger Float
    *                 - Integer Float - Long Float - Short Float - Byte
    */
+  @Test
   public void elFloatSubtractTest() throws Exception {
 
     Float expectedResult;
@@ -466,6 +500,7 @@ public class ELClient extends ServiceEETest {
    *                 String containing ".", "e", or "E" Float * BigInteger Float
    *                 * Integer Float * Long Float * Short Float * Byte
    */
+  @Test
   public void elFloatMultiplyTest() throws Exception {
 
     Float expectedResult;
@@ -489,6 +524,7 @@ public class ELClient extends ServiceEETest {
    *                 String containing ".", "e", or "E" Float / BigInteger Float
    *                 / Integer Float / Long Float / Short Float / Byte
    */
+  @Test
   public void elFloatDivisionTest() throws Exception {
 
     Float expectedResult;
@@ -512,6 +548,7 @@ public class ELClient extends ServiceEETest {
    *                 String containing ".", "e", or "E" Float % BigInteger Float
    *                 % Integer Float % Long Float % Short Float % Byte
    */
+  @Test
   public void elFloatModulusTest() throws Exception {
 
     Float expectedResult;
@@ -535,6 +572,7 @@ public class ELClient extends ServiceEETest {
    *                 containing ".", "e", or "E" Double + BigInteger Double +
    *                 Integer Double + Long Double + Short Double + Byte
    */
+  @Test
   public void elDoubleAddTest() throws Exception {
 
     Double testValue = Double.valueOf(2.5);
@@ -555,6 +593,7 @@ public class ELClient extends ServiceEETest {
    *                 containing ".", "e", or "E" Double - BigInteger Double -
    *                 Integer Double - Long Double - Short Double - Byte
    */
+  @Test
   public void elDoubleSubtractTest() throws Exception {
 
     Double testValue = Double.valueOf(2.5);
@@ -575,6 +614,7 @@ public class ELClient extends ServiceEETest {
    *                 containing ".", "e", or "E" Double * BigInteger Double *
    *                 Integer Double * Long Double * Short Double * Byte
    */
+  @Test
   public void elDoubleMultiplyTest() throws Exception {
 
     Double testValue = Double.valueOf(2.5);
@@ -595,6 +635,7 @@ public class ELClient extends ServiceEETest {
    *                 containing ".", "e", or "E" Double / BigInteger Double /
    *                 Integer Double / Long Double / Short Double / Byte
    */
+  @Test
   public void elDoubleDivisionTest() throws Exception {
 
     Double testValue = Double.valueOf(2.5);
@@ -615,6 +656,7 @@ public class ELClient extends ServiceEETest {
    *                 containing ".", "e", or "E" Double % BigInteger Double %
    *                 Integer Double % Long Double % Short Double % Byte
    */
+  @Test
   public void elDoubleModulusTest() throws Exception {
 
     Double testValue = Double.valueOf(2.5);
@@ -635,6 +677,7 @@ public class ELClient extends ServiceEETest {
    *                 Integer Numeric String - Long Numeric String - Short
    *                 Numeric String - Byte
    */
+  @Test
   public void elNumericStringSubtractTest() throws Exception {
 
     String testValue = "25e-1";
@@ -656,6 +699,7 @@ public class ELClient extends ServiceEETest {
    *                 Integer Numeric String * Long Numeric String * Short
    *                 Numeric String * Byte
    */
+  @Test
   public void elNumericStringMultiplyTest() throws Exception {
 
     String testValue = "25E-1";
@@ -677,6 +721,7 @@ public class ELClient extends ServiceEETest {
    *                 Integer Numeric String / Long Numeric String / Short
    *                 Numeric String / Byte
    */
+  @Test
   public void elNumericStringDivisionTest() throws Exception {
 
     String testValue = "2.5";
@@ -699,6 +744,7 @@ public class ELClient extends ServiceEETest {
    *                 Integer Numeric String % Long Numeric String % Short
    *                 Numeric String % Byte
    */
+  @Test
   public void elNumericStringModulusTest() throws Exception {
 
     String testValue = "2.5e0";
@@ -718,6 +764,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Long + Integer Long + Long Long + Short
    *                 Long + Byte
    */
+  @Test
   public void elLongAddTest() throws Exception {
 
     Long testValue = Long.valueOf(25000);
@@ -737,6 +784,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Long - Integer Long - Long Long - Short
    *                 Long - Byte
    */
+  @Test
   public void elLongSubtractTest() throws Exception {
 
     Long testValue = Long.valueOf(25000);
@@ -756,6 +804,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Long * Integer Long * Long Long * Short
    *                 Long * Byte
    */
+  @Test
   public void elLongMultiplyTest() throws Exception {
 
     Long testValue = Long.valueOf(25000);
@@ -775,6 +824,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Long / Integer Long / Long Long / Short
    *                 Long / Byte
    */
+  @Test
   public void elLongDivisionTest() throws Exception {
 
     Long testValue = Long.valueOf(25000);
@@ -794,6 +844,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Long % Integer Long % Long Long % Short
    *                 Long % Byte
    */
+  @Test
   public void elLongModulusTest() throws Exception {
 
     Long testValue = Long.valueOf(25000);
@@ -813,6 +864,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Integer + Integer Integer + Short Integer
    *                 + Byte
    */
+  @Test
   public void elIntegerAddTest() throws Exception {
 
     Integer testValue = Integer.valueOf(25);
@@ -831,6 +883,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: Long - Integer Long - Short Long - Byte
    */
+  @Test
   public void elIntegerSubtractTest() throws Exception {
 
     Integer testValue = Integer.valueOf(25);
@@ -850,6 +903,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Integer * Integer Integer * Short Integer
    *                 * Byte
    */
+  @Test
   public void elIntegerMultiplyTest() throws Exception {
 
     Integer testValue = Integer.valueOf(25);
@@ -869,6 +923,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Integer / Integer Integer / Short Integer
    *                 / Byte
    */
+  @Test
   public void elIntegerDivisionTest() throws Exception {
 
     Integer testValue = Integer.valueOf(25);
@@ -888,6 +943,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Integer % Integer Integer % Short Integer
    *                 % Byte
    */
+  @Test
   public void elIntegerModulusTest() throws Exception {
 
     Integer testValue = Integer.valueOf(25);
@@ -906,6 +962,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: Short + Short Short + Byte
    */
+  @Test
   public void elShortAddTest() throws Exception {
 
     Short testValue = Short.valueOf("2");
@@ -924,6 +981,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: Short - Short Short - Byte
    */
+  @Test
   public void elShortSubtractTest() throws Exception {
 
     Short testValue = Short.valueOf("2");
@@ -942,6 +1000,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: Short * Short Short * Byte
    */
+  @Test
   public void elShortMultiplyTest() throws Exception {
 
     Short testValue = Short.valueOf("2");
@@ -960,6 +1019,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: Short / Short Short / Byte
    */
+  @Test
   public void elShortDivisionTest() throws Exception {
 
     Short testValue = Short.valueOf("2");
@@ -978,6 +1038,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: Short % Short Short % Byte
    */
+  @Test
   public void elShortModulusTest() throws Exception {
 
     Short testValue = Short.valueOf("2");
@@ -996,6 +1057,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: Byte + Byte
    */
+  @Test
   public void elByteAddTest() throws Exception {
 
     Byte testValue = Byte.valueOf("2");
@@ -1014,6 +1076,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: Byte - Byte
    */
+  @Test
   public void elByteSubtractTest() throws Exception {
 
     Byte testValue = Byte.valueOf("2");
@@ -1032,6 +1095,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: Byte * Byte
    */
+  @Test
   public void elByteMultiplyTest() throws Exception {
 
     Byte testValue = Byte.valueOf("2");
@@ -1050,6 +1114,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: Byte / Byte
    */
+  @Test
   public void elByteDivisionTest() throws Exception {
 
     Byte testValue = Byte.valueOf("2");
@@ -1068,6 +1133,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: Byte % Byte
    */
+  @Test
   public void elByteModulusTest() throws Exception {
 
     Byte testValue = Byte.valueOf("2");
@@ -1087,6 +1153,7 @@ public class ELClient extends ServiceEETest {
    *                 Boolean and String Boolean and Boolean
    * 
    */
+  @Test
   public void elBooleanAndTest() throws Exception {
 
     Validator.testBoolean(true, "true", true, "&&");
@@ -1107,6 +1174,7 @@ public class ELClient extends ServiceEETest {
    *                 Boolean or String Boolean or Boolean
    * 
    */
+  @Test
   public void elBooleanOrTest() throws Exception {
 
     Validator.testBoolean(false, "false", false, "||");

@@ -23,7 +23,7 @@ package com.sun.ts.tests.el.api.jakarta_el.expressionfactory;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.elcontext.SimpleELContext;
@@ -36,23 +36,40 @@ import jakarta.el.ExpressionFactory;
 import jakarta.el.MethodExpression;
 import jakarta.el.ValueExpression;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+
 public class ELClient extends ServiceEETest {
 
   private Properties testProps;
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+  // public static void main(String[] args) {
+  //   ELClient theTests = new ELClient();
+  //   Status s = theTests.run(args, System.out, System.err);
+  //   s.exit();
+  // }
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
-  }
+  // public void setup(String[] args, Properties p) throws Exception {
+  //   TestUtil.logTrace("Setup method called");
+  //   this.testProps = p;
+  // }
 
+  
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("Cleanup method called");
+  }
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -62,6 +79,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Verify that an ExpressionFactory can be instantiated with
    *                 the newInstance() API.
    */
+  @Test
   public void newInstanceTest() throws Exception {
 
     try {
@@ -85,6 +103,7 @@ public class ELClient extends ServiceEETest {
    *                 input specified in the javadoc when invoking the
    *                 createValueExpression(ELContext, String, Class) method.
    */
+  @Test
   public void createValueExpressionTest() throws Exception {
 
     boolean pass = true;
@@ -154,6 +173,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Verify the functionality of the
    *                 createValueExpression(Object, Class) method.
    */
+  @Test
   public void createValueExpression2Test() throws Exception {
 
     boolean pass = true;
@@ -195,6 +215,7 @@ public class ELClient extends ServiceEETest {
    *                 Class) throws an ELException for mixed delimiter
    *                 expressions and expressions with syntactical errors.
    */
+  @Test
   public void createValueExpressionELExceptionTest() throws Exception {
 
     boolean pass = true;
@@ -260,6 +281,7 @@ public class ELClient extends ServiceEETest {
    *                 with the restriction that only expressions that share the
    *                 same syntax as an lvalue are allowed (EL Spec 1.2.1.2).
    */
+  @Test
   public void createMethodExpressionTest() throws Exception {
 
     boolean pass = true;
@@ -322,6 +344,7 @@ public class ELClient extends ServiceEETest {
    *                 throws an ELException for expressions with syntactical
    *                 errors, and for expressions that are not lvalues.
    */
+  @Test
   public void createMethodExpressionELExceptionTest() throws Exception {
 
     boolean pass = true;
@@ -393,6 +416,7 @@ public class ELClient extends ServiceEETest {
    *                 NullPointerException under the conditions stated in the
    *                 javadoc.
    */
+  @Test
   public void createExpressionNPETest() throws Exception {
     ExpressionFactory expFactory = ExpressionFactory.newInstance();
     SimpleELContext context = new SimpleELContext();
@@ -425,6 +449,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Verify that the coerceToType() method coerces an object to
    *                 a specific type according to the EL type conversion rules.
    */
+  @Test
   public void coerceToTypeTest() throws Exception {
 
     boolean pass = true;
@@ -476,6 +501,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Verify that the coerceToType() method throws an ELException
    *                 for invalid type conversions.
    */
+  @Test
   public void coerceToTypeELExceptionTest() throws Exception {
 
     boolean pass = true;

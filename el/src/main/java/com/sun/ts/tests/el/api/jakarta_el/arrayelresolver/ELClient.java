@@ -23,7 +23,6 @@ package com.sun.ts.tests.el.api.jakarta_el.arrayelresolver;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
@@ -33,6 +32,11 @@ import com.sun.ts.tests.el.common.util.ELTestUtil;
 import jakarta.el.ArrayELResolver;
 import jakarta.el.ELContext;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+
 public class ELClient extends ServiceEETest {
 
   private Properties testProps;
@@ -40,19 +44,31 @@ public class ELClient extends ServiceEETest {
   private static final String[] names = { "doug", "nick", "roger", "ryan",
       "ed" };
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+  // public static void main(String[] args) {
+  //   ELClient theTests = new ELClient();
+  //   Status s = theTests.run(args, System.out, System.err);
+  //   s.exit();
+  // }
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
-  }
+  // @BeforeEach
+  // public void setup(String[] args, Properties p) throws Exception {
+  //   TestUtil.logTrace("Setup method called");
+  //   this.testProps = p;
+  // }
 
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("Cleanup method called");
+  }
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -65,6 +81,7 @@ public class ELClient extends ServiceEETest {
    *                 getValue() getType() setValue() isReadOnly()
    *                 getCommonPropertyType() getFeatureDescriptors()
    */
+  @Test
   public void arrayELResolverTest() throws Exception {
 
     boolean pass;
@@ -100,6 +117,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 getValue() getType() setValue() isReadOnly()
    */
+  @Test
   public void arrayELResolverNPETest() throws Exception {
 
     boolean pass;
@@ -132,6 +150,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 getType() isReadOnly() setValue()
    */
+  @Test
   public void arrayELResolverPNFETest() throws Exception {
 
     boolean pass;
@@ -167,6 +186,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 getValue() setValue()
    */
+  @Test
   public void arrayELResolverIAETest() throws Exception {
 
     boolean pass;
@@ -202,6 +222,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 ArrayELResolver(boolean) setValue()
    */
+  @Test
   public void arrayELResolverPNWETest() throws Exception {
 
     boolean pass;
@@ -235,6 +256,7 @@ public class ELClient extends ServiceEETest {
    * 
    * getValue()
    */
+  @Test
   public void arrayELResolverOBETest() throws Exception {
 
     boolean pass = true;
@@ -273,6 +295,7 @@ public class ELClient extends ServiceEETest {
    * 
    * setValue()
    */
+  @Test
   public void arrayELResolverCCETest() throws Exception {
 
     boolean pass = false;

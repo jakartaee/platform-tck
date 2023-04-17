@@ -23,7 +23,7 @@ package com.sun.ts.tests.el.api.jakarta_el.beannameelresolver;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
@@ -35,23 +35,39 @@ import jakarta.el.BeanNameResolver;
 import jakarta.el.ELContext;
 import jakarta.el.ELManager;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+
 public class ELClient extends ServiceEETest {
 
   private Properties testProps;
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+  // public static void main(String[] args) {
+  //   ELClient theTests = new ELClient();
+  //   Status s = theTests.run(args, System.out, System.err);
+  //   s.exit();
+  // }
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
-  }
+  // public void setup(String[] args, Properties p) throws Exception {
+  //   TestUtil.logTrace("Setup method called");
+  //   this.testProps = p;
+  // }
 
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("Cleanup method called");
+  }
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -65,6 +81,7 @@ public class ELClient extends ServiceEETest {
    *                 getValue() getType() setValue() isReadOnly()
    *                 getCommonPropertyType() getFeatureDescriptors()
    */
+  @Test
   public void beanNameELResolverTest() throws Exception {
     StringBuffer buf = new StringBuffer();
     boolean pass = false;
@@ -104,6 +121,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Verify that the invoke() method throws
    *                 MethodNotFoundException if no suitable method can be found.
    */
+  @Test
   public void beanNameELResolverInvokeMNFETest() throws Exception {
     StringBuffer buf = new StringBuffer();
     boolean pass = false;
@@ -147,6 +165,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Verify that API calls work as expected for
    *                 BeanNameELResolver.invoke().
    */
+  @Test
   public void beanNameELResolverInvokeTest() throws Exception {
     StringBuffer buf = new StringBuffer();
     boolean pass = false;
@@ -187,6 +206,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate a NullPointerException is thrown if context is
    *                 null.
    */
+  @Test
   public void beanNameELResolverGetTypeNPETest() throws Exception {
     BeanNameResolver bnr = new TCKBeanNameResolver();
     BeanNameELResolver belr = new BeanNameELResolver(bnr);
@@ -205,6 +225,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate a NullPointerException is thrown if context is
    *                 null.
    */
+  @Test
   public void beanNameELResolverGetValueNPETest() throws Exception {
     BeanNameResolver bnr = new TCKBeanNameResolver();
     BeanNameELResolver belr = new BeanNameELResolver(bnr);
@@ -223,6 +244,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate a NullPointerException is thrown if context is
    *                 null.
    */
+  @Test
   public void beanNameELResolverIsReadOnlyNPETest() throws Exception {
     BeanNameResolver bnr = new TCKBeanNameResolver();
     BeanNameELResolver belr = new BeanNameELResolver(bnr);
@@ -241,6 +263,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate a NullPointerException is thrown if context is
    *                 null.
    */
+  @Test
   public void beanNameELResolverSetValueNPETest() throws Exception {
     BeanNameResolver bnr = new TCKBeanNameResolver();
     BeanNameELResolver belr = new BeanNameELResolver(bnr);

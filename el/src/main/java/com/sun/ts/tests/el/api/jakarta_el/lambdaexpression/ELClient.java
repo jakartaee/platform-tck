@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
@@ -32,23 +32,42 @@ import jakarta.el.ExpressionFactory;
 import jakarta.el.LambdaExpression;
 import jakarta.el.StandardELContext;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+
 public class ELClient extends ServiceEETest {
   private Properties testProps;
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+  // public static void main(String[] args) {
+  //   ELClient theTests = new ELClient();
+  //   Status s = theTests.run(args, System.out, System.err);
+  //   s.exit();
+  // }
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
-  }
+  // public void setup(String[] args, Properties p) throws Exception {
+  //   TestUtil.logTrace("Setup method called");
+  //   this.testProps = p;
+  // }
 
+  
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("Cleanup method called");
   }
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+  }
+
+
 
   /**
    * @testName: invokeNPETest
@@ -57,7 +76,7 @@ public class ELClient extends ServiceEETest {
    * 
    * @test_Strategy: Throws a NullPointerException if elContext is null.
    */
-
+  @Test
   public void invokeNPETest() throws Exception {
     List<String> params = new ArrayList<String>();
     params.add("one");
@@ -75,7 +94,7 @@ public class ELClient extends ServiceEETest {
    * 
    * @test_Strategy: Throws a ELException if not enough arguments are provided.
    */
-
+  @Test
   public void invokeELETest() throws Exception {
     StringBuffer buff = new StringBuffer();
     boolean pass = false;

@@ -23,7 +23,7 @@ package com.sun.ts.tests.el.api.jakarta_el.methodexpression;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.el.api.expression.ExpressionTest;
@@ -41,25 +41,44 @@ import jakarta.el.MethodNotFoundException;
 import jakarta.el.PropertyNotFoundException;
 import jakarta.el.ValueExpression;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+
 public class ELClient extends ServiceEETest {
 
   private static final String NL = System.getProperty("line.seperator", "\n");
 
   private Properties testProps;
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
+  public ELClient(){
+    this.testProps=System.getProperties();
   }
+  // public static void main(String[] args) {
+  //   ELClient theTests = new ELClient();
+  //   Status s = theTests.run(args, System.out, System.err);
+  //   s.exit();
+  // }
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
-  }
+  // public void setup(String[] args, Properties p) throws Exception {
+  //   TestUtil.logTrace("Setup method called");
+  //   this.testProps = p;
+  // }
 
+  @AfterEach
   public void cleanup() throws Exception {
-    // does nothing at this point
+    TestUtil.logTrace("Cleanup method called");
+  }
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -70,7 +89,7 @@ public class ELClient extends ServiceEETest {
    *                 MethodExpression.getMethodInfo() MethodExpression.invoke()
    *                 Expression.isLiteralText() Expression.getExpressionString()
    */
-
+  @Test
   public void positiveMethodExpressionTest() throws Exception {
 
     StringBuffer buf = new StringBuffer();
@@ -143,7 +162,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate the behavior of MethodExpression API
    *                 MethodExpression.getMethodInfo() MethodExpression.invoke()
    */
-
+  @Test
   public void negativeMethodExpressionTest() throws Exception {
 
     boolean pass = true;
@@ -381,6 +400,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate that MethodExpression implements Serializable and
    * that a MethodExpression can be manually serialized and deserialized.
    */
+  @Test
   public void methodExpressionSerializableTest() throws Exception {
 
     StringBuffer buf = new StringBuffer();
@@ -432,6 +452,7 @@ public class ELClient extends ServiceEETest {
    * method for the given parameters and that exact type matches are always
    * preferred.
    */
+  @Test
   public void methodExpressionMatchingExactPreferredTest() throws Exception {
 
     StringBuffer buf = new StringBuffer();
@@ -476,6 +497,7 @@ public class ELClient extends ServiceEETest {
    * method for the given parameters and that overloading is preferred to
    * coercion.
    */
+  @Test
   public void methodExpressionMatchingOverloadBeatsCoercionTest() throws Exception {
 
     StringBuffer buf = new StringBuffer();
@@ -519,6 +541,7 @@ public class ELClient extends ServiceEETest {
    * method for the given parameters and that any match without varags is
    * preferred to all matches with varrags
    */
+  @Test
   public void methodExpressionMatchingOverloadBeatsExactVarArgsTest() throws Exception {
 
     StringBuffer buf = new StringBuffer();
@@ -562,6 +585,7 @@ public class ELClient extends ServiceEETest {
    * method for the given parameters and that any match without varags is
    * preferred to all matches with varrags
    */
+  @Test
   public void methodExpressionMatchingCoercionBeatsExactVarArgsTest() throws Exception {
 
     StringBuffer buf = new StringBuffer();
@@ -605,6 +629,7 @@ public class ELClient extends ServiceEETest {
    * method for the given parameters and that varags will be matched if no other
    * suitable match is available
    */
+  @Test
   public void methodExpressionMatchingVarArgsTest() throws Exception {
 
     StringBuffer buf = new StringBuffer();
@@ -647,6 +672,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate that MethodExpression does not match a method when
    * the match is ambiguous and that a MethodNotFoundException is thrown
    */
+  @Test
   public void methodExpressionMatchingAmbiguousTest() throws Exception {
 
     StringBuffer buf = new StringBuffer();

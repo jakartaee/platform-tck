@@ -24,11 +24,16 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.util.ExprEval;
 import com.sun.ts.tests.el.common.util.NameValuePair;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 
 public class ELClient extends ServiceEETest {
 
@@ -36,18 +41,30 @@ public class ELClient extends ServiceEETest {
 
   private final boolean[] deferred = { true, false };
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+  // public static void main(String[] args) {
+  //   ELClient theTests = new ELClient();
+  //   Status s = theTests.run(args, System.out, System.err);
+  //   s.exit();
+  // }
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
-  }
+  // public void setup(String[] args, Properties p) throws Exception {
+  //   TestUtil.logTrace("Setup method called");
+  //   this.testProps = p;
+  // }
 
+  @AfterEach
   public void cleanup() throws Exception {
+    TestUtil.logTrace("Cleanup method called");
+  }
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /*
@@ -58,6 +75,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate that if null is passed with the unary minus
    * operator, the result is (Long) 0. Test both ${-null} & #{-null}
    */
+  @Test
   public void elNullUnaryTest() throws Exception {
 
     boolean pass = false;
@@ -94,6 +112,7 @@ public class ELClient extends ServiceEETest {
    * minus operator (-), the result is A.negate(). Test both ${- value} & #{-
    * value}
    */
+  @Test
   public void elBigDecimalUnaryTest() throws Exception {
 
     boolean pass = false;
@@ -132,6 +151,7 @@ public class ELClient extends ServiceEETest {
    * minus operator (-), the result is A.negate(). Test both ${- value} & #{-
    * value}
    */
+  @Test
   public void elBigIntegerUnaryTest() throws Exception {
 
     boolean pass = false;
@@ -172,6 +192,7 @@ public class ELClient extends ServiceEETest {
    *
    * Test both ${- value} & #{- value}
    */
+  @Test
   public void elDoubleStringUnaryTest() throws Exception {
 
     boolean pass = false;
@@ -214,6 +235,7 @@ public class ELClient extends ServiceEETest {
    *
    * Test both ${- value} & #{- value}
    */
+  @Test
   public void elLongStringUnaryTest() throws Exception {
 
     boolean pass = false;
@@ -253,6 +275,7 @@ public class ELClient extends ServiceEETest {
    *
    * Test both ${- value} & #{- value}
    */
+  @Test
   public void elByteUnaryTest() throws Exception {
 
     boolean pass = false;
@@ -292,6 +315,7 @@ public class ELClient extends ServiceEETest {
    *
    * Test both ${- value} & #{- value}
    */
+  @Test
   public void elShortUnaryTest() throws Exception {
 
     boolean pass = false;
@@ -331,6 +355,7 @@ public class ELClient extends ServiceEETest {
    *
    * Test both ${- value} & #{- value}
    */
+  @Test
   public void elIntegerUnaryTest() throws Exception {
 
     boolean pass = false;
@@ -370,6 +395,7 @@ public class ELClient extends ServiceEETest {
    *
    * Test both ${- value} & #{- value}
    */
+  @Test
   public void elLongUnaryTest() throws Exception {
 
     boolean pass = false;
@@ -409,6 +435,7 @@ public class ELClient extends ServiceEETest {
    *
    * Test both ${- value} & #{- value}
    */
+  @Test
   public void elFloatUnaryTest() throws Exception {
 
     boolean pass = false;
@@ -448,6 +475,7 @@ public class ELClient extends ServiceEETest {
    *
    * Test both ${- value} & #{- value}
    */
+  @Test
   public void elDoubleUnaryTest() throws Exception {
 
     boolean pass = false;
@@ -487,6 +515,7 @@ public class ELClient extends ServiceEETest {
    *
    * Equations Tested: ${not value} & #{not value} ${! value} & #{! value}
    */
+  @Test
   public void elBooleanUnaryFalseTest() throws Exception {
 
     this.testUnary("false", true);
@@ -503,6 +532,7 @@ public class ELClient extends ServiceEETest {
    *
    * Equations Tested: ${not value} & #{not value} ${! value} & #{! value}
    */
+  @Test
   public void elBooleanUnaryTrueTest() throws Exception {
 
     this.testUnary("true", false);

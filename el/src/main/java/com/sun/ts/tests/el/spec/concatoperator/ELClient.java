@@ -26,7 +26,7 @@ import java.math.BigInteger;
 import java.util.Iterator;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
@@ -35,23 +35,39 @@ import com.sun.ts.tests.el.common.util.Validator;
 
 import jakarta.el.ELProcessor;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+
 public class ELClient extends ServiceEETest {
 
   Properties testProps;
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+  // public static void main(String[] args) {
+  //   ELClient theTests = new ELClient();
+  //   Status s = theTests.run(args, System.out, System.err);
+  //   s.exit();
+  // }
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
-  }
+  // public void setup(String[] args, Properties p) throws Exception {
+  //   TestUtil.logTrace("Setup method called");
+  //   this.testProps = p;
+  // }
 
+  @AfterEach
   public void cleanup() throws Exception {
-    // does nothing at this point
+    TestUtil.logTrace("Cleanup method called");
+  }
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -69,6 +85,7 @@ public class ELClient extends ServiceEETest {
    *                 BigDecimal += Integer BigDecimal += Long BigDecimal +=
    *                 Short BigDecimal += Byte
    */
+  @Test
   public void elBigDecimalConcatenationTest() throws Exception {
 
     BigDecimal testValue = BigDecimal.valueOf(10.531);
@@ -91,6 +108,7 @@ public class ELClient extends ServiceEETest {
    *                 Integer BigInteger += Long BigInteger += Short BigInteger
    *                 += Byte
    */
+  @Test
   public void elBigIntegerConcatenationTest() throws Exception {
 
     BigInteger testValue = BigInteger.valueOf(10531);
@@ -112,6 +130,7 @@ public class ELClient extends ServiceEETest {
    *                 String containing ".", "e", or "E" Float + BigInteger Float
    *                 + Integer Float + Long Float + Short Float + Byte
    */
+  @Test
   public void elFloatConcatenationTest() throws Exception {
 
     // For each float in this List.
@@ -136,6 +155,7 @@ public class ELClient extends ServiceEETest {
    *                 containing ".", "e", or "E" Double += BigInteger Double +=
    *                 Integer Double += Long Double += Short Double += Byte
    */
+  @Test
   public void elDoubleConcatenationTest() throws Exception {
 
     Double testValue = Double.valueOf(2.5);
@@ -156,6 +176,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Long += Integer Long += Long Long +=
    *                 Short Long += Byte
    */
+  @Test
   public void elLongConcatenationTest() throws Exception {
 
     Long testValue = Long.valueOf(25000);
@@ -176,6 +197,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Integer += Integer Integer += Short
    *                 Integer += Byte
    */
+  @Test
   public void elIntegerConcatenationTest() throws Exception {
 
     Integer testValue = Integer.valueOf(25);
@@ -195,6 +217,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: Short += Short Short += Byte
    */
+  @Test
   public void elShortConcatenationTest() throws Exception {
 
     Short testValue = Short.valueOf("2");
@@ -215,6 +238,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: Byte += Byte
    */
+  @Test
   public void elByteConcatenationTest() throws Exception {
 
     Byte testValue = Byte.valueOf("2");
@@ -236,6 +260,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Boolean += String Boolean += Boolean
    * 
    */
+  @Test
   public void elBooleanConcatenationTest() throws Exception {
 
     /*

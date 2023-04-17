@@ -23,7 +23,7 @@ package com.sun.ts.tests.el.api.jakarta_el.expression;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.el.api.expression.ExpressionTest;
@@ -37,28 +37,41 @@ import jakarta.el.ExpressionFactory;
 import jakarta.el.MethodExpression;
 import jakarta.el.ValueExpression;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+
 public class ELClient extends ServiceEETest {
   private Properties testProps;
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+  // public static void main(String[] args) {
+  //   ELClient theTests = new ELClient();
+  //   Status s = theTests.run(args, System.out, System.err);
+  //   s.exit();
+  // }
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
-  }
+  // public void setup(String[] args, Properties p) throws Exception {
+  //   TestUtil.logTrace("Setup method called");
+  //   this.testProps = p;
+  // }
 
-  /**
-   * Does nothing.
-   * 
-   * @throws Exception
-   */
+  
+  @AfterEach
   public void cleanup() throws Exception {
-    // does nothing at this point
+    TestUtil.logTrace("Cleanup method called");
   }
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+  }
+
 
   /**
    * @testName: negativeEqualsTest
@@ -70,7 +83,7 @@ public class ELClient extends ServiceEETest {
    *                 Verify that an Expression cannot equal null, and that a
    *                 ValueExpression and a MethodExpression cannot be equal.
    */
-
+  @Test
   public void negativeEqualsTest() throws Exception {
 
     StringBuffer buf = new StringBuffer();
@@ -140,7 +153,7 @@ public class ELClient extends ServiceEETest {
    *                 result.
    * 
    */
-
+  @Test
   public void expressionHashCodeTest() throws Exception {
     SimpleELContext simpleContext = new SimpleELContext(
         ResolverType.VECT_ELRESOLVER);

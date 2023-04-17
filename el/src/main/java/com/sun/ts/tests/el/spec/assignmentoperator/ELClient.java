@@ -28,11 +28,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.util.TypesBean;
 import com.sun.ts.tests.el.common.util.Validator;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 
 import jakarta.el.ELProcessor;
 
@@ -40,20 +45,32 @@ public class ELClient extends ServiceEETest {
 
   Properties testProps;
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+//   public static void main(String[] args) {
+//     ELClient theTests = new ELClient();
+//     Status s = theTests.run(args, System.out, System.err);
+//     s.exit();
+//   }
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
-  }
+//   public void setup(String[] args, Properties p) throws Exception {
+//     TestUtil.logTrace("Setup method called");
+//     this.testProps = p;
+//   }
 
+  @AfterEach
   public void cleanup() throws Exception {
-    // does nothing at this point
+    TestUtil.logTrace("Cleanup method called");
   }
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+  }
+
 
   /**
    * @testName: elAssignmentOperatorBigDecimalTest
@@ -76,6 +93,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elAssignmentOperatorBigDecimalTest() throws Exception {
 
     ELProcessor elp = new ELProcessor();
@@ -149,6 +167,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elAssignmentOperatorFloatTest() throws Exception {
 
     ELProcessor elp = new ELProcessor();
@@ -260,6 +279,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elAssignmentOperatorDoubleTest() throws Exception {
 
     ELProcessor elp = new ELProcessor();
@@ -372,6 +392,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elAssignmentOperatorBigIntegerTest() throws Exception {
 
     ELProcessor elp = new ELProcessor();
@@ -459,6 +480,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elAssignmentOperatorIntegerTest() throws Exception {
 
     ELProcessor elp = new ELProcessor();
@@ -547,6 +569,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elAssignmentOperatorLongTest() throws Exception {
 
     ELProcessor elp = new ELProcessor();
@@ -637,6 +660,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elAssignmentOperatorShortTest() throws Exception {
 
     ELProcessor elp = new ELProcessor();
@@ -728,6 +752,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elAssignmentOperatorByteTest() throws Exception {
 
     ELProcessor elp = new ELProcessor();
@@ -816,6 +841,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elAssignmentOperatorNullTest() throws Exception {
 
     ELProcessor elp = new ELProcessor();
@@ -872,6 +898,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elAssignmentOperatorMultiTest() throws Exception {
 
     ELProcessor elp = new ELProcessor();

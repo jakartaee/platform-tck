@@ -24,7 +24,7 @@ package com.sun.ts.tests.el.api.jakarta_el.mapelresolver;
 import java.util.HashMap;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
@@ -34,30 +34,56 @@ import com.sun.ts.tests.el.common.util.ELTestUtil;
 import jakarta.el.ELContext;
 import jakarta.el.MapELResolver;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+
 public class ELClient extends ServiceEETest {
 
   private Properties testProps;
 
   private HashMap<String, String> animals;
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
+  public ELClient(){
     animals = new HashMap<String, String>();
     animals.put("dog", "retriever");
     animals.put("fish", "bass");
     animals.put("bird", "parrot");
   }
 
+  // public static void main(String[] args) {
+  //   ELClient theTests = new ELClient();
+  //   Status s = theTests.run(args, System.out, System.err);
+  //   s.exit();
+  // }
+
+  // public void setup(String[] args, Properties p) throws Exception {
+  //   TestUtil.logTrace("Setup method called");
+  //   this.testProps = p;
+  //   animals = new HashMap<String, String>();
+  //   animals.put("dog", "retriever");
+  //   animals.put("fish", "bass");
+  //   animals.put("bird", "parrot");
+  // }
+
+  
+  @AfterEach
   public void cleanup() throws Exception {
-    // does nothing at this point
+    TestUtil.logTrace("Cleanup method called");
   }
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+  }
+
+
 
   /**
    * @testName: mapELResolverTest
@@ -68,7 +94,7 @@ public class ELClient extends ServiceEETest {
    *                 getValue() getType() setValue() isReadOnly()
    *                 getCommonPropertyType() getFeatureDescriptors()
    */
-
+  @Test
   public void mapELResolverTest() throws Exception {
 
     boolean pass = false;
@@ -102,6 +128,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 getType() getValue() isReadOnly() setValue()
    */
+  @Test
   public void mapELResolverNPETest() throws Exception {
 
     boolean pass = false;
@@ -134,6 +161,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 MapELResolver(boolean) setValue()
    */
+  @Test
   public void mapELResolverPNWETest() throws Exception {
 
     boolean pass = false;

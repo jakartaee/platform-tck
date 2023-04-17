@@ -25,12 +25,17 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.util.ExprEval;
 import com.sun.ts.tests.el.common.util.NameValuePair;
 import com.sun.ts.tests.el.common.util.TestNum;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 
 public class ELClient extends ServiceEETest {
 
@@ -47,21 +52,36 @@ public class ELClient extends ServiceEETest {
 
   private static final NickType NT = new NickType();
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
+  public ELClient(){
     numberList = TestNum.getNumberList();
   }
+  // public static void main(String[] args) {
+  //   ELClient theTests = new ELClient();
+  //   Status s = theTests.run(args, System.out, System.err);
+  //   s.exit();
+  // }
 
+  // public void setup(String[] args, Properties p) throws Exception {
+  //   TestUtil.logTrace("Setup method called");
+  //   this.testProps = p;
+  //   numberList = TestNum.getNumberList();
+  // }
+
+  @AfterEach
   public void cleanup() throws Exception {
-    // does nothing at this point
+    TestUtil.logTrace("Cleanup method called");
   }
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+  }
+
 
   /**
    * @testName: elEqualOperandLessThanOrEqualTest
@@ -69,6 +89,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate that if the operands in an EL <= or le operation
    *                 are equal, the result is true.
    */
+  @Test
   public void elEqualOperandLessThanOrEqualTest() throws Exception {
 
     boolean pass = false;
@@ -117,6 +138,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate that if the operands in an EL >= or ge operation
    *                 are equal, the result is true.
    */
+  @Test
   public void elEqualOperandGreaterThanOrEqualTest() throws Exception {
 
     boolean pass = false;
@@ -165,6 +187,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate that if one of the operands in an EL <= or le
    *                 operation is null, the result is false.
    */
+  @Test
   public void elNullOperandLessThanOrEqualTest() throws Exception {
 
     boolean pass = false;
@@ -198,6 +221,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate that if one of the operands in an EL >= or ge
    *                 operation is null, the result is false.
    */
+  @Test
   public void elNullOperandGreaterThanOrEqualTest() throws Exception {
 
     boolean pass = false;
@@ -231,6 +255,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate that if one of the operands is null in an EL !=,
    *                 ne operation return true.
    */
+  @Test
   public void elNullOperandNotEqualTest() throws Exception {
 
     boolean pass = false;
@@ -265,6 +290,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate that if one of the operands is null in an EL =, eq
    *                 operation return false.
    */
+  @Test
   public void elNullOperandEqualTest() throws Exception {
 
     boolean pass = false;
@@ -306,6 +332,7 @@ public class ELClient extends ServiceEETest {
    *                 Integer BigDecimal "<" & "lt" Long BigDecimal "<" & "lt"
    *                 Short BigDecimal "<" & "lt" Byte
    */
+  @Test
   public void elBigDecimalLessThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -332,6 +359,7 @@ public class ELClient extends ServiceEETest {
    *                 Integer BigDecimal "<=" & "le" Long BigDecimal "<=" & "le"
    *                 Short BigDecimal "<=" & "le" Byte
    */
+  @Test
   public void elBigDecimalLessThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -357,6 +385,7 @@ public class ELClient extends ServiceEETest {
    *                 Integer BigDecimal ">" & "gt" Long BigDecimal ">" & "gt"
    *                 Short BigDecimal ">" & "gt" Byte
    */
+  @Test
   public void elBigDecimalGreaterThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -383,6 +412,7 @@ public class ELClient extends ServiceEETest {
    *                 Integer BigDecimal ">=" & "ge" Long BigDecimal ">=" & "ge"
    *                 Short BigDecimal ">=" & "ge" Byte
    */
+  @Test
   public void elBigDecimalGreaterThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -409,6 +439,7 @@ public class ELClient extends ServiceEETest {
    *                 Integer BigDecimal "==" & "eq" Long BigDecimal "==" & "eq"
    *                 Short BigDecimal "==" & "eq" Byte
    */
+  @Test
   public void elBigDecimalEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -432,6 +463,7 @@ public class ELClient extends ServiceEETest {
    *                 Integer BigDecimal "!=" & "ne" Long BigDecimal "!=" & "ne"
    *                 Short BigDecimal "!=" & "ne" Byte
    */
+  @Test
   public void elBigDecimalNotEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -454,6 +486,7 @@ public class ELClient extends ServiceEETest {
    *                 Float "<" & "lt" Long Float "<" & "lt" Short Float "<" &
    *                 "lt" Byte
    */
+  @Test
   public void elFloatLessThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -479,6 +512,7 @@ public class ELClient extends ServiceEETest {
    *                 Integer Float "<=" & "le" Long Float "<=" & "le" Short
    *                 Float "<=" & "le" Byte
    */
+  @Test
   public void elFloatLessThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -503,6 +537,7 @@ public class ELClient extends ServiceEETest {
    *                 Float ">" & "gt" Long Float ">" & "gt" Short Float ">" &
    *                 "gt" Byte
    */
+  @Test
   public void elFloatGreaterThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -528,6 +563,7 @@ public class ELClient extends ServiceEETest {
    *                 Integer Float ">=" & "ge" Long Float ">=" & "ge" Short
    *                 Float ">=" & "ge" Byte
    */
+  @Test
   public void elFloatGreaterThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -553,6 +589,7 @@ public class ELClient extends ServiceEETest {
    *                 Integer Float "==" & "eq" Long Float "==" & "eq" Short
    *                 Float "==" & "eq" Byte
    */
+  @Test
   public void elFloatEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -575,6 +612,7 @@ public class ELClient extends ServiceEETest {
    *                 Integer Float "!=" & "ne" Long Float "!=" & "ne" Short
    *                 Float "!=" & "ne" Byte
    */
+  @Test
   public void elFloatNotEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -596,6 +634,7 @@ public class ELClient extends ServiceEETest {
    *                 "lt" BigInteger Double "<" & "lt" Integer Double "<" & "lt"
    *                 Long Double "<" & "lt" Short Double "<" & "lt" Byte
    */
+  @Test
   public void elDoubleLessThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -620,6 +659,7 @@ public class ELClient extends ServiceEETest {
    *                 "le" BigInteger Double "<=" & "le" Integer Double "<=" &
    *                 "le" Long Double "<=" & "le" Short Double "<=" & "le" Byte
    */
+  @Test
   public void elDoubleLessThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -643,6 +683,7 @@ public class ELClient extends ServiceEETest {
    *                 "gt" BigInteger Double ">" & "gt" Integer Double ">" & "gt"
    *                 Long Double ">" & "gt" Short Double ">" & "gt" Byte
    */
+  @Test
   public void elDoubleGreaterThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -667,6 +708,7 @@ public class ELClient extends ServiceEETest {
    *                 "ge" BigInteger Double ">=" & "ge" Integer Double ">=" &
    *                 "ge" Long Double ">=" & "ge" Short Double ">=" & "ge" Byte
    */
+  @Test
   public void elDoubleGreaterThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -691,6 +733,7 @@ public class ELClient extends ServiceEETest {
    *                 "eq" BigInteger Double "==" & "eq" Integer Double "==" &
    *                 "eq" Long Double "==" & "eq" Short Double "==" & "eq" Byte
    */
+  @Test
   public void elDoubleEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -712,6 +755,7 @@ public class ELClient extends ServiceEETest {
    *                 "ne" BigInteger Double "!=" & "ne" Integer Double "!=" &
    *                 "ne" Long Double "!=" & "ne" Short Double "!=" & "ne" Byte
    */
+  @Test
   public void elDoubleNotEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -733,6 +777,7 @@ public class ELClient extends ServiceEETest {
    *                 BigInteger "<" & "lt" Integer BigInteger "<" & "lt" Long
    *                 BigInteger "<" & "lt" Short BigInteger "<" & "lt" Byte
    */
+  @Test
   public void elBigIntegerLessThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -757,6 +802,7 @@ public class ELClient extends ServiceEETest {
    *                 BigInteger "<=" & "le" Integer BigInteger "<=" & "le" Long
    *                 BigInteger "<=" & "le" Short BigInteger "<=" & "le" Byte
    */
+  @Test
   public void elBigIntegerLessThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -780,6 +826,7 @@ public class ELClient extends ServiceEETest {
    *                 BigInteger ">" & "gt" Integer BigInteger ">" & "gt" Long
    *                 BigInteger ">" & "gt" Short BigInteger ">" & "gt" Byte
    */
+  @Test
   public void elBigIntegerGreaterThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -804,6 +851,7 @@ public class ELClient extends ServiceEETest {
    *                 BigInteger ">=" & "ge" Integer BigInteger ">=" & "ge" Long
    *                 BigInteger ">=" & "ge" Short BigInteger ">=" & "ge" Byte
    */
+  @Test
   public void elBigIntegerGreaterThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -828,6 +876,7 @@ public class ELClient extends ServiceEETest {
    *                 BigInteger "==" & "eq" Integer BigInteger "==" & "eq" Long
    *                 BigInteger "==" & "eq" Short BigInteger "==" & "eq" Byte
    */
+  @Test
   public void elBigIntegerEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -849,6 +898,7 @@ public class ELClient extends ServiceEETest {
    *                 BigInteger "!=" & "ne" Integer BigInteger "!=" & "ne" Long
    *                 BigInteger "!=" & "ne" Short BigInteger "!=" & "ne" Byte
    */
+  @Test
   public void elBigIntegerNotEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -869,6 +919,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Long "<" & "lt" Integer Long "<" & "lt"
    *                 Long Long "<" & "lt" Short Long "<" & "lt" Byte
    */
+  @Test
   public void elLongLessThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -892,6 +943,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Long "<=" & "le" Integer Long "<=" & "le"
    *                 Long Long "<=" & "le" Short Long "<=" & "le" Byte
    */
+  @Test
   public void elLongLessThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -914,6 +966,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Long ">" & "gt" Integer Long ">" & "gt"
    *                 Long Long ">" & "gt" Short Long ">" & "gt" Byte
    */
+  @Test
   public void elLongGreaterThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -937,6 +990,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Long ">=" & "ge" Integer Long ">=" & "ge"
    *                 Long Long ">=" & "ge" Short Long ">=" & "ge" Byte
    */
+  @Test
   public void elLongGreaterThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -960,6 +1014,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Long "==" & "eq" Integer Long "==" & "eq"
    *                 Long Long "==" & "eq" Short Long "==" & "eq" Byte
    */
+  @Test
   public void elLongEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -980,6 +1035,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Long "!=" & "ne" Integer Long "!=" & "ne"
    *                 Long Long "!=" & "ne" Short Long "!=" & "ne" Byte
    */
+  @Test
   public void elLongNotEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -1000,6 +1056,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Integer "<" & "lt" Integer Integer "<" &
    *                 "lt" Short Integer "<" & "lt" Byte
    */
+  @Test
   public void elIntegerLessThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -1023,6 +1080,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Integer "<=" & "le" Integer Integer "<="
    *                 & "le" Short Integer "<=" & "le" Byte
    */
+  @Test
   public void elIntegerLessThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -1045,6 +1103,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Integer ">" & "gt" Integer Integer ">" &
    *                 "gt" Short Integer ">" & "gt" Byte
    */
+  @Test
   public void elIntegerGreaterThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -1068,6 +1127,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Integer ">=" & "ge" Integer Integer ">="
    *                 & "ge" Short Integer ">=" & "ge" Byte
    */
+  @Test
   public void elIntegerGreaterThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -1091,6 +1151,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Integer "==" & "eq" Integer Integer "=="
    *                 & "eq" Short Integer "==" & "eq" Byte
    */
+  @Test
   public void elIntegerEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -1111,6 +1172,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Integer "!=" & "ne" Integer Integer "!="
    *                 & "ne" Short Integer "!=" & "ne" Byte
    */
+  @Test
   public void elIntegerNotEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -1131,6 +1193,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Short "<" & "lt" Short Short "<" & "lt"
    *                 Byte
    */
+  @Test
   public void elShortLessThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -1154,6 +1217,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Short "<=" & "le" Short Short "<=" & "le"
    *                 Byte
    */
+  @Test
   public void elShortLessThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -1176,6 +1240,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Short ">" & "gt" Short Short ">" & "gt"
    *                 Byte
    */
+  @Test
   public void elShortGreaterThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -1199,6 +1264,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Short ">=" & "ge" Short Short ">=" & "ge"
    *                 Byte
    */
+  @Test
   public void elShortGreaterThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -1222,6 +1288,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Short "==" & "eq" Short Short "==" & "eq"
    *                 Byte
    */
+  @Test
   public void elShortEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -1242,6 +1309,7 @@ public class ELClient extends ServiceEETest {
    *                 Equations tested: Short "!=" & "ne" Short Short "!=" & "ne"
    *                 Byte
    */
+  @Test
   public void elShortNotEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -1261,6 +1329,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: Byte "<" & "lt" Byte
    */
+  @Test
   public void elByteLessThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -1283,6 +1352,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: Byte "<=" & "le" Byte
    */
+  @Test
   public void elByteLessThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -1304,6 +1374,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: Byte ">" & "gt" Byte
    */
+  @Test
   public void elByteGreaterThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -1326,6 +1397,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: Byte ">=" & "ge" Byte
    */
+  @Test
   public void elByteGreaterThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -1348,6 +1420,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: Byte "==" & "eq" Byte
    */
+  @Test
   public void elByteEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -1367,6 +1440,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: Byte "!=" & "ne" Byte
    */
+  @Test
   public void elByteNotEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
@@ -1386,6 +1460,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: String "<" & "lt" String
    */
+  @Test
   public void elStringLessThanTest() throws Exception {
 
     // Value A is less than value B. (true)
@@ -1408,6 +1483,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: String "<=" & "le" String
    */
+  @Test
   public void elStringLessThanEqualTest() throws Exception {
 
     // Value A is less than or equal to value B. (false)
@@ -1429,6 +1505,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: String ">" & "gt" String
    */
+  @Test
   public void elStringGreaterThanTest() throws Exception {
 
     // Value A is greater than value B. (false)
@@ -1451,6 +1528,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: String ">=" & "ge" String
    */
+  @Test
   public void elStringGreaterThanEqualTest() throws Exception {
 
     // Value A is greater than or equal to value B. (true)
@@ -1473,6 +1551,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: String "==" & "eq" String
    */
+  @Test
   public void elStringEqualToTest() throws Exception {
 
     // Value A is equal to value B. (true)
@@ -1492,6 +1571,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: String "!=" & "ne" String
    */
+  @Test
   public void elStringNotEqualToTest() throws Exception {
 
     // Value A is not equal to value B. (true)
@@ -1510,6 +1590,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equation example: DougType "<" & "lt" NickType
    */
+  @Test
   public void elOtherLessThanTest() throws Exception {
 
     // Value A is less than value B. (true)
@@ -1531,6 +1612,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equation example: DougType "<=" & "le" NickType
    */
+  @Test
   public void elOtherLessThanEqualTest() throws Exception {
 
     // Value A is less than or equal to value B. (false)
@@ -1551,6 +1633,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equation example: DougType "<" & "gt" NickType
    */
+  @Test
   public void elOtherGreaterThanTest() throws Exception {
 
     // Value A is greater than value B. (true)
@@ -1572,6 +1655,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: DougType ">=" & "ge" NickType
    */
+  @Test
   public void elOtherGreaterThanEqualTest() throws Exception {
 
     // Value A is greater than or equal to value B. (true)
@@ -1593,6 +1677,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations Example: DougType "==" & "eq" NickType
    */
+  @Test
   public void elOtherEqualToTest() throws Exception {
 
     // Value A is equal to value B. (true)
@@ -1611,6 +1696,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equation Example: DougType "!=" & "ne" NickType
    */
+  @Test
   public void elOtherNotEqualToTest() throws Exception {
 
     // Value A is not equal to value B. (true)
@@ -1630,6 +1716,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: Boolean "==" & "eq" String
    */
+  @Test
   public void elBooleanEqualToTest() throws Exception {
 
     // Value A is equal to value B. (true)
@@ -1649,6 +1736,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Equations tested: String "!=" & "ne" String
    */
+  @Test
   public void elBooleanNotEqualToTest() throws Exception {
 
     // Value A is not equal to value B. (true)
@@ -1668,6 +1756,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Example Equation: Enum "==" String or Integer
    */
+  @Test
   public void elEnumEqualToTest() throws Exception {
 
     // Value A is equal to value B. (true)
@@ -1688,6 +1777,7 @@ public class ELClient extends ServiceEETest {
    * 
    *                 Example Equation: Enum "!=" & "ne" Enum
    */
+  @Test
   public void elEnumNotEqualToTest() throws Exception {
 
     // Value A is not equal to value B. (true)

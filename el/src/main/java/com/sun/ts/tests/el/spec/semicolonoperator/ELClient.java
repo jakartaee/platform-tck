@@ -28,7 +28,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.util.TypesBean;
@@ -36,24 +36,40 @@ import com.sun.ts.tests.el.common.util.Validator;
 
 import jakarta.el.ELProcessor;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+
 public class ELClient extends ServiceEETest {
 
   Properties testProps;
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+//   public static void main(String[] args) {
+//     ELClient theTests = new ELClient();
+//     Status s = theTests.run(args, System.out, System.err);
+//     s.exit();
+//   }
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
-  }
+//   public void setup(String[] args, Properties p) throws Exception {
+//     TestUtil.logTrace("Setup method called");
+//     this.testProps = p;
+//   }
 
-  public void cleanup() throws Exception {
-    // does nothing at this point
-  }
+@AfterEach
+public void cleanup() throws Exception {
+  TestUtil.logTrace("Cleanup method called");
+}
+
+@BeforeEach
+void logStartTest(TestInfo testInfo) {
+  TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+}
+
+@AfterEach
+void logFinishTest(TestInfo testInfo) {
+  TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+}
 
   /**
    * @testName: elSemiColonOperatorBigDecimalTest
@@ -78,6 +94,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elSemiColonOperatorBigDecimalTest() throws Exception {
 
     ELProcessor elp = new ELProcessor();
@@ -152,6 +169,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elSemiColonOperatorFloatTest() throws Exception {
 
     ELProcessor elp = new ELProcessor();
@@ -263,6 +281,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elSemiColonOperatorDoubleTest() throws Exception {
 
     ELProcessor elp = new ELProcessor();
@@ -375,6 +394,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elSemiColonOperatorBigIntegerTest() throws Exception {
 
     ELProcessor elp = new ELProcessor();
@@ -462,6 +482,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elSemiColonOperatorIntegerTest() throws Exception {
 
     ELProcessor elp = new ELProcessor();
@@ -550,6 +571,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elSemiColonOperatorLongTest() throws Exception {
 
     ELProcessor elp = new ELProcessor();
@@ -640,6 +662,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elSemiColonOperatorShortTest() throws Exception {
 
     ELProcessor elp = new ELProcessor();
@@ -731,6 +754,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elSemiColonOperatorByteTest() throws Exception {
 
     ELProcessor elp = new ELProcessor();
@@ -819,6 +843,7 @@ public class ELClient extends ServiceEETest {
    * @since: 3.0
    * 
    */
+  @Test
   public void elSemiColonOperatorNullTest() throws Exception {
 
     ELProcessor elp = new ELProcessor();

@@ -24,11 +24,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.util.ExprEval;
 import com.sun.ts.tests.el.common.util.NameValuePair;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 
 public class ELClient extends ServiceEETest {
 
@@ -36,19 +41,32 @@ public class ELClient extends ServiceEETest {
 
   private final boolean[] deferred = { true, false };
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+  // public static void main(String[] args) {
+  //   ELClient theTests = new ELClient();
+  //   Status s = theTests.run(args, System.out, System.err);
+  //   s.exit();
+  // }
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
-  }
+  // public void setup(String[] args, Properties p) throws Exception {
+  //   TestUtil.logTrace("Setup method called");
+  //   this.testProps = p;
+  // }
 
+  @AfterEach
   public void cleanup() throws Exception {
+    TestUtil.logTrace("Cleanup method called");
   }
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+  }
+
 
   /*
    * @testName: elEmptyNullTest
@@ -58,6 +76,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate that if "null" is passed with the Empty operator,
    * the correct Boolean result is returned.
    */
+  @Test
   public void elEmptyNullTest() throws Exception {
 
     boolean pass = false;
@@ -97,6 +116,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate that if a String is passed with the Empty
    * operator, the correct Boolean result is returned.
    */
+  @Test
   public void elEmptyStringTest() throws Exception {
 
     this.testEmptyOperator("", true);
@@ -113,6 +133,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate that if a Array is passed with the Empty operator,
    * the correct Boolean result is returned.
    */
+  @Test
   public void elEmptyArrayTest() throws Exception {
 
     this.testEmptyOperator(new String[0], true);
@@ -130,6 +151,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate that if a Map is passed with the Empty operator,
    * the correct Boolean result is returned.
    */
+  @Test
   public void elEmptyMapTest() throws Exception {
 
     HashMap testMap = new HashMap();
@@ -151,6 +173,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Validate that if a Collection is passed with the Empty
    * operator, the correct Boolean result is returned.
    */
+  @Test
   public void elEmptyCollectionTest() throws Exception {
 
     ArrayList testCollection = new ArrayList();

@@ -23,7 +23,7 @@ package com.sun.ts.tests.el.spec.operatorprecedence;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.elcontext.FuncMapperELContext;
@@ -31,6 +31,11 @@ import com.sun.ts.tests.el.common.util.ExprEval;
 
 import jakarta.el.ELException;
 import jakarta.el.ExpressionFactory;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 
 public class ELClient extends ServiceEETest {
 
@@ -46,19 +51,32 @@ public class ELClient extends ServiceEETest {
 
   private final boolean[] deferred = { true, false };
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+  // public static void main(String[] args) {
+  //   ELClient theTests = new ELClient();
+  //   Status s = theTests.run(args, System.out, System.err);
+  //   s.exit();
+  // }
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
-  }
+  // public void setup(String[] args, Properties p) throws Exception {
+  //   TestUtil.logTrace("Setup method called");
+  //   this.testProps = p;
+  // }
 
+  @AfterEach
   public void cleanup() throws Exception {
+    TestUtil.logTrace("Cleanup method called");
   }
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+  }
+
 
   /*
    * @testName: elMultiPreBinaryTest
@@ -70,6 +88,7 @@ public class ELClient extends ServiceEETest {
    *
    * Rules tested: "*" is evaluated before "+" "*" is evaluated before "-"
    */
+  @Test
   public void elMultiPreBinaryTest() throws Exception {
 
     this.testOrderPrecedence("{1 + 5 * 2}", Long.valueOf(11));
@@ -88,6 +107,7 @@ public class ELClient extends ServiceEETest {
    * Rules tested: "div, /" is evaluated before "+" "div, /" is evaluated before
    * "-"
    */
+  @Test
   public void elDivPreBinaryTest() throws Exception {
 
     for (String s : DIVOPER) {
@@ -108,6 +128,7 @@ public class ELClient extends ServiceEETest {
    * Rules tested: "mod, %" is evaluated before "+" "mod, %" is evaluated before
    * "-"
    */
+  @Test
   public void elModPreBinaryTest() throws Exception {
 
     for (String s : MODOPER) {
@@ -133,6 +154,7 @@ public class ELClient extends ServiceEETest {
    * "*" is evaluated before "==" "*" is evaluated before "!=" "*" is evaluated
    * before "eq" "*" is evaluated before "ne"
    */
+  @Test
   public void elMultiPreRelationalTest() throws Exception {
 
     this.testOrderPrecedence("{6 > 5 * 2}", false);
@@ -167,6 +189,7 @@ public class ELClient extends ServiceEETest {
    * "div, /" is evaluated before "==" "div, /" is evaluated before "!="
    * "div, /" is evaluated before "eq" "div, /" is evaluated before "ne"
    */
+  @Test
   public void elDivPreRelationalTest() throws Exception {
 
     for (String s : DIVOPER) {
@@ -203,6 +226,7 @@ public class ELClient extends ServiceEETest {
    * "mod, %" is evaluated before "==" "mod, %" is evaluated before "!="
    * "mod, %" is evaluated before "eq" "mod, %" is evaluated before "ne"
    */
+  @Test
   public void elModPreRelationalTest() throws Exception {
 
     for (String s : MODOPER) {
@@ -233,6 +257,7 @@ public class ELClient extends ServiceEETest {
    *
    * Rules tested: "*, ==" is evaluated before "&&, and"
    */
+  @Test
   public void elMultiEqualPreAndTest() throws Exception {
 
     for (String a : ANDOPER) {
@@ -252,6 +277,7 @@ public class ELClient extends ServiceEETest {
    *
    * Rules tested: "div, /, ==" is evaluated before "&&, and"
    */
+  @Test
   public void elDivEqualPreAndTest() throws Exception {
 
     for (String d : DIVOPER) {
@@ -275,6 +301,7 @@ public class ELClient extends ServiceEETest {
    *
    * Rules tested: "mod, %, ==" is evaluated before "&&, and"
    */
+  @Test
   public void elModEqualPreAndTest() throws Exception {
 
     for (String m : MODOPER) {
@@ -298,6 +325,7 @@ public class ELClient extends ServiceEETest {
    *
    * Rules tested: "*, ==" is evaluated before "||, or"
    */
+  @Test
   public void elMultiEqualOrCondTest() throws Exception {
 
     for (String o : OROPER) {
@@ -318,6 +346,7 @@ public class ELClient extends ServiceEETest {
    *
    * Rules tested: "div, /, ==" is evaluated before "||, or"
    */
+  @Test
   public void elDivEqualPreOrTest() throws Exception {
 
     for (String d : DIVOPER) {
@@ -343,6 +372,7 @@ public class ELClient extends ServiceEETest {
    *
    * Rules tested: "mod, %, ==" is evaluated before "||, or"
    */
+  @Test
   public void elModEqualPreOrTest() throws Exception {
 
     for (String m : MODOPER) {
@@ -367,6 +397,7 @@ public class ELClient extends ServiceEETest {
    *
    * Rules tested: "*" is evaluated before "? :"
    */
+  @Test
   public void elMultiEqualPreCondTest() throws Exception {
 
     // These tests are designed to return the false if correct.
@@ -385,6 +416,7 @@ public class ELClient extends ServiceEETest {
    *
    * Rules tested: "div, /, ==" is evaluated before "? :"
    */
+  @Test
   public void elDivEqualPreCondTest() throws Exception {
 
     // These tests are designed to return the false if correct.
@@ -404,6 +436,7 @@ public class ELClient extends ServiceEETest {
    *
    * Rules tested: "mod, %, ==" is evaluated before "||, or"
    */
+  @Test
   public void elModEqualPreCondTest() throws Exception {
 
     for (String m : MODOPER) {
@@ -424,6 +457,7 @@ public class ELClient extends ServiceEETest {
    * "( )" is evaluated before "*" "( )" is evaluated before "/" "( )" is
    * evaluated before "%"
    */
+  @Test
   public void elParenPreBinaryTest() throws Exception {
 
     // "+" tests
@@ -457,6 +491,7 @@ public class ELClient extends ServiceEETest {
    * have precedence over the operators by constructing an expression which
    * cannot be parsed due to this rule.
    */
+  @Test
   public void functionPrecedenceTest() throws Exception {
 
     boolean pass = false;

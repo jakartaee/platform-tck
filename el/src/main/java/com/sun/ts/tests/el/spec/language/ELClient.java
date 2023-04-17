@@ -24,7 +24,7 @@ package com.sun.ts.tests.el.spec.language;
 import java.util.Hashtable;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.el.spec.Book;
@@ -33,25 +33,43 @@ import com.sun.ts.tests.el.common.util.ResolverType;
 
 import jakarta.el.ELException;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+
 public class ELClient extends ServiceEETest {
 
   private static String NLINE = System.getProperty("line.separator", "\n");
 
   Properties testProps;
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+  // public static void main(String[] args) {
+  //   ELClient theTests = new ELClient();
+  //   Status s = theTests.run(args, System.out, System.err);
+  //   s.exit();
+  // }
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
-  }
+  // public void setup(String[] args, Properties p) throws Exception {
+  //   TestUtil.logTrace("Setup method called");
+  //   this.testProps = p;
+  // }
 
+  @AfterEach
   public void cleanup() throws Exception {
+    TestUtil.logTrace("Cleanup method called");
   }
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+  }
+
 
   // ------------------------------------------------------------- Test Methods
 
@@ -63,6 +81,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Confirm that two EL expressions, identical except for the
    * '$' and '#' delimiters, are evaluated the same. Case 1: base is null.
    */
+  @Test
   public void poundDollarSameMeaning1Test() throws Exception {
 
     boolean pass = true;
@@ -98,6 +117,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Confirm that two EL expressions, identical except for the
    * '$' and '#' delimiters, are evaluated the same. Case 2: base is non-null.
    */
+  @Test
   public void poundDollarSameMeaning2Test() throws Exception {
 
     boolean pass = true;
@@ -137,6 +157,7 @@ public class ELClient extends ServiceEETest {
    * 
    * @test_Strategy: Verify that nested eval-expressions are illegal.
    */
+  @Test
   public void nestedEvalExpressionsTest() throws Exception {
 
     boolean pass = true;
@@ -177,6 +198,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: Verify that composite expressions that mix the '$' and '#'
    * delimiters are illegal.
    */
+  @Test
   public void mixedCompositeExpressionsTest() throws Exception {
 
     boolean pass = true;
@@ -218,6 +240,7 @@ public class ELClient extends ServiceEETest {
    * coerced to Strings according to the EL type conversion rules and
    * concatenated with any intervening literal-expressions.
    */
+  @Test
   public void compositeExprEval1Test() throws Exception {
 
     boolean pass = true;
@@ -256,6 +279,7 @@ public class ELClient extends ServiceEETest {
    * conversion rules, and concatenated with any intervening
    * literal-expressions.
    */
+  @Test
   public void compositeExprEval2Test() throws Exception {
 
     boolean pass = true;
@@ -288,6 +312,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: [DotAndIndexOperatorsSame] Verify that the dot and index
    * operators are evaluated in the same way.
    */
+  @Test
   public void dotAndIndexOperatorsSameTest() throws Exception {
 
     boolean pass = true;
@@ -321,6 +346,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: [ELSyntaxEscape] Verify that the EL special characters '$'
    * and '#' are treated as literals when preceded with '\'.
    */
+  @Test
   public void elSyntaxEscapeTest() throws Exception {
 
     boolean pass = true;
@@ -358,6 +384,7 @@ public class ELClient extends ServiceEETest {
    * literal String type. Verify that the value retrieved when the expression is
    * evaluated is a String equal to the value set.
    */
+  @Test
   public void literalExprEval1Test() throws Exception {
 
     boolean pass = true;
@@ -389,6 +416,7 @@ public class ELClient extends ServiceEETest {
    * ValueExpression. Verify that the value retrieved when the expression is
    * evaluated is a Boolean of the expected value.
    */
+  @Test
   public void literalExprEval2Test() throws Exception {
 
     boolean pass = true;
@@ -419,6 +447,7 @@ public class ELClient extends ServiceEETest {
    * @test_Strategy: [LiteralExprAsMethodExpr] Verify that a literal-expression
    * can also be used as a method expression that returns a non-void value.
    */
+  @Test
   public void literalExprAsMethodExpr1Test() throws Exception {
 
     boolean pass = true;
@@ -461,6 +490,7 @@ public class ELClient extends ServiceEETest {
    * Verify that the standard coercion rules apply if the return type is not
    * java.lang.String.
    */
+  @Test
   public void literalExprAsMethodExpr2Test() throws Exception {
 
     boolean pass = true;
@@ -502,6 +532,7 @@ public class ELClient extends ServiceEETest {
    * String type and verify that the value retrieved when the expression is
    * evaluated is also a String type.
    */
+  @Test
   public void rValueCoercion1Test() throws Exception {
     boolean pass = false;
 
@@ -531,6 +562,7 @@ public class ELClient extends ServiceEETest {
    * complex type and verify that the value retrieved when the expression is
    * evaluated is a String type in accordance with the coercion rules.
    */
+  @Test
   public void rValueCoercion2Test() throws Exception {
     boolean pass = false;
 
@@ -563,6 +595,7 @@ public class ELClient extends ServiceEETest {
    * parsed, it can be evaluated multiple times, and that the result of the
    * evaluation will be the same even when the EL context is modified.
    */
+  @Test
   public void parseOnceEvalManyTest() throws Exception {
     boolean pass = false;
 

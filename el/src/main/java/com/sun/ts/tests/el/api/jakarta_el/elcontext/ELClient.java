@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
@@ -34,27 +34,38 @@ import jakarta.el.ELContext;
 import jakarta.el.ELManager;
 import jakarta.el.EvaluationListener;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+
 public class ELClient extends ServiceEETest {
 
   private Properties testProps;
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+  // public static void main(String[] args) {
+  //   ELClient theTests = new ELClient();
+  //   Status s = theTests.run(args, System.out, System.err);
+  //   s.exit();
+  // }
 
-  public void setup(String[] args, Properties p) throws Exception {
-    this.testProps = p;
-  }
+  // public void setup(String[] args, Properties p) throws Exception {
+  //   this.testProps = p;
+  // }
 
-  /**
-   * Does nothing...
-   * 
-   * @throws Exception
-   */
+  @AfterEach
   public void cleanup() throws Exception {
-    // does nothing at this point
+    TestUtil.logTrace("Cleanup method called");
+  }
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -66,7 +77,7 @@ public class ELClient extends ServiceEETest {
    * 
    * @since: 3.0
    */
-
+  @Test
   public void elContextPutGetContextTest() throws Exception {
     ELManager elm = new ELManager();
     ELContext elc = elm.getELContext();
@@ -91,7 +102,7 @@ public class ELClient extends ServiceEETest {
    * 
    * @since: 3.0
    */
-
+  @Test
   public void elContextGetSetLocaleTest() throws Exception {
     ELManager elm = new ELManager();
     ELContext elc = elm.getELContext();
@@ -118,7 +129,7 @@ public class ELClient extends ServiceEETest {
    * 
    * @since: 3.0
    */
-
+  @Test
   public void elContextIsSetPropertyResolvedTest() throws Exception {
     ELManager elm = new ELManager();
     ELContext elc = elm.getELContext();
@@ -151,7 +162,7 @@ public class ELClient extends ServiceEETest {
    * 
    * @since: 3.0
    */
-
+  @Test
   public void elContextPutContextNPETest() throws Exception {
     ELManager elm = new ELManager();
     ELContext elc = elm.getELContext();
@@ -177,7 +188,7 @@ public class ELClient extends ServiceEETest {
    * 
    * @since: 3.0
    */
-
+  @Test
   public void elContextGetContextNPETest() throws Exception {
     ELManager elm = new ELManager();
     ELContext elc = elm.getELContext();
@@ -197,7 +208,7 @@ public class ELClient extends ServiceEETest {
    * 
    * @since: 3.0
    */
-
+  @Test
   public void elContextAddGetListenersTest() throws Exception {
     ELManager elm = new ELManager();
     ELContext elc = elm.getELContext();

@@ -30,7 +30,7 @@ import java.util.Hashtable;
 import java.util.Properties;
 import java.util.function.Predicate;
 
-import com.sun.javatest.Status;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.util.ExprEval;
@@ -38,6 +38,11 @@ import com.sun.ts.tests.el.common.util.NameValuePair;
 
 import jakarta.el.ELException;
 import jakarta.el.ELProcessor;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 
 public class ELClient extends ServiceEETest {
 
@@ -75,20 +80,34 @@ public class ELClient extends ServiceEETest {
     /** ,PLUTO */
   };
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
+  public ELClient(){
     initializeNumberTable();
   }
+  // public static void main(String[] args) {
+  //   ELClient theTests = new ELClient();
+  //   Status s = theTests.run(args, System.out, System.err);
+  //   s.exit();
+  // }
 
+  // public void setup(String[] args, Properties p) throws Exception {
+  //   TestUtil.logTrace("Setup method called");
+  //   this.testProps = p;
+  //   initializeNumberTable();
+  // }
+
+  @AfterEach
   public void cleanup() throws Exception {
-    // does nothing at this point
+    TestUtil.logTrace("Cleanup method called");
+  }
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -98,6 +117,7 @@ public class ELClient extends ServiceEETest {
    *                 short - int - long - float - double when found in an
    *                 expression are converted to the appropriate 'boxed' types.
    */
+  @Test
   public void positivePrimitiveToBoxedTest() throws Exception {
 
     boolean fail = false;
@@ -168,6 +188,7 @@ public class ELClient extends ServiceEETest {
    *                 ValueExpression.getValue() is subsequently called, the
    *                 primitive type is converted back to its 'boxed' type.
    */
+  @Test
   public void positiveBoxedToPrimitiveTest() throws Exception {
 
     boolean fail = false;
@@ -261,6 +282,7 @@ public class ELClient extends ServiceEETest {
    *                 proper String argument to Boolean.valueOf() are coerced to
    *                 the expected Boolean values.
    */
+  @Test
   public void positiveElBooleanCoercionTest() throws Exception {
 
     Class expectedClass = Boolean.class;
@@ -301,6 +323,7 @@ public class ELClient extends ServiceEETest {
    *                 performed with a call to ValueExpression.getValue(), which
    *                 must throw an ELException.
    */
+  @Test
   public void negativeElBooleanCoercionTest() throws Exception {
 
     boolean pass = false;
@@ -331,6 +354,7 @@ public class ELClient extends ServiceEETest {
    *                 long, float, double, enum.
    * 
    */
+  @Test
   public void elPrimitiveToStringCoercionTest() throws Exception {
 
     boolean pass1, pass2, pass4, pass5, pass6, pass7, pass8, pass9, pass10,
@@ -474,6 +498,7 @@ public class ELClient extends ServiceEETest {
    *                 Float, Double.
    * 
    */
+  @Test
   public void elWrapperToStringCoercionTest() throws Exception {
 
     boolean pass1, pass2, pass3, pass4, pass5, pass6, pass7, pass8 = false;
@@ -591,6 +616,7 @@ public class ELClient extends ServiceEETest {
    *                 Float, Double, null, empty String.
    * 
    */
+  @Test
   public void positiveElCharacterCoercionTest() throws Exception {
 
     boolean pass1, pass2, pass3, pass4, pass5, pass6, pass7, pass8,
@@ -717,6 +743,7 @@ public class ELClient extends ServiceEETest {
    *                 with a call to ValueExpression.getValue(), which must throw
    *                 an ELException.
    */
+  @Test
   public void negativeElCharacterCoercionTest() throws Exception {
 
     boolean pass = false;
@@ -749,6 +776,7 @@ public class ELClient extends ServiceEETest {
    *                 ValueExpression.getValue(), which must throw an
    *                 ELException.
    */
+  @Test
   public void negativeElNumberCoercionTest() throws Exception {
 
     boolean pass;
@@ -807,6 +835,7 @@ public class ELClient extends ServiceEETest {
    *                 Types: Byte, Short, Integer, Long, Float, Double,
    *                 BigDecimal, BigInteger.
    */
+  @Test
   public void elNullToNumberCoercionTest() throws Exception {
 
     boolean pass1;
@@ -868,6 +897,7 @@ public class ELClient extends ServiceEETest {
    *                 BigDecimal, BigInteger.
    * 
    */
+  @Test
   public void elNumberToByteCoercionTest() throws Exception {
 
     boolean pass;
@@ -941,6 +971,7 @@ public class ELClient extends ServiceEETest {
    *                 BigDecimal, BigInteger.
    * 
    */
+  @Test
   public void elNumberToShortCoercionTest() throws Exception {
 
     boolean pass;
@@ -1014,6 +1045,7 @@ public class ELClient extends ServiceEETest {
    *                 BigDecimal, BigInteger.
    * 
    */
+  @Test
   public void elNumberToIntegerCoercionTest() throws Exception {
 
     boolean pass;
@@ -1086,6 +1118,7 @@ public class ELClient extends ServiceEETest {
    *                 BigDecimal, BigInteger.
    * 
    */
+  @Test
   public void elNumberToLongCoercionTest() throws Exception {
 
     boolean pass;
@@ -1159,6 +1192,7 @@ public class ELClient extends ServiceEETest {
    *                 BigDecimal, BigInteger.
    * 
    */
+  @Test
   public void elNumberToFloatCoercionTest() throws Exception {
 
     boolean pass;
@@ -1232,6 +1266,7 @@ public class ELClient extends ServiceEETest {
    *                 BigDecimal, BigInteger.
    * 
    */
+  @Test
   public void elNumberToDoubleCoercionTest() throws Exception {
 
     boolean pass;
@@ -1305,6 +1340,7 @@ public class ELClient extends ServiceEETest {
    *                 BigDecimal, BigInteger.
    * 
    */
+  @Test
   public void elStringToNumberCoercionTest() throws Exception {
 
     boolean pass;
@@ -1379,6 +1415,7 @@ public class ELClient extends ServiceEETest {
    *                 BigDecimal, BigInteger.
    * 
    */
+  @Test
   public void elCharacterToNumberCoercionTest() throws Exception {
 
     boolean pass;
@@ -1452,6 +1489,7 @@ public class ELClient extends ServiceEETest {
    *                 BigDecimal, BigInteger.
    * 
    */
+  @Test
   public void elNumberToBigIntegerCoercionTest() throws Exception {
 
     boolean pass;
@@ -1526,6 +1564,7 @@ public class ELClient extends ServiceEETest {
    *                 BigDecimal, BigInteger.
    * 
    */
+  @Test
   public void elNumberToBigDecimalCoercionTest() throws Exception {
 
     boolean pass;
@@ -1599,6 +1638,7 @@ public class ELClient extends ServiceEETest {
    *                 successful if the string is identical to one of the enum
    *                 values. If not, an ELException is thrown.
    */
+  @Test
   public void elCoerceToEnumTypeTest() throws Exception {
 
     boolean fail = false;
@@ -1665,6 +1705,7 @@ public class ELClient extends ServiceEETest {
    *                 element cannot be coerced results in an ELException. If
    *                 not, an ELException is thrown.
    */
+  @Test
   public void elCoerceToArrayTest() throws Exception {
 
     boolean fail = false;
@@ -1749,6 +1790,7 @@ public class ELClient extends ServiceEETest {
    *                 match or can be made to match via the standard coercion
    *                 rules.
    */
+  @Test
   public void elCoerceLambdaExpressionToFunctionalInterfaceTest() throws Exception {
 
     boolean fail = false;
@@ -1844,6 +1886,7 @@ public class ELClient extends ServiceEETest {
    *                 value
    * 
    */
+  @Test
   public void elCoerceToOtherTypeTest() throws Exception {
 
     Time time = new Time(1000000000000L);

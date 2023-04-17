@@ -27,7 +27,7 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 
-import com.sun.javatest.Status;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
@@ -37,25 +37,47 @@ import com.sun.ts.tests.el.common.util.ELTestUtil;
 import jakarta.el.ELContext;
 import jakarta.el.ResourceBundleELResolver;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+
+
 public class ELClient extends ServiceEETest {
 
   private Properties testProps;
 
   private TckResourceBundle tckrb;
 
-  public static void main(String[] args) {
-    ELClient theTests = new ELClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("Setup method called");
-    this.testProps = p;
+  public ELClient(){
     tckrb = new TckResourceBundle();
   }
 
+  // public static void main(String[] args) {
+  //   ELClient theTests = new ELClient();
+  //   Status s = theTests.run(args, System.out, System.err);
+  //   s.exit();
+  // }
+
+  // public void setup(String[] args, Properties p) throws Exception {
+  //   TestUtil.logTrace("Setup method called");
+  //   this.testProps = p;
+  //   tckrb = new TckResourceBundle();
+  // }
+
+  @AfterEach
   public void cleanup() throws Exception {
+    TestUtil.logTrace("Cleanup method called");
+  }
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -70,7 +92,7 @@ public class ELClient extends ServiceEETest {
    *                 isReadOnly() getCommonPropertyType()
    *                 getFeatureDescriptors()
    */
-
+  @Test
   public void resourceBundleELResolverTest() throws Exception {
 
     boolean pass = false;
@@ -104,6 +126,7 @@ public class ELClient extends ServiceEETest {
    *
    *                 getValue() getType() setValue() isReadOnly()
    */
+  @Test
   public void resourceBundleELResolverNPETest() throws Exception {
 
     boolean pass = false;
@@ -134,6 +157,7 @@ public class ELClient extends ServiceEETest {
    *
    *                 setValue()
    */
+  @Test
   public void resourceBundleELResolverPNWETest() throws Exception {
 
     boolean pass = false;
