@@ -42,7 +42,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ELClientIT extends ServiceEETest {
+
+  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
 
   private Properties testProps;
 
@@ -59,17 +64,17 @@ public class ELClientIT extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup method called");
+    logger.info("Cleanup method called");
   }
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
-    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+    logger.info("STARTING TEST : "+testInfo.getDisplayName());
   }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
-    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+    logger.info("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -220,7 +225,7 @@ public class ELClientIT extends ServiceEETest {
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
     }
-    TestUtil.logMsg(buf.toString());
+    logger.info(buf.toString());
 
   }// End staticFieldResolverInvokeMNFETest
 
@@ -257,7 +262,7 @@ public class ELClientIT extends ServiceEETest {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
     }
 
-    TestUtil.logMsg(buf.toString());
+    logger.info(buf.toString());
 
   }// End staticFieldELResolverInvokeTest
 
@@ -293,7 +298,7 @@ public class ELClientIT extends ServiceEETest {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
     }
 
-    TestUtil.logTrace(buf.toString());
+    logger.trace(buf.toString());
 
   } // End staticFieldELResolverNPETest
 

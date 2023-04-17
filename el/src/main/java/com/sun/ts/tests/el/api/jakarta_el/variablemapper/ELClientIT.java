@@ -38,7 +38,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ELClientIT extends ServiceEETest {
+
+  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
 
   private Properties testProps;
 
@@ -59,17 +64,17 @@ public class ELClientIT extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup method called");
+    logger.info("Cleanup method called");
   }
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
-    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+    logger.info("STARTING TEST : "+testInfo.getDisplayName());
   }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
-    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+    logger.info("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -90,7 +95,7 @@ public class ELClientIT extends ServiceEETest {
     ExpressionFactory expFactory = ExpressionFactory.newInstance();
     VarMapperELContext context = new VarMapperELContext(testProps);
     VariableMapper varMapper = context.getVariableMapper();
-    TestUtil.logTrace("VariableMapper is " + varMapper.toString());
+    logger.trace("VariableMapper is " + varMapper.toString());
 
     if (varMapper.resolveVariable("foo") != null) {
       pass = false;

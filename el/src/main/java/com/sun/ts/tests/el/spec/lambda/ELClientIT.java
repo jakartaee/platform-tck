@@ -41,7 +41,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ELClientIT extends ServiceEETest {
+
+  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
 
   Properties testProps;
 
@@ -52,23 +57,23 @@ public class ELClientIT extends ServiceEETest {
 //   }
 
 //   public void setup(String[] args, Properties p) throws Exception {
-//     TestUtil.logMsg("Setup method called");
+//     logger.info("Setup method called");
 //     this.testProps = p;
 //   }
 
 @AfterEach
 public void cleanup() throws Exception {
-  TestUtil.logTrace("Cleanup method called");
+  logger.info("Cleanup method called");
 }
 
 @BeforeEach
 void logStartTest(TestInfo testInfo) {
-  TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+  logger.info("STARTING TEST : "+testInfo.getDisplayName());
 }
 
 @AfterEach
 void logFinishTest(TestInfo testInfo) {
-  TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+  logger.info("FINISHED TEST : "+testInfo.getDisplayName());
 }
 
 
@@ -183,7 +188,7 @@ void logFinishTest(TestInfo testInfo) {
       String bName = bType.getSimpleName();
 
       if (excludeList.contains(bName)) {
-        TestUtil.logMsg("*** Skipping " + comparitorA + " with " + bName
+        logger.info("*** Skipping " + comparitorA + " with " + bName
             + ", Already Tested in " + bName + " Test Sequence ***");
 
       } else {
@@ -291,7 +296,7 @@ void logFinishTest(TestInfo testInfo) {
       String bName = bType.getSimpleName();
 
       if (excludeList.contains(bName)) {
-        TestUtil.logMsg("*** Skipping " + comparitorA + " with " + bName
+        logger.info("*** Skipping " + comparitorA + " with " + bName
             + ", Already Tested in " + bName + " Test Sequence ***");
 
       } else {
@@ -396,7 +401,7 @@ void logFinishTest(TestInfo testInfo) {
       String bName = bType.getSimpleName();
 
       if ((excludeList.contains(bName))) {
-        TestUtil.logMsg("*** Skipping " + comparitorA + " with " + bName
+        logger.info("*** Skipping " + comparitorA + " with " + bName
             + ", Already Tested in " + bName + " Test Sequence ***");
 
       } else {
@@ -474,7 +479,7 @@ void logFinishTest(TestInfo testInfo) {
       String bName = bType.getSimpleName();
 
       if ((excludeList.contains(bName))) {
-        TestUtil.logMsg("*** Skipping " + comparitorA + " with " + bName
+        logger.info("*** Skipping " + comparitorA + " with " + bName
             + ", Already Tested in " + bName + " Test Sequence ***");
 
       } else {
@@ -553,7 +558,7 @@ void logFinishTest(TestInfo testInfo) {
       String bName = bType.getSimpleName();
 
       if ((excludeList.contains(bName))) {
-        TestUtil.logMsg("*** Skipping " + comparitorA + " with " + bName
+        logger.info("*** Skipping " + comparitorA + " with " + bName
             + ", Already Tested in " + bName + " Test Sequence ***");
 
       } else {
@@ -634,7 +639,7 @@ void logFinishTest(TestInfo testInfo) {
       String bName = bType.getSimpleName();
 
       if ((excludeList.contains(bName))) {
-        TestUtil.logMsg("*** Skipping " + comparitorA + " with " + bName
+        logger.info("*** Skipping " + comparitorA + " with " + bName
             + ", Already Tested in " + bName + " Test Sequence ***");
 
       } else {
@@ -716,7 +721,7 @@ void logFinishTest(TestInfo testInfo) {
       String bName = bType.getSimpleName();
 
       if ((excludeList.contains(bName))) {
-        TestUtil.logMsg("*** Skipping " + comparitorA + " with " + bName
+        logger.info("*** Skipping " + comparitorA + " with " + bName
             + ", Already Tested in " + bName + " Test Sequence ***");
 
       } else {

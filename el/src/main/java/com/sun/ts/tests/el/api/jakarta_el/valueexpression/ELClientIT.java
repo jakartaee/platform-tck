@@ -42,7 +42,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ELClientIT extends ServiceEETest {
+
+  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
+
   private Hashtable<Class<?>, Object> testValueTable;
 
   private Properties testProps;
@@ -66,17 +72,17 @@ public class ELClientIT extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup method called");
+    logger.info("Cleanup method called");
   }
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
-    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+    logger.info("STARTING TEST : "+testInfo.getDisplayName());
   }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
-    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+    logger.info("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -166,7 +172,7 @@ public class ELClientIT extends ServiceEETest {
     }
 
     if ((pass1 && pass2 && pass3 && pass4)) {
-      TestUtil.logTrace(buf.toString());
+      logger.trace(buf.toString());
 
     } else {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
@@ -216,7 +222,7 @@ public class ELClientIT extends ServiceEETest {
     try {
       vexp.getValue(null);
       pass = false;
-      TestUtil.logErr("Call to getValue() with null ELContext parameter "
+      logger.error("Call to getValue() with null ELContext parameter "
           + "did not" + TestUtil.NEW_LINE + " cause an exception to be thrown"
           + TestUtil.NEW_LINE);
 
@@ -225,7 +231,7 @@ public class ELClientIT extends ServiceEETest {
 
     } catch (Exception e) {
       pass = false;
-      TestUtil.logErr("Call to getValue() with null ELContext "
+      logger.error("Call to getValue() with null ELContext "
           + "parameter caused an exception to be thrown, but it was not a"
           + TestUtil.NEW_LINE + " NullPointerException: " + e.toString()
           + TestUtil.NEW_LINE);
@@ -234,7 +240,7 @@ public class ELClientIT extends ServiceEETest {
     try {
       vexp.setValue(null, "foo");
       pass = false;
-      TestUtil.logErr("Call to setValue() with null ELContext parameter "
+      logger.error("Call to setValue() with null ELContext parameter "
           + "did not" + TestUtil.NEW_LINE + " cause an exception to be thrown"
           + TestUtil.NEW_LINE);
 
@@ -243,7 +249,7 @@ public class ELClientIT extends ServiceEETest {
 
     } catch (Exception e) {
       pass = false;
-      TestUtil.logErr("Call to setValue() with null ELContext "
+      logger.error("Call to setValue() with null ELContext "
           + "parameter caused" + TestUtil.NEW_LINE
           + " an exception to be thrown, but it was not a" + TestUtil.NEW_LINE
           + " NullPointerException: " + e.toString() + TestUtil.NEW_LINE);
@@ -252,7 +258,7 @@ public class ELClientIT extends ServiceEETest {
     try {
       vexp.isReadOnly(null);
       pass = false;
-      TestUtil.logErr("Call to isReadOTestUtil.NEW_LINEy() with null ELContext "
+      logger.error("Call to isReadOTestUtil.NEW_LINEy() with null ELContext "
           + "parameter did not" + TestUtil.NEW_LINE
           + " cause an exception to be thrown" + TestUtil.NEW_LINE);
 
@@ -261,7 +267,7 @@ public class ELClientIT extends ServiceEETest {
 
     } catch (Exception e) {
       pass = false;
-      TestUtil.logErr("Call to isReadOTestUtil.NEW_LINEy() with null ELContext "
+      logger.error("Call to isReadOTestUtil.NEW_LINEy() with null ELContext "
           + "parameter caused" + TestUtil.NEW_LINE
           + "an exception to be thrown, but it was not a" + TestUtil.NEW_LINE
           + "NullPointerException: " + e.toString() + TestUtil.NEW_LINE);
@@ -270,7 +276,7 @@ public class ELClientIT extends ServiceEETest {
     try {
       vexp.getType(null);
       pass = false;
-      TestUtil.logErr("Call to getType() with null ELContext parameter "
+      logger.error("Call to getType() with null ELContext parameter "
           + "did not" + TestUtil.NEW_LINE + "cause an exception to be thrown"
           + TestUtil.NEW_LINE);
 
@@ -279,7 +285,7 @@ public class ELClientIT extends ServiceEETest {
 
     } catch (Exception e) {
       pass = false;
-      TestUtil.logErr("Call to getType() with null ELContext parameter "
+      logger.error("Call to getType() with null ELContext parameter "
           + "caused" + TestUtil.NEW_LINE
           + "an exception to be thrown, but it was not a" + TestUtil.NEW_LINE
           + "NullPointerException: " + e.toString() + TestUtil.NEW_LINE);
@@ -289,7 +295,7 @@ public class ELClientIT extends ServiceEETest {
     try {
       vexp.setValue(emptyContext, "foo");
       pass = false;
-      TestUtil.logErr("Call to setValue() for non-existent property did "
+      logger.error("Call to setValue() for non-existent property did "
           + "not cause" + TestUtil.NEW_LINE + "an exception to be thrown"
           + TestUtil.NEW_LINE);
 
@@ -298,7 +304,7 @@ public class ELClientIT extends ServiceEETest {
 
     } catch (Exception e) {
       pass = false;
-      TestUtil.logErr("Call to setValue() for non-existent property "
+      logger.error("Call to setValue() for non-existent property "
           + "caused an exception to be thrown, but it was not a"
           + TestUtil.NEW_LINE + "PropertyNotFoundException: " + e.toString()
           + TestUtil.NEW_LINE);
@@ -307,7 +313,7 @@ public class ELClientIT extends ServiceEETest {
     try {
       vexp.getValue(emptyContext);
       pass = false;
-      TestUtil.logErr("Call to getValue() for non-existent property did "
+      logger.error("Call to getValue() for non-existent property did "
           + "not cause an exception to be thrown" + TestUtil.NEW_LINE);
 
     } catch (PropertyNotFoundException pnfe) {
@@ -315,7 +321,7 @@ public class ELClientIT extends ServiceEETest {
 
     } catch (Exception e) {
       pass = false;
-      TestUtil.logErr("Call to getValue() for non-existent property "
+      logger.error("Call to getValue() for non-existent property "
           + "caused an exception to be thrown, but it was not a PropertyNotFoundException: "
           + TestUtil.NEW_LINE + e.toString() + TestUtil.NEW_LINE);
     }
@@ -323,7 +329,7 @@ public class ELClientIT extends ServiceEETest {
     try {
       vexp.isReadOnly(emptyContext);
       pass = false;
-      TestUtil.logErr(
+      logger.error(
           "Call to isReadOTestUtil.NEW_LINEy() for non-existent property did "
               + "not cause an exception to be thrown" + TestUtil.NEW_LINE);
 
@@ -332,7 +338,7 @@ public class ELClientIT extends ServiceEETest {
 
     } catch (Exception e) {
       pass = false;
-      TestUtil.logErr(
+      logger.error(
           "Call to isReadOTestUtil.NEW_LINEy() for non-existent property "
               + "caused an exception to be thrown, but it was not a"
               + " PropertyNotFoundException: " + TestUtil.NEW_LINE
@@ -342,7 +348,7 @@ public class ELClientIT extends ServiceEETest {
     try {
       vexp.getType(emptyContext);
       pass = false;
-      TestUtil.logErr("Call to getType() for non-existent property did not "
+      logger.error("Call to getType() for non-existent property did not "
           + "cause an exception to be thrown" + TestUtil.NEW_LINE);
 
     } catch (PropertyNotFoundException pnfe) {
@@ -350,7 +356,7 @@ public class ELClientIT extends ServiceEETest {
 
     } catch (Exception e) {
       pass = false;
-      TestUtil.logErr("Call to getType() for non-existent property "
+      logger.error("Call to getType() for non-existent property "
           + "caused an exception to be thrown, but it was not a"
           + TestUtil.NEW_LINE + " PropertyNotFoundException: " + e.toString()
           + TestUtil.NEW_LINE);
@@ -392,19 +398,19 @@ public class ELClientIT extends ServiceEETest {
         // Set eval-expression.
         ValueExpression evalvexp = expFactory.createValueExpression(context,
             "${" + testValue + "}", testClass);
-        TestUtil.logTrace("Eval Value Expression For Testing: "
+        logger.trace("Eval Value Expression For Testing: "
             + evalvexp.toString() + TestUtil.NEW_LINE);
 
         // Set literal-expression
         ValueExpression literalvexp = expFactory.createValueExpression(context,
             "\"" + testValue + "\"", testClass);
-        TestUtil.logTrace("Literal Value Expression For Testing: "
+        logger.trace("Literal Value Expression For Testing: "
             + literalvexp.toString() + TestUtil.NEW_LINE);
 
         // Set Composite Expression
         ValueExpression compositevexp = expFactory.createValueExpression(
             context, "#{" + testValue + "}" + " " + testValue, testClass);
-        TestUtil.logTrace("Composite Value Expression For Testing: "
+        logger.trace("Composite Value Expression For Testing: "
             + compositevexp.toString() + TestUtil.NEW_LINE);
 
         // Test eval, literal, & composite expressions.
@@ -421,7 +427,7 @@ public class ELClientIT extends ServiceEETest {
       }
 
       if (pass) {
-        TestUtil.logTrace(buf.toString());
+        logger.trace(buf.toString());
       } else {
         throw new Exception(ELTestUtil.FAIL + buf.toString());
       }
@@ -547,7 +553,7 @@ public class ELClientIT extends ServiceEETest {
     }
 
     if (pass) {
-      TestUtil.logTrace(buf.toString());
+      logger.trace(buf.toString());
     } else {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
     }

@@ -44,7 +44,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ELClientIT extends ServiceEETest {
+
+  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
 
   private Properties testProps;
 
@@ -97,17 +102,17 @@ public class ELClientIT extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup method called");
+    logger.info("Cleanup method called");
   }
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
-    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+    logger.info("STARTING TEST : "+testInfo.getDisplayName());
   }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
-    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+    logger.info("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -168,7 +173,7 @@ public class ELClientIT extends ServiceEETest {
     for (int i = 0; i < pass.length; ++i) {
       if (!pass[i]) {
         fail = true;
-        TestUtil.logErr("Unexpected result for test case " + i);
+        logger.error("Unexpected result for test case " + i);
       }
     }
 
@@ -267,7 +272,7 @@ public class ELClientIT extends ServiceEETest {
     for (int i = 0; i < pass.length; ++i) {
       if (!pass[i]) {
         fail = true;
-        TestUtil.logErr("Unexpected result for test case " + i);
+        logger.error("Unexpected result for test case " + i);
       }
     }
 
@@ -296,9 +301,9 @@ public class ELClientIT extends ServiceEETest {
       Object result4 = ExprEval.evaluateValueExpression("#{'true'}", null,
           expectedClass);
 
-      TestUtil.logTrace("result2 is " + result2.toString());
-      TestUtil.logTrace("result3 is " + result3.toString());
-      TestUtil.logTrace("result4 is " + result4.toString());
+      logger.trace("result2 is " + result2.toString());
+      logger.trace("result3 is " + result3.toString());
+      logger.trace("result4 is " + result4.toString());
 
       pass = (ExprEval.compareClass(result2, expectedClass)
           && ExprEval.compareValue(result2, Boolean.FALSE)
@@ -330,7 +335,7 @@ public class ELClientIT extends ServiceEETest {
 
     try {
       ExprEval.evaluateValueExpression("${1}", null, Boolean.class);
-      TestUtil.logErr(
+      logger.error(
           "No exception thrown when coercing invalid class " + "to Boolean");
 
     } catch (ELException ee) {
@@ -751,14 +756,14 @@ public class ELClientIT extends ServiceEETest {
     try {
       ExprEval.evaluateValueExpression("${" + pass + "}", null,
           Character.class);
-      TestUtil.logErr(
+      logger.error(
           "No exception thrown when coercing Boolean " + "to Character!");
 
     } catch (ELException ee) {
       pass = true;
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception thrown, but it was not an ELException");
+      logger.error("Exception thrown, but it was not an ELException");
       TestUtil.printStackTrace(e);
     }
 
@@ -792,14 +797,14 @@ public class ELClientIT extends ServiceEETest {
       // Coercing Boolean to Number type.
       try {
         ExprEval.evaluateValueExpression("${" + pass + "}", null, testClass);
-        TestUtil.logErr("No exception thrown when coercing Boolean " + "to "
+        logger.error("No exception thrown when coercing Boolean " + "to "
             + name + "!" + NLINE);
 
       } catch (ELException ee) {
         pass = true;
 
       } catch (Exception e) {
-        TestUtil.logErr("Exception thrown, but it was not an ELException");
+        logger.error("Exception thrown, but it was not an ELException");
         TestUtil.printStackTrace(e);
       }
 
@@ -809,14 +814,14 @@ public class ELClientIT extends ServiceEETest {
       // Coercing String to Number type.
       try {
         ExprEval.evaluateValueExpression("${'A'}", null, testClass);
-        TestUtil.logErr("No exception thrown when coercing String " + "to "
+        logger.error("No exception thrown when coercing String " + "to "
             + name + "!" + NLINE);
 
       } catch (ELException ee) {
         pass = true;
 
       } catch (Exception e) {
-        TestUtil.logErr("Exception thrown, but it was not an ELException");
+        logger.error("Exception thrown, but it was not an ELException");
         TestUtil.printStackTrace(e);
       }
 
@@ -1686,7 +1691,7 @@ public class ELClientIT extends ServiceEETest {
     for (int i = 0; i < pass.length; ++i) {
       if (!pass[i]) {
         fail = true;
-        TestUtil.logErr("Unexpected result for test case " + i);
+        logger.error("Unexpected result for test case " + i);
       }
     }
 
@@ -1753,7 +1758,7 @@ public class ELClientIT extends ServiceEETest {
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Testing coercion to arrays " +
+      logger.error("Testing coercion to arrays " +
           "threw an Exception!" + TestUtil.NEW_LINE + "Received: " + e.toString() + TestUtil.NEW_LINE);
 
       throw new Exception(e);
@@ -1764,7 +1769,7 @@ public class ELClientIT extends ServiceEETest {
     for (int i = 0; i < pass.length; ++i) {
       if (!pass[i]) {
         fail = true;
-        TestUtil.logErr("Unexpected result for test case " + i);
+        logger.error("Unexpected result for test case " + i);
       }
     }
 
@@ -1838,7 +1843,7 @@ public class ELClientIT extends ServiceEETest {
           && ExprEval.compareValue(result, "BLOCK");
 
     } catch (Exception e) {
-      TestUtil.logErr("Testing coercion of lambda expressions to functional interfaces " +
+      logger.error("Testing coercion of lambda expressions to functional interfaces " +
           "threw an Exception!" + TestUtil.NEW_LINE + "Received: " + e.toString() + TestUtil.NEW_LINE);
 
       throw new Exception(e);
@@ -1849,7 +1854,7 @@ public class ELClientIT extends ServiceEETest {
     for (int i = 0; i < pass.length; ++i) {
       if (!pass[i]) {
         fail = true;
-        TestUtil.logErr("Unexpected result for test case " + i);
+        logger.error("Unexpected result for test case " + i);
       }
     }
 

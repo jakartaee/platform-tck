@@ -31,6 +31,8 @@ import jakarta.el.ELResolver;
 import jakarta.el.FunctionMapper;
 import jakarta.el.VariableMapper;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 /**
  * This ELContext provides a VariableELResolver to enable the setting and
  * resolution of variables as well as a VariableMapper implementation. The path
@@ -38,6 +40,8 @@ import jakarta.el.VariableMapper;
  * ts.jte file.
  */
 public class VarMapperELContext extends ELContext {
+
+  private static final Logger logger = LoggerFactory.getLogger(VarMapperELContext.class.getName());
 
   private final VariableMapper varMapper;
 
@@ -81,11 +85,11 @@ public class VarMapperELContext extends ELContext {
       clazz = Class.forName(classname);
       instance = clazz.newInstance();
     } catch (ClassNotFoundException cnfe) {
-      TestUtil.logErr("ClassNotFoundException: " + cnfe.getMessage());
+      logger.error("ClassNotFoundException: " + cnfe.getMessage());
     } catch (InstantiationException ie) {
-      TestUtil.logErr("InstantiationException: " + ie.getMessage());
+      logger.error("InstantiationException: " + ie.getMessage());
     } catch (IllegalAccessException iae) {
-      TestUtil.logErr("IllegalAccessException: " + iae.getMessage());
+      logger.error("IllegalAccessException: " + iae.getMessage());
     }
     return instance;
   }

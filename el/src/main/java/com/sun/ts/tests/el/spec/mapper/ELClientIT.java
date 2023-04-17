@@ -41,7 +41,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ELClientIT extends ServiceEETest {
+
+  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
 
   Properties testProps;
 
@@ -62,17 +67,17 @@ public class ELClientIT extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup method called");
+    logger.info("Cleanup method called");
   }
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
-    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+    logger.info("STARTING TEST : "+testInfo.getDisplayName());
   }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
-    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+    logger.info("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
 
@@ -132,15 +137,15 @@ public class ELClientIT extends ServiceEETest {
 
     } catch (Throwable t) {
       if (!(t instanceof ELException)) {
-        TestUtil.logErr("Expected ELException to be thrown");
-        TestUtil.logErr("instead threw " + t.toString());
+        logger.error("Expected ELException to be thrown");
+        logger.error("instead threw " + t.toString());
         TestUtil.printStackTrace(t);
         throw new Exception("ELException not thrown");
       }
       Throwable cause = t.getCause();
       if (!(cause instanceof NumberFormatException)) {
-        TestUtil.logErr("Expected cause to be NumberFormatException");
-        TestUtil.logErr("instead cause is " + cause.toString());
+        logger.error("Expected cause to be NumberFormatException");
+        logger.error("instead cause is " + cause.toString());
         TestUtil.printStackTrace(cause);
         throw new Exception("NumberFormatException not cause");
       }

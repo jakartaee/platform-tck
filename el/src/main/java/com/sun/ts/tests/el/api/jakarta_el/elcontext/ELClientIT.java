@@ -39,7 +39,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ELClientIT extends ServiceEETest {
+
+  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
 
   private Properties testProps;
 
@@ -55,17 +60,17 @@ public class ELClientIT extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup method called");
+    logger.info("Cleanup method called");
   }
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
-    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+    logger.info("STARTING TEST : "+testInfo.getDisplayName());
   }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
-    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+    logger.info("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -167,12 +172,12 @@ public class ELClientIT extends ServiceEETest {
     ELManager elm = new ELManager();
     ELContext elc = elm.getELContext();
 
-    TestUtil.logMsg("Testing: ELContext.putContext(String.class, null)");
+    logger.info("Testing: ELContext.putContext(String.class, null)");
     ELTestUtil.checkForNPE(elc, "putContext",
         new Class<?>[] { Class.class, Object.class },
         new Object[] { String.class, null });
 
-    TestUtil.logMsg("Testing: ELContext.putContext(null, testStrg)");
+    logger.info("Testing: ELContext.putContext(null, testStrg)");
     ELTestUtil.checkForNPE(elc, "putContext",
         new Class<?>[] { Class.class, Object.class },
         new Object[] { String.class, null });
@@ -193,7 +198,7 @@ public class ELClientIT extends ServiceEETest {
     ELManager elm = new ELManager();
     ELContext elc = elm.getELContext();
 
-    TestUtil.logMsg("Testing: ELContext.getContext(null)");
+    logger.info("Testing: ELContext.getContext(null)");
     ELTestUtil.checkForNPE(elc, "getContext", new Class<?>[] { Class.class },
         new Object[] { null });
 

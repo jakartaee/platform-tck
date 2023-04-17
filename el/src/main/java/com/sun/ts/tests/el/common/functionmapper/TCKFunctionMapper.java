@@ -28,11 +28,16 @@ import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.el.FunctionMapper;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /* A simple implementation of FunctionMapper that maps only
    a single function to Integer.valueOf(String).
 */
 
 public class TCKFunctionMapper extends FunctionMapper {
+
+  private static final Logger logger = LoggerFactory.getLogger(TCKFunctionMapper.class.getName());
 
   private static final String KEY = "Int:val";
 
@@ -46,7 +51,7 @@ public class TCKFunctionMapper extends FunctionMapper {
     try {
       fMap.put(KEY, clazz.getMethod("valueOf", String.class));
     } catch (NoSuchMethodException nsme) {
-      TestUtil.logErr("CONSTRUCTOR: Can't find method!");
+      logger.error("CONSTRUCTOR: Can't find method!");
       TestUtil.printStackTrace(nsme);
     }
   }
@@ -63,7 +68,7 @@ public class TCKFunctionMapper extends FunctionMapper {
     try {
       fMap.put(KEY, clazz.getMethod("toString", int.class));
     } catch (NoSuchMethodException nsme) {
-      TestUtil.logErr("UPDATE: Can't find method!");
+      logger.error("UPDATE: Can't find method!");
       TestUtil.printStackTrace(nsme);
     }
   }

@@ -40,7 +40,12 @@ import jakarta.el.PropertyNotFoundException;
 import jakarta.el.PropertyNotWritableException;
 import jakarta.el.ValueExpression;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public final class ExprEval {
+
+  private static final Logger logger = LoggerFactory.getLogger(ExprEval.class.getName());
 
   // Suppress default constructor for non-instantiability
   private ExprEval() {
@@ -101,25 +106,25 @@ public final class ExprEval {
     // set the values of variables to be used in the expression
     if (nameVals == null) {
       resolver.setValue(context, null, "A", null);
-      TestUtil.logTrace("setting var 'A' to value null");
+      logger.trace("setting var 'A' to value null");
       resolver.setValue(context, null, "B", null);
-      TestUtil.logTrace("setting var 'B' to value null");
+      logger.trace("setting var 'B' to value null");
 
     } else {
       for (int i = 0; i < nameVals.length; ++i) {
         String name = nameVals[i].getName();
         Object val = nameVals[i].getValue();
-        TestUtil.logTrace("setting var " + name + " to value " + val);
+        logger.trace("setting var " + name + " to value " + val);
         resolver.setValue(context, null, name, val);
       }
     }
 
     // create the expression
-    TestUtil.logTrace("Creating ValueExpression");
-    TestUtil.logTrace("context is " + context.getClass().toString());
-    TestUtil.logTrace("exprStr is " + exprStr);
-    TestUtil.logTrace("expectedClass is " + expectedClass.toString());
-    TestUtil.logTrace(
+    logger.trace("Creating ValueExpression");
+    logger.trace("context is " + context.getClass().toString());
+    logger.trace("exprStr is " + exprStr);
+    logger.trace("expectedClass is " + expectedClass.toString());
+    logger.trace(
         "resolver is " + context.getELResolver().getClass().toString());
     ValueExpression vexp = expFactory.createValueExpression(context, exprStr,
         expectedClass);
@@ -276,7 +281,7 @@ public final class ExprEval {
 
       // test the expression
       if (!(ExprEval.compareValue(exprVal, vexp.getValue(context)))) {
-        TestUtil.logErr("Expression Failed! After Adding: " + "\"" + value
+        logger.error("Expression Failed! After Adding: " + "\"" + value
             + "\"" + " To Context");
         result = false;
       }
@@ -291,9 +296,9 @@ public final class ExprEval {
 
     boolean isInstance = expectedClass.isInstance(obj);
     if (!isInstance) {
-      TestUtil.logErr("Unexpected type for expression evaluation");
-      TestUtil.logErr("Expected type: " + expectedClass.toString());
-      TestUtil.logErr("Computed type: " + obj.getClass().toString());
+      logger.error("Unexpected type for expression evaluation");
+      logger.error("Expected type: " + expectedClass.toString());
+      logger.error("Computed type: " + obj.getClass().toString());
     }
     return isInstance;
   }
@@ -301,9 +306,9 @@ public final class ExprEval {
   public static boolean compareValue(Object val, Object expectedVal) {
 
     if (!val.equals(expectedVal)) {
-      TestUtil.logErr("Unexpected value for expression evaluation");
-      TestUtil.logErr("Expected value: " + expectedVal.toString());
-      TestUtil.logErr("Computed value: " + val.toString());
+      logger.error("Unexpected value for expression evaluation");
+      logger.error("Expected value: " + expectedVal.toString());
+      logger.error("Computed value: " + val.toString());
       return false;
     }
 
@@ -313,9 +318,9 @@ public final class ExprEval {
   public static boolean compareValue(Boolean val, Boolean expectedVal) {
 
     if (!val.equals(expectedVal)) {
-      TestUtil.logErr("Unexpected value for expression evaluation");
-      TestUtil.logErr("Expected value: " + expectedVal.toString());
-      TestUtil.logErr("Computed value: " + val.toString());
+      logger.error("Unexpected value for expression evaluation");
+      logger.error("Expected value: " + expectedVal.toString());
+      logger.error("Computed value: " + val.toString());
       return false;
     }
 
@@ -363,9 +368,9 @@ public final class ExprEval {
     BigDecimal b = expectedVal.abs(mc);
 
     if (!(0 == a.compareTo(b))) {
-      TestUtil.logErr("Unexpected value for expression evaluation");
-      TestUtil.logErr("Expected value: " + expectedVal);
-      TestUtil.logErr("Computed value: " + val);
+      logger.error("Unexpected value for expression evaluation");
+      logger.error("Expected value: " + expectedVal);
+      logger.error("Computed value: " + val);
       return false;
     }
 

@@ -36,7 +36,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ELClientIT extends ServiceEETest {
+
+  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
 
   private Properties testProps;
 
@@ -53,17 +58,17 @@ public class ELClientIT extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup method called");
+    logger.info("Cleanup method called");
   }
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
-    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+    logger.info("STARTING TEST : "+testInfo.getDisplayName());
   }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
-    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+    logger.info("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -83,47 +88,47 @@ public class ELClientIT extends ServiceEETest {
       meth = elp.getClass().getMethod("toString", new Class<?>[] {});
 
       // Tests for defineFunction(String, String, Method)
-      TestUtil.logMsg(
+      logger.info(
           "Testing: ELProcessor.defineFunction(null, " + "function, meth)");
       ELTestUtil.checkForNPE(elp, "defineFunction",
           new Class<?>[] { String.class, String.class, Method.class },
           new Object[] { null, "function", meth });
 
-      TestUtil.logMsg(
+      logger.info(
           "Testing: ELProcessor.defineFunction(prefix, " + "null, meth)");
       ELTestUtil.checkForNPE(elp, "defineFunction",
           new Class<?>[] { String.class, String.class, Method.class },
           new Object[] { "prefix", null, meth });
 
-      TestUtil.logMsg(
+      logger.info(
           "Testing: ELProcessor.defineFunction(prefix, " + "function, null)");
       ELTestUtil.checkForNPE(elp, "defineFunction",
           new Class<?>[] { String.class, String.class, Method.class },
           new Object[] { "prefix", "function", null });
 
       // Tests for defineFunction(String, String, String, String)
-      TestUtil.logMsg("Testing: ELProcessor.defineFunction(prefix, "
+      logger.info("Testing: ELProcessor.defineFunction(prefix, "
           + "function, className, null)");
       ELTestUtil.checkForNPE(elp, "defineFunction",
           new Class<?>[] { String.class, String.class, String.class,
               String.class },
           new Object[] { "prefix", "function", "className", null });
 
-      TestUtil.logMsg("Testing: ELProcessor.defineFunction(prefix, "
+      logger.info("Testing: ELProcessor.defineFunction(prefix, "
           + "function, null, method)");
       ELTestUtil.checkForNPE(elp, "defineFunction",
           new Class<?>[] { String.class, String.class, String.class,
               String.class },
           new Object[] { "prefix", "function", null, "method" });
 
-      TestUtil.logMsg("Testing: ELProcessor.defineFunction(prefix, "
+      logger.info("Testing: ELProcessor.defineFunction(prefix, "
           + "null, className, method)");
       ELTestUtil.checkForNPE(elp, "defineFunction",
           new Class<?>[] { String.class, String.class, String.class,
               String.class },
           new Object[] { "prefix", null, "className", "method" });
 
-      TestUtil.logMsg("Testing: ELProcessor.defineFunction(null, "
+      logger.info("Testing: ELProcessor.defineFunction(null, "
           + "function, className, method)");
       ELTestUtil.checkForNPE(elp, "defineFunction",
           new Class<?>[] { String.class, String.class, String.class,
@@ -151,7 +156,7 @@ public class ELClientIT extends ServiceEETest {
   public void elProcessorDefineFunctionCNFETest() throws Exception {
     ELProcessor elp = new ELProcessor();
 
-    TestUtil.logMsg("Testing: ELProcessor.defineFunction(null, "
+    logger.info("Testing: ELProcessor.defineFunction(null, "
         + "function, className, method)");
     ELTestUtil.checkForCNFE(elp, "defineFunction",
         new Class<?>[] { String.class, String.class, String.class,
@@ -173,7 +178,7 @@ public class ELClientIT extends ServiceEETest {
   public void elProcessorDefineFunctionNSMETest() throws Exception {
     ELProcessor elp = new ELProcessor();
 
-    TestUtil.logMsg("Testing: ELProcessor.defineFunction(null, "
+    logger.info("Testing: ELProcessor.defineFunction(null, "
         + "function, className, method)");
     ELTestUtil.checkForCNFE(elp, "defineFunction",
         new Class<?>[] { String.class, String.class, String.class,

@@ -26,7 +26,12 @@ import java.lang.reflect.Method;
 import com.sun.ts.lib.harness.EETest.Fault;
 import com.sun.ts.lib.util.TestUtil;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public final class ELTestUtil {
+
+  private static final Logger logger = LoggerFactory.getLogger(ELTestUtil.class.getName());
 
   public static final String NL = System.getProperty("line.separator", "\n");
 
@@ -197,7 +202,7 @@ public final class ELTestUtil {
 
     } catch (InvocationTargetException ite) {
       if (exceptionType.getClass().isInstance(ite.getCause())) {
-        TestUtil.logMsg(PASS);
+        logger.info(PASS);
         return;
 
       } else {

@@ -38,7 +38,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ELClientIT extends ServiceEETest {
+
+  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
 
   private ELProcessor elp;
 
@@ -59,17 +64,17 @@ public class ELClientIT extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup method called");
+    logger.info("Cleanup method called");
   }
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
-    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+    logger.info("STARTING TEST : "+testInfo.getDisplayName());
   }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
-    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+    logger.info("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
 
@@ -532,7 +537,7 @@ public class ELClientIT extends ServiceEETest {
       pass = result.booleanValue();
     } catch (Exception e) {
       pass = false;
-      TestUtil.logErr("Construction and use of a valid Set literal threw an Exception!" +
+      logger.error("Construction and use of a valid Set literal threw an Exception!" +
           TestUtil.NEW_LINE + "Received: " + e.toString() + TestUtil.NEW_LINE);
 
       e.printStackTrace();
@@ -568,7 +573,7 @@ public class ELClientIT extends ServiceEETest {
       pass = valueB.equals(result);
     } catch (Exception e) {
       pass = false;
-      TestUtil.logErr("Construction and use of a valid List literal threw an Exception!" +
+      logger.error("Construction and use of a valid List literal threw an Exception!" +
           TestUtil.NEW_LINE + "Received: " + e.toString() + TestUtil.NEW_LINE);
 
       e.printStackTrace();
@@ -604,7 +609,7 @@ public class ELClientIT extends ServiceEETest {
       pass = value.equals(result);
     } catch (Exception e) {
       pass = false;
-      TestUtil.logErr("Construction and use of a valid Map literal threw an Exception!" +
+      logger.error("Construction and use of a valid Map literal threw an Exception!" +
           TestUtil.NEW_LINE + "Received: " + e.toString() + TestUtil.NEW_LINE);
 
       e.printStackTrace();
@@ -619,7 +624,7 @@ public class ELClientIT extends ServiceEETest {
   // --------------------------- private methods
 
   private void logLine(String s) {
-    TestUtil.logMsg(s);
+    logger.info(s);
   }
 
   private void buildELContext() {

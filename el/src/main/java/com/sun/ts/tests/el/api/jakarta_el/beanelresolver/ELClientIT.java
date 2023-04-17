@@ -39,7 +39,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ELClientIT extends ServiceEETest {
+
+  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
 
   private SimpleBean sb;
 
@@ -63,17 +68,17 @@ public class ELClientIT extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup method called");
+    logger.info("Cleanup method called");
   }
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
-    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+    logger.info("STARTING TEST : "+testInfo.getDisplayName());
   }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
-    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+    logger.info("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -107,7 +112,7 @@ public class ELClientIT extends ServiceEETest {
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
     }
-    TestUtil.logTrace(buf.toString());
+    logger.trace(buf.toString());
   }
 
   /**
@@ -134,7 +139,7 @@ public class ELClientIT extends ServiceEETest {
          "RO", buf, true);
     } catch (Exception ex) {
       pass = false;
-      TestUtil.logErr("Test of a valid expression using a Bean with a read-only " +
+      logger.error("Test of a valid expression using a Bean with a read-only " +
           "property implemented via default methods threw an Exception!" + TestUtil.NEW_LINE +
           "Received: " + ex.toString() + TestUtil.NEW_LINE);
 
@@ -144,7 +149,7 @@ public class ELClientIT extends ServiceEETest {
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
     }
-    TestUtil.logTrace(buf.toString());
+    logger.trace(buf.toString());
   }
 
   
@@ -172,7 +177,7 @@ public class ELClientIT extends ServiceEETest {
           "RW", buf, false);
     } catch (Exception ex) {
       pass = false;
-      TestUtil.logErr("Test of a valid expression using a Bean with a read-write " +
+      logger.error("Test of a valid expression using a Bean with a read-write " +
           "property implemented via default methods threw an Exception!" + TestUtil.NEW_LINE +
           "Received: " + ex.toString() + TestUtil.NEW_LINE);
 
@@ -182,7 +187,7 @@ public class ELClientIT extends ServiceEETest {
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
     }
-    TestUtil.logTrace(buf.toString());
+    logger.trace(buf.toString());
   }
 
   /**
@@ -215,7 +220,7 @@ public class ELClientIT extends ServiceEETest {
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
     }
-    TestUtil.logTrace(buf.toString());
+    logger.trace(buf.toString());
 
   }// End beanELResolverInvokeTest
 
@@ -261,7 +266,7 @@ public class ELClientIT extends ServiceEETest {
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
     }
-    TestUtil.logTrace(buf.toString());
+    logger.trace(buf.toString());
 
   }// End beanELResolverInvokeVoidTest
 
@@ -296,7 +301,7 @@ public class ELClientIT extends ServiceEETest {
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
     }
-    TestUtil.logTrace(buf.toString());
+    logger.trace(buf.toString());
 
   }// End beanELResolverInvokeMNFETest
 
@@ -331,7 +336,7 @@ public class ELClientIT extends ServiceEETest {
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
     }
-    TestUtil.logTrace(buf.toString());
+    logger.trace(buf.toString());
   }
 
   /**
@@ -369,7 +374,7 @@ public class ELClientIT extends ServiceEETest {
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
     }
-    TestUtil.logTrace(buf.toString());
+    logger.trace(buf.toString());
   }
 
   /**
@@ -405,6 +410,6 @@ public class ELClientIT extends ServiceEETest {
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
     }
-    TestUtil.logTrace(buf.toString());
+    logger.trace(buf.toString());
   }
 }

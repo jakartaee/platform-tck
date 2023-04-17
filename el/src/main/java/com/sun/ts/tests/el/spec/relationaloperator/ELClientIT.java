@@ -37,7 +37,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ELClientIT extends ServiceEETest {
+
+  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
 
   Properties testProps;
 
@@ -69,17 +74,17 @@ public class ELClientIT extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup method called");
+    logger.info("Cleanup method called");
   }
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
-    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+    logger.info("STARTING TEST : "+testInfo.getDisplayName());
   }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
-    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+    logger.info("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
 
@@ -97,25 +102,25 @@ public class ELClientIT extends ServiceEETest {
     try {
       // Expression One
       String expr1 = ExprEval.buildElExpr(false, "<=");
-      TestUtil.logTrace("first expression to be evaluated is " + expr1);
+      logger.trace("first expression to be evaluated is " + expr1);
 
       NameValuePair values1[] = NameValuePair
           .buildNameValuePair(new Float(-1.0f), new Float(-1.0));
 
       Object result1 = ExprEval.evaluateValueExpression(expr1, values1,
           Boolean.class);
-      TestUtil.logTrace("first result is " + result1.toString());
+      logger.trace("first result is " + result1.toString());
 
       // Expression Two
       String expr2 = ExprEval.buildElExpr(true, "le");
-      TestUtil.logTrace("second expression to be evaluated is " + expr2);
+      logger.trace("second expression to be evaluated is " + expr2);
 
       NameValuePair values2[] = NameValuePair
           .buildNameValuePair(new BigDecimal("1.0"), BigDecimal.ONE);
       Object result2 = ExprEval.evaluateValueExpression(expr2, values2,
           Boolean.class);
 
-      TestUtil.logTrace("second result is " + result2.toString());
+      logger.trace("second result is " + result2.toString());
 
       pass = (ExprEval.compareClass(result1, Boolean.class)
           && ExprEval.compareValue((Boolean) result1, Boolean.TRUE)
@@ -146,25 +151,25 @@ public class ELClientIT extends ServiceEETest {
     try {
       // Expression One
       String expr1 = ExprEval.buildElExpr(false, ">=");
-      TestUtil.logTrace("first expression to be evaluated is " + expr1);
+      logger.trace("first expression to be evaluated is " + expr1);
 
       NameValuePair values1[] = NameValuePair
           .buildNameValuePair(new Float(-1.0f), new Float(-1.0));
 
       Object result1 = ExprEval.evaluateValueExpression(expr1, values1,
           Boolean.class);
-      TestUtil.logTrace("first result is " + result1.toString());
+      logger.trace("first result is " + result1.toString());
 
       // Expression Two
       String expr2 = ExprEval.buildElExpr(true, "ge");
-      TestUtil.logTrace("second expression to be evaluated is " + expr2);
+      logger.trace("second expression to be evaluated is " + expr2);
 
       NameValuePair values2[] = NameValuePair
           .buildNameValuePair(new BigInteger("1010"), BigInteger.TEN);
 
       Object result2 = ExprEval.evaluateValueExpression(expr2, values2,
           Boolean.class);
-      TestUtil.logTrace("second result is " + result2.toString());
+      logger.trace("second result is " + result2.toString());
 
       pass = (ExprEval.compareClass(result1, Boolean.class)
           && ExprEval.compareValue((Boolean) result1, Boolean.TRUE)
@@ -196,11 +201,11 @@ public class ELClientIT extends ServiceEETest {
 
       Object result1 = ExprEval.evaluateValueExpression("${1 <= nullValue}",
           null, Object.class);
-      TestUtil.logTrace("first result is " + result1.toString());
+      logger.trace("first result is " + result1.toString());
 
       Object result2 = ExprEval.evaluateValueExpression("#{2 le nullValue}",
           null, Object.class);
-      TestUtil.logTrace("second result is " + result2.toString());
+      logger.trace("second result is " + result2.toString());
 
       pass = (ExprEval.compareClass(result1, Boolean.class)
           && ExprEval.compareValue((Boolean) result1, Boolean.FALSE)
@@ -230,11 +235,11 @@ public class ELClientIT extends ServiceEETest {
 
       Object result1 = ExprEval.evaluateValueExpression("${1 >= nullValue}",
           null, Object.class);
-      TestUtil.logTrace("first result is " + result1.toString());
+      logger.trace("first result is " + result1.toString());
 
       Object result2 = ExprEval.evaluateValueExpression("#{2 ge nullValue}",
           null, Object.class);
-      TestUtil.logTrace("second result is " + result2.toString());
+      logger.trace("second result is " + result2.toString());
 
       pass = (ExprEval.compareClass(result1, Boolean.class)
           && ExprEval.compareValue((Boolean) result1, Boolean.FALSE)
@@ -264,11 +269,11 @@ public class ELClientIT extends ServiceEETest {
 
       Object result1 = ExprEval.evaluateValueExpression("${1 != nullValue}",
           null, Object.class);
-      TestUtil.logTrace("first result is " + result1.toString());
+      logger.trace("first result is " + result1.toString());
 
       Object result2 = ExprEval.evaluateValueExpression("#{2 ne nullValue}",
           null, Object.class);
-      TestUtil.logTrace("second result is " + result2.toString());
+      logger.trace("second result is " + result2.toString());
 
       pass = (ExprEval.compareClass(result1, Boolean.class)
           && ExprEval.compareValue((Boolean) result1, Boolean.TRUE)
@@ -299,11 +304,11 @@ public class ELClientIT extends ServiceEETest {
 
       Object result1 = ExprEval.evaluateValueExpression("${1 == nullValue}",
           null, Object.class);
-      TestUtil.logTrace("first result is " + result1.toString());
+      logger.trace("first result is " + result1.toString());
 
       Object result2 = ExprEval.evaluateValueExpression("#{2 eq nullValue}",
           null, Object.class);
-      TestUtil.logTrace("second result is " + result2.toString());
+      logger.trace("second result is " + result2.toString());
 
       pass = (ExprEval.compareClass(result1, Boolean.class)
           && ExprEval.compareValue((Boolean) result1, Boolean.FALSE)
@@ -1812,7 +1817,7 @@ public class ELClientIT extends ServiceEETest {
     boolean pass;
 
     for (int i = 0; numberList.size() > i; i++) {
-      TestUtil.logTrace(
+      logger.trace(
           "*** Start " + "\"" + "BigDecimal" + "\"" + " Test Sequence ***");
 
       Object testNum = numberList.get(i);
@@ -1826,14 +1831,14 @@ public class ELClientIT extends ServiceEETest {
 
       try {
         String expr = ExprEval.buildElExpr(false, booleanOperator);
-        TestUtil.logTrace("expression to be evaluated is " + expr);
-        TestUtil.logTrace("types are " + "BigDecimal" + " and "
+        logger.trace("expression to be evaluated is " + expr);
+        logger.trace("types are " + "BigDecimal" + " and "
             + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
             Object.class);
 
-        TestUtil.logTrace("result is " + result.toString());
+        logger.trace("result is " + result.toString());
 
         pass = (ExprEval.compareClass(result, Boolean.class)
             && (((Boolean) result).equals(expectedVal)));
@@ -1843,7 +1848,7 @@ public class ELClientIT extends ServiceEETest {
 
       } finally {
         ExprEval.cleanup();
-        TestUtil.logTrace(
+        logger.trace(
             "*** End " + "\"" + "BigDecimal" + "\"" + " Test Sequence ***");
       }
 
@@ -1873,7 +1878,7 @@ public class ELClientIT extends ServiceEETest {
     boolean pass;
 
     for (int i = 0; numberList.size() > i; i++) {
-      TestUtil.logTrace(
+      logger.trace(
           "*** Start " + "\"" + "BigInteger" + "\"" + " Test Sequence ***");
 
       Object testNum = numberList.get(i);
@@ -1885,7 +1890,7 @@ public class ELClientIT extends ServiceEETest {
       if ((testNum instanceof BigDecimal) || (testNum instanceof Float)
           || (testNum instanceof Double)) {
         String skipType = testNum.getClass().getSimpleName();
-        TestUtil.logTrace("Skip " + skipType + " Data type already "
+        logger.trace("Skip " + skipType + " Data type already "
             + "tested for this in the " + skipType + " tests.");
         continue;
       }
@@ -1895,14 +1900,14 @@ public class ELClientIT extends ServiceEETest {
 
       try {
         String expr = ExprEval.buildElExpr(false, booleanOperator);
-        TestUtil.logTrace("expression to be evaluated is " + expr);
-        TestUtil.logTrace("types are " + "BigInteger" + " and "
+        logger.trace("expression to be evaluated is " + expr);
+        logger.trace("types are " + "BigInteger" + " and "
             + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
             Object.class);
 
-        TestUtil.logTrace("result is " + result.toString());
+        logger.trace("result is " + result.toString());
 
         pass = (ExprEval.compareClass(result, Boolean.class)
             && (((Boolean) result).equals(expectedVal)));
@@ -1912,7 +1917,7 @@ public class ELClientIT extends ServiceEETest {
 
       } finally {
         ExprEval.cleanup();
-        TestUtil.logTrace(
+        logger.trace(
             "*** End " + "\"" + "BigInteger" + "\"" + " Test Sequence ***");
       }
 
@@ -1942,7 +1947,7 @@ public class ELClientIT extends ServiceEETest {
     boolean pass;
 
     for (int i = 0; numberList.size() > i; i++) {
-      TestUtil.logTrace(
+      logger.trace(
           "*** Start " + "\"" + "Float" + "\"" + " Test Sequence ***");
 
       Object testNum = numberList.get(i);
@@ -1953,7 +1958,7 @@ public class ELClientIT extends ServiceEETest {
 
       if ((testNum instanceof BigDecimal)) {
         String skipType = testNum.getClass().getSimpleName();
-        TestUtil.logTrace("Skip " + skipType + " Data type already "
+        logger.trace("Skip " + skipType + " Data type already "
             + "tested for this in the " + skipType + " tests.");
         continue;
       }
@@ -1963,14 +1968,14 @@ public class ELClientIT extends ServiceEETest {
 
       try {
         String expr = ExprEval.buildElExpr(false, booleanOperator);
-        TestUtil.logTrace("expression to be evaluated is " + expr);
-        TestUtil.logTrace(
+        logger.trace("expression to be evaluated is " + expr);
+        logger.trace(
             "types are " + "Float" + " and " + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
             Object.class);
 
-        TestUtil.logTrace("result is " + result.toString());
+        logger.trace("result is " + result.toString());
 
         pass = (ExprEval.compareClass(result, Boolean.class)
             && (((Boolean) result).equals(expectedVal)));
@@ -1980,7 +1985,7 @@ public class ELClientIT extends ServiceEETest {
 
       } finally {
         ExprEval.cleanup();
-        TestUtil.logTrace(
+        logger.trace(
             "*** End " + "\"" + "Float" + "\"" + " Test Sequence ***");
       }
 
@@ -2010,7 +2015,7 @@ public class ELClientIT extends ServiceEETest {
     boolean pass;
 
     for (int i = 0; numberList.size() > i; i++) {
-      TestUtil.logTrace(
+      logger.trace(
           "*** Start " + "\"" + "Double" + "\"" + " Test Sequence ***");
 
       Object testNum = numberList.get(i);
@@ -2021,7 +2026,7 @@ public class ELClientIT extends ServiceEETest {
 
       if ((testNum instanceof BigDecimal || testNum instanceof Float)) {
         String skipType = testNum.getClass().getSimpleName();
-        TestUtil.logTrace("Skip " + skipType + " Data type already "
+        logger.trace("Skip " + skipType + " Data type already "
             + "tested for this in the " + skipType + " tests.");
         continue;
       }
@@ -2031,14 +2036,14 @@ public class ELClientIT extends ServiceEETest {
 
       try {
         String expr = ExprEval.buildElExpr(false, booleanOperator);
-        TestUtil.logTrace("expression to be evaluated is " + expr);
-        TestUtil.logTrace(
+        logger.trace("expression to be evaluated is " + expr);
+        logger.trace(
             "types are " + "Double" + " and " + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
             Object.class);
 
-        TestUtil.logTrace("result is " + result.toString());
+        logger.trace("result is " + result.toString());
 
         pass = (ExprEval.compareClass(result, Boolean.class)
             && (((Boolean) result).equals(expectedVal)));
@@ -2048,7 +2053,7 @@ public class ELClientIT extends ServiceEETest {
 
       } finally {
         ExprEval.cleanup();
-        TestUtil.logTrace(
+        logger.trace(
             "*** End " + "\"" + "Double" + "\"" + " Test Sequence ***");
       }
 
@@ -2090,7 +2095,7 @@ public class ELClientIT extends ServiceEETest {
       if ((testNum instanceof BigDecimal || testNum instanceof Float
           || testNum instanceof BigInteger || testNum instanceof Double)) {
         String skipType = testNum.getClass().getSimpleName();
-        TestUtil.logTrace("Skip " + skipType + " Data type already "
+        logger.trace("Skip " + skipType + " Data type already "
             + "tested for this in the " + skipType + " tests.");
         continue;
       }
@@ -2100,14 +2105,14 @@ public class ELClientIT extends ServiceEETest {
 
       try {
         String expr = ExprEval.buildElExpr(false, booleanOperator);
-        TestUtil.logTrace("expression to be evaluated is " + expr);
-        TestUtil.logTrace(
+        logger.trace("expression to be evaluated is " + expr);
+        logger.trace(
             "types are " + "Long" + " and " + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
             Object.class);
 
-        TestUtil.logTrace("result is " + result.toString());
+        logger.trace("result is " + result.toString());
 
         pass = (ExprEval.compareClass(result, Boolean.class)
             && (((Boolean) result).equals(expectedVal)));
@@ -2147,7 +2152,7 @@ public class ELClientIT extends ServiceEETest {
     boolean pass;
 
     for (int i = 0; numberList.size() > i; i++) {
-      TestUtil.logTrace(
+      logger.trace(
           "*** Start " + "\"" + "Integer" + "\"" + " Test Sequence ***");
 
       Object testNum = numberList.get(i);
@@ -2160,7 +2165,7 @@ public class ELClientIT extends ServiceEETest {
           || testNum instanceof BigInteger || testNum instanceof Long
           || testNum instanceof Double)) {
         String skipType = testNum.getClass().getSimpleName();
-        TestUtil.logTrace("Skip " + skipType + " Data type already "
+        logger.trace("Skip " + skipType + " Data type already "
             + "tested for this in the " + skipType + " tests.");
         continue;
       }
@@ -2170,14 +2175,14 @@ public class ELClientIT extends ServiceEETest {
 
       try {
         String expr = ExprEval.buildElExpr(false, booleanOperator);
-        TestUtil.logTrace("expression to be evaluated is " + expr);
-        TestUtil.logTrace(
+        logger.trace("expression to be evaluated is " + expr);
+        logger.trace(
             "types are " + "Integer" + " and " + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
             Object.class);
 
-        TestUtil.logTrace("result is " + result.toString());
+        logger.trace("result is " + result.toString());
 
         pass = (ExprEval.compareClass(result, Boolean.class)
             && (((Boolean) result).equals(expectedVal)));
@@ -2187,7 +2192,7 @@ public class ELClientIT extends ServiceEETest {
 
       } finally {
         ExprEval.cleanup();
-        TestUtil.logTrace(
+        logger.trace(
             "*** End " + "\"" + "Integer" + "\"" + " Test Sequence ***");
       }
 
@@ -2217,14 +2222,14 @@ public class ELClientIT extends ServiceEETest {
     boolean pass;
 
     for (int i = 0; numberList.size() > i; i++) {
-      TestUtil.logTrace(
+      logger.trace(
           "*** Start " + "\"" + "Short" + "\"" + " Test Sequence ***");
 
       Object testNum = numberList.get(i);
 
       if (!(testNum instanceof Short || testNum instanceof Byte)) {
         String skipType = testNum.getClass().getSimpleName();
-        TestUtil.logTrace("Skip " + skipType + " Data type already "
+        logger.trace("Skip " + skipType + " Data type already "
             + "tested for this in the " + skipType + " tests.");
         continue;
       }
@@ -2234,14 +2239,14 @@ public class ELClientIT extends ServiceEETest {
 
       try {
         String expr = ExprEval.buildElExpr(false, booleanOperator);
-        TestUtil.logTrace("expression to be evaluated is " + expr);
-        TestUtil.logTrace(
+        logger.trace("expression to be evaluated is " + expr);
+        logger.trace(
             "types are " + "Short" + " and " + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
             Object.class);
 
-        TestUtil.logTrace("result is " + result.toString());
+        logger.trace("result is " + result.toString());
 
         pass = (ExprEval.compareClass(result, Boolean.class)
             && (((Boolean) result).equals(expectedVal)));
@@ -2251,7 +2256,7 @@ public class ELClientIT extends ServiceEETest {
 
       } finally {
         ExprEval.cleanup();
-        TestUtil.logTrace(
+        logger.trace(
             "*** End " + "\"" + "Short" + "\"" + " Test Sequence ***");
       }
 
@@ -2288,7 +2293,7 @@ public class ELClientIT extends ServiceEETest {
 
       if (!(testNum instanceof Byte)) {
         String skipType = testNum.getClass().getSimpleName();
-        TestUtil.logTrace("Skip " + skipType + " Data type already "
+        logger.trace("Skip " + skipType + " Data type already "
             + "tested for this in the " + skipType + " tests.");
         continue;
       }
@@ -2298,14 +2303,14 @@ public class ELClientIT extends ServiceEETest {
 
       try {
         String expr = ExprEval.buildElExpr(false, booleanOperator);
-        TestUtil.logTrace("expression to be evaluated is " + expr);
-        TestUtil.logTrace(
+        logger.trace("expression to be evaluated is " + expr);
+        logger.trace(
             "types are " + "Byte" + " and " + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
             Object.class);
 
-        TestUtil.logTrace("result is " + result.toString());
+        logger.trace("result is " + result.toString());
 
         pass = (ExprEval.compareClass(result, Boolean.class)
             && (((Boolean) result).equals(expectedVal)));
@@ -2348,17 +2353,17 @@ public class ELClientIT extends ServiceEETest {
         testValTwo);
 
     try {
-      TestUtil.logTrace(
+      logger.trace(
           "*** Start " + "\"" + "String" + "\"" + " Test Sequence ***");
 
       String expr = ExprEval.buildElExpr(false, booleanOperator);
-      TestUtil.logTrace("expression to be evaluated is " + expr);
-      TestUtil.logTrace("types are " + "String and String");
+      logger.trace("expression to be evaluated is " + expr);
+      logger.trace("types are " + "String and String");
 
       Object result = ExprEval.evaluateValueExpression(expr, values,
           Object.class);
 
-      TestUtil.logTrace("result is " + result.toString());
+      logger.trace("result is " + result.toString());
 
       pass = (ExprEval.compareClass(result, Boolean.class)
           && (((Boolean) result).equals(expectedVal)));

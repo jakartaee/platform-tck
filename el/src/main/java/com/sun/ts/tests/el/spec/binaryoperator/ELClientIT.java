@@ -37,7 +37,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ELClientIT extends ServiceEETest {
+
+  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
 
   Properties testProps;
 
@@ -54,17 +59,17 @@ public class ELClientIT extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup method called");
+    logger.info("Cleanup method called");
   }
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
-    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+    logger.info("STARTING TEST : "+testInfo.getDisplayName());
   }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
-    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+    logger.info("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
 
@@ -82,11 +87,11 @@ public class ELClientIT extends ServiceEETest {
     Long expectedResult = Long.valueOf("0");
     try {
       String expr = ExprEval.buildElExpr(true, "+");
-      TestUtil.logTrace("expression to be evaluated is " + expr);
+      logger.trace("expression to be evaluated is " + expr);
 
       Object result = ExprEval.evaluateValueExpression(expr, null,
           Object.class);
-      TestUtil.logTrace("result is " + result.toString());
+      logger.trace("result is " + result.toString());
       pass = (ExprEval.compareClass(result, Long.class)
           && ExprEval.compareValue((Long) result, expectedResult, 0));
 
@@ -112,11 +117,11 @@ public class ELClientIT extends ServiceEETest {
     Long expectedResult = Long.valueOf("0");
     try {
       String expr = ExprEval.buildElExpr(false, "-");
-      TestUtil.logTrace("expression to be evaluated is " + expr);
+      logger.trace("expression to be evaluated is " + expr);
 
       Object result = ExprEval.evaluateValueExpression(expr, null,
           Object.class);
-      TestUtil.logTrace("result is " + result.toString());
+      logger.trace("result is " + result.toString());
       pass = (ExprEval.compareClass(result, Long.class)
           && ExprEval.compareValue((Long) result, expectedResult, 0));
 
@@ -143,11 +148,11 @@ public class ELClientIT extends ServiceEETest {
     Long expectedResult = Long.valueOf("0");
     try {
       String expr = ExprEval.buildElExpr(true, "*");
-      TestUtil.logTrace("expression to be evaluated is " + expr);
+      logger.trace("expression to be evaluated is " + expr);
 
       Object result = ExprEval.evaluateValueExpression(expr, null,
           Object.class);
-      TestUtil.logTrace("result is " + result.toString());
+      logger.trace("result is " + result.toString());
       pass = (ExprEval.compareClass(result, Long.class)
           && ExprEval.compareValue((Long) result, expectedResult, 0));
 
@@ -174,11 +179,11 @@ public class ELClientIT extends ServiceEETest {
 
     try {
       String expr = ExprEval.buildElExpr(true, "/");
-      TestUtil.logTrace("expression to be evaluated is " + expr);
+      logger.trace("expression to be evaluated is " + expr);
 
       Object result = ExprEval.evaluateValueExpression(expr, null,
           Object.class);
-      TestUtil.logTrace("result is " + result.toString());
+      logger.trace("result is " + result.toString());
       pass = (ExprEval.compareClass(result, Long.class)
           && ExprEval.compareValue((Long) result, expectedResult, 0));
 
@@ -205,11 +210,11 @@ public class ELClientIT extends ServiceEETest {
     Long expectedResult = Long.valueOf("0");
     try {
       String expr = ExprEval.buildElExpr(true, "%");
-      TestUtil.logTrace("expression to be evaluated is " + expr);
+      logger.trace("expression to be evaluated is " + expr);
 
       Object result = ExprEval.evaluateValueExpression(expr, null,
           Object.class);
-      TestUtil.logTrace("result is " + result.toString());
+      logger.trace("result is " + result.toString());
       pass = (ExprEval.compareClass(result, Long.class)
           && ExprEval.compareValue((Long) result, expectedResult, 0));
 

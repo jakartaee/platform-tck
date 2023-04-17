@@ -41,7 +41,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ELClientIT extends ServiceEETest {
+
+  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
 
   private Properties testProps;
 
@@ -59,17 +64,17 @@ public class ELClientIT extends ServiceEETest {
   
   @AfterEach
   public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup method called");
+    logger.info("Cleanup method called");
   }
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
-    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+    logger.info("STARTING TEST : "+testInfo.getDisplayName());
   }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
-    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+    logger.info("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -141,21 +146,21 @@ public class ELClientIT extends ServiceEETest {
               Object.class);
         } catch (NullPointerException npe) {
           pass = false;
-          TestUtil.logErr(ELTestUtil.FAIL + exprStr[i]);
+          logger.error(ELTestUtil.FAIL + exprStr[i]);
           TestUtil.printStackTrace(npe);
           continue;
         } catch (ELException ee) {
           pass = false;
-          TestUtil.logErr(ELTestUtil.FAIL + exprStr[i]);
+          logger.error(ELTestUtil.FAIL + exprStr[i]);
           TestUtil.printStackTrace(ee);
           continue;
         }
 
         if (!vexp.getExpressionString().equals(exprStr[i])) {
           pass = false;
-          TestUtil.logErr("Failed. Expression string mismatch.");
-          TestUtil.logErr("Expected: " + exprStr[i]);
-          TestUtil.logErr("Received: " + vexp.getExpressionString());
+          logger.error("Failed. Expression string mismatch.");
+          logger.error("Expected: " + exprStr[i]);
+          logger.error("Received: " + vexp.getExpressionString());
         }
       }
     } catch (Exception ex) {
@@ -197,7 +202,7 @@ public class ELClientIT extends ServiceEETest {
         expFactory.createValueExpression(testCases[i].obj, testCases[i].type);
       } catch (Exception e) {
         pass = false;
-        TestUtil.logErr("Exception: Test Case " + i);
+        logger.error("Exception: Test Case " + i);
         TestUtil.printStackTrace(e);
       }
     }
@@ -255,13 +260,13 @@ public class ELClientIT extends ServiceEETest {
           continue;
         } catch (NullPointerException npe) {
           pass = false;
-          TestUtil.logErr(ELTestUtil.FAIL + exprStr[i]);
+          logger.error(ELTestUtil.FAIL + exprStr[i]);
           TestUtil.printStackTrace(npe);
           continue;
         }
         pass = false;
-        TestUtil.logErr("Failed. No ELException thrown when calling");
-        TestUtil.logErr("createValueExpression() with parameter " + exprStr[i]);
+        logger.error("Failed. No ELException thrown when calling");
+        logger.error("createValueExpression() with parameter " + exprStr[i]);
       }
     } catch (Exception ex) {
       throw new Exception(ex);
@@ -310,21 +315,21 @@ public class ELClientIT extends ServiceEETest {
               Object.class, paramTypes);
         } catch (NullPointerException npe) {
           pass = false;
-          TestUtil.logErr(ELTestUtil.FAIL + exprStr[i]);
+          logger.error(ELTestUtil.FAIL + exprStr[i]);
           TestUtil.printStackTrace(npe);
           continue;
         } catch (ELException ee) {
           pass = false;
-          TestUtil.logErr(ELTestUtil.FAIL + exprStr[i]);
+          logger.error(ELTestUtil.FAIL + exprStr[i]);
           TestUtil.printStackTrace(ee);
           continue;
         }
 
         if (!mexp.getExpressionString().equals(exprStr[i])) {
           pass = false;
-          TestUtil.logErr("Failed. Expression string mismatch.");
-          TestUtil.logErr("Expected: " + exprStr[i]);
-          TestUtil.logErr("Received: " + mexp.getExpressionString());
+          logger.error("Failed. Expression string mismatch.");
+          logger.error("Expected: " + exprStr[i]);
+          logger.error("Received: " + mexp.getExpressionString());
         }
       }
     } catch (Exception ex) {
@@ -387,12 +392,12 @@ public class ELClientIT extends ServiceEETest {
           continue;
         } catch (NullPointerException npe) {
           pass = false;
-          TestUtil.logErr(ELTestUtil.FAIL + exprStr[i]);
+          logger.error(ELTestUtil.FAIL + exprStr[i]);
           TestUtil.printStackTrace(npe);
           continue;
         }
         pass = false;
-        TestUtil.logErr("Failed. No ELException thrown when calling");
+        logger.error("Failed. No ELException thrown when calling");
         TestUtil
             .logErr("createMethodExpression() with parameter " + exprStr[i]);
       }
@@ -421,19 +426,19 @@ public class ELClientIT extends ServiceEETest {
     ExpressionFactory expFactory = ExpressionFactory.newInstance();
     SimpleELContext context = new SimpleELContext();
 
-    TestUtil.logMsg("Testing: ELContext.createValueExpression(context, "
+    logger.info("Testing: ELContext.createValueExpression(context, "
         + "function, null)");
     ELTestUtil.checkForNPE(expFactory, "createValueExpression",
         new Class<?>[] { ELContext.class, String.class, Class.class },
         new Object[] { context, "function", null });
 
-    TestUtil.logMsg(
+    logger.info(
         "Testing: ELContext.createValueExpression(instance, " + "null)");
     ELTestUtil.checkForNPE(expFactory, "createValueExpression",
         new Class<?>[] { Object.class, Class.class },
         new Object[] { "function", null });
 
-    TestUtil.logMsg("Testing: ELContext.createMethodExpression(context, "
+    logger.info("Testing: ELContext.createMethodExpression(context, "
         + "instance, returnTypes, null)");
     ELTestUtil.checkForNPE(expFactory, "createMethodExpression",
         new Class<?>[] { ELContext.class, String.class, Class.class,
@@ -475,16 +480,16 @@ public class ELClientIT extends ServiceEETest {
         if (coercedObj == null) {
           if (!(testCases[i].type == null || testCases[i].obj == null)) {
             pass = false;
-            TestUtil.logErr("Failed: Test Case " + i);
+            logger.error("Failed: Test Case " + i);
           }
 
         } else if (!ExprEval.compareClass(coercedObj, testCases[i].type)) {
           pass = false;
-          TestUtil.logErr("Failed: Test Case " + i);
+          logger.error("Failed: Test Case " + i);
         }
       } catch (Exception e) {
         pass = false;
-        TestUtil.logErr("Exception: Test Case " + i);
+        logger.error("Exception: Test Case " + i);
         TestUtil.printStackTrace(e);
       }
     }
@@ -520,14 +525,14 @@ public class ELClientIT extends ServiceEETest {
       try {
         expFactory.coerceToType(testCases[i].obj, testCases[i].type);
         pass = false;
-        TestUtil.logErr("Test Case " + i + " did not cause an exception");
+        logger.error("Test Case " + i + " did not cause an exception");
       } catch (ELException elx) {
         pass = true;
 
       } catch (Exception e) {
         pass = false;
-        TestUtil.logErr("Test Case " + i + " threw an exception");
-        TestUtil.logErr("but it was not an ELException");
+        logger.error("Test Case " + i + " threw an exception");
+        logger.error("but it was not an ELException");
         TestUtil.printStackTrace(e);
       }
     }

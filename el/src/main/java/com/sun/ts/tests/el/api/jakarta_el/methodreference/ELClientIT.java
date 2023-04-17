@@ -38,7 +38,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ELClientIT extends ServiceEETest {
+
+  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
 
   private static final String NL = System.getProperty("line.seperator", "\n");
 
@@ -61,17 +66,17 @@ public class ELClientIT extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup method called");
+    logger.info("Cleanup method called");
   }
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
-    TestUtil.logMsg("STARTING TEST : "+testInfo.getDisplayName());
+    logger.info("STARTING TEST : "+testInfo.getDisplayName());
   }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
-    TestUtil.logMsg("FINISHED TEST : "+testInfo.getDisplayName());
+    logger.info("FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -140,7 +145,7 @@ public class ELClientIT extends ServiceEETest {
       }
       
     } catch (Exception ex) {
-      TestUtil.logErr("Test getMethodReference threw an Exception!" + TestUtil.NEW_LINE +
+      logger.error("Test getMethodReference threw an Exception!" + TestUtil.NEW_LINE +
           "Received: " + ex.toString() + TestUtil.NEW_LINE);
       ex.printStackTrace();
       throw new Fault(ex);
