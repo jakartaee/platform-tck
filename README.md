@@ -1,6 +1,15 @@
 # Platform TCK refactoring
 
+## One Time JavaTest Jar Install
+The JavaTest jar with GAV coords javatest:javatest:5.0 does not exist in Maven Central,
+so one needs to install the repo lib/javatest.jar into the local maven repo
+in order to build this repo with Maven. To do this, execute:
+```
+mvn install:install-file -Dfile=lib/javatest.jar -DgroupId=javatest -DartifactId=javatest -Dversion=5.0 -Dpackaging=jar
+```
+
 ## Build
+
 From the root folder, try:
 ```
 mvn clean install -Dmaven.compiler.failOnError=false > /tmp/build.txt
