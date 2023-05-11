@@ -9,166 +9,165 @@
   ~ SPDX-License-Identifier: Apache-2.0
   ~
   -->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>jakartatck</groupId>
-    <artifactId>project</artifactId>
-    <version>10.0.0-SNAPSHOT</version>
-  </parent>
+    <parent>
+        <groupId>jakartatck</groupId>
+        <artifactId>project</artifactId>
+        <version>10.0.0-SNAPSHOT</version>
+    </parent>
 
-  <groupId>jakarta.ee.tck.coreprofile</groupId>
-  <artifactId>core-tck-parent</artifactId>
-  <packaging>pom</packaging>
-  <name>Jakarta Core TCK</name>
+    <groupId>jakarta.ee.tck.coreprofile</groupId>
+    <artifactId>core-tck-parent</artifactId>
+    <packaging>pom</packaging>
+    <name>Jakarta Core TCK</name>
 
-  <!-- Metadata -->
-  <url>https://github.com/eclipse-ee4j/jakartaee-tck</url>
-
-  <developers>
-    <developer>
-      <name>Scott Stark</name>
-      <email>sstark@redhat.com</email>
-      <organization>Red Hat Inc.</organization>
-    </developer>
-
-    <developer>
-      <name>Scott Marlow</name>
-      <email>smarlow@redhat.com</email>
-      <organization>Red Hat Inc.</organization>
-    </developer>
-
-  </developers>
-
-  <organization>
-    <name>Jakarta Core Profile TCK</name>
+    <!-- Metadata -->
     <url>https://github.com/eclipse-ee4j/jakartaee-tck</url>
-  </organization>
 
-  <ciManagement>
-    <system>Jenkins</system>
-    <url>https://ci.eclipse.org/jakartaee-tck/</url>
-  </ciManagement>
+    <inceptionYear>2008</inceptionYear>
 
-  <issueManagement>
-    <system>GitHub</system>
-    <url>https://github.com/eclipse-ee4j/jakartaee-tck/issues</url>
-  </issueManagement>
+    <organization>
+        <name>Jakarta Core Profile TCK</name>
+        <url>https://github.com/eclipse-ee4j/jakartaee-tck</url>
+    </organization>
 
-  <inceptionYear>2008</inceptionYear>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
 
-  <licenses>
-    <license>
-      <name>Apache License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
-    </license>
-  </licenses>
+    <developers>
+        <developer>
+            <name>Scott Stark</name>
+            <email>sstark@redhat.com</email>
+            <organization>Red Hat Inc.</organization>
+        </developer>
 
-  <modules>
-    <module>ca-sigtest</module>
-    <module>cdi-tck-suite</module>
-    <module>jsonp-tck-ext</module>
-    <module>restful-tck-suite</module>
-    <module>tck</module>
-    <module>tck-dist</module>
-  </modules>
+        <developer>
+            <name>Scott Marlow</name>
+            <email>smarlow@redhat.com</email>
+            <organization>Red Hat Inc.</organization>
+        </developer>
 
-  <properties>
-    <maven.compiler.release>11</maven.compiler.release>
+    </developers>
 
-    <!-- Jakarta EE APIs Core -->
-    <annotations.api.version>2.1.1</annotations.api.version>
-    <interceptors.api.version>2.1.0</interceptors.api.version>
-    <inject.api.version>2.0.1</inject.api.version>
-    <cdi.api.version>4.0.0</cdi.api.version>
-    <el.api.version>5.0.0</el.api.version>
-    <jsonp.api.version>2.1.0</jsonp.api.version>
-    <jsonb.api.version>3.0.0</jsonb.api.version>
-    <rest.api.version>3.1.0</rest.api.version>
+    <modules>
+        <module>ca-sigtest</module>
+        <module>cdi-tck-suite</module>
+        <module>jsonp-tck-ext</module>
+        <module>restful-tck-suite</module>
+        <module>tck</module>
+        <module>tck-dist</module>
+    </modules>
 
-    <!-- Test tools/dependencies -->
-    <testng.version>7.4.0</testng.version>
-    <junit.version>5.8.2</junit.version>
-    <arquillian.container.se.api.version>1.0.1.Final</arquillian.container.se.api.version>
-    <apache.httpclient.version>3.1</apache.httpclient.version>
-    <!-- Required for distribution build, should be overriden for each build -->
-    <core.tck.version>${project.version}</core.tck.version>
-    <weld.version>5.0.1.Final</weld.version>
-    <cdi.tck.version>4.0.6</cdi.tck.version>
-    <inject.tck.version>2.0.2</inject.tck.version>
-    <rest.tck.version>3.1.1</rest.tck.version>
-  </properties>
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/eclipse-ee4j/jakartaee-tck/issues</url>
+    </issueManagement>
 
-  <!-- Dependency management -->
-  <dependencyManagement>
-    <dependencies>
+    <ciManagement>
+        <system>Jenkins</system>
+        <url>https://ci.eclipse.org/jakartaee-tck/</url>
+    </ciManagement>
 
-      <dependency>
-        <groupId>jakarta.enterprise</groupId>
-        <artifactId>cdi-tck-api</artifactId>
-        <version>${cdi.tck.version}</version>
-      </dependency>
+    <properties>
 
-      <dependency>
-        <groupId>jakarta.enterprise</groupId>
-        <artifactId>cdi-tck-ext-lib</artifactId>
-        <version>${cdi.tck.version}</version>
-      </dependency>
+        <!-- Jakarta EE APIs Core -->
+        <annotations.api.version>2.1.1</annotations.api.version>
+        <apache.httpclient.version>3.1</apache.httpclient.version>
+        <arquillian.container.se.api.version>1.0.1.Final</arquillian.container.se.api.version>
+        <cdi.api.version>4.0.0</cdi.api.version>
+        <cdi.tck.version>4.0.6</cdi.tck.version>
+        <!-- Required for distribution build, should be overriden for each build -->
+        <core.tck.version>${project.version}</core.tck.version>
+        <el.api.version>5.0.0</el.api.version>
+        <inject.api.version>2.0.1</inject.api.version>
+        <inject.tck.version>2.0.2</inject.tck.version>
+        <interceptors.api.version>2.1.0</interceptors.api.version>
+        <jsonb.api.version>3.0.0</jsonb.api.version>
+        <jsonp.api.version>2.1.0</jsonp.api.version>
+        <junit.version>5.8.2</junit.version>
+        <maven.compiler.release>11</maven.compiler.release>
+        <rest.api.version>3.1.0</rest.api.version>
+        <rest.tck.version>3.1.1</rest.tck.version>
 
-      <dependency>
-        <groupId>jakarta.enterprise</groupId>
-        <artifactId>jakarta.enterprise.lang-model</artifactId>
-        <version>${cdi.api.version}</version>
-        <scope>provided</scope>
-      </dependency>
+        <!-- Test tools/dependencies -->
+        <testng.version>7.4.0</testng.version>
+        <weld.version>5.0.1.Final</weld.version>
+    </properties>
 
-      <dependency>
-        <groupId>org.testng</groupId>
-        <artifactId>testng</artifactId>
-        <version>${testng.version}</version>
-      </dependency>
+    <!-- Dependency management -->
+    <dependencyManagement>
+        <dependencies>
 
-      <dependency>
-        <groupId>net.sourceforge.htmlunit</groupId>
-        <artifactId>htmlunit</artifactId>
-        <version>${htmlunit.version}</version>
-      </dependency>
+            <dependency>
+                <groupId>jakarta.enterprise</groupId>
+                <artifactId>cdi-tck-api</artifactId>
+                <version>${cdi.tck.version}</version>
+            </dependency>
 
-      <dependency>
-        <groupId>jakarta.json</groupId>
-        <artifactId>jakarta.json-tck</artifactId>
-        <version>2.1.0</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
+            <dependency>
+                <groupId>jakarta.enterprise</groupId>
+                <artifactId>cdi-tck-ext-lib</artifactId>
+                <version>${cdi.tck.version}</version>
+            </dependency>
 
-      <dependency>
-        <groupId>org.jboss.arquillian</groupId>
-        <artifactId>arquillian-bom</artifactId>
-        <version>${arquillian.version}</version>
-        <scope>import</scope>
-        <type>pom</type>
-      </dependency>
+            <dependency>
+                <groupId>jakarta.enterprise</groupId>
+                <artifactId>jakarta.enterprise.lang-model</artifactId>
+                <version>${cdi.api.version}</version>
+                <scope>provided</scope>
+            </dependency>
 
-      <dependency>
-        <groupId>org.jboss.arquillian.container</groupId>
-        <artifactId>container-se-api</artifactId>
-        <version>${arquillian.container.se.api.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jboss.arquillian.container</groupId>
-        <artifactId>arquillian-container-test-spi</artifactId>
-        <version>${arquillian.version}</version>
-      </dependency>
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>${testng.version}</version>
+            </dependency>
 
-      <dependency>
-        <groupId>org.jboss.arquillian.junit5</groupId>
-        <artifactId>arquillian-junit5-container</artifactId>
-        <version>${arquillian.version}</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
+            <dependency>
+                <groupId>net.sourceforge.htmlunit</groupId>
+                <artifactId>htmlunit</artifactId>
+                <version>${htmlunit.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>jakarta.json</groupId>
+                <artifactId>jakarta.json-tck</artifactId>
+                <version>2.1.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>${arquillian.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.arquillian.container</groupId>
+                <artifactId>container-se-api</artifactId>
+                <version>${arquillian.container.se.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.container</groupId>
+                <artifactId>arquillian-container-test-spi</artifactId>
+                <version>${arquillian.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.arquillian.junit5</groupId>
+                <artifactId>arquillian-junit5-container</artifactId>
+                <version>${arquillian.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>
