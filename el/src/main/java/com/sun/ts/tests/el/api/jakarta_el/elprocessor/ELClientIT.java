@@ -36,12 +36,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.lang.System.Logger;
 
 public class ELClientIT extends ServiceEETest {
 
-  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
+  private static final Logger logger = System.getLogger(ELClientIT.class.getName());
 
   private Properties testProps;
 
@@ -58,17 +57,17 @@ public class ELClientIT extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    logger.info("Cleanup method called");
+    logger.log(Logger.Level.INFO, "Cleanup method called");
   }
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
-    logger.info("STARTING TEST : "+testInfo.getDisplayName());
+    logger.log(Logger.Level.INFO, "STARTING TEST : "+testInfo.getDisplayName());
   }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
-    logger.info("FINISHED TEST : "+testInfo.getDisplayName());
+    logger.log(Logger.Level.INFO, "FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -88,47 +87,47 @@ public class ELClientIT extends ServiceEETest {
       meth = elp.getClass().getMethod("toString", new Class<?>[] {});
 
       // Tests for defineFunction(String, String, Method)
-      logger.info(
+      logger.log(Logger.Level.INFO, 
           "Testing: ELProcessor.defineFunction(null, " + "function, meth)");
       ELTestUtil.checkForNPE(elp, "defineFunction",
           new Class<?>[] { String.class, String.class, Method.class },
           new Object[] { null, "function", meth });
 
-      logger.info(
+      logger.log(Logger.Level.INFO, 
           "Testing: ELProcessor.defineFunction(prefix, " + "null, meth)");
       ELTestUtil.checkForNPE(elp, "defineFunction",
           new Class<?>[] { String.class, String.class, Method.class },
           new Object[] { "prefix", null, meth });
 
-      logger.info(
+      logger.log(Logger.Level.INFO, 
           "Testing: ELProcessor.defineFunction(prefix, " + "function, null)");
       ELTestUtil.checkForNPE(elp, "defineFunction",
           new Class<?>[] { String.class, String.class, Method.class },
           new Object[] { "prefix", "function", null });
 
       // Tests for defineFunction(String, String, String, String)
-      logger.info("Testing: ELProcessor.defineFunction(prefix, "
+      logger.log(Logger.Level.INFO, "Testing: ELProcessor.defineFunction(prefix, "
           + "function, className, null)");
       ELTestUtil.checkForNPE(elp, "defineFunction",
           new Class<?>[] { String.class, String.class, String.class,
               String.class },
           new Object[] { "prefix", "function", "className", null });
 
-      logger.info("Testing: ELProcessor.defineFunction(prefix, "
+      logger.log(Logger.Level.INFO, "Testing: ELProcessor.defineFunction(prefix, "
           + "function, null, method)");
       ELTestUtil.checkForNPE(elp, "defineFunction",
           new Class<?>[] { String.class, String.class, String.class,
               String.class },
           new Object[] { "prefix", "function", null, "method" });
 
-      logger.info("Testing: ELProcessor.defineFunction(prefix, "
+      logger.log(Logger.Level.INFO, "Testing: ELProcessor.defineFunction(prefix, "
           + "null, className, method)");
       ELTestUtil.checkForNPE(elp, "defineFunction",
           new Class<?>[] { String.class, String.class, String.class,
               String.class },
           new Object[] { "prefix", null, "className", "method" });
 
-      logger.info("Testing: ELProcessor.defineFunction(null, "
+      logger.log(Logger.Level.INFO, "Testing: ELProcessor.defineFunction(null, "
           + "function, className, method)");
       ELTestUtil.checkForNPE(elp, "defineFunction",
           new Class<?>[] { String.class, String.class, String.class,
@@ -156,7 +155,7 @@ public class ELClientIT extends ServiceEETest {
   public void elProcessorDefineFunctionCNFETest() throws Exception {
     ELProcessor elp = new ELProcessor();
 
-    logger.info("Testing: ELProcessor.defineFunction(null, "
+    logger.log(Logger.Level.INFO, "Testing: ELProcessor.defineFunction(null, "
         + "function, className, method)");
     ELTestUtil.checkForCNFE(elp, "defineFunction",
         new Class<?>[] { String.class, String.class, String.class,
@@ -178,7 +177,7 @@ public class ELClientIT extends ServiceEETest {
   public void elProcessorDefineFunctionNSMETest() throws Exception {
     ELProcessor elp = new ELProcessor();
 
-    logger.info("Testing: ELProcessor.defineFunction(null, "
+    logger.log(Logger.Level.INFO, "Testing: ELProcessor.defineFunction(null, "
         + "function, className, method)");
     ELTestUtil.checkForCNFE(elp, "defineFunction",
         new Class<?>[] { String.class, String.class, String.class,

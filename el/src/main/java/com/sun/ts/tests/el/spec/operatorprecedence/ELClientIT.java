@@ -37,12 +37,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.lang.System.Logger;
 
 public class ELClientIT extends ServiceEETest {
 
-  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
+  private static final Logger logger = System.getLogger(ELClientIT.class.getName());
 
   Properties testProps;
 
@@ -69,17 +68,17 @@ public class ELClientIT extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    logger.info("Cleanup method called");
+    logger.log(Logger.Level.INFO, "Cleanup method called");
   }
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
-    logger.info("STARTING TEST : "+testInfo.getDisplayName());
+    logger.log(Logger.Level.INFO, "STARTING TEST : "+testInfo.getDisplayName());
   }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
-    logger.info("FINISHED TEST : "+testInfo.getDisplayName());
+    logger.log(Logger.Level.INFO, "FINISHED TEST : "+testInfo.getDisplayName());
   }
 
 
@@ -530,12 +529,12 @@ public class ELClientIT extends ServiceEETest {
       for (String prefix : symbol) {
         expr = prefix + testExpr;
 
-        logger.trace("Expression to test: " + expr);
+        logger.log(Logger.Level.TRACE, "Expression to test: " + expr);
 
         Object result = ExprEval.evaluateValueExpression(expr, null,
             Object.class);
 
-        logger.trace("result is " + result.toString());
+        logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass = (ExprEval.compareValue(result, expectedResult));
 
         if (!pass)

@@ -44,12 +44,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.lang.System.Logger;
 
 public class ELClientIT extends ServiceEETest {
 
-  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
+  private static final Logger logger = System.getLogger(ELClientIT.class.getName());
 
   private Properties testProps;
 
@@ -102,17 +101,17 @@ public class ELClientIT extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    logger.info("Cleanup method called");
+    logger.log(Logger.Level.INFO, "Cleanup method called");
   }
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
-    logger.info("STARTING TEST : "+testInfo.getDisplayName());
+    logger.log(Logger.Level.INFO, "STARTING TEST : "+testInfo.getDisplayName());
   }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
-    logger.info("FINISHED TEST : "+testInfo.getDisplayName());
+    logger.log(Logger.Level.INFO, "FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -173,7 +172,7 @@ public class ELClientIT extends ServiceEETest {
     for (int i = 0; i < pass.length; ++i) {
       if (!pass[i]) {
         fail = true;
-        logger.error("Unexpected result for test case " + i);
+        logger.log(Logger.Level.ERROR, "Unexpected result for test case " + i);
       }
     }
 
@@ -272,7 +271,7 @@ public class ELClientIT extends ServiceEETest {
     for (int i = 0; i < pass.length; ++i) {
       if (!pass[i]) {
         fail = true;
-        logger.error("Unexpected result for test case " + i);
+        logger.log(Logger.Level.ERROR, "Unexpected result for test case " + i);
       }
     }
 
@@ -301,9 +300,9 @@ public class ELClientIT extends ServiceEETest {
       Object result4 = ExprEval.evaluateValueExpression("#{'true'}", null,
           expectedClass);
 
-      logger.trace("result2 is " + result2.toString());
-      logger.trace("result3 is " + result3.toString());
-      logger.trace("result4 is " + result4.toString());
+      logger.log(Logger.Level.TRACE, "result2 is " + result2.toString());
+      logger.log(Logger.Level.TRACE, "result3 is " + result3.toString());
+      logger.log(Logger.Level.TRACE, "result4 is " + result4.toString());
 
       pass = (ExprEval.compareClass(result2, expectedClass)
           && ExprEval.compareValue(result2, Boolean.FALSE)
@@ -335,7 +334,7 @@ public class ELClientIT extends ServiceEETest {
 
     try {
       ExprEval.evaluateValueExpression("${1}", null, Boolean.class);
-      logger.error(
+      logger.log(Logger.Level.ERROR, 
           "No exception thrown when coercing invalid class " + "to Boolean");
 
     } catch (ELException ee) {
@@ -756,14 +755,14 @@ public class ELClientIT extends ServiceEETest {
     try {
       ExprEval.evaluateValueExpression("${" + pass + "}", null,
           Character.class);
-      logger.error(
+      logger.log(Logger.Level.ERROR, 
           "No exception thrown when coercing Boolean " + "to Character!");
 
     } catch (ELException ee) {
       pass = true;
 
     } catch (Exception e) {
-      logger.error("Exception thrown, but it was not an ELException");
+      logger.log(Logger.Level.ERROR, "Exception thrown, but it was not an ELException");
       TestUtil.printStackTrace(e);
     }
 
@@ -797,14 +796,14 @@ public class ELClientIT extends ServiceEETest {
       // Coercing Boolean to Number type.
       try {
         ExprEval.evaluateValueExpression("${" + pass + "}", null, testClass);
-        logger.error("No exception thrown when coercing Boolean " + "to "
+        logger.log(Logger.Level.ERROR, "No exception thrown when coercing Boolean " + "to "
             + name + "!" + NLINE);
 
       } catch (ELException ee) {
         pass = true;
 
       } catch (Exception e) {
-        logger.error("Exception thrown, but it was not an ELException");
+        logger.log(Logger.Level.ERROR, "Exception thrown, but it was not an ELException");
         TestUtil.printStackTrace(e);
       }
 
@@ -814,14 +813,14 @@ public class ELClientIT extends ServiceEETest {
       // Coercing String to Number type.
       try {
         ExprEval.evaluateValueExpression("${'A'}", null, testClass);
-        logger.error("No exception thrown when coercing String " + "to "
+        logger.log(Logger.Level.ERROR, "No exception thrown when coercing String " + "to "
             + name + "!" + NLINE);
 
       } catch (ELException ee) {
         pass = true;
 
       } catch (Exception e) {
-        logger.error("Exception thrown, but it was not an ELException");
+        logger.log(Logger.Level.ERROR, "Exception thrown, but it was not an ELException");
         TestUtil.printStackTrace(e);
       }
 
@@ -1691,7 +1690,7 @@ public class ELClientIT extends ServiceEETest {
     for (int i = 0; i < pass.length; ++i) {
       if (!pass[i]) {
         fail = true;
-        logger.error("Unexpected result for test case " + i);
+        logger.log(Logger.Level.ERROR, "Unexpected result for test case " + i);
       }
     }
 
@@ -1758,7 +1757,7 @@ public class ELClientIT extends ServiceEETest {
       }
 
     } catch (Exception e) {
-      logger.error("Testing coercion to arrays " +
+      logger.log(Logger.Level.ERROR, "Testing coercion to arrays " +
           "threw an Exception!" + TestUtil.NEW_LINE + "Received: " + e.toString() + TestUtil.NEW_LINE);
 
       throw new Exception(e);
@@ -1769,7 +1768,7 @@ public class ELClientIT extends ServiceEETest {
     for (int i = 0; i < pass.length; ++i) {
       if (!pass[i]) {
         fail = true;
-        logger.error("Unexpected result for test case " + i);
+        logger.log(Logger.Level.ERROR, "Unexpected result for test case " + i);
       }
     }
 
@@ -1843,7 +1842,7 @@ public class ELClientIT extends ServiceEETest {
           && ExprEval.compareValue(result, "BLOCK");
 
     } catch (Exception e) {
-      logger.error("Testing coercion of lambda expressions to functional interfaces " +
+      logger.log(Logger.Level.ERROR, "Testing coercion of lambda expressions to functional interfaces " +
           "threw an Exception!" + TestUtil.NEW_LINE + "Received: " + e.toString() + TestUtil.NEW_LINE);
 
       throw new Exception(e);
@@ -1854,7 +1853,7 @@ public class ELClientIT extends ServiceEETest {
     for (int i = 0; i < pass.length; ++i) {
       if (!pass[i]) {
         fail = true;
-        logger.error("Unexpected result for test case " + i);
+        logger.log(Logger.Level.ERROR, "Unexpected result for test case " + i);
       }
     }
 

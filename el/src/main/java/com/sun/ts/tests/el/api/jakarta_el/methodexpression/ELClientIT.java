@@ -46,12 +46,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.lang.System.Logger;
 
 public class ELClientIT extends ServiceEETest {
 
-  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
+  private static final Logger logger = System.getLogger(ELClientIT.class.getName());
 
   private static final String NL = System.getProperty("line.seperator", "\n");
 
@@ -73,17 +72,17 @@ public class ELClientIT extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    logger.info("Cleanup method called");
+    logger.log(Logger.Level.INFO, "Cleanup method called");
   }
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
-    logger.info("STARTING TEST : "+testInfo.getDisplayName());
+    logger.log(Logger.Level.INFO, "STARTING TEST : "+testInfo.getDisplayName());
   }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
-    logger.info("FINISHED TEST : "+testInfo.getDisplayName());
+    logger.log(Logger.Level.INFO, "FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -189,18 +188,18 @@ public class ELClientIT extends ServiceEETest {
     try {
       mexp1.getMethodInfo(null);
       pass = false;
-      logger.error("Call to getMethodInfo() with null ELContext "
+      logger.log(Logger.Level.ERROR, "Call to getMethodInfo() with null ELContext "
           + "parameter did not" + NL);
-      logger.error(" cause an exception to be thrown" + NL);
+      logger.log(Logger.Level.ERROR, " cause an exception to be thrown" + NL);
 
     } catch (NullPointerException npe) {
       // do nothing test passed!
-      logger.info("Expected Exception Thrown, when Null ELContext "
+      logger.log(Logger.Level.INFO, "Expected Exception Thrown, when Null ELContext "
           + "passed to getMethodInfo(): " + npe.getClass().getSimpleName());
 
     } catch (Exception e) {
       pass = false;
-      logger.error("Call to getMethodInfo() with null ELContext "
+      logger.log(Logger.Level.ERROR, "Call to getMethodInfo() with null ELContext "
           + "threw the wrong Exception!" + NL + "Expected: NullPointerException"
           + NL + "Received: " + e.toString() + NL);
 
@@ -210,18 +209,18 @@ public class ELClientIT extends ServiceEETest {
     try {
       mexp1.invoke(null, params);
       pass = false;
-      logger.error(
+      logger.log(Logger.Level.ERROR, 
           "Call to invoke() with null ELContext parameter did " + "not" + NL);
-      logger.error(" cause an exception to be thrown" + NL);
+      logger.log(Logger.Level.ERROR, " cause an exception to be thrown" + NL);
 
     } catch (NullPointerException npe) {
       // Do nothing test passed!
-      logger.info("Expected Exception Thrown, when Null ELContext "
+      logger.log(Logger.Level.INFO, "Expected Exception Thrown, when Null ELContext "
           + "passed to invoke(): " + npe.getClass().getSimpleName());
 
     } catch (Exception e) {
       pass = false;
-      logger.error("Call to invoke() with null ELContext "
+      logger.log(Logger.Level.ERROR, "Call to invoke() with null ELContext "
           + "throw the wrong Exception!" + NL + "Expected: NullPointerException"
           + NL + "Received: " + e.toString() + NL);
 
@@ -237,18 +236,18 @@ public class ELClientIT extends ServiceEETest {
     try {
       mexp2.getMethodInfo(context);
       pass = false;
-      logger.error("Call to getMethodInfo() for non-existent method did "
+      logger.log(Logger.Level.ERROR, "Call to getMethodInfo() for non-existent method did "
           + "not cause" + NL);
-      logger.error(" an exception to be thrown" + NL);
+      logger.log(Logger.Level.ERROR, " an exception to be thrown" + NL);
 
     } catch (MethodNotFoundException mnfe) {
       // do nothing test passed!
-      logger.info("Expected Exception Thrown, when method does not "
+      logger.log(Logger.Level.INFO, "Expected Exception Thrown, when method does not "
           + "exists for getMethodInfo(): " + mnfe.getClass().getSimpleName());
 
     } catch (Exception e) {
       pass = false;
-      logger.error(
+      logger.log(Logger.Level.ERROR, 
           "Call to getMethodInfo() for non-existent method threw the wrong "
               + "exception!" + NL + "Expected: MethodNotFoundException" + NL
               + "Received: " + e.toString() + NL);
@@ -259,18 +258,18 @@ public class ELClientIT extends ServiceEETest {
     try {
       mexp2.invoke(context, params);
       pass = false;
-      logger.error(
+      logger.log(Logger.Level.ERROR, 
           "Call to invoke() for non-existent method did not " + "cause" + NL);
-      logger.error(" an exception to be thrown" + NL);
+      logger.log(Logger.Level.ERROR, " an exception to be thrown" + NL);
 
     } catch (MethodNotFoundException mnfe) {
       // do thing test passed!
-      logger.info("Expected Exception Thrown, when method does not "
+      logger.log(Logger.Level.INFO, "Expected Exception Thrown, when method does not "
           + "exists for invoke(): " + mnfe.getClass().getSimpleName());
 
     } catch (Exception e) {
       pass = false;
-      logger.error(
+      logger.log(Logger.Level.ERROR, 
           "Call to getMethodInfo() for non-existent method threw the wrong "
               + "exception!" + NL + "Expected: MethodNotFoundException" + NL
               + "Received: " + e.toString() + NL);
@@ -287,19 +286,19 @@ public class ELClientIT extends ServiceEETest {
     try {
       mexp3.getMethodInfo(context);
       pass = false;
-      logger.error("Call to getMethodInfo() for non-existent property "
+      logger.log(Logger.Level.ERROR, "Call to getMethodInfo() for non-existent property "
           + "did not cause" + NL);
-      logger.error(" an exception to be thrown" + NL);
+      logger.log(Logger.Level.ERROR, " an exception to be thrown" + NL);
 
     } catch (PropertyNotFoundException pnfe) {
       // Do nothing test passed!
-      logger.info(
+      logger.log(Logger.Level.INFO, 
           "Expected Exception Thrown, No such property in " + "ELContext"
               + "for getMethodInfo(): " + pnfe.getClass().getSimpleName());
 
     } catch (Exception e) {
       pass = false;
-      logger.error(
+      logger.log(Logger.Level.ERROR, 
           "Call to getMethodInfo() for non-existent property threw the wrong "
               + "exception!" + NL + "Expected: PropertyNotFoundException" + NL
               + "Received: " + e.toString() + NL);
@@ -310,18 +309,18 @@ public class ELClientIT extends ServiceEETest {
     try {
       mexp3.invoke(context, params);
       pass = false;
-      logger.error("Call to invoke() for non-existent property did " + "not "
+      logger.log(Logger.Level.ERROR, "Call to invoke() for non-existent property did " + "not "
           + "cause" + NL);
-      logger.error(" an exception to be thrown" + NL);
+      logger.log(Logger.Level.ERROR, " an exception to be thrown" + NL);
 
     } catch (PropertyNotFoundException pnfe) {
       // Do nothing test passed!
-      logger.info("Expected Exception Thrown, No such property in "
+      logger.log(Logger.Level.INFO, "Expected Exception Thrown, No such property in "
           + "ELContext" + "for invoke(): " + pnfe.getClass().getSimpleName());
 
     } catch (Exception e) {
       pass = false;
-      logger.error(
+      logger.log(Logger.Level.ERROR, 
           "Call to invoke() for non-existent property threw " + "the wrong "
               + "exception!" + NL + "Expected: PropertyNotFoundException" + NL
               + "Received: " + e.toString() + NL);
@@ -339,20 +338,20 @@ public class ELClientIT extends ServiceEETest {
     try {
       mexp4.invoke(context, params);
       pass = false;
-      logger.error(
+      logger.log(Logger.Level.ERROR, 
           "Call to invoke() for string literal with expected " + "return" + NL);
-      logger.error(
+      logger.log(Logger.Level.ERROR, 
           " value of void did not cause an exception to be " + "thrown" + NL);
 
     } catch (ELException ee) {
       // Do nothing test passed!
-      logger.info("Expected Exception Thrown. Call to invoke() with "
+      logger.log(Logger.Level.INFO, "Expected Exception Thrown. Call to invoke() with "
           + "string literal ELContext for invoke()." + NL
           + "Expected return type is void: " + ee.getClass().getSimpleName());
 
     } catch (Exception e) {
       pass = false;
-      logger.error("Call to invoke() for string literal with expected return"
+      logger.log(Logger.Level.ERROR, "Call to invoke() for string literal with expected return"
           + NL + "value of void caused the wrong exception to be thrown!" + NL
           + "Expected: ELException: " + NL + "Received: " + e.toString());
 
@@ -369,21 +368,21 @@ public class ELClientIT extends ServiceEETest {
     try {
       mexp5.invoke(context, params);
       pass = false;
-      logger.error("Call to invoke() for string literal with "
+      logger.log(Logger.Level.ERROR, "Call to invoke() for string literal with "
           + "non-coercable expected " + NL);
-      logger.error(
+      logger.log(Logger.Level.ERROR, 
           "return value did not cause an exception to be " + "thrown" + NL);
 
     } catch (ELException ee) {
       // Do nothing test passed!
-      logger.info("Expected Exception Thrown. Call to invoke() with "
+      logger.log(Logger.Level.INFO, "Expected Exception Thrown. Call to invoke() with "
           + "string literal ELContext for " + "invoke()." + NL
           + "Expected return type can't be coerced: "
           + ee.getClass().getSimpleName());
 
     } catch (Exception e) {
       pass = false;
-      logger.error(
+      logger.log(Logger.Level.ERROR, 
           "Call to invoke() for string literal with non-coercable expected "
               + NL + "return value caused the wrong exception to be thrown!"
               + NL + "Expected: ELException: " + NL + "Received: "
@@ -422,13 +421,13 @@ public class ELClientIT extends ServiceEETest {
       // Setup eval-expression
       MethodExpression evalmexp = expFactory.createMethodExpression(context,
           exprStr, Boolean.class, paramTypes);
-      logger.trace(
+      logger.log(Logger.Level.TRACE, 
           "Eval Method Expression For Testing: " + evalmexp.toString() + NL);
 
       // Setup literal-expression
       MethodExpression literalmexp = expFactory.createMethodExpression(context,
           "vect.add", Boolean.class, paramTypes);
-      logger.trace("Literal Method Expression For Testing: "
+      logger.log(Logger.Level.TRACE, "Literal Method Expression For Testing: "
           + literalmexp.toString() + NL);
 
       // Test both eval & literal expressions.
@@ -445,7 +444,7 @@ public class ELClientIT extends ServiceEETest {
     if (!pass)
       throw new Exception(ELTestUtil.FAIL + buf.toString());
     else
-      logger.trace(buf.toString());
+      logger.log(Logger.Level.TRACE, buf.toString());
   }
 
   /*
@@ -481,7 +480,7 @@ public class ELClientIT extends ServiceEETest {
       }
     } catch (Exception ex) {
       pass = false;
-      logger.error("Call to getMethodInfo() with valid method expression "
+      logger.log(Logger.Level.ERROR, "Call to getMethodInfo() with valid method expression "
           + "threw an Exception!" + NL + "Received: " + ex.toString() + NL);
 
       ex.printStackTrace();
@@ -490,7 +489,7 @@ public class ELClientIT extends ServiceEETest {
     if (!pass)
       throw new Exception(ELTestUtil.FAIL + buf.toString());
     else
-      logger.trace(buf.toString());
+      logger.log(Logger.Level.TRACE, buf.toString());
   }
   
   /*
@@ -525,7 +524,7 @@ public class ELClientIT extends ServiceEETest {
       }
     } catch (Exception ex) {
       pass = false;
-      logger.error("Call to getMethodInfo() with valid method expression "
+      logger.log(Logger.Level.ERROR, "Call to getMethodInfo() with valid method expression "
           + "threw an Exception!" + NL + "Received: " + ex.toString() + NL);
 
       ex.printStackTrace();
@@ -534,7 +533,7 @@ public class ELClientIT extends ServiceEETest {
     if (!pass)
       throw new Exception(ELTestUtil.FAIL + buf.toString());
     else
-      logger.trace(buf.toString());
+      logger.log(Logger.Level.TRACE, buf.toString());
   }
 
   /*
@@ -569,7 +568,7 @@ public class ELClientIT extends ServiceEETest {
       }
     } catch (Exception ex) {
       pass = false;
-      logger.error("Call to getMethodInfo() with valid method expression "
+      logger.log(Logger.Level.ERROR, "Call to getMethodInfo() with valid method expression "
           + "threw an Exception!" + NL + "Received: " + ex.toString() + NL);
 
       ex.printStackTrace();
@@ -578,7 +577,7 @@ public class ELClientIT extends ServiceEETest {
     if (!pass)
       throw new Exception(ELTestUtil.FAIL + buf.toString());
     else
-      logger.trace(buf.toString());
+      logger.log(Logger.Level.TRACE, buf.toString());
   }
 
   /*
@@ -613,7 +612,7 @@ public class ELClientIT extends ServiceEETest {
       }
     } catch (Exception ex) {
       pass = false;
-      logger.error("Call to getMethodInfo() with valid method expression "
+      logger.log(Logger.Level.ERROR, "Call to getMethodInfo() with valid method expression "
           + "threw an Exception!" + NL + "Received: " + ex.toString() + NL);
 
       ex.printStackTrace();
@@ -622,7 +621,7 @@ public class ELClientIT extends ServiceEETest {
     if (!pass)
       throw new Exception(ELTestUtil.FAIL + buf.toString());
     else
-      logger.trace(buf.toString());
+      logger.log(Logger.Level.TRACE, buf.toString());
   }
 
   /*
@@ -657,7 +656,7 @@ public class ELClientIT extends ServiceEETest {
       }
     } catch (Exception ex) {
       pass = false;
-      logger.error("Call to getMethodInfo() with valid method expression "
+      logger.log(Logger.Level.ERROR, "Call to getMethodInfo() with valid method expression "
           + "threw an Exception!" + NL + "Received: " + ex.toString() + NL);
 
       ex.printStackTrace();
@@ -666,7 +665,7 @@ public class ELClientIT extends ServiceEETest {
     if (!pass)
       throw new Exception(ELTestUtil.FAIL + buf.toString());
     else
-      logger.trace(buf.toString());
+      logger.log(Logger.Level.TRACE, buf.toString());
   }
 
   /*
@@ -701,7 +700,7 @@ public class ELClientIT extends ServiceEETest {
       pass = true;
     } catch (Exception ex) {
       pass = false;
-      logger.error("Call to getMethodInfo() with ambiguous method expression "
+      logger.log(Logger.Level.ERROR, "Call to getMethodInfo() with ambiguous method expression "
           + "threw the wrong Exception!" + NL + "Expected: MethodNotFoundException"
           + NL + "Received: " + ex.toString() + NL);
 
@@ -711,6 +710,6 @@ public class ELClientIT extends ServiceEETest {
     if (!pass)
       throw new Exception(ELTestUtil.FAIL + buf.toString());
     else
-      logger.trace(buf.toString());
+      logger.log(Logger.Level.TRACE, buf.toString());
   }
 }

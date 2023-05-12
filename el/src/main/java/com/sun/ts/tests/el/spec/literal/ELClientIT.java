@@ -38,12 +38,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.lang.System.Logger;
 
 public class ELClientIT extends ServiceEETest {
 
-  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
+  private static final Logger logger = System.getLogger(ELClientIT.class.getName());
 
   Properties testProps;
 
@@ -60,17 +59,17 @@ public class ELClientIT extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    logger.info("Cleanup method called");
+    logger.log(Logger.Level.INFO, "Cleanup method called");
   }
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
-    logger.info("STARTING TEST : "+testInfo.getDisplayName());
+    logger.log(Logger.Level.INFO, "STARTING TEST : "+testInfo.getDisplayName());
   }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
-    logger.info("FINISHED TEST : "+testInfo.getDisplayName());
+    logger.log(Logger.Level.INFO, "FINISHED TEST : "+testInfo.getDisplayName());
   }
 
 
@@ -96,7 +95,7 @@ public class ELClientIT extends ServiceEETest {
 
       Object result = ExprEval.evaluateValueExpression("${true}", null,
           Object.class);
-      logger.trace("result is " + result.toString());
+      logger.log(Logger.Level.TRACE, "result is " + result.toString());
       pass1 = (ExprEval.compareClass(result, Boolean.class)
           && ExprEval.compareValue(result, expectedResult));
 
@@ -111,7 +110,7 @@ public class ELClientIT extends ServiceEETest {
 
       Object result = ExprEval.evaluateValueExpression("${false}", null,
           Object.class);
-      logger.trace("result is " + result.toString());
+      logger.log(Logger.Level.TRACE, "result is " + result.toString());
       pass2 = (ExprEval.compareClass(result, Boolean.class)
           && ExprEval.compareValue(result, expectedResult));
 
@@ -150,7 +149,7 @@ public class ELClientIT extends ServiceEETest {
         Object result = ExprEval.evaluateValueExpression(
             "${" + tInteger.toString() + "}", null, Object.class);
 
-        logger.trace("result is " + result.toString());
+        logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass1 = (ExprEval.compareClass(result, Long.class)
             && ExprEval.compareValue((Long) result, expectedResult));
 
@@ -164,7 +163,7 @@ public class ELClientIT extends ServiceEETest {
 
         Object result = ExprEval.evaluateValueExpression(
             "#{" + tInteger.toString() + "}", null, Object.class);
-        logger.trace("result is " + result.toString());
+        logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass2 = (ExprEval.compareClass(result, Long.class)
             && ExprEval.compareValue((Long) result, expectedResult));
 
@@ -205,7 +204,7 @@ public class ELClientIT extends ServiceEETest {
 
         Object result = ExprEval.evaluateValueExpression(
             "${" + tFloat.toString() + "}", null, Object.class);
-        logger.trace("result is " + result.toString());
+        logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass1 = (ExprEval.compareClass(result, Double.class)
             && ExprEval.compareValue((Double) result, expectedResult, 1));
 
@@ -219,7 +218,7 @@ public class ELClientIT extends ServiceEETest {
 
         Object result = ExprEval.evaluateValueExpression(
             "#{" + tFloat.toString() + "}", null, Object.class);
-        logger.trace("result is " + result.toString());
+        logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass2 = (ExprEval.compareClass(result, Double.class)
             && ExprEval.compareValue((Double) result, expectedResult, 1));
 
@@ -264,7 +263,7 @@ public class ELClientIT extends ServiceEETest {
         Object result = ExprEval.evaluateValueExpression(
             "${" + testString + "}", null, Object.class);
 
-        logger.trace("result is " + result.toString());
+        logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass1 = (ExprEval.compareClass(result, String.class)
             && ExprEval.compareValue((String) result, expectedResult));
 
@@ -278,7 +277,7 @@ public class ELClientIT extends ServiceEETest {
 
         Object result = ExprEval.evaluateValueExpression(
             "#{" + testString + "}", null, Object.class);
-        logger.trace("result is " + result.toString());
+        logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass2 = (ExprEval.compareClass(result, String.class)
             && ExprEval.compareValue((String) result, expectedResult));
 

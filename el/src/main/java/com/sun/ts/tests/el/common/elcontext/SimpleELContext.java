@@ -32,8 +32,7 @@ import jakarta.el.ELResolver;
 import jakarta.el.FunctionMapper;
 import jakarta.el.VariableMapper;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.lang.System.Logger;
 
 /**
  * A basic ELContext that meets the needs of most EL tests. The no-args
@@ -44,7 +43,7 @@ import org.slf4j.LoggerFactory;
  */
 public class SimpleELContext extends ELContext {
 
-  private static final Logger logger = LoggerFactory.getLogger(SimpleELContext.class.getName());
+  private static final Logger logger = System.getLogger(SimpleELContext.class.getName());
 
   private static final String NLINE = System.getProperty("line.separator");
 
@@ -123,21 +122,21 @@ public class SimpleELContext extends ELContext {
     switch (enumResolver) {
     case EMPLOYEE_ELRESOLVER:
       myResolver = new EmployeeELResolver();
-      logger.trace("Setting ELResolver == EmployeeELResolver");
+      logger.log(Logger.Level.TRACE, "Setting ELResolver == EmployeeELResolver");
       break;
 
     case VARIABLE_ELRESOLVER:
       myResolver = new VariableELResolver();
-      logger.trace("Setting ELResolver == VariableELResolver");
+      logger.log(Logger.Level.TRACE, "Setting ELResolver == VariableELResolver");
       break;
 
     case VECT_ELRESOLVER:
       myResolver = new VectELResolver();
-      logger.trace("Setting ELResolver == VectELResolver");
+      logger.log(Logger.Level.TRACE, "Setting ELResolver == VectELResolver");
       break;
 
     default:
-      logger.trace(
+      logger.log(Logger.Level.TRACE, 
           "Unknown ELResolver! " + enumResolver + " trying to use default"
               + NLINE + "Setting" + " ELResolver == VariableELResolver");
       break;

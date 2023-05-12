@@ -38,12 +38,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.lang.System.Logger;
 
 public class ELClientIT extends ServiceEETest {
 
-  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
+  private static final Logger logger = System.getLogger(ELClientIT.class.getName());
 
   private static String NLINE = System.getProperty("line.separator", "\n");
 
@@ -62,17 +61,17 @@ public class ELClientIT extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    logger.info("Cleanup method called");
+    logger.log(Logger.Level.INFO, "Cleanup method called");
   }
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
-    logger.info("STARTING TEST : "+testInfo.getDisplayName());
+    logger.log(Logger.Level.INFO, "STARTING TEST : "+testInfo.getDisplayName());
   }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
-    logger.info("FINISHED TEST : "+testInfo.getDisplayName());
+    logger.log(Logger.Level.INFO, "FINISHED TEST : "+testInfo.getDisplayName());
   }
 
 
@@ -99,7 +98,7 @@ public class ELClientIT extends ServiceEETest {
       Object poundResult = ExprEval
           .evaluateValueExpression("#{" + testExpr + "}", null, String.class);
 
-      logger.trace("Comparing  ${" + dollarResult.toString() + "} "
+      logger.log(Logger.Level.TRACE, "Comparing  ${" + dollarResult.toString() + "} "
           + "to #{" + poundResult.toString() + "}");
 
       pass = (ExprEval.compareClass(poundResult, String.class)
@@ -136,12 +135,12 @@ public class ELClientIT extends ServiceEETest {
           "#{worker.firstName}", null, String.class,
           ResolverType.EMPLOYEE_ELRESOLVER);
 
-      logger.trace("Comparing  ${" + firstNameDollar.toString() + "} to #{"
+      logger.log(Logger.Level.TRACE, "Comparing  ${" + firstNameDollar.toString() + "} to #{"
           + firstNamePound.toString() + "}");
 
       if (!(firstNamePound.toString().equals(firstNameDollar.toString()))) {
 
-        logger.trace(
+        logger.log(Logger.Level.TRACE, 
             "Dollar & Pound symbols return different" + "expression values!");
         pass = false;
 
@@ -175,18 +174,18 @@ public class ELClientIT extends ServiceEETest {
         ExprEval.evaluateValueExpression(expr[i], null, String.class,
             ResolverType.EMPLOYEE_ELRESOLVER);
         pass = false;
-        logger.error("Test FAILED. No exception thrown for ");
-        logger.error(expr[i]);
+        logger.log(Logger.Level.ERROR, "Test FAILED. No exception thrown for ");
+        logger.log(Logger.Level.ERROR, expr[i]);
 
       } catch (ELException ee) {
         // Test passes
-        logger.error("Expected Exception thrown.");
+        logger.log(Logger.Level.ERROR, "Expected Exception thrown.");
 
       } catch (Exception e) {
         pass = false;
-        logger.error("Test FAILED. " + expr[i] + " caused ");
-        logger.error("an exception, but it was not an ");
-        logger.error("ELException.");
+        logger.log(Logger.Level.ERROR, "Test FAILED. " + expr[i] + " caused ");
+        logger.log(Logger.Level.ERROR, "an exception, but it was not an ");
+        logger.log(Logger.Level.ERROR, "ELException.");
         TestUtil.printStackTrace(e);
       }
     }
@@ -216,18 +215,18 @@ public class ELClientIT extends ServiceEETest {
         ExprEval.evaluateValueExpression(expr[i], null, String.class,
             ResolverType.EMPLOYEE_ELRESOLVER);
         pass = false;
-        logger.error("Test FAILED. No exception thrown for ");
-        logger.error(expr[i]);
+        logger.log(Logger.Level.ERROR, "Test FAILED. No exception thrown for ");
+        logger.log(Logger.Level.ERROR, expr[i]);
 
       } catch (ELException ee) {
         // Test passes
-        logger.error("Expected Exception thrown.");
+        logger.log(Logger.Level.ERROR, "Expected Exception thrown.");
 
       } catch (Exception e) {
         pass = false;
-        logger.error("Test FAILED. " + expr[i] + " caused ");
-        logger.error("an exception, but it was not an ");
-        logger.error("ELException.");
+        logger.log(Logger.Level.ERROR, "Test FAILED. " + expr[i] + " caused ");
+        logger.log(Logger.Level.ERROR, "an exception, but it was not an ");
+        logger.log(Logger.Level.ERROR, "ELException.");
         TestUtil.printStackTrace(e);
       }
 
@@ -261,7 +260,7 @@ public class ELClientIT extends ServiceEETest {
           4140 + " " + streetName + ", " + city + ", " + state + " " + 95054,
           null, String.class);
 
-      logger.trace("Testing for Address: " + expected);
+      logger.log(Logger.Level.TRACE, "Testing for Address: " + expected);
 
       pass = (ExprEval.compareClass(address, String.class)
           && ExprEval.compareValue(address, expected));
@@ -296,7 +295,7 @@ public class ELClientIT extends ServiceEETest {
       Object div = ExprEval.evaluateValueExpression(
           "total = " + "${" + num + "+2/" + num + "}", null, String.class);
 
-      logger.trace("Testing for: " + expected);
+      logger.log(Logger.Level.TRACE, "Testing for: " + expected);
 
       pass = (ExprEval.compareClass(div, String.class)
           && ExprEval.compareValue(div, expected));
@@ -368,7 +367,7 @@ public class ELClientIT extends ServiceEETest {
       if (!(ExprEval.compareValue(firstnameDollar, "${worker.firstName}")
           && ExprEval.compareValue(firstnamePound, "#{worker.firstName}"))) {
 
-        logger.trace("Escape character failed to work.");
+        logger.log(Logger.Level.TRACE, "Escape character failed to work.");
         pass = false;
       }
 
@@ -466,7 +465,7 @@ public class ELClientIT extends ServiceEETest {
 
       if (!("true".equals(value1))) {
         pass = false;
-        logger.error("Literal Expression, Return String Failed!");
+        logger.log(Logger.Level.ERROR, "Literal Expression, Return String Failed!");
       }
 
       // literal expression returning non-String value
@@ -474,7 +473,7 @@ public class ELClientIT extends ServiceEETest {
           Boolean.class, ResolverType.VECT_ELRESOLVER);
       if (!((Boolean) value2).booleanValue()) {
         pass = false;
-        logger.error("Literal Expression, Return non-String " + "Failed!");
+        logger.log(Logger.Level.ERROR, "Literal Expression, Return non-String " + "Failed!");
       }
 
     } catch (Exception e) {
@@ -510,13 +509,13 @@ public class ELClientIT extends ServiceEETest {
 
       if (!(value instanceof Integer)) {
         pass = false;
-        logger.error("MethodExpression invocation does not return"
+        logger.log(Logger.Level.ERROR, "MethodExpression invocation does not return"
             + " instance of expected class");
       }
 
       else if (((Integer) value).intValue() != testNum) {
         pass = false;
-        logger.error(
+        logger.log(Logger.Level.ERROR, 
             "Expected: " + testNum + NLINE + "Received: " + value.toString());
       }
 

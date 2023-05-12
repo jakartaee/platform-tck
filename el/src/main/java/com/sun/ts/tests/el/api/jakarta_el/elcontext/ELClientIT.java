@@ -39,12 +39,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.lang.System.Logger;
 
 public class ELClientIT extends ServiceEETest {
 
-  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
+  private static final Logger logger = System.getLogger(ELClientIT.class.getName());
 
   private Properties testProps;
 
@@ -60,17 +59,17 @@ public class ELClientIT extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    logger.info("Cleanup method called");
+    logger.log(Logger.Level.INFO, "Cleanup method called");
   }
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
-    logger.info("STARTING TEST : "+testInfo.getDisplayName());
+    logger.log(Logger.Level.INFO, "STARTING TEST : "+testInfo.getDisplayName());
   }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
-    logger.info("FINISHED TEST : "+testInfo.getDisplayName());
+    logger.log(Logger.Level.INFO, "FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -172,12 +171,12 @@ public class ELClientIT extends ServiceEETest {
     ELManager elm = new ELManager();
     ELContext elc = elm.getELContext();
 
-    logger.info("Testing: ELContext.putContext(String.class, null)");
+    logger.log(Logger.Level.INFO, "Testing: ELContext.putContext(String.class, null)");
     ELTestUtil.checkForNPE(elc, "putContext",
         new Class<?>[] { Class.class, Object.class },
         new Object[] { String.class, null });
 
-    logger.info("Testing: ELContext.putContext(null, testStrg)");
+    logger.log(Logger.Level.INFO, "Testing: ELContext.putContext(null, testStrg)");
     ELTestUtil.checkForNPE(elc, "putContext",
         new Class<?>[] { Class.class, Object.class },
         new Object[] { String.class, null });
@@ -198,7 +197,7 @@ public class ELClientIT extends ServiceEETest {
     ELManager elm = new ELManager();
     ELContext elc = elm.getELContext();
 
-    logger.info("Testing: ELContext.getContext(null)");
+    logger.log(Logger.Level.INFO, "Testing: ELContext.getContext(null)");
     ELTestUtil.checkForNPE(elc, "getContext", new Class<?>[] { Class.class },
         new Object[] { null });
 

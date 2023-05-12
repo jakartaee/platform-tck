@@ -38,12 +38,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.lang.System.Logger;
 
 public class ELClientIT extends ServiceEETest {
 
-  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
+  private static final Logger logger = System.getLogger(ELClientIT.class.getName());
 
   private Properties testProps;
 
@@ -64,17 +63,17 @@ public class ELClientIT extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    logger.info("Cleanup method called");
+    logger.log(Logger.Level.INFO, "Cleanup method called");
   }
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
-    logger.info("STARTING TEST : "+testInfo.getDisplayName());
+    logger.log(Logger.Level.INFO, "STARTING TEST : "+testInfo.getDisplayName());
   }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
-    logger.info("FINISHED TEST : "+testInfo.getDisplayName());
+    logger.log(Logger.Level.INFO, "FINISHED TEST : "+testInfo.getDisplayName());
   }
 
   /**
@@ -95,7 +94,7 @@ public class ELClientIT extends ServiceEETest {
     ExpressionFactory expFactory = ExpressionFactory.newInstance();
     VarMapperELContext context = new VarMapperELContext(testProps);
     VariableMapper varMapper = context.getVariableMapper();
-    logger.trace("VariableMapper is " + varMapper.toString());
+    logger.log(Logger.Level.TRACE, "VariableMapper is " + varMapper.toString());
 
     if (varMapper.resolveVariable("foo") != null) {
       pass = false;

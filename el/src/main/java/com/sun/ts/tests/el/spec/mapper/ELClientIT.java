@@ -41,12 +41,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.lang.System.Logger;
 
 public class ELClientIT extends ServiceEETest {
 
-  private static final Logger logger = LoggerFactory.getLogger(ELClientIT.class.getName());
+  private static final Logger logger = System.getLogger(ELClientIT.class.getName());
 
   Properties testProps;
 
@@ -67,17 +66,17 @@ public class ELClientIT extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    logger.info("Cleanup method called");
+    logger.log(Logger.Level.INFO, "Cleanup method called");
   }
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
-    logger.info("STARTING TEST : "+testInfo.getDisplayName());
+    logger.log(Logger.Level.INFO, "STARTING TEST : "+testInfo.getDisplayName());
   }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
-    logger.info("FINISHED TEST : "+testInfo.getDisplayName());
+    logger.log(Logger.Level.INFO, "FINISHED TEST : "+testInfo.getDisplayName());
   }
 
 
@@ -137,15 +136,15 @@ public class ELClientIT extends ServiceEETest {
 
     } catch (Throwable t) {
       if (!(t instanceof ELException)) {
-        logger.error("Expected ELException to be thrown");
-        logger.error("instead threw " + t.toString());
+        logger.log(Logger.Level.ERROR, "Expected ELException to be thrown");
+        logger.log(Logger.Level.ERROR, "instead threw " + t.toString());
         TestUtil.printStackTrace(t);
         throw new Exception("ELException not thrown");
       }
       Throwable cause = t.getCause();
       if (!(cause instanceof NumberFormatException)) {
-        logger.error("Expected cause to be NumberFormatException");
-        logger.error("instead cause is " + cause.toString());
+        logger.log(Logger.Level.ERROR, "Expected cause to be NumberFormatException");
+        logger.log(Logger.Level.ERROR, "instead cause is " + cause.toString());
         TestUtil.printStackTrace(cause);
         throw new Exception("NumberFormatException not cause");
       }
