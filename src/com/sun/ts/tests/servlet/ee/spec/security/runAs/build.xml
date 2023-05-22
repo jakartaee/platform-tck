@@ -25,21 +25,19 @@
     
 
     <target name="package">
-        <ts.war descriptor="${app.name}_first_module_web.xml"
+	<ts.war descriptor="${app.name}_first_module_web.xml"
                 archivename="servlet_ee_spec_security_runAs_first_module"
-                excludedfiles="com/sun/ts/tests/servlet/ee/spec/security/runAs/SecTestEJB.class" >
-            <zipfileset dir="${class.dir}" 
-                        includes="com/sun/ts/tests/servlet/ee/spec/security/runAs/ServletOne.class,
-                                  com/sun/ts/tests/servlet/ee/spec/security/runAs/SecTest.class"
+                excludedfiles="com/sun/ts/tests/servlet/ee/spec/security/runAs/SecTestEJB.class,com/sun/ts/tests/servlet/ee/spec/security/runAs/SecTest.class" >
+            <zipfileset dir="${class.dir}"
+                        includes="com/sun/ts/tests/servlet/ee/spec/security/runAs/ServletOne.class"
                         prefix="WEB-INF/classes"/>
         </ts.war>
 
         <ts.war descriptor="${app.name}_second_module_web.xml"
                 archivename="servlet_ee_spec_security_runAs_second_module"
-                excludedfiles="com/sun/ts/tests/servlet/ee/spec/security/runAs/SecTestEJB.class">
-            <zipfileset dir="${class.dir}" 
-                        includes="com/sun/ts/tests/servlet/ee/spec/security/runAs/ServletTwo.class,
-                                  com/sun/ts/tests/servlet/ee/spec/security/runAs/SecTest.class"
+                excludedfiles="com/sun/ts/tests/servlet/ee/spec/security/runAs/SecTestEJB.class,com/sun/ts/tests/servlet/ee/spec/security/runAs/SecTest.class">
+            <zipfileset dir="${class.dir}"
+                        includes="com/sun/ts/tests/servlet/ee/spec/security/runAs/ServletTwo.class"
                         prefix="WEB-INF/classes"/>
         </ts.war>
 
