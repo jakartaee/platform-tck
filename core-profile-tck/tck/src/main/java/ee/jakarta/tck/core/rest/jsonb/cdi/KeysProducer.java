@@ -38,8 +38,9 @@ public class KeysProducer {
     @PostConstruct
     private void loadKeys() {
         try {
+            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
             byte[] pubKeyData;
-            try (InputStream keyIS = getClass().getResourceAsStream("/key.pub")) {
+            try (InputStream keyIS = classLoader.getResourceAsStream("/key.pub")) {
                 if (keyIS == null) {
                     throw new IllegalStateException("Failed to find /key.pub");
                 }
