@@ -50,7 +50,7 @@ public class ApplicationJsonpIT {
                 .addClass(JsonProviderProducer.class)
                 .addClass(Utils.class)
                 .addAsServiceProvider(JsonProvider.class, CustomJsonProvider.class)
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "classes/META-INF/beans.xml");
         System.out.printf("test archive: %s\n", archive.toString(true));
         archive.as(ZipExporter.class).exportTo(new File("/tmp/" + archive.getName()), true);
         return archive;
