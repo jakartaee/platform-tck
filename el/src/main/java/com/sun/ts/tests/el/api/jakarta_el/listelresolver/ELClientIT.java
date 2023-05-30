@@ -26,8 +26,6 @@ import java.util.List;
 import java.util.Properties;
 
 
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.elcontext.BareBonesELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
@@ -42,11 +40,9 @@ import org.junit.jupiter.api.TestInfo;
 
 import java.lang.System.Logger;
 
-public class ELClientIT extends ServiceEETest {
+public class ELClientIT {
 
   private static final Logger logger = System.getLogger(ELClientIT.class.getName());
-
-  private Properties testProps;
 
   private List<String> names;
 
@@ -56,21 +52,6 @@ public class ELClientIT extends ServiceEETest {
     names.add("nick");
     names.add("ryan");
   }
-
-  // public static void main(String[] args) {
-  //   ELClient theTests = new ELClient();
-  //   Status s = theTests.run(args, System.out, System.err);
-  //   s.exit();
-  // }
-
-  // public void setup(String[] args, Properties p) throws Exception {
-  //   TestUtil.logTrace("Setup method called");
-  //   this.testProps = p;
-  //   names = new ArrayList<String>();
-  //   names.add("doug");
-  //   names.add("nick");
-  //   names.add("ryan");
-  // }
 
   
   @AfterEach

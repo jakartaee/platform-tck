@@ -28,8 +28,6 @@ import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 
 
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.elcontext.BareBonesELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
@@ -45,29 +43,15 @@ import org.junit.jupiter.api.TestInfo;
 import java.lang.System.Logger;
 
 
-public class ELClientIT extends ServiceEETest {
+public class ELClientIT {
 
   private static final Logger logger = System.getLogger(ELClientIT.class.getName());
-
-  private Properties testProps;
 
   private TckResourceBundle tckrb;
 
   public ELClientIT(){
     tckrb = new TckResourceBundle();
   }
-
-  // public static void main(String[] args) {
-  //   ELClient theTests = new ELClient();
-  //   Status s = theTests.run(args, System.out, System.err);
-  //   s.exit();
-  // }
-
-  // public void setup(String[] args, Properties p) throws Exception {
-  //   TestUtil.logTrace("Setup method called");
-  //   this.testProps = p;
-  //   tckrb = new TckResourceBundle();
-  // }
 
   @AfterEach
   public void cleanup() throws Exception {

@@ -23,8 +23,6 @@ package com.sun.ts.tests.el.spec.conditionaloperator;
 import java.util.Properties;
 
 
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.util.ExprEval;
 import com.sun.ts.tests.el.common.util.NameValuePair;
 
@@ -35,24 +33,11 @@ import org.junit.jupiter.api.TestInfo;
 
 import java.lang.System.Logger;
 
-public class ELClientIT extends ServiceEETest {
+public class ELClientIT {
 
   private static final Logger logger = System.getLogger(ELClientIT.class.getName());
 
-  Properties testProps;
-
   private final boolean[] deferred = { true, false };
-
-  // public static void main(String[] args) {
-  //   ELClient theTests = new ELClient();
-  //   Status s = theTests.run(args, System.out, System.err);
-  //   s.exit();
-  // }
-
-  // public void setup(String[] args, Properties p) throws Exception {
-  //   TestUtil.logTrace("Setup method called");
-  //   this.testProps = p;
-  // }
 
   @AfterEach
   public void cleanup() throws Exception {

@@ -29,8 +29,6 @@ import java.util.List;
 import java.util.Properties;
 
 
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.util.TypesBean;
 import com.sun.ts.tests.el.common.util.Validator;
 
@@ -43,37 +41,24 @@ import org.junit.jupiter.api.TestInfo;
 
 import java.lang.System.Logger;
 
-public class ELClientIT extends ServiceEETest {
+public class ELClientIT {
 
   private static final Logger logger = System.getLogger(ELClientIT.class.getName());
 
-  Properties testProps;
+  @AfterEach
+  public void cleanup() throws Exception {
+    logger.log(Logger.Level.INFO, "Cleanup method called");
+  }
 
-//   public static void main(String[] args) {
-//     ELClient theTests = new ELClient();
-//     Status s = theTests.run(args, System.out, System.err);
-//     s.exit();
-//   }
-
-//   public void setup(String[] args, Properties p) throws Exception {
-//     TestUtil.logTrace("Setup method called");
-//     this.testProps = p;
-//   }
-
-@AfterEach
-public void cleanup() throws Exception {
-  logger.log(Logger.Level.INFO, "Cleanup method called");
-}
-
-@BeforeEach
-void logStartTest(TestInfo testInfo) {
-  logger.log(Logger.Level.INFO, "STARTING TEST : "+testInfo.getDisplayName());
-}
-
-@AfterEach
-void logFinishTest(TestInfo testInfo) {
-  logger.log(Logger.Level.INFO, "FINISHED TEST : "+testInfo.getDisplayName());
-}
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    logger.log(Logger.Level.INFO, "STARTING TEST : "+testInfo.getDisplayName());
+  }
+ 
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    logger.log(Logger.Level.INFO, "FINISHED TEST : "+testInfo.getDisplayName());
+  }
 
   /**
    * @testName: elSemiColonOperatorBigDecimalTest

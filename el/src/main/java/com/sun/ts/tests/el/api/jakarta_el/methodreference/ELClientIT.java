@@ -17,8 +17,8 @@ package com.sun.ts.tests.el.api.jakarta_el.methodreference;
 
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.el.common.util.Fault;
 import com.sun.ts.tests.common.el.api.expression.ExpressionTest;
 import com.sun.ts.tests.el.common.elcontext.VarMapperELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
@@ -40,7 +40,7 @@ import org.junit.jupiter.api.TestInfo;
 
 import java.lang.System.Logger;
 
-public class ELClientIT extends ServiceEETest {
+public class ELClientIT {
 
   private static final Logger logger = System.getLogger(ELClientIT.class.getName());
 
@@ -51,17 +51,6 @@ public class ELClientIT extends ServiceEETest {
   public ELClientIT(){
     this.testProps = System.getProperties();
   }
-
-  // public static void main(String[] args) {
-  //   ELClientIT theTests = new ELClientIT();
-  //   Status s = theTests.run(args, System.out, System.err);
-  //   s.exit();
-  // }
-
-  // public void setup(String[] args, Properties p) throws Fault {
-  //   TestUtil.logTrace("Setup method called");
-  //   this.testProps = p;
-  // }
 
   @AfterEach
   public void cleanup() throws Exception {
