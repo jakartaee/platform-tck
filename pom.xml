@@ -17,10 +17,14 @@
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
 -->
-
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.eclipse.ee4j</groupId>
+        <artifactId>project</artifactId>
+        <version>1.0.7</version>
+    </parent>
 
     <groupId>jakartatck</groupId>
     <artifactId>project</artifactId>
@@ -29,98 +33,28 @@
     <name>project</name>
     <description>project</description>
 
-    <parent>
-        <groupId>org.eclipse.ee4j</groupId>
-        <artifactId>project</artifactId>
-        <version>1.0.7</version>
-    </parent>
-
-
-    <properties>
-        <java.compiler.release>11</java.compiler.release>
-        <ant.version>1.10.11</ant.version>
-        <jakarta.faces-api.version>3.0.0</jakarta.faces-api.version>
-        <!-- Jakarta WebSocket -->
-        <websocket-api.version>2.1.0</websocket-api.version>
-        <websocket-client-api.version>2.1.0</websocket-client-api.version>
-        <!-- Jakarta Concurrency -->
-        <concurrent-api.version>2.0.0</concurrent-api.version>
-        <!-- Jakarta Interceptors -->
-        <jakarta.interceptor-api.version>2.1.0</jakarta.interceptor-api.version>
-        <!-- Jakarta EE Security + Authentication/Authorization -->
-        <jakarta.security.enterprise-api.version>2.0.0</jakarta.security.enterprise-api.version>
-        <jakarta.authorization-api.version>2.1.0</jakarta.authorization-api.version>
-        <jakarta.authentication-api.version>2.0.0</jakarta.authentication-api.version>
-        <!-- Jakarta Messaging -->
-        <jms-api.version>3.1.0</jms-api.version>
-        <jakarta.activation-api.version>2.0.0</jakarta.activation-api.version>
-        <!-- Jakarta Persistence -->
-        <jakarta-persistence-api.version>3.1.0</jakarta-persistence-api.version>
-        <!-- Jakarta Transactions -->
-        <jakarta.transaction-api.version>2.0.0</jakarta.transaction-api.version>
-        <!-- Jakarta Connectors -->
-        <jakarta.resource-api.version>2.0.0</jakarta.resource-api.version>
-        <!-- Jakarta Batch -->
-        <jakarta.batch-api.version>2.0.0</jakarta.batch-api.version>
-        <!-- Jakarta Enterprise beans -->
-        <jakarta.ejb-api.version>4.0.0</jakarta.ejb-api.version>
-        <!-- Jakarta JSON -->
-        <jsonp-api.version>2.1.1</jsonp-api.version>
-        <json.bind-api.version>3.0.0</json.bind-api.version>
-        <!-- Jakarta Server Pages -->
-        <jsp-api.version>3.1.0</jsp-api.version>
-        <!-- Jakarta Standard Tag Library -->
-        <jstl-api.version>2.0.0</jstl-api.version>
-        <!-- CDI -->
-        <cdi-api.version>4.0.0</cdi-api.version>
-
-        <jakarta.annotation-api.version>2.1.1</jakarta.annotation-api.version>
-        <jakarta.el-api.version>5.0.1</jakarta.el-api.version>
-        <jakarta.inject-api.version>2.0.1</jakarta.inject-api.version>
-        <jakarta.jws-api.version>3.0.0</jakarta.jws-api.version>
-        <jakarta.mail-api.version>2.0.0</jakarta.mail-api.version>
-        <jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
-        <jakarta.validation-api.version>3.0.0</jakarta.validation-api.version>
-
-        <jakarta.ws.rs-api.version>3.1.0</jakarta.ws.rs-api.version>
-        <jakarta.xml.ws-api.version>4.0.0</jakarta.xml.ws-api.version>
-        <jakarta.xml.soap-api.version>3.0.0</jakarta.xml.soap-api.version>
-        <jakarta.xml.bind-api.version>3.0.0</jakarta.xml.bind-api.version>
-        <jaxb-osgi.version>3.0.0</jaxb-osgi.version>
-        <webservices-api.version>3.0.0</webservices-api.version>
-        <webservices-api-osgi.version>3.0.0</webservices-api-osgi.version>
-        <webservices-osgi.version>3.0.0</webservices-osgi.version>
-        <webservices-tools.version>3.0.0</webservices-tools.version>
-        <javatest.version>5.0</javatest.version>
-        <slf4j.version>2.0.0</slf4j.version>
-        <surefire.failIfNoSpecifiedTests>false</surefire.failIfNoSpecifiedTests>
-    </properties>
-
     <modules>
-        <module>webartifacts/jsf</module>
-        <module>webartifacts/jsp</module>
-        <module>webartifacts/jstl</module>
-        <module>webartifacts/servlet</module>
-<!--        <module>glassfishtck</module>-->
-        <module>runtime</module>
         <module>appclient</module>
         <module>assembly</module>
         <module>common</module>
-        <module>ejb30-ws</module>
-        <module>ejb30</module>
-        <module>ejb32</module>
-        <module>ejb</module>
         <module>connector</module>
+        <!-- not needed anymore -->
+        <!--        <module>docker</module>-->
+        <module>core-profile-tck</module>
+        <module>ejb</module>
+        <module>ejb30</module>
+        <module>ejb30-ws</module>
+        <module>ejb32</module>
         <module>el</module>
         <module>integration</module>
         <!-- some proprietary code ? -->
-<!--        <module>internal</module>-->
+        <!--        <module>internal</module>-->
         <module>jacc</module>
         <module>javaee</module>
         <module>javamail</module>
         <module>jaxrs</module>
-        <module>jaxws-common</module>
         <module>jaxws</module>
+        <module>jaxws-common</module>
         <module>jdbc</module>
         <module>jms</module>
         <module>jpa</module>
@@ -132,20 +66,86 @@
         <module>jws</module>
         <module>jws-common</module>
         <module>libutil</module>
+        <!--        <module>glassfishtck</module>-->
+        <module>runtime</module>
         <module>saaj</module>
         <module>samples</module>
         <module>servlet</module>
         <module>signaturetest</module>
-<!-- TODO: implement or remove optional webservices12/webservices13 tests -->
-<!--        <module>webservices12</module>-->
-<!--        <module>webservices13</module>-->
+        <module>webartifacts/jsf</module>
+        <module>webartifacts/jsp</module>
+        <module>webartifacts/jstl</module>
+        <module>webartifacts/servlet</module>
+        <!-- TODO: implement or remove optional webservices12/webservices13 tests -->
+        <!--        <module>webservices12</module>-->
+        <!--        <module>webservices13</module>-->
         <module>websocket</module>
         <module>xa</module>
-<!-- not needed anymore -->
-<!--        <module>docker</module>-->
-        <module>core-profile-tck</module>
 
     </modules>
+
+    <properties>
+        <ant.version>1.10.11</ant.version>
+        <arquillian.version>1.7.0.Alpha10</arquillian.version>
+        <!-- CDI -->
+        <cdi-api.version>4.0.0</cdi-api.version>
+        <!-- Jakarta Concurrency -->
+        <concurrent-api.version>2.0.0</concurrent-api.version>
+        <!-- Jakarta Persistence -->
+        <jakarta-persistence-api.version>3.1.0</jakarta-persistence-api.version>
+        <jakarta.activation-api.version>2.0.0</jakarta.activation-api.version>
+
+        <jakarta.annotation-api.version>2.1.1</jakarta.annotation-api.version>
+        <jakarta.authentication-api.version>2.0.0</jakarta.authentication-api.version>
+        <jakarta.authorization-api.version>2.1.0</jakarta.authorization-api.version>
+        <!-- Jakarta Batch -->
+        <jakarta.batch-api.version>2.0.0</jakarta.batch-api.version>
+        <!-- Jakarta Enterprise beans -->
+        <jakarta.ejb-api.version>4.0.0</jakarta.ejb-api.version>
+        <jakarta.el-api.version>5.0.1</jakarta.el-api.version>
+        <jakarta.faces-api.version>3.0.0</jakarta.faces-api.version>
+        <jakarta.inject-api.version>2.0.1</jakarta.inject-api.version>
+        <!-- Jakarta Interceptors -->
+        <jakarta.interceptor-api.version>2.1.0</jakarta.interceptor-api.version>
+        <jakarta.jws-api.version>3.0.0</jakarta.jws-api.version>
+        <jakarta.mail-api.version>2.0.0</jakarta.mail-api.version>
+        <!-- Jakarta Connectors -->
+        <jakarta.resource-api.version>2.0.0</jakarta.resource-api.version>
+        <!-- Jakarta EE Security + Authentication/Authorization -->
+        <jakarta.security.enterprise-api.version>2.0.0</jakarta.security.enterprise-api.version>
+        <jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
+        <!-- Jakarta Transactions -->
+        <jakarta.transaction-api.version>2.0.0</jakarta.transaction-api.version>
+        <jakarta.validation-api.version>3.0.0</jakarta.validation-api.version>
+
+        <jakarta.ws.rs-api.version>3.1.0</jakarta.ws.rs-api.version>
+        <jakarta.xml.bind-api.version>3.0.0</jakarta.xml.bind-api.version>
+        <jakarta.xml.soap-api.version>3.0.0</jakarta.xml.soap-api.version>
+        <jakarta.xml.ws-api.version>4.0.0</jakarta.xml.ws-api.version>
+        <java.compiler.release>11</java.compiler.release>
+        <javatest.version>5.0</javatest.version>
+        <jaxb-osgi.version>3.0.0</jaxb-osgi.version>
+        <!-- Jakarta Messaging -->
+        <jms-api.version>3.1.0</jms-api.version>
+        <json.bind-api.version>3.0.0</json.bind-api.version>
+        <!-- Jakarta JSON -->
+        <jsonp-api.version>2.1.1</jsonp-api.version>
+        <!-- Jakarta Server Pages -->
+        <jsp-api.version>3.1.0</jsp-api.version>
+        <!-- Jakarta Standard Tag Library -->
+        <jstl-api.version>2.0.0</jstl-api.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <slf4j.version>2.0.0</slf4j.version>
+        <surefire.failIfNoSpecifiedTests>false</surefire.failIfNoSpecifiedTests>
+        <webservices-api-osgi.version>3.0.0</webservices-api-osgi.version>
+        <webservices-api.version>3.0.0</webservices-api.version>
+        <webservices-osgi.version>3.0.0</webservices-osgi.version>
+        <webservices-tools.version>3.0.0</webservices-tools.version>
+        <!-- Jakarta WebSocket -->
+        <websocket-api.version>2.1.0</websocket-api.version>
+        <websocket-client-api.version>2.1.0</websocket-client-api.version>
+    </properties>
 
     <dependencyManagement>
         <dependencies>
@@ -273,13 +273,11 @@
                 <version>${project.version}</version>
             </dependency>
 
-
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>jms</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
@@ -287,13 +285,11 @@
                 <version>${project.version}</version>
             </dependency>
 
-
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>jsf</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
@@ -301,13 +297,11 @@
                 <version>${project.version}</version>
             </dependency>
 
-
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>jsonp</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
@@ -315,13 +309,11 @@
                 <version>${project.version}</version>
             </dependency>
 
-
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>jstl</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
@@ -394,19 +386,16 @@
                 <artifactId>websocket</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>xa</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>commons-httpclient</groupId>
                 <artifactId>commons-httpclient</artifactId>
                 <version>3.1</version>
             </dependency>
-
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
@@ -444,32 +433,17 @@
             </dependency>
 
             <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>1.7.0.Alpha10</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
                 <version>5.9.1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            
 
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
-                <version>1.7.0.Alpha10</version>
+                <version>${arquillian.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -690,6 +664,20 @@
 
     </dependencies>
 
+    <pluginRepositories>
+        <pluginRepository>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>oss.sonatype.org</id>
+            <name>Jetty Snapshot Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/jetty-snapshots/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
     <build>
         <pluginManagement>
             <plugins>
@@ -702,16 +690,19 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.10.1</version>
+                    <configuration>
+                        <release>11</release>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.0.0-M7</version>
+                    <version>3.0.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>3.0.0-M7</version>
+                    <version>3.0.0</version>
                 </plugin>
                 <plugin>
                     <groupId>com.sun.xml.ws</groupId>
@@ -792,21 +783,14 @@
                     <artifactId>tck-extract-tests-maven-plugin</artifactId>
                     <version>1.2.0-SNAPSHOT</version>
                     <configuration>
-                      <tckTestsFile>${project.build.outputDirectory}/META-INF/tck-tests.txt</tckTestsFile>
+                        <tckTestsFile>${project.build.outputDirectory}/META-INF/tck-tests.txt</tckTestsFile>
                     </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
 
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <release>11</release>
-                </configuration>
-            </plugin>
-            <!-- Sets minimal Maven version to 3.5.4 -->
+            <!-- Sets minimal Maven version to 3.6.3 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -827,12 +811,36 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <version>2.36.0</version>
+                <configuration>
+                    <pom>
+                        <includes>
+                            <include>pom.xml</include>
+                        </includes>
+                        <sortPom>
+                            <nrOfIndentSpace>4</nrOfIndentSpace>
+                            <!-- default see https://github.com/Ekryd/sortpom/wiki/PredefinedSortOrderProfiles -->
+                            <predefinedSortOrder>recommended_2008_06</predefinedSortOrder>
+                            <!-- Sort properties -->
+                            <sortProperties>true</sortProperties>
+                            <!-- Sort modules -->
+                            <sortModules>true</sortModules>
+                            <!-- Sort plugin executions -->
+                            <sortExecutions>true</sortExecutions>
+                        </sortPom>
+                    </pom>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>check-spotless-poms</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>validate</phase>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
@@ -845,19 +853,5 @@
             </modules>
         </profile>
     </profiles>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>oss.sonatype.org</id>
-            <name>Jetty Snapshot Repository</name>
-            <url>https://oss.sonatype.org/content/repositories/jetty-snapshots/</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </pluginRepository>
-    </pluginRepositories>
 
 </project>

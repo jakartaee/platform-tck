@@ -17,7 +17,6 @@
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
 -->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -64,10 +63,10 @@
                 <executions>
                     <execution>
                         <id>unpack</id>
-                        <phase>validate</phase>
                         <goals>
                             <goal>unpack</goal>
                         </goals>
+                        <phase>validate</phase>
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
@@ -90,12 +89,44 @@
                 <groupId>com.sun.xml.ws</groupId>
                 <artifactId>jaxws-maven-plugin</artifactId>
                 <executions>
+
                     <execution>
-                        <id>com.sun.ts.tests.jws.webmethod.webmethod1.client</id>
-                        <phase>generate-sources</phase>
+                        <id>com.sun.ts.tests.jws.handlerchain.client</id>
                         <goals>
                             <goal>wsimport</goal>
                         </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <staleFile>${jaxwsStaleDirectory}/com.sun.ts.tests.jws.handlerchain.client</staleFile>
+                            <packageName>com.sun.ts.tests.jws.handlerchain.client</packageName>
+                            <wsdlFiles>
+                                <wsdlFile>${project.build.directory}/jws/wsdls/com/sun/ts/tests/jws/handlerchain/server/HandlerChainWebServiceService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>com.sun.ts.tests.jws.oneway.client</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <staleFile>${jaxwsStaleDirectory}/com.sun.ts.tests.jws.oneway.client</staleFile>
+                            <packageName>com.sun.ts.tests.jws.oneway.client</packageName>
+                            <wsdlFiles>
+                                <wsdlFile>${project.build.directory}/jws/wsdls/com/sun/ts/tests/jws/oneway/server/OnewayWebServiceService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>com.sun.ts.tests.jws.webmethod.webmethod1.client</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
                         <configuration>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
                             <staleFile>${jaxwsStaleDirectory}/com.sun.ts.tests.jws.webmethod.webmethod1.client</staleFile>
@@ -107,59 +138,11 @@
                     </execution>
 
                     <execution>
-                        <id>com.sun.ts.tests.jws.webparam.webparam1.client</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <staleFile>${jaxwsStaleDirectory}/com.sun.ts.tests.jws.webparam.webparam1.client</staleFile>
-                            <packageName>com.sun.ts.tests.jws.webparam.webparam1.client</packageName>
-                            <wsdlFiles>
-                                <wsdlFile>${project.build.directory}/jws/wsdls/com/sun/ts/tests/jws/webparam/webparam1/server/WebParamWebServiceService.wsdl</wsdlFile>
-                            </wsdlFiles>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>com.sun.ts.tests.jws.webparam.webparam2.client</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <staleFile>${jaxwsStaleDirectory}/com.sun.ts.tests.jws.webparam.webparam2.client</staleFile>
-                            <packageName>com.sun.ts.tests.jws.webparam.webparam2.client</packageName>
-                            <wsdlFiles>
-                                <wsdlFile>${project.build.directory}/jws/wsdls/com/sun/ts/tests/jws/webparam/webparam2/server/WebParam2WebServiceService.wsdl</wsdlFile>
-                            </wsdlFiles>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>com.sun.ts.tests.jws.webparam.webparam3.client</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <staleFile>${jaxwsStaleDirectory}/com.sun.ts.tests.jws.webparam.webparam3.client</staleFile>
-                            <packageName>com.sun.ts.tests.jws.webparam.webparam3.client</packageName>
-                            <wsdlFiles>
-                                <wsdlFile>${project.build.directory}/jws/wsdls/com/sun/ts/tests/jws/webparam/webparam3/server/WebParam3WebServiceService.wsdl</wsdlFile>
-                            </wsdlFiles>
-                        </configuration>
-                    </execution>
-
-                    <execution>
                         <id>com.sun.ts.tests.jws.webmethod.webmethod2.client</id>
-                        <phase>generate-sources</phase>
                         <goals>
                             <goal>wsimport</goal>
                         </goals>
+                        <phase>generate-sources</phase>
                         <configuration>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
                             <staleFile>${jaxwsStaleDirectory}/com.sun.ts.tests.jws.webmethod.webmethod2.client</staleFile>
@@ -172,10 +155,10 @@
 
                     <execution>
                         <id>com.sun.ts.tests.jws.webmethod.webmethod3.client</id>
-                        <phase>generate-sources</phase>
                         <goals>
                             <goal>wsimport</goal>
                         </goals>
+                        <phase>generate-sources</phase>
                         <configuration>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
                             <staleFile>${jaxwsStaleDirectory}/com.sun.ts.tests.jws.webmethod.webmethod3.client</staleFile>
@@ -187,27 +170,59 @@
                     </execution>
 
                     <execution>
-                        <id>com.sun.ts.tests.jws.oneway.client</id>
-                        <phase>generate-sources</phase>
+                        <id>com.sun.ts.tests.jws.webparam.webparam1.client</id>
                         <goals>
                             <goal>wsimport</goal>
                         </goals>
+                        <phase>generate-sources</phase>
                         <configuration>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <staleFile>${jaxwsStaleDirectory}/com.sun.ts.tests.jws.oneway.client</staleFile>
-                            <packageName>com.sun.ts.tests.jws.oneway.client</packageName>
+                            <staleFile>${jaxwsStaleDirectory}/com.sun.ts.tests.jws.webparam.webparam1.client</staleFile>
+                            <packageName>com.sun.ts.tests.jws.webparam.webparam1.client</packageName>
                             <wsdlFiles>
-                                <wsdlFile>${project.build.directory}/jws/wsdls/com/sun/ts/tests/jws/oneway/server/OnewayWebServiceService.wsdl</wsdlFile>
+                                <wsdlFile>${project.build.directory}/jws/wsdls/com/sun/ts/tests/jws/webparam/webparam1/server/WebParamWebServiceService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>com.sun.ts.tests.jws.webparam.webparam2.client</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <staleFile>${jaxwsStaleDirectory}/com.sun.ts.tests.jws.webparam.webparam2.client</staleFile>
+                            <packageName>com.sun.ts.tests.jws.webparam.webparam2.client</packageName>
+                            <wsdlFiles>
+                                <wsdlFile>${project.build.directory}/jws/wsdls/com/sun/ts/tests/jws/webparam/webparam2/server/WebParam2WebServiceService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>com.sun.ts.tests.jws.webparam.webparam3.client</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <staleFile>${jaxwsStaleDirectory}/com.sun.ts.tests.jws.webparam.webparam3.client</staleFile>
+                            <packageName>com.sun.ts.tests.jws.webparam.webparam3.client</packageName>
+                            <wsdlFiles>
+                                <wsdlFile>${project.build.directory}/jws/wsdls/com/sun/ts/tests/jws/webparam/webparam3/server/WebParam3WebServiceService.wsdl</wsdlFile>
                             </wsdlFiles>
                         </configuration>
                     </execution>
 
                     <execution>
                         <id>com.sun.ts.tests.jws.webresult.webresult1.client</id>
-                        <phase>generate-sources</phase>
                         <goals>
                             <goal>wsimport</goal>
                         </goals>
+                        <phase>generate-sources</phase>
                         <configuration>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
                             <staleFile>${jaxwsStaleDirectory}/com.sun.ts.tests.jws.webresult.webresult1.client</staleFile>
@@ -220,10 +235,10 @@
 
                     <execution>
                         <id>com.sun.ts.tests.jws.webresult.webresult2.client</id>
-                        <phase>generate-sources</phase>
                         <goals>
                             <goal>wsimport</goal>
                         </goals>
+                        <phase>generate-sources</phase>
                         <configuration>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
                             <staleFile>${jaxwsStaleDirectory}/com.sun.ts.tests.jws.webresult.webresult2.client</staleFile>
@@ -236,10 +251,10 @@
 
                     <execution>
                         <id>com.sun.ts.tests.jws.webresult.webresult3.client</id>
-                        <phase>generate-sources</phase>
                         <goals>
                             <goal>wsimport</goal>
                         </goals>
+                        <phase>generate-sources</phase>
                         <configuration>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
                             <staleFile>${jaxwsStaleDirectory}/com.sun.ts.tests.jws.webresult.webresult3.client</staleFile>
@@ -252,10 +267,10 @@
 
                     <execution>
                         <id>com.sun.ts.tests.jws.webservice.webservice1.client</id>
-                        <phase>generate-sources</phase>
                         <goals>
                             <goal>wsimport</goal>
                         </goals>
+                        <phase>generate-sources</phase>
                         <configuration>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
                             <staleFile>${jaxwsStaleDirectory}/com.sun.ts.tests.jws.webservice.webservice1.client</staleFile>
@@ -268,10 +283,10 @@
 
                     <execution>
                         <id>com.sun.ts.tests.jws.webservice.webservice2.client</id>
-                        <phase>generate-sources</phase>
                         <goals>
                             <goal>wsimport</goal>
                         </goals>
+                        <phase>generate-sources</phase>
                         <configuration>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
                             <staleFile>${jaxwsStaleDirectory}/com.sun.ts.tests.jws.webservice.webservice2.client</staleFile>
@@ -284,10 +299,10 @@
 
                     <execution>
                         <id>com.sun.ts.tests.jws.webservice.webservice3.client</id>
-                        <phase>generate-sources</phase>
                         <goals>
                             <goal>wsimport</goal>
                         </goals>
+                        <phase>generate-sources</phase>
                         <configuration>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
                             <staleFile>${jaxwsStaleDirectory}/com.sun.ts.tests.jws.webservice.webservice3.client</staleFile>
@@ -300,10 +315,10 @@
 
                     <execution>
                         <id>com.sun.ts.tests.jws.webservice.webservice4.client</id>
-                        <phase>generate-sources</phase>
                         <goals>
                             <goal>wsimport</goal>
                         </goals>
+                        <phase>generate-sources</phase>
                         <configuration>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
                             <staleFile>${jaxwsStaleDirectory}/com.sun.ts.tests.jws.webservice.webservice4.client</staleFile>
@@ -313,23 +328,6 @@
                             </wsdlFiles>
                         </configuration>
                     </execution>
-
-                    <execution>
-                        <id>com.sun.ts.tests.jws.handlerchain.client</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <staleFile>${jaxwsStaleDirectory}/com.sun.ts.tests.jws.handlerchain.client</staleFile>
-                            <packageName>com.sun.ts.tests.jws.handlerchain.client</packageName>
-                            <wsdlFiles>
-                                <wsdlFile>${project.build.directory}/jws/wsdls/com/sun/ts/tests/jws/handlerchain/server/HandlerChainWebServiceService.wsdl</wsdlFile>
-                            </wsdlFiles>
-                        </configuration>
-                    </execution>
-
 
                 </executions>
             </plugin>

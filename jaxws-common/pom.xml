@@ -17,7 +17,6 @@
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
 -->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -57,24 +56,11 @@
                 <artifactId>jaxws-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>service-clientview</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>wsgen</goal>
-                        </goals>
-                        <configuration>
-                            <sei>com.sun.ts.tests.jaxws.sharedwebservices.rpclitservice.J2WRLSharedEndpointImpl</sei>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/sharedwebservices/rpclitservice</resourceDestDir>
-                        </configuration>
-                    </execution>
-                    <execution>
                         <id>service-addnumber</id>
-                        <phase>compile</phase>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
+                        <phase>compile</phase>
                         <configuration>
                             <sei>com.sun.ts.tests.jaxws.wsa.j2w.document.literal.epr.AddNumbersImpl</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
@@ -83,237 +69,25 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>service-nosei</id>
-                        <phase>compile</phase>
+                        <id>service-clientview</id>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
-                        <configuration>
-                            <sei>com.sun.ts.tests.jaxws.ee.j2w.rpc.literal.nosei.server.EchoImpl</sei>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/ee/j2w/rpc/literal/nosei/server</resourceDestDir>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>service-document-webmethod</id>
                         <phase>compile</phase>
-                        <goals>
-                            <goal>wsgen</goal>
-                        </goals>
                         <configuration>
-                            <sei>com.sun.ts.tests.jaxws.ee.j2w.document.literal.webmethod.server.TestImpl</sei>
+                            <sei>com.sun.ts.tests.jaxws.sharedwebservices.rpclitservice.J2WRLSharedEndpointImpl</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
                             <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/ee/j2w/document/literal/webmethod/server</resourceDestDir>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>service-shared-doclitservice</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>wsgen</goal>
-                        </goals>
-                        <configuration>
-                            <sei>com.sun.ts.tests.jaxws.sharedwebservices.doclitservice.J2WDLSharedEndpointImpl</sei>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/sharedwebservices/doclitservice</resourceDestDir>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>service-shared-simpleservice</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>wsgen</goal>
-                        </goals>
-                        <configuration>
-                            <sei>com.sun.ts.tests.jaxws.sharedwebservices.simpleservice.SimpleEndpointImpl</sei>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/sharedwebservices/simpleservice/</resourceDestDir>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>service-sessionmaintaintest</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>wsgen</goal>
-                        </goals>
-                        <configuration>
-                            <sei>com.sun.ts.tests.jaxws.ee.j2w.document.literal.sessionmaintaintest.server.TestImpl</sei>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/ee/j2w/document/literal/sessionmaintaintest/server</resourceDestDir>
-                        </configuration>
-                    </execution>
-
-
-                    <execution>
-                        <id>service-faultservice</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>wsgen</goal>
-                        </goals>
-                        <configuration>
-                            <sei>com.sun.ts.tests.jaxws.sharedwebservices.faultservice.SoapFaultTestImpl</sei>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/sharedwebservices/faultservice</resourceDestDir>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>service-marshalltest</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>wsgen</goal>
-                        </goals>
-                        <configuration>
-                            <sei>com.sun.ts.tests.jaxws.ee.j2w.document.literal.marshalltest.server.MarshallTestImpl</sei>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/ee/j2w/document/literal/marshalltest/server</resourceDestDir>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>service-document-typesubstitution</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>wsgen</goal>
-                        </goals>
-                        <configuration>
-                            <sei>com.sun.ts.tests.jaxws.wsa.j2w.document.literal.typesubstitution.CarDealerImpl</sei>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/wsa/j2w/document/literal/typesubstitution</resourceDestDir>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>service-document-AddNumbersImpl3</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>wsgen</goal>
-                        </goals>
-                        <configuration>
-                            <sei>com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.AddNumbersImpl3</sei>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/wsa/j2w/document/literal/anonymous</resourceDestDir>
-                        </configuration>
-                    </execution>
-
-
-                    <execution>
-                        <id>service-document-AddNumbersImpl4</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>wsgen</goal>
-                        </goals>
-                        <configuration>
-                            <sei>com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.AddNumbersImpl4</sei>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/wsa/j2w/document/literal/anonymous</resourceDestDir>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>service-document-refps-AddNumbersImpl4</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>wsgen</goal>
-                        </goals>
-                        <configuration>
-                            <sei>com.sun.ts.tests.jaxws.wsa.j2w.document.literal.refps.AddNumbersImpl</sei>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/wsa/j2w/document/literal/refps</resourceDestDir>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>service-document-action-AddNumbersImpl</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>wsgen</goal>
-                        </goals>
-                        <configuration>
-                            <sei>com.sun.ts.tests.jaxws.wsa.j2w.document.literal.action.AddNumbersImpl</sei>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/wsa/j2w/document/literal/action</resourceDestDir>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>service-document-addressingfeature-AddressingFeatureTestImpl1</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>wsgen</goal>
-                        </goals>
-                        <configuration>
-                            <sei>com.sun.ts.tests.jaxws.wsa.j2w.document.literal.addressingfeature.AddressingFeatureTestImpl1</sei>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/wsa/j2w/document/literal/addressingfeature</resourceDestDir>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>service-document-addressingfeature-AddressingFeatureTestImpl2</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>wsgen</goal>
-                        </goals>
-                        <configuration>
-                            <sei>com.sun.ts.tests.jaxws.wsa.j2w.document.literal.addressingfeature.AddressingFeatureTestImpl2</sei>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/wsa/j2w/document/literal/addressingfeature</resourceDestDir>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>service-document-addressingfeature-AddressingFeatureTestImpl3</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>wsgen</goal>
-                        </goals>
-                        <configuration>
-                            <sei>com.sun.ts.tests.jaxws.wsa.j2w.document.literal.addressingfeature.AddressingFeatureTestImpl3</sei>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/wsa/j2w/document/literal/addressingfeature</resourceDestDir>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>service-document-addressingfeature-AddressingFeatureTestImpl4</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>wsgen</goal>
-                        </goals>
-                        <configuration>
-                            <sei>com.sun.ts.tests.jaxws.wsa.j2w.document.literal.addressingfeature.AddressingFeatureTestImpl4</sei>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/wsa/j2w/document/literal/addressingfeature</resourceDestDir>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/sharedwebservices/rpclitservice</resourceDestDir>
                         </configuration>
                     </execution>
 
                     <execution>
                         <id>service-com.sun.ts.tests.jaxws.ee.j2w.document.literal.nosei.server</id>
-                        <phase>compile</phase>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
+                        <phase>compile</phase>
                         <configuration>
                             <sei>com.sun.ts.tests.jaxws.ee.j2w.document.literal.nosei.server.EchoImpl</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
@@ -324,10 +98,10 @@
 
                     <execution>
                         <id>service-com.sun.ts.tests.jaxws.ee.j2w.rpc.literal.handlerchaintest1</id>
-                        <phase>compile</phase>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
+                        <phase>compile</phase>
                         <configuration>
                             <sei>com.sun.ts.tests.jaxws.ee.j2w.rpc.literal.handlerchaintest1.HandlerChainTestImpl</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
@@ -338,10 +112,10 @@
 
                     <execution>
                         <id>service-com.sun.ts.tests.jaxws.ee.j2w.rpc.literal.handlerchaintest2</id>
-                        <phase>compile</phase>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
+                        <phase>compile</phase>
                         <configuration>
                             <sei>com.sun.ts.tests.jaxws.ee.j2w.rpc.literal.handlerchaintest2.HandlerChainTestImpl</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
@@ -351,25 +125,11 @@
                     </execution>
 
                     <execution>
-                        <id>service-com.sun.ts.tests.jaxws.wsa.j2w.document.literal.requestresponse</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>wsgen</goal>
-                        </goals>
-                        <configuration>
-                            <sei>com.sun.ts.tests.jaxws.wsa.j2w.document.literal.requestresponse.AddNumbersImpl</sei>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/wsa/j2w/document/literal/requestresponse</resourceDestDir>
-                        </configuration>
-                    </execution>
-
-                    <execution>
                         <id>service-com.sun.ts.tests.jaxws.jaxws23.wsa.j2w.document.literal.anonymous.AddNumbersImpl23001</id>
-                        <phase>compile</phase>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
+                        <phase>compile</phase>
                         <configuration>
                             <sei>com.sun.ts.tests.jaxws.jaxws23.wsa.j2w.document.literal.anonymous.AddNumbersImpl23001</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
@@ -380,15 +140,252 @@
 
                     <execution>
                         <id>service-com.sun.ts.tests.jaxws.jaxws23.wsa.j2w.document.literal.anonymous.AddNumbersImpl23002</id>
-                        <phase>compile</phase>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
+                        <phase>compile</phase>
                         <configuration>
                             <sei>com.sun.ts.tests.jaxws.jaxws23.wsa.j2w.document.literal.anonymous.AddNumbersImpl23002</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
                             <genWsdl>true</genWsdl>
                             <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/jaxws23/wsa/j2w/document/literal/anonymous</resourceDestDir>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>service-com.sun.ts.tests.jaxws.wsa.j2w.document.literal.requestresponse</id>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <sei>com.sun.ts.tests.jaxws.wsa.j2w.document.literal.requestresponse.AddNumbersImpl</sei>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <genWsdl>true</genWsdl>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/wsa/j2w/document/literal/requestresponse</resourceDestDir>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>service-document-AddNumbersImpl3</id>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <sei>com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.AddNumbersImpl3</sei>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <genWsdl>true</genWsdl>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/wsa/j2w/document/literal/anonymous</resourceDestDir>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>service-document-AddNumbersImpl4</id>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <sei>com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.AddNumbersImpl4</sei>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <genWsdl>true</genWsdl>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/wsa/j2w/document/literal/anonymous</resourceDestDir>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>service-document-action-AddNumbersImpl</id>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <sei>com.sun.ts.tests.jaxws.wsa.j2w.document.literal.action.AddNumbersImpl</sei>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <genWsdl>true</genWsdl>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/wsa/j2w/document/literal/action</resourceDestDir>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>service-document-addressingfeature-AddressingFeatureTestImpl1</id>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <sei>com.sun.ts.tests.jaxws.wsa.j2w.document.literal.addressingfeature.AddressingFeatureTestImpl1</sei>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <genWsdl>true</genWsdl>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/wsa/j2w/document/literal/addressingfeature</resourceDestDir>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>service-document-addressingfeature-AddressingFeatureTestImpl2</id>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <sei>com.sun.ts.tests.jaxws.wsa.j2w.document.literal.addressingfeature.AddressingFeatureTestImpl2</sei>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <genWsdl>true</genWsdl>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/wsa/j2w/document/literal/addressingfeature</resourceDestDir>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>service-document-addressingfeature-AddressingFeatureTestImpl3</id>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <sei>com.sun.ts.tests.jaxws.wsa.j2w.document.literal.addressingfeature.AddressingFeatureTestImpl3</sei>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <genWsdl>true</genWsdl>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/wsa/j2w/document/literal/addressingfeature</resourceDestDir>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>service-document-addressingfeature-AddressingFeatureTestImpl4</id>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <sei>com.sun.ts.tests.jaxws.wsa.j2w.document.literal.addressingfeature.AddressingFeatureTestImpl4</sei>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <genWsdl>true</genWsdl>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/wsa/j2w/document/literal/addressingfeature</resourceDestDir>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>service-document-refps-AddNumbersImpl4</id>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <sei>com.sun.ts.tests.jaxws.wsa.j2w.document.literal.refps.AddNumbersImpl</sei>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <genWsdl>true</genWsdl>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/wsa/j2w/document/literal/refps</resourceDestDir>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>service-document-typesubstitution</id>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <sei>com.sun.ts.tests.jaxws.wsa.j2w.document.literal.typesubstitution.CarDealerImpl</sei>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <genWsdl>true</genWsdl>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/wsa/j2w/document/literal/typesubstitution</resourceDestDir>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>service-document-webmethod</id>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <sei>com.sun.ts.tests.jaxws.ee.j2w.document.literal.webmethod.server.TestImpl</sei>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <genWsdl>true</genWsdl>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/ee/j2w/document/literal/webmethod/server</resourceDestDir>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>service-faultservice</id>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <sei>com.sun.ts.tests.jaxws.sharedwebservices.faultservice.SoapFaultTestImpl</sei>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <genWsdl>true</genWsdl>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/sharedwebservices/faultservice</resourceDestDir>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>service-marshalltest</id>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <sei>com.sun.ts.tests.jaxws.ee.j2w.document.literal.marshalltest.server.MarshallTestImpl</sei>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <genWsdl>true</genWsdl>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/ee/j2w/document/literal/marshalltest/server</resourceDestDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>service-nosei</id>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <sei>com.sun.ts.tests.jaxws.ee.j2w.rpc.literal.nosei.server.EchoImpl</sei>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <genWsdl>true</genWsdl>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/ee/j2w/rpc/literal/nosei/server</resourceDestDir>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>service-sessionmaintaintest</id>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <sei>com.sun.ts.tests.jaxws.ee.j2w.document.literal.sessionmaintaintest.server.TestImpl</sei>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <genWsdl>true</genWsdl>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/ee/j2w/document/literal/sessionmaintaintest/server</resourceDestDir>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>service-shared-doclitservice</id>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <sei>com.sun.ts.tests.jaxws.sharedwebservices.doclitservice.J2WDLSharedEndpointImpl</sei>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <genWsdl>true</genWsdl>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/sharedwebservices/doclitservice</resourceDestDir>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>service-shared-simpleservice</id>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <sei>com.sun.ts.tests.jaxws.sharedwebservices.simpleservice.SimpleEndpointImpl</sei>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <genWsdl>true</genWsdl>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jaxws/sharedwebservices/simpleservice/</resourceDestDir>
                         </configuration>
                     </execution>
 

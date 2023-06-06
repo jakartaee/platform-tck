@@ -17,7 +17,6 @@
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
 -->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -50,55 +49,40 @@
                 <artifactId>jaxws-maven-plugin</artifactId>
                 <executions>
 
-
                     <execution>
-                        <id>com.sun.ts.tests.jws.webparam.webparam1.server</id>
-                        <phase>compile</phase>
+                        <id>com.sun.ts.tests.jws.handlerchain.server</id>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
+                        <phase>compile</phase>
                         <configuration>
-                            <sei>com.sun.ts.tests.jws.webparam.webparam1.server.webParamWebService</sei>
+                            <sei>com.sun.ts.tests.jws.handlerchain.server.HandlerChainWebService</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
                             <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jws/webparam/webparam1/server</resourceDestDir>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jws/handlerchain/server</resourceDestDir>
                         </configuration>
                     </execution>
 
                     <execution>
-                        <id>com.sun.ts.tests.jws.webparam.webparam2.server</id>
-                        <phase>compile</phase>
+                        <id>com.sun.ts.tests.jws.oneway.server</id>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
-                        <configuration>
-                            <sei>com.sun.ts.tests.jws.webparam.webparam2.server.webParam2WebService</sei>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jws/webparam/webparam2/server</resourceDestDir>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>com.sun.ts.tests.jws.webparam.webparam3.server</id>
                         <phase>compile</phase>
-                        <goals>
-                            <goal>wsgen</goal>
-                        </goals>
                         <configuration>
-                            <sei>com.sun.ts.tests.jws.webparam.webparam3.server.webParam3WebService</sei>
+                            <sei>com.sun.ts.tests.jws.oneway.server.OnewayWebService</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
                             <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jws/webparam/webparam3/server</resourceDestDir>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jws/oneway/server</resourceDestDir>
                         </configuration>
                     </execution>
 
                     <execution>
                         <id>com.sun.ts.tests.jws.webmethod.webmethod1.server</id>
-                        <phase>compile</phase>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
+                        <phase>compile</phase>
                         <configuration>
                             <sei>com.sun.ts.tests.jws.webmethod.webmethod1.server.defaultWebMethodWebService</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
@@ -109,10 +93,10 @@
 
                     <execution>
                         <id>com.sun.ts.tests.jws.webmethod.webmethod2.server</id>
-                        <phase>compile</phase>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
+                        <phase>compile</phase>
                         <configuration>
                             <sei>com.sun.ts.tests.jws.webmethod.webmethod2.server.defaultWebMethod2WebService</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
@@ -123,10 +107,10 @@
 
                     <execution>
                         <id>com.sun.ts.tests.jws.webmethod.webmethod3.server</id>
-                        <phase>compile</phase>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
+                        <phase>compile</phase>
                         <configuration>
                             <sei>com.sun.ts.tests.jws.webmethod.webmethod3.server.webMethodWebService</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
@@ -136,25 +120,53 @@
                     </execution>
 
                     <execution>
-                        <id>com.sun.ts.tests.jws.oneway.server</id>
-                        <phase>compile</phase>
+                        <id>com.sun.ts.tests.jws.webparam.webparam1.server</id>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
+                        <phase>compile</phase>
                         <configuration>
-                            <sei>com.sun.ts.tests.jws.oneway.server.OnewayWebService</sei>
+                            <sei>com.sun.ts.tests.jws.webparam.webparam1.server.webParamWebService</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
                             <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jws/oneway/server</resourceDestDir>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jws/webparam/webparam1/server</resourceDestDir>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>com.sun.ts.tests.jws.webparam.webparam2.server</id>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <sei>com.sun.ts.tests.jws.webparam.webparam2.server.webParam2WebService</sei>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <genWsdl>true</genWsdl>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jws/webparam/webparam2/server</resourceDestDir>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>com.sun.ts.tests.jws.webparam.webparam3.server</id>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <sei>com.sun.ts.tests.jws.webparam.webparam3.server.webParam3WebService</sei>
+                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
+                            <genWsdl>true</genWsdl>
+                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jws/webparam/webparam3/server</resourceDestDir>
                         </configuration>
                     </execution>
 
                     <execution>
                         <id>com.sun.ts.tests.jws.webresult.webresult1.server</id>
-                        <phase>compile</phase>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
+                        <phase>compile</phase>
                         <configuration>
                             <sei>com.sun.ts.tests.jws.webresult.webresult1.server.webResultWebService</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
@@ -165,10 +177,10 @@
 
                     <execution>
                         <id>com.sun.ts.tests.jws.webresult.webresult2.server</id>
-                        <phase>compile</phase>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
+                        <phase>compile</phase>
                         <configuration>
                             <sei>com.sun.ts.tests.jws.webresult.webresult2.server.webResult2WebService</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
@@ -179,10 +191,10 @@
 
                     <execution>
                         <id>com.sun.ts.tests.jws.webresult.webresult3.server</id>
-                        <phase>compile</phase>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
+                        <phase>compile</phase>
                         <configuration>
                             <sei>com.sun.ts.tests.jws.webresult.webresult3.server.webResult3WebService</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
@@ -191,13 +203,12 @@
                         </configuration>
                     </execution>
 
-
                     <execution>
                         <id>com.sun.ts.tests.jws.webservice.webservice1.server</id>
-                        <phase>compile</phase>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
+                        <phase>compile</phase>
                         <configuration>
                             <sei>com.sun.ts.tests.jws.webservice.webservice1.server.defaultWebService</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
@@ -208,10 +219,10 @@
 
                     <execution>
                         <id>com.sun.ts.tests.jws.webservice.webservice2.server</id>
-                        <phase>compile</phase>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
+                        <phase>compile</phase>
                         <configuration>
                             <sei>com.sun.ts.tests.jws.webservice.webservice2.server.endpointInterfaceWebService</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
@@ -222,10 +233,10 @@
 
                     <execution>
                         <id>com.sun.ts.tests.jws.webservice.webservice3.server</id>
-                        <phase>compile</phase>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
+                        <phase>compile</phase>
                         <configuration>
                             <sei>com.sun.ts.tests.jws.webservice.webservice3.server.nameServiceNameTargetNamespaceWebService</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
@@ -236,29 +247,15 @@
 
                     <execution>
                         <id>com.sun.ts.tests.jws.webservice.webservice4.server</id>
-                        <phase>compile</phase>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
+                        <phase>compile</phase>
                         <configuration>
                             <sei>com.sun.ts.tests.jws.webservice.webservice4.server.endpointInterface2WebService</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
                             <genWsdl>true</genWsdl>
                             <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jws/webservice/webservice4/server</resourceDestDir>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>com.sun.ts.tests.jws.handlerchain.server</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>wsgen</goal>
-                        </goals>
-                        <configuration>
-                            <sei>com.sun.ts.tests.jws.handlerchain.server.HandlerChainWebService</sei>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.outputDirectory}/com/sun/ts/tests/jws/handlerchain/server</resourceDestDir>
                         </configuration>
                     </execution>
 

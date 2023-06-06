@@ -17,7 +17,6 @@
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
 -->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -27,18 +26,17 @@
         <version>10.0.0-SNAPSHOT</version>
     </parent>
 
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <junit.jupiter.version>[5.7.2, 5.8-A00)</junit.jupiter.version>
-    </properties>
-
-
     <artifactId>jaxrs-platform-tck</artifactId>
     <packaging>jar</packaging>
 
     <name>JAXRS Tests</name>
     <description>JAXRS Tests for Jakarta EE Platform</description>
+
+    <properties>
+        <junit.jupiter.version>[5.7.2, 5.8-A00)</junit.jupiter.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -52,7 +50,7 @@
             <artifactId>runtime</artifactId>
             <version>${project.version}</version>
         </dependency>
-        
+
         <dependency>
             <groupId>commons-httpclient</groupId>
             <artifactId>commons-httpclient</artifactId>
@@ -145,7 +143,7 @@
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-library</artifactId>
-            <version>[2.2, 2.3-A00)</version>
+            <version>2.2</version>
         </dependency>
 
         <dependency>
@@ -159,14 +157,5 @@
             <artifactId>jakarta.activation-api</artifactId>
             <version>2.1.0</version>
         </dependency>
-
     </dependencies>
-    
-    <build>
-     <resources>
-        <resource>
-          <directory>src/main/resources</directory>
-        </resource>
-      </resources>
-    </build>
 </project>

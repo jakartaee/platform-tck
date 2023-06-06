@@ -17,7 +17,6 @@
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
 -->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -113,10 +112,10 @@
                 <executions>
                     <execution>
                         <id>hello-service-clientview</id>
-                        <phase>generate-sources</phase>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
+                        <phase>generate-sources</phase>
                         <configuration>
                             <sei>com.sun.ts.tests.ejb30.webservice.clientview.HelloImpl</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
@@ -126,10 +125,10 @@
                     </execution>
                     <execution>
                         <id>hello-service-interceptor</id>
-                        <phase>generate-sources</phase>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
+                        <phase>generate-sources</phase>
                         <configuration>
                             <sei>com.sun.ts.tests.ejb30.webservice.interceptor.HelloImpl</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
@@ -139,10 +138,10 @@
                     </execution>
                     <execution>
                         <id>hello-service-wscontext</id>
-                        <phase>generate-sources</phase>
                         <goals>
                             <goal>wsgen</goal>
                         </goals>
+                        <phase>generate-sources</phase>
                         <configuration>
                             <sei>com.sun.ts.tests.ejb30.webservice.wscontext.HelloImpl</sei>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
@@ -152,10 +151,10 @@
                     </execution>
                     <execution>
                         <id>ws-services</id>
-                        <phase>process-sources</phase>
                         <goals>
                             <goal>wsimport</goal>
                         </goals>
+                        <phase>process-sources</phase>
                         <configuration>
                             <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
                             <staleFile>${jaxwsStaleDirectory}/com/sun/ts/tests/ejb30/webservice</staleFile>

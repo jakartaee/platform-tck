@@ -9,50 +9,48 @@
   ~ SPDX-License-Identifier: Apache-2.0
   ~
   -->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>jakarta.ee.tck.coreprofile</groupId>
-    <artifactId>core-tck-parent</artifactId>
-    <version>10.0.0-SNAPSHOT</version>
-  </parent>
+    <parent>
+        <groupId>jakarta.ee.tck.coreprofile</groupId>
+        <artifactId>core-tck-parent</artifactId>
+        <version>10.0.0-SNAPSHOT</version>
+    </parent>
 
-  <artifactId>rest-tck-suite</artifactId>
-  <name>RESTful TCK Suite for Jakarta Core Profile TCK</name>
-  <description>This module contains a Junit 5 Suite and Extension to limit the tests from the RESTful TCK</description>
+    <artifactId>rest-tck-suite</artifactId>
+    <name>RESTful TCK Suite for Jakarta Core Profile TCK</name>
+    <description>This module contains a Junit 5 Suite and Extension to limit the tests from the RESTful TCK</description>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.junit.platform</groupId>
-      <artifactId>junit-platform-suite-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.platform</groupId>
-      <artifactId>junit-platform-suite</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-    </dependency>
-  </dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+        </dependency>
+    </dependencies>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <goals>
-              <goal>jar-no-fork</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
-
