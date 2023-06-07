@@ -31,10 +31,6 @@
 
     <name>JSP</name>
     <description>JSP</description>
-    <properties>
-        <junit.jupiter.version>[5.7.2, 5.8-A00)</junit.jupiter.version>
-    </properties>
-    
 
     <dependencies>
         <dependency>

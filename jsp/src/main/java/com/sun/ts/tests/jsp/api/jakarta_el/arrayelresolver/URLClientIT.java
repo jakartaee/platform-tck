@@ -40,7 +40,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 
 @ExtendWith(ArquillianExtension.class)
-public class URLClient extends AbstractUrlClient {
+public class URLClientIT extends AbstractUrlClient {
 
   /**
    * Entry point for different-VM execution. It should delegate to method
@@ -48,7 +48,7 @@ public class URLClient extends AbstractUrlClient {
    * any test configuration.
    */
 
-  public URLClient() throws Exception {
+  public URLClientIT() throws Exception {
     setup();
     setContextRoot("/jsp_arrayelresolver_web");
     setTestJsp("ArrayELResolverTest");
@@ -57,9 +57,9 @@ public class URLClient extends AbstractUrlClient {
   @Deployment(testable = false)
   public static WebArchive createDeployment() throws IOException {
 
-    InputStream inStream = URLClient.class.getClassLoader().getResourceAsStream("com/sun/ts/tests/jsp/api/jakarta_el/arrayelresolver/jsp_arrayelresolver_web.xml");
+    InputStream inStream = URLClientIT.class.getClassLoader().getResourceAsStream("com/sun/ts/tests/jsp/api/jakarta_el/arrayelresolver/jsp_arrayelresolver_web.xml");
     String webXml = toString(inStream);
-    InputStream jspFileStream = URLClient.class.getClassLoader().getResourceAsStream("com/sun/ts/tests/jsp/api/jakarta_el/arrayelresolver/ArrayELResolverTest.jsp");
+    InputStream jspFileStream = URLClientIT.class.getClassLoader().getResourceAsStream("com/sun/ts/tests/jsp/api/jakarta_el/arrayelresolver/ArrayELResolverTest.jsp");
     String jspFile = toString(jspFileStream);
 
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_arrayelresolver_web.war");
@@ -67,7 +67,7 @@ public class URLClient extends AbstractUrlClient {
             com.sun.ts.tests.common.el.api.resolver.ResolverTest.class, 
             com.sun.ts.tests.common.el.api.resolver.BarELResolver.class);
     archive.setWebXML(new StringAsset(webXml));
-    archive.addAsWebInfResource(URLClient.class.getPackage(), "WEB-INF/arrayelresolver.tld", "arrayelresolver.tld");    
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/arrayelresolver.tld", "arrayelresolver.tld");    
     archive.add(new StringAsset(jspFile), "ArrayELResolverTest.jsp");
 
     return archive;
