@@ -20,10 +20,21 @@ import com.sun.ts.tests.common.webclient.BaseUrlClient;
 import com.sun.ts.tests.common.webclient.WebTestCase;
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
 
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.logging.Level;
+
 /**
  * Base client for JSP tests.
  */
 public abstract class AbstractUrlClient extends BaseUrlClient {
+
+  private static final Logger LOGGER = Logger.getLogger(AbstractUrlClient.class.getName());
 
   /**
    * Identifier for a set of properties to be used for API Tests.
@@ -62,6 +73,35 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
     setApiTestProperties(TEST_PROPS.getProperty(APITEST), testCase);
     setApiTest1Properties(TEST_PROPS.getProperty(APITEST1), testCase);
     super.setTestProperties(testCase);
+  }
+
+  private boolean isNullOrEmpty(String val) {
+    if (val == null || val.equals("")) {
+      return true;
+    }
+    return false;
+  }
+
+  public void setup() throws Exception {
+
+    String hostname = System.getProperty(SERVLETHOSTPROP).trim();
+    String portnum = System.getProperty(SERVLETPORTPROP).trim();
+
+    if (!isNullOrEmpty(hostname)) {
+      _hostname = hostname;
+    } else {
+      throw new Exception(
+          "[BaseUrlClient] 'webServerHost' was not set in the" + " ts.jte.");
+    }
+
+    if (!isNullOrEmpty(portnum)) {
+      _port = Integer.parseInt(portnum);
+    } else {
+      throw new Exception(
+          "[BaseUrlClient] 'webServerPort' was not set in the" + " ts.jte.");
+    }
+
+    LOGGER.log(Level.INFO,"[BaseUrlClient] Test setup OK");
   }
 
   /**
@@ -183,4 +223,11 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
     sb.append(testName).append(HTTP11);
     return sb.toString();
   }
+
+  public static String toString(InputStream inStream) throws IOException{
+    try (BufferedReader bufReader = new BufferedReader(new InputStreamReader(inStream, StandardCharsets.UTF_8))) {
+      return bufReader.lines().collect(Collectors.joining(System.lineSeparator()));
+    }
+  }
+
 }

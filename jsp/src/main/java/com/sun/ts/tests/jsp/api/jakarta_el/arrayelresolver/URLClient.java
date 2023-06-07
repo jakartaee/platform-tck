@@ -20,11 +20,26 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_el.arrayelresolver;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
+import com.sun.ts.tests.common.el.api.resolver.BarELResolver;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class URLClient extends AbstractUrlClient {
 
   /**
@@ -32,23 +47,31 @@ public class URLClient extends AbstractUrlClient {
    * run(String[], PrintWriter, PrintWriter), and this method should not contain
    * any test configuration.
    */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
+  public URLClient() throws Exception {
+    setup();
     setContextRoot("/jsp_arrayelresolver_web");
     setTestJsp("ArrayELResolverTest");
+  }
 
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    InputStream inStream = URLClient.class.getClassLoader().getResourceAsStream("com/sun/ts/tests/jsp/api/jakarta_el/arrayelresolver/jsp_arrayelresolver_web.xml");
+    String webXml = toString(inStream);
+    InputStream jspFileStream = URLClient.class.getClassLoader().getResourceAsStream("com/sun/ts/tests/jsp/api/jakarta_el/arrayelresolver/ArrayELResolverTest.jsp");
+    String jspFile = toString(jspFileStream);
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_arrayelresolver_web.war");
+    archive.addClasses(ArrayELResolverTag.class, com.sun.ts.tests.jsp.common.util.JspTestUtil.class, 
+            com.sun.ts.tests.common.el.api.resolver.ResolverTest.class, 
+            com.sun.ts.tests.common.el.api.resolver.BarELResolver.class);
+    archive.setWebXML(new StringAsset(webXml));
+    archive.addAsWebInfResource(URLClient.class.getPackage(), "WEB-INF/arrayelresolver.tld", "arrayelresolver.tld");    
+    archive.add(new StringAsset(jspFile), "ArrayELResolverTest.jsp");
+
+    return archive;
+
   }
 
   /*
@@ -69,6 +92,7 @@ public class URLClient extends AbstractUrlClient {
    * that API calls work as expected: setValue() getValue() getType()
    * isReadOnly() getCommonPropertyType() getFeatureDescriptors()
    */
+  @Test
   public void arrayElResolverTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "arrayElResolverTest");
     invoke();

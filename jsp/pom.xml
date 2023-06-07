@@ -26,11 +26,15 @@
         <version>10.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>jsp</artifactId>
+    <artifactId>jsp-tck</artifactId>
     <packaging>jar</packaging>
 
     <name>JSP</name>
     <description>JSP</description>
+    <properties>
+        <junit.jupiter.version>[5.7.2, 5.8-A00)</junit.jupiter.version>
+    </properties>
+    
 
     <dependencies>
         <dependency>
@@ -69,33 +73,16 @@
             <groupId>jakarta.mail</groupId>
             <artifactId>jakarta.mail-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-container</artifactId>
+            <version>1.7.0.Alpha10</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
-
-    <build>
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/**.xml</include>
-                    <include>**/*.tld</include>
-                </includes>
-            </resource>
-        </resources>
-        <plugins>
-            <plugin>
-                <groupId>org.mortbay.jetty</groupId>
-                <artifactId>tck-extract-tests-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>generate-tck-tests-list</id>
-                        <goals>
-                            <goal>extract-tck-tests</goal>
-                        </goals>
-                        <phase>process-sources</phase>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
