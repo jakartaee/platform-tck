@@ -36,9 +36,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
 @ExtendWith(ArquillianExtension.class)
-public class URLClient extends AbstractUrlClient {
+public class URLClientIT extends AbstractUrlClient {
 
-  public URLClient() throws Exception {
+  public URLClientIT() throws Exception {
     setup();
     setContextRoot("/jsp_beanelresolver_web");
     setTestJsp("BeanELResolverTest");
@@ -47,15 +47,15 @@ public class URLClient extends AbstractUrlClient {
   @Deployment(testable = false)
   public static WebArchive createDeployment() throws IOException {
     
-    String packagePath = URLClient.class.getPackageName().replace(".", "/");
+    String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_beanelresolver_web.war");
     archive.addClasses(BeanELResolverTag.class, SimpleBean.class,
             com.sun.ts.tests.jsp.common.util.JspTestUtil.class, 
             com.sun.ts.tests.common.el.api.resolver.ResolverTest.class, 
             com.sun.ts.tests.common.el.api.resolver.BarELResolver.class);
-    archive.setWebXML(URLClient.class.getClassLoader().getResource(packagePath+"/jsp_beanelresolver_web.xml"));
-    archive.addAsWebInfResource(URLClient.class.getPackage(), "WEB-INF/beanelresolver.tld", "beanelresolver.tld");    
-    archive.add(new UrlAsset(URLClient.class.getClassLoader().getResource(packagePath+"/BeanELResolverTest.jsp")), "BeanELResolverTest.jsp");
+    archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_beanelresolver_web.xml"));
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/beanelresolver.tld", "beanelresolver.tld");    
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/BeanELResolverTest.jsp")), "BeanELResolverTest.jsp");
 
     return archive;
 
