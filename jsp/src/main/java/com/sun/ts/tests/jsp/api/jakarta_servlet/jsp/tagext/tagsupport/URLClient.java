@@ -32,30 +32,56 @@ import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 /**
  * Test client for Container interaction with objects implementing Tag..
  */
-public class URLClient extends AbstractUrlClient {
+import java.io.IOException;
+import java.io.InputStream;
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+@ExtendWith(ArquillianExtension.class)
+public class URLClientIT extends AbstractUrlClient {
 
+
+  public URLClientIT() throws Exception {
+    setup();
     setContextRoot("/jsp_tagsupport_web");
     setTestJsp("TagSupportApiTest");
 
-    return super.run(args, out, err);
+  }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_tagsupport_web.war");
+    archive.addClasses(ContainerInteractionTag.class,
+            FindAncestorTag.class, InitializationTag.class,
+            ParentTag.class, SynchronizationTag.class,
+            com.sun.ts.tests.jsp.common.util.JspTestUtil.class,
+            com.sun.ts.tests.jsp.common.util.MethodValidatorBean.class);
+    archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_tagsupport_web.xml"));
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tagsupport.tld", "tagsupport.tld");    
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/DoAfterBodyEvalBodyAgainTest.jsp")), "DoAfterBodyEvalBodyAgainTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/DoAfterBodySkipBodyTest.jsp")), "DoAfterBodySkipBodyTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/DoEndTagEvalPageTest.jsp")), "DoEndTagEvalPageTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/DoEndTagSkipPageTest.jsp")), "DoEndTagSkipPageTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/DoStartEvalBodyIncludeTest.jsp")), "DoStartEvalBodyIncludeTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/DoStartSkipBodyTest.jsp")), "DoStartSkipBodyTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/FindAncestorTest.jsp")), "FindAncestorTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/MethodValidation.jsp")), "MethodValidation.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/TagInitializationTest.jsp")), "TagInitializationTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/TagSupportApiTest.jsp")), "TagSupportApiTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/TagSupportSynchronizationTest.jsp")), "TagSupportSynchronizationTest.jsp");
+
+    return archive;
   }
 
   /*
@@ -79,6 +105,7 @@ public class URLClient extends AbstractUrlClient {
    * parent Tag (if any), and all attributes must be set prior to calling
    * doStartTag().
    */
+  @Test
   public void tagSupportTagInitializationTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagsupport_web/TagInitializationTest.jsp HTTP/1.1");
@@ -97,6 +124,7 @@ public class URLClient extends AbstractUrlClient {
    * body shouldn't be present in the stream after the flush. This also performs
    * validation on the method sequence called by the container.
    */
+  @Test
   public void tagSupportDoStartEvalBodyIncludeTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagsupport_web/DoStartEvalBodyIncludeTest.jsp HTTP/1.1");
@@ -114,6 +142,7 @@ public class URLClient extends AbstractUrlClient {
    * the tag is not included in the current out as the body related methods are
    * not called..
    */
+  @Test
   public void tagSupportDoStartSkipBodyTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagsupport_web/DoStartSkipBodyTest.jsp HTTP/1.1");
@@ -130,6 +159,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate the doAfterBody() is called exactly once when
    * doStartTag() returns EVAL_BODY_INCLUDE and doAfterBody() returns SKIP_BODY.
    */
+  @Test
   public void tagSupportDoAfterBodySkipBodyTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagsupport_web/DoAfterBodySkipBodyTest.jsp HTTP/1.1");
@@ -147,6 +177,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate the doAfterBody() is called subsequent of
    * doAfterBody() being called and returning EVAL_BODY_AGAIN.
    */
+  @Test
   public void tagSupportDoAfterBodyEvalBodyAgainTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagsupport_web/DoAfterBodyEvalBodyAgainTest.jsp HTTP/1.1");
@@ -166,6 +197,7 @@ public class URLClient extends AbstractUrlClient {
    * SKIP_PAGE. This also ensures that doEndTag will not be called in any parent
    * tags.
    */
+  @Test
   public void tagSupportDoEndTagSkipPageTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagsupport_web/DoEndTagSkipPageTest.jsp HTTP/1.1");
@@ -189,6 +221,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate that if doEndTag() returns EVAL_PAGE, the page
    * continues to evaluate.
    */
+  @Test
   public void tagSupportDoEndTagEvalPageTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagsupport_web/DoEndTagEvalPageTest.jsp HTTP/1.1");
@@ -205,6 +238,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate the behavior of findAncestorWithClass when test
    * tag is nested with multiple tag instances of the same type.
    */
+  @Test
   public void tagSupportFindAncestorWithClassTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagsupport_web/FindAncestorTest.jsp HTTP/1.1");
@@ -220,6 +254,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate the default return value of
    * TagSupport.doStartTag().
    */
+  @Test
   public void tagSupportDoStartTagDefaultValueTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "doStartTagTest");
     invoke();
@@ -232,6 +267,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the default return value of TagSupport.doEndTag().
    */
+  @Test
   public void tagSupportDoEndTagDefaultValueTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "doEndTagTest");
     invoke();
@@ -245,6 +281,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate the default return value of
    * TagSupport.doAfterBody().
    */
+  @Test
   public void tagSupportDoAfterBodyDefaultValueTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "doAfterBodyTest");
     invoke();
@@ -258,6 +295,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate the behavior of TagSupport.setValue() and
    * TagSupport.getValue().
    */
+  @Test
   public void tagSupportGetSetValueTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "setGetValue");
     invoke();
@@ -270,6 +308,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of TagSupport.getValues().
    */
+  @Test
   public void tagSupportGetValuesTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "getValues");
     invoke();
@@ -282,6 +321,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of TagSupport.removeValue().
    */
+  @Test
   public void tagSupportRemoveValueTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "removeValue");
     invoke();
@@ -295,6 +335,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate scripting variables are synchronized at the proper
    * locations by the container.
    */
+  @Test
   public void tagSupportVariableSynchronizationTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagsupport_web/TagSupportSynchronizationTest.jsp HTTP/1.1");

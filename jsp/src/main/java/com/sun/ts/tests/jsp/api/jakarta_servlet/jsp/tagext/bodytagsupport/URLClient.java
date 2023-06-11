@@ -28,30 +28,55 @@ import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 /**
  * Test client for BodyTagSupport.
  */
-public class URLClient extends AbstractUrlClient {
+import java.io.IOException;
+import java.io.InputStream;
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+@ExtendWith(ArquillianExtension.class)
+public class URLClientIT extends AbstractUrlClient {
 
+
+  public URLClientIT() throws Exception {
+    setup();
     setContextRoot("/jsp_bodytagsupp_web");
     setTestJsp("BodyTagSupportApiTest");
 
-    return super.run(args, out, err);
+  }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_bodytagsupp_web.war");
+    archive.addClasses(BodyContainerInteractionTag.class,
+            BodySynchronizationTag.class, GetBodyContentTestTag.class,
+            GetPreviousOutTestTag.class, SyncTEI.class,
+            com.sun.ts.tests.jsp.common.util.JspTestUtil.class,
+            com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagsupport.ContainerInteractionTag.class,
+            com.sun.ts.tests.jsp.common.util.MethodValidatorBean.class);
+    archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_bodytagsupp_web.xml"));
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/bodytagsupport.tld", "bodytagsupport.tld");    
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/BodyTagEmptyTagTest.jsp")), "BodyTagEmptyTagTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/BodyTagEvalBodyBufferedTest.jsp")), "BodyTagEvalBodyBufferedTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/BodyTagEvalBodyIncludeTest.jsp")), "BodyTagEvalBodyIncludeTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/BodyTagSkipBodyTest.jsp")), "BodyTagSkipBodyTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/BodyTagSupportApiTest.jsp")), "BodyTagSupportApiTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/BodyTagSupportSynchronizationTest.jsp")), "BodyTagSupportSynchronizationTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetBodyContentTest.jsp")), "GetBodyContentTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetPreviousOutTest.jsp")), "GetPreviousOutTest.jsp");
+
+    return archive;
+
   }
 
   /*
@@ -69,6 +94,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the constructor of BodyTagSupport
    */
+  @Test
   public void bodyTagSupportCtorTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "bodyTagSupportCtorTest");
     invoke();
@@ -82,6 +108,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate the default return value of
    * BodyTagSupport.doStartTag() is EVAL_BODY_BUFFERED.
    */
+  @Test
   public void bodyTagSupportDoStartTagTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "bodyTagSupportDoStartTagTest");
     invoke();
@@ -95,6 +122,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate the default return value of
    * BodyTagSupport.doEndTag() is EVAL_PAGE.
    */
+  @Test
   public void bodyTagSupportDoEndTagTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "bodyTagSupportDoEndTagTest");
     invoke();
@@ -108,6 +136,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate the default return value of
    * BodyTagSupport.doAfterBody() is SKIP_BODY.
    */
+  @Test
   public void bodyTagSupportDoAfterBodyTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "bodyTagSupportDoAfterBodyTest");
     invoke();
@@ -121,6 +150,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate the behavior of getBodyContent(). This indirectly
    * ensures that the container properly called setBodyContent().
    */
+  @Test
   public void bodyTagSupportGetBodyContentTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_bodytagsupp_web/GetBodyContentTest.jsp HTTP/1.1");
@@ -135,6 +165,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of getPreviousOut.
    */
+  @Test
   public void bodyTagSupportGetPreviousOutTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_bodytagsupp_web/GetPreviousOutTest.jsp HTTP/1.1");
@@ -153,6 +184,7 @@ public class URLClient extends AbstractUrlClient {
    * then doInitBody() after doStartTag() is called, prior to evaluating the
    * body.
    */
+  @Test
   public void bodyTagSupportEvalBodyBufferedTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_bodytagsupp_web/BodyTagEvalBodyBufferedTest.jsp HTTP/1.1");
@@ -168,6 +200,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate that the container doesn't call setBodyContent()
    * and doInitBody() if doStartTag() returns EVAL_BODY_INCLUDE.
    */
+  @Test
   public void bodyTagSupportEvalBodyIncludeTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_bodytagsupp_web/BodyTagEvalBodyIncludeTest.jsp HTTP/1.1");
@@ -183,6 +216,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate that the container doesn't call setInitBody() and
    * doInitBody() after doStartTag() returns SKIP_BODY.
    */
+  @Test
   public void bodyTagSupportSkipBodyTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_bodytagsupp_web/BodyTagSkipBodyTest.jsp HTTP/1.1");
@@ -199,6 +233,7 @@ public class URLClient extends AbstractUrlClient {
    * doInitBody() if the tag is empty. 1. Empty Tag1: <foo></foo> 2. Empty Tag2:
    * <foo/> 3. Non-Empty Tag2: <foo> </foo>
    */
+  @Test
   public void bodyTagSupportEmptyTagTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_bodytagsupp_web/BodyTagEmptyTagTest.jsp HTTP/1.1");
@@ -214,6 +249,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate scripting variables are properly synchornized.
    */
+  @Test
   public void bodyTagSupportVariableSynchronizationTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_bodytagsupp_web/BodyTagSupportSynchronizationTest.jsp HTTP/1.1");

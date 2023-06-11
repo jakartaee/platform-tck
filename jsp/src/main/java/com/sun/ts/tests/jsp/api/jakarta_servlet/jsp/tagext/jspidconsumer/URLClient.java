@@ -25,30 +25,46 @@ import java.io.PrintWriter;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 
-public class URLClient extends AbstractUrlClient {
+import java.io.IOException;
+import java.io.InputStream;
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+@ExtendWith(ArquillianExtension.class)
+public class URLClientIT extends AbstractUrlClient {
 
+
+  public URLClientIT() throws Exception {
+    setup();
     setContextRoot("/jsp_jspidconsumer_web");
     // setTestJsp("SetJspIdTest");
 
-    return super.run(args, out, err);
+  }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_jspidconsumer_web.war");
+    archive.addClasses(MultiOneTag.class, MultiTwoTag.class,
+            MultiThreeTag.class, SameJspIdTag.class, SetJspIdTag.class,
+            com.sun.ts.tests.jsp.common.util.JspTestUtil.class);
+    archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_jspidconsumer_web.xml"));
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/jspidconsumer.tld", "jspidconsumer.tld");    
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/SetJspIdTest.jsp")), "SetJspIdTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/MultipleJspIdTest.jsp")), "MultipleJspIdTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/SameJspIdTest.jsp")), "SameJspIdTest.jsp");
+
+    return archive;
   }
 
   /*
@@ -68,6 +84,7 @@ public class URLClient extends AbstractUrlClient {
    * the setJspId() method in a tag handler. Verify that the ID generated
    * conforms to the rules set forth in the javadoc.
    */
+  @Test
   public void setJspIdTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_jspidconsumer_web/SetJspIdTest.jsp HTTP 1.1");
@@ -84,6 +101,7 @@ public class URLClient extends AbstractUrlClient {
    * the setJspId() method in multiple tag handlers. Verify that each tag has a
    * unique ID. [JspConsumerIdUniqueIdString]
    */
+  @Test
   public void multipleJspIdTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_jspidconsumer_web/MultipleJspIdTest.jsp HTTP 1.1");
@@ -101,6 +119,7 @@ public class URLClient extends AbstractUrlClient {
    * page is invoked multiple times, the tag's ID does not change.
    * [JspConsumerIdUniqueIdString]
    */
+  @Test
   public void sameJspIdTest() throws Exception {
 
     for (int i = 1; i < SameJspIdTag.NUM_INVOC; ++i) {

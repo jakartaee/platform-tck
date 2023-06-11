@@ -33,29 +33,46 @@ import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
  * Test client for TagExtraInfo. If the test fails, a translation error will be
  * generated and a ValidationMessage array will be returned.
  */
-public class URLClient extends AbstractUrlClient {
+import java.io.IOException;
+import java.io.InputStream;
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+@ExtendWith(ArquillianExtension.class)
+public class URLClientIT extends AbstractUrlClient {
 
+
+  public URLClientIT() throws Exception {
+    setup();
     setContextRoot("/jsp_tagextrainfo_web");
 
-    return super.run(args, out, err);
+    }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_tagextrainfo_web.war");
+    archive.addClasses(TagExtraInfoTEI.class,
+            com.sun.ts.tests.jsp.common.util.JspTestUtil.class,
+            com.sun.ts.tests.jsp.common.tags.tck.SimpleTag.class);
+    archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_tagextrainfo_web.xml"));
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tagextrainfo.tld", "tagextrainfo.tld");    
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/TagExtraInfoDefaultImplTest.jsp")), "TagExtraInfoDefaultImplTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/TagExtraInfoEmptyReturnTest.jsp")), "TagExtraInfoEmptyReturnTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/TagExtraInfoNonEmptyReturnTest.jsp")), "TagExtraInfoNonEmptyReturnTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/TagExtraInfoNullReturnTest.jsp")), "TagExtraInfoNullReturnTest.jsp");
+
+    return archive;
   }
 
   /*
@@ -80,6 +97,7 @@ public class URLClient extends AbstractUrlClient {
    * of TagExtraInfo.validate() calls isValid(). If isValid() returns false, a
    * default ValidationMessage array is returned.
    */
+  @Test
   public void tagExtraInfoTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagextrainfo_web/TagExtraInfoNullReturnTest.jsp HTTP/1.1");

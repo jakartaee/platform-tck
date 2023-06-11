@@ -29,30 +29,49 @@ import java.io.PrintWriter;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 
+
+import java.io.IOException;
+
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
 /**
  * Test client for BodyContent
  */
-public class URLClient extends AbstractUrlClient {
+@ExtendWith(ArquillianExtension.class)
+public class URLClientIT extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+
+  public URLClientIT() throws Exception {
+    setup();
   }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
 
-    return super.run(args, out, err);
+    String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_bodycontent_web.war");
+    archive.addClasses(BodyContentClearBodyTag.class,
+            BodyContentFlushTag.class, BodyContentGetStringTag.class,
+            BodyContentReadWriteTag.class, BodyContentWriteOutTag.class,
+            com.sun.ts.tests.jsp.common.util.JspTestUtil.class);
+    archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_bodycontent_web.xml"));
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/bodycontent.tld", "bodycontent.tld");    
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/BodyContentClearBodyTest.jsp")), "BodyContentClearBodyTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/BodyContentFlushTest.jsp")), "BodyContentFlushTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/BodyContentGetStringTest.jsp")), "BodyContentGetStringTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/BodyContentReadWriteTest.jsp")), "BodyContentReadWriteTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/BodyContentWriteOutTest.jsp")), "BodyContentWriteOutTest.jsp");
+
+    return archive;
   }
 
   /*
@@ -71,6 +90,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validates that an IOException is thrown when
    * BodyContent.flush() is called.
    */
+  @Test
   public void bodyContentFlushTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_bodycontent_web/BodyContentFlushTest.jsp HTTP/1.1");
@@ -85,6 +105,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate that clearBuffer() works as expected.
    */
+  @Test
   public void bodyContentClearBodyTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_bodycontent_web/BodyContentClearBodyTest.jsp HTTP/1.1");
@@ -101,6 +122,7 @@ public class URLClient extends AbstractUrlClient {
    * bodycontent of the tag. Using the content that is read in, obtain a writer
    * and write the content to that writer.
    */
+  @Test
   public void bodyContentReadWriteTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_bodycontent_web/BodyContentReadWriteTest.jsp HTTP/1.1");
@@ -115,6 +137,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of BodyContent.writeOut().
    */
+  @Test
   public void bodyContentWriteOutTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_bodycontent_web/BodyContentWriteOutTest.jsp HTTP/1.1");
@@ -129,6 +152,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of BodyContent.getString().
    */
+  @Test
   public void bodyContentGetStringTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_bodycontent_web/BodyContentGetStringTest.jsp HTTP/1.1");

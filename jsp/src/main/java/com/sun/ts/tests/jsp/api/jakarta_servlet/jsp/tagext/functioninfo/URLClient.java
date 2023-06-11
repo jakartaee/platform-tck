@@ -29,32 +29,51 @@ import java.io.PrintWriter;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
 /**
  * Test client for FunctionInfo. Implementation note, all tests are performed
  * within a TagExtraInfo class. If the test fails, a translation error will be
  * generated and a ValidationMessage array will be returned.
  */
-public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+@ExtendWith(ArquillianExtension.class)
+public class URLClientIT extends AbstractUrlClient {
+
+
+  public URLClientIT() throws Exception {
+    setup();
   }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
 
-    return super.run(args, out, err);
+    String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_functioninfo_web.war");
+    archive.addClasses(FunctionInfoTEI.class,
+            com.sun.ts.tests.jsp.common.util.JspTestUtil.class,
+            com.sun.ts.tests.jsp.common.tags.tck.SimpleTag.class,
+            com.sun.ts.tests.jsp.common.util.JspFunctions.class,
+            com.sun.ts.tests.jsp.common.util.BaseTCKExtraInfo.class);
+    archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_functioninfo_web.xml"));
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/functioninfo.tld", "functioninfo.tld");    
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetFunctionClassTest.jsp")), "GetFunctionClassTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetFunctionSignatureTest.jsp")), "GetFunctionSignatureTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetNameTest.jsp")), "GetNameTest.jsp");
+
+    return archive;
   }
 
   /*
@@ -74,6 +93,7 @@ public class URLClient extends AbstractUrlClient {
    * information in the provided TLD and the method calls, in this case,
    * FunctionInfo.getName(), returns the expected value.
    */
+  @Test
   public void functionInfoGetNameTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_functioninfo_web/GetNameTest.jsp HTTP/1.1");
@@ -90,6 +110,7 @@ public class URLClient extends AbstractUrlClient {
    * information in the provided TLD and the method calls, in this case,
    * FunctionInfo.getFunctionClass(), returns the expected value.
    */
+  @Test
   public void functionInfoGetFunctionClassTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_functioninfo_web/GetFunctionClassTest.jsp HTTP/1.1");
@@ -106,6 +127,7 @@ public class URLClient extends AbstractUrlClient {
    * information in the provided TLD and the method calls, in this case,
    * FunctionInfo.getFunctionSignature(), returns the expected value.
    */
+  @Test
   public void functionInfoGetFunctionSignatureTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_functioninfo_web/GetFunctionSignatureTest.jsp HTTP/1.1");

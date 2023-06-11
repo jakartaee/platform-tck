@@ -32,30 +32,76 @@ import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 /**
  * Test client for the default behavior of SimpleTagSupport.
  */
-public class URLClient extends AbstractUrlClient {
+import java.io.IOException;
+import java.io.InputStream;
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+@ExtendWith(ArquillianExtension.class)
+public class URLClientIT extends AbstractUrlClient {
 
+
+  public URLClientIT() throws Exception {
+    setup();
     setContextRoot("/jsp_tagadapter_web");
     setTestJsp("TagAdapterTest");
 
-    return super.run(args, out, err);
+  }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_simtagsupport_web.war");
+    archive.addClasses(CheckInstanceSimpleTag.class,
+            ClassicJspFragmentGetJspContext.class,
+            ClassicParent.class,
+            ClassicSkipPage.class,
+            DefaultSimpleTag.class,
+            FailingTag.class,
+            SimpleAncestor.class,
+            SimpleEmptyBody.class,
+            SimpleGetSetJspBody.class,
+            SimpleGetSetJspContext.class,
+            SimpleGetSetParent.class,
+            SimpleJspFragmentGetJspContext.class,
+            SimpleNoParent.class,
+            SimpleParentTag.class,
+            SimpleSkipPage.class,
+            SimpleSyncTag.class,
+            SyncTEI.class,
+            com.sun.ts.tests.jsp.common.util.JspTestUtil.class,
+            com.sun.ts.tests.jsp.common.tags.tck.SetTag.class,
+            com.sun.ts.tests.common.el.api.expression.ExpressionTest.class);
+
+    archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_simtagsupport_web.xml"));
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tags/simpletagsupport/ClassicSkipPageTag.tag", "tags/simpletagsupport/ClassicSkipPageTag.tag");
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tags/simpletagsupport/SimpleSkipPageTag.tag", "tags/simpletagsupport/SimpleSkipPageTag.tag");
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tags/simpletagsupport/Sync.tag", "tags/simpletagsupport/Sync.tag");
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/simpletagsupport.tld", "simpletagsupport.tld");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/emptySetJspBodyTest.jsp")), "emptySetJspBodyTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/jspFragmentGetJspContextTest.jsp")), "jspFragmentGetJspContextTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/noParentTest.jsp")), "noParentTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/SimpleTagSupportDoTagDefault.jsp")), "SimpleTagSupportDoTagDefault.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/SimpleTagSupportFindAncestorTest.jsp")), "SimpleTagSupportFindAncestorTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/SimpleTagSupportJspBodyTest.jsp")), "SimpleTagSupportJspBodyTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/SimpleTagSupportJspContextTest.jsp")), "SimpleTagSupportJspContextTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/SimpleTagSupportParentTest.jsp")), "SimpleTagSupportParentTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/SimpleTagSupportSkipPageClassicTest.jsp")), "SimpleTagSupportSkipPageClassicTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/SimpleTagSupportSkipPageSimpleTest.jsp")), "SimpleTagSupportSkipPageSimpleTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/SimpleTagSupportVariableSynchronizationTest.jsp")), "SimpleTagSupportVariableSynchronizationTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/tagHandlerCacheTest.jsp")), "tagHandlerCacheTest.jsp");
+
+    return archive;
   }
 
   /*
@@ -76,6 +122,7 @@ public class URLClient extends AbstractUrlClient {
    * output will be displayed by the tag nested within the SimpleTagSupport
    * instance.
    */
+  @Test
   public void simpleTagSupportDoTagDefaultTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_simtagsupport_web/SimpleTagSupportDoTagDefault.jsp HTTP/1.1");
@@ -94,6 +141,7 @@ public class URLClient extends AbstractUrlClient {
    * generated from a tag file throws a SkipPageException if an invoked Simple
    * Tag Handler throws a SkipPageException.
    */
+  @Test
   public void simpleTagSupportSkipPageExceptionTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_simtagsupport_web/SimpleTagSupportSkipPageClassicTest.jsp HTTP/1.1");
@@ -113,6 +161,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate that getJspContext() returnes a non-null value as
    * the container called setJspContext() prior to invoking doGet().
    */
+  @Test
   public void simpleTagSupportGetSetJspContextTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_simtagsupport_web/SimpleTagSupportJspContextTest.jsp HTTP/1.1");
@@ -128,6 +177,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate that getJspBody() returnes a non-null value as the
    * container called setJspBody() prior to invoking doGet().
    */
+  @Test
   public void simpleTagSupportGetSetJspBodyTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_simtagsupport_web/SimpleTagSupportJspBodyTest.jsp HTTP/1.1");
@@ -144,6 +194,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate that getParent() returnes a non-null value as the
    * container called setParent() prior to invoking doGet().
    */
+  @Test
   public void simpleTagSupportGetSetParentTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_simtagsupport_web/SimpleTagSupportParentTest.jsp HTTP/1.1");
@@ -160,6 +211,7 @@ public class URLClient extends AbstractUrlClient {
    * is preformed nested within a SimpleTag handler as well as a Classic Tag
    * handler.
    */
+  @Test
   public void simpleTagSupportFindAncestorTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_simtagsupport_web/SimpleTagSupportFindAncestorTest.jsp HTTP/1.1");
@@ -177,6 +229,7 @@ public class URLClient extends AbstractUrlClient {
    * for SimpleTags declared as Tags in the TLD using either TEI or through
    * variable elements, or for Tag files.
    */
+  @Test
   public void simpleTagSupportVariableSynchronizationTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_simtagsupport_web/SimpleTagSupportVariableSynchronizationTest.jsp HTTP/1.1");
@@ -192,7 +245,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: compare instances of a simple tag handler class across
    * different invocations.
    */
-
+  @Test
   public void tagHandlerCacheTest() throws Exception {
     String testName = "tagHandlerCacheTest";
     TEST_PROPS.setProperty(REQUEST,
@@ -209,7 +262,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: If the action element is empty in the page, setJpsBody
    * method is not called at all.
    */
-
+  @Test
   public void emptySetJspBodyTest() throws Exception {
     String testName = "emptySetJspBodyTest";
     TEST_PROPS.setProperty(REQUEST,
@@ -226,7 +279,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: The container invokes setParent() method only if this tag
    * invocation is nested within another tag invocation.
    */
-
+  @Test
   public void noParentTest() throws Exception {
     String testName = "noParentTest";
     TEST_PROPS.setProperty(REQUEST,
@@ -243,7 +296,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: jspFragment.getJspContext() returns the JspContext that is
    * bound to this JspFragment.
    */
-
+  @Test
   public void jspFragmentGetJspContextTest() throws Exception {
     String testName = "jspFragmentGetJspContextTest";
     TEST_PROPS.setProperty(REQUEST,

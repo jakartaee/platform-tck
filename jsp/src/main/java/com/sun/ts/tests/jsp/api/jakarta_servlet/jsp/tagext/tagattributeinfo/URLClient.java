@@ -34,27 +34,49 @@ import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
  * performed within a TagExtraInfo class. If the test fails, a translation error
  * will be generated and a ValidationMessage array will be returned.
  */
-public class URLClient extends AbstractUrlClient {
+import java.io.IOException;
+import java.io.InputStream;
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
+public class URLClientIT extends AbstractUrlClient {
+
+
+  public URLClientIT() throws Exception {
+    setup();
   }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
 
-    return super.run(args, out, err);
+    String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_tagattrinfo_web.war");
+    archive.addClasses(TagAttributeInfoTEI.class,
+            com.sun.ts.tests.jsp.common.util.JspTestUtil.class,
+            com.sun.ts.tests.jsp.common.util.BaseTCKExtraInfo.class,
+            com.sun.ts.tests.jsp.common.tags.tck.SimpleTag.class);
+
+    archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_tagattrinfo_web.xml"));
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tagattributeinfo.tld", "tagattributeinfo.tld");    
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/CanBeRequestTimeTest.jsp")), "CanBeRequestTimeTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetIdAttribute.jsp")), "GetIdAttribute.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetNameTest.jsp")), "GetNameTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetTypeNameTest.jsp")), "GetTypeNameTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/IsFragmentTest.jsp")), "IsFragmentTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/IsRequiredTest.jsp")), "IsRequiredTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/ToStringTest.jsp")), "ToStringTest.jsp");
+    
+    return archive;
   }
 
   /*
@@ -72,6 +94,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of TagAttributeInfo.getName().
    */
+  @Test
   public void tagAttributeInfoGetNameTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagattrinfo_web/GetNameTest.jsp HTTP/1.1");
@@ -86,6 +109,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of TagAttributeInfo.getTypeName().
    */
+  @Test
   public void tagAttributeInfoGetTypeNameTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagattrinfo_web/GetTypeNameTest.jsp HTTP/1.1");
@@ -101,6 +125,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate the behavior of
    * TagAttributeInfo.catBeRequestTime().
    */
+  @Test
   public void tagAttributeInfoCanBeRequestTimeTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagattrinfo_web/CanBeRequestTimeTest.jsp HTTP/1.1");
@@ -115,6 +140,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of TagAttributeInfo.isRequired().
    */
+  @Test
   public void tagAttributeInfoIsRequiredTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagattrinfo_web/IsRequiredTest.jsp HTTP/1.1");
@@ -129,6 +155,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of TagAttributeInfo.siFragment().
    */
+  @Test
   public void tagAttributeInfoIsFragmentTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagattrinfo_web/IsFragmentTest.jsp HTTP/1.1");
@@ -143,6 +170,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of TagAttributeInfo.toString().
    */
+  @Test
   public void tagAttributeInfoToStringTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagattrinfo_web/ToStringTest.jsp HTTP/1.1");
@@ -158,6 +186,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Convenience static method that goes through an array of
    * TagAttributeInfo objects and looks for "id".
    */
+  @Test
   public void tagAttributeInfoGetIdAttribute() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagattrinfo_web/GetIdAttribute.jsp HTTP/1.1");

@@ -20,36 +20,47 @@
 
 package com.sun.ts.tests.jsp.api.jakarta_el.elresolver;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 
-public class URLClient extends AbstractUrlClient {
+import java.io.IOException;
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
+public class URLClientIT extends AbstractUrlClient {
+
+  public URLClientIT() throws Exception {
+    setup();
     setContextRoot("/jsp_elresolver_web");
     setTestJsp("ELResolverTest");
-
-    return super.run(args, out, err);
   }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_elresolver_web.war");
+    archive.addClasses(com.sun.ts.tests.jsp.common.util.JspTestUtil.class,
+            com.sun.ts.tests.common.el.api.resolver.ResolverTest.class, 
+            com.sun.ts.tests.common.el.api.resolver.BarELResolver.class);
+    archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_elresolver_web.xml"));
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/ELResolverTest.jsp")), "ELResolverTest.jsp");
+
+    return archive;
+
+  }
+
 
   /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
@@ -69,6 +80,7 @@ public class URLClient extends AbstractUrlClient {
    * API calls work as expected: getValue() getType() setValue() isReadOnly()
    * getCommonPropertyType() getFeatureDescriptors()
    */
+  @Test
   public void elResolverTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "elResolverTest");
     invoke();

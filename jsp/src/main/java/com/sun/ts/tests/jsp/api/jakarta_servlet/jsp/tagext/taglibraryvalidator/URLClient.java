@@ -29,29 +29,44 @@ import java.io.PrintWriter;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 
-public class URLClient extends AbstractUrlClient {
+import java.io.IOException;
+import java.io.InputStream;
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+@ExtendWith(ArquillianExtension.class)
+public class URLClientIT extends AbstractUrlClient {
 
+
+  public URLClientIT() throws Exception {
+    setup();
     setContextRoot("/jsp_taglibvalidator_web");
 
-    return super.run(args, out, err);
+  }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_taglibvalidator_web.war");
+    archive.addClasses(APIValidator.class, FailingValidator.class,
+            com.sun.ts.tests.jsp.common.util.JspTestUtil.class);
+    archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_taglibvalidator_web.xml"));
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/taglibvalfail.tld", "taglibvalfail.tld");
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/taglibvalidator.tld", "taglibvalidator.tld");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/TLVTranslationErrorTest.jsp")), "TLVTranslationErrorTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/TagLibraryValidatorTest.jsp")), "TagLibraryValidatorTest.jsp");
+
+    return archive;
   }
 
   /*
@@ -75,6 +90,7 @@ public class URLClient extends AbstractUrlClient {
    * a null return value from validate() indicates the page is valid, thus no
    * translation error will occur.
    */
+  @Test
   public void tagLibraryValidatorAPITest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taglibvalidator_web/TagLibraryValidatorTest.jsp HTTP/1.1");
@@ -95,6 +111,7 @@ public class URLClient extends AbstractUrlClient {
    * method is called. This also validates the use of the ValidationMessage
    * class.
    */
+  @Test
   public void tagLibraryValidatorTranslationFailureTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taglibvalidator_web/TLVTranslationErrorTest.jsp HTTP/1.1");

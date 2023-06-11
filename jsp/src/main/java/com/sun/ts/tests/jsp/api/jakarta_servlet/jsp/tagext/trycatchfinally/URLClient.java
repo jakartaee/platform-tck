@@ -29,33 +29,48 @@ import java.io.PrintWriter;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
 /**
  * Test client for TryCatchFinally tag tests.
  */
-public class URLClient extends AbstractUrlClient {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+@ExtendWith(ArquillianExtension.class)
+public class URLClientIT extends AbstractUrlClient {
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
 
+  public URLClientIT() throws Exception {
+    setup();
     setContextRoot("/jsp_varinfo_web");
     setTestJsp("VariableInfoTest");
 
-    return super.run(args, out, err);
+  }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_tcfinally_web.war");
+    archive.addClasses(ResultVerifierBean.class,
+            TCFTestTag.class, ThrowTag.class,
+            com.sun.ts.tests.jsp.common.util.JspTestUtil.class);
+    archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_tcfinally_web.xml"));
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/trycatchfinally.tld", "trycatchfinally.tld");    
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/TryCatchFinallyTest.jsp")), "TryCatchFinallyTest.jsp");
+
+    return archive;
   }
 
   /*
@@ -74,6 +89,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate the behavior of the container when a tag
    * implements the TryCatchFinally interface.
    */
+  @Test
   public void tryCatchFinallyTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tcfinally_web/TryCatchFinallyTest.jsp HTTP/1.1");

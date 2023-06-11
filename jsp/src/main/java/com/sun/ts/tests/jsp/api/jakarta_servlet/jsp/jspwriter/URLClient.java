@@ -25,7 +25,23 @@ import java.io.PrintWriter;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 
-public class URLClient extends AbstractUrlClient {
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
+public class URLClientIT extends AbstractUrlClient {
+
 
   private static final char[] CHARS = new char[89];
 
@@ -33,34 +49,29 @@ public class URLClient extends AbstractUrlClient {
 
   private static final String JSP_WRITER_VALIDATOR = "com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.jspwriter.JspWriterValidator";
 
-  public URLClient() {
+  public URLClientIT() throws Exception {
     for (short i = 33, idx = 0; i < 90; i++, idx++) {
       CHARS[idx] = (char) i;
     }
-  }
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
+    setup();
     setContextRoot("/jsp_jspwriter_web");
     setTestJsp("JspWriterTest");
 
-    return super.run(args, out, err);
+    }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_jspwriter_web.war");
+    archive.addClasses(JspWriterValidator.class,
+            com.sun.ts.tests.jsp.common.util.JspTestUtil.class);
+    archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_jspwriter_web.xml"));
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/JspWriterTest.jsp")), "JspWriterTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/CloseValidator.jsp")), "CloseValidator.jsp");
+
+
+    return archive;
   }
 
   /*
@@ -78,6 +89,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.newLine().
    */
+  @Test
   public void jspWriterNewLineTest() throws Exception {
     TEST_PROPS.setProperty(APITEST1, "jspWriterNewLineTest");
     TEST_PROPS.setProperty(STRATEGY, JSP_WRITER_VALIDATOR);
@@ -92,6 +104,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.print(boolean).
    */
+  @Test
   public void jspWriterPrintBooleanTest() throws Exception {
     TEST_PROPS.setProperty(APITEST1, "jspWriterPrintBooleanTest");
     TEST_PROPS.setProperty(SEARCH_STRING, "truefalse");
@@ -105,6 +118,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.print(char).
    */
+  @Test
   public void jspWriterPrintCharTest() throws Exception {
     TEST_PROPS.setProperty(APITEST1, "jspWriterPrintCharTest");
     TEST_PROPS.setProperty(SEARCH_STRING, "cb");
@@ -118,6 +132,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.print(int).
    */
+  @Test
   public void jspWriterPrintIntTest() throws Exception {
     String result = new StringBuffer().append(Integer.MIN_VALUE)
         .append(Integer.MAX_VALUE).toString();
@@ -133,6 +148,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.print(long).
    */
+  @Test
   public void jspWriterPrintLongTest() throws Exception {
     String result = new StringBuffer().append(Long.MIN_VALUE)
         .append(Long.MAX_VALUE).toString();
@@ -148,6 +164,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.print(Float).
    */
+  @Test
   public void jspWriterPrintFloatTest() throws Exception {
     String result = new StringBuffer().append(Float.MIN_VALUE)
         .append(Float.MAX_VALUE).toString();
@@ -163,6 +180,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.print(double).
    */
+  @Test
   public void jspWriterPrintDoubleTest() throws Exception {
     String result = new StringBuffer().append(Double.MIN_VALUE)
         .append(Double.MAX_VALUE).toString();
@@ -178,6 +196,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.print(char[]).
    */
+  @Test
   public void jspWriterPrintCharArrayTest() throws Exception {
     String result = new StringBuffer().append(CHARS).append(CHARS).toString();
     TEST_PROPS.setProperty(APITEST1, "jspWriterPrintCharArrayTest");
@@ -192,6 +211,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.print(String).
    */
+  @Test
   public void jspWriterPrintStringTest() throws Exception {
     TEST_PROPS.setProperty(APITEST1, "jspWriterPrintStringTest");
     TEST_PROPS.setProperty(SEARCH_STRING, "Test Passed");
@@ -206,6 +226,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate the behavior of JspWriter.print(String) where the
    * argument is null.
    */
+  @Test
   public void jspWriterPrintNullStringTest() throws Exception {
     TEST_PROPS.setProperty(APITEST1, "jspWriterPrintNullStringTest");
     TEST_PROPS.setProperty(SEARCH_STRING, "null");
@@ -219,6 +240,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.print(Object).
    */
+  @Test
   public void jspWriterPrintObjectTest() throws Exception {
     TEST_PROPS.setProperty(APITEST1, "jspWriterPrintObjectTest");
     TEST_PROPS.setProperty(SEARCH_STRING, "Test Passed");
@@ -232,6 +254,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.println().
    */
+  @Test
   public void jspWriterPrintlnTest() throws Exception {
     TEST_PROPS.setProperty(APITEST1, "jspWriterPrintlnTest");
     TEST_PROPS.setProperty(STRATEGY, JSP_WRITER_VALIDATOR);
@@ -246,6 +269,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.println(boolean).
    */
+  @Test
   public void jspWriterPrintlnBooleanTest() throws Exception {
     TEST_PROPS.setProperty(APITEST1, "jspWriterPrintlnBooleanTest");
     TEST_PROPS.setProperty(STRATEGY, JSP_WRITER_VALIDATOR);
@@ -260,6 +284,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.println(char).
    */
+  @Test
   public void jspWriterPrintlnCharTest() throws Exception {
     TEST_PROPS.setProperty(APITEST1, "jspWriterPrintlnCharTest");
     TEST_PROPS.setProperty(STRATEGY, JSP_WRITER_VALIDATOR);
@@ -274,6 +299,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.println(int).
    */
+  @Test
   public void jspWriterPrintlnIntTest() throws Exception {
     String result = new StringBuffer().append(Integer.MIN_VALUE).append(EOL)
         .append(Integer.MAX_VALUE).append(EOL).toString();
@@ -290,6 +316,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.println(long).
    */
+  @Test
   public void jspWriterPrintlnLongTest() throws Exception {
     String result = new StringBuffer().append(Long.MIN_VALUE).append(EOL)
         .append(Long.MAX_VALUE).append(EOL).toString();
@@ -306,6 +333,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.println(float).
    */
+  @Test
   public void jspWriterPrintlnFloatTest() throws Exception {
     String result = new StringBuffer().append(Float.MIN_VALUE).append(EOL)
         .append(Float.MAX_VALUE).append(EOL).toString();
@@ -322,6 +350,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.println(double).
    */
+  @Test
   public void jspWriterPrintlnDoubleTest() throws Exception {
     String result = new StringBuffer().append(Double.MIN_VALUE).append(EOL)
         .append(Double.MAX_VALUE).append(EOL).toString();
@@ -338,6 +367,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.println(double).
    */
+  @Test
   public void jspWriterPrintlnCharArrayTest() throws Exception {
     String result = new StringBuffer().append(CHARS).append(EOL).append(CHARS)
         .append(EOL).toString();
@@ -354,6 +384,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.println(String).
    */
+  @Test
   public void jspWriterPrintlnStringTest() throws Exception {
     String result = new StringBuffer().append("Test ").append(EOL)
         .append("Passed").append(EOL).toString();
@@ -371,6 +402,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate the behavior of JspWriter.println(String) where
    * the argument is null.
    */
+  @Test
   public void jspWriterPrintlnNullStringTest() throws Exception {
     TEST_PROPS.setProperty(APITEST1, "jspWriterPrintlnNullStringTest");
     TEST_PROPS.setProperty(SEARCH_STRING, "null");
@@ -384,6 +416,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.println(Object).
    */
+  @Test
   public void jspWriterPrintlnObjectTest() throws Exception {
     String result = new StringBuffer().append("Test ").append(EOL)
         .append("Passed").append(EOL).toString();
@@ -400,6 +433,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.clear().
    */
+  @Test
   public void jspWriterClearTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "jspWriterClearTest");
     invoke();
@@ -414,6 +448,7 @@ public class URLClient extends AbstractUrlClient {
    * must be thrown if the response has been committed, and JspWriter.clear() is
    * subsequently called.
    */
+  @Test
   public void jspWriterClearIOExceptionTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "jspWriterClearIOExceptionTest");
     invoke();
@@ -426,6 +461,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.clearBuffer().
    */
+  @Test
   public void jspWriterClearBufferTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "jspWriterClearBufferTest");
     invoke();
@@ -438,6 +474,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.flush().
    */
+  @Test
   public void jspWriterFlushTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "jspWriterFlushTest");
     invoke();
@@ -450,6 +487,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.close().
    */
+  @Test
   public void jspWriterCloseTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_jspwriter_web/JspWriterTest.jsp?testname=jspWriterCloseTest HTTP/1.1");
@@ -469,6 +507,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.getBufferSize().
    */
+  @Test
   public void jspWriterGetBufferSizeTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "jspWriterGetBufferSizeTest");
     invoke();
@@ -481,6 +520,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.getRemaining().
    */
+  @Test
   public void jspWriterGetRemainingTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "jspWriterGetRemainingTest");
     invoke();
@@ -493,6 +533,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspWriter.isAutoFlush().
    */
+  @Test
   public void jspWriterIsAutoFlushTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "jspWriterIsAutoFlushTest");
     invoke();

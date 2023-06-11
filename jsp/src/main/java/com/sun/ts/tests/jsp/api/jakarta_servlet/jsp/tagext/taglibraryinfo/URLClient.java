@@ -34,29 +34,61 @@ import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
  * within a TagExtraInfo class. If the test fails, a translation error will be
  * generated and a ValidationMessage array will be returned.
  */
-public class URLClient extends AbstractUrlClient {
+import java.io.IOException;
+import java.io.InputStream;
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+@ExtendWith(ArquillianExtension.class)
+public class URLClientIT extends AbstractUrlClient {
 
+
+  public URLClientIT() throws Exception {
+    setup();
     setContextRoot("/jsp_tagvarinfo_web");
 
-    return super.run(args, out, err);
+  }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_taglibinfo_web.war");
+    archive.addClasses(TagLibraryInfoTEI.class,
+            com.sun.ts.tests.jsp.common.util.JspTestUtil.class,
+            com.sun.ts.tests.jsp.common.util.JspFunctions.class,
+            com.sun.ts.tests.jsp.common.util.BaseTCKExtraInfo.class,
+            com.sun.ts.tests.jsp.common.tags.tck.SimpleTag.class);
+
+    archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_taglibinfo_web.xml"));
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/taglibinfo.tld", "taglibinfo.tld");    
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/taglibinfo2.tld", "taglibinfo2.tld");    
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tags/taglibinfo/TagFile1.tag", "tags/taglibinfo/TagFile1.tag");    
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tags/taglibinfo/TagFile2.tag", "tags/taglibinfo/TagFile2.tag");    
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetFunctionsTest.jsp")), "GetFunctionsTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetFunctionTest.jsp")), "GetFunctionTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetInfoStringTest.jsp")), "GetInfoStringTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetPrefixStringTest.jsp")), "GetPrefixStringTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetReliableURNTest.jsp")), "GetReliableURNTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetRequiredVersionTest.jsp")), "GetRequiredVersionTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetShortNameTest.jsp")), "GetShortNameTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetTagFilesTest.jsp")), "GetTagFilesTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetTagFileTest.jsp")), "GetTagFileTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetTagLibraryInfosTest.jsp")), "GetTagLibraryInfosTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetTagsTest.jsp")), "GetTagsTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetTagTest.jsp")), "GetTagTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetURITest.jsp")), "GetURITest.jsp");
+
+    return archive;
   }
 
   /*
@@ -75,6 +107,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate that TagLibaryInfo.getURI() returns the URI as
    * defined by the taglib directive within a JSP page.
    */
+  @Test
   public void tagLibraryInfoGetURITest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taglibinfo_web/GetURITest.jsp HTTP/1.1");
@@ -91,6 +124,7 @@ public class URLClient extends AbstractUrlClient {
    * prefix as specified by the prefix attribute of the taglib directive within
    * a JSP page.
    */
+  @Test
   public void tagLibraryInfoGetPrefixStringTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taglibinfo_web/GetPrefixStringTest.jsp HTTP/1.1");
@@ -107,6 +141,7 @@ public class URLClient extends AbstractUrlClient {
    * short name of the tag library as specified by the &lt;short-name&gt;
    * element in a TLD.
    */
+  @Test
   public void tagLibraryInfoGetShortNameTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taglibinfo_web/GetShortNameTest.jsp HTTP/1.1");
@@ -122,6 +157,7 @@ public class URLClient extends AbstractUrlClient {
    * @testStrategy: Validate that TagLibraryInfo.getShortName() returns the uri
    * of the tag library as specified by the &lt;uri&gt; element in a TLD.
    */
+  @Test
   public void tagLibraryInfoGetReliableURNTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taglibinfo_web/GetReliableURNTest.jsp HTTP/1.1");
@@ -138,6 +174,7 @@ public class URLClient extends AbstractUrlClient {
    * description of the tag library as specified by the &lt;description&gt;
    * element in a TLD.
    */
+  @Test
   public void tagLibraryInfoGetInfoStringTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taglibinfo_web/GetInfoStringTest.jsp HTTP/1.1");
@@ -154,6 +191,7 @@ public class URLClient extends AbstractUrlClient {
    * the require version of the tag library as specified by the
    * &lt;required-version&gt; element in a TLD.
    */
+  @Test
   public void tagLibraryInfoGetRequiredVersionTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taglibinfo_web/GetRequiredVersionTest.jsp HTTP/1.1");
@@ -170,6 +208,7 @@ public class URLClient extends AbstractUrlClient {
    * TagInfo objects based off the tags defined by the &lt;tag&gt; elements in a
    * TLD.
    */
+  @Test
   public void tagLibraryInfoGetTagsTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taglibinfo_web/GetTagsTest.jsp HTTP/1.1");
@@ -186,6 +225,7 @@ public class URLClient extends AbstractUrlClient {
    * of TagFileInfo objects based off the tags files defined by the
    * &lt;tag-file&gt; elements in a TLD.
    */
+  @Test
   public void tagLibraryInfoGetTagFilesTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taglibinfo_web/GetTagFilesTest.jsp HTTP/1.1");
@@ -201,6 +241,7 @@ public class URLClient extends AbstractUrlClient {
    * @testStrategy: Validate that TagLibraryInfo.getTag() returns a TagInfo
    * object based off the provided discriminate.
    */
+  @Test
   public void tagLibraryInfoGetTagTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taglibinfo_web/GetTagTest.jsp HTTP/1.1");
@@ -216,6 +257,7 @@ public class URLClient extends AbstractUrlClient {
    * @testStrategy: Validate that TagLibraryInfo.getTagFile() returns a
    * TagFileInfo object based off the provided discriminate.
    */
+  @Test
   public void tagLibraryInfoGetTagFileTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taglibinfo_web/GetTagFileTest.jsp HTTP/1.1");
@@ -232,6 +274,7 @@ public class URLClient extends AbstractUrlClient {
    * of FunctionInfo objects based off the functions defined by the
    * &lt;function&gt; elements in a TLD.
    */
+  @Test
   public void tagLibraryInfoGetFunctionsTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taglibinfo_web/GetFunctionsTest.jsp HTTP/1.1");
@@ -247,6 +290,7 @@ public class URLClient extends AbstractUrlClient {
    * @testStrategy: Validate that TagLibraryInfo.getFunction() returns a
    * FunctionInfo object based off the provided discriminate.
    */
+  @Test
   public void tagLibraryInfoGetFunctionTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taglibinfo_web/GetFunctionTest.jsp HTTP/1.1");
@@ -262,6 +306,7 @@ public class URLClient extends AbstractUrlClient {
    * @testStrategy: Validate TagLibaryInfo.getTagLibraryInfos() returns an array
    * of TagLibraryInfo objects for all taglibraries declared in the JSP.
    */
+  @Test
   public void tagLibraryInfoGetTagLibraryInfosTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taglibinfo_web/GetTagLibraryInfosTest.jsp HTTP/1.1");

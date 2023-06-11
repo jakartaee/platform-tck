@@ -25,30 +25,43 @@ import java.io.PrintWriter;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 
-public class URLClient extends AbstractUrlClient {
+import java.io.IOException;
+import java.io.InputStream;
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+@ExtendWith(ArquillianExtension.class)
+public class URLClientIT extends AbstractUrlClient {
 
+
+  public URLClientIT() throws Exception {
+    setup();
     setContextRoot("/jsp_elexc_web");
     setTestJsp("ELExceptionTest");
 
-    return super.run(args, out, err);
+  }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_elexc_web.war");
+    archive.addClasses(
+            com.sun.ts.tests.jsp.common.util.JspTestUtil.class);
+    archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_elexc_web.xml"));
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/ELExceptionTest.jsp")), "ELExceptionTest.jsp");
+
+
+    return archive;
   }
 
   /*
@@ -66,6 +79,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate default constructor of ELException
    */
+  @Test
   public void elExceptionDefaultCtorTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "elExceptionDefaultCtorTest");
     invoke();
@@ -79,6 +93,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate contructor taking single string argument as the
    * message of the Exception.
    */
+  @Test
   public void elExceptionMessageCtorTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "elExceptionMessageCtorTest");
     invoke();
@@ -92,6 +107,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate constructor taking a Throwable signifying the root
    * cause of the this ELException.
    */
+  @Test
   public void elExceptionCauseCtorTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "elExceptionCauseCtorTest");
     invoke();
@@ -105,6 +121,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate constructor taking both a message and a Throwable
    * signifying the root cause of the ELException.
    */
+  @Test
   public void elExceptionCauseMessageCtorTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "elExceptionCauseMessageCtorTest");
     invoke();
@@ -117,6 +134,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of ELException.getRootCause().
    */
+  @Test
   public void elExceptionGetRootCauseTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "elExceptionGetRootCauseTest");
     invoke();
@@ -129,6 +147,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of ELException.toString().
    */
+  @Test
   public void elExceptionToStringTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "elExceptionToStringTest");
     invoke();

@@ -37,30 +37,45 @@ import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
  * throw an UnsupportedOperationException. The last test will make sure that a
  * tag nested within a SimpleTag will be passed an instance of the TagAdapter.
  */
-public class URLClient extends AbstractUrlClient {
+import java.io.IOException;
+import java.io.InputStream;
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+@ExtendWith(ArquillianExtension.class)
+public class URLClientIT extends AbstractUrlClient {
 
+
+  public URLClientIT() throws Exception {
+    setup();
     setContextRoot("/jsp_tagadapter_web");
     setTestJsp("TagAdapterTest");
 
-    return super.run(args, out, err);
+  }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_tagadapter_web.war");
+    archive.addClasses(TagAdapterVerifierTag.class,
+            TASimpleTag.class,
+            com.sun.ts.tests.jsp.common.util.JspTestUtil.class);
+    archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_tagadapter_web.xml"));
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tagadapter.tld", "tagadapter.tld");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/TagAdapterValidationTest.jsp")), "TagAdapterValidationTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/TagAdapterTest.jsp")), "TagAdapterTest.jsp");
+
+    return archive;
   }
 
   /*
@@ -78,6 +93,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Validates the constructor of the TagAdapter class.
    */
+  @Test
   public void tagAdapterCtorTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "tagAdapterCtorTest");
     invoke();
@@ -91,6 +107,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validates that an UnsupportedOperationException is thrown
    * if a call to TagAdapter.setPageContext() is made.
    */
+  @Test
   public void tagAdapterSetPageContextTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "tagAdapterSetPageContextTest");
     invoke();
@@ -104,6 +121,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validates that an UnsupportedOperationException is thrown
    * if a call to TagAdapter.setParent() is made.
    */
+  @Test
   public void tagAdapterSetParentTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "tagAdapterSetParentTest");
     invoke();
@@ -117,6 +135,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validates that getParent always returns
    * getAdaptee().getParent()
    */
+  @Test
   public void tagAdapterGetParentTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "tagAdapterGetParentTest");
     invoke();
@@ -130,6 +149,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validates that an UnsupportedOperationException is thrown
    * if a call to TagAdapter.doStartTag() is made.
    */
+  @Test
   public void tagAdapterDoStartTagTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "tagAdapterDoStartTagTest");
     invoke();
@@ -143,6 +163,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validates that an UnsupportedOperationException is thrown
    * if a call to TagAdapter.doEndTag() is made.
    */
+  @Test
   public void tagAdapterDoEndTagTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "tagAdapterDoEndTagTest");
     invoke();
@@ -156,6 +177,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validates that an UnsupportedOperationException is thrown
    * if a call to TagAdapter.release() is made.
    */
+  @Test
   public void tagAdapterReleaseTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "tagAdapterReleaseTest");
     invoke();
@@ -174,6 +196,7 @@ public class URLClient extends AbstractUrlClient {
    * UnsupportedOperationException to be thrown if an illegal method call is
    * made on the TagAdapter.
    */
+  @Test
   public void tagAdapterValidationTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagadapter_web/TagAdapterValidationTest.jsp HTTP/1.1");

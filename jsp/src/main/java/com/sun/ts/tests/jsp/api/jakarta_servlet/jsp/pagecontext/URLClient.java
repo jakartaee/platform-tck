@@ -25,30 +25,45 @@ import java.io.PrintWriter;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 
-public class URLClient extends AbstractUrlClient {
+import java.io.IOException;
+import java.io.InputStream;
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+@ExtendWith(ArquillianExtension.class)
+public class URLClientIT extends AbstractUrlClient {
 
+
+  public URLClientIT() throws Exception {
+    setup();
     setTestJsp("PageContextTest");
     setContextRoot("/jsp_pagecontext_web");
 
-    return super.run(args, out, err);
+    }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_pagecontext_web.war");
+    archive.addClasses(
+            com.sun.ts.tests.jsp.common.util.JspTestUtil.class);
+    archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_pagecontext_web.xml"));
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/PageContextTest.jsp")), "PageContextTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/ErrorPage.jsp")), "ErrorPage.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/Resource.jsp")), "Resource.jsp");
+
+
+    return archive;
   }
 
   /*
@@ -64,6 +79,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: JSP:JAVADOC:16
    * @test_Strategy: Validate PageContext.getSession().
    */
+  @Test
   public void pageContextGetSessionTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextGetSessionTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -75,6 +91,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: JSP:JAVADOC:17
    * @test_Strategy: Validate PageContext.getPage().
    */
+  @Test
   public void pageContextGetPageTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextGetPageTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -86,6 +103,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: JSP:JAVADOC:18
    * @test_Strategy: Validate PageContext.getRequest().
    */
+  @Test
   public void pageContextGetRequestTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextGetRequestTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -97,6 +115,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: JSP:JAVADOC:19
    * @test_Strategy: Validate PageContext.getResponse().
    */
+  @Test
   public void pageContextGetResponseTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextGetResponseTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -108,6 +127,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: JSP:JAVADOC:20
    * @test_Strategy: Validate PageContext.getException().
    */
+  @Test
   public void pageContextGetExceptionTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "pageContextGetExceptionTest");
     TEST_PROPS.setProperty(REQUEST,
@@ -123,6 +143,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: JSP:JAVADOC:21
    * @test_Strategy: Validate PageContext.getServletConfig().
    */
+  @Test
   public void pageContextGetServletConfigTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextGetServletConfigTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -134,6 +155,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: JSP:JAVADOC:22
    * @test_Strategy: Validate PageContext.getServletContext().
    */
+  @Test
   public void pageContextGetServletContextTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextGetServletContextTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -146,6 +168,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate PageContext.forward() passing in a resource
    *                 identified by a context-relative path.
    */
+  @Test
   public void pageContextForwardContextPathTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextForwardContextPathTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -158,6 +181,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate PageContext.forward() passing in a resource
    *                 identified by a page-relative path.
    */
+  @Test
   public void pageContextForwardPagePathTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextForwardPagePathTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -201,6 +225,7 @@ public class URLClient extends AbstractUrlClient {
    *                 IllegalStateException if ServletResponse is not in the
    *                 proper state to perform a forward.
    */
+  @Test
   public void pageContextForwardIllegalStateExceptionTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_pagecontext_web/PageContextTest.jsp?testname=pageContextForwardIllegalStateExceptionTest HTTP/1.1");
@@ -215,6 +240,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate PageContext.include() where the inclusion resource
    *                 is identified by a context-relative path.
    */
+  @Test
   public void pageContextIncludeContextPathTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextIncludeContextPathTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -227,6 +253,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate PageContext.include() where the inclusion resource
    *                 is identified by a page-relative path.
    */
+  @Test
   public void pageContextIncludePagePathTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextIncludePagePathTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -243,6 +270,7 @@ public class URLClient extends AbstractUrlClient {
    *                 the response has been comitted. This also validated the
    *                 inclusion of a resource identified by a page-relative path.
    */
+  @Test
   public void pageContextIncludeFlushTrueTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextIncludeFlushTrueTest");
     TEST_PROPS.setProperty(SEARCH_STRING, "Stream was properly flushed");
@@ -261,6 +289,7 @@ public class URLClient extends AbstractUrlClient {
    *                 inclusion of a resource identified by a context-relative
    *                 path.
    */
+  @Test
   public void pageContextIncludeFlushFalseTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextIncludeFlushFalseTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH,
@@ -274,6 +303,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate PageContext.handlePageException(Exception) invokes
    *                 the defined error page.
    */
+  @Test
   public void pageContextHandlePageExceptionExcTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextHandlePageExceptionExcTest");
     TEST_PROPS.setProperty(IGNORE_STATUS_CODE, "true");
@@ -287,6 +317,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate PageContext.handlePageException(Throwable) invokes
    *                 the defined error page.
    */
+  @Test
   public void pageContextHandlePageExceptionThrTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextHandlePageExceptionThrTest");
     TEST_PROPS.setProperty(IGNORE_STATUS_CODE, "true");
@@ -300,6 +331,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate PageContext.handlePageException(Exception) throws
    *                 a NullPointerException if an null argument is provided.
    */
+  @Test
   public void pageContextHandlePageExceptionExcNPETest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextHandlePageExceptionExcNPETest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -312,6 +344,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate PageContext.handlePageException(Throwable) throws
    *                 a NullPointerException if an null argument is provided.
    */
+  @Test
   public void pageContextHandlePageExceptionThrNPETest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextHandlePageExceptionThrNPETest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -325,6 +358,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate behavior of PageContext.pushBody() and
    *                 PageContext.popBody().
    */
+  @Test
   public void pageContextPushPopBodyTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextPushPopBodyTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -336,6 +370,7 @@ public class URLClient extends AbstractUrlClient {
    * @assertion_ids: JSP:JAVADOC:62
    * @test_Strategy: Validate behavior of PageContext.getErrorData().
    */
+  @Test
   public void pageContextGetErrorDataTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextGetErrorDataTest");
     TEST_PROPS.setProperty(IGNORE_STATUS_CODE, "true");
@@ -349,6 +384,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate PageContext.include() throws an IOException if
    *                 included resource throws an IOException.
    */
+  @Test
   public void pageContextIncludeIOExceptionTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextIncludeIOExceptionTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -361,6 +397,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate PageContext.include() throws a ServletException if
    *                 target resource throws a ServletException.
    */
+  @Test
   public void pageContextIncludeServletExceptionTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextIncludeServletExceptionTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -374,6 +411,7 @@ public class URLClient extends AbstractUrlClient {
    *                 provided, throws an IOException if the target resource
    *                 cannot be accessed by the caller.
    */
+  @Test
   public void pageContextIncludeFlushIOExceptionTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextIncludeFlushIOExceptionTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -387,6 +425,7 @@ public class URLClient extends AbstractUrlClient {
    *                 provided, throws a ServletException if the target resource
    *                 cannot be accessed by the caller.
    */
+  @Test
   public void pageContextIncludeFlushServletExceptionTest() throws Exception {
     TEST_PROPS.setProperty(APITEST,
         "pageContextIncludeFlushServletExceptionTest");
@@ -401,6 +440,7 @@ public class URLClient extends AbstractUrlClient {
    *                 PageContext.setAttribute(String). Note: These are inherited
    *                 from JspContext.
    */
+  @Test
   public void pageContextGetSetAttributeTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextGetSetAttributeTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -414,6 +454,7 @@ public class URLClient extends AbstractUrlClient {
    *                 name provided is null, but not when the provided value is
    *                 null. Note: This is inherited from JspContext.
    */
+  @Test
   public void pageContextSetAttributeNPETest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextSetAttributeNPETest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -427,6 +468,7 @@ public class URLClient extends AbstractUrlClient {
    *                 PageContext.setAttribute() when provided with scope
    *                 arguments. Note: These are inherited from JspContext.
    */
+  @Test
   public void pageContextGetSetAttributeInScopeTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextGetSetAttributeInScopeTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -440,6 +482,7 @@ public class URLClient extends AbstractUrlClient {
    *                 name provided is null, but not when the provided value is
    *                 null. Note: This is inherited from JspContext.
    */
+  @Test
   public void pageContextSetAttributeInScopeNPETest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextSetAttributeInScopeNPETest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -453,6 +496,7 @@ public class URLClient extends AbstractUrlClient {
    *                 PageContext.setAttribute() is provided an invalid scope.
    *                 Note: This is inherited from JspContext.
    */
+  @Test
   public void pageContextSetAttributeInScopeIllegalArgumentExceptionTest()
       throws Exception {
     TEST_PROPS.setProperty(APITEST,
@@ -468,6 +512,7 @@ public class URLClient extends AbstractUrlClient {
    *                 PageContext.getAttriubte() is provided a null argument.
    *                 Note: This is inherited from JspContext.
    */
+  @Test
   public void pageContextGetAttributeNPETest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextGetAttributeNPETest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -481,6 +526,7 @@ public class URLClient extends AbstractUrlClient {
    *                 PageContext.getAttribute() is provided an invalid value for
    *                 scope. Note: This is inherited from JspContext.
    */
+  @Test
   public void pageContextGetAttributeInScopeIllegalArgumentExceptionTest()
       throws Exception {
     TEST_PROPS.setProperty(APITEST,
@@ -495,6 +541,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate behavior of PageContext.findAttribute(). Note:
    *                 This is inherited from JspContext.
    */
+  @Test
   public void pageContextFindAttributeTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextFindAttributeTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -507,6 +554,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate the behavior of PageContext.removeAttribute().
    *                 Note: This is inhertied from JspContext
    */
+  @Test
   public void pageContextRemoveAttributeTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextRemoveAttributeTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -519,6 +567,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate the behavior of PageContext.remoteAttribute() when
    *                 provided a scope. Note: This is inherited from JspContext.
    */
+  @Test
   public void pageContextRemoveAttributeFromScopeTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextRemoveAttributeFromScopeTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -531,6 +580,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate an IllegalArgumentException is thrown if the scope
    *                 argument is provided an illegal scope.
    */
+  @Test
   public void pageContextRemoveAttributeFromScopeIllegalScopeTest()
       throws Exception {
     TEST_PROPS.setProperty(APITEST,
@@ -545,6 +595,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate the behavior of PageContext.getAttributeScope().
    *                 Note: This is inherited from JspContext.
    */
+  @Test
   public void pageContextGetAttributeScopeTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextGetAttributeScopeTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -558,6 +609,7 @@ public class URLClient extends AbstractUrlClient {
    *                 PageContext.getAttributeNamesInScope(). Note: This is
    *                 inherited from JspContext
    */
+  @Test
   public void pageContextGetAttributeNamesInScopeTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextGetAttributeNamesInScopeTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -570,6 +622,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate an IllegalArgumentException is thrown if the scope
    *                 argument is provided an illegal scope.
    */
+  @Test
   public void pageContextGetAttributeNamesInScopeIllegalScopeTest()
       throws Exception {
     TEST_PROPS.setProperty(APITEST,
@@ -584,6 +637,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate the behavior of PageContext.getOut. Note: This is
    *                 inherited from JspContext.
    */
+  @Test
   public void pageContextGetOutTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextGetOutTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -597,6 +651,7 @@ public class URLClient extends AbstractUrlClient {
    *                 PageContext.getExpressionEvaluator. Note: This is inherited
    *                 from JspContext.
    */
+  @Test
   public void pageContextGetExpressionEvaluatorTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextGetExpressionEvaluatorTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -609,6 +664,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate the behavior of PageContext.getVariableResolver().
    *                 Note: This is inherited from JspContext.
    */
+  @Test
   public void pageContextGetVariableResolverTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextGetVariableResolverTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -621,6 +677,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate a NullPointerException is thrown if a null value
    *                 is provided for the name parameter.
    */
+  @Test
   public void pageContextFindAttributeNullNameTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextFindAttributeNullNameTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -633,6 +690,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate a NullPointerException is thrown if a null value
    *                 is provided to the name argument.
    */
+  @Test
   public void pageContextGetAttributesScopeNullNameTest() throws Exception {
     TEST_PROPS.setProperty(APITEST,
         "pageContextGetAttributesScopeNullNameTest");
@@ -646,6 +704,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate a NullPointerException is thrown if the name
    *                 argument is provided a null value.
    */
+  @Test
   public void pageContextRemoveAttributeNullNameTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextRemoveAttributeNullNameTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -660,6 +719,7 @@ public class URLClient extends AbstractUrlClient {
    *                 Object, int) it has the same affect as calling
    *                 removeAttribute(String) or removeAttribute(String, int).
    */
+  @Test
   public void pageContextSetAttributeNullValueTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextSetAttributeNullValueTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");

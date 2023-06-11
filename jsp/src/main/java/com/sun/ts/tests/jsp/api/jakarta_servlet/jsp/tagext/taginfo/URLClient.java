@@ -34,29 +34,59 @@ import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
  * a TagExtraInfo class. If the test fails, a translation error will be
  * generated and a ValidationMessage array will be returned.
  */
-public class URLClient extends AbstractUrlClient {
+import java.io.IOException;
+import java.io.InputStream;
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+import org.junit.jupiter.api.Disabled;
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+@ExtendWith(ArquillianExtension.class)
+public class URLClientIT extends AbstractUrlClient {
 
+
+  public URLClientIT() throws Exception {
+    setup();
     setContextRoot("/jsp_taginfo_web");
 
-    return super.run(args, out, err);
+    }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_taginfo_web.war");
+    archive.addClasses(TagInfoTEI.class,
+            com.sun.ts.tests.jsp.common.util.JspTestUtil.class,
+            com.sun.ts.tests.jsp.common.util.BaseTCKExtraInfo.class,
+            com.sun.ts.tests.jsp.common.tags.tck.SimpleTag.class,
+            com.sun.ts.tests.common.el.api.expression.ExpressionTest.class);
+    archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_taginfo_web.xml"));
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/taginfo.tld", "taginfo.tld");    
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetAttributesTest.jsp")), "GetAttributesTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetBodyContentTest.jsp")), "GetBodyContentTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetDisplayNameTest.jsp")), "GetDisplayNameTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetInfoStringTest.jsp")), "GetInfoStringTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetLargeIconTest.jsp")), "GetLargeIconTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetSmallIconTest.jsp")), "GetSmallIconTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetTagClassNameTest.jsp")), "GetTagClassNameTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetTagExtraInfoTest.jsp")), "GetTagExtraInfoTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetTagLibraryTest.jsp")), "GetTagLibraryTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetTagNameTest.jsp")), "GetTagNameTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetTagVariableInfosTest.jsp")), "GetTagVariableInfosTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/HasDynamicAttributesTest.jsp")), "HasDynamicAttributesTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/SetTagExtraInfoTest.jsp")), "SetTagExtraInfoTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/SetTagLibraryTest.jsp")), "SetTagLibraryTest.jsp");
+
+    return archive;
   }
 
   /*
@@ -75,6 +105,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate TagInfo.getTagName() returns the expected values
    * based on what is defined in the TLD.
    */
+  @Test
   public void tagInfoGetTagNameTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taginfo_web/GetTagNameTest.jsp HTTP/1.1");
@@ -90,6 +121,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate TagInfo.getAttributes() returns the expected
    * values based on what is defined in the TLD.
    */
+  @Test
   public void tagInfoGetAttributesTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taginfo_web/GetAttributesTest.jsp HTTP/1.1");
@@ -106,6 +138,7 @@ public class URLClient extends AbstractUrlClient {
    * values based on what is defined in the TLD. This implicitly tests
    * TagInfo.setTagExtraInfo().
    */
+  @Test
   public void tagInfoGetTagExtraInfoTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taginfo_web/GetTagExtraInfoTest.jsp HTTP/1.1");
@@ -121,6 +154,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate TagInfo.getTagClassName() returns the expected
    * values based on what is defined in the TLD.
    */
+  @Test
   public void tagInfoGetTagClassNameTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taginfo_web/GetTagClassNameTest.jsp HTTP/1.1");
@@ -136,6 +170,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate TagInfo.getBodyContent() returns the expected
    * values based on what is defined in the TLD.
    */
+  @Test
   public void tagInfoGetBodyContentTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taginfo_web/GetBodyContentTest.jsp HTTP/1.1");
@@ -151,6 +186,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate TagInfo.getInfoString() returns the expected
    * values based on what is defined in the TLD.
    */
+  @Test
   public void tagInfoGetInfoStringTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taginfo_web/GetInfoStringTest.jsp HTTP/1.1");
@@ -167,6 +203,7 @@ public class URLClient extends AbstractUrlClient {
    * values based on what is defined in the TLD. This implicitly tests
    * TagInfo.setTagLibrary().
    */
+  @Test
   public void tagInfoGetTagLibraryTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taginfo_web/GetTagLibraryTest.jsp HTTP/1.1");
@@ -182,6 +219,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate TagInfo.getDisplayName() returns the expected
    * values based on what is defined in the TLD.
    */
+  @Test
   public void tagInfoGetDisplayNameTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taginfo_web/GetDisplayNameTest.jsp HTTP/1.1");
@@ -197,6 +235,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate TagInfo.getSmallIconName() returns the expected
    * values based on what is defined in the TLD.
    */
+  @Test
   public void tagInfoGetSmallIconTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taginfo_web/GetSmallIconTest.jsp HTTP/1.1");
@@ -212,6 +251,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate TagInfo.getLargeIconName() returns the expected
    * values based on what is defined in the TLD.
    */
+  @Test
   public void tagInfoGetLargeIconTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taginfo_web/GetLargeIconTest.jsp HTTP/1.1");
@@ -227,6 +267,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate TagInfo.getTagVariableInfos() returns the expected
    * values based on what is defined in the TLD.
    */
+  @Test
   public void tagInfoGetTagVariableInfosTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taginfo_web/GetTagVariableInfosTest.jsp HTTP/1.1");
@@ -242,6 +283,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate TagInfo.hasDynamicAttributes() returns the
    * expected values based on what is defined in the TLD.
    */
+  @Test
   public void tagInfoHasDynamicAttributesTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taginfo_web/HasDynamicAttributesTest.jsp HTTP/1.1");
@@ -255,6 +297,8 @@ public class URLClient extends AbstractUrlClient {
    * on the associated TagExtraInfo class. This method should be exercised with
    * a jsp 1.1 tld. See tagInfoConstructor11Test.
    */
+  @Test
+  @Disabled("Disabled in legacy")
   public void tagInfoIsValidTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taginfo_web/IsValidTest.jsp HTTP/1.1");
@@ -269,6 +313,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Set the instance for extra tag information
    */
+  @Test
   public void tagInfoSetTagExtraInfoTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taginfo_web/SetTagExtraInfoTest.jsp HTTP/1.1");
@@ -283,6 +328,7 @@ public class URLClient extends AbstractUrlClient {
    * 
    * @test_Strategy: Set the TagLibraryInfo property.
    */
+  @Test
   public void tagInfoSetTagLibraryTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taginfo_web/SetTagLibraryTest.jsp HTTP/1.1");
