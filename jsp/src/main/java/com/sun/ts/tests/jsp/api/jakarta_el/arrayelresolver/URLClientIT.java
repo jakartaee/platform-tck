@@ -21,12 +21,8 @@
 package com.sun.ts.tests.jsp.api.jakarta_el.arrayelresolver;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
-import com.sun.ts.tests.jsp.common.util.JspTestUtil;
-import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
-import com.sun.ts.tests.common.el.api.resolver.BarELResolver;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
@@ -37,16 +33,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
 @ExtendWith(ArquillianExtension.class)
 public class URLClientIT extends AbstractUrlClient {
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
 
   public URLClientIT() throws Exception {
     setup();
@@ -57,18 +47,14 @@ public class URLClientIT extends AbstractUrlClient {
   @Deployment(testable = false)
   public static WebArchive createDeployment() throws IOException {
 
-    InputStream inStream = URLClientIT.class.getClassLoader().getResourceAsStream("com/sun/ts/tests/jsp/api/jakarta_el/arrayelresolver/jsp_arrayelresolver_web.xml");
-    String webXml = toString(inStream);
-    InputStream jspFileStream = URLClientIT.class.getClassLoader().getResourceAsStream("com/sun/ts/tests/jsp/api/jakarta_el/arrayelresolver/ArrayELResolverTest.jsp");
-    String jspFile = toString(jspFileStream);
-
+    String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_arrayelresolver_web.war");
     archive.addClasses(ArrayELResolverTag.class, com.sun.ts.tests.jsp.common.util.JspTestUtil.class, 
             com.sun.ts.tests.common.el.api.resolver.ResolverTest.class, 
             com.sun.ts.tests.common.el.api.resolver.BarELResolver.class);
-    archive.setWebXML(new StringAsset(webXml));
+    archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_arrayelresolver_web.xml"));
     archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/arrayelresolver.tld", "arrayelresolver.tld");    
-    archive.add(new StringAsset(jspFile), "ArrayELResolverTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/ArrayELResolverTest.jsp")), "ArrayELResolverTest.jsp");
 
     return archive;
 
