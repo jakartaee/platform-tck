@@ -11,74 +11,71 @@
     https://www.gnu.org/software/classpath/license.html.
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>jakartatck</groupId>
-    <artifactId>project</artifactId>
+    <parent>
+        <groupId>jakartatck</groupId>
+        <artifactId>project</artifactId>
+        <version>10.0.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.glassfish</groupId>
+    <artifactId>standalone-tck</artifactId>
     <version>10.0.0-SNAPSHOT</version>
-  </parent>
+    <packaging>pom</packaging>
 
-  <groupId>org.glassfish</groupId>
-  <artifactId>standalone-tck</artifactId>
-  <version>10.0.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
+    <modules>
+        <module>batch-tck</module>
+        <module>cdi-model-tck</module>
+        <module>cdi-tck</module>
+        <module>concurrency-tck</module>
+        <module>jsonb-tck</module>
+        <module>jsonp-tck</module>
+        <module>servlet-tck</module>
+    </modules>
 
-  <properties>
+    <properties>
+        <glassfish-artifact-id>glassfish</glassfish-artifact-id>
 
-    <jsonb.tck.version>3.0.0</jsonb.tck.version>
-    <json.tck.version>2.1.0</json.tck.version>
-    <jakarta.rest.version>3.1.0</jakarta.rest.version>
-    <tck.artifactId>jakarta-restful-ws-tck</tck.artifactId>
+        <glassfish.container.version>7.0.0-M10</glassfish.container.version>
+        <glassfish.toplevel.dir>glassfish7</glassfish.toplevel.dir>
+        <jakarta.rest.version>3.1.0</jakarta.rest.version>
+        <json.tck.version>2.1.0</json.tck.version>
 
-    <glassfish.container.version>7.0.0-M10</glassfish.container.version>
-    <glassfish.toplevel.dir>glassfish7</glassfish.toplevel.dir>
-    <glassfish-artifact-id>glassfish</glassfish-artifact-id>
-  </properties>
+        <jsonb.tck.version>3.0.0</jsonb.tck.version>
+        <tck.artifactId>jakarta-restful-ws-tck</tck.artifactId>
+    </properties>
 
-  <profiles>
-    <profile>
-      <id>web</id>
-      <properties>
-        <glassfish-artifact-id>web</glassfish-artifact-id>
-      </properties>
-    </profile>
-    <!-- FIXME in a profile as it contains some non existing artifact references -->
-    <profile>
-      <id>jaxrs-tck</id>
-      <modules>
-        <module>jaxrs-tck</module>
-      </modules>
-    </profile>
-  </profiles>
+    <repositories>
+        <repository>
+            <id>jakarta-snapshots</id>
+            <url>https://jakarta.oss.sonatype.org/content/repositories/staging/</url>
+        </repository>
+        <repository>
+            <id>central</id>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
+        <repository>
+            <id>jboss</id>
+            <url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
+        </repository>
+    </repositories>
 
-  <repositories>
-    <repository>
-      <id>jakarta-snapshots</id>
-      <url>https://jakarta.oss.sonatype.org/content/repositories/staging/</url>
-    </repository>
-    <repository>
-      <id>central</id>
-      <url>https://repo1.maven.org/maven2</url>
-    </repository>
-    <repository>
-      <id>jboss</id>
-      <url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
-    </repository>
-  </repositories>
-
-
-  <modules>
-    <module>batch-tck</module>
-    <module>concurrency-tck</module>
-    <module>jsonp-tck</module>
-    <module>jsonb-tck</module>
-    <module>servlet-tck</module>
-    <module>cdi-model-tck</module>
-    <module>cdi-tck</module>
-  </modules>
+    <profiles>
+        <profile>
+            <id>web</id>
+            <properties>
+                <glassfish-artifact-id>web</glassfish-artifact-id>
+            </properties>
+        </profile>
+        <!-- FIXME in a profile as it contains some non existing artifact references -->
+        <profile>
+            <id>jaxrs-tck</id>
+            <modules>
+                <module>jaxrs-tck</module>
+            </modules>
+        </profile>
+    </profiles>
 </project>
