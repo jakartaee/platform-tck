@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,11 +19,14 @@
  */
 package com.sun.ts.tests.jms.core.closedQueueReceiver;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.common.JmsTool;
 
@@ -33,342 +36,326 @@ import jakarta.jms.Queue;
 /**
  * JMS TS tests. Testing method calls on closed QueueReceiver objects.
  */
-public class ClosedQueueReceiverTests extends ServiceEETest {
-  private static final String TestName = "com.sun.ts.tests.jms.core.closedQueueReceiver.ClosedQueueReceiverTests";
+public class ClosedQueueReceiverTests {
+	private static final String TestName = "com.sun.ts.tests.jms.core.closedQueueReceiver.ClosedQueueReceiverTests";
 
-  private static final String testDir = System.getProperty("user.dir");
+	private static final String testDir = System.getProperty("user.dir");
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  // JMS objects
-  private transient JmsTool tool = null;
+	private static final Logger logger = (Logger) System.getLogger(ClosedQueueReceiverTests.class.getName());
 
-  // Harness req's
-  private Properties props = null;
+	// JMS objects
+	private transient JmsTool tool = null;
 
-  // properties read from ts.jte file
-  long timeout;
+	// Harness req's
+	private Properties props = null;
 
-  String user;
+	// properties read
+	long timeout;
 
-  String password;
+	String user;
 
-  String mode;
+	String password;
 
-  ArrayList queues = null;
+	String mode;
 
-  ArrayList connections = null;
+	ArrayList queues = null;
 
-  /* Run test in standalone mode */
+	ArrayList connections = null;
 
-  /**
-   * Main method is used when not run from the JavaTest GUI.
-   * 
-   * @param args
-   */
-  public static void main(String[] args) {
-    ClosedQueueReceiverTests theTests = new ClosedQueueReceiverTests();
-    Status s = theTests.run(args, System.out, System.err);
+	/* Utility methods for tests */
 
-    s.exit();
-  }
+	/**
+	 * Used by tests that need a closed receiver for testing. Passes any exceptions
+	 * up to caller.
+	 * 
+	 * @param int The type of session that needs to be created and closed
+	 */
+	private void createAndCloseReceiver() throws Exception {
+		tool = new JmsTool(JmsTool.QUEUE, user, password, mode);
+		tool.getDefaultQueueConnection().start();
 
-  /* Utility methods for tests */
+		logger.log(Logger.Level.TRACE, "Closing queue receiver");
+		tool.getDefaultQueueReceiver().close();
+		logger.log(Logger.Level.TRACE, "Receiver closed");
+	}
 
-  /**
-   * Used by tests that need a closed receiver for testing. Passes any
-   * exceptions up to caller.
-   * 
-   * @param int
-   *          The type of session that needs to be created and closed
-   */
-  private void createAndCloseReceiver() throws Exception {
-    tool = new JmsTool(JmsTool.QUEUE, user, password, mode);
-    tool.getDefaultQueueConnection().start();
+	/* Test setup: */
 
-    logTrace("Closing queue receiver");
-    tool.getDefaultQueueReceiver().close();
-    logTrace("Receiver closed");
-  }
+	/*
+	 * setup() is called before each test
+	 * 
+	 * Creates Administrator object and deletes all previous Destinations.
+	 * Individual tests create the JmsTool object with one default Queue and/or
+	 * Topic Connection, as well as a default Queue and Topic. Tests that require
+	 * multiple Destinations create the extras within the test
+	 * 
+	 * 
+	 * @class.setup_props: jms_timeout; user; password; platform.mode;
+	 * 
+	 * @exception Fault
+	 */
 
-  /* Test setup: */
+	/**
+	 * Method Declaration.
+	 * 
+	 * 
+	 * @param args
+	 * @param p
+	 *
+	 * @exception Fault
+	 *
+	 * @see
+	 */
 
-  /*
-   * setup() is called before each test
-   * 
-   * Creates Administrator object and deletes all previous Destinations.
-   * Individual tests create the JmsTool object with one default Queue and/or
-   * Topic Connection, as well as a default Queue and Topic. Tests that require
-   * multiple Destinations create the extras within the test
-   * 
-   * 
-   * @class.setup_props: jms_timeout; user; password; platform.mode;
-   * 
-   * @exception Fault
-   */
+	@BeforeEach
+	public void setup() throws Exception {
+		try {
 
-  /**
-   * Method Declaration.
-   * 
-   * 
-   * @param args
-   * @param p
-   *
-   * @exception Fault
-   *
-   * @see
-   */
-  public void setup(String[] args, Properties p) throws Exception {
-    try {
+			// get props
+			timeout = Long.parseLong(System.getProperty("jms_timeout"));
+			user = System.getProperty("user");
+			password = System.getProperty("password");
+			mode = System.getProperty("platform.mode");
 
-      // get props
-      timeout = Long.parseLong(p.getProperty("jms_timeout"));
-      user = p.getProperty("user");
-      password = p.getProperty("password");
-      mode = p.getProperty("platform.mode");
+			// check props for errors
+			if (timeout < 1) {
+				throw new Exception("'jms_timeout' (milliseconds) in must be > 0");
+			}
+			if (user == null) {
+				throw new Exception("'user' in must not be null");
+			}
+			if (password == null) {
+				throw new Exception("'password' in must not be null");
+			}
+			if (mode == null) {
+				throw new Exception("'platform.mode' in must not be null");
+			}
+			queues = new ArrayList(2);
 
-      // check props for errors
-      if (timeout < 1) {
-        throw new Exception(
-            "'jms_timeout' (milliseconds) in ts.jte must be > 0");
-      }
-      if (user == null) {
-        throw new Exception("'user' in ts.jte must not be null");
-      }
-      if (password == null) {
-        throw new Exception("'password' in ts.jte must not be null");
-      }
-      if (mode == null) {
-        throw new Exception("'platform.mode' in ts.jte must not be null");
-      }
-      queues = new ArrayList(2);
+			// get ready for new test
+			logger.log(Logger.Level.TRACE, "Getting Administrator and deleting any leftover destinations.");
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new Exception("Setup failed!", e);
+		}
+	}
 
-      // get ready for new test
-      logTrace("Getting Administrator and deleting any leftover destinations.");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Exception("Setup failed!", e);
-    }
-  }
+	/* cleanup */
 
-  /* cleanup */
+	/*
+	 * cleanup() is called after each test
+	 * 
+	 * Closes the default connections that are created by setup(). Any separate
+	 * connections made by individual tests should be closed by that test.
+	 * 
+	 * @exception Fault
+	 */
 
-  /*
-   * cleanup() is called after each test
-   * 
-   * Closes the default connections that are created by setup(). Any separate
-   * connections made by individual tests should be closed by that test.
-   * 
-   * @exception Fault
-   */
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			if (tool != null) {
+				logger.log(Logger.Level.INFO, "Cleanup: Closing Queue and Topic Connections");
+				tool.doClientQueueTestCleanup(connections, queues);
+			}
 
-  public void cleanup() throws Exception {
-    try {
-      if (tool != null) {
-        logMsg("Cleanup: Closing Queue and Topic Connections");
-        tool.doClientQueueTestCleanup(connections, queues);
-      }
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			logger.log(Logger.Level.ERROR, "An error occurred while cleaning");
+			throw new Exception("Cleanup failed!", e);
+		}
+	}
 
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      logErr("An error occurred while cleaning");
-      throw new Exception("Cleanup failed!", e);
-    }
-  }
+	/* Tests */
 
-  /* Tests */
+	/*
+	 * @testName: closedQueueReceiverCloseTest
+	 * 
+	 * @assertion_ids: JMS:SPEC:201; JMS:JAVADOC:338;
+	 * 
+	 * @test_Strategy: Close default receiver and call method on it.
+	 */
+	@Test
+	public void closedQueueReceiverCloseTest() throws Exception {
+		try {
+			createAndCloseReceiver();
+			logger.log(Logger.Level.TRACE, "Try to call close again");
+			tool.getDefaultQueueReceiver().close();
+		} catch (Exception e) {
+			throw new Exception("closedQueueReceiverCloseTest", e);
+		}
+	}
 
-  /*
-   * @testName: closedQueueReceiverCloseTest
-   * 
-   * @assertion_ids: JMS:SPEC:201; JMS:JAVADOC:338;
-   * 
-   * @test_Strategy: Close default receiver and call method on it.
-   */
+	/*
+	 * @testName: closedQueueReceiverGetMessageSelectorTest
+	 * 
+	 * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:326;
+	 * 
+	 * @test_Strategy: Close default receiver and call method on it. Check for
+	 * IllegalStateException.
+	 */
+	@Test
+	public void closedQueueReceiverGetMessageSelectorTest() throws Exception {
+		boolean passed = false;
 
-  public void closedQueueReceiverCloseTest() throws Exception {
-    try {
-      createAndCloseReceiver();
-      logTrace("Try to call close again");
-      tool.getDefaultQueueReceiver().close();
-    } catch (Exception e) {
-      throw new Exception("closedQueueReceiverCloseTest", e);
-    }
-  }
+		try {
+			createAndCloseReceiver();
+			logger.log(Logger.Level.TRACE, "Try to call getMessageSelector");
+			try {
+				String foo = tool.getDefaultQueueReceiver().getMessageSelector();
 
-  /*
-   * @testName: closedQueueReceiverGetMessageSelectorTest
-   * 
-   * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:326;
-   * 
-   * @test_Strategy: Close default receiver and call method on it. Check for
-   * IllegalStateException.
-   */
+				logger.log(Logger.Level.TRACE, "Fail: Exception was not thrown!");
+			} catch (jakarta.jms.IllegalStateException ise) {
+				logger.log(Logger.Level.TRACE, "Pass: threw expected error");
+				passed = true;
+			} catch (Exception e) {
+				TestUtil.printStackTrace(e);
+				logger.log(Logger.Level.TRACE, "Fail: wrong exception: " + e.getClass().getName() + " was returned");
+			}
+			if (!passed) {
+				throw new Exception("Error: failures occurred during tests");
+			}
+		} catch (Exception e) {
+			throw new Exception("closedQueueReceiverGetMessageSelectorTest", e);
+		}
+	}
 
-  public void closedQueueReceiverGetMessageSelectorTest() throws Exception {
-    boolean passed = false;
+	/*
+	 * @testName: closedQueueReceiverReceiveTest
+	 * 
+	 * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:332;
+	 * 
+	 * @test_Strategy: Close default receiver and call method on it. Check for
+	 * IllegalStateException.
+	 */
+	@Test
+	public void closedQueueReceiverReceiveTest() throws Exception {
+		boolean passed = false;
 
-    try {
-      createAndCloseReceiver();
-      logTrace("Try to call getMessageSelector");
-      try {
-        String foo = tool.getDefaultQueueReceiver().getMessageSelector();
+		try {
+			createAndCloseReceiver();
+			logger.log(Logger.Level.TRACE, "Try to call receive");
+			try {
+				Message foo = tool.getDefaultQueueReceiver().receive();
 
-        logTrace("Fail: Exception was not thrown!");
-      } catch (jakarta.jms.IllegalStateException ise) {
-        logTrace("Pass: threw expected error");
-        passed = true;
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        logTrace("Fail: wrong exception: " + e.getClass().getName()
-            + " was returned");
-      }
-      if (!passed) {
-        throw new Exception("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      throw new Exception("closedQueueReceiverGetMessageSelectorTest", e);
-    }
-  }
+				logger.log(Logger.Level.TRACE, "Fail: Exception was not thrown!");
+			} catch (jakarta.jms.IllegalStateException ise) {
+				logger.log(Logger.Level.TRACE, "Pass: threw expected error");
+				passed = true;
+			} catch (Exception e) {
+				TestUtil.printStackTrace(e);
+				logger.log(Logger.Level.TRACE, "Fail: wrong exception: " + e.getClass().getName() + " was returned");
+			}
+			if (!passed) {
+				throw new Exception("Error: failures occurred during tests");
+			}
+		} catch (Exception e) {
+			throw new Exception("closedQueueReceiverReceiveTest", e);
+		}
+	}
 
-  /*
-   * @testName: closedQueueReceiverReceiveTest
-   * 
-   * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:332;
-   * 
-   * @test_Strategy: Close default receiver and call method on it. Check for
-   * IllegalStateException.
-   */
+	/*
+	 * @testName: closedQueueReceiverReceiveTimeoutTest
+	 * 
+	 * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:334;
+	 * 
+	 * @test_Strategy: Close default receiver and call method on it. Check for
+	 * IllegalStateException.
+	 */
+	@Test
+	public void closedQueueReceiverReceiveTimeoutTest() throws Exception {
+		boolean passed = false;
 
-  public void closedQueueReceiverReceiveTest() throws Exception {
-    boolean passed = false;
+		try {
+			createAndCloseReceiver();
+			logger.log(Logger.Level.TRACE, "Try to call receive(timeout)");
+			try {
+				Message foo = tool.getDefaultQueueReceiver().receive(timeout);
 
-    try {
-      createAndCloseReceiver();
-      logTrace("Try to call receive");
-      try {
-        Message foo = tool.getDefaultQueueReceiver().receive();
+				logger.log(Logger.Level.TRACE, "Fail: Exception was not thrown!");
+			} catch (jakarta.jms.IllegalStateException ise) {
+				logger.log(Logger.Level.TRACE, "Pass: threw expected error");
+				passed = true;
+			} catch (Exception e) {
+				TestUtil.printStackTrace(e);
+				logger.log(Logger.Level.TRACE, "Fail: wrong exception: " + e.getClass().getName() + " was returned");
+			}
+			if (!passed) {
+				throw new Exception("Error: failures occurred during tests");
+			}
+		} catch (Exception e) {
+			throw new Exception("closedQueueReceiverReceiveTimeoutTest", e);
+		}
+	}
 
-        logTrace("Fail: Exception was not thrown!");
-      } catch (jakarta.jms.IllegalStateException ise) {
-        logTrace("Pass: threw expected error");
-        passed = true;
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        logTrace("Fail: wrong exception: " + e.getClass().getName()
-            + " was returned");
-      }
-      if (!passed) {
-        throw new Exception("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      throw new Exception("closedQueueReceiverReceiveTest", e);
-    }
-  }
+	/*
+	 * @testName: closedQueueReceiverReceiveNoWaitTest
+	 * 
+	 * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:336;
+	 * 
+	 * @test_Strategy: Close default receiver and call method on it. Check for
+	 * IllegalStateException.
+	 */
+	@Test
+	public void closedQueueReceiverReceiveNoWaitTest() throws Exception {
+		boolean passed = false;
 
-  /*
-   * @testName: closedQueueReceiverReceiveTimeoutTest
-   * 
-   * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:334;
-   * 
-   * @test_Strategy: Close default receiver and call method on it. Check for
-   * IllegalStateException.
-   */
+		try {
+			createAndCloseReceiver();
+			logger.log(Logger.Level.TRACE, "Try to call receiveNoWait");
+			try {
+				Message foo = tool.getDefaultQueueReceiver().receiveNoWait();
 
-  public void closedQueueReceiverReceiveTimeoutTest() throws Exception {
-    boolean passed = false;
+				logger.log(Logger.Level.TRACE, "Fail: Exception was not thrown!");
+			} catch (jakarta.jms.IllegalStateException ise) {
+				logger.log(Logger.Level.TRACE, "Pass: threw expected error");
+				passed = true;
+			} catch (Exception e) {
+				TestUtil.printStackTrace(e);
+				logger.log(Logger.Level.TRACE, "Fail: wrong exception: " + e.getClass().getName() + " was returned");
+			}
+			if (!passed) {
+				throw new Exception("Error: failures occurred during tests");
+			}
+		} catch (Exception e) {
+			throw new Exception("closedQueueReceiverReceiveNoWaitTest", e);
+		}
+	}
 
-    try {
-      createAndCloseReceiver();
-      logTrace("Try to call receive(timeout)");
-      try {
-        Message foo = tool.getDefaultQueueReceiver().receive(timeout);
+	/*
+	 * @testName: closedQueueReceiverGetQueueTest
+	 * 
+	 * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:268;
+	 * 
+	 * @test_Strategy: Close default receiver and call method on it. Check for
+	 * IllegalStateException.
+	 */
+	@Test
+	public void closedQueueReceiverGetQueueTest() throws Exception {
+		boolean passed = false;
 
-        logTrace("Fail: Exception was not thrown!");
-      } catch (jakarta.jms.IllegalStateException ise) {
-        logTrace("Pass: threw expected error");
-        passed = true;
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        logTrace("Fail: wrong exception: " + e.getClass().getName()
-            + " was returned");
-      }
-      if (!passed) {
-        throw new Exception("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      throw new Exception("closedQueueReceiverReceiveTimeoutTest", e);
-    }
-  }
+		try {
+			createAndCloseReceiver();
+			logger.log(Logger.Level.TRACE, "Try to call getQueue");
+			try {
+				Queue foo = tool.getDefaultQueueReceiver().getQueue();
 
-  /*
-   * @testName: closedQueueReceiverReceiveNoWaitTest
-   * 
-   * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:336;
-   * 
-   * @test_Strategy: Close default receiver and call method on it. Check for
-   * IllegalStateException.
-   */
-
-  public void closedQueueReceiverReceiveNoWaitTest() throws Exception {
-    boolean passed = false;
-
-    try {
-      createAndCloseReceiver();
-      logTrace("Try to call receiveNoWait");
-      try {
-        Message foo = tool.getDefaultQueueReceiver().receiveNoWait();
-
-        logTrace("Fail: Exception was not thrown!");
-      } catch (jakarta.jms.IllegalStateException ise) {
-        logTrace("Pass: threw expected error");
-        passed = true;
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        logTrace("Fail: wrong exception: " + e.getClass().getName()
-            + " was returned");
-      }
-      if (!passed) {
-        throw new Exception("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      throw new Exception("closedQueueReceiverReceiveNoWaitTest", e);
-    }
-  }
-
-  /*
-   * @testName: closedQueueReceiverGetQueueTest
-   * 
-   * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:268;
-   * 
-   * @test_Strategy: Close default receiver and call method on it. Check for
-   * IllegalStateException.
-   */
-
-  public void closedQueueReceiverGetQueueTest() throws Exception {
-    boolean passed = false;
-
-    try {
-      createAndCloseReceiver();
-      logTrace("Try to call getQueue");
-      try {
-        Queue foo = tool.getDefaultQueueReceiver().getQueue();
-
-        logTrace("Fail: Exception was not thrown!");
-      } catch (jakarta.jms.IllegalStateException ise) {
-        logTrace("Pass: threw expected error");
-        passed = true;
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        logTrace("Fail: wrong exception: " + e.getClass().getName()
-            + " was returned");
-      }
-      if (!passed) {
-        throw new Exception("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      throw new Exception("closedQueueReceiverGetQueueTest", e);
-    }
-  }
+				logger.log(Logger.Level.TRACE, "Fail: Exception was not thrown!");
+			} catch (jakarta.jms.IllegalStateException ise) {
+				logger.log(Logger.Level.TRACE, "Pass: threw expected error");
+				passed = true;
+			} catch (Exception e) {
+				TestUtil.printStackTrace(e);
+				logger.log(Logger.Level.TRACE, "Fail: wrong exception: " + e.getClass().getName() + " was returned");
+			}
+			if (!passed) {
+				throw new Exception("Error: failures occurred during tests");
+			}
+		} catch (Exception e) {
+			throw new Exception("closedQueueReceiverGetQueueTest", e);
+		}
+	}
 
 }

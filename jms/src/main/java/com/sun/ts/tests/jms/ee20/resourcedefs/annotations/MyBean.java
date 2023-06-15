@@ -18,68 +18,28 @@
 package com.sun.ts.tests.jms.ee20.resourcedefs.annotations;
 
 import jakarta.jms.JMSConnectionFactoryDefinition;
-import jakarta.jms.JMSConnectionFactoryDefinitions;
 import jakarta.jms.JMSDestinationDefinition;
-import jakarta.jms.JMSDestinationDefinitions;
 
 //-------------------------------------
 // JMS Destination Resource Definitions
 //-------------------------------------
-@JMSDestinationDefinition(
-      description="Define Queue JSPMyTestQueue",
-      interfaceName="jakarta.jms.Queue",
-      name="java:global/env/JSPMyTestQueue",
-      destinationName="JSPMyTestQueue"
- )
+@JMSDestinationDefinition(description = "Define Queue JSPMyTestQueue", interfaceName = "jakarta.jms.Queue", name = "java:global/env/JSPMyTestQueue", destinationName = "JSPMyTestQueue")
 
-@JMSDestinationDefinition(
-      description="Define Topic JSPMyTestTopic",
-      interfaceName="jakarta.jms.Topic",
-      name="java:app/env/JSPMyTestTopic",
-      destinationName="JSPMyTestTopic"
- )
+@JMSDestinationDefinition(description = "Define Topic JSPMyTestTopic", interfaceName = "jakarta.jms.Topic", name = "java:app/env/JSPMyTestTopic", destinationName = "JSPMyTestTopic")
 
 //-------------------------------------------
 // JMS ConnectionFactory Resource Definitions
 //-------------------------------------------
-@JMSConnectionFactoryDefinition(
-      description="Define ConnectionFactory JSPMyTestConnectionFactory",
-      interfaceName="jakarta.jms.ConnectionFactory",
-      name="java:global/JSPMyTestConnectionFactory",
-      user = "j2ee",
-      password = "j2ee"
- )
+@JMSConnectionFactoryDefinition(description = "Define ConnectionFactory JSPMyTestConnectionFactory", interfaceName = "jakarta.jms.ConnectionFactory", name = "java:global/JSPMyTestConnectionFactory", user = "j2ee", password = "j2ee")
 
-@JMSConnectionFactoryDefinition(
-      description="Define QueueConnectionFactory JSPMyTestQueueConnectionFactory",
-      interfaceName="jakarta.jms.QueueConnectionFactory",
-      name="java:app/JSPMyTestQueueConnectionFactory",
-      user = "j2ee",
-      password = "j2ee"
- )
+@JMSConnectionFactoryDefinition(description = "Define QueueConnectionFactory JSPMyTestQueueConnectionFactory", interfaceName = "jakarta.jms.QueueConnectionFactory", name = "java:app/JSPMyTestQueueConnectionFactory", user = "j2ee", password = "j2ee")
 
-@JMSConnectionFactoryDefinition(
-      description="Define TopicConnectionFactory JSPMyTestTopicConnectionFactory",
-      interfaceName="jakarta.jms.TopicConnectionFactory",
-      name="java:module/JSPMyTestTopicConnectionFactory",
-      user = "j2ee",
-      password = "j2ee"
- )
+@JMSConnectionFactoryDefinition(description = "Define TopicConnectionFactory JSPMyTestTopicConnectionFactory", interfaceName = "jakarta.jms.TopicConnectionFactory", name = "java:module/JSPMyTestTopicConnectionFactory", user = "j2ee", password = "j2ee")
 
-@JMSConnectionFactoryDefinition(
-      description="Define Durable TopicConnectionFactory JSPMyTestDurableTopicConnectionFactory",
-      interfaceName="jakarta.jms.TopicConnectionFactory",
-      name="java:comp/env/jms/JSPMyTestDurableTopicConnectionFactory",
-      user = "j2ee",
-      password = "j2ee",
-      clientId = "MyClientID",
-      properties = { "Property1=10", "Property2=20" },
-      transactional = false,
-      maxPoolSize = 30,
-      minPoolSize = 20
- )
+@JMSConnectionFactoryDefinition(description = "Define Durable TopicConnectionFactory JSPMyTestDurableTopicConnectionFactory", interfaceName = "jakarta.jms.TopicConnectionFactory", name = "java:comp/env/jms/JSPMyTestDurableTopicConnectionFactory", user = "j2ee", password = "j2ee", clientId = "MyClientID", properties = {
+		"Property1=10", "Property2=20" }, transactional = false, maxPoolSize = 30, minPoolSize = 20)
 
 public class MyBean {
-  public MyBean() {
-  }
+	public MyBean() {
+	}
 }

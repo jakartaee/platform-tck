@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,10 +19,13 @@
  */
 package com.sun.ts.tests.jms.core.appclient.invalidDest;
 
+import java.lang.System.Logger;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.common.JmsTool;
 
@@ -31,185 +34,168 @@ import jakarta.jms.InvalidDestinationException;
 import jakarta.jms.Session;
 import jakarta.jms.Topic;
 
-public class InvalidDestTests extends ServiceEETest {
-  private static final String testName = "com.sun.ts.tests.jms.core.appclient.invalidDest.InvalidDestTests";
+public class InvalidDestTests {
+	private static final String testName = "com.sun.ts.tests.jms.core.appclient.invalidDest.InvalidDestTests";
 
-  private static final String testDir = System.getProperty("user.dir");
+	private static final String testDir = System.getProperty("user.dir");
 
-  // JMS objects
-  private static JmsTool tool = null;
+	private static final Logger logger = (Logger) System.getLogger(InvalidDestTests.class.getName());
 
-  // Harness req's
-  private Properties props = null;
+	// JMS objects
+	private static JmsTool tool = null;
 
-  // properties read from ts.jte file
-  long timeout;
+	// Harness req's
+	private Properties props = null;
 
-  String user;
+	// properties read
+	long timeout;
 
-  String password;
+	String user;
 
-  String mode;
+	String password;
 
-  /**
-   * Main method is used when not run from the JavaTest GUI.
-   * 
-   * @param args
-   */
-  public static void main(String[] args) {
-    InvalidDestTests theTests = new InvalidDestTests();
-    Status s = theTests.run(args, System.out, System.err);
+	String mode;
 
-    s.exit();
-  }
+	/* Test setup: */
 
-  /* Test setup: */
+	/*
+	 * setup() is called before each test
+	 * 
+	 * Creates Administrator object and deletes all previous Destinations.
+	 * Individual tests create the JmsTool object with one default Queue and/or
+	 * Topic Connection, as well as a default Queue and Topic. Tests that require
+	 * multiple Destinations create the extras within the test
+	 * 
+	 * 
+	 * @class.setup_props: jms_timeout; user; password; platform.mode;
+	 * 
+	 * @exception Fault
+	 */
+	@BeforeEach
+	public void setup() throws Exception {
+		try {
 
-  /*
-   * setup() is called before each test
-   * 
-   * Creates Administrator object and deletes all previous Destinations.
-   * Individual tests create the JmsTool object with one default Queue and/or
-   * Topic Connection, as well as a default Queue and Topic. Tests that require
-   * multiple Destinations create the extras within the test
-   * 
-   * 
-   * @class.setup_props: jms_timeout; user; password; platform.mode;
-   * 
-   * @exception Fault
-   */
+			// get props
+			timeout = Long.parseLong(System.getProperty("jms_timeout"));
+			user = System.getProperty("user");
+			password = System.getProperty("password");
+			mode = System.getProperty("platform.mode");
 
-  public void setup(String[] args, Properties p) throws Exception {
-    try {
+			// check props for errors
+			if (timeout < 1) {
+				throw new Exception("'timeout' (milliseconds) in must be > 0");
+			}
+			if (user == null) {
+				throw new Exception("'user' in must be null");
+			}
+			if (password == null) {
+				throw new Exception("'password' in must be null");
+			}
+			if (mode == null) {
+				throw new Exception("'mode' in must be null");
+			}
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new Exception("Setup failed!", e);
+		}
+	}
 
-      // get props
-      timeout = Long.parseLong(p.getProperty("jms_timeout"));
-      user = p.getProperty("user");
-      password = p.getProperty("password");
-      mode = p.getProperty("platform.mode");
+	/* cleanup */
 
-      // check props for errors
-      if (timeout < 1) {
-        throw new Exception("'timeout' (milliseconds) in ts.jte must be > 0");
-      }
-      if (user == null) {
-        throw new Exception("'user' in ts.jte must be null");
-      }
-      if (password == null) {
-        throw new Exception("'password' in ts.jte must be null");
-      }
-      if (mode == null) {
-        throw new Exception("'mode' in ts.jte must be null");
-      }
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Exception("Setup failed!", e);
-    }
-  }
+	/*
+	 * cleanup() is called after each test
+	 * 
+	 * Closes the default connections that are created by setup(). Any separate
+	 * connections made by individual tests should be closed by that test.
+	 * 
+	 * @exception Fault
+	 */
+	@AfterEach
+	public void cleanup() throws Exception {
+	}
 
-  /* cleanup */
+	/* Tests */
+	/*
+	 * @testName: invalidDestinationTests
+	 *
+	 * @assertion_ids: JMS:JAVADOC:502; JMS:JAVADOC:504; JMS:JAVADOC:510;
+	 * JMS:JAVADOC:638; JMS:JAVADOC:639; JMS:JAVADOC:641; JMS:JAVADOC:643;
+	 * JMS:JAVADOC:644; JMS:JAVADOC:646; JMS:JAVADOC:647; JMS:JAVADOC:649;
+	 *
+	 * @test_Strategy: 1. Create a Session with Topic Configuration, using a null
+	 * Destination/Topic to verify InvalidDestinationException is thrown with
+	 * various methods
+	 */
+	@Test
+	public void invalidDestinationTests() throws Exception {
+		String lookup = "DURABLE_SUB_CONNECTION_FACTORY";
 
-  /*
-   * cleanup() is called after each test
-   * 
-   * Closes the default connections that are created by setup(). Any separate
-   * connections made by individual tests should be closed by that test.
-   * 
-   * @exception Fault
-   */
+		try {
+			boolean pass = true;
+			Topic dummyT = null;
 
-  public void cleanup() throws Exception {
-  }
+			JmsTool tool = new JmsTool(JmsTool.COMMON_T, user, password, lookup, mode);
+			tool.getDefaultConnection().close();
 
-  /* Tests */
-  /*
-   * @testName: invalidDestinationTests
-   *
-   * @assertion_ids: JMS:JAVADOC:502; JMS:JAVADOC:504; JMS:JAVADOC:510;
-   * JMS:JAVADOC:638; JMS:JAVADOC:639; JMS:JAVADOC:641; JMS:JAVADOC:643;
-   * JMS:JAVADOC:644; JMS:JAVADOC:646; JMS:JAVADOC:647; JMS:JAVADOC:649;
-   *
-   * @test_Strategy: 1. Create a Session with Topic Configuration, using a null
-   * Destination/Topic to verify InvalidDestinationException is thrown with
-   * various methods
-   */
+			Connection newConn = tool.getNewConnection(JmsTool.COMMON_T, user, password, lookup);
+			if (newConn.getClientID() == null) {
+				newConn.setClientID("cts");
+			}
+			Session newSession = newConn.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
-  public void invalidDestinationTests() throws Exception {
-    String lookup = "DURABLE_SUB_CONNECTION_FACTORY";
+			try {
+				newSession.unsubscribe("foo");
+				logger.log(Logger.Level.ERROR,
+						"Error: unsubscribe(foo) didn't throw expected InvalidDestinationException");
+				pass = false;
+			} catch (InvalidDestinationException ex) {
+				logger.log(Logger.Level.INFO, "Got expected InvalidDestinationException from unsubscribe(foo)");
+			} catch (Exception e) {
+				logger.log(Logger.Level.ERROR, "Error: unsubscribe(foo) throw incorrect Exception: ", e);
+				pass = false;
+			}
 
-    try {
-      boolean pass = true;
-      Topic dummyT = null;
+			try {
+				newSession.createDurableSubscriber(dummyT, "cts");
+				logger.log(Logger.Level.ERROR,
+						"Error: createDurableSubscriber(null, String) didn't throw expected InvalidDestinationException");
+				pass = false;
+			} catch (InvalidDestinationException ex) {
+				logger.log(Logger.Level.INFO,
+						"Got expected InvalidDestinationException from createDurableSubscriber(null, String)");
+			} catch (Exception e) {
+				logger.log(Logger.Level.ERROR,
+						"Error: createDurableSubscriber(null, String) throw incorrect Exception: ", e);
+				pass = false;
+			}
 
-      JmsTool tool = new JmsTool(JmsTool.COMMON_T, user, password, lookup,
-          mode);
-      tool.getDefaultConnection().close();
+			try {
+				newSession.createDurableSubscriber(dummyT, "cts", "TEST = 'test'", true);
+				logger.log(Logger.Level.ERROR, "Error: createDurableSubscriber(null, String, String, boolean) "
+						+ "didn't throw expected InvalidDestinationException");
+				pass = false;
+			} catch (InvalidDestinationException ex) {
+				logger.log(Logger.Level.INFO,
+						"Got expected InvalidDestinationException from createDurableSubscriber(null, String, String, boolean)");
+			} catch (Exception e) {
+				logger.log(Logger.Level.ERROR,
+						"Error: createDurableSubscriber(null, String, String, boolean) throw incorrect Exception: ", e);
+				pass = false;
+			}
 
-      Connection newConn = tool.getNewConnection(JmsTool.COMMON_T, user,
-          password, lookup);
-      if (newConn.getClientID() == null) {
-        newConn.setClientID("cts");
-      }
-      Session newSession = newConn.createSession(false,
-          Session.AUTO_ACKNOWLEDGE);
+			try {
+				newConn.close();
+			} catch (Exception ex) {
+				logger.log(Logger.Level.ERROR, "Error closing new Connection", ex);
+			}
 
-      try {
-        newSession.unsubscribe("foo");
-        logErr(
-            "Error: unsubscribe(foo) didn't throw expected InvalidDestinationException");
-        pass = false;
-      } catch (InvalidDestinationException ex) {
-        logMsg(
-            "Got expected InvalidDestinationException from unsubscribe(foo)");
-      } catch (Exception e) {
-        logErr("Error: unsubscribe(foo) throw incorrect Exception: ", e);
-        pass = false;
-      }
+			if (pass != true)
+				throw new Exception("invalidDestinationTests");
 
-      try {
-        newSession.createDurableSubscriber(dummyT, "cts");
-        logErr(
-            "Error: createDurableSubscriber(null, String) didn't throw expected InvalidDestinationException");
-        pass = false;
-      } catch (InvalidDestinationException ex) {
-        logMsg(
-            "Got expected InvalidDestinationException from createDurableSubscriber(null, String)");
-      } catch (Exception e) {
-        logErr(
-            "Error: createDurableSubscriber(null, String) throw incorrect Exception: ",
-            e);
-        pass = false;
-      }
-
-      try {
-        newSession.createDurableSubscriber(dummyT, "cts", "TEST = 'test'",
-            true);
-        logErr("Error: createDurableSubscriber(null, String, String, boolean) "
-            + "didn't throw expected InvalidDestinationException");
-        pass = false;
-      } catch (InvalidDestinationException ex) {
-        logMsg(
-            "Got expected InvalidDestinationException from createDurableSubscriber(null, String, String, boolean)");
-      } catch (Exception e) {
-        logErr(
-            "Error: createDurableSubscriber(null, String, String, boolean) throw incorrect Exception: ",
-            e);
-        pass = false;
-      }
-
-      try {
-        newConn.close();
-      } catch (Exception ex) {
-        logErr("Error closing new Connection", ex);
-      }
-
-      if (pass != true)
-        throw new Exception("invalidDestinationTests");
-
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Exception("invalidDestinationTests");
-    }
-  }
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new Exception("invalidDestinationTests");
+		}
+	}
 
 }

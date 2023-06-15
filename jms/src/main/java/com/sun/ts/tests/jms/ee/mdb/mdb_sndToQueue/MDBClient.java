@@ -19,10 +19,13 @@
  */
 package com.sun.ts.tests.jms.ee.mdb.mdb_sndToQueue;
 
+import java.lang.System.Logger;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.commonee.MDB_Q_Test;
 
@@ -33,223 +36,224 @@ import jakarta.ejb.EJB;
  * driven bean to send a text, byte, map, stream, and object message to a queue
  */
 
-public class MDBClient extends EETest {
+public class MDBClient {
 
-  @EJB(name = "ejb/MDB_SNDToQueue_Test")
-  private static MDB_Q_Test hr;
+	@EJB(name = "ejb/MDB_SNDToQueue_Test")
+	private static MDB_Q_Test hr;
 
-  private Properties props = null;
+	private Properties props = new Properties();
 
-  public static void main(String[] args) {
-    MDBClient theTests = new MDBClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	private static final Logger logger = (Logger) System.getLogger(MDBClient.class.getName());
 
-  /* Test setup: */
-  /*
-   * @class.setup_props: jms_timeout; user; password;
-   */
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
-    try {
-      if (hr == null) {
-        throw new Exception("@EJB injection failed");
-      }
-      hr.setup(p);
-      if (hr.isThereSomethingInTheQueue()) {
-        TestUtil.logTrace("Error: message(s) left in Q");
-        hr.cleanTheQueue();
-      } else {
-        TestUtil.logTrace("Nothing left in queue");
-      }
-      logMsg("Setup ok;");
-    } catch (Exception e) {
-      throw new Exception("Setup Failed!", e);
-    }
-  }
+	/* Test setup: */
+	/*
+	 * @class.setup_props: jms_timeout; user; password;
+	 */
+	@BeforeEach
+	public void setup() throws Exception {
+		props.put("jms_timeout", System.getProperty("jms_property"));
+		props.put("user", System.getProperty("user"));
+		props.put("password", System.getProperty("password"));
+		try {
+			if (hr == null) {
+				throw new Exception("@EJB injection failed");
+			}
+			hr.setup(props);
+			if (hr.isThereSomethingInTheQueue()) {
+				logger.log(Logger.Level.TRACE, "Error: message(s) left in Q");
+				hr.cleanTheQueue();
+			} else {
+				logger.log(Logger.Level.TRACE, "Nothing left in queue");
+			}
+			logger.log(Logger.Level.INFO, "Setup ok;");
+		} catch (Exception e) {
+			throw new Exception("Setup Failed!", e);
+		}
+	}
 
-  /* Run tests */
-  // Tests mdb sending jms messages
-  // Test with Queue
-  // Test with Text,Stream,Byte,Map and Object messages
-  //
-  /*
-   * @testName: mdbSendTextMsgToQueueTest
-   *
-   * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:270; JMS:JAVADOC:522;
-   * JMS:JAVADOC:188; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
-   * JMS:JAVADOC:198; JavaEE:SPEC:128;
-   *
-   * @test_Strategy: Instruct the mdb to send a text msg. Create a stateful
-   * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send
-   * a message to a Queue Destination. handled by a message-driven bean Tell the
-   * mdb to send a text message with QueueSender. Verify that the text message
-   * was sent.
-   *
-   */
-  public void mdbSendTextMsgToQueueTest() throws Exception {
-    String messageType = "TextMessage";
-    String matchMe = "TextMessageFromMsgBean";
-    try {
-      // Have the EJB invoke the MDB
-      TestUtil.logTrace("Call bean - have it tell mdb to send a text message;");
-      hr.askMDBToSendAMessage(messageType);
-      if (!hr.checkOnResponse(matchMe)) {
-        TestUtil.logTrace("Error: didn't get expected response from mdb");
-        throw new Exception("ERROR: mdbSendTextMsgToQueueTest failed");
-      }
-      TestUtil.logTrace("Test passed!");
-    } catch (Exception e) {
-      throw new Exception("Test Failed!", e);
-    }
-  }
+	/* Run tests */
+	// Tests mdb sending jms messages
+	// Test with Queue
+	// Test with Text,Stream,Byte,Map and Object messages
+	//
+	/*
+	 * @testName: mdbSendTextMsgToQueueTest
+	 *
+	 * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:270; JMS:JAVADOC:522;
+	 * JMS:JAVADOC:188; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
+	 * JMS:JAVADOC:198; JavaEE:SPEC:128;
+	 *
+	 * @test_Strategy: Instruct the mdb to send a text msg. Create a stateful
+	 * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send a
+	 * message to a Queue Destination. handled by a message-driven bean Tell the mdb
+	 * to send a text message with QueueSender. Verify that the text message was
+	 * sent.
+	 *
+	 */
+	@Test
+	public void mdbSendTextMsgToQueueTest() throws Exception {
+		String messageType = "TextMessage";
+		String matchMe = "TextMessageFromMsgBean";
+		try {
+			// Have the EJB invoke the MDB
+			logger.log(Logger.Level.TRACE, "Call bean - have it tell mdb to send a text message;");
+			hr.askMDBToSendAMessage(messageType);
+			if (!hr.checkOnResponse(matchMe)) {
+				logger.log(Logger.Level.TRACE, "Error: didn't get expected response from mdb");
+				throw new Exception("ERROR: mdbSendTextMsgToQueueTest failed");
+			}
+			logger.log(Logger.Level.TRACE, "Test passed!");
+		} catch (Exception e) {
+			throw new Exception("Test Failed!", e);
+		}
+	}
 
-  /*
-   * @testName: mdbSendBytesMsgToQueueTest
-   *
-   * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:270; JMS:JAVADOC:522;
-   * JMS:JAVADOC:188; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
-   * JMS:JAVADOC:198; JMS:JAVADOC:209; JMS:JAVADOC:562; JavaEE:SPEC:128;
-   *
-   * @test_Strategy: Instruct the mdb to send a bytes msg. Create a stateful
-   * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send
-   * a message to a Queue Destination. handled by a message-driven bean Tell the
-   * mdb to send a bytes message with QueueSender. Verify that a Bytes message
-   * was sent
-   *
-   */
-  public void mdbSendBytesMsgToQueueTest() throws Exception {
-    String messageType = "BytesMessage";
-    String matchMe = "BytesMessageFromMsgBean";
-    try {
-      // Have the EJB invoke the MDB
-      TestUtil
-          .logTrace("Call bean - have it tell mdb to send a Bytes message;");
-      hr.askMDBToSendAMessage(messageType);
-      if (!hr.checkOnResponse(matchMe)) {
-        TestUtil.logTrace("Error: didn't get expected response from mdb");
-        throw new Exception("ERROR: mdbSendBytesMsgToQueueTest failed");
-      }
+	/*
+	 * @testName: mdbSendBytesMsgToQueueTest
+	 *
+	 * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:270; JMS:JAVADOC:522;
+	 * JMS:JAVADOC:188; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
+	 * JMS:JAVADOC:198; JMS:JAVADOC:209; JMS:JAVADOC:562; JavaEE:SPEC:128;
+	 *
+	 * @test_Strategy: Instruct the mdb to send a bytes msg. Create a stateful
+	 * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send a
+	 * message to a Queue Destination. handled by a message-driven bean Tell the mdb
+	 * to send a bytes message with QueueSender. Verify that a Bytes message was
+	 * sent
+	 *
+	 */
+	@Test
+	public void mdbSendBytesMsgToQueueTest() throws Exception {
+		String messageType = "BytesMessage";
+		String matchMe = "BytesMessageFromMsgBean";
+		try {
+			// Have the EJB invoke the MDB
+			logger.log(Logger.Level.TRACE, "Call bean - have it tell mdb to send a Bytes message;");
+			hr.askMDBToSendAMessage(messageType);
+			if (!hr.checkOnResponse(matchMe)) {
+				logger.log(Logger.Level.TRACE, "Error: didn't get expected response from mdb");
+				throw new Exception("ERROR: mdbSendBytesMsgToQueueTest failed");
+			}
 
-      TestUtil.logTrace("Test passed!");
-    } catch (Exception e) {
-      throw new Exception("Test Failed!", e);
-    }
-  }
+			logger.log(Logger.Level.TRACE, "Test passed!");
+		} catch (Exception e) {
+			throw new Exception("Test Failed!", e);
+		}
+	}
 
-  /*
-   * @testName: mdbSendMapMsgToQueueTest
-   *
-   * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:270; JMS:JAVADOC:522;
-   * JMS:JAVADOC:188; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
-   * JMS:JAVADOC:198; JMS:JAVADOC:211; JMS:JAVADOC:473; JavaEE:SPEC:128;
-   *
-   * @test_Strategy: Instruct the mdb to send a map msg. Create a stateful
-   * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send
-   * a message to a Queue Destination. handled by a message-driven bean Tell the
-   * mdb to send a map message with QueueSender. Verify that a Map message was
-   * sent
-   *
-   */
-  public void mdbSendMapMsgToQueueTest() throws Exception {
-    String matchMe = "MapMessageFromMsgBean";
-    String messageType = "MapMessage";
-    try {
-      // Have the EJB invoke the MDB
-      TestUtil.logTrace("Call bean - have it tell mdb to send a map message;");
-      hr.askMDBToSendAMessage(messageType);
-      if (!hr.checkOnResponse(matchMe)) {
-        TestUtil.logTrace("Error: didn't get expected response from mdb");
-        throw new Exception("ERROR: mdbSendMapMsgToQueueTest failed");
-      }
+	/*
+	 * @testName: mdbSendMapMsgToQueueTest
+	 *
+	 * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:270; JMS:JAVADOC:522;
+	 * JMS:JAVADOC:188; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
+	 * JMS:JAVADOC:198; JMS:JAVADOC:211; JMS:JAVADOC:473; JavaEE:SPEC:128;
+	 *
+	 * @test_Strategy: Instruct the mdb to send a map msg. Create a stateful Session
+	 * EJB Bean. Deploy it on the J2EE server. Have the EJB component send a message
+	 * to a Queue Destination. handled by a message-driven bean Tell the mdb to send
+	 * a map message with QueueSender. Verify that a Map message was sent
+	 *
+	 */
+	@Test
+	public void mdbSendMapMsgToQueueTest() throws Exception {
+		String matchMe = "MapMessageFromMsgBean";
+		String messageType = "MapMessage";
+		try {
+			// Have the EJB invoke the MDB
+			logger.log(Logger.Level.TRACE, "Call bean - have it tell mdb to send a map message;");
+			hr.askMDBToSendAMessage(messageType);
+			if (!hr.checkOnResponse(matchMe)) {
+				logger.log(Logger.Level.TRACE, "Error: didn't get expected response from mdb");
+				throw new Exception("ERROR: mdbSendMapMsgToQueueTest failed");
+			}
 
-      TestUtil.logTrace("Test passed!");
-    } catch (Exception e) {
-      throw new Exception("Test Failed!", e);
-    }
+			logger.log(Logger.Level.TRACE, "Test passed!");
+		} catch (Exception e) {
+			throw new Exception("Test Failed!", e);
+		}
 
-  }
+	}
 
-  /*
-   * @testName: mdbSendStreamMsgToQueueTest
-   *
-   * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:270; JMS:JAVADOC:522;
-   * JMS:JAVADOC:188; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
-   * JMS:JAVADOC:198; JMS:JAVADOC:219; JMS:JAVADOC:166; JavaEE:SPEC:128;
-   *
-   * @test_Strategy: Instruct the mdb to send a stream msg. Create a stateful
-   * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send
-   * a message to a Queue Destination. handled by a message-driven bean Tell the
-   * mdb to send a stream message with QueueSender. Verify that a Stream message
-   * was sent
-   *
-   */
-  public void mdbSendStreamMsgToQueueTest() throws Exception {
-    String matchMe = "StreamMessageFromMsgBean";
-    String messageType = "StreamMessage";
-    try {
-      // Have the EJB invoke the MDB
-      TestUtil
-          .logTrace("Call bean - have it tell mdb to send a stream message;");
-      hr.askMDBToSendAMessage(messageType);
-      if (!hr.checkOnResponse(matchMe)) {
-        TestUtil.logTrace("Error: didn't get expected response from mdb");
-        throw new Exception("ERROR: mdbSendStreamMsgToQueueTest failed");
-      }
+	/*
+	 * @testName: mdbSendStreamMsgToQueueTest
+	 *
+	 * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:270; JMS:JAVADOC:522;
+	 * JMS:JAVADOC:188; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
+	 * JMS:JAVADOC:198; JMS:JAVADOC:219; JMS:JAVADOC:166; JavaEE:SPEC:128;
+	 *
+	 * @test_Strategy: Instruct the mdb to send a stream msg. Create a stateful
+	 * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send a
+	 * message to a Queue Destination. handled by a message-driven bean Tell the mdb
+	 * to send a stream message with QueueSender. Verify that a Stream message was
+	 * sent
+	 *
+	 */
+	@Test
+	public void mdbSendStreamMsgToQueueTest() throws Exception {
+		String matchMe = "StreamMessageFromMsgBean";
+		String messageType = "StreamMessage";
+		try {
+			// Have the EJB invoke the MDB
+			logger.log(Logger.Level.TRACE, "Call bean - have it tell mdb to send a stream message;");
+			hr.askMDBToSendAMessage(messageType);
+			if (!hr.checkOnResponse(matchMe)) {
+				logger.log(Logger.Level.TRACE, "Error: didn't get expected response from mdb");
+				throw new Exception("ERROR: mdbSendStreamMsgToQueueTest failed");
+			}
 
-      TestUtil.logTrace("Test passed!");
-    } catch (Exception e) {
-      throw new Exception("Test Failed!", e);
-    }
-  }
+			logger.log(Logger.Level.TRACE, "Test passed!");
+		} catch (Exception e) {
+			throw new Exception("Test Failed!", e);
+		}
+	}
 
-  /*
-   * @testName: mdbSendObjectMsgToQueueTest
-   *
-   * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:270; JMS:JAVADOC:522;
-   * JMS:JAVADOC:188; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
-   * JMS:JAVADOC:198; JMS:JAVADOC:215; JMS:JAVADOC:289; JavaEE:SPEC:128;
-   *
-   * @test_Strategy: Instruct the mdb to send an object msg. Create a stateful
-   * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send
-   * a message to a Queue Destination. handled by a message-driven bean Tell the
-   * mdb to send an Object message with QueueSender. Verify that an Object
-   * message was sent
-   *
-   */
-  public void mdbSendObjectMsgToQueueTest() throws Exception {
-    String matchMe = "ObjectMessageFromMsgBean";
-    String messageType = "ObjectMessage";
-    try {
-      // Have the EJB invoke the MDB
-      TestUtil
-          .logTrace("Call bean - have it tell mdb to send an object message;");
-      hr.askMDBToSendAMessage(messageType);
-      if (!hr.checkOnResponse(matchMe)) {
-        TestUtil.logTrace("Error: didn't get expected response from mdb");
-        throw new Exception("ERROR: mdbSendObjectMsgToQueueTest failed");
-      }
+	/*
+	 * @testName: mdbSendObjectMsgToQueueTest
+	 *
+	 * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:270; JMS:JAVADOC:522;
+	 * JMS:JAVADOC:188; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
+	 * JMS:JAVADOC:198; JMS:JAVADOC:215; JMS:JAVADOC:289; JavaEE:SPEC:128;
+	 *
+	 * @test_Strategy: Instruct the mdb to send an object msg. Create a stateful
+	 * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send a
+	 * message to a Queue Destination. handled by a message-driven bean Tell the mdb
+	 * to send an Object message with QueueSender. Verify that an Object message was
+	 * sent
+	 *
+	 */
+	@Test
+	public void mdbSendObjectMsgToQueueTest() throws Exception {
+		String matchMe = "ObjectMessageFromMsgBean";
+		String messageType = "ObjectMessage";
+		try {
+			// Have the EJB invoke the MDB
+			logger.log(Logger.Level.TRACE, "Call bean - have it tell mdb to send an object message;");
+			hr.askMDBToSendAMessage(messageType);
+			if (!hr.checkOnResponse(matchMe)) {
+				logger.log(Logger.Level.TRACE, "Error: didn't get expected response from mdb");
+				throw new Exception("ERROR: mdbSendObjectMsgToQueueTest failed");
+			}
 
-      TestUtil.logTrace("Test passed!");
-    } catch (Exception e) {
-      throw new Exception("Test Failed!", e);
-    }
-  }
+			logger.log(Logger.Level.TRACE, "Test passed!");
+		} catch (Exception e) {
+			throw new Exception("Test Failed!", e);
+		}
+	}
 
-  /* cleanup -- none in this case */
-  public void cleanup() throws Exception {
-    try {
-      if (hr.isThereSomethingInTheQueue()) {
-        TestUtil.logTrace("Error: message(s) left in Q");
-        hr.cleanTheQueue();
-      } else {
-        TestUtil.logTrace("Nothing left in queue");
-      }
-      logMsg("End  of client cleanup;");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-    }
-    ;
-  }
+	/* cleanup -- none in this case */
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			if (hr.isThereSomethingInTheQueue()) {
+				logger.log(Logger.Level.TRACE, "Error: message(s) left in Q");
+				hr.cleanTheQueue();
+			} else {
+				logger.log(Logger.Level.TRACE, "Nothing left in queue");
+			}
+			logger.log(Logger.Level.INFO, "End  of client cleanup;");
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+		}
+		;
+	}
 }

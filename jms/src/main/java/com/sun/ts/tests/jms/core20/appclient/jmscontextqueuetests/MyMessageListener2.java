@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,59 +19,61 @@
  */
 package com.sun.ts.tests.jms.core20.appclient.jmscontextqueuetests;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.lang.System.Logger;
 
 import jakarta.jms.Message;
 import jakarta.jms.MessageListener;
 
 public class MyMessageListener2 implements MessageListener {
 
-  private String name = null;
+	private String name = null;
 
-  private Message message = null;
+	private Message message = null;
 
-  private Exception exception = null;
+	private Exception exception = null;
 
-  private int numMessages = 1;
+	private int numMessages = 1;
 
-  boolean complete = false;
+	boolean complete = false;
 
-  public MyMessageListener2() {
-    this("MyMessageListener2");
-  }
+	private static final Logger logger = (Logger) System.getLogger(MyMessageListener2.class.getName());
 
-  public MyMessageListener2(String name) {
-    this.name = name;
-  }
+	public MyMessageListener2() {
+		this("MyMessageListener2");
+	}
 
-  // getters/setters
-  public String getName() {
-    return name;
-  }
+	public MyMessageListener2(String name) {
+		this.name = name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	// getters/setters
+	public String getName() {
+		return name;
+	}
 
-  public Message getMessage() {
-    return message;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public void setMessage(Message message) {
-    this.message = message;
-  }
+	public Message getMessage() {
+		return message;
+	}
 
-  public boolean isComplete() {
-    return complete;
-  }
+	public void setMessage(Message message) {
+		this.message = message;
+	}
 
-  public void setComplete(boolean complete) {
-    this.complete = complete;
-  }
+	public boolean isComplete() {
+		return complete;
+	}
 
-  public void onMessage(Message message) {
-    TestUtil.logMsg("onCompletion(): Got Message: " + message);
-    this.message = message;
-    complete = true;
-  }
+	public void setComplete(boolean complete) {
+		this.complete = complete;
+	}
+
+	public void onMessage(Message message) {
+		logger.log(Logger.Level.INFO, "onCompletion(): Got Message: " + message);
+		this.message = message;
+		complete = true;
+	}
 }

@@ -24,78 +24,77 @@ import jakarta.annotation.Resource;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
 
-abstract public class QueueClientBase
-    extends com.sun.ts.tests.jms.ee20.ra.common.messaging.QueueClientBase
-    implements com.sun.ts.tests.jms.ee20.ra.common.messaging.Constants {
+abstract public class QueueClientBase extends com.sun.ts.tests.jms.ee20.ra.common.messaging.QueueClientBase
+		implements com.sun.ts.tests.jms.ee20.ra.common.messaging.Constants {
 
-  @Resource(name = "sendQueue")
-  private static Queue sendQueue;
+	@Resource(name = "sendQueue")
+	private static Queue sendQueue;
 
-  @Resource(name = "receiveQueue")
-  private static Queue receiveQueue;
+	@Resource(name = "receiveQueue")
+	private static Queue receiveQueue;
 
-  @Resource(name = "queueConnectionFactory")
-  private static QueueConnectionFactory queueConnectionFactory;
+	@Resource(name = "queueConnectionFactory")
+	private static QueueConnectionFactory queueConnectionFactory;
 
-  protected void initSendQueue() {
-    setSendQueue(sendQueue);
-  }
+	protected void initSendQueue() {
+		setSendQueue(sendQueue);
+	}
 
-  protected void initReceiveQueue() {
-    setReceiveQueue(receiveQueue);
-  }
+	protected void initReceiveQueue() {
+		setReceiveQueue(receiveQueue);
+	}
 
-  protected void initQueueConnectionFactory() {
-    setQueueConnectionFactory(queueConnectionFactory);
-  }
+	protected void initQueueConnectionFactory() {
+		setQueueConnectionFactory(queueConnectionFactory);
+	}
 
-  /*
-   * testName: test1
-   * 
-   * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2;
-   * JMS:SPEC:276.3; JMS:SPEC:276.4; JMS:SPEC:276.5;
-   * 
-   * @test_Strategy: test activation-config related elements in deployment
-   * descriptors, and their annotation counterparts.
-   *
-   * Sends message and waits for response. The message should reach the target
-   * MDB, and a response should be received by this client.
-   */
-  public void test1() throws Exception {
-    sendReceive("test1", 0);
-  }
+	/*
+	 * testName: test1
+	 * 
+	 * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2; JMS:SPEC:276.3;
+	 * JMS:SPEC:276.4; JMS:SPEC:276.5;
+	 * 
+	 * @test_Strategy: test activation-config related elements in deployment
+	 * descriptors, and their annotation counterparts.
+	 *
+	 * Sends message and waits for response. The message should reach the target
+	 * MDB, and a response should be received by this client.
+	 */
+	public void test1() throws Exception {
+		sendReceive("test1", 0);
+	}
 
-  /*
-   * testName: negativeTest1
-   * 
-   * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2;
-   * JMS:SPEC:276.3; JMS:SPEC:276.4; JMS:SPEC:276.5;
-   * 
-   * @test_Strategy: test activation-config related elements in deployment
-   * descriptors, and their annotation counterparts.
-   *
-   * Sends message and waits for response. The message should not reach the
-   * target MDB, and no response should be received by this client.
-   */
-  public void negativeTest1() throws Exception {
-    // the next messages should be filtered out by the ActivationConfigBean
-    sendReceiveNegative("test1", 1);
-  }
+	/*
+	 * testName: negativeTest1
+	 * 
+	 * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2; JMS:SPEC:276.3;
+	 * JMS:SPEC:276.4; JMS:SPEC:276.5;
+	 * 
+	 * @test_Strategy: test activation-config related elements in deployment
+	 * descriptors, and their annotation counterparts.
+	 *
+	 * Sends message and waits for response. The message should not reach the target
+	 * MDB, and no response should be received by this client.
+	 */
+	public void negativeTest1() throws Exception {
+		// the next messages should be filtered out by the ActivationConfigBean
+		sendReceiveNegative("test1", 1);
+	}
 
-  /*
-   * testName: negativeTest2
-   * 
-   * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2;
-   * JMS:SPEC:276.3; JMS:SPEC:276.4; JMS:SPEC:276.5;
-   * 
-   * @test_Strategy: test activation-config related elements in deployment
-   * descriptors, and their annotation counterparts.
-   *
-   * Sends message and waits for response. The message should not reach the
-   * target MDB, and no response should be received by this client.
-   */
-  public void negativeTest2() throws Exception {
-    // the next messages should be filtered out by the ActivationConfigBean
-    sendReceiveNegative("negativeTest2", 0);
-  }
+	/*
+	 * testName: negativeTest2
+	 * 
+	 * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2; JMS:SPEC:276.3;
+	 * JMS:SPEC:276.4; JMS:SPEC:276.5;
+	 * 
+	 * @test_Strategy: test activation-config related elements in deployment
+	 * descriptors, and their annotation counterparts.
+	 *
+	 * Sends message and waits for response. The message should not reach the target
+	 * MDB, and no response should be received by this client.
+	 */
+	public void negativeTest2() throws Exception {
+		// the next messages should be filtered out by the ActivationConfigBean
+		sendReceiveNegative("negativeTest2", 0);
+	}
 }
