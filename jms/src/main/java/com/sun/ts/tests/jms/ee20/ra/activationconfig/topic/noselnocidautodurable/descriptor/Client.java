@@ -20,48 +20,45 @@
 
 package com.sun.ts.tests.jms.ee20.ra.activationconfig.topic.noselnocidautodurable.descriptor;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import java.lang.System.Logger;
 
-public class Client extends
-    com.sun.ts.tests.jms.ee20.ra.activationconfig.common.TopicClientBase {
+import org.junit.jupiter.api.Test;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+public class Client extends com.sun.ts.tests.jms.ee20.ra.activationconfig.common.TopicClientBase {
 
-  /*
-   * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
-   * harness.log.port;
-   */
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  /*
-   * @testName: test1
-   * 
-   * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2;
-   * JMS:SPEC:276.3; JMS:SPEC:276.5; JMS:SPEC:276.6;
-   * 
-   * @test_Strategy: test activation-config related elements in deployment
-   * descriptors, and their annotation counterparts.
-   *
-   * Sends message and waits for response. The message should reach the target
-   * MDB, and a response should be received by this client.
-   */
-  public void test1() throws Exception {
-    TestUtil.logMsg("Testing the following activationConfig properties");
-    TestUtil.logMsg("  connectionFactoryLookup=jms/QueueConnectionFactory");
-    TestUtil.logMsg("  destinationLookup=MDB_TOPIC");
-    TestUtil.logMsg("  destinationType=jakarta.jms.Topic");
-    TestUtil.logMsg("  acknowledgeMode=Auto-acknowledge");
-    TestUtil.logMsg("  subscriptionDurability=Durable");
-    TestUtil.logMsg("  subscriptionName=MySubscriptionName4ForRATests");
-    TestUtil.logMsg("Send message to MDB");
-    TestUtil.logMsg("Receive response from MDB");
-    sendOnly("test1", 0);
-    if (!checkOnResponse("test1")) {
-      throw new Exception("checkOnResponse for test1 returned false.");
-    }
-  }
+	/*
+	 * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
+	 * harness.log.port;
+	 */
+
+	/*
+	 * @testName: test1
+	 * 
+	 * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2; JMS:SPEC:276.3;
+	 * JMS:SPEC:276.5; JMS:SPEC:276.6;
+	 * 
+	 * @test_Strategy: test activation-config related elements in deployment
+	 * descriptors, and their annotation counterparts.
+	 *
+	 * Sends message and waits for response. The message should reach the target
+	 * MDB, and a response should be received by this client.
+	 */
+	@Test
+	public void test1() throws Exception {
+		logger.log(Logger.Level.INFO, "Testing the following activationConfig properties");
+		logger.log(Logger.Level.INFO, "  connectionFactoryLookup=jms/QueueConnectionFactory");
+		logger.log(Logger.Level.INFO, "  destinationLookup=MDB_TOPIC");
+		logger.log(Logger.Level.INFO, "  destinationType=jakarta.jms.Topic");
+		logger.log(Logger.Level.INFO, "  acknowledgeMode=Auto-acknowledge");
+		logger.log(Logger.Level.INFO, "  subscriptionDurability=Durable");
+		logger.log(Logger.Level.INFO, "  subscriptionName=MySubscriptionName4ForRATests");
+		logger.log(Logger.Level.INFO, "Send message to MDB");
+		logger.log(Logger.Level.INFO, "Receive response from MDB");
+		sendOnly("test1", 0);
+		if (!checkOnResponse("test1")) {
+			throw new Exception("checkOnResponse for test1 returned false.");
+		}
+	}
 }

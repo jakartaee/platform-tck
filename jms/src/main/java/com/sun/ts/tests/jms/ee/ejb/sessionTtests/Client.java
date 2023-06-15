@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,10 +19,13 @@
  */
 package com.sun.ts.tests.jms.ee.ejb.sessionTtests;
 
+import java.lang.System.Logger;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.commonee.TestsT;
 
@@ -34,184 +37,177 @@ import jakarta.jms.Session;
 import jakarta.jms.Topic;
 import jakarta.jms.TopicSubscriber;
 
-public class Client extends EETest {
+public class Client {
 
-  private static final String testName = "com.sun.ts.tests.jms.ee.ejb.sessionTtests.Client";
+	private static final String testName = "com.sun.ts.tests.jms.ee.ejb.sessionTtests.Client";
 
-  private static final String testDir = System.getProperty("user.dir");
+	private static final String testDir = System.getProperty("user.dir");
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  private transient Connection connr = null;
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  @Resource(name = "jms/DURABLE_SUB_CONNECTION_FACTORY")
-  private static ConnectionFactory cf;
+	private transient Connection connr = null;
 
-  @Resource(name = "jms/MY_TOPIC")
-  // private static Destination testDestination;
-  private static Topic testDestination;
+	@Resource(name = "jms/DURABLE_SUB_CONNECTION_FACTORY")
+	private static ConnectionFactory cf;
 
-  private String name = "ctssub";
+	@Resource(name = "jms/MY_TOPIC")
+	// private static Destination testDestination;
+	private static Topic testDestination;
 
-  // Harness req's
-  private Properties props = null;
+	private String name = "ctssub";
 
-  // properties read from ts.jte file
-  long timeout;
+	// Harness req's
+	private Properties props = null;
 
-  String user;
+	// properties read
+	long timeout;
 
-  String password;
+	String user;
 
-  String mode;
+	String password;
 
-  @EJB(name = "ejb/SessionTestsT")
-  private static TestsT beanRef;
+	String mode;
 
-  /* Run test in standalone mode */
+	@EJB(name = "ejb/SessionTestsT")
+	private static TestsT beanRef;
 
-  public static void main(String[] args) {
-    Client theTestsT = new Client();
-    Status s = theTestsT.run(args, System.out, System.err);
+	/* Test setup: */
 
-    s.exit();
-  }
+	/*
+	 * setup() is called before each test
+	 * 
+	 * Creates Administrator object and deletes all previous Destinations.
+	 * Individual tests create the JmsTool object with one default Queue and/or
+	 * Topic Connection, as well as a default Queue and Topic. TestsT that require
+	 * multiple Destinations create the extras within the test
+	 * 
+	 * @class.setup_props: jms_timeout; user; password; platform.mode;
+	 * 
+	 */
+	@BeforeEach
+	public void setup() throws Exception {
+		try {
 
-  /* Test setup: */
+			if (beanRef == null) {
+				throw new Exception("@EJB injection failed");
+			}
 
-  /*
-   * setup() is called before each test
-   * 
-   * Creates Administrator object and deletes all previous Destinations.
-   * Individual tests create the JmsTool object with one default Queue and/or
-   * Topic Connection, as well as a default Queue and Topic. TestsT that require
-   * multiple Destinations create the extras within the test
-   * 
-   * @class.setup_props: jms_timeout; user; password; platform.mode;
-   * 
-   */
-  public void setup(String[] args, Properties p) throws Exception {
-    try {
+			if (cf == null || testDestination == null) {
+				throw new Exception("@Resource injection failed");
+			}
 
-      if (beanRef == null) {
-        throw new Exception("@EJB injection failed");
-      }
+			// get props
+			timeout = Long.parseLong(System.getProperty("jms_timeout"));
+			user = System.getProperty("user");
+			password = System.getProperty("password");
+			mode = System.getProperty("platform.mode");
 
-      if (cf == null || testDestination == null) {
-        throw new Exception("@Resource injection failed");
-      }
+			// check props for errors
+			if (timeout < 1) {
+				throw new Exception("'jms_timeout' (milliseconds) in must be > 0");
+			}
+			if (user == null) {
+				throw new Exception("'user' in must not be null ");
+			}
+			if (password == null) {
+				throw new Exception("'password' in must not be null ");
+			}
+			if (mode == null) {
+				throw new Exception("'platform.mode' in must not be null");
+			}
 
-      props = p;
+			beanRef.initLogging(props);
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new Exception("Setup failed!", e);
+		}
+	}
 
-      // get props
-      timeout = Long.parseLong(p.getProperty("jms_timeout"));
-      user = p.getProperty("user");
-      password = p.getProperty("password");
-      mode = p.getProperty("platform.mode");
+	/*
+	 * cleanup() is called after each test
+	 */
+	@AfterEach
+	public void cleanup() throws Exception {
+	}
 
-      // check props for errors
-      if (timeout < 1) {
-        throw new Exception("'jms_timeout' (milliseconds) in ts.jte must be > 0");
-      }
-      if (user == null) {
-        throw new Exception("'user' in ts.jte must not be null ");
-      }
-      if (password == null) {
-        throw new Exception("'password' in ts.jte must not be null ");
-      }
-      if (mode == null) {
-        throw new Exception("'platform.mode' in ts.jte must not be null");
-      }
+	/*
+	 * @testName: simpleSendReceiveT
+	 * 
+	 * @assertion_ids: JMS:JAVADOC:504; JMS:JAVADOC:510; JMS:JAVADOC:242;
+	 * JMS:JAVADOC:244; JMS:JAVADOC:317; JMS:JAVADOC:334; JMS:JAVADOC:221;
+	 * 
+	 * @test_Strategy: Create a Text Message, send use a MessageProducer and receive
+	 * it use a MessageConsumer via a Topic
+	 */
+	@Test
+	public void simpleSendReceiveT() throws Exception {
+		String testMessage = "Just a test from simpleSendReceiveT";
+		String messageReceived = null;
 
-      beanRef.initLogging(props);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Exception("Setup failed!", e);
-    }
-  }
+		try {
+			connr = cf.createConnection(user, password);
+			if (connr.getClientID() == null)
+				connr.setClientID("cts");
 
-  /*
-   * cleanup() is called after each test
-   */
-  public void cleanup() throws Exception {
-  }
+			Session sessr = connr.createSession(true, Session.AUTO_ACKNOWLEDGE);
+			TopicSubscriber recr = sessr.createDurableSubscriber(testDestination, name);
 
-  /*
-   * @testName: simpleSendReceiveT
-   * 
-   * @assertion_ids: JMS:JAVADOC:504; JMS:JAVADOC:510; JMS:JAVADOC:242;
-   * JMS:JAVADOC:244; JMS:JAVADOC:317; JMS:JAVADOC:334; JMS:JAVADOC:221;
-   * 
-   * @test_Strategy: Create a Text Message, send use a MessageProducer and
-   * receive it use a MessageConsumer via a Topic
-   */
-  public void simpleSendReceiveT() throws Exception {
-    String testMessage = "Just a test from simpleSendReceiveT";
-    String messageReceived = null;
+			try {
+				recr.close();
+			} catch (Exception e) {
+				logger.log(Logger.Level.ERROR, "Unexpected exception closing topic subscriber: ", e);
+			}
+			try {
+				connr.close();
+			} catch (Exception e) {
+				logger.log(Logger.Level.ERROR, "Unexpected exception closing connection: ", e);
+			}
 
-    try {
-      connr = cf.createConnection(user, password);
-      if (connr.getClientID() == null)
-        connr.setClientID("cts");
+			beanRef.sendTextMessage_CT(testName, testMessage);
+			messageReceived = beanRef.receiveTextMessage_CT();
 
-      Session sessr = connr.createSession(true, Session.AUTO_ACKNOWLEDGE);
-      TopicSubscriber recr = sessr.createDurableSubscriber(testDestination,
-          name);
+			// Check to see if correct message received
+			if (messageReceived == null) {
+				throw new Exception("Null message received!");
+			} else if (!messageReceived.equals(testMessage)) {
+				throw new Exception("EJB didn't get the right message");
+			} else {
+				logger.log(Logger.Level.INFO, "Correct Message received");
+			}
 
-      try {
-        recr.close();
-      } catch (Exception e) {
-        TestUtil.logErr("Unexpected exception closing topic subscriber: ", e);
-      }
-      try {
-        connr.close();
-      } catch (Exception e) {
-        TestUtil.logErr("Unexpected exception closing connection: ", e);
-      }
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new Exception("simpleSendReceiveT");
+		} finally {
+			try {
+				connr = cf.createConnection(user, password);
 
-      beanRef.sendTextMessage_CT(testName, testMessage);
-      messageReceived = beanRef.receiveTextMessage_CT();
+				Session sessr = connr.createSession(true, Session.AUTO_ACKNOWLEDGE);
 
-      // Check to see if correct message received
-      if (messageReceived == null) {
-        throw new Exception("Null message received!");
-      } else if (!messageReceived.equals(testMessage)) {
-        throw new Exception("EJB didn't get the right message");
-      } else {
-        TestUtil.logMsg("Correct Message received");
-      }
+				try {
+					sessr.unsubscribe(name);
+				} catch (Exception e) {
+					logger.log(Logger.Level.ERROR, "Unexpected exception unsubscribing: ", e);
+				}
 
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Exception("simpleSendReceiveT");
-    } finally {
-      try {
-        connr = cf.createConnection(user, password);
+				try {
+					connr.close();
+				} catch (Exception e) {
+					logger.log(Logger.Level.ERROR, "Unexpected exception closing connection: ", e);
+				}
 
-        Session sessr = connr.createSession(true, Session.AUTO_ACKNOWLEDGE);
+			} catch (Exception e) {
+				logger.log(Logger.Level.ERROR, "Unexpected exception creating Connection: ", e);
+			}
 
-        try {
-          sessr.unsubscribe(name);
-        } catch (Exception e) {
-          TestUtil.logErr("Unexpected exception unsubscribing: ", e);
-        }
-
-        try {
-          connr.close();
-        } catch (Exception e) {
-          TestUtil.logErr("Unexpected exception closing connection: ", e);
-        }
-
-      } catch (Exception e) {
-        TestUtil.logErr("Unexpected exception creating Connection: ", e);
-      }
-
-      try {
-        if (null != beanRef)
-          beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.logErr("[Client] Ignoring Exception on " + "bean remove", e);
-      }
-    }
-  }
+			try {
+				if (null != beanRef)
+					beanRef.remove();
+			} catch (Exception e) {
+				logger.log(Logger.Level.ERROR, "[Client] Ignoring Exception on " + "bean remove", e);
+			}
+		}
+	}
 }

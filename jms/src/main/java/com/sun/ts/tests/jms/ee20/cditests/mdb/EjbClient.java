@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jms.ee20.cditests.mdb;
 
+import java.lang.System.Logger;
 import java.util.Properties;
 
 import com.sun.ts.lib.util.RemoteLoggingInitException;
@@ -39,189 +40,184 @@ import jakarta.jms.Topic;
 @Remote({ EjbClientIF.class })
 public class EjbClient implements EjbClientIF {
 
-  private static final boolean debug = false;
+	private static final boolean debug = false;
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  long timeout;
+	long timeout;
 
-  private static int testsExecuted = 0;
+	private static int testsExecuted = 0;
 
-  // JMSContext CDI injection specifying ConnectionFactory
-  @Inject
-  @JMSConnectionFactory("jms/ConnectionFactory")
-  transient JMSContext context;
+	private static final Logger logger = (Logger) System.getLogger(EjbClient.class.getName());
 
-  @Resource(name = "jms/MyConnectionFactory")
-  private transient ConnectionFactory cfactory;
+	// JMSContext CDI injection specifying ConnectionFactory
+	@Inject
+	@JMSConnectionFactory("jms/ConnectionFactory")
+	transient JMSContext context;
 
-  @Resource(name = "jms/MDB_QUEUE")
-  private transient Queue queueToMDB;
+	@Resource(name = "jms/MyConnectionFactory")
+	private transient ConnectionFactory cfactory;
 
-  @Resource(name = "jms/mdbReplyQueue")
-  private transient Queue replyQueue;
+	@Resource(name = "jms/MDB_QUEUE")
+	private transient Queue queueToMDB;
 
-  @Resource(name = "jms/mdbReplyTopic")
-  private transient Topic replyTopic;
+	@Resource(name = "jms/mdbReplyQueue")
+	private transient Queue replyQueue;
 
-  private void cleanup() {
-    TestUtil.logMsg("cleanup");
-  }
+	@Resource(name = "jms/mdbReplyTopic")
+	private transient Topic replyTopic;
 
-  @PostConstruct
-  public void postConstruct() {
-    System.out.println("EjbClient:postConstruct()");
-    System.out.println("cfactory=" + cfactory);
-    System.out.println("queueToMDB=" + queueToMDB);
-    System.out.println("replyQueue=" + replyQueue);
-    System.out.println("replyTopic=" + replyTopic);
-    if (context == null || cfactory == null || queueToMDB == null
-        || replyQueue == null || replyTopic == null) {
-      throw new EJBException("postConstruct failed: injection failure");
-    }
-  }
+	private void cleanup() {
+		logger.log(Logger.Level.INFO, "cleanup");
+	}
 
-  public void init(Properties p) {
-    try {
-      TestUtil.init(p);
-      timeout = Long.parseLong(p.getProperty("jms_timeout"));
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("init: failed");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("init: failed");
-    }
-  }
+	@PostConstruct
+	public void postConstruct() {
+		System.out.println("EjbClient:postConstruct()");
+		System.out.println("cfactory=" + cfactory);
+		System.out.println("queueToMDB=" + queueToMDB);
+		System.out.println("replyQueue=" + replyQueue);
+		System.out.println("replyTopic=" + replyTopic);
+		if (context == null || cfactory == null || queueToMDB == null || replyQueue == null || replyTopic == null) {
+			throw new EJBException("postConstruct failed: injection failure");
+		}
+	}
 
-  public boolean echo(String testName) {
-    boolean pass = false;
+	public void init(Properties p) {
+		try {
+			TestUtil.init(p);
+			timeout = Long.parseLong(System.getProperty("jms_timeout"));
+		} catch (RemoteLoggingInitException e) {
+			TestUtil.printStackTrace(e);
+			throw new EJBException("init: failed");
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new EJBException("init: failed");
+		}
+	}
 
-    if (testName.equals("testCDIInjectionOfMDBWithQueueReplyFromEjb"))
-      pass = testCDIInjectionOfMDBWithQueueReplyFromEjb();
-    else if (testName.equals("testCDIInjectionOfMDBWithTopicReplyFromEjb"))
-      pass = testCDIInjectionOfMDBWithTopicReplyFromEjb();
-    cleanup();
-    return pass;
-  }
+	public boolean echo(String testName) {
+		boolean pass = false;
 
-  public boolean testCDIInjectionOfMDBWithQueueReplyFromEjb() {
-    boolean pass = true;
-    TextMessage messageSent = null;
-    TextMessage messageRecv = null;
-    JMSConsumer consumer = null;
-    try {
-      TestUtil.logMsg("Creating TextMessage to send to MDB MsgBeanQ");
-      messageSent = context.createTextMessage();
-      messageSent.setText("Send message to MDB MsgBeanQ");
-      messageSent.setStringProperty("TESTNAME",
-          "testCDIInjectionOfMDBWithQueueReplyFromEjb");
+		if (testName.equals("testCDIInjectionOfMDBWithQueueReplyFromEjb"))
+			pass = testCDIInjectionOfMDBWithQueueReplyFromEjb();
+		else if (testName.equals("testCDIInjectionOfMDBWithTopicReplyFromEjb"))
+			pass = testCDIInjectionOfMDBWithTopicReplyFromEjb();
+		cleanup();
+		return pass;
+	}
 
-      TestUtil.logMsg("Creating JMSConsumer for MDB MsgBeanQ Reply Queue");
-      consumer = context.createConsumer(replyQueue);
+	public boolean testCDIInjectionOfMDBWithQueueReplyFromEjb() {
+		boolean pass = true;
+		TextMessage messageSent = null;
+		TextMessage messageRecv = null;
+		JMSConsumer consumer = null;
+		try {
+			logger.log(Logger.Level.INFO, "Creating TextMessage to send to MDB MsgBeanQ");
+			messageSent = context.createTextMessage();
+			messageSent.setText("Send message to MDB MsgBeanQ");
+			messageSent.setStringProperty("TESTNAME", "testCDIInjectionOfMDBWithQueueReplyFromEjb");
 
-      TestUtil.logMsg("Sending TextMessage to MDB MsgBeanQ");
-      context.createProducer().send(queueToMDB, messageSent);
+			logger.log(Logger.Level.INFO, "Creating JMSConsumer for MDB MsgBeanQ Reply Queue");
+			consumer = context.createConsumer(replyQueue);
 
-      for (int i = 1; i < 10; ++i) {
-        TestUtil
-            .logMsg("Try receiving reply message from MDB MsgBeanQ (loop count="
-                + i + ")");
-        messageRecv = (TextMessage) consumer.receive(timeout);
-        if (messageRecv != null)
-          break;
-      }
-      if (messageRecv != null) {
-        String testname = messageRecv.getStringProperty("TESTNAME");
-        String reason = messageRecv.getStringProperty("REASON");
-        String jmscontext = messageRecv.getStringProperty("JMSCONTEXT");
-        String status = messageRecv.getStringProperty("STATUS");
-        if (status.equals("Pass")) {
-          TestUtil.logMsg("TEST=" + testname + " PASSED for JMSCONTEXT="
-              + jmscontext + " REASON=" + reason);
-          pass = true;
-        } else {
-          TestUtil.logErr("TEST=" + testname + " FAILED for JMSCONTEXT="
-              + jmscontext + " REASON=" + reason);
-          pass = false;
-        }
-      } else {
-        TestUtil.logErr("Did no receive a reply message from MDB MsgBeanQ");
-        pass = false;
-      }
+			logger.log(Logger.Level.INFO, "Sending TextMessage to MDB MsgBeanQ");
+			context.createProducer().send(queueToMDB, messageSent);
 
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e);
-      pass = false;
-    } finally {
-      try {
-        consumer.receive(timeout);
-        while (consumer.receiveNoWait() != null)
-          ;
-        consumer.close();
-      } catch (Exception e) {
-      }
-    }
-    return pass;
-  }
+			for (int i = 1; i < 10; ++i) {
+				logger.log(Logger.Level.INFO, "Try receiving reply message from MDB MsgBeanQ (loop count=" + i + ")");
+				messageRecv = (TextMessage) consumer.receive(timeout);
+				if (messageRecv != null)
+					break;
+			}
+			if (messageRecv != null) {
+				String testname = messageRecv.getStringProperty("TESTNAME");
+				String reason = messageRecv.getStringProperty("REASON");
+				String jmscontext = messageRecv.getStringProperty("JMSCONTEXT");
+				String status = messageRecv.getStringProperty("STATUS");
+				if (status.equals("Pass")) {
+					logger.log(Logger.Level.INFO,
+							"TEST=" + testname + " PASSED for JMSCONTEXT=" + jmscontext + " REASON=" + reason);
+					pass = true;
+				} else {
+					logger.log(Logger.Level.ERROR,
+							"TEST=" + testname + " FAILED for JMSCONTEXT=" + jmscontext + " REASON=" + reason);
+					pass = false;
+				}
+			} else {
+				logger.log(Logger.Level.ERROR, "Did no receive a reply message from MDB MsgBeanQ");
+				pass = false;
+			}
 
-  public boolean testCDIInjectionOfMDBWithTopicReplyFromEjb() {
-    boolean pass = true;
-    TextMessage messageSent = null;
-    TextMessage messageRecv = null;
-    JMSConsumer consumer = null;
-    try {
-      TestUtil.logMsg("Creating TextMessage to send to MDB MsgBeanQ");
-      messageSent = context.createTextMessage();
-      messageSent.setText("Send message to MDB MsgBeanQ");
-      messageSent.setStringProperty("TESTNAME",
-          "testCDIInjectionOfMDBWithTopicReplyFromEjb");
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e);
+			pass = false;
+		} finally {
+			try {
+				consumer.receive(timeout);
+				while (consumer.receiveNoWait() != null)
+					;
+				consumer.close();
+			} catch (Exception e) {
+			}
+		}
+		return pass;
+	}
 
-      TestUtil.logMsg("Creating JMSConsumer for MDB MsgBeanQ Reply Topic");
-      consumer = context.createConsumer(replyTopic);
+	public boolean testCDIInjectionOfMDBWithTopicReplyFromEjb() {
+		boolean pass = true;
+		TextMessage messageSent = null;
+		TextMessage messageRecv = null;
+		JMSConsumer consumer = null;
+		try {
+			logger.log(Logger.Level.INFO, "Creating TextMessage to send to MDB MsgBeanQ");
+			messageSent = context.createTextMessage();
+			messageSent.setText("Send message to MDB MsgBeanQ");
+			messageSent.setStringProperty("TESTNAME", "testCDIInjectionOfMDBWithTopicReplyFromEjb");
 
-      TestUtil.logMsg("Sending TextMessage to MDB MsgBeanQ");
-      context.createProducer().send(queueToMDB, messageSent);
+			logger.log(Logger.Level.INFO, "Creating JMSConsumer for MDB MsgBeanQ Reply Topic");
+			consumer = context.createConsumer(replyTopic);
 
-      for (int i = 1; i < 10; ++i) {
-        TestUtil
-            .logMsg("Try receiving reply message from MDB MsgBeanQ (loop count="
-                + i + ")");
-        messageRecv = (TextMessage) consumer.receive(timeout);
-        if (messageRecv != null)
-          break;
-      }
-      if (messageRecv != null) {
-        String testname = messageRecv.getStringProperty("TESTNAME");
-        String reason = messageRecv.getStringProperty("REASON");
-        String jmscontext = messageRecv.getStringProperty("JMSCONTEXT");
-        String status = messageRecv.getStringProperty("STATUS");
-        if (status.equals("Pass")) {
-          TestUtil.logMsg("TEST=" + testname + " PASSED for JMSCONTEXT="
-              + jmscontext + " REASON=" + reason);
-          pass = true;
-        } else {
-          TestUtil.logErr("TEST=" + testname + " FAILED for JMSCONTEXT="
-              + jmscontext + " REASON=" + reason);
-          pass = false;
-        }
-      } else {
-        TestUtil.logErr("Did no receive a reply message from MDB MsgBeanQ");
-        pass = false;
-      }
+			logger.log(Logger.Level.INFO, "Sending TextMessage to MDB MsgBeanQ");
+			context.createProducer().send(queueToMDB, messageSent);
 
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e);
-      pass = false;
-    } finally {
-      try {
-        consumer.receive(timeout);
-        while (consumer.receiveNoWait() != null)
-          ;
-        consumer.close();
-      } catch (Exception e) {
-      }
-    }
-    return pass;
-  }
+			for (int i = 1; i < 10; ++i) {
+				logger.log(Logger.Level.INFO, "Try receiving reply message from MDB MsgBeanQ (loop count=" + i + ")");
+				messageRecv = (TextMessage) consumer.receive(timeout);
+				if (messageRecv != null)
+					break;
+			}
+			if (messageRecv != null) {
+				String testname = messageRecv.getStringProperty("TESTNAME");
+				String reason = messageRecv.getStringProperty("REASON");
+				String jmscontext = messageRecv.getStringProperty("JMSCONTEXT");
+				String status = messageRecv.getStringProperty("STATUS");
+				if (status.equals("Pass")) {
+					logger.log(Logger.Level.INFO,
+							"TEST=" + testname + " PASSED for JMSCONTEXT=" + jmscontext + " REASON=" + reason);
+					pass = true;
+				} else {
+					logger.log(Logger.Level.ERROR,
+							"TEST=" + testname + " FAILED for JMSCONTEXT=" + jmscontext + " REASON=" + reason);
+					pass = false;
+				}
+			} else {
+				logger.log(Logger.Level.ERROR, "Did no receive a reply message from MDB MsgBeanQ");
+				pass = false;
+			}
+
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e);
+			pass = false;
+		} finally {
+			try {
+				consumer.receive(timeout);
+				while (consumer.receiveNoWait() != null)
+					;
+				consumer.close();
+			} catch (Exception e) {
+			}
+		}
+		return pass;
+	}
 }

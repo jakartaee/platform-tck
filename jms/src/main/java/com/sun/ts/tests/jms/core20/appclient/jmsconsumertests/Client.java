@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,10 +19,13 @@
  */
 package com.sun.ts.tests.jms.core20.appclient.jmsconsumertests;
 
+import java.lang.System.Logger;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.common.JmsTool;
 
@@ -36,361 +39,341 @@ import jakarta.jms.Queue;
 import jakarta.jms.TextMessage;
 import jakarta.jms.Topic;
 
-public class Client extends ServiceEETest {
-  private static final String testName = "com.sun.ts.tests.jms.core20.appclient.jmsconsumertests.Client";
+public class Client {
+	private static final String testName = "com.sun.ts.tests.jms.core20.appclient.jmsconsumertests.Client";
 
-  private static final String testDir = System.getProperty("user.dir");
+	private static final String testDir = System.getProperty("user.dir");
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  // JMS tool which creates and/or looks up the JMS administered objects
-  private transient JmsTool tool = null;
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  // JMS objects
-  transient ConnectionFactory cf = null;
+	// JMS tool which creates and/or looks up the JMS administered objects
+	private transient JmsTool tool = null;
 
-  transient JMSContext context = null;
+	// JMS objects
+	transient ConnectionFactory cf = null;
 
-  transient JMSContext contextToSendMsg = null;
+	transient JMSContext context = null;
 
-  transient JMSContext contextToCreateMsg = null;
+	transient JMSContext contextToSendMsg = null;
 
-  transient JMSConsumer consumer = null;
+	transient JMSContext contextToCreateMsg = null;
 
-  transient JMSProducer producer = null;
+	transient JMSConsumer consumer = null;
 
-  transient Destination destination = null;
+	transient JMSProducer producer = null;
 
-  transient Queue queue = null;
+	transient Destination destination = null;
 
-  transient Topic topic = null;
+	transient Queue queue = null;
 
-  // Harness req's
-  private Properties props = null;
+	transient Topic topic = null;
 
-  // properties read from ts.jte file
-  long timeout;
+	// Harness req's
+	private Properties props = null;
 
-  String user;
+	// properties read
+	long timeout;
 
-  String password;
+	String user;
 
-  String mode;
+	String password;
 
-  // used for tests
-  private static final int numMessages = 3;
+	String mode;
 
-  private static final int iterations = 5;
+	// used for tests
+	private static final int numMessages = 3;
 
-  boolean queueTest = false;
+	private static final int iterations = 5;
 
-  boolean topicTest = false;
+	boolean queueTest = false;
 
-  /* Run test in standalone mode */
+	boolean topicTest = false;
 
-  /**
-   * Main method is used when not run from the JavaTest GUI.
-   * 
-   * @param args
-   */
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	/* Utility methods for tests */
 
-  /* Utility methods for tests */
+	/*
+	 * Checks passed flag for negative tests and throws exception back to caller
+	 * which passes ot to harness.
+	 * 
+	 * @param boolean Pass/Fail flag
+	 */
+	private void checkExceptionPass(boolean passed) throws Exception {
+		if (passed == false) {
+			logger.log(Logger.Level.INFO, "Didn't get expected exception");
+			throw new Exception("Didn't get expected exception");
+		}
+	}
 
-  /*
-   * Checks passed flag for negative tests and throws exception back to caller
-   * which passes ot to harness.
-   * 
-   * @param boolean Pass/Fail flag
-   */
-  private void checkExceptionPass(boolean passed) throws Exception {
-    if (passed == false) {
-      TestUtil.logMsg("Didn't get expected exception");
-      throw new Exception("Didn't get expected exception");
-    }
-  }
+	/* Test setup: */
 
-  /* Test setup: */
+	/*
+	 * setup() is called before each test
+	 * 
+	 * @class.setup_props: jms_timeout; user; password; platform.mode;
+	 * 
+	 * @exception Fault
+	 */
+	@BeforeEach
+	public void setup() throws Exception {
+		try {
+			// get props
+			timeout = Long.parseLong(System.getProperty("jms_timeout"));
+			user = System.getProperty("user");
+			password = System.getProperty("password");
+			mode = System.getProperty("platform.mode");
 
-  /*
-   * setup() is called before each test
-   * 
-   * @class.setup_props: jms_timeout; user; password; platform.mode;
-   * 
-   * @exception Fault
-   */
-  public void setup(String[] args, Properties p) throws Exception {
-    try {
-      // get props
-      timeout = Long.parseLong(p.getProperty("jms_timeout"));
-      user = p.getProperty("user");
-      password = p.getProperty("password");
-      mode = p.getProperty("platform.mode");
+			// check props for errors
+			if (timeout < 1) {
+				throw new Exception("'jms_timeout' (milliseconds) in must be > 0");
+			}
+			if (user == null) {
+				throw new Exception("'user' in must not be null ");
+			}
+			if (password == null) {
+				throw new Exception("'password' in must not be null ");
+			}
+			if (mode == null) {
+				throw new Exception("'platform.mode' in must not be null");
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e);
+			throw new Exception("setup failed!", e);
+		}
+	}
 
-      // check props for errors
-      if (timeout < 1) {
-        throw new Exception(
-            "'jms_timeout' (milliseconds) in ts.jte must be > 0");
-      }
-      if (user == null) {
-        throw new Exception("'user' in ts.jte must not be null ");
-      }
-      if (password == null) {
-        throw new Exception("'password' in ts.jte must not be null ");
-      }
-      if (mode == null) {
-        throw new Exception("'platform.mode' in ts.jte must not be null");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e);
-      throw new Exception("setup failed!", e);
-    }
-  }
+	/* cleanup */
 
-  /* cleanup */
+	/*
+	 * cleanup() is called after each test
+	 * 
+	 * @exception Fault
+	 */
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			logger.log(Logger.Level.INFO, "Close JMSContext objects");
+			if (context != null) {
+				context.close();
+				context = null;
+			}
+			if (contextToSendMsg != null) {
+				contextToSendMsg.close();
+				contextToSendMsg = null;
+			}
+			if (contextToCreateMsg != null) {
+				contextToCreateMsg.close();
+				contextToCreateMsg = null;
+			}
+			logger.log(Logger.Level.INFO, "Close JMSConsumer objects");
+			if (consumer != null) {
+				consumer.close();
+				consumer = null;
+			}
+			logger.log(Logger.Level.INFO, "Closing default Connection");
+			tool.getDefaultConnection().close();
+			if (queueTest) {
+				logger.log(Logger.Level.INFO, "Flush any messages left on Queue");
+				tool.flushDestination();
+			}
+			tool.closeAllResources();
+			producer = null;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e);
+			throw new Exception("cleanup failed!", e);
+		}
+	}
 
-  /*
-   * cleanup() is called after each test
-   * 
-   * @exception Fault
-   */
-  public void cleanup() throws Exception {
-    try {
-      TestUtil.logMsg("Close JMSContext objects");
-      if (context != null) {
-        context.close();
-        context = null;
-      }
-      if (contextToSendMsg != null) {
-        contextToSendMsg.close();
-        contextToSendMsg = null;
-      }
-      if (contextToCreateMsg != null) {
-        contextToCreateMsg.close();
-        contextToCreateMsg = null;
-      }
-      TestUtil.logMsg("Close JMSConsumer objects");
-      if (consumer != null) {
-        consumer.close();
-        consumer = null;
-      }
-      TestUtil.logMsg("Closing default Connection");
-      tool.getDefaultConnection().close();
-      if (queueTest) {
-        TestUtil.logMsg("Flush any messages left on Queue");
-        tool.flushDestination();
-      }
-      tool.closeAllResources();
-      producer = null;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e);
-      throw new Exception("cleanup failed!", e);
-    }
-  }
+	/*
+	 * @testName: queueSendRecvMessageListenerTest
+	 * 
+	 * @assertion_ids: JMS:JAVADOC:1234; JMS:JAVADOC:1145; JMS:JAVADOC:1149;
+	 * JMS:JAVADOC:325; JMS:SPEC:264.4; JMS:SPEC:264;
+	 * 
+	 * @test_Strategy: Creates a new consumer on the specified destination that will
+	 * deliver messages to the specified MessageListener. Tests the following API
+	 * method:
+	 * 
+	 * JMSConsumer.setMessageListener(MessageListener)
+	 * JMSConsumer.getMessageListener() JMSProducer.send(Destination, Message)
+	 * MessageListener.onMessage(Message)
+	 * 
+	 * 1 Setup MessageListener for the specified destination 2 Send a message to the
+	 * destination 3 Verify message received by listener
+	 */
+	@Test
+	public void queueSendRecvMessageListenerTest() throws Exception {
+		boolean pass = true;
+		String message = "Where are you!";
+		try {
+			// set up test tool for Queue
+			logger.log(Logger.Level.INFO, "Setup JmsTool for COMMON QUEUE");
+			tool = new JmsTool(JmsTool.COMMON_Q, user, password, mode);
+			cf = tool.getConnectionFactory();
+			tool.getDefaultConnection().close();
+			destination = tool.getDefaultDestination();
+			queue = (Queue) destination;
+			queueTest = true;
 
-  /*
-   * @testName: queueSendRecvMessageListenerTest
-   * 
-   * @assertion_ids: JMS:JAVADOC:1234; JMS:JAVADOC:1145; JMS:JAVADOC:1149;
-   * JMS:JAVADOC:325; JMS:SPEC:264.4; JMS:SPEC:264;
-   * 
-   * @test_Strategy: Creates a new consumer on the specified destination that
-   * will deliver messages to the specified MessageListener. Tests the following
-   * API method:
-   * 
-   * JMSConsumer.setMessageListener(MessageListener)
-   * JMSConsumer.getMessageListener() JMSProducer.send(Destination, Message)
-   * MessageListener.onMessage(Message)
-   * 
-   * 1 Setup MessageListener for the specified destination 2 Send a message to
-   * the destination 3 Verify message received by listener
-   */
-  public void queueSendRecvMessageListenerTest() throws Exception {
-    boolean pass = true;
-    String message = "Where are you!";
-    try {
-      // set up test tool for Queue
-      TestUtil.logMsg("Setup JmsTool for COMMON QUEUE");
-      tool = new JmsTool(JmsTool.COMMON_Q, user, password, mode);
-      cf = tool.getConnectionFactory();
-      tool.getDefaultConnection().close();
-      destination = tool.getDefaultDestination();
-      queue = (Queue) destination;
-      queueTest = true;
+			logger.log(Logger.Level.INFO, "Create JMSContext with AUTO_ACKNOWLEDGE");
+			context = cf.createContext(user, password, JMSContext.AUTO_ACKNOWLEDGE);
+			contextToSendMsg = cf.createContext(user, password, JMSContext.AUTO_ACKNOWLEDGE);
+			contextToCreateMsg = cf.createContext(user, password, JMSContext.AUTO_ACKNOWLEDGE);
 
-      TestUtil.logMsg("Create JMSContext with AUTO_ACKNOWLEDGE");
-      context = cf.createContext(user, password, JMSContext.AUTO_ACKNOWLEDGE);
-      contextToSendMsg = cf.createContext(user, password,
-          JMSContext.AUTO_ACKNOWLEDGE);
-      contextToCreateMsg = cf.createContext(user, password,
-          JMSContext.AUTO_ACKNOWLEDGE);
+			logger.log(Logger.Level.INFO, "Create JMSProducer");
+			producer = contextToSendMsg.createProducer();
 
-      TestUtil.logMsg("Create JMSProducer");
-      producer = contextToSendMsg.createProducer();
+			logger.log(Logger.Level.INFO, "Create JMSConsumer");
+			consumer = context.createConsumer(destination);
 
-      TestUtil.logMsg("Create JMSConsumer");
-      consumer = context.createConsumer(destination);
+			// Creates a new consumer on the specified destination that
+			// will deliver messages to the specified MessageListener.
+			MyMessageListener listener = new MyMessageListener();
+			consumer.setMessageListener(listener);
 
-      // Creates a new consumer on the specified destination that
-      // will deliver messages to the specified MessageListener.
-      MyMessageListener listener = new MyMessageListener();
-      consumer.setMessageListener(listener);
+			// send and receive TextMessage
+			logger.log(Logger.Level.INFO, "Creating TextMessage");
+			TextMessage expTextMessage = contextToCreateMsg.createTextMessage(message);
+			logger.log(Logger.Level.INFO, "Set some values in TextMessage");
+			expTextMessage.setStringProperty("COM_SUN_JMS_TESTNAME", "queueSendRecvMessageListenerTest");
+			logger.log(Logger.Level.INFO, "Send the TestMessage via JMSProducer.send(Destination, Message)");
+			producer.send(destination, expTextMessage);
 
-      // send and receive TextMessage
-      TestUtil.logMsg("Creating TextMessage");
-      TextMessage expTextMessage = contextToCreateMsg
-          .createTextMessage(message);
-      TestUtil.logMsg("Set some values in TextMessage");
-      expTextMessage.setStringProperty("COM_SUN_JMS_TESTNAME",
-          "queueSendRecvMessageListenerTest");
-      TestUtil.logMsg(
-          "Send the TestMessage via JMSProducer.send(Destination, Message)");
-      producer.send(destination, expTextMessage);
+			logger.log(Logger.Level.INFO, "Poll listener waiting for TestMessage to arrive");
+			TextMessage actTextMessage = null;
+			for (int i = 0; i < 60; i++) {
+				TestUtil.sleepSec(2);
+				if (listener.isComplete()) {
+					listener.setComplete(false);
+					actTextMessage = (TextMessage) listener.getMessage();
+					logger.log(Logger.Level.INFO, "Received TextMessage after polling loop " + (i + 1));
+					break;
+				}
+				logger.log(Logger.Level.INFO, "Completed polling loop " + i);
+			}
 
-      TestUtil.logMsg("Poll listener waiting for TestMessage to arrive");
-      TextMessage actTextMessage = null;
-      for (int i = 0; i < 60; i++) {
-        TestUtil.sleepSec(2);
-        if (listener.isComplete()) {
-          listener.setComplete(false);
-          actTextMessage = (TextMessage) listener.getMessage();
-          TestUtil.logMsg("Received TextMessage after polling loop " + (i + 1));
-          break;
-        }
-        TestUtil.logMsg("Completed polling loop " + i);
-      }
+			if (actTextMessage == null) {
+				throw new Exception("Did not receive TextMessage (actTextMessage=NULL)");
+			}
 
-      if (actTextMessage == null) {
-        throw new Exception("Did not receive TextMessage (actTextMessage=NULL)");
-      }
+			logger.log(Logger.Level.INFO, "Check value of TextMessage returned");
+			if (!actTextMessage.getText().equals(expTextMessage.getText())) {
+				logger.log(Logger.Level.ERROR,
+						"Received [" + actTextMessage.getText() + "] expected [" + expTextMessage.getText() + "]");
+				pass = false;
+			}
 
-      TestUtil.logMsg("Check value of TextMessage returned");
-      if (!actTextMessage.getText().equals(expTextMessage.getText())) {
-        TestUtil.logErr("Received [" + actTextMessage.getText() + "] expected ["
-            + expTextMessage.getText() + "]");
-        pass = false;
-      }
+			logger.log(Logger.Level.INFO, "Retreive MessageListener by calling consumer.getMessageListener()");
+			MessageListener messageListener = consumer.getMessageListener();
+			if (messageListener == null) {
+				logger.log(Logger.Level.ERROR, "getMessageListener() returned NULL");
+				pass = false;
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e);
+			TestUtil.printStackTrace(e);
+			throw new Exception("queueSendRecvMessageListenerTest", e);
+		}
 
-      TestUtil.logMsg(
-          "Retreive MessageListener by calling consumer.getMessageListener()");
-      MessageListener messageListener = consumer.getMessageListener();
-      if (messageListener == null) {
-        TestUtil.logErr("getMessageListener() returned NULL");
-        pass = false;
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e);
-      TestUtil.printStackTrace(e);
-      throw new Exception("queueSendRecvMessageListenerTest", e);
-    }
+		if (!pass) {
+			throw new Exception("queueSendRecvMessageListenerTest failed");
+		}
+	}
 
-    if (!pass) {
-      throw new Exception("queueSendRecvMessageListenerTest failed");
-    }
-  }
+	/*
+	 * @testName: topicSendRecvMessageListenerTest
+	 * 
+	 * @assertion_ids: JMS:JAVADOC:1234; JMS:JAVADOC:1145; JMS:JAVADOC:1149;
+	 * JMS:JAVADOC:325; JMS:SPEC:264.4; JMS:SPEC:264;
+	 * 
+	 * @test_Strategy: Creates a new consumer on the specified destination that will
+	 * deliver messages to the specified MessageListener. Tests the following API
+	 * method:
+	 * 
+	 * JMSConsumer.setMessageListener(MessageListener)
+	 * JMSConsumer.getMessageListener() JMSProducer.send(Destination, Message)
+	 * MessageListener.onMessage(Message)
+	 * 
+	 * 1 Setup MessageListener for the specified destination 2 Send a message to the
+	 * destination 3 Verify message received by listener
+	 */
+	@Test
+	public void topicSendRecvMessageListenerTest() throws Exception {
+		boolean pass = true;
+		String message = "Where are you!";
+		try {
+			// set up test tool for Topic
+			logger.log(Logger.Level.INFO, "Setup JmsTool for COMMON TOPIC");
+			tool = new JmsTool(JmsTool.COMMON_T, user, password, mode);
+			cf = tool.getConnectionFactory();
+			tool.getDefaultConnection().close();
+			destination = tool.getDefaultDestination();
+			topic = (Topic) destination;
+			topicTest = true;
 
-  /*
-   * @testName: topicSendRecvMessageListenerTest
-   * 
-   * @assertion_ids: JMS:JAVADOC:1234; JMS:JAVADOC:1145; JMS:JAVADOC:1149;
-   * JMS:JAVADOC:325; JMS:SPEC:264.4; JMS:SPEC:264;
-   * 
-   * @test_Strategy: Creates a new consumer on the specified destination that
-   * will deliver messages to the specified MessageListener. Tests the following
-   * API method:
-   * 
-   * JMSConsumer.setMessageListener(MessageListener)
-   * JMSConsumer.getMessageListener() JMSProducer.send(Destination, Message)
-   * MessageListener.onMessage(Message)
-   * 
-   * 1 Setup MessageListener for the specified destination 2 Send a message to
-   * the destination 3 Verify message received by listener
-   */
-  public void topicSendRecvMessageListenerTest() throws Exception {
-    boolean pass = true;
-    String message = "Where are you!";
-    try {
-      // set up test tool for Topic
-      TestUtil.logMsg("Setup JmsTool for COMMON TOPIC");
-      tool = new JmsTool(JmsTool.COMMON_T, user, password, mode);
-      cf = tool.getConnectionFactory();
-      tool.getDefaultConnection().close();
-      destination = tool.getDefaultDestination();
-      topic = (Topic) destination;
-      topicTest = true;
+			logger.log(Logger.Level.INFO, "Create JMSContext with AUTO_ACKNOWLEDGE");
+			context = cf.createContext(user, password, JMSContext.AUTO_ACKNOWLEDGE);
+			contextToSendMsg = cf.createContext(user, password, JMSContext.AUTO_ACKNOWLEDGE);
+			contextToCreateMsg = cf.createContext(user, password, JMSContext.AUTO_ACKNOWLEDGE);
 
-      TestUtil.logMsg("Create JMSContext with AUTO_ACKNOWLEDGE");
-      context = cf.createContext(user, password, JMSContext.AUTO_ACKNOWLEDGE);
-      contextToSendMsg = cf.createContext(user, password,
-          JMSContext.AUTO_ACKNOWLEDGE);
-      contextToCreateMsg = cf.createContext(user, password,
-          JMSContext.AUTO_ACKNOWLEDGE);
+			logger.log(Logger.Level.INFO, "Create JMSProducer");
+			producer = contextToSendMsg.createProducer();
 
-      TestUtil.logMsg("Create JMSProducer");
-      producer = contextToSendMsg.createProducer();
+			logger.log(Logger.Level.INFO, "Create JMSConsumer");
+			consumer = context.createConsumer(destination);
 
-      TestUtil.logMsg("Create JMSConsumer");
-      consumer = context.createConsumer(destination);
+			// Creates a new consumer on the specified destination that
+			// will deliver messages to the specified MessageListener.
+			MyMessageListener listener = new MyMessageListener();
+			consumer.setMessageListener(listener);
 
-      // Creates a new consumer on the specified destination that
-      // will deliver messages to the specified MessageListener.
-      MyMessageListener listener = new MyMessageListener();
-      consumer.setMessageListener(listener);
+			// send and receive TextMessage
+			logger.log(Logger.Level.INFO, "Creating TextMessage");
+			TextMessage expTextMessage = contextToCreateMsg.createTextMessage(message);
+			logger.log(Logger.Level.INFO, "Set some values in TextMessage");
+			expTextMessage.setStringProperty("COM_SUN_JMS_TESTNAME", "topicSendRecvMessageListenerTest");
+			logger.log(Logger.Level.INFO, "Send the TestMessage via JMSProducer.send(Destination, Message)");
+			producer.send(destination, expTextMessage);
 
-      // send and receive TextMessage
-      TestUtil.logMsg("Creating TextMessage");
-      TextMessage expTextMessage = contextToCreateMsg
-          .createTextMessage(message);
-      TestUtil.logMsg("Set some values in TextMessage");
-      expTextMessage.setStringProperty("COM_SUN_JMS_TESTNAME",
-          "topicSendRecvMessageListenerTest");
-      TestUtil.logMsg(
-          "Send the TestMessage via JMSProducer.send(Destination, Message)");
-      producer.send(destination, expTextMessage);
+			logger.log(Logger.Level.INFO, "Poll listener waiting for TestMessage to arrive");
+			TextMessage actTextMessage = null;
+			for (int i = 1; i < 60; i++) {
+				TestUtil.sleepSec(2);
+				if (listener.isComplete()) {
+					listener.setComplete(false);
+					actTextMessage = (TextMessage) listener.getMessage();
+					logger.log(Logger.Level.INFO, "Received TextMessage after polling loop " + i);
+					break;
+				}
+				logger.log(Logger.Level.INFO, "Completed polling loop " + i);
+			}
 
-      TestUtil.logMsg("Poll listener waiting for TestMessage to arrive");
-      TextMessage actTextMessage = null;
-      for (int i = 1; i < 60; i++) {
-        TestUtil.sleepSec(2);
-        if (listener.isComplete()) {
-          listener.setComplete(false);
-          actTextMessage = (TextMessage) listener.getMessage();
-          TestUtil.logMsg("Received TextMessage after polling loop " + i);
-          break;
-        }
-        TestUtil.logMsg("Completed polling loop " + i);
-      }
+			if (actTextMessage == null) {
+				throw new Exception("Did not receive TextMessage (actTextMessage=NULL)");
+			}
 
-      if (actTextMessage == null) {
-        throw new Exception("Did not receive TextMessage (actTextMessage=NULL)");
-      }
+			logger.log(Logger.Level.INFO, "Check value of TextMessage returned");
+			if (!actTextMessage.getText().equals(expTextMessage.getText())) {
+				logger.log(Logger.Level.ERROR,
+						"Received [" + actTextMessage.getText() + "] expected [" + expTextMessage.getText() + "]");
+				pass = false;
+			}
 
-      TestUtil.logMsg("Check value of TextMessage returned");
-      if (!actTextMessage.getText().equals(expTextMessage.getText())) {
-        TestUtil.logErr("Received [" + actTextMessage.getText() + "] expected ["
-            + expTextMessage.getText() + "]");
-        pass = false;
-      }
+			logger.log(Logger.Level.INFO, "Retreive MessageListener by calling consumer.getMessageListener()");
+			MessageListener messageListener = consumer.getMessageListener();
+			if (messageListener == null) {
+				logger.log(Logger.Level.ERROR, "getMessageListener() returned NULL");
+				pass = false;
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e);
+			TestUtil.printStackTrace(e);
+			throw new Exception("topicSendRecvMessageListenerTest", e);
+		}
 
-      TestUtil.logMsg(
-          "Retreive MessageListener by calling consumer.getMessageListener()");
-      MessageListener messageListener = consumer.getMessageListener();
-      if (messageListener == null) {
-        TestUtil.logErr("getMessageListener() returned NULL");
-        pass = false;
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e);
-      TestUtil.printStackTrace(e);
-      throw new Exception("topicSendRecvMessageListenerTest", e);
-    }
-
-    if (!pass) {
-      throw new Exception("topicSendRecvMessageListenerTest failed");
-    }
-  }
+		if (!pass) {
+			throw new Exception("topicSendRecvMessageListenerTest failed");
+		}
+	}
 }

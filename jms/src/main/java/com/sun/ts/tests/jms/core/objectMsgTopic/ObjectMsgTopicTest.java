@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,174 +19,163 @@
  */
 package com.sun.ts.tests.jms.core.objectMsgTopic;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.common.JmsTool;
 
 import jakarta.jms.ObjectMessage;
 
-public class ObjectMsgTopicTest extends ServiceEETest {
-  private static final String testName = "com.sun.ts.tests.jms.core.objectMsgTopic.ObjectMsgTopicTest";
+public class ObjectMsgTopicTest {
+	private static final String testName = "com.sun.ts.tests.jms.core.objectMsgTopic.ObjectMsgTopicTest";
 
-  private static final String testDir = System.getProperty("user.dir");
+	private static final String testDir = System.getProperty("user.dir");
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  // JMS objects
-  private transient JmsTool tool = null;
+	private static final Logger logger = (Logger) System.getLogger(ObjectMsgTopicTest.class.getName());
 
-  // Harness req's
-  private Properties props = null;
+	// JMS objects
+	private transient JmsTool tool = null;
 
-  // properties read from ts.jte file
-  long timeout;
+	// Harness req's
+	private Properties props = null;
 
-  String user;
+	// properties read
+	long timeout;
 
-  String password;
+	String user;
 
-  String mode;
+	String password;
 
-  ArrayList connections = null;
+	String mode;
 
-  /* Run test in standalone mode */
+	ArrayList connections = null;
 
-  /**
-   * Main method is used when not run from the JavaTest GUI.
-   * 
-   * @param args
-   */
-  public static void main(String[] args) {
-    ObjectMsgTopicTest theTests = new ObjectMsgTopicTest();
-    Status s = theTests.run(args, System.out, System.err);
+	/* Test setup: */
 
-    s.exit();
-  }
+	/*
+	 * setup() is called before each test
+	 * 
+	 * Creates Administrator object and deletes all previous Destinations.
+	 * Individual tests create the JmsTool object with one default Queue and/or
+	 * Topic Connection, as well as a default Queue and Topic. Tests that require
+	 * multiple Destinations create the extras within the test
+	 * 
+	 * 
+	 * @class.setup_props: jms_timeout; user; password; platform.mode;
+	 * 
+	 * @exception Fault
+	 */
 
-  /* Test setup: */
+	@BeforeEach
+	public void setup() throws Exception {
+		try {
 
-  /*
-   * setup() is called before each test
-   * 
-   * Creates Administrator object and deletes all previous Destinations.
-   * Individual tests create the JmsTool object with one default Queue and/or
-   * Topic Connection, as well as a default Queue and Topic. Tests that require
-   * multiple Destinations create the extras within the test
-   * 
-   * 
-   * @class.setup_props: jms_timeout; user; password; platform.mode;
-   * 
-   * @exception Fault
-   */
+			// get props
+			timeout = Long.parseLong(System.getProperty("jms_timeout"));
+			user = System.getProperty("user");
+			password = System.getProperty("password");
+			mode = System.getProperty("platform.mode");
 
-  public void setup(String[] args, Properties p) throws Exception {
-    try {
+			// check props for errors
+			if (timeout < 1) {
+				throw new Exception("'jms_timeout' (milliseconds) in must be > 0");
+			}
+			if (user == null) {
+				throw new Exception("'user' in must not be null");
+			}
+			if (password == null) {
+				throw new Exception("'password' in must not be null");
+			}
+			if (mode == null) {
+				throw new Exception("'platform.mode' in must not be null");
+			}
 
-      // get props
-      timeout = Long.parseLong(p.getProperty("jms_timeout"));
-      user = p.getProperty("user");
-      password = p.getProperty("password");
-      mode = p.getProperty("platform.mode");
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new Exception("Setup failed!", e);
+		}
+	}
 
-      // check props for errors
-      if (timeout < 1) {
-        throw new Exception(
-            "'jms_timeout' (milliseconds) in ts.jte must be > 0");
-      }
-      if (user == null) {
-        throw new Exception("'user' in ts.jte must not be null");
-      }
-      if (password == null) {
-        throw new Exception("'password' in ts.jte must not be null");
-      }
-      if (mode == null) {
-        throw new Exception("'platform.mode' in ts.jte must not be null");
-      }
+	/* cleanup */
 
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Exception("Setup failed!", e);
-    }
-  }
+	/*
+	 * cleanup() is called after each test
+	 * 
+	 * Closes the default connections that are created by setup(). Any separate
+	 * connections made by individual tests should be closed by that test.
+	 * 
+	 * @exception Fault
+	 */
 
-  /* cleanup */
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			if (tool != null) {
+				logger.log(Logger.Level.INFO, "Cleanup: Closing Queue and Topic Connections");
+				tool.closeAllConnections(connections);
+			}
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			logger.log(Logger.Level.ERROR, "An error occurred while cleaning");
+			throw new Exception("Cleanup failed!", e);
+		}
+	}
 
-  /*
-   * cleanup() is called after each test
-   * 
-   * Closes the default connections that are created by setup(). Any separate
-   * connections made by individual tests should be closed by that test.
-   * 
-   * @exception Fault
-   */
+	/* Tests */
 
-  public void cleanup() throws Exception {
-    try {
-      if (tool != null) {
-        logMsg("Cleanup: Closing Queue and Topic Connections");
-        tool.closeAllConnections(connections);
-      }
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      logErr("An error occurred while cleaning");
-      throw new Exception("Cleanup failed!", e);
-    }
-  }
+	/*
+	 * @testName: messageObjectCopyTopicTest
+	 * 
+	 * @assertion_ids: JMS:SPEC:85; JMS:JAVADOC:291;
+	 *
+	 * @test_Strategy: Create an object message. Write a StringBuffer to the
+	 * message. modify the StringBuffer and send the msg, verify that it does not
+	 * effect the msg
+	 */
+	@Test
+	public void messageObjectCopyTopicTest() throws Exception {
+		boolean pass = true;
 
-  /* Tests */
+		try {
+			ObjectMessage messageSentObjectMsg = null;
+			ObjectMessage messageReceivedObjectMsg = null;
+			StringBuffer sBuff = new StringBuffer("This is");
+			String initial = "This is";
 
-  /*
-   * @testName: messageObjectCopyTopicTest
-   * 
-   * @assertion_ids: JMS:SPEC:85; JMS:JAVADOC:291;
-   *
-   * @test_Strategy: Create an object message. Write a StringBuffer to the
-   * message. modify the StringBuffer and send the msg, verify that it does not
-   * effect the msg
-   */
+			// set up test tool for Topic
+			tool = new JmsTool(JmsTool.TOPIC, user, password, mode);
+			tool.getDefaultTopicConnection().start();
+			messageSentObjectMsg = tool.getDefaultTopicSession().createObjectMessage();
+			messageSentObjectMsg.setObject(sBuff);
+			sBuff.append("a test ");
+			messageSentObjectMsg.setStringProperty("COM_SUN_JMS_TESTNAME", "messageObjectCopyTopicTest");
+			tool.getDefaultTopicPublisher().publish(messageSentObjectMsg);
+			messageReceivedObjectMsg = (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+			logger.log(Logger.Level.INFO, "Ensure that changing the object did not change the message");
+			StringBuffer s = (StringBuffer) messageReceivedObjectMsg.getObject();
 
-  public void messageObjectCopyTopicTest() throws Exception {
-    boolean pass = true;
-
-    try {
-      ObjectMessage messageSentObjectMsg = null;
-      ObjectMessage messageReceivedObjectMsg = null;
-      StringBuffer sBuff = new StringBuffer("This is");
-      String initial = "This is";
-
-      // set up test tool for Topic
-      tool = new JmsTool(JmsTool.TOPIC, user, password, mode);
-      tool.getDefaultTopicConnection().start();
-      messageSentObjectMsg = tool.getDefaultTopicSession()
-          .createObjectMessage();
-      messageSentObjectMsg.setObject(sBuff);
-      sBuff.append("a test ");
-      messageSentObjectMsg.setStringProperty("COM_SUN_JMS_TESTNAME",
-          "messageObjectCopyTopicTest");
-      tool.getDefaultTopicPublisher().publish(messageSentObjectMsg);
-      messageReceivedObjectMsg = (ObjectMessage) tool
-          .getDefaultTopicSubscriber().receive(timeout);
-      logMsg("Ensure that changing the object did not change the message");
-      StringBuffer s = (StringBuffer) messageReceivedObjectMsg.getObject();
-
-      logTrace("s is " + s);
-      if (s.toString().equals(initial)) {
-        logTrace("Pass: msg was not changed");
-      } else {
-        logTrace("Fail: msg was changed!");
-        pass = false;
-      }
-      if (!pass) {
-        throw new Exception("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Exception("messageObjectCopyTopicTest");
-    }
-  }
+			logger.log(Logger.Level.TRACE, "s is " + s);
+			if (s.toString().equals(initial)) {
+				logger.log(Logger.Level.TRACE, "Pass: msg was not changed");
+			} else {
+				logger.log(Logger.Level.TRACE, "Fail: msg was changed!");
+				pass = false;
+			}
+			if (!pass) {
+				throw new Exception("Error: failures occurred during tests");
+			}
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new Exception("messageObjectCopyTopicTest");
+		}
+	}
 
 }

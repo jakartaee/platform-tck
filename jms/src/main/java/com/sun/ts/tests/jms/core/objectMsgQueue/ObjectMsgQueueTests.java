@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,223 +19,211 @@
  */
 package com.sun.ts.tests.jms.core.objectMsgQueue;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.common.JmsTool;
 
 import jakarta.jms.MessageNotWriteableException;
 import jakarta.jms.ObjectMessage;
 
-public class ObjectMsgQueueTests extends ServiceEETest {
-  private static final String testName = "com.sun.ts.tests.jms.core.objectMsgQueue.ObjectMsgQueueTests";
+public class ObjectMsgQueueTests {
+	private static final String testName = "com.sun.ts.tests.jms.core.objectMsgQueue.ObjectMsgQueueTests";
 
-  private static final String testDir = System.getProperty("user.dir");
+	private static final String testDir = System.getProperty("user.dir");
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  // JMS objects
-  private transient JmsTool tool = null;
+	private static final Logger logger = (Logger) System.getLogger(ObjectMsgQueueTests.class.getName());
 
-  // Harness req's
-  private Properties props = null;
+	// JMS objects
+	private transient JmsTool tool = null;
 
-  // properties read from ts.jte file
-  long timeout;
+	// Harness req's
+	private Properties props = null;
 
-  String user;
+	// properties read
+	long timeout;
 
-  String password;
+	String user;
 
-  String mode;
+	String password;
 
-  ArrayList queues = null;
+	String mode;
 
-  ArrayList connections = null;
+	ArrayList queues = null;
 
-  /* Run test in standalone mode */
+	ArrayList connections = null;
 
-  /**
-   * Main method is used when not run from the JavaTest GUI.
-   * 
-   * @param args
-   */
-  public static void main(String[] args) {
-    ObjectMsgQueueTests theTests = new ObjectMsgQueueTests();
-    Status s = theTests.run(args, System.out, System.err);
+	/* Test setup: */
 
-    s.exit();
-  }
+	/*
+	 * setup() is called before each test
+	 * 
+	 * Creates Administrator object and deletes all previous Destinations.
+	 * Individual tests create the JmsTool object with one default Queue and/or
+	 * Topic Connection, as well as a default Queue and Topic. Tests that require
+	 * multiple Destinations create the extras within the test
+	 * 
+	 * 
+	 * @class.setup_props: jms_timeout; user; password; platform.mode;
+	 * 
+	 * @exception Fault
+	 */
 
-  /* Test setup: */
+	@BeforeEach
+	public void setup() throws Exception {
+		try {
 
-  /*
-   * setup() is called before each test
-   * 
-   * Creates Administrator object and deletes all previous Destinations.
-   * Individual tests create the JmsTool object with one default Queue and/or
-   * Topic Connection, as well as a default Queue and Topic. Tests that require
-   * multiple Destinations create the extras within the test
-   * 
-   * 
-   * @class.setup_props: jms_timeout; user; password; platform.mode;
-   * 
-   * @exception Fault
-   */
+			// get props
+			timeout = Long.parseLong(System.getProperty("jms_timeout"));
+			user = System.getProperty("user");
+			password = System.getProperty("password");
+			mode = System.getProperty("platform.mode");
 
-  public void setup(String[] args, Properties p) throws Exception {
-    try {
+			// check props for errors
+			if (timeout < 1) {
+				throw new Exception("'jms_timeout' (milliseconds) in must be > 0");
+			}
+			if (user == null) {
+				throw new Exception("'numConsumers' in must not be null");
+			}
+			if (password == null) {
+				throw new Exception("'numProducers' in must not be null");
+			}
+			if (mode == null) {
+				throw new Exception("'platform.mode' in must not be null");
+			}
+			queues = new ArrayList(2);
 
-      // get props
-      timeout = Long.parseLong(p.getProperty("jms_timeout"));
-      user = p.getProperty("user");
-      password = p.getProperty("password");
-      mode = p.getProperty("platform.mode");
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new Exception("Setup failed!", e);
+		}
+	}
 
-      // check props for errors
-      if (timeout < 1) {
-        throw new Exception(
-            "'jms_timeout' (milliseconds) in ts.jte must be > 0");
-      }
-      if (user == null) {
-        throw new Exception("'numConsumers' in ts.jte must not be null");
-      }
-      if (password == null) {
-        throw new Exception("'numProducers' in ts.jte must not be null");
-      }
-      if (mode == null) {
-        throw new Exception("'platform.mode' in ts.jte must not be null");
-      }
-      queues = new ArrayList(2);
+	/* cleanup */
 
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Exception("Setup failed!", e);
-    }
-  }
+	/*
+	 * cleanup() is called after each test
+	 * 
+	 * Closes the default connections that are created by setup(). Any separate
+	 * connections made by individual tests should be closed by that test.
+	 * 
+	 * @exception Fault
+	 */
 
-  /* cleanup */
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			if (tool != null) {
+				logger.log(Logger.Level.INFO, "Cleanup: Closing Queue and Topic Connections");
+				tool.doClientQueueTestCleanup(connections, queues);
+			}
 
-  /*
-   * cleanup() is called after each test
-   * 
-   * Closes the default connections that are created by setup(). Any separate
-   * connections made by individual tests should be closed by that test.
-   * 
-   * @exception Fault
-   */
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			logger.log(Logger.Level.ERROR, "An error occurred while cleaning");
+			throw new Exception("Cleanup failed!", e);
+		}
+	}
 
-  public void cleanup() throws Exception {
-    try {
-      if (tool != null) {
-        logMsg("Cleanup: Closing Queue and Topic Connections");
-        tool.doClientQueueTestCleanup(connections, queues);
-      }
+	/* Tests */
 
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      logErr("An error occurred while cleaning");
-      throw new Exception("Cleanup failed!", e);
-    }
-  }
+	/*
+	 * @testName: messageObjectCopyQTest
+	 * 
+	 * @assertion_ids: JMS:SPEC:85; JMS:JAVADOC:291;
+	 * 
+	 * @test_Strategy: Create an object message. Write a StringBuffer to the
+	 * message. modify the StringBuffer and send the msg, verify that it does not
+	 * effect the msg
+	 */
+	@Test
+	public void messageObjectCopyQTest() throws Exception {
+		boolean pass = true;
 
-  /* Tests */
+		try {
+			ObjectMessage messageSentObject = null;
+			ObjectMessage messageReceivedObject = null;
+			StringBuffer sBuff = new StringBuffer("This is");
+			String initial = "This is";
 
-  /*
-   * @testName: messageObjectCopyQTest
-   * 
-   * @assertion_ids: JMS:SPEC:85; JMS:JAVADOC:291;
-   * 
-   * @test_Strategy: Create an object message. Write a StringBuffer to the
-   * message. modify the StringBuffer and send the msg, verify that it does not
-   * effect the msg
-   */
+			// set up test tool for Queue
+			tool = new JmsTool(JmsTool.QUEUE, user, password, mode);
+			tool.getDefaultQueueConnection().start();
+			messageSentObject = tool.getDefaultQueueSession().createObjectMessage();
+			messageSentObject.setObject(sBuff);
+			sBuff.append("a test ");
+			messageSentObject.setStringProperty("COM_SUN_JMS_TESTNAME", "messageObjectCopyQTest");
+			tool.getDefaultQueueSender().send(messageSentObject);
+			messageReceivedObject = (ObjectMessage) tool.getDefaultQueueReceiver().receive(timeout);
+			logger.log(Logger.Level.INFO, "Ensure that changing the object did not change the message");
+			StringBuffer s = (StringBuffer) messageReceivedObject.getObject();
 
-  public void messageObjectCopyQTest() throws Exception {
-    boolean pass = true;
+			logger.log(Logger.Level.TRACE, "s is " + s);
+			if (s.toString().equals(initial)) {
+				logger.log(Logger.Level.TRACE, "Pass: msg was not changed");
+			} else {
+				logger.log(Logger.Level.TRACE, "Fail: msg was changed!");
+				pass = false;
+			}
+			if (!pass) {
+				throw new Exception("Error: failures occurred during tests");
+			}
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new Exception("messageObjectCopyQTest");
+		}
+	}
 
-    try {
-      ObjectMessage messageSentObject = null;
-      ObjectMessage messageReceivedObject = null;
-      StringBuffer sBuff = new StringBuffer("This is");
-      String initial = "This is";
+	/*
+	 * @testName: notWritableTest
+	 * 
+	 * @assertion_ids: JMS:JAVADOC:717;
+	 * 
+	 * @test_Strategy: Create an object message. Try to setObject upon receiving the
+	 * message. Verify that MessageNotWriteableException is thrown.
+	 */
+	@Test
+	public void notWritableTest() throws Exception {
+		boolean pass = true;
+		StringBuffer sBuff = new StringBuffer("This is");
+		String testName = "notWritableTest";
 
-      // set up test tool for Queue
-      tool = new JmsTool(JmsTool.QUEUE, user, password, mode);
-      tool.getDefaultQueueConnection().start();
-      messageSentObject = tool.getDefaultQueueSession().createObjectMessage();
-      messageSentObject.setObject(sBuff);
-      sBuff.append("a test ");
-      messageSentObject.setStringProperty("COM_SUN_JMS_TESTNAME",
-          "messageObjectCopyQTest");
-      tool.getDefaultQueueSender().send(messageSentObject);
-      messageReceivedObject = (ObjectMessage) tool.getDefaultQueueReceiver()
-          .receive(timeout);
-      logMsg("Ensure that changing the object did not change the message");
-      StringBuffer s = (StringBuffer) messageReceivedObject.getObject();
+		try {
+			ObjectMessage messageSentObject = null;
+			ObjectMessage messageReceivedObject = null;
 
-      logTrace("s is " + s);
-      if (s.toString().equals(initial)) {
-        logTrace("Pass: msg was not changed");
-      } else {
-        logTrace("Fail: msg was changed!");
-        pass = false;
-      }
-      if (!pass) {
-        throw new Exception("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Exception("messageObjectCopyQTest");
-    }
-  }
+			// set up test tool for Queue
+			tool = new JmsTool(JmsTool.QUEUE, user, password, mode);
+			tool.getDefaultQueueConnection().start();
+			messageSentObject = tool.getDefaultQueueSession().createObjectMessage();
+			messageSentObject.setObject(sBuff);
+			messageSentObject.setStringProperty("COM_SUN_JMS_TESTNAME", testName);
+			tool.getDefaultQueueSender().send(messageSentObject);
 
-  /*
-   * @testName: notWritableTest
-   * 
-   * @assertion_ids: JMS:JAVADOC:717;
-   * 
-   * @test_Strategy: Create an object message. Try to setObject upon receiving
-   * the message. Verify that MessageNotWriteableException is thrown.
-   */
+			messageReceivedObject = (ObjectMessage) tool.getDefaultQueueReceiver().receive(timeout);
 
-  public void notWritableTest() throws Exception {
-    boolean pass = true;
-    StringBuffer sBuff = new StringBuffer("This is");
-    String testName = "notWritableTest";
+			try {
+				messageReceivedObject.setObject(sBuff);
+				logger.log(Logger.Level.ERROR, "Error: expected MessageNotWriteableException not thrown");
+				pass = false;
+			} catch (MessageNotWriteableException ex) {
+				logger.log(Logger.Level.TRACE, "Got expected MessageNotWriteableException");
+			}
 
-    try {
-      ObjectMessage messageSentObject = null;
-      ObjectMessage messageReceivedObject = null;
-
-      // set up test tool for Queue
-      tool = new JmsTool(JmsTool.QUEUE, user, password, mode);
-      tool.getDefaultQueueConnection().start();
-      messageSentObject = tool.getDefaultQueueSession().createObjectMessage();
-      messageSentObject.setObject(sBuff);
-      messageSentObject.setStringProperty("COM_SUN_JMS_TESTNAME", testName);
-      tool.getDefaultQueueSender().send(messageSentObject);
-
-      messageReceivedObject = (ObjectMessage) tool.getDefaultQueueReceiver()
-          .receive(timeout);
-
-      try {
-        messageReceivedObject.setObject(sBuff);
-        TestUtil
-            .logErr("Error: expected MessageNotWriteableException not thrown");
-        pass = false;
-      } catch (MessageNotWriteableException ex) {
-        TestUtil.logTrace("Got expected MessageNotWriteableException");
-      }
-
-      if (!pass)
-        throw new Exception(testName);
-    } catch (Exception e) {
-      TestUtil.logErr(testName + " failed: ", e);
-      throw new Exception(testName);
-    }
-  }
+			if (!pass)
+				throw new Exception(testName);
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, testName + " failed: ", e);
+			throw new Exception(testName);
+		}
+	}
 }

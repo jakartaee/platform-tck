@@ -24,11 +24,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.System.Logger;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Properties;
 
-import com.sun.ts.lib.util.TestUtil;
+import org.junit.jupiter.api.BeforeEach;
+
 import com.sun.ts.tests.jms.commonee.Client;
 
 import jakarta.jms.JMSException;
@@ -38,226 +40,225 @@ import jakarta.jms.QueueConnectionFactory;
 import jakarta.jms.Session;
 
 abstract public class QueueClientBase extends Client implements Constants {
-  private String currentTestName;
+	private String currentTestName;
 
-  //////////////////////////////////////////////////////////////////////
-  // Queue related stuff
-  //////////////////////////////////////////////////////////////////////
-  // These are declared in super class jms.commonee.Client
-  // protected QueueConnection qConnect;
-  // protected QueueSession session;
-  // protected QueueConnectionFactory qFactory;
-  // protected QueueSender qSender;
-  // protected Queue rcvrQueue;
-  //
-  private Queue sendQ;
+	//////////////////////////////////////////////////////////////////////
+	// Queue related stuff
+	//////////////////////////////////////////////////////////////////////
+	// These are declared in super class jms.commonee.Client
+	// protected QueueConnection qConnect;
+	// protected QueueSession session;
+	// protected QueueConnectionFactory qFactory;
+	// protected QueueSender qSender;
+	// protected Queue rcvrQueue;
+	//
+	private Queue sendQ;
 
-  abstract protected void initSendQueue();
+	abstract protected void initSendQueue();
 
-  abstract protected void initReceiveQueue();
+	abstract protected void initReceiveQueue();
 
-  abstract protected void initQueueConnectionFactory();
+	abstract protected void initQueueConnectionFactory();
 
-  protected Queue getSendQueue() {
-    return sendQ;
-  }
+	private static final Logger logger = (Logger) System.getLogger(QueueClientBase.class.getName());
 
-  protected void setSendQueue(Queue q) {
-    sendQ = q;
-  }
+	protected Queue getSendQueue() {
+		return sendQ;
+	}
 
-  // this receive queue is also used by Topic MDB to send back response.
-  protected Queue getReceiveQueue() {
-    return rcvrQueue;
-  }
+	protected void setSendQueue(Queue q) {
+		sendQ = q;
+	}
 
-  protected void setReceiveQueue(Queue q) {
-    rcvrQueue = q;
-  }
+	// this receive queue is also used by Topic MDB to send back response.
+	protected Queue getReceiveQueue() {
+		return rcvrQueue;
+	}
 
-  protected QueueConnectionFactory getQueueConnectionFactory() {
-    return qFactory;
-  }
+	protected void setReceiveQueue(Queue q) {
+		rcvrQueue = q;
+	}
 
-  protected void setQueueConnectionFactory(QueueConnectionFactory qf) {
-    qFactory = qf;
-  }
+	protected QueueConnectionFactory getQueueConnectionFactory() {
+		return qFactory;
+	}
 
-  protected String getCurrentTestName() {
-    return currentTestName;
-  }
+	protected void setQueueConnectionFactory(QueueConnectionFactory qf) {
+		qFactory = qf;
+	}
 
-  protected void setCurrentTestName(String tn) {
-    currentTestName = tn;
-  }
+	protected String getCurrentTestName() {
+		return currentTestName;
+	}
 
-  /**
-   * Sends message and waits for response. The message should reach the target
-   * MDB, and a response should be received by this client. Simplified version
-   * since testname can be retrieved from props in setup().
-   */
-  protected void sendReceive() throws Exception {
-    sendReceive(getCurrentTestName(), 0);
-  }
+	protected void setCurrentTestName(String tn) {
+		currentTestName = tn;
+	}
 
-  /**
-   * Sends message and waits for response. The message should not reach the
-   * target MDB, and no response should be received by this client.
-   */
-  protected void sendReceiveNegative(String testname, int testnum)
-      throws Exception {
-    sendOnly(testname, testnum);
-    if (checkOnResponse(testname)) {
-      throw new Exception("This is a negative test that expects no response,"
-          + " but actually got a response.");
-    } else {
-      TLogger.log("No response, as expected");
-    }
-  }
+	/**
+	 * Sends message and waits for response. The message should reach the target
+	 * MDB, and a response should be received by this client. Simplified version
+	 * since testname can be retrieved from props in setup().
+	 */
+	protected void sendReceive() throws Exception {
+		sendReceive(getCurrentTestName(), 0);
+	}
 
-  /**
-   * Sends message and waits for response. The message should reach the target
-   * MDB, and a response should be received by this client.
-   */
-  protected void sendReceive(String testname, int testnum) throws Exception {
-    sendOnly(testname, testnum);
-    // sometimes have to sleep for awhile. But we shouldn't interfere
-    // with thread management
-    if (!checkOnResponse(testname)) {
-      throw new Exception("checkOnResponse for " + testname + " returned false.");
-    }
-  }
+	/**
+	 * Sends message and waits for response. The message should not reach the target
+	 * MDB, and no response should be received by this client.
+	 */
+	protected void sendReceiveNegative(String testname, int testnum) throws Exception {
+		sendOnly(testname, testnum);
+		if (checkOnResponse(testname)) {
+			throw new Exception("This is a negative test that expects no response," + " but actually got a response.");
+		} else {
+			TLogger.log("No response, as expected");
+		}
+	}
 
-  protected void sendOnly(String testname, int testnum) throws Exception {
-    try {
-      createTestMessage(testname, testnum);
-      MessageProducer producer = getMessageProducer();
-      producer.setTimeToLive(MESSAGE_TIME_TO_LIVE);
-      producer.send(msg);
-      TLogger.log("message sent from testname: " + testname + ", testnum: "
-          + testnum + ", using producer: " + producer);
-    } catch (Exception e) {
-      throw new Exception(e);
-    }
-  }
+	/**
+	 * Sends message and waits for response. The message should reach the target
+	 * MDB, and a response should be received by this client.
+	 */
+	protected void sendReceive(String testname, int testnum) throws Exception {
+		sendOnly(testname, testnum);
+		// sometimes have to sleep for awhile. But we shouldn't interfere
+		// with thread management
+		if (!checkOnResponse(testname)) {
+			throw new Exception("checkOnResponse for " + testname + " returned false.");
+		}
+	}
 
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
-    setCurrentTestName(p.getProperty(FINDER_TEST_NAME_KEY));
-    initTestProperties(p);
+	protected void sendOnly(String testname, int testnum) throws Exception {
+		try {
+			createTestMessage(testname, testnum);
+			MessageProducer producer = getMessageProducer();
+			producer.setTimeToLive(MESSAGE_TIME_TO_LIVE);
+			producer.send(msg);
+			TLogger.log("message sent from testname: " + testname + ", testnum: " + testnum + ", using producer: "
+					+ producer);
+		} catch (Exception e) {
+			throw new Exception(e);
+		}
+	}
 
-    // used by both queue and topic MDB to send back response
-    initReceiveQueue();
+	@BeforeEach
+	public void setup() throws Exception {
+		setCurrentTestName(System.getProperty(FINDER_TEST_NAME_KEY));
+		// initTestProperties(p);
 
-    try {
-      configureQueue();
-      configureTopic();
-    } catch (JMSException ex) {
-      throw new Exception(ex);
-    }
-    TLogger.log("get the connection and start up");
-    TLogger.log("Client: connection started, now send initialization msg!");
-  }
+		// used by both queue and topic MDB to send back response
+		initReceiveQueue();
 
-  protected MessageProducer getMessageProducer() throws JMSException {
-    qSender = session.createSender(getSendQueue());
-    return qSender;
-  }
+		try {
+			configureQueue();
+			configureTopic();
+		} catch (JMSException ex) {
+			throw new Exception(ex);
+		}
+		TLogger.log("get the connection and start up");
+		TLogger.log("Client: connection started, now send initialization msg!");
+	}
 
-  protected void configureQueue() throws JMSException {
-    initQueueConnectionFactory();
-    qConnect = qFactory.createQueueConnection(jmsUser, jmsPassword);
-    session = qConnect.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
-    qConnect.start();
-    initSendQueue();
-  }
+	protected MessageProducer getMessageProducer() throws JMSException {
+		qSender = session.createSender(getSendQueue());
+		return qSender;
+	}
 
-  protected void configureTopic() throws JMSException {
-  }
+	protected void configureQueue() throws JMSException {
+		initQueueConnectionFactory();
+		qConnect = qFactory.createQueueConnection(jmsUser, jmsPassword);
+		session = qConnect.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
+		qConnect.start();
+		initSendQueue();
+	}
 
-  protected void urlTest(URL url) throws Exception {
-    urlTest(url, PASSED);
-  }
+	protected void configureTopic() throws JMSException {
+	}
 
-  protected void urlTest(URL url, String expectedFirstLine) throws Exception {
-    HttpURLConnection conn = null;
-    InputStream is = null;
-    TLogger.log("About to connect to url: ");
-    TLogger.log(url.toString());
-    try {
-      conn = (HttpURLConnection) (url.openConnection());
-      int code = conn.getResponseCode();
-      if (code != HttpURLConnection.HTTP_OK) {
-        throw new Exception("Unexpected return code: " + code);
-      }
+	protected void urlTest(URL url) throws Exception {
+		urlTest(url, PASSED);
+	}
 
-      is = conn.getInputStream();
-      BufferedReader input = new BufferedReader(new InputStreamReader(is));
-      String line = input.readLine();
-      if (line != null) {
-        line = line.trim();
-      }
-      if (!expectedFirstLine.equals(line)) {
-        throw new Exception("Wrong response. Expected: " + expectedFirstLine
-            + ", received: " + line);
-      } else {
-        TLogger.log("Got expected response: " + line);
-      }
-      try {
-        input.close();
-      } catch (IOException e) {
-        // ignore
-      }
-    } catch (IOException e) {
-      throw new Exception(e);
-    } finally {
-      if (is != null) {
-        try {
-          is.close();
-        } catch (IOException e) {
-          // ignore
-        }
-      }
-      if (conn != null) {
-        conn.disconnect();
-      }
-    }
-  }
+	protected void urlTest(URL url, String expectedFirstLine) throws Exception {
+		HttpURLConnection conn = null;
+		InputStream is = null;
+		TLogger.log("About to connect to url: ");
+		TLogger.log(url.toString());
+		try {
+			conn = (HttpURLConnection) (url.openConnection());
+			int code = conn.getResponseCode();
+			if (code != HttpURLConnection.HTTP_OK) {
+				throw new Exception("Unexpected return code: " + code);
+			}
 
-  private void initTestProperties(Properties p) throws Exception {
-    jmsUser = p.getProperty("user");
-    if (jmsUser == null) {
-      TestUtil.logTrace("user is null");
-      throw new Exception("Error getting user");
-    }
+			is = conn.getInputStream();
+			BufferedReader input = new BufferedReader(new InputStreamReader(is));
+			String line = input.readLine();
+			if (line != null) {
+				line = line.trim();
+			}
+			if (!expectedFirstLine.equals(line)) {
+				throw new Exception("Wrong response. Expected: " + expectedFirstLine + ", received: " + line);
+			} else {
+				TLogger.log("Got expected response: " + line);
+			}
+			try {
+				input.close();
+			} catch (IOException e) {
+				// ignore
+			}
+		} catch (IOException e) {
+			throw new Exception(e);
+		} finally {
+			if (is != null) {
+				try {
+					is.close();
+				} catch (IOException e) {
+					// ignore
+				}
+			}
+			if (conn != null) {
+				conn.disconnect();
+			}
+		}
+	}
 
-    jmsPassword = p.getProperty("password");
-    if (jmsPassword == null) {
-      TestUtil.logTrace("passwd is null");
-      throw new Exception("Error getting pwd");
-    }
+	private void initTestProperties(Properties p) throws Exception {
+		jmsUser = System.getProperty("user");
+		if (jmsUser == null) {
+			logger.log(Logger.Level.TRACE, "user is null");
+			throw new Exception("Error getting user");
+		}
 
-    String time = p.getProperty("jms_timeout");
-    if (time == null) {
-      TestUtil.logTrace("time is null");
-      throw new Exception("Error getting time");
-    }
+		jmsPassword = System.getProperty("password");
+		if (jmsPassword == null) {
+			logger.log(Logger.Level.TRACE, "passwd is null");
+			throw new Exception("Error getting pwd");
+		}
 
-    hostname = p.getProperty("harness.host");
-    if (hostname == null) {
-      TestUtil.logTrace("Hostname is null");
-      throw new Exception("Error getting hostname");
-    }
-    traceFlag = p.getProperty("harness.log.traceflag");
-    if (traceFlag == null) {
-      TestUtil.logTrace("Hostname is null");
-      throw new Exception("Error getting traceflag");
-    }
-    logPort = p.getProperty("harness.log.port");
-    if (logPort == null) {
-      TestUtil.logTrace("logport is null");
-      throw new Exception("Error getting port");
-    }
-    timeout = Integer.parseInt(time);
-  }
+		String time = System.getProperty("jms_timeout");
+		if (time == null) {
+			logger.log(Logger.Level.TRACE, "time is null");
+			throw new Exception("Error getting time");
+		}
+
+		hostname = System.getProperty("harness.host");
+		if (hostname == null) {
+			logger.log(Logger.Level.TRACE, "Hostname is null");
+			throw new Exception("Error getting hostname");
+		}
+		traceFlag = System.getProperty("harness.log.traceflag");
+		if (traceFlag == null) {
+			logger.log(Logger.Level.TRACE, "Hostname is null");
+			throw new Exception("Error getting traceflag");
+		}
+		logPort = System.getProperty("harness.log.port");
+		if (logPort == null) {
+			logger.log(Logger.Level.TRACE, "logport is null");
+			throw new Exception("Error getting port");
+		}
+		timeout = Integer.parseInt(time);
+	}
 }

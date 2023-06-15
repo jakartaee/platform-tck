@@ -19,11 +19,14 @@
  */
 package com.sun.ts.tests.jms.core.appclient.closedQueueSession;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.common.JmsTool;
 
@@ -33,224 +36,209 @@ import jakarta.jms.MessageListener;
 /**
  * JMS TS tests. Testing method calls on closed QueueSession objects.
  */
-public class ClosedQueueSessionTests extends ServiceEETest {
-  private static final String TestName = "com.sun.ts.tests.jms.core.appclient.closedQueueSession.ClosedQueueSessionTests";
+public class ClosedQueueSessionTests {
+	private static final String TestName = "com.sun.ts.tests.jms.core.appclient.closedQueueSession.ClosedQueueSessionTests";
 
-  private static final String testDir = System.getProperty("user.dir");
+	private static final String testDir = System.getProperty("user.dir");
 
-  // JMS objects
-  private static JmsTool tool = null;
+	private static final Logger logger = (Logger) System.getLogger(ClosedQueueSessionTests.class.getName());
 
-  // Harness req's
-  private Properties props = null;
+	// JMS objects
+	private static JmsTool tool = null;
 
-  // properties read from ts.jte file
-  long timeout;
+	// Harness req's
+	private Properties props = null;
 
-  String user;
+	// properties read
+	long timeout;
 
-  String password;
+	String user;
 
-  String mode;
+	String password;
 
-  ArrayList queues = null;
+	String mode;
 
-  ArrayList connections = null;
+	ArrayList queues = null;
 
-  /* Run test in standalone mode */
+	ArrayList connections = null;
 
-  /**
-   * Main method is used when not run from the JavaTest GUI.
-   */
-  public static void main(String[] args) {
-    ClosedQueueSessionTests theTests = new ClosedQueueSessionTests();
-    Status s = theTests.run(args, System.out, System.err);
+	/* Utility methods for tests */
 
-    s.exit();
-  }
+	/**
+	 * Used by tests that need a closed session for testing. Passes any exceptions
+	 * up to caller.
+	 * 
+	 * @param int The type of session that needs to be created and closed
+	 */
+	private void createAndCloseSession(int type, String user, String password) throws Exception {
+		if ((type == JmsTool.QUEUE) || (type == JmsTool.TX_QUEUE)) {
+			tool = new JmsTool(type, user, password, mode);
+			tool.getDefaultQueueConnection().start();
+			logger.log(Logger.Level.INFO, "Closing queue session");
+			tool.getDefaultQueueSession().close();
+		}
+		logger.log(Logger.Level.INFO, "Session closed");
+	}
 
-  /* Utility methods for tests */
+	/*
+	 * Checks passed flag for negative tests and throws exception back to caller
+	 * which passes ot to harness.
+	 * 
+	 * @param boolean Pass/Fail flag
+	 */
 
-  /**
-   * Used by tests that need a closed session for testing. Passes any exceptions
-   * up to caller.
-   * 
-   * @param int
-   *          The type of session that needs to be created and closed
-   */
-  private void createAndCloseSession(int type, String user, String password)
-      throws Exception {
-    if ((type == JmsTool.QUEUE) || (type == JmsTool.TX_QUEUE)) {
-      tool = new JmsTool(type, user, password, mode);
-      tool.getDefaultQueueConnection().start();
-      logMsg("Closing queue session");
-      tool.getDefaultQueueSession().close();
-    }
-    logMsg("Session closed");
-  }
+	private void checkExceptionPass(boolean passed) throws Exception {
+		if (passed == false) {
+			logger.log(Logger.Level.INFO, "Didn't get expected exception");
+			throw new Exception("Didn't catch expected exception");
+		}
+	}
 
-  /*
-   * Checks passed flag for negative tests and throws exception back to caller
-   * which passes ot to harness.
-   * 
-   * @param boolean Pass/Fail flag
-   */
+	/* Test setup: */
 
-  private void checkExceptionPass(boolean passed) throws Exception {
-    if (passed == false) {
-      logMsg("Didn't get expected exception");
-      throw new Exception("Didn't catch expected exception");
-    }
-  }
+	/*
+	 * setup() is called before each test
+	 * 
+	 * Creates Administrator object and deletes all previous Destinations.
+	 * Individual tests create the JmsTool object with one default Queue and/or
+	 * Topic Connection, as well as a default Queue and Topic. Tests that require
+	 * multiple Destinations create the extras within the test
+	 * 
+	 * 
+	 * @class.setup_props: jms_timeout; user; password; platform.mode;
+	 * 
+	 * @exception Fault
+	 */
+	@BeforeEach
+	public void setup() throws Exception {
+		try {
 
-  /* Test setup: */
+			// get props
+			timeout = Long.parseLong(System.getProperty("jms_timeout"));
+			user = System.getProperty("user");
+			password = System.getProperty("password");
+			mode = System.getProperty("platform.mode");
 
-  /*
-   * setup() is called before each test
-   * 
-   * Creates Administrator object and deletes all previous Destinations.
-   * Individual tests create the JmsTool object with one default Queue and/or
-   * Topic Connection, as well as a default Queue and Topic. Tests that require
-   * multiple Destinations create the extras within the test
-   * 
-   * 
-   * @class.setup_props: jms_timeout; user; password; platform.mode;
-   * 
-   * @exception Fault
-   */
+			// check props for errors
+			if (timeout < 1) {
+				throw new Exception("'timeout' (milliseconds) must be > 0");
+			}
+			if (user == null) {
+				throw new Exception("'user' must be null");
+			}
+			if (password == null) {
+				throw new Exception("'password' must be null");
+			}
+			if (mode == null) {
+				throw new Exception("'mode' must be null");
+			}
+			queues = new ArrayList(2);
 
-  public void setup(String[] args, Properties p) throws Exception {
-    try {
+			// get ready for new test
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new Exception("Setup failed!", e);
+		}
+	}
 
-      // get props
-      timeout = Long.parseLong(p.getProperty("jms_timeout"));
-      user = p.getProperty("user");
-      password = p.getProperty("password");
-      mode = p.getProperty("platform.mode");
+	/* cleanup */
 
-      // check props for errors
-      if (timeout < 1) {
-        throw new Exception("'timeout' (milliseconds) in ts.jte must be > 0");
-      }
-      if (user == null) {
-        throw new Exception("'user' in ts.jte must be null");
-      }
-      if (password == null) {
-        throw new Exception("'password' in ts.jte must be null");
-      }
-      if (mode == null) {
-        throw new Exception("'mode' in ts.jte must be null");
-      }
-      queues = new ArrayList(2);
+	/*
+	 * cleanup() is called after each test
+	 * 
+	 * Closes the default connections that are created by setup(). Any separate
+	 * connections made by individual tests should be closed by that test.
+	 * 
+	 * @exception Fault
+	 */
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			if (tool != null) {
+				logger.log(Logger.Level.INFO, "Cleanup: Closing Queue and Topic Connections");
+				tool.doClientQueueTestCleanup(connections, queues);
+			}
 
-      // get ready for new test
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Exception("Setup failed!", e);
-    }
-  }
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			logger.log(Logger.Level.ERROR, "An error occurred while cleaning");
+			throw new Exception("Cleanup failed!", e);
+		}
+	}
 
-  /* cleanup */
+	/* Tests */
 
-  /*
-   * cleanup() is called after each test
-   * 
-   * Closes the default connections that are created by setup(). Any separate
-   * connections made by individual tests should be closed by that test.
-   * 
-   * @exception Fault
-   */
+	/*
+	 * @testName: closedQueueSessionGetMessageListenerTest
+	 *
+	 * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:328;
+	 *
+	 * @test_Strategy: Close default receiver and call method on it. Check for
+	 * IllegalStateException.
+	 */
+	@Test
+	public void closedQueueSessionGetMessageListenerTest() throws Exception {
+		boolean passed = false;
 
-  public void cleanup() throws Exception {
-    try {
-      if (tool != null) {
-        logMsg("Cleanup: Closing Queue and Topic Connections");
-        tool.doClientQueueTestCleanup(connections, queues);
-      }
+		try {
+			createAndCloseSession(JmsTool.QUEUE, user, password);
+			logger.log(Logger.Level.TRACE, "Try to call getMessageListener");
+			try {
+				MessageListener foo = tool.getDefaultQueueReceiver().getMessageListener();
 
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      logErr("An error occurred while cleaning");
-      throw new Exception("Cleanup failed!", e);
-    }
-  }
+				logger.log(Logger.Level.TRACE, "Fail: Exception was not thrown!");
+			} catch (jakarta.jms.IllegalStateException ise) {
+				logger.log(Logger.Level.TRACE, "Pass: threw expected error");
+				passed = true;
+			} catch (Exception e) {
+				TestUtil.printStackTrace(e);
+				logger.log(Logger.Level.TRACE, "Fail: wrong exception: " + e.getClass().getName() + " was returned");
+			}
+			if (!passed) {
+				throw new Exception("Error: failures occurred during tests");
+			}
+		} catch (Exception e) {
+			throw new Exception("closedQueueSessionGetMessageListenerTest", e);
+		}
+	}
 
-  /* Tests */
+	/*
+	 * @testName: closedQueueSessionSetMessageListenerTest
+	 *
+	 * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:330; JMS:JAVADOC:325;
+	 *
+	 * @test_Strategy: Close default receiver and call method on it. Check for
+	 * IllegalStateException.
+	 */
+	@Test
+	public void closedQueueSessionSetMessageListenerTest() throws Exception {
+		boolean passed = false;
 
-  /*
-   * @testName: closedQueueSessionGetMessageListenerTest
-   *
-   * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:328;
-   *
-   * @test_Strategy: Close default receiver and call method on it. Check for
-   * IllegalStateException.
-   */
+		try {
+			createAndCloseSession(JmsTool.QUEUE, user, password);
+			logger.log(Logger.Level.TRACE, "Try to call setMessageListener");
+			try {
+				MessageListener foo = new MessageListener() {
 
-  public void closedQueueSessionGetMessageListenerTest() throws Exception {
-    boolean passed = false;
+					public void onMessage(Message m) {
+					}
 
-    try {
-      createAndCloseSession(JmsTool.QUEUE, user, password);
-      logTrace("Try to call getMessageListener");
-      try {
-        MessageListener foo = tool.getDefaultQueueReceiver()
-            .getMessageListener();
+				};
 
-        logTrace("Fail: Exception was not thrown!");
-      } catch (jakarta.jms.IllegalStateException ise) {
-        logTrace("Pass: threw expected error");
-        passed = true;
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        logTrace("Fail: wrong exception: " + e.getClass().getName()
-            + " was returned");
-      }
-      if (!passed) {
-        throw new Exception("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      throw new Exception("closedQueueSessionGetMessageListenerTest", e);
-    }
-  }
-
-  /*
-   * @testName: closedQueueSessionSetMessageListenerTest
-   *
-   * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:330; JMS:JAVADOC:325;
-   *
-   * @test_Strategy: Close default receiver and call method on it. Check for
-   * IllegalStateException.
-   */
-
-  public void closedQueueSessionSetMessageListenerTest() throws Exception {
-    boolean passed = false;
-
-    try {
-      createAndCloseSession(JmsTool.QUEUE, user, password);
-      logTrace("Try to call setMessageListener");
-      try {
-        MessageListener foo = new MessageListener() {
-
-          public void onMessage(Message m) {
-          }
-
-        };
-
-        tool.getDefaultQueueReceiver().setMessageListener(foo);
-        logTrace("Fail: Exception was not thrown!");
-      } catch (jakarta.jms.IllegalStateException ise) {
-        logTrace("Pass: threw expected error");
-        passed = true;
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        logTrace("Fail: wrong exception: " + e.getClass().getName()
-            + " was returned");
-      }
-      if (!passed) {
-        throw new Exception("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      throw new Exception("closedQueueSessionSetMessageListenerTest", e);
-    }
-  }
+				tool.getDefaultQueueReceiver().setMessageListener(foo);
+				logger.log(Logger.Level.TRACE, "Fail: Exception was not thrown!");
+			} catch (jakarta.jms.IllegalStateException ise) {
+				logger.log(Logger.Level.TRACE, "Pass: threw expected error");
+				passed = true;
+			} catch (Exception e) {
+				TestUtil.printStackTrace(e);
+				logger.log(Logger.Level.TRACE, "Fail: wrong exception: " + e.getClass().getName() + " was returned");
+			}
+			if (!passed) {
+				throw new Exception("Error: failures occurred during tests");
+			}
+		} catch (Exception e) {
+			throw new Exception("closedQueueSessionSetMessageListenerTest", e);
+		}
+	}
 }

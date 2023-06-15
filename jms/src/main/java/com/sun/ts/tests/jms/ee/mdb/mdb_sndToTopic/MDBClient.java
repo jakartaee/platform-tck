@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,11 +19,13 @@
  */
 package com.sun.ts.tests.jms.ee.mdb.mdb_sndToTopic;
 
+import java.lang.System.Logger;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TestUtil;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jms.commonee.MDB_T_Test;
 
 import jakarta.ejb.EJB;
@@ -34,232 +36,230 @@ import jakarta.ejb.EJB;
  * a topic Sun's EJB Reference Implementation.
  */
 
-public class MDBClient extends EETest {
+public class MDBClient {
 
-  @EJB(name = "ejb/MDB_SNDToTopic_Test")
-  private static MDB_T_Test hr;
+	@EJB(name = "ejb/MDB_SNDToTopic_Test")
+	private static MDB_T_Test hr;
 
-  private Properties props = null;
+	private Properties props = null;
 
-  public static void main(String[] args) {
-    MDBClient theTests = new MDBClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	private static final Logger logger = (Logger) System.getLogger(MDBClient.class.getName());
 
-  /* Test setup: */
-  /*
-   * @class.setup_props: jms_timeout; user; password; harness.log.port;
-   * harness.log.traceflag;
-   */
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
-    try {
-      if (hr == null) {
-        throw new Exception("@EJB injection failed");
-      }
-      hr.setup(p);
-      if (hr.isThereSomethingInTheQueue()) {
-        TestUtil.logTrace("Error: message(s) left in Q");
-        hr.cleanTheQueue();
-      } else {
-        TestUtil.logTrace("Nothing left in queue");
-      }
-      logMsg("Setup ok;");
-    } catch (Exception e) {
-      throw new Exception("Setup Failed!", e);
-    }
-  }
+	/* Test setup: */
+	/*
+	 * @class.setup_props: jms_timeout; user; password
+	 */
+	@BeforeEach
+	public void setup() throws Exception {
+		try {
+			if (hr == null) {
+				throw new Exception("@EJB injection failed");
+			}
+			props.put("jms_timeout", System.getProperty("jms_property"));
+			props.put("user", System.getProperty("user"));
+			props.put("password", System.getProperty("password"));
 
-  /* Run tests */
-  // Tests mdb sending jms messages
-  // Tests with Topic
-  // Tests with Text,Stream,Byte,Map and Object messages
-  //
-  /*
-   * @testName: mdbSendTextMsgToTopicTest
-   *
-   * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:109; JMS:JAVADOC:111;
-   * JMS:JAVADOC:91; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
-   * JMS:JAVADOC:99; JMS:JAVADOC:270; JMS:JAVADOC:522; JMS:JAVADOC:188;
-   * JMS:JAVADOC:198;
-   *
-   * @test_Strategy: Instruct the mdb to send a text msg. Create a stateful
-   * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send
-   * a message to a Topic Destination. handled by a message-driven bean Tell the
-   * mdb (MsgBeanToTopic) to send a text message with TopicPublisher to a topic
-   * that is handled by a second mdb(MsgBeanTopic). MsgBeanTopic verifies it
-   * received the message by sending another message to a Queue -
-   * MDB_QUEUE_REPLY.
-   *
-   */
-  public void mdbSendTextMsgToTopicTest() throws Exception {
-    String messageType = "TextMessage";
-    String matchMe = "TextMessageFromMsgBean";
-    try {
-      // Have the EJB invoke the MDB
-      TestUtil.logTrace("Call bean - have it tell mdb to send a text message;");
-      // subscribe
-      hr.askMDBToSendAMessage(messageType);
-      // getMessage
-      if (!hr.checkOnResponse(matchMe)) {
-        TestUtil.logTrace("Error: didn't get expected response from mdb");
-        throw new Exception("ERROR: mdbSendBytesMsgToTopicTest failed");
-      }
-      TestUtil.logTrace("mdbSendTextMsgToTopicTest passed!");
+			hr.setup(props);
 
-    } catch (Exception e) {
-      throw new Exception("Test Failed!", e);
-    }
+			if (hr.isThereSomethingInTheQueue()) {
+				logger.log(Logger.Level.TRACE, "Error: message(s) left in Q");
+				hr.cleanTheQueue();
+			} else {
+				logger.log(Logger.Level.TRACE, "Nothing left in queue");
+			}
+			logger.log(Logger.Level.INFO, "Setup ok;");
+		} catch (Exception e) {
+			throw new Exception("Setup Failed!", e);
+		}
+	}
 
-  }
+	/* Run tests */
+	// Tests mdb sending jms messages
+	// Tests with Topic
+	// Tests with Text,Stream,Byte,Map and Object messages
+	//
+	/*
+	 * @testName: mdbSendTextMsgToTopicTest
+	 *
+	 * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:109; JMS:JAVADOC:111;
+	 * JMS:JAVADOC:91; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
+	 * JMS:JAVADOC:99; JMS:JAVADOC:270; JMS:JAVADOC:522; JMS:JAVADOC:188;
+	 * JMS:JAVADOC:198;
+	 *
+	 * @test_Strategy: Instruct the mdb to send a text msg. Create a stateful
+	 * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send a
+	 * message to a Topic Destination. handled by a message-driven bean Tell the mdb
+	 * (MsgBeanToTopic) to send a text message with TopicPublisher to a topic that
+	 * is handled by a second mdb(MsgBeanTopic). MsgBeanTopic verifies it received
+	 * the message by sending another message to a Queue - MDB_QUEUE_REPLY.
+	 *
+	 */
+	@Test
+	public void mdbSendTextMsgToTopicTest() throws Exception {
+		String messageType = "TextMessage";
+		String matchMe = "TextMessageFromMsgBean";
+		try {
+			// Have the EJB invoke the MDB
+			logger.log(Logger.Level.TRACE, "Call bean - have it tell mdb to send a text message;");
+			// subscribe
+			hr.askMDBToSendAMessage(messageType);
+			// getMessage
+			if (!hr.checkOnResponse(matchMe)) {
+				logger.log(Logger.Level.TRACE, "Error: didn't get expected response from mdb");
+				throw new Exception("ERROR: mdbSendBytesMsgToTopicTest failed");
+			}
+			logger.log(Logger.Level.TRACE, "mdbSendTextMsgToTopicTest passed!");
 
-  /*
-   * @testName: mdbSendBytesMsgToTopicTest
-   *
-   * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:109; JMS:JAVADOC:111;
-   * JMS:JAVADOC:91; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
-   * JMS:JAVADOC:99; JMS:JAVADOC:270; JMS:JAVADOC:522; JMS:JAVADOC:188;
-   * JMS:JAVADOC:198; JMS:JAVADOC:209; JMS:JAVADOC:562;
-   *
-   * @test_Strategy: Instruct the mdb to send a bytes msg. Create a stateful
-   * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send
-   * a message to a Topic Destination. handled by a message-driven bean Tell the
-   * mdb (MsgBeanToTopic) to send a bytes message with TopicPublisher to a topic
-   * that is handled by a second mdb(MsgBeanTopic). MsgBeanTopic verifies it
-   * received the message by sending another message to a Queue -
-   * MDB_QUEUE_REPLY.
-   *
-   */
-  public void mdbSendBytesMsgToTopicTest() throws Exception {
-    String messageType = "BytesMessage";
-    String matchMe = "BytesMessageFromMsgBean";
-    try {
-      // Have the EJB invoke the MDB
-      TestUtil
-          .logTrace("Call bean - have it tell mdb to send a Bytes message;");
-      hr.askMDBToSendAMessage(messageType);
-      if (!hr.checkOnResponse(matchMe)) {
-        TestUtil.logTrace("Error: didn't get expected response from mdb");
-        throw new Exception("ERROR: mdbSendBytesMsgToTopicTest failed");
-      }
+		} catch (Exception e) {
+			throw new Exception("Test Failed!", e);
+		}
 
-      TestUtil.logTrace("Test passed!");
-    } catch (Exception e) {
-      throw new Exception("Test Failed!", e);
-    }
-  }
+	}
 
-  /*
-   * @testName: mdbSendMapMsgToTopicTest
-   *
-   * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:109; JMS:JAVADOC:111;
-   * JMS:JAVADOC:91; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
-   * JMS:JAVADOC:99; JMS:JAVADOC:270; JMS:JAVADOC:522; JMS:JAVADOC:188;
-   * JMS:JAVADOC:198; JMS:JAVADOC:211; JMS:JAVADOC:473;
-   *
-   * @test_Strategy: Instruct the mdb to send a map msg. Create a stateful
-   * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send
-   * a message to a Topic Destination. handled by a message-driven bean Tell the
-   * mdb (MsgBeanToTopic) to send a map message with TopicPublisher to a topic
-   * that is handled by a second mdb(MsgBeanTopic). MsgBeanTopic verifies it
-   * received the message by sending another message to a Queue -
-   * MDB_QUEUE_REPLY.
-   *
-   */
-  public void mdbSendMapMsgToTopicTest() throws Exception {
-    String matchMe = "MapMessageFromMsgBean";
-    String messageType = "MapMessage";
-    try {
-      // Have the EJB invoke the MDB
-      TestUtil.logTrace("Call bean - have it tell mdb to send a map message;");
-      hr.askMDBToSendAMessage(messageType);
-      if (!hr.checkOnResponse(matchMe)) {
-        TestUtil.logTrace("Error: didn't get expected response from mdb");
-        throw new Exception("ERROR: mdbSendMapMsgToTopicTest failed");
-      }
+	/*
+	 * @testName: mdbSendBytesMsgToTopicTest
+	 *
+	 * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:109; JMS:JAVADOC:111;
+	 * JMS:JAVADOC:91; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
+	 * JMS:JAVADOC:99; JMS:JAVADOC:270; JMS:JAVADOC:522; JMS:JAVADOC:188;
+	 * JMS:JAVADOC:198; JMS:JAVADOC:209; JMS:JAVADOC:562;
+	 *
+	 * @test_Strategy: Instruct the mdb to send a bytes msg. Create a stateful
+	 * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send a
+	 * message to a Topic Destination. handled by a message-driven bean Tell the mdb
+	 * (MsgBeanToTopic) to send a bytes message with TopicPublisher to a topic that
+	 * is handled by a second mdb(MsgBeanTopic). MsgBeanTopic verifies it received
+	 * the message by sending another message to a Queue - MDB_QUEUE_REPLY.
+	 *
+	 */
+	@Test
+	public void mdbSendBytesMsgToTopicTest() throws Exception {
+		String messageType = "BytesMessage";
+		String matchMe = "BytesMessageFromMsgBean";
+		try {
+			// Have the EJB invoke the MDB
+			logger.log(Logger.Level.TRACE, "Call bean - have it tell mdb to send a Bytes message;");
+			hr.askMDBToSendAMessage(messageType);
+			if (!hr.checkOnResponse(matchMe)) {
+				logger.log(Logger.Level.TRACE, "Error: didn't get expected response from mdb");
+				throw new Exception("ERROR: mdbSendBytesMsgToTopicTest failed");
+			}
 
-      TestUtil.logTrace("Test passed!");
-    } catch (Exception e) {
-      throw new Exception("Test Failed!", e);
-    }
+			logger.log(Logger.Level.TRACE, "Test passed!");
+		} catch (Exception e) {
+			throw new Exception("Test Failed!", e);
+		}
+	}
 
-  }
+	/*
+	 * @testName: mdbSendMapMsgToTopicTest
+	 *
+	 * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:109; JMS:JAVADOC:111;
+	 * JMS:JAVADOC:91; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
+	 * JMS:JAVADOC:99; JMS:JAVADOC:270; JMS:JAVADOC:522; JMS:JAVADOC:188;
+	 * JMS:JAVADOC:198; JMS:JAVADOC:211; JMS:JAVADOC:473;
+	 *
+	 * @test_Strategy: Instruct the mdb to send a map msg. Create a stateful Session
+	 * EJB Bean. Deploy it on the J2EE server. Have the EJB component send a message
+	 * to a Topic Destination. handled by a message-driven bean Tell the mdb
+	 * (MsgBeanToTopic) to send a map message with TopicPublisher to a topic that is
+	 * handled by a second mdb(MsgBeanTopic). MsgBeanTopic verifies it received the
+	 * message by sending another message to a Queue - MDB_QUEUE_REPLY.
+	 *
+	 */
+	@Test
+	public void mdbSendMapMsgToTopicTest() throws Exception {
+		String matchMe = "MapMessageFromMsgBean";
+		String messageType = "MapMessage";
+		try {
+			// Have the EJB invoke the MDB
+			logger.log(Logger.Level.TRACE, "Call bean - have it tell mdb to send a map message;");
+			hr.askMDBToSendAMessage(messageType);
+			if (!hr.checkOnResponse(matchMe)) {
+				logger.log(Logger.Level.TRACE, "Error: didn't get expected response from mdb");
+				throw new Exception("ERROR: mdbSendMapMsgToTopicTest failed");
+			}
 
-  /*
-   * @testName: mdbSendStreamMsgToTopicTest
-   *
-   * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:109; JMS:JAVADOC:111;
-   * JMS:JAVADOC:91; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
-   * JMS:JAVADOC:99; JMS:JAVADOC:270; JMS:JAVADOC:522; JMS:JAVADOC:188;
-   * JMS:JAVADOC:198; JMS:JAVADOC:219; JMS:JAVADOC:166;
-   *
-   * @test_Strategy: Instruct the mdb to send a stream msg. Create a stateful
-   * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send
-   * a message to a Topic Destination. handled by a message-driven bean Tell the
-   * mdb (MsgBeanToTopic) to send a stream message with TopicPublisher to a
-   * topic that is handled by a second mdb(MsgBeanTopic). MsgBeanTopic verifies
-   * it received the message by sending another message to a Queue -
-   * MDB_QUEUE_REPLY.
-   *
-   */
-  public void mdbSendStreamMsgToTopicTest() throws Exception {
-    String matchMe = "StreamMessageFromMsgBean";
-    String messageType = "StreamMessage";
-    try {
-      // Have the EJB invoke the MDB
-      TestUtil
-          .logTrace("Call bean - have it tell mdb to send a stream message;");
-      hr.askMDBToSendAMessage(messageType);
-      if (!hr.checkOnResponse(matchMe)) {
-        TestUtil.logTrace("Error: didn't get expected response from mdb");
-        throw new Exception("ERROR: mdbSendStreamMsgToTopicTest failed");
-      }
+			logger.log(Logger.Level.TRACE, "Test passed!");
+		} catch (Exception e) {
+			throw new Exception("Test Failed!", e);
+		}
 
-      TestUtil.logTrace("Test passed!");
-    } catch (Exception e) {
-      throw new Exception("Test Failed!", e);
-    }
-  }
+	}
 
-  /*
-   * @testName: mdbSendObjectMsgToTopicTest
-   *
-   * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:109; JMS:JAVADOC:111;
-   * JMS:JAVADOC:91; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
-   * JMS:JAVADOC:99; JMS:JAVADOC:270; JMS:JAVADOC:522; JMS:JAVADOC:188;
-   * JMS:JAVADOC:198; JMS:JAVADOC:215; JMS:JAVADOC:289;
-   *
-   * @test_Strategy: Instruct the mdb to send an object msg. Create a stateful
-   * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send
-   * a message to a Topic Destination. handled by a message-driven bean Tell the
-   * mdb (MsgBeanToTopic) to send an object message with TopicPublisher to a
-   * topic that is handled by a second mdb(MsgBeanTopic). MsgBeanTopic verifies
-   * it received the message by sending another message to a Queue -
-   * MDB_QUEUE_REPLY.
-   *
-   */
-  public void mdbSendObjectMsgToTopicTest() throws Exception {
-    String matchMe = "ObjectMessageFromMsgBean";
-    String messageType = "ObjectMessage";
-    try {
-      // Have the EJB invoke the MDB
-      TestUtil
-          .logTrace("Call bean - have it tell mdb to send an object message;");
-      hr.askMDBToSendAMessage(messageType);
-      if (!hr.checkOnResponse(matchMe)) {
-        TestUtil.logTrace("Error: didn't get expected response from mdb");
-        throw new Exception("ERROR: mdbSendObjectMsgToTopicTest failed");
-      }
+	/*
+	 * @testName: mdbSendStreamMsgToTopicTest
+	 *
+	 * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:109; JMS:JAVADOC:111;
+	 * JMS:JAVADOC:91; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
+	 * JMS:JAVADOC:99; JMS:JAVADOC:270; JMS:JAVADOC:522; JMS:JAVADOC:188;
+	 * JMS:JAVADOC:198; JMS:JAVADOC:219; JMS:JAVADOC:166;
+	 *
+	 * @test_Strategy: Instruct the mdb to send a stream msg. Create a stateful
+	 * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send a
+	 * message to a Topic Destination. handled by a message-driven bean Tell the mdb
+	 * (MsgBeanToTopic) to send a stream message with TopicPublisher to a topic that
+	 * is handled by a second mdb(MsgBeanTopic). MsgBeanTopic verifies it received
+	 * the message by sending another message to a Queue - MDB_QUEUE_REPLY.
+	 *
+	 */
+	@Test
+	public void mdbSendStreamMsgToTopicTest() throws Exception {
+		String matchMe = "StreamMessageFromMsgBean";
+		String messageType = "StreamMessage";
+		try {
+			// Have the EJB invoke the MDB
+			logger.log(Logger.Level.TRACE, "Call bean - have it tell mdb to send a stream message;");
+			hr.askMDBToSendAMessage(messageType);
+			if (!hr.checkOnResponse(matchMe)) {
+				logger.log(Logger.Level.TRACE, "Error: didn't get expected response from mdb");
+				throw new Exception("ERROR: mdbSendStreamMsgToTopicTest failed");
+			}
 
-      TestUtil.logTrace("Test passed!");
-    } catch (Exception e) {
-      throw new Exception("Test Failed!", e);
-    }
-  }
+			logger.log(Logger.Level.TRACE, "Test passed!");
+		} catch (Exception e) {
+			throw new Exception("Test Failed!", e);
+		}
+	}
 
-  /* cleanup -- none in this case */
-  public void cleanup() throws Exception {
-    logMsg("End  of client cleanup;");
-  }
+	/*
+	 * @testName: mdbSendObjectMsgToTopicTest
+	 *
+	 * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:109; JMS:JAVADOC:111;
+	 * JMS:JAVADOC:91; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
+	 * JMS:JAVADOC:99; JMS:JAVADOC:270; JMS:JAVADOC:522; JMS:JAVADOC:188;
+	 * JMS:JAVADOC:198; JMS:JAVADOC:215; JMS:JAVADOC:289;
+	 *
+	 * @test_Strategy: Instruct the mdb to send an object msg. Create a stateful
+	 * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send a
+	 * message to a Topic Destination. handled by a message-driven bean Tell the mdb
+	 * (MsgBeanToTopic) to send an object message with TopicPublisher to a topic
+	 * that is handled by a second mdb(MsgBeanTopic). MsgBeanTopic verifies it
+	 * received the message by sending another message to a Queue - MDB_QUEUE_REPLY.
+	 *
+	 */
+	@Test
+	public void mdbSendObjectMsgToTopicTest() throws Exception {
+		String matchMe = "ObjectMessageFromMsgBean";
+		String messageType = "ObjectMessage";
+		try {
+			// Have the EJB invoke the MDB
+			logger.log(Logger.Level.TRACE, "Call bean - have it tell mdb to send an object message;");
+			hr.askMDBToSendAMessage(messageType);
+			if (!hr.checkOnResponse(matchMe)) {
+				logger.log(Logger.Level.TRACE, "Error: didn't get expected response from mdb");
+				throw new Exception("ERROR: mdbSendObjectMsgToTopicTest failed");
+			}
+
+			logger.log(Logger.Level.TRACE, "Test passed!");
+		} catch (Exception e) {
+			throw new Exception("Test Failed!", e);
+		}
+	}
+
+	/* cleanup -- none in this case */
+	@AfterEach
+	public void cleanup() throws Exception {
+		logger.log(Logger.Level.INFO, "End  of client cleanup;");
+	}
 }

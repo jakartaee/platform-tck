@@ -19,9 +19,8 @@
  */
 package com.sun.ts.tests.jms.core20.appclient.listenerexceptiontests;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
-
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.jms.CompletionListener;
 import jakarta.jms.Connection;
@@ -31,147 +30,145 @@ import jakarta.jms.TextMessage;
 
 public class MyCompletionListener implements CompletionListener {
 
-  private String name = null;
+	private String name = null;
 
-  private Message message = null;
+	private Message message = null;
 
-  private Connection connection = null;
+	private Connection connection = null;
 
-  private Session session = null;
+	private Session session = null;
 
-  private ArrayList<Message> messages = new ArrayList<Message>();
+	private ArrayList<Message> messages = new ArrayList<Message>();
 
-  private Exception exception = null;
+	private Exception exception = null;
 
-  private int numMessages = 1;
+	private int numMessages = 1;
 
-  private int countMessages = 0;
+	private int countMessages = 0;
 
-  boolean complete = false;
+	boolean complete = false;
 
-  boolean gotCorrectException = false;
+	boolean gotCorrectException = false;
 
-  boolean gotException = false;
+	boolean gotException = false;
 
-  public MyCompletionListener() {
-    this("MyCompletionListener");
-  }
+	private static final Logger logger = (Logger) System.getLogger(MyCompletionListener.class.getName());
 
-  public MyCompletionListener(String name) {
-    this.name = name;
-  }
+	public MyCompletionListener() {
+		this("MyCompletionListener");
+	}
 
-  public MyCompletionListener(int numMessages) {
-    this.numMessages = numMessages;
-    messages.clear();
-  }
+	public MyCompletionListener(String name) {
+		this.name = name;
+	}
 
-  public MyCompletionListener(Connection connection) {
-    this.connection = connection;
-  }
+	public MyCompletionListener(int numMessages) {
+		this.numMessages = numMessages;
+		messages.clear();
+	}
 
-  public MyCompletionListener(Session session) {
-    this.session = session;
-  }
+	public MyCompletionListener(Connection connection) {
+		this.connection = connection;
+	}
 
-  // getters/setters
-  public String getName() {
-    return name;
-  }
+	public MyCompletionListener(Session session) {
+		this.session = session;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	// getters/setters
+	public String getName() {
+		return name;
+	}
 
-  public Message getMessage() {
-    return message;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public Message getMessage(int index) {
-    return messages.get(index);
-  }
+	public Message getMessage() {
+		return message;
+	}
 
-  public void setMessage(Message message) {
-    this.message = message;
-  }
+	public Message getMessage(int index) {
+		return messages.get(index);
+	}
 
-  public Exception getException() {
-    return exception;
-  }
+	public void setMessage(Message message) {
+		this.message = message;
+	}
 
-  public void setException(Exception exception) {
-    this.exception = exception;
-  }
+	public Exception getException() {
+		return exception;
+	}
 
-  public boolean isComplete() {
-    return complete;
-  }
+	public void setException(Exception exception) {
+		this.exception = exception;
+	}
 
-  public boolean gotCorrectException() {
-    return gotCorrectException;
-  }
+	public boolean isComplete() {
+		return complete;
+	}
 
-  public boolean gotException() {
-    return gotException;
-  }
+	public boolean gotCorrectException() {
+		return gotCorrectException;
+	}
 
-  public boolean gotAllMsgs() {
-    return (messages.size() == numMessages) ? true : false;
-  }
+	public boolean gotException() {
+		return gotException;
+	}
 
-  public boolean haveMsg(int i) {
-    return (messages.size() > i) ? true : false;
-  }
+	public boolean gotAllMsgs() {
+		return (messages.size() == numMessages) ? true : false;
+	}
 
-  public void setComplete(boolean complete) {
-    this.complete = complete;
-  }
+	public boolean haveMsg(int i) {
+		return (messages.size() > i) ? true : false;
+	}
 
-  public void onCompletion(Message message) {
-    try {
-      TestUtil.logMsg(
-          "onCompletion(): Got Message: " + ((TextMessage) message).getText());
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception: " + e);
-    }
-    this.message = message;
-    messages.add(message);
-    if (message instanceof TextMessage) {
-      TextMessage tMsg = (TextMessage) message;
-      try {
-        if (tMsg.getText().equals("Call connection close method")) {
-          TestUtil.logMsg(
-              "Calling Connection.close() MUST throw IllegalStateException");
-          if (connection != null)
-            connection.close();
-        } else if (tMsg.getText().equals("Call session close method")) {
-          TestUtil.logMsg(
-              "Calling Session.close() MUST throw IllegalStateException");
-          if (session != null)
-            session.close();
-        }
-      } catch (jakarta.jms.IllegalStateException e) {
-        TestUtil
-            .logMsg("onCompletion(): Caught expected IllegalStateException");
-        gotCorrectException = true;
-        gotException = true;
-      } catch (Exception e) {
-        TestUtil.logErr("onCompletion(): Caught unexpected exception: " + e);
-        gotCorrectException = false;
-        gotException = true;
-        exception = e;
-      }
-    }
-    complete = true;
-    TestUtil.logMsg("onCompletion(): Leaving");
-  }
+	public void setComplete(boolean complete) {
+		this.complete = complete;
+	}
 
-  public void onException(Message message, Exception exception) {
-    TestUtil.logMsg("Got Exception: " + exception);
-    TestUtil.logMsg("With Message: " + message);
-    this.exception = exception;
-    this.message = message;
-    complete = true;
-  }
+	public void onCompletion(Message message) {
+		try {
+			logger.log(Logger.Level.INFO, "onCompletion(): Got Message: " + ((TextMessage) message).getText());
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception: " + e);
+		}
+		this.message = message;
+		messages.add(message);
+		if (message instanceof TextMessage) {
+			TextMessage tMsg = (TextMessage) message;
+			try {
+				if (tMsg.getText().equals("Call connection close method")) {
+					logger.log(Logger.Level.INFO, "Calling Connection.close() MUST throw IllegalStateException");
+					if (connection != null)
+						connection.close();
+				} else if (tMsg.getText().equals("Call session close method")) {
+					logger.log(Logger.Level.INFO, "Calling Session.close() MUST throw IllegalStateException");
+					if (session != null)
+						session.close();
+				}
+			} catch (jakarta.jms.IllegalStateException e) {
+				logger.log(Logger.Level.INFO, "onCompletion(): Caught expected IllegalStateException");
+				gotCorrectException = true;
+				gotException = true;
+			} catch (Exception e) {
+				logger.log(Logger.Level.ERROR, "onCompletion(): Caught unexpected exception: " + e);
+				gotCorrectException = false;
+				gotException = true;
+				exception = e;
+			}
+		}
+		complete = true;
+		logger.log(Logger.Level.INFO, "onCompletion(): Leaving");
+	}
+
+	public void onException(Message message, Exception exception) {
+		logger.log(Logger.Level.INFO, "Got Exception: " + exception);
+		logger.log(Logger.Level.INFO, "With Message: " + message);
+		this.exception = exception;
+		this.message = message;
+		complete = true;
+	}
 
 }

@@ -19,56 +19,58 @@
  */
 package com.sun.ts.tests.jms.core20.appclient.jmscontexttopictests;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.lang.System.Logger;
 
 import jakarta.jms.ExceptionListener;
 import jakarta.jms.JMSException;
 
 public class MyExceptionListener implements ExceptionListener {
 
-  private String name = null;
+	private String name = null;
 
-  private JMSException exception = null;
+	private JMSException exception = null;
 
-  boolean complete = false;
+	boolean complete = false;
 
-  public MyExceptionListener() {
-    this("MyExceptionListener");
-  }
+	private static final Logger logger = (Logger) System.getLogger(MyExceptionListener.class.getName());
 
-  public MyExceptionListener(String name) {
-    this.name = name;
-  }
+	public MyExceptionListener() {
+		this("MyExceptionListener");
+	}
 
-  // getters/setters
-  public String getName() {
-    return name;
-  }
+	public MyExceptionListener(String name) {
+		this.name = name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	// getters/setters
+	public String getName() {
+		return name;
+	}
 
-  public JMSException getException() {
-    return exception;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public void setException(JMSException exception) {
-    this.exception = exception;
-  }
+	public JMSException getException() {
+		return exception;
+	}
 
-  public boolean isComplete() {
-    return complete;
-  }
+	public void setException(JMSException exception) {
+		this.exception = exception;
+	}
 
-  public void setComplete(boolean complete) {
-    this.complete = complete;
-  }
+	public boolean isComplete() {
+		return complete;
+	}
 
-  public void onException(JMSException exception) {
-    TestUtil.logMsg("Got JMSException: " + exception);
-    this.exception = exception;
-    complete = true;
-  }
+	public void setComplete(boolean complete) {
+		this.complete = complete;
+	}
+
+	public void onException(JMSException exception) {
+		logger.log(Logger.Level.INFO, "Got JMSException: " + exception);
+		this.exception = exception;
+		complete = true;
+	}
 
 }
