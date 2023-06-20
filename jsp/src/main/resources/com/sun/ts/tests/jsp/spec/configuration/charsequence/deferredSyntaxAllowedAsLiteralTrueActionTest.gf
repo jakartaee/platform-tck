@@ -1,0 +1,1 @@
+From tag handler: #{foo}
