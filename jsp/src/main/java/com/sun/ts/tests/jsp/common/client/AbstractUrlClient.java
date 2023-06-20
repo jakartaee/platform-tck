@@ -61,6 +61,16 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
    */
   private String _jspName = null;
 
+  protected InputStream goldenFileStream = null;
+
+  public InputStream getGoldenFileStream() {
+    return goldenFileStream;
+  }
+
+  public void setGoldenFileStream(InputStream gfStream) {
+    goldenFileStream = gfStream;
+  }
+
   /**
    * Sets the test properties for this testCase.
    *
@@ -70,9 +80,14 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
   protected void setTestProperties(WebTestCase testCase) {
 
     setStandardProperties(TEST_PROPS.getProperty(STANDARD), testCase);
+    setGoldenFileStreamProperty(testCase, goldenFileStream);
     setApiTestProperties(TEST_PROPS.getProperty(APITEST), testCase);
     setApiTest1Properties(TEST_PROPS.getProperty(APITEST1), testCase);
     super.setTestProperties(testCase);
+  }
+
+  private void setGoldenFileStreamProperty(WebTestCase testCase, InputStream gfStream) {
+    testCase.setGoldenFileStream(gfStream);
   }
 
   private boolean isNullOrEmpty(String val) {

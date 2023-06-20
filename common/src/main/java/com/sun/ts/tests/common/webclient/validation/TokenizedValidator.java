@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.common.webclient.validation;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -27,6 +28,7 @@ import java.util.StringTokenizer;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.webclient.Goldenfile;
+import com.sun.ts.tests.common.webclient.Util;
 
 /**
  * <pre>
@@ -63,7 +65,7 @@ public class TokenizedValidator extends WebValidatorBase {
    *           if an error occurs will processing the Goldenfile
    */
   protected boolean checkGoldenfile() throws IOException {
-    String gf;
+    String gf = null;
     String path = _case.getGoldenfilePath();
     String enc = _res.getResponseEncoding();
 
@@ -74,7 +76,13 @@ public class TokenizedValidator extends WebValidatorBase {
     Goldenfile file = new Goldenfile(_case.getGoldenfilePath(), enc);
 
     try {
-      gf = file.getGoldenFileAsString();
+      File goldenFile = new File(_case.getGoldenfilePath());
+      if(goldenFile.exists()){
+        gf = file.getGoldenFileAsString();
+      }
+      else if(_case.getGoldenfileStream()!=null){
+        gf = Util.getEncodedStringFromStream(_case.getGoldenfileStream(), enc);
+      }
     } catch (IOException ioe) {
       TestUtil
           .logErr("[TokenizedValidator] Unexpected exception while accessing "
