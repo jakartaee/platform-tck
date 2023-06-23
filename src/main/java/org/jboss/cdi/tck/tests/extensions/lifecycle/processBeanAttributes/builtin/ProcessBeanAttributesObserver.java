@@ -16,42 +16,53 @@
  */
 package org.jboss.cdi.tck.tests.extensions.lifecycle.processBeanAttributes.builtin;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import jakarta.enterprise.context.Conversation;
 import jakarta.enterprise.event.Event;
 import jakarta.enterprise.event.Observes;
+import jakarta.enterprise.inject.Default;
 import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.enterprise.inject.spi.Extension;
 import jakarta.enterprise.inject.spi.ProcessBeanAttributes;
 import jakarta.servlet.http.HttpServletRequest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProcessBeanAttributesObserver implements Extension {
 
     private List<ProcessBeanAttributes<?>> observedBeanAttributes = new ArrayList<ProcessBeanAttributes<?>>();
 
     public void observeHttpServletRequestBeanAttributes(@Observes ProcessBeanAttributes<HttpServletRequest> event) {
-        observedBeanAttributes.add(event);
+        if (event.getBeanAttributes().getQualifiers().contains(Default.Literal.INSTANCE)) {
+            observedBeanAttributes.add(event);
+        }
     }
 
     @SuppressWarnings("rawtypes")
     public void observeEventBeanAttributes(@Observes ProcessBeanAttributes<Event> event) {
-        observedBeanAttributes.add(event);
+        if (event.getBeanAttributes().getQualifiers().contains(Default.Literal.INSTANCE)) {
+            observedBeanAttributes.add(event);
+        }
     }
 
     @SuppressWarnings("rawtypes")
     public void observeInstanceBeanAttributes(@Observes ProcessBeanAttributes<Instance> event) {
-        observedBeanAttributes.add(event);
+        if (event.getBeanAttributes().getQualifiers().contains(Default.Literal.INSTANCE)) {
+            observedBeanAttributes.add(event);
+        }
     }
 
     public void observeConversationBeanAttributes(@Observes ProcessBeanAttributes<Conversation> event) {
-        observedBeanAttributes.add(event);
+        if (event.getBeanAttributes().getQualifiers().contains(Default.Literal.INSTANCE)) {
+            observedBeanAttributes.add(event);
+        }
     }
 
     public void observeBeanManagerBeanAttributes(@Observes ProcessBeanAttributes<BeanManager> event) {
-        observedBeanAttributes.add(event);
+        if (event.getBeanAttributes().getQualifiers().contains(Default.Literal.INSTANCE)) {
+            observedBeanAttributes.add(event);
+        }
     }
 
     public List<ProcessBeanAttributes<?>> getObservedBeanAttributes() {
