@@ -297,8 +297,8 @@ public class URLClientIT extends AbstractUrlClient {
    * on the associated TagExtraInfo class. This method should be exercised with
    * a jsp 1.1 tld. See tagInfoConstructor11Test.
    */
-  @Test
-  @Disabled("Disabled in legacy")
+  // @Test
+  // @Disabled("Disabled in legacy")
   public void tagInfoIsValidTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_taginfo_web/IsValidTest.jsp HTTP/1.1");

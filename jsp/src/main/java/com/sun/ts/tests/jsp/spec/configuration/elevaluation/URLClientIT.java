@@ -27,31 +27,66 @@ package com.sun.ts.tests.jsp.spec.configuration.elevaluation;
 import java.io.PrintWriter;
 
 import com.sun.javatest.Status;
+import java.io.IOException;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 
-public class URLClient extends AbstractUrlClient {
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.Filters;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+@ExtendWith(ArquillianExtension.class)
+public class URLClientIT extends AbstractUrlClient {
+  public URLClientIT() throws Exception {
+    setup();
 
     setGeneralURI("/jsp/spec/configuration/elevaluation");
     setContextRoot("/jsp_config_eleval_web");
 
-    return super.run(args, out, err);
+  }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+    
+    String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_config_eleval_web.war");
+    archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_config_eleval_web.xml"));
+
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/compat13/ElCompatTest.jsp")), "compat13/ElCompatTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/elconffalse/ElEvaluationTest.jsp")), "elconffalse/ElEvaluationTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/elconffalsex/ElEvaluationTest.jspx")), "elconffalsex/ElEvaluationTest.jspx");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/elconftrue/ElEvaluationTest.jsp")), "elconftrue/ElEvaluationTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/elconftruex/ElEvaluationTest.jspx")), "elconftruex/ElEvaluationTest.jspx");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/elpagefalse/ElEvaluationTest.jsp")), "elpagefalse/ElEvaluationTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/elpagefalsex/ElEvaluationTest.jspx")), "elpagefalsex/ElEvaluationTest.jspx");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/elpagetrue/ElEvaluationTest.jsp")), "elpagetrue/ElEvaluationTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/elpagetruex/ElEvaluationTest.jspx")), "elpagetruex/ElEvaluationTest.jspx");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/elunspec/ElEvaluationTest.jsp")), "elunspec/ElEvaluationTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/elunspecx/ElEvaluationTest.jspx")), "elunspecx/ElEvaluationTest.jspx");
+  
+    return archive;
+
+  }
+
+
+  @Deployment(testable = false, name="jsp_config_eleval23_web")
+  public static WebArchive createDeployment23() throws IOException {
+    
+    String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_config_eleval23_web.war");
+    archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_config_eleval23_web.xml"));
+
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/compat13/ElCompatTest.jsp")), "ElCompatTest.jsp");
+  
+    return archive;
+
   }
 
   /*
@@ -72,6 +107,7 @@ public class URLClient extends AbstractUrlClient {
    * evaluated by the container. This validates both JSPs in standard syntax and
    * JSP documents.
    */
+  @Test
   public void elEvaluationUnspecifiedTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_config_eleval_web/elunspec/ElEvaluationTest.jsp HTTP/1.1");
@@ -94,6 +130,7 @@ public class URLClient extends AbstractUrlClient {
    * expressions will be evaluated. This validates both JSPs in standard syntax
    * and JSP documents.
    */
+  @Test
   public void elEvaluationConfigurationFalseTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_config_eleval_web/elconffalse/ElEvaluationTest.jsp HTTP/1.1");
@@ -116,6 +153,7 @@ public class URLClient extends AbstractUrlClient {
    * expressions will not be evaluated. This validates both JSPs in standard
    * syntax and JSP documents.
    */
+  @Test
   public void elEvaluationConfigurationTrueTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_config_eleval_web/elconftrue/ElEvaluationTest.jsp HTTP/1.1");
@@ -136,6 +174,7 @@ public class URLClient extends AbstractUrlClient {
    * descriptor, that the page directive attribute isELIgnored takes precedence
    * over the configuration of the JSP property group.
    */
+  @Test
   public void elEvaluationPageDirectiveOverrideTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_config_eleval_web/elpagetrue/ElEvaluationTest.jsp HTTP/1.1");
@@ -164,6 +203,7 @@ public class URLClient extends AbstractUrlClient {
    * based web application, and it encounters a JSP with an EL-like construct
    * (i.e. ${expr}), that EL Evaluation is not performed.
    */
+  @Test
   public void elEvaluation23WebApplicationTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_config_eleval23_web/ElCompatTest.jsp HTTP/1.1");

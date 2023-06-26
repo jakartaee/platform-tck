@@ -27,30 +27,78 @@ package com.sun.ts.tests.jsp.spec.tagfiles.packaging;
 import java.io.PrintWriter;
 
 import com.sun.javatest.Status;
+import java.io.IOException;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 
-public class URLClient extends AbstractUrlClient {
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.Filters;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
+@ExtendWith(ArquillianExtension.class)
+public class URLClientIT extends AbstractUrlClient {
+  public URLClientIT() throws Exception {
+    setup();
 
     setContextRoot("/jsp_tagfile_pkg_web");
 
-    return super.run(args, out, err);
+  }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+    
+    String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_tagfile_pkg_web.war");
+    archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_tagfile_pkg_web.xml"));
+
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tag.tld", "tag.tld");
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tags/WebTag1.tag", "tags/WebTag1.tag");
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tags/badtldversion/WebTag1.tag", "tags/badtldversion/WebTag1.tag");
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tags/badtldversion/implicit.tld", "tags/badtldversion/implicit.tld");
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tags/defaultjspversion/WebTag1.tag", "tags/defaultjspversion/WebTag1.tag");
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tags/dir/WebTag1.tag", "tags/dir/WebTag1.tag");
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tags/reservedname20/DeferredSyntaxAsLiteral.tag", "tags/reservedname20/DeferredSyntaxAsLiteral.tag");
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tags/reservedname20/ImplicitTld20.tag", "tags/reservedname20/ImplicitTld20.tag");
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tags/reservedname20/implicit.tld", "tags/reservedname20/implicit.tld");
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tags/reservedname21/DeferredSyntaxAsLiteral.tag", "tags/reservedname21/DeferredSyntaxAsLiteral.tag");
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tags/reservedname21/ImplicitTld21.tag", "tags/reservedname21/ImplicitTld21.tag");
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tags/reservedname21/implicit.tld", "tags/reservedname21/implicit.tld");
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tags/toomanytldelements/WebTag1.tag", "tags/toomanytldelements/WebTag1.tag");
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tags/toomanytldelements/implicit.tld", "tags/toomanytldelements/implicit.tld");
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tags/versionnotmatch/WebTag1.tag", "tags/versionnotmatch/WebTag1.tag");
+    archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tags/versionnotmatch/implicit.tld", "tags/versionnotmatch/implicit.tld");
+  
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/IgnoreTag.tag")), "IgnoreTag.tag");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/Tag1.tag")), "Tag1.tag");
+
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/ImplicitTldAdditionalElements.jsp")), "ImplicitTldAdditionalElements.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/ImplicitTldDefaultJspVersion.jsp")), "ImplicitTldDefaultJspVersion.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/ImplicitTldMinimumJspVersion.jsp")), "ImplicitTldMinimumJspVersion.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/ImplicitTldReservedName20.jsp")), "ImplicitTldReservedName20.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/ImplicitTldReservedName21.jsp")), "ImplicitTldReservedName21.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/JspTagFilePackagedJarIgnoredTagTest.jsp")), "JspTagFilePackagedJarIgnoredTagTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/JspTagFilePackagedJarTest.jsp")), "JspTagFilePackagedJarTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/JspTagFilePackagedWarTest.jsp")), "JspTagFilePackagedWarTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/JspTagFilePackagedWarTldTest.jsp")), "JspTagFilePackagedWarTldTest.jsp");
+    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/TldImplicitTldJspVersionNotMatch.jsp")), "TldImplicitTldJspVersionNotMatch.jsp");
+  
+    JavaArchive tagfileJar = ShrinkWrap.create(JavaArchive.class, "tagfile.jar");
+    tagfileJar.addAsResource(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/jartagfile.tld")), "META-INF/jartagfile.tld");
+    tagfileJar.addAsResource(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/IgnoreTag.tag")), "META-INF/tags/IgnoreTag.tag");
+    tagfileJar.addAsResource(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/Tag1.tag")), "META-INF/tags/Tag1.tag");
+
+    archive.addAsLibrary(tagfileJar);
+
+    return archive;
+
   }
 
   /*
@@ -69,6 +117,7 @@ public class URLClient extends AbstractUrlClient {
    * referenced in a TLD, can be recognized by the container and invoked within
    * a Page.
    */
+  @Test
   public void jspTagFilePackagedJarTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagfile_pkg_web/JspTagFilePackagedJarTest.jsp HTTP/1.1");
@@ -85,6 +134,7 @@ public class URLClient extends AbstractUrlClient {
    * referenced by a TLD, the container ignores the tag file. Since the Page
    * will refer to the ignored tag, a translation error should occur by its use.
    */
+  @Test
   public void jspTagFilePackagedJarIgnoredTagTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagfile_pkg_web/JspTagFilePackagedJarIgnoredTagTest.jsp HTTP/1.1");
@@ -100,6 +150,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate that tag files can be properly detected by the
    * container and that they can be used in a Page.
    */
+  @Test
   public void jspTagFilePackagedWarTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagfile_pkg_web/JspTagFilePackagedWarTest.jsp HTTP/1.1");
@@ -115,6 +166,7 @@ public class URLClient extends AbstractUrlClient {
    * @test_Strategy: Validate tag files packaged in a web application can be
    * explicity referenced in a TLD to be used by a a Page.
    */
+  @Test
   public void jspTagFilePackagedWarTldTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagfile_pkg_web/JspTagFilePackagedWarTldTest.jsp HTTP/1.1");
@@ -131,6 +183,7 @@ public class URLClient extends AbstractUrlClient {
    * specified in an implicit.tld file is less than 2.0 a translation error will
    * result.
    */
+  @Test
   public void implicitTldMinimumJspVersionTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagfile_pkg_web/ImplicitTldMinimumJspVersion.jsp HTTP/1.1");
@@ -147,6 +200,7 @@ public class URLClient extends AbstractUrlClient {
    * version specified in an implicit.tld file is less than 2.0 a translation
    * error will result.
    */
+  @Test
   public void implicitTldAdditionalElementsTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagfile_pkg_web/ImplicitTldAdditionalElements.jsp HTTP/1.1");
@@ -163,6 +217,7 @@ public class URLClient extends AbstractUrlClient {
    * is referenced by both a TLD and an implicit TLD, the JSP versions of the
    * TLD and implicit TLD do not need to match.
    */
+  @Test
   public void tldImplicitTldJspVersionNotMatchTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagfile_pkg_web/TldImplicitTldJspVersionNotMatch.jsp HTTP/1.1");
@@ -181,6 +236,7 @@ public class URLClient extends AbstractUrlClient {
    * constituent tag files. Verify this for version 2.0 by embedding '{#' in an
    * action without generating a translation error.
    */
+  @Test
   public void implicitTldReservedName20Test() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagfile_pkg_web/ImplicitTldReservedName20.jsp HTTP/1.1");
@@ -199,6 +255,7 @@ public class URLClient extends AbstractUrlClient {
    * constituent tag files. Verify this for version 2.1 by embedding '{#' in an
    * action to cause a translation error.
    */
+  @Test
   public void implicitTldReservedName21Test() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagfile_pkg_web/ImplicitTldReservedName21.jsp HTTP/1.1");
@@ -215,6 +272,7 @@ public class URLClient extends AbstractUrlClient {
    * an implicit tag library defaults to 2.0 by embedding an unescaped '#{"
    * character sequence in template text.
    */
+  @Test
   public void implicitTldDefaultJspVersionTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_tagfile_pkg_web/ImplicitTldDefaultJspVersion.jsp HTTP/1.1");
