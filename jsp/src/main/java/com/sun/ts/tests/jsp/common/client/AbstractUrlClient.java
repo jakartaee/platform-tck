@@ -20,6 +20,8 @@ import com.sun.ts.tests.common.webclient.BaseUrlClient;
 import com.sun.ts.tests.common.webclient.WebTestCase;
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
 
+import java.net.URL;
+
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.io.BufferedReader;
@@ -29,12 +31,20 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 
+import org.jboss.arquillian.container.test.api.OperateOnDeployment;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.junit.jupiter.api.BeforeEach;
+
 /**
  * Base client for JSP tests.
  */
 public abstract class AbstractUrlClient extends BaseUrlClient {
 
   private static final Logger LOGGER = Logger.getLogger(AbstractUrlClient.class.getName());
+
+  @ArquillianResource
+	@OperateOnDeployment("_DEFAULT_")
+	public URL url;
 
   /**
    * Identifier for a set of properties to be used for API Tests.
@@ -90,7 +100,7 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
     testCase.setGoldenFileStream(gfStream);
   }
 
-  private boolean isNullOrEmpty(String val) {
+  protected boolean isNullOrEmpty(String val) {
     if (val == null || val.equals("")) {
       return true;
     }
@@ -102,18 +112,25 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
     String hostname = System.getProperty(SERVLETHOSTPROP).trim();
     String portnum = System.getProperty(SERVLETPORTPROP).trim();
 
+    if (isNullOrEmpty(hostname)) {
+      hostname = url.getHost(); 
+    }
+    if (isNullOrEmpty(portnum)) {
+      portnum = Integer.toString(url.getPort()); 
+    }
+    
     if (!isNullOrEmpty(hostname)) {
       _hostname = hostname;
     } else {
       throw new Exception(
-          "[BaseUrlClient] 'webServerHost' was not set in the" + " ts.jte.");
+          "[BaseUrlClient] 'webServerHost' was not set");
     }
 
     if (!isNullOrEmpty(portnum)) {
       _port = Integer.parseInt(portnum);
     } else {
       throw new Exception(
-          "[BaseUrlClient] 'webServerPort' was not set in the" + " ts.jte.");
+          "[BaseUrlClient] 'webServerPort' was not set");
     }
 
     LOGGER.log(Level.INFO,"[BaseUrlClient] Test setup OK");
