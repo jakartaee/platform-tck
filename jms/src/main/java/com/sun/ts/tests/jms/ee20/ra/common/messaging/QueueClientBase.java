@@ -244,21 +244,6 @@ abstract public class QueueClientBase extends Client implements Constants {
 			throw new Exception("Error getting time");
 		}
 
-		hostname = System.getProperty("harness.host");
-		if (hostname == null) {
-			logger.log(Logger.Level.TRACE, "Hostname is null");
-			throw new Exception("Error getting hostname");
-		}
-		traceFlag = System.getProperty("harness.log.traceflag");
-		if (traceFlag == null) {
-			logger.log(Logger.Level.TRACE, "Hostname is null");
-			throw new Exception("Error getting traceflag");
-		}
-		logPort = System.getProperty("harness.log.port");
-		if (logPort == null) {
-			logger.log(Logger.Level.TRACE, "logport is null");
-			throw new Exception("Error getting port");
-		}
 		timeout = Integer.parseInt(time);
 	}
 }

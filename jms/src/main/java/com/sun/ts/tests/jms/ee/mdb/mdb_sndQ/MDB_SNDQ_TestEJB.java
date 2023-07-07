@@ -91,10 +91,10 @@ public class MDB_SNDQ_TestEJB {
 				throw new Exception("'jms_timeout' (milliseconds) in must be > 0");
 			}
 			if (jmsUser == null) {
-				throw new Exception("'user' in must not be null");
+				throw new Exception("'user' is null");
 			}
 			if (jmsPassword == null) {
-				throw new Exception("'password' in must not be null");
+				throw new Exception("'password' is null");
 			}
 			if (cf == null || Dest == null || receiveDest == null || sessionContext == null) {
 				throw new Exception("@Resource injection failed");

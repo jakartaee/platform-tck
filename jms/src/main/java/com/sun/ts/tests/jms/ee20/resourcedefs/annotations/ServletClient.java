@@ -204,13 +204,13 @@ public class ServletClient extends HttpServlet {
 				throw new Exception("'jms_timeout' (milliseconds) in must be > 0");
 			}
 			if (user == null) {
-				throw new Exception("'user' in must not be null ");
+				throw new Exception("'user' is null ");
 			}
 			if (password == null) {
-				throw new Exception("'password' in must not be null ");
+				throw new Exception("'password' is null ");
 			}
 			if (mode == null) {
-				throw new Exception("'platform.mode' in must not be null");
+				throw new Exception("'platform.mode' is null");
 			}
 			doLookupJMSObjects();
 		} catch (Exception e) {
