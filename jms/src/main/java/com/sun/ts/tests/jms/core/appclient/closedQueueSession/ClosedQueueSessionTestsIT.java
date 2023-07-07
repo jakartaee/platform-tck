@@ -17,7 +17,7 @@
 /*
  * $Id$
  */
-package com.sun.ts.tests.jms.core.appclient.closedQueueReceiver;
+package com.sun.ts.tests.jms.core.appclient.closedQueueSession;
 
 import java.lang.System.Logger;
 import java.util.ArrayList;
@@ -33,12 +33,15 @@ import com.sun.ts.tests.jms.common.JmsTool;
 import jakarta.jms.Message;
 import jakarta.jms.MessageListener;
 
-public class ClosedQueueReceiverIT {
-	private static final String TestName = "com.sun.ts.tests.jms.core.appclient.closedQueueReceiver.ClosedQueueReceiverTestsIT";
+/**
+ * JMS TS tests. Testing method calls on closed QueueSession objects.
+ */
+public class ClosedQueueSessionTestsIT {
+	private static final String TestName = "com.sun.ts.tests.jms.core.appclient.closedQueueSession.ClosedQueueSessionTests";
 
 	private static final String testDir = System.getProperty("user.dir");
 
-	private static final Logger logger = (Logger) System.getLogger(ClosedQueueReceiverIT.class.getName());
+	private static final Logger logger = (Logger) System.getLogger(ClosedQueueSessionTestsIT.class.getName());
 
 	// JMS objects
 	private static JmsTool tool = null;
@@ -62,18 +65,33 @@ public class ClosedQueueReceiverIT {
 	/* Utility methods for tests */
 
 	/**
-	 * Used by tests that need a closed receiver for testing. Passes any exceptions
+	 * Used by tests that need a closed session for testing. Passes any exceptions
 	 * up to caller.
 	 * 
 	 * @param int The type of session that needs to be created and closed
 	 */
-	private void createAndCloseReceiver() throws Exception {
-		tool = new JmsTool(JmsTool.QUEUE, user, password, mode);
-		tool.getDefaultQueueConnection().start();
+	private void createAndCloseSession(int type, String user, String password) throws Exception {
+		if ((type == JmsTool.QUEUE) || (type == JmsTool.TX_QUEUE)) {
+			tool = new JmsTool(type, user, password, mode);
+			tool.getDefaultQueueConnection().start();
+			logger.log(Logger.Level.INFO, "Closing queue session");
+			tool.getDefaultQueueSession().close();
+		}
+		logger.log(Logger.Level.INFO, "Session closed");
+	}
 
-		logger.log(Logger.Level.TRACE, "Closing queue receiver");
-		tool.getDefaultQueueReceiver().close();
-		logger.log(Logger.Level.TRACE, "Receiver closed");
+	/*
+	 * Checks passed flag for negative tests and throws exception back to caller
+	 * which passes ot to harness.
+	 * 
+	 * @param boolean Pass/Fail flag
+	 */
+
+	private void checkExceptionPass(boolean passed) throws Exception {
+		if (passed == false) {
+			logger.log(Logger.Level.INFO, "Didn't get expected exception");
+			throw new Exception("Didn't catch expected exception");
+		}
 	}
 
 	/* Test setup: */
@@ -90,18 +108,6 @@ public class ClosedQueueReceiverIT {
 	 * @class.setup_props: jms_timeout; user; password; platform.mode;
 	 * 
 	 * @exception Fault
-	 */
-
-	/**
-	 * Method Declaration.
-	 * 
-	 * 
-	 * @param args
-	 * @param p
-	 *
-	 * @exception Fault
-	 *
-	 * @see
 	 */
 	@BeforeEach
 	public void setup() throws Exception {
@@ -127,8 +133,8 @@ public class ClosedQueueReceiverIT {
 				throw new Exception("'mode' is null");
 			}
 			queues = new ArrayList(2);
+
 			// get ready for new test
-			logger.log(Logger.Level.TRACE, "Getting Administrator and deleting any leftover destinations.");
 		} catch (Exception e) {
 			TestUtil.printStackTrace(e);
 			throw new Exception("Setup failed!", e);
@@ -163,19 +169,19 @@ public class ClosedQueueReceiverIT {
 	/* Tests */
 
 	/*
-	 * @testName: closedQueueReceiverGetMessageListenerTest
+	 * @testName: closedQueueSessionGetMessageListenerTest
 	 *
-	 * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:328;
+	 * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:328;
 	 *
 	 * @test_Strategy: Close default receiver and call method on it. Check for
 	 * IllegalStateException.
 	 */
 	@Test
-	public void closedQueueReceiverGetMessageListenerTest() throws Exception {
+	public void closedQueueSessionGetMessageListenerTest() throws Exception {
 		boolean passed = false;
 
 		try {
-			createAndCloseReceiver();
+			createAndCloseSession(JmsTool.QUEUE, user, password);
 			logger.log(Logger.Level.TRACE, "Try to call getMessageListener");
 			try {
 				MessageListener foo = tool.getDefaultQueueReceiver().getMessageListener();
@@ -192,24 +198,24 @@ public class ClosedQueueReceiverIT {
 				throw new Exception("Error: failures occurred during tests");
 			}
 		} catch (Exception e) {
-			throw new Exception("closedQueueReceiverGetMessageListenerTest", e);
+			throw new Exception("closedQueueSessionGetMessageListenerTest", e);
 		}
 	}
 
 	/*
-	 * @testName: closedQueueReceiverSetMessageListenerTest
+	 * @testName: closedQueueSessionSetMessageListenerTest
 	 *
-	 * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:330; JMS:JAVADOC:325;
+	 * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:330; JMS:JAVADOC:325;
 	 *
 	 * @test_Strategy: Close default receiver and call method on it. Check for
 	 * IllegalStateException.
 	 */
 	@Test
-	public void closedQueueReceiverSetMessageListenerTest() throws Exception {
+	public void closedQueueSessionSetMessageListenerTest() throws Exception {
 		boolean passed = false;
 
 		try {
-			createAndCloseReceiver();
+			createAndCloseSession(JmsTool.QUEUE, user, password);
 			logger.log(Logger.Level.TRACE, "Try to call setMessageListener");
 			try {
 				MessageListener foo = new MessageListener() {
@@ -232,7 +238,7 @@ public class ClosedQueueReceiverIT {
 				throw new Exception("Error: failures occurred during tests");
 			}
 		} catch (Exception e) {
-			throw new Exception("closedQueueReceiverSetMessageListenerTest", e);
+			throw new Exception("closedQueueSessionSetMessageListenerTest", e);
 		}
 	}
 }

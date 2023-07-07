@@ -112,10 +112,10 @@ public class MDB_AR_TestEJB {
 				throw new Exception("'jms_timeout' (milliseconds) in must be > 0");
 			}
 			if (jmsUser == null) {
-				throw new Exception("'user' in must not be null");
+				throw new Exception("'user' is null");
 			}
 			if (jmsPassword == null) {
-				throw new Exception("'password' in must not be null");
+				throw new Exception("'password' is null");
 			}
 			if (qcFactory == null || tcFactory == null || queue == null || rcvrQueue == null || topic == null
 					|| sessionContext == null) {
