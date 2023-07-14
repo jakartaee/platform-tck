@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -33,14 +33,13 @@ import java.util.logging.Level;
 
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.test.api.ArquillianResource;
-import org.junit.jupiter.api.BeforeEach;
 
 /**
  * Base client for JSP tests.
  */
 public abstract class AbstractUrlClient extends BaseUrlClient {
 
-  private static final Logger LOGGER = Logger.getLogger(AbstractUrlClient.class.getName());
+  private static final Logger logger = Logger.getLogger(AbstractUrlClient.class.getName());
 
   @ArquillianResource
 	@OperateOnDeployment("_DEFAULT_")
@@ -133,7 +132,7 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
           "[BaseUrlClient] 'webServerPort' was not set");
     }
 
-    LOGGER.log(Level.INFO,"[BaseUrlClient] Test setup OK");
+    logger.log(Level.INFO,"[BaseUrlClient] Test setup OK");
   }
 
   /**

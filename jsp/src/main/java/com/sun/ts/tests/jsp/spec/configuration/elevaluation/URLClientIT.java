@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,7 +27,7 @@ package com.sun.ts.tests.jsp.spec.configuration.elevaluation;
 import java.io.PrintWriter;
 import java.net.URL;
 
-import com.sun.javatest.Status;
+
 import java.io.IOException;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 
@@ -45,8 +45,23 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
+import java.lang.System.Logger;
+
 @ExtendWith(ArquillianExtension.class)
 public class URLClientIT extends AbstractUrlClient {
+
+  private static final Logger logger = System.getLogger(URLClientIT.class.getName());
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    logger.log(Logger.Level.INFO, "STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    logger.log(Logger.Level.INFO, "FINISHED TEST : "+testInfo.getDisplayName());
+  }
+
   public URLClientIT() throws Exception {
     setup();
     setGeneralURI("/jsp/spec/configuration/elevaluation");

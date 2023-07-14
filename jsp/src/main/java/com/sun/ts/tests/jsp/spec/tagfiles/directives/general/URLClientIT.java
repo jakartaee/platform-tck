@@ -21,9 +21,7 @@
 
 package com.sun.ts.tests.jsp.spec.tagfiles.directives.general;
 
-import java.io.PrintWriter;
 
-import com.sun.javatest.Status;
 import java.io.IOException;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 
@@ -39,8 +37,23 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
+import java.lang.System.Logger;
+
 @ExtendWith(ArquillianExtension.class)
 public class URLClientIT extends AbstractUrlClient {
+
+  private static final Logger logger = System.getLogger(URLClientIT.class.getName());
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    logger.log(Logger.Level.INFO, "STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    logger.log(Logger.Level.INFO, "FINISHED TEST : "+testInfo.getDisplayName());
+  }
+
   private static final String CONTEXT_ROOT = "/jsp_tagfile_directives_general_web";
 
   public URLClientIT() throws Exception {
