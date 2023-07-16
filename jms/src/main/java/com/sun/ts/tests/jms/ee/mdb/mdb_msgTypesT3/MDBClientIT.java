@@ -37,6 +37,7 @@ import jakarta.ejb.EJB;
  * a queue
  */
 
+
 public class MDBClientIT {
 
 	@EJB(name = "ejb/MDB_MSGT3_Test")

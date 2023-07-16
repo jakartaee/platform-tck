@@ -32,6 +32,7 @@ import com.sun.ts.tests.jms.commonee.Tests;
 
 import jakarta.ejb.EJB;
 
+
 public class ClientIT {
 
 	private static final String testName = "com.sun.ts.tests.jms.ee.ejb.sessionQtests.ClientIT";

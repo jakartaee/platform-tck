@@ -31,6 +31,7 @@ import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.ejb.EJB;
 
+
 public class MDBClientIT {
 
 	@EJB(name = "ejb/MDB_AR_Test")

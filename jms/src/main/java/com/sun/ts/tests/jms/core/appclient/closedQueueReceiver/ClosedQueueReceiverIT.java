@@ -33,6 +33,7 @@ import com.sun.ts.tests.jms.common.JmsTool;
 import jakarta.jms.Message;
 import jakarta.jms.MessageListener;
 
+
 public class ClosedQueueReceiverIT {
 	private static final String TestName = "com.sun.ts.tests.jms.core.appclient.closedQueueReceiver.ClosedQueueReceiverTestsIT";
 

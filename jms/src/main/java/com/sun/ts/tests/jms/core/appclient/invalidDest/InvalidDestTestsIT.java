@@ -34,6 +34,7 @@ import jakarta.jms.InvalidDestinationException;
 import jakarta.jms.Session;
 import jakarta.jms.Topic;
 
+
 public class InvalidDestTestsIT {
 	private static final String testName = "com.sun.ts.tests.jms.core.appclient.invalidDest.InvalidDestTestsIT";
 

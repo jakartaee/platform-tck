@@ -36,6 +36,7 @@ import jakarta.ejb.EJB;
  * driven bean to send a text, byte, map, stream, and object message to a queue
  */
 
+
 public class MDBClientIT {
 
 	@EJB(name = "ejb/MDB_SNDToQueue_Test")

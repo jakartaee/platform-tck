@@ -42,6 +42,7 @@ import jakarta.jms.Topic;
 import jakarta.jms.TopicPublisher;
 import jakarta.jms.TopicSubscriber;
 
+
 public class ClosedTopicSessionTestsIT {
 	private static final String lookup = "DURABLE_SUB_CONNECTION_FACTORY";
 

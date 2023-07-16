@@ -42,6 +42,7 @@ import jakarta.jms.QueueSession;
 import jakarta.jms.Session;
 import jakarta.jms.TextMessage;
 
+
 public class MDBClientIT {
 
 	// Naming specific member variables

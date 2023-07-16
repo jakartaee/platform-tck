@@ -35,6 +35,7 @@ import jakarta.jms.MapMessage;
 import jakarta.jms.MessageFormatException;
 import jakarta.jms.MessageNotWriteableException;
 
+
 public class MapMsgQueueTestsIT {
 	private static final String testName = "com.sun.ts.tests.jms.core.mapMsgQueue.MapMsgQueueTestsIT";
 

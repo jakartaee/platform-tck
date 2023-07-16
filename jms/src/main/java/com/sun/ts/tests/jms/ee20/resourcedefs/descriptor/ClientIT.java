@@ -39,6 +39,7 @@ import jakarta.jms.TextMessage;
 import jakarta.jms.Topic;
 import jakarta.jms.TopicConnectionFactory;
 
+
 public class ClientIT {
 	private static final String testName = "com.sun.ts.tests.jms.ee20.resourcedefs.descriptor.Client";
 

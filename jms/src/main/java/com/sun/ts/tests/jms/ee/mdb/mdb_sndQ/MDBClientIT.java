@@ -34,6 +34,7 @@ import jakarta.ejb.EJB;
  * messages to a Destination
  */
 
+
 public class MDBClientIT {
 
 	@EJB(name = "ejb/MDB_SNDQ_Test")

@@ -97,6 +97,7 @@ abstract public class QueueClientBaseIT extends com.sun.ts.tests.jms.ee20.ra.com
 	 * Sends message and waits for response. The message should not reach the target
 	 * MDB, and no response should be received by this client.
 	 */
+	@Test
 	public void negativeTest2() throws Exception {
 		// the next messages should be filtered out by the ActivationConfigBean
 		sendReceiveNegative("negativeTest2", 0);

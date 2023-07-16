@@ -33,6 +33,7 @@ import com.sun.ts.tests.jms.common.JmsTool;
 import jakarta.jms.BytesMessage;
 import jakarta.jms.MessageNotWriteableException;
 
+
 public class BytesMsgTopicTestsIT {
 	private static final String testName = "com.sun.ts.tests.jms.core.bytesMsgTopic.BytesMsgTopicTestsIT";
 

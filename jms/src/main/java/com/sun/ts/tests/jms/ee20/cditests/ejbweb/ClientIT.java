@@ -30,6 +30,7 @@ import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.ejb.EJB;
 
+
 public class ClientIT {
 	// The webserver defaults (overidden by harness properties)
 	private static final String PROTOCOL = "http";

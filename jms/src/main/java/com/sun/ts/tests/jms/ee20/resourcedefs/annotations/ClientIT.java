@@ -63,6 +63,7 @@ import jakarta.jms.TopicConnectionFactory;
 @JMSConnectionFactoryDefinition(description = "Define Durable TopicConnectionFactory AppClientMyTestDurableTopicConnectionFactory", interfaceName = "jakarta.jms.TopicConnectionFactory", name = "java:comp/env/jms/AppClientMyTestDurableTopicConnectionFactory", user = "j2ee", password = "j2ee", clientId = "MyClientID", properties = {
 		"Property1=10", "Property2=20" }, transactional = false, maxPoolSize = 30, minPoolSize = 20)
 
+
 public class ClientIT {
 	private static final long serialVersionUID = 1L;
 

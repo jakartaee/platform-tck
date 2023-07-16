@@ -36,6 +36,7 @@ import jakarta.jms.MessageFormatException;
 import jakarta.jms.MessageNotWriteableException;
 import jakarta.jms.TextMessage;
 
+
 public class QueuePropertyTestsIT {
 	private static final String testName = "com.sun.ts.tests.jms.core.queueMsgProperties.QueuePropertyTestsIT";
 
