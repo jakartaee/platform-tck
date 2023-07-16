@@ -34,6 +34,7 @@ import jakarta.ejb.EJB;
 import jakarta.jms.DeliveryMode;
 import jakarta.jms.Queue;
 
+
 public class ClientIT {
 
 	private static final String testName = "com.sun.ts.tests.jms.ee.ejb.queueCMTTests.ClientIT";

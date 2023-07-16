@@ -28,6 +28,7 @@ import com.sun.ts.tests.jms.commonee.Client;
 
 import jakarta.jms.Queue;
 
+
 public class MDBClientIT extends Client {
 
 	// Naming specific member variables

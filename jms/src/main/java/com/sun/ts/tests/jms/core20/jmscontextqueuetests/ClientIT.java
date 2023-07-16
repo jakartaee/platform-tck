@@ -48,6 +48,7 @@ import jakarta.jms.QueueBrowser;
 import jakarta.jms.TemporaryQueue;
 import jakarta.jms.TextMessage;
 
+
 public class ClientIT {
 	private static final String testName = "com.sun.ts.tests.jms.core20.jmscontextqueuetests.ClientIT";
 

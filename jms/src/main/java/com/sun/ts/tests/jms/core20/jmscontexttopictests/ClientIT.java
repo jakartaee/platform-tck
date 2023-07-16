@@ -50,6 +50,7 @@ import jakarta.jms.TemporaryTopic;
 import jakarta.jms.TextMessage;
 import jakarta.jms.Topic;
 
+
 public class ClientIT {
 	private static final String testName = "com.sun.ts.tests.jms.core20.jmscontexttopictests.ClientIT";
 

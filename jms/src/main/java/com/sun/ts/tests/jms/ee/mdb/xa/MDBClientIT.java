@@ -36,6 +36,7 @@ import jakarta.jms.QueueReceiver;
 import jakarta.jms.QueueSession;
 import jakarta.jms.Topic;
 
+
 public class MDBClientIT extends Client {
 
 	private Queue cmtQ;

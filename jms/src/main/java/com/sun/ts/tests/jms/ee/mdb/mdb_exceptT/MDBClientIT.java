@@ -28,6 +28,7 @@ import com.sun.ts.tests.jms.commonee.Client;
 
 import jakarta.jms.Topic;
 
+
 public class MDBClientIT extends Client {
 
 	private Topic bmtT;
@@ -304,7 +305,7 @@ public class MDBClientIT extends Client {
 	 * attempts a EJBContext getEJBHome() method. Return verification message that a
 	 * java.lang.IllegalStateException was thrown.
 	 */
-
+	@Test
 	public void Test11() throws Exception {
 		String TestCase = "expTest11";
 		int TestNum = 11;
@@ -334,7 +335,7 @@ public class MDBClientIT extends Client {
 	 * attempts a EJBContext getEJBHome() method. Return verification message that a
 	 * java.lang.IllegalStateException was thrown.
 	 */
-
+	@Test
 	public void Test12() throws Exception {
 		String TestCase = "expTest12";
 		int TestNum = 12;
@@ -364,6 +365,7 @@ public class MDBClientIT extends Client {
 	 * jakarta.transaction.UserTransaction Verify that the container throws a
 	 * jakarta.transaction.NotSupportedException
 	 */
+	@Test
 	public void Test13() throws Exception {
 		String TestCase = "expTest13";
 		int TestNum = 13;

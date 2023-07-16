@@ -36,6 +36,7 @@ import jakarta.ejb.EJB;
  * a topic Sun's EJB Reference Implementation.
  */
 
+
 public class MDBClientIT {
 
 	@EJB(name = "ejb/MDB_SNDToTopic_Test")

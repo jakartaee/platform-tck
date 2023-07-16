@@ -34,6 +34,7 @@ import com.sun.ts.tests.jms.common.MessageTestImpl;
 import jakarta.jms.Message;
 import jakarta.jms.Topic;
 
+
 public class ClosedTopicPublisherTestsIT {
 	private static final String testName = "com.sun.ts.tests.jms.core.closedTopicPublisher.ClosedTopicPublisherIT";
 

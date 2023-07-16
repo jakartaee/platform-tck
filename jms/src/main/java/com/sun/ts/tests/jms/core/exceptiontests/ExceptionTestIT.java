@@ -40,6 +40,7 @@ import jakarta.jms.ResourceAllocationException;
 import jakarta.jms.TransactionInProgressException;
 import jakarta.jms.TransactionRolledBackException;
 
+
 public class ExceptionTestIT {
 	private static final String testName = "com.sun.ts.tests.jms.core.exceptiontests.ExceptionTestIT";
 

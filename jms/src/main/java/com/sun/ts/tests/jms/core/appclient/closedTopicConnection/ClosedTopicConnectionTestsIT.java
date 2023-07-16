@@ -38,6 +38,7 @@ import jakarta.jms.MessageListener;
 /**
  * JMS product tests. Testing method calls on closed TopicConnection objects.
  */
+
 public class ClosedTopicConnectionTestsIT {
 	private static final String TestName = "com.sun.ts.tests.jms.core.appclient.closedTopicConnection.ClosedTopicConnectionTestsIT";
 

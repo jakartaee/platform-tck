@@ -24,6 +24,7 @@ import java.lang.System.Logger;
 
 import org.junit.jupiter.api.Test;
 
+
 public class ClientIT extends com.sun.ts.tests.jms.ee20.ra.activationconfig.common.QueueClientBaseIT {
 
 	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());

@@ -37,6 +37,7 @@ import jakarta.jms.Session;
 import jakarta.jms.Topic;
 import jakarta.jms.TopicSubscriber;
 
+
 public class ClientIT {
 
 	private static final String testName = "com.sun.ts.tests.jms.ee.ejb.sessionTtests.ClientIT";

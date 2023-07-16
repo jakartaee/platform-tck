@@ -38,6 +38,7 @@ import jakarta.jms.MessageProducer;
 import jakarta.jms.Session;
 import jakarta.jms.TextMessage;
 
+
 public class ClientIT {
 	private static final String testName = "com.sun.ts.tests.jms.core20.appclient.messageconsumertests.ClientIT";
 

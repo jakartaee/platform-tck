@@ -31,6 +31,7 @@ import com.sun.ts.tests.jms.commonee.MDB_Q_Test;
 
 import jakarta.ejb.EJB;
 
+
 public class MDBClientIT {
 
 	@EJB(name = "ejb/MDB_MSGHdrQ_Test")

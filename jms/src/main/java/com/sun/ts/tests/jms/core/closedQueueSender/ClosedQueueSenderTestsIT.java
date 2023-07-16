@@ -37,6 +37,7 @@ import jakarta.jms.Queue;
 /**
  * JMS TS tests. Testing method calls on closed QueueSender objects.
  */
+
 public class ClosedQueueSenderTestsIT {
 	private static final String TestName = "com.sun.ts.tests.jms.core.closedQueueSender.ClosedQueueSenderTestsIT";
 

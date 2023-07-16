@@ -29,8 +29,9 @@ import com.sun.ts.lib.porting.TSURL;
 
 import jakarta.ejb.EJB;
 
+
 public class ClientIT {
-	// The webserver defaults (overidden by harness properties)
+	// The webserver defaults
 	private static final String PROTOCOL = "http";
 
 	private static final String HOSTNAME = "localhost";

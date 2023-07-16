@@ -25,6 +25,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+
 public class ClientIT {
 	private static final String testName = "com.sun.ts.tests.jms.core20.runtimeexceptiontests.ClientIT";
 

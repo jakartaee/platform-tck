@@ -36,6 +36,7 @@ import jakarta.jms.MessageFormatException;
 import jakarta.jms.MessageNotWriteableException;
 import jakarta.jms.TextMessage;
 
+
 public class TopicPropertyTestsIT {
 	private static final String testName = "com.sun.ts.tests.jms.core.topicMsgProperties.TopicPropertyTestsIT";
 

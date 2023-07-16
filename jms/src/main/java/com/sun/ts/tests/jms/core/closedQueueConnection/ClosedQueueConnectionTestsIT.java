@@ -49,6 +49,7 @@ import jakarta.jms.TextMessage;
 /**
  * JMS TS tests. Testing method calls on closed QueueConnection objects.
  */
+
 public class ClosedQueueConnectionTestsIT {
 	private static final String TestName = "com.sun.ts.tests.jms.core.closedQueueConnection.ClosedQueueConnectionTestsIT";
 

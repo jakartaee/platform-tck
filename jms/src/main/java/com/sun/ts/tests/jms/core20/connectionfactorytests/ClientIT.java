@@ -41,6 +41,7 @@ import jakarta.jms.QueueConnectionFactory;
 import jakarta.jms.TopicConnection;
 import jakarta.jms.TopicConnectionFactory;
 
+
 public class ClientIT {
 	private static final String testName = "com.sun.ts.tests.jms.core20.connectionfactorytests.ClientIT";
 
