@@ -332,6 +332,24 @@
             <note>Unclear meaning of validation.</note>
         </assertion>
 
+        <assertion id="n">
+            <text>
+                The |getInterceptorBindings| method returns the set of interceptor binding
+                annotations for the method or constructor whose invocation is being intercepted.
+                In case there is no target method or target constructor, interceptor binding
+                annotations applied to the target class are returned. All interceptor binding
+                annotations are returned, including interceptor binding annotations that associate
+                interceptors of a different interceptor method type, as well as interceptor
+                binding annotations that associate no interceptor.
+            </text>
+        </assertion>
+
+        <assertion id="o">
+            <text>
+                The |getInterceptorBinding| method returns the single annotation of given type
+                present in the set of interceptor bindings returned by |getInterceptorBindings()|.
+            </text>
+        </assertion>
     </section>
 
     <section id="exceptions" title="Exceptions" level="2">
