@@ -19,14 +19,14 @@ import jakarta.websocket.server.ServerEndpointConfig.Configurator;
 
 public class ContainerDefaultConfiguratorA extends Configurator {
 
-  private static String containerDefaultConfiguratorID;
-  
-  public ContainerDefaultConfiguratorA() {
-    Configurator c = getContainerDefaultConfigurator();
-    containerDefaultConfiguratorID = Integer.toString(System.identityHashCode(c));
-  }
-  
-  public static String getPlatformDefaultConfiguratorID() {
-    return containerDefaultConfiguratorID;
-  }
+	private static String containerDefaultConfiguratorID;
+
+	public ContainerDefaultConfiguratorA() {
+		Configurator c = getContainerDefaultConfigurator();
+		containerDefaultConfiguratorID = Integer.toString(System.identityHashCode(c));
+	}
+
+	public static String getPlatformDefaultConfiguratorID() {
+		return containerDefaultConfiguratorID;
+	}
 }

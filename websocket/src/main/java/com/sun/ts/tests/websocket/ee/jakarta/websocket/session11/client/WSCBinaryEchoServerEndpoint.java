@@ -18,6 +18,7 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.client;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 import java.nio.ByteBuffer;
 
 import com.sun.ts.tests.websocket.common.util.IOUtil;
@@ -29,18 +30,21 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/binecho")
 public class WSCBinaryEchoServerEndpoint {
-  public static final String SAYS = "Binary Server says:";
 
-  @OnMessage
-  public ByteBuffer onMessage(ByteBuffer text) {
-    return ByteBuffer.wrap((SAYS + IOUtil.byteBufferToString(text)).getBytes());
-  }
+	private static final Logger logger = System.getLogger(WSCBinaryEchoServerEndpoint.class.getName());
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in " + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendBinary(ByteBuffer.wrap(message.getBytes()));
-  }
+	public static final String SAYS = "Binary Server says:";
+
+	@OnMessage
+	public ByteBuffer onMessage(ByteBuffer text) {
+		return ByteBuffer.wrap((SAYS + IOUtil.byteBufferToString(text)).getBytes());
+	}
+
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		logger.log(Logger.Level.INFO,"@OnError in " + getClass().getName());
+		t.printStackTrace(); // Write to error log, too
+		String message = "Exception: " + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendBinary(ByteBuffer.wrap(message.getBytes()));
+	}
 }

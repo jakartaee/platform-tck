@@ -25,26 +25,25 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
 
-public class InputStreamMessageHandler
-    implements MessageHandler.Whole<InputStream> {
+public class InputStreamMessageHandler implements MessageHandler.Whole<InputStream> {
 
-  protected Session session;
+	protected Session session;
 
-  public static final String HANDLER_SAYS = "InputStreamMessageHandler says: ";
+	public static final String HANDLER_SAYS = "InputStreamMessageHandler says: ";
 
-  public InputStreamMessageHandler(Session session) {
-    super();
-    this.session = session;
-  }
+	public InputStreamMessageHandler(Session session) {
+		super();
+		this.session = session;
+	}
 
-  @Override
-  public void onMessage(InputStream message) {
-    String msg = null;
-    try {
-      msg = IOUtil.readFromStream(message);
-      session.getBasicRemote().sendText(HANDLER_SAYS + msg);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
+	@Override
+	public void onMessage(InputStream message) {
+		String msg = null;
+		try {
+			msg = IOUtil.readFromStream(message);
+			session.getBasicRemote().sendText(HANDLER_SAYS + msg);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

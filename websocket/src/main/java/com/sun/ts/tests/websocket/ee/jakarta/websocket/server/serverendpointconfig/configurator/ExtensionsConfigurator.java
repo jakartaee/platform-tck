@@ -26,47 +26,43 @@ import jakarta.websocket.server.ServerEndpointConfig.Configurator;
 
 public class ExtensionsConfigurator extends Configurator {
 
-  private static List<ExtensionImpl> installed;
+	private static List<ExtensionImpl> installed;
 
-  private static List<ExtensionImpl> requested;
+	private static List<ExtensionImpl> requested;
 
-  private static List<ExtensionImpl> resulted;
+	private static List<ExtensionImpl> resulted;
 
-  @Override
-  public List<Extension> getNegotiatedExtensions(List<Extension> installed,
-      List<Extension> requested) {
-    List<Extension> resulted = super.getNegotiatedExtensions(installed,
-        requested);
-    ExtensionsConfigurator
-        .setRequested(ExtensionImpl.transformToImpl(requested));
-    ExtensionsConfigurator.setResulted(ExtensionImpl.transformToImpl(resulted));
-    ExtensionsConfigurator
-        .setInstalled(ExtensionImpl.transformToImpl(installed));
-    return resulted;
-  }
+	@Override
+	public List<Extension> getNegotiatedExtensions(List<Extension> installed, List<Extension> requested) {
+		List<Extension> resulted = super.getNegotiatedExtensions(installed, requested);
+		ExtensionsConfigurator.setRequested(ExtensionImpl.transformToImpl(requested));
+		ExtensionsConfigurator.setResulted(ExtensionImpl.transformToImpl(resulted));
+		ExtensionsConfigurator.setInstalled(ExtensionImpl.transformToImpl(installed));
+		return resulted;
+	}
 
-  static List<ExtensionImpl> getInstalled() {
-    return installed;
-  }
+	static List<ExtensionImpl> getInstalled() {
+		return installed;
+	}
 
-  static void setInstalled(List<ExtensionImpl> installed) {
-    ExtensionsConfigurator.installed = installed;
-  }
+	static void setInstalled(List<ExtensionImpl> installed) {
+		ExtensionsConfigurator.installed = installed;
+	}
 
-  static List<ExtensionImpl> getRequested() {
-    return requested;
-  }
+	static List<ExtensionImpl> getRequested() {
+		return requested;
+	}
 
-  static void setRequested(List<ExtensionImpl> requested) {
-    ExtensionsConfigurator.requested = requested;
-  }
+	static void setRequested(List<ExtensionImpl> requested) {
+		ExtensionsConfigurator.requested = requested;
+	}
 
-  static List<ExtensionImpl> getResulted() {
-    return resulted;
-  }
+	static List<ExtensionImpl> getResulted() {
+		return resulted;
+	}
 
-  static void setResulted(List<ExtensionImpl> resulted) {
-    ExtensionsConfigurator.resulted = resulted;
-  }
+	static void setResulted(List<ExtensionImpl> resulted) {
+		ExtensionsConfigurator.resulted = resulted;
+	}
 
 }

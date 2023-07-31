@@ -18,6 +18,7 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.websocketmessage;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 
@@ -30,16 +31,18 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint("/fulllongpathparam/{param}")
 public class WSFullLongAndPathParamServer {
 
-  @OnMessage
-  public String echo(@PathParam("param") Long param, Long l) {
-    return String.valueOf(l.longValue()) + String.valueOf(param.longValue());
-  }
+	private static final Logger logger = System.getLogger(WSFullLongAndPathParamServer.class.getName());
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in " + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnMessage
+	public String echo(@PathParam("param") Long param, Long l) {
+		return String.valueOf(l.longValue()) + String.valueOf(param.longValue());
+	}
+
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		logger.log(Logger.Level.INFO,"@OnError in " + getClass().getName());
+		t.printStackTrace(); // Write to error log, too
+		String message = "Exception: " + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 }

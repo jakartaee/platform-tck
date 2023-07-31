@@ -30,35 +30,34 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
 @ClientEndpoint(encoders = InitDestroyTextEncoder.class)
-public class WSCEndpointWithTextEncoder
-    extends AnnotatedClientEndpoint<String> {
+public class WSCEndpointWithTextEncoder extends AnnotatedClientEndpoint<String> {
 
-  public WSCEndpointWithTextEncoder() {
-    super(new StringClientEndpoint());
-  }
+	public WSCEndpointWithTextEncoder() {
+		super(new StringClientEndpoint());
+	}
 
-  @Override
-  @OnMessage
-  public void onMessage(String msg) {
-    super.onMessage(msg);
-  }
+	@Override
+	@OnMessage
+	public void onMessage(String msg) {
+		super.onMessage(msg);
+	}
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+	@Override
+	@OnOpen
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+	}
 
-  @Override
-  @OnClose
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@Override
+	@OnClose
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+	@Override
+	@OnError
+	public void onError(Session session, Throwable t) {
+		super.onError(session, t);
+	}
 
 }

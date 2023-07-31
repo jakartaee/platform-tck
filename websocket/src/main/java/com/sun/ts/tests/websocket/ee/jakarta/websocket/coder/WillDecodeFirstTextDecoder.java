@@ -24,15 +24,15 @@ import jakarta.websocket.DecodeException;
 
 public class WillDecodeFirstTextDecoder extends StringBeanTextDecoder {
 
-  @Override
-  public StringBean decode(String s) throws DecodeException {
-    Logger.onCode(getClass());
-    return super.decode(s);
-  };
+	@Override
+	public StringBean decode(String s) throws DecodeException {
+		Logger.onCode(getClass());
+		return super.decode(s);
+	};
 
-  @Override
-  public boolean willDecode(String s) {
-    Logger.onWillCode(getClass());
-    return false;
-  }
+	@Override
+	public boolean willDecode(String s) {
+		Logger.onWillCode(getClass());
+		return false;
+	}
 }

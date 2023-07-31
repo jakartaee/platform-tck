@@ -29,16 +29,16 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint("/primitivedouble")
 public class WSPrimitiveDoubleServer {
 
-  @OnMessage
-  public double echo(String data) {
-    return Double.parseDouble(data);
-  }
+	@OnMessage
+	public double echo(String data) {
+		return Double.parseDouble(data);
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		t.printStackTrace(); // Write to error log, too
+		String message = "Exception: " + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

@@ -17,5 +17,5 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.endpoint.client;
 
 public enum OPS {
-  ECHO_MSG, THROW;
+	ECHO_MSG, THROW;
 }

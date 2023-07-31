@@ -28,18 +28,17 @@ import jakarta.websocket.EndpointConfig;
 
 public class StringBeanBinaryStreamDecoder implements BinaryStream<StringBean> {
 
-  @Override
-  public void init(EndpointConfig config) {
-  }
+	@Override
+	public void init(EndpointConfig config) {
+	}
 
-  @Override
-  public StringBean decode(InputStream arg0)
-      throws DecodeException, IOException {
-    String data = IOUtil.readFromStream(arg0);
-    return new StringBean(data);
-  }
+	@Override
+	public StringBean decode(InputStream arg0) throws DecodeException, IOException {
+		String data = IOUtil.readFromStream(arg0);
+		return new StringBean(data);
+	}
 
-  @Override
-  public void destroy() {
-  }
+	@Override
+	public void destroy() {
+	}
 }

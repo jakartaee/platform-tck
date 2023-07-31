@@ -23,17 +23,16 @@ import jakarta.websocket.Decoder;
 import jakarta.websocket.EncodeException;
 import jakarta.websocket.Encoder;
 
-public abstract class CoderSuperClassBinary<T> extends CoderSuperClass
-    implements Encoder.Binary<T>, Decoder.Binary<T> {
+public abstract class CoderSuperClassBinary<T> extends CoderSuperClass implements Encoder.Binary<T>, Decoder.Binary<T> {
 
-  @Override
-  public boolean willDecode(ByteBuffer bytes) {
-    return true;
-  }
+	@Override
+	public boolean willDecode(ByteBuffer bytes) {
+		return true;
+	}
 
-  @Override
-  public ByteBuffer encode(T object) throws EncodeException {
-    return ByteBuffer.wrap(COMMON_CODED_STRING.getBytes());
-  }
+	@Override
+	public ByteBuffer encode(T object) throws EncodeException {
+		return ByteBuffer.wrap(COMMON_CODED_STRING.getBytes());
+	}
 
 }

@@ -24,22 +24,22 @@ import jakarta.websocket.Session;
 
 public class StringWholeMessageHandler implements MessageHandler.Whole<String> {
 
-  private Session session;
+	private Session session;
 
-  public static final String HANDLER_SAYS = "StringWholeMessageHandler says: ";
+	public static final String HANDLER_SAYS = "StringWholeMessageHandler says: ";
 
-  public StringWholeMessageHandler(Session session) {
-    super();
-    this.session = session;
-  }
+	public StringWholeMessageHandler(Session session) {
+		super();
+		this.session = session;
+	}
 
-  @Override
-  public void onMessage(String message) {
-    try {
-      session.getBasicRemote().sendText(HANDLER_SAYS + message);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
+	@Override
+	public void onMessage(String message) {
+		try {
+			session.getBasicRemote().sendText(HANDLER_SAYS + message);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 }

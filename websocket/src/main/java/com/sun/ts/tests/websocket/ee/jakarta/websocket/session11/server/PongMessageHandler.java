@@ -27,23 +27,23 @@ import jakarta.websocket.Session;
 
 public class PongMessageHandler implements MessageHandler.Whole<PongMessage> {
 
-  protected Session session;
+	protected Session session;
 
-  public static final String HANDLER_SAYS = "PongMessageHandler says: ";
+	public static final String HANDLER_SAYS = "PongMessageHandler says: ";
 
-  public PongMessageHandler(Session session) {
-    this.session = session;
-  }
+	public PongMessageHandler(Session session) {
+		this.session = session;
+	}
 
-  @Override
-  public void onMessage(PongMessage pong) {
-    String msg = null;
-    try {
-      msg = IOUtil.byteBufferToString(pong.getApplicationData());
-      session.getBasicRemote().sendText(HANDLER_SAYS + msg);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
+	@Override
+	public void onMessage(PongMessage pong) {
+		String msg = null;
+		try {
+			msg = IOUtil.byteBufferToString(pong.getApplicationData());
+			session.getBasicRemote().sendText(HANDLER_SAYS + msg);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 }

@@ -34,27 +34,26 @@ import jakarta.websocket.Session;
 @ClientEndpoint(decoders = { AlternativeReaderDecoder.class })
 public class AnnotatedTextClient extends AnnotatedClientEndpoint<String> {
 
-  public AnnotatedTextClient() {
-    super(new StringClientEndpoint());
-  }
+	public AnnotatedTextClient() {
+		super(new StringClientEndpoint());
+	}
 
-  @OnOpen
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    session.addMessageHandler(Reader.class,
-        new ReaderMessageHandler(clientEndpoint));
-    super.onOpen(session, config);
-  }
+	@OnOpen
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		session.addMessageHandler(Reader.class, new ReaderMessageHandler(clientEndpoint));
+		super.onOpen(session, config);
+	}
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@OnClose
+	@Override
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+	@OnError
+	@Override
+	public void onError(Session session, Throwable t) {
+		super.onError(session, t);
+	}
 }

@@ -23,8 +23,8 @@ import jakarta.websocket.DecodeException;
 
 public class BinaryCoderInt extends CoderSuperClassBinary<Long> {
 
-  @Override
-  public Long decode(ByteBuffer bytes) throws DecodeException {
-    return NUMERIC.longValue();
-  }
+	@Override
+	public Long decode(ByteBuffer bytes) throws DecodeException {
+		return NUMERIC.longValue();
+	}
 }

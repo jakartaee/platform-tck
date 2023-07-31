@@ -32,34 +32,33 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
 @ClientEndpoint(decoders = { StringBeanTextDecoder.class })
-public class WSTextDecoderClientEndpoint
-    extends AnnotatedClientEndpoint<StringBean> {
+public class WSTextDecoderClientEndpoint extends AnnotatedClientEndpoint<StringBean> {
 
-  public WSTextDecoderClientEndpoint() {
-    super(new StringBeanClientEndpoint());
-  }
+	public WSTextDecoderClientEndpoint() {
+		super(new StringBeanClientEndpoint());
+	}
 
-  @OnMessage
-  public String echo(StringBean bean) {
-    super.onMessage(bean);
-    return bean.get();
-  }
+	@OnMessage
+	public String echo(StringBean bean) {
+		super.onMessage(bean);
+		return bean.get();
+	}
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+	@OnError
+	@Override
+	public void onError(Session session, Throwable t) {
+		super.onError(session, t);
+	}
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@OnClose
+	@Override
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @OnOpen
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+	@OnOpen
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+	}
 }

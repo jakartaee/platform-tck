@@ -29,20 +29,18 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 
-@ServerEndpoint(value = "/binaryencoder", encoders = {
-    ThrowingBinaryEncoder.class })
+@ServerEndpoint(value = "/binaryencoder", encoders = { ThrowingBinaryEncoder.class })
 public class WSCBinaryEncoderServer {
 
-  @OnMessage
-  public void echo(String data, Session session)
-      throws IOException, EncodeException {
-    session.getBasicRemote().sendObject(new StringBean(data));
-  }
+	@OnMessage
+	public void echo(String data, Session session) throws IOException, EncodeException {
+		session.getBasicRemote().sendObject(new StringBean(data));
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    String message = ThrowingTextDecoder.getCauseMessage(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		String message = ThrowingTextDecoder.getCauseMessage(t);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

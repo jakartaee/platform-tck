@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -30,17 +30,18 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint("/srv")
 public class WSCServer {
-  @SuppressWarnings("unused")
-  @OnMessage
-  public boolean onMessage(String data) {
-    WebSocketContainer container = ContainerProvider.getWebSocketContainer();
-    return container != null;
-  }
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@SuppressWarnings("unused")
+	@OnMessage
+	public boolean onMessage(String data) {
+		WebSocketContainer container = ContainerProvider.getWebSocketContainer();
+		return container != null;
+	}
+
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		t.printStackTrace(); // Write to error log, too
+		String message = "Exception: " + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 }

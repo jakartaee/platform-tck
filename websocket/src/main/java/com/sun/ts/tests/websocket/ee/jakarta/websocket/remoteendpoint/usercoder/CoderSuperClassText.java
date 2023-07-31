@@ -21,17 +21,16 @@ import jakarta.websocket.Decoder;
 import jakarta.websocket.EncodeException;
 import jakarta.websocket.Encoder;
 
-public abstract class CoderSuperClassText<T> extends CoderSuperClass
-    implements Encoder.Text<T>, Decoder.Text<T> {
+public abstract class CoderSuperClassText<T> extends CoderSuperClass implements Encoder.Text<T>, Decoder.Text<T> {
 
-  @Override
-  public boolean willDecode(String bytes) {
-    return true;
-  }
+	@Override
+	public boolean willDecode(String bytes) {
+		return true;
+	}
 
-  @Override
-  public String encode(T object) throws EncodeException {
-    return COMMON_CODED_STRING;
-  }
+	@Override
+	public String encode(T object) throws EncodeException {
+		return COMMON_CODED_STRING;
+	}
 
 }

@@ -23,11 +23,11 @@ import jakarta.websocket.Session;
 
 @ClientEndpoint
 public class AnnotatedClientEndpointWithMultipleOnErrorAnnotations
-    extends AnnotatedClientEndpointSuperclassWithAnnotations {
+		extends AnnotatedClientEndpointSuperclassWithAnnotations {
 
-  @OnError
-  public void gotError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+	@OnError
+	public void gotError(Session session, Throwable t) {
+		super.onError(session, t);
+	}
 
 }

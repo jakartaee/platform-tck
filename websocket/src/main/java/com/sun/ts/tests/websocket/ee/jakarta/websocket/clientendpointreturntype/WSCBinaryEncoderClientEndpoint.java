@@ -31,30 +31,29 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
 @ClientEndpoint(encoders = { StringBeanBinaryEncoder.class })
-public class WSCBinaryEncoderClientEndpoint
-    extends AnnotatedStringClientEndpoint {
+public class WSCBinaryEncoderClientEndpoint extends AnnotatedStringClientEndpoint {
 
-  @OnMessage
-  public StringBean echo(String data) {
-    super.onMessage(data);
-    return new StringBean(data);
-  }
+	@OnMessage
+	public StringBean echo(String data) {
+		super.onMessage(data);
+		return new StringBean(data);
+	}
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+	@OnError
+	@Override
+	public void onError(Session session, Throwable t) {
+		super.onError(session, t);
+	}
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@OnClose
+	@Override
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @OnOpen
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+	@OnOpen
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+	}
 }

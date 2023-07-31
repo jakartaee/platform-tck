@@ -17,11 +17,12 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common;
 
 public enum TypeEnum {
-  BYTEARRAY_WHOLE, BYTEARRAY_PARTIAL, BYTEBUFFER_WHOLE, BYTEBUFFER_PARTIAL, LIST_TEXT, LINKEDLIST_HASHSET_TEXT, READER, STRING_WHOLE, STRING_PARTIAL, INPUTSTREAM, STRINGBEAN, STRINGBEANSTREAM, // used
-                                                                                                                                                                                                 // on
-                                                                                                                                                                                                 // server
-                                                                                                                                                                                                 // only
-  STRINGBEANBINARY, // used on server only
-  STRINGBEANBINARYSTREAM, // used on server only
-  PONG
+	BYTEARRAY_WHOLE, BYTEARRAY_PARTIAL, BYTEBUFFER_WHOLE, BYTEBUFFER_PARTIAL, LIST_TEXT, LINKEDLIST_HASHSET_TEXT,
+	READER, STRING_WHOLE, STRING_PARTIAL, INPUTSTREAM, STRINGBEAN, STRINGBEANSTREAM, // used
+																						// on
+																						// server
+																						// only
+	STRINGBEANBINARY, // used on server only
+	STRINGBEANBINARYSTREAM, // used on server only
+	PONG
 }

@@ -29,22 +29,21 @@ import jakarta.websocket.Session;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
 
-@ServerEndpoint(value = "/invalid/{arg}", decoders = {
-    StringBeanTextDecoder.class })
+@ServerEndpoint(value = "/invalid/{arg}", decoders = { StringBeanTextDecoder.class })
 public class OnMessageServerEndpoint {
 
-  // This header makes the endpoint invalid, since only Strings can be
-  // @PathParams
-  @SuppressWarnings("unused")
-  @OnMessage
-  public String echo(String echo, @PathParam("arg") StringBean bean) {
-    return echo.toString();
-  }
+	// This header makes the endpoint invalid, since only Strings can be
+	// @PathParams
+	@SuppressWarnings("unused")
+	@OnMessage
+	public String echo(String echo, @PathParam("arg") StringBean bean) {
+		return echo.toString();
+	}
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable thr) throws IOException {
+		thr.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(thr);
+		session.getBasicRemote().sendText(message);
+	}
 }

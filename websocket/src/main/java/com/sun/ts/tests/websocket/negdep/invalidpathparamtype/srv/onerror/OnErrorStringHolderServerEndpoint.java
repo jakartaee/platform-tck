@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2015, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -29,19 +29,19 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint("/invalid/{arg}")
 public class OnErrorStringHolderServerEndpoint {
-  private static String exception = "";
 
-  @OnMessage
-  public String echo(String echo) {
-    if ("throw".equals(echo))
-      throw new RuntimeException(echo);
-    return exception + echo;
-  }
+	private static String exception = "";
 
-  @OnError
-  public void onError(Session session, Throwable t,
-      @PathParam("arg") StringHolder sb) throws IOException {
-    exception = sb.toString();
-    session.getBasicRemote().sendText(t.getMessage());
-  }
+	@OnMessage
+	public String echo(String echo) {
+		if ("throw".equals(echo))
+			throw new RuntimeException(echo);
+		return exception + echo;
+	}
+
+	@OnError
+	public void onError(Session session, Throwable t, @PathParam("arg") StringHolder sb) throws IOException {
+		exception = sb.toString();
+		session.getBasicRemote().sendText(t.getMessage());
+	}
 }

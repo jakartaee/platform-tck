@@ -24,30 +24,28 @@ import jakarta.websocket.DecodeException;
 import jakarta.websocket.Decoder;
 import jakarta.websocket.EndpointConfig;
 
-public class LinkedListHashSetTextDecoder
-    implements Decoder.Text<LinkedList<HashSet<String>>> {
+public class LinkedListHashSetTextDecoder implements Decoder.Text<LinkedList<HashSet<String>>> {
 
-  @Override
-  public void destroy() {
-  }
+	@Override
+	public void destroy() {
+	}
 
-  @Override
-  public void init(EndpointConfig arg0) {
-  }
+	@Override
+	public void init(EndpointConfig arg0) {
+	}
 
-  @Override
-  public LinkedList<HashSet<String>> decode(String arg0)
-      throws DecodeException {
-    HashSet<String> set = new HashSet<>();
-    set.add(arg0);
-    LinkedList<HashSet<String>> list = new LinkedList<>();
-    list.add(set);
-    return list;
-  }
+	@Override
+	public LinkedList<HashSet<String>> decode(String arg0) throws DecodeException {
+		HashSet<String> set = new HashSet<>();
+		set.add(arg0);
+		LinkedList<HashSet<String>> list = new LinkedList<>();
+		list.add(set);
+		return list;
+	}
 
-  @Override
-  public boolean willDecode(String arg0) {
-    return true;
-  }
+	@Override
+	public boolean willDecode(String arg0) {
+		return true;
+	}
 
 }

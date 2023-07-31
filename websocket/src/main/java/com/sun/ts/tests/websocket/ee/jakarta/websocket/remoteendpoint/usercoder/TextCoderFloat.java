@@ -21,8 +21,8 @@ import jakarta.websocket.DecodeException;
 
 public class TextCoderFloat extends CoderSuperClassText<Float> {
 
-  @Override
-  public Float decode(String s) throws DecodeException {
-    return NUMERIC.floatValue();
-  }
+	@Override
+	public Float decode(String s) throws DecodeException {
+		return NUMERIC.floatValue();
+	}
 }

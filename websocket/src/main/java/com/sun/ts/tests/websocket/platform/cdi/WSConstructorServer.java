@@ -18,6 +18,7 @@
 package com.sun.ts.tests.websocket.platform.cdi;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 
@@ -32,30 +33,32 @@ import jakarta.websocket.server.ServerEndpoint;
 @ApplicationScoped
 public class WSConstructorServer {
 
-  private WSInjectableServer injectableServer;
+	private static final Logger logger = System.getLogger(WSConstructorServer.class.getName());
 
-  @OnMessage
-  public String inject(String echo) {
-    if (injectableServer == null)
-      return "Nothing injected using CDI";
-    return injectableServer.getName(echo);
-  }
+	private WSInjectableServer injectableServer;
 
-  @Inject
-  public WSConstructorServer(WSInjectableServer injectableServer) {
-    this.injectableServer = injectableServer;
-  }
+	@OnMessage
+	public String inject(String echo) {
+		if (injectableServer == null)
+			return "Nothing injected using CDI";
+		return injectableServer.getName(echo);
+	}
 
-  public WSConstructorServer() {
-    // This one is mandatory when @Inject constructor
-  }
+	@Inject
+	public WSConstructorServer(WSInjectableServer injectableServer) {
+		this.injectableServer = injectableServer;
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in " + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	public WSConstructorServer() {
+		// This one is mandatory when @Inject constructor
+	}
+
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		logger.log(Logger.Level.INFO,"@OnError in " + getClass().getName());
+		t.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

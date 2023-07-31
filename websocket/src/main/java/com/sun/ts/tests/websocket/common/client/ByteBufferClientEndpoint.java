@@ -22,8 +22,8 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 public class ByteBufferClientEndpoint extends ClientEndpoint<ByteBuffer> {
 
-  @Override
-  protected void appendMessage(ByteBuffer message) {
-    getMessageBuilder().append(IOUtil.byteBufferToString(message));
-  }
+	@Override
+	protected void appendMessage(ByteBuffer message) {
+		getMessageBuilder().append(IOUtil.byteBufferToString(message));
+	}
 }

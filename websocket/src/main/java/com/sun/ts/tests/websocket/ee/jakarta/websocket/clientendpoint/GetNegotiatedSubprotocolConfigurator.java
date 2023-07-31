@@ -22,43 +22,41 @@ import java.util.List;
 import jakarta.websocket.server.ServerEndpointConfig.Configurator;
 
 public class GetNegotiatedSubprotocolConfigurator extends Configurator {
-  private static List<String> supported;
+	private static List<String> supported;
 
-  private static List<String> requested;
+	private static List<String> requested;
 
-  private static String resulted;
+	private static String resulted;
 
-  @Override
-  public String getNegotiatedSubprotocol(List<String> supported,
-      List<String> requested) {
-    GetNegotiatedSubprotocolConfigurator.setRequested(requested);
-    GetNegotiatedSubprotocolConfigurator.setSupported(supported);
-    GetNegotiatedSubprotocolConfigurator
-        .setResulted(super.getNegotiatedSubprotocol(supported, requested));
-    return GetNegotiatedSubprotocolConfigurator.getResulted();
-  }
+	@Override
+	public String getNegotiatedSubprotocol(List<String> supported, List<String> requested) {
+		GetNegotiatedSubprotocolConfigurator.setRequested(requested);
+		GetNegotiatedSubprotocolConfigurator.setSupported(supported);
+		GetNegotiatedSubprotocolConfigurator.setResulted(super.getNegotiatedSubprotocol(supported, requested));
+		return GetNegotiatedSubprotocolConfigurator.getResulted();
+	}
 
-  static List<String> getSupported() {
-    return supported;
-  }
+	static List<String> getSupported() {
+		return supported;
+	}
 
-  static List<String> getRequested() {
-    return requested;
-  }
+	static List<String> getRequested() {
+		return requested;
+	}
 
-  static String getResulted() {
-    return resulted;
-  }
+	static String getResulted() {
+		return resulted;
+	}
 
-  private static void setSupported(List<String> supported) {
-    GetNegotiatedSubprotocolConfigurator.supported = supported;
-  }
+	private static void setSupported(List<String> supported) {
+		GetNegotiatedSubprotocolConfigurator.supported = supported;
+	}
 
-  private static void setRequested(List<String> requested) {
-    GetNegotiatedSubprotocolConfigurator.requested = requested;
-  }
+	private static void setRequested(List<String> requested) {
+		GetNegotiatedSubprotocolConfigurator.requested = requested;
+	}
 
-  private static void setResulted(String resulted) {
-    GetNegotiatedSubprotocolConfigurator.resulted = resulted;
-  }
+	private static void setResulted(String resulted) {
+		GetNegotiatedSubprotocolConfigurator.resulted = resulted;
+	}
 }

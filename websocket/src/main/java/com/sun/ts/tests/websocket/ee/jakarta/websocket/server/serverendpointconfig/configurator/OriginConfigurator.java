@@ -20,21 +20,21 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverendpointcon
 import jakarta.websocket.server.ServerEndpointConfig.Configurator;
 
 public class OriginConfigurator extends Configurator {
-  private static String origin;
+	private static String origin;
 
-  public static String NULL = "NULL";
+	public static String NULL = "NULL";
 
-  @Override
-  public boolean checkOrigin(String originHeaderValue) {
-    OriginConfigurator.setOrigin(originHeaderValue);
-    return super.checkOrigin(originHeaderValue);
-  }
+	@Override
+	public boolean checkOrigin(String originHeaderValue) {
+		OriginConfigurator.setOrigin(originHeaderValue);
+		return super.checkOrigin(originHeaderValue);
+	}
 
-  static String getOrigin() {
-    return origin == null ? NULL : origin;
-  }
+	static String getOrigin() {
+		return origin == null ? NULL : origin;
+	}
 
-  static void setOrigin(String origin) {
-    OriginConfigurator.origin = origin;
-  }
+	static void setOrigin(String origin) {
+		OriginConfigurator.origin = origin;
+	}
 }

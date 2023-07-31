@@ -32,36 +32,35 @@ import jakarta.websocket.Session;
  * interface with {@link MessageHandler} interface.
  * </p>
  * Depending on what {@link WebSocketCommonClient.Entity} is defined (partial,
- * whole), {@link Whole} or {@link Partial} functionality is used
- * with onMessage
+ * whole), {@link Whole} or {@link Partial} functionality is used with onMessage
  */
 public class EndpointCallback {
 
-  @SuppressWarnings("unused")
-  public void onError(Session session, Throwable t) {
-  }
+	@SuppressWarnings("unused")
+	public void onError(Session session, Throwable t) {
+	}
 
-  @SuppressWarnings("unused")
-  public void onMessage(Object o) {
-  }
+	@SuppressWarnings("unused")
+	public void onMessage(Object o) {
+	}
 
-  @SuppressWarnings("unused")
-  public void onOpen(Session session, EndpointConfig config) {
-  }
+	@SuppressWarnings("unused")
+	public void onOpen(Session session, EndpointConfig config) {
+	}
 
-  @SuppressWarnings("unused")
-  public void onClose(Session session, CloseReason closeReason) {
-  }
+	@SuppressWarnings("unused")
+	public void onClose(Session session, CloseReason closeReason) {
+	}
 
-  public CountDownLatch getCountDownLatch() {
-    return ClientEndpoint.getCountDownLatch();
-  }
+	public CountDownLatch getCountDownLatch() {
+		return ClientEndpoint.getCountDownLatch();
+	}
 
-  public StringBuffer getMessageBuilder() {
-    return ClientEndpoint.getMessageBuilder();
-  }
+	public StringBuffer getMessageBuilder() {
+		return ClientEndpoint.getMessageBuilder();
+	}
 
-  public Throwable getLastError() {
-    return ClientEndpoint.getLastError();
-  }
+	public Throwable getLastError() {
+		return ClientEndpoint.getLastError();
+	}
 }

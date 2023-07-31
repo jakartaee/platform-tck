@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -21,6 +21,7 @@
 package com.sun.ts.tests.websocket.spec.session.sessionid;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
@@ -37,119 +38,108 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/TCKTestServer")
 public class WSTestServer {
 
-  private static final Class<?>[] TEST_ARGS = { String.class, Session.class };
+	private static final Logger logger = System.getLogger(WSTestServer.class.getName());
 
-  private static final Class<?>[] TEST_ARGS_BYTEBUFFER = { ByteBuffer.class,
-      Session.class };
+	private static final Class<?>[] TEST_ARGS = { String.class, Session.class };
 
-  static String testName;
+	private static final Class<?>[] TEST_ARGS_BYTEBUFFER = { ByteBuffer.class, Session.class };
 
-  @OnOpen
-  public void init(Session session) throws IOException {
-    session.getBasicRemote().sendText("========TCKTestServer opened");
-    if (session.isOpen()) {
-      session.getBasicRemote()
-          .sendText("========session from Server is open=TRUE");
-    } else {
-      session.getBasicRemote()
-          .sendText("========session from Server is open=FALSE");
-    }
-  }
+	static String testName;
 
-  @OnMessage
-  public void respondString(String message, Session session) {
-    System.out.println("TCKTestServer got String message: " + message);
-    try {
-      if (message.startsWith("testName=") && message.endsWith("Test")) {
-        testName = message.substring(9);
-        Method method = WSTestServer.class.getMethod(testName, TEST_ARGS);
-        method.invoke(this, new Object[] { message, session });
-      } else {
-        session.getBasicRemote()
-            .sendText("========TCKTestServer received String:" + message);
-        session.getBasicRemote().sendText(
-            "========TCKTestServer responds, please close your session");
-      }
-    } catch (InvocationTargetException ite) {
-      System.err.println("Cannot run method " + testName);
-      ite.printStackTrace();
-    } catch (NoSuchMethodException nsme) {
-      System.err.println("Test: " + testName + " does not exist");
-      nsme.printStackTrace();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
+	@OnOpen
+	public void init(Session session) throws IOException {
+		session.getBasicRemote().sendText("========TCKTestServer opened");
+		if (session.isOpen()) {
+			session.getBasicRemote().sendText("========session from Server is open=TRUE");
+		} else {
+			session.getBasicRemote().sendText("========session from Server is open=FALSE");
+		}
+	}
 
-  @OnMessage
-  public void respondByte(ByteBuffer message, Session session) {
-    String message_string = IOUtil.byteBufferToString(message);
+	@OnMessage
+	public void respondString(String message, Session session) {
+		logger.log(Logger.Level.INFO,"TCKTestServer got String message: " + message);
+		try {
+			if (message.startsWith("testName=") && message.endsWith("Test")) {
+				testName = message.substring(9);
+				Method method = WSTestServer.class.getMethod(testName, TEST_ARGS);
+				method.invoke(this, new Object[] { message, session });
+			} else {
+				session.getBasicRemote().sendText("========TCKTestServer received String:" + message);
+				session.getBasicRemote().sendText("========TCKTestServer responds, please close your session");
+			}
+		} catch (InvocationTargetException ite) {
+			logger.log(Logger.Level.ERROR,"Cannot run method " + testName);
+			ite.printStackTrace();
+		} catch (NoSuchMethodException nsme) {
+			logger.log(Logger.Level.ERROR,"Test: " + testName + " does not exist");
+			nsme.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-    System.out
-        .println("TCKTestServer got ByteBuffer message: " + message_string);
+	@OnMessage
+	public void respondByte(ByteBuffer message, Session session) {
+		String message_string = IOUtil.byteBufferToString(message);
 
-    try {
-      if (message_string.startsWith("testName=")) {
-        testName = message_string.substring(9);
-        Method method = WSTestServer.class.getMethod(testName,
-            TEST_ARGS_BYTEBUFFER);
-        method.invoke(this, new Object[] { message, session });
-      } else {
-        ByteBuffer data = ByteBuffer
-            .wrap(("========TCKTestServer received ByteBuffer: ").getBytes());
-        ByteBuffer data1 = ByteBuffer.wrap(
-            ("========TCKTestServer responds: Message in bytes").getBytes());
+		logger.log(Logger.Level.INFO,"TCKTestServer got ByteBuffer message: " + message_string);
 
-        try {
-          session.getBasicRemote().sendBinary(data);
-          session.getBasicRemote().sendBinary(message);
-          session.getBasicRemote().sendBinary(data1);
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
-      }
-    } catch (InvocationTargetException ite) {
-      System.err.println("Cannot run method " + testName);
-      ite.printStackTrace();
-    } catch (NoSuchMethodException nsme) {
-      System.err.println("Test: " + testName + " does not exist");
-      nsme.printStackTrace();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
+		try {
+			if (message_string.startsWith("testName=")) {
+				testName = message_string.substring(9);
+				Method method = WSTestServer.class.getMethod(testName, TEST_ARGS_BYTEBUFFER);
+				method.invoke(this, new Object[] { message, session });
+			} else {
+				ByteBuffer data = ByteBuffer.wrap(("========TCKTestServer received ByteBuffer: ").getBytes());
+				ByteBuffer data1 = ByteBuffer.wrap(("========TCKTestServer responds: Message in bytes").getBytes());
 
-  @OnError
-  public void onError(Session session, Throwable t) {
-    try {
-      session.getBasicRemote().sendText("========TCKTestServer onError");
-      if (session.isOpen()) {
-        session.getBasicRemote()
-            .sendText("========onError: session from Server is open=TRUE");
-      } else {
-        session.getBasicRemote()
-            .sendText("========onError: session from Server is open=FALSE");
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    t.printStackTrace();
-  }
+				try {
+					session.getBasicRemote().sendBinary(data);
+					session.getBasicRemote().sendBinary(message);
+					session.getBasicRemote().sendBinary(data1);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		} catch (InvocationTargetException ite) {
+			logger.log(Logger.Level.ERROR,"Cannot run method " + testName);
+			ite.printStackTrace();
+		} catch (NoSuchMethodException nsme) {
+			logger.log(Logger.Level.ERROR,"Test: " + testName + " does not exist");
+			nsme.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-  @OnClose
-  public void onClose() {
-    System.out.println("==From onClose==");
-  }
+	@OnError
+	public void onError(Session session, Throwable t) {
+		try {
+			session.getBasicRemote().sendText("========TCKTestServer onError");
+			if (session.isOpen()) {
+				session.getBasicRemote().sendText("========onError: session from Server is open=TRUE");
+			} else {
+				session.getBasicRemote().sendText("========onError: session from Server is open=FALSE");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		t.printStackTrace();
+	}
 
-  public void getId1Test(String message, Session session) {
-    try {
-      session.getBasicRemote()
-          .sendText("========TCKTestServer received String: " + message);
-      session.getBasicRemote().sendText(
-          "========TCKTestServer responds: default getId=" + session.getId());
-    } catch (IOException ex) {
-      ex.printStackTrace();
-    }
-  }
+	@OnClose
+	public void onClose() {
+		logger.log(Logger.Level.INFO,"==From onClose==");
+	}
+
+	public void getId1Test(String message, Session session) {
+		try {
+			session.getBasicRemote().sendText("========TCKTestServer received String: " + message);
+			session.getBasicRemote().sendText("========TCKTestServer responds: default getId=" + session.getId());
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+	}
 
 }

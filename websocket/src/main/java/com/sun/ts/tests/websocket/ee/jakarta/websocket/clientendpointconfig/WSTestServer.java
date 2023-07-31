@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -21,6 +21,7 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpointconfig;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 import java.nio.ByteBuffer;
 import java.util.List;
 
@@ -40,106 +41,95 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/TCKTestServer")
 public class WSTestServer {
 
-  static EndpointConfig config;
+	private static final Logger logger = System.getLogger(WSTestServer.class.getName());
 
-  @OnOpen
-  public void init(Session session, EndpointConfig configs) throws IOException {
-    System.out.println("========TCKTestServer opened");
-    config = configs;
-    session.getBasicRemote().sendText("========TCKTestServer opened");
-    if (session.isOpen()) {
-      session.getBasicRemote()
-          .sendText("========session from Server is open=TRUE");
-    } else {
-      session.getBasicRemote()
-          .sendText("========session from Server is open=FALSE");
-    }
-  }
+	static EndpointConfig config;
 
-  @OnMessage
-  public void respondString(String message, Session session) {
-    System.out.println("TCKTestServer got String message: " + message);
-    try {
-      session.getBasicRemote()
-          .sendText("========TCKTestServer received String:" + message + "|");
+	@OnOpen
+	public void init(Session session, EndpointConfig configs) throws IOException {
+		logger.log(Logger.Level.INFO,"========TCKTestServer opened");
+		config = configs;
+		session.getBasicRemote().sendText("========TCKTestServer opened");
+		if (session.isOpen()) {
+			session.getBasicRemote().sendText("========session from Server is open=TRUE");
+		} else {
+			session.getBasicRemote().sendText("========session from Server is open=FALSE");
+		}
+	}
 
-      String subprotocol = session.getNegotiatedSubprotocol();
-      session.getBasicRemote()
-          .sendText("========TCKTestServer: subProtocol==" + subprotocol + "|");
+	@OnMessage
+	public void respondString(String message, Session session) {
+		logger.log(Logger.Level.INFO,"TCKTestServer got String message: " + message);
+		try {
+			session.getBasicRemote().sendText("========TCKTestServer received String:" + message + "|");
 
-      List<Extension> extensions = session.getNegotiatedExtensions();
+			String subprotocol = session.getNegotiatedSubprotocol();
+			session.getBasicRemote().sendText("========TCKTestServer: subProtocol==" + subprotocol + "|");
 
-      session.getBasicRemote().sendText(
-          "========TCKTestServer: Extension size=" + extensions.size() + "|");
-      for (Extension extension : extensions) {
-        session.getBasicRemote().sendText(
-            "========TCKTestServer: extensions " + extension.getName() + "|");
-      }
+			List<Extension> extensions = session.getNegotiatedExtensions();
 
-      List<Class<? extends Encoder>> encoders = config.getEncoders();
-      int size = encoders.size();
-      session.getBasicRemote().sendText(
-          "========TCKTestServer: getEncoders() returned encoders size=" + size
-              + "|");
-      for (Class<? extends Encoder> encoder : encoders) {
-        session.getBasicRemote().sendText(encoder + "|");
-      }
+			session.getBasicRemote().sendText("========TCKTestServer: Extension size=" + extensions.size() + "|");
+			for (Extension extension : extensions) {
+				session.getBasicRemote().sendText("========TCKTestServer: extensions " + extension.getName() + "|");
+			}
 
-      List<Class<? extends Decoder>> decoders = config.getDecoders();
-      size = decoders.size();
-      session.getBasicRemote().sendText(
-          "========TCKTestServer: EndpointConfig.getDecoders() returned decoders size="
-              + size + "|");
-      for (Class<? extends Decoder> decoder : decoders) {
-        session.getBasicRemote().sendText(decoder + "|");
-      }
+			List<Class<? extends Encoder>> encoders = config.getEncoders();
+			int size = encoders.size();
+			session.getBasicRemote()
+					.sendText("========TCKTestServer: getEncoders() returned encoders size=" + size + "|");
+			for (Class<? extends Encoder> encoder : encoders) {
+				session.getBasicRemote().sendText(encoder + "|");
+			}
 
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
+			List<Class<? extends Decoder>> decoders = config.getDecoders();
+			size = decoders.size();
+			session.getBasicRemote().sendText(
+					"========TCKTestServer: EndpointConfig.getDecoders() returned decoders size=" + size + "|");
+			for (Class<? extends Decoder> decoder : decoders) {
+				session.getBasicRemote().sendText(decoder + "|");
+			}
 
-  @OnMessage
-  public void respondByte(ByteBuffer message, Session session) {
-    String message_string = IOUtil.byteBufferToString(message);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-    System.out
-        .println("TCKTestServer got ByteBuffer message: " + message_string);
+	@OnMessage
+	public void respondByte(ByteBuffer message, Session session) {
+		String message_string = IOUtil.byteBufferToString(message);
 
-    ByteBuffer data = ByteBuffer
-        .wrap(("========TCKTestServer received ByteBuffer: ").getBytes());
-    ByteBuffer data1 = ByteBuffer
-        .wrap(("========TCKTestServer responds: Message in bytes").getBytes());
+		logger.log(Logger.Level.INFO,"TCKTestServer got ByteBuffer message: " + message_string);
 
-    try {
-      session.getBasicRemote().sendBinary(data);
-      session.getBasicRemote().sendBinary(message);
-      session.getBasicRemote().sendBinary(data1);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
+		ByteBuffer data = ByteBuffer.wrap(("========TCKTestServer received ByteBuffer: ").getBytes());
+		ByteBuffer data1 = ByteBuffer.wrap(("========TCKTestServer responds: Message in bytes").getBytes());
 
-  @OnError
-  public void onError(Session session, Throwable t) {
-    System.out.println("TCKTestServer onError");
-    try {
-      session.getBasicRemote().sendText("========TCKTestServer onError");
-      if (session.isOpen()) {
-        session.getBasicRemote()
-            .sendText("========onError: session from Server is open=TRUE");
-      } else {
-        session.getBasicRemote()
-            .sendText("========onError: session from Server is open=FALSE");
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    t.printStackTrace();
-  }
+		try {
+			session.getBasicRemote().sendBinary(data);
+			session.getBasicRemote().sendBinary(message);
+			session.getBasicRemote().sendBinary(data1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-  @OnClose
-  public void onClose() {
-    System.out.println("==From onClose==");
-  }
+	@OnError
+	public void onError(Session session, Throwable t) {
+		logger.log(Logger.Level.INFO,"TCKTestServer onError");
+		try {
+			session.getBasicRemote().sendText("========TCKTestServer onError");
+			if (session.isOpen()) {
+				session.getBasicRemote().sendText("========onError: session from Server is open=TRUE");
+			} else {
+				session.getBasicRemote().sendText("========onError: session from Server is open=FALSE");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		t.printStackTrace();
+	}
+
+	@OnClose
+	public void onClose() {
+		logger.log(Logger.Level.INFO,"==From onClose==");
+	}
 }

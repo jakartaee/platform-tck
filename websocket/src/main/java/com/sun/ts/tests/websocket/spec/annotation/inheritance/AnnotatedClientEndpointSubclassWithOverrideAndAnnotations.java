@@ -28,30 +28,30 @@ import jakarta.websocket.Session;
 
 @ClientEndpoint
 public class AnnotatedClientEndpointSubclassWithOverrideAndAnnotations
-    extends AnnotatedClientEndpointSuperclassWithAnnotations {
+		extends AnnotatedClientEndpointSuperclassWithAnnotations {
 
-  @OnOpen
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+	@OnOpen
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+	}
 
-  @OnMessage
-  @Override
-  public void onMessage(String msg) {
-    super.onMessage(msg);
-  }
+	@OnMessage
+	@Override
+	public void onMessage(String msg) {
+		super.onMessage(msg);
+	}
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@OnClose
+	@Override
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+	@OnError
+	@Override
+	public void onError(Session session, Throwable t) {
+		super.onError(session, t);
+	}
 
 }

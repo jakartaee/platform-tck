@@ -31,70 +31,61 @@ import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpointConfig;
 
-public class WSCSubprotocolServer extends Endpoint
-    implements MessageHandler.Whole<String> {
+public class WSCSubprotocolServer extends Endpoint implements MessageHandler.Whole<String> {
 
-  Session session;
+	Session session;
 
-  ServerEndpointConfig config;
+	ServerEndpointConfig config;
 
-  @Override
-  public void onMessage(String msg) {
-    List<String> ret = null;
-    boolean contains = false;
-    if (msg.equals("requested")) {
-      contains = StringUtil.contains(
-          GetNegotiatedSubprotocolConfigurator.getRequested(),
-          getRequestedSubprotocols());
-      ret = contains ? getRequestedSubprotocols()
-          : GetNegotiatedSubprotocolConfigurator.getRequested();
-    } else if (msg.equals("supported")) {
-      List<String> subprotocols = config.getSubprotocols();
-      contains = StringUtil.contains(
-          GetNegotiatedSubprotocolConfigurator.getSupported(), subprotocols);
-      ret = contains ? subprotocols
-          : GetNegotiatedSubprotocolConfigurator.getSupported();
-    } else if (msg.equals("resulted")) {
-      ret = Collections.singletonList(
-          "{" + GetNegotiatedSubprotocolConfigurator.getResulted() + "}");
-    }
-    try {
-      session.getBasicRemote().sendText(StringUtil.collectionToString(ret));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
+	@Override
+	public void onMessage(String msg) {
+		List<String> ret = null;
+		boolean contains = false;
+		if (msg.equals("requested")) {
+			contains = StringUtil.contains(GetNegotiatedSubprotocolConfigurator.getRequested(),
+					getRequestedSubprotocols());
+			ret = contains ? getRequestedSubprotocols() : GetNegotiatedSubprotocolConfigurator.getRequested();
+		} else if (msg.equals("supported")) {
+			List<String> subprotocols = config.getSubprotocols();
+			contains = StringUtil.contains(GetNegotiatedSubprotocolConfigurator.getSupported(), subprotocols);
+			ret = contains ? subprotocols : GetNegotiatedSubprotocolConfigurator.getSupported();
+		} else if (msg.equals("resulted")) {
+			ret = Collections.singletonList("{" + GetNegotiatedSubprotocolConfigurator.getResulted() + "}");
+		}
+		try {
+			session.getBasicRemote().sendText(StringUtil.collectionToString(ret));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    this.session = session;
-    this.config = (ServerEndpointConfig) config;
-    session.addMessageHandler(this);
-  }
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		this.session = session;
+		this.config = (ServerEndpointConfig) config;
+		session.addMessageHandler(this);
+	}
 
-  @Override
-  public void onError(Session session, Throwable thr) {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    try {
-      session.getBasicRemote().sendText(message);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
+	@Override
+	public void onError(Session session, Throwable thr) {
+		thr.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(thr);
+		try {
+			session.getBasicRemote().sendText(message);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-  public static List<String> getRequestedSubprotocols() {
-    return Arrays.asList(StringUtil.WEBSOCKET_SUBPROTOCOLS[0],
-        StringUtil.WEBSOCKET_SUBPROTOCOLS[2],
-        StringUtil.WEBSOCKET_SUBPROTOCOLS[4]);
-  }
+	public static List<String> getRequestedSubprotocols() {
+		return Arrays.asList(StringUtil.WEBSOCKET_SUBPROTOCOLS[0], StringUtil.WEBSOCKET_SUBPROTOCOLS[2],
+				StringUtil.WEBSOCKET_SUBPROTOCOLS[4]);
+	}
 
-  public static List<String> getSupportedSubprotocols() {
-    return Arrays.asList(StringUtil.WEBSOCKET_SUBPROTOCOLS[1],
-        StringUtil.WEBSOCKET_SUBPROTOCOLS[3],
-        StringUtil.WEBSOCKET_SUBPROTOCOLS[5],
-        StringUtil.WEBSOCKET_SUBPROTOCOLS[4],
-        StringUtil.WEBSOCKET_SUBPROTOCOLS[2]);
-  }
+	public static List<String> getSupportedSubprotocols() {
+		return Arrays.asList(StringUtil.WEBSOCKET_SUBPROTOCOLS[1], StringUtil.WEBSOCKET_SUBPROTOCOLS[3],
+				StringUtil.WEBSOCKET_SUBPROTOCOLS[5], StringUtil.WEBSOCKET_SUBPROTOCOLS[4],
+				StringUtil.WEBSOCKET_SUBPROTOCOLS[2]);
+	}
 
 }

@@ -22,23 +22,23 @@ package com.sun.ts.tests.websocket.common.stringbean;
  * mutable string.
  */
 public class StringBean {
-  private String value;
+	private String value;
 
-  public String get() {
-    return value;
-  }
+	public String get() {
+		return value;
+	}
 
-  public void set(String value) {
-    this.value = value;
-  }
+	public void set(String value) {
+		this.value = value;
+	}
 
-  @Override
-  public String toString() {
-    return "StringBean. To get a value, use rather #get() method.";
-  }
+	@Override
+	public String toString() {
+		return "StringBean. To get a value, use rather #get() method.";
+	}
 
-  public StringBean(String value) {
-    super();
-    this.value = value;
-  }
+	public StringBean(String value) {
+		super();
+		this.value = value;
+	}
 }

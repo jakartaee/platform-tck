@@ -29,20 +29,19 @@ import jakarta.websocket.server.ServerEndpointConfig;
  */
 public class AppConfig implements ServerApplicationConfig {
 
-  @Override
-  public Set<ServerEndpointConfig> getEndpointConfigs(
-      Set<Class<? extends Endpoint>> endpointClasses) {
-    Set<ServerEndpointConfig> set = new HashSet<>();
-    return set;
-  }
+	@Override
+	public Set<ServerEndpointConfig> getEndpointConfigs(Set<Class<? extends Endpoint>> endpointClasses) {
+		Set<ServerEndpointConfig> set = new HashSet<>();
+		return set;
+	}
 
-  @Override
-  public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scanned) {
-    Set<Class<?>> set = new HashSet<>();
-    set.add(WSCGetUserPrincipalServer.class);
-    set.add(WSCIsUserInRoleServer.class);
-    set.add(WSCUnauthEchoServer.class);
-    set.add(WSCPostUnauthEchoServer.class);
-    return set;
-  }
+	@Override
+	public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scanned) {
+		Set<Class<?>> set = new HashSet<>();
+		set.add(WSCGetUserPrincipalServer.class);
+		set.add(WSCIsUserInRoleServer.class);
+		set.add(WSCUnauthEchoServer.class);
+		set.add(WSCPostUnauthEchoServer.class);
+		return set;
+	}
 }

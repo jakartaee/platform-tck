@@ -23,21 +23,21 @@ import jakarta.websocket.EndpointConfig;
 
 public class StringBeanTextDecoder implements Text<StringBean> {
 
-  @Override
-  public void init(EndpointConfig config) {
-  }
+	@Override
+	public void init(EndpointConfig config) {
+	}
 
-  @Override
-  public StringBean decode(String s) throws DecodeException {
-    return new StringBean(s);
-  }
+	@Override
+	public StringBean decode(String s) throws DecodeException {
+		return new StringBean(s);
+	}
 
-  @Override
-  public boolean willDecode(String s) {
-    return true;
-  }
+	@Override
+	public boolean willDecode(String s) {
+		return true;
+	}
 
-  @Override
-  public void destroy() {
-  }
+	@Override
+	public void destroy() {
+	}
 }

@@ -29,20 +29,20 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/origin", configurator = OriginConfigurator.class)
 public class WSCOriginServer {
 
-  @OnMessage
-  public String onMessage(String msg) {
-    if (msg.equals("reset")) {
-      OriginConfigurator.setOrigin("");
-    } else if (msg.equals("get"))
-      return OriginConfigurator.getOrigin();
-    return "";
-  }
+	@OnMessage
+	public String onMessage(String msg) {
+		if (msg.equals("reset")) {
+			OriginConfigurator.setOrigin("");
+		} else if (msg.equals("get"))
+			return OriginConfigurator.getOrigin();
+		return "";
+	}
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable thr) throws IOException {
+		thr.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(thr);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

@@ -31,54 +31,51 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/full/{param1}/{param2}")
 public class WS2FullDifferentPathParamsServer {
-  private final static String ERR = "TCK INTENDED ERROR";
+	private final static String ERR = "TCK INTENDED ERROR";
 
-  private String[] p = new String[2];
+	private String[] p = new String[2];
 
-  @OnOpen
-  public void onOpen(@PathParam("param1") Double p1,
-      @PathParam("param2") Float p2) {
-    p[0] = p1.toString();
-    p[1] = p2.toString();
-  }
+	@OnOpen
+	public void onOpen(@PathParam("param1") Double p1, @PathParam("param2") Float p2) {
+		p[0] = p1.toString();
+		p[1] = p2.toString();
+	}
 
-  @OnMessage
-  public String param(@PathParam("param1") Double p1,
-      @PathParam("param2") Float p2, String content) throws IOException {
-    OPS op = OPS.valueOf(content);
-    switch (op) {
-    case OPEN:
-      content = p[0] + p[1];
-      break;
-    case MESSAGE:
-      content = p1.toString() + p2.toString();
-      break;
-    case IOEXCEPTION:
-      throw new IOException(ERR);
-    case RUNTIMEEXCEPTION:
-      throw new RuntimeException(ERR);
-    }
-    return content;
-  }
+	@OnMessage
+	public String param(@PathParam("param1") Double p1, @PathParam("param2") Float p2, String content)
+			throws IOException {
+		OPS op = OPS.valueOf(content);
+		switch (op) {
+		case OPEN:
+			content = p[0] + p[1];
+			break;
+		case MESSAGE:
+			content = p1.toString() + p2.toString();
+			break;
+		case IOEXCEPTION:
+			throw new IOException(ERR);
+		case RUNTIMEEXCEPTION:
+			throw new RuntimeException(ERR);
+		}
+		return content;
+	}
 
-  @OnError
-  public void onError(@PathParam("param1") Double p1,
-      @PathParam("param2") Float p2, Session session, Throwable t)
-      throws IOException {
-    String msg = t.getMessage();
-    if (ERR.equals(msg)) {
-      session.getBasicRemote().sendText(p1.toString() + p2.toString());
-    } else {
-      t.printStackTrace(); // Write to error log, too
-      String message = IOUtil.printStackTrace(t);
-      session.getBasicRemote().sendText(message);
-    }
-  }
+	@OnError
+	public void onError(@PathParam("param1") Double p1, @PathParam("param2") Float p2, Session session, Throwable t)
+			throws IOException {
+		String msg = t.getMessage();
+		if (ERR.equals(msg)) {
+			session.getBasicRemote().sendText(p1.toString() + p2.toString());
+		} else {
+			t.printStackTrace(); // Write to error log, too
+			String message = IOUtil.printStackTrace(t);
+			session.getBasicRemote().sendText(message);
+		}
+	}
 
-  @OnClose
-  public void onClose(@PathParam("param1") Double p1,
-      @PathParam("param2") Float p2) {
-    WSOnClosePathParamServer.set(0, p1.toString());
-    WSOnClosePathParamServer.set(1, p2.toString());
-  }
+	@OnClose
+	public void onClose(@PathParam("param1") Double p1, @PathParam("param2") Float p2) {
+		WSOnClosePathParamServer.set(0, p1.toString());
+		WSOnClosePathParamServer.set(1, p2.toString());
+	}
 }

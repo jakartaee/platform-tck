@@ -17,14 +17,12 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder;
 
 public enum OPS {
-  CHAR, BOOL, BYTE, SHORT, INT, LONG, FLOAT, DOUBLE;
+	CHAR, BOOL, BYTE, SHORT, INT, LONG, FLOAT, DOUBLE;
 
-  public static Object[] getClientEntities() {
-    return new Object[] { CoderSuperClass.BOOL, CoderSuperClass.CHAR,
-        CoderSuperClass.NUMERIC.byteValue(),
-        CoderSuperClass.NUMERIC.shortValue(),
-        CoderSuperClass.NUMERIC.intValue(), CoderSuperClass.NUMERIC.longValue(),
-        CoderSuperClass.NUMERIC.floatValue(),
-        CoderSuperClass.NUMERIC.doubleValue() };
-  }
+	public static Object[] getClientEntities() {
+		return new Object[] { CoderSuperClass.BOOL, CoderSuperClass.CHAR, CoderSuperClass.NUMERIC.byteValue(),
+				CoderSuperClass.NUMERIC.shortValue(), CoderSuperClass.NUMERIC.intValue(),
+				CoderSuperClass.NUMERIC.longValue(), CoderSuperClass.NUMERIC.floatValue(),
+				CoderSuperClass.NUMERIC.doubleValue() };
+	}
 }

@@ -29,16 +29,16 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/getoneparam/{first}", configurator = PathParamConfigurator.class)
 public class WSCGetOneParamServer {
-  @OnMessage
-  public String onMessage(@PathParam("first") String param, String msg) {
-    return param + msg;
-  }
+	@OnMessage
+	public String onMessage(@PathParam("first") String param, String msg) {
+		return param + msg;
+	}
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable thr) throws IOException {
+		thr.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(thr);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

@@ -32,37 +32,36 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
 @ClientEndpoint(encoders = ThrowingIOTextStreamEncoder.class)
-public class WSCClientEndpointWithIOTextStreamEncoder
-    extends AnnotatedClientEndpoint<String> {
+public class WSCClientEndpointWithIOTextStreamEncoder extends AnnotatedClientEndpoint<String> {
 
-  public WSCClientEndpointWithIOTextStreamEncoder() {
-    super(new StringClientEndpoint());
-  }
+	public WSCClientEndpointWithIOTextStreamEncoder() {
+		super(new StringClientEndpoint());
+	}
 
-  @Override
-  @OnMessage
-  public void onMessage(String msg) {
-    super.onMessage(msg);
-  }
+	@Override
+	@OnMessage
+	public void onMessage(String msg) {
+		super.onMessage(msg);
+	}
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config); // should throw on SendMessageCallback
-  }
+	@Override
+	@OnOpen
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config); // should throw on SendMessageCallback
+	}
 
-  @Override
-  @OnClose
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@Override
+	@OnClose
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) {
-    String error = WebSocketCommonClient.getCauseMessage(t);
-    onMessage(error);
-    onMessage(error);
-  }
+	@Override
+	@OnError
+	public void onError(Session session, Throwable t) {
+		String error = WebSocketCommonClient.getCauseMessage(t);
+		onMessage(error);
+		onMessage(error);
+	}
 
 }

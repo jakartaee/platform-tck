@@ -26,8 +26,8 @@ import jakarta.websocket.DecodeException;
 
 public class ThrowingBinaryDecoder extends StringBeanBinaryDecoder {
 
-  @Override
-  public StringBean decode(ByteBuffer arg0) throws DecodeException {
-    throw new DecodeException(arg0, ThrowingTextDecoder.ERR_MSG);
-  }
+	@Override
+	public StringBean decode(ByteBuffer arg0) throws DecodeException {
+		throw new DecodeException(arg0, ThrowingTextDecoder.ERR_MSG);
+	}
 }

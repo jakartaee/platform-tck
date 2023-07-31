@@ -26,13 +26,12 @@ import jakarta.websocket.server.ServerEndpointConfig;
 import jakarta.websocket.server.ServerEndpointConfig.Configurator;
 
 public class GetRequestUriConfigurator extends Configurator {
-  static final String KEY = "GetRequestUriConfigurator";
+	static final String KEY = "GetRequestUriConfigurator";
 
-  @Override
-  public void modifyHandshake(ServerEndpointConfig sec,
-      HandshakeRequest request, HandshakeResponse response) {
-    URI uri = request.getRequestURI();
-    String sUri = uri == null ? "NULL" : uri.toASCIIString();
-    response.getHeaders().put(KEY, Arrays.asList(sUri));
-  }
+	@Override
+	public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
+		URI uri = request.getRequestURI();
+		String sUri = uri == null ? "NULL" : uri.toASCIIString();
+		response.getHeaders().put(KEY, Arrays.asList(sUri));
+	}
 }

@@ -25,15 +25,15 @@ import com.sun.ts.tests.websocket.common.stringbean.StringBeanBinaryDecoder;
 import jakarta.websocket.DecodeException;
 
 public class WillDecodeSecondBinaryDecoder extends StringBeanBinaryDecoder {
-  @Override
-  public StringBean decode(ByteBuffer arg0) throws DecodeException {
-    Logger.onCode(getClass());
-    return super.decode(arg0);
-  };
+	@Override
+	public StringBean decode(ByteBuffer arg0) throws DecodeException {
+		Logger.onCode(getClass());
+		return super.decode(arg0);
+	};
 
-  @Override
-  public boolean willDecode(ByteBuffer arg0) {
-    Logger.onWillCode(getClass());
-    return true;
-  }
+	@Override
+	public boolean willDecode(ByteBuffer arg0) {
+		Logger.onWillCode(getClass());
+		return true;
+	}
 }

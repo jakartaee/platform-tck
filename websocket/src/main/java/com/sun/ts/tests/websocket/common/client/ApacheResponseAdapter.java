@@ -26,56 +26,56 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 public class ApacheResponseAdapter extends HttpResponse {
 
-  public ApacheResponseAdapter(String host, int port) {
-    super(host, port, port == 443, null, null);
-    this.caser = TextCaser.NONE;
-  }
+	public ApacheResponseAdapter(String host, int port) {
+		super(host, port, port == 443, null, null);
+		this.caser = TextCaser.NONE;
+	}
 
-  public ApacheResponseAdapter(String host, int port, TextCaser caser) {
-    this(host, port);
-    this.caser = caser;
-  }
+	public ApacheResponseAdapter(String host, int port, TextCaser caser) {
+		this(host, port);
+		this.caser = caser;
+	}
 
-  private TextCaser caser = null;
+	private TextCaser caser = null;
 
-  /**
-   * Simulates HTTP status code, 500 on error, 200 on ok
-   */
-  @Override
-  public String getStatusCode() {
-    if (ClientEndpointData.getError() != null)
-      WebSocketTestCase.logMsg("Unexpected error on client endpoint:",
-          IOUtil.printStackTrace(ClientEndpointData.getError()));
-    return ClientEndpointData.getError() == null ? "200" : "500";
-  }
+	/**
+	 * Simulates HTTP status code, 500 on error, 200 on ok
+	 */
+	@Override
+	public String getStatusCode() {
+		if (ClientEndpointData.getError() != null)
+			WebSocketTestCase.logMsg("Unexpected error on client endpoint:",
+					IOUtil.printStackTrace(ClientEndpointData.getError()));
+		return ClientEndpointData.getError() == null ? "200" : "500";
+	}
 
-  @Override
-  public String getResponseBodyAsString() throws IOException {
-    return caser.getCasedText(ClientEndpointData.getResponseAsString());
-  }
+	@Override
+	public String getResponseBodyAsString() throws IOException {
+		return caser.getCasedText(ClientEndpointData.getResponseAsString());
+	}
 
-  @Override
-  public String getResponseBodyAsRawString() throws IOException {
-    return getResponseBodyAsString();
-  }
+	@Override
+	public String getResponseBodyAsRawString() throws IOException {
+		return getResponseBodyAsString();
+	}
 
-  @Override
-  public String getReasonPhrase() {
-    return null;
-  }
+	@Override
+	public String getReasonPhrase() {
+		return null;
+	}
 
-  @Override
-  public Header[] getResponseHeaders() {
-    return new Header[0];
-  }
+	@Override
+	public Header[] getResponseHeaders() {
+		return new Header[0];
+	}
 
-  @Override
-  public Header getResponseHeader(String headerName) {
-    return null;
-  }
+	@Override
+	public Header getResponseHeader(String headerName) {
+		return null;
+	}
 
-  @Override
-  public String getResponseEncoding() {
-    return null;
-  }
+	@Override
+	public String getResponseEncoding() {
+		return null;
+	}
 }

@@ -31,40 +31,38 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
 @ClientEndpoint
-public class WSByteArrayPartialClientEndpoint
-    extends AnnotatedStringClientEndpoint {
+public class WSByteArrayPartialClientEndpoint extends AnnotatedStringClientEndpoint {
 
-  protected Session session;
+	protected Session session;
 
-  private StringBuffer sb = new StringBuffer();
+	private StringBuffer sb = new StringBuffer();
 
-  @OnMessage
-  public void bytesToString(byte[] array, boolean finito) throws IOException {
-    sb.append(new String(array)).append("(").append(finito).append(")");
-    if (finito) {
-      super.onMessage(sb.toString());
-      session.getBasicRemote()
-          .sendText(sb.toString().replaceAll("[(][a-z]*[)]", ""));
-      sb = new StringBuffer();
-    }
-  }
+	@OnMessage
+	public void bytesToString(byte[] array, boolean finito) throws IOException {
+		sb.append(new String(array)).append("(").append(finito).append(")");
+		if (finito) {
+			super.onMessage(sb.toString());
+			session.getBasicRemote().sendText(sb.toString().replaceAll("[(][a-z]*[)]", ""));
+			sb = new StringBuffer();
+		}
+	}
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+	@OnError
+	@Override
+	public void onError(Session session, Throwable t) {
+		super.onError(session, t);
+	}
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@OnClose
+	@Override
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @OnOpen
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    this.session = session;
-    super.onOpen(session, config);
-  }
+	@OnOpen
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		this.session = session;
+		super.onOpen(session, config);
+	}
 }

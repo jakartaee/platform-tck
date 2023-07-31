@@ -25,66 +25,62 @@ import jakarta.websocket.Extension;
 
 public class TCKExtension implements Extension {
 
-  private final String name;
+	private final String name;
 
-  private final List<Parameter> parameters;
+	private final List<Parameter> parameters;
 
-  public TCKExtension(String name) {
-    this(name, null);
-  }
+	public TCKExtension(String name) {
+		this(name, null);
+	}
 
-  public TCKExtension(String name, List<Parameter> parameters) {
-    if (name == null || name.length() == 0) {
-      throw new IllegalArgumentException();
-    }
+	public TCKExtension(String name, List<Parameter> parameters) {
+		if (name == null || name.length() == 0) {
+			throw new IllegalArgumentException();
+		}
 
-    this.name = name;
-    if (parameters != null) {
-      this.parameters = Collections
-          .unmodifiableList(new ArrayList<>(parameters));
-    } else {
-      this.parameters = Collections
-          .unmodifiableList(Collections.<Parameter> emptyList());
-    }
-  }
+		this.name = name;
+		if (parameters != null) {
+			this.parameters = Collections.unmodifiableList(new ArrayList<>(parameters));
+		} else {
+			this.parameters = Collections.unmodifiableList(Collections.<Parameter>emptyList());
+		}
+	}
 
-  @Override
-  public String getName() {
-    return name;
-  }
+	@Override
+	public String getName() {
+		return name;
+	}
 
-  @Override
-  public List<Parameter> getParameters() {
-    return parameters;
-  }
+	@Override
+	public List<Parameter> getParameters() {
+		return parameters;
+	}
 
-  public static class TCKParameter implements Parameter {
+	public static class TCKParameter implements Parameter {
 
-    private final String name;
+		private final String name;
 
-    private final String value;
+		private final String value;
 
-    /**
-     * Create {@link Parameter} with name and value.
-     *
-     * @param name
-     *          parameter name.
-     * @param value
-     *          parameter value.
-     */
-    public TCKParameter(String name, String value) {
-      this.name = name;
-      this.value = value;
-    }
+		/**
+		 * Create {@link Parameter} with name and value.
+		 *
+		 * @param name  parameter name.
+		 * @param value parameter value.
+		 */
+		public TCKParameter(String name, String value) {
+			this.name = name;
+			this.value = value;
+		}
 
-    @Override
-    public String getName() {
-      return name;
-    }
+		@Override
+		public String getName() {
+			return name;
+		}
 
-    @Override
-    public String getValue() {
-      return value;
-    }
-  }
+		@Override
+		public String getValue() {
+			return value;
+		}
+	}
 }

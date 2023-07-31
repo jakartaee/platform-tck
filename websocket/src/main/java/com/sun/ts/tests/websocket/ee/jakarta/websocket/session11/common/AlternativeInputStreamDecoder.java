@@ -27,28 +27,27 @@ import jakarta.websocket.DecodeException;
 import jakarta.websocket.Decoder;
 import jakarta.websocket.EndpointConfig;
 
-public class AlternativeInputStreamDecoder
-    implements Decoder.Binary<InputStream> {
+public class AlternativeInputStreamDecoder implements Decoder.Binary<InputStream> {
 
-  public static final String DECODER_SAYS = "InputStream decoder";
+	public static final String DECODER_SAYS = "InputStream decoder";
 
-  @Override
-  public void init(EndpointConfig config) {
-  }
+	@Override
+	public void init(EndpointConfig config) {
+	}
 
-  @Override
-  public void destroy() {
-  }
+	@Override
+	public void destroy() {
+	}
 
-  @Override
-  public boolean willDecode(ByteBuffer bytes) {
-    return true;
-  }
+	@Override
+	public boolean willDecode(ByteBuffer bytes) {
+		return true;
+	}
 
-  @Override
-  public InputStream decode(ByteBuffer bytes) throws DecodeException {
-    String s = DECODER_SAYS + IOUtil.byteBufferToString(bytes);
-    ByteArrayInputStream bais = new ByteArrayInputStream(s.getBytes());
-    return bais;
-  }
+	@Override
+	public InputStream decode(ByteBuffer bytes) throws DecodeException {
+		String s = DECODER_SAYS + IOUtil.byteBufferToString(bytes);
+		ByteArrayInputStream bais = new ByteArrayInputStream(s.getBytes());
+		return bais;
+	}
 }

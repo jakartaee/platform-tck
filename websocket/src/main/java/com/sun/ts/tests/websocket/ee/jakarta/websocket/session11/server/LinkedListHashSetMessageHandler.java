@@ -26,26 +26,24 @@ import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.ListHash
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
 
-public class LinkedListHashSetMessageHandler
-    implements MessageHandler.Whole<LinkedList<HashSet<String>>> {
+public class LinkedListHashSetMessageHandler implements MessageHandler.Whole<LinkedList<HashSet<String>>> {
 
-  public static final String HANDLER_SAYS = "LinkedListHashSetMessageHandler says: ";
+	public static final String HANDLER_SAYS = "LinkedListHashSetMessageHandler says: ";
 
-  private Session session;
+	private Session session;
 
-  public LinkedListHashSetMessageHandler(Session session) {
-    super();
-    this.session = session;
-  }
+	public LinkedListHashSetMessageHandler(Session session) {
+		super();
+		this.session = session;
+	}
 
-  @Override
-  public void onMessage(LinkedList<HashSet<String>> arg0) {
-    try {
-      session.getBasicRemote().sendText(
-          HANDLER_SAYS + ListHashSetTextEncoder.listHashSetToString(arg0));
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
+	@Override
+	public void onMessage(LinkedList<HashSet<String>> arg0) {
+		try {
+			session.getBasicRemote().sendText(HANDLER_SAYS + ListHashSetTextEncoder.listHashSetToString(arg0));
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 }

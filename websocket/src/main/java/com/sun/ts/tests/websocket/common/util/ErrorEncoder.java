@@ -26,16 +26,16 @@ import jakarta.websocket.EndpointConfig;
 
 public class ErrorEncoder implements Encoder.Text<String> {
 
-  @Override
-  public void init(EndpointConfig config) {
-  }
+	@Override
+	public void init(EndpointConfig config) {
+	}
 
-  @Override
-  public String encode(String data) throws EncodeException {
-    throw new EncodeException("Something went horribly wrong", data);
-  }
+	@Override
+	public String encode(String data) throws EncodeException {
+		throw new EncodeException("Something went horribly wrong", data);
+	}
 
-  @Override
-  public void destroy() {
-  }
+	@Override
+	public void destroy() {
+	}
 }

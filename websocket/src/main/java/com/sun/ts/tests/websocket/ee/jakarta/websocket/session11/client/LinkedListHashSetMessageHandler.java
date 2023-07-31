@@ -24,22 +24,20 @@ import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.ListHash
 
 import jakarta.websocket.MessageHandler;
 
-public class LinkedListHashSetMessageHandler
-    implements MessageHandler.Whole<LinkedList<HashSet<String>>> {
+public class LinkedListHashSetMessageHandler implements MessageHandler.Whole<LinkedList<HashSet<String>>> {
 
-  MixedProgramaticEndpoint endpoint;
+	MixedProgramaticEndpoint endpoint;
 
-  public static final String HANDLER_SAYS = "LinkedListHashSetMessageHandler says: ";
+	public static final String HANDLER_SAYS = "LinkedListHashSetMessageHandler says: ";
 
-  public LinkedListHashSetMessageHandler(MixedProgramaticEndpoint endpoint) {
-    super();
-    this.endpoint = endpoint;
-  }
+	public LinkedListHashSetMessageHandler(MixedProgramaticEndpoint endpoint) {
+		super();
+		this.endpoint = endpoint;
+	}
 
-  @Override
-  public void onMessage(LinkedList<HashSet<String>> arg0) {
-    endpoint.onMessage(
-        HANDLER_SAYS + ListHashSetTextEncoder.listHashSetToString(arg0));
-  }
+	@Override
+	public void onMessage(LinkedList<HashSet<String>> arg0) {
+		endpoint.onMessage(HANDLER_SAYS + ListHashSetTextEncoder.listHashSetToString(arg0));
+	}
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -28,34 +28,35 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/msg")
 public class WSCMsgServer {
-  static final String EMPTY = "empty";
 
-  static final String MESSAGES[] = { "reset", "lastmsg" };
+	static final String EMPTY = "empty";
 
-  static String message = EMPTY;
+	static final String MESSAGES[] = { "reset", "lastmsg" };
 
-  @OnMessage
-  public String onMessage(String msg) {
-    if (MESSAGES[0].equals(msg)) {
-      setLastMessage(EMPTY);
-    }
-    msg = getLastMessage();
-    return msg;
-  }
+	static String message = EMPTY;
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnMessage
+	public String onMessage(String msg) {
+		if (MESSAGES[0].equals(msg)) {
+			setLastMessage(EMPTY);
+		}
+		msg = getLastMessage();
+		return msg;
+	}
 
-  private static String getLastMessage() {
-    return message;
-  }
+	@OnError
+	public void onError(Session session, Throwable thr) throws IOException {
+		thr.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(thr);
+		session.getBasicRemote().sendText(message);
+	}
 
-  public static void setLastMessage(String lastMessage) {
-    WSCMsgServer.message = lastMessage;
-  }
+	private static String getLastMessage() {
+		return message;
+	}
+
+	public static void setLastMessage(String lastMessage) {
+		WSCMsgServer.message = lastMessage;
+	}
 
 }

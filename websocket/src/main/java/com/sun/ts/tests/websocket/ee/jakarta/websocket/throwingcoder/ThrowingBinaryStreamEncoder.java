@@ -27,9 +27,8 @@ import jakarta.websocket.EncodeException;
 
 public class ThrowingBinaryStreamEncoder extends StringBeanBinaryStreamEncoder {
 
-  @Override
-  public void encode(StringBean bean, OutputStream stream)
-      throws EncodeException, IOException {
-    throw new EncodeException(bean.get(), ThrowingTextDecoder.ERR_MSG);
-  }
+	@Override
+	public void encode(StringBean bean, OutputStream stream) throws EncodeException, IOException {
+		throw new EncodeException(bean.get(), ThrowingTextDecoder.ERR_MSG);
+	}
 }

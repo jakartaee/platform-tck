@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -27,42 +27,43 @@ import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint("/logger")
+
 public class WSCLoggerServer {
 
-  @OnMessage
-  public String echo(String operation) {
-    return operation(operation);
-  }
+	@OnMessage
+	public String echo(String operation) {
+		return operation(operation);
+	}
 
-  public static String operation(String operation) {
-    String ret = operation;
-    if (operation.equals("clearinit"))
-      Logger.clearInitLog();
-    else if (operation.equals("cleardestroy"))
-      Logger.clearDestroyLog();
-    else if (operation.equals("getinit"))
-      ret = Logger.getInitLog();
-    else if (operation.equals("getdestroy"))
-      ret = Logger.getDestroyLog();
-    else if (operation.equals("getcode"))
-      ret = Logger.getCodeLog();
-    else if (operation.equals("getwillcode"))
-      ret = Logger.getWillCodeLog();
-    else if (operation.equals("clearall")) {
-      Logger.clearInitLog();
-      Logger.clearDestroyLog();
-      Logger.clearCodeLog();
-      Logger.clearWillCodeLog();
-    }
-    return ret;
-  }
+	public static String operation(String operation) {
+		String ret = operation;
+		if (operation.equals("clearinit"))
+			Logger.clearInitLog();
+		else if (operation.equals("cleardestroy"))
+			Logger.clearDestroyLog();
+		else if (operation.equals("getinit"))
+			ret = Logger.getInitLog();
+		else if (operation.equals("getdestroy"))
+			ret = Logger.getDestroyLog();
+		else if (operation.equals("getcode"))
+			ret = Logger.getCodeLog();
+		else if (operation.equals("getwillcode"))
+			ret = Logger.getWillCodeLog();
+		else if (operation.equals("clearall")) {
+			Logger.clearInitLog();
+			Logger.clearDestroyLog();
+			Logger.clearCodeLog();
+			Logger.clearWillCodeLog();
+		}
+		return ret;
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in" + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		System.out.println("@OnError in" + getClass().getName());
+		t.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

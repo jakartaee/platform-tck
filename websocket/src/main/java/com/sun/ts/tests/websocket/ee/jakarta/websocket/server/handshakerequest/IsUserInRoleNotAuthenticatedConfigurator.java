@@ -25,14 +25,13 @@ import jakarta.websocket.server.ServerEndpointConfig;
 import jakarta.websocket.server.ServerEndpointConfig.Configurator;
 
 public class IsUserInRoleNotAuthenticatedConfigurator extends Configurator {
-  static final String KEY = "IsUserInRoleNotAuthenticatedConfigurator";
+	static final String KEY = "IsUserInRoleNotAuthenticatedConfigurator";
 
-  @Override
-  public void modifyHandshake(ServerEndpointConfig sec,
-      HandshakeRequest request, HandshakeResponse response) {
-    boolean isInRole = request.isUserInRole("j2ee");
-    isInRole |= request.isUserInRole("DIRECTOR");
-    String value = String.valueOf(isInRole);
-    response.getHeaders().put(KEY, Arrays.asList(value));
-  }
+	@Override
+	public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
+		boolean isInRole = request.isUserInRole("j2ee");
+		isInRole |= request.isUserInRole("DIRECTOR");
+		String value = String.valueOf(isInRole);
+		response.getHeaders().put(KEY, Arrays.asList(value));
+	}
 }

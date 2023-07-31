@@ -24,24 +24,23 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 
 import jakarta.websocket.MessageHandler;
 
-public class ByteBufferPartialMessageHandler
-    implements MessageHandler.Partial<ByteBuffer> {
+public class ByteBufferPartialMessageHandler implements MessageHandler.Partial<ByteBuffer> {
 
-  ClientEndpoint<String> endpoint;
+	ClientEndpoint<String> endpoint;
 
-  public static final String HANDLER_SAYS = "ByteBufferPartialMessageHandler says: ";
+	public static final String HANDLER_SAYS = "ByteBufferPartialMessageHandler says: ";
 
-  StringBuilder sb = new StringBuilder();
+	StringBuilder sb = new StringBuilder();
 
-  public ByteBufferPartialMessageHandler(ClientEndpoint<String> endpoint) {
-    super();
-    this.endpoint = endpoint;
-  }
+	public ByteBufferPartialMessageHandler(ClientEndpoint<String> endpoint) {
+		super();
+		this.endpoint = endpoint;
+	}
 
-  @Override
-  public void onMessage(ByteBuffer message, boolean finite) {
-    sb.append(IOUtil.byteBufferToString(message));
-    if (finite)
-      endpoint.onMessage(HANDLER_SAYS + sb.toString());
-  }
+	@Override
+	public void onMessage(ByteBuffer message, boolean finite) {
+		sb.append(IOUtil.byteBufferToString(message));
+		if (finite)
+			endpoint.onMessage(HANDLER_SAYS + sb.toString());
+	}
 }

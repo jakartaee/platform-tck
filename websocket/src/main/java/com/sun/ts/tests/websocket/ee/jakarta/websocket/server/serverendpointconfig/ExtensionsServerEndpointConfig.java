@@ -29,70 +29,70 @@ import jakarta.websocket.server.ServerEndpointConfig;
 
 public class ExtensionsServerEndpointConfig implements ServerEndpointConfig {
 
-  static final String[] EXT_NAMES = new String[] { "empty", "secondEmpty" };
+	static final String[] EXT_NAMES = new String[] { "empty", "secondEmpty" };
 
-  @Override
-  public Map<String, Object> getUserProperties() {
-    return Collections.emptyMap();
-  }
+	@Override
+	public Map<String, Object> getUserProperties() {
+		return Collections.emptyMap();
+	}
 
-  @Override
-  public Class<?> getEndpointClass() {
-    return WSProgramaticExtensionsServer.class;
-  }
+	@Override
+	public Class<?> getEndpointClass() {
+		return WSProgramaticExtensionsServer.class;
+	}
 
-  @Override
-  public String getPath() {
-    return "/programatic/extensions";
-  }
+	@Override
+	public String getPath() {
+		return "/programatic/extensions";
+	}
 
-  @Override
-  public List<String> getSubprotocols() {
-    return Collections.emptyList();
-  }
+	@Override
+	public List<String> getSubprotocols() {
+		return Collections.emptyList();
+	}
 
-  @Override
-  public List<Extension> getExtensions() {
-    Extension firstExt = new Extension() {
-      @Override
-      public String getName() {
-        return EXT_NAMES[0];
-      }
+	@Override
+	public List<Extension> getExtensions() {
+		Extension firstExt = new Extension() {
+			@Override
+			public String getName() {
+				return EXT_NAMES[0];
+			}
 
-      @Override
-      public List<Parameter> getParameters() {
-        return Collections.emptyList();
-      }
-    };
+			@Override
+			public List<Parameter> getParameters() {
+				return Collections.emptyList();
+			}
+		};
 
-    Extension secondExt = new Extension() {
-      @Override
-      public String getName() {
-        return EXT_NAMES[1];
-      }
+		Extension secondExt = new Extension() {
+			@Override
+			public String getName() {
+				return EXT_NAMES[1];
+			}
 
-      @Override
-      public List<Parameter> getParameters() {
-        return Collections.emptyList();
-      }
-    };
-    return Arrays.asList(firstExt, secondExt);
-  }
+			@Override
+			public List<Parameter> getParameters() {
+				return Collections.emptyList();
+			}
+		};
+		return Arrays.asList(firstExt, secondExt);
+	}
 
-  @Override
-  public Configurator getConfigurator() {
-    return new ServerEndpointConfig.Configurator() {
-    };
-  }
+	@Override
+	public Configurator getConfigurator() {
+		return new ServerEndpointConfig.Configurator() {
+		};
+	}
 
-  @Override
-  public List<Class<? extends Encoder>> getEncoders() {
-    return Collections.emptyList();
-  }
+	@Override
+	public List<Class<? extends Encoder>> getEncoders() {
+		return Collections.emptyList();
+	}
 
-  @Override
-  public List<Class<? extends Decoder>> getDecoders() {
-    return Collections.emptyList();
-  }
+	@Override
+	public List<Class<? extends Decoder>> getDecoders() {
+		return Collections.emptyList();
+	}
 
 }

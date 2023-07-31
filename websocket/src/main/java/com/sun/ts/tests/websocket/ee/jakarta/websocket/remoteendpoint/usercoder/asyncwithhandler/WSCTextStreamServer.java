@@ -34,23 +34,20 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 
-@ServerEndpoint(value = "/textstream", encoders = { TextStreamCoderBool.class,
-    TextStreamCoderByte.class, TextStreamCoderChar.class,
-    TextStreamCoderDouble.class, TextStreamCoderInt.class,
-    TextStreamCoderLong.class, TextStreamCoderFloat.class,
-    TextStreamCoderShort.class })
+@ServerEndpoint(value = "/textstream", encoders = { TextStreamCoderBool.class, TextStreamCoderByte.class,
+		TextStreamCoderChar.class, TextStreamCoderDouble.class, TextStreamCoderInt.class, TextStreamCoderLong.class,
+		TextStreamCoderFloat.class, TextStreamCoderShort.class })
 public class WSCTextStreamServer extends WSCCommonServer {
 
-  @Override
-  @OnMessage
-  public void onMessage(String msg, Session session)
-      throws IOException, EncodeException {
-    super.onMessage(msg, session);
-  }
+	@Override
+	@OnMessage
+	public void onMessage(String msg, Session session) throws IOException, EncodeException {
+		super.onMessage(msg, session);
+	}
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    super.onError(session, t);
-  }
+	@Override
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		super.onError(session, t);
+	}
 }

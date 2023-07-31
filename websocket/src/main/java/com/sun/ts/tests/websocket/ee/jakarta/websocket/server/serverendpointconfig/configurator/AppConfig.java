@@ -29,25 +29,24 @@ import jakarta.websocket.server.ServerEndpointConfig;
  */
 public class AppConfig implements ServerApplicationConfig {
 
-  @Override
-  public Set<ServerEndpointConfig> getEndpointConfigs(
-      Set<Class<? extends Endpoint>> endpointClasses) {
-    Set<ServerEndpointConfig> set = new HashSet<>();
-    set.add(new ExtensionsServerEndpointConfig());
-    set.add(new SubprotocolsServerEndpointConfig());
-    return set;
-  }
+	@Override
+	public Set<ServerEndpointConfig> getEndpointConfigs(Set<Class<? extends Endpoint>> endpointClasses) {
+		Set<ServerEndpointConfig> set = new HashSet<>();
+		set.add(new ExtensionsServerEndpointConfig());
+		set.add(new SubprotocolsServerEndpointConfig());
+		return set;
+	}
 
-  @Override
-  public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scanned) {
-    Set<Class<?>> set = new HashSet<>();
-    set.add(WSCGetEndpointInstanceServer.class);
-    set.add(WSCOriginServer.class);
-    set.add(WSCOriginServerReturningFalse.class);
-    set.add(WSCOriginServerReturningFalseConfigurator.class);
-    set.add(WSCModifyHandshakeServer.class);
-    set.add(WSCGetContainerDefaultConfiguratorServerA.class);
-    set.add(WSCGetContainerDefaultConfiguratorServerB.class);
-    return set;
-  }
+	@Override
+	public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scanned) {
+		Set<Class<?>> set = new HashSet<>();
+		set.add(WSCGetEndpointInstanceServer.class);
+		set.add(WSCOriginServer.class);
+		set.add(WSCOriginServerReturningFalse.class);
+		set.add(WSCOriginServerReturningFalseConfigurator.class);
+		set.add(WSCModifyHandshakeServer.class);
+		set.add(WSCGetContainerDefaultConfiguratorServerA.class);
+		set.add(WSCGetContainerDefaultConfiguratorServerB.class);
+		return set;
+	}
 }

@@ -18,6 +18,7 @@
 package com.sun.ts.tests.websocket.spec.configuration.urimatching;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 
@@ -30,18 +31,19 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint("/{c}/{d}")
 public class WSL2ParamCDServer {
 
-  @OnMessage
-  public String echo(@PathParam("c") String c, @PathParam("d") String d,
-      String echo) {
-    return echo + c + d + getClass().getName();
-  }
+	private static final Logger logger = System.getLogger(WSL2ParamCDServer.class.getName());
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in " + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnMessage
+	public String echo(@PathParam("c") String c, @PathParam("d") String d, String echo) {
+		return echo + c + d + getClass().getName();
+	}
+
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		logger.log(Logger.Level.INFO,"@OnError in " + getClass().getName());
+		t.printStackTrace(); // Write to error log, too
+		String message = "Exception: " + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

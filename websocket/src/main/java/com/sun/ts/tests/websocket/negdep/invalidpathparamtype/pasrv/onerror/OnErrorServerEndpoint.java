@@ -28,24 +28,23 @@ import jakarta.websocket.Session;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
 
-@ServerEndpoint(value = "/invalid/{arg}", decoders = {
-    StringBeanTextDecoder.class })
+@ServerEndpoint(value = "/invalid/{arg}", decoders = { StringBeanTextDecoder.class })
 public class OnErrorServerEndpoint {
-  private static String exception = "";
 
-  @OnMessage
-  public String echo(String echo) {
-    if ("throw".equals(echo))
-      throw new RuntimeException(echo);
-    return exception + echo;
-  }
+	private static String exception = "";
 
-  // This header makes the endpoint invalid, since only Strings can be
-  // @PathParams
-  @OnError
-  public void onError(Session session, Throwable t,
-      @PathParam("arg") StringBean sb) throws IOException {
-    exception = sb.get();
-    session.getBasicRemote().sendText(t.getMessage());
-  }
+	@OnMessage
+	public String echo(String echo) {
+		if ("throw".equals(echo))
+			throw new RuntimeException(echo);
+		return exception + echo;
+	}
+
+	// This header makes the endpoint invalid, since only Strings can be
+	// @PathParams
+	@OnError
+	public void onError(Session session, Throwable t, @PathParam("arg") StringBean sb) throws IOException {
+		exception = sb.get();
+		session.getBasicRemote().sendText(t.getMessage());
+	}
 }

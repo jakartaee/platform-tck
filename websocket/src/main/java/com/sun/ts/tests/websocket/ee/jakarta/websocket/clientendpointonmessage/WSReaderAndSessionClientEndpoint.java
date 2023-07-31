@@ -32,31 +32,30 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
 @ClientEndpoint
-public class WSReaderAndSessionClientEndpoint
-    extends AnnotatedStringClientEndpoint {
+public class WSReaderAndSessionClientEndpoint extends AnnotatedStringClientEndpoint {
 
-  @OnMessage
-  public void reader(java.io.Reader r, Session s) throws IOException {
-    String msg = IOUtil.readFromReader(r);
-    super.onMessage(msg);
-    s.getBasicRemote().sendText(msg);
-  }
+	@OnMessage
+	public void reader(java.io.Reader r, Session s) throws IOException {
+		String msg = IOUtil.readFromReader(r);
+		super.onMessage(msg);
+		s.getBasicRemote().sendText(msg);
+	}
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+	@OnError
+	@Override
+	public void onError(Session session, Throwable t) {
+		super.onError(session, t);
+	}
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@OnClose
+	@Override
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @OnOpen
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+	@OnOpen
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+	}
 }

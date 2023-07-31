@@ -31,48 +31,48 @@ import jakarta.websocket.server.ServerEndpointConfig;
 
 public class UsedServerEndpointConfig implements ServerEndpointConfig {
 
-  @Override
-  public Map<String, Object> getUserProperties() {
-    return Collections.emptyMap();
-  }
+	@Override
+	public Map<String, Object> getUserProperties() {
+		return Collections.emptyMap();
+	}
 
-  @Override
-  public Class<?> getEndpointClass() {
-    return WSConfiguredServer.class;
-  }
+	@Override
+	public Class<?> getEndpointClass() {
+		return WSConfiguredServer.class;
+	}
 
-  @Override
-  public String getPath() {
-    return "/configured";
-  }
+	@Override
+	public String getPath() {
+		return "/configured";
+	}
 
-  @Override
-  public List<String> getSubprotocols() {
-    return Collections.emptyList();
-  }
+	@Override
+	public List<String> getSubprotocols() {
+		return Collections.emptyList();
+	}
 
-  @Override
-  public List<Extension> getExtensions() {
-    return Collections.emptyList();
-  }
+	@Override
+	public List<Extension> getExtensions() {
+		return Collections.emptyList();
+	}
 
-  @Override
-  public Configurator getConfigurator() {
-    return new ServerEndpointConfig.Configurator() {
-    };
-  }
+	@Override
+	public Configurator getConfigurator() {
+		return new ServerEndpointConfig.Configurator() {
+		};
+	}
 
-  @Override
-  public List<Class<? extends Encoder>> getEncoders() {
-    return Collections.emptyList();
-  }
+	@Override
+	public List<Class<? extends Encoder>> getEncoders() {
+		return Collections.emptyList();
+	}
 
-  @Override
-  public List<Class<? extends Decoder>> getDecoders() {
-    Class<? extends Decoder> clazz = StringBeanTextDecoder.class;
-    List<Class<? extends Decoder>> list = new LinkedList<>();
-    list.add(clazz);
-    return list;
-  }
+	@Override
+	public List<Class<? extends Decoder>> getDecoders() {
+		Class<? extends Decoder> clazz = StringBeanTextDecoder.class;
+		List<Class<? extends Decoder>> list = new LinkedList<>();
+		list.add(clazz);
+		return list;
+	}
 
 }

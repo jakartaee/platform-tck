@@ -27,57 +27,56 @@ import java.util.List;
 
 public class TCKClassLoader extends ClassLoader {
 
-  private ClassLoader orig;
+	private ClassLoader orig;
 
-  public TCKClassLoader(ClassLoader orig) {
-    this.orig = orig;
-  }
+	public TCKClassLoader(ClassLoader orig) {
+		this.orig = orig;
+	}
 
-  @Override
-  public Enumeration<URL> getResources(String name) throws IOException {
-    Enumeration<URL> en = orig.getResources(name);
-    return filter(en);
-  }
+	@Override
+	public Enumeration<URL> getResources(String name) throws IOException {
+		Enumeration<URL> en = orig.getResources(name);
+		return filter(en);
+	}
 
-  @Override
-  public Class<?> loadClass(String name) throws ClassNotFoundException {
-    return orig.loadClass(name);
-  }
+	@Override
+	public Class<?> loadClass(String name) throws ClassNotFoundException {
+		return orig.loadClass(name);
+	}
 
-  @Override
-  public boolean equals(Object obj) {
-    return orig.equals(obj);
-  }
+	@Override
+	public boolean equals(Object obj) {
+		return orig.equals(obj);
+	}
 
-  @Override
-  public void clearAssertionStatus() {
-    orig.clearAssertionStatus();
-  }
+	@Override
+	public void clearAssertionStatus() {
+		orig.clearAssertionStatus();
+	}
 
-  @Override
-  public URL getResource(String name) {
-    return orig.getResource(name);
-  }
+	@Override
+	public URL getResource(String name) {
+		return orig.getResource(name);
+	}
 
-  @Override
-  public InputStream getResourceAsStream(String name) {
-    return orig.getResourceAsStream(name);
-  }
+	@Override
+	public InputStream getResourceAsStream(String name) {
+		return orig.getResourceAsStream(name);
+	}
 
-  @Override
-  public int hashCode() {
-    return orig.hashCode();
-  }
+	@Override
+	public int hashCode() {
+		return orig.hashCode();
+	}
 
-  private static Enumeration<URL> filter(Enumeration<URL> orig) {
-    List<URL> list = new LinkedList<>();
-    while (orig.hasMoreElements()) {
-      URL url = orig.nextElement();
-      String file = url.getFile();
-      if (file.contains("lib.jar") && file
-          .contains("META-INF/services/jakarta.websocket.ContainerProvider"))
-        list.add(url);
-    }
-    return Collections.enumeration(list);
-  }
+	private static Enumeration<URL> filter(Enumeration<URL> orig) {
+		List<URL> list = new LinkedList<>();
+		while (orig.hasMoreElements()) {
+			URL url = orig.nextElement();
+			String file = url.getFile();
+			if (file.contains("lib.jar") && file.contains("META-INF/services/jakarta.websocket.ContainerProvider"))
+				list.add(url);
+		}
+		return Collections.enumeration(list);
+	}
 }

@@ -24,43 +24,42 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 
-@ServerEndpoint(value = "/subprotocoled", subprotocols = { "def", "abc",
-    "ghi" })
+@ServerEndpoint(value = "/subprotocoled", subprotocols = { "def", "abc", "ghi" })
 public class WSSubprotocoledServer extends WSAbstractServer {
 
-  @OnMessage
-  public String operation(String op) {
-    return super.op(op);
-  }
+	@OnMessage
+	public String operation(String op) {
+		return super.op(op);
+	}
 
-  @Override
-  protected String getConfigurator() {
-    String config = super.getConfigurator();
-    return config;
-  }
+	@Override
+	protected String getConfigurator() {
+		String config = super.getConfigurator();
+		return config;
+	}
 
-  @Override
-  protected String getEncoders() {
-    String encoders = super.getEncoders();
-    return "{" + encoders + "}";
-  }
+	@Override
+	protected String getEncoders() {
+		String encoders = super.getEncoders();
+		return "{" + encoders + "}";
+	}
 
-  @Override
-  protected String getDecoders() {
-    String decoders = super.getDecoders();
-    return "{" + decoders + "}";
-  }
+	@Override
+	protected String getDecoders() {
+		String decoders = super.getDecoders();
+		return "{" + decoders + "}";
+	}
 
-  @Override
-  protected String getSubprotocols() {
-    String subprotocols = super.getSubprotocols();
-    return "{" + subprotocols + "}";
-  }
+	@Override
+	protected String getSubprotocols() {
+		String subprotocols = super.getSubprotocols();
+		return "{" + subprotocols + "}";
+	}
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    super.onError(session, t);
-  }
+	@Override
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		super.onError(session, t);
+	}
 
 }

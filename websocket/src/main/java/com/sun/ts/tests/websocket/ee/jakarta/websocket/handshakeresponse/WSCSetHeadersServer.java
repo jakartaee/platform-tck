@@ -28,16 +28,16 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/setheaders", configurator = SetHeadersConfigurator.class)
 public class WSCSetHeadersServer {
-  @OnMessage
-  public String onMessage(String msg) {
-    return msg;
-  }
+	@OnMessage
+	public String onMessage(String msg) {
+		return msg;
+	}
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable thr) throws IOException {
+		thr.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(thr);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

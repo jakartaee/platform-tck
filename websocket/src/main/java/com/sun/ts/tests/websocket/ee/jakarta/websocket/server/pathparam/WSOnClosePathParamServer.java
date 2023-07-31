@@ -29,34 +29,34 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/onclose")
 public class WSOnClosePathParamServer {
 
-  public static final String RESET = "path params has been reset";
+	public static final String RESET = "path params has been reset";
 
-  private static final String[] p = new String[11];
+	private static final String[] p = new String[11];
 
-  @OnMessage
-  public String param(String content) {
-    int i = Integer.parseInt(content);
-    if (i == -1) {
-      for (int j = 0; j != p.length; j++)
-        p[j] = "";
-      return RESET;
-    }
-    return get(i);
-  }
+	@OnMessage
+	public String param(String content) {
+		int i = Integer.parseInt(content);
+		if (i == -1) {
+			for (int j = 0; j != p.length; j++)
+				p[j] = "";
+			return RESET;
+		}
+		return get(i);
+	}
 
-  public static final void set(int i, String param) {
-    p[i] = param;
-  }
+	public static final void set(int i, String param) {
+		p[i] = param;
+	}
 
-  private static final String get(int i) {
-    return p[i];
-  }
+	private static final String get(int i) {
+		return p[i];
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    t.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		t.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

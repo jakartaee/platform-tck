@@ -25,76 +25,70 @@ import jakarta.websocket.Extension.Parameter;
  * RFC 2616 says : Field names are case-insensitive, the default is case
  * insensitive.
  */
-public class ExtensionParameterImpl
-    implements Parameter, Comparable<Parameter> {
+public class ExtensionParameterImpl implements Parameter, Comparable<Parameter> {
 
-  public ExtensionParameterImpl(String name, String value) {
-    super();
-    this.name = name;
-    this.value = value;
-  }
+	public ExtensionParameterImpl(String name, String value) {
+		super();
+		this.name = name;
+		this.value = value;
+	}
 
-  /**
-   * @param caseSensitive
-   *          states whether compares case sensitively or not
-   */
-  public ExtensionParameterImpl(String name, String value,
-      boolean caseSensitive) {
-    this(name, value);
-  }
+	/**
+	 * @param caseSensitive states whether compares case sensitively or not
+	 */
+	public ExtensionParameterImpl(String name, String value, boolean caseSensitive) {
+		this(name, value);
+	}
 
-  public ExtensionParameterImpl(Parameter param, boolean caseSensitive) {
-    this(param.getName(), param.getValue(), caseSensitive);
-  }
+	public ExtensionParameterImpl(Parameter param, boolean caseSensitive) {
+		this(param.getName(), param.getValue(), caseSensitive);
+	}
 
-  protected String name;
+	protected String name;
 
-  protected String value;
+	protected String value;
 
-  protected boolean caseSensitive = false;
+	protected boolean caseSensitive = false;
 
-  public void caseSensitive(boolean caseSensitive) {
-    this.caseSensitive = caseSensitive;
-  }
+	public void caseSensitive(boolean caseSensitive) {
+		this.caseSensitive = caseSensitive;
+	}
 
-  @Override
-  public String getName() {
-    return name;
-  }
+	@Override
+	public String getName() {
+		return name;
+	}
 
-  @Override
-  public String getValue() {
-    return value;
-  }
+	@Override
+	public String getValue() {
+		return value;
+	}
 
-  @Override
-  public int compareTo(Parameter o) {
-    int cmp1 = caseSensitive ? name.compareTo(o.getName())
-        : name.compareToIgnoreCase(o.getName());
-    int cmp2 = caseSensitive ? value.compareTo(o.getValue())
-        : value.compareToIgnoreCase(o.getValue());
-    return cmp1 == 0 ? cmp2 : cmp1;
-  }
+	@Override
+	public int compareTo(Parameter o) {
+		int cmp1 = caseSensitive ? name.compareTo(o.getName()) : name.compareToIgnoreCase(o.getName());
+		int cmp2 = caseSensitive ? value.compareTo(o.getValue()) : value.compareToIgnoreCase(o.getValue());
+		return cmp1 == 0 ? cmp2 : cmp1;
+	}
 
-  @Override
-  public boolean equals(Object obj) {
-    if (obj instanceof Parameter)
-      return compareTo((Parameter) obj) == 0;
-    else
-      return false;
-  }
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Parameter)
+			return compareTo((Parameter) obj) == 0;
+		else
+			return false;
+	}
 
-  @Override
-  public int hashCode() {
-    return toString().hashCode();
-  }
+	@Override
+	public int hashCode() {
+		return toString().hashCode();
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder().append(getClass().getSimpleName())
-        .append("(name=\"").append(name).append("\", value=\"").append(value)
-        .append("\")");
-    return sb.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder().append(getClass().getSimpleName()).append("(name=\"").append(name)
+				.append("\", value=\"").append(value).append("\")");
+		return sb.toString();
+	}
 
 }

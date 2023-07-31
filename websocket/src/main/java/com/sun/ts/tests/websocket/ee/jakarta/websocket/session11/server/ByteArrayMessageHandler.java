@@ -24,21 +24,21 @@ import jakarta.websocket.Session;
 
 public class ByteArrayMessageHandler implements MessageHandler.Whole<byte[]> {
 
-  private Session session;
+	private Session session;
 
-  public static final String HANDLER_SAYS = "ByteArrayMessageHandler says: ";
+	public static final String HANDLER_SAYS = "ByteArrayMessageHandler says: ";
 
-  public ByteArrayMessageHandler(Session session) {
-    super();
-    this.session = session;
-  }
+	public ByteArrayMessageHandler(Session session) {
+		super();
+		this.session = session;
+	}
 
-  @Override
-  public void onMessage(byte[] message) {
-    try {
-      session.getBasicRemote().sendText(HANDLER_SAYS + new String(message));
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
+	@Override
+	public void onMessage(byte[] message) {
+		try {
+			session.getBasicRemote().sendText(HANDLER_SAYS + new String(message));
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

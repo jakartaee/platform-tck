@@ -30,37 +30,35 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
-@ClientEndpoint(subprotocols = { StringUtil.WEBSOCKET_SUBPROTOCOLS_3,
-    StringUtil.WEBSOCKET_SUBPROTOCOLS_4 })
-public class WSCUnmatchedSubprotocolClientEndpoint
-    extends AnnotatedClientEndpoint<String> {
+@ClientEndpoint(subprotocols = { StringUtil.WEBSOCKET_SUBPROTOCOLS_3, StringUtil.WEBSOCKET_SUBPROTOCOLS_4 })
+public class WSCUnmatchedSubprotocolClientEndpoint extends AnnotatedClientEndpoint<String> {
 
-  public WSCUnmatchedSubprotocolClientEndpoint() {
-    super(new StringClientEndpoint());
-  }
+	public WSCUnmatchedSubprotocolClientEndpoint() {
+		super(new StringClientEndpoint());
+	}
 
-  @Override
-  @OnMessage
-  public void onMessage(String msg) {
-    super.onMessage(msg);
-  }
+	@Override
+	@OnMessage
+	public void onMessage(String msg) {
+		super.onMessage(msg);
+	}
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+	@Override
+	@OnOpen
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+	}
 
-  @Override
-  @OnClose
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@Override
+	@OnClose
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+	@Override
+	@OnError
+	public void onError(Session session, Throwable t) {
+		super.onError(session, t);
+	}
 
 }

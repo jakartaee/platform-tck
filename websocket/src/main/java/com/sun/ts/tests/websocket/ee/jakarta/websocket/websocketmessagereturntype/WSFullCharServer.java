@@ -29,15 +29,15 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint("/fullchar")
 public class WSFullCharServer {
 
-  @OnMessage
-  public Character echo(String data) {
-    return Character.valueOf(data.charAt(0));
-  }
+	@OnMessage
+	public Character echo(String data) {
+		return Character.valueOf(data.charAt(0));
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		t.printStackTrace(); // Write to error log, too
+		String message = "Exception: " + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 }

@@ -25,16 +25,16 @@ import jakarta.websocket.EncodeException;
 import jakarta.websocket.Encoder;
 
 public abstract class CoderSuperClassTextStream<T> extends CoderSuperClass
-    implements Encoder.TextStream<T>, Decoder.TextStream<T> {
+		implements Encoder.TextStream<T>, Decoder.TextStream<T> {
 
-  @Override
-  public void encode(T object, Writer writer) throws EncodeException {
-    try {
-      writer.write(COMMON_CODED_STRING);
-      writer.close();
-    } catch (IOException e) {
-      throw new EncodeException(object, COMMON_CODED_STRING, e);
-    }
-  }
+	@Override
+	public void encode(T object, Writer writer) throws EncodeException {
+		try {
+			writer.write(COMMON_CODED_STRING);
+			writer.close();
+		} catch (IOException e) {
+			throw new EncodeException(object, COMMON_CODED_STRING, e);
+		}
+	}
 
 }

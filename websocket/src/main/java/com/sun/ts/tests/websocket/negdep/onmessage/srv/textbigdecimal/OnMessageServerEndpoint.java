@@ -30,15 +30,15 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint("/invalid")
 public class OnMessageServerEndpoint {
 
-  @OnMessage
-  public String echo(BigDecimal echo) {
-    return echo.toString();
-  }
+	@OnMessage
+	public String echo(BigDecimal echo) {
+		return echo.toString();
+	}
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable thr) throws IOException {
+		thr.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(thr);
+		session.getBasicRemote().sendText(message);
+	}
 }

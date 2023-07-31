@@ -28,44 +28,44 @@ import jakarta.websocket.server.ServerEndpointConfig;
 
 public class SubprotocolsServerEndpointConfig implements ServerEndpointConfig {
 
-  @Override
-  public Map<String, Object> getUserProperties() {
-    return Collections.emptyMap();
-  }
+	@Override
+	public Map<String, Object> getUserProperties() {
+		return Collections.emptyMap();
+	}
 
-  @Override
-  public Class<?> getEndpointClass() {
-    return WSCSubprotocolServer.class;
-  }
+	@Override
+	public Class<?> getEndpointClass() {
+		return WSCSubprotocolServer.class;
+	}
 
-  @Override
-  public String getPath() {
-    return "/subprotocols";
-  }
+	@Override
+	public String getPath() {
+		return "/subprotocols";
+	}
 
-  @Override
-  public List<String> getSubprotocols() {
-    return WSCSubprotocolServer.getSupportedSubprotocols();
-  }
+	@Override
+	public List<String> getSubprotocols() {
+		return WSCSubprotocolServer.getSupportedSubprotocols();
+	}
 
-  @Override
-  public List<Extension> getExtensions() {
-    return Collections.emptyList();
-  }
+	@Override
+	public List<Extension> getExtensions() {
+		return Collections.emptyList();
+	}
 
-  @Override
-  public Configurator getConfigurator() {
-    return new GetNegotiatedSubprotocolConfigurator();
-  }
+	@Override
+	public Configurator getConfigurator() {
+		return new GetNegotiatedSubprotocolConfigurator();
+	}
 
-  @Override
-  public List<Class<? extends Encoder>> getEncoders() {
-    return Collections.emptyList();
-  }
+	@Override
+	public List<Class<? extends Encoder>> getEncoders() {
+		return Collections.emptyList();
+	}
 
-  @Override
-  public List<Class<? extends Decoder>> getDecoders() {
-    return Collections.emptyList();
-  }
+	@Override
+	public List<Class<? extends Decoder>> getDecoders() {
+		return Collections.emptyList();
+	}
 
 }

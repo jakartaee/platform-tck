@@ -23,8 +23,8 @@ import jakarta.websocket.DecodeException;
 
 public class BinaryCoderDouble extends CoderSuperClassBinary<Double> {
 
-  @Override
-  public Double decode(ByteBuffer bytes) throws DecodeException {
-    return NUMERIC.doubleValue();
-  }
+	@Override
+	public Double decode(ByteBuffer bytes) throws DecodeException {
+		return NUMERIC.doubleValue();
+	}
 }

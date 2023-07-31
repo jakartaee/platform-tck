@@ -29,30 +29,29 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
 @ClientEndpoint
-public class WSPrimitiveByteClientEndpoint
-    extends AnnotatedStringClientEndpoint {
-  @OnMessage
-  public String echo(byte b) {
-    String msg = String.valueOf(b);
-    super.onMessage(msg);
-    return msg;
-  }
+public class WSPrimitiveByteClientEndpoint extends AnnotatedStringClientEndpoint {
+	@OnMessage
+	public String echo(byte b) {
+		String msg = String.valueOf(b);
+		super.onMessage(msg);
+		return msg;
+	}
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+	@OnError
+	@Override
+	public void onError(Session session, Throwable t) {
+		super.onError(session, t);
+	}
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@OnClose
+	@Override
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @OnOpen
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+	@OnOpen
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+	}
 }

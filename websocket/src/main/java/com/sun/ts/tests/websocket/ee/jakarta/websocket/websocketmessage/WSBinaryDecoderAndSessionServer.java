@@ -28,21 +28,20 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 
-@ServerEndpoint(value = "/binarydecodersession", decoders = {
-    StringBeanBinaryDecoder.class })
+@ServerEndpoint(value = "/binarydecodersession", decoders = { StringBeanBinaryDecoder.class })
 public class WSBinaryDecoderAndSessionServer {
 
-  @SuppressWarnings("unused")
-  @OnMessage
-  public String echo(StringBean bean, Session session) {
-    return bean.get();
-  }
+	@SuppressWarnings("unused")
+	@OnMessage
+	public String echo(StringBean bean, Session session) {
+		return bean.get();
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		t.printStackTrace(); // Write to error log, too
+		String message = "Exception: " + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

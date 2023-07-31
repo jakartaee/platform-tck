@@ -29,15 +29,15 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint("/primitivelong")
 public class WSPrimitiveLongServer {
 
-  @OnMessage
-  public long echo(String data) {
-    return Long.parseLong(data);
-  }
+	@OnMessage
+	public long echo(String data) {
+		return Long.parseLong(data);
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		t.printStackTrace(); // Write to error log, too
+		String message = "Exception: " + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 }

@@ -28,17 +28,17 @@ import jakarta.websocket.EndpointConfig;
 
 public class StringBeanTextStreamDecoder implements TextStream<StringBean> {
 
-  @Override
-  public void init(EndpointConfig config) {
-  }
+	@Override
+	public void init(EndpointConfig config) {
+	}
 
-  @Override
-  public StringBean decode(Reader r) throws DecodeException, IOException {
-    String text = IOUtil.readFromReader(r);
-    return new StringBean(text);
-  }
+	@Override
+	public StringBean decode(Reader r) throws DecodeException, IOException {
+		String text = IOUtil.readFromReader(r);
+		return new StringBean(text);
+	}
 
-  @Override
-  public void destroy() {
-  }
+	@Override
+	public void destroy() {
+	}
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2015, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -30,17 +30,17 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint("/invalid")
 public class OnMessageServerEndpoint {
 
-  @OnMessage
-  public String echo(StringHolder holder) throws IOException {
-    String s = null;
-    s = holder.toString();
-    return s;
-  }
+	@OnMessage
+	public String echo(StringHolder holder) throws IOException {
+		String s = null;
+		s = holder.toString();
+		return s;
+	}
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable thr) throws IOException {
+		thr.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(thr);
+		session.getBasicRemote().sendText(message);
+	}
 }

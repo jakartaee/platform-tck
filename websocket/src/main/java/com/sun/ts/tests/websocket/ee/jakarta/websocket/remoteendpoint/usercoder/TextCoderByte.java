@@ -21,8 +21,8 @@ import jakarta.websocket.DecodeException;
 
 public class TextCoderByte extends CoderSuperClassText<Byte> {
 
-  @Override
-  public Byte decode(String s) throws DecodeException {
-    return NUMERIC;
-  }
+	@Override
+	public Byte decode(String s) throws DecodeException {
+		return NUMERIC;
+	}
 }

@@ -27,27 +27,26 @@ import jakarta.websocket.EndpointConfig;
 
 public class AlternativeReaderDecoder implements Decoder.Text<Reader> {
 
-  public static final String DECODER_SAYS = "Reader decoder";
+	public static final String DECODER_SAYS = "Reader decoder";
 
-  @Override
-  public void init(EndpointConfig config) {
-  }
+	@Override
+	public void init(EndpointConfig config) {
+	}
 
-  @Override
-  public void destroy() {
-  }
+	@Override
+	public void destroy() {
+	}
 
-  @Override
-  public Reader decode(String s) throws DecodeException {
-    ByteArrayInputStream bais = new ByteArrayInputStream(
-        (DECODER_SAYS + s).getBytes());
-    Reader r = new InputStreamReader(bais);
-    return r;
-  }
+	@Override
+	public Reader decode(String s) throws DecodeException {
+		ByteArrayInputStream bais = new ByteArrayInputStream((DECODER_SAYS + s).getBytes());
+		Reader r = new InputStreamReader(bais);
+		return r;
+	}
 
-  @Override
-  public boolean willDecode(String s) {
-    return true;
-  }
+	@Override
+	public boolean willDecode(String s) {
+		return true;
+	}
 
 }

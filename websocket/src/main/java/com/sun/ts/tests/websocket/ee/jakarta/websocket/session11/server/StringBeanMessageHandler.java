@@ -24,24 +24,23 @@ import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
 
-public class StringBeanMessageHandler
-    implements MessageHandler.Whole<StringBean> {
+public class StringBeanMessageHandler implements MessageHandler.Whole<StringBean> {
 
-  private Session session;
+	private Session session;
 
-  public static final String HANDLER_SAYS = "StringBeanMessageHandler says: ";
+	public static final String HANDLER_SAYS = "StringBeanMessageHandler says: ";
 
-  public StringBeanMessageHandler(Session session) {
-    this.session = session;
-  }
+	public StringBeanMessageHandler(Session session) {
+		this.session = session;
+	}
 
-  @Override
-  public void onMessage(StringBean message) {
-    try {
-      session.getBasicRemote().sendText(HANDLER_SAYS + message.get());
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
+	@Override
+	public void onMessage(StringBean message) {
+		try {
+			session.getBasicRemote().sendText(HANDLER_SAYS + message.get());
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 }

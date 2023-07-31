@@ -24,55 +24,52 @@ import java.lang.reflect.Proxy;
 import jakarta.websocket.ContainerProvider;
 import jakarta.websocket.WebSocketContainer;
 
-public class TCKContainerProvider extends ContainerProvider
-    implements InvocationHandler {
+public class TCKContainerProvider extends ContainerProvider implements InvocationHandler {
 
-  private static WebSocketContainer provider;
+	private static WebSocketContainer provider;
 
-  public static void setOriginalContainer(WebSocketContainer provider) {
-    TCKContainerProvider.provider = provider;
-  }
+	public static void setOriginalContainer(WebSocketContainer provider) {
+		TCKContainerProvider.provider = provider;
+	}
 
-  @Override
-  protected WebSocketContainer getContainer() {
-    Object o = Proxy.newProxyInstance(getClass().getClassLoader(),
-        new Class<?>[] { TCKWebSocketContainer.class }, this);
-    return (WebSocketContainer) o;
-  }
+	@Override
+	protected WebSocketContainer getContainer() {
+		Object o = Proxy.newProxyInstance(getClass().getClassLoader(), new Class<?>[] { TCKWebSocketContainer.class },
+				this);
+		return (WebSocketContainer) o;
+	}
 
-  @Override
-  public Object invoke(Object proxy, Method method, Object[] args)
-      throws Throwable {
-    Method m = find(ContainerProvider.class.getMethods(), method);
-    if (m != null) {
-      Object ret = m.invoke(provider, args);
-      return ret;
-    }
-    return null;
-  }
+	@Override
+	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+		Method m = find(ContainerProvider.class.getMethods(), method);
+		if (m != null) {
+			Object ret = m.invoke(provider, args);
+			return ret;
+		}
+		return null;
+	}
 
-  private static final Method find(Method[] array, Method object) {
-    for (Method i : array)
-      if (equals(object, i))
-        return i;
-    return null;
-  }
+	private static final Method find(Method[] array, Method object) {
+		for (Method i : array)
+			if (equals(object, i))
+				return i;
+		return null;
+	}
 
-  private static final boolean equals(Method obj, Method other) {
-    if (!obj.getName().equals(other.getName()))
-      return false;
-    if (!obj.getReturnType().equals(other.getReturnType()))
-      return false;
-    return parameterEquals(obj.getParameterTypes(), other.getParameterTypes());
-  }
+	private static final boolean equals(Method obj, Method other) {
+		if (!obj.getName().equals(other.getName()))
+			return false;
+		if (!obj.getReturnType().equals(other.getReturnType()))
+			return false;
+		return parameterEquals(obj.getParameterTypes(), other.getParameterTypes());
+	}
 
-  private static final boolean parameterEquals(Class<?>[] params1,
-      Class<?>[] params2) {
-    if (params1.length != params2.length)
-      return false;
-    for (int i = 0; i < params1.length; i++)
-      if (params1[i] != params2[i])
-        return false;
-    return true;
-  }
+	private static final boolean parameterEquals(Class<?>[] params1, Class<?>[] params2) {
+		if (params1.length != params2.length)
+			return false;
+		for (int i = 0; i < params1.length; i++)
+			if (params1[i] != params2[i])
+				return false;
+		return true;
+	}
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2015, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -31,23 +31,24 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint("/invalid/{arg}")
 public class OnOpenStringHolderServerEndpoint {
-  private String open;
 
-  @OnMessage
-  public String echo(String echo) {
-    return open + echo;
-  }
+	private String open;
 
-  @SuppressWarnings("unused")
-  @OnOpen
-  public void onOpen(Session session, @PathParam("arg") StringHolder sb) {
-    open = sb.toString();
-  }
+	@OnMessage
+	public String echo(String echo) {
+		return open + echo;
+	}
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+	@SuppressWarnings("unused")
+	@OnOpen
+	public void onOpen(Session session, @PathParam("arg") StringHolder sb) {
+		open = sb.toString();
+	}
+
+	@OnError
+	public void onError(Session session, Throwable thr) throws IOException {
+		thr.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(thr);
+		session.getBasicRemote().sendText(message);
+	}
 }

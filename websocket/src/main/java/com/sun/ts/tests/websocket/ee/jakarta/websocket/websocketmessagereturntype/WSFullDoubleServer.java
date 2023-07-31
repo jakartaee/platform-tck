@@ -28,15 +28,15 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint("/fulldouble")
 public class WSFullDoubleServer {
-  @OnMessage
-  public Double echo(String data) {
-    return Double.valueOf(data);
-  }
+	@OnMessage
+	public Double echo(String data) {
+		return Double.valueOf(data);
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		t.printStackTrace(); // Write to error log, too
+		String message = "Exception: " + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 }

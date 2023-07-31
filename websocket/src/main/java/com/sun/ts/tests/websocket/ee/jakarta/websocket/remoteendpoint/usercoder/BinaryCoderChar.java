@@ -23,8 +23,8 @@ import jakarta.websocket.DecodeException;
 
 public class BinaryCoderChar extends CoderSuperClassBinary<Character> {
 
-  @Override
-  public Character decode(ByteBuffer bytes) throws DecodeException {
-    return CHAR;
-  }
+	@Override
+	public Character decode(ByteBuffer bytes) throws DecodeException {
+		return CHAR;
+	}
 }

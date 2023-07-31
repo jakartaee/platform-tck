@@ -24,11 +24,11 @@ import jakarta.websocket.Session;
 
 @ClientEndpoint
 public class AnnotatedClientEndpointWithMultipleOnCloseAnnotations
-    extends AnnotatedClientEndpointSuperclassWithAnnotations {
+		extends AnnotatedClientEndpointSuperclassWithAnnotations {
 
-  @OnClose
-  public void close(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@OnClose
+	public void close(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
 }

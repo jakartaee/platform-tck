@@ -21,20 +21,19 @@ import com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common.StringLi
 
 import jakarta.websocket.MessageHandler;
 
-public class StringListWholeMessageHandler
-    implements MessageHandler.Whole<StringList> {
+public class StringListWholeMessageHandler implements MessageHandler.Whole<StringList> {
 
-  MixedProgramaticEndpoint endpoint;
+	MixedProgramaticEndpoint endpoint;
 
-  public static final String HANDLER_SAYS = "LinkedListWholeMessageHandler says: ";
+	public static final String HANDLER_SAYS = "LinkedListWholeMessageHandler says: ";
 
-  public StringListWholeMessageHandler(MixedProgramaticEndpoint endpoint) {
-    super();
-    this.endpoint = endpoint;
-  }
+	public StringListWholeMessageHandler(MixedProgramaticEndpoint endpoint) {
+		super();
+		this.endpoint = endpoint;
+	}
 
-  @Override
-  public void onMessage(StringList message) {
-    endpoint.onMessage(HANDLER_SAYS + message.get(0).toString());
-  }
+	@Override
+	public void onMessage(StringList message) {
+		endpoint.onMessage(HANDLER_SAYS + message.get(0).toString());
+	}
 }

@@ -26,23 +26,23 @@ import com.sun.ts.tests.websocket.common.util.IOUtil;
 import jakarta.websocket.MessageHandler;
 
 public class ReaderMessageHandler implements MessageHandler.Whole<Reader> {
-  ClientEndpoint<String> endpoint;
+	ClientEndpoint<String> endpoint;
 
-  public static final String HANDLER_SAYS = "ReaderMessageHandler says: ";
+	public static final String HANDLER_SAYS = "ReaderMessageHandler says: ";
 
-  public ReaderMessageHandler(ClientEndpoint<String> endpoint) {
-    this.endpoint = endpoint;
-  }
+	public ReaderMessageHandler(ClientEndpoint<String> endpoint) {
+		this.endpoint = endpoint;
+	}
 
-  @Override
-  public void onMessage(Reader message) {
-    String msg = null;
-    try {
-      msg = IOUtil.readFromReader(message);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-    endpoint.onMessage(HANDLER_SAYS + msg);
-  }
+	@Override
+	public void onMessage(Reader message) {
+		String msg = null;
+		try {
+			msg = IOUtil.readFromReader(message);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		endpoint.onMessage(HANDLER_SAYS + msg);
+	}
 
 }

@@ -21,20 +21,19 @@ import com.sun.ts.tests.websocket.common.impl.ClientConfigurator;
 /**
  * The findbugs compliant ClientConfigurator accessible out of WebSocket impl
  */
-public class ClientConfiguratorHolderClientConfigurator
-    extends ClientConfigurator {
-  private static ClientConfigurator configurator;
+public class ClientConfiguratorHolderClientConfigurator extends ClientConfigurator {
+	private static ClientConfigurator configurator;
 
-  public ClientConfiguratorHolderClientConfigurator() {
-    super();
-    ClientConfiguratorHolderClientConfigurator.setConfigurator(this);
-  }
+	public ClientConfiguratorHolderClientConfigurator() {
+		super();
+		ClientConfiguratorHolderClientConfigurator.setConfigurator(this);
+	}
 
-  static ClientConfigurator getConfigurator() {
-    return configurator;
-  }
+	static ClientConfigurator getConfigurator() {
+		return configurator;
+	}
 
-  private static void setConfigurator(ClientConfigurator configurator) {
-    ClientConfiguratorHolderClientConfigurator.configurator = configurator;
-  }
+	private static void setConfigurator(ClientConfigurator configurator) {
+		ClientConfiguratorHolderClientConfigurator.configurator = configurator;
+	}
 }

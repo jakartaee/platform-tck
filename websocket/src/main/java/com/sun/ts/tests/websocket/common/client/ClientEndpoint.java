@@ -28,188 +28,182 @@ import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
 import jakarta.websocket.WebSocketContainer;
 
-public abstract class ClientEndpoint<T extends Object> extends Endpoint
-    implements MessageHandler.Whole<T> {
+public abstract class ClientEndpoint<T extends Object> extends Endpoint implements MessageHandler.Whole<T> {
 
-  /**
-   * This structure is static, because the original API was unable to set an
-   * instance of endpoint when connecting to server, the only available option
-   * as an argument of
-   * {@link WebSocketContainer#connectToServer(Class, ClientEndpointConfig, java.net.URI)}
-   * was Class. The instance of endpoint was created by websocket API, and no
-   * information could be injected into the instance.
-   */
-  public static class ClientEndpointData {
-    protected static volatile StringBuffer sb = new StringBuffer();
+	/**
+	 * This structure is static, because the original API was unable to set an
+	 * instance of endpoint when connecting to server, the only available option as
+	 * an argument of
+	 * {@link WebSocketContainer#connectToServer(Class, ClientEndpointConfig, java.net.URI)}
+	 * was Class. The instance of endpoint was created by websocket API, and no
+	 * information could be injected into the instance.
+	 */
+	public static class ClientEndpointData {
+		protected static volatile StringBuffer sb = new StringBuffer();
 
-    protected static volatile Throwable websocketError = null;
+		protected static volatile Throwable websocketError = null;
 
-    protected static EndpointCallback callback;
+		protected static EndpointCallback callback;
 
-    protected static volatile CountDownLatch messageLatch;
+		protected static volatile CountDownLatch messageLatch;
 
-    protected static volatile Object lastMessage = null;
+		protected static volatile Object lastMessage = null;
 
-    protected static final Object LOCK = new Object();
+		protected static final Object LOCK = new Object();
 
-    protected static volatile CountDownLatch onCloseLatch = null;
+		protected static volatile CountDownLatch onCloseLatch = null;
 
-    public static Throwable getError() {
-      return websocketError;
-    }
+		public static Throwable getError() {
+			return websocketError;
+		}
 
-    private static void setError(Throwable error) {
-      websocketError = error;
-    }
+		private static void setError(Throwable error) {
+			websocketError = error;
+		}
 
-    public static String getResponseAsString() {
-      WebSocketTestCase.logMsg("Response:", sb.toString());
-      return sb.toString();
-    }
+		public static String getResponseAsString() {
+			WebSocketTestCase.logMsg("Response:", sb.toString());
+			return sb.toString();
+		}
 
-    public static void resetData() {
-      synchronized (LOCK) {
-        WebSocketCommonClient.logTrace("Reseting callback and message", "");
-        sb = new StringBuffer();
-        websocketError = null;
-        callback = null;
-        lastMessage = null;
-        messageLatch = null;
-        onCloseLatch = null;
-      }
-    }
+		public static void resetData() {
+			synchronized (LOCK) {
+				WebSocketCommonClient.logTrace("Reseting callback and message", "");
+				sb = new StringBuffer();
+				websocketError = null;
+				callback = null;
+				lastMessage = null;
+				messageLatch = null;
+				onCloseLatch = null;
+			}
+		}
 
-    public static void newCountDown(int count) {
-      messageLatch = new CountDownLatch(count);
-    };
+		public static void newCountDown(int count) {
+			messageLatch = new CountDownLatch(count);
+		};
 
-    public static void awaitCountDown(int seconds) {
-      try {
-        messageLatch.await(seconds, TimeUnit.SECONDS);
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-      }
-    }
+		public static void awaitCountDown(int seconds) {
+			try {
+				messageLatch.await(seconds, TimeUnit.SECONDS);
+			} catch (InterruptedException e) {
+				throw new RuntimeException(e);
+			}
+		}
 
-    public static void newOnCloseCountDown() {
-      if (onCloseLatch == null)
-        onCloseLatch = new CountDownLatch(1);
-    }
+		public static void newOnCloseCountDown() {
+			if (onCloseLatch == null)
+				onCloseLatch = new CountDownLatch(1);
+		}
 
-    public static long getCount() {
-      return messageLatch.getCount();
-    }
+		public static long getCount() {
+			return messageLatch.getCount();
+		}
 
-    public static void awaitOnClose() {
-      try {
-        onCloseLatch.await(2000L, TimeUnit.SECONDS);
-      } catch (InterruptedException e) {
-        e.printStackTrace(); // If it does not wait,
-        // the test should still pass
-      }
-    }
+		public static void awaitOnClose() {
+			try {
+				onCloseLatch.await(2000L, TimeUnit.SECONDS);
+			} catch (InterruptedException e) {
+				e.printStackTrace(); // If it does not wait,
+				// the test should still pass
+			}
+		}
 
-    public static Object getOriginalMessage() {
-      return lastMessage;
-    }
+		public static Object getOriginalMessage() {
+			return lastMessage;
+		}
 
-    private static void setOriginalMessage(Object message) {
-      lastMessage = message;
-    }
+		private static void setOriginalMessage(Object message) {
+			lastMessage = message;
+		}
 
-  }
+	}
 
-  /**
-   * Hopefully this approach might be changed when api allows for passing the
-   * instance instead of class.
-   */
+	/**
+	 * Hopefully this approach might be changed when api allows for passing the
+	 * instance instead of class.
+	 */
 
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    onOpen(session, config, true);
-  }
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		onOpen(session, config, true);
+	}
 
-  public void onOpen(Session session, EndpointConfig config,
-      boolean addMessageHandler) {
-    WebSocketCommonClient.logTrace("On open on session id", session.getId());
-    String uri = session.getRequestURI() == null ? "NULL"
-        : session.getRequestURI().toASCIIString();
-    WebSocketCommonClient.logTrace("RequestUri:", uri);
-    if (session.isOpen()) {
-      if (addMessageHandler)
-        session.addMessageHandler(this);
-    } else
-      WebSocketCommonClient.logTrace("Session is closed!!!!", "");
-    synchronized (ClientEndpointData.LOCK) {
-      if (ClientEndpointData.callback != null && session.isOpen())
-        ClientEndpointData.callback.onOpen(session, config);
-    }
-  }
+	public void onOpen(Session session, EndpointConfig config, boolean addMessageHandler) {
+		WebSocketCommonClient.logTrace("On open on session id", session.getId());
+		String uri = session.getRequestURI() == null ? "NULL" : session.getRequestURI().toASCIIString();
+		WebSocketCommonClient.logTrace("RequestUri:", uri);
+		if (session.isOpen()) {
+			if (addMessageHandler)
+				session.addMessageHandler(this);
+		} else
+			WebSocketCommonClient.logTrace("Session is closed!!!!", "");
+		synchronized (ClientEndpointData.LOCK) {
+			if (ClientEndpointData.callback != null && session.isOpen())
+				ClientEndpointData.callback.onOpen(session, config);
+		}
+	}
 
-  @Override
-  public void onError(Session session, Throwable t) {
-    ClientEndpointData.setError(t);
-    t.printStackTrace();
-    synchronized (ClientEndpointData.LOCK) {
-      if (ClientEndpointData.callback != null)
-        ClientEndpointData.callback.onError(session, t);
-    }
-  }
+	@Override
+	public void onError(Session session, Throwable t) {
+		ClientEndpointData.setError(t);
+		t.printStackTrace();
+		synchronized (ClientEndpointData.LOCK) {
+			if (ClientEndpointData.callback != null)
+				ClientEndpointData.callback.onError(session, t);
+		}
+	}
 
-  protected void appendMessage(T message) {
-    ClientEndpointData.sb.append(message.toString());
-  }
+	protected void appendMessage(T message) {
+		ClientEndpointData.sb.append(message.toString());
+	}
 
-  @Override
-  public void onMessage(T message) {
-    ClientEndpointData.setOriginalMessage(message);
-    appendMessage(message);
-    WebSocketCommonClient.logTrace("Received message so far",
-        ClientEndpointData.sb.toString());
-    synchronized (ClientEndpointData.LOCK) {
-      if (ClientEndpointData.callback != null)
-        ClientEndpointData.callback.onMessage(message);
-    }
-    WebSocketTestCase.logTrace("CountDownLatch hit");
-    if (ClientEndpointData.messageLatch.getCount() == 0)
-      throw new IllegalStateException("CountDownLatch.getCount == 0 already");
-    ClientEndpointData.messageLatch.countDown();
-  }
+	@Override
+	public void onMessage(T message) {
+		ClientEndpointData.setOriginalMessage(message);
+		appendMessage(message);
+		WebSocketCommonClient.logTrace("Received message so far", ClientEndpointData.sb.toString());
+		synchronized (ClientEndpointData.LOCK) {
+			if (ClientEndpointData.callback != null)
+				ClientEndpointData.callback.onMessage(message);
+		}
+		WebSocketTestCase.logTrace("CountDownLatch hit");
+		if (ClientEndpointData.messageLatch.getCount() == 0)
+			throw new IllegalStateException("CountDownLatch.getCount == 0 already");
+		ClientEndpointData.messageLatch.countDown();
+	}
 
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    synchronized (ClientEndpointData.LOCK) {
-      WebSocketTestCase.logTrace("On close on session id", session.getId(),
-          "reason", closeReason);
-      if (ClientEndpointData.lastMessage == null)
-        WebSocketTestCase
-            .logTrace("onClose has been called before a message was received");
-      else
-        WebSocketTestCase.logTrace("onClose has been called");
-      if (ClientEndpointData.callback != null)
-        ClientEndpointData.callback.onClose(session, closeReason);
-      // onCloseLatch == null when close has not been called by client
-      if (ClientEndpointData.onCloseLatch == null)
-        ClientEndpointData.newOnCloseCountDown();
-      ClientEndpointData.onCloseLatch.countDown();
-    }
-  }
+	@Override
+	public void onClose(Session session, CloseReason closeReason) {
+		synchronized (ClientEndpointData.LOCK) {
+			WebSocketTestCase.logTrace("On close on session id", session.getId(), "reason", closeReason);
+			if (ClientEndpointData.lastMessage == null)
+				WebSocketTestCase.logTrace("onClose has been called before a message was received");
+			else
+				WebSocketTestCase.logTrace("onClose has been called");
+			if (ClientEndpointData.callback != null)
+				ClientEndpointData.callback.onClose(session, closeReason);
+			// onCloseLatch == null when close has not been called by client
+			if (ClientEndpointData.onCloseLatch == null)
+				ClientEndpointData.newOnCloseCountDown();
+			ClientEndpointData.onCloseLatch.countDown();
+		}
+	}
 
-  public static CountDownLatch getCountDownLatch() {
-    return ClientEndpointData.messageLatch;
-  }
+	public static CountDownLatch getCountDownLatch() {
+		return ClientEndpointData.messageLatch;
+	}
 
-  public static StringBuffer getMessageBuilder() {
-    return ClientEndpointData.sb;
-  }
+	public static StringBuffer getMessageBuilder() {
+		return ClientEndpointData.sb;
+	}
 
-  @SuppressWarnings({ "unchecked", "unused" })
-  public T getLastMessage(Class<T> messageType) {
-    return (T) ClientEndpointData.lastMessage;
-  }
+	@SuppressWarnings({ "unchecked", "unused" })
+	public T getLastMessage(Class<T> messageType) {
+		return (T) ClientEndpointData.lastMessage;
+	}
 
-  public static Throwable getLastError() {
-    return ClientEndpointData.websocketError;
-  }
+	public static Throwable getLastError() {
+		return ClientEndpointData.websocketError;
+	}
 
 }

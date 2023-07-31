@@ -27,10 +27,9 @@ import jakarta.websocket.server.ServerEndpointConfig.Configurator;
 
 public class PathParamConfigurator extends Configurator {
 
-  @Override
-  public void modifyHandshake(ServerEndpointConfig sec,
-      HandshakeRequest request, HandshakeResponse response) {
-    Map<String, List<String>> map = request.getParameterMap();
-    response.getHeaders().putAll(map);
-  }
+	@Override
+	public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
+		Map<String, List<String>> map = request.getParameterMap();
+		response.getHeaders().putAll(map);
+	}
 }

@@ -23,32 +23,32 @@ package com.sun.ts.tests.websocket.negdep;
  * @since 1.11
  */
 public class StringHolder implements CharSequence {
-  public String inner = "";
+	public String inner = "";
 
-  public StringHolder(String hold) {
-    inner = hold;
-  }
+	public StringHolder(String hold) {
+		inner = hold;
+	}
 
-  public StringHolder() {
-  }
+	public StringHolder() {
+	}
 
-  @Override
-  public int length() {
-    return inner.length();
-  }
+	@Override
+	public int length() {
+		return inner.length();
+	}
 
-  @Override
-  public char charAt(int index) {
-    return inner.charAt(index);
-  }
+	@Override
+	public char charAt(int index) {
+		return inner.charAt(index);
+	}
 
-  @Override
-  public CharSequence subSequence(int start, int end) {
-    return inner.subSequence(start, end);
-  }
+	@Override
+	public CharSequence subSequence(int start, int end) {
+		return inner.subSequence(start, end);
+	}
 
-  @Override
-  public String toString() {
-    return inner;
-  }
+	@Override
+	public String toString() {
+		return inner;
+	}
 }

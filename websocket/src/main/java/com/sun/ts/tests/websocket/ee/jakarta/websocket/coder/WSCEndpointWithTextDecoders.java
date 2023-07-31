@@ -30,37 +30,35 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
-@ClientEndpoint(decoders = { WillDecodeFirstTextDecoder.class,
-    WillDecodeSecondTextDecoder.class })
-public class WSCEndpointWithTextDecoders
-    extends AnnotatedClientEndpoint<StringBean> {
+@ClientEndpoint(decoders = { WillDecodeFirstTextDecoder.class, WillDecodeSecondTextDecoder.class })
+public class WSCEndpointWithTextDecoders extends AnnotatedClientEndpoint<StringBean> {
 
-  public WSCEndpointWithTextDecoders() {
-    super(new StringBeanClientEndpoint());
-  }
+	public WSCEndpointWithTextDecoders() {
+		super(new StringBeanClientEndpoint());
+	}
 
-  @Override
-  @OnMessage
-  public void onMessage(StringBean msg) {
-    super.onMessage(msg);
-  }
+	@Override
+	@OnMessage
+	public void onMessage(StringBean msg) {
+		super.onMessage(msg);
+	}
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+	@Override
+	@OnOpen
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+	}
 
-  @Override
-  @OnClose
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@Override
+	@OnClose
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+	@Override
+	@OnError
+	public void onError(Session session, Throwable t) {
+		super.onError(session, t);
+	}
 
 }

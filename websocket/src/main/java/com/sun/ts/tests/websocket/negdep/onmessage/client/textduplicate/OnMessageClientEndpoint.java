@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2015, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -31,26 +31,26 @@ import jakarta.websocket.Session;
 @ClientEndpoint(decoders = { StringBeanTextDecoder.class })
 public class OnMessageClientEndpoint extends AnnotatedStringClientEndpoint {
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) {
-    clientEndpoint.onError(session, t);
-  }
+	@Override
+	@OnError
+	public void onError(Session session, Throwable t) {
+		clientEndpoint.onError(session, t);
+	}
 
-  @SuppressWarnings("unused")
-  @OnMessage
-  public void onMessage(String msg, boolean finito) {
-    clientEndpoint.onMessage(msg);
-  }
+	@SuppressWarnings("unused")
+	@OnMessage
+	public void onMessage(String msg, boolean finito) {
+		clientEndpoint.onMessage(msg);
+	}
 
-  @OnMessage
-  public void onMessage(StringBean bean) {
-    clientEndpoint.onMessage(bean.get());
-  }
+	@OnMessage
+	public void onMessage(StringBean bean) {
+		clientEndpoint.onMessage(bean.get());
+	}
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    clientEndpoint.onOpen(session, config, false);
-  }
+	@Override
+	@OnOpen
+	public void onOpen(Session session, EndpointConfig config) {
+		clientEndpoint.onOpen(session, config, false);
+	}
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2017, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -29,30 +29,29 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
 @ClientEndpoint
-public class AnnotatedOnErrorClientEndpoint
-    extends AnnotatedStringClientEndpoint {
+public class AnnotatedOnErrorClientEndpoint extends AnnotatedStringClientEndpoint {
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    clientEndpoint.onOpen(session, config, false);
-  }
+	@Override
+	@OnOpen
+	public void onOpen(Session session, EndpointConfig config) {
+		clientEndpoint.onOpen(session, config, false);
+	}
 
-  @Override
-  @OnMessage
-  public void onMessage(String msg) {
-    clientEndpoint.onMessage(msg);
-  }
+	@Override
+	@OnMessage
+	public void onMessage(String msg) {
+		clientEndpoint.onMessage(msg);
+	}
 
-  @Override
-  @OnClose
-  public void onClose(Session session, CloseReason closeReason) {
-    clientEndpoint.onClose(session, closeReason);
-  }
+	@Override
+	@OnClose
+	public void onClose(Session session, CloseReason closeReason) {
+		clientEndpoint.onClose(session, closeReason);
+	}
 
-  @SuppressWarnings("unused")
-  @OnError
-  public void onError(Session session, Throwable t, CloseReason closeReason) {
-    clientEndpoint.onError(session, t);
-  }
+	@SuppressWarnings("unused")
+	@OnError
+	public void onError(Session session, Throwable t, CloseReason closeReason) {
+		clientEndpoint.onError(session, t);
+	}
 }

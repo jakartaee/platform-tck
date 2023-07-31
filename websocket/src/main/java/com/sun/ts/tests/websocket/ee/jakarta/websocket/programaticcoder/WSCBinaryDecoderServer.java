@@ -18,6 +18,7 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.programaticcoder;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 
 import com.sun.ts.tests.websocket.common.stringbean.StringBean;
 import com.sun.ts.tests.websocket.common.util.IOUtil;
@@ -27,36 +28,37 @@ import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
 
-public class WSCBinaryDecoderServer extends Endpoint
-    implements MessageHandler.Whole<StringBean> {
+public class WSCBinaryDecoderServer extends Endpoint implements MessageHandler.Whole<StringBean> {
 
-  private Session session;
+	private static final Logger logger = System.getLogger(WSCBinaryDecoderServer.class.getName());
 
-  @Override
-  public void onMessage(StringBean bean) {
-    try {
-      session.getBasicRemote().sendText(bean.get());
-    } catch (IOException e) {
-      onError(session, e);
-    }
-  }
+	private Session session;
 
-  @Override
-  public void onError(Session session, Throwable t) {
-    System.out.println("@OnError in" + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(t);
-    try {
-      session.getBasicRemote().sendText(message);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
+	@Override
+	public void onMessage(StringBean bean) {
+		try {
+			session.getBasicRemote().sendText(bean.get());
+		} catch (IOException e) {
+			onError(session, e);
+		}
+	}
 
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    this.session = session;
-    this.session.addMessageHandler(this);
-  }
+	@Override
+	public void onError(Session session, Throwable t) {
+		logger.log(Logger.Level.INFO,"@OnError in" + getClass().getName());
+		t.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(t);
+		try {
+			session.getBasicRemote().sendText(message);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		this.session = session;
+		this.session.addMessageHandler(this);
+	}
 
 }

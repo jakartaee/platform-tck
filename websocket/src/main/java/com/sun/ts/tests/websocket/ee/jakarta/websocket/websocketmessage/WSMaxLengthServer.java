@@ -28,17 +28,17 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint("/maxlen")
 public class WSMaxLengthServer {
-  public static final String MSG = "maxMessageSize cased an exception as expected";
+	public static final String MSG = "maxMessageSize cased an exception as expected";
 
-  @OnMessage(maxMessageSize = 5L)
-  public String echo(String echo) {
-    return echo;
-  }
+	@OnMessage(maxMessageSize = 5L)
+	public String echo(String echo) {
+		return echo;
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    String message = MSG + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		String message = MSG + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

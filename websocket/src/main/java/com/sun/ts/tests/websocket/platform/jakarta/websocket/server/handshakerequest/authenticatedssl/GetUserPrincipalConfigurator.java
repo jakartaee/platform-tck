@@ -26,13 +26,12 @@ import jakarta.websocket.server.ServerEndpointConfig;
 import jakarta.websocket.server.ServerEndpointConfig.Configurator;
 
 public class GetUserPrincipalConfigurator extends Configurator {
-  static final String KEY = "GetUserPrincipalConfigurator";
+	static final String KEY = "GetUserPrincipalConfigurator";
 
-  @Override
-  public void modifyHandshake(ServerEndpointConfig sec,
-      HandshakeRequest request, HandshakeResponse response) {
-    Principal principal = request.getUserPrincipal();
-    String value = principal == null ? "NULL" : principal.getName();
-    response.getHeaders().put(KEY, Arrays.asList(value));
-  }
+	@Override
+	public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {
+		Principal principal = request.getUserPrincipal();
+		String value = principal == null ? "NULL" : principal.getName();
+		response.getHeaders().put(KEY, Arrays.asList(value));
+	}
 }

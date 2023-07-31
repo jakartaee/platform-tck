@@ -41,91 +41,82 @@ import jakarta.websocket.server.ServerApplicationConfig;
 import jakarta.websocket.server.ServerEndpointConfig;
 
 public class AppConfig implements ServerApplicationConfig {
-  static final String[] EXT_NAMES = new String[] { "empty", "secondEmpty" };
+	static final String[] EXT_NAMES = new String[] { "empty", "secondEmpty" };
 
-  public static final ServerEndpointConfig.Configurator CONFIG = new ServerEndpointConfig.Configurator() {
-  };
+	public static final ServerEndpointConfig.Configurator CONFIG = new ServerEndpointConfig.Configurator() {
+	};
 
-  ServerEndpointConfig getSubprotocolsConfig() {
-    ServerEndpointConfig config = ServerEndpointConfig.Builder
-        .create(WSCommonServer.class, "/builder/subprotocols")
-        .subprotocols(Arrays.asList("abc", "def")).configurator(CONFIG).build();
-    return config;
-  }
+	ServerEndpointConfig getSubprotocolsConfig() {
+		ServerEndpointConfig config = ServerEndpointConfig.Builder.create(WSCommonServer.class, "/builder/subprotocols")
+				.subprotocols(Arrays.asList("abc", "def")).configurator(CONFIG).build();
+		return config;
+	}
 
-  ServerEndpointConfig getConfiguratorConfig() {
-    ServerEndpointConfig config = ServerEndpointConfig.Builder
-        .create(WSCommonServer.class, "/builder/configurator")
-        .configurator(new ServerEndpointConfigConfigurator()).build();
-    return config;
-  }
+	ServerEndpointConfig getConfiguratorConfig() {
+		ServerEndpointConfig config = ServerEndpointConfig.Builder.create(WSCommonServer.class, "/builder/configurator")
+				.configurator(new ServerEndpointConfigConfigurator()).build();
+		return config;
+	}
 
-  ServerEndpointConfig getExtensionsConfig() {
-    Extension firstExt = new Extension() {
-      @Override
-      public String getName() {
-        return EXT_NAMES[0];
-      }
+	ServerEndpointConfig getExtensionsConfig() {
+		Extension firstExt = new Extension() {
+			@Override
+			public String getName() {
+				return EXT_NAMES[0];
+			}
 
-      @Override
-      public List<Parameter> getParameters() {
-        return Collections.emptyList();
-      }
-    };
+			@Override
+			public List<Parameter> getParameters() {
+				return Collections.emptyList();
+			}
+		};
 
-    Extension secondExt = new Extension() {
-      @Override
-      public String getName() {
-        return EXT_NAMES[1];
-      }
+		Extension secondExt = new Extension() {
+			@Override
+			public String getName() {
+				return EXT_NAMES[1];
+			}
 
-      @Override
-      public List<Parameter> getParameters() {
-        return Collections.emptyList();
-      }
-    };
-    ServerEndpointConfig config = ServerEndpointConfig.Builder
-        .create(WSCommonServer.class, "/builder/extensions")
-        .configurator(CONFIG).extensions(Arrays.asList(firstExt, secondExt))
-        .build();
-    return config;
-  }
+			@Override
+			public List<Parameter> getParameters() {
+				return Collections.emptyList();
+			}
+		};
+		ServerEndpointConfig config = ServerEndpointConfig.Builder.create(WSCommonServer.class, "/builder/extensions")
+				.configurator(CONFIG).extensions(Arrays.asList(firstExt, secondExt)).build();
+		return config;
+	}
 
-  ServerEndpointConfig getDecodersConfig() {
-    List<Class<? extends Decoder>> decoders = Arrays.asList(
-        StringBeanBinaryStreamDecoder.class, StringBeanTextDecoder.class,
-        StringBeanBinaryDecoder.class, StringBeanTextStreamDecoder.class);
-    ServerEndpointConfig config = ServerEndpointConfig.Builder
-        .create(WSCommonServer.class, "/builder/decoders").decoders(decoders)
-        .configurator(CONFIG).build();
-    return config;
-  }
+	ServerEndpointConfig getDecodersConfig() {
+		List<Class<? extends Decoder>> decoders = Arrays.asList(StringBeanBinaryStreamDecoder.class,
+				StringBeanTextDecoder.class, StringBeanBinaryDecoder.class, StringBeanTextStreamDecoder.class);
+		ServerEndpointConfig config = ServerEndpointConfig.Builder.create(WSCommonServer.class, "/builder/decoders")
+				.decoders(decoders).configurator(CONFIG).build();
+		return config;
+	}
 
-  ServerEndpointConfig getEncodersConfig() {
-    List<Class<? extends Encoder>> encoders = Arrays.asList(
-        StringBeanTextStreamEncoder.class, StringBeanBinaryEncoder.class,
-        StringBeanTextEncoder.class, StringBeanBinaryStreamEncoder.class);
-    ServerEndpointConfig config = ServerEndpointConfig.Builder
-        .create(WSCommonServer.class, "/builder/encoders").encoders(encoders)
-        .configurator(CONFIG).build();
-    return config;
-  }
+	ServerEndpointConfig getEncodersConfig() {
+		List<Class<? extends Encoder>> encoders = Arrays.asList(StringBeanTextStreamEncoder.class,
+				StringBeanBinaryEncoder.class, StringBeanTextEncoder.class, StringBeanBinaryStreamEncoder.class);
+		ServerEndpointConfig config = ServerEndpointConfig.Builder.create(WSCommonServer.class, "/builder/encoders")
+				.encoders(encoders).configurator(CONFIG).build();
+		return config;
+	}
 
-  @Override
-  public Set<ServerEndpointConfig> getEndpointConfigs(
-      Set<Class<? extends Endpoint>> endpointClasses) {
-    Set<ServerEndpointConfig> set = new HashSet<>();
-    set.add(getSubprotocolsConfig());
-    set.add(getConfiguratorConfig());
-    set.add(getExtensionsConfig());
-    set.add(getDecodersConfig());
-    set.add(getEncodersConfig());
-    return set;
-  }
+	@Override
+	public Set<ServerEndpointConfig> getEndpointConfigs(Set<Class<? extends Endpoint>> endpointClasses) {
+		Set<ServerEndpointConfig> set = new HashSet<>();
+		set.add(getSubprotocolsConfig());
+		set.add(getConfiguratorConfig());
+		set.add(getExtensionsConfig());
+		set.add(getDecodersConfig());
+		set.add(getEncodersConfig());
+		return set;
+	}
 
-  @Override
-  public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scanned) {
-    Set<Class<?>> set = new HashSet<>();
-    return set;
-  }
+	@Override
+	public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scanned) {
+		Set<Class<?>> set = new HashSet<>();
+		return set;
+	}
 }

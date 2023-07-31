@@ -26,52 +26,50 @@ import jakarta.websocket.Session;
 
 public class WSProgramaticUserPropertiesServer extends Endpoint implements MessageHandler.Whole<String> {
 
-  Session session;
+	Session session;
 
-  private static final String KEY_5 = "UPS-5";
-  
-  @Override
-  public void onMessage(String msg) {
-    Map<String, Object> userProperties = session.getUserProperties();
-    
-    // First check that the expected properties are present
-    if (userProperties.size() != 3) {
-      throw new IllegalStateException(
-          "User properties map has [" + userProperties.size() + "] entries when 3 are expected");
-    }
+	private static final String KEY_5 = "UPS-5";
 
-    // Then check expected keys are present
-    checkKey(userProperties, UserPropertiesServerEndpointConfig.KEY_1);
-    checkKey(userProperties, UserPropertiesConfigurator.KEY_3);
-    checkKey(userProperties, UserPropertiesConfigurator.KEY_4);
+	@Override
+	public void onMessage(String msg) {
+		Map<String, Object> userProperties = session.getUserProperties();
 
-    // Now remove key 4 and add one of our own
-    userProperties.remove(UserPropertiesConfigurator.KEY_4);
-    userProperties.put(KEY_5, new Object());
+		// First check that the expected properties are present
+		if (userProperties.size() != 3) {
+			throw new IllegalStateException(
+					"User properties map has [" + userProperties.size() + "] entries when 3 are expected");
+		}
 
-    try {
-      session.getBasicRemote().sendText("PASS");        
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
+		// Then check expected keys are present
+		checkKey(userProperties, UserPropertiesServerEndpointConfig.KEY_1);
+		checkKey(userProperties, UserPropertiesConfigurator.KEY_3);
+		checkKey(userProperties, UserPropertiesConfigurator.KEY_4);
 
-  
-  private void checkKey(Map<String,Object> map, String key) {
-    if (!map.containsKey(key)) {
-      throw new IllegalStateException("User properties map is missing entry with key [" + key + "]");
-    }
-  }
+		// Now remove key 4 and add one of our own
+		userProperties.remove(UserPropertiesConfigurator.KEY_4);
+		userProperties.put(KEY_5, new Object());
 
+		try {
+			session.getBasicRemote().sendText("PASS");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    this.session = session;
-    session.addMessageHandler(this);
-  }
+	private void checkKey(Map<String, Object> map, String key) {
+		if (!map.containsKey(key)) {
+			throw new IllegalStateException("User properties map is missing entry with key [" + key + "]");
+		}
+	}
 
-  @Override
-  public void onError(Session session, Throwable thr) {
-    thr.printStackTrace();
-  }
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		this.session = session;
+		session.addMessageHandler(this);
+	}
+
+	@Override
+	public void onError(Session session, Throwable thr) {
+		thr.printStackTrace();
+	}
 }

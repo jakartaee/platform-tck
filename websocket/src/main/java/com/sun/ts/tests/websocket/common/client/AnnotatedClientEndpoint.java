@@ -43,41 +43,41 @@ import jakarta.websocket.WebSocketContainer;
  */
 public abstract class AnnotatedClientEndpoint<DATATYPE> {
 
-  protected ClientEndpoint<DATATYPE> clientEndpoint;
+	protected ClientEndpoint<DATATYPE> clientEndpoint;
 
-  public AnnotatedClientEndpoint(ClientEndpoint<DATATYPE> endpoint) {
-    this.clientEndpoint = endpoint;
-  }
+	public AnnotatedClientEndpoint(ClientEndpoint<DATATYPE> endpoint) {
+		this.clientEndpoint = endpoint;
+	}
 
-  // @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    clientEndpoint.onOpen(session, config, false);
-  }
+	// @OnOpen
+	public void onOpen(Session session, EndpointConfig config) {
+		clientEndpoint.onOpen(session, config, false);
+	}
 
-  // @OnMessage
-  public void onMessage(DATATYPE msg) {
-    clientEndpoint.onMessage(msg);
-  }
+	// @OnMessage
+	public void onMessage(DATATYPE msg) {
+		clientEndpoint.onMessage(msg);
+	}
 
-  // @OnClose
-  public void onClose(Session session, CloseReason closeReason) {
-    clientEndpoint.onClose(session, closeReason);
-  }
+	// @OnClose
+	public void onClose(Session session, CloseReason closeReason) {
+		clientEndpoint.onClose(session, closeReason);
+	}
 
-  // @OnError
-  public void onError(Session session, Throwable t) {
-    clientEndpoint.onError(session, t);
-  }
+	// @OnError
+	public void onError(Session session, Throwable t) {
+		clientEndpoint.onError(session, t);
+	}
 
-  public CountDownLatch getCountDownLatch() {
-    return ClientEndpoint.getCountDownLatch();
-  }
+	public CountDownLatch getCountDownLatch() {
+		return ClientEndpoint.getCountDownLatch();
+	}
 
-  public StringBuffer getMessageBuilder() {
-    return ClientEndpoint.getMessageBuilder();
-  }
+	public StringBuffer getMessageBuilder() {
+		return ClientEndpoint.getMessageBuilder();
+	}
 
-  public Throwable getLastError() {
-    return ClientEndpoint.getLastError();
-  }
+	public Throwable getLastError() {
+		return ClientEndpoint.getLastError();
+	}
 }

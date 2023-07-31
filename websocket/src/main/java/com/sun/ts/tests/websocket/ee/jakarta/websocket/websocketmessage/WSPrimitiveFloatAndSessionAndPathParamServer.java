@@ -18,6 +18,9 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.websocketmessage;
 
 import java.io.IOException;
+import java.lang.System.Logger;
+
+
 
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 
@@ -30,18 +33,20 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint("/primitivefloatsessionpathparam/{param}")
 public class WSPrimitiveFloatAndSessionAndPathParamServer {
 
-  @SuppressWarnings("unused")
-  @OnMessage
-  public String echo(float f, Session s, @PathParam("param") float param) {
-    return (String.valueOf(f) + String.valueOf(param)).replace(".0", "");
-  }
+	private static final Logger logger = System.getLogger(WSPrimitiveFloatAndSessionAndPathParamServer.class.getName());
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in " + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@SuppressWarnings("unused")
+	@OnMessage
+	public String echo(float f, Session s, @PathParam("param") float param) {
+		return (String.valueOf(f) + String.valueOf(param)).replace(".0", "");
+	}
+
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		logger.log(Logger.Level.INFO,"@OnError in " + getClass().getName());
+		t.printStackTrace(); // Write to error log, too
+		String message = "Exception: " + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

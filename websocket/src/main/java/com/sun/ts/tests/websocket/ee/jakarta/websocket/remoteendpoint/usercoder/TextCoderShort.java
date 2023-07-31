@@ -21,8 +21,8 @@ import jakarta.websocket.DecodeException;
 
 public class TextCoderShort extends CoderSuperClassText<Short> {
 
-  @Override
-  public Short decode(String s) throws DecodeException {
-    return NUMERIC.shortValue();
-  }
+	@Override
+	public Short decode(String s) throws DecodeException {
+		return NUMERIC.shortValue();
+	}
 }

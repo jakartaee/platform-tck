@@ -21,6 +21,7 @@
 package com.sun.ts.tests.websocket.spec.servercontainer.addendpoint;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -35,98 +36,89 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/WSCloseTestServer")
 public class WSCloseTestServer {
 
-  private static final Class<?>[] TEST_ARGS = { String.class, Session.class };
+	private static final Logger logger = System.getLogger(WSCloseTestServer.class.getName());
 
-  static String testName;
+	private static final Class<?>[] TEST_ARGS = { String.class, Session.class };
 
-  @OnOpen
-  public void init(Session session) throws IOException {
-    session.getBasicRemote().sendText("========WSCloseTestServer opened");
-    if (session.isOpen()) {
-      session.getBasicRemote()
-          .sendText("========session from WSCloseTestServer is open=TRUE");
-    } else {
-      session.getBasicRemote()
-          .sendText("========session from WSCloseTestServer is open=FALSE");
-    }
-  }
+	static String testName;
 
-  @OnMessage
-  public void respondString(String message, Session session) {
-    System.out.println("WSCloseTestServer got String message: " + message);
-    try {
-      if (message.startsWith("testName=") && message.endsWith("Test")) {
-        testName = message.substring(9);
-        Method method = WSCloseTestServer.class.getMethod(testName, TEST_ARGS);
-        method.invoke(this, new Object[] { message, session });
-      } else {
-        session.getBasicRemote()
-            .sendText("========WSCloseTestServer received String:" + message);
-        session.getBasicRemote().sendText(
-            "========WSCloseTestServer responds, please close your session");
-      }
-    } catch (InvocationTargetException ite) {
-      System.err.println("Cannot run method " + testName);
-      ite.printStackTrace();
-    } catch (NoSuchMethodException nsme) {
-      System.err.println("Test: " + testName + " does not exist");
-      nsme.printStackTrace();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
+	@OnOpen
+	public void init(Session session) throws IOException {
+		session.getBasicRemote().sendText("========WSCloseTestServer opened");
+		if (session.isOpen()) {
+			session.getBasicRemote().sendText("========session from WSCloseTestServer is open=TRUE");
+		} else {
+			session.getBasicRemote().sendText("========session from WSCloseTestServer is open=FALSE");
+		}
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) {
-    try {
-      session.getBasicRemote().sendText("========WSCloseTestServer onError");
-      if (session.isOpen()) {
-        session.getBasicRemote().sendText(
-            "========onError: session from WSCloseTestServer is open=TRUE");
-      } else {
-        session.getBasicRemote().sendText(
-            "========onError: session from WSCloseTestServer is open=FALSE");
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    t.printStackTrace();
-  }
+	@OnMessage
+	public void respondString(String message, Session session) {
+		logger.log(Logger.Level.INFO,"WSCloseTestServer got String message: " + message);
+		try {
+			if (message.startsWith("testName=") && message.endsWith("Test")) {
+				testName = message.substring(9);
+				Method method = WSCloseTestServer.class.getMethod(testName, TEST_ARGS);
+				method.invoke(this, new Object[] { message, session });
+			} else {
+				session.getBasicRemote().sendText("========WSCloseTestServer received String:" + message);
+				session.getBasicRemote().sendText("========WSCloseTestServer responds, please close your session");
+			}
+		} catch (InvocationTargetException ite) {
+			logger.log(Logger.Level.ERROR,"Cannot run method " + testName);
+			ite.printStackTrace();
+		} catch (NoSuchMethodException nsme) {
+			logger.log(Logger.Level.ERROR,"Test: " + testName + " does not exist");
+			nsme.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-  @OnClose
-  public void onClose() {
-    System.out.println("==From WSCloseTestServer onClose()==");
-  }
+	@OnError
+	public void onError(Session session, Throwable t) {
+		try {
+			session.getBasicRemote().sendText("========WSCloseTestServer onError");
+			if (session.isOpen()) {
+				session.getBasicRemote().sendText("========onError: session from WSCloseTestServer is open=TRUE");
+			} else {
+				session.getBasicRemote().sendText("========onError: session from WSCloseTestServer is open=FALSE");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		t.printStackTrace();
+	}
 
-  public void close1Test(String message, Session session) {
-    try {
-      session.getBasicRemote()
-          .sendText("========WSCloseTestServer received String: " + message);
-      session.close();
-    } catch (IOException ex) {
-      ex.printStackTrace();
-    }
-  }
+	@OnClose
+	public void onClose() {
+		logger.log(Logger.Level.INFO,"==From WSCloseTestServer onClose()==");
+	}
 
-  public void close2Test(String message, Session session) {
-    try {
-      session.getBasicRemote()
-          .sendText("========WSCloseTestServer received String: " + message);
-      session.close(new CloseReason(CloseReason.CloseCodes.TOO_BIG,
-          "TCKCloseNowWithReason"));
-    } catch (IOException ex) {
-      ex.printStackTrace();
-    }
-  }
+	public void close1Test(String message, Session session) {
+		try {
+			session.getBasicRemote().sendText("========WSCloseTestServer received String: " + message);
+			session.close();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+	}
 
-  public void close3Test(String message, Session session) {
-    try {
-      session.getBasicRemote()
-          .sendText("========WSCloseTestServer received String: " + message);
-      session.close(new CloseReason(CloseReason.CloseCodes.TOO_BIG,
-          "TCKCloseNowWithReason"));
-    } catch (IOException ex) {
-      ex.printStackTrace();
-    }
-  }
+	public void close2Test(String message, Session session) {
+		try {
+			session.getBasicRemote().sendText("========WSCloseTestServer received String: " + message);
+			session.close(new CloseReason(CloseReason.CloseCodes.TOO_BIG, "TCKCloseNowWithReason"));
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+	public void close3Test(String message, Session session) {
+		try {
+			session.getBasicRemote().sendText("========WSCloseTestServer received String: " + message);
+			session.close(new CloseReason(CloseReason.CloseCodes.TOO_BIG, "TCKCloseNowWithReason"));
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+	}
 }

@@ -24,11 +24,11 @@ import jakarta.websocket.Session;
 
 @ClientEndpoint
 public class AnnotatedClientEndpointWithMultipleOnOpenAnnotations
-    extends AnnotatedClientEndpointSuperclassWithAnnotations {
+		extends AnnotatedClientEndpointSuperclassWithAnnotations {
 
-  @OnOpen
-  public void open(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+	@OnOpen
+	public void open(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+	}
 
 }

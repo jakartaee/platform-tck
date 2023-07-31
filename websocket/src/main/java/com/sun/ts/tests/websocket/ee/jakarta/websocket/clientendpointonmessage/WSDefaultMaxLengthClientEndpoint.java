@@ -33,43 +33,42 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
 @ClientEndpoint()
-public class WSDefaultMaxLengthClientEndpoint
-    extends AnnotatedClientEndpoint<String> {
+public class WSDefaultMaxLengthClientEndpoint extends AnnotatedClientEndpoint<String> {
 
-  public WSDefaultMaxLengthClientEndpoint() {
-    super(new StringClientEndpoint());
-  }
+	public WSDefaultMaxLengthClientEndpoint() {
+		super(new StringClientEndpoint());
+	}
 
-  @SuppressWarnings("unused")
-  @OnMessage
-  public String echo(String echo) {
-    try {
-      Method m = getClass().getMethod("echo", String.class);
-      OnMessage onm = m.getAnnotation(OnMessage.class);
-      long size = onm.maxMessageSize();
-      String msg = String.valueOf(size);
-      super.onMessage(msg);
-      return msg;
-    } catch (Exception e) {
-      return IOUtil.printStackTrace(e);
-    }
-  }
+	@SuppressWarnings("unused")
+	@OnMessage
+	public String echo(String echo) {
+		try {
+			Method m = getClass().getMethod("echo", String.class);
+			OnMessage onm = m.getAnnotation(OnMessage.class);
+			long size = onm.maxMessageSize();
+			String msg = String.valueOf(size);
+			super.onMessage(msg);
+			return msg;
+		} catch (Exception e) {
+			return IOUtil.printStackTrace(e);
+		}
+	}
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+	@OnError
+	@Override
+	public void onError(Session session, Throwable t) {
+		super.onError(session, t);
+	}
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@OnClose
+	@Override
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @OnOpen
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+	@OnOpen
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+	}
 }

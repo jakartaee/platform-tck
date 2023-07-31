@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -18,6 +18,7 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.clientendpoint;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 
@@ -29,17 +30,19 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint("/echo")
 public class WSCEchoServer {
 
-  @OnMessage
-  public String echo(String echo) {
-    return echo;
-  }
+	private static final Logger logger = System.getLogger(WSCEchoServer.class.getName());
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in" + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnMessage
+	public String echo(String echo) {
+		return echo;
+	}
+
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		logger.log(Logger.Level.INFO,"@OnError in" + getClass().getName());
+		t.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

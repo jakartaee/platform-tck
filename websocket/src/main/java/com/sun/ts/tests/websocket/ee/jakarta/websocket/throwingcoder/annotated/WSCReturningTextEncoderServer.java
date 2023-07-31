@@ -28,19 +28,18 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 
-@ServerEndpoint(value = "/returningtextencoder", encoders = {
-    ThrowingTextEncoder.class })
+@ServerEndpoint(value = "/returningtextencoder", encoders = { ThrowingTextEncoder.class })
 public class WSCReturningTextEncoderServer {
 
-  @OnMessage
-  public StringBean echo(String data) {
-    return new StringBean(data);
-  }
+	@OnMessage
+	public StringBean echo(String data) {
+		return new StringBean(data);
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    String message = ThrowingTextDecoder.getCauseMessage(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		String message = ThrowingTextDecoder.getCauseMessage(t);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

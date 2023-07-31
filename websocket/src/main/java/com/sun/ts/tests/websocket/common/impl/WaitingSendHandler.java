@@ -30,31 +30,31 @@ import jakarta.websocket.SendResult;
  * The main goal is to pass SendHandler object to a caller code
  */
 public class WaitingSendHandler implements SendHandler {
-  private volatile CountDownLatch latch;
+	private volatile CountDownLatch latch;
 
-  private volatile SendResult result = null;
+	private volatile SendResult result = null;
 
-  public WaitingSendHandler() {
-    latch = new CountDownLatch(1);
-  }
+	public WaitingSendHandler() {
+		latch = new CountDownLatch(1);
+	}
 
-  public SendResult waitForResult(long seconds) {
-    try {
-      latch.await(seconds, TimeUnit.SECONDS);
-    } catch (InterruptedException e) {
-      throw new RuntimeException("Wait has been interrupted", e);
-    }
-    if (latch != null && latch.getCount() != 0)
-      throw new IllegalStateException("onResult has not been called on time");
-    if (result == null)
-      throw new IllegalStateException("SendResult is null");
-    return result;
-  }
+	public SendResult waitForResult(long seconds) {
+		try {
+			latch.await(seconds, TimeUnit.SECONDS);
+		} catch (InterruptedException e) {
+			throw new RuntimeException("Wait has been interrupted", e);
+		}
+		if (latch != null && latch.getCount() != 0)
+			throw new IllegalStateException("onResult has not been called on time");
+		if (result == null)
+			throw new IllegalStateException("SendResult is null");
+		return result;
+	}
 
-  @Override
-  public void onResult(SendResult result) {
-    this.result = result;
-    latch.countDown();
-  }
+	@Override
+	public void onResult(SendResult result) {
+		this.result = result;
+		latch.countDown();
+	}
 
 }

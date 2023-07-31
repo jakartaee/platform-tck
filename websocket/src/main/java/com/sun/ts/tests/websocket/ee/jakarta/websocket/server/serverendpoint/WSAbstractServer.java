@@ -20,6 +20,7 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverendpoint;
 import static com.sun.ts.tests.websocket.common.util.StringUtil.objectsToString;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 import java.lang.annotation.Annotation;
 
 import com.sun.ts.tests.websocket.common.util.IOUtil;
@@ -32,62 +33,64 @@ import jakarta.websocket.server.ServerEndpointConfig.Configurator;
 
 public class WSAbstractServer {
 
-  public String op(String op) {
-    if (op.equals("configurator"))
-      return getConfigurator();
-    if (op.equals("encoders"))
-      return getEncoders();
-    if (op.equals("decoders"))
-      return getDecoders();
-    if (op.equals("subprotocols"))
-      return getSubprotocols();
-    if (op.equals("value"))
-      return getValue();
-    return null;
-  }
+	private static final Logger logger = System.getLogger(WSAbstractServer.class.getName());
 
-  protected String getConfigurator() {
-    Annotation ann = getClass().getAnnotations()[0];
-    ServerEndpoint endpoint = (ServerEndpoint) ann;
-    Class<? extends Configurator> config = endpoint.configurator();
-    return config.getName();
-  }
+	public String op(String op) {
+		if (op.equals("configurator"))
+			return getConfigurator();
+		if (op.equals("encoders"))
+			return getEncoders();
+		if (op.equals("decoders"))
+			return getDecoders();
+		if (op.equals("subprotocols"))
+			return getSubprotocols();
+		if (op.equals("value"))
+			return getValue();
+		return null;
+	}
 
-  protected String getEncoders() {
-    Annotation ann = getClass().getAnnotations()[0];
-    ServerEndpoint endpoint = (ServerEndpoint) ann;
-    Class<? extends Encoder>[] encoders = endpoint.encoders();
-    String encs = objectsToString((Object[]) encoders);
-    return encs;
-  }
+	protected String getConfigurator() {
+		Annotation ann = getClass().getAnnotations()[0];
+		ServerEndpoint endpoint = (ServerEndpoint) ann;
+		Class<? extends Configurator> config = endpoint.configurator();
+		return config.getName();
+	}
 
-  protected String getDecoders() {
-    Annotation ann = getClass().getAnnotations()[0];
-    ServerEndpoint endpoint = (ServerEndpoint) ann;
-    Class<? extends Decoder>[] decoders = endpoint.decoders();
-    String decs = objectsToString((Object[]) decoders);
-    return decs;
-  }
+	protected String getEncoders() {
+		Annotation ann = getClass().getAnnotations()[0];
+		ServerEndpoint endpoint = (ServerEndpoint) ann;
+		Class<? extends Encoder>[] encoders = endpoint.encoders();
+		String encs = objectsToString((Object[]) encoders);
+		return encs;
+	}
 
-  protected String getSubprotocols() {
-    Annotation ann = getClass().getAnnotations()[0];
-    ServerEndpoint endpoint = (ServerEndpoint) ann;
-    String[] subprotocols = endpoint.subprotocols();
-    String subs = objectsToString((Object[]) subprotocols);
-    return subs;
-  }
+	protected String getDecoders() {
+		Annotation ann = getClass().getAnnotations()[0];
+		ServerEndpoint endpoint = (ServerEndpoint) ann;
+		Class<? extends Decoder>[] decoders = endpoint.decoders();
+		String decs = objectsToString((Object[]) decoders);
+		return decs;
+	}
 
-  public String getValue() {
-    Annotation ann = getClass().getAnnotations()[0];
-    ServerEndpoint endpoint = (ServerEndpoint) ann;
-    return endpoint.value();
-  }
+	protected String getSubprotocols() {
+		Annotation ann = getClass().getAnnotations()[0];
+		ServerEndpoint endpoint = (ServerEndpoint) ann;
+		String[] subprotocols = endpoint.subprotocols();
+		String subs = objectsToString((Object[]) subprotocols);
+		return subs;
+	}
 
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in " + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	public String getValue() {
+		Annotation ann = getClass().getAnnotations()[0];
+		ServerEndpoint endpoint = (ServerEndpoint) ann;
+		return endpoint.value();
+	}
+
+	public void onError(Session session, Throwable t) throws IOException {
+		logger.log(Logger.Level.INFO,"@OnError in " + getClass().getName());
+		t.printStackTrace(); // Write to error log, too
+		String message = "Exception: " + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

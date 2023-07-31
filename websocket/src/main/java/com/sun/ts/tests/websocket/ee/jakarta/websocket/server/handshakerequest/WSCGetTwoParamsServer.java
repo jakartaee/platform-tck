@@ -29,17 +29,17 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/gettwoparams/{first}/{second}", configurator = PathParamConfigurator.class)
 public class WSCGetTwoParamsServer {
-  @OnMessage
-  public String onMessage(@PathParam("first") long lng,
-      @PathParam("second") double dbl, String msg) {
-    return String.valueOf(lng) + ";" + String.valueOf(dbl) + ";" + msg;
-  }
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnMessage
+	public String onMessage(@PathParam("first") long lng, @PathParam("second") double dbl, String msg) {
+		return String.valueOf(lng) + ";" + String.valueOf(dbl) + ";" + msg;
+	}
+
+	@OnError
+	public void onError(Session session, Throwable thr) throws IOException {
+		thr.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(thr);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

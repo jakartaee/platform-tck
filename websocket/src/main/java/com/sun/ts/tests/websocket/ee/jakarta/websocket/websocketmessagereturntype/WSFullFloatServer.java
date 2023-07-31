@@ -28,15 +28,15 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint("/fullfloat")
 public class WSFullFloatServer {
-  @OnMessage
-  public Float echo(String data) {
-    return Float.valueOf(data);
-  }
+	@OnMessage
+	public Float echo(String data) {
+		return Float.valueOf(data);
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		t.printStackTrace(); // Write to error log, too
+		String message = "Exception: " + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 }

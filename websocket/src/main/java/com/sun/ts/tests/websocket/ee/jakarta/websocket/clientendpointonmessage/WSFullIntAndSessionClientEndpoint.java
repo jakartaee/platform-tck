@@ -32,29 +32,28 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
 @ClientEndpoint
-public class WSFullIntAndSessionClientEndpoint
-    extends AnnotatedStringClientEndpoint {
-  @OnMessage
-  public void echo(Integer i, Session s) throws IOException, EncodeException {
-    super.onMessage(i.toString());
-    s.getBasicRemote().sendObject(i);
-  }
+public class WSFullIntAndSessionClientEndpoint extends AnnotatedStringClientEndpoint {
+	@OnMessage
+	public void echo(Integer i, Session s) throws IOException, EncodeException {
+		super.onMessage(i.toString());
+		s.getBasicRemote().sendObject(i);
+	}
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+	@OnError
+	@Override
+	public void onError(Session session, Throwable t) {
+		super.onError(session, t);
+	}
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@OnClose
+	@Override
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @OnOpen
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+	@OnOpen
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+	}
 }

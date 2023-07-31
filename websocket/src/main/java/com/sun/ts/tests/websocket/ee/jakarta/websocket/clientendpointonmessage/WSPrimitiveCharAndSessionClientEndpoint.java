@@ -31,31 +31,30 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
 @ClientEndpoint
-public class WSPrimitiveCharAndSessionClientEndpoint
-    extends AnnotatedStringClientEndpoint {
+public class WSPrimitiveCharAndSessionClientEndpoint extends AnnotatedStringClientEndpoint {
 
-  @OnMessage
-  public void echo(char c, Session s) throws IOException {
-    String msg = String.valueOf(c) + "char";
-    super.onMessage(msg);
-    s.getBasicRemote().sendText(msg);
-  }
+	@OnMessage
+	public void echo(char c, Session s) throws IOException {
+		String msg = String.valueOf(c) + "char";
+		super.onMessage(msg);
+		s.getBasicRemote().sendText(msg);
+	}
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+	@OnError
+	@Override
+	public void onError(Session session, Throwable t) {
+		super.onError(session, t);
+	}
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@OnClose
+	@Override
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @OnOpen
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+	@OnOpen
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+	}
 }

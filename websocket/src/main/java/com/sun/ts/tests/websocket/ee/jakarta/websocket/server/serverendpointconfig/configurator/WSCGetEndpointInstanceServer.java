@@ -29,29 +29,29 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/endpointinstance", configurator = GetEndpointInstanceConfigurator.class)
 public class WSCGetEndpointInstanceServer {
 
-  public WSCGetEndpointInstanceServer() {
-    // default
-  }
+	public WSCGetEndpointInstanceServer() {
+		// default
+	}
 
-  public WSCGetEndpointInstanceServer(String additionalInformation) {
-    this.additionalInformation = additionalInformation;
-  }
+	public WSCGetEndpointInstanceServer(String additionalInformation) {
+		this.additionalInformation = additionalInformation;
+	}
 
-  String additionalInformation;
+	String additionalInformation;
 
-  @SuppressWarnings("unused")
-  @OnMessage
-  public String onMessage(String msg) {
-    String instance = GetEndpointInstanceConfigurator.getInstanceName();
-    GetEndpointInstanceConfigurator.setInstanceName("null"); // rather string
-    return instance + additionalInformation;
-  }
+	@SuppressWarnings("unused")
+	@OnMessage
+	public String onMessage(String msg) {
+		String instance = GetEndpointInstanceConfigurator.getInstanceName();
+		GetEndpointInstanceConfigurator.setInstanceName("null"); // rather string
+		return instance + additionalInformation;
+	}
 
-  @OnError
-  public void onError(Session session, Throwable thr) throws IOException {
-    thr.printStackTrace(); // Write to error log, too
-    String message = IOUtil.printStackTrace(thr);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable thr) throws IOException {
+		thr.printStackTrace(); // Write to error log, too
+		String message = IOUtil.printStackTrace(thr);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

@@ -31,30 +31,30 @@ import jakarta.websocket.Session;
 
 @ClientEndpoint
 public class WSMaxLengthClientEndpoint extends AnnotatedStringClientEndpoint {
-  public static final String MSG = "maxMessageSize casts an exception as expected:";
+	public static final String MSG = "maxMessageSize casts an exception as expected:";
 
-  @OnMessage(maxMessageSize = 5L)
-  public String echo(String echo) {
-    super.onMessage(echo);
-    return echo;
-  }
+	@OnMessage(maxMessageSize = 5L)
+	public String echo(String echo) {
+		super.onMessage(echo);
+		return echo;
+	}
 
-  @OnError
-  @Override
-  public void onError(Session session, Throwable t) {
-    String message = WebSocketCommonClient.getCauseMessage(t);
-    WebSocketCommonClient.logMsg(MSG, message);
-  }
+	@OnError
+	@Override
+	public void onError(Session session, Throwable t) {
+		String message = WebSocketCommonClient.getCauseMessage(t);
+		WebSocketCommonClient.logMsg(MSG, message);
+	}
 
-  @OnClose
-  @Override
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@OnClose
+	@Override
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @OnOpen
-  @Override
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+	@OnOpen
+	@Override
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+	}
 }

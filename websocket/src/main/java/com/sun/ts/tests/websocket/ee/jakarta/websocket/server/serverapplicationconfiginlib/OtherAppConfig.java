@@ -28,17 +28,16 @@ import jakarta.websocket.server.ServerEndpointConfig;
 
 public class OtherAppConfig implements ServerApplicationConfig {
 
-  @Override
-  public Set<ServerEndpointConfig> getEndpointConfigs(
-      Set<Class<? extends Endpoint>> endpointClasses) {
-    return null;
-  }
+	@Override
+	public Set<ServerEndpointConfig> getEndpointConfigs(Set<Class<? extends Endpoint>> endpointClasses) {
+		return null;
+	}
 
-  @Override
-  public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scanned) {
-    Set<Class<?>> set = new HashSet<>();
-    set.add(WSOtherUsedServer.class);
-    return set;
-  }
+	@Override
+	public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scanned) {
+		Set<Class<?>> set = new HashSet<>();
+		set.add(WSOtherUsedServer.class);
+		return set;
+	}
 
 }

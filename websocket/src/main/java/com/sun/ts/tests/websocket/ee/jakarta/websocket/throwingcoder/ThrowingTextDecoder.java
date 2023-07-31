@@ -23,21 +23,21 @@ import com.sun.ts.tests.websocket.common.stringbean.StringBeanTextDecoder;
 import jakarta.websocket.DecodeException;
 
 public class ThrowingTextDecoder extends StringBeanTextDecoder {
-  public static final String ERR_MSG = "TCK coder exception for test";
+	public static final String ERR_MSG = "TCK coder exception for test";
 
-  public static final String IO_ERR_MSG = "TCK IO exception for test";
+	public static final String IO_ERR_MSG = "TCK IO exception for test";
 
-  @Override
-  public StringBean decode(String s) throws DecodeException {
-    throw new DecodeException(s, ERR_MSG);
-  }
+	@Override
+	public StringBean decode(String s) throws DecodeException {
+		throw new DecodeException(s, ERR_MSG);
+	}
 
-  public static String getCauseMessage(Throwable t) {
-    String msg = null;
-    while (t != null) {
-      msg = t.getMessage();
-      t = t.getCause();
-    }
-    return msg;
-  }
+	public static String getCauseMessage(Throwable t) {
+		String msg = null;
+		while (t != null) {
+			msg = t.getMessage();
+			t = t.getCause();
+		}
+		return msg;
+	}
 }

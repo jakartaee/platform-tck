@@ -18,6 +18,7 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.websocketmessage;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 
 import com.sun.ts.tests.websocket.common.util.IOUtil;
 
@@ -29,17 +30,19 @@ import jakarta.websocket.server.ServerEndpoint;
 @ServerEndpoint("/primitivefloat")
 public class WSPrimitiveFloatServer {
 
-  @OnMessage
-  public String echo(float f) {
-    return String.valueOf(f);
-  }
+	private static final Logger logger = System.getLogger(WSPrimitiveFloatServer.class.getName());
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    System.out.println("@OnError in " + getClass().getName());
-    t.printStackTrace(); // Write to error log, too
-    String message = "Exception: " + IOUtil.printStackTrace(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnMessage
+	public String echo(float f) {
+		return String.valueOf(f);
+	}
+
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		logger.log(Logger.Level.INFO,"@OnError in " + getClass().getName());
+		t.printStackTrace(); // Write to error log, too
+		String message = "Exception: " + IOUtil.printStackTrace(t);
+		session.getBasicRemote().sendText(message);
+	}
 
 }

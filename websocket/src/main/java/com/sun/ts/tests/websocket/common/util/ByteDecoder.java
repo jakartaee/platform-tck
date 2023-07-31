@@ -26,21 +26,21 @@ import jakarta.websocket.EndpointConfig;
 
 public class ByteDecoder implements Decoder.Text<Byte> {
 
-  @Override
-  public void init(EndpointConfig config) {
-  }
+	@Override
+	public void init(EndpointConfig config) {
+	}
 
-  @Override
-  public Byte decode(String s) throws DecodeException {
-    return Byte.valueOf(s);
-  }
+	@Override
+	public Byte decode(String s) throws DecodeException {
+		return Byte.valueOf(s);
+	}
 
-  @Override
-  public boolean willDecode(String s) {
-    return true;
-  }
+	@Override
+	public boolean willDecode(String s) {
+		return true;
+	}
 
-  @Override
-  public void destroy() {
-  }
+	@Override
+	public void destroy() {
+	}
 }

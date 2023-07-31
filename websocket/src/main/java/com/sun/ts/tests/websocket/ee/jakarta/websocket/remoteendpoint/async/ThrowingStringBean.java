@@ -17,18 +17,18 @@
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.async;
 
 public class ThrowingStringBean {
-  public static final String ERROR = "TCK Exception thrown to check ExecutionException";
+	public static final String ERROR = "TCK Exception thrown to check ExecutionException";
 
-  public String get() {
-    throw new IllegalStateException(ERROR);
-  }
+	public String get() {
+		throw new IllegalStateException(ERROR);
+	}
 
-  @SuppressWarnings("unused")
-  public void set(String bean) {
-  }
+	@SuppressWarnings("unused")
+	public void set(String bean) {
+	}
 
-  @Override
-  public String toString() {
-    return super.toString() + " to get a value, use get()";
-  }
+	@Override
+	public String toString() {
+		return super.toString() + " to get a value, use get()";
+	}
 }

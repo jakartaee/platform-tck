@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -28,35 +28,33 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
-@ClientEndpoint(encoders = { TextStreamCoderBool.class,
-    TextStreamCoderByte.class, TextStreamCoderChar.class,
-    TextStreamCoderDouble.class, TextStreamCoderInt.class,
-    TextStreamCoderLong.class, TextStreamCoderFloat.class,
-    TextStreamCoderShort.class })
+@ClientEndpoint(encoders = { TextStreamCoderBool.class, TextStreamCoderByte.class, TextStreamCoderChar.class,
+		TextStreamCoderDouble.class, TextStreamCoderInt.class, TextStreamCoderLong.class, TextStreamCoderFloat.class,
+		TextStreamCoderShort.class })
 public class WSCTextStreamClientEndpoint extends AnnotatedStringClientEndpoint {
 
-  @Override
-  @OnOpen
-  public void onOpen(Session session, EndpointConfig config) {
-    super.onOpen(session, config);
-  }
+	@Override
+	@OnOpen
+	public void onOpen(Session session, EndpointConfig config) {
+		super.onOpen(session, config);
+	}
 
-  @Override
-  @OnMessage
-  public void onMessage(String msg) {
-    super.onMessage(msg);
-  }
+	@Override
+	@OnMessage
+	public void onMessage(String msg) {
+		super.onMessage(msg);
+	}
 
-  @Override
-  @OnClose
-  public void onClose(Session session, CloseReason closeReason) {
-    super.onClose(session, closeReason);
-  }
+	@Override
+	@OnClose
+	public void onClose(Session session, CloseReason closeReason) {
+		super.onClose(session, closeReason);
+	}
 
-  @Override
-  @OnError
-  public void onError(Session session, Throwable t) {
-    super.onError(session, t);
-  }
+	@Override
+	@OnError
+	public void onError(Session session, Throwable t) {
+		super.onError(session, t);
+	}
 
 }

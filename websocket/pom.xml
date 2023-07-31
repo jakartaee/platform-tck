@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2021  Contributors to the Eclipse Foundation
+    Copyright (c) 2021, 2023  Contributors to the Eclipse Foundation
     All rights reserved.
 
     This program and the accompanying materials are made available under the
@@ -26,25 +26,21 @@
         <version>10.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>websocket</artifactId>
+    <artifactId>websocket-tck</artifactId>
     <packaging>jar</packaging>
 
-    <name>WEBSOCKET</name>
-    <description>WEBSOCKET</description>
+    <name>websocket</name>
+    <description>websocket tck tests</description>
+
+    <properties>
+        <arquillian.junit>1.7.0.Alpha14</arquillian.junit>
+        <junit.jupiter.version>5.9.1</junit.jupiter.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <tck.version>${project.version}</tck.version>
+    </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javatest</groupId>
-            <artifactId>javatest</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>commons-httpclient</groupId>
-            <artifactId>commons-httpclient</artifactId>
-        </dependency>
         <dependency>
             <groupId>jakarta.websocket</groupId>
             <artifactId>jakarta.websocket-api</artifactId>
@@ -54,16 +50,76 @@
             <artifactId>jakarta.websocket-client-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.inject</groupId>
-            <artifactId>jakarta.inject-api</artifactId>
-        </dependency>
-        <dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.jupiter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-container</artifactId>
+            <version>${arquillian.junit}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-core</artifactId>
+            <version>${arquillian.junit}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakartatck</groupId>
+            <artifactId>common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>tck-build</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>2.3.2</version>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M5</version>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <version>3.2.0</version>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/java</directory>
+                                    <includes>
+                                        <include>**/*.xml</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

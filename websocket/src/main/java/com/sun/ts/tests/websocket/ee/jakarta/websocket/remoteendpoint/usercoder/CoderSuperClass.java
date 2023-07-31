@@ -20,19 +20,19 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.remoteendpoint.usercoder
 import jakarta.websocket.EndpointConfig;
 
 public abstract class CoderSuperClass {
-  public static final String COMMON_CODED_STRING = "Anything that should have been coded has been coded into this";
+	public static final String COMMON_CODED_STRING = "Anything that should have been coded has been coded into this";
 
-  public static final Byte NUMERIC = 100;
+	public static final Byte NUMERIC = 100;
 
-  public static final char CHAR = '0';
+	public static final char CHAR = '0';
 
-  public static final boolean BOOL = false;
+	public static final boolean BOOL = false;
 
-  @SuppressWarnings("unused")
-  public void init(EndpointConfig config) {
-  }
+	@SuppressWarnings("unused")
+	public void init(EndpointConfig config) {
+	}
 
-  public void destroy() {
-  }
+	public void destroy() {
+	}
 
 }

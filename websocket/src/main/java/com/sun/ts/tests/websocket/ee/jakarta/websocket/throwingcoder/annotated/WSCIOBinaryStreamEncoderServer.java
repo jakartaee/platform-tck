@@ -30,22 +30,19 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 
-@ServerEndpoint(value = "/iobinarystreamencoder", encoders = {
-    ThrowingIOBinaryStreamEncoder.class })
+@ServerEndpoint(value = "/iobinarystreamencoder", encoders = { ThrowingIOBinaryStreamEncoder.class })
 public class WSCIOBinaryStreamEncoderServer {
 
-  @OnMessage
-  public void echo(String data, Session session)
-      throws InterruptedException, ExecutionException {
-    Future<Void> future = session.getAsyncRemote()
-        .sendObject(new StringBean(data));
-    future.get();
-  }
+	@OnMessage
+	public void echo(String data, Session session) throws InterruptedException, ExecutionException {
+		Future<Void> future = session.getAsyncRemote().sendObject(new StringBean(data));
+		future.get();
+	}
 
-  @OnError
-  public void onError(Session session, Throwable t) throws IOException {
-    String message = ThrowingTextDecoder.getCauseMessage(t);
-    session.getBasicRemote().sendText(message);
-  }
+	@OnError
+	public void onError(Session session, Throwable t) throws IOException {
+		String message = ThrowingTextDecoder.getCauseMessage(t);
+		session.getBasicRemote().sendText(message);
+	}
 
 }
