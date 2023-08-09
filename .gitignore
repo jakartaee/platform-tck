@@ -23,6 +23,7 @@ target/
 .project
 /glassfish-runner/batch-tck/apitests/test.properties
 .classpath
+.factorypath
 .settings/
 classes/
 dist/
