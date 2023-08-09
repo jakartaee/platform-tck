@@ -1,5 +1,12 @@
 = Jakarta Core Profile TCK Release notes
 
+== Version 10.0.2
+
+Adds bug fixes for Core Profile TCK:
+
+* https://github.com/helidon-io/helidon/issues/6884
+
+
 == Version 10.0.1
 
 Adds bug fixes for two Core Profile TCK challenges:
