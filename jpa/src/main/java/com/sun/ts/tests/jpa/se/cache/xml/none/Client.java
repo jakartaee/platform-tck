@@ -16,9 +16,10 @@
 
 package com.sun.ts.tests.jpa.se.cache.xml.none;
 
-import java.util.Properties;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -32,22 +33,18 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
 
-      super.setup(args, p);
+      super.setup();
       removeTestData();
 
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -59,6 +56,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Using the xml shared-cache-mode element with a value of
    * NONE persist an entity and verify it is not the cache
    */
+  @Test
   public void containsTest() throws Exception {
     Cache cache;
     boolean pass = false;
@@ -101,11 +99,12 @@ public class Client extends PMClientBase {
       pass = true;
     }
     if (!pass) {
-      throw new Fault("containsTest failed");
+      throw new Exception("containsTest failed");
     }
 
   }
 
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

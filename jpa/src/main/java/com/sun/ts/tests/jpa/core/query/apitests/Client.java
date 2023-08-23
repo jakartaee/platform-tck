@@ -28,7 +28,6 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.CleanupMethod;
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
@@ -59,34 +58,29 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   public void setupNoData(String[] args, Properties p) throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       TestUtil.logTrace("Done creating test data");
     } catch (Exception e) {
       TestUtil.logErr("Unexpected Exception caught in Setup: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
 
     }
   }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createTestData();
       TestUtil.logTrace("Done creating test data");
     } catch (Exception e) {
       TestUtil.logErr("Unexpected Exception caught in Setup: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
 
     }
   }
@@ -94,13 +88,13 @@ public class Client extends PMClientBase {
   public void setupDataTypes2(String[] args, Properties p) throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createDataTypes2Data();
       TestUtil.logTrace("Done creating test data");
     } catch (Exception e) {
       TestUtil.logErr("Unexpected Exception caught in Setup: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
 
     }
   }
@@ -290,7 +284,7 @@ public class Client extends PMClientBase {
 
     if (!pass1 || !pass2 || !pass3 || !pass4 || !pass11 || !pass12 || !pass13
         || !pass14) {
-      throw new Fault("setFirstResultTest failed");
+      throw new Exception("setFirstResultTest failed");
     }
 
   }
@@ -340,7 +334,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("setFirstResultIllegalArgumentExceptionTest failed");
+      throw new Exception("setFirstResultIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -401,7 +395,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("getParameterTest failed");
+      throw new Exception("getParameterTest failed");
     }
   }
 
@@ -449,7 +443,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("getParameterIllegalArgumentExceptionTest failed");
+      throw new Exception("getParameterIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -495,7 +489,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass1 || !pass2) {
-      throw new Fault("getParameterIllegalArgumentException2Test failed");
+      throw new Exception("getParameterIllegalArgumentException2Test failed");
     }
   }
 
@@ -560,7 +554,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass1 || !pass2) {
-      throw new Fault("getParameterIntClassTest failed");
+      throw new Exception("getParameterIntClassTest failed");
     }
   }
 
@@ -610,7 +604,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass1 || !pass2) {
-      throw new Fault("getParameterIntIllegalArgumentExceptionTest failed");
+      throw new Exception("getParameterIntIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -659,7 +653,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass1 || !pass2) {
-      throw new Fault("getParameterIntIllegalArgumentException2Test failed");
+      throw new Exception("getParameterIntIllegalArgumentException2Test failed");
     }
   }
 
@@ -729,7 +723,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("getParameterValueParameterTest failed");
+      throw new Exception("getParameterValueParameterTest failed");
     }
   }
 
@@ -789,7 +783,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass1 || !pass2) {
-      throw new Fault(
+      throw new Exception(
           "getParameterValueParameterIllegalArgumentExceptionTest failed");
     }
   }
@@ -862,7 +856,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass1 || !pass2 || !pass3 || !pass4) {
-      throw new Fault(
+      throw new Exception(
           "getParameterValueParameterIllegalStateExceptionTest failed");
     }
   }
@@ -940,7 +934,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass1 || !pass2 || !pass3 || !pass4) {
-      throw new Fault(
+      throw new Exception(
           "setParameterParameterObjectIllegalArgumentExceptionTest failed");
     }
   }
@@ -1019,7 +1013,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass1 || !pass2 || !pass3 || !pass4) {
-      throw new Fault(
+      throw new Exception(
           "setParameterParameterCalendarTemporalTypeIllegalArgumentExceptionTest failed");
     }
   }
@@ -1098,7 +1092,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass1 || !pass2 || !pass3 || !pass4) {
-      throw new Fault(
+      throw new Exception(
           "setParameterParameterDateTemporalTypeIllegalArgumentExceptionTest failed");
     }
   }
@@ -1157,7 +1151,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("getParameterValueStringTest failed");
+      throw new Exception("getParameterValueStringTest failed");
     }
   }
 
@@ -1208,7 +1202,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass1 || !pass2) {
-      throw new Fault(
+      throw new Exception(
           "getParameterValueStringIllegalArgumentExceptionTest failed");
     }
   }
@@ -1257,7 +1251,7 @@ public class Client extends PMClientBase {
 
     }
     if (!pass1 || !pass2) {
-      throw new Fault(
+      throw new Exception(
           "getParameterValueStringIllegalStateExceptionTest failed");
     }
   }
@@ -1314,7 +1308,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("getParameterValueIntTest failed");
+      throw new Exception("getParameterValueIntTest failed");
     }
   }
 
@@ -1364,7 +1358,7 @@ public class Client extends PMClientBase {
 
     }
     if (!pass1 || !pass2) {
-      throw new Fault(
+      throw new Exception(
           "getParameterValueIntIllegalArgumentExceptionTest failed");
     }
   }
@@ -1411,7 +1405,7 @@ public class Client extends PMClientBase {
 
     }
     if (!pass1 || !pass2) {
-      throw new Fault("getParameterValueIntIllegalStateExceptionTest failed");
+      throw new Exception("getParameterValueIntIllegalStateExceptionTest failed");
     }
   }
 
@@ -1500,7 +1494,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("setParameter1Test failed");
+      throw new Exception("setParameter1Test failed");
     }
   }
 
@@ -1551,7 +1545,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("setParameter2Test failed");
+      throw new Exception("setParameter2Test failed");
     }
   }
 
@@ -1601,7 +1595,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault(
+      throw new Exception(
           "setParameterStringObject1IllegalArgumentExceptionTest failed");
     }
   }
@@ -1653,7 +1647,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault(
+      throw new Exception(
           "setParameterStringObject2IllegalArgumentExceptionTest failed");
     }
   }
@@ -1744,7 +1738,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("setParameterStringDateTemporalTypeTest failed");
+      throw new Exception("setParameterStringDateTemporalTypeTest failed");
     }
   }
 
@@ -1796,7 +1790,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault(
+      throw new Exception(
           "setParameterStringDateTemporalTypeIllegalArgumentExceptionTest failed");
     }
   }
@@ -1885,7 +1879,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("setParameterStringCalendarTemporalTypeTest failed");
+      throw new Exception("setParameterStringCalendarTemporalTypeTest failed");
     }
   }
 
@@ -1939,7 +1933,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault(
+      throw new Exception(
           "setParameterStringCalendarTemporalTypeTestIllegalArgumentExceptionTest failed");
     }
   }
@@ -2027,7 +2021,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("setParameterIntObjectTest failed");
+      throw new Exception("setParameterIntObjectTest failed");
     }
   }
 
@@ -2111,7 +2105,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2 || !pass3 || !pass4) {
-      throw new Fault(
+      throw new Exception(
           "setParameterIntObjectIllegalArgumentExceptionTest failed");
     }
   }
@@ -2198,7 +2192,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("setParameterIntDateTemporalTypeTest failed");
+      throw new Exception("setParameterIntDateTemporalTypeTest failed");
     }
   }
 
@@ -2249,7 +2243,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault(
+      throw new Exception(
           "setParameterIntDateTemporalTypeIllegalArgumentException1Test failed");
     }
   }
@@ -2338,7 +2332,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("setParameterIntCalendarTemporalTypeTest failed");
+      throw new Exception("setParameterIntCalendarTemporalTypeTest failed");
     }
   }
 
@@ -2388,7 +2382,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault(
+      throw new Exception(
           "setParameterIntCalendarTemporalTypeIllegalArgumentExceptionTest failed");
     }
   }
@@ -2490,7 +2484,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("setParameter7Test failed");
+      throw new Exception("setParameter7Test failed");
     }
   }
 
@@ -2563,7 +2557,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass1 || !pass2) {
-      throw new Fault("setParameterParameterCalendarTemporalTypeTest failed");
+      throw new Exception("setParameterParameterCalendarTemporalTypeTest failed");
     }
 
   }
@@ -2638,7 +2632,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass1 || !pass2) {
-      throw new Fault("setParameterParameterDateTemporalTypeTest failed");
+      throw new Exception("setParameterParameterDateTemporalTypeTest failed");
     }
 
   }
@@ -2728,7 +2722,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("setParameter8Test failed");
+      throw new Exception("setParameter8Test failed");
     }
   }
 
@@ -2796,7 +2790,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("getSingleResultNoResultExceptionTest failed");
+      throw new Exception("getSingleResultNoResultExceptionTest failed");
     }
   }
 
@@ -2865,7 +2859,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("getSingleResultTransactionRequiredException failed");
+      throw new Exception("getSingleResultTransactionRequiredException failed");
     }
   }
 
@@ -2935,7 +2929,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("getSingleResultNonUniqueResultExceptionTest failed");
+      throw new Exception("getSingleResultNonUniqueResultExceptionTest failed");
     }
   }
 
@@ -3005,7 +2999,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("isBoundTest failed");
+      throw new Exception("isBoundTest failed");
     }
   }
 
@@ -3075,7 +3069,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("setFirstResult failed");
+      throw new Exception("setFirstResult failed");
     }
   }
 
@@ -3130,7 +3124,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("queryAPITest11 failed");
+      throw new Exception("queryAPITest11 failed");
     }
   }
 
@@ -3184,7 +3178,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("queryAPITest12 failed");
+      throw new Exception("queryAPITest12 failed");
     }
   }
 
@@ -3232,7 +3226,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().rollback();
 
     if (!pass1 || !pass2) {
-      throw new Fault("setFirstResultIllegalArgumentException failed");
+      throw new Exception("setFirstResultIllegalArgumentException failed");
     }
   }
 
@@ -3348,7 +3342,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("setGetMaxResultsTest failed");
+      throw new Exception("setGetMaxResultsTest failed");
     }
   }
 
@@ -3413,7 +3407,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("setMaxResultsIllegalArgumentExceptionTest failed");
+      throw new Exception("setMaxResultsIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -3466,7 +3460,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("getResultListTransactionRequiredExceptionTest failed");
+      throw new Exception("getResultListTransactionRequiredExceptionTest failed");
     }
   }
 
@@ -3515,7 +3509,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("setMaxResults failed");
+      throw new Exception("setMaxResults failed");
     }
   }
 
@@ -3556,7 +3550,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1) {
-      throw new Fault("queryAPITest16 failed");
+      throw new Exception("queryAPITest16 failed");
     }
   }
 
@@ -3598,7 +3592,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("queryAPITest17 failed");
+      throw new Exception("queryAPITest17 failed");
     }
   }
 
@@ -3672,7 +3666,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass1 || !pass2) {
-      throw new Fault("getSingleResultTest failed");
+      throw new Exception("getSingleResultTest failed");
     }
   }
 
@@ -3724,7 +3718,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
     }
     if (!pass1 || !pass2) {
-      throw new Fault("getSingleResultIllegalStateException failed");
+      throw new Exception("getSingleResultIllegalStateException failed");
     }
   }
 
@@ -3794,7 +3788,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("executeUpdateIllegalStateException failed");
+      throw new Exception("executeUpdateIllegalStateException failed");
     }
   }
 
@@ -3834,7 +3828,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1) {
-      throw new Fault("executeUpdateTransactionRequiredExceptionTest failed");
+      throw new Exception("executeUpdateTransactionRequiredExceptionTest failed");
     }
   }
 
@@ -3881,7 +3875,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("queryAPITest21 failed");
+      throw new Exception("queryAPITest21 failed");
     }
   }
 
@@ -3938,7 +3932,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("queryAPITest22 failed");
+      throw new Exception("queryAPITest22 failed");
     }
   }
 
@@ -3985,7 +3979,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("queryAPITest23 failed");
+      throw new Exception("queryAPITest23 failed");
     }
   }
 
@@ -4066,7 +4060,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("queryAPITest24 failed");
+      throw new Exception("queryAPITest24 failed");
     }
   }
 
@@ -4121,7 +4115,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("queryAPITest25 failed");
+      throw new Exception("queryAPITest25 failed");
     }
   }
 
@@ -4185,7 +4179,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("queryAPITest27 failed");
+      throw new Exception("queryAPITest27 failed");
     }
   }
 
@@ -4290,7 +4284,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2 || !pass3 || !pass4) {
-      throw new Fault("queryAPITest28 failed");
+      throw new Exception("queryAPITest28 failed");
     }
   }
 
@@ -4376,7 +4370,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("queryAPITest29 failed");
+      throw new Exception("queryAPITest29 failed");
     }
   }
 
@@ -4428,7 +4422,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected Exception while rolling back TX:", re);
     }
     if (!pass1 || !pass2) {
-      throw new Fault("getResultListIllegalStateException failed");
+      throw new Exception("getResultListIllegalStateException failed");
     }
 
   }
@@ -4567,7 +4561,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2 || !pass3 || !pass4) {
-      throw new Fault("noTransactionLockModeTypeNoneTest failed");
+      throw new Exception("noTransactionLockModeTypeNoneTest failed");
     }
   }
 

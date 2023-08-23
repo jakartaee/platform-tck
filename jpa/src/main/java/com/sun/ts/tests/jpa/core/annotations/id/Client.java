@@ -18,9 +18,11 @@ package com.sun.ts.tests.jpa.core.annotations.id;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Properties;
 
-import com.sun.javatest.Status;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -29,19 +31,15 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
     } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
 
     }
   }
@@ -54,6 +52,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    */
 
+  @Test
   public void FieldIntegerIdTest() throws Exception {
 
     boolean pass = false;
@@ -92,7 +91,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("FieldIntegerIdTest failed");
+      throw new Exception("FieldIntegerIdTest failed");
   }
 
   /*
@@ -102,7 +101,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy:
    */
-
+@Test
   public void FieldIntIdTest() throws Exception {
 
     boolean pass = false;
@@ -140,7 +139,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("FieldIntIdTest failed");
+      throw new Exception("FieldIntIdTest failed");
   }
 
   /*
@@ -150,7 +149,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy:
    */
-
+@Test
   public void FieldBigIntegerIdTest() throws Exception {
 
     boolean pass = false;
@@ -190,7 +189,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("FieldBigIntegerIdTest failed");
+      throw new Exception("FieldBigIntegerIdTest failed");
   }
 
   /*
@@ -200,7 +199,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy:
    */
-
+@Test
   public void FieldBigDecimalIdTest() throws Exception {
 
     boolean pass = false;
@@ -240,7 +239,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("FieldBigDecimalIdTest failed");
+      throw new Exception("FieldBigDecimalIdTest failed");
   }
 
   /*
@@ -250,7 +249,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy:
    */
-
+@Test
   public void FieldStringIdTest() throws Exception {
 
     boolean pass = false;
@@ -288,7 +287,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("FieldStringIdTest failed");
+      throw new Exception("FieldStringIdTest failed");
   }
 
   /*
@@ -298,6 +297,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy:
    */
+@Test
   public void FieldSQLDateIdTest() throws Exception {
 
     boolean pass = false;
@@ -335,7 +335,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("FieldSQLDateIdTest failed");
+      throw new Exception("FieldSQLDateIdTest failed");
   }
 
   /*
@@ -345,6 +345,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy:
    */
+@Test
   public void FieldUtilDateIdTest() throws Exception {
 
     boolean pass = false;
@@ -383,7 +384,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("FieldUtilDateIdTest failed");
+      throw new Exception("FieldUtilDateIdTest failed");
   }
 
   /*
@@ -393,7 +394,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy:
    */
-
+@Test
   public void PropertyIntegerIdTest() throws Exception {
 
     boolean pass = false;
@@ -433,7 +434,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("PropertyIntegerIdTest failed");
+      throw new Exception("PropertyIntegerIdTest failed");
   }
 
   /*
@@ -443,7 +444,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy:
    */
-
+@Test
   public void PropertyIntIdTest() throws Exception {
 
     boolean pass = false;
@@ -481,7 +482,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("PropertyIntIdTest failed");
+      throw new Exception("PropertyIntIdTest failed");
   }
 
   /*
@@ -491,7 +492,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy:
    */
-
+@Test
   public void PropertyBigIntegerIdTest() throws Exception {
 
     boolean pass = false;
@@ -531,7 +532,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("PropertyBigIntegerIdTest failed");
+      throw new Exception("PropertyBigIntegerIdTest failed");
   }
 
   /*
@@ -541,7 +542,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy:
    */
-
+@Test
   public void PropertyBigDecimalIdTest() throws Exception {
 
     boolean pass = false;
@@ -581,7 +582,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("PropertyBigDecimalIdTest failed");
+      throw new Exception("PropertyBigDecimalIdTest failed");
   }
 
   /*
@@ -591,7 +592,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy:
    */
-
+@Test
   public void PropertyStringIdTest() throws Exception {
 
     boolean pass = false;
@@ -630,7 +631,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("PropertyStringIdTest failed");
+      throw new Exception("PropertyStringIdTest failed");
   }
 
   /*
@@ -640,6 +641,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy:
    */
+@Test
   public void PropertySQLDateIdTest() throws Exception {
 
     boolean pass = false;
@@ -678,7 +680,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("PropertySQLDateIdTest failed");
+      throw new Exception("PropertySQLDateIdTest failed");
   }
 
   /*
@@ -688,6 +690,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy:
    */
+@Test
   public void PropertyUtilDateIdTest() throws Exception {
 
     boolean pass = false;
@@ -726,9 +729,10 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("PropertyUtilDateIdTest failed");
+      throw new Exception("PropertyUtilDateIdTest failed");
   }
 
+@AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

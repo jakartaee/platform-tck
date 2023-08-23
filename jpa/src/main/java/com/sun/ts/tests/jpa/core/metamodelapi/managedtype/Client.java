@@ -18,10 +18,8 @@ package com.sun.ts.tests.jpa.core.metamodelapi.managedtype;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Properties;
 import java.util.Set;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -41,20 +39,15 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -91,7 +84,7 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass) {
-      throw new Fault("managedtype failed");
+      throw new Exception("managedtype failed");
     }
   }
 
@@ -153,7 +146,7 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass) {
-      throw new Fault("getAttributes failed");
+      throw new Exception("getAttributes failed");
     }
   }
 
@@ -215,7 +208,7 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass) {
-      throw new Fault("getDeclaredAttributes failed");
+      throw new Exception("getDeclaredAttributes failed");
     }
   }
 
@@ -263,7 +256,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getSingularAttributeStringClassTest failed");
+      throw new Exception("getSingularAttributeStringClassTest failed");
     }
   }
 
@@ -327,7 +320,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getSingularAttributeStringClassIllegalArgumentExceptionTest failed");
     }
   }
@@ -376,7 +369,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getSingularAttributeStringTest failed");
+      throw new Exception("getSingularAttributeStringTest failed");
     }
   }
 
@@ -423,7 +416,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getSingularAttributeStringIllegalArgumentExceptionTest failed");
     }
   }
@@ -472,7 +465,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getDeclaredSingularAttributeStringClassTest failed");
+      throw new Exception("getDeclaredSingularAttributeStringClassTest failed");
     }
   }
 
@@ -537,7 +530,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getDeclaredSingularAttributeStringClassIllegalArgumentExceptionTest failed");
     }
   }
@@ -586,7 +579,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getDeclaredSingularAttributeStringTest failed");
+      throw new Exception("getDeclaredSingularAttributeStringTest failed");
     }
   }
 
@@ -631,7 +624,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getDeclaredSingularAttributeStringIllegalArgumentExceptionTest failed");
     }
   }
@@ -695,7 +688,7 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass) {
-      throw new Fault("getDeclaredSingularAttributes failed");
+      throw new Exception("getDeclaredSingularAttributes failed");
     }
   }
 
@@ -758,7 +751,7 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass) {
-      throw new Fault("getSingularAttributes failed");
+      throw new Exception("getSingularAttributes failed");
     }
   }
 
@@ -812,7 +805,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getCollectionStringTest failed");
+      throw new Exception("getCollectionStringTest failed");
     }
   }
 
@@ -858,7 +851,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getCollectionStringIllegalArgumentExceptionTest failed");
+      throw new Exception("getCollectionStringIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -912,7 +905,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getCollectionStringClassTest failed");
+      throw new Exception("getCollectionStringClassTest failed");
     }
   }
 
@@ -978,7 +971,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getCollectionStringClassIllegalArgumentExceptionTest failed");
     }
   }
@@ -1032,7 +1025,7 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass) {
-      throw new Fault("getSetStringClassTest failed");
+      throw new Exception("getSetStringClassTest failed");
     }
   }
 
@@ -1095,7 +1088,7 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass) {
-      throw new Fault("getSetStringClassIllegalArgumentExceptionTest failed");
+      throw new Exception("getSetStringClassIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -1146,7 +1139,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getSetStringTest failed");
+      throw new Exception("getSetStringTest failed");
     }
   }
 
@@ -1190,7 +1183,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getSetStringIllegalArgumentExceptionTest failed");
+      throw new Exception("getSetStringIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -1243,7 +1236,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getListStringClassTest failed");
+      throw new Exception("getListStringClassTest failed");
     }
   }
 
@@ -1309,7 +1302,7 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass) {
-      throw new Fault("getListStringClassIllegalArgumentExceptionTest failed");
+      throw new Exception("getListStringClassIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -1361,7 +1354,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getListStringTest failed");
+      throw new Exception("getListStringTest failed");
     }
   }
 
@@ -1407,7 +1400,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getListStringIllegalArgumentExceptionTest failed");
+      throw new Exception("getListStringIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -1460,7 +1453,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getMapStringClassTest failed");
+      throw new Exception("getMapStringClassTest failed");
     }
   }
 
@@ -1524,7 +1517,7 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass) {
-      throw new Fault("getMapStringClassIllegalArgumentExceptionTest failed");
+      throw new Exception("getMapStringClassIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -1576,7 +1569,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getMapStringTest failed");
+      throw new Exception("getMapStringTest failed");
     }
   }
 
@@ -1621,7 +1614,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getMapStringIllegalArgumentExceptionTest failed");
+      throw new Exception("getMapStringIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -1676,7 +1669,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getDeclaredCollectionStringClassTest failed");
+      throw new Exception("getDeclaredCollectionStringClassTest failed");
     }
   }
 
@@ -1743,7 +1736,7 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getDeclaredCollectionStringClassIllegalArgumentExceptionTest failed");
     }
   }
@@ -1798,7 +1791,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getDeclaredCollectionStringTest failed");
+      throw new Exception("getDeclaredCollectionStringTest failed");
     }
   }
 
@@ -1846,7 +1839,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getDeclaredCollectionStringIllegalArgumentExceptionTest failed");
     }
   }
@@ -1899,7 +1892,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getDeclaredSetStringClassTest failed");
+      throw new Exception("getDeclaredSetStringClassTest failed");
     }
   }
 
@@ -1965,7 +1958,7 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getDeclaredSetStringClassIllegalArgumentExceptionTest failed");
     }
   }
@@ -2018,7 +2011,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getDeclaredSetStringTest failed");
+      throw new Exception("getDeclaredSetStringTest failed");
     }
   }
 
@@ -2063,7 +2056,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getDeclaredSetStringIllegalArgumentExceptionTest failed");
     }
   }
@@ -2118,7 +2111,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getDeclaredListStringClassTest failed");
+      throw new Exception("getDeclaredListStringClassTest failed");
     }
   }
 
@@ -2186,7 +2179,7 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getDeclaredListStringClassIllegalArgumentExceptionTest failed");
     }
   }
@@ -2240,7 +2233,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getDeclaredListStringTest failed");
+      throw new Exception("getDeclaredListStringTest failed");
     }
   }
 
@@ -2287,7 +2280,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getDeclaredListStringIllegalArgumentExceptionTest failed");
     }
   }
@@ -2341,7 +2334,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getDeclaredMapStringClassClassTest failed");
+      throw new Exception("getDeclaredMapStringClassClassTest failed");
     }
   }
 
@@ -2408,7 +2401,7 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getDeclaredMapStringClassClassIllegalArgumentExceptionTest failed");
     }
   }
@@ -2461,7 +2454,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getDeclaredMapStringTest failed");
+      throw new Exception("getDeclaredMapStringTest failed");
     }
   }
 
@@ -2506,7 +2499,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getDeclaredMapStringIllegalArgumentExceptionTest failed");
     }
   }
@@ -2568,7 +2561,7 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass) {
-      throw new Fault("getPluralAttributes failed");
+      throw new Exception("getPluralAttributes failed");
     }
   }
 
@@ -2629,7 +2622,7 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass) {
-      throw new Fault("getDeclaredPluralAttributes failed");
+      throw new Exception("getDeclaredPluralAttributes failed");
     }
   }
 
@@ -2682,7 +2675,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getAttribute failed");
+      throw new Exception("getAttribute failed");
     }
   }
 
@@ -2726,7 +2719,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getAttributeIllegalArgumentException failed");
+      throw new Exception("getAttributeIllegalArgumentException failed");
     }
   }
 
@@ -2777,7 +2770,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getDeclaredAttribute failed");
+      throw new Exception("getDeclaredAttribute failed");
     }
   }
 
@@ -2822,7 +2815,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getDeclaredAttributeIllegalArgumentExceptionTest failed");
     }
 
@@ -2858,7 +2851,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getPersistenceType Test  failed");
+      throw new Exception("getPersistenceType Test  failed");
     }
   }
 

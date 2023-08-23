@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,9 +21,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Properties;
 
-import com.sun.javatest.Status;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -45,22 +47,17 @@ public class Client extends PMClientBase {
     public Client() {
     }
 
-    public static void main(String[] args) {
-        Client theTests = new Client();
-        Status s = theTests.run(args, System.out, System.err);
-        s.exit();
-    }
-
-    public void setup(String[] args, Properties p) throws Exception {
+@BeforeEach
+    public void setup() throws Exception {
         TestUtil.logTrace("setupData");
         try {
-            super.setup(args, p);
+            super.setup();
 
             removeTestData();
             createTestData();
 
         } catch (Exception e) {
-            throw new Fault("Setup failed:", e);
+            throw new Exception("Setup failed:", e);
         }
     }
 
@@ -71,6 +68,7 @@ public class Client extends PMClientBase {
      * 
      * @test_Strategy:  Used with a Basic annotation for field access
      */
+@Test
     public void basicFieldTest() throws Exception {
 
         boolean pass = false;
@@ -90,7 +88,7 @@ public class Client extends PMClientBase {
         }
 
         if (!pass) {
-            throw new Fault("basicFieldTest failed");
+            throw new Exception("basicFieldTest failed");
         }
 
     }
@@ -102,6 +100,7 @@ public class Client extends PMClientBase {
      *
      * @test_Strategy:  Used with a Basic annotation for property access
      */
+@Test
     public void basicPropertyTest() throws Exception {
         boolean pass = false;
         try {
@@ -122,7 +121,7 @@ public class Client extends PMClientBase {
         }
 
         if (!pass) {
-            throw new Fault("basicPropertyTest failed");
+            throw new Exception("basicPropertyTest failed");
         }
 
     }
@@ -132,6 +131,7 @@ public class Client extends PMClientBase {
     * @assertion_ids:  PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.3;
     * @test_Strategy:   ElementCollection of a basic type
     */
+@Test
     public void fieldElementCollectionTemporalTest() throws Exception {
         boolean pass = false;
         try {
@@ -166,7 +166,7 @@ public class Client extends PMClientBase {
             pass = false;
         }
         if (!pass) {
-            throw new Fault("fieldElementCollectionTemporalTest failed");
+            throw new Exception("fieldElementCollectionTemporalTest failed");
         }
     }
 
@@ -175,6 +175,7 @@ public class Client extends PMClientBase {
     * @assertion_ids:  PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.3;
     * @test_Strategy:   ElementCollection of a basic type
     */
+@Test
     public void propertyElementCollectionTemporalTest() throws Exception {
         boolean pass = false;
         try {
@@ -209,7 +210,7 @@ public class Client extends PMClientBase {
             pass = false;
         }
         if (!pass) {
-            throw new Fault("propertyElementCollectionTemporalTest failed");
+            throw new Exception("propertyElementCollectionTemporalTest failed");
         }
     }
 
@@ -221,6 +222,7 @@ public class Client extends PMClientBase {
      *
      * @test_Strategy:  Used with a id annotation for field access
      */
+@Test
     public void idFieldTest() throws Exception {
 
         boolean pass = false;
@@ -240,7 +242,7 @@ public class Client extends PMClientBase {
         }
 
         if (!pass) {
-            throw new Fault("idFieldTest failed");
+            throw new Exception("idFieldTest failed");
         }
 
     }
@@ -252,6 +254,7 @@ public class Client extends PMClientBase {
      *
      * @test_Strategy:  Used with a id annotation for property access
      */
+@Test
     public void idPropertyTest() throws Exception {
         boolean pass = false;
         try {
@@ -272,12 +275,12 @@ public class Client extends PMClientBase {
         }
 
         if (!pass) {
-            throw new Fault("idPropertyTest failed");
+            throw new Exception("idPropertyTest failed");
         }
 
     }
 
-
+@AfterEach
     public void cleanup() throws Exception {
         TestUtil.logTrace("cleanup");
         removeTestData();

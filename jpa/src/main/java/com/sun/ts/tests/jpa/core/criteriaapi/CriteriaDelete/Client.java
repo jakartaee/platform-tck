@@ -19,7 +19,9 @@ package com.sun.ts.tests.jpa.core.criteriaapi.CriteriaDelete;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Properties;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.Product;
@@ -38,15 +40,16 @@ import jakarta.persistence.metamodel.Metamodel;
 
 public class Client extends Util {
 
-  public void setup(String[] args, Properties p) throws Exception {
+	@BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createProductData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("setup failed:", e);
+      throw new Exception("setup failed:", e);
     }
   }
 
@@ -59,6 +62,7 @@ public class Client extends Util {
    *
    * @test_Strategy: DELETE FROM Product p
    */
+	@Test
   public void fromClassTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = true;
@@ -95,7 +99,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2) {
-      throw new Fault("fromClassTest failed");
+      throw new Exception("fromClassTest failed");
     }
   }
 
@@ -106,6 +110,7 @@ public class Client extends Util {
    *
    * @test_Strategy: DELETE FROM Product p
    */
+	@Test
   public void fromEntityTypeTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = true;
@@ -148,7 +153,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2) {
-      throw new Fault("fromEntityTypeTest failed");
+      throw new Exception("fromEntityTypeTest failed");
     }
   }
 
@@ -160,6 +165,7 @@ public class Client extends Util {
    * @test_Strategy:
    *
    */
+	@Test
   public void getRootTest() throws Exception {
     boolean pass = false;
 
@@ -181,7 +187,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("getRootTest failed");
+      throw new Exception("getRootTest failed");
     }
   }
 
@@ -192,6 +198,7 @@ public class Client extends Util {
    *
    * @test_Strategy: DELETE FROM Product p where p.id in (1,2,3)
    */
+	@Test
   public void whereExpressionTest() throws Exception {
     boolean pass2 = false;
     boolean pass3 = true;
@@ -272,7 +279,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass2 || !pass3 || !pass4 || !pass5) {
-      throw new Fault("whereExpressionTest failed");
+      throw new Exception("whereExpressionTest failed");
     }
   }
 
@@ -283,6 +290,7 @@ public class Client extends Util {
    *
    * @test_Strategy: DELETE FROM Product p where p.id in (2)
    */
+	@Test
   public void wherePredicateArrayTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = true;
@@ -357,7 +365,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2 || !pass3 || !pass4) {
-      throw new Fault("wherePredicateArrayTest failed");
+      throw new Exception("wherePredicateArrayTest failed");
     }
   }
 
@@ -372,6 +380,7 @@ public class Client extends Util {
    * PRODUCT hardprod where hardprod.id = '1').
    *
    */
+	@Test
   public void subquery() throws Exception {
     boolean pass1 = false;
     boolean pass2 = true;
@@ -438,7 +447,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2) {
-      throw new Fault("exists test failed");
+      throw new Exception("exists test failed");
     }
   }
 
@@ -451,6 +460,7 @@ public class Client extends Util {
    * FROM SoftwareProduct WHERE p.quantity > 100)
    *
    */
+	@Test
   public void modifiedQueryTest() throws Exception {
     int passDeletedCount1 = 0;
     int passUnDeletedCount1 = 0;
@@ -564,7 +574,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
     if (passDeletedCount1 != 4 || passUnDeletedCount1 != 6
         || passDeletedCount2 != 7 || passUnDeletedCount2 != 3) {
-      throw new Fault("modifiedQueryTest failed");
+      throw new Exception("modifiedQueryTest failed");
     }
 
   }

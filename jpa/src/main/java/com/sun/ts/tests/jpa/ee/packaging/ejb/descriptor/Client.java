@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,12 +22,13 @@ package com.sun.ts.tests.jpa.ee.packaging.ejb.descriptor;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 
-public class Client extends EETest {
+public class Client  {
 
   public static final String StatefulRef = "java:comp/env/ejb/Stateful3Bean";
 
@@ -39,17 +40,13 @@ public class Client extends EETest {
 
   private Properties props;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /*
    * @class.setup_props:
    */
 
-  public void setup(final String[] args, final Properties p) throws Exception {
+  @AfterEach
+  public void setup() throws Exception {
     try {
       TSNamingContext nctx = new TSNamingContext();
       TestUtil.logTrace("Look up bean: " + StatefulRef);
@@ -58,11 +55,9 @@ public class Client extends EETest {
       TestUtil.logTrace("Look up bean: " + StatelessRef);
       bean1 = (Stateless3IF) nctx.lookup(StatelessRef);
 
-      props = p;
-
       cleanup();
     } catch (Exception e) {
-      throw new Fault("Setup Failed!", e);
+      throw new Exception("Setup Failed!", e);
     }
   }
 
@@ -84,7 +79,7 @@ public class Client extends EETest {
    * persist, then find.
    *
    */
-
+@Test
   public void test1() throws Exception {
 
     TestUtil.logTrace("Begin test1");
@@ -101,7 +96,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test1 failed");
+      throw new Exception("test1 failed");
   }
 
   /*
@@ -126,7 +121,7 @@ public class Client extends EETest {
    * context.
    *
    */
-
+@Test
   public void test2() throws Exception {
 
     TestUtil.logTrace("Begin test2");
@@ -143,7 +138,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test2 failed");
+      throw new Exception("test2 failed");
   }
 
   /*
@@ -163,7 +158,7 @@ public class Client extends EETest {
    * IllegalStateException is thrown.
    *
    */
-
+@Test
   public void test3() throws Exception {
 
     TestUtil.logTrace("Begin test3");
@@ -180,7 +175,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test3 failed");
+      throw new Exception("test3 failed");
   }
 
   /*
@@ -203,7 +198,7 @@ public class Client extends EETest {
    * getTransaction() and ensure IllegalStateException is thrown.
    *
    */
-
+@Test
   public void test4() throws Exception {
 
     TestUtil.logTrace("Begin test4");
@@ -220,7 +215,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test4 failed");
+      throw new Exception("test4 failed");
   }
 
   /*
@@ -232,7 +227,7 @@ public class Client extends EETest {
    * Application-Managed Entity Manager.
    *
    */
-
+@Test
   public void test5() throws Exception {
 
     TestUtil.logTrace("Begin test5");
@@ -249,7 +244,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test5 failed");
+      throw new Exception("test5 failed");
   }
 
   /*
@@ -262,7 +257,7 @@ public class Client extends EETest {
    * file is automatically loaded into the persistence unit.
    *
    */
-
+@Test
   public void test6() throws Exception {
 
     TestUtil.logTrace("Begin test6");
@@ -279,9 +274,10 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test6 failed");
+      throw new Exception("test6 failed");
   }
 
+@AfterEach
   public void cleanup() throws Exception {
     try {
       bean.removeTestData();

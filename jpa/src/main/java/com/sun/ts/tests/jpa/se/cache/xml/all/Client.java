@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,7 +22,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.DriverManagerConnection;
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -41,25 +44,21 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /*
    * @class.testArgs: -ap tssql.stmt
    */
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
       // displayMap(p);
-      super.setup(args, p);
+      super.setup();
       removeTestData();
-      jpaprops = p;
+      jpaprops = null;
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -71,6 +70,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Using the xml shared-cache-mode element with a value of ALL
    * persist an entity and verify it is in the cache
    */
+  @Test
   public void containsTest() throws Exception {
     Cache cache;
     boolean pass = false;
@@ -113,7 +113,7 @@ public class Client extends PMClientBase {
       pass = true;
     }
     if (!pass) {
-      throw new Fault("containsTest failed");
+      throw new Exception("containsTest failed");
     }
 
   }
@@ -127,6 +127,7 @@ public class Client extends PMClientBase {
    * and a Persistence Context property of CacheStoreMode.BYPASS, persist an
    * entity and verify it is not in the cache
    */
+  @Test
   public void cacheStoreModeBYPASSTest() throws Exception {
     Cache cache;
     boolean pass1, pass2, pass3;
@@ -197,7 +198,7 @@ public class Client extends PMClientBase {
       pass1 = pass2 = pass3 = true;
     }
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("cacheStoreModeBYPASSTest failed");
+      throw new Exception("cacheStoreModeBYPASSTest failed");
     }
 
   }
@@ -211,6 +212,7 @@ public class Client extends PMClientBase {
    * and a Persistence Context property of CacheStoreMode.USE, persist an entity
    * and verify it is in the cache
    */
+  @Test
   public void cacheStoreModeUSETest() throws Exception {
     Cache cache;
     boolean pass1, pass2, pass3;
@@ -282,7 +284,7 @@ public class Client extends PMClientBase {
       pass1 = pass2 = pass3 = true;
     }
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("cacheStoreModeUSETest failed");
+      throw new Exception("cacheStoreModeUSETest failed");
     }
 
   }
@@ -296,6 +298,7 @@ public class Client extends PMClientBase {
    * and a Persistence Context property of CacheStoreMode.REFRESH, persist an
    * entity and verify it is in the cache
    */
+  @Test
   public void cacheStoreModeREFRESHTest() throws Exception {
     Cache cache;
     boolean pass1, pass2, pass3;
@@ -367,7 +370,7 @@ public class Client extends PMClientBase {
       pass1 = pass2 = pass3 = true;
     }
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("cacheStoreModeREFRESHTest failed");
+      throw new Exception("cacheStoreModeREFRESHTest failed");
     }
 
   }
@@ -381,6 +384,7 @@ public class Client extends PMClientBase {
    * and a Persistence Context property of CacheRetrieveMode.BYPASS and
    * CacheStoreMode.BYPASS, persist an entity and verify it is not in the cache
    */
+  @Test
   public void cacheRetrieveModeBYPASSTest() throws Exception {
     Cache cache;
     boolean pass1, pass2;
@@ -438,7 +442,7 @@ public class Client extends PMClientBase {
       pass1 = pass2 = true;
     }
     if (!pass1 || !pass2) {
-      throw new Fault("cacheRetrieveModeBYPASSTest failed");
+      throw new Exception("cacheRetrieveModeBYPASSTest failed");
     }
 
   }
@@ -452,6 +456,7 @@ public class Client extends PMClientBase {
    * and a Persistence Context property of CacheRetrieveMode.USE and
    * CacheStoreMode.BYPASS, persist an entity and verify it is in the cache
    */
+  @Test
   public void cacheRetrieveModeUSETest() throws Exception {
     Cache cache;
     boolean pass1, pass2;
@@ -508,7 +513,7 @@ public class Client extends PMClientBase {
       pass1 = pass2 = true;
     }
     if (!pass1 || !pass2) {
-      throw new Fault("cacheRetrieveModeUSETest failed");
+      throw new Exception("cacheRetrieveModeUSETest failed");
     }
 
   }
@@ -553,7 +558,6 @@ public class Client extends PMClientBase {
    * 
    * }
    */
-
   public int[] selectDataVIAJDBC(Properties p, int id) {
     int[] params = new int[2];
     displayMap(p);
@@ -618,6 +622,7 @@ public class Client extends PMClientBase {
     }
   }
 
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

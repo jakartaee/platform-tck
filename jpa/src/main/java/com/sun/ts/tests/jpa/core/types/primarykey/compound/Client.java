@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.jpa.core.types.primarykey.compound;
 
-import java.util.Properties;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -43,16 +44,12 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
 
     TestUtil.logTrace("Entering setup");
-    super.setup(args, p);
+    super.setup();
     removeTestData();
   }
 
@@ -79,6 +76,7 @@ public class Client extends PMClientBase {
    *                 There should be only one EmbeddedId annotation and no Id
    *                 annotations when the EmbeddedId annotation is used.
    */
+  @Test
   public void testCompoundPK1() throws Exception {
 
     TestBean bean1;
@@ -143,12 +141,12 @@ public class Client extends PMClientBase {
         pass = true;
       }
       if (!pass) {
-        throw new Fault("[testCompoundPK1] bean2 and bean4 PK should match!");
+        throw new Exception("[testCompoundPK1] bean2 and bean4 PK should match!");
       }
 
     } catch (Exception e) {
       TestUtil.logErr("[testCompoundPK1] Caught exception: " + e);
-      throw new Fault("testCompoundPK1 test failed: " + e, e);
+      throw new Exception("testCompoundPK1 test failed: " + e, e);
     } finally {
       try {
         if (getEntityTransaction().isActive()) {
@@ -188,6 +186,7 @@ public class Client extends PMClientBase {
    *                 also be applied to such field or properties. This entity
    *                 uses the @Id annotations on the primary key properties.
    */
+  @Test
   public void testCompoundPK2() throws Exception {
 
     TestBean2 bean1;
@@ -230,12 +229,12 @@ public class Client extends PMClientBase {
         pass = true;
       }
       if (!pass) {
-        throw new Fault("[testCompoundPK2] bean2 and bean4 PK should match!");
+        throw new Exception("[testCompoundPK2] bean2 and bean4 PK should match!");
       }
 
     } catch (Exception e) {
       TestUtil.logErr("[testCompoundPK2] Caught exception: " + e);
-      throw new Fault("testCompoundPK2 test failed: " + e, e);
+      throw new Exception("testCompoundPK2 test failed: " + e, e);
     } finally {
       try {
         if (getEntityTransaction().isActive()) {
@@ -273,6 +272,7 @@ public class Client extends PMClientBase {
    *                 When using the @IdClass annotion, the @Id annotation must
    *                 also be applied to such fields.
    */
+  @Test
   public void testCompoundPK3() throws Exception {
 
     TestBean3 bean1;
@@ -315,12 +315,12 @@ public class Client extends PMClientBase {
         pass = true;
       }
       if (!pass) {
-        throw new Fault("[testCompoundPK3] bean2 and bean4 PK should match!");
+        throw new Exception("[testCompoundPK3] bean2 and bean4 PK should match!");
       }
 
     } catch (Exception e) {
       TestUtil.logErr("[testCompoundPK3] Caught exception: " + e);
-      throw new Fault("testCompoundPK3 test failed: " + e, e);
+      throw new Exception("testCompoundPK3 test failed: " + e, e);
     } finally {
       try {
         if (getEntityTransaction().isActive()) {
@@ -335,6 +335,7 @@ public class Client extends PMClientBase {
     /* testCompoundPK3 pass */
   }
 
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("Cleanup data");
     removeTestData();

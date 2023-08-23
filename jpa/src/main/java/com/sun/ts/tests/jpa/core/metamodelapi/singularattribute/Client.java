@@ -16,9 +16,6 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.singularattribute;
 
-import java.util.Properties;
-
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -34,20 +31,15 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -89,7 +81,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("isId Test  failed");
+      throw new Exception("isId Test  failed");
     }
   }
 
@@ -132,7 +124,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("isVersion Test  failed");
+      throw new Exception("isVersion Test  failed");
     }
   }
 
@@ -175,7 +167,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("isOptional Test  failed");
+      throw new Exception("isOptional Test  failed");
     }
   }
 
@@ -221,7 +213,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getType Test  failed");
+      throw new Exception("getType Test  failed");
     }
   }
 
@@ -264,7 +256,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("isCollection Test failed");
+      throw new Exception("isCollection Test failed");
     }
   }
 
@@ -307,7 +299,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("isAssociation Test failed");
+      throw new Exception("isAssociation Test failed");
     }
   }
 
@@ -352,7 +344,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getPersistentAttributeType Test failed");
+      throw new Exception("getPersistentAttributeType Test failed");
     }
   }
 
@@ -394,7 +386,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getName Test failed");
+      throw new Exception("getName Test failed");
     }
   }
 
@@ -437,7 +429,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getJavaType Test failed");
+      throw new Exception("getJavaType Test failed");
     }
   }
 
@@ -482,7 +474,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getJavaMember Test  failed");
+      throw new Exception("getJavaMember Test  failed");
     }
   }
 
@@ -531,7 +523,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaringType Test  failed");
+      throw new Exception("getDeclaringType Test  failed");
     }
   }
 
@@ -579,7 +571,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getBindableType Test  failed");
+      throw new Exception("getBindableType Test  failed");
     }
   }
 
@@ -624,7 +616,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getBindableJavaType Test  failed");
+      throw new Exception("getBindableJavaType Test  failed");
     }
   }
 

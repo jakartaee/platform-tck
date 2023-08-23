@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,7 +22,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 import com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation.EntityManagerFactoryImpl;
@@ -51,25 +54,21 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /*
    * @class.setup_props: log.file.location;
    */
-  public void setup(String[] args, Properties props) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
-    super.setup(args, props);
-    logProcessor = new LogFileProcessor(props);
+    super.setup();
+    logProcessor = new LogFileProcessor();
 
     if (logProcessor.fetchLog()) {
       currentSeqNum = logProcessor.getCurrentSequenceNumber();
       getEntityManager();
     } else {
-      throw new Fault("Could not fetch log file");
+      throw new Exception("Could not fetch log file");
     }
   }
 
@@ -81,13 +80,14 @@ public class Client extends PMClientBase {
    * @test_Strategy: Specify a third Party Persistence Provider through
    *                 persistence.xml file
    */
+  @Test
   public void createEMF() throws Exception {
     String expected[] = { LOGMESSAGE_PREFIX
         + "Called createContainerEntityManagerFactory(PersistenceUnitInfo, Map)" };
     logProcessor.fetchLog();
     boolean pass = logProcessor.verifyLogContains(expected);
     if (!pass) {
-      throw new Fault("createEMF failed");
+      throw new Exception("createEMF failed");
 
     }
   }
@@ -98,6 +98,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Specify a third Party Persistence Provider through
    *                 persistence.xml file
    */
+  @Test
   public void getPersistenceProviderClassName() throws Exception {
     boolean pass1 = false;
 
@@ -118,7 +119,7 @@ public class Client extends PMClientBase {
     boolean pass2 = logProcessor.verifyLogContains(expected2, currentSeqNum);
 
     if (!pass1 || pass2) {
-      throw new Fault("getPersistenceProviderClassName failed");
+      throw new Exception("getPersistenceProviderClassName failed");
 
     }
   }
@@ -129,6 +130,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Specify a third Party Persistence Provider through
    *                 persistence.xml file
    */
+  @Test
   public void getPersistenceUnitNameTest() throws Exception {
     boolean pass1 = false;
 
@@ -159,7 +161,7 @@ public class Client extends PMClientBase {
     boolean pass2 = logProcessor.verifyLogContains(expected2, currentSeqNum);
 
     if (!pass1 || pass2) {
-      throw new Fault("getPersistenceUnitNameTest failed");
+      throw new Exception("getPersistenceUnitNameTest failed");
 
     }
   }
@@ -170,6 +172,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Specify a third Party Persistence Provider through
    *                 persistence.xml file
    */
+  @Test
   public void getTransactionType() throws Exception {
     boolean pass1 = false;
 
@@ -193,7 +196,7 @@ public class Client extends PMClientBase {
     boolean pass2 = logProcessor.verifyLogContains(expected2, currentSeqNum);
 
     if (!pass1 || pass2) {
-      throw new Fault("getTransactionType failed");
+      throw new Exception("getTransactionType failed");
 
     }
   }
@@ -204,6 +207,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Specify a third Party Persistence Provider through
    *                 persistence.xml file
    */
+  @Test
   public void getManagedClassNames() throws Exception {
     boolean pass1 = false;
     List<String> expected = new ArrayList<String>();
@@ -235,7 +239,7 @@ public class Client extends PMClientBase {
     boolean pass2 = logProcessor.verifyLogContains(expected1, currentSeqNum);
 
     if (!pass1 || pass2) {
-      throw new Fault("getManagedClassNames failed");
+      throw new Exception("getManagedClassNames failed");
 
     }
   }
@@ -246,6 +250,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Specify a third Party Persistence Provider through
    *                 persistence.xml file
    */
+  @Test
   public void getJarFileUrls() throws Exception {
     boolean pass1 = false;
 
@@ -275,7 +280,7 @@ public class Client extends PMClientBase {
     boolean pass2 = logProcessor.verifyLogContains(expected2, currentSeqNum);
 
     if (!pass1 || pass2) {
-      throw new Fault("getJarFileUrls failed");
+      throw new Exception("getJarFileUrls failed");
     }
   }
 
@@ -285,6 +290,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Specify a third Party Persistence Provider through
    *                 persistence.xml file
    */
+  @Test
   public void getPersistenceUnitRootUrl() throws Exception {
     boolean pass1 = false;
 
@@ -306,7 +312,7 @@ public class Client extends PMClientBase {
     boolean pass2 = logProcessor.verifyLogContains(expected2, currentSeqNum);
 
     if (!pass1 || pass2) {
-      throw new Fault("getPersistenceUnitRootUrl failed");
+      throw new Exception("getPersistenceUnitRootUrl failed");
     }
   }
 
@@ -316,6 +322,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Specify a third Party Persistence Provider through
    *                 persistence.xml file
    */
+  @Test
   public void getPersistenceXMLSchemaVersion() throws Exception {
     boolean pass1 = false;
 
@@ -337,7 +344,7 @@ public class Client extends PMClientBase {
     boolean pass2 = logProcessor.verifyLogContains(expected2, currentSeqNum);
 
     if (!pass1 || pass2) {
-      throw new Fault("getPersistenceXMLSchemaVersion failed");
+      throw new Exception("getPersistenceXMLSchemaVersion failed");
     }
   }
 
@@ -347,6 +354,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Specify a third Party Persistence Provider through
    *                 persistence.xml file
    */
+  @Test
   public void getProperties() throws Exception {
     boolean pass1 = true;
 
@@ -399,7 +407,7 @@ public class Client extends PMClientBase {
     boolean pass2 = logProcessor.verifyLogContains(expected, currentSeqNum);
 
     if (!pass1 || pass2) {
-      throw new Fault("getProperties failed");
+      throw new Exception("getProperties failed");
     }
   }
 
@@ -409,6 +417,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Specify a third Party Persistence Provider through
    *                 persistence.xml file
    */
+  @Test
   public void getSharedCacheMode() throws Exception {
     boolean pass1 = false;
 
@@ -430,7 +439,7 @@ public class Client extends PMClientBase {
     boolean pass2 = logProcessor.verifyLogContains(expected2, currentSeqNum);
 
     if (!pass1 || pass2) {
-      throw new Fault("getSharedCacheMode failed");
+      throw new Exception("getSharedCacheMode failed");
     }
   }
 
@@ -440,6 +449,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Specify a third Party Persistence Provider through
    *                 persistence.xml file
    */
+  @Test
   public void getValidationMode() throws Exception {
     boolean pass1 = false;
 
@@ -460,7 +470,7 @@ public class Client extends PMClientBase {
     boolean pass2 = logProcessor.verifyLogContains(expected2, currentSeqNum);
 
     if (!pass1 || pass2) {
-      throw new Fault("getValidationMode failed");
+      throw new Exception("getValidationMode failed");
     }
   }
 
@@ -470,6 +480,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Specify a third Party Persistence Provider through
    *                 persistence.xml file
    */
+  @Test
   public void getClassLoader() throws Exception {
     boolean pass1 = false;
     getClassObjects();
@@ -489,7 +500,7 @@ public class Client extends PMClientBase {
     boolean pass2 = logProcessor.verifyLogContains(expected, currentSeqNum);
 
     if (!pass1 || pass2) {
-      throw new Fault("getClassLoader failed");
+      throw new Exception("getClassLoader failed");
     }
   }
 
@@ -499,6 +510,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Specify a third Party Persistence Provider through
    *                 persistence.xml file
    */
+  @Test
   public void getNewTempClassLoader() throws Exception {
     boolean pass1 = false;
     getClassObjects();
@@ -518,7 +530,7 @@ public class Client extends PMClientBase {
     boolean pass2 = logProcessor.verifyLogContains(expected, currentSeqNum);
 
     if (!pass1 || pass2) {
-      throw new Fault("getNewTempClassLoader failed");
+      throw new Exception("getNewTempClassLoader failed");
     }
   }
 
@@ -528,6 +540,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Specify a third Party Persistence Provider through
    *                 persistence.xml file
    */
+  @Test
   public void getMappingFileNames() throws Exception {
     boolean pass1 = false;
     List<String> expected = new ArrayList<String>();
@@ -563,7 +576,7 @@ public class Client extends PMClientBase {
     boolean pass2 = logProcessor.verifyLogContains(expected1, currentSeqNum);
 
     if (!pass1 || pass2) {
-      throw new Fault("getMappingFileNames failed");
+      throw new Exception("getMappingFileNames failed");
     }
   }
 
@@ -573,6 +586,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Specify a third Party Persistence Provider through
    *                 persistence.xml file
    */
+  @Test
   public void getJtaDataSource() throws Exception {
 
     boolean pass1 = false;
@@ -591,7 +605,7 @@ public class Client extends PMClientBase {
     boolean pass2 = logProcessor.verifyLogContains(expected, currentSeqNum);
 
     if (!pass1 || pass2) {
-      throw new Fault("getJtaDataSource failed");
+      throw new Exception("getJtaDataSource failed");
     }
   }
 
@@ -601,6 +615,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Specify a third Party Persistence Provider through
    *                 persistence.xml file
    */
+  @Test
   public void excludeUnlistedClasses() throws Exception {
     boolean pass1 = false;
 
@@ -619,7 +634,7 @@ public class Client extends PMClientBase {
     boolean pass2 = logProcessor.verifyLogContains(expected, currentSeqNum);
 
     if (!pass1 || pass2) {
-      throw new Fault("excludeUnlistedClasses failed");
+      throw new Exception("excludeUnlistedClasses failed");
     }
   }
 
@@ -629,6 +644,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Specify a third Party Persistence Provider through
    *                 persistence.xml file
    */
+  @Test
   public void getProviderUtil() throws Exception {
 
     String expected[] = { LOGMESSAGE_PREFIX + "Called getProviderUtil()" };
@@ -637,7 +653,7 @@ public class Client extends PMClientBase {
     logProcessor.fetchLog();
     boolean pass = logProcessor.verifyLogContains(expected, currentSeqNum);
     if (!pass) {
-      throw new Fault("getProviderUtil failed");
+      throw new Exception("getProviderUtil failed");
     }
   }
 
@@ -647,6 +663,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Specify a third Party Persistence Provider through
    *                 persistence.xml file
    */
+  @Test
   public void isLoaded() throws Exception {
 
     String expected[] = { LOGMESSAGE_PREFIX + "Called isLoaded()" };
@@ -656,7 +673,7 @@ public class Client extends PMClientBase {
     boolean pass = logProcessor.verifyLogContains(expected, currentSeqNum);
 
     if (!pass) {
-      throw new Fault("isLoaded failed");
+      throw new Exception("isLoaded failed");
     }
   }
 
@@ -668,6 +685,7 @@ public class Client extends PMClientBase {
     puInfo = emfImpl.puInfo;
   }
 
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     TestUtil.logTrace("calling super.cleanup");

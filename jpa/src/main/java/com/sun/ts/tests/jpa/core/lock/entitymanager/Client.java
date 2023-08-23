@@ -18,9 +18,7 @@ package com.sun.ts.tests.jpa.core.lock.entitymanager;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -31,16 +29,11 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       TestUtil.logTrace("Cleanup data");
       removeTestData();
       TestUtil.logTrace("Create Test data");
@@ -49,7 +42,7 @@ public class Client extends PMClientBase {
 
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -107,7 +100,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("findTest1 failed");
+      throw new Exception("findTest1 failed");
     }
   }
 
@@ -173,7 +166,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("findTest2 failed");
+      throw new Exception("findTest2 failed");
     }
   }
 
@@ -225,7 +218,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("findTest3 failed");
+      throw new Exception("findTest3 failed");
     }
   }
 
@@ -276,7 +269,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("findTest4 failed");
+      throw new Exception("findTest4 failed");
     }
   }
 
@@ -325,7 +318,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("lockTest1 failed");
+      throw new Exception("lockTest1 failed");
     }
   }
 
@@ -379,7 +372,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("lockTest2 failed");
+      throw new Exception("lockTest2 failed");
     }
   }
 
@@ -429,7 +422,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("refreshTest1 failed");
+      throw new Exception("refreshTest1 failed");
     }
   }
 
@@ -485,7 +478,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("refreshTest2 failed");
+      throw new Exception("refreshTest2 failed");
     }
   }
 
@@ -537,7 +530,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("refreshTest3 failed");
+      throw new Exception("refreshTest3 failed");
     }
   }
 

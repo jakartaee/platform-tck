@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.CleanupMethod;
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
@@ -37,31 +36,26 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       getEntityManager();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
   public void setupEmployee(String[] args, Properties p) throws Exception {
     TestUtil.logTrace("setupEmployee");
     try {
-      super.setup(args, p);
+      super.setup();
       createEmployeeData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -181,7 +175,7 @@ public class Client extends PMClientBase {
 
     if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6 || !pass7
         || !pass8) {
-      throw new Fault("parameterTest1 failed");
+      throw new Exception("parameterTest1 failed");
     }
   }
 
@@ -300,7 +294,7 @@ public class Client extends PMClientBase {
 
     if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6 || !pass7
         || !pass8) {
-      throw new Fault("parameterTestTQ1 failed");
+      throw new Exception("parameterTestTQ1 failed");
     }
   }
 
@@ -375,7 +369,7 @@ public class Client extends PMClientBase {
     }
 
     if (pass1 != 2 || pass2 != 2 || pass3 != 2) {
-      throw new Fault("parameterTest2 failed");
+      throw new Exception("parameterTest2 failed");
     }
   }
 
@@ -446,7 +440,7 @@ public class Client extends PMClientBase {
           + sParameters.size());
     }
     if (pass1 != 2 || pass2 != 2 || pass3 != 2) {
-      throw new Fault("parameterTQTest2 failed");
+      throw new Exception("parameterTQTest2 failed");
     }
   }
 
@@ -494,7 +488,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("parameterTest4 failed");
+      throw new Exception("parameterTest4 failed");
     }
   }
 
@@ -543,7 +537,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("parameterTest5 failed");
+      throw new Exception("parameterTest5 failed");
     }
   }
 
@@ -609,7 +603,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass) {
-      throw new Fault("getParametersTest failed");
+      throw new Exception("getParametersTest failed");
     }
   }
 
@@ -676,7 +670,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass) {
-      throw new Fault("getParametersTQTest failed");
+      throw new Exception("getParametersTQTest failed");
     }
   }
 
@@ -716,7 +710,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("getParametersNoParametersTest failed");
+      throw new Exception("getParametersNoParametersTest failed");
     }
 
   }
@@ -758,7 +752,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Caught exception:", e);
     }
     if (!pass)
-      throw new Fault("parameterPositionalTest failed");
+      throw new Exception("parameterPositionalTest failed");
   }
 
   /*
@@ -805,7 +799,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Caught exception:", e);
     }
     if (!pass)
-      throw new Fault("parameterUpdateTest failed");
+      throw new Exception("parameterUpdateTest failed");
   }
 
   /*
@@ -844,7 +838,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Caught exception:", e);
     }
     if (!pass)
-      throw new Fault("parameterCaseTest failed");
+      throw new Exception("parameterCaseTest failed");
   }
 
   /*
@@ -882,7 +876,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Caught exception:", e);
     }
     if (!pass)
-      throw new Fault("parameterNamedParameterTwiceTest failed");
+      throw new Exception("parameterNamedParameterTwiceTest failed");
   }
 
   public void createEmployeeData() throws Exception {
@@ -907,7 +901,7 @@ public class Client extends PMClientBase {
 
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("createDepartmentEmployeeData failed:", e);
+      throw new Exception("createDepartmentEmployeeData failed:", e);
     }
   }
 

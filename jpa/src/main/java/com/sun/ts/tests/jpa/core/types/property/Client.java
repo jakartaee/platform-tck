@@ -19,9 +19,11 @@ package com.sun.ts.tests.jpa.core.types.property;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Properties;
 
-import com.sun.javatest.Status;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.harness.CleanupMethod;
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
@@ -41,34 +43,31 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
 
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createTestData();
 
     } catch (Exception e) {
       TestUtil.logErr("Unexpected exception occurred", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
-  public void setupCust(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setupCust() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeCustTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
 
     }
   }
@@ -83,7 +82,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: The persistent property of an entity may be of the
    * following type: wrappers of the primitive types: Character
    */
-
+@Test
   public void propertyTypeTest1() throws Exception {
 
     boolean pass = false;
@@ -124,7 +123,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("propertyTypeTest1 failed");
+      throw new Exception("propertyTypeTest1 failed");
   }
 
   /*
@@ -136,7 +135,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: The persistent property of an entity may be of the
    * following type: wrappers of the primitive types: Short
    */
-
+@Test
   public void propertyTypeTest2() throws Exception {
 
     boolean pass = false;
@@ -176,7 +175,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("propertyTypeTest2 failed");
+      throw new Exception("propertyTypeTest2 failed");
   }
 
   /*
@@ -188,7 +187,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: The persistent property of an entity may be of the
    * following type: wrappers of the primitive types: Integer
    */
-
+@Test
   public void propertyTypeTest3() throws Exception {
 
     boolean pass = false;
@@ -227,7 +226,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("propertyTypeTest3 failed");
+      throw new Exception("propertyTypeTest3 failed");
   }
 
   /*
@@ -239,7 +238,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: The persistent property of an entity may be of the
    * following type: wrappers of the primitive types: Long
    */
-
+@Test
   public void propertyTypeTest4() throws Exception {
 
     boolean pass = false;
@@ -279,7 +278,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("propertyTypeTest4 failed");
+      throw new Exception("propertyTypeTest4 failed");
   }
 
   /*
@@ -291,7 +290,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: The persistent property of an entity may be of the
    * following type: wrappers of the primitive types: Double
    */
-
+@Test
   public void propertyTypeTest5() throws Exception {
 
     boolean pass = false;
@@ -331,7 +330,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("propertyTypeTest5 failed");
+      throw new Exception("propertyTypeTest5 failed");
 
   }
 
@@ -344,7 +343,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: The persistent property of an entity may be of the
    * following type: wrappers of the primitive types: Float
    */
-
+@Test
   public void propertyTypeTest6() throws Exception {
 
     boolean pass = false;
@@ -384,7 +383,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("propertyTypeTest6 failed");
+      throw new Exception("propertyTypeTest6 failed");
 
   }
 
@@ -400,7 +399,7 @@ public class Client extends PMClientBase {
    *
    * Using the Enumerated annotation, with EnumType.ORDINAL.
    */
-
+@Test
   public void propertyTypeTest7() throws Exception {
 
     boolean pass = false;
@@ -445,7 +444,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("propertyTypeTest7 failed");
+      throw new Exception("propertyTypeTest7 failed");
   }
 
   /*
@@ -463,7 +462,7 @@ public class Client extends PMClientBase {
    *
    * Temporal.TemporalType.DATE
    */
-
+@Test
   public void propertyTypeTest8() throws Exception {
 
     boolean pass = false;
@@ -501,7 +500,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("propertyTypeTest8 failed");
+      throw new Exception("propertyTypeTest8 failed");
   }
 
   /*
@@ -514,7 +513,7 @@ public class Client extends PMClientBase {
    * following type: Byte[]
    *
    */
-
+@Test
   public void propertyTypeTest9() throws Exception {
 
     boolean pass = false;
@@ -570,7 +569,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("propertyTypeTest9 failed");
+      throw new Exception("propertyTypeTest9 failed");
   }
 
   /*
@@ -583,7 +582,7 @@ public class Client extends PMClientBase {
    * following type: Character[]
    *
    */
-
+@Test
   public void propertyTypeTest10() throws Exception {
 
     boolean pass = false;
@@ -630,7 +629,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("propertyTypeTest10 failed");
+      throw new Exception("propertyTypeTest10 failed");
   }
 
   /*
@@ -642,7 +641,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: The persistent property of an entity may be of the
    * following type: java.sql.Time
    */
-
+@Test
   public void propertyTypeTest11() throws Exception {
 
     boolean pass = false;
@@ -687,7 +686,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("propertyTypeTest11 failed");
+      throw new Exception("propertyTypeTest11 failed");
   }
 
   /*
@@ -699,7 +698,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: The persistent property of an entity may be of the
    * following type: java.sql.Timestamp
    */
-
+@Test
   public void propertyTypeTest12() throws Exception {
 
     boolean pass = false;
@@ -745,7 +744,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("propertyTypeTest12 failed");
+      throw new Exception("propertyTypeTest12 failed");
   }
 
   /*
@@ -756,6 +755,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Test various scalar expressions test
    *
    */
+@Test
   public void scalarExpressionsTest() throws Exception {
     boolean pass1, pass2, pass3, pass4, pass5;
     pass1 = pass2 = pass3 = pass4 = pass5 = false;
@@ -908,7 +908,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5)
-      throw new Fault("scalarExpressionsTest failed");
+      throw new Exception("scalarExpressionsTest failed");
   }
 
   /*
@@ -920,6 +920,7 @@ public class Client extends PMClientBase {
    */
   @SetupMethod(name = "setupCust")
   @CleanupMethod(name = "cleanupCust")
+  @Test
   public void elementCollectionTest() throws Exception {
     boolean pass = false;
     try {
@@ -972,7 +973,7 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass) {
-      throw new Fault("elementCollectionTest failed");
+      throw new Exception("elementCollectionTest failed");
     }
   }
 
@@ -1012,6 +1013,7 @@ public class Client extends PMClientBase {
 
   }
 
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("Cleanup data");
     removeTestData();
@@ -1019,6 +1021,7 @@ public class Client extends PMClientBase {
     super.cleanup();
   }
 
+  @AfterEach
   public void cleanupCust() throws Exception {
     TestUtil.logTrace("cleanup");
     removeCustTestData();

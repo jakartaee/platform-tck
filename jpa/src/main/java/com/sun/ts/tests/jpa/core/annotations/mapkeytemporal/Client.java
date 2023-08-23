@@ -16,14 +16,22 @@
 
 package com.sun.ts.tests.jpa.core.annotations.mapkeytemporal;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.common.PMClientBase;
-
-import java.util.*;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jpa.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
@@ -43,33 +51,31 @@ public class Client extends PMClientBase {
     private static Employee2 empRef2[] = new Employee2[5];
     private static Employee4 empRef3[] = new Employee4[5];
 
-    public static void main(String[] args) {
-        Client theTests = new Client();
-        Status s = theTests.run(args, System.out, System.err);
-        s.exit();
-    }
 
-    public void setup(String[] args, Properties p) throws Exception {
+    @BeforeEach
+    public void setup() throws Exception {
         TestUtil.logTrace("setup");
         try {
-            super.setup(args, p);
+            super.setup();
             removeTestData();
             createTestData();
             TestUtil.logTrace("Done creating test data");
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: ", e);
-            throw new Fault("Setup failed:", e);
+            throw new Exception("Setup failed:", e);
         }
     }
-    public void setupCust(String[] args, Properties p) throws Exception {
+    
+    @BeforeEach
+    public void setupCust() throws Exception {
         TestUtil.logTrace("setup");
         try {
-            super.setup(args, p);
+            super.setup();
             removeCustTestData();
         } catch (Exception e) {
             TestUtil.logErr("Exception: ", e);
-            throw new Fault("Setup failed:", e);
+            throw new Exception("Setup failed:", e);
 
         }
     }
@@ -80,6 +86,7 @@ public class Client extends PMClientBase {
     * @test_Strategy:
     *
     */
+    @Test
     public void mapKeyTemporalTest() throws Exception {
 
         boolean pass1 = false;
@@ -152,7 +159,7 @@ public class Client extends PMClientBase {
         }
 
         if (!pass1 || !pass2) {
-            throw new Fault("mapKeyTemporalTest failed");
+            throw new Exception("mapKeyTemporalTest failed");
         }
     }
 
@@ -163,6 +170,7 @@ public class Client extends PMClientBase {
     * @test_Strategy:
     *
     */
+    @Test
     public void mapKeyEnumeratedWithMayKeyClassAnnotationTest() throws Exception {
 
         boolean pass1 = false;
@@ -233,7 +241,7 @@ public class Client extends PMClientBase {
         }
 
         if (!pass1 || !pass2) {
-            throw new Fault("mapKeyEnumeratedWithMayKeyClassAnnotationTest failed");
+            throw new Exception("mapKeyEnumeratedWithMayKeyClassAnnotationTest failed");
         }
     }
    /*
@@ -242,6 +250,7 @@ public class Client extends PMClientBase {
     *                   PERSISTENCE:SPEC:2065.1;
     * @test_Strategy:
     */
+    @Test
    public void elementCollectionTest() throws Exception {
 
         boolean pass1 = false;
@@ -312,7 +321,7 @@ public class Client extends PMClientBase {
         }
 
         if (!pass1 || !pass2) {
-            throw new Fault("elementCollectionTest failed");
+            throw new Exception("elementCollectionTest failed");
         }
     }
     /*
@@ -467,12 +476,14 @@ public class Client extends PMClientBase {
         }
     }
 
+    @AfterEach
     public void cleanup() throws Exception {
         TestUtil.logTrace("cleanup");
         removeTestData();
         TestUtil.logTrace("cleanup complete, calling super.cleanup");
         super.cleanup();
     }
+    @AfterEach
     public void cleanupCust() throws Exception {
         TestUtil.logTrace("cleanup");
         removeCustTestData();

@@ -21,11 +21,12 @@
 package com.sun.ts.tests.jpa.core.annotations.nativequery;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Properties;
 
-import com.sun.javatest.Status;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -36,20 +37,16 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -70,7 +67,7 @@ public class Client extends PMClientBase {
    *
    * 
    */
-
+@Test
   public void nativeQueryTest2() throws Exception {
 
     boolean pass = false;
@@ -167,7 +164,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("nativeQueryTest2 failed");
+      throw new Exception("nativeQueryTest2 failed");
   }
 
   /*
@@ -186,7 +183,7 @@ public class Client extends PMClientBase {
    * entity fields. The FieldResult annotation is used for this purpose.
    *
    */
-
+@Test
   public void nativeQueryTest3() throws Exception {
     boolean pass = false;
     List q;
@@ -279,7 +276,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("nativeQueryTest3 failed");
+      throw new Exception("nativeQueryTest3 failed");
   }
 
   /*
@@ -292,7 +289,7 @@ public class Client extends PMClientBase {
    * return the totalprice as a String
    *
    */
-
+@Test
   public void nativeQueryColumnResultTypeTest() throws Exception {
 
     boolean pass = false;
@@ -389,7 +386,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("nativeQueryColumnResultTypeTest failed");
+      throw new Exception("nativeQueryColumnResultTypeTest failed");
   }
 
   /*
@@ -402,6 +399,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Verify jakarta.persistence.ConstructorResult can call a class
    * constructor passing in arg data and return the class.
    */
+@Test
   public void nativeQueryTestConstructorResult() throws Exception {
 
     boolean pass = false;
@@ -465,7 +463,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("nativeQueryTestConstructorResult failed");
+      throw new Exception("nativeQueryTestConstructorResult failed");
 
   }
   /*
@@ -477,7 +475,7 @@ public class Client extends PMClientBase {
    * constructor passing in arg data and return the class.
    *
    */
-
+@Test
   public void nativeQueryTestConstructorResultWithId() throws Exception {
 
     boolean pass1 = false;
@@ -534,7 +532,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2)
-      throw new Fault("nativeQueryTestConstructorResultWithId failed");
+      throw new Exception("nativeQueryTestConstructorResultWithId failed");
 
   }
 
@@ -547,7 +545,7 @@ public class Client extends PMClientBase {
    * constructor passing in arg data except the id and return the class.
    *
    */
-
+@Test
   public void nativeQueryTestConstructorResultNoId() throws Exception {
 
     boolean pass1 = false;
@@ -606,7 +604,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2)
-      throw new Fault("nativeQueryTestConstructorResultNoId failed");
+      throw new Exception("nativeQueryTestConstructorResultNoId failed");
 
   }
 
@@ -618,7 +616,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    *
    */
-
+@Test
   public void createNativeQueryStringTest() throws Exception {
     boolean pass = false;
     List q = null;
@@ -675,7 +673,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("createNativeQueryStringTest failed");
+      throw new Exception("createNativeQueryStringTest failed");
   }
 
   /*
@@ -686,7 +684,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Use the createNativeQuery(String,Class)
    *
    */
-
+@Test
   public void createNativeQueryResultClassTest() throws Exception {
     boolean pass = false;
     List<Order1> q;
@@ -739,7 +737,7 @@ public class Client extends PMClientBase {
     if (!pass)
       throw new
 
-      Fault("createNativeQueryResultClassTest failed");
+      Exception("createNativeQueryResultClassTest failed");
 
   }
 
@@ -751,6 +749,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Use the createNativeQuery(String,Class) a TypedQuery
    *
    */
+@Test
   public void createNativeQueryResultClassTQTest() throws Exception {
     boolean pass = false;
     List<Order1> q;
@@ -801,7 +800,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("createNativeQueryResultClassTQTest failed");
+      throw new Exception("createNativeQueryResultClassTQTest failed");
   }
 
   /*
@@ -813,6 +812,7 @@ public class Client extends PMClientBase {
    * transaction is in effect and verify TransactionRequiredException is thrown
    *
    */
+@Test
   public void executeUpdateTransactionRequiredExceptionTest() throws Exception {
     boolean pass = false;
     try {
@@ -834,7 +834,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass)
-      throw new Fault("executeUpdateTransactionRequiredExceptionTest failed");
+      throw new Exception("executeUpdateTransactionRequiredExceptionTest failed");
   }
 
   /*
@@ -845,6 +845,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Use the createNativeQuery(String,Class) a TypedQuery
    *
    */
+@Test
   public void setParameterTest() throws Exception {
     boolean pass = false;
     List<Order1> q;
@@ -896,7 +897,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("setParameterTest failed");
+      throw new Exception("setParameterTest failed");
   }
 
   /*
@@ -907,6 +908,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    *
    */
+@Test
   public void getSingleResultTest() throws Exception {
     boolean pass = false;
     Object q;
@@ -950,9 +952,10 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("getSingleResultTest failed");
+      throw new Exception("getSingleResultTest failed");
   }
 
+@AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

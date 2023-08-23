@@ -22,7 +22,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -50,21 +53,14 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  public void setup(String[] args, Properties p) throws Exception {
+ @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
-    this.props = p;
     try {
-      super.setup(args, p);
+      super.setup();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -73,11 +69,12 @@ public class Client extends PMClientBase {
    *
    * @class.setup_props: jdbc.db;
    */
+ @BeforeEach
   public void setupOrderData(String[] args, Properties p) throws Exception {
     TestUtil.logTrace("setupOrderData");
     this.props = p;
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createOrderData();
       map.putAll(getEntityManager().getProperties());
@@ -85,15 +82,17 @@ public class Client extends PMClientBase {
       displayMap(map);
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
+ @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     super.cleanup();
   }
 
+ @AfterEach
   public void cleanupData() throws Exception {
     TestUtil.logTrace("cleanupData");
     removeTestData();
@@ -108,6 +107,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.persist() method after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void persistAfterClose() throws Exception {
     boolean pass = false;
 
@@ -132,7 +132,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("persistAfterClose failed");
+      throw new Exception("persistAfterClose failed");
     }
   }
 
@@ -144,6 +144,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.merge() method after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void mergeAfterClose() throws Exception {
     boolean pass = false;
 
@@ -167,7 +168,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("mergeAfterClose failed");
+      throw new Exception("mergeAfterClose failed");
     }
   }
 
@@ -179,6 +180,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.remove() method after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void removeAfterClose() throws Exception {
     boolean pass = false;
 
@@ -203,7 +205,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("removeAfterClose failed");
+      throw new Exception("removeAfterClose failed");
     }
   }
 
@@ -215,6 +217,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.find() method after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void findAfterClose() throws Exception {
     boolean pass = false;
 
@@ -238,7 +241,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("findAfterClose failed");
+      throw new Exception("findAfterClose failed");
     }
   }
 
@@ -250,6 +253,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.getReference() method after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void getReferenceAfterClose() throws Exception {
     boolean pass = false;
 
@@ -273,7 +277,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("getReferenceAfterClose failed");
+      throw new Exception("getReferenceAfterClose failed");
     }
   }
 
@@ -285,6 +289,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.flush() method after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void flushAfterClose() throws Exception {
     boolean pass = false;
 
@@ -308,7 +313,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("flushAfterClose failed");
+      throw new Exception("flushAfterClose failed");
     }
   }
 
@@ -320,6 +325,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.setFlushMode() method after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void setFlushModeAfterClose() throws Exception {
     boolean pass = false;
 
@@ -343,7 +349,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("setFlushModeAfterClose failed");
+      throw new Exception("setFlushModeAfterClose failed");
     }
   }
 
@@ -355,6 +361,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.getFlushMode() method after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void getFlushModeAfterClose() throws Exception {
     boolean pass = false;
 
@@ -378,7 +385,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("getFlushModeAfterClose failed");
+      throw new Exception("getFlushModeAfterClose failed");
     }
   }
 
@@ -390,6 +397,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.lock() method after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void lockAfterClose() throws Exception {
     boolean pass = false;
 
@@ -414,7 +422,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("lockAfterClose failed");
+      throw new Exception("lockAfterClose failed");
     }
   }
 
@@ -426,6 +434,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.refresh() method after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void refreshAfterClose() throws Exception {
     boolean pass = false;
 
@@ -450,7 +459,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("refreshAfterClose failed");
+      throw new Exception("refreshAfterClose failed");
     }
   }
 
@@ -462,7 +471,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.clear() method after calling
    * EntityManager.close()and expect IllegalStateException
    */
-
+ @Test
   public void clearAfterClose() throws Exception {
     boolean pass = false;
 
@@ -487,7 +496,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("clearAfterClose failed");
+      throw new Exception("clearAfterClose failed");
     }
   }
 
@@ -499,6 +508,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.contains() method after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void containsAfterClose() throws Exception {
     boolean pass = false;
 
@@ -523,7 +533,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("containsAfterClose failed");
+      throw new Exception("containsAfterClose failed");
     }
   }
 
@@ -535,6 +545,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.createQuery() method after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void createQueryAfterClose() throws Exception {
     boolean pass = false;
 
@@ -559,7 +570,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("createQueryAfterClose failed");
+      throw new Exception("createQueryAfterClose failed");
     }
   }
 
@@ -571,6 +582,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.createNamedQuery() method after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void createNamedQueryAfterClose() throws Exception {
     boolean pass = false;
 
@@ -594,7 +606,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("createNamedQueryAfterClose failed");
+      throw new Exception("createNamedQueryAfterClose failed");
     }
   }
 
@@ -606,6 +618,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.createNativeQuery() method after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void createNativeQueryAfterClose() throws Exception {
     boolean pass = false;
 
@@ -630,7 +643,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("createNativeQueryAfterClose failed");
+      throw new Exception("createNativeQueryAfterClose failed");
     }
   }
 
@@ -642,6 +655,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.joinTransaction() method after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void joinTransactionAfterClose() throws Exception {
     boolean pass = false;
 
@@ -665,7 +679,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("joinTransactionAfterClose failed");
+      throw new Exception("joinTransactionAfterClose failed");
     }
   }
 
@@ -677,6 +691,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.getDelegate() method after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void getDelegateAfterClose() throws Exception {
     boolean pass = false;
 
@@ -700,7 +715,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("getDelegateAfterClose failed");
+      throw new Exception("getDelegateAfterClose failed");
     }
   }
 
@@ -712,6 +727,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.close() method after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void closeAfterClose() throws Exception {
     boolean pass = false;
 
@@ -735,7 +751,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("closeAfterClose failed");
+      throw new Exception("closeAfterClose failed");
     }
   }
 
@@ -746,6 +762,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy: Get EntityManagerFactory from closed EntityManager
    */
+ @Test
   public void getEntityManagerFactoryIllegalStateExceptionTest() throws Exception {
     boolean pass = false;
     getEntityManager().close();
@@ -759,7 +776,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getEntityManagerFactoryIllegalStateExceptionTest failed");
     }
   }
@@ -771,6 +788,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy: Close the EntityManager, then call em.getMetaModel()
    */
+ @Test
   public void emGetMetamodelIllegalStateExceptionTest() throws Exception {
     boolean pass = false;
 
@@ -785,7 +803,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass) {
-      throw new Fault("emGetMetamodelIllegalStateExceptionTest failed");
+      throw new Exception("emGetMetamodelIllegalStateExceptionTest failed");
     }
   }
 
@@ -798,6 +816,7 @@ public class Client extends PMClientBase {
    * closed and verify exception is thrown
    *
    */
+ @Test
   public void getCriteriaBuilderIllegalStateExceptionTest() throws Exception {
     boolean pass = false;
 
@@ -812,7 +831,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass) {
-      throw new Fault("getCriteriaBuilderIllegalStateExceptionTest failed");
+      throw new Exception("getCriteriaBuilderIllegalStateExceptionTest failed");
     }
   }
 
@@ -824,6 +843,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.createNamedQuery(String, Class) after
    * calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose1Test() throws Exception {
     boolean pass = false;
 
@@ -847,7 +867,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose1Test failed");
+      throw new Exception("entityManagerMethodsAfterClose1Test failed");
     }
   }
 
@@ -859,6 +879,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.createNamedStoredProcedureQuery(String)
    * after calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose2Test() throws Exception {
     boolean pass = false;
     getEntityManager().close();
@@ -881,7 +902,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose2Test failed");
+      throw new Exception("entityManagerMethodsAfterClose2Test failed");
     }
 
   }
@@ -894,6 +915,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.createNativeQuery(String,Class) after
    * calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose3Test() throws Exception {
     boolean pass = false;
     getEntityManager().close();
@@ -917,7 +939,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose3Test failed");
+      throw new Exception("entityManagerMethodsAfterClose3Test failed");
     }
 
   }
@@ -930,6 +952,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.createNativeQuery(String, String) after
    * calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose4Test() throws Exception {
     boolean pass = false;
     getEntityManager().close();
@@ -953,7 +976,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose4Test failed");
+      throw new Exception("entityManagerMethodsAfterClose4Test failed");
     }
 
   }
@@ -967,6 +990,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.createQuery(CriteriaDelete) after
    * calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose5Test() throws Exception {
     boolean pass = false;
     CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -991,7 +1015,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose5Test failed");
+      throw new Exception("entityManagerMethodsAfterClose5Test failed");
     }
 
   }
@@ -1004,6 +1028,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.createQuery(CriteriaQuery) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose6Test() throws Exception {
     boolean pass = false;
     CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -1028,7 +1053,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose6Test failed");
+      throw new Exception("entityManagerMethodsAfterClose6Test failed");
     }
 
   }
@@ -1041,6 +1066,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.createQuery(CriteriaUpdate) after
    * calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose7Test() throws Exception {
     boolean pass = false;
     CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -1065,7 +1091,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose7Test failed");
+      throw new Exception("entityManagerMethodsAfterClose7Test failed");
     }
 
   }
@@ -1078,6 +1104,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.createQuery(String, Class) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose8Test() throws Exception {
     boolean pass = false;
     getEntityManager().close();
@@ -1100,7 +1127,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose8Test failed");
+      throw new Exception("entityManagerMethodsAfterClose8Test failed");
     }
 
   }
@@ -1113,6 +1140,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.createStoredProcedureQuery(String) after
    * calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose9Test() throws Exception {
     boolean pass = false;
     getEntityManager().close();
@@ -1135,7 +1163,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose9Test failed");
+      throw new Exception("entityManagerMethodsAfterClose9Test failed");
     }
 
   }
@@ -1148,6 +1176,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.createStoredProcedureQuery(String,
    * Class) after calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose10Test() throws Exception {
     boolean pass = false;
     getEntityManager().close();
@@ -1171,7 +1200,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose10Test failed");
+      throw new Exception("entityManagerMethodsAfterClose10Test failed");
     }
 
   }
@@ -1184,6 +1213,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.createStoredProcedureQuery(String,
    * String) after calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose11Test() throws Exception {
     boolean pass = false;
     getEntityManager().close();
@@ -1207,7 +1237,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose11Test failed");
+      throw new Exception("entityManagerMethodsAfterClose11Test failed");
     }
 
   }
@@ -1220,6 +1250,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.detach(Object) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose12Test() throws Exception {
     boolean pass = false;
     getEntityManager().close();
@@ -1245,7 +1276,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose12Test failed");
+      throw new Exception("entityManagerMethodsAfterClose12Test failed");
     }
 
   }
@@ -1258,6 +1289,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.find(Class, Object, LockModeType) after
    * calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose13Test() throws Exception {
     boolean pass = false;
     getEntityManager().close();
@@ -1280,7 +1312,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose13Test failed");
+      throw new Exception("entityManagerMethodsAfterClose13Test failed");
     }
 
   }
@@ -1293,6 +1325,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.find(Class, Object, LockModeType, Map)
    * after calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose14Test() throws Exception {
     boolean pass = false;
     getEntityManager().close();
@@ -1315,7 +1348,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose14Test failed");
+      throw new Exception("entityManagerMethodsAfterClose14Test failed");
     }
 
   }
@@ -1328,6 +1361,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.find(Class, Object, Map) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose15Test() throws Exception {
     boolean pass = false;
     getEntityManager().close();
@@ -1350,7 +1384,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose15Test failed");
+      throw new Exception("entityManagerMethodsAfterClose15Test failed");
     }
 
   }
@@ -1363,6 +1397,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.getCriteriaBuilder() after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose16Test() throws Exception {
     boolean pass = false;
     getEntityManager().close();
@@ -1385,7 +1420,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose16Test failed");
+      throw new Exception("entityManagerMethodsAfterClose16Test failed");
     }
 
   }
@@ -1398,6 +1433,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.getEntityManagerFactory() after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose17Test() throws Exception {
     boolean pass = false;
     getEntityManager().close();
@@ -1420,7 +1456,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose17Test failed");
+      throw new Exception("entityManagerMethodsAfterClose17Test failed");
     }
 
   }
@@ -1433,6 +1469,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.getLockMode(Object) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose18Test() throws Exception {
     boolean pass = false;
     getEntityManager().close();
@@ -1458,7 +1495,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose18Test failed");
+      throw new Exception("entityManagerMethodsAfterClose18Test failed");
     }
 
   }
@@ -1471,6 +1508,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.getMetamodel() after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose19Test() throws Exception {
     boolean pass = false;
     getEntityManager().close();
@@ -1493,7 +1531,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose19Test failed");
+      throw new Exception("entityManagerMethodsAfterClose19Test failed");
     }
 
   }
@@ -1506,6 +1544,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.isJoinedToTransaction() after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose20Test() throws Exception {
     boolean pass = false;
     getEntityManager().close();
@@ -1528,7 +1567,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose20Test failed");
+      throw new Exception("entityManagerMethodsAfterClose20Test failed");
     }
 
   }
@@ -1541,6 +1580,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.lock(Object, LockModeType, Map) after
    * calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose21Test() throws Exception {
     boolean pass = false;
     getEntityManager().close();
@@ -1566,7 +1606,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose21Test failed");
+      throw new Exception("entityManagerMethodsAfterClose21Test failed");
     }
 
   }
@@ -1579,6 +1619,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.refresh(java.lang.Object, LockModeType)
    * after calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose22Test() throws Exception {
     boolean pass = false;
     getEntityManager().close();
@@ -1604,7 +1645,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose22Test failed");
+      throw new Exception("entityManagerMethodsAfterClose22Test failed");
     }
 
   }
@@ -1617,6 +1658,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.refresh(Object, LockModeType, Map) after
    * calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose23Test() throws Exception {
     boolean pass = false;
     getEntityManager().close();
@@ -1642,7 +1684,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose23Test failed");
+      throw new Exception("entityManagerMethodsAfterClose23Test failed");
     }
 
   }
@@ -1655,6 +1697,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.refresh(Object, Map<String,Object) after
    * calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose24Test() throws Exception {
     boolean pass = false;
 
@@ -1680,7 +1723,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose24Test failed");
+      throw new Exception("entityManagerMethodsAfterClose24Test failed");
     }
 
   }
@@ -1693,6 +1736,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.setProperty(String, Object) after
    * calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void entityManagerMethodsAfterClose25Test() throws Exception {
     boolean pass = false;
     getEntityManager().close();
@@ -1716,7 +1760,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("entityManagerMethodsAfterClose25Test failed");
+      throw new Exception("entityManagerMethodsAfterClose25Test failed");
     }
 
   }
@@ -1731,6 +1775,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.executeUpdate() after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose1Test() throws Exception {
     boolean pass = false;
 
@@ -1755,7 +1800,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose1Test failed");
+      throw new Exception("queryMethodsAfterClose1Test failed");
     }
   }
 
@@ -1769,6 +1814,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.getFirstResult() after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose2Test() throws Exception {
     boolean pass = false;
     getEntityTransaction().begin();
@@ -1792,7 +1838,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose2Test failed");
+      throw new Exception("queryMethodsAfterClose2Test failed");
     }
   }
 
@@ -1806,6 +1852,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.getFlushMode() after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose3Test() throws Exception {
     boolean pass = false;
 
@@ -1830,7 +1877,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose3Test failed");
+      throw new Exception("queryMethodsAfterClose3Test failed");
     }
   }
   /*
@@ -1843,7 +1890,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.getHints() after calling
    * EntityManager.close()and expect IllegalStateException
    */
-
+ @Test
   public void queryMethodsAfterClose4Test() throws Exception {
     boolean pass = false;
 
@@ -1869,7 +1916,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose4Test failed");
+      throw new Exception("queryMethodsAfterClose4Test failed");
     }
   }
 
@@ -1883,6 +1930,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.getLockMode() after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose5Test() throws Exception {
     boolean pass = false;
 
@@ -1913,7 +1961,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose5Test failed");
+      throw new Exception("queryMethodsAfterClose5Test failed");
     }
   }
 
@@ -1927,6 +1975,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.getMaxResults() after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose6Test() throws Exception {
     boolean pass = false;
     getEntityTransaction().begin();
@@ -1950,7 +1999,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose6Test failed");
+      throw new Exception("queryMethodsAfterClose6Test failed");
     }
   }
 
@@ -1964,6 +2013,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.getParameter(int) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose7Test() throws Exception {
     boolean pass = false;
     getEntityTransaction().begin();
@@ -1995,7 +2045,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose7Test failed");
+      throw new Exception("queryMethodsAfterClose7Test failed");
     }
   }
 
@@ -2009,6 +2059,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.getParameter(int position, Class) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose8Test() throws Exception {
     boolean pass = false;
     getEntityTransaction().begin();
@@ -2040,7 +2091,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose8Test failed");
+      throw new Exception("queryMethodsAfterClose8Test failed");
     }
   }
 
@@ -2054,6 +2105,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.getParameter(String) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose9Test() throws Exception {
     boolean pass = false;
     getEntityTransaction().begin();
@@ -2085,7 +2137,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose9Test failed");
+      throw new Exception("queryMethodsAfterClose9Test failed");
     }
   }
 
@@ -2099,6 +2151,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.getParameter(String, Class) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose10Test() throws Exception {
     boolean pass = false;
     getEntityTransaction().begin();
@@ -2130,7 +2183,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose10Test failed");
+      throw new Exception("queryMethodsAfterClose10Test failed");
     }
   }
 
@@ -2144,6 +2197,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.getParameters() after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose11Test() throws Exception {
     boolean pass = false;
     getEntityTransaction().begin();
@@ -2175,7 +2229,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose11Test failed");
+      throw new Exception("queryMethodsAfterClose11Test failed");
     }
   }
 
@@ -2189,6 +2243,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.getParameterValue(int) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose12Test() throws Exception {
     boolean pass = false;
     getEntityTransaction().begin();
@@ -2220,7 +2275,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose12Test failed");
+      throw new Exception("queryMethodsAfterClose12Test failed");
     }
   }
 
@@ -2234,6 +2289,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.getParameterValue(Parameter) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose13Test() throws Exception {
     boolean pass = false;
     getEntityTransaction().begin();
@@ -2266,7 +2322,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose13Test failed");
+      throw new Exception("queryMethodsAfterClose13Test failed");
     }
   }
 
@@ -2280,6 +2336,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.getParameterValue(String) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose14Test() throws Exception {
     boolean pass = false;
     getEntityTransaction().begin();
@@ -2311,7 +2368,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose14Test failed");
+      throw new Exception("queryMethodsAfterClose14Test failed");
     }
   }
 
@@ -2325,6 +2382,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.getResultList() after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose15Test() throws Exception {
     boolean pass = false;
 
@@ -2348,7 +2406,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose15Test failed");
+      throw new Exception("queryMethodsAfterClose15Test failed");
     }
   }
 
@@ -2362,6 +2420,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.getSingleResult() after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose16Test() throws Exception {
     boolean pass = false;
 
@@ -2385,7 +2444,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose16Test failed");
+      throw new Exception("queryMethodsAfterClose16Test failed");
     }
   }
 
@@ -2399,6 +2458,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.isBound(Parameter) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose17Test() throws Exception {
     boolean pass = false;
 
@@ -2425,7 +2485,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose17Test failed");
+      throw new Exception("queryMethodsAfterClose17Test failed");
     }
   }
 
@@ -2439,6 +2499,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.setFirstResult(int) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose18Test() throws Exception {
     boolean pass = false;
 
@@ -2462,7 +2523,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose18Test failed");
+      throw new Exception("queryMethodsAfterClose18Test failed");
     }
   }
 
@@ -2476,6 +2537,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.setFlushMode(FlushModeType) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose19Test() throws Exception {
     boolean pass = false;
 
@@ -2499,7 +2561,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose19Test failed");
+      throw new Exception("queryMethodsAfterClose19Test failed");
     }
   }
 
@@ -2513,6 +2575,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.setHint(String, Object) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose20Test() throws Exception {
     boolean pass = false;
 
@@ -2536,7 +2599,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose20Test failed");
+      throw new Exception("queryMethodsAfterClose20Test failed");
     }
   }
 
@@ -2550,6 +2613,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.setLockMode(LockModeType) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose21Test() throws Exception {
     boolean pass = false;
 
@@ -2573,7 +2637,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose21Test failed");
+      throw new Exception("queryMethodsAfterClose21Test failed");
     }
   }
 
@@ -2587,6 +2651,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.setMaxResults(int) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose22Test() throws Exception {
     boolean pass = false;
 
@@ -2610,7 +2675,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose22Test failed");
+      throw new Exception("queryMethodsAfterClose22Test failed");
     }
   }
 
@@ -2624,6 +2689,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.setParameter(int, Calendar, TemporalType) after
    * calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose23Test() throws Exception {
     boolean pass = false;
 
@@ -2648,7 +2714,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose23Test failed");
+      throw new Exception("queryMethodsAfterClose23Test failed");
     }
   }
 
@@ -2662,6 +2728,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.setParameter(int, Date, TemporalType) after
    * calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose24Test() throws Exception {
     boolean pass = false;
 
@@ -2686,7 +2753,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose24Test failed");
+      throw new Exception("queryMethodsAfterClose24Test failed");
     }
   }
 
@@ -2700,6 +2767,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.setParameter(int, Object) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose25Test() throws Exception {
     boolean pass = false;
 
@@ -2724,7 +2792,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose25Test failed");
+      throw new Exception("queryMethodsAfterClose25Test failed");
     }
   }
 
@@ -2739,6 +2807,7 @@ public class Client extends PMClientBase {
    * TemporalType) after calling EntityManager.close()and expect
    * IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose26Test() throws Exception {
     boolean pass = false;
 
@@ -2765,7 +2834,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose26Test failed");
+      throw new Exception("queryMethodsAfterClose26Test failed");
     }
   }
 
@@ -2780,6 +2849,7 @@ public class Client extends PMClientBase {
    * TemporalType) after calling EntityManager.close()and expect
    * IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose27Test() throws Exception {
     boolean pass = false;
 
@@ -2806,7 +2876,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose27Test failed");
+      throw new Exception("queryMethodsAfterClose27Test failed");
     }
   }
 
@@ -2820,6 +2890,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.setParameter(Parameter<T>, T) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose28Test() throws Exception {
     boolean pass = false;
 
@@ -2846,7 +2917,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose28Test failed");
+      throw new Exception("queryMethodsAfterClose28Test failed");
     }
   }
 
@@ -2860,6 +2931,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.setParameter(String, Calendar, TemporalType)
    * after calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose29Test() throws Exception {
     boolean pass = false;
 
@@ -2884,7 +2956,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose29Test failed");
+      throw new Exception("queryMethodsAfterClose29Test failed");
     }
   }
 
@@ -2898,6 +2970,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.setParameter(String, Date, TemporalType) after
    * calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose30Test() throws Exception {
     boolean pass = false;
 
@@ -2922,7 +2995,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose30Test failed");
+      throw new Exception("queryMethodsAfterClose30Test failed");
     }
   }
 
@@ -2936,6 +3009,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call Query.setParameter(String, Object) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void queryMethodsAfterClose31Test() throws Exception {
     boolean pass = false;
 
@@ -2961,7 +3035,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("queryMethodsAfterClose31Test failed");
+      throw new Exception("queryMethodsAfterClose31Test failed");
     }
 
   }
@@ -2974,6 +3048,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call TypedQuery.getResultList() after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void typedQueryMethodsAfterClose1Test() throws Exception {
     boolean pass = false;
 
@@ -3004,7 +3079,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("typedQueryMethodsAfterClose1Test failed");
+      throw new Exception("typedQueryMethodsAfterClose1Test failed");
     }
 
   }
@@ -3017,6 +3092,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call TypedQuery.getResultList() after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void typedQueryMethodsAfterClose2Test() throws Exception {
     boolean pass = false;
 
@@ -3048,7 +3124,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("typedQueryMethodsAfterClose2Test failed");
+      throw new Exception("typedQueryMethodsAfterClose2Test failed");
     }
 
   }
@@ -3061,6 +3137,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call TypedQuery.setFirstResult(int) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void typedQueryMethodsAfterClose3Test() throws Exception {
     boolean pass = false;
 
@@ -3092,7 +3169,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("typedQueryMethodsAfterClose3Test failed");
+      throw new Exception("typedQueryMethodsAfterClose3Test failed");
     }
 
   }
@@ -3105,6 +3182,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call TypedQuery.setFlushMode(FlushModeType) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void typedQueryMethodsAfterClose4Test() throws Exception {
     boolean pass = false;
 
@@ -3136,7 +3214,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("typedQueryMethodsAfterClose4Test failed");
+      throw new Exception("typedQueryMethodsAfterClose4Test failed");
     }
 
   }
@@ -3149,6 +3227,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call TypedQuery.setHint(String, Object) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void typedQueryMethodsAfterClose5Test() throws Exception {
     boolean pass = false;
 
@@ -3180,7 +3259,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("typedQueryMethodsAfterClose5Test failed");
+      throw new Exception("typedQueryMethodsAfterClose5Test failed");
     }
 
   }
@@ -3193,6 +3272,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call TypedQuery.setLockMode(LockModeType) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void typedQueryMethodsAfterClose6Test() throws Exception {
     boolean pass = false;
 
@@ -3224,7 +3304,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("typedQueryMethodsAfterClose6Test failed");
+      throw new Exception("typedQueryMethodsAfterClose6Test failed");
     }
 
   }
@@ -3237,6 +3317,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call TypedQuery.setMaxResults(int) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void typedQueryMethodsAfterClose7Test() throws Exception {
     boolean pass = false;
 
@@ -3268,7 +3349,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("typedQueryMethodsAfterClose7Test failed");
+      throw new Exception("typedQueryMethodsAfterClose7Test failed");
     }
 
   }
@@ -3281,6 +3362,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call TypedQuery.setParameter(int, Calendar, TemporalType)
    * after calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void typedQueryMethodsAfterClose8Test() throws Exception {
     boolean pass = false;
 
@@ -3309,7 +3391,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("typedQueryMethodsAfterClose8Test failed");
+      throw new Exception("typedQueryMethodsAfterClose8Test failed");
     }
 
   }
@@ -3322,6 +3404,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call TypedQuery.setParameter(int, Date, TemporalType) after
    * calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void typedQueryMethodsAfterClose9Test() throws Exception {
     boolean pass = false;
 
@@ -3350,7 +3433,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("typedQueryMethodsAfterClose9Test failed");
+      throw new Exception("typedQueryMethodsAfterClose9Test failed");
     }
 
   }
@@ -3363,6 +3446,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call TypedQuery.setParameter(int, Object) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void typedQueryMethodsAfterClose10Test() throws Exception {
     boolean pass = false;
 
@@ -3391,7 +3475,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("typedQueryMethodsAfterClose10Test failed");
+      throw new Exception("typedQueryMethodsAfterClose10Test failed");
     }
 
   }
@@ -3405,6 +3489,7 @@ public class Client extends PMClientBase {
    * TemporalType) after calling EntityManager.close()and expect
    * IllegalStateException
    */
+ @Test
   public void typedQueryMethodsAfterClose11Test() throws Exception {
     boolean pass = false;
 
@@ -3438,7 +3523,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("typedQueryMethodsAfterClose11Test failed");
+      throw new Exception("typedQueryMethodsAfterClose11Test failed");
     }
 
   }
@@ -3452,6 +3537,7 @@ public class Client extends PMClientBase {
    * TemporalType) after calling EntityManager.close()and expect
    * IllegalStateException
    */
+ @Test
   public void typedQueryMethodsAfterClose12Test() throws Exception {
     boolean pass = false;
 
@@ -3485,7 +3571,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("typedQueryMethodsAfterClose12Test failed");
+      throw new Exception("typedQueryMethodsAfterClose12Test failed");
     }
 
   }
@@ -3498,6 +3584,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call TypedQuery.setParameter(Parameter<T>, T) after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void typedQueryMethodsAfterClose13Test() throws Exception {
     boolean pass = false;
 
@@ -3531,7 +3618,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("typedQueryMethodsAfterClose13Test failed");
+      throw new Exception("typedQueryMethodsAfterClose13Test failed");
     }
 
   }
@@ -3545,6 +3632,7 @@ public class Client extends PMClientBase {
    * TemporalType) after calling EntityManager.close()and expect
    * IllegalStateException
    */
+ @Test
   public void typedQueryMethodsAfterClose14Test() throws Exception {
     boolean pass = false;
 
@@ -3579,7 +3667,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("typedQueryMethodsAfterClose14Test failed");
+      throw new Exception("typedQueryMethodsAfterClose14Test failed");
     }
 
   }
@@ -3592,6 +3680,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call TypedQuery.setParameter(String, Date, TemporalType)
    * after calling EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void typedQueryMethodsAfterClose15Test() throws Exception {
     boolean pass = false;
 
@@ -3626,7 +3715,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("typedQueryMethodsAfterClose15Test failed");
+      throw new Exception("typedQueryMethodsAfterClose15Test failed");
     }
 
   }
@@ -3639,6 +3728,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call TypedQuery.method_name() after calling
    * EntityManager.close()and expect IllegalStateException
    */
+ @Test
   public void typedQueryMethodsAfterClose16Test() throws Exception {
     boolean pass = false;
 
@@ -3673,7 +3763,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("typedQueryMethodsAfterClose16Test failed");
+      throw new Exception("typedQueryMethodsAfterClose16Test failed");
     }
 
   }
@@ -3686,6 +3776,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.getCriteriaBuilder() that causes
    * RuntimeException and verify Transaction is set for rollback
    */
+ @Test
   public void entityManagerMethodsRuntimeExceptionsCauseRollback18Test()
       throws Exception {
     boolean pass = false;
@@ -3715,7 +3806,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "entityManagerMethodsRuntimeExceptionsCauseRollback18Test failed");
     }
   }
@@ -3728,6 +3819,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.getDelegate() that causes
    * RuntimeException and verify Transaction is set for rollback
    */
+ @Test
   public void entityManagerMethodsRuntimeExceptionsCauseRollback19Test()
       throws Exception {
     boolean pass = false;
@@ -3758,7 +3850,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "entityManagerMethodsRuntimeExceptionsCauseRollback19Test failed");
     }
   }
@@ -3771,6 +3863,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.getEntityManagerFactory() that causes
    * RuntimeException and verify Transaction is set for rollback
    */
+ @Test
   public void entityManagerMethodsRuntimeExceptionsCauseRollback20Test()
       throws Exception {
     boolean pass = false;
@@ -3801,7 +3894,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "entityManagerMethodsRuntimeExceptionsCauseRollback20Test failed");
     }
   }
@@ -3814,6 +3907,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.getMetamodel() that causes
    * RuntimeException and verify Transaction is set for rollback
    */
+ @Test
   public void entityManagerMethodsRuntimeExceptionsCauseRollback22Test()
       throws Exception {
     boolean pass = false;
@@ -3843,7 +3937,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "entityManagerMethodsRuntimeExceptionsCauseRollback22Test failed");
     }
   }
@@ -3856,6 +3950,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    *
    */
+ @Test
   public void storedProcedureQueryMethodsAfterClose1Test() throws Exception {
     boolean pass = false;
 
@@ -3871,7 +3966,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass) {
-      throw new Fault("storedProcedureQueryMethodsAfterClose1Test failed");
+      throw new Exception("storedProcedureQueryMethodsAfterClose1Test failed");
     }
 
   }
@@ -3884,6 +3979,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    *
    */
+ @Test
   public void storedProcedureQueryMethodsAfterClose2Test() throws Exception {
     boolean pass = false;
 
@@ -3898,7 +3994,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass) {
-      throw new Fault("storedProcedureQueryMethodsAfterClose2Test failed");
+      throw new Exception("storedProcedureQueryMethodsAfterClose2Test failed");
     }
 
   }
@@ -3911,6 +4007,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    *
    */
+ @Test
   public void storedProcedureQueryMethodsAfterClose3Test() throws Exception {
     boolean pass = false;
 
@@ -3927,7 +4024,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass) {
-      throw new Fault("storedProcedureQueryMethodsAfterClose3Test failed");
+      throw new Exception("storedProcedureQueryMethodsAfterClose3Test failed");
     }
 
   }
@@ -3940,6 +4037,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    *
    */
+ @Test
   public void storedProcedureQueryMethodsAfterClose4Test() throws Exception {
     boolean pass = false;
 
@@ -3956,7 +4054,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass) {
-      throw new Fault("storedProcedureQueryMethodsAfterClose4Test failed");
+      throw new Exception("storedProcedureQueryMethodsAfterClose4Test failed");
     }
 
   }

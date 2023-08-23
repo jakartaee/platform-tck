@@ -21,10 +21,8 @@ package com.sun.ts.tests.jpa.core.entitytest.persist.manyXmany;
 
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Properties;
 import java.util.Vector;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -33,19 +31,14 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
     } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
 
     }
   }
@@ -119,7 +112,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("persistMXMTest1 failed");
+      throw new Exception("persistMXMTest1 failed");
     }
   }
 
@@ -208,7 +201,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("persistMXMTest2 failed");
+      throw new Exception("persistMXMTest2 failed");
     }
   }
 
@@ -266,7 +259,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("persistMXMTest4 failed");
+      throw new Exception("persistMXMTest4 failed");
     }
   }
 
@@ -338,7 +331,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("persistMXMTest5 failed");
+      throw new Exception("persistMXMTest5 failed");
     }
   }
 
@@ -403,7 +396,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("persistMXMTest6 failed");
+      throw new Exception("persistMXMTest6 failed");
     }
   }
 
@@ -455,7 +448,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("persistMXMTest7 failed");
+      throw new Exception("persistMXMTest7 failed");
     }
   }
 
@@ -510,7 +503,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("persistMXMTest8 failed");
+      throw new Exception("persistMXMTest8 failed");
     }
   }
 
@@ -560,7 +553,7 @@ public class Client extends PMClientBase {
       }
     }
     if (pass) {
-      throw new Fault("persistMXMTest9 failed");
+      throw new Exception("persistMXMTest9 failed");
     }
   }
 
@@ -619,7 +612,7 @@ public class Client extends PMClientBase {
 
     if (!pass1 && !pass2 && !pass) {
       TestUtil.logErr("pass=" + pass + ", pass1=" + pass1 + ", pass2=" + pass2);
-      throw new Fault("persistMXMTest10 failed");
+      throw new Exception("persistMXMTest10 failed");
     }
   }
 
@@ -683,7 +676,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("persistMXMTest11 failed");
+      throw new Exception("persistMXMTest11 failed");
     }
   }
 
@@ -740,7 +733,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("persistMXMTest12 failed");
+      throw new Exception("persistMXMTest12 failed");
     }
   }
 

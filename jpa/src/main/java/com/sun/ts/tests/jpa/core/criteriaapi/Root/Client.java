@@ -17,7 +17,6 @@
 package com.sun.ts.tests.jpa.core.criteriaapi.Root;
 
 import java.util.List;
-import java.util.Properties;
 
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
@@ -45,14 +44,14 @@ import jakarta.persistence.criteria.SetJoin;
 public class Client extends Util {
 
   /* Test setup */
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("Entering Setup");
     try {
-      super.setup(args, p);
+      super.setup();
       getEntityManager();
     } catch (Exception e) {
       TestUtil.logErr("Unexpected exception occurred", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -101,7 +100,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinStringTest failed");
+      throw new Exception("joinStringTest failed");
     }
   }
 
@@ -150,7 +149,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinStringJoinTypeTest failed");
+      throw new Exception("joinStringJoinTypeTest failed");
     }
   }
 
@@ -213,7 +212,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("joinStringIllegalArgumentExceptionTest failed");
+      throw new Exception("joinStringIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -262,7 +261,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinSingularAttributeTest failed");
+      throw new Exception("joinSingularAttributeTest failed");
     }
   }
 
@@ -312,7 +311,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinSingularAttributeJoinTypeTest failed");
+      throw new Exception("joinSingularAttributeJoinTypeTest failed");
     }
   }
 
@@ -359,7 +358,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinCollectionAttributeTest failed");
+      throw new Exception("joinCollectionAttributeTest failed");
     }
   }
 
@@ -407,7 +406,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinCollectionAttributeJoinTypeTest failed");
+      throw new Exception("joinCollectionAttributeJoinTypeTest failed");
     }
   }
 
@@ -454,7 +453,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinCollectionStringTest failed");
+      throw new Exception("joinCollectionStringTest failed");
     }
   }
 
@@ -502,7 +501,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinCollectionStringJoinTypeTest failed");
+      throw new Exception("joinCollectionStringJoinTypeTest failed");
     }
   }
 
@@ -565,7 +564,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("joinCollectionIllegalArgumentExceptionTest failed");
+      throw new Exception("joinCollectionIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -612,7 +611,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinSetAttributeTest failed");
+      throw new Exception("joinSetAttributeTest failed");
     }
   }
 
@@ -660,7 +659,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinSetAttributeJoinTypeTest failed");
+      throw new Exception("joinSetAttributeJoinTypeTest failed");
     }
   }
 
@@ -707,7 +706,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinSetStringTest failed");
+      throw new Exception("joinSetStringTest failed");
     }
   }
 
@@ -755,7 +754,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinSetStringJoinTypeTest failed");
+      throw new Exception("joinSetStringJoinTypeTest failed");
     }
   }
 
@@ -816,7 +815,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("joinSetIllegalArgumentExceptionTest failed");
+      throw new Exception("joinSetIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -863,7 +862,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinListAttributeTest failed");
+      throw new Exception("joinListAttributeTest failed");
     }
   }
 
@@ -911,7 +910,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinListAttributeJoinTypeTest failed");
+      throw new Exception("joinListAttributeJoinTypeTest failed");
     }
   }
 
@@ -974,7 +973,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("joinListIllegalArgumentExceptionTest failed");
+      throw new Exception("joinListIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -1021,7 +1020,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinListStringTest failed");
+      throw new Exception("joinListStringTest failed");
     }
   }
 
@@ -1069,7 +1068,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinListStringJoinTypeTest failed");
+      throw new Exception("joinListStringJoinTypeTest failed");
     }
   }
 
@@ -1118,7 +1117,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinMapAttributeTest failed");
+      throw new Exception("joinMapAttributeTest failed");
     }
   }
 
@@ -1167,7 +1166,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinMapAttributeJoinTypeTest failed");
+      throw new Exception("joinMapAttributeJoinTypeTest failed");
     }
   }
 
@@ -1216,7 +1215,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinMapStringTest failed");
+      throw new Exception("joinMapStringTest failed");
     }
   }
 
@@ -1266,7 +1265,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinMapStringJoinTypeTest failed");
+      throw new Exception("joinMapStringJoinTypeTest failed");
     }
   }
 
@@ -1327,7 +1326,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("joinMapIllegalArgumentExceptionTest failed");
+      throw new Exception("joinMapIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -1369,7 +1368,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault(
+      throw new Exception(
           "rootGetCorrelationParentIllegalStateExceptionTest failed");
     }
   }

@@ -41,26 +41,26 @@ public class Client extends PMClientBase {
 
   final java.sql.Date d1 = getSQLDate("2000-02-14");
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       getEntityManager();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
   public void setupEmployee(String[] args, Properties p) throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -201,7 +201,7 @@ public class Client extends PMClientBase {
 
     if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6 || !pass7
         || !pass8 || !pass9) {
-      throw new Fault("parameterTest1 test failed");
+      throw new Exception("parameterTest1 test failed");
 
     }
 
@@ -278,7 +278,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("parameterTest2 test failed");
+      throw new Exception("parameterTest2 test failed");
 
     }
   }
@@ -355,7 +355,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("parameterTest3 test failed");
+      throw new Exception("parameterTest3 test failed");
 
     }
   }
@@ -424,7 +424,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("parameterTest4 test failed");
+      throw new Exception("parameterTest4 test failed");
 
     }
 
@@ -493,7 +493,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("parameterExpressionInObjectArrayTest test failed");
+      throw new Exception("parameterExpressionInObjectArrayTest test failed");
 
     }
   }
@@ -562,7 +562,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("parameterExpressionInExpressionArrayTest test failed");
+      throw new Exception("parameterExpressionInExpressionArrayTest test failed");
 
     }
   }
@@ -632,7 +632,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("parameterExpressionInCollectionTest test failed");
+      throw new Exception("parameterExpressionInCollectionTest test failed");
 
     }
   }
@@ -700,7 +700,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("parameterExpressionInExpressionTest test failed");
+      throw new Exception("parameterExpressionInExpressionTest test failed");
 
     }
   }

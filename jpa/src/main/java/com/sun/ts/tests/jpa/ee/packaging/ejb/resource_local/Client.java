@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,12 +22,14 @@ package com.sun.ts.tests.jpa.ee.packaging.ejb.resource_local;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 
-public class Client extends EETest {
+public class Client  {
 
   private Stateless3IF bean = null;
 
@@ -35,25 +37,20 @@ public class Client extends EETest {
 
   public static final String MyStateless3Bean = "java:comp/env/ejb/Stateless3Bean";
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /*
    * @class.setup_props:
    */
 
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     try {
-      props = p;
       TSNamingContext nctx = new TSNamingContext();
       bean = (Stateless3IF) nctx.lookup(MyStateless3Bean);
       TestUtil.logTrace("Looked up Bean: " + bean);
 
     } catch (Exception e) {
-      throw new Fault("Setup Failed!", e);
+      throw new Exception("Setup Failed!", e);
     }
   }
 
@@ -87,7 +84,7 @@ public class Client extends EETest {
    *
    * begin() starts a resource_transaction
    */
-
+@Test
   public void test1() throws Exception {
 
     TestUtil.logTrace("Begin test1");
@@ -102,7 +99,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test1 failed");
+      throw new Exception("test1 failed");
   }
 
   /*
@@ -114,7 +111,7 @@ public class Client extends EETest {
    *
    * begin() throws an IllegalStateException if isActive() is true
    */
-
+@Test
   public void test2() throws Exception {
 
     TestUtil.logTrace("Begin test2");
@@ -129,7 +126,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test2 failed");
+      throw new Exception("test2 failed");
   }
 
   /*
@@ -141,7 +138,7 @@ public class Client extends EETest {
    *
    * commit() commits the current transaction
    */
-
+@Test
   public void test3() throws Exception {
 
     TestUtil.logTrace("Begin test3");
@@ -156,7 +153,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test3 failed");
+      throw new Exception("test3 failed");
   }
 
   /*
@@ -168,7 +165,7 @@ public class Client extends EETest {
    *
    * commit() throws an IllegalStateException if isActive() is false
    */
-
+@Test
   public void test4() throws Exception {
 
     TestUtil.logTrace("Begin test4");
@@ -183,7 +180,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test4 failed");
+      throw new Exception("test4 failed");
   }
 
   /*
@@ -196,7 +193,7 @@ public class Client extends EETest {
    *
    * commit() throws a RollbackException if commit fails
    */
-
+@Test
   public void test5() throws Exception {
 
     TestUtil.logTrace("Begin test5");
@@ -211,7 +208,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test5 failed");
+      throw new Exception("test5 failed");
   }
 
   /*
@@ -223,7 +220,7 @@ public class Client extends EETest {
    *
    * rollback() rolls back the current transaction
    */
-
+@Test
   public void test6() throws Exception {
 
     TestUtil.logTrace("Begin test6");
@@ -238,7 +235,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test6 failed");
+      throw new Exception("test6 failed");
   }
 
   /*
@@ -251,7 +248,7 @@ public class Client extends EETest {
    * setRollbackOnly() marks the current transaction so the only outcome is for
    * the transaction to be rolled back
    */
-
+@Test
   public void test7() throws Exception {
 
     TestUtil.logTrace("Begin test7");
@@ -266,7 +263,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test7 failed");
+      throw new Exception("test7 failed");
   }
 
   /*
@@ -278,7 +275,7 @@ public class Client extends EETest {
    *
    * setRollbackOnly throws IllegalStateException if isActive() is false
    */
-
+@Test
   public void test8() throws Exception {
 
     TestUtil.logTrace("Begin test8");
@@ -293,7 +290,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test8 failed");
+      throw new Exception("test8 failed");
   }
 
   /*
@@ -307,7 +304,7 @@ public class Client extends EETest {
    * rollback test getRollbackOnly when isActive() is true and TX has been
    * marked for rollback, so getRollbackOnly will return true
    */
-
+@Test
   public void test9() throws Exception {
 
     TestUtil.logTrace("Begin test9");
@@ -322,7 +319,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test9 failed");
+      throw new Exception("test9 failed");
   }
 
   /*
@@ -334,7 +331,7 @@ public class Client extends EETest {
    *
    * getRollbackOnly throws IllegalStateException if isActive() is false
    */
-
+@Test
   public void test10() throws Exception {
 
     TestUtil.logTrace("Begin test10");
@@ -349,7 +346,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test10 failed");
+      throw new Exception("test10 failed");
   }
 
   /*
@@ -362,7 +359,7 @@ public class Client extends EETest {
    * getRollbackOnly will return false
    *
    */
-
+@Test
   public void test11() throws Exception {
 
     TestUtil.logTrace("Begin test11");
@@ -377,7 +374,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test11 failed");
+      throw new Exception("test11 failed");
   }
 
   /*
@@ -391,7 +388,7 @@ public class Client extends EETest {
    * isActive() indicates whether a transaction is in progress Try when TX is
    * active
    */
-
+@Test
   public void test12() throws Exception {
 
     TestUtil.logTrace("Begin test12");
@@ -406,7 +403,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test12 failed");
+      throw new Exception("test12 failed");
   }
 
   /*
@@ -419,7 +416,7 @@ public class Client extends EETest {
    * isActive() indicates whether a transaction is in progress Try when TX is
    * not active
    */
-
+@Test
   public void test13() throws Exception {
 
     TestUtil.logTrace("Begin test13");
@@ -434,7 +431,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test13 failed");
+      throw new Exception("test13 failed");
   }
 
   /*
@@ -449,7 +446,7 @@ public class Client extends EETest {
    * runtime throws an exception defined to cause a transaction rollback, it
    * must mark the transaction for rollback.
    */
-
+@Test
   public void test14() throws Exception {
 
     TestUtil.logTrace("Begin test14");
@@ -464,7 +461,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test14 failed");
+      throw new Exception("test14 failed");
   }
 
   /*
@@ -479,7 +476,7 @@ public class Client extends EETest {
    *
    * 
    */
-
+@Test
   public void test15() throws Exception {
 
     TestUtil.logTrace("Begin test15");
@@ -494,9 +491,10 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test15 failed");
+      throw new Exception("test15 failed");
   }
 
+@AfterEach
   public void cleanup() throws Exception {
     try {
       bean.removeTestData();

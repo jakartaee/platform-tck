@@ -21,10 +21,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
 import java.util.Set;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -42,20 +40,15 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -123,7 +116,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("embeddableTest failed");
+      throw new Exception("embeddableTest failed");
     }
   }
 
@@ -168,7 +161,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getAttribute failed");
+      throw new Exception("getAttribute failed");
     }
   }
 
@@ -209,7 +202,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getAttributeIllegalArgumentException failed");
+      throw new Exception("getAttributeIllegalArgumentException failed");
     }
   }
 
@@ -288,7 +281,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getAttributes failed");
+      throw new Exception("getAttributes failed");
     }
   }
 
@@ -334,7 +327,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getCollectionStringClass failed");
+      throw new Exception("getCollectionStringClass failed");
     }
   }
 
@@ -374,7 +367,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getCollectionStringClassIllegalArgumentException failed");
     }
   }
@@ -420,7 +413,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getCollectionString failed");
+      throw new Exception("getCollectionString failed");
     }
   }
 
@@ -460,7 +453,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getCollectionStringIllegalArgumentException failed");
+      throw new Exception("getCollectionStringIllegalArgumentException failed");
     }
   }
 
@@ -505,7 +498,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaredAttribute failed");
+      throw new Exception("getDeclaredAttribute failed");
     }
   }
 
@@ -545,7 +538,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaredAttributeIllegalArgumentException failed");
+      throw new Exception("getDeclaredAttributeIllegalArgumentException failed");
     }
   }
 
@@ -624,7 +617,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaredAttributes failed");
+      throw new Exception("getDeclaredAttributes failed");
     }
   }
 
@@ -670,7 +663,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaredCollectionStringClass failed");
+      throw new Exception("getDeclaredCollectionStringClass failed");
     }
   }
 
@@ -711,7 +704,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getDeclaredCollectionStringClassIllegalArgumentException failed");
     }
   }
@@ -758,7 +751,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaredCollectionString failed");
+      throw new Exception("getDeclaredCollectionString failed");
     }
   }
 
@@ -799,7 +792,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getDeclaredCollectionStringIllegalArgumentException failed");
     }
   }
@@ -846,7 +839,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaredListStringClass failed");
+      throw new Exception("getDeclaredListStringClass failed");
     }
   }
 
@@ -887,7 +880,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getDeclaredListStringClassIllegalArgumentException failed");
     }
   }
@@ -933,7 +926,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaredListString failed");
+      throw new Exception("getDeclaredListString failed");
     }
   }
 
@@ -973,7 +966,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaredListStringIllegalArgumentException failed");
+      throw new Exception("getDeclaredListStringIllegalArgumentException failed");
     }
   }
 
@@ -1019,7 +1012,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaredMapStringClassClass failed");
+      throw new Exception("getDeclaredMapStringClassClass failed");
     }
   }
 
@@ -1060,7 +1053,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getDeclaredMapStringClassClassIllegalArgumentException failed");
     }
   }
@@ -1106,7 +1099,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaredMapString failed");
+      throw new Exception("getDeclaredMapString failed");
     }
   }
 
@@ -1146,7 +1139,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaredMapStringIllegalArgumentException failed");
+      throw new Exception("getDeclaredMapStringIllegalArgumentException failed");
     }
   }
 
@@ -1191,7 +1184,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaredSetStringClass failed");
+      throw new Exception("getDeclaredSetStringClass failed");
     }
   }
 
@@ -1231,7 +1224,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getDeclaredSetStringClassIllegalArgumentException failed");
     }
   }
@@ -1277,7 +1270,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaredSetString failed");
+      throw new Exception("getDeclaredSetString failed");
     }
   }
 
@@ -1317,7 +1310,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaredSetStringIllegalArgumentException failed");
+      throw new Exception("getDeclaredSetStringIllegalArgumentException failed");
     }
   }
 
@@ -1363,7 +1356,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaredSingularAttributeStringClass failed");
+      throw new Exception("getDeclaredSingularAttributeStringClass failed");
     }
   }
 
@@ -1405,7 +1398,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getDeclaredSingularAttributeStringClassIllegalArgumentException failed");
     }
   }
@@ -1452,7 +1445,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaredSingularAttributeString failed");
+      throw new Exception("getDeclaredSingularAttributeString failed");
     }
   }
 
@@ -1494,7 +1487,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getDeclaredSingularAttributeStringIllegalArgumentException failed");
     }
   }
@@ -1571,7 +1564,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaredSingularAttributes failed");
+      throw new Exception("getDeclaredSingularAttributes failed");
     }
   }
 
@@ -1616,7 +1609,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getListStringClass failed");
+      throw new Exception("getListStringClass failed");
     }
   }
 
@@ -1656,7 +1649,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getListStringClassIllegalArgumentException failed");
+      throw new Exception("getListStringClassIllegalArgumentException failed");
     }
   }
 
@@ -1701,7 +1694,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getListString failed");
+      throw new Exception("getListString failed");
     }
   }
 
@@ -1741,7 +1734,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getListStringIllegalArgumentException failed");
+      throw new Exception("getListStringIllegalArgumentException failed");
     }
   }
 
@@ -1787,7 +1780,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getMapStringClassClass failed");
+      throw new Exception("getMapStringClassClass failed");
     }
   }
 
@@ -1827,7 +1820,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getMapStringClassClassIllegalArgumentException failed");
+      throw new Exception("getMapStringClassClassIllegalArgumentException failed");
     }
   }
 
@@ -1872,7 +1865,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getMapString failed");
+      throw new Exception("getMapString failed");
     }
   }
 
@@ -1912,7 +1905,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getMapStringIllegalArgumentException failed");
+      throw new Exception("getMapStringIllegalArgumentException failed");
     }
   }
 
@@ -1988,7 +1981,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getPluralAttributes failed");
+      throw new Exception("getPluralAttributes failed");
     }
   }
 
@@ -2033,7 +2026,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getSetStringClass failed");
+      throw new Exception("getSetStringClass failed");
     }
   }
 
@@ -2073,7 +2066,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getSetStringClassIllegalArgumentException failed");
+      throw new Exception("getSetStringClassIllegalArgumentException failed");
     }
   }
 
@@ -2118,7 +2111,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getSetString failed");
+      throw new Exception("getSetString failed");
     }
   }
 
@@ -2158,7 +2151,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getSetStringIllegalArgumentException failed");
+      throw new Exception("getSetStringIllegalArgumentException failed");
     }
   }
 
@@ -2204,7 +2197,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getSingularAttributeStringClass failed");
+      throw new Exception("getSingularAttributeStringClass failed");
     }
   }
 
@@ -2246,7 +2239,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getSingularAttributeStringClassIllegalArgumentException failed");
     }
   }
@@ -2292,7 +2285,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getSingularAttributeString failed");
+      throw new Exception("getSingularAttributeString failed");
     }
   }
 
@@ -2334,7 +2327,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "getSingularAttributeStringIllegalArgumentException failed");
     }
   }
@@ -2410,7 +2403,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getSingularAttributes failed");
+      throw new Exception("getSingularAttributes failed");
     }
   }
 
@@ -2485,7 +2478,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaredPluralAttributes failed");
+      throw new Exception("getDeclaredPluralAttributes failed");
     }
   }
 

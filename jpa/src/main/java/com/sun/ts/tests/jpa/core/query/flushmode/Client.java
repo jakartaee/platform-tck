@@ -22,10 +22,8 @@ package com.sun.ts.tests.jpa.core.query.flushmode;
 
 import java.sql.Date;
 import java.util.List;
-import java.util.Properties;
 import java.util.Vector;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.CreditCard;
@@ -47,22 +45,17 @@ public class Client extends Util {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /* Test setup */
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("Entering Setup");
     try {
-      super.setup(args, p);
+      super.setup();
       getEntityManager();
     } catch (Exception e) {
       TestUtil.logErr("Unexpected exception occurred", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -196,7 +189,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6)
-      throw new Fault("flushModeTest1 failed");
+      throw new Exception("flushModeTest1 failed");
   }
 
   /*
@@ -243,7 +236,7 @@ public class Client extends Util {
     }
 
     if (!pass)
-      throw new Fault("flushModeTest2 failed");
+      throw new Exception("flushModeTest2 failed");
   }
 
   /*
@@ -289,7 +282,7 @@ public class Client extends Util {
     }
 
     if (!pass)
-      throw new Fault("flushModeTest3 failed");
+      throw new Exception("flushModeTest3 failed");
   }
 
   /*
@@ -338,7 +331,7 @@ public class Client extends Util {
     }
 
     if (!pass)
-      throw new Fault("flushModeTest4 failed");
+      throw new Exception("flushModeTest4 failed");
   }
 
   /*
@@ -381,7 +374,7 @@ public class Client extends Util {
     }
 
     if (!pass)
-      throw new Fault("flushModeTest5 failed");
+      throw new Exception("flushModeTest5 failed");
   }
 
   /*
@@ -433,7 +426,7 @@ public class Client extends Util {
     }
 
     if (!pass)
-      throw new Fault("flushModeTest6 failed");
+      throw new Exception("flushModeTest6 failed");
   }
 
   /*
@@ -478,7 +471,7 @@ public class Client extends Util {
     }
 
     if (!pass)
-      throw new Fault("flushModeTest7 failed");
+      throw new Exception("flushModeTest7 failed");
   }
 
   /*
@@ -519,7 +512,7 @@ public class Client extends Util {
     }
 
     if (!pass)
-      throw new Fault("secondaryTablesValueTest failed");
+      throw new Exception("secondaryTablesValueTest failed");
   }
 
 }

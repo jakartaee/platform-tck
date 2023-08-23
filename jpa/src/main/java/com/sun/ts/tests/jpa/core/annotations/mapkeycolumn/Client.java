@@ -25,10 +25,12 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Set;
 
-import com.sun.javatest.Status;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -45,23 +47,19 @@ public class Client extends PMClientBase {
 
   public Map<String, Employee> link = new HashMap<String, Employee>();
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createTestData();
       TestUtil.logTrace("Done creating test data");
 
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -81,6 +79,7 @@ public class Client extends PMClientBase {
    * Execute a query returning Employees objects.
    *
    */
+  @Test
   public void annotationMapKeyColumnTest1() throws Exception {
 
     boolean pass = false;
@@ -120,7 +119,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("annotationMapKeyColumnTest1 failed");
+      throw new Exception("annotationMapKeyColumnTest1 failed");
     }
   }
 
@@ -139,6 +138,7 @@ public class Client extends PMClientBase {
    *
    * Execute a query returning Employee IDs.
    */
+  @Test
   public void annotationMapKeyColumnTest2() throws Exception {
 
     boolean pass = false;
@@ -184,7 +184,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("annotationMapKeyColumnTest2 failed");
+      throw new Exception("annotationMapKeyColumnTest2 failed");
     }
   }
 
@@ -202,6 +202,7 @@ public class Client extends PMClientBase {
    *
    * Execute a query returning Employees objects.
    */
+  @Test
   public void annotationMapKeyColumnTest3() throws Exception {
     boolean pass = false;
 
@@ -255,7 +256,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("annotationMapKeyColumnTest3 Failed");
+      throw new Exception("annotationMapKeyColumnTest3 Failed");
     }
 
   }
@@ -269,6 +270,7 @@ public class Client extends PMClientBase {
    * insertable=false is used to specify the mapping for the fk column to a
    * second entity Execute a query returning Employees objects.
    */
+  @Test
   public void mapKeyColumnInsertableFalseTest() throws Exception {
     boolean pass = false;
     try {
@@ -300,7 +302,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("mapKeyColumnInsertableFalseTest Failed");
+      throw new Exception("mapKeyColumnInsertableFalseTest Failed");
     }
 
   }
@@ -314,6 +316,7 @@ public class Client extends PMClientBase {
    * updatable=false is used to specify the mapping for the fk column to a
    * second entity Execute a query returning Employees objects.
    */
+  @Test
   public void mapKeyColumnUpdatableFalseTest() throws Exception {
     boolean pass = false;
 
@@ -358,7 +361,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("mapKeyColumnUpdatableFalseTest Failed");
+      throw new Exception("mapKeyColumnUpdatableFalseTest Failed");
     }
 
   }
@@ -371,6 +374,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    *
    */
+  @Test
   public void criteriaBuilderKeysValuesTest() throws Exception {
 
     boolean pass1 = false;
@@ -449,7 +453,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("criteriaBuilderKeysValuesTest failed");
+      throw new Exception("criteriaBuilderKeysValuesTest failed");
     }
   }
 
@@ -564,6 +568,7 @@ public class Client extends PMClientBase {
     }
   }
 
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

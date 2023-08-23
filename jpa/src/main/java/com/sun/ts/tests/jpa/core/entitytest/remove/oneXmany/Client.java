@@ -22,10 +22,8 @@ package com.sun.ts.tests.jpa.core.entitytest.remove.oneXmany;
 
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Properties;
 import java.util.Vector;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -34,20 +32,15 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
 
     }
   }
@@ -118,7 +111,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("remove1XMTest1 failed");
+      throw new Exception("remove1XMTest1 failed");
   }
 
   /*
@@ -190,7 +183,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("remove1XMTest2 failed");
+      throw new Exception("remove1XMTest2 failed");
   }
 
   /*
@@ -276,7 +269,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("remove1XMTest3 failed");
+      throw new Exception("remove1XMTest3 failed");
   }
 
   /*
@@ -347,7 +340,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("remove1XMTest4 failed");
+      throw new Exception("remove1XMTest4 failed");
   }
 
   /*
@@ -431,7 +424,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass)
-      throw new Fault("remove1XMTest5 failed");
+      throw new Exception("remove1XMTest5 failed");
   }
 
   /*
@@ -508,7 +501,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass)
-      throw new Fault("remove1XMTest6 failed");
+      throw new Exception("remove1XMTest6 failed");
   }
 
   /*
@@ -587,7 +580,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("remove1XMTest7 failed");
+      throw new Exception("remove1XMTest7 failed");
   }
 
   /*

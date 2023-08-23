@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,7 +20,8 @@
 
 package com.sun.ts.tests.jpa.core.callback.inheritance;
 
-import java.util.Properties;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.core.callback.common.Constants;
@@ -37,15 +38,16 @@ public class Client extends EntityCallbackClientBase {
     super();
   }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
 
-      super.setup(args, p);
+      super.setup();
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -80,6 +82,7 @@ public class Client extends EntityCallbackClientBase {
    * 
    * @test_Strategy:
    */
+  @Test
   public void prePersistTest() throws Exception {
     String reason;
     final String testName = Constants.prePersistTest;
@@ -93,12 +96,12 @@ public class Client extends EntityCallbackClientBase {
         TestUtil.logTrace(reason);
       } else {
         reason = "PricedPartProduct: prePersist was not called.";
-        throw new Fault(reason);
+        throw new Exception(reason);
       }
       getEntityTransaction().rollback();
     } catch (Exception e) {
       TestUtil.logErr("Exception caught during prePersistTest", e);
-      throw new Fault(e);
+      throw new Exception(e);
     } finally {
       try {
         if (getEntityTransaction().isActive()) {
@@ -130,12 +133,12 @@ public class Client extends EntityCallbackClientBase {
         TestUtil.logTrace(reason);
       } else {
         reason = "PricedPartProduct_2: prePersist was not called.";
-        throw new Fault(reason);
+        throw new Exception(reason);
       }
       getEntityTransaction().commit();
     } catch (Exception e) {
       TestUtil.logErr("Exception caught during prePersistTest", e);
-      throw new Fault(e);
+      throw new Exception(e);
     } finally {
       try {
         if (getEntityTransaction().isActive()) {
@@ -168,13 +171,13 @@ public class Client extends EntityCallbackClientBase {
         TestUtil.logTrace(reason);
       } else {
         reason = "PricedPartProduct: preRemove was not called.";
-        throw new Fault(reason);
+        throw new Exception(reason);
       }
       p1 = null;
       getEntityTransaction().commit();
     } catch (Exception e) {
       TestUtil.logErr("Exception caught during prePersistTest", e);
-      throw new Fault(e);
+      throw new Exception(e);
     } finally {
       try {
         if (getEntityTransaction().isActive()) {
@@ -207,13 +210,13 @@ public class Client extends EntityCallbackClientBase {
         TestUtil.logTrace(reason);
       } else {
         reason = "PricedPartProduct: preRemove was not called.";
-        throw new Fault(reason);
+        throw new Exception(reason);
       }
       p2 = null;
       getEntityTransaction().commit();
     } catch (Exception e) {
       TestUtil.logErr("Exception caught during prePersistTest", e);
-      throw new Fault(e);
+      throw new Exception(e);
     } finally {
       try {
         if (getEntityTransaction().isActive()) {
@@ -244,7 +247,7 @@ public class Client extends EntityCallbackClientBase {
       getEntityTransaction().commit();
     } catch (Exception e) {
       TestUtil.logErr("Exception caught during preUpdateTest", e);
-      throw new Fault(e);
+      throw new Exception(e);
     } finally {
       try {
         if (getEntityTransaction().isActive()) {
@@ -277,7 +280,7 @@ public class Client extends EntityCallbackClientBase {
       getEntityTransaction().commit();
     } catch (Exception e) {
       TestUtil.logErr("Exception caught during preUpdateTest2", e);
-      throw new Fault(e);
+      throw new Exception(e);
     } finally {
       try {
         if (getEntityTransaction().isActive()) {
@@ -318,13 +321,13 @@ public class Client extends EntityCallbackClientBase {
         TestUtil.logTrace(reason);
       } else {
         reason = "PricedPartProduct: postLoad was not called even after the query result was returned.";
-        throw new Fault(reason);
+        throw new Exception(reason);
       }
       getEntityTransaction().commit();
 
     } catch (Exception e) {
       TestUtil.logErr("Exception caught during postLoadTest", e);
-      throw new Fault(e);
+      throw new Exception(e);
     } finally {
       try {
         if (getEntityTransaction().isActive()) {
@@ -365,13 +368,13 @@ public class Client extends EntityCallbackClientBase {
         TestUtil.logTrace(reason);
       } else {
         reason = "PricedPartProduct_2: postLoad was not called even after the query result was returned.";
-        throw new Fault(reason);
+        throw new Exception(reason);
       }
       getEntityTransaction().commit();
 
     } catch (Exception e) {
       TestUtil.logErr("Exception caught during postLoadTest", e);
-      throw new Fault(e);
+      throw new Exception(e);
     } finally {
       try {
         if (getEntityTransaction().isActive()) {
@@ -431,7 +434,7 @@ public class Client extends EntityCallbackClientBase {
       getEntityTransaction().commit();
     } catch (Exception e) {
       TestUtil.logErr("Exception caught during findProductTest", e);
-      throw new Fault(e);
+      throw new Exception(e);
     } finally {
       try {
         if (getEntityTransaction().isActive()) {

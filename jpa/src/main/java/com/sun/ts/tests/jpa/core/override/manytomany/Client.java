@@ -17,10 +17,8 @@
 package com.sun.ts.tests.jpa.core.override.manytomany;
 
 import java.util.HashSet;
-import java.util.Properties;
 import java.util.Set;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -49,17 +47,12 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   @Override
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception:test failed ", e);
@@ -114,14 +107,14 @@ public class Client extends PMClientBase {
           && retrieveScience.getStudents().size() == 2) {
         TestUtil.logTrace("Test Passed");
       } else {
-        throw new Fault("Expected many to many relationship between course "
+        throw new Exception("Expected many to many relationship between course "
             + "and student to have been set. Expected 2 students in Math "
             + "and 2 in Science, Actual - " + retrieveMath.getStudents().size()
             + " - " + retrieveScience.getStudents().size());
       }
       getEntityTransaction().commit();
     } catch (Exception e) {
-      throw new Fault(
+      throw new Exception(
           "Exception thrown while testing testNoManyToManyAnnotation" + e);
     }
   }

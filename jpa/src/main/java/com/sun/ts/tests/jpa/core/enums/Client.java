@@ -22,9 +22,7 @@ package com.sun.ts.tests.jpa.core.enums;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Properties;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -62,20 +60,15 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
 
-      super.setup(args, p);
+      super.setup();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -124,7 +117,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("accessTypeValueOfTest failed");
+      throw new Exception("accessTypeValueOfTest failed");
     }
   }
 
@@ -175,7 +168,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("accessTypeValuesTest failed");
+      throw new Exception("accessTypeValuesTest failed");
     }
   }
 
@@ -226,7 +219,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("cacheRetrieveModeValueOfTest failed");
+      throw new Exception("cacheRetrieveModeValueOfTest failed");
     }
   }
 
@@ -279,7 +272,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("cacheRetrieveModeValuesTest failed");
+      throw new Exception("cacheRetrieveModeValuesTest failed");
     }
   }
 
@@ -335,7 +328,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("cacheStoreModeValueOfTest failed");
+      throw new Exception("cacheStoreModeValueOfTest failed");
     }
   }
 
@@ -393,7 +386,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("cacheStoreModeValuesTest failed");
+      throw new Exception("cacheStoreModeValuesTest failed");
     }
   }
 
@@ -467,7 +460,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("cascadeTypeValueOfTest failed");
+      throw new Exception("cascadeTypeValueOfTest failed");
     }
   }
 
@@ -543,7 +536,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("cascadeTypeValuesTest failed");
+      throw new Exception("cascadeTypeValuesTest failed");
     }
   }
 
@@ -600,7 +593,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("discriminatorTypeValueOfTest failed");
+      throw new Exception("discriminatorTypeValueOfTest failed");
     }
   }
 
@@ -660,7 +653,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("discriminatorTypeValuesTest failed");
+      throw new Exception("discriminatorTypeValuesTest failed");
     }
   }
 
@@ -710,7 +703,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("enumTypeValueOfTest failed");
+      throw new Exception("enumTypeValueOfTest failed");
     }
   }
 
@@ -761,7 +754,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("enumTypeValuesTest failed");
+      throw new Exception("enumTypeValuesTest failed");
     }
   }
 
@@ -811,7 +804,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("fetchTypeValueOfTest failed");
+      throw new Exception("fetchTypeValueOfTest failed");
     }
   }
 
@@ -862,7 +855,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("fetchTypeValuesTest failed");
+      throw new Exception("fetchTypeValuesTest failed");
     }
   }
   /*
@@ -911,7 +904,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("flushModeTypeValueOfTest failed");
+      throw new Exception("flushModeTypeValueOfTest failed");
   }
   /*
    * @testName: flushModeTypeValuesTest
@@ -962,7 +955,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("flushModeTypeValuesTest failed");
+      throw new Exception("flushModeTypeValuesTest failed");
   }
 
   /*
@@ -1020,7 +1013,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("setgetFlushModeEntityManagerTest failed");
+      throw new Exception("setgetFlushModeEntityManagerTest failed");
   }
   /*
    * @testName: setgetFlushModeTest
@@ -1071,7 +1064,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("setgetFlushModeTest failed");
+      throw new Exception("setgetFlushModeTest failed");
   }
   /*
    * @testName: setgetFlushModeTQTest
@@ -1121,7 +1114,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("setgetFlushModeTQTest failed");
+      throw new Exception("setgetFlushModeTQTest failed");
   }
 
   /*
@@ -1188,7 +1181,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("generationTypeValueOfTest failed");
+      throw new Exception("generationTypeValueOfTest failed");
     }
   }
 
@@ -1257,7 +1250,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("generationTypeValuesTest failed");
+      throw new Exception("generationTypeValuesTest failed");
     }
   }
 
@@ -1314,7 +1307,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("inheritanceTypeValueOfTest failed");
+      throw new Exception("inheritanceTypeValueOfTest failed");
     }
   }
 
@@ -1371,7 +1364,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("inheritanceTypeValuesTest failed");
+      throw new Exception("inheritanceTypeValuesTest failed");
     }
   }
 
@@ -1452,7 +1445,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("lockModeTypeValueOfTest failed");
+      throw new Exception("lockModeTypeValueOfTest failed");
     }
   }
 
@@ -1544,7 +1537,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("lockModeTypeValuesTest failed");
+      throw new Exception("lockModeTypeValuesTest failed");
     }
   }
 
@@ -1595,7 +1588,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("persistenceContextTypeValueOfTest failed");
+      throw new Exception("persistenceContextTypeValueOfTest failed");
     }
   }
 
@@ -1647,7 +1640,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("persistenceContextTypeValuesTest failed");
+      throw new Exception("persistenceContextTypeValuesTest failed");
     }
   }
 
@@ -1697,7 +1690,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("pessimisticLockScopeValueOfTest failed");
+      throw new Exception("pessimisticLockScopeValueOfTest failed");
     }
   }
 
@@ -1750,7 +1743,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("pessimisticLockScopeValuesTest failed");
+      throw new Exception("pessimisticLockScopeValuesTest failed");
     }
   }
 
@@ -1817,7 +1810,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("sharedCacheModeValueOfTest failed");
+      throw new Exception("sharedCacheModeValueOfTest failed");
     }
   }
 
@@ -1887,7 +1880,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("sharedCacheModeValuesTest failed");
+      throw new Exception("sharedCacheModeValuesTest failed");
     }
   }
 
@@ -1943,7 +1936,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("validationModeValueOfTest failed");
+      throw new Exception("validationModeValueOfTest failed");
     }
   }
 
@@ -2001,7 +1994,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("validationModeValuesTest failed");
+      throw new Exception("validationModeValuesTest failed");
     }
   }
 
@@ -2051,7 +2044,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("temporalTypeValuesTest failed");
+      throw new Exception("temporalTypeValuesTest failed");
     }
 
   }
@@ -2108,7 +2101,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("temporalTypeValueOfTest failed");
+      throw new Exception("temporalTypeValueOfTest failed");
     }
   }
 
@@ -2158,7 +2151,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("joinTypeValuesTest failed");
+      throw new Exception("joinTypeValuesTest failed");
     }
   }
 
@@ -2214,7 +2207,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("joinTypeValueOfTest failed");
+      throw new Exception("joinTypeValueOfTest failed");
     }
   }
 
@@ -2293,7 +2286,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("persistentAttributeTypeValuesTest failed");
+      throw new Exception("persistentAttributeTypeValuesTest failed");
     }
   }
 
@@ -2381,7 +2374,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("persistentAttributeTypeValueOfTest failed");
+      throw new Exception("persistentAttributeTypeValueOfTest failed");
     }
   }
 
@@ -2433,7 +2426,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("bindableTypeValuesTest failed");
+      throw new Exception("bindableTypeValuesTest failed");
     }
   }
 
@@ -2488,7 +2481,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("bindableTypeValueOfTest failed");
+      throw new Exception("bindableTypeValueOfTest failed");
     }
   }
 
@@ -2545,7 +2538,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("collectionTypeValuesTest failed");
+      throw new Exception("collectionTypeValuesTest failed");
     }
   }
 
@@ -2607,7 +2600,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("collectionTypeValueOfTest failed");
+      throw new Exception("collectionTypeValueOfTest failed");
     }
   }
 
@@ -2663,7 +2656,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("persistenceTypeValuesTest failed");
+      throw new Exception("persistenceTypeValuesTest failed");
     }
   }
 
@@ -2725,7 +2718,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("persistenceTypeValueOfTest failed");
+      throw new Exception("persistenceTypeValueOfTest failed");
     }
   }
 
@@ -2776,7 +2769,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("loadStateValuesTest failed");
+      throw new Exception("loadStateValuesTest failed");
     }
   }
 
@@ -2831,7 +2824,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("loadStateValueOfTest failed");
+      throw new Exception("loadStateValueOfTest failed");
     }
   }
 
@@ -2880,7 +2873,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("persistenceUnitTransactionTypeValuesTest failed");
+      throw new Exception("persistenceUnitTransactionTypeValuesTest failed");
     }
   }
 
@@ -2932,7 +2925,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("persistenceUnitTransactionTypeValueOfTest failed");
+      throw new Exception("persistenceUnitTransactionTypeValueOfTest failed");
     }
   }
 
@@ -2990,7 +2983,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("parameterModeValuesTest failed");
+      throw new Exception("parameterModeValuesTest failed");
     }
   }
 
@@ -3051,7 +3044,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("parameterModeValueOfTest failed");
+      throw new Exception("parameterModeValueOfTest failed");
     }
   }
 
@@ -3102,7 +3095,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("synchronizationTypeValueOfTest failed");
+      throw new Exception("synchronizationTypeValueOfTest failed");
     }
   }
 
@@ -3154,7 +3147,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("synchronizationTypeValuesTest failed");
+      throw new Exception("synchronizationTypeValuesTest failed");
     }
   }
 

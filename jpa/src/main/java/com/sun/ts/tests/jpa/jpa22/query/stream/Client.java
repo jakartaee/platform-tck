@@ -16,15 +16,21 @@
 
 package com.sun.ts.tests.jpa.jpa22.query.stream;
 
-import com.sun.javatest.Status;
+import java.sql.Date;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Stream;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import jakarta.persistence.*;
-import java.sql.Date;
-
-import java.util.*;
-import java.util.stream.Stream;
+import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 
 public class Client extends PMClientBase {
   private static final long serialVersionUID = 22L;
@@ -38,22 +44,17 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  public void setup(String[] args, Properties p) throws Exception {
+@BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createTestData();
       TestUtil.logTrace("Done creating test data");
     } catch (Exception e) {
       TestUtil.logErr("Unexpected Exception caught in Setup: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
 
     }
   }
@@ -69,6 +70,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy: iterateStream
    */
+@Test
   public void getResultStreamTest() throws Exception {
     List<Integer> expected = new LinkedList<>();
     for (int i = 1; i != 22; i++)
@@ -85,7 +87,7 @@ public class Client extends PMClientBase {
     try {
       s1.forEach(this::checkPK);
     } catch (RuntimeException e) {
-      throw new Fault(e.getMessage());
+      throw new Exception(e.getMessage());
     }
 
     ObjectCounter oc = new ObjectCounter();
@@ -103,6 +105,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy: iterateStream
    */
+@Test
   public void getTypedResultStreamTest() throws Exception {
     List<Employee> expected = Arrays.asList(empRef);
 
@@ -119,7 +122,7 @@ public class Client extends PMClientBase {
     try {
       s1.forEach(this::checkPK);
     } catch (RuntimeException e) {
-      throw new Fault(e.getMessage());
+      throw new Exception(e.getMessage());
     }
 
     ObjectCounter oc = new ObjectCounter();
@@ -301,7 +304,7 @@ public class Client extends PMClientBase {
     }
 
   }
-
+@AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();
@@ -341,7 +344,7 @@ public class Client extends PMClientBase {
 
   private void assertTrue(boolean condition, String message) throws Exception {
     if (!condition)
-      throw new Fault(message);
+      throw new Exception(message);
   }
 
   static class ObjectCounter {

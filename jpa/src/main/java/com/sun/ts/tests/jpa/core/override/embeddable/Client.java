@@ -16,9 +16,6 @@
 
 package com.sun.ts.tests.jpa.core.override.embeddable;
 
-import java.util.Properties;
-
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -53,16 +50,11 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception:test failed ", e);
@@ -103,16 +95,16 @@ public class Client extends PMClientBase {
         if (retrievePublisher.getLocation() == null) {
           TestUtil.logTrace("Test Passed");
         } else {
-          throw new Fault("The Location fields was expected to be empty, "
+          throw new Exception("The Location fields was expected to be empty, "
               + "expected Length - null, actual - " + ""
               + retrievePublisher.getLocation());
         }
       } else {
-        throw new Fault(
+        throw new Exception(
             "Incorrect BookStore object obtained from the" + " database");
       }
     } catch (Exception e) {
-      throw new Fault(
+      throw new Exception(
           "Exception thrown while testing testOverrideTransient" + e);
     } finally {
       getEntityManager().remove(bookstore);
@@ -156,12 +148,12 @@ public class Client extends PMClientBase {
           && retrieveApplicant.getAddress().equals(APPLICANT_ADDRESS)) {
         TestUtil.logTrace("Test Passed");
       } else {
-        throw new Fault("Expected Complaint Number COMPLAINT_NUMBER to be"
+        throw new Exception("Expected Complaint Number COMPLAINT_NUMBER to be"
             + " retrieved; complaint in DB - "
             + retrieveComplaint.getComplaintNumber());
       }
     } catch (Exception e) {
-      throw new Fault(
+      throw new Exception(
           "Exception thrown while testing testOverrideEmbeddable" + e);
     } finally {
       getEntityManager().remove(complaint);
@@ -203,11 +195,11 @@ public class Client extends PMClientBase {
           && retrieveFilm.getFilmCode().equals(FILM_CODE)) {
         TestUtil.logTrace("Test Passed");
       } else {
-        throw new Fault("Expected MovieTicket(FILM_NAME)"
+        throw new Exception("Expected MovieTicket(FILM_NAME)"
             + " to be retrieved; film in DB - " + retrieveFilm.getFilmName());
       }
     } catch (Exception e) {
-      throw new Fault(
+      throw new Exception(
           "Exception thrown while testing testOverrideEmbedded" + e);
     } finally {
       getEntityManager().remove(ticket);
@@ -256,12 +248,12 @@ public class Client extends PMClientBase {
           && retrievePublisher1.getState().equals(PUBLISHER1_STATE)) {
         TestUtil.logTrace("Test Passed");
       } else {
-        throw new Fault("Publisher1's name and state were not persisted "
+        throw new Exception("Publisher1's name and state were not persisted "
             + "as expected -- metadata-complete=true is not"
             + " read from orm.xml");
       }
     } catch (Exception e) {
-      throw new Fault(
+      throw new Exception(
           "Exception thrown while testing testMetadataCompleteness" + e);
     } finally {
       getEntityManager().remove(book);

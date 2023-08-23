@@ -20,9 +20,8 @@
 
 package com.sun.ts.tests.jpa.ee.packaging.web.scope;
 
-import java.io.PrintWriter;
+import org.junit.jupiter.api.Test;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jpa.ee.util.AbstractUrlClient;
 
 public class Client extends AbstractUrlClient {
@@ -31,30 +30,9 @@ public class Client extends AbstractUrlClient {
 
   public static final String CONTEXT_ROOT = "/jpa_ee_packaging_web_scope";
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-    setServletName(SERVLET_NAME);
-    setContextRoot(CONTEXT_ROOT);
-    return super.run(args, out, err);
-  }
 
   /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
+   * @class.setup_props: webServerHost; webServerPort;
    */
 
   /*
@@ -74,7 +52,7 @@ public class Client extends AbstractUrlClient {
    * Client -> SERVLET -> ENTITY -> DB
    *
    */
-
+@Test
   public void test1() throws Exception {
     TEST_PROPS.setProperty(APITEST, "test1");
     invoke();

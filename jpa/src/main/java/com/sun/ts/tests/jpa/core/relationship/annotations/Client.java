@@ -23,10 +23,8 @@ package com.sun.ts.tests.jpa.core.relationship.annotations;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Properties;
 import java.util.Vector;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -49,21 +47,16 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
 
-      super.setup(args, p);
+      super.setup();
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -128,7 +121,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("annotationMappingTest1 failed");
+      throw new Exception("annotationMappingTest1 failed");
   }
 
   /*
@@ -192,7 +185,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("annotationMappingPersistTest1 failed");
+      throw new Exception("annotationMappingPersistTest1 failed");
   }
 
   /*
@@ -330,7 +323,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass2)
-      throw new Fault("annotationMappingTest2 failed");
+      throw new Exception("annotationMappingTest2 failed");
   }
 
   /*
@@ -428,7 +421,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("annotationMappingTest3 failed");
+      throw new Exception("annotationMappingTest3 failed");
   }
 
   /*
@@ -501,7 +494,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("annotationMappingTest4 failed");
+      throw new Exception("annotationMappingTest4 failed");
   }
 
   /*
@@ -581,7 +574,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("annotationMappingTest5 failed");
+      throw new Exception("annotationMappingTest5 failed");
   }
 
   /*
@@ -745,7 +738,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2)
-      throw new Fault("annotationMappingTest6 failed");
+      throw new Exception("annotationMappingTest6 failed");
   }
 
   /*
@@ -963,7 +956,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2)
-      throw new Fault("annotationMappingTest7 failed");
+      throw new Exception("annotationMappingTest7 failed");
   }
 
   /*
@@ -1113,7 +1106,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2)
-      throw new Fault("annotationMappingTest8 failed");
+      throw new Exception("annotationMappingTest8 failed");
   }
 
   /*

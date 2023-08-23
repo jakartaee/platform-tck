@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,9 +16,10 @@
 
 package com.sun.ts.tests.jpa.core.annotations.tableGenerator;
 
-import java.util.Properties;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -36,61 +37,60 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
 
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
-  public void setup2(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup2() throws Exception {
     TestUtil.logTrace("setup2");
     try {
 
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createTestData2();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
-  public void setup3(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup3() throws Exception {
     TestUtil.logTrace("setup3");
     try {
 
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createTestData3();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
-  public void setup4(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup4() throws Exception {
     TestUtil.logTrace("setup4");
     try {
 
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createTestData4();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
   /*
@@ -101,7 +101,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy: use a generator specified on an entity
    */
-
+@Test
   public void generatorOnEntityTest() throws Exception {
 
     boolean pass = false;
@@ -125,7 +125,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("generatorOnEntityTest failed");
+      throw new Exception("generatorOnEntityTest failed");
   }
 
   /*
@@ -137,6 +137,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: use a generator specified on a field
    */
   @SetupMethod(name = "setup3")
+  @Test
   public void generatorOnFieldTest() throws Exception {
 
     boolean pass = false;
@@ -160,7 +161,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("generatorOnFieldTest failed");
+      throw new Exception("generatorOnFieldTest failed");
   }
 
   /*
@@ -172,6 +173,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: use a generator specified on a property
    */
   @SetupMethod(name = "setup2")
+  @Test
   public void generatorOnPropertyTest() throws Exception {
 
     boolean pass = false;
@@ -195,7 +197,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("generatorOnPropertyTest failed");
+      throw new Exception("generatorOnPropertyTest failed");
   }
 
   /*
@@ -206,6 +208,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Use the generator defined by another entity
    */
   @SetupMethod(name = "setup4")
+  @Test
   public void generatorGlobalTest() throws Exception {
 
     boolean pass = false;
@@ -229,7 +232,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("generatorGlobalTest failed");
+      throw new Exception("generatorGlobalTest failed");
   }
 
   // Methods used for Tests
@@ -301,6 +304,7 @@ public class Client extends PMClientBase {
     }
   }
 
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("Cleanup data");
     removeTestData();

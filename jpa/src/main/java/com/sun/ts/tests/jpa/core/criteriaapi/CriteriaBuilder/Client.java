@@ -25,8 +25,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Properties;
 import java.util.Set;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
@@ -72,14 +74,15 @@ import jakarta.persistence.metamodel.Metamodel;
 
 public class Client extends Util {
 
-  public void setup(String[] args, Properties p) throws Exception {
+	@BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       getEntityManager();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -92,6 +95,7 @@ public class Client extends Util {
    * @test_Strategy:
    *
    */
+	@Test
   public void createQuery() throws Exception {
     boolean pass = false;
 
@@ -109,7 +113,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("createQuery Test  failed");
+      throw new Exception("createQuery Test  failed");
     }
   }
 
@@ -122,6 +126,7 @@ public class Client extends Util {
    * @test_Strategy:
    *
    */
+	@Test
   public void createQuery2() throws Exception {
     boolean pass = false;
 
@@ -139,7 +144,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("createQuery2 Test  failed");
+      throw new Exception("createQuery2 Test  failed");
     }
   }
 
@@ -152,6 +157,7 @@ public class Client extends Util {
    * @test_Strategy:
    *
    */
+	@Test
   public void createTuple() throws Exception {
     boolean pass = false;
 
@@ -169,7 +175,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("createTuple Test  failed");
+      throw new Exception("createTuple Test  failed");
     }
   }
 
@@ -188,6 +194,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void construct() throws Exception {
     boolean pass = false;
 
@@ -240,7 +247,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("construct Test  failed");
+      throw new Exception("construct Test  failed");
     }
   }
 
@@ -254,6 +261,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void tupleIntTest() throws Exception {
     boolean pass1 = true;
     boolean pass2 = false;
@@ -325,7 +333,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2) {
-      throw new Fault("tupleIntTest test failed");
+      throw new Exception("tupleIntTest test failed");
     }
   }
 
@@ -339,6 +347,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void tupleToArrayTest() throws Exception {
     boolean pass = false;
 
@@ -408,7 +417,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("tupleToArrayTest test failed");
+      throw new Exception("tupleToArrayTest test failed");
     }
   }
 
@@ -422,6 +431,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void tupleIntClassTest() throws Exception {
     boolean pass1 = true;
     boolean pass2 = false;
@@ -491,7 +501,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2) {
-      throw new Fault("tupleIntClassTest test failed");
+      throw new Exception("tupleIntClassTest test failed");
     }
   }
 
@@ -507,6 +517,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasData")
+  @Test
   public void tupleGetIntIllegalArgumentExceptionTest() throws Exception {
     boolean pass = false;
 
@@ -561,7 +572,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("tupleGetIntIllegalArgumentExceptionTest failed");
+      throw new Exception("tupleGetIntIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -576,6 +587,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void tupleGetIntClassIllegalArgumentExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -637,7 +649,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2) {
-      throw new Fault("tupleGetIntClassIllegalArgumentExceptionTest failed");
+      throw new Exception("tupleGetIntClassIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -653,6 +665,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasData")
+  @Test
   public void tupleGetElementsGetTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -745,7 +758,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2 || !pass3 || !pass4) {
-      throw new Fault("tupleGetElementsGetTest failed");
+      throw new Exception("tupleGetElementsGetTest failed");
     }
   }
 
@@ -759,6 +772,7 @@ public class Client extends Util {
    * WHERE (ID = 1)
    */
   @SetupMethod(name = "setupCustAliasProductData")
+  @Test
   public void tupleGetTupleElementIllegalArgumentExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -850,7 +864,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2) {
-      throw new Fault(
+      throw new Exception(
           "tupleGetTupleElementIllegalArgumentExceptionTest failed");
     }
   }
@@ -865,6 +879,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasData")
+  @Test
   public void tupleGetStringTest() throws Exception {
     boolean pass1 = true;
     boolean pass2 = false;
@@ -938,7 +953,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2) {
-      throw new Fault("tupleGetStringTest failed");
+      throw new Exception("tupleGetStringTest failed");
     }
   }
 
@@ -953,6 +968,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasData")
+  @Test
   public void tupleGetStringIllegalArgumentExceptionTest() throws Exception {
     boolean pass = false;
 
@@ -1010,7 +1026,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("tupleGetStringIllegalArgumentExceptionTest failed");
+      throw new Exception("tupleGetStringIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -1025,6 +1041,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasData")
+  @Test
   public void tupleGetStringClassIllegalArgumentExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1094,7 +1111,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2) {
-      throw new Fault("tupleGetStringClassIllegalArgumentExceptionTest failed");
+      throw new Exception("tupleGetStringClassIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -1108,6 +1125,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasData")
+  @Test
   public void tupleGetStringClassTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = true;
@@ -1183,7 +1201,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("tupleGetStringClassTest failed");
+      throw new Exception("tupleGetStringClassTest failed");
     }
   }
 
@@ -1198,6 +1216,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasData")
+  @Test
   public void tupleElementGetAliasTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1251,7 +1270,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("tupleElementGetAliasTest failed");
+      throw new Exception("tupleElementGetAliasTest failed");
     }
   }
 
@@ -1265,6 +1284,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void tupleElementGetJavaTypeTest() throws Exception {
     boolean pass = false;
 
@@ -1295,7 +1315,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("tupleElementGetJavaTypeTest failed");
+      throw new Exception("tupleElementGetJavaTypeTest failed");
     }
   }
 
@@ -1310,6 +1330,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void tupleSelectionArrayTest() throws Exception {
     boolean pass = false;
 
@@ -1370,7 +1391,7 @@ public class Client extends Util {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("tupleSelectionArrayTest failed");
+      throw new Exception("tupleSelectionArrayTest failed");
     }
   }
 
@@ -1381,6 +1402,7 @@ public class Client extends Util {
    * 
    * @test_Strategy:
    */
+  @Test
   public void tupleSelectionArrayIllegalArgumentExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1427,7 +1449,7 @@ public class Client extends Util {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass1 || !pass2) {
-      throw new Fault("tupleSelectionArrayIllegalArgumentExceptionTest failed");
+      throw new Exception("tupleSelectionArrayIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -1444,6 +1466,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void array() throws Exception {
     boolean pass1 = false;
     boolean pass2 = true;
@@ -1516,7 +1539,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("array test failed");
+      throw new Exception("array test failed");
     }
   }
 
@@ -1530,6 +1553,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void arrayIllegalArgumentExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1570,7 +1594,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("arrayIllegalArgumentExceptionTest failed");
+      throw new Exception("arrayIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -1584,6 +1608,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void constructIllegalArgumentExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1624,7 +1649,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("constructIllegalArgumentExceptionTest failed");
+      throw new Exception("constructIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -1637,6 +1662,7 @@ public class Client extends Util {
    * @test_Strategy: Select p from Product p where p.whouse = "WH5"
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void primaryKeyJoinColumnTest() throws Exception {
     boolean pass = false;
 
@@ -1669,7 +1695,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("primaryKeyJoinColumnTest  failed");
+      throw new Exception("primaryKeyJoinColumnTest  failed");
     }
   }
 
@@ -1683,6 +1709,7 @@ public class Client extends Util {
    * hardware.Product.modeNumber
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void asc() throws Exception {
     final int expectedModelNumber = 40;
     final int expectedResultSize = 10;
@@ -1722,7 +1749,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("asc Test  failed");
+      throw new Exception("asc Test  failed");
     }
   }
 
@@ -1735,6 +1762,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void desc() throws Exception {
     final int expectedModelNumber = 104;
     final int expectedResultSize = 10;
@@ -1774,7 +1802,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("desc Test  failed");
+      throw new Exception("desc Test  failed");
     }
   }
 
@@ -1788,6 +1816,7 @@ public class Client extends Util {
    * AVG(o.totalPrice) FROM Order o
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void avg() throws Exception {
     boolean pass = false;
 
@@ -1822,7 +1851,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("avg test  failed");
+      throw new Exception("avg test  failed");
     }
   }
 
@@ -1836,6 +1865,7 @@ public class Client extends Util {
    * Sum(p.price) FROM Product p
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void sumExpTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1878,7 +1908,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2) {
-      throw new Fault("sumExpTest failed");
+      throw new Exception("sumExpTest failed");
     }
   }
 
@@ -1891,6 +1921,7 @@ public class Client extends Util {
    * sum(p.price,100) FROM Product p WHERE p.id = 1
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void sumExpNumTest() throws Exception {
     boolean pass = false;
 
@@ -1929,7 +1960,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("sumExpNumTest failed");
+      throw new Exception("sumExpNumTest failed");
     }
   }
 
@@ -1942,6 +1973,7 @@ public class Client extends Util {
    * sum(100,p.price) FROM Product p WHERE p.id = 1
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void sumNumExpTest() throws Exception {
     boolean pass = false;
 
@@ -1981,7 +2013,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("sumNumExpTest failed");
+      throw new Exception("sumNumExpTest failed");
     }
   }
 
@@ -1994,6 +2026,7 @@ public class Client extends Util {
    * sum(p.quantity,p.quantity) FROM Product p WHERE p.id = 1
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void sumExpExpTest() throws Exception {
     boolean pass = false;
 
@@ -2033,7 +2066,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("sumExpExpTest failed");
+      throw new Exception("sumExpExpTest failed");
     }
   }
 
@@ -2047,6 +2080,7 @@ public class Client extends Util {
    * MAX(l.quantity) FROM LineItem l
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void max() throws Exception {
     boolean pass1, pass2;
     pass1 = pass2 = false;
@@ -2129,7 +2163,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2) {
-      throw new Fault("max test failed");
+      throw new Exception("max test failed");
     }
   }
 
@@ -2143,6 +2177,7 @@ public class Client extends Util {
    * DISTINCT MIN(l.quantity) FROM LineItem l
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void min() throws Exception {
     boolean pass1, pass2;
     pass1 = pass2 = false;
@@ -2225,7 +2260,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2) {
-      throw new Fault("max test failed");
+      throw new Exception("max test failed");
     }
   }
 
@@ -2238,6 +2273,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void greatest() throws Exception {
     boolean pass = false;
 
@@ -2279,7 +2315,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("greatest test failed");
+      throw new Exception("greatest test failed");
     }
   }
 
@@ -2292,6 +2328,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void least() throws Exception {
     boolean pass = false;
 
@@ -2335,7 +2372,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("least test failed");
+      throw new Exception("least test failed");
     }
   }
 
@@ -2348,6 +2385,7 @@ public class Client extends Util {
    * (o.id) From Order o
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void count() throws Exception {
     boolean pass = false;
 
@@ -2383,7 +2421,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("count test failed");
+      throw new Exception("count test failed");
     }
   }
 
@@ -2395,6 +2433,7 @@ public class Client extends Util {
    * @test_Strategy: Select DISTINCT Count(c.home.city) from Customer c
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void countDistinct() throws Exception {
     boolean pass = false;
 
@@ -2439,7 +2478,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("countDistinct test failed");
+      throw new Exception("countDistinct test failed");
     }
   }
 
@@ -2457,6 +2496,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void exists() throws Exception {
     boolean pass = false;
 
@@ -2517,7 +2557,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("exists test failed");
+      throw new Exception("exists test failed");
     }
   }
 
@@ -2534,6 +2574,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void subqueryFromEntityTypeTest() throws Exception {
     boolean pass = false;
 
@@ -2593,7 +2634,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("subqueryFromEntityTypeTest failed");
+      throw new Exception("subqueryFromEntityTypeTest failed");
     }
   }
 
@@ -2612,6 +2653,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void all() throws Exception {
     boolean pass = false;
 
@@ -2677,7 +2719,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("all test failed");
+      throw new Exception("all test failed");
     }
   }
 
@@ -2694,6 +2736,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void some() throws Exception {
     boolean pass = false;
 
@@ -2772,7 +2815,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("some test failed");
+      throw new Exception("some test failed");
     }
   }
 
@@ -2789,6 +2832,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void any() throws Exception {
     boolean pass = false;
 
@@ -2869,7 +2913,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("any test failed");
+      throw new Exception("any test failed");
     }
   }
 
@@ -2883,6 +2927,7 @@ public class Client extends Util {
    * '11345'
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void andPredicates() throws Exception {
     boolean pass = false;
 
@@ -2950,7 +2995,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("andPredicates test failed");
+      throw new Exception("andPredicates test failed");
 
     }
   }
@@ -2965,6 +3010,7 @@ public class Client extends Util {
    * c.home.zip = '02155'
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void orPredicates() throws Exception {
     boolean pass = false;
 
@@ -3041,7 +3087,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("orPredicates test failed");
+      throw new Exception("orPredicates test failed");
 
     }
   }
@@ -3057,6 +3103,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void notPredicate() throws Exception {
     boolean pass = false;
 
@@ -3107,7 +3154,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("notPredicate test failed");
+      throw new Exception("notPredicate test failed");
 
     }
   }
@@ -3123,6 +3170,7 @@ public class Client extends Util {
    * Note: cbuilder.conjunction() always returns true
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void conjunction() throws Exception {
     boolean pass = false;
 
@@ -3179,7 +3227,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("conjunction test failed");
+      throw new Exception("conjunction test failed");
 
     }
   }
@@ -3195,6 +3243,7 @@ public class Client extends Util {
    * Note: cbuilder.disjunction() always returns false
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void disjunction() throws Exception {
     boolean pass = false;
 
@@ -3251,7 +3300,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("disjunction test failed");
+      throw new Exception("disjunction test failed");
 
     }
   }
@@ -3267,6 +3316,7 @@ public class Client extends Util {
    * Note: cbuilder.conjunction() always returns true
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void isTrue() throws Exception {
     boolean pass = false;
 
@@ -3322,7 +3372,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("isTrue test failed");
+      throw new Exception("isTrue test failed");
 
     }
   }
@@ -3338,6 +3388,7 @@ public class Client extends Util {
    * Note: cbuilder.disjunction() always returns false
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void isFalse() throws Exception {
     boolean pass = false;
 
@@ -3391,7 +3442,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("isFalse test failed");
+      throw new Exception("isFalse test failed");
 
     }
   }
@@ -3407,6 +3458,7 @@ public class Client extends Util {
    * 
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void isNull() throws Exception {
     boolean pass = false;
 
@@ -3450,7 +3502,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("isNull test failed");
+      throw new Exception("isNull test failed");
 
     }
   }
@@ -3465,6 +3517,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void isNotNull() throws Exception {
     boolean pass = false;
 
@@ -3516,7 +3569,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("isNotNull test failed");
+      throw new Exception("isNotNull test failed");
 
     }
 
@@ -3532,6 +3585,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void equalExpObjectTest() throws Exception {
     boolean pass = false;
     int j = 0;
@@ -3587,7 +3641,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("equalExpObjectTest failed");
+      throw new Exception("equalExpObjectTest failed");
 
     }
   }
@@ -3602,6 +3656,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void equalExpExpTest() throws Exception {
     boolean pass = false;
 
@@ -3657,7 +3712,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("equalExpExpTest failed");
+      throw new Exception("equalExpExpTest failed");
 
     }
   }
@@ -3672,6 +3727,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void notEqualExpObjectTest() throws Exception {
     boolean pass = false;
 
@@ -3727,7 +3783,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("notEqualExpObjectTest test failed");
+      throw new Exception("notEqualExpObjectTest test failed");
 
     }
   }
@@ -3742,6 +3798,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void notEqualExpExpTest() throws Exception {
     boolean pass = false;
 
@@ -3797,7 +3854,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("notEqualExpExpTest test failed");
+      throw new Exception("notEqualExpExpTest test failed");
 
     }
   }
@@ -3814,6 +3871,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void sumAsDoubleTest() throws Exception {
     boolean pass = false;
     double expected = 217.5d;
@@ -3863,7 +3921,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("sumAsDoubleTest failed");
+      throw new Exception("sumAsDoubleTest failed");
 
     }
   }
@@ -3880,6 +3938,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void sumAsLongTest() throws Exception {
     boolean pass = false;
     long expected = 435;
@@ -3926,7 +3985,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("sumAsLongTest failed");
+      throw new Exception("sumAsLongTest failed");
 
     }
   }
@@ -3940,6 +3999,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasOnlyData")
+  @Test
   public void greaterThanExpNumTest() throws Exception {
     boolean pass = false;
 
@@ -3989,7 +4049,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("greaterThanExpNumTest failed");
+      throw new Exception("greaterThanExpNumTest failed");
 
     }
   }
@@ -4003,6 +4063,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasOnlyData")
+  @Test
   public void greaterThanExpExpTest() throws Exception {
     boolean pass = false;
 
@@ -4053,7 +4114,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("greaterThanExpExpTest failed");
+      throw new Exception("greaterThanExpExpTest failed");
 
     }
   }
@@ -4067,6 +4128,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasOnlyData")
+  @Test
   public void greaterThanOrEqualToExpNumTest() throws Exception {
     boolean pass = false;
 
@@ -4124,7 +4186,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("greaterThanOrEqualToExpNumTest failed");
+      throw new Exception("greaterThanOrEqualToExpNumTest failed");
 
     }
   }
@@ -4138,6 +4200,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasOnlyData")
+  @Test
   public void greaterThanOrEqualToExpExpTest() throws Exception {
     boolean pass = false;
 
@@ -4194,7 +4257,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("greaterThanOrEqualToExpExpTest failed");
+      throw new Exception("greaterThanOrEqualToExpExpTest failed");
 
     }
   }
@@ -4210,6 +4273,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void lessThanExpNumTest() throws Exception {
     boolean pass = false;
 
@@ -4274,7 +4338,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("lessThanExpNumTest failed");
+      throw new Exception("lessThanExpNumTest failed");
 
     }
   }
@@ -4290,6 +4354,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void lessThanExpExpTest() throws Exception {
     boolean pass = false;
 
@@ -4354,7 +4419,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("lessThanExpExpTest failed");
+      throw new Exception("lessThanExpExpTest failed");
 
     }
   }
@@ -4368,6 +4433,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void lessThanOrEqualToExpNumTest() throws Exception {
     boolean pass = false;
 
@@ -4433,7 +4499,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("lessThanOrEqualToExpNumTest failed");
+      throw new Exception("lessThanOrEqualToExpNumTest failed");
 
     }
   }
@@ -4447,6 +4513,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void lessThanOrEqualToExpExpTest() throws Exception {
     boolean pass = false;
 
@@ -4511,7 +4578,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("lessThanOrEqualToExpExpTest failed");
+      throw new Exception("lessThanOrEqualToExpExpTest failed");
 
     }
   }
@@ -4525,6 +4592,7 @@ public class Client extends Util {
    * :date1 AND :date6
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void between() throws Exception {
     boolean pass = false;
 
@@ -4584,7 +4652,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("between test failed");
+      throw new Exception("between test failed");
     }
   }
 
@@ -4597,6 +4665,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasOnlyData")
+  @Test
   public void gtExpNumTest() throws Exception {
     boolean pass = false;
 
@@ -4647,7 +4716,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("gtExpNumTest failed");
+      throw new Exception("gtExpNumTest failed");
 
     }
   }
@@ -4661,6 +4730,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasOnlyData")
+  @Test
   public void gtExpExpTest() throws Exception {
     boolean pass = false;
 
@@ -4712,7 +4782,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("gtExpExpTest failed");
+      throw new Exception("gtExpExpTest failed");
 
     }
   }
@@ -4726,6 +4796,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasOnlyData")
+  @Test
   public void geExpNumTest() throws Exception {
     boolean pass = false;
 
@@ -4784,7 +4855,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("geExpNumTest failed");
+      throw new Exception("geExpNumTest failed");
 
     }
   }
@@ -4798,6 +4869,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasOnlyData")
+  @Test
   public void geExpExpTest() throws Exception {
     boolean pass = false;
 
@@ -4856,7 +4928,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("geExpExpTest failed");
+      throw new Exception("geExpExpTest failed");
 
     }
   }
@@ -4870,6 +4942,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void ltExpNumTest() throws Exception {
     boolean pass = false;
 
@@ -4933,7 +5006,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("ltExpNumTest failed");
+      throw new Exception("ltExpNumTest failed");
 
     }
   }
@@ -4947,6 +5020,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void ltExpExpTest() throws Exception {
     boolean pass = false;
 
@@ -5010,7 +5084,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("ltExpExpTest failed");
+      throw new Exception("ltExpExpTest failed");
 
     }
   }
@@ -5024,6 +5098,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void leExpNumTest() throws Exception {
     boolean pass = false;
 
@@ -5089,7 +5164,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("leExpNumTest failed");
+      throw new Exception("leExpNumTest failed");
 
     }
   }
@@ -5103,6 +5178,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void leExpExpTest() throws Exception {
     boolean pass = false;
 
@@ -5168,7 +5244,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("leExpExpTest failed");
+      throw new Exception("leExpExpTest failed");
 
     }
   }
@@ -5181,6 +5257,7 @@ public class Client extends Util {
    * @test_Strategy: SELECT NEG(p.quantity) From Product p where p.quantity = 5
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void neg() throws Exception {
     boolean pass = false;
 
@@ -5222,7 +5299,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("neg test failed");
+      throw new Exception("neg test failed");
     }
 
   }
@@ -5238,6 +5315,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void abs() throws Exception {
     boolean pass = false;
 
@@ -5290,7 +5368,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("abs test failed");
+      throw new Exception("abs test failed");
 
     }
   }
@@ -5304,6 +5382,7 @@ public class Client extends Util {
    * @test_Strategy: SELECT p.quantity *10F From Product p where p.quantity = 5
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void prodExpNumTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -5354,7 +5433,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2) {
-      throw new Fault("prodExpNumTest failed");
+      throw new Exception("prodExpNumTest failed");
     }
   }
 
@@ -5366,6 +5445,7 @@ public class Client extends Util {
    * @test_Strategy: SELECT 10 * p.quantity From Product p where p.quantity = 5
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void prodNumExpTest() throws Exception {
     boolean pass = false;
 
@@ -5407,7 +5487,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("prodNumExpTest failed");
+      throw new Exception("prodNumExpTest failed");
     }
   }
 
@@ -5420,6 +5500,7 @@ public class Client extends Util {
    * p.quantity = 5
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void prodExpExpTest() throws Exception {
     boolean pass = false;
 
@@ -5463,7 +5544,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("prodExpExpTest failed");
+      throw new Exception("prodExpExpTest failed");
     }
   }
 
@@ -5476,6 +5557,7 @@ public class Client extends Util {
    * p.quantity=5
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void diffExpNumberTest() throws Exception {
     boolean pass = false;
 
@@ -5519,7 +5601,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("diffExpNumberTest failed");
+      throw new Exception("diffExpNumberTest failed");
     }
   }
 
@@ -5532,6 +5614,7 @@ public class Client extends Util {
    * p.quantity=5
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void diffNumberExpTest() throws Exception {
     boolean pass = false;
 
@@ -5574,7 +5657,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("diffNumberExpTest failed");
+      throw new Exception("diffNumberExpTest failed");
     }
   }
 
@@ -5587,6 +5670,7 @@ public class Client extends Util {
    * p.quantity=5
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void diffExpExpTest() throws Exception {
     boolean pass = false;
 
@@ -5631,7 +5715,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("diffExpExpTest failed");
+      throw new Exception("diffExpExpTest failed");
     }
   }
 
@@ -5644,6 +5728,7 @@ public class Client extends Util {
    * = 5
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void quotExpNumTest() throws Exception {
     boolean pass = false;
 
@@ -5684,7 +5769,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("quotExpNumTest failed");
+      throw new Exception("quotExpNumTest failed");
     }
   }
 
@@ -5697,6 +5782,7 @@ public class Client extends Util {
    * = 5
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void quotNumExpTest() throws Exception {
     boolean pass = false;
 
@@ -5736,7 +5822,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("quotNumExpTest failed");
+      throw new Exception("quotNumExpTest failed");
     }
   }
 
@@ -5749,6 +5835,7 @@ public class Client extends Util {
    * = 5
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void quotExpExpTest() throws Exception {
     boolean pass = false;
 
@@ -5790,7 +5877,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("quotExpExpTest failed");
+      throw new Exception("quotExpExpTest failed");
     }
   }
 
@@ -5803,6 +5890,7 @@ public class Client extends Util {
    * p.quantity
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void modExpIntTest() throws Exception {
     boolean pass = false;
 
@@ -5848,7 +5936,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("modExpIntTest failed");
+      throw new Exception("modExpIntTest failed");
     }
   }
 
@@ -5861,6 +5949,7 @@ public class Client extends Util {
    * p.quantity
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void modExpExpTest() throws Exception {
     boolean pass = false;
 
@@ -5906,7 +5995,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("modExpExpTest failed");
+      throw new Exception("modExpExpTest failed");
     }
   }
 
@@ -5919,6 +6008,7 @@ public class Client extends Util {
    * p.quantity
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void modIntExpTest() throws Exception {
     boolean pass = false;
 
@@ -5964,7 +6054,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("modIntExpTest failed");
+      throw new Exception("modIntExpTest failed");
     }
   }
 
@@ -5976,6 +6066,7 @@ public class Client extends Util {
    * @test_Strategy: SELECT SQRT(p.quantity) From Product p where p.quantity = 5
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void sqrt() throws Exception {
     boolean pass = false;
 
@@ -6018,7 +6109,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("sqrt test failed");
+      throw new Exception("sqrt test failed");
     }
   }
 
@@ -6031,6 +6122,7 @@ public class Client extends Util {
    * p.quantity = 5
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void toLong() throws Exception {
     boolean pass = false;
 
@@ -6073,7 +6165,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("toLong test failed");
+      throw new Exception("toLong test failed");
     }
   }
 
@@ -6086,6 +6178,7 @@ public class Client extends Util {
    * p.partNumber = 373767373
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void toInteger() throws Exception {
     boolean pass = false;
 
@@ -6127,7 +6220,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("toInteger test failed");
+      throw new Exception("toInteger test failed");
     }
   }
 
@@ -6139,6 +6232,7 @@ public class Client extends Util {
    * @test_Strategy: SELECT p.quantity *1/2 From Product p where p.quantity = 5
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void toFloat() throws Exception {
     boolean pass = false;
 
@@ -6181,7 +6275,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("toFloat test failed");
+      throw new Exception("toFloat test failed");
     }
 
   }
@@ -6195,6 +6289,7 @@ public class Client extends Util {
    * p.quantity = 5
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void toDouble() throws Exception {
     boolean pass = false;
 
@@ -6235,7 +6330,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("toDouble test failed");
+      throw new Exception("toDouble test failed");
     }
   }
 
@@ -6248,6 +6343,7 @@ public class Client extends Util {
    * where p.quantity = 5
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void toBigDecimal() throws Exception {
     final BigDecimal expectedResult = new BigDecimal("50.5");
     boolean pass = false;
@@ -6290,7 +6386,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("toBigDecimal test failed");
+      throw new Exception("toBigDecimal test failed");
     }
   }
 
@@ -6303,6 +6399,7 @@ public class Client extends Util {
    * From Product p where p.quantity = 5
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void toBigInteger() throws Exception {
     boolean pass = false;
 
@@ -6344,7 +6441,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("toBigInteger test failed");
+      throw new Exception("toBigInteger test failed");
     }
   }
 
@@ -6356,6 +6453,7 @@ public class Client extends Util {
    * @test_Strategy: SELECT ToString(p.id) From Product p where p.id ='1'
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void toStringTest() throws Exception {
     boolean pass = false;
 
@@ -6395,7 +6493,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("toStringTest test failed");
+      throw new Exception("toStringTest test failed");
     }
   }
 
@@ -6407,6 +6505,7 @@ public class Client extends Util {
    * @test_Strategy: SELECT p.quantity From Product p where 5 = p.quantity
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void literal() throws Exception {
     boolean pass = false;
 
@@ -6447,7 +6546,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("literal test failed");
+      throw new Exception("literal test failed");
     }
   }
 
@@ -6458,6 +6557,7 @@ public class Client extends Util {
    *
    * @test_Strategy:
    */
+  @Test
   public void literalIllegalArgumentExceptionTest() throws Exception {
     boolean pass = false;
 
@@ -6473,7 +6573,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("literalIllegalArgumentExceptionTest failed");
+      throw new Exception("literalIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -6491,6 +6591,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void parameter() throws Exception {
     boolean pass = false;
 
@@ -6576,7 +6677,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("parameter test failed");
+      throw new Exception("parameter test failed");
 
     }
   }
@@ -6594,6 +6695,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void parameterCaseSensitiveTest() throws Exception {
     boolean pass = false;
 
@@ -6664,7 +6766,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("parameterCaseSensitiveTest test failed");
+      throw new Exception("parameterCaseSensitiveTest test failed");
 
     }
   }
@@ -6679,6 +6781,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void criteriaBuilderValuesTest() throws Exception {
     boolean pass = false;
 
@@ -6742,7 +6845,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("criteriaBuilderValuesTest failed");
+      throw new Exception("criteriaBuilderValuesTest failed");
 
     }
   }
@@ -6758,6 +6861,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void criteriaBuilderIn1Test() throws Exception {
     boolean pass = false;
 
@@ -6820,7 +6924,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("criteriaBuilderIn1Test failed");
+      throw new Exception("criteriaBuilderIn1Test failed");
 
     }
   }
@@ -6838,6 +6942,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void criteriaBuilderIn2Test() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -6900,7 +7005,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("criteriaBuilderIn2Test failed");
+      throw new Exception("criteriaBuilderIn2Test failed");
 
     }
   }
@@ -6915,6 +7020,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void criteriaBuilderInValueTest() throws Exception {
     boolean pass = false;
 
@@ -6975,7 +7081,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("criteriaBuilderInValueTest failed");
+      throw new Exception("criteriaBuilderInValueTest failed");
 
     }
   }
@@ -6990,6 +7096,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void expressionInObjectArrayTest() throws Exception {
     boolean pass = false;
 
@@ -7034,7 +7141,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("expressionInObjectArrayTest failed");
+      throw new Exception("expressionInObjectArrayTest failed");
 
     }
   }
@@ -7048,6 +7155,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void expressionInExpressionArrayTest() throws Exception {
     boolean pass = false;
 
@@ -7093,7 +7201,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("expressionInExpressionArrayTest failed");
+      throw new Exception("expressionInExpressionArrayTest failed");
 
     }
   }
@@ -7108,6 +7216,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void expressionInExpressionTest() throws Exception {
     boolean pass = false;
 
@@ -7151,7 +7260,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("expressionInExpressionTest failed");
+      throw new Exception("expressionInExpressionTest failed");
 
     }
   }
@@ -7166,6 +7275,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void expressionInCollectionTest() throws Exception {
     boolean pass = false;
 
@@ -7212,7 +7322,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("expressionInCollectionTest failed");
+      throw new Exception("expressionInCollectionTest failed");
 
     }
   }
@@ -7227,6 +7337,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void parameterExpressionIsNullTest() throws Exception {
     boolean pass = false;
 
@@ -7267,7 +7378,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("parameterExpressionIsNullTest failed");
+      throw new Exception("parameterExpressionIsNullTest failed");
 
     }
   }
@@ -7282,6 +7393,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void parameterExpressionIsNotNullTest() throws Exception {
     boolean pass = false;
 
@@ -7328,7 +7440,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("parameterExpressionIsNotNullTest failed");
+      throw new Exception("parameterExpressionIsNotNullTest failed");
 
     }
   }
@@ -7341,6 +7453,7 @@ public class Client extends Util {
    * @test_Strategy: Select c fRoM Customer c where c.aliases IS EMPTY
    */
   @SetupMethod(name = "setupAliasData")
+  @Test
   public void isEmpty() throws Exception {
     boolean pass = false;
 
@@ -7384,7 +7497,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("isEmpty test failed");
+      throw new Exception("isEmpty test failed");
     }
   }
 
@@ -7397,6 +7510,7 @@ public class Client extends Util {
    * EMPTY
    */
   @SetupMethod(name = "setupAliasData")
+  @Test
   public void isNotEmpty() throws Exception {
     boolean pass = false;
 
@@ -7440,7 +7554,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("isNotEmpty test failed");
+      throw new Exception("isNotEmpty test failed");
     }
   }
 
@@ -7452,6 +7566,7 @@ public class Client extends Util {
    * @test_Strategy: Select size(c.aliases) from Customer c where c.id ="3"
    */
   @SetupMethod(name = "setupAliasData")
+  @Test
   public void sizeCollectionTest() throws Exception {
     boolean pass = false;
 
@@ -7486,7 +7601,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("sizeCollectionTest failed");
+      throw new Exception("sizeCollectionTest failed");
     }
   }
 
@@ -7498,6 +7613,7 @@ public class Client extends Util {
    * @test_Strategy: Select size(c.aliases) fRoM Customer c where c.id ="3"
    */
   @SetupMethod(name = "setupAliasData")
+  @Test
   public void sizeExpTest() throws Exception {
     boolean pass = false;
 
@@ -7536,7 +7652,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("sizeExpTest failed");
+      throw new Exception("sizeExpTest failed");
     }
   }
 
@@ -7549,6 +7665,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasData")
+  @Test
   public void isMember() throws Exception {
     boolean pass = false;
 
@@ -7592,7 +7709,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("isMember test failed");
+      throw new Exception("isMember test failed");
 
     }
   }
@@ -7607,6 +7724,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasData")
+  @Test
   public void isNotMember() throws Exception {
     boolean pass = false;
 
@@ -7651,7 +7769,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("isNotMember test failed");
+      throw new Exception("isNotMember test failed");
 
     }
 
@@ -7669,6 +7787,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void likeExpStringTest() throws Exception {
     boolean pass = false;
 
@@ -7722,7 +7841,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("likeExpStringTest failed");
+      throw new Exception("likeExpStringTest failed");
 
     }
   }
@@ -7739,6 +7858,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void likeExpExpTest() throws Exception {
     boolean pass = false;
 
@@ -7792,7 +7912,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("likeExpExpTest failed");
+      throw new Exception("likeExpExpTest failed");
 
     }
   }
@@ -7808,6 +7928,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void notLikeExpStringTest() throws Exception {
     boolean pass = false;
 
@@ -7865,7 +7986,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("notLikeExpStringTest failed");
+      throw new Exception("notLikeExpStringTest failed");
 
     }
   }
@@ -7881,6 +8002,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void notLikeExpExpTest() throws Exception {
     boolean pass = false;
 
@@ -7938,7 +8060,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("notLikeExpExpTest failed");
+      throw new Exception("notLikeExpExpTest failed");
 
     }
   }
@@ -7954,6 +8076,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void notLikeExpExpExpTest() throws Exception {
     boolean pass = false;
 
@@ -8011,7 +8134,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("notLikeExpExpExpTest failed");
+      throw new Exception("notLikeExpExpExpTest failed");
 
     }
   }
@@ -8027,6 +8150,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void notLikeExpExpCharTest() throws Exception {
     boolean pass = false;
 
@@ -8084,7 +8208,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("notLikeExpExpCharTest failed");
+      throw new Exception("notLikeExpExpCharTest failed");
 
     }
   }
@@ -8100,6 +8224,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void notLikeExpStringExpTest() throws Exception {
     boolean pass = false;
 
@@ -8157,7 +8282,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("notLikeExpStringExpTest failed");
+      throw new Exception("notLikeExpStringExpTest failed");
 
     }
   }
@@ -8173,6 +8298,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void notLikeExpStringCharTest() throws Exception {
     boolean pass = false;
 
@@ -8230,7 +8356,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("notLikeExpStringCharTest failed");
+      throw new Exception("notLikeExpStringCharTest failed");
 
     }
   }
@@ -8247,6 +8373,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void concatExpStringTest() throws Exception {
     boolean pass = false;
 
@@ -8297,7 +8424,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("concatExpStringTest failed");
+      throw new Exception("concatExpStringTest failed");
 
     }
   }
@@ -8314,6 +8441,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void concatStringExpTest() throws Exception {
     boolean pass = false;
 
@@ -8364,7 +8492,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("concatStringExpTest failed");
+      throw new Exception("concatStringExpTest failed");
 
     }
   }
@@ -8381,6 +8509,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void concatExpExpTest() throws Exception {
     boolean pass = false;
 
@@ -8438,7 +8567,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("concatExpExpTest failed");
+      throw new Exception("concatExpExpTest failed");
 
     }
   }
@@ -8452,6 +8581,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasOnlyData")
+  @Test
   public void substringExpIntTest() throws Exception {
     boolean pass = false;
 
@@ -8497,7 +8627,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("substringExpIntTest failed");
+      throw new Exception("substringExpIntTest failed");
 
     }
   }
@@ -8511,6 +8641,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasOnlyData")
+  @Test
   public void substringExpExpTest() throws Exception {
     boolean pass = false;
 
@@ -8557,7 +8688,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("substringExpExpTest failed");
+      throw new Exception("substringExpExpTest failed");
 
     }
   }
@@ -8572,6 +8703,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasOnlyData")
+  @Test
   public void substringExpIntIntTest() throws Exception {
     boolean pass = false;
 
@@ -8618,7 +8750,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("substringExpIntIntTest failed");
+      throw new Exception("substringExpIntIntTest failed");
 
     }
   }
@@ -8633,6 +8765,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasOnlyData")
+  @Test
   public void substringExpExpExpTest() throws Exception {
     boolean pass = false;
 
@@ -8679,7 +8812,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("substringExpExpExpTest failed");
+      throw new Exception("substringExpExpExpTest failed");
 
     }
   }
@@ -8693,6 +8826,7 @@ public class Client extends Util {
    *
    *
    */
+  @Test
   public void trimspecTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = true;
@@ -8721,7 +8855,7 @@ public class Client extends Util {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass1 || !pass2) {
-      throw new Fault("trimspecTest failed");
+      throw new Exception("trimspecTest failed");
 
     }
   }
@@ -8736,6 +8870,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void trimBothExpTest() throws Exception {
     boolean pass = false;
     final String expectedResult = "David R. Vincent";
@@ -8775,7 +8910,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("trimBothExpTest failed");
+      throw new Exception("trimBothExpTest failed");
 
     }
   }
@@ -8791,6 +8926,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupTrimData")
+  @Test
   public void trimExpTest() throws Exception {
     boolean pass = false;
     final String expected = " David R. Vincent ";
@@ -8842,7 +8978,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("trimExpTest failed");
+      throw new Exception("trimExpTest failed");
 
     }
   }
@@ -8899,7 +9035,7 @@ public class Client extends Util {
    * 
    * getEntityTransaction().commit();
    * 
-   * if (!pass) { throw new Fault("trimLeadingExpTest failed");
+   * if (!pass) { throw new Exception("trimLeadingExpTest failed");
    * 
    * } }
    */
@@ -8914,6 +9050,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupTrimData")
+  @Test
   public void trimTrailingCharExpTest() throws Exception {
     boolean pass = false;
     final String expected = " David R. Vincent ";
@@ -8966,7 +9103,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("trimTrailingCharExpTest failed");
+      throw new Exception("trimTrailingCharExpTest failed");
 
     }
   }
@@ -8980,6 +9117,7 @@ public class Client extends Util {
    * M. Presley'
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void lower() throws Exception {
     final String expectedResult = "lisa m. presley";
     boolean pass = false;
@@ -9019,7 +9157,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("lower test failed");
+      throw new Exception("lower test failed");
 
     }
 
@@ -9034,6 +9172,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasOnlyData")
+  @Test
   public void upper() throws Exception {
     final String expectedResult = "IRIS";
     boolean pass = false;
@@ -9076,7 +9215,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("upper test failed");
+      throw new Exception("upper test failed");
 
     }
   }
@@ -9090,6 +9229,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasOnlyData")
+  @Test
   public void length() throws Exception {
     boolean pass = false;
 
@@ -9135,7 +9275,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("length test failed");
+      throw new Exception("length test failed");
 
     }
   }
@@ -9149,6 +9289,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasOnlyData")
+  @Test
   public void locateExpStringTest() throws Exception {
     boolean pass = false;
 
@@ -9194,7 +9335,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("locateExpStringTest failed");
+      throw new Exception("locateExpStringTest failed");
 
     }
   }
@@ -9208,6 +9349,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasOnlyData")
+  @Test
   public void locateExpExpTest() throws Exception {
     boolean pass = false;
 
@@ -9253,7 +9395,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("locateExpExpTest failed");
+      throw new Exception("locateExpExpTest failed");
 
     }
   }
@@ -9266,6 +9408,7 @@ public class Client extends Util {
    * @test_Strategy: SELECT current_date() From Product p where p.id = "1"
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void currentDate() throws Exception {
     boolean pass = false;
 
@@ -9298,7 +9441,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("currentDate test failed");
+      throw new Exception("currentDate test failed");
     }
   }
 
@@ -9310,6 +9453,7 @@ public class Client extends Util {
    * @test_Strategy: SELECT current_time() From Product p where p.id = "1"
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void currentTime() throws Exception {
     boolean pass = false;
 
@@ -9342,7 +9486,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("currentTimes test failed");
+      throw new Exception("currentTimes test failed");
     }
   }
 
@@ -9354,6 +9498,7 @@ public class Client extends Util {
    * @test_Strategy: SELECT current_timestamp() From Product p where p.id = "1"
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void currentTimestamp() throws Exception {
     boolean pass = false;
 
@@ -9386,7 +9531,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("currentTimestamp test failed");
+      throw new Exception("currentTimestamp test failed");
     }
   }
 
@@ -9397,6 +9542,7 @@ public class Client extends Util {
    *
    * @test_Strategy:
    */
+  @Test
   public void createCriteriaDeleteTest() throws Exception {
     boolean pass = false;
     CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -9414,7 +9560,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("createCriteriaDeleteTest test failed");
+      throw new Exception("createCriteriaDeleteTest test failed");
     }
   }
 
@@ -9425,6 +9571,7 @@ public class Client extends Util {
    *
    * @test_Strategy:
    */
+  @Test
   public void createCriteriaUpdateTest() throws Exception {
     boolean pass = false;
     CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -9442,7 +9589,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("createCriteriaUpdateTest test failed");
+      throw new Exception("createCriteriaUpdateTest test failed");
     }
   }
 
@@ -9455,6 +9602,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasData")
+  @Test
   public void expressionAliasTest() throws Exception {
     boolean pass = false;
 
@@ -9482,7 +9630,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("expressionAliasTest failed");
+      throw new Exception("expressionAliasTest failed");
     }
   }
 
@@ -9497,6 +9645,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void treatPathClassTest() throws Exception {
     boolean pass = false;
 
@@ -9545,7 +9694,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("treatPathClassTest failed");
+      throw new Exception("treatPathClassTest failed");
     }
   }
 
@@ -9559,6 +9708,7 @@ public class Client extends Util {
    * l.quantity > 5
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void joinOnExpressionTest() throws Exception {
     boolean pass = false;
 
@@ -9595,11 +9745,11 @@ public class Client extends Util {
       getEntityTransaction().commit();
     } catch (Exception e) {
       TestUtil.logErr("Caught exception: ", e);
-      throw new Fault("queryTest61 failed", e);
+      throw new Exception("queryTest61 failed", e);
     }
 
     if (!pass)
-      throw new Fault("joinOnExpressionTest failed");
+      throw new Exception("joinOnExpressionTest failed");
   }
 
   /*
@@ -9611,6 +9761,7 @@ public class Client extends Util {
    * (l.quantity > 5 AND l.quantity < 9)
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void joinOnPredicateArrayTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -9674,11 +9825,11 @@ public class Client extends Util {
       getEntityTransaction().commit();
     } catch (Exception e) {
       TestUtil.logErr("Caught exception: ", e);
-      throw new Fault("queryTest61 failed", e);
+      throw new Exception("queryTest61 failed", e);
     }
 
     if (!pass1 || !pass2 || !pass3)
-      throw new Fault("joinOnPredicateArrayTest failed");
+      throw new Exception("joinOnPredicateArrayTest failed");
   }
 
   /*
@@ -9694,6 +9845,7 @@ public class Client extends Util {
    * 
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void nullifExpressionExpressionTest() throws Exception {
     boolean pass = false;
 
@@ -9778,7 +9930,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("nullifExpressionExpressionTest failed");
+      throw new Exception("nullifExpressionExpressionTest failed");
     }
 
   }
@@ -9794,6 +9946,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void nullifExpressionObjectTest() throws Exception {
     boolean pass = false;
 
@@ -9876,7 +10029,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("nullifExpressionObjectTest failed");
+      throw new Exception("nullifExpressionObjectTest failed");
     }
 
   }
@@ -9891,6 +10044,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasOnlyData")
+  @Test
   public void locateExpressionExpressionExpressionTest() throws Exception {
     boolean pass = false;
 
@@ -9943,7 +10097,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("locateExpressionExpressionExpressionTest failed");
+      throw new Exception("locateExpressionExpressionExpressionTest failed");
 
     }
   }
@@ -9958,6 +10112,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasOnlyData")
+  @Test
   public void locateExpressionStringIntTest() throws Exception {
     boolean pass = false;
 
@@ -10008,7 +10163,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("locateExpressionExpressionExpressionTest failed");
+      throw new Exception("locateExpressionExpressionExpressionTest failed");
 
     }
   }
@@ -10020,6 +10175,7 @@ public class Client extends Util {
    * 
    * @test_Strategy:
    */
+  @Test
   public void coalesceTest() throws Exception {
     boolean pass = false;
 
@@ -10037,7 +10193,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("coalesceTest failed");
+      throw new Exception("coalesceTest failed");
     }
   }
 
@@ -10055,6 +10211,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void selectMultiSelectTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -10171,7 +10328,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("selectMultiSelectTest test failed");
+      throw new Exception("selectMultiSelectTest test failed");
     }
   }
 
@@ -10187,6 +10344,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void multiRootTest() throws Exception {
     boolean pass = true;
 
@@ -10244,7 +10402,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("multiRootTest test failed");
+      throw new Exception("multiRootTest test failed");
     }
   }
 

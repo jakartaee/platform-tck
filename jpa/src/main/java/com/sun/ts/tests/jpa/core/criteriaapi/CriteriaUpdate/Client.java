@@ -18,7 +18,9 @@ package com.sun.ts.tests.jpa.core.criteriaapi.CriteriaUpdate;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Properties;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.Product;
@@ -40,15 +42,16 @@ public class Client extends Util {
   public Client() {
   }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createProductData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -62,7 +65,7 @@ public class Client extends Util {
    * @test_Strategy: UPDATE Product SET QUANTITY = 0
    *
    */
-
+  @Test
   public void fromClassGetRootSetStringObjectTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = true;
@@ -122,7 +125,7 @@ public class Client extends Util {
     }
     getEntityTransaction().commit();
     if (!pass1 || !pass2 || !pass3 || !pass4) {
-      throw new Fault("fromClassGetRootSetStringObjectTest failed");
+      throw new Exception("fromClassGetRootSetStringObjectTest failed");
     }
   }
 
@@ -133,6 +136,7 @@ public class Client extends Util {
    * 
    * @test_Strategy: UPDATE Product SET QUANTITY = 0
    */
+  @Test
   public void fromEntityTypeSetStringObjectTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = true;
@@ -191,7 +195,7 @@ public class Client extends Util {
     }
     getEntityTransaction().commit();
     if (!pass1 || !pass2 || !pass3 || !pass4) {
-      throw new Fault("fromEntityTypeSetStringObjectTest failed");
+      throw new Exception("fromEntityTypeSetStringObjectTest failed");
     }
   }
 
@@ -202,6 +206,7 @@ public class Client extends Util {
    *
    * @test_Strategy: UPDATE Product p SET p.quantity = 0 WHERE p.id in (1,2,3)
    */
+  @Test
   public void whereExpressionTest() throws Exception {
     boolean pass2 = false;
     boolean pass3 = true;
@@ -289,7 +294,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass2 || !pass3 || !pass4 || !pass5) {
-      throw new Fault("whereExpressionTest failed");
+      throw new Exception("whereExpressionTest failed");
     }
 
   }
@@ -301,6 +306,7 @@ public class Client extends Util {
    *
    * @test_Strategy: UPDATE Product p SET p.quantity = 0 WHERE p.id in (2)
    */
+  @Test
   public void wherePredicateArrayTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = true;
@@ -387,7 +393,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2 || !pass3 || !pass4) {
-      throw new Fault("wherePredicateArrayTest failed");
+      throw new Exception("wherePredicateArrayTest failed");
     }
   }
 
@@ -399,7 +405,7 @@ public class Client extends Util {
    * @test_Strategy: UPDATE Product SET QUANTITY = 0
    *
    */
-
+  @Test
   public void setSingularAttributeObjectTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = true;
@@ -463,7 +469,7 @@ public class Client extends Util {
     }
     getEntityTransaction().commit();
     if (!pass1 || !pass2 || !pass3 || !pass4) {
-      throw new Fault("setSingularAttributeObjectTest failed");
+      throw new Exception("setSingularAttributeObjectTest failed");
     }
   }
 
@@ -475,7 +481,7 @@ public class Client extends Util {
    * @test_Strategy: UPDATE Product p SET p.quantity = prod(p.quantity,0)
    *
    */
-
+  @Test
   public void setSingularAttributeExpressionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = true;
@@ -541,7 +547,7 @@ public class Client extends Util {
     }
     getEntityTransaction().commit();
     if (!pass1 || !pass2 || !pass3 || !pass4) {
-      throw new Fault("setSingularAttributeExpressionTest failed");
+      throw new Exception("setSingularAttributeExpressionTest failed");
     }
   }
 
@@ -553,7 +559,7 @@ public class Client extends Util {
    * @test_Strategy: UPDATE Product SET QUANTITY = 0
    *
    */
-
+  @Test
   public void setPathObjectTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = true;
@@ -614,7 +620,7 @@ public class Client extends Util {
     }
     getEntityTransaction().commit();
     if (!pass1 || !pass2 || !pass3 || !pass4) {
-      throw new Fault("setPathObjectTest failed");
+      throw new Exception("setPathObjectTest failed");
     }
   }
 
@@ -626,7 +632,7 @@ public class Client extends Util {
    * @test_Strategy: UPDATE Product p SET p.quantity = prod(p.quantity,0)
    *
    */
-
+  @Test
   public void setPathExpressionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = true;
@@ -686,7 +692,7 @@ public class Client extends Util {
     }
     getEntityTransaction().commit();
     if (!pass1 || !pass2 || !pass3 || !pass4) {
-      throw new Fault("setPathExpressionTest failed");
+      throw new Exception("setPathExpressionTest failed");
     }
   }
 
@@ -701,6 +707,7 @@ public class Client extends Util {
    * hardProd From PRODUCT hardprod where hardprod.id = '1').
    *
    */
+  @Test
   public void subquery() throws Exception {
     boolean pass = false;
 
@@ -756,7 +763,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("exists test failed");
+      throw new Exception("exists test failed");
     }
   }
 
@@ -770,6 +777,7 @@ public class Client extends Util {
    * p.quantity > 100)
    *
    */
+  @Test
   public void modifiedQueryTest() throws Exception {
     int passModifiedCount1 = 0;
     int passUnModifiedCount1 = 0;
@@ -884,7 +892,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
     if (passModifiedCount1 != 4 || passUnModifiedCount1 != 6
         || passModifiedCount2 != 7 || passUnModifiedCount2 != 3) {
-      throw new Fault("modifiedQueryTest failed");
+      throw new Exception("modifiedQueryTest failed");
     }
 
   }

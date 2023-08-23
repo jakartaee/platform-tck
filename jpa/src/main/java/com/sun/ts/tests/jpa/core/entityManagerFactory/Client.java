@@ -20,7 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.harness.CleanupMethod;
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
@@ -45,46 +47,41 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
+  @BeforeEach
   public void setupNoData(String[] args, Properties p) throws Exception {
     TestUtil.logTrace("setupNoData");
-    this.props = p;
     try {
-      super.setup(args, p);
+      super.setup();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
-    this.props = p;
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createOrderTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
-  public void setupMember(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setupMember() throws Exception {
     TestUtil.logTrace("setup");
-    this.props = p;
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createMemberTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -108,24 +105,25 @@ public class Client extends PMClientBase {
    */
   @SetupMethod(name = "setupNoData")
   @CleanupMethod(name = "cleanupNoData")
+  @Test
   public void autoCloseableTest() throws Exception {
     EntityManagerFactory emf = null;
     try (final EntityManagerFactory emfLocal
                  = Persistence.createEntityManagerFactory(getPersistenceUnitName(), getPersistenceUnitProperties())) {
       emf = emfLocal;
       if (emf == null) {
-        throw new Fault("autoCloseableTest failed: createEntityManagerFactory(String) returned null");
+        throw new Exception("autoCloseableTest failed: createEntityManagerFactory(String) returned null");
       }
       if (!emf.isOpen()) {
-        throw new Fault("autoCloseableTest failed: EntityManagerFactory isOpen() returned false in try block");
+        throw new Exception("autoCloseableTest failed: EntityManagerFactory isOpen() returned false in try block");
       }
-    } catch (Fault f) {
+    } catch (Exception f) {
       throw f;
     } catch (Throwable t) {
-      throw new Fault("autoCloseableTest failed with Exception", t);
+      throw new Exception("autoCloseableTest failed with Exception", t);
     } finally {
       if (emf != null && emf.isOpen()) {
-        throw new Fault("autoCloseableTest failed: EntityManagerFactory isOpen() returned true outside try block");
+        throw new Exception("autoCloseableTest failed: EntityManagerFactory isOpen() returned true outside try block");
       }
     }
   }
@@ -140,6 +138,7 @@ public class Client extends PMClientBase {
    */
   @SetupMethod(name = "setupNoData")
   @CleanupMethod(name = "cleanupNoData")
+  @Test
   public void getMetamodelTest() throws Exception {
     boolean pass = false;
     try {
@@ -154,7 +153,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass) {
-      throw new Fault("getMetamodelTest failed");
+      throw new Exception("getMetamodelTest failed");
     }
   }
 
@@ -168,6 +167,7 @@ public class Client extends PMClientBase {
    */
   @SetupMethod(name = "setupNoData")
   @CleanupMethod(name = "cleanupNoData")
+  @Test
   public void getPersistenceUnitUtil() throws Exception {
     boolean pass = false;
     try {
@@ -182,7 +182,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass) {
-      throw new Fault("getPersistenceUnitUtil failed");
+      throw new Exception("getPersistenceUnitUtil failed");
     }
   }
 
@@ -197,6 +197,7 @@ public class Client extends PMClientBase {
    */
   @SetupMethod(name = "setupNoData")
   @CleanupMethod(name = "cleanupNoData")
+  @Test
   public void getCriteriaBuilderTest() throws Exception {
     boolean pass = false;
     try {
@@ -220,7 +221,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass) {
-      throw new Fault("getCriteriaBuilderTest failed");
+      throw new Exception("getCriteriaBuilderTest failed");
     }
   }
 
@@ -233,6 +234,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Test that max result of addNamedQuery is retained or can be
    * overridden
    */
+  @Test
   public void addNamedQueryMaxResultTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -657,7 +659,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6 || !pass7) {
-      throw new Fault("addNamedQueryMaxResultTest failed");
+      throw new Exception("addNamedQueryMaxResultTest failed");
     }
   }
 
@@ -670,7 +672,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Test that flush mode of addNamedQuery is retained or can be
    * overridden
    */
-
+  @Test
   public void addNamedQueryFlushModeTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1054,7 +1056,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6 || !pass7) {
-      throw new Fault("addNamedQueryFlushModeTest failed");
+      throw new Exception("addNamedQueryFlushModeTest failed");
     }
   }
 
@@ -1068,6 +1070,7 @@ public class Client extends PMClientBase {
    * overridden
    */
   @SetupMethod(name = "setupMember")
+  @Test
   public void addNamedQueryLockModeTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1387,7 +1390,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5) {
-      throw new Fault("addNamedQueryLockModeTest failed");
+      throw new Exception("addNamedQueryLockModeTest failed");
     }
   }
 

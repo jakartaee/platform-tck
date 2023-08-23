@@ -18,10 +18,8 @@ package com.sun.ts.tests.jpa.core.override.joincolumn;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Properties;
 import java.util.Set;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -106,16 +104,11 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception:test failed ", e);
@@ -161,11 +154,11 @@ public class Client extends PMClientBase {
       if (result.size() == 2) {
         TestUtil.logTrace("testNoJoinColumnAnnotation passed");
       } else {
-        throw new Fault(
+        throw new Exception(
             "Expected the size to be 1 " + " but it is -" + result.size());
       }
     } catch (Exception e) {
-      throw new Fault(
+      throw new Exception(
           "Exception thrown while testing testNoJoinColumnAnnotation" + e);
     } finally {
       getEntityManager().remove(regal);
@@ -222,7 +215,7 @@ public class Client extends PMClientBase {
       TestUtil.logTrace("testNoJoinTableAnnotation passed");
     } catch (Exception e) {
 
-      throw new Fault(" Test failed -" + e);
+      throw new Exception(" Test failed -" + e);
     } finally {
       getEntityManager().remove(mathCourse);
       getEntityManager().remove(chemCourse);
@@ -273,7 +266,7 @@ public class Client extends PMClientBase {
       TestUtil.logTrace("Test Passed");
     } catch (Exception e) {
 
-      throw new Fault("test failed" + e);
+      throw new Exception("test failed" + e);
     } finally {
       getEntityManager().remove(cubicle);
       getEntityManager().remove(equipment1);
@@ -326,7 +319,7 @@ public class Client extends PMClientBase {
       TestUtil.logTrace("Test Passed");
     } catch (Exception e) {
 
-      throw new Fault("Test failed" + e);
+      throw new Exception("Test failed" + e);
     } finally {
       getEntityManager().remove(order1);
       getEntityManager().remove(order2);

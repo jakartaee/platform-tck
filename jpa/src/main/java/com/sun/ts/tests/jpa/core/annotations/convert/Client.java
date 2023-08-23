@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
+ * 
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,9 +19,11 @@ package com.sun.ts.tests.jpa.core.annotations.convert;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
-import com.sun.javatest.Status;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -35,20 +38,15 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  public void setup(String[] args, Properties p) throws Exception {
+ @AfterEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -61,6 +59,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy:
    */
+ @Test
   public void convertTest() throws Exception {
     boolean pass = false;
     try {
@@ -99,7 +98,7 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass) {
-      throw new Fault("convertTest failed");
+      throw new Exception("convertTest failed");
     }
   }
 
@@ -112,6 +111,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Converter throws a RuntimeException wrapped by a
    * PersistenceException during a persist
    */
+ @Test
   public void convertExceptionDuringPersistTest() throws Exception {
     boolean pass = false;
     try {
@@ -144,7 +144,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("convertExceptionDuringPersistTest failed");
+      throw new Exception("convertExceptionDuringPersistTest failed");
     }
   }
 
@@ -157,6 +157,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Converter throws a RuntimeException wrapped by a
    * PersistenceException during a load
    */
+ @Test
   public void convertExceptionDuringLoadTest() throws Exception {
     boolean pass = false;
     try {
@@ -208,7 +209,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("convertExceptionDuringLoadTest failed");
+      throw new Exception("convertExceptionDuringLoadTest failed");
     }
   }
 
@@ -222,6 +223,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy: Converter throws a RuntimeException during a persist
    */
+ @Test
   public void convertsTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -278,7 +280,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("convertsTest failed");
+      throw new Exception("convertsTest failed");
     }
   }
 
@@ -291,6 +293,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Test converter with property access and attributes from
    * MappedSuperClass
    */
+ @Test
   public void mappedSuperClassTest() throws Exception {
     boolean pass = false;
     try {
@@ -332,7 +335,7 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass) {
-      throw new Fault("mappedSuperClassTest failed");
+      throw new Exception("mappedSuperClassTest failed");
     }
   }
 
@@ -344,6 +347,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy: Test overriding a converter
    */
+ @Test
   public void mappedSuperClass2Test() throws Exception {
     boolean pass = false;
     try {
@@ -382,7 +386,7 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass) {
-      throw new Fault("mappedSuperClass2Test failed");
+      throw new Exception("mappedSuperClass2Test failed");
     }
   }
 
@@ -394,6 +398,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Test converters are applied when a JPQL or CriteriaQuery
    * reads from the DB
    */
+ @Test
   public void convert2Test() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -495,7 +500,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("converts2Test failed");
+      throw new Exception("converts2Test failed");
     }
   }
 
@@ -508,6 +513,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Test converters are applied when a JPQL or CriteriaQuery
    * write to the DB
    */
+ @Test
   public void convert3Test() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -620,7 +626,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("converts3Test failed");
+      throw new Exception("converts3Test failed");
     }
   }
 
@@ -631,6 +637,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy: Test converter in an embedded entity
    */
+ @Test
   public void embeddedTest() throws Exception {
     boolean pass = false;
     try {
@@ -668,7 +675,7 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass) {
-      throw new Fault("embeddedTest failed");
+      throw new Exception("embeddedTest failed");
     }
   }
 
@@ -679,6 +686,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy: Test converter of an element collection of basic type
    */
+ @Test
   public void elementCollectionBasicType() throws Exception {
     boolean pass = false;
     try {
@@ -733,10 +741,11 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass) {
-      throw new Fault("elementCollectionBasicType failed");
+      throw new Exception("elementCollectionBasicType failed");
     }
   }
 
+	@AfterAll
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

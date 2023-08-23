@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,9 +18,11 @@ package com.sun.ts.tests.jpa.core.annotations.ordercolumn;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
-import com.sun.javatest.Status;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.harness.CleanupMethod;
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
@@ -41,35 +43,32 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
 
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createStudentTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
-  public void setupEmployee(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setupEmployee() throws Exception {
     TestUtil.logTrace("setup");
     try {
 
-      super.setup(args, p);
+      super.setup();
       removeEmployeeTestData();
       createEmployeeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -92,6 +91,7 @@ public class Client extends PMClientBase {
    *
    * @test_Strategy: With basic entity requirements, persist/remove an entity.
    */
+  @Test
   public void orderColumn() throws Exception {
     boolean pass = false;
     final String expectedStudentName = "Joseph";
@@ -149,7 +149,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("orderColumn test failed");
+      throw new Exception("orderColumn test failed");
     }
 
   }
@@ -164,6 +164,7 @@ public class Client extends PMClientBase {
    */
   @SetupMethod(name = "setupEmployee")
   @CleanupMethod(name = "cleanupEmployee")
+  @Test
   public void propertyAccessWithNameTest() throws Exception {
     boolean pass = false;
 
@@ -249,7 +250,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("propertyAccessWithNameTest test failed");
+      throw new Exception("propertyAccessWithNameTest test failed");
     }
 
   }
@@ -264,6 +265,7 @@ public class Client extends PMClientBase {
    */
   @SetupMethod(name = "setupEmployee")
   @CleanupMethod(name = "cleanupEmployee")
+  @Test
   public void fieldAccessWithNameTest() throws Exception {
     boolean pass = false;
 
@@ -349,7 +351,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("fieldAccessWithNameTest test failed");
+      throw new Exception("fieldAccessWithNameTest test failed");
     }
 
   }
@@ -524,6 +526,7 @@ public class Client extends PMClientBase {
     }
   }
 
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

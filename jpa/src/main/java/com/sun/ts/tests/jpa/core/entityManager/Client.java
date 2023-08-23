@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,7 +23,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.harness.CleanupMethod;
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
@@ -66,30 +69,23 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /*
+   /*
    * setup() is called before each test
    *
    * @class.setup_props: jdbc.db;
    */
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
-    this.props = p;
     try {
-      super.setup(args, p);
+      super.setup();
       map.putAll(getEntityManager().getProperties());
       map.put("foo", "bar");
       displayMap(map);
-      dataBaseName = p.getProperty("jdbc.db");
+      dataBaseName = System.getProperty("jdbc.db");
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -98,20 +94,20 @@ public class Client extends PMClientBase {
    *
    * @class.setup_props: jdbc.db;
    */
-  public void setupOrderData(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setupOrderData() throws Exception {
     TestUtil.logTrace("setupOrderData");
-    this.props = p;
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createOrderData();
       map.putAll(getEntityManager().getProperties());
       map.put("foo", "bar");
       displayMap(map);
-      dataBaseName = p.getProperty("jdbc.db");
+      dataBaseName = System.getProperty("jdbc.db");
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -120,28 +116,30 @@ public class Client extends PMClientBase {
    *
    * @class.setup_props: jdbc.db;
    */
-  public void setupEmployeeData(String[] args, Properties p) throws Exception {
+  @Test
+  public void setupEmployeeData() throws Exception {
     TestUtil.logTrace("setupOrderData");
-    this.props = p;
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createEmployeeData();
       map.putAll(getEntityManager().getProperties());
       map.put("foo", "bar");
       displayMap(map);
-      dataBaseName = p.getProperty("jdbc.db");
+      dataBaseName = System.getProperty("jdbc.db");
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup complete, calling super.cleanup");
     super.cleanup();
   }
 
+  @AfterEach
   public void cleanupData() throws Exception {
     TestUtil.logTrace("Cleanup data");
     removeTestData();
@@ -285,6 +283,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Create EntityManager in try with resources block
    * and verify whether it's open inside and outside of the try block.
    */
+  @Test
   public void autoCloseableTest() throws Exception {
     EntityManager em = null;
     try (final EntityManagerFactory emfLocal
@@ -292,20 +291,20 @@ public class Client extends PMClientBase {
       try (final EntityManager emLocal = emfLocal.createEntityManager()) {
         em = emLocal;
         if (em == null) {
-          throw new Fault("autoCloseableTest failed: createEntityManager() returned null");
+          throw new Exception("autoCloseableTest failed: createEntityManager() returned null");
         }
         if (!em.isOpen()) {
-          throw new Fault("autoCloseableTest failed: EntityManager isOpen() returned false in try block");
+          throw new Exception("autoCloseableTest failed: EntityManager isOpen() returned false in try block");
         }
       } finally {
         if (em != null && em.isOpen()) {
-          throw new Fault("autoCloseableTest failed: EntityManager isOpen() returned true outside try block");
+          throw new Exception("autoCloseableTest failed: EntityManager isOpen() returned true outside try block");
         }
       }
-    } catch (Fault f) {
+    } catch (Exception f) {
       throw f;
     } catch (Throwable t) {
-      throw new Fault("autoCloseableTest failed with Exception", t);
+      throw new Exception("autoCloseableTest failed with Exception", t);
     }
   }
 
@@ -316,6 +315,7 @@ public class Client extends PMClientBase {
    *
    * @test_Strategy: Merge new entity
    */
+  @Test
   public void mergeTest() throws Exception {
     boolean pass = false;
 
@@ -337,7 +337,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("mergeTest failed");
+      throw new Exception("mergeTest failed");
     }
   }
 
@@ -348,6 +348,7 @@ public class Client extends PMClientBase {
    *
    * @test_Strategy: Call EntityManager.merge() method
    */
+  @Test
   public void mergeExceptionsTest() throws Exception {
     boolean pass = false;
 
@@ -401,7 +402,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("mergeExceptionsTest failed");
+      throw new Exception("mergeExceptionsTest failed");
     }
   }
 
@@ -415,6 +416,7 @@ public class Client extends PMClientBase {
    */
   @SetupMethod(name = "setupOrderData")
   @CleanupMethod(name = "cleanupData")
+  @Test
   public void persistExceptionsTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -468,7 +470,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("persistExceptionsTest failed");
+      throw new Exception("persistExceptionsTest failed");
     }
   }
 
@@ -479,6 +481,7 @@ public class Client extends PMClientBase {
    *
    * @test_Strategy: Call EntityManager.remove() method
    */
+  @Test
   public void removeExceptionsTest() throws Exception {
     boolean pass = false;
     TestUtil.logMsg("Testing findClassObjectIllegalStateException");
@@ -504,7 +507,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("removeExceptionsTest failed");
+      throw new Exception("removeExceptionsTest failed");
     }
   }
 
@@ -515,6 +518,7 @@ public class Client extends PMClientBase {
    *
    * @test_Strategy: Call EntityManager.lock() method
    */
+  @Test
   public void lockIllegalStateExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -565,7 +569,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("lockIllegalStateExceptionTest failed");
+      throw new Exception("lockIllegalStateExceptionTest failed");
     }
   }
 
@@ -576,6 +580,7 @@ public class Client extends PMClientBase {
    *
    * @test_Strategy: Call EntityManager.refresh() method
    */
+  @Test
   public void refreshInvalidObjectIllegalArgumentExceptionTest() throws Exception {
     boolean pass = false;
 
@@ -600,7 +605,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "refreshInvalidObjectIllegalArgumentExceptionTest failed");
     }
   }
@@ -612,6 +617,7 @@ public class Client extends PMClientBase {
    *
    * @test_Strategy: Call EntityManager.refresh() method
    */
+  @Test
   public void refreshNonManagedObjectIllegalArgumentExceptionTest()
       throws Exception {
     boolean pass = false;
@@ -637,7 +643,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "refreshNonManagedObjectIllegalArgumentExceptionTest failed");
     }
   }
@@ -651,6 +657,7 @@ public class Client extends PMClientBase {
    */
   @SetupMethod(name = "setupOrderData")
   @CleanupMethod(name = "cleanupData")
+  @Test
   public void refreshRemovedObjectEntityNotFoundExceptionTest() throws Exception {
     boolean pass = false;
     try {
@@ -680,7 +687,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("refreshRemovedObjectEntityNotFoundExceptionTest failed");
+      throw new Exception("refreshRemovedObjectEntityNotFoundExceptionTest failed");
     }
   }
 
@@ -691,6 +698,7 @@ public class Client extends PMClientBase {
    *
    * @test_Strategy: Call EntityManager.refresh() method
    */
+  @Test
   public void refreshInvalidObjectMapIllegalArgumentExceptionTest()
       throws Exception {
     boolean pass = false;
@@ -717,7 +725,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "refreshInvalidObjectMapIllegalArgumentExceptionTest failed");
     }
   }
@@ -729,6 +737,7 @@ public class Client extends PMClientBase {
    *
    * @test_Strategy: Call EntityManager.refresh() method
    */
+  @Test
   public void refreshNonManagedObjectMapIllegalArgumentExceptionTest()
       throws Exception {
     boolean pass = false;
@@ -755,7 +764,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "refreshNonManagedObjectMapIllegalArgumentExceptionTest failed");
     }
   }
@@ -769,6 +778,7 @@ public class Client extends PMClientBase {
    */
   @SetupMethod(name = "setupOrderData")
   @CleanupMethod(name = "cleanupData")
+  @Test
   public void refreshRemovedObjectMapEntityNotFoundExceptionTest()
       throws Exception {
     boolean pass = false;
@@ -800,7 +810,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "refreshRemovedObjectMapEntityNotFoundExceptionTest failed");
     }
   }
@@ -812,6 +822,7 @@ public class Client extends PMClientBase {
    *
    * @test_Strategy: Call EntityManager.refresh() method
    */
+  @Test
   public void refreshInvalidObjectLockModeTypeIllegalArgumentExceptionTest()
       throws Exception {
     boolean pass = false;
@@ -836,7 +847,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "refreshInvalidObjectLockModeTypeIllegalArgumentExceptionTest failed");
     }
   }
@@ -848,6 +859,7 @@ public class Client extends PMClientBase {
    *
    * @test_Strategy: Call EntityManager.refresh() method
    */
+  @Test
   public void refreshNonManagedObjectLockModeTypeIllegalArgumentExceptionTest()
       throws Exception {
     boolean pass = false;
@@ -872,7 +884,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "refreshNonManagedObjectLockModeTypeIllegalArgumentExceptionTest failed");
     }
   }
@@ -886,6 +898,7 @@ public class Client extends PMClientBase {
    */
   @SetupMethod(name = "setupOrderData")
   @CleanupMethod(name = "cleanupData")
+  @Test
   public void refreshRemovedObjectLockModeTypeEntityNotFoundExceptionTest()
       throws Exception {
     boolean pass = false;
@@ -917,7 +930,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "refreshRemovedObjectLockModeTypeEntityNotFoundExceptionTest failed");
     }
   }
@@ -929,6 +942,7 @@ public class Client extends PMClientBase {
    *
    * @test_Strategy: Call EntityManager.refresh() method
    */
+  @Test
   public void refreshInvalidObjectLockModeTypeMapIllegalArgumentExceptionTest()
       throws Exception {
     boolean pass = false;
@@ -955,7 +969,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "refreshInvalidObjectLockModeTypeMapIllegalArgumentExceptionTest failed");
     }
   }
@@ -968,6 +982,7 @@ public class Client extends PMClientBase {
    *
    * @test_Strategy: Call EntityManager.refresh() method
    */
+  @Test
   public void refreshNonManagedObjectLockModeTypeMapIllegalArgumentExceptionTest()
       throws Exception {
     boolean pass = false;
@@ -994,7 +1009,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "refreshNonManagedObjectLockModeTypeMapIllegalArgumentExceptionTest failed");
     }
   }
@@ -1008,6 +1023,7 @@ public class Client extends PMClientBase {
    */
   @SetupMethod(name = "setupOrderData")
   @CleanupMethod(name = "cleanupData")
+  @Test
   public void refreshRemovedObjectLockModeTypeMapEntityNotFoundExceptionTest()
       throws Exception {
     boolean pass = false;
@@ -1040,7 +1056,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "refreshRemovedObjectLockModeTypeMapEntityNotFoundExceptionTest failed");
     }
   }
@@ -1053,6 +1069,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.contains() method passing an Object that
    * is not an Entity
    */
+  @Test
   public void containsIllegalArgumentException() throws Exception {
     boolean pass = false;
 
@@ -1078,7 +1095,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("containsIllegalArgumentException failed");
+      throw new Exception("containsIllegalArgumentException failed");
     }
   }
 
@@ -1095,6 +1112,7 @@ public class Client extends PMClientBase {
    * type not assignable to the specified type, verify IllegalArgumentException
    * is thrown.
    */
+  @Test
   public void createNamedQueryIllegalArgumentExceptionTest() throws Exception {
     boolean pass1 = false, pass2 = false;
     TestUtil.logMsg("Testing TypedQuery version");
@@ -1131,7 +1149,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("createNamedQueryIllegalArgumentExceptionTest failed");
+      throw new Exception("createNamedQueryIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -1149,6 +1167,7 @@ public class Client extends PMClientBase {
    * EntityManager.createQuery(CriteriaQuery) with an invalid CriteriaQuery
    * verify IllegalArgumentException is thrown.*
    */
+  @Test
   public void createQueryIllegalArgumentExceptionTest() throws Exception {
     boolean pass1 = false, pass2 = false, pass3 = false;
     TestUtil.logTrace("Testing String version");
@@ -1208,7 +1227,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("createQueryIllegalArgumentExceptionTest failed");
+      throw new Exception("createQueryIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -1220,6 +1239,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.detach(String), verify
    * IllegalArgumentException is thrown
    */
+  @Test
   public void detachIllegalArgumentExceptionTest() throws Exception {
     boolean pass = false;
     try {
@@ -1242,7 +1262,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("detachIllegalArgumentExceptionTest failed");
+      throw new Exception("detachIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -1253,6 +1273,7 @@ public class Client extends PMClientBase {
    *
    * @test_Strategy: Get EntityManagerFactory
    */
+  @Test
   public void getEntityManagerFactoryTest() throws Exception {
     boolean pass = false;
     try {
@@ -1267,7 +1288,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass) {
-      throw new Fault("getEntityManagerFactoryTest failed");
+      throw new Exception("getEntityManagerFactoryTest failed");
     }
   }
 
@@ -1279,6 +1300,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Get a MetaModel Object from the EntityManager an make sure
    * it is not null
    */
+  @Test
   public void emGetMetamodelTest() throws Exception {
     boolean pass = false;
     try {
@@ -1293,7 +1315,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass) {
-      throw new Fault("emGetMetamodelTest failed");
+      throw new Exception("emGetMetamodelTest failed");
     }
   }
 
@@ -1305,6 +1327,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Set a standard property in the EntityManager and retrieve
    * it.
    */
+  @Test
   public void setPropertyTest() throws Exception {
     boolean foundKey = false;
     boolean foundValue = false;
@@ -1366,7 +1389,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!foundKey || !foundValue) {
-      throw new Fault("setPropertyTest failed");
+      throw new Exception("setPropertyTest failed");
     }
   }
 
@@ -1379,6 +1402,7 @@ public class Client extends PMClientBase {
    * be used to create a query
    *
    */
+  @Test
   public void getCriteriaBuilderTest() throws Exception {
     boolean pass = false;
     try {
@@ -1401,7 +1425,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass) {
-      throw new Fault("getCriteriaBuilderTest failed");
+      throw new Exception("getCriteriaBuilderTest failed");
     }
   }
 
@@ -1413,6 +1437,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    *
    */
+  @Test
   public void isJoinedToTransactionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1435,7 +1460,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2) {
-      throw new Fault("isJoinedToTransactionTest failed");
+      throw new Exception("isJoinedToTransactionTest failed");
     }
 
   }
@@ -1450,6 +1475,7 @@ public class Client extends PMClientBase {
    */
   @SetupMethod(name = "setupEmployeeData")
   @CleanupMethod(name = "cleanupData")
+  @Test
   public void createStoredProcedureQueryStringTest() throws Exception {
     boolean pass = false;
 
@@ -1480,7 +1506,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("createStoredProcedureQueryStringTest failed");
+      throw new Exception("createStoredProcedureQueryStringTest failed");
     }
 
   }
@@ -1493,6 +1519,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    *
    */
+  @Test
   public void createStoredProcedureQueryStringIllegalArgumentExceptionTest()
       throws Exception {
     boolean pass = false;
@@ -1520,7 +1547,7 @@ public class Client extends PMClientBase {
     if (!pass) {
       TestUtil.logErr(msg.toString());
 
-      throw new Fault(
+      throw new Exception(
           "createStoredProcedureQueryStringIllegalArgumentExceptionTest failed");
     }
 
@@ -1536,6 +1563,7 @@ public class Client extends PMClientBase {
    */
   @SetupMethod(name = "setupEmployeeData")
   @CleanupMethod(name = "cleanupData")
+  @Test
   public void createStoredProcedureQueryStringClassArrayTest() throws Exception {
     boolean pass = false;
     getEntityTransaction().begin();
@@ -1572,7 +1600,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("createStoredProcedureQueryStringClassArrayTest failed");
+      throw new Exception("createStoredProcedureQueryStringClassArrayTest failed");
     }
 
   }
@@ -1586,6 +1614,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    *
    */
+  @Test
   public void createStoredProcedureQueryStringClassArrayIllegalArgumentExceptionTest()
       throws Exception {
     boolean pass = false;
@@ -1614,7 +1643,7 @@ public class Client extends PMClientBase {
 
     if (!pass) {
       TestUtil.logErr(msg.toString());
-      throw new Fault(
+      throw new Exception(
           "createStoredProcedureQueryStringClassArrayIllegalArgumentExceptionTest failed");
     }
 
@@ -1630,6 +1659,7 @@ public class Client extends PMClientBase {
    */
   @SetupMethod(name = "setupEmployeeData")
   @CleanupMethod(name = "cleanupData")
+  @Test
   public void createStoredProcedureQueryStringStringArrayTest() throws Exception {
     boolean pass = false;
 
@@ -1670,7 +1700,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("createStoredProcedureQueryStringStringArrayTest failed");
+      throw new Exception("createStoredProcedureQueryStringStringArrayTest failed");
     }
 
   }
@@ -1684,6 +1714,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    *
    */
+  @Test
   public void createStoredProcedureQueryStringStringArrayIllegalArgumentExceptionTest()
       throws Exception {
     boolean pass = false;
@@ -1712,7 +1743,7 @@ public class Client extends PMClientBase {
 
     if (!pass) {
       TestUtil.logErr(msg.toString());
-      throw new Fault(
+      throw new Exception(
           "createStoredProcedureQueryStringStringArrayIllegalArgumentExceptionTest failed");
     }
 
@@ -1731,6 +1762,7 @@ public class Client extends PMClientBase {
    */
   @SetupMethod(name = "setupEmployeeData")
   @CleanupMethod(name = "cleanupData")
+  @Test
   public void createNamedStoredProcedureQueryStringTest() throws Exception {
     boolean pass = false;
     getEntityTransaction().begin();
@@ -1770,7 +1802,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("createNamedStoredProcedureQueryStringTest failed");
+      throw new Exception("createNamedStoredProcedureQueryStringTest failed");
     }
 
   }
@@ -1784,6 +1816,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    *
    */
+  @Test
   public void createNamedStoredProcedureQueryStringIllegalArgumentExceptionTest()
       throws Exception {
     boolean pass = false;
@@ -1799,7 +1832,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().rollback();
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "createNamedStoredProcedureQueryStringIllegalArgumentExceptionTest failed");
     }
 

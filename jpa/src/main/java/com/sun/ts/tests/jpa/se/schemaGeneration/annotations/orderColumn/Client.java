@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,7 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -36,20 +39,19 @@ public class Client extends PMClientBase {
   String schemaGenerationDir = null;
 
   Employee expectedEmployee = null;
+  
+  String sTestCase ="testcase";
+
 
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
 
       schemaGenerationDir = System.getProperty("user.dir");
       if (!schemaGenerationDir.endsWith(File.separator)) {
@@ -64,12 +66,12 @@ public class Client extends PMClientBase {
       TestUtil.logMsg("Create new directory ");
       if (!f.mkdir()) {
         String msg = "Could not mkdir:" + f.getAbsolutePath();
-        throw new Fault(msg);
+        throw new Exception(msg);
       }
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -80,6 +82,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy: Test the @OrderColumn annotation
    */
+  @Test
   public void orderColumnTest() throws Exception {
     boolean pass1a = false;
     boolean pass1b = false;
@@ -265,10 +268,11 @@ public class Client extends PMClientBase {
     TestUtil.logTrace("pass5:" + pass5);
     if (!pass1a || !pass1b || !pass1c || !pass2a || !pass2b || !pass2c || !pass3
         || !pass4 || !pass5) {
-      throw new Fault("orderColumnTest failed");
+      throw new Exception("orderColumnTest failed");
     }
   }
 
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

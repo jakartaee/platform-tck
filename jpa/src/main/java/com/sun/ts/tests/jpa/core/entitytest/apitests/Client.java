@@ -21,9 +21,7 @@
 package com.sun.ts.tests.jpa.core.entitytest.apitests;
 
 import java.util.List;
-import java.util.Properties;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -34,25 +32,20 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /*
    * setup() is called before each test
    */
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createTestData();
       TestUtil.logTrace("Done creating test data");
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -91,7 +84,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("entityAPITest1 failed");
+      throw new Exception("entityAPITest1 failed");
   }
 
   /*
@@ -129,7 +122,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("entityAPITest2 failed");
+      throw new Exception("entityAPITest2 failed");
   }
 
   /*
@@ -165,7 +158,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("entityAPITest3 failed");
+      throw new Exception("entityAPITest3 failed");
   }
 
   /*
@@ -207,7 +200,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("entityAPITest4 failed");
+      throw new Exception("entityAPITest4 failed");
 
   }
 
@@ -260,7 +253,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2 || !pass3)
-      throw new Fault("getReferenceExceptionsTest failed");
+      throw new Exception("getReferenceExceptionsTest failed");
   }
 
   /*
@@ -299,7 +292,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("getReferenceTest failed");
+      throw new Exception("getReferenceTest failed");
 
   }
 
@@ -339,7 +332,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("entityAPITest8 failed");
+      throw new Exception("entityAPITest8 failed");
 
   }
 
@@ -379,7 +372,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("entityAPITest10 failed");
+      throw new Exception("entityAPITest10 failed");
 
   }
 
@@ -423,7 +416,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass)
-      throw new Fault("entityAPITest12 failed");
+      throw new Exception("entityAPITest12 failed");
   }
 
   /*
@@ -469,7 +462,7 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass)
-      throw new Fault("entityAPITest13 failed");
+      throw new Exception("entityAPITest13 failed");
   }
 
   /*
@@ -511,7 +504,7 @@ public class Client extends PMClientBase {
       pass = false;
     }
     if (!pass)
-      throw new Fault("entityAPITest14 failed");
+      throw new Exception("entityAPITest14 failed");
   }
 
   /*
@@ -559,7 +552,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("entityAPITest15 failed");
+      throw new Exception("entityAPITest15 failed");
   }
 
   /*
@@ -612,7 +605,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("entityAPITest16 failed");
+      throw new Exception("entityAPITest16 failed");
   }
 
   /*
@@ -650,7 +643,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("entityAPITest17 failed");
+      throw new Exception("entityAPITest17 failed");
   }
 
   /*
@@ -693,7 +686,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("entityAPITest18 failed");
+      throw new Exception("entityAPITest18 failed");
   }
 
   /*
@@ -731,7 +724,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("xmlOverridesNamedNativeQueryTest failed");
+      throw new Exception("xmlOverridesNamedNativeQueryTest failed");
   }
 
   /*
@@ -769,7 +762,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("xmlNamedNativeQueryTest failed");
+      throw new Exception("xmlNamedNativeQueryTest failed");
   }
 
   /*
@@ -807,7 +800,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("xmlOverridesNamedQueryTest failed");
+      throw new Exception("xmlOverridesNamedQueryTest failed");
   }
 
   /*
@@ -845,7 +838,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("xmlNamedQueryTest failed");
+      throw new Exception("xmlNamedQueryTest failed");
   }
 
   /*
@@ -881,7 +874,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass)
-      throw new Fault("namedNativeQueryInMappedSuperClass failed");
+      throw new Exception("namedNativeQueryInMappedSuperClass failed");
   }
 
   /*
@@ -917,7 +910,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Unexpected exception occurred", e);
     }
     if (!pass)
-      throw new Fault("namedQueryInMappedSuperClass failed");
+      throw new Exception("namedQueryInMappedSuperClass failed");
   }
 
   /*

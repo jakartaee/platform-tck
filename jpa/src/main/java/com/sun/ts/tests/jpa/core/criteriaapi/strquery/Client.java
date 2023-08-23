@@ -20,7 +20,6 @@ import java.sql.Date;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.Properties;
 import java.util.Set;
 
 import com.sun.ts.lib.harness.SetupMethod;
@@ -56,14 +55,14 @@ import jakarta.persistence.metamodel.Attribute;
 public class Client extends Util {
 
   /* Test setup */
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("Entering Setup");
     try {
-      super.setup(args, p);
+      super.setup();
       getEntityManager();
     } catch (Exception e) {
       TestUtil.logErr("Unexpected exception occurred", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -115,7 +114,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest1 failed");
+      throw new Exception("queryTest1 failed");
     }
   }
 
@@ -163,7 +162,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest2 failed");
+      throw new Exception("queryTest2 failed");
     }
   }
 
@@ -213,7 +212,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest3 failed");
+      throw new Exception("queryTest3 failed");
     }
   }
 
@@ -270,7 +269,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest4 failed");
+      throw new Exception("queryTest4 failed");
     }
   }
 
@@ -328,7 +327,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest5 failed");
+      throw new Exception("queryTest5 failed");
     }
   }
 
@@ -391,7 +390,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest6 failed");
+      throw new Exception("queryTest6 failed");
     }
   }
 
@@ -436,7 +435,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest7 failed");
+      throw new Exception("queryTest7 failed");
     }
   }
 
@@ -487,7 +486,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest8 failed");
+      throw new Exception("queryTest8 failed");
     }
   }
 
@@ -542,7 +541,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest9 failed");
+      throw new Exception("queryTest9 failed");
     }
   }
 
@@ -610,7 +609,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest10 failed");
+      throw new Exception("queryTest10 failed");
     }
   }
 
@@ -663,7 +662,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest11 failed");
+      throw new Exception("queryTest11 failed");
     }
   }
 
@@ -716,7 +715,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest12 failed");
+      throw new Exception("queryTest12 failed");
     }
   }
 
@@ -778,7 +777,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest13 failed");
+      throw new Exception("queryTest13 failed");
     }
   }
 
@@ -835,7 +834,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest14 failed");
+      throw new Exception("queryTest14 failed");
     }
   }
 
@@ -882,7 +881,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest15 failed");
+      throw new Exception("queryTest15 failed");
     }
   }
 
@@ -928,7 +927,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest16 failed");
+      throw new Exception("queryTest16 failed");
     }
   }
 
@@ -991,7 +990,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest17 failed");
+      throw new Exception("queryTest17 failed");
     }
   }
 
@@ -1039,7 +1038,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest18 failed");
+      throw new Exception("queryTest18 failed");
     }
   }
 
@@ -1104,7 +1103,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest19 failed");
+      throw new Exception("queryTest19 failed");
     }
   }
 
@@ -1158,7 +1157,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest20 failed");
+      throw new Exception("queryTest20 failed");
     }
   }
 
@@ -1216,7 +1215,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest21 failed");
+      throw new Exception("queryTest21 failed");
     }
   }
 
@@ -1262,7 +1261,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest22 failed");
+      throw new Exception("queryTest22 failed");
     }
   }
 
@@ -1328,7 +1327,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest23 failed");
+      throw new Exception("queryTest23 failed");
     }
   }
 
@@ -1376,7 +1375,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest24 failed");
+      throw new Exception("queryTest24 failed");
     }
   }
 
@@ -1429,7 +1428,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest25 failed");
+      throw new Exception("queryTest25 failed");
     }
   }
 
@@ -1483,7 +1482,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest26 failed");
+      throw new Exception("queryTest26 failed");
     }
   }
 
@@ -1539,7 +1538,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest27 failed");
+      throw new Exception("queryTest27 failed");
     }
   }
 
@@ -1589,7 +1588,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest28 failed");
+      throw new Exception("queryTest28 failed");
     }
   }
 
@@ -1637,7 +1636,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest29 failed");
+      throw new Exception("queryTest29 failed");
     }
   }
 
@@ -1686,7 +1685,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest30 failed");
+      throw new Exception("queryTest30 failed");
     }
   }
 
@@ -1736,7 +1735,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest31 failed");
+      throw new Exception("queryTest31 failed");
     }
   }
 
@@ -1787,7 +1786,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest32 failed");
+      throw new Exception("queryTest32 failed");
     }
   }
 
@@ -1859,7 +1858,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest33 failed");
+      throw new Exception("queryTest33 failed");
     }
   }
 
@@ -1909,7 +1908,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest34 failed");
+      throw new Exception("queryTest34 failed");
     }
   }
 
@@ -1966,7 +1965,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest35 failed");
+      throw new Exception("queryTest35 failed");
     }
   }
 
@@ -2015,7 +2014,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest36 failed");
+      throw new Exception("queryTest36 failed");
     }
   }
 
@@ -2097,7 +2096,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("queryTest37 failed");
+      throw new Exception("queryTest37 failed");
     }
   }
 
@@ -2145,7 +2144,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest38 failed");
+      throw new Exception("queryTest38 failed");
     }
   }
 
@@ -2198,7 +2197,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest39 failed");
+      throw new Exception("queryTest39 failed");
     }
   }
 
@@ -2289,7 +2288,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("queryTest40 failed");
+      throw new Exception("queryTest40 failed");
     }
   }
 
@@ -2425,7 +2424,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("queryTest41 failed");
+      throw new Exception("queryTest41 failed");
     }
   }
 
@@ -2492,7 +2491,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest42 failed");
+      throw new Exception("queryTest42 failed");
     }
   }
 
@@ -2543,7 +2542,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest43 failed");
+      throw new Exception("queryTest43 failed");
     }
   }
 
@@ -2592,7 +2591,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest44 failed");
+      throw new Exception("queryTest44 failed");
     }
   }
 
@@ -2658,7 +2657,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest45 failed");
+      throw new Exception("queryTest45 failed");
     }
   }
 
@@ -2702,7 +2701,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest47 failed");
+      throw new Exception("queryTest47 failed");
     }
   }
 
@@ -2749,7 +2748,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest48 failed");
+      throw new Exception("queryTest48 failed");
     }
   }
 
@@ -2810,7 +2809,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest49 failed");
+      throw new Exception("queryTest49 failed");
     }
   }
 
@@ -2861,7 +2860,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest50 failed");
+      throw new Exception("queryTest50 failed");
     }
   }
 
@@ -2907,7 +2906,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest51 failed");
+      throw new Exception("queryTest51 failed");
     }
   }
 
@@ -2956,7 +2955,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest52 failed");
+      throw new Exception("queryTest52 failed");
     }
   }
 
@@ -3021,7 +3020,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest53 failed");
+      throw new Exception("queryTest53 failed");
     }
   }
 
@@ -3066,7 +3065,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest54 failed");
+      throw new Exception("queryTest54 failed");
     }
   }
 
@@ -3120,7 +3119,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest55 failed");
+      throw new Exception("queryTest55 failed");
     }
   }
 
@@ -3194,7 +3193,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("queryTest56 failed");
+      throw new Exception("queryTest56 failed");
     }
   }
 
@@ -3236,7 +3235,7 @@ public class Client extends Util {
       TestUtil.logErr("Caught unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("queryTest58 failed");
+      throw new Exception("queryTest58 failed");
     }
   }
 
@@ -3283,7 +3282,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest59 failed");
+      throw new Exception("queryTest59 failed");
     }
   }
 
@@ -3350,7 +3349,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest60 failed");
+      throw new Exception("queryTest60 failed");
     }
   }
 
@@ -3401,7 +3400,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest61 failed");
+      throw new Exception("queryTest61 failed");
     }
   }
 
@@ -3452,7 +3451,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest62 failed");
+      throw new Exception("queryTest62 failed");
     }
   }
 
@@ -3503,7 +3502,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest63 failed");
+      throw new Exception("queryTest63 failed");
     }
   }
 
@@ -3574,7 +3573,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("queryTest64 failed");
+      throw new Exception("queryTest64 failed");
     }
 
   }
@@ -3618,7 +3617,7 @@ public class Client extends Util {
       TestUtil.logErr("Caught unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("queryTest65 failed");
+      throw new Exception("queryTest65 failed");
     }
   }
 
@@ -3659,7 +3658,7 @@ public class Client extends Util {
       TestUtil.logErr("Caught unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("queryTest66 failed");
+      throw new Exception("queryTest66 failed");
     }
   }
 
@@ -3701,7 +3700,7 @@ public class Client extends Util {
       TestUtil.logErr("Caught unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("queryTest67 failed");
+      throw new Exception("queryTest67 failed");
     }
   }
 
@@ -3742,7 +3741,7 @@ public class Client extends Util {
       TestUtil.logErr("Caught unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("queryTest68 failed");
+      throw new Exception("queryTest68 failed");
     }
   }
 
@@ -3802,7 +3801,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("queryTest69 failed");
+      throw new Exception("queryTest69 failed");
     }
 
   }
@@ -3844,7 +3843,7 @@ public class Client extends Util {
       TestUtil.logErr("Caught unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("queryTest70 failed");
+      throw new Exception("queryTest70 failed");
     }
   }
 
@@ -3882,7 +3881,7 @@ public class Client extends Util {
       TestUtil.logErr("Caught unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("queryTest71 failed");
+      throw new Exception("queryTest71 failed");
     }
   }
 
@@ -3931,7 +3930,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_leftouterjoin_1xM failed");
+      throw new Exception("test_leftouterjoin_1xM failed");
     }
   }
 
@@ -4011,7 +4010,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("test_leftouterjoin_Mx1 failed");
+      throw new Exception("test_leftouterjoin_Mx1 failed");
     }
   }
 
@@ -4089,7 +4088,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("test_leftouterjoin_MxM failed");
+      throw new Exception("test_leftouterjoin_MxM failed");
     }
   }
 
@@ -4138,7 +4137,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_upperStringExpression failed");
+      throw new Exception("test_upperStringExpression failed");
     }
   }
 
@@ -4187,7 +4186,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_lowerStringExpression failed");
+      throw new Exception("test_lowerStringExpression failed");
     }
   }
 
@@ -4237,7 +4236,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_groupBy failed");
+      throw new Exception("test_groupBy failed");
     }
   }
 
@@ -4286,7 +4285,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_groupBy_1 failed");
+      throw new Exception("test_groupBy_1 failed");
     }
   }
 
@@ -4335,7 +4334,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_innerjoin_1x1 failed");
+      throw new Exception("test_innerjoin_1x1 failed");
     }
   }
 
@@ -4388,7 +4387,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_innerjoin_1xM failed");
+      throw new Exception("test_innerjoin_1xM failed");
     }
   }
 
@@ -4439,7 +4438,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_innerjoin_Mx1 failed");
+      throw new Exception("test_innerjoin_Mx1 failed");
     }
   }
 
@@ -4488,7 +4487,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_innerjoin_MxM failed");
+      throw new Exception("test_innerjoin_MxM failed");
     }
   }
 
@@ -4538,7 +4537,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_fetchjoin_1x1 failed");
+      throw new Exception("test_fetchjoin_1x1 failed");
     }
   }
 
@@ -4586,7 +4585,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_fetchjoin_1xM failed");
+      throw new Exception("test_fetchjoin_1xM failed");
     }
   }
 
@@ -4632,7 +4631,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_fetchjoin_Mx1 failed");
+      throw new Exception("test_fetchjoin_Mx1 failed");
     }
   }
 
@@ -4680,7 +4679,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_fetchjoin_Mx1_1 failed");
+      throw new Exception("test_fetchjoin_Mx1_1 failed");
     }
   }
 
@@ -4729,7 +4728,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_fetchjoin_MxM failed");
+      throw new Exception("test_fetchjoin_MxM failed");
     }
   }
 
@@ -4792,7 +4791,7 @@ public class Client extends Util {
     }
 
     if (!pass)
-      throw new Fault("test_betweenDates failed");
+      throw new Exception("test_betweenDates failed");
   }
 
   /*
@@ -4851,7 +4850,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_notBetweenArithmetic failed");
+      throw new Exception("test_notBetweenArithmetic failed");
     }
   }
 
@@ -4905,7 +4904,7 @@ public class Client extends Util {
     }
 
     if (!pass)
-      throw new Fault("test_notBetweenDates failed");
+      throw new Exception("test_notBetweenDates failed");
   }
 
   /*
@@ -4951,7 +4950,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_ANDconditionTT failed");
+      throw new Exception("test_ANDconditionTT failed");
     }
   }
 
@@ -4995,7 +4994,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_ANDconditionTF failed");
+      throw new Exception("test_ANDconditionTF failed");
     }
   }
 
@@ -5039,7 +5038,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_ANDconditionFT failed");
+      throw new Exception("test_ANDconditionFT failed");
     }
   }
 
@@ -5084,7 +5083,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_ANDconditionFF failed");
+      throw new Exception("test_ANDconditionFF failed");
     }
   }
 
@@ -5135,7 +5134,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_ORconditionTT failed");
+      throw new Exception("test_ORconditionTT failed");
     }
   }
 
@@ -5184,7 +5183,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_ORconditionTF failed");
+      throw new Exception("test_ORconditionTF failed");
     }
   }
 
@@ -5238,7 +5237,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_ORconditionFT failed");
+      throw new Exception("test_ORconditionFT failed");
     }
   }
 
@@ -5283,7 +5282,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_ORconditionFF failed");
+      throw new Exception("test_ORconditionFF failed");
     }
   }
 
@@ -5332,7 +5331,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_groupByWhereClause failed");
+      throw new Exception("test_groupByWhereClause failed");
     }
   }
 
@@ -5391,7 +5390,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_groupByHaving failed");
+      throw new Exception("test_groupByHaving failed");
     }
   }
 
@@ -5444,7 +5443,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault(" test_substringHavingClause failed");
+      throw new Exception(" test_substringHavingClause failed");
     }
   }
 
@@ -5492,7 +5491,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_concatHavingClause failed");
+      throw new Exception("test_concatHavingClause failed");
     }
   }
 
@@ -5542,7 +5541,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault(" test_lowerHavingClause failed");
+      throw new Exception(" test_lowerHavingClause failed");
     }
   }
 
@@ -5593,7 +5592,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_upperHavingClause failed");
+      throw new Exception("test_upperHavingClause failed");
     }
   }
 
@@ -5648,7 +5647,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_lengthHavingClause failed");
+      throw new Exception("test_lengthHavingClause failed");
     }
   }
 
@@ -5697,7 +5696,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault(" test_locateHavingClause failed");
+      throw new Exception(" test_locateHavingClause failed");
     }
   }
 
@@ -5741,7 +5740,7 @@ public class Client extends Util {
    * getEntityTransaction().commit(); } catch (Exception e) {
    * TestUtil.logErr("Caught unexpected exception", e); }
    * 
-   * if (!pass) { throw new Fault(" test_trimHavingClause_01 failed"); } }
+   * if (!pass) { throw new Exception(" test_trimHavingClause_01 failed"); } }
    */
 
   /*
@@ -5785,7 +5784,7 @@ public class Client extends Util {
    * getEntityTransaction().commit(); } catch (Exception e) {
    * TestUtil.logErr("Caught unexpected exception", e); }
    * 
-   * if (!pass) { throw new Fault("test_trimHavingClause_02 failed"); } }
+   * if (!pass) { throw new Exception("test_trimHavingClause_02 failed"); } }
    */
 
   /*
@@ -5832,7 +5831,7 @@ public class Client extends Util {
    * getEntityTransaction().commit(); } catch (Exception e) {
    * TestUtil.logErr("Caught unexpected exception", e); }
    * 
-   * if (!pass) { throw new Fault("test_trimHavingClause_03 failed"); } }
+   * if (!pass) { throw new Exception("test_trimHavingClause_03 failed"); } }
    */
 
   /*
@@ -5875,7 +5874,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_ABSHavingClause failed");
+      throw new Exception("test_ABSHavingClause failed");
     }
   }
 
@@ -5921,7 +5920,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault(" test_SQRTWhereClause failed");
+      throw new Exception(" test_SQRTWhereClause failed");
     }
 
   }
@@ -5973,7 +5972,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault(" test_subquery_exists_01 failed");
+      throw new Exception(" test_subquery_exists_01 failed");
     }
   }
 
@@ -6027,7 +6026,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault(" test_subquery_exists_02 failed");
+      throw new Exception(" test_subquery_exists_02 failed");
     }
   }
 
@@ -6078,7 +6077,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault(" test_subquery_like failed");
+      throw new Exception(" test_subquery_like failed");
     }
   }
 
@@ -6162,7 +6161,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_subquery_in failed");
+      throw new Exception("test_subquery_in failed");
     }
   }
 
@@ -6237,7 +6236,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("fromIsCorrelatedTest failed");
+      throw new Exception("fromIsCorrelatedTest failed");
     }
   }
 
@@ -6291,7 +6290,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault(" test_subquery_between failed");
+      throw new Exception(" test_subquery_between failed");
     }
 
   }
@@ -6347,7 +6346,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault(" test_subquery_join failed");
+      throw new Exception(" test_subquery_join failed");
     }
   }
 
@@ -6402,7 +6401,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault(" test_subquery_ALL_GT failed");
+      throw new Exception(" test_subquery_ALL_GT failed");
     }
   }
 
@@ -6453,7 +6452,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_subquery_ALL_LT failed");
+      throw new Exception("test_subquery_ALL_LT failed");
     }
   }
 
@@ -6504,7 +6503,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_subquery_ALL_EQ failed");
+      throw new Exception("test_subquery_ALL_EQ failed");
     }
 
   }
@@ -6559,7 +6558,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_subquery_ALL_LTEQ failed");
+      throw new Exception("test_subquery_ALL_LTEQ failed");
     }
   }
 
@@ -6612,7 +6611,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_subquery_ALL_GTEQ failed");
+      throw new Exception("test_subquery_ALL_GTEQ failed");
     }
   }
 
@@ -6679,7 +6678,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_subquery_ALL_NOTEQ failed");
+      throw new Exception("test_subquery_ALL_NOTEQ failed");
     }
   }
 
@@ -6746,7 +6745,7 @@ public class Client extends Util {
       TestUtil.logErr("Caught unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("test_subquery_ANY_GT failed");
+      throw new Exception("test_subquery_ANY_GT failed");
     }
   }
 
@@ -6815,7 +6814,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_subquery_ANY_LT failed");
+      throw new Exception("test_subquery_ANY_LT failed");
     }
   }
 
@@ -6868,7 +6867,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_subquery_ANY_EQ failed");
+      throw new Exception("test_subquery_ANY_EQ failed");
     }
   }
 
@@ -6938,7 +6937,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault(" test_subquery_SOME_LTEQ failed");
+      throw new Exception(" test_subquery_SOME_LTEQ failed");
     }
   }
 
@@ -7009,7 +7008,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("test_subquery_SOME_GTEQ failed");
+      throw new Exception("test_subquery_SOME_GTEQ failed");
     }
   }
 
@@ -7094,7 +7093,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5) {
-      throw new Fault("joinTest failed");
+      throw new Exception("joinTest failed");
     }
   }
 
@@ -7143,7 +7142,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("fetchStringTest failed");
+      throw new Exception("fetchStringTest failed");
     }
   }
 
@@ -7217,7 +7216,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("fetchStringJoinTypeTest failed");
+      throw new Exception("fetchStringJoinTypeTest failed");
     }
   }
 
@@ -7264,7 +7263,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault(
+      throw new Exception(
           "fetchStringAndStringJoinTypeIllegalArgumentException failed");
     }
   }
@@ -7312,7 +7311,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("isNullOneToOneTest failed");
+      throw new Exception("isNullOneToOneTest failed");
     }
   }
 

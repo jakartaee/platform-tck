@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,8 +19,10 @@ package com.sun.ts.tests.jpa.core.criteriaapi.Join;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
 import java.util.Set;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
@@ -56,14 +58,15 @@ import jakarta.persistence.metamodel.PluralAttribute;
 public class Client extends Util {
 
   /* Test setup */
-  public void setup(String[] args, Properties p) throws Exception {
+	@BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("Entering Setup");
     try {
-      super.setup(args, p);
+      super.setup();
       getEntityManager();
     } catch (Exception e) {
       TestUtil.logErr("Unexpected exception occurred", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -79,6 +82,7 @@ public class Client extends Util {
    * 1)
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void joinStringTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -162,7 +166,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2 || !pass3 || !pass4) {
-      throw new Fault("joinStringTest failed");
+      throw new Exception("joinStringTest failed");
     }
   }
 
@@ -179,6 +183,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void joinStringJoinTypeTest() throws Exception {
     boolean pass = false;
     String expectedPKs[];
@@ -214,7 +219,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinStringJoinTypeTest failed");
+      throw new Exception("joinStringJoinTypeTest failed");
     }
   }
 
@@ -226,6 +231,7 @@ public class Client extends Util {
    * @test_Strategy:
    *
    */
+  @Test
   public void joinStringIllegalArgumentExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -279,7 +285,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("joinStringIllegalArgumentExceptionTest failed");
+      throw new Exception("joinStringIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -294,6 +300,7 @@ public class Client extends Util {
    * SELECT c FROM Customer c JOIN c.work o WHERE (o.id in (4))
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void joinSingularAttributeTest() throws Exception {
     boolean pass = false;
     String expectedPKs[];
@@ -329,7 +336,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinSingularAttributeTest failed");
+      throw new Exception("joinSingularAttributeTest failed");
     }
   }
 
@@ -345,6 +352,7 @@ public class Client extends Util {
    * SELECT c FROM Customer c INNER JOIN c.work o WHERE (o.id in (4))
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void joinSingularAttributeJoinTypeTest() throws Exception {
     boolean pass = false;
     String expectedPKs[];
@@ -381,7 +389,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinSingularAttributeJoinTypeTest failed");
+      throw new Exception("joinSingularAttributeJoinTypeTest failed");
     }
   }
 
@@ -398,6 +406,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void joinCollectionAttributeTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -443,7 +452,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("joinCollectionAttributeTest failed");
+      throw new Exception("joinCollectionAttributeTest failed");
     }
   }
 
@@ -460,6 +469,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void joinCollectionAttributeJoinTypeTest() throws Exception {
     boolean pass = false;
     String expectedPKs[];
@@ -495,7 +505,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinCollectionAttributeJoinTypeTest failed");
+      throw new Exception("joinCollectionAttributeJoinTypeTest failed");
     }
   }
 
@@ -512,6 +522,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void joinCollectionStringTest() throws Exception {
     boolean pass = false;
     String expectedPKs[];
@@ -553,7 +564,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinCollectionStringTest failed");
+      throw new Exception("joinCollectionStringTest failed");
     }
   }
 
@@ -569,6 +580,7 @@ public class Client extends Util {
    * (l.id = 1)
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void joinCollectionStringJoinTypeTest() throws Exception {
     boolean pass = false;
     String expectedPKs[];
@@ -603,7 +615,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinCollectionStringJoinTypeTest failed");
+      throw new Exception("joinCollectionStringJoinTypeTest failed");
     }
   }
 
@@ -615,6 +627,7 @@ public class Client extends Util {
    * @test_Strategy:
    *
    */
+  @Test
   public void joinCollectionIllegalArgumentExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -668,7 +681,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("joinCollectionIllegalArgumentExceptionTest failed");
+      throw new Exception("joinCollectionIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -685,6 +698,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void joinSetAttributeTest() throws Exception {
     boolean pass = false;
     String expectedPKs[];
@@ -718,7 +732,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinSetAttributeTest failed");
+      throw new Exception("joinSetAttributeTest failed");
     }
   }
 
@@ -734,6 +748,7 @@ public class Client extends Util {
    * (l.id = 1)
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void joinSetAttributeJoinTypeTest() throws Exception {
     boolean pass = false;
     String expectedPKs[];
@@ -768,7 +783,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinSetAttributeJoinTypeTest failed");
+      throw new Exception("joinSetAttributeJoinTypeTest failed");
     }
   }
 
@@ -784,6 +799,7 @@ public class Client extends Util {
    * = 1)
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void joinSetStringTest() throws Exception {
     boolean pass = false;
     String expectedPKs[];
@@ -817,7 +833,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinSetStringTest failed");
+      throw new Exception("joinSetStringTest failed");
     }
   }
 
@@ -833,6 +849,7 @@ public class Client extends Util {
    * (l.id = 1)
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void joinSetStringJoinTypeTest() throws Exception {
     boolean pass = false;
     String expectedPKs[];
@@ -867,7 +884,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinSetStringJoinTypeTest failed");
+      throw new Exception("joinSetStringJoinTypeTest failed");
     }
   }
 
@@ -880,6 +897,7 @@ public class Client extends Util {
    * @test_Strategy:
    *
    */
+  @Test
   public void joinSetIllegalArgumentExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -931,7 +949,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("joinSetIllegalArgumentExceptionTest failed");
+      throw new Exception("joinSetIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -947,6 +965,7 @@ public class Client extends Util {
    * (l.id = 1)
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void joinListAttributeTest() throws Exception {
     boolean pass = false;
     String expectedPKs[];
@@ -987,7 +1006,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinListAttributeTest failed");
+      throw new Exception("joinListAttributeTest failed");
     }
   }
 
@@ -1003,6 +1022,7 @@ public class Client extends Util {
    * where (l.id = 1)
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void joinListAttributeJoinTypeTest() throws Exception {
     boolean pass = false;
     String expectedPKs[];
@@ -1037,7 +1057,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinListAttributeJoinTypeTest failed");
+      throw new Exception("joinListAttributeJoinTypeTest failed");
     }
   }
 
@@ -1048,6 +1068,7 @@ public class Client extends Util {
    * 
    * @test_Strategy:
    */
+  @Test
   public void joinListIllegalArgumentExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1100,7 +1121,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("joinListIllegalArgumentExceptionTest failed");
+      throw new Exception("joinListIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -1116,6 +1137,7 @@ public class Client extends Util {
    * (l.id = 1)
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void joinListStringTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1157,7 +1179,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("joinListStringTest failed");
+      throw new Exception("joinListStringTest failed");
     }
   }
 
@@ -1173,6 +1195,7 @@ public class Client extends Util {
    * where (l.id = 1)
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void joinListStringJoinTypeTest() throws Exception {
     boolean pass = false;
     String expectedPKs[];
@@ -1207,7 +1230,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinListStringJoinTypeTest failed");
+      throw new Exception("joinListStringJoinTypeTest failed");
     }
   }
 
@@ -1225,6 +1248,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupDepartmentEmployeeData")
+  @Test
   public void joinMapAttributeTest() throws Exception {
     boolean pass = false;
     String expectedPKs[];
@@ -1270,7 +1294,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinMapAttributeTest failed");
+      throw new Exception("joinMapAttributeTest failed");
     }
   }
 
@@ -1287,6 +1311,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupDepartmentEmployeeData")
+  @Test
   public void joinMapAttributeJoinTypeTest() throws Exception {
     boolean pass = false;
     String expectedPKs[];
@@ -1324,7 +1349,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinMapAttributeJoinTypeTest failed");
+      throw new Exception("joinMapAttributeJoinTypeTest failed");
     }
   }
 
@@ -1341,6 +1366,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupDepartmentEmployeeData")
+  @Test
   public void joinMapStringTest() throws Exception {
     boolean pass = false;
     String expectedPKs[];
@@ -1385,7 +1411,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinMapStringTest failed");
+      throw new Exception("joinMapStringTest failed");
     }
   }
 
@@ -1402,6 +1428,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupDepartmentEmployeeData")
+  @Test
   public void joinMapStringJoinTypeTest() throws Exception {
     boolean pass = false;
     String expectedPKs[];
@@ -1439,7 +1466,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("joinMapStringJoinTypeTest failed");
+      throw new Exception("joinMapStringJoinTypeTest failed");
     }
   }
 
@@ -1450,6 +1477,7 @@ public class Client extends Util {
    * 
    * @test_Strategy:
    */
+  @Test
   public void joinMapIllegalArgumentExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1505,7 +1533,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("joinMapIllegalArgumentExceptionTest failed");
+      throw new Exception("joinMapIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -1523,6 +1551,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void pluralJoinTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1592,7 +1621,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5) {
-      throw new Fault("pluralJoinTest failed");
+      throw new Exception("pluralJoinTest failed");
     }
   }
 
@@ -1605,6 +1634,7 @@ public class Client extends Util {
    * the results were accurately returned.
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void pluralJoinOnExpressionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1650,7 +1680,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("pluralJoinOnExpressionTest failed");
+      throw new Exception("pluralJoinOnExpressionTest failed");
     }
   }
 
@@ -1663,6 +1693,7 @@ public class Client extends Util {
    * the results were accurately returned.
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void pluralJoinOnPredicateArrayTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1708,7 +1739,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("pluralJoinOnPredicateArrayTest failed");
+      throw new Exception("pluralJoinOnPredicateArrayTest failed");
     }
   }
 
@@ -1721,6 +1752,7 @@ public class Client extends Util {
    * o.ID) where (l.QUANTITY > 5))
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void collectionJoinOnExpressionTest() throws Exception {
     boolean pass = false;
     CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -1756,7 +1788,7 @@ public class Client extends Util {
     }
 
     if (!pass)
-      throw new Fault("collectionJoinOnExpressionTest failed");
+      throw new Exception("collectionJoinOnExpressionTest failed");
   }
 
   /*
@@ -1768,6 +1800,7 @@ public class Client extends Util {
    * o.ID) where ((l.QUANTITY > 5) AND (l.QUANTITY < 8))
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void collectionJoinOnPredicateArrayTest() throws Exception {
     boolean pass = false;
 
@@ -1804,7 +1837,7 @@ public class Client extends Util {
     }
 
     if (!pass)
-      throw new Fault("collectionJoinOnPredicateArrayTest failed");
+      throw new Exception("collectionJoinOnPredicateArrayTest failed");
   }
 
   /*
@@ -1816,6 +1849,7 @@ public class Client extends Util {
    * o.ID) where (l.QUANTITY > 5)
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void listJoinOnExpressionTest() throws Exception {
     boolean pass = false;
 
@@ -1852,7 +1886,7 @@ public class Client extends Util {
     }
 
     if (!pass)
-      throw new Fault("listJoinOnExpressionTest failed");
+      throw new Exception("listJoinOnExpressionTest failed");
   }
 
   /*
@@ -1864,6 +1898,7 @@ public class Client extends Util {
    * o.ID) where ((l.QUANTITY > 5) AND (l.QUANTITY < 8))
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void listJoinOnPredicateArrayTest() throws Exception {
     boolean pass = false;
 
@@ -1900,7 +1935,7 @@ public class Client extends Util {
     }
 
     if (!pass)
-      throw new Fault("listJoinOnPredicateArrayTest failed");
+      throw new Exception("listJoinOnPredicateArrayTest failed");
   }
 
   /*
@@ -1912,6 +1947,7 @@ public class Client extends Util {
    * o.ID) where (l.QUANTITY > 5)
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void setJoinOnExpressionTest() throws Exception {
     boolean pass = false;
 
@@ -1948,7 +1984,7 @@ public class Client extends Util {
     }
 
     if (!pass)
-      throw new Fault("setJoinOnExpressionTest failed");
+      throw new Exception("setJoinOnExpressionTest failed");
   }
 
   /*
@@ -1960,6 +1996,7 @@ public class Client extends Util {
    * o.ID) where ((l.QUANTITY > 5) AND (l.QUANTITY < 8))
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void setJoinOnPredicateArrayTest() throws Exception {
     boolean pass = false;
 
@@ -1996,7 +2033,7 @@ public class Client extends Util {
     }
 
     if (!pass)
-      throw new Fault("setJoinOnPredicateArrayTest failed");
+      throw new Exception("setJoinOnPredicateArrayTest failed");
   }
 
   /*
@@ -2011,6 +2048,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupDepartmentEmployeeData")
+  @Test
   public void mapJoinValueTest() throws Exception {
     boolean pass = false;
     List<String> expected = new ArrayList<String>();
@@ -2073,7 +2111,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("mapJoinValueTest failed");
+      throw new Exception("mapJoinValueTest failed");
     }
   }
 }

@@ -20,10 +20,10 @@
 
 package com.sun.ts.tests.jpa.ee.packaging.appclient.annotation;
 
-import java.util.Properties;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.persistence.EntityManager;
@@ -31,7 +31,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceUnit;
 
-public class Client extends EETest {
+public class Client {
 
   private static final Coffee cRef[] = new Coffee[5];
 
@@ -42,37 +42,33 @@ public class Client extends EETest {
 
   private EntityTransaction et;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /*
    * @class.setup_props:
    */
 
-  public void setup(final String[] args, final Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     try {
       if (emf != null) {
         em = emf.createEntityManager();
       } else {
         TestUtil.logErr("EMF is null");
-        throw new Fault("Setup Failed!");
+        throw new Exception("Setup Failed!");
       }
       if (em != null) {
         et = em.getTransaction();
       } else {
         TestUtil.logErr("EM is null");
-        throw new Fault("Setup Failed!");
+        throw new Exception("Setup Failed!");
       }
       if (et == null) {
         TestUtil.logErr("ET is null");
-        throw new Fault("Setup Failed!");
+        throw new Exception("Setup Failed!");
       }
       removeTestData();
     } catch (Exception e) {
-      throw new Fault("Setup Failed!", e);
+      throw new Exception("Setup Failed!", e);
     }
   }
 
@@ -99,7 +95,7 @@ public class Client extends EETest {
    * Create entities, persist them, then find.
    *
    */
-
+@Test
   public void test1() throws Exception {
 
     TestUtil.logTrace("Begin test1");
@@ -156,10 +152,11 @@ public class Client extends EETest {
       }
     }
     if (!pass) {
-      throw new Fault("test1 failed");
+      throw new Exception("test1 failed");
     }
   }
 
+@AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

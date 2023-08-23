@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -30,7 +30,10 @@ import java.io.PrintWriter;
 import java.io.Reader;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -40,20 +43,16 @@ import jakarta.persistence.Persistence;
 public class Client extends PMClientBase {
 
   String schemaGenerationDir = null;
+  String sTestCase = "testcase";
 
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
 
       schemaGenerationDir = System.getProperty("user.dir");
       if (!schemaGenerationDir.endsWith(File.separator)) {
@@ -68,12 +67,12 @@ public class Client extends PMClientBase {
       TestUtil.logMsg("Create new directory ");
       if (!f.mkdir()) {
         String msg = "Could not mkdir:" + f.getAbsolutePath();
-        throw new Fault(msg);
+        throw new Exception(msg);
       }
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -87,6 +86,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: create scripts via createEntityManagerFactory using a URL
    * location
    */
+  @Test
   public void scriptsURLTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -128,7 +128,7 @@ public class Client extends PMClientBase {
     pass1 = findDataInFile(f1, "create table schemaGenSimple");
     pass2 = findDataInFile(f2, "drop table schemaGenSimple");
     if (!pass1 || !pass2) {
-      throw new Fault("scriptsURLTest failed");
+      throw new Exception("scriptsURLTest failed");
     }
   }
 
@@ -141,6 +141,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: create scripts via createEntityManagerFactory using a
    * PrintWriter
    */
+  @Test
   public void scriptsPrintWriterTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -201,7 +202,7 @@ public class Client extends PMClientBase {
     pass1 = findDataInFile(f1, "create table schemaGenSimple");
     pass2 = findDataInFile(f2, "drop table schemaGenSimple");
     if (!pass1 || !pass2) {
-      throw new Fault("scriptsPrintWriterTest failed");
+      throw new Exception("scriptsPrintWriterTest failed");
     }
   }
 
@@ -216,6 +217,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: create scripts via Persistence.generateSchema using a URL
    * location
    */
+  @Test
   public void scriptsURL2Test() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -254,7 +256,7 @@ public class Client extends PMClientBase {
     pass1 = findDataInFile(f1, "create table schemaGenSimple");
     pass2 = findDataInFile(f2, "drop table schemaGenSimple");
     if (!pass1 || !pass2) {
-      throw new Fault("scriptsURL2Test failed");
+      throw new Exception("scriptsURL2Test failed");
     }
   }
 
@@ -269,6 +271,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: create scripts via Persistence.generateSchema using a
    * PrintWriter
    */
+  @Test
   public void scriptsPrintWriter2Test() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -326,7 +329,7 @@ public class Client extends PMClientBase {
     pass1 = findDataInFile(f1, "create table schemaGenSimple");
     pass2 = findDataInFile(f2, "drop table schemaGenSimple");
     if (!pass1 || !pass2) {
-      throw new Fault("scriptsPrintWriter2Test failed");
+      throw new Exception("scriptsPrintWriter2Test failed");
     }
   }
 
@@ -339,6 +342,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: create scripts and generate the schema via
    * createEntityManagerFactory using a URL location
    */
+  @Test
   public void databaseAndScriptsURLTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -404,7 +408,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", t);
     }
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("databaseAndScriptsURLTest failed");
+      throw new Exception("databaseAndScriptsURLTest failed");
     }
   }
 
@@ -416,6 +420,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: create scripts and generate the schema via
    * createEntityManagerFactory using a PrintWriter
    */
+  @Test
   public void databaseAndScriptsPrintWriterTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -498,7 +503,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", t);
     }
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("databaseAndScriptsPrintWriterTest failed");
+      throw new Exception("databaseAndScriptsPrintWriterTest failed");
     }
   }
 
@@ -513,6 +518,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: create scripts and generate the schema via
    * Persistence.generateSchema using a URL location
    */
+  @Test
   public void databaseAndScriptsURL2Test() throws Exception {
     boolean pass = false;
 
@@ -567,7 +573,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", t);
     }
     if (!pass) {
-      throw new Fault("databaseAndScriptsURL2Test failed");
+      throw new Exception("databaseAndScriptsURL2Test failed");
     }
   }
 
@@ -582,6 +588,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: create scripts and generate the schema via
    * Persistence.generateSchema using a PrintWriter
    */
+  @Test
   public void databaseAndScriptsPrintWriter2Test() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -662,7 +669,7 @@ public class Client extends PMClientBase {
     pass2 = findDataInFile(f1, "create table schemaGenSimple");
     pass3 = findDataInFile(f2, "drop table schemaGenSimple");
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("databaseAndScriptsPrintWriter2Test failed");
+      throw new Exception("databaseAndScriptsPrintWriter2Test failed");
     }
   }
 
@@ -677,6 +684,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: create scripts and generate the schema via
    * Persistence.generateSchema using a PrintWriter
    */
+  @Test
   public void databaseCreateTest() throws Exception {
     boolean pass = false;
 
@@ -716,7 +724,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("databaseCreateTest failed");
+      throw new Exception("databaseCreateTest failed");
     }
   }
 
@@ -732,6 +740,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: create a create script then use a URL location to execute
    * it
    */
+  @Test
   public void executeCreateScriptURLTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -801,7 +810,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", t);
     }
     if (!pass1 || !pass2) {
-      throw new Fault("executeCreateScriptURLTest failed");
+      throw new Exception("executeCreateScriptURLTest failed");
     }
   }
 
@@ -816,6 +825,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: create a create script then use a Reader to load and
    * execute it
    */
+  @Test
   public void executeCreateScriptReaderTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -898,7 +908,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", t);
     }
     if (!pass1 || !pass2) {
-      throw new Fault("executeCreateScriptReaderTest failed");
+      throw new Exception("executeCreateScriptReaderTest failed");
     }
   }
 
@@ -914,6 +924,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy: create drop script using a URL location and execute it
    */
+  @Test
   public void executeDropScriptURLTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1005,7 +1016,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("executeDropScriptURLTest failed");
+      throw new Exception("executeDropScriptURLTest failed");
     }
   }
 
@@ -1020,6 +1031,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: create drop script then use a Reader to load and execute
    * it.
    */
+  @Test
   public void executeDropScriptReaderTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1124,10 +1136,11 @@ public class Client extends PMClientBase {
       pass3 = true;
     }
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("executeDropScriptReaderTest failed");
+      throw new Exception("executeDropScriptReaderTest failed");
     }
   }
 
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Properties;
 import java.util.Set;
 
 import com.sun.ts.lib.harness.SetupMethod;
@@ -46,14 +45,14 @@ import jakarta.persistence.metamodel.EntityType;
 
 public class Client extends Util {
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       getEntityManager();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -105,7 +104,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("predicateIsNegatedTest failed");
+      throw new Exception("predicateIsNegatedTest failed");
 
     }
   }
@@ -174,7 +173,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("predicateBooleanOperatorTest failed");
+      throw new Exception("predicateBooleanOperatorTest failed");
 
     }
   }
@@ -243,7 +242,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("predicateGetOperatorTest failed");
+      throw new Exception("predicateGetOperatorTest failed");
 
     }
   }
@@ -368,7 +367,7 @@ public class Client extends Util {
     }
 
     if (!pass2 || !pass3 || !pass4 || !pass5) {
-      throw new Fault("predicateGetExpressionsTest failed");
+      throw new Exception("predicateGetExpressionsTest failed");
 
     }
   }
@@ -437,7 +436,7 @@ public class Client extends Util {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("predicateIsNotNullTest failed");
+      throw new Exception("predicateIsNotNullTest failed");
     }
   }
 
@@ -487,7 +486,7 @@ public class Client extends Util {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("predicateIsNullTest failed");
+      throw new Exception("predicateIsNullTest failed");
     }
   }
 
@@ -537,7 +536,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("pathInObjectArrayTest failed");
+      throw new Exception("pathInObjectArrayTest failed");
     }
   }
 
@@ -587,7 +586,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("pathInExpressionTest failed");
+      throw new Exception("pathInExpressionTest failed");
     }
   }
 
@@ -640,7 +639,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("pathInExpressionArrayTest failed");
+      throw new Exception("pathInExpressionArrayTest failed");
     }
   }
 
@@ -693,7 +692,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("pathInCollectionTest failed");
+      throw new Exception("pathInCollectionTest failed");
     }
   }
 
@@ -761,7 +760,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("pathIsNotNullTest failed");
+      throw new Exception("pathIsNotNullTest failed");
     }
   }
 
@@ -809,7 +808,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("pathIsNullTest failed");
+      throw new Exception("pathIsNullTest failed");
     }
   }
 
@@ -883,7 +882,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2) {
-      throw new Fault("compoundSelectionGetCompoundSelectionItemsTest failed");
+      throw new Exception("compoundSelectionGetCompoundSelectionItemsTest failed");
     }
   }
 
@@ -953,7 +952,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("selectionGetCompoundSelectionItemsTest failed");
+      throw new Exception("selectionGetCompoundSelectionItemsTest failed");
     }
   }
 
@@ -985,7 +984,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "selectionGetCompoundSelectionItemsIllegalStateExceptionTest failed");
     }
   }
@@ -1014,7 +1013,7 @@ public class Client extends Util {
           "Expected isCompoundSelection() to return: false, actual:" + actual);
     }
     if (!pass) {
-      throw new Fault("expressionGetCompoundSelectionItemsTest failed");
+      throw new Exception("expressionGetCompoundSelectionItemsTest failed");
     }
   }
 
@@ -1043,7 +1042,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault(
+      throw new Exception(
           "expressionGetCompoundSelectionItemsIllegalStateExceptionTest failed");
     }
   }
@@ -1101,7 +1100,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("subqueryInObjectArrayTest failed");
+      throw new Exception("subqueryInObjectArrayTest failed");
     }
   }
 
@@ -1158,7 +1157,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("subqueryInExpressionArrayTest failed");
+      throw new Exception("subqueryInExpressionArrayTest failed");
     }
   }
 
@@ -1215,7 +1214,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("subqueryInExpressionTest failed");
+      throw new Exception("subqueryInExpressionTest failed");
     }
   }
 
@@ -1274,7 +1273,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("subqueryInCollectionTest failed");
+      throw new Exception("subqueryInCollectionTest failed");
     }
   }
 
@@ -1327,7 +1326,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("subqueryIsNotNull test failed");
+      throw new Exception("subqueryIsNotNull test failed");
 
     }
 
@@ -1381,7 +1380,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("subqueryIsNull test failed");
+      throw new Exception("subqueryIsNull test failed");
 
     }
 
@@ -1432,7 +1431,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("pathGetPluralAttributeTest failed");
+      throw new Exception("pathGetPluralAttributeTest failed");
     }
   }
 
@@ -1482,7 +1481,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("subquery failed");
+      throw new Exception("subquery failed");
     }
   }
 
@@ -1601,7 +1600,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5) {
-      throw new Fault("subqueryGroupByExpressionTest failed");
+      throw new Exception("subqueryGroupByExpressionTest failed");
     }
   }
 
@@ -1666,7 +1665,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("subqueryGroupByExpressionArrayTest failed");
+      throw new Exception("subqueryGroupByExpressionArrayTest failed");
     }
   }
 
@@ -1732,7 +1731,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("subqueryGroupByListTest failed");
+      throw new Exception("subqueryGroupByListTest failed");
     }
   }
 
@@ -1802,7 +1801,7 @@ public class Client extends Util {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getRoots test failed");
+      throw new Exception("getRoots test failed");
     }
   }
 
@@ -1879,7 +1878,7 @@ public class Client extends Util {
       TestUtil.logErr("Caught unexpected exception ", e);
     }
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("getSelection failed");
+      throw new Exception("getSelection failed");
 
     }
   }
@@ -1964,7 +1963,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("getGroupList failed");
+      throw new Exception("getGroupList failed");
     }
   }
 
@@ -2032,7 +2031,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("getGroupRestriction failed");
+      throw new Exception("getGroupRestriction failed");
     }
   }
 
@@ -2069,7 +2068,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("isDistinct test failed");
+      throw new Exception("isDistinct test failed");
 
     }
   }
@@ -2166,7 +2165,7 @@ public class Client extends Util {
       TestUtil.logErr("Caught exception getGroupRestriction: " + e);
     }
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("getResultType test failed");
+      throw new Exception("getResultType test failed");
 
     }
   }

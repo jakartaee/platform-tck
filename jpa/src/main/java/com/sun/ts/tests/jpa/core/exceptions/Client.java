@@ -16,9 +16,6 @@
 
 package com.sun.ts.tests.jpa.core.exceptions;
 
-import java.util.Properties;
-
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -40,21 +37,16 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       TestUtil.logTrace("Cleanup data");
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -94,7 +86,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("TransactionRequiredExceptionTest failed");
+      throw new Exception("TransactionRequiredExceptionTest failed");
   }
   /*
    * @testName: TransactionRequiredException2Test
@@ -150,7 +142,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("TransactionRequiredException2Test failed");
+      throw new Exception("TransactionRequiredException2Test failed");
   }
 
   /*
@@ -194,7 +186,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("exceptionTest2 failed");
+      throw new Exception("exceptionTest2 failed");
 
   }
 
@@ -250,7 +242,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("exceptionTest3 failed");
+      throw new Exception("exceptionTest3 failed");
   }
 
   /*
@@ -305,7 +297,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("exceptionTest4 failed");
+      throw new Exception("exceptionTest4 failed");
   }
 
   /*
@@ -350,7 +342,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("exceptionTest5 failed");
+      throw new Exception("exceptionTest5 failed");
   }
 
   /*
@@ -397,7 +389,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("exceptionTest6 failed");
+      throw new Exception("exceptionTest6 failed");
   }
 
   /*
@@ -521,7 +513,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("RollbackExceptionTest failed");
+      throw new Exception("RollbackExceptionTest failed");
   }
 
   /*
@@ -649,7 +641,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("EntityExistsExceptionTest failed");
+      throw new Exception("EntityExistsExceptionTest failed");
   }
 
   /*
@@ -706,7 +698,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("EntityNotFoundExceptionTest failed");
+      throw new Exception("EntityNotFoundExceptionTest failed");
   }
 
   /*
@@ -909,7 +901,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("OptimisticLockExceptionTest failed");
+      throw new Exception("OptimisticLockExceptionTest failed");
   }
 
   /*
@@ -1037,7 +1029,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("PersistenceExceptionTest failed");
+      throw new Exception("PersistenceExceptionTest failed");
   }
 
   /*
@@ -1240,7 +1232,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("LockTimeoutExceptionTest failed");
+      throw new Exception("LockTimeoutExceptionTest failed");
   }
 
   /*
@@ -1442,7 +1434,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("PessimisticLockExceptionTest failed");
+      throw new Exception("PessimisticLockExceptionTest failed");
   }
 
   /*
@@ -1646,7 +1638,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("QueryTimeoutExceptionTest failed");
+      throw new Exception("QueryTimeoutExceptionTest failed");
   }
 
   /*
@@ -1703,7 +1695,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("NonUniqueResultExceptionTest failed");
+      throw new Exception("NonUniqueResultExceptionTest failed");
   }
   /*
    * @testName: NoResultExceptionTest
@@ -1754,7 +1746,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass)
-      throw new Fault("NoResultExceptionTest failed");
+      throw new Exception("NoResultExceptionTest failed");
   }
 
   public void cleanup() throws Exception {

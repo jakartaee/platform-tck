@@ -17,9 +17,11 @@
 package com.sun.ts.tests.jpa.jpa22.repeatable.joincolumn;
 
 import java.util.List;
-import java.util.Properties;
 
-import com.sun.javatest.Status;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -30,20 +32,16 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -54,6 +52,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy: follow up test core/derivedod/ex2a but without @JoinColumns
    */
+  @Test
   public void didTest() throws Exception {
     boolean pass = false;
 
@@ -113,10 +112,11 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("DIDTest failed");
+      throw new Exception("DIDTest failed");
     }
   }
 
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

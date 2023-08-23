@@ -21,7 +21,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -62,130 +64,140 @@ public class Util extends PMClientBase {
 
   protected final Trim trimRef[] = new Trim[20];
 
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       getEntityManager();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
-  public void setupProductData(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setupProductData() throws Exception {
     TestUtil.logTrace("setupProductData");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createProductData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("setupProductData failed:", e);
+      throw new Exception("setupProductData failed:", e);
     }
   }
 
-  public void setupCustomerData(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setupCustomerData() throws Exception {
     TestUtil.logTrace("setupCustomerData");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createCustomerData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("setupCustomerData failed:", e);
+      throw new Exception("setupCustomerData failed:", e);
     }
   }
 
-  public void setupPhoneData(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setupPhoneData() throws Exception {
     TestUtil.logTrace("setupPhoneData");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createCustomerData();
       createPhoneData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("setupCustomerData failed:", e);
+      throw new Exception("setupCustomerData failed:", e);
     }
   }
 
-  public void setupAliasData(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setupAliasData() throws Exception {
     TestUtil.logTrace("setupAliasData");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createCustomerData();
       createAliasData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("setupAliasData failed:", e);
+      throw new Exception("setupAliasData failed:", e);
     }
   }
 
-  public void setupAliasOnlyData(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setupAliasOnlyData() throws Exception {
     TestUtil.logTrace("setupAliasOnlyData");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createAliasOnlyData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("setupCustomerData failed:", e);
+      throw new Exception("setupCustomerData failed:", e);
     }
   }
 
-  public void setupCustAliasProductData(String[] args, Properties p)
+  @BeforeEach
+  public void setupCustAliasProductData()
       throws Exception {
     TestUtil.logTrace("setupCustAliasProductData");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createCustomerData();
       createProductData();
       createAliasData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("setupCustomerData failed:", e);
+      throw new Exception("setupCustomerData failed:", e);
     }
   }
 
-  public void setupOrderData(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setupOrderData() throws Exception {
     TestUtil.logTrace("setupOrderData");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createCustomerData();
       createProductData();
       createOrderData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("setupCustomerData failed:", e);
+      throw new Exception("setupCustomerData failed:", e);
     }
   }
 
-  public void setupDepartmentEmployeeData(String[] args, Properties p)
+  @BeforeEach
+  public void setupDepartmentEmployeeData()
       throws Exception {
     TestUtil.logTrace("setupDepartmentEmployeeData");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createDepartmentEmployeeData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("setupDepartmentEmployeeData failed:", e);
+      throw new Exception("setupDepartmentEmployeeData failed:", e);
     }
   }
 
-  public void setupTrimData(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setupTrimData() throws Exception {
     TestUtil.logTrace("setupTrimData");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createTrimData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("setupTrimData failed:", e);
+      throw new Exception("setupTrimData failed:", e);
     }
   }
 
@@ -233,7 +245,7 @@ public class Util extends PMClientBase {
 
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("createTrimData failed:", e);
+      throw new Exception("createTrimData failed:", e);
     }
 
   }
@@ -519,7 +531,7 @@ public class Util extends PMClientBase {
 
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("createProductData failed:", e);
+      throw new Exception("createProductData failed:", e);
     }
   }
 
@@ -765,7 +777,7 @@ public class Util extends PMClientBase {
 
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("createCustomerData failed:", e);
+      throw new Exception("createCustomerData failed:", e);
     }
 
   }
@@ -818,7 +830,7 @@ public class Util extends PMClientBase {
 
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("createAliasOnlyData failed:", e);
+      throw new Exception("createAliasOnlyData failed:", e);
     }
 
   }
@@ -938,7 +950,7 @@ public class Util extends PMClientBase {
 
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("createAliasData failed:", e);
+      throw new Exception("createAliasData failed:", e);
     }
 
   }
@@ -1812,7 +1824,7 @@ public class Util extends PMClientBase {
 
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("createOrderData failed:", e);
+      throw new Exception("createOrderData failed:", e);
     }
   }
 
@@ -1872,7 +1884,7 @@ public class Util extends PMClientBase {
 
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("createDepartmentEmployeeData failed:", e);
+      throw new Exception("createDepartmentEmployeeData failed:", e);
     }
   }
 
@@ -1937,10 +1949,11 @@ public class Util extends PMClientBase {
 
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("createPhoneData failed:", e);
+      throw new Exception("createPhoneData failed:", e);
     }
   }
 
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("Cleanup data");
     removeTestData();
@@ -1948,11 +1961,13 @@ public class Util extends PMClientBase {
     super.cleanup();
   }
 
+  @AfterEach
   public void cleanupNoData() throws Exception {
     TestUtil.logTrace("in cleanupNoData");
     super.cleanup();
   }
 
+  @AfterEach
   public void removeTestData() {
     TestUtil.logTrace("removeTestData");
     if (getEntityTransaction().isActive()) {

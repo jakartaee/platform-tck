@@ -22,36 +22,31 @@ package com.sun.ts.tests.jpa.ee.packaging.ejb.standalone;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.ejb.EJB;
 
-public class Client extends EETest {
+public class Client  {
 
   @EJB(name = "ejb/Stateful3Bean", beanInterface = Stateful3IF.class)
   private static Stateful3IF bean;
 
   private Properties props;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /*
    * @class.setup_props:
    */
-
-  public void setup(String[] args, Properties p) throws Exception {
+@AfterEach
+  public void setup() throws Exception {
     try {
-      props = p;
       bean.init(props);
       cleanup();
     } catch (Exception e) {
-      throw new Fault("Setup Failed!", e);
+      throw new Exception("Setup Failed!", e);
     }
   }
 
@@ -83,7 +78,7 @@ public class Client extends EETest {
    * content. Create entities, persist them, then find.
    *
    */
-
+@Test
   public void test1() throws Exception {
 
     TestUtil.logTrace("Begin test1");
@@ -98,9 +93,9 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test1 failed");
+      throw new Exception("test1 failed");
   }
-
+@AfterEach
   public void cleanup() throws Exception {
     try {
       bean.removeTestData();

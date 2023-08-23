@@ -17,9 +17,7 @@
 package com.sun.ts.tests.jpa.core.override.entity;
 
 import java.util.List;
-import java.util.Properties;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -30,16 +28,11 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception:test failed ", e);
@@ -80,11 +73,11 @@ public class Client extends PMClientBase {
       if (result.size() == 1) {
         TestUtil.logTrace("Test Passed");
       } else {
-        throw new Fault(
+        throw new Exception(
             "Expected the size to be 1 " + " but it is -" + result.size());
       }
     } catch (Exception e) {
-      throw new Fault("Exception thrown while testing testNameOnlyInXML" + e);
+      throw new Exception("Exception thrown while testing testNameOnlyInXML" + e);
     } finally {
       getEntityManager().remove(entity);
       getEntityTransaction().commit();
@@ -119,7 +112,7 @@ public class Client extends PMClientBase {
     if (result.size() == 0) {
       TestUtil.logTrace("Test Passed");
     } else {
-      throw new Fault(
+      throw new Exception(
           "Expected the size to be 0 " + " but it is -" + result.size());
     }
   }
@@ -152,7 +145,7 @@ public class Client extends PMClientBase {
     if (result.size() == 0) {
       TestUtil.logTrace("Test Passed");
     } else {
-      throw new Fault(
+      throw new Exception(
           "Expected the size to be 0 " + " but it is -" + result.size());
     }
   }
@@ -193,11 +186,11 @@ public class Client extends PMClientBase {
       if (result.size() == 1) {
         TestUtil.logTrace("Test Passed");
       } else {
-        throw new Fault(
+        throw new Exception(
             "Expected the size to be 1 " + " but it is -" + result.size());
       }
     } catch (Exception e) {
-      throw new Fault(
+      throw new Exception(
           "Exception thrown while testing testNoEntityAnnotation" + e);
     } finally {
       getEntityManager().remove(entity);

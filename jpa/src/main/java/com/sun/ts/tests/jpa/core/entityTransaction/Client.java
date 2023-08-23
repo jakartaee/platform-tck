@@ -18,7 +18,10 @@ package com.sun.ts.tests.jpa.core.entityTransaction;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -31,23 +34,19 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
-    this.props = p;
     try {
-      super.setup(args, p);
+      super.setup();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
+  @AfterEach
   public void cleanup() throws Exception {
     // Nothing to cleanup
     TestUtil.logTrace("done cleanup, calling super.cleanup");
@@ -61,6 +60,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy: Call begin twice and verify IllegalStateException is thrown
    */
+  @Test
   public void beginIllegalStateExceptionTest() throws Exception {
     boolean pass = false;
     try {
@@ -91,7 +91,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("beginIllegalStateExceptionTest failed");
+      throw new Exception("beginIllegalStateExceptionTest failed");
     }
   }
 
@@ -103,6 +103,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call commit without an active transaction verify
    * IllegalStateException is thrown
    */
+  @Test
   public void commitIllegalStateExceptionTest() throws Exception {
     boolean pass = false;
     try {
@@ -132,7 +133,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("commitIllegalStateExceptionTest failed");
+      throw new Exception("commitIllegalStateExceptionTest failed");
     }
   }
 
@@ -144,6 +145,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call getRollbackOnly without an active transaction verify
    * IllegalStateException is thrown
    */
+  @Test
   public void getRollbackOnlyIllegalStateExceptionTest() throws Exception {
     boolean pass = false;
     try {
@@ -173,7 +175,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("getRollbackOnlyIllegalStateExceptionTest failed");
+      throw new Exception("getRollbackOnlyIllegalStateExceptionTest failed");
     }
   }
 
@@ -185,6 +187,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call rollback without an active transaction verify
    * IllegalStateException is thrown
    */
+  @Test
   public void rollbackIllegalStateExceptionTest() throws Exception {
     boolean pass = false;
 
@@ -214,7 +217,7 @@ public class Client extends PMClientBase {
       }
     }
     if (!pass) {
-      throw new Fault("rollbackIllegalStateExceptionTest failed");
+      throw new Exception("rollbackIllegalStateExceptionTest failed");
     }
   }
 
@@ -226,6 +229,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call setRollbackOnly without an active transaction verify
    * IllegalStateException is thrown
    */
+  @Test
   public void setRollbackOnlyIllegalStateExceptionTest() throws Exception {
     boolean pass = false;
     try {
@@ -255,7 +259,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("setRollbackOnlyIllegalStateExceptionTest failed");
+      throw new Exception("setRollbackOnlyIllegalStateExceptionTest failed");
     }
   }
 

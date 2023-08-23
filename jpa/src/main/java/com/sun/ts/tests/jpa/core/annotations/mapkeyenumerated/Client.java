@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2014, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,13 +16,20 @@
 
 package com.sun.ts.tests.jpa.core.annotations.mapkeyenumerated;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.common.PMClientBase;
-
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jpa.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
@@ -36,23 +43,19 @@ public class Client extends PMClientBase {
     private static Employee3 empRef3[] = new Employee3[5];
     private static Employee4 empRef4[] = new Employee4[5];
 
-    public static void main(String[] args) {
-        Client theTests = new Client();
-        Status s = theTests.run(args, System.out, System.err);
-        s.exit();
-    }
 
-    public void setup(String[] args, Properties p) throws Exception {
+    @BeforeEach
+    public void setup() throws Exception {
         TestUtil.logTrace("setup");
         try {
-            super.setup(args, p);
+            super.setup();
             removeTestData();
             createTestData();
             TestUtil.logTrace("Done creating test data");
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: ", e);
-            throw new Fault("Setup failed:", e);
+            throw new Exception("Setup failed:", e);
         }
     }
 
@@ -60,11 +63,11 @@ public class Client extends PMClientBase {
     public void setupCust(String[] args, Properties p) throws Exception {
         TestUtil.logTrace("setup");
         try {
-            super.setup(args, p);
+            super.setup();
             removeCustTestData();
         } catch (Exception e) {
             TestUtil.logErr("Exception: ", e);
-            throw new Fault("Setup failed:", e);
+            throw new Exception("Setup failed:", e);
 
         }
     }
@@ -78,6 +81,7 @@ public class Client extends PMClientBase {
     * @test_Strategy:
     *
     */
+    @Test
     public void mapKeyEnumeratedTest() throws Exception {
 
         boolean pass1 = false;
@@ -150,7 +154,7 @@ public class Client extends PMClientBase {
         }
 
         if (!pass1 || !pass2) {
-            throw new Fault("mapKeyEnumeratedTest failed");
+            throw new Exception("mapKeyEnumeratedTest failed");
         }
     }
 
@@ -161,6 +165,7 @@ public class Client extends PMClientBase {
     * @test_Strategy:
     *
     */
+    @Test
     public void mapKeyEnumeratedDefaultTypeTest() throws Exception {
 
         boolean pass1 = false;
@@ -231,7 +236,7 @@ public class Client extends PMClientBase {
         }
 
         if (!pass1 || !pass2) {
-            throw new Fault("mapKeyEnumeratedDefaultTypeTest failed");
+            throw new Exception("mapKeyEnumeratedDefaultTypeTest failed");
         }
     }
 
@@ -242,6 +247,7 @@ public class Client extends PMClientBase {
     * @test_Strategy:
     *
     */
+    @Test
     public void mapKeyEnumeratedWithMayKeyAnnotationTest() throws Exception {
 
         boolean pass1 = false;
@@ -313,7 +319,7 @@ public class Client extends PMClientBase {
         }
 
         if (!pass1 || !pass2) {
-            throw new Fault("mapKeyEnumeratedWithMayKeyAnnotationTest failed");
+            throw new Exception("mapKeyEnumeratedWithMayKeyAnnotationTest failed");
         }
     }
 
@@ -323,6 +329,7 @@ public class Client extends PMClientBase {
     * @assertion_ids: PERSISTENCE:SPEC:2052; PERSISTENCE:SPEC:2052.1;
     * @test_Strategy:
     */
+    @Test
     public void elementCollectionTest() throws Exception {
 
          boolean pass1 = false;
@@ -393,7 +400,7 @@ public class Client extends PMClientBase {
          }
 
          if (!pass1 || !pass2) {
-             throw new Fault("elementCollectionTest failed");
+             throw new Exception("elementCollectionTest failed");
          }
      }
 
@@ -592,6 +599,7 @@ public class Client extends PMClientBase {
         }
     }
 
+    @AfterEach
     public void cleanup() throws Exception {
         TestUtil.logTrace("cleanup");
         removeTestData();

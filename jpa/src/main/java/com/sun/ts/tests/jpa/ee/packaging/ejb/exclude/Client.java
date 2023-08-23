@@ -22,35 +22,28 @@ package com.sun.ts.tests.jpa.ee.packaging.ejb.exclude;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.ejb.EJB;
 
-public class Client extends EETest {
+public class Client  {
 
   @EJB(beanName = "Stateful3Bean")
   private static Stateful3IF bean;
 
   private Properties props;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /*
    * @class.setup_props:
    */
-
-  public void setup(String[] args, Properties p) throws Exception {
-    try {
-      props = p;
-    } catch (Exception e) {
-      throw new Fault("Setup Failed!", e);
-    }
+@BeforeEach
+  public void setup() throws Exception {
+   
   }
 
   /*
@@ -95,7 +88,7 @@ public class Client extends EETest {
    * and modified.
    *
    */
-
+@Test
   public void test1() throws Exception {
     // TODO need to add converter classes
     boolean pass = false;
@@ -110,7 +103,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test1 failed");
+      throw new Exception("test1 failed");
   }
 
   /*
@@ -134,7 +127,7 @@ public class Client extends EETest {
    * "is not an entity".
    *
    */
-
+@Test
   public void test2() throws Exception {
     boolean pass = false;
 
@@ -146,9 +139,10 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test2 failed");
+      throw new Exception("test2 failed");
   }
 
+@AfterEach
   public void cleanup() throws Exception {
     try {
       bean.removeTestData();

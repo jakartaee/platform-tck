@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,7 +20,10 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -30,61 +33,60 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setupIntData(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setupIntData() throws Exception {
     TestUtil.logTrace("setupIntData");
     try {
-      super.setup(args, p);
+      super.setup();
 
       removeTestData();
       createIntTestData();
 
     } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
+  @BeforeEach
   public void setupShortData(String[] args, Properties p) throws Exception {
     TestUtil.logTrace("setupShortData");
     try {
-      super.setup(args, p);
+      super.setup();
 
       removeTestData();
       createShortTestData();
 
     } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
+  @BeforeEach
   public void setupLongData(String[] args, Properties p) throws Exception {
     TestUtil.logTrace("setupLongData");
     try {
-      super.setup(args, p);
+      super.setup();
 
       removeTestData();
       createLongTestData();
 
     } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
+  @BeforeEach
   public void setupTimestampData(String[] args, Properties p) throws Exception {
     TestUtil.logTrace("setupTimestampData");
     try {
-      super.setup(args, p);
+      super.setup();
 
       removeTestData();
       createTimestampTestData();
 
     } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -97,6 +99,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    */
   @SetupMethod(name = "setupIntData")
+  @Test
   public void intFieldTest() throws Exception {
 
     boolean pass = false;
@@ -135,7 +138,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("intFieldTest failed");
+      throw new Exception("intFieldTest failed");
     }
 
   }
@@ -149,6 +152,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    */
   @SetupMethod(name = "setupIntData")
+  @Test
   public void intPropertyTest() throws Exception {
     boolean pass = false;
     try {
@@ -187,7 +191,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("intPropertyTest failed");
+      throw new Exception("intPropertyTest failed");
     }
 
   }
@@ -200,6 +204,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    */
   @SetupMethod(name = "setupIntData")
+  @Test
   public void integerFieldTest() throws Exception {
 
     boolean pass = false;
@@ -238,7 +243,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("integerFieldTest failed");
+      throw new Exception("integerFieldTest failed");
     }
 
   }
@@ -251,6 +256,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    */
   @SetupMethod(name = "setupIntData")
+  @Test
   public void integerPropertyTest() throws Exception {
     boolean pass = false;
     try {
@@ -289,7 +295,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("integerPropertyTest failed");
+      throw new Exception("integerPropertyTest failed");
     }
 
   }
@@ -302,6 +308,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    */
   @SetupMethod(name = "setupShortData")
+  @Test
   public void shortFieldTest() throws Exception {
 
     boolean pass = false;
@@ -340,7 +347,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("shortFieldTest failed");
+      throw new Exception("shortFieldTest failed");
     }
 
   }
@@ -353,6 +360,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    */
   @SetupMethod(name = "setupShortData")
+  @Test
   public void shortPropertyTest() throws Exception {
     boolean pass = false;
     try {
@@ -390,7 +398,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("shortPropertyTest failed");
+      throw new Exception("shortPropertyTest failed");
     }
 
   }
@@ -403,6 +411,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    */
   @SetupMethod(name = "setupShortData")
+  @Test
   public void shortClassFieldTest() throws Exception {
 
     boolean pass = false;
@@ -442,7 +451,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("shortClassFieldTest failed");
+      throw new Exception("shortClassFieldTest failed");
     }
 
   }
@@ -455,6 +464,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    */
   @SetupMethod(name = "setupShortData")
+  @Test
   public void shortClassPropertyTest() throws Exception {
     boolean pass = false;
     try {
@@ -494,7 +504,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("shortClassPropertyTest failed");
+      throw new Exception("shortClassPropertyTest failed");
     }
 
   }
@@ -507,6 +517,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    */
   @SetupMethod(name = "setupLongData")
+  @Test
   public void longFieldTest() throws Exception {
 
     boolean pass = false;
@@ -545,7 +556,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("shortFieldTest failed");
+      throw new Exception("shortFieldTest failed");
     }
 
   }
@@ -558,6 +569,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    */
   @SetupMethod(name = "setupLongData")
+  @Test
   public void longPropertyTest() throws Exception {
     boolean pass = false;
     try {
@@ -595,7 +607,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("shortPropertyTest failed");
+      throw new Exception("shortPropertyTest failed");
     }
 
   }
@@ -608,6 +620,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    */
   @SetupMethod(name = "setupLongData")
+  @Test
   public void longClassFieldTest() throws Exception {
 
     boolean pass = false;
@@ -647,7 +660,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("shortClassFieldTest failed");
+      throw new Exception("shortClassFieldTest failed");
     }
 
   }
@@ -660,6 +673,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    */
   @SetupMethod(name = "setupLongData")
+  @Test
   public void longClassPropertyTest() throws Exception {
     boolean pass = false;
     try {
@@ -699,7 +713,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("shortClassPropertyTest failed");
+      throw new Exception("shortClassPropertyTest failed");
     }
 
   }
@@ -712,6 +726,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    */
   @SetupMethod(name = "setupTimestampData")
+  @Test
   public void timestampFieldTest() throws Exception {
 
     boolean pass = false;
@@ -757,7 +772,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("timestampFieldTest failed");
+      throw new Exception("timestampFieldTest failed");
     }
 
   }
@@ -770,6 +785,7 @@ public class Client extends PMClientBase {
    * @test_Strategy:
    */
   @SetupMethod(name = "setupTimestampData")
+  @Test
   public void timestampPropertyTest() throws Exception {
     boolean pass = false;
     try {
@@ -815,11 +831,12 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("timestampPropertyTest failed");
+      throw new Exception("timestampPropertyTest failed");
     }
 
   }
 
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

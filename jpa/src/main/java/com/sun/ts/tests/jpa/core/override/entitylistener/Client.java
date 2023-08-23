@@ -16,9 +16,6 @@
 
 package com.sun.ts.tests.jpa.core.override.entitylistener;
 
-import java.util.Properties;
-
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 import com.sun.ts.tests.jpa.core.override.util.CallBackCounts;
@@ -30,21 +27,16 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
 
-      super.setup(args, p);
+      super.setup();
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -84,15 +76,15 @@ public class Client extends PMClientBase {
       if ((pass1 && pass2) == true) {
         TestUtil.logTrace("testOverrideEntityListener Passed");
       } else if (pass1 == true) {
-        throw new Fault("Test failed while testing preremove and "
+        throw new Exception("Test failed while testing preremove and "
             + "postremove methods in testOverrideEntityListener ");
       } else if (pass2 == true) {
-        throw new Fault("Test failed while testing prepersist and "
+        throw new Exception("Test failed while testing prepersist and "
             + "postpersist methods in testOverrideEntityListener ");
       }
 
     } catch (Exception e) {
-      throw new Fault(
+      throw new Exception(
           "Exception thrown while testing testOverrideEntityListener" + e);
     }
 
@@ -128,10 +120,10 @@ public class Client extends PMClientBase {
       if (pass == true) {
         TestUtil.logTrace("Test Passed");
       } else {
-        throw new Fault("TestEntityListenerXML method failed");
+        throw new Exception("TestEntityListenerXML method failed");
       }
     } catch (Exception e) {
-      throw new Fault(
+      throw new Exception(
           "Exception thrown while testing testEntityListenerXML" + e);
     } finally {
       getEntityManager().remove(entity);
@@ -168,10 +160,10 @@ public class Client extends PMClientBase {
       if (pass == true) {
         TestUtil.logTrace("Test Passed");
       } else {
-        throw new Fault("TestNoEntityListener method failed");
+        throw new Exception("TestNoEntityListener method failed");
       }
     } catch (Exception e) {
-      throw new Fault(
+      throw new Exception(
           "Exception thrown while testing testNoEntityListener" + e);
     } finally {
       getEntityManager().remove(entity);

@@ -16,10 +16,8 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.bindable;
 
-import java.util.Properties;
 import java.util.Set;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -32,20 +30,15 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -84,7 +77,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getBindableType failed");
+      throw new Exception("getBindableType failed");
     }
   }
 
@@ -128,7 +121,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getBindableJavaType failed");
+      throw new Exception("getBindableJavaType failed");
     }
   }
 

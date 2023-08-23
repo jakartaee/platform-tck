@@ -26,7 +26,10 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -43,17 +46,13 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   @Override
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logMsg("Setup: JPA 2.2 Java 8 date and time types test");
     try {
-      super.setup(args, p);
+      super.setup();
 
       Properties props = getPersistenceUnitProperties();
       props.put("jakarta.persistence.schema-generation.database.action",
@@ -64,15 +63,16 @@ public class Client extends PMClientBase {
       TestUtil.logMsg(" - executing persistence schema generation");
       Persistence.generateSchema(getPersistenceUnitName(), props);
       clearEMAndEMF();
-    } catch (Fault e) {
+    } catch (Exception e) {
       TestUtil.logErr("caught Exception: ", e);
-      throw new Fault(" ! JPA 2.2 Java 8 date and time types test setup failed",
+      throw new Exception(" ! JPA 2.2 Java 8 date and time types test setup failed",
           e);
     }
     verifySchema();
   }
 
   @Override
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logMsg("Cleanup: JPA 2.2 Java 8 date and time types test");
     Properties props = getPersistenceUnitProperties();
@@ -149,6 +149,7 @@ public class Client extends PMClientBase {
    * 
    * @throws com.sun.ts.lib.harness.EETest.Fault when test failed
    */
+  @Test
   public void dateTimeTest() throws Exception {
     TestUtil.logMsg("Test: JPA 2.2 Java 8 date and time types");
     verifySchema();
@@ -223,7 +224,7 @@ public class Client extends PMClientBase {
         "--------------------------------------------------------------------------------");
     if (!(createResult && allFindResult && localDateResult && localTimeResult
         && localDateTimeResult && offsetTimeResult && offsetDateTimeResult)) {
-      throw new Fault(
+      throw new Exception(
           "dateTimeTest (JPA 2.2 Java 8 date and time types test) failed");
     }
   }
@@ -404,7 +405,7 @@ public class Client extends PMClientBase {
           e.getId());
       if (result == null) {
         TestUtil.logErr("   ! no entity was found");
-        throw new Fault("dateTimeTest: Schema verification failed");
+        throw new Exception("dateTimeTest: Schema verification failed");
       }
       getEntityTransaction().begin();
       result = getEntityManager().merge(result);
@@ -415,7 +416,7 @@ public class Client extends PMClientBase {
       if (getEntityTransaction().isActive()) {
         getEntityTransaction().rollback();
       }
-      throw new Fault("dateTimeTest: Schema verification failed");
+      throw new Exception("dateTimeTest: Schema verification failed");
     }
   }
 

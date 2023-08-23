@@ -21,9 +21,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -102,16 +100,11 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception:test failed ", e);
@@ -168,12 +161,12 @@ public class Client extends PMClientBase {
       if (employeeList.equals(actualList)) {
         TestUtil.logTrace("Test Passed");
       } else {
-        throw new Fault("The expected Employee List is not equal to the "
+        throw new Exception("The expected Employee List is not equal to the "
             + "actual List read from the DB");
       }
       getEntityTransaction().commit();
     } catch (Exception e) {
-      throw new Fault(
+      throw new Exception(
           "Exception thrown while testing testOrderByAnnotation" + e);
     }
   }
@@ -225,7 +218,7 @@ public class Client extends PMClientBase {
           && (retrieveLocations.get(CITY_CODE).getId() == CITY_ID)) {
         TestUtil.logTrace("Test Passed");
       } else {
-        throw new Fault("Expected to read the relationship as a Map with keys"
+        throw new Exception("Expected to read the relationship as a Map with keys"
             + " - " + LOCATION_CODE + " and " + CITY_CODE
             + "; Actual Locations Found - "
             + retrieveLocations.get(LOCATION_CODE).getId() + " and "
@@ -233,7 +226,7 @@ public class Client extends PMClientBase {
       }
       getEntityTransaction().commit();
     } catch (Exception e) {
-      throw new Fault("Exception thrown while testing testOverrideMapKey" + e);
+      throw new Exception("Exception thrown while testing testOverrideMapKey" + e);
     }
 
   }
@@ -285,7 +278,7 @@ public class Client extends PMClientBase {
           && (retrieveCustomers.get(CUSTOMER2_NAME).getId() == CUSTOMER2_ID)) {
         TestUtil.logTrace("Test Passed");
       } else {
-        throw new Fault("Expected to read relationship as a Map with "
+        throw new Exception("Expected to read relationship as a Map with "
             + "customers - " + CUSTOMER1_ID + " and " + CUSTOMER2_ID
             + "Actual Customers in the Map - "
             + retrieveCustomers.get(CUSTOMER1_NAME).getId() + " and "
@@ -293,7 +286,7 @@ public class Client extends PMClientBase {
       }
       getEntityTransaction().commit();
     } catch (Exception e) {
-      throw new Fault(
+      throw new Exception(
           "Exception thrown while testing testNoMapKeyAnnotation" + e);
     }
   }
@@ -352,12 +345,12 @@ public class Client extends PMClientBase {
       if (consumer1Orders.equals(actualRetailOrders)) {
         TestUtil.logTrace("Test Passed");
       } else {
-        throw new Fault(
+        throw new Exception(
             "The expected Orders List is not equal to the actual List read from the DB");
       }
       getEntityTransaction().commit();
     } catch (Exception e) {
-      throw new Fault("Exception thrown while testing testOverrideOrderBy" + e);
+      throw new Exception("Exception thrown while testing testOverrideOrderBy" + e);
     }
   }
 

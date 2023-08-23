@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,13 +22,15 @@ package com.sun.ts.tests.jpa.ee.propagation.am;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.ejb.EJB;
 
-public class Client extends EETest {
+public class Client  {
 
   @EJB(name = "ejb/Stateful3Bean", beanInterface = Stateful3IF.class)
   private static Stateful3IF statefulBean;
@@ -41,22 +43,13 @@ public class Client extends EETest {
 
   private Properties props;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /*
    * @class.setup_props:
    */
 
-  public void setup(String[] args, Properties p) throws Exception {
-    try {
-      props = p;
-    } catch (Exception e) {
-      throw new Fault("Setup Failed!", e);
-    }
+  @BeforeEach
+  public void setup() throws Exception {
   }
 
   /*
@@ -76,7 +69,7 @@ public class Client extends EETest {
    * Inject entity manager factory, but open and close each entity manager
    * within the business method.
    */
-
+@Test
   public void test1() throws Exception {
 
     TestUtil.logTrace("Begin test1");
@@ -94,7 +87,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test1 failed");
+      throw new Exception("test1 failed");
   }
 
   /*
@@ -112,7 +105,7 @@ public class Client extends EETest {
    * within the business method.
    *
    */
-
+@Test
   public void test2() throws Exception {
 
     TestUtil.logTrace("Begin test2");
@@ -129,7 +122,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test2 failed");
+      throw new Exception("test2 failed");
   }
 
   /*
@@ -144,7 +137,7 @@ public class Client extends EETest {
    * merged is a stale copy of the entity.
    *
    */
-
+@Test
   public void test3() throws Exception {
 
     TestUtil.logTrace("Begin test3");
@@ -159,7 +152,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test3 failed");
+      throw new Exception("test3 failed");
   }
 
   /*
@@ -179,7 +172,7 @@ public class Client extends EETest {
    * Remove annotation.
    *
    */
-
+@Test
   public void test4() throws Exception {
 
     TestUtil.logTrace("Begin test4");
@@ -194,7 +187,7 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test4 failed");
+      throw new Exception("test4 failed");
   }
 
   /*
@@ -205,7 +198,7 @@ public class Client extends EETest {
    * @test_Strategy: Test the @PersistenceUnits and verify that a managed entity
    * from one PU is not accessible in the other PU and visa versa.
    */
-
+@Test
   public void test5() throws Exception {
 
     boolean pass = false;
@@ -219,9 +212,10 @@ public class Client extends EETest {
     }
 
     if (!pass)
-      throw new Fault("test5 failed");
+      throw new Exception("test5 failed");
   }
 
+	@AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup complete");
   }

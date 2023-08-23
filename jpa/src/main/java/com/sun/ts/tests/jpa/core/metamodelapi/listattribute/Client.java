@@ -16,9 +16,6 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.listattribute;
 
-import java.util.Properties;
-
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -33,19 +30,14 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -89,7 +81,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getList Test  failed");
+      throw new Exception("getList Test  failed");
     }
   }
 
@@ -140,7 +132,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getCollectionType Test failed");
+      throw new Exception("getCollectionType Test failed");
     }
   }
 
@@ -185,7 +177,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getDeclaredList Test  failed");
+      throw new Exception("getDeclaredList Test  failed");
     }
   }
 
@@ -230,7 +222,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getList2 Test  failed");
+      throw new Exception("getList2 Test  failed");
     }
   }
 
@@ -275,7 +267,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("getDeclaredList2 Test  failed");
+      throw new Exception("getDeclaredList2 Test  failed");
     }
   }
 

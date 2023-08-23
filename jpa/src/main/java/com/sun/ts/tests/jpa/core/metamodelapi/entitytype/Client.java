@@ -18,10 +18,8 @@ package com.sun.ts.tests.jpa.core.metamodelapi.entitytype;
 
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Properties;
 import java.util.Set;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -37,20 +35,15 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -89,7 +82,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getName failed");
+      throw new Exception("getName failed");
     }
   }
   /*
@@ -131,7 +124,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaredId failed");
+      throw new Exception("getDeclaredId failed");
     }
   }
 
@@ -173,7 +166,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaredIdIllegalArgumentException failed");
+      throw new Exception("getDeclaredIdIllegalArgumentException failed");
     }
   }
 
@@ -213,7 +206,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaredVersion failed");
+      throw new Exception("getDeclaredVersion failed");
     }
   }
 
@@ -254,7 +247,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getDeclaredVersionIllegalArgumentException failed");
+      throw new Exception("getDeclaredVersionIllegalArgumentException failed");
     }
   }
 
@@ -295,7 +288,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getId failed");
+      throw new Exception("getId failed");
     }
   }
 
@@ -337,7 +330,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getIdIllegalArgumentException failed");
+      throw new Exception("getIdIllegalArgumentException failed");
     }
   }
 
@@ -408,7 +401,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getIdClassAttributes failed");
+      throw new Exception("getIdClassAttributes failed");
     }
   }
 
@@ -449,7 +442,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getIdClassAttributesIllegalArgumentException failed");
+      throw new Exception("getIdClassAttributesIllegalArgumentException failed");
     }
   }
 
@@ -489,7 +482,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getIdType failed");
+      throw new Exception("getIdType failed");
     }
   }
 
@@ -529,7 +522,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getSupertype failed");
+      throw new Exception("getSupertype failed");
     }
   }
 
@@ -569,7 +562,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getVersion failed");
+      throw new Exception("getVersion failed");
     }
   }
 
@@ -610,7 +603,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getVersionIllegalArgumentException failed");
+      throw new Exception("getVersionIllegalArgumentException failed");
     }
   }
 
@@ -653,7 +646,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("hasSingleIdAttribute failed");
+      throw new Exception("hasSingleIdAttribute failed");
     }
   }
 
@@ -695,7 +688,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("hasVersionAttribute failed");
+      throw new Exception("hasVersionAttribute failed");
     }
   }
 
@@ -739,7 +732,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getBindableJavaType failed");
+      throw new Exception("getBindableJavaType failed");
     }
   }
 
@@ -783,7 +776,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getBindableType failed");
+      throw new Exception("getBindableType failed");
     }
   }
 

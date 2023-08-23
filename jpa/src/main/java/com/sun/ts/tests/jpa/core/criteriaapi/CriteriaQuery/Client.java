@@ -30,6 +30,8 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.Address_;
@@ -67,25 +69,25 @@ import jakarta.persistence.metamodel.Metamodel;
 
 public class Client extends Util {
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       getEntityManager();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
   public void setupAData(String[] args, Properties p) throws Exception {
     TestUtil.logTrace("setupData");
     try {
-      super.setup(args, p);
+      super.setup();
       removeATestData();
       createATestData();
     } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -100,6 +102,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void fromClass() throws Exception {
     boolean pass = false;
     final Double expectedTotalPrice = 4500.0D;
@@ -144,7 +147,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("fromClass failed");
+      throw new Exception("fromClass failed");
 
     }
   }
@@ -160,6 +163,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void fromEntityType() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -215,7 +219,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2) {
-      throw new Fault("fromEntityType failed");
+      throw new Exception("fromEntityType failed");
 
     }
   }
@@ -231,6 +235,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void select() throws Exception {
     boolean pass = false;
     final Double expectedTotalPrice = 4500.0D;
@@ -274,7 +279,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("select test failed");
+      throw new Exception("select test failed");
 
     }
   }
@@ -287,6 +292,7 @@ public class Client extends Util {
    * @test_Strategy:
    */
   @SetupMethod(name = "setupAliasData")
+  @Test
   public void selectIllegalArgumentException() throws Exception {
     boolean pass = false;
 
@@ -314,7 +320,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("selectIllegalArgumentException failed");
+      throw new Exception("selectIllegalArgumentException failed");
 
     }
   }
@@ -329,6 +335,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void multiselect() throws Exception {
     boolean pass = false;
     final int expectedResultSize = 20;
@@ -368,7 +375,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("multiselect test failed");
+      throw new Exception("multiselect test failed");
     }
   }
 
@@ -381,6 +388,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void multiselectListTest() throws Exception {
     boolean pass = false;
     final int expectedResultSize = 20;
@@ -424,7 +432,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("multiselectListTest failed");
+      throw new Exception("multiselectListTest failed");
     }
   }
 
@@ -438,6 +446,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAliasData")
+  @Test
   public void multiselectIllegalArgumentExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -509,7 +518,7 @@ public class Client extends Util {
       }
     }
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("multiselectIllegalArgumentExceptionTest failed");
+      throw new Exception("multiselectIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -525,6 +534,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void where() throws Exception {
     boolean pass = false;
     CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
@@ -564,7 +574,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("where test failed");
+      throw new Exception("where test failed");
 
     }
   }
@@ -578,6 +588,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void createQueryCriteriaUpdateTest() throws Exception {
     boolean pass = false;
     String expected = "foobar";
@@ -612,7 +623,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("createQueryCriteriaUpdateTest failed");
+      throw new Exception("createQueryCriteriaUpdateTest failed");
 
     }
   }
@@ -627,6 +638,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void createQueryCriteriaDeleteTest() throws Exception {
     boolean pass = false;
     CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
@@ -657,7 +669,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("createQueryCriteriaDeleteTest failed");
+      throw new Exception("createQueryCriteriaDeleteTest failed");
 
     }
   }
@@ -672,6 +684,7 @@ public class Client extends Util {
    * results
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void wherePredicateArrayTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -744,7 +757,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("wherePredicateArrayTest failed");
+      throw new Exception("wherePredicateArrayTest failed");
     }
   }
 
@@ -758,6 +771,7 @@ public class Client extends Util {
    * Select c FROM Customer c where customer.name = 'Karen R. Tegan'
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void fromGetStringTest() throws Exception {
     boolean pass = false;
 
@@ -792,7 +806,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("fromGetStringTest failed");
+      throw new Exception("fromGetStringTest failed");
     }
   }
 
@@ -803,6 +817,7 @@ public class Client extends Util {
    * 
    * @test_Strategy: Verify get(String) returns an exception for a basic type
    */
+  @Test
   public void fromGetStringIllegalStateExceptionTest() throws Exception {
     boolean pass = false;
 
@@ -826,7 +841,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("fromGetStringIllegalStateExceptionTest failed");
+      throw new Exception("fromGetStringIllegalStateExceptionTest failed");
     }
   }
 
@@ -837,6 +852,7 @@ public class Client extends Util {
    * 
    * @test_Strategy: Verify get(String) returns an exception for a basic type
    */
+  @Test
   public void pathGetStringIllegalStateExceptionTest() throws Exception {
     boolean pass = false;
 
@@ -861,7 +877,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("pathGetStringIllegalStateExceptionTest failed");
+      throw new Exception("pathGetStringIllegalStateExceptionTest failed");
     }
   }
 
@@ -873,6 +889,7 @@ public class Client extends Util {
    * @test_Strategy: Verify get(String) returns an exception
    *
    */
+  @Test
   public void fromGetStringIllegalArgumentExceptionTest() throws Exception {
     boolean pass = false;
 
@@ -896,7 +913,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("fromGetStringIllegalArgumentExceptionTest failed");
+      throw new Exception("fromGetStringIllegalArgumentExceptionTest failed");
     }
   }
 
@@ -908,6 +925,7 @@ public class Client extends Util {
    * @test_Strategy: Verify getModel() returns correct result.
    *
    */
+  @Test
   public void fromGetModelTest() throws Exception {
     boolean pass = false;
 
@@ -931,7 +949,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("fromGetModelTest failed");
+      throw new Exception("fromGetModelTest failed");
     }
   }
 
@@ -944,6 +962,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void fromGetParentPathTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -993,7 +1012,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("fromGetParentPathTest failed");
+      throw new Exception("fromGetParentPathTest failed");
     }
   }
 
@@ -1006,6 +1025,7 @@ public class Client extends Util {
    * c GROUP BY c.country.code ORDER BY c.country.code"
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void groupBy() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1083,7 +1103,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("groupBy failed");
+      throw new Exception("groupBy failed");
     }
   }
 
@@ -1099,6 +1119,7 @@ public class Client extends Util {
    * c.country.code, c.id"
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void groupByExpArrayTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1202,7 +1223,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("groupByExpArrayTest failed");
+      throw new Exception("groupByExpArrayTest failed");
     }
   }
 
@@ -1219,6 +1240,7 @@ public class Client extends Util {
    * Customer c GROUP BY c.country.code, c.id ORDER BY c.country.code, c.id"
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void groupByListTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1338,7 +1360,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("groupByListTest failed");
+      throw new Exception("groupByListTest failed");
     }
   }
 
@@ -1354,6 +1376,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void having() throws Exception {
     boolean pass = false;
     final Long expectedGBR = 2L;
@@ -1406,7 +1429,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("having failed");
+      throw new Exception("having failed");
     }
   }
 
@@ -1421,6 +1444,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void distinct() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1637,7 +1661,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("distinct test failed");
+      throw new Exception("distinct test failed");
 
     }
   }
@@ -1652,6 +1676,7 @@ public class Client extends Util {
    * NULL ORDER BY c.work.zip ASC
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void orderBy() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1703,7 +1728,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("orderBy failed");
+      throw new Exception("orderBy failed");
     }
   }
 
@@ -1714,6 +1739,7 @@ public class Client extends Util {
    * 
    * @test_Strategy:
    */
+  @Test
   public void pathGetIllegalArgumentException() throws Exception {
     boolean pass = false;
 
@@ -1731,7 +1757,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("pathGetIllegalArgumentException failed");
+      throw new Exception("pathGetIllegalArgumentException failed");
     }
   }
 
@@ -1744,6 +1770,7 @@ public class Client extends Util {
    * NULL ORDER BY c.work.zip ASC
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void orderReverseTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1798,7 +1825,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2) {
-      throw new Fault("orderReverseTest failed");
+      throw new Exception("orderReverseTest failed");
     }
   }
 
@@ -1811,6 +1838,7 @@ public class Client extends Util {
    * NULL ORDER BY c.work.zip ASC
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void getOrderList() throws Exception {
     boolean pass = false;
 
@@ -1843,7 +1871,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("getOrderList failed");
+      throw new Exception("getOrderList failed");
     }
   }
 
@@ -1857,6 +1885,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void getParameters() throws Exception {
     boolean pass = false;
     final Double expectedTotalPrice = 4500.0D;
@@ -1894,7 +1923,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getParameters test failed");
+      throw new Exception("getParameters test failed");
 
     }
   }
@@ -1909,6 +1938,7 @@ public class Client extends Util {
    * CriteriaAPI and verify a IllegalStateException is thrown
    *
    */
+  @Test
   public void executeUpdateIllegalStateException1Test() throws Exception {
     boolean pass = false;
 
@@ -1939,7 +1969,7 @@ public class Client extends Util {
     }
 
     if (!pass)
-      throw new Fault("executeUpdateIllegalStateException1Test failed");
+      throw new Exception("executeUpdateIllegalStateException1Test failed");
   }
 
   /*
@@ -1952,6 +1982,7 @@ public class Client extends Util {
    * Select p from Product p where TYPE(p) = HardwareProduct
    */
   @SetupMethod(name = "setupProductData")
+  @Test
   public void typeTest() throws Exception {
     boolean pass = false;
     List<Integer> expected = new ArrayList<Integer>();
@@ -1993,7 +2024,7 @@ public class Client extends Util {
     }
 
     if (!pass) {
-      throw new Fault("typeTest failed");
+      throw new Exception("typeTest failed");
     }
   }
 
@@ -2009,6 +2040,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void modifiedQueryTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -2082,7 +2114,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2) {
-      throw new Fault("modifiedQueryTest test failed");
+      throw new Exception("modifiedQueryTest test failed");
 
     }
   }
@@ -2097,6 +2129,7 @@ public class Client extends Util {
    * 
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void distinctNotSpecifiedTest() throws Exception {
     boolean pass = false;
     Integer expectedPKs[];
@@ -2161,7 +2194,7 @@ public class Client extends Util {
     }
 
     if (!pass)
-      throw new Fault("distinctNotSpecifiedTest failed");
+      throw new Exception("distinctNotSpecifiedTest failed");
   }
 
   /*
@@ -2174,6 +2207,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAData")
+  @Test
   public void DoubleOperandResultTypeTests() throws Exception {
     boolean pass1, pass2, pass3, pass4, pass5, pass6, pass7, pass8;
     pass1 = pass2 = pass3 = pass4 = pass5 = pass6 = pass7 = pass8 = false;
@@ -2380,7 +2414,7 @@ public class Client extends Util {
     }
     if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6 || !pass7
         || !pass8)
-      throw new Fault("DoubleOperandResultTypeTests failed");
+      throw new Exception("DoubleOperandResultTypeTests failed");
   }
 
   /*
@@ -2392,6 +2426,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAData")
+  @Test
   public void FloatOperandResultTypeTests() throws Exception {
     boolean pass1, pass2, pass3, pass4, pass5, pass6, pass7, pass8;
     pass1 = pass2 = pass3 = pass4 = pass5 = pass6 = pass7 = pass8 = false;
@@ -2590,7 +2625,7 @@ public class Client extends Util {
     }
     if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6 || !pass7
         || !pass8)
-      throw new Fault("FloatOperandResultTypeTests failed");
+      throw new Exception("FloatOperandResultTypeTests failed");
   }
 
   /*
@@ -2602,6 +2637,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAData")
+  @Test
   public void BigDecimalOperandResultTypeTests() throws Exception {
     boolean pass1, pass2, pass3, pass4;
     pass1 = pass2 = pass3 = pass4 = false;
@@ -2708,7 +2744,7 @@ public class Client extends Util {
       TestUtil.logErr("Caught exception: ", e);
     }
     if (!pass1 || !pass2 || !pass3 || !pass4)
-      throw new Fault("BigDecimalOperandResultTypeTests failed");
+      throw new Exception("BigDecimalOperandResultTypeTests failed");
   }
 
   /*
@@ -2720,6 +2756,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAData")
+  @Test
   public void BigIntegerOperandResultTypeTests() throws Exception {
     boolean pass1, pass2, pass3;
     pass1 = pass2 = pass3 = false;
@@ -2801,7 +2838,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2 || !pass3)
-      throw new Fault("BigIntegerOperandResultTypeTests failed");
+      throw new Exception("BigIntegerOperandResultTypeTests failed");
   }
 
   /*
@@ -2813,6 +2850,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAData")
+  @Test
   public void LongOperandResultTypeTests() throws Exception {
     boolean pass1, pass2, pass3, pass4, pass5, pass6;
     pass1 = pass2 = pass3 = pass4 = pass5 = pass6 = false;
@@ -2964,7 +3002,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6)
-      throw new Fault("LongOperandResultTypeTests failed");
+      throw new Exception("LongOperandResultTypeTests failed");
   }
 
   /*
@@ -2977,6 +3015,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupAData")
+  @Test
   public void ShortOperandResultTypeTests() throws Exception {
     boolean pass1, pass2, pass3, pass4, pass5, pass6;
     pass1 = pass2 = pass3 = pass4 = pass5 = pass6 = false;
@@ -3127,7 +3166,7 @@ public class Client extends Util {
     }
 
     if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6)
-      throw new Fault("ShortOperandResultTypeTests failed");
+      throw new Exception("ShortOperandResultTypeTests failed");
   }
 
   /*
@@ -3139,6 +3178,7 @@ public class Client extends Util {
    * d.lastNameEmployees WHERE d.id = 1
    */
   @SetupMethod(name = "setupDepartmentEmployeeData")
+  @Test
   public void resultContainsFetchReference() throws Exception {
     boolean pass = false;
 
@@ -3181,7 +3221,7 @@ public class Client extends Util {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("resultContainsFetchReference test failed");
+      throw new Exception("resultContainsFetchReference test failed");
 
     }
   }

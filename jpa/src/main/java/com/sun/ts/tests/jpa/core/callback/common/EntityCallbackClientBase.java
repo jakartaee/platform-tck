@@ -38,19 +38,19 @@ public abstract class EntityCallbackClientBase extends PMClientBase {
       TestUtil.logTrace("Committing: " + b.getClass().getName() + " changes");
       getEntityTransaction().commit();
       reason = "Expecting ArithmeticException from callback method, but got none.";
-      throw new Fault(reason);
+      throw new Exception(reason);
     } catch (ArithmeticException e) {
       reason = "EntityCallbackClientBase: Got expected exception: "
           + e.toString();
       TestUtil.logTrace(reason);
       if (!getEntityTransaction().isActive()) {
         reason = "No Transaction was active, even though one was previously started";
-        throw new Fault(reason, e);
+        throw new Exception(reason, e);
       }
     } catch (Exception e) {
       reason = "EntityCallbackClientBase: Expecting ArithmeticException, but got unexpected exception: ["
           + e.toString() + "]";
-      throw new Fault(reason, e);
+      throw new Exception(reason, e);
     }
     TestUtil.logTrace("Clearing cache");
     clearCache();
@@ -66,7 +66,7 @@ public abstract class EntityCallbackClientBase extends PMClientBase {
         cause = cause.getCause();
       }
       if (cause == null) {
-       throw new Fault(e);
+       throw new Exception(e);
       }
     }
     if (p2 == null) {
@@ -76,7 +76,7 @@ public abstract class EntityCallbackClientBase extends PMClientBase {
     } else {
       reason = "EntityCallbackClientBase: Unexpected result: found entity with id "
           + testName;
-      throw new Fault(reason);
+      throw new Exception(reason);
     }
     return b;
   }

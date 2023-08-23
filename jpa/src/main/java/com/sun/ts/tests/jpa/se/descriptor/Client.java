@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.jpa.se.descriptor;
 
-import java.util.Properties;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -30,20 +31,16 @@ public class Client extends PMClientBase {
 
   private static final B bRef[] = new B[5];
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     try {
 
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createTestData();
     } catch (Exception e) {
-      throw new Fault("Setup Failed!", e);
+      throw new Exception("Setup Failed!", e);
     }
   }
 
@@ -62,7 +59,7 @@ public class Client extends PMClientBase {
    * persist, then find.
    *
    */
-
+@Test
   public void test1() throws Exception {
     boolean pass = false;
     try {
@@ -83,7 +80,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("test1 failed");
+      throw new Exception("test1 failed");
     }
   }
 
@@ -109,6 +106,7 @@ public class Client extends PMClientBase {
     }
   }
 
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

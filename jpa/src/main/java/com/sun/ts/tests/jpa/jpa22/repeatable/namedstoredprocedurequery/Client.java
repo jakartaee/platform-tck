@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,7 +23,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.harness.CleanupMethod;
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
@@ -52,30 +55,24 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /*
    * setup() is called before each test
    *
    * @class.setup_props: jdbc.db;
    */
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
-    this.props = p;
     try {
-      super.setup(args, p);
+      super.setup();
       map.putAll(getEntityManager().getProperties());
       map.put("foo", "bar");
       displayMap(map);
-      dataBaseName = p.getProperty("jdbc.db");
+      dataBaseName = System.getProperty("jdbc.db");
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -84,11 +81,12 @@ public class Client extends PMClientBase {
    *
    * @class.setup_props: jdbc.db;
    */
+  @BeforeEach
   public void setupEmployeeData(String[] args, Properties p) throws Exception {
     TestUtil.logTrace("setupOrderData");
     this.props = p;
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
       createEmployeeData();
       map.putAll(getEntityManager().getProperties());
@@ -97,15 +95,17 @@ public class Client extends PMClientBase {
       dataBaseName = p.getProperty("jdbc.db");
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup complete, calling super.cleanup");
     super.cleanup();
   }
 
+  @AfterEach
   public void cleanupData() throws Exception {
     TestUtil.logTrace("Cleanup data");
     removeTestData();
@@ -123,6 +123,7 @@ public class Client extends PMClientBase {
    */
   @SetupMethod(name = "setupEmployeeData")
   @CleanupMethod(name = "cleanupData")
+  @Test
   public void createStoredProcedureQueryStringTest() throws Exception {
     boolean pass = false;
 
@@ -153,7 +154,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("createStoredProcedureQueryStringTest failed");
+      throw new Exception("createStoredProcedureQueryStringTest failed");
     }
 
   }
@@ -170,6 +171,7 @@ public class Client extends PMClientBase {
    */
   @SetupMethod(name = "setupEmployeeData")
   @CleanupMethod(name = "cleanupData")
+  @Test
   public void createStoredProcedureQueryStringClassArrayTest() throws Exception {
     boolean pass = false;
     getEntityTransaction().begin();
@@ -206,7 +208,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("createStoredProcedureQueryStringClassArrayTest failed");
+      throw new Exception("createStoredProcedureQueryStringClassArrayTest failed");
     }
 
   }
@@ -223,6 +225,7 @@ public class Client extends PMClientBase {
    */
   @SetupMethod(name = "setupEmployeeData")
   @CleanupMethod(name = "cleanupData")
+  @Test
   public void createStoredProcedureQueryStringStringArrayTest() throws Exception {
     boolean pass = false;
 
@@ -263,7 +266,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("createStoredProcedureQueryStringStringArrayTest failed");
+      throw new Exception("createStoredProcedureQueryStringStringArrayTest failed");
     }
 
   }
@@ -281,6 +284,7 @@ public class Client extends PMClientBase {
    */
   @SetupMethod(name = "setupEmployeeData")
   @CleanupMethod(name = "cleanupData")
+  @Test
   public void createNamedStoredProcedureQueryStringTest() throws Exception {
     boolean pass = false;
     getEntityTransaction().begin();
@@ -320,7 +324,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("createNamedStoredProcedureQueryStringTest failed");
+      throw new Exception("createNamedStoredProcedureQueryStringTest failed");
     }
 
   }

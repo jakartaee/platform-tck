@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,7 +20,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -37,27 +40,22 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
 
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
-    this.props = p;
     try {
-      super.setup(args, p);
+      super.setup();
       map.putAll(getEntityManager().getProperties());
       map.put("foo", "bar");
       displayMap(map);
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup complete, calling super.cleanup");
     super.cleanup();
@@ -71,6 +69,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy: Create an EntityManagerFactory via SynchronizationType,Map
    */
+  @Test
   public void createEntityManagerSynchronizationTypeMapTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -101,7 +100,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass1 || !pass2) {
-      throw new Fault("createEntityManagerSynchronizationTypeMapTest failed");
+      throw new Exception("createEntityManagerSynchronizationTypeMapTest failed");
     }
   }
 
@@ -112,6 +111,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy: Create an EntityManagerFactory via SynchronizationType
    */
+  @Test
   public void createEntityManagerSynchronizationTypeTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -142,7 +142,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass1 || !pass2) {
-      throw new Fault("createEntityManagerSynchronizationTypeTest failed");
+      throw new Exception("createEntityManagerSynchronizationTypeTest failed");
     }
   }
 
@@ -154,6 +154,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Call EntityManager.joinTransaction() method when no
    * transaction exists
    */
+  @Test
   public void joinTransactionTransactionRequiredExceptionTest() throws Exception {
     boolean pass = false;
     try {
@@ -168,7 +169,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("joinTransactionTransactionRequiredExceptionTest failed");
+      throw new Exception("joinTransactionTransactionRequiredExceptionTest failed");
     }
   }
 }

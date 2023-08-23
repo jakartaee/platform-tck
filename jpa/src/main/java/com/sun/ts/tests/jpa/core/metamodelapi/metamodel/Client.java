@@ -18,7 +18,6 @@ package com.sun.ts.tests.jpa.core.metamodelapi.metamodel;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Properties;
 import java.util.Set;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -35,14 +34,14 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -64,7 +63,7 @@ public class Client extends PMClientBase {
     }
 
     if (!pass) {
-      throw new Fault("getMetamodeltest failed");
+      throw new Exception("getMetamodeltest failed");
     }
   }
 
@@ -97,7 +96,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getEntities Test  failed");
+      throw new Exception("getEntities Test  failed");
     }
   }
 
@@ -134,7 +133,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getManagedTypes Test  failed");
+      throw new Exception("getManagedTypes Test  failed");
     }
   }
 
@@ -171,7 +170,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("getEmbeddables Test  failed");
+      throw new Exception("getEmbeddables Test  failed");
     }
   }
 
@@ -264,7 +263,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("managedType Test failed");
+      throw new Exception("managedType Test failed");
     }
   }
 
@@ -298,7 +297,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("managedTypeIllegalArgumentException failed");
+      throw new Exception("managedTypeIllegalArgumentException failed");
     }
   }
 
@@ -334,7 +333,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("entity Test  failed");
+      throw new Exception("entity Test  failed");
     }
   }
 
@@ -367,7 +366,7 @@ public class Client extends PMClientBase {
     getEntityTransaction().commit();
 
     if (!pass) {
-      throw new Fault("entityIllegalArgumentException  failed");
+      throw new Exception("entityIllegalArgumentException  failed");
     }
   }
 
@@ -470,7 +469,7 @@ public class Client extends PMClientBase {
       TestUtil.logErr("Received unexpected exception", e);
     }
     if (!pass) {
-      throw new Fault("embeddableIllegalArgumentException failed");
+      throw new Exception("embeddableIllegalArgumentException failed");
     }
   }
 

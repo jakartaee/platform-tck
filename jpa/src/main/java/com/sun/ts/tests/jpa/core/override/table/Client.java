@@ -16,9 +16,6 @@
 
 package com.sun.ts.tests.jpa.core.override.table;
 
-import java.util.Properties;
-
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -29,16 +26,11 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception:test failed ", e);
@@ -66,7 +58,7 @@ public class Client extends PMClientBase {
       TestUtil.logTrace("Test Passed");
     } catch (Exception e) {
       TestUtil.logErr("test failed");
-      throw new Fault(e);
+      throw new Exception(e);
     }
   }
 

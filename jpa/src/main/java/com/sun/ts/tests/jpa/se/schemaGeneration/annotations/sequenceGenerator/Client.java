@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,7 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -35,24 +38,23 @@ public class Client extends PMClientBase {
   String schemaGenerationDir = null;
 
   boolean supportSequence;
+  
+  String sTestCase ="testcase";
+
 
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /*
    * @class.setup_props: db.supports.sequence;
    */
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
-      supportSequence = Boolean.valueOf(p.getProperty("db.supports.sequence"));
+      super.setup();
+      supportSequence = Boolean.valueOf(System.getProperty("db.supports.sequence"));
 
       schemaGenerationDir = System.getProperty("user.dir");
       if (!schemaGenerationDir.endsWith(File.separator)) {
@@ -67,12 +69,12 @@ public class Client extends PMClientBase {
       TestUtil.logMsg("Create new directory ");
       if (!f.mkdir()) {
         String msg = "Could not mkdir:" + f.getAbsolutePath();
-        throw new Fault(msg);
+        throw new Exception(msg);
       }
       removeTestData();
     } catch (Exception e) {
       TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+      throw new Exception("Setup failed:", e);
     }
   }
 
@@ -83,6 +85,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy: Test the @SequenceGenerator annotation
    */
+  @Test
   public void sequenceGeneratorTest() throws Exception {
     if (!supportSequence) {
       TestUtil.logMsg(
@@ -215,10 +218,11 @@ public class Client extends PMClientBase {
     TestUtil.logTrace("pass3:" + pass3);
     TestUtil.logTrace("pass4:" + pass4);
     if (!pass1a || !pass1b || !pass2a || !pass2b || !pass3 || !pass4) {
-      throw new Fault("sequenceGeneratorTest failed");
+      throw new Exception("sequenceGeneratorTest failed");
     }
   }
 
+	@AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

@@ -24,13 +24,13 @@ import java.io.FileWriter;
 import java.io.SequenceInputStream;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Properties;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -70,15 +70,16 @@ public class LogFileProcessor {
 
   private Collection appSpecificRecordCollection = null;
 
-  public LogFileProcessor(Properties props) {
-    setup(props);
+  public LogFileProcessor() {
+    setup();
   }
 
   /**
    * setup method
    */
-  public void setup(Properties p) {
-    logFileLocation = p.getProperty("log.file.location");
+  @BeforeEach
+  public void setup() {
+    logFileLocation = System.getProperty("log.file.location");
 
     if (logFileLocation == null) {
       TestUtil.logErr("LogFileProcessor setup failed ");

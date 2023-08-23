@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,9 +16,10 @@
 
 package com.sun.ts.tests.jpa.core.annotations.onexmanyuni;
 
-import java.util.Properties;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -54,16 +55,12 @@ public class Client extends PMClientBase {
   public Client() {
   }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
-      super.setup(args, p);
+      super.setup();
     } catch (Exception e) {
       TestUtil.logErr("Exception:test failed ", e);
     }
@@ -81,6 +78,7 @@ public class Client extends PMClientBase {
    * One-to-Many relationship.
    * 
    */
+  @Test
   public void oneXmanyUniJoinColumn() throws Exception {
 
     EntityManager em = getEntityManager();
@@ -110,7 +108,7 @@ public class Client extends PMClientBase {
       TestUtil.logTrace("Test Passed");
     } catch (Exception e) {
 
-      throw new Fault("Test failed" + e);
+      throw new Exception("Test failed" + e);
     } finally {
       em.remove(order1);
       em.remove(order2);
@@ -137,6 +135,7 @@ public class Client extends PMClientBase {
     return customer;
   }
 
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();
