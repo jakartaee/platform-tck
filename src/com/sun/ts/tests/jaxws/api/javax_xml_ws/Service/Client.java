@@ -862,7 +862,7 @@ public class Client extends ServiceEETest {
       TestUtil.logMsg("Call Service.getPort(Class)");
       TestUtil.logMsg("Should not find port (expect Exception)");
       Hello tests = (Hello) service
-          .getPort(java.rmi.activation.Activator.class);
+          .getPort((Class) java.util.regex.Pattern.class);
       TestUtil.logErr("Did not throw expected Exception");
       TestUtil.logErr("hello port=" + tests);
       pass = false;

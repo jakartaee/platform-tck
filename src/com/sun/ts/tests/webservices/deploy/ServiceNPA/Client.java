@@ -716,7 +716,7 @@ public class Client extends ServiceEETest {
       TestUtil.logMsg("Call Service.getPort(Class)");
       TestUtil.logMsg("Should not find port (expect ServiceException)");
       Tests tests = (Tests) service
-          .getPort(java.rmi.activation.Activator.class);
+          .getPort((Class) java.util.regex.Pattern.class);
       TestUtil.logErr("Did not throw expected ServiceException");
       pass = false;
     } catch (ServiceException e) {
