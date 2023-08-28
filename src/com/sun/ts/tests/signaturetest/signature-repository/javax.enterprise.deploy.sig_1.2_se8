@@ -1,37 +1,20 @@
 #Signature file v4.1
-#Version 1.2_se8
-
-#
-# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
-#
-# This program and the accompanying materials are made available under the
-# terms of the Eclipse Public License v. 2.0, which is available at
-# http://www.eclipse.org/legal/epl-2.0.
-#
-# This Source Code may also be made available under the following Secondary
-# Licenses when the conditions for such availability set forth in the
-# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
-# version 2 with the GNU Classpath Exception, which is available at
-# https://www.gnu.org/software/classpath/license.html.
-#
-# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
-#
-
+#Version 1.0
 
 
 CLSS public abstract interface java.io.Serializable
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -45,11 +28,11 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)
@@ -71,7 +54,7 @@ hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
 CLSS public abstract interface java.util.EventListener
 
 CLSS public java.util.EventObject
-cons public <init>(java.lang.Object)
+cons public init(java.lang.Object)
 fld protected java.lang.Object source
 intf java.io.Serializable
 meth public java.lang.Object getSource()
@@ -124,7 +107,7 @@ meth public abstract void addXpathListener(javax.enterprise.deploy.shared.Module
 meth public abstract void removeXpathListener(javax.enterprise.deploy.shared.ModuleType,java.lang.String,javax.enterprise.deploy.model.XpathListener)
 
 CLSS public final javax.enterprise.deploy.model.XpathEvent
-cons public <init>(javax.enterprise.deploy.model.DDBean,java.lang.Object)
+cons public init(javax.enterprise.deploy.model.DDBean,java.lang.Object)
 fld public final static java.lang.Object BEAN_ADDED
 fld public final static java.lang.Object BEAN_CHANGED
 fld public final static java.lang.Object BEAN_REMOVED
@@ -141,12 +124,12 @@ CLSS public abstract interface javax.enterprise.deploy.model.XpathListener
 meth public abstract void fireXpathEvent(javax.enterprise.deploy.model.XpathEvent)
 
 CLSS public javax.enterprise.deploy.model.exceptions.DDBeanCreateException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr java.lang.Exception
 
 CLSS public javax.enterprise.deploy.shared.ActionType
-cons protected <init>(int)
+cons protected init(int)
 fld public final static javax.enterprise.deploy.shared.ActionType CANCEL
 fld public final static javax.enterprise.deploy.shared.ActionType EXECUTE
 fld public final static javax.enterprise.deploy.shared.ActionType STOP
@@ -160,7 +143,7 @@ supr java.lang.Object
 hfds enumValueTable,stringTable,value
 
 CLSS public javax.enterprise.deploy.shared.CommandType
-cons protected <init>(int)
+cons protected init(int)
 fld public final static javax.enterprise.deploy.shared.CommandType DISTRIBUTE
 fld public final static javax.enterprise.deploy.shared.CommandType REDEPLOY
 fld public final static javax.enterprise.deploy.shared.CommandType START
@@ -176,7 +159,7 @@ supr java.lang.Object
 hfds enumValueTable,stringTable,value
 
 CLSS public javax.enterprise.deploy.shared.DConfigBeanVersionType
-cons protected <init>(int)
+cons protected init(int)
 fld public final static javax.enterprise.deploy.shared.DConfigBeanVersionType V1_3
 fld public final static javax.enterprise.deploy.shared.DConfigBeanVersionType V1_3_1
 fld public final static javax.enterprise.deploy.shared.DConfigBeanVersionType V1_4
@@ -191,7 +174,7 @@ supr java.lang.Object
 hfds enumValueTable,stringTable,value
 
 CLSS public javax.enterprise.deploy.shared.ModuleType
-cons protected <init>(int)
+cons protected init(int)
 fld public final static javax.enterprise.deploy.shared.ModuleType CAR
 fld public final static javax.enterprise.deploy.shared.ModuleType EAR
 fld public final static javax.enterprise.deploy.shared.ModuleType EJB
@@ -208,7 +191,7 @@ supr java.lang.Object
 hfds enumValueTable,moduleExtension,stringTable,value
 
 CLSS public javax.enterprise.deploy.shared.StateType
-cons protected <init>(int)
+cons protected init(int)
 fld public final static javax.enterprise.deploy.shared.StateType COMPLETED
 fld public final static javax.enterprise.deploy.shared.StateType FAILED
 fld public final static javax.enterprise.deploy.shared.StateType RELEASED
@@ -291,37 +274,37 @@ meth public abstract javax.enterprise.deploy.spi.TargetModuleID getParentTargetM
 meth public abstract javax.enterprise.deploy.spi.TargetModuleID[] getChildTargetModuleID()
 
 CLSS public javax.enterprise.deploy.spi.exceptions.BeanNotFoundException
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 supr java.lang.Exception
 
 CLSS public javax.enterprise.deploy.spi.exceptions.ClientExecuteException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr java.lang.Exception
 
 CLSS public javax.enterprise.deploy.spi.exceptions.ConfigurationException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr java.lang.Exception
 
 CLSS public javax.enterprise.deploy.spi.exceptions.DConfigBeanVersionUnsupportedException
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 supr java.lang.Exception
 
 CLSS public javax.enterprise.deploy.spi.exceptions.DeploymentManagerCreationException
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 supr java.lang.Exception
 
 CLSS public javax.enterprise.deploy.spi.exceptions.InvalidModuleException
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 supr java.lang.Exception
 
 CLSS public javax.enterprise.deploy.spi.exceptions.OperationUnsupportedException
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 supr java.lang.Exception
 
 CLSS public javax.enterprise.deploy.spi.exceptions.TargetException
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 supr java.lang.Exception
 
 CLSS public abstract interface javax.enterprise.deploy.spi.factories.DeploymentFactory
@@ -345,7 +328,7 @@ meth public abstract javax.enterprise.deploy.shared.CommandType getCommand()
 meth public abstract javax.enterprise.deploy.shared.StateType getState()
 
 CLSS public javax.enterprise.deploy.spi.status.ProgressEvent
-cons public <init>(java.lang.Object,javax.enterprise.deploy.spi.TargetModuleID,javax.enterprise.deploy.spi.status.DeploymentStatus)
+cons public init(java.lang.Object,javax.enterprise.deploy.spi.TargetModuleID,javax.enterprise.deploy.spi.status.DeploymentStatus)
 meth public javax.enterprise.deploy.spi.TargetModuleID getTargetModuleID()
 meth public javax.enterprise.deploy.spi.status.DeploymentStatus getDeploymentStatus()
 supr java.util.EventObject

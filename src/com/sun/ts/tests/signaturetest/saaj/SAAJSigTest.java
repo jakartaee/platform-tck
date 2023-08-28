@@ -123,14 +123,9 @@ public class SAAJSigTest extends SigTestEE {
    * define which sig driver we will use
    */
   protected SignatureTestDriver getSigTestDriver() {
-    String version = (String) System.getProperties().get("java.version");
-    if (version.startsWith("9"))
-      driver = new Jdk9SigTestDriver();
-    if (driver == null) {
-      driver = SignatureTestDriverFactory
-          .getInstance(SignatureTestDriverFactory.SIG_TEST);
-    }
-
+    driver = SignatureTestDriverFactory
+        .getInstance(SignatureTestDriverFactory.SIG_TEST);
+    
     return driver;
 
   } // END getSigTestDriver

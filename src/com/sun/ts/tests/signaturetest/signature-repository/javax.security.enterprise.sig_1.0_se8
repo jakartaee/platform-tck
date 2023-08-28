@@ -1,21 +1,5 @@
 #Signature file v4.1
-#Version 1.0_se8
-
-#
-# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
-#
-# This program and the accompanying materials are made available under the
-# terms of the Eclipse Public License v. 2.0, which is available at
-# http://www.eclipse.org/legal/epl-2.0.
-#
-# This Source Code may also be made available under the following Secondary
-# Licenses when the conditions for such availability set forth in the
-# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
-# version 2 with the GNU Classpath Exception, which is available at
-# https://www.gnu.org/software/classpath/license.html.
-#
-# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
-#
+#Version 1.0
 
 
 
@@ -25,7 +9,7 @@ CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
 meth public abstract int compareTo({java.lang.Comparable%0})
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
-cons protected <init>(java.lang.String,int)
+cons protected init(java.lang.String,int)
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
@@ -42,16 +26,16 @@ supr java.lang.Object
 hfds name,ordinal
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -65,11 +49,11 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)
@@ -121,8 +105,8 @@ intf java.lang.annotation.Annotation
 meth public abstract java.lang.annotation.ElementType[] value()
 
 CLSS public abstract java.security.BasicPermission
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 intf java.io.Serializable
 meth public boolean equals(java.lang.Object)
 meth public boolean implies(java.security.Permission)
@@ -133,10 +117,10 @@ supr java.security.Permission
 hfds exitVM,path,serialVersionUID,wildcard
 
 CLSS public java.security.GeneralSecurityException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
@@ -144,7 +128,7 @@ CLSS public abstract interface java.security.Guard
 meth public abstract void checkGuard(java.lang.Object)
 
 CLSS public abstract java.security.Permission
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 intf java.io.Serializable
 intf java.security.Guard
 meth public abstract boolean equals(java.lang.Object)
@@ -172,10 +156,10 @@ CLSS public abstract interface !annotation javax.interceptor.InterceptorBinding
 intf java.lang.annotation.Annotation
 
 CLSS public javax.security.enterprise.AuthenticationException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.security.GeneralSecurityException
 hfds serialVersionUID
 
@@ -189,7 +173,7 @@ meth public static javax.security.enterprise.AuthenticationStatus[] values()
 supr java.lang.Enum<javax.security.enterprise.AuthenticationStatus>
 
 CLSS public javax.security.enterprise.CallerPrincipal
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 intf java.security.Principal
 meth public java.lang.String getName()
 supr java.lang.Object
@@ -203,7 +187,7 @@ meth public abstract java.security.Principal getCallerPrincipal()
 meth public abstract javax.security.enterprise.AuthenticationStatus authenticate(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,javax.security.enterprise.authentication.mechanism.http.AuthenticationParameters)
 
 CLSS public javax.security.enterprise.authentication.mechanism.http.AuthenticationParameters
-cons public <init>()
+cons public init()
 meth public boolean isNewAuthentication()
 meth public boolean isRememberMe()
 meth public javax.security.enterprise.authentication.mechanism.http.AuthenticationParameters credential(javax.security.enterprise.credential.Credential)
@@ -274,7 +258,7 @@ meth public abstract void setRequest(javax.servlet.http.HttpServletRequest)
 meth public abstract void setResponse(javax.servlet.http.HttpServletResponse)
 
 CLSS public javax.security.enterprise.authentication.mechanism.http.HttpMessageContextWrapper
-cons public <init>(javax.security.enterprise.authentication.mechanism.http.HttpMessageContext)
+cons public init(javax.security.enterprise.authentication.mechanism.http.HttpMessageContext)
 intf javax.security.enterprise.authentication.mechanism.http.HttpMessageContext
 meth public boolean isAuthenticationRequest()
 meth public boolean isProtected()
@@ -332,7 +316,7 @@ meth public abstract !hasdefault java.lang.String cookieSecureOnlyExpression()
 meth public abstract !hasdefault java.lang.String isRememberMeExpression()
 
 CLSS public abstract javax.security.enterprise.credential.AbstractClearableCredential
-cons public <init>()
+cons public init()
 intf javax.security.enterprise.credential.Credential
 meth protected abstract void clearCredential()
 meth protected final void setCleared()
@@ -342,11 +326,11 @@ supr java.lang.Object
 hfds cleared
 
 CLSS public javax.security.enterprise.credential.BasicAuthenticationCredential
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 supr javax.security.enterprise.credential.UsernamePasswordCredential
 
 CLSS public javax.security.enterprise.credential.CallerOnlyCredential
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 intf javax.security.enterprise.credential.Credential
 meth public java.lang.String getCaller()
 supr java.lang.Object
@@ -358,8 +342,8 @@ meth public boolean isValid()
 meth public void clear()
 
 CLSS public javax.security.enterprise.credential.Password
-cons public <init>(char[])
-cons public <init>(java.lang.String)
+cons public init(char[])
+cons public init(java.lang.String)
 meth public boolean compareTo(java.lang.String)
 meth public char[] getValue()
 meth public void clear()
@@ -367,15 +351,15 @@ supr java.lang.Object
 hfds EMPTY_VALUE,value
 
 CLSS public javax.security.enterprise.credential.RememberMeCredential
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 intf javax.security.enterprise.credential.Credential
 meth public java.lang.String getToken()
 supr java.lang.Object
 hfds token
 
 CLSS public javax.security.enterprise.credential.UsernamePasswordCredential
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,javax.security.enterprise.credential.Password)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,javax.security.enterprise.credential.Password)
 meth public boolean compareTo(java.lang.String,java.lang.String)
 meth public java.lang.String getCaller()
 meth public java.lang.String getPasswordAsString()
@@ -385,12 +369,12 @@ supr javax.security.enterprise.credential.AbstractClearableCredential
 hfds caller,password
 
 CLSS public javax.security.enterprise.identitystore.CredentialValidationResult
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.Set<java.lang.String>)
-cons public <init>(java.lang.String,java.util.Set<java.lang.String>)
-cons public <init>(java.lang.String,javax.security.enterprise.CallerPrincipal,java.lang.String,java.lang.String,java.util.Set<java.lang.String>)
-cons public <init>(javax.security.enterprise.CallerPrincipal)
-cons public <init>(javax.security.enterprise.CallerPrincipal,java.util.Set<java.lang.String>)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.Set<java.lang.String>)
+cons public init(java.lang.String,java.util.Set<java.lang.String>)
+cons public init(java.lang.String,javax.security.enterprise.CallerPrincipal,java.lang.String,java.lang.String,java.util.Set<java.lang.String>)
+cons public init(javax.security.enterprise.CallerPrincipal)
+cons public init(javax.security.enterprise.CallerPrincipal,java.util.Set<java.lang.String>)
 fld public final static javax.security.enterprise.identitystore.CredentialValidationResult INVALID_RESULT
 fld public final static javax.security.enterprise.identitystore.CredentialValidationResult NOT_VALIDATED_RESULT
 innr public final static !enum Status
@@ -446,8 +430,8 @@ CLSS public abstract interface javax.security.enterprise.identitystore.IdentityS
 meth public abstract javax.security.enterprise.identitystore.CredentialValidationResult validate(javax.security.enterprise.credential.Credential)
 
 CLSS public javax.security.enterprise.identitystore.IdentityStorePermission
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr java.security.BasicPermission
 
 CLSS public abstract interface !annotation javax.security.enterprise.identitystore.LdapIdentityStoreDefinition

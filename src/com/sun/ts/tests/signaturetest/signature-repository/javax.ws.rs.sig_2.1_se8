@@ -1,28 +1,12 @@
 #Signature file v4.1
-#Version 2.1_se8
-
-#
-# Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
-#
-# This program and the accompanying materials are made available under the
-# terms of the Eclipse Public License v. 2.0, which is available at
-# http://www.eclipse.org/legal/epl-2.0.
-#
-# This Source Code may also be made available under the following Secondary
-# Licenses when the conditions for such availability set forth in the
-# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
-# version 2 with the GNU Classpath Exception, which is available at
-# https://www.gnu.org/software/classpath/license.html.
-#
-# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
-#
+#Version 1.0
 
 
 CLSS public java.io.IOException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
@@ -35,7 +19,7 @@ CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
 meth public abstract int compareTo({java.lang.Comparable%0})
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
-cons protected <init>(java.lang.String,int)
+cons protected init(java.lang.String,int)
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
@@ -52,16 +36,16 @@ supr java.lang.Object
 hfds name,ordinal
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -75,20 +59,20 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.RuntimeException
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)
@@ -175,14 +159,14 @@ intf java.lang.annotation.Annotation
 meth public abstract java.lang.String value()
 
 CLSS public javax.ws.rs.BadRequestException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
-cons public <init>(javax.ws.rs.core.Response)
-cons public <init>(javax.ws.rs.core.Response,java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String,javax.ws.rs.core.Response)
+cons public init(java.lang.String,javax.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.Throwable)
+cons public init(javax.ws.rs.core.Response)
+cons public init(javax.ws.rs.core.Response,java.lang.Throwable)
 supr javax.ws.rs.ClientErrorException
 hfds serialVersionUID
 
@@ -193,18 +177,18 @@ CLSS public abstract interface !annotation javax.ws.rs.BeanParam
 intf java.lang.annotation.Annotation
 
 CLSS public javax.ws.rs.ClientErrorException
-cons public <init>(int)
-cons public <init>(int,java.lang.Throwable)
-cons public <init>(java.lang.String,int)
-cons public <init>(java.lang.String,int,java.lang.Throwable)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response$Status)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response$Status,java.lang.Throwable)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(javax.ws.rs.core.Response$Status)
-cons public <init>(javax.ws.rs.core.Response$Status,java.lang.Throwable)
-cons public <init>(javax.ws.rs.core.Response)
-cons public <init>(javax.ws.rs.core.Response,java.lang.Throwable)
+cons public init(int)
+cons public init(int,java.lang.Throwable)
+cons public init(java.lang.String,int)
+cons public init(java.lang.String,int,java.lang.Throwable)
+cons public init(java.lang.String,javax.ws.rs.core.Response$Status)
+cons public init(java.lang.String,javax.ws.rs.core.Response$Status,java.lang.Throwable)
+cons public init(java.lang.String,javax.ws.rs.core.Response)
+cons public init(java.lang.String,javax.ws.rs.core.Response,java.lang.Throwable)
+cons public init(javax.ws.rs.core.Response$Status)
+cons public init(javax.ws.rs.core.Response$Status,java.lang.Throwable)
+cons public init(javax.ws.rs.core.Response)
+cons public init(javax.ws.rs.core.Response,java.lang.Throwable)
 supr javax.ws.rs.WebApplicationException
 hfds serialVersionUID
 
@@ -251,14 +235,14 @@ CLSS public abstract interface !annotation javax.ws.rs.Encoded
 intf java.lang.annotation.Annotation
 
 CLSS public javax.ws.rs.ForbiddenException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
-cons public <init>(javax.ws.rs.core.Response)
-cons public <init>(javax.ws.rs.core.Response,java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String,javax.ws.rs.core.Response)
+cons public init(java.lang.String,javax.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.Throwable)
+cons public init(javax.ws.rs.core.Response)
+cons public init(javax.ws.rs.core.Response,java.lang.Throwable)
 supr javax.ws.rs.ClientErrorException
 hfds serialVersionUID
 
@@ -305,14 +289,14 @@ intf java.lang.annotation.Annotation
 meth public abstract java.lang.String value()
 
 CLSS public javax.ws.rs.InternalServerErrorException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
-cons public <init>(javax.ws.rs.core.Response)
-cons public <init>(javax.ws.rs.core.Response,java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String,javax.ws.rs.core.Response)
+cons public init(java.lang.String,javax.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.Throwable)
+cons public init(javax.ws.rs.core.Response)
+cons public init(javax.ws.rs.core.Response,java.lang.Throwable)
 supr javax.ws.rs.ServerErrorException
 hfds serialVersionUID
 
@@ -330,63 +314,63 @@ CLSS public abstract interface !annotation javax.ws.rs.NameBinding
 intf java.lang.annotation.Annotation
 
 CLSS public javax.ws.rs.NotAcceptableException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
-cons public <init>(javax.ws.rs.core.Response)
-cons public <init>(javax.ws.rs.core.Response,java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String,javax.ws.rs.core.Response)
+cons public init(java.lang.String,javax.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.Throwable)
+cons public init(javax.ws.rs.core.Response)
+cons public init(javax.ws.rs.core.Response,java.lang.Throwable)
 supr javax.ws.rs.ClientErrorException
 hfds serialVersionUID
 
 CLSS public javax.ws.rs.NotAllowedException
-cons public !varargs <init>(java.lang.String,java.lang.String,java.lang.String[])
-cons public !varargs <init>(java.lang.String,java.lang.String[])
-cons public !varargs <init>(java.lang.String,java.lang.Throwable,java.lang.String[])
-cons public !varargs <init>(java.lang.Throwable,java.lang.String[])
-cons public <init>(java.lang.String,javax.ws.rs.core.Response)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(javax.ws.rs.core.Response)
-cons public <init>(javax.ws.rs.core.Response,java.lang.Throwable)
+cons public !varargs init(java.lang.String,java.lang.String,java.lang.String[])
+cons public !varargs init(java.lang.String,java.lang.String[])
+cons public !varargs init(java.lang.String,java.lang.Throwable,java.lang.String[])
+cons public !varargs init(java.lang.Throwable,java.lang.String[])
+cons public init(java.lang.String,javax.ws.rs.core.Response)
+cons public init(java.lang.String,javax.ws.rs.core.Response,java.lang.Throwable)
+cons public init(javax.ws.rs.core.Response)
+cons public init(javax.ws.rs.core.Response,java.lang.Throwable)
 supr javax.ws.rs.ClientErrorException
 hfds serialVersionUID
 
 CLSS public javax.ws.rs.NotAuthorizedException
-cons public !varargs <init>(java.lang.Object,java.lang.Object[])
-cons public !varargs <init>(java.lang.String,java.lang.Object,java.lang.Object[])
-cons public !varargs <init>(java.lang.String,java.lang.Throwable,java.lang.Object,java.lang.Object[])
-cons public !varargs <init>(java.lang.Throwable,java.lang.Object,java.lang.Object[])
-cons public <init>(java.lang.String,javax.ws.rs.core.Response)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(javax.ws.rs.core.Response)
-cons public <init>(javax.ws.rs.core.Response,java.lang.Throwable)
+cons public !varargs init(java.lang.Object,java.lang.Object[])
+cons public !varargs init(java.lang.String,java.lang.Object,java.lang.Object[])
+cons public !varargs init(java.lang.String,java.lang.Throwable,java.lang.Object,java.lang.Object[])
+cons public !varargs init(java.lang.Throwable,java.lang.Object,java.lang.Object[])
+cons public init(java.lang.String,javax.ws.rs.core.Response)
+cons public init(java.lang.String,javax.ws.rs.core.Response,java.lang.Throwable)
+cons public init(javax.ws.rs.core.Response)
+cons public init(javax.ws.rs.core.Response,java.lang.Throwable)
 meth public java.util.List<java.lang.Object> getChallenges()
 supr javax.ws.rs.ClientErrorException
 hfds challenges,serialVersionUID
 
 CLSS public javax.ws.rs.NotFoundException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
-cons public <init>(javax.ws.rs.core.Response)
-cons public <init>(javax.ws.rs.core.Response,java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String,javax.ws.rs.core.Response)
+cons public init(java.lang.String,javax.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.Throwable)
+cons public init(javax.ws.rs.core.Response)
+cons public init(javax.ws.rs.core.Response,java.lang.Throwable)
 supr javax.ws.rs.ClientErrorException
 hfds serialVersionUID
 
 CLSS public javax.ws.rs.NotSupportedException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
-cons public <init>(javax.ws.rs.core.Response)
-cons public <init>(javax.ws.rs.core.Response,java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String,javax.ws.rs.core.Response)
+cons public init(java.lang.String,javax.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.lang.Throwable)
+cons public init(javax.ws.rs.core.Response)
+cons public init(javax.ws.rs.core.Response,java.lang.Throwable)
 supr javax.ws.rs.ClientErrorException
 hfds serialVersionUID
 
@@ -441,9 +425,9 @@ fld public final static int USER = 5000
 supr java.lang.Object
 
 CLSS public javax.ws.rs.ProcessingException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.RuntimeException
 hfds serialVersionUID
 
@@ -463,12 +447,12 @@ intf java.lang.annotation.Annotation
 meth public abstract java.lang.String value()
 
 CLSS public javax.ws.rs.RedirectionException
-cons public <init>(int,java.net.URI)
-cons public <init>(java.lang.String,int,java.net.URI)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response$Status,java.net.URI)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response)
-cons public <init>(javax.ws.rs.core.Response$Status,java.net.URI)
-cons public <init>(javax.ws.rs.core.Response)
+cons public init(int,java.net.URI)
+cons public init(java.lang.String,int,java.net.URI)
+cons public init(java.lang.String,javax.ws.rs.core.Response$Status,java.net.URI)
+cons public init(java.lang.String,javax.ws.rs.core.Response)
+cons public init(javax.ws.rs.core.Response$Status,java.net.URI)
+cons public init(javax.ws.rs.core.Response)
 meth public java.net.URI getLocation()
 supr javax.ws.rs.WebApplicationException
 hfds serialVersionUID
@@ -481,58 +465,58 @@ meth public static javax.ws.rs.RuntimeType[] values()
 supr java.lang.Enum<javax.ws.rs.RuntimeType>
 
 CLSS public javax.ws.rs.ServerErrorException
-cons public <init>(int)
-cons public <init>(int,java.lang.Throwable)
-cons public <init>(java.lang.String,int)
-cons public <init>(java.lang.String,int,java.lang.Throwable)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response$Status)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response$Status,java.lang.Throwable)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(javax.ws.rs.core.Response$Status)
-cons public <init>(javax.ws.rs.core.Response$Status,java.lang.Throwable)
-cons public <init>(javax.ws.rs.core.Response)
-cons public <init>(javax.ws.rs.core.Response,java.lang.Throwable)
+cons public init(int)
+cons public init(int,java.lang.Throwable)
+cons public init(java.lang.String,int)
+cons public init(java.lang.String,int,java.lang.Throwable)
+cons public init(java.lang.String,javax.ws.rs.core.Response$Status)
+cons public init(java.lang.String,javax.ws.rs.core.Response$Status,java.lang.Throwable)
+cons public init(java.lang.String,javax.ws.rs.core.Response)
+cons public init(java.lang.String,javax.ws.rs.core.Response,java.lang.Throwable)
+cons public init(javax.ws.rs.core.Response$Status)
+cons public init(javax.ws.rs.core.Response$Status,java.lang.Throwable)
+cons public init(javax.ws.rs.core.Response)
+cons public init(javax.ws.rs.core.Response,java.lang.Throwable)
 supr javax.ws.rs.WebApplicationException
 hfds serialVersionUID
 
 CLSS public javax.ws.rs.ServiceUnavailableException
-cons public <init>()
-cons public <init>(java.lang.Long)
-cons public <init>(java.lang.Long,java.lang.Throwable)
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Long)
-cons public <init>(java.lang.String,java.lang.Long,java.lang.Throwable)
-cons public <init>(java.lang.String,java.util.Date)
-cons public <init>(java.lang.String,java.util.Date,java.lang.Throwable)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response,java.lang.Throwable)
-cons public <init>(java.util.Date)
-cons public <init>(java.util.Date,java.lang.Throwable)
-cons public <init>(javax.ws.rs.core.Response)
-cons public <init>(javax.ws.rs.core.Response,java.lang.Throwable)
+cons public init()
+cons public init(java.lang.Long)
+cons public init(java.lang.Long,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Long)
+cons public init(java.lang.String,java.lang.Long,java.lang.Throwable)
+cons public init(java.lang.String,java.util.Date)
+cons public init(java.lang.String,java.util.Date,java.lang.Throwable)
+cons public init(java.lang.String,javax.ws.rs.core.Response)
+cons public init(java.lang.String,javax.ws.rs.core.Response,java.lang.Throwable)
+cons public init(java.util.Date)
+cons public init(java.util.Date,java.lang.Throwable)
+cons public init(javax.ws.rs.core.Response)
+cons public init(javax.ws.rs.core.Response,java.lang.Throwable)
 meth public boolean hasRetryAfter()
 meth public java.util.Date getRetryTime(java.util.Date)
 supr javax.ws.rs.ServerErrorException
 hfds serialVersionUID
 
 CLSS public javax.ws.rs.WebApplicationException
-cons public <init>()
-cons public <init>(int)
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,int)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.String,java.lang.Throwable,int)
-cons public <init>(java.lang.String,java.lang.Throwable,javax.ws.rs.core.Response$Status)
-cons public <init>(java.lang.String,java.lang.Throwable,javax.ws.rs.core.Response)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response$Status)
-cons public <init>(java.lang.String,javax.ws.rs.core.Response)
-cons public <init>(java.lang.Throwable)
-cons public <init>(java.lang.Throwable,int)
-cons public <init>(java.lang.Throwable,javax.ws.rs.core.Response$Status)
-cons public <init>(java.lang.Throwable,javax.ws.rs.core.Response)
-cons public <init>(javax.ws.rs.core.Response$Status)
-cons public <init>(javax.ws.rs.core.Response)
+cons public init()
+cons public init(int)
+cons public init(java.lang.String)
+cons public init(java.lang.String,int)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String,java.lang.Throwable,int)
+cons public init(java.lang.String,java.lang.Throwable,javax.ws.rs.core.Response$Status)
+cons public init(java.lang.String,java.lang.Throwable,javax.ws.rs.core.Response)
+cons public init(java.lang.String,javax.ws.rs.core.Response$Status)
+cons public init(java.lang.String,javax.ws.rs.core.Response)
+cons public init(java.lang.Throwable)
+cons public init(java.lang.Throwable,int)
+cons public init(java.lang.Throwable,javax.ws.rs.core.Response$Status)
+cons public init(java.lang.Throwable,javax.ws.rs.core.Response)
+cons public init(javax.ws.rs.core.Response$Status)
+cons public init(javax.ws.rs.core.Response)
 meth public javax.ws.rs.core.Response getResponse()
 supr java.lang.RuntimeException
 hfds response,serialVersionUID
@@ -585,7 +569,7 @@ meth public abstract javax.ws.rs.client.WebTarget target(javax.ws.rs.core.UriBui
 meth public abstract void close()
 
 CLSS public abstract javax.ws.rs.client.ClientBuilder
-cons protected <init>()
+cons protected init()
 fld public final static java.lang.String JAXRS_DEFAULT_CLIENT_BUILDER_PROPERTY = "javax.ws.rs.client.ClientBuilder"
 intf javax.ws.rs.core.Configurable<javax.ws.rs.client.ClientBuilder>
 meth public abstract javax.ws.rs.client.Client build()
@@ -759,9 +743,9 @@ meth public abstract void completed({javax.ws.rs.client.InvocationCallback%0})
 meth public abstract void failed(java.lang.Throwable)
 
 CLSS public javax.ws.rs.client.ResponseProcessingException
-cons public <init>(javax.ws.rs.core.Response,java.lang.String)
-cons public <init>(javax.ws.rs.core.Response,java.lang.String,java.lang.Throwable)
-cons public <init>(javax.ws.rs.core.Response,java.lang.Throwable)
+cons public init(javax.ws.rs.core.Response,java.lang.String)
+cons public init(javax.ws.rs.core.Response,java.lang.String,java.lang.Throwable)
+cons public init(javax.ws.rs.core.Response,java.lang.Throwable)
 meth public javax.ws.rs.core.Response getResponse()
 supr javax.ws.rs.ProcessingException
 hfds response,serialVersionUID
@@ -955,7 +939,7 @@ CLSS public abstract interface javax.ws.rs.container.TimeoutHandler
 meth public abstract void handleTimeout(javax.ws.rs.container.AsyncResponse)
 
 CLSS public abstract javax.ws.rs.core.AbstractMultivaluedMap<%0 extends java.lang.Object, %1 extends java.lang.Object>
-cons public <init>(java.util.Map<{javax.ws.rs.core.AbstractMultivaluedMap%0},java.util.List<{javax.ws.rs.core.AbstractMultivaluedMap%1}>>)
+cons public init(java.util.Map<{javax.ws.rs.core.AbstractMultivaluedMap%0},java.util.List<{javax.ws.rs.core.AbstractMultivaluedMap%1}>>)
 fld protected final java.util.Map<{javax.ws.rs.core.AbstractMultivaluedMap%0},java.util.List<{javax.ws.rs.core.AbstractMultivaluedMap%1}>> store
 intf javax.ws.rs.core.MultivaluedMap<{javax.ws.rs.core.AbstractMultivaluedMap%0},{javax.ws.rs.core.AbstractMultivaluedMap%1}>
 meth protected final java.util.List<{javax.ws.rs.core.AbstractMultivaluedMap%1}> getValues({javax.ws.rs.core.AbstractMultivaluedMap%0})
@@ -986,14 +970,14 @@ meth public void putAll(java.util.Map<? extends {javax.ws.rs.core.AbstractMultiv
 supr java.lang.Object
 
 CLSS public javax.ws.rs.core.Application
-cons public <init>()
+cons public init()
 meth public java.util.Map<java.lang.String,java.lang.Object> getProperties()
 meth public java.util.Set<java.lang.Class<?>> getClasses()
 meth public java.util.Set<java.lang.Object> getSingletons()
 supr java.lang.Object
 
 CLSS public javax.ws.rs.core.CacheControl
-cons public <init>()
+cons public init()
 meth public boolean equals(java.lang.Object)
 meth public boolean isMustRevalidate()
 meth public boolean isNoCache()
@@ -1052,9 +1036,9 @@ CLSS public abstract interface !annotation javax.ws.rs.core.Context
 intf java.lang.annotation.Annotation
 
 CLSS public javax.ws.rs.core.Cookie
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int)
 fld public final static int DEFAULT_VERSION = 1
 meth public boolean equals(java.lang.Object)
 meth public int getVersion()
@@ -1069,8 +1053,8 @@ supr java.lang.Object
 hfds HEADER_DELEGATE,domain,name,path,value,version
 
 CLSS public javax.ws.rs.core.EntityTag
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,boolean)
+cons public init(java.lang.String)
+cons public init(java.lang.String,boolean)
 meth public boolean equals(java.lang.Object)
 meth public boolean isWeak()
 meth public int hashCode()
@@ -1087,17 +1071,17 @@ CLSS public abstract interface javax.ws.rs.core.FeatureContext
 intf javax.ws.rs.core.Configurable<javax.ws.rs.core.FeatureContext>
 
 CLSS public javax.ws.rs.core.Form
-cons public <init>()
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(javax.ws.rs.core.MultivaluedMap<java.lang.String,java.lang.String>)
+cons public init()
+cons public init(java.lang.String,java.lang.String)
+cons public init(javax.ws.rs.core.MultivaluedMap<java.lang.String,java.lang.String>)
 meth public javax.ws.rs.core.Form param(java.lang.String,java.lang.String)
 meth public javax.ws.rs.core.MultivaluedMap<java.lang.String,java.lang.String> asMap()
 supr java.lang.Object
 hfds parameters
 
 CLSS public javax.ws.rs.core.GenericEntity<%0 extends java.lang.Object>
-cons protected <init>({javax.ws.rs.core.GenericEntity%0})
-cons public <init>({javax.ws.rs.core.GenericEntity%0},java.lang.reflect.Type)
+cons protected init({javax.ws.rs.core.GenericEntity%0})
+cons public init({javax.ws.rs.core.GenericEntity%0},java.lang.reflect.Type)
 meth public boolean equals(java.lang.Object)
 meth public final java.lang.Class<?> getRawType()
 meth public final java.lang.reflect.Type getType()
@@ -1108,8 +1092,8 @@ supr java.lang.Object
 hfds entity,rawType,type
 
 CLSS public javax.ws.rs.core.GenericType<%0 extends java.lang.Object>
-cons protected <init>()
-cons public <init>(java.lang.reflect.Type)
+cons protected init()
+cons public init(java.lang.reflect.Type)
 meth public boolean equals(java.lang.Object)
 meth public final java.lang.Class<?> getRawType()
 meth public final java.lang.reflect.Type getType()
@@ -1164,7 +1148,7 @@ meth public abstract javax.ws.rs.core.MediaType getMediaType()
 meth public abstract javax.ws.rs.core.MultivaluedMap<java.lang.String,java.lang.String> getRequestHeaders()
 
 CLSS public abstract javax.ws.rs.core.Link
-cons public <init>()
+cons public init()
 fld public final static java.lang.String REL = "rel"
 fld public final static java.lang.String TITLE = "title"
 fld public final static java.lang.String TYPE = "type"
@@ -1207,16 +1191,16 @@ meth public abstract javax.ws.rs.core.Link$Builder uriBuilder(javax.ws.rs.core.U
 
 CLSS public static javax.ws.rs.core.Link$JaxbAdapter
  outer javax.ws.rs.core.Link
-cons public <init>()
+cons public init()
 meth public javax.ws.rs.core.Link unmarshal(javax.ws.rs.core.Link$JaxbLink)
 meth public javax.ws.rs.core.Link$JaxbLink marshal(javax.ws.rs.core.Link)
 supr javax.xml.bind.annotation.adapters.XmlAdapter<javax.ws.rs.core.Link$JaxbLink,javax.ws.rs.core.Link>
 
 CLSS public static javax.ws.rs.core.Link$JaxbLink
  outer javax.ws.rs.core.Link
-cons public <init>()
-cons public <init>(java.net.URI)
-cons public <init>(java.net.URI,java.util.Map<javax.xml.namespace.QName,java.lang.Object>)
+cons public init()
+cons public init(java.net.URI)
+cons public init(java.net.URI,java.util.Map<javax.xml.namespace.QName,java.lang.Object>)
 meth public boolean equals(java.lang.Object)
 meth public int hashCode()
 meth public java.net.URI getUri()
@@ -1225,10 +1209,10 @@ supr java.lang.Object
 hfds params,uri
 
 CLSS public javax.ws.rs.core.MediaType
-cons public <init>()
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.util.Map<java.lang.String,java.lang.String>)
+cons public init()
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.util.Map<java.lang.String,java.lang.String>)
 fld public final static java.lang.String APPLICATION_ATOM_XML = "application/atom+xml"
 fld public final static java.lang.String APPLICATION_FORM_URLENCODED = "application/x-www-form-urlencoded"
 fld public final static java.lang.String APPLICATION_JSON = "application/json"
@@ -1274,11 +1258,11 @@ supr java.lang.Object
 hfds parameters,subtype,type
 
 CLSS public javax.ws.rs.core.MultivaluedHashMap<%0 extends java.lang.Object, %1 extends java.lang.Object>
-cons public <init>()
-cons public <init>(int)
-cons public <init>(int,float)
-cons public <init>(java.util.Map<? extends {javax.ws.rs.core.MultivaluedHashMap%0},? extends {javax.ws.rs.core.MultivaluedHashMap%1}>)
-cons public <init>(javax.ws.rs.core.MultivaluedMap<? extends {javax.ws.rs.core.MultivaluedHashMap%0},? extends {javax.ws.rs.core.MultivaluedHashMap%1}>)
+cons public init()
+cons public init(int)
+cons public init(int,float)
+cons public init(java.util.Map<? extends {javax.ws.rs.core.MultivaluedHashMap%0},? extends {javax.ws.rs.core.MultivaluedHashMap%1}>)
+cons public init(javax.ws.rs.core.MultivaluedMap<? extends {javax.ws.rs.core.MultivaluedHashMap%0},? extends {javax.ws.rs.core.MultivaluedHashMap%1}>)
 intf java.io.Serializable
 supr javax.ws.rs.core.AbstractMultivaluedMap<{javax.ws.rs.core.MultivaluedHashMap%0},{javax.ws.rs.core.MultivaluedHashMap%1}>
 hfds serialVersionUID
@@ -1294,14 +1278,14 @@ meth public abstract void putSingle({javax.ws.rs.core.MultivaluedMap%0},{javax.w
 meth public abstract {javax.ws.rs.core.MultivaluedMap%1} getFirst({javax.ws.rs.core.MultivaluedMap%0})
 
 CLSS public javax.ws.rs.core.NewCookie
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,int,boolean)
-cons public <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,int,java.util.Date,boolean,boolean)
-cons public <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,boolean)
-cons public <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,boolean,boolean)
-cons public <init>(javax.ws.rs.core.Cookie)
-cons public <init>(javax.ws.rs.core.Cookie,java.lang.String,int,boolean)
-cons public <init>(javax.ws.rs.core.Cookie,java.lang.String,int,java.util.Date,boolean,boolean)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,int,boolean)
+cons public init(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,int,java.util.Date,boolean,boolean)
+cons public init(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,boolean)
+cons public init(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,boolean,boolean)
+cons public init(javax.ws.rs.core.Cookie)
+cons public init(javax.ws.rs.core.Cookie,java.lang.String,int,boolean)
+cons public init(javax.ws.rs.core.Cookie,java.lang.String,int,java.util.Date,boolean,boolean)
 fld public final static int DEFAULT_MAX_AGE = -1
 meth public boolean equals(java.lang.Object)
 meth public boolean isHttpOnly()
@@ -1317,9 +1301,9 @@ supr javax.ws.rs.core.Cookie
 hfds comment,delegate,expiry,httpOnly,maxAge,secure
 
 CLSS public javax.ws.rs.core.NoContentException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.io.IOException
 hfds serialVersionUID
 
@@ -1336,7 +1320,7 @@ meth public abstract javax.ws.rs.core.Response$ResponseBuilder evaluatePrecondit
 meth public abstract javax.ws.rs.core.Variant selectVariant(java.util.List<javax.ws.rs.core.Variant>)
 
 CLSS public abstract javax.ws.rs.core.Response
-cons protected <init>()
+cons protected init()
 innr public abstract interface static StatusType
 innr public abstract static ResponseBuilder
 innr public final static !enum Status
@@ -1393,7 +1377,7 @@ supr java.lang.Object
 
 CLSS public abstract static javax.ws.rs.core.Response$ResponseBuilder
  outer javax.ws.rs.core.Response
-cons protected <init>()
+cons protected init()
 meth protected static javax.ws.rs.core.Response$ResponseBuilder newInstance()
 meth public abstract !varargs javax.ws.rs.core.Response$ResponseBuilder allow(java.lang.String[])
 meth public abstract !varargs javax.ws.rs.core.Response$ResponseBuilder cookie(javax.ws.rs.core.NewCookie[])
@@ -1516,7 +1500,7 @@ CLSS public abstract interface javax.ws.rs.core.StreamingOutput
 meth public abstract void write(java.io.OutputStream) throws java.io.IOException
 
 CLSS public abstract javax.ws.rs.core.UriBuilder
-cons protected <init>()
+cons protected init()
 meth protected static javax.ws.rs.core.UriBuilder newInstance()
 meth public abstract !varargs java.net.URI build(java.lang.Object[])
 meth public abstract !varargs java.net.URI buildFromEncoded(java.lang.Object[])
@@ -1561,10 +1545,10 @@ meth public static javax.ws.rs.core.UriBuilder fromUri(java.net.URI)
 supr java.lang.Object
 
 CLSS public javax.ws.rs.core.UriBuilderException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.RuntimeException
 hfds serialVersionUID
 
@@ -1590,10 +1574,10 @@ meth public abstract javax.ws.rs.core.UriBuilder getBaseUriBuilder()
 meth public abstract javax.ws.rs.core.UriBuilder getRequestUriBuilder()
 
 CLSS public javax.ws.rs.core.Variant
-cons public <init>(javax.ws.rs.core.MediaType,java.lang.String,java.lang.String)
-cons public <init>(javax.ws.rs.core.MediaType,java.lang.String,java.lang.String,java.lang.String)
-cons public <init>(javax.ws.rs.core.MediaType,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
-cons public <init>(javax.ws.rs.core.MediaType,java.util.Locale,java.lang.String)
+cons public init(javax.ws.rs.core.MediaType,java.lang.String,java.lang.String)
+cons public init(javax.ws.rs.core.MediaType,java.lang.String,java.lang.String,java.lang.String)
+cons public init(javax.ws.rs.core.MediaType,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+cons public init(javax.ws.rs.core.MediaType,java.util.Locale,java.lang.String)
 innr public abstract static VariantListBuilder
 meth public !varargs static javax.ws.rs.core.Variant$VariantListBuilder encodings(java.lang.String[])
 meth public !varargs static javax.ws.rs.core.Variant$VariantListBuilder languages(java.util.Locale[])
@@ -1610,7 +1594,7 @@ hfds encoding,language,mediaType
 
 CLSS public abstract static javax.ws.rs.core.Variant$VariantListBuilder
  outer javax.ws.rs.core.Variant
-cons protected <init>()
+cons protected init()
 meth public abstract !varargs javax.ws.rs.core.Variant$VariantListBuilder encodings(java.lang.String[])
 meth public abstract !varargs javax.ws.rs.core.Variant$VariantListBuilder languages(java.util.Locale[])
 meth public abstract !varargs javax.ws.rs.core.Variant$VariantListBuilder mediaTypes(javax.ws.rs.core.MediaType[])
@@ -1686,7 +1670,7 @@ meth public abstract javax.ws.rs.core.MultivaluedMap<java.lang.String,java.lang.
 meth public abstract void setInputStream(java.io.InputStream)
 
 CLSS public abstract javax.ws.rs.ext.RuntimeDelegate
-cons protected <init>()
+cons protected init()
 fld public final static java.lang.String JAXRS_RUNTIME_DELEGATE_PROPERTY = "javax.ws.rs.ext.RuntimeDelegate"
 innr public abstract interface static HeaderDelegate
 meth public abstract <%0 extends java.lang.Object> javax.ws.rs.ext.RuntimeDelegate$HeaderDelegate<{%%0}> createHeaderDelegate(java.lang.Class<{%%0}>)
@@ -1788,7 +1772,7 @@ meth public void close()
 
 CLSS public abstract static javax.ws.rs.sse.SseEventSource$Builder
  outer javax.ws.rs.sse.SseEventSource
-cons protected <init>()
+cons protected init()
 fld public final static java.lang.String JAXRS_DEFAULT_SSE_BUILDER_PROPERTY = "javax.ws.rs.sse.SseEventSource.Builder"
 meth protected abstract javax.ws.rs.sse.SseEventSource$Builder target(javax.ws.rs.client.WebTarget)
 meth public abstract javax.ws.rs.sse.SseEventSource build()
@@ -1797,7 +1781,7 @@ supr java.lang.Object
 hfds JAXRS_DEFAULT_SSE_BUILDER
 
 CLSS public abstract javax.xml.bind.annotation.adapters.XmlAdapter<%0 extends java.lang.Object, %1 extends java.lang.Object>
-cons protected <init>()
+cons protected init()
 meth public abstract {javax.xml.bind.annotation.adapters.XmlAdapter%0} marshal({javax.xml.bind.annotation.adapters.XmlAdapter%1}) throws java.lang.Exception
 meth public abstract {javax.xml.bind.annotation.adapters.XmlAdapter%1} unmarshal({javax.xml.bind.annotation.adapters.XmlAdapter%0}) throws java.lang.Exception
 supr java.lang.Object

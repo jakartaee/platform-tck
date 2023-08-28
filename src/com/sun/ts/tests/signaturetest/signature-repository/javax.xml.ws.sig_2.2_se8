@@ -25,7 +25,7 @@ CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
 meth public abstract int compareTo({java.lang.Comparable%0})
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
-cons protected <init>(java.lang.String,int)
+cons protected init(java.lang.String,int)
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
@@ -42,16 +42,16 @@ supr java.lang.Object
 hfds name,ordinal
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -65,20 +65,20 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.RuntimeException
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)
@@ -130,8 +130,8 @@ intf java.lang.annotation.Annotation
 meth public abstract java.lang.annotation.ElementType[] value()
 
 CLSS public abstract java.security.BasicPermission
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 intf java.io.Serializable
 meth public boolean equals(java.lang.Object)
 meth public boolean implies(java.security.Permission)
@@ -145,7 +145,7 @@ CLSS public abstract interface java.security.Guard
 meth public abstract void checkGuard(java.lang.Object)
 
 CLSS public abstract java.security.Permission
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 intf java.io.Serializable
 intf java.security.Guard
 meth public abstract boolean equals(java.lang.Object)
@@ -273,7 +273,7 @@ meth public abstract void invokeOneWay({javax.xml.ws.Dispatch%0})
 meth public abstract {javax.xml.ws.Dispatch%0} invoke({javax.xml.ws.Dispatch%0})
 
 CLSS public abstract javax.xml.ws.Endpoint
-cons public <init>()
+cons public init()
 fld public final static java.lang.String WSDL_PORT = "javax.xml.ws.wsdl.port"
 fld public final static java.lang.String WSDL_SERVICE = "javax.xml.ws.wsdl.service"
 meth public !varargs static javax.xml.ws.Endpoint create(java.lang.Object,javax.xml.ws.WebServiceFeature[])
@@ -301,12 +301,12 @@ meth public void setEndpointContext(javax.xml.ws.EndpointContext)
 supr java.lang.Object
 
 CLSS public abstract javax.xml.ws.EndpointContext
-cons public <init>()
+cons public init()
 meth public abstract java.util.Set<javax.xml.ws.Endpoint> getEndpoints()
 supr java.lang.Object
 
 CLSS public abstract javax.xml.ws.EndpointReference
-cons protected <init>()
+cons protected init()
 meth public !varargs <%0 extends java.lang.Object> {%%0} getPort(java.lang.Class<{%%0}>,javax.xml.ws.WebServiceFeature[])
 meth public abstract void writeTo(javax.xml.transform.Result)
 meth public java.lang.String toString()
@@ -322,8 +322,8 @@ meth public abstract !hasdefault java.lang.String value()
 meth public abstract java.lang.Class<? extends java.lang.Exception> className()
 
 CLSS public final javax.xml.ws.Holder<%0 extends java.lang.Object>
-cons public <init>()
-cons public <init>({javax.xml.ws.Holder%0})
+cons public init()
+cons public init({javax.xml.ws.Holder%0})
 fld public {javax.xml.ws.Holder%0} value
 intf java.io.Serializable
 supr java.lang.Object
@@ -336,10 +336,10 @@ meth public abstract void setPayload(java.lang.Object,javax.xml.bind.JAXBContext
 meth public abstract void setPayload(javax.xml.transform.Source)
 
 CLSS public javax.xml.ws.ProtocolException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.xml.ws.WebServiceException
 
 CLSS public abstract interface javax.xml.ws.Provider<%0 extends java.lang.Object>
@@ -364,8 +364,8 @@ intf java.lang.annotation.Annotation
 meth public abstract !hasdefault boolean enabled()
 
 CLSS public final javax.xml.ws.RespectBindingFeature
-cons public <init>()
-cons public <init>(boolean)
+cons public init()
+cons public init(boolean)
 fld public final static java.lang.String ID = "javax.xml.ws.RespectBindingFeature"
 meth public java.lang.String getID()
 supr javax.xml.ws.WebServiceFeature
@@ -385,8 +385,8 @@ meth public abstract !hasdefault java.lang.String partName()
 meth public abstract !hasdefault java.lang.String targetNamespace()
 
 CLSS public javax.xml.ws.Service
-cons protected !varargs <init>(java.net.URL,javax.xml.namespace.QName,javax.xml.ws.WebServiceFeature[])
-cons protected <init>(java.net.URL,javax.xml.namespace.QName)
+cons protected !varargs init(java.net.URL,javax.xml.namespace.QName,javax.xml.ws.WebServiceFeature[])
+cons protected init(java.net.URL,javax.xml.namespace.QName)
 innr public final static !enum Mode
 meth public !varargs <%0 extends java.lang.Object> javax.xml.ws.Dispatch<{%%0}> createDispatch(javax.xml.namespace.QName,java.lang.Class<{%%0}>,javax.xml.ws.Service$Mode,javax.xml.ws.WebServiceFeature[])
 meth public !varargs <%0 extends java.lang.Object> javax.xml.ws.Dispatch<{%%0}> createDispatch(javax.xml.ws.EndpointReference,java.lang.Class<{%%0}>,javax.xml.ws.Service$Mode,javax.xml.ws.WebServiceFeature[])
@@ -464,22 +464,22 @@ meth public abstract java.security.Principal getUserPrincipal()
 meth public abstract javax.xml.ws.handler.MessageContext getMessageContext()
 
 CLSS public javax.xml.ws.WebServiceException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.RuntimeException
 
 CLSS public abstract javax.xml.ws.WebServiceFeature
-cons protected <init>()
+cons protected init()
 fld protected boolean enabled
 meth public abstract java.lang.String getID()
 meth public boolean isEnabled()
 supr java.lang.Object
 
 CLSS public final javax.xml.ws.WebServicePermission
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr java.security.BasicPermission
 hfds serialVersionUID
 
@@ -580,7 +580,7 @@ fld public final static java.lang.String HTTP_BINDING = "http://www.w3.org/2004/
 intf javax.xml.ws.Binding
 
 CLSS public javax.xml.ws.http.HTTPException
-cons public <init>(int)
+cons public init(int)
 meth public int getStatusCode()
 supr javax.xml.ws.ProtocolException
 hfds statusCode
@@ -596,10 +596,10 @@ meth public abstract !hasdefault boolean required()
 meth public abstract !hasdefault javax.xml.ws.soap.AddressingFeature$Responses responses()
 
 CLSS public final javax.xml.ws.soap.AddressingFeature
-cons public <init>()
-cons public <init>(boolean)
-cons public <init>(boolean,boolean)
-cons public <init>(boolean,boolean,javax.xml.ws.soap.AddressingFeature$Responses)
+cons public init()
+cons public init(boolean)
+cons public init(boolean,boolean)
+cons public init(boolean,boolean,javax.xml.ws.soap.AddressingFeature$Responses)
 fld protected boolean required
 fld public final static java.lang.String ID = "http://www.w3.org/2005/08/addressing/module"
 innr public final static !enum Responses
@@ -628,10 +628,10 @@ meth public abstract !hasdefault boolean enabled()
 meth public abstract !hasdefault int threshold()
 
 CLSS public final javax.xml.ws.soap.MTOMFeature
-cons public <init>()
-cons public <init>(boolean)
-cons public <init>(boolean,int)
-cons public <init>(int)
+cons public init()
+cons public init(boolean)
+cons public init(boolean,int)
+cons public init(int)
 fld protected int threshold
 fld public final static java.lang.String ID = "http://www.w3.org/2004/08/soap/features/http-optimization"
 meth public int getThreshold()
@@ -652,19 +652,19 @@ meth public abstract void setMTOMEnabled(boolean)
 meth public abstract void setRoles(java.util.Set<java.lang.String>)
 
 CLSS public javax.xml.ws.soap.SOAPFaultException
-cons public <init>(javax.xml.soap.SOAPFault)
+cons public init(javax.xml.soap.SOAPFault)
 meth public javax.xml.soap.SOAPFault getFault()
 supr javax.xml.ws.ProtocolException
 hfds fault
 
 CLSS public abstract javax.xml.ws.spi.Invoker
-cons public <init>()
+cons public init()
 meth public abstract !varargs java.lang.Object invoke(java.lang.reflect.Method,java.lang.Object[]) throws java.lang.IllegalAccessException,java.lang.reflect.InvocationTargetException
 meth public abstract void inject(javax.xml.ws.WebServiceContext) throws java.lang.IllegalAccessException,java.lang.reflect.InvocationTargetException
 supr java.lang.Object
 
 CLSS public abstract javax.xml.ws.spi.Provider
-cons protected <init>()
+cons protected init()
 fld public final static java.lang.String JAXWSPROVIDER_PROPERTY = "javax.xml.ws.spi.Provider"
 meth public !varargs javax.xml.ws.Endpoint createAndPublishEndpoint(java.lang.String,java.lang.Object,javax.xml.ws.WebServiceFeature[])
 meth public !varargs javax.xml.ws.Endpoint createEndpoint(java.lang.String,java.lang.Class<?>,javax.xml.ws.spi.Invoker,javax.xml.ws.WebServiceFeature[])
@@ -682,7 +682,7 @@ supr java.lang.Object
 hfds DEFAULT_JAXWSPROVIDER
 
 CLSS public abstract javax.xml.ws.spi.ServiceDelegate
-cons protected <init>()
+cons protected init()
 meth public abstract !varargs <%0 extends java.lang.Object> javax.xml.ws.Dispatch<{%%0}> createDispatch(javax.xml.namespace.QName,java.lang.Class<{%%0}>,javax.xml.ws.Service$Mode,javax.xml.ws.WebServiceFeature[])
 meth public abstract !varargs <%0 extends java.lang.Object> javax.xml.ws.Dispatch<{%%0}> createDispatch(javax.xml.ws.EndpointReference,java.lang.Class<{%%0}>,javax.xml.ws.Service$Mode,javax.xml.ws.WebServiceFeature[])
 meth public abstract !varargs <%0 extends java.lang.Object> {%%0} getPort(java.lang.Class<{%%0}>,javax.xml.ws.WebServiceFeature[])
@@ -713,7 +713,7 @@ meth public abstract java.lang.Class<? extends javax.xml.ws.WebServiceFeature> b
 meth public abstract java.lang.String id()
 
 CLSS public abstract javax.xml.ws.spi.http.HttpContext
-cons public <init>()
+cons public init()
 fld protected javax.xml.ws.spi.http.HttpHandler handler
 meth public abstract java.lang.Object getAttribute(java.lang.String)
 meth public abstract java.lang.String getPath()
@@ -722,7 +722,7 @@ meth public void setHandler(javax.xml.ws.spi.http.HttpHandler)
 supr java.lang.Object
 
 CLSS public abstract javax.xml.ws.spi.http.HttpExchange
-cons public <init>()
+cons public init()
 fld public final static java.lang.String REQUEST_CIPHER_SUITE = "javax.xml.ws.spi.http.request.cipher.suite"
 fld public final static java.lang.String REQUEST_KEY_SIZE = "javax.xml.ws.spi.http.request.key.size"
 fld public final static java.lang.String REQUEST_X509CERTIFICATE = "javax.xml.ws.spi.http.request.cert.X509Certificate"
@@ -751,13 +751,13 @@ meth public abstract void setStatus(int)
 supr java.lang.Object
 
 CLSS public abstract javax.xml.ws.spi.http.HttpHandler
-cons public <init>()
+cons public init()
 meth public abstract void handle(javax.xml.ws.spi.http.HttpExchange) throws java.io.IOException
 supr java.lang.Object
 
 CLSS public final javax.xml.ws.wsaddressing.W3CEndpointReference
-cons protected <init>()
-cons public <init>(javax.xml.transform.Source)
+cons protected init()
+cons public init(javax.xml.transform.Source)
 fld protected final static java.lang.String NS = "http://www.w3.org/2005/08/addressing"
 meth public void writeTo(javax.xml.transform.Result)
 supr javax.xml.ws.EndpointReference
@@ -765,7 +765,7 @@ hfds address,attributes,elements,metadata,referenceParameters,w3cjc
 hcls Address,Elements
 
 CLSS public final javax.xml.ws.wsaddressing.W3CEndpointReferenceBuilder
-cons public <init>()
+cons public init()
 meth public javax.xml.ws.wsaddressing.W3CEndpointReference build()
 meth public javax.xml.ws.wsaddressing.W3CEndpointReferenceBuilder address(java.lang.String)
 meth public javax.xml.ws.wsaddressing.W3CEndpointReferenceBuilder attribute(javax.xml.namespace.QName,java.lang.String)

@@ -1,37 +1,21 @@
 #Signature file v4.1
-#Version 1.1_se8
-
-#
-# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
-#
-# This program and the accompanying materials are made available under the
-# terms of the Eclipse Public License v. 2.0, which is available at
-# http://www.eclipse.org/legal/epl-2.0.
-#
-# This Source Code may also be made available under the following Secondary
-# Licenses when the conditions for such availability set forth in the
-# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
-# version 2 with the GNU Classpath Exception, which is available at
-# https://www.gnu.org/software/classpath/license.html.
-#
-# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
-#
+#Version 1.0
 
 
 
 CLSS public abstract interface java.io.Serializable
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -45,11 +29,11 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)
@@ -69,24 +53,24 @@ hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MES
 hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
 
 CLSS public java.security.GeneralSecurityException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
 CLSS public abstract interface javax.security.auth.callback.Callback
 
 CLSS public javax.security.auth.login.LoginException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr java.security.GeneralSecurityException
 hfds serialVersionUID
 
 CLSS public javax.security.auth.message.AuthException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr javax.security.auth.login.LoginException
 hfds serialVersionUID
 
@@ -113,7 +97,7 @@ meth public abstract void setRequestMessage(java.lang.Object)
 meth public abstract void setResponseMessage(java.lang.Object)
 
 CLSS public javax.security.auth.message.MessagePolicy
-cons public <init>(javax.security.auth.message.MessagePolicy$TargetPolicy[],boolean)
+cons public init(javax.security.auth.message.MessagePolicy$TargetPolicy[],boolean)
 innr public abstract interface static ProtectionPolicy
 innr public abstract interface static Target
 innr public static TargetPolicy
@@ -137,7 +121,7 @@ meth public abstract void remove(javax.security.auth.message.MessageInfo)
 
 CLSS public static javax.security.auth.message.MessagePolicy$TargetPolicy
  outer javax.security.auth.message.MessagePolicy
-cons public <init>(javax.security.auth.message.MessagePolicy$Target[],javax.security.auth.message.MessagePolicy$ProtectionPolicy)
+cons public init(javax.security.auth.message.MessagePolicy$Target[],javax.security.auth.message.MessagePolicy$ProtectionPolicy)
 meth public javax.security.auth.message.MessagePolicy$ProtectionPolicy getProtectionPolicy()
 meth public javax.security.auth.message.MessagePolicy$Target[] getTargets()
 supr java.lang.Object
@@ -149,8 +133,8 @@ meth public abstract javax.security.auth.message.AuthStatus validateRequest(java
 meth public abstract void cleanSubject(javax.security.auth.message.MessageInfo,javax.security.auth.Subject) throws javax.security.auth.message.AuthException
 
 CLSS public javax.security.auth.message.callback.CallerPrincipalCallback
-cons public <init>(javax.security.auth.Subject,java.lang.String)
-cons public <init>(javax.security.auth.Subject,java.security.Principal)
+cons public init(javax.security.auth.Subject,java.lang.String)
+cons public init(javax.security.auth.Subject,java.security.Principal)
 intf javax.security.auth.callback.Callback
 meth public java.lang.String getName()
 meth public java.security.Principal getPrincipal()
@@ -159,7 +143,7 @@ supr java.lang.Object
 hfds name,principal,subject
 
 CLSS public javax.security.auth.message.callback.CertStoreCallback
-cons public <init>()
+cons public init()
 intf javax.security.auth.callback.Callback
 meth public java.security.cert.CertStore getCertStore()
 meth public void setCertStore(java.security.cert.CertStore)
@@ -167,7 +151,7 @@ supr java.lang.Object
 hfds certStore
 
 CLSS public javax.security.auth.message.callback.GroupPrincipalCallback
-cons public <init>(javax.security.auth.Subject,java.lang.String[])
+cons public init(javax.security.auth.Subject,java.lang.String[])
 intf javax.security.auth.callback.Callback
 meth public java.lang.String[] getGroups()
 meth public javax.security.auth.Subject getSubject()
@@ -175,7 +159,7 @@ supr java.lang.Object
 hfds groups,subject
 
 CLSS public javax.security.auth.message.callback.PasswordValidationCallback
-cons public <init>(javax.security.auth.Subject,java.lang.String,char[])
+cons public init(javax.security.auth.Subject,java.lang.String,char[])
 intf javax.security.auth.callback.Callback
 meth public boolean getResult()
 meth public char[] getPassword()
@@ -187,7 +171,7 @@ supr java.lang.Object
 hfds password,result,subject,username
 
 CLSS public javax.security.auth.message.callback.PrivateKeyCallback
-cons public <init>(javax.security.auth.message.callback.PrivateKeyCallback$Request)
+cons public init(javax.security.auth.message.callback.PrivateKeyCallback$Request)
 innr public abstract interface static Request
 innr public static AliasRequest
 innr public static DigestRequest
@@ -203,7 +187,7 @@ hfds chain,key,request
 
 CLSS public static javax.security.auth.message.callback.PrivateKeyCallback$AliasRequest
  outer javax.security.auth.message.callback.PrivateKeyCallback
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 intf javax.security.auth.message.callback.PrivateKeyCallback$Request
 meth public java.lang.String getAlias()
 supr java.lang.Object
@@ -211,7 +195,7 @@ hfds alias
 
 CLSS public static javax.security.auth.message.callback.PrivateKeyCallback$DigestRequest
  outer javax.security.auth.message.callback.PrivateKeyCallback
-cons public <init>(byte[],java.lang.String)
+cons public init(byte[],java.lang.String)
 intf javax.security.auth.message.callback.PrivateKeyCallback$Request
 meth public byte[] getDigest()
 meth public java.lang.String getAlgorithm()
@@ -220,7 +204,7 @@ hfds algorithm,digest
 
 CLSS public static javax.security.auth.message.callback.PrivateKeyCallback$IssuerSerialNumRequest
  outer javax.security.auth.message.callback.PrivateKeyCallback
-cons public <init>(javax.security.auth.x500.X500Principal,java.math.BigInteger)
+cons public init(javax.security.auth.x500.X500Principal,java.math.BigInteger)
 intf javax.security.auth.message.callback.PrivateKeyCallback$Request
 meth public java.math.BigInteger getSerialNum()
 meth public javax.security.auth.x500.X500Principal getIssuer()
@@ -232,14 +216,14 @@ CLSS public abstract interface static javax.security.auth.message.callback.Priva
 
 CLSS public static javax.security.auth.message.callback.PrivateKeyCallback$SubjectKeyIDRequest
  outer javax.security.auth.message.callback.PrivateKeyCallback
-cons public <init>(byte[])
+cons public init(byte[])
 intf javax.security.auth.message.callback.PrivateKeyCallback$Request
 meth public byte[] getSubjectKeyID()
 supr java.lang.Object
 hfds id
 
 CLSS public javax.security.auth.message.callback.SecretKeyCallback
-cons public <init>(javax.security.auth.message.callback.SecretKeyCallback$Request)
+cons public init(javax.security.auth.message.callback.SecretKeyCallback$Request)
 innr public abstract interface static Request
 innr public static AliasRequest
 intf javax.security.auth.callback.Callback
@@ -251,7 +235,7 @@ hfds key,request
 
 CLSS public static javax.security.auth.message.callback.SecretKeyCallback$AliasRequest
  outer javax.security.auth.message.callback.SecretKeyCallback
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 intf javax.security.auth.message.callback.SecretKeyCallback$Request
 meth public java.lang.String getAlias()
 supr java.lang.Object
@@ -261,7 +245,7 @@ CLSS public abstract interface static javax.security.auth.message.callback.Secre
  outer javax.security.auth.message.callback.SecretKeyCallback
 
 CLSS public javax.security.auth.message.callback.TrustStoreCallback
-cons public <init>()
+cons public init()
 intf javax.security.auth.callback.Callback
 meth public java.security.KeyStore getTrustStore()
 meth public void setTrustStore(java.security.KeyStore)
@@ -276,7 +260,7 @@ meth public abstract java.lang.String getMessageLayer()
 meth public abstract void refresh()
 
 CLSS public abstract javax.security.auth.message.config.AuthConfigFactory
-cons public <init>()
+cons public init()
 fld public final static java.lang.String DEFAULT_FACTORY_SECURITY_PROPERTY = "authconfigprovider.factory"
 fld public final static java.lang.String GET_FACTORY_PERMISSION_NAME = "getProperty.authconfigprovider.factory"
 fld public final static java.lang.String PROVIDER_REGISTRATION_PERMISSION_NAME = "setProperty.authconfigfactory.provider"

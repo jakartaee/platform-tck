@@ -1,36 +1,20 @@
 #Signature file v4.1
-#Version 1.4_se8
-
-#
-# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
-#
-# This program and the accompanying materials are made available under the
-# terms of the Eclipse Public License v. 2.0, which is available at
-# http://www.eclipse.org/legal/epl-2.0.
-#
-# This Source Code may also be made available under the following Secondary
-# Licenses when the conditions for such availability set forth in the
-# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
-# version 2 with the GNU Classpath Exception, which is available at
-# https://www.gnu.org/software/classpath/license.html.
-#
-# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
-#
+#Version 1.0
 
 
 CLSS public abstract interface java.io.Serializable
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -44,11 +28,11 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)
@@ -68,7 +52,7 @@ hfds CAUSE_CAPTION,EMPTY_THROWABLE_ARRAY,NULL_CAUSE_MESSAGE,SELF_SUPPRESSION_MES
 hcls PrintStreamOrWriter,SentinelHolder,WrappedPrintStream,WrappedPrintWriter
 
 CLSS public abstract javax.xml.soap.AttachmentPart
-cons public <init>()
+cons public init()
 meth public abstract byte[] getRawContentBytes() throws javax.xml.soap.SOAPException
 meth public abstract int getSize() throws javax.xml.soap.SOAPException
 meth public abstract java.io.InputStream getBase64Content() throws javax.xml.soap.SOAPException
@@ -107,7 +91,7 @@ CLSS public abstract interface javax.xml.soap.DetailEntry
 intf javax.xml.soap.SOAPElement
 
 CLSS public abstract javax.xml.soap.MessageFactory
-cons public <init>()
+cons public init()
 meth public abstract javax.xml.soap.SOAPMessage createMessage() throws javax.xml.soap.SOAPException
 meth public abstract javax.xml.soap.SOAPMessage createMessage(javax.xml.soap.MimeHeaders,java.io.InputStream) throws java.io.IOException,javax.xml.soap.SOAPException
 meth public static javax.xml.soap.MessageFactory newInstance() throws javax.xml.soap.SOAPException
@@ -116,14 +100,14 @@ supr java.lang.Object
 hfds DEFAULT_MESSAGE_FACTORY
 
 CLSS public javax.xml.soap.MimeHeader
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 meth public java.lang.String getName()
 meth public java.lang.String getValue()
 supr java.lang.Object
 hfds name,value
 
 CLSS public javax.xml.soap.MimeHeaders
-cons public <init>()
+cons public init()
 meth public java.lang.String[] getHeader(java.lang.String)
 meth public java.util.Iterator<javax.xml.soap.MimeHeader> getAllHeaders()
 meth public java.util.Iterator<javax.xml.soap.MimeHeader> getMatchingHeaders(java.lang.String[])
@@ -152,17 +136,17 @@ meth public abstract void setParentElement(javax.xml.soap.SOAPElement) throws ja
 meth public abstract void setValue(java.lang.String)
 
 CLSS public abstract javax.xml.soap.SAAJMetaFactory
-cons protected <init>()
+cons protected init()
 meth protected abstract javax.xml.soap.MessageFactory newMessageFactory(java.lang.String) throws javax.xml.soap.SOAPException
 meth protected abstract javax.xml.soap.SOAPFactory newSOAPFactory(java.lang.String) throws javax.xml.soap.SOAPException
 supr java.lang.Object
 hfds DEFAULT_META_FACTORY_CLASS,META_FACTORY_DEPRECATED_CLASS_PROPERTY
 
 CLSS public javax.xml.soap.SAAJResult
-cons public <init>() throws javax.xml.soap.SOAPException
-cons public <init>(java.lang.String) throws javax.xml.soap.SOAPException
-cons public <init>(javax.xml.soap.SOAPElement)
-cons public <init>(javax.xml.soap.SOAPMessage)
+cons public init() throws javax.xml.soap.SOAPException
+cons public init(java.lang.String) throws javax.xml.soap.SOAPException
+cons public init(javax.xml.soap.SOAPElement)
+cons public init(javax.xml.soap.SOAPMessage)
 meth public javax.xml.soap.Node getResult()
 supr javax.xml.transform.dom.DOMResult
 
@@ -184,14 +168,14 @@ CLSS public abstract interface javax.xml.soap.SOAPBodyElement
 intf javax.xml.soap.SOAPElement
 
 CLSS public abstract javax.xml.soap.SOAPConnection
-cons public <init>()
+cons public init()
 meth public abstract javax.xml.soap.SOAPMessage call(javax.xml.soap.SOAPMessage,java.lang.Object) throws javax.xml.soap.SOAPException
 meth public abstract void close() throws javax.xml.soap.SOAPException
 meth public javax.xml.soap.SOAPMessage get(java.lang.Object) throws javax.xml.soap.SOAPException
 supr java.lang.Object
 
 CLSS public abstract javax.xml.soap.SOAPConnectionFactory
-cons public <init>()
+cons public init()
 meth public abstract javax.xml.soap.SOAPConnection createConnection() throws javax.xml.soap.SOAPException
 meth public static javax.xml.soap.SOAPConnectionFactory newInstance() throws javax.xml.soap.SOAPException
 supr java.lang.Object
@@ -272,10 +256,10 @@ meth public abstract javax.xml.soap.SOAPHeader addHeader() throws javax.xml.soap
 meth public abstract javax.xml.soap.SOAPHeader getHeader() throws javax.xml.soap.SOAPException
 
 CLSS public javax.xml.soap.SOAPException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 meth public java.lang.String getMessage()
 meth public java.lang.Throwable getCause()
 meth public java.lang.Throwable initCause(java.lang.Throwable)
@@ -283,7 +267,7 @@ supr java.lang.Exception
 hfds cause
 
 CLSS public abstract javax.xml.soap.SOAPFactory
-cons public <init>()
+cons public init()
 meth public abstract javax.xml.soap.Detail createDetail() throws javax.xml.soap.SOAPException
 meth public abstract javax.xml.soap.Name createName(java.lang.String) throws javax.xml.soap.SOAPException
 meth public abstract javax.xml.soap.Name createName(java.lang.String,java.lang.String,java.lang.String) throws javax.xml.soap.SOAPException
@@ -357,7 +341,7 @@ meth public abstract void setRelay(boolean) throws javax.xml.soap.SOAPException
 meth public abstract void setRole(java.lang.String) throws javax.xml.soap.SOAPException
 
 CLSS public abstract javax.xml.soap.SOAPMessage
-cons public <init>()
+cons public init()
 fld public final static java.lang.String CHARACTER_SET_ENCODING = "javax.xml.soap.character-set-encoding"
 fld public final static java.lang.String WRITE_XML_DECLARATION = "javax.xml.soap.write-xml-declaration"
 meth public abstract boolean saveRequired()
@@ -384,7 +368,7 @@ meth public void setProperty(java.lang.String,java.lang.Object) throws javax.xml
 supr java.lang.Object
 
 CLSS public abstract javax.xml.soap.SOAPPart
-cons public <init>()
+cons public init()
 intf javax.xml.soap.Node
 intf org.w3c.dom.Document
 meth public abstract java.lang.String[] getMimeHeader(java.lang.String)
@@ -416,11 +400,11 @@ meth public abstract java.lang.String getSystemId()
 meth public abstract void setSystemId(java.lang.String)
 
 CLSS public javax.xml.transform.dom.DOMResult
-cons public <init>()
-cons public <init>(org.w3c.dom.Node)
-cons public <init>(org.w3c.dom.Node,java.lang.String)
-cons public <init>(org.w3c.dom.Node,org.w3c.dom.Node)
-cons public <init>(org.w3c.dom.Node,org.w3c.dom.Node,java.lang.String)
+cons public init()
+cons public init(org.w3c.dom.Node)
+cons public init(org.w3c.dom.Node,java.lang.String)
+cons public init(org.w3c.dom.Node,org.w3c.dom.Node)
+cons public init(org.w3c.dom.Node,org.w3c.dom.Node,java.lang.String)
 fld public final static java.lang.String FEATURE = "http://javax.xml.transform.dom.DOMResult/feature"
 intf javax.xml.transform.Result
 meth public java.lang.String getSystemId()

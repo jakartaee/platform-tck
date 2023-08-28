@@ -1,21 +1,5 @@
 #Signature file v4.1
-#Version 3.2_se8
-
-#
-# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
-#
-# This program and the accompanying materials are made available under the
-# terms of the Eclipse Public License v. 2.0, which is available at
-# http://www.eclipse.org/legal/epl-2.0.
-#
-# This Source Code may also be made available under the following Secondary
-# Licenses when the conditions for such availability set forth in the
-# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
-# version 2 with the GNU Classpath Exception, which is available at
-# https://www.gnu.org/software/classpath/license.html.
-#
-# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
-#
+#Version 1.0
 
 
 
@@ -28,7 +12,7 @@ CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
 meth public abstract int compareTo({java.lang.Comparable%0})
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
-cons protected <init>(java.lang.String,int)
+cons protected init(java.lang.String,int)
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
@@ -45,16 +29,16 @@ supr java.lang.Object
 hfds name,ordinal
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -68,20 +52,20 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.RuntimeException
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)
@@ -136,9 +120,9 @@ meth public abstract {java.util.concurrent.Future%0} get() throws java.lang.Inte
 meth public abstract {java.util.concurrent.Future%0} get(long,java.util.concurrent.TimeUnit) throws java.lang.InterruptedException,java.util.concurrent.ExecutionException,java.util.concurrent.TimeoutException
 
 CLSS public javax.ejb.AccessLocalException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Exception)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Exception)
 supr javax.ejb.EJBException
 hfds serialVersionUID
 
@@ -174,7 +158,7 @@ meth public abstract !hasdefault boolean inherited()
 meth public abstract !hasdefault boolean rollback()
 
 CLSS public final javax.ejb.AsyncResult<%0 extends java.lang.Object>
-cons public <init>({javax.ejb.AsyncResult%0})
+cons public init({javax.ejb.AsyncResult%0})
 intf java.util.concurrent.Future<{javax.ejb.AsyncResult%0}>
 meth public boolean cancel(boolean)
 meth public boolean isCancelled()
@@ -208,21 +192,21 @@ meth public static javax.ejb.ConcurrencyManagementType[] values()
 supr java.lang.Enum<javax.ejb.ConcurrencyManagementType>
 
 CLSS public javax.ejb.ConcurrentAccessException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Exception)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Exception)
 supr javax.ejb.EJBException
 hfds serialVersionUID
 
 CLSS public javax.ejb.ConcurrentAccessTimeoutException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr javax.ejb.ConcurrentAccessException
 hfds serialVersionUID
 
 CLSS public javax.ejb.CreateException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr java.lang.Exception
 hfds serialVersionUID
 
@@ -233,8 +217,8 @@ intf java.lang.annotation.Annotation
 meth public abstract java.lang.String[] value()
 
 CLSS public javax.ejb.DuplicateKeyException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr javax.ejb.CreateException
 hfds serialVersionUID
 
@@ -250,8 +234,8 @@ meth public abstract !hasdefault java.lang.String mappedName()
 meth public abstract !hasdefault java.lang.String name()
 
 CLSS public javax.ejb.EJBAccessException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr javax.ejb.EJBException
 hfds serialVersionUID
 
@@ -271,10 +255,10 @@ meth public abstract javax.transaction.UserTransaction getUserTransaction()
 meth public abstract void setRollbackOnly()
 
 CLSS public javax.ejb.EJBException
-cons public <init>()
-cons public <init>(java.lang.Exception)
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Exception)
+cons public init()
+cons public init(java.lang.Exception)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Exception)
 meth public java.lang.Exception getCausedByException()
 supr java.lang.RuntimeException
 hfds serialVersionUID
@@ -312,15 +296,15 @@ meth public abstract javax.ejb.Handle getHandle() throws java.rmi.RemoteExceptio
 meth public abstract void remove() throws java.rmi.RemoteException,javax.ejb.RemoveException
 
 CLSS public javax.ejb.EJBTransactionRequiredException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr javax.ejb.EJBException
 hfds serialVersionUID
 
 CLSS public javax.ejb.EJBTransactionRolledbackException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Exception)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Exception)
 supr javax.ejb.EJBException
 hfds serialVersionUID
 
@@ -350,8 +334,8 @@ meth public abstract javax.ejb.EJBLocalObject getEJBLocalObject()
 meth public abstract javax.ejb.EJBObject getEJBObject()
 
 CLSS public javax.ejb.FinderException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr java.lang.Exception
 hfds serialVersionUID
 
@@ -364,8 +348,8 @@ intf java.io.Serializable
 meth public abstract javax.ejb.EJBHome getEJBHome() throws java.rmi.RemoteException
 
 CLSS public javax.ejb.IllegalLoopbackException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr javax.ejb.ConcurrentAccessException
 hfds serialVersionUID
 
@@ -424,35 +408,35 @@ CLSS public abstract interface javax.ejb.MessageDrivenContext
 intf javax.ejb.EJBContext
 
 CLSS public javax.ejb.NoMoreTimeoutsException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr javax.ejb.EJBException
 hfds serialVersionUID
 
 CLSS public javax.ejb.NoSuchEJBException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Exception)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Exception)
 supr javax.ejb.EJBException
 hfds serialVersionUID
 
 CLSS public javax.ejb.NoSuchEntityException
-cons public <init>()
-cons public <init>(java.lang.Exception)
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.Exception)
+cons public init(java.lang.String)
 supr javax.ejb.EJBException
 hfds serialVersionUID
 
 CLSS public javax.ejb.NoSuchObjectLocalException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Exception)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Exception)
 supr javax.ejb.EJBException
 hfds serialVersionUID
 
 CLSS public javax.ejb.ObjectNotFoundException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr javax.ejb.FinderException
 hfds serialVersionUID
 
@@ -485,8 +469,8 @@ intf java.lang.annotation.Annotation
 meth public abstract !hasdefault boolean retainIfException()
 
 CLSS public javax.ejb.RemoveException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr java.lang.Exception
 hfds serialVersionUID
 
@@ -506,7 +490,7 @@ meth public abstract !hasdefault java.lang.String timezone()
 meth public abstract !hasdefault java.lang.String year()
 
 CLSS public javax.ejb.ScheduleExpression
-cons public <init>()
+cons public init()
 intf java.io.Serializable
 meth public java.lang.String getDayOfMonth()
 meth public java.lang.String getDayOfWeek()
@@ -622,8 +606,8 @@ meth public abstract long getTimeRemaining()
 meth public abstract void cancel()
 
 CLSS public javax.ejb.TimerConfig
-cons public <init>()
-cons public <init>(java.io.Serializable,boolean)
+cons public init()
+cons public init(java.io.Serializable,boolean)
 meth public boolean isPersistent()
 meth public java.io.Serializable getInfo()
 meth public java.lang.String toString()
@@ -681,20 +665,20 @@ meth public static javax.ejb.TransactionManagementType[] values()
 supr java.lang.Enum<javax.ejb.TransactionManagementType>
 
 CLSS public javax.ejb.TransactionRequiredLocalException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr javax.ejb.EJBException
 hfds serialVersionUID
 
 CLSS public javax.ejb.TransactionRolledbackLocalException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Exception)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Exception)
 supr javax.ejb.EJBException
 hfds serialVersionUID
 
 CLSS public abstract javax.ejb.embeddable.EJBContainer
-cons public <init>()
+cons public init()
 fld public final static java.lang.String APP_NAME = "javax.ejb.embeddable.appName"
 fld public final static java.lang.String MODULES = "javax.ejb.embeddable.modules"
 fld public final static java.lang.String PROVIDER = "javax.ejb.embeddable.provider"

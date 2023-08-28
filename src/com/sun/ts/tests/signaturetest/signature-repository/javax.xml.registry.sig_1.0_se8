@@ -1,37 +1,21 @@
 #Signature file v4.1
-#Version 1.0_se8
-
-#
-# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
-#
-# This program and the accompanying materials are made available under the
-# terms of the Eclipse Public License v. 2.0, which is available at
-# http://www.eclipse.org/legal/epl-2.0.
-#
-# This Source Code may also be made available under the following Secondary
-# Licenses when the conditions for such availability set forth in the
-# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
-# version 2 with the GNU Classpath Exception, which is available at
-# https://www.gnu.org/software/classpath/license.html.
-#
-# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
-#
+#Version 1.0
 
 
 
 CLSS public abstract interface java.io.Serializable
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -45,11 +29,11 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)
@@ -118,7 +102,7 @@ meth public abstract void setCredentials(java.util.Set) throws javax.xml.registr
 meth public abstract void setSynchronous(boolean) throws javax.xml.registry.JAXRException
 
 CLSS public abstract javax.xml.registry.ConnectionFactory
-cons public <init>()
+cons public init()
 meth public abstract java.util.Properties getProperties() throws javax.xml.registry.JAXRException
 meth public abstract javax.xml.registry.Connection createConnection() throws javax.xml.registry.JAXRException
 meth public abstract javax.xml.registry.FederatedConnection createFederatedConnection(java.util.Collection) throws javax.xml.registry.JAXRException
@@ -133,20 +117,20 @@ meth public abstract javax.xml.registry.BulkResponse executeQuery(javax.xml.regi
 meth public abstract javax.xml.registry.Query createQuery(int,java.lang.String) throws javax.xml.registry.JAXRException
 
 CLSS public javax.xml.registry.DeleteException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.xml.registry.RegistryException
 
 CLSS public abstract interface javax.xml.registry.FederatedConnection
 intf javax.xml.registry.Connection
 
 CLSS public javax.xml.registry.FindException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.xml.registry.RegistryException
 
 CLSS public abstract interface javax.xml.registry.FindQualifier
@@ -164,17 +148,17 @@ fld public final static java.lang.String SORT_BY_NAME_DESC = "sortByNameDesc"
 fld public final static java.lang.String SOUNDEX = "soundex"
 
 CLSS public javax.xml.registry.InvalidRequestException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.xml.registry.JAXRException
 
 CLSS public javax.xml.registry.JAXRException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 fld protected java.lang.Throwable cause
 intf javax.xml.registry.JAXRResponse
 meth public boolean isAvailable() throws javax.xml.registry.JAXRException
@@ -281,10 +265,10 @@ meth public abstract javax.xml.registry.infomodel.RegistryObject getRegistryObje
 meth public abstract javax.xml.registry.infomodel.RegistryObject getRegistryObject(java.lang.String,java.lang.String) throws javax.xml.registry.JAXRException
 
 CLSS public javax.xml.registry.RegistryException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 meth public javax.xml.registry.infomodel.Key getErrorObjectKey() throws javax.xml.registry.JAXRException
 meth public void setErrorObjectKey(javax.xml.registry.infomodel.Key) throws javax.xml.registry.JAXRException
 supr javax.xml.registry.JAXRException
@@ -300,24 +284,24 @@ meth public abstract javax.xml.registry.DeclarativeQueryManager getDeclarativeQu
 meth public abstract javax.xml.registry.infomodel.ClassificationScheme getDefaultPostalScheme() throws javax.xml.registry.JAXRException
 
 CLSS public javax.xml.registry.SaveException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.xml.registry.RegistryException
 
 CLSS public javax.xml.registry.UnexpectedObjectException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.xml.registry.JAXRException
 
 CLSS public javax.xml.registry.UnsupportedCapabilityException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.xml.registry.JAXRException
 
 CLSS public abstract interface javax.xml.registry.infomodel.Association

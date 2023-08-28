@@ -25,7 +25,7 @@ CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
 meth public abstract int compareTo({java.lang.Comparable%0})
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
-cons protected <init>(java.lang.String,int)
+cons protected init(java.lang.String,int)
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
@@ -42,11 +42,11 @@ supr java.lang.Object
 hfds name,ordinal
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
@@ -56,7 +56,7 @@ meth public java.util.Spliterator<{java.lang.Iterable%0}> spliterator()
 meth public void forEach(java.util.function.Consumer<? super {java.lang.Iterable%0}>)
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -70,20 +70,20 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.RuntimeException
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)
@@ -162,17 +162,17 @@ intf java.lang.annotation.Annotation
 meth public abstract java.lang.Class<? extends javax.validation.ConstraintValidator<?,?>>[] validatedBy()
 
 CLSS public javax.validation.ConstraintDeclarationException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.validation.ValidationException
 
 CLSS public javax.validation.ConstraintDefinitionException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.validation.ValidationException
 
 CLSS public final !enum javax.validation.ConstraintTarget
@@ -265,8 +265,8 @@ meth public abstract javax.validation.metadata.ConstraintDescriptor<?> getConstr
 meth public abstract {javax.validation.ConstraintViolation%0} getRootBean()
 
 CLSS public javax.validation.ConstraintViolationException
-cons public <init>(java.lang.String,java.util.Set<? extends javax.validation.ConstraintViolation<?>>)
-cons public <init>(java.util.Set<? extends javax.validation.ConstraintViolation<?>>)
+cons public init(java.lang.String,java.util.Set<? extends javax.validation.ConstraintViolation<?>>)
+cons public init(java.util.Set<? extends javax.validation.ConstraintViolation<?>>)
 meth public java.util.Set<javax.validation.ConstraintViolation<?>> getConstraintViolations()
 supr javax.validation.ValidationException
 hfds constraintViolations
@@ -284,10 +284,10 @@ meth public static javax.validation.ElementKind[] values()
 supr java.lang.Enum<javax.validation.ElementKind>
 
 CLSS public javax.validation.GroupDefinitionException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.validation.ValidationException
 
 CLSS public abstract interface !annotation javax.validation.GroupSequence
@@ -391,10 +391,10 @@ meth public abstract boolean isCascadable(java.lang.Object,javax.validation.Path
 meth public abstract boolean isReachable(java.lang.Object,javax.validation.Path$Node,java.lang.Class<?>,javax.validation.Path,java.lang.annotation.ElementType)
 
 CLSS public javax.validation.UnexpectedTypeException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.validation.ConstraintDeclarationException
 
 CLSS public abstract interface !annotation javax.validation.Valid
@@ -403,7 +403,7 @@ CLSS public abstract interface !annotation javax.validation.Valid
 intf java.lang.annotation.Annotation
 
 CLSS public javax.validation.Validation
-cons public <init>()
+cons public init()
 meth public static <%0 extends javax.validation.Configuration<{%%0}>, %1 extends javax.validation.spi.ValidationProvider<{%%0}>> javax.validation.bootstrap.ProviderSpecificBootstrap<{%%0}> byProvider(java.lang.Class<{%%1}>)
 meth public static javax.validation.ValidatorFactory buildDefaultValidatorFactory()
 meth public static javax.validation.bootstrap.GenericBootstrap byDefaultProvider()
@@ -411,10 +411,10 @@ supr java.lang.Object
 hcls DefaultValidationProviderResolver,GenericBootstrapImpl,GetValidationProviderListAction,ProviderSpecificBootstrapImpl
 
 CLSS public javax.validation.ValidationException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.RuntimeException
 
 CLSS public abstract interface javax.validation.ValidationProviderResolver

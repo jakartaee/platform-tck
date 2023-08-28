@@ -1,22 +1,5 @@
 #Signature file v4.1
-#Version 1.1_se8
-
-#
-# Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
-#
-# This program and the accompanying materials are made available under the
-# terms of the Eclipse Public License v. 2.0, which is available at
-# http://www.eclipse.org/legal/epl-2.0.
-#
-# This Source Code may also be made available under the following Secondary
-# Licenses when the conditions for such availability set forth in the
-# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
-# version 2 with the GNU Classpath Exception, which is available at
-# https://www.gnu.org/software/classpath/license.html.
-#
-# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
-#
-
+#Version 1.0
 
 
 CLSS public abstract interface java.io.Closeable
@@ -35,7 +18,7 @@ CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
 meth public abstract int compareTo({java.lang.Comparable%0})
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
-cons protected <init>(java.lang.String,int)
+cons protected init(java.lang.String,int)
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
@@ -52,11 +35,11 @@ supr java.lang.Object
 hfds name,ordinal
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
@@ -66,7 +49,7 @@ meth public java.util.Spliterator<{java.lang.Iterable%0}> spliterator()
 meth public void forEach(java.util.function.Consumer<? super {java.lang.Iterable%0}>)
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -80,20 +63,20 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.RuntimeException
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)
@@ -295,8 +278,8 @@ meth public javax.json.JsonObjectBuilder createObjectBuilder(java.util.Map<java.
 meth public javax.json.JsonObjectBuilder createObjectBuilder(javax.json.JsonObject)
 
 CLSS public javax.json.JsonException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
 supr java.lang.RuntimeException
 
 CLSS public abstract interface javax.json.JsonMergePatch
@@ -460,7 +443,7 @@ meth public abstract javax.json.JsonWriter createWriter(java.io.OutputStream,jav
 meth public abstract javax.json.JsonWriter createWriter(java.io.Writer)
 
 CLSS public abstract javax.json.spi.JsonProvider
-cons protected <init>()
+cons protected init()
 meth public abstract javax.json.JsonArrayBuilder createArrayBuilder()
 meth public abstract javax.json.JsonBuilderFactory createBuilderFactory(java.util.Map<java.lang.String,?>)
 meth public abstract javax.json.JsonObjectBuilder createObjectBuilder()
@@ -506,8 +489,8 @@ meth public static java.util.stream.Collector<javax.json.JsonValue,javax.json.Js
 supr java.lang.Object
 
 CLSS public javax.json.stream.JsonGenerationException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
 supr javax.json.JsonException
 
 CLSS public abstract interface javax.json.stream.JsonGenerator
@@ -598,8 +581,8 @@ meth public abstract javax.json.stream.JsonParser createParser(javax.json.JsonAr
 meth public abstract javax.json.stream.JsonParser createParser(javax.json.JsonObject)
 
 CLSS public javax.json.stream.JsonParsingException
-cons public <init>(java.lang.String,java.lang.Throwable,javax.json.stream.JsonLocation)
-cons public <init>(java.lang.String,javax.json.stream.JsonLocation)
+cons public init(java.lang.String,java.lang.Throwable,javax.json.stream.JsonLocation)
+cons public init(java.lang.String,javax.json.stream.JsonLocation)
 meth public javax.json.stream.JsonLocation getLocation()
 supr javax.json.JsonException
 hfds location

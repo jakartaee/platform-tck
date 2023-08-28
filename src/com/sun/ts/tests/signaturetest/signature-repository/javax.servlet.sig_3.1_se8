@@ -105,7 +105,7 @@ supr java.lang.Object
 hfds name,ordinal
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
 cons public <init>()
 cons public <init>(java.lang.String)
 cons public <init>(java.lang.String,java.lang.Throwable)
@@ -128,7 +128,7 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
 cons public <init>()
 cons public <init>(java.lang.String)
 cons public <init>(java.lang.String,java.lang.Throwable)
