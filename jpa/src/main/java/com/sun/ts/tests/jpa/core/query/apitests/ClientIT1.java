@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,19 +17,18 @@
 package com.sun.ts.tests.jpa.core.query.apitests;
 
 import java.sql.Date;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
-import java.util.Properties;
 import java.util.Set;
 
-import com.sun.ts.lib.harness.CleanupMethod;
-import com.sun.ts.lib.harness.SetupMethod;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -43,7 +42,7 @@ import jakarta.persistence.TemporalType;
 import jakarta.persistence.TransactionRequiredException;
 import jakarta.persistence.TypedQuery;
 
-public class Client extends PMClientBase {
+public class ClientIT1 extends PMClientBase {
 
   private final Employee empRef[] = new Employee[21];
 
@@ -55,22 +54,10 @@ public class Client extends PMClientBase {
 
   private static final DecimalFormat df = new DecimalFormat();
 
-  public Client() {
+  public ClientIT1() {
   }
 
-
-  public void setupNoData(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      TestUtil.logTrace("Done creating test data");
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception caught in Setup: ", e);
-      throw new Exception("Setup failed:", e);
-
-    }
-  }
-
+  @BeforeEach
   public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
@@ -83,25 +70,6 @@ public class Client extends PMClientBase {
       throw new Exception("Setup failed:", e);
 
     }
-  }
-
-  public void setupDataTypes2(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      removeTestData();
-      createDataTypes2Data();
-      TestUtil.logTrace("Done creating test data");
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception caught in Setup: ", e);
-      throw new Exception("Setup failed:", e);
-
-    }
-  }
-
-  public void cleanupNoData() throws Exception {
-    TestUtil.logTrace("in cleanupNoData");
-    super.cleanup();
   }
 
   /*
@@ -124,6 +92,7 @@ public class Client extends PMClientBase {
    * Create a TypedQuery where id <= 10 sorted by id. setFirstResult(5) and
    * verify the results that were returned
    */
+@Test
   public void setFirstResultTest() throws Exception {
     List q;
     boolean pass1 = false;
@@ -300,6 +269,7 @@ public class Client extends PMClientBase {
    * Create a TypedQuery. setFirstResult(-5) and verify IllegalArgumentException
    * is thrown
    */
+@Test
   public void setFirstResultIllegalArgumentExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -348,6 +318,7 @@ public class Client extends PMClientBase {
    * TypedQuery.getParameter(String, Class) and verify returned Parameter or
    * that IllegalStateException is thrown.
    */
+@Test
   public void getParameterTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -410,6 +381,7 @@ public class Client extends PMClientBase {
    * call TypedQuery.getParameter(String, String) with a name that does not
    * match and verify that IllegalArgumentException is thrown.
    */
+@Test
   public void getParameterIllegalArgumentExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -457,6 +429,7 @@ public class Client extends PMClientBase {
    * TypedQuery.getParameter(String) with name that does not exist and verify
    * that IllegalArgumentException is thrown.
    */
+@Test
   public void getParameterIllegalArgumentException2Test() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -506,6 +479,7 @@ public class Client extends PMClientBase {
    * getName() for a positional parameter
    *
    */
+@Test
   public void getParameterIntClassTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -569,6 +543,7 @@ public class Client extends PMClientBase {
    * Verify getParameter for a position that does not exist throws
    * IllegalArgumentException*
    */
+@Test
   public void getParameterIntIllegalArgumentExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -609,55 +584,6 @@ public class Client extends PMClientBase {
   }
 
   /*
-   * @testName: getParameterIntIllegalArgumentException2Test
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:562; PERSISTENCE:JAVADOC:652
-   * 
-   * @test_Strategy: create query and set a positional parameter. Verify calling
-   * getParameter with a class that is not assignable to the type throws
-   * IllegalArgumentException create TypedQuery and set a positional parameter.
-   * Verify calling getParameter with a class that is not assignable to the type
-   * throws IllegalArgumentException
-   */
-  @SetupMethod(name = "setupNoData")
-  @CleanupMethod(name = "cleanupNoData")
-  public void getParameterIntIllegalArgumentException2Test() throws Exception {
-    boolean pass1 = false;
-    boolean pass2 = false;
-    try {
-      TestUtil.logMsg("Testing Query version");
-      Query query = getEntityManager()
-          .createQuery("select e from Employee e where e.firstName = ?1")
-          .setParameter(1, "Tom");
-      query.getParameter(1, java.util.List.class);
-      TestUtil.logErr("IllegalArgumentException not thrown");
-    } catch (IllegalArgumentException e) {
-      TestUtil.logTrace("Received expected IllegalArgumentException");
-      pass1 = true;
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
-    TestUtil.logMsg("Testing TypedQuery version");
-
-    try {
-      TypedQuery<Employee> query = getEntityManager()
-          .createQuery("select e from Employee e where e.firstName = ?1",
-              Employee.class)
-          .setParameter(1, "Tom");
-      query.getParameter(1, java.util.List.class);
-      TestUtil.logErr("IllegalArgumentException not thrown");
-    } catch (IllegalArgumentException e) {
-      TestUtil.logTrace("Received expected IllegalArgumentException");
-      pass2 = true;
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
-    if (!pass1 || !pass2) {
-      throw new Exception("getParameterIntIllegalArgumentException2Test failed");
-    }
-  }
-
-  /*
    * @testName: getParameterValueParameterTest
    * 
    * @assertion_ids: PERSISTENCE:JAVADOC:404; PERSISTENCE:JAVADOC:409;
@@ -669,6 +595,7 @@ public class Client extends PMClientBase {
    * create TypedQuery and set a String parameter. Verify getParameterValue can
    * retrieve that value
    */
+  @Test
   public void getParameterValueParameterTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -738,6 +665,7 @@ public class Client extends PMClientBase {
    * parameter. Try to get the first parameter value from the second query and
    * verify IllegalArgumentException is thrown*
    */
+  @Test
   public void getParameterValueParameterIllegalArgumentExceptionTest()
       throws Exception {
     boolean pass1 = false;
@@ -799,6 +727,7 @@ public class Client extends PMClientBase {
    * is not set. call getParameterValue(Parameter) for that parameter and verify
    * IllegalArgumentException is thrown
    */
+  @Test
   public void getParameterValueParameterIllegalStateExceptionTest()
       throws Exception {
     boolean pass1 = false;
@@ -873,6 +802,7 @@ public class Client extends PMClientBase {
    * is not set. call setParameter(Parameter,Object) for that parameter and
    * verify IllegalArgumentException is thrown
    */
+  @Test
   public void setParameterParameterObjectIllegalArgumentExceptionTest()
       throws Exception {
     boolean pass1 = false;
@@ -952,6 +882,7 @@ public class Client extends PMClientBase {
    * is not set. call setParameter(Parameter,Calendar,TemporalType) for that
    * parameter and verify IllegalArgumentException is thrown
    */
+  @Test
   public void setParameterParameterCalendarTemporalTypeIllegalArgumentExceptionTest()
       throws Exception {
     boolean pass1 = false;
@@ -1031,6 +962,7 @@ public class Client extends PMClientBase {
    * is not set. call setParameter(Parameter,Date,TemporalType) for that
    * parameter and verify IllegalArgumentException is thrown
    */
+  @Test
   public void setParameterParameterDateTemporalTypeIllegalArgumentExceptionTest()
       throws Exception {
     boolean pass1 = false;
@@ -1106,7 +1038,7 @@ public class Client extends PMClientBase {
    * getParameterValue can retrieve that value create TypedQuery and set a
    * String parameter. Verify getParameterValue can retrieve that value
    */
-
+  @Test
   public void getParameterValueStringTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1166,6 +1098,7 @@ public class Client extends PMClientBase {
    * parameter value from the query and verify IllegalArgumentException is
    * thrown*
    */
+  @Test
   public void getParameterValueStringIllegalArgumentExceptionTest()
       throws Exception {
     boolean pass1 = false;
@@ -1216,6 +1149,7 @@ public class Client extends PMClientBase {
    * getParameterValue for a parameter that is not bound throws an
    * IllegalStateException
    */
+  @Test
   public void getParameterValueStringIllegalStateExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1265,6 +1199,7 @@ public class Client extends PMClientBase {
    * getParameterValue can retrieve that value create TypedQuery and set a
    * positional parameter. Verify getParameterValue can retrieve that value
    */
+  @Test
   public void getParameterValueIntTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1323,6 +1258,7 @@ public class Client extends PMClientBase {
    * Verify getParameterValue for a position that does not exist throws
    * IllegalArgumentException
    */
+  @Test
   public void getParameterValueIntIllegalArgumentExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1374,6 +1310,7 @@ public class Client extends PMClientBase {
    * parameter. Verify getParameterValue for a position that is not bound throws
    * IllegalStateException
    */
+  @Test
   public void getParameterValueIntIllegalStateExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1418,6 +1355,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Obtain employees using valid name/value data in query.
    * Obtain employees using valid name/value data in a TypedQuery.
    */
+  @Test
   public void setParameter1Test() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1505,6 +1443,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy: Test named parameters for case-sensitive
    */
+  @Test
   public void setParameter2Test() throws Exception {
     boolean pass = false;
     Integer[] expected = new Integer[3];
@@ -1560,6 +1499,7 @@ public class Client extends PMClientBase {
    * TypedQuery.setParameter(String, Object) containing an argument of an
    * incorrect type should throw an IllegalArgumentException.*
    */
+  @Test
   public void setParameterStringObject1IllegalArgumentExceptionTest()
       throws Exception {
     boolean pass1 = false;
@@ -1612,6 +1552,7 @@ public class Client extends PMClientBase {
    * does not exist should throw an IllegalArgumentException.
    *
    */
+  @Test
   public void setParameterStringObject2IllegalArgumentExceptionTest()
       throws Exception {
     boolean pass1 = false;
@@ -1661,6 +1602,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Obtain employees using valid name/value data in query.
    * Obtain employees using valid name/value data in TypedQuery.
    */
+  @Test
   public void setParameterStringDateTemporalTypeTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1755,6 +1697,7 @@ public class Client extends PMClientBase {
    * containing a parameter name that does not correspond to parameter in query
    * string should throw an IllegalArgumentException.
    */
+  @Test
   public void setParameterStringDateTemporalTypeIllegalArgumentExceptionTest()
       throws Exception {
     boolean pass1 = false;
@@ -1805,6 +1748,7 @@ public class Client extends PMClientBase {
    * TemporalType). Obtain employees using TypedQuery.setParameter(String,
    * Calendar, TemporalType).
    */
+  @Test
   public void setParameterStringCalendarTemporalTypeTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1898,6 +1842,7 @@ public class Client extends PMClientBase {
    * parameter name that does not correspond to parameter in query string should
    * throw an IllegalArgumentException.
    */
+  @Test
   public void setParameterStringCalendarTemporalTypeTestIllegalArgumentExceptionTest()
       throws Exception {
     final java.util.Calendar c = Calendar.getInstance();
@@ -1947,6 +1892,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Obtain employees using positional parameter data in query.
    * Obtain employees using positional parameter data in TypedQuery.
    */
+  @Test
   public void setParameterIntObjectTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -2039,6 +1985,7 @@ public class Client extends PMClientBase {
    * parameter which is not used in the query string. An
    * IllegalArgumentException should be thrown.
    */
+  @Test
   public void setParameterIntObjectIllegalArgumentExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -2121,6 +2068,7 @@ public class Client extends PMClientBase {
    *
    * Obtain employees using positional parameter data in the TypedQuery.
    */
+  @Test
   public void setParameterIntDateTemporalTypeTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -2209,6 +2157,7 @@ public class Client extends PMClientBase {
    * containing a positional parameter that does not correspond to parameter in
    * query string should throw an IllegalArgumentException.
    */
+  @Test
   public void setParameterIntDateTemporalTypeIllegalArgumentException1Test()
       throws Exception {
     boolean pass1 = false;
@@ -2260,6 +2209,7 @@ public class Client extends PMClientBase {
    * Obtain employees using TypedQuery.setParameter(int position, Calendar
    * value, TemporalType type).
    */
+  @Test
   public void setParameterIntCalendarTemporalTypeTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -2350,6 +2300,7 @@ public class Client extends PMClientBase {
    * containing a parameter name that does not correspond to parameter in query
    * string should throw an IllegalArgumentException.
    */
+  @Test
   public void setParameterIntCalendarTemporalTypeIllegalArgumentExceptionTest()
       throws Exception {
     final java.util.Calendar c = Calendar.getInstance();
@@ -2401,6 +2352,7 @@ public class Client extends PMClientBase {
    * setParameter(Parameter, Object) to change the original parameter value then
    * execute query.
    */
+  @Test
   public void setParameter7Test() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -2500,6 +2452,7 @@ public class Client extends PMClientBase {
    * setParameter(Parameter,Calendar,TemporalType) for that parameter and verify
    * the correct result is returned
    */
+  @Test
   public void setParameterParameterCalendarTemporalTypeTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -2574,6 +2527,7 @@ public class Client extends PMClientBase {
    * setParameter(Parameter,Date,TemporalType) for that parameter and verify the
    * correct result is returned
    */
+  @Test
   public void setParameterParameterDateTemporalTypeTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -2648,6 +2602,7 @@ public class Client extends PMClientBase {
    * Obtain employees using TypedQuery.setParameter(int position, Date value,
    * TemporalType type).
    */
+  @Test
   public void setParameter8Test() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -2737,6 +2692,7 @@ public class Client extends PMClientBase {
    * thrown. TypedQuery.getSingleResult() is expected to return a single result.
    * If the query does not return a result, an NoResultException is thrown.
    */
+  @Test
   public void getSingleResultNoResultExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -2806,6 +2762,7 @@ public class Client extends PMClientBase {
    * which has a lock mode set without a transaction being active then call
    * getSingleResult() and verify a TransactionRequiredException is thrown
    */
+  @Test
   public void getSingleResultTransactionRequiredException() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -2875,6 +2832,7 @@ public class Client extends PMClientBase {
    * expected to return a single result. If the query returns more than one
    * result, a NonUniqueResultException is thrown.
    */
+  @Test
   public void getSingleResultNonUniqueResultExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -2942,6 +2900,7 @@ public class Client extends PMClientBase {
    * setParameter has set a value. Create a TypedQuery and set a parameter.
    * Verify isbound knows setParameter has set a value.
    */
+  @Test
   public void isBoundTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -3012,6 +2971,7 @@ public class Client extends PMClientBase {
    * rows skipped with setFirstResult will correspond to the number of objects
    * specified by setFirstResult."
    */
+  @Test
   public void setFirstResult() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -3083,6 +3043,7 @@ public class Client extends PMClientBase {
    * positional parameter in the query string. An IllegalArgumentException is
    * thrown.
    */
+  @Test
   public void queryAPITest11() throws Exception {
     boolean pass = false;
     try {
@@ -3136,6 +3097,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: setParameter(int position, Object value) which defines a
    * value of the incorrect type should throw an IllegalArgumentException.
    */
+  @Test
   public void queryAPITest12() throws Exception {
     boolean pass = false;
     TestUtil.logTrace("invoke query for queryAPITest12 ...");
@@ -3190,6 +3152,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: setFirstResult(int startPosition) with a negative value for
    * startPosition should throw an IllegalArgumentException.
    */
+  @Test
   public void setFirstResultIllegalArgumentException() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -3243,6 +3206,7 @@ public class Client extends PMClientBase {
    * results to a value which exceeds number of expected result and verify the
    * result set.
    */
+  @Test
   public void setGetMaxResultsTest() throws Exception {
     Collection<Department> q;
     boolean pass1 = false;
@@ -3356,6 +3320,7 @@ public class Client extends PMClientBase {
    * IllegalArgumentException is thrown Call TypedQuery.setMaxResult(-1) and
    * verify an IllegalArgumentException is thrown
    */
+  @Test
   public void setMaxResultsIllegalArgumentExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -3423,6 +3388,7 @@ public class Client extends PMClientBase {
    * results to a value which exceeds number of expected result and verify the
    * result set.
    */
+  @Test
   public void getResultListTransactionRequiredExceptionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -3474,6 +3440,7 @@ public class Client extends PMClientBase {
    * set returned is only contains the number of results requested to be
    * retrieved.
    */
+  @Test
   public void setMaxResults() throws Exception {
     Collection<Department> q;
     boolean pass = false;
@@ -3521,6 +3488,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: getResultList() should throw an IllegalStateException if
    * called for an EJB QL Update statement.
    */
+  @Test
   public void queryAPITest16() throws Exception {
     boolean pass1 = false;
     try {
@@ -3562,6 +3530,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: getResultList() should throw an IllegalStateException if
    * called for an EJB QL Delete statement.
    */
+  @Test
   public void queryAPITest17() throws Exception {
     Query q;
     boolean pass = false;
@@ -3605,6 +3574,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: create query and call getSingleResult() and verify result
    * create TypedQuery and call getSingleResult() and verify result
    */
+  @Test
   public void getSingleResultTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -3678,6 +3648,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: getSingleResult() should throw an IllegalStateException if
    * called for an update or delete statement.
    */
+  @Test
   public void getSingleResultIllegalStateException() throws Exception {
     Query q;
     boolean pass1 = false;
@@ -3731,6 +3702,7 @@ public class Client extends PMClientBase {
    * if called for a JPQL Select statement. TypedQuery.executeUpdate() should
    * throw an IllegalStateException if called for a JPQL Select statement.
    */
+  @Test
   public void executeUpdateIllegalStateException() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -3800,6 +3772,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Query.executeUpdate() should throw an
    * TransactionRequiredException when no Transaction is active
    */
+  @Test
   public void executeUpdateTransactionRequiredExceptionTest() throws Exception {
     boolean pass1 = false;
 
@@ -3840,6 +3813,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: setFlushMode - AUTO
    *
    */
+  @Test
   public void queryAPITest21() throws Exception {
     boolean pass = false;
 
@@ -3945,6 +3919,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Delete Query
    *
    */
+  @Test
   public void queryAPITest23() throws Exception {
     Query q;
     int result_size = 0;
@@ -3992,6 +3967,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Bulk Update Query
    *
    */
+  @Test
   public void queryAPITest24() throws Exception {
     Query q;
     int result_size = 0;
@@ -4072,6 +4048,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Bulk Delete Query
    *
    */
+  @Test
   public void queryAPITest25() throws Exception {
     Query q;
     int result_size = 0;
@@ -4126,6 +4103,7 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy: Usage of Date literals in Query
    */
+  @Test
   public void queryAPITest27() throws Exception {
     Query q;
     Collection<Date> result;
@@ -4184,197 +4162,6 @@ public class Client extends PMClientBase {
   }
 
   /*
-   * @testName: queryAPITest28
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:527;
-   * 
-   * @test_Strategy: Usage of Time literal in Query
-   *
-   */
-  @SetupMethod(name = "setupDataTypes2")
-  public void queryAPITest28() throws Exception {
-
-    Collection<Time> result;
-
-    boolean pass1 = false;
-    boolean pass2 = false;
-    boolean pass3 = false;
-    boolean pass4 = true;
-    java.sql.Time timeValue = getTimeData("10:30:15");
-    TestUtil.logTrace("time Value = " + timeValue.toString());
-
-    try {
-      getEntityTransaction().begin();
-      TestUtil.logTrace("FIND D2: " + dateId);
-      DataTypes2 dataTypes2 = getEntityManager().find(DataTypes2.class, dateId);
-
-      if (null != dataTypes2) {
-        TestUtil.logTrace("DataType Entity is not null, setting TimeData ");
-        dataTypes2.setTimeData(timeValue);
-        pass1 = true;
-      } else {
-        TestUtil.logErr("Null returned during initial find");
-      }
-
-      getEntityManager().merge(dataTypes2);
-      doFlush();
-      clearCache();
-
-      TestUtil.logTrace("Make sure update occurred");
-      TestUtil.logTrace("FIND D2 again:");
-      dataTypes2 = getEntityManager().find(DataTypes2.class, dateId);
-
-      if (null != dataTypes2) {
-        if (dataTypes2.getTimeData().equals(timeValue)) {
-          TestUtil.logTrace("Update occurred properly:" + dataTypes2);
-          pass2 = true;
-        } else {
-          TestUtil.logErr("Update did not occur properly");
-        }
-      } else {
-        TestUtil.logErr("Find returned null after update");
-      }
-
-      TestUtil.logTrace("Retrieving all results first");
-
-      Collection<DataTypes2> cDataTypes2 = getEntityManager()
-          .createQuery("select d from DataTypes2 d").getResultList();
-      for (DataTypes2 d : cDataTypes2) {
-        TestUtil.logTrace("result:" + d.toString());
-      }
-
-      TestUtil.logTrace("Check results when testing for Time");
-      result = getEntityManager()
-          .createQuery(
-              "select d.timeData from DataTypes2 d where d.timeData = :time")
-          .setParameter("time", timeValue).getResultList();
-
-      int result_size = result.size();
-      TestUtil.logTrace("Result Size = " + result_size);
-
-      if (result_size == 1) {
-        pass3 = true;
-        TestUtil.logTrace("Received expected result size");
-        for (Time t : result) {
-          TestUtil.logTrace("time=" + t);
-          if (t.equals(timeValue)) {
-            TestUtil.logTrace("Received expected Time ");
-          } else {
-            pass4 = false;
-            TestUtil.logErr("Received unexpected Time = " + t.toString());
-          }
-        }
-
-      } else {
-        TestUtil.logErr("Expected 1 result, instead got: " + result_size);
-      }
-
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception during Rollback:", re);
-      }
-    }
-
-    if (!pass1 || !pass2 || !pass3 || !pass4) {
-      throw new Exception("queryAPITest28 failed");
-    }
-  }
-
-  /*
-   * @testName: queryAPITest29
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:527;
-   * 
-   * @test_Strategy: Usage of TimeStamp literal in Query
-   *
-   */
-  @SetupMethod(name = "setupDataTypes2")
-  public void queryAPITest29() throws Exception {
-
-    TestUtil.logTrace("Begin queryAPITest29");
-    Query q;
-    Collection<Timestamp> result;
-    int result_size = 0;
-
-    boolean pass1 = false;
-    boolean pass2 = true;
-
-    java.sql.Timestamp tsValue = getTimestampData("2006-11-11");
-    TestUtil.logTrace("timestamp Value = " + tsValue.toString());
-
-    try {
-      getEntityTransaction().begin();
-      TestUtil.logTrace("FIND D2");
-
-      DataTypes2 dataTypes2 = getEntityManager().find(DataTypes2.class, dateId);
-
-      if (null != dataTypes2) {
-        TestUtil.logTrace("DataType Entity is not null, setting TimeData ");
-        dataTypes2.setTsData(tsValue);
-      }
-
-      getEntityManager().merge(dataTypes2);
-      doFlush();
-      clearCache();
-
-      TestUtil.logTrace("Check results");
-      if ((null != dataTypes2)) {
-        // && (dataTypes2.getTimeData().equals(timeValue))
-
-        q = getEntityManager().createQuery(
-            "select d.tsData from DataTypes2 d where d.tsData = '2006-11-11 10:10:10'");
-
-        result = q.getResultList();
-        result_size = result.size();
-        TestUtil.logTrace("Result Size = " + result_size);
-
-        if (result_size == 1) {
-          pass1 = true;
-          TestUtil.logTrace("Received expected result size");
-
-          for (Timestamp t : result) {
-            TestUtil.logTrace("time=" + t);
-            if (t.equals(tsValue)) {
-              TestUtil.logTrace("Received expected TimeStamp ");
-            } else {
-              TestUtil
-                  .logErr("Received unexpected TimeStamp = " + t.toString());
-              pass2 = false;
-            }
-          }
-        } else {
-          TestUtil.logErr("Did not get expected results. " + " Expected "
-              + tsValue + " , got: " + dataTypes2.getTsData());
-        }
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception during Rollback:", re);
-      }
-    }
-
-    if (!pass1 || !pass2) {
-      throw new Exception("queryAPITest29 failed");
-    }
-  }
-
-  /*
    * @testName: getResultListIllegalStateException
    * 
    * @assertion_ids: PERSISTENCE:JAVADOC:2699;PERSISTENCE:JAVADOC:666
@@ -4382,6 +4169,7 @@ public class Client extends PMClientBase {
    * @test_Strategy: Try to execute a delete query
    *
    */
+  @Test
   public void getResultListIllegalStateException() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -4437,6 +4225,7 @@ public class Client extends PMClientBase {
    * type set to none and getSingleResult and getResultList should execute
    * successfully.
    */
+  @Test
   public void noTransactionLockModeTypeNoneTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -4724,69 +4513,7 @@ public class Client extends PMClientBase {
 
   }
 
-  private void createDataTypes2Data() throws Exception {
-    TestUtil.logTrace("createDataTypes2Data");
-    try {
-
-      getEntityTransaction().begin();
-
-      DataTypes2 dT2 = new DataTypes2(dateId);
-      dT2.setDateData(dateId);
-      dT2.setTimeData(getTimeData("01:01:01"));
-      getEntityManager().persist(dT2);
-
-      java.util.Date d = getUtilDate("2010-02-11");
-      dT2 = new DataTypes2(d);
-      dT2.setDateData(d);
-      dT2.setTimeData(getTimeData("02:02:02"));
-      getEntityManager().persist(dT2);
-
-      d = getUtilDate("2011-03-12");
-      dT2 = new DataTypes2(d);
-      dT2.setDateData(d);
-      dT2.setTimeData(getTimeData("03:03:03"));
-      getEntityManager().persist(dT2);
-
-      d = getUtilDate("2012-04-01");
-      dT2 = new DataTypes2(d);
-      dT2.setDateData(d);
-      dT2.setTimeData(getTimeData("04:04:04"));
-      getEntityManager().persist(dT2);
-
-      getEntityTransaction().commit();
-      TestUtil.logTrace("Created TestData");
-
-    } catch (Exception re) {
-      TestUtil.logErr("Unexpected Exception in createTestData:", re);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr(
-            "Unexpected Exception in createTestData while rolling back TX:",
-            re);
-      }
-    }
-  }
-
-  private static void logErrorEmp(Collection c) {
-    for (Object o : c) {
-      Employee e = (Employee) o;
-      TestUtil.logErr("id=" + e.getId() + ", " + "first=" + e.getFirstName()
-          + ", last=" + e.getLastName() + ", hireDate=" + e.getHireDate());
-    }
-  }
-
-  private static void logTraceEmp(Collection c) {
-    for (Object o : c) {
-      Employee e = (Employee) o;
-      TestUtil.logTrace("id=" + e.getId() + ", " + "first=" + e.getFirstName()
-          + ", last=" + e.getLastName() + ", hireDate=" + e.getHireDate());
-    }
-  }
-
+  @AfterEach
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

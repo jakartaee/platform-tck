@@ -1,0 +1,164 @@
+/*
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0, which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the
+ * Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+ * version 2 with the GNU Classpath Exception, which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ */
+
+/*
+ * $Id$
+ */
+
+package com.sun.ts.tests.jpa.core.types.generator;
+
+import java.util.Properties;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import com.sun.ts.lib.util.TestUtil;
+
+public class ClientIT3 extends Client {
+
+ 
+  private DataTypes3 d11;
+
+ 
+  private boolean supports_sequence = false;
+
+  public ClientIT3() {
+  }
+
+
+
+  /*
+   * @class.setup_props: db.supports.sequence;
+   */
+  @BeforeEach
+  public void setupDataTypes3() throws Exception {
+    TestUtil.logTrace("setupDataTypes3");
+    try {
+
+      super.setup();
+      String s = System.getProperty("db.supports.sequence");
+      if (s != null) {
+        supports_sequence = Boolean.parseBoolean(s);
+        TestUtil.logMsg("db.supports.sequence:" + supports_sequence);
+        if (supports_sequence) {
+          removeTestData();
+          createDataTypes3Data();
+        }
+      } else {
+        TestUtil.logErr(
+            "The property db.supports.sequence is not defined in the ts.jte, this must be corrected before running tests");
+        throw new Exception("setupDataTypes3 failed");
+
+      }
+
+    } catch (Exception e) {
+      TestUtil.logErr("Exception: ", e);
+      throw new Exception("setupDataTypes3 failed:", e);
+    }
+  }
+
+  /*
+   * @testName: sequenceGeneratorOnEntityTest
+   * 
+   * @assertion_ids: PERSISTENCE:SPEC:2107; PERSISTENCE:SPEC:2107.1;
+   * 
+   * @test_Strategy: A sequence generator may be specified on the entity class
+   */
+@Test
+  public void sequenceGeneratorOnEntityTest() throws Exception {
+
+    boolean pass = true;
+    if (supports_sequence) {
+      final Integer newInt = 1000;
+
+      try {
+        getEntityTransaction().begin();
+        clearCache();
+        TestUtil.logMsg("Doing a find of id: " + d11.getId());
+        DataTypes3 d = getEntityManager().find(DataTypes3.class, d11.getId());
+
+        if (d != null) {
+          Integer i = d.getIntegerData();
+          if (i.equals(d11.getIntegerData())) {
+            TestUtil.logTrace("find returned correct Integer value:" + i);
+            d.setIntegerData(newInt);
+          } else {
+            TestUtil
+                .logErr("find did not return correct Integer value, expected: "
+                    + d11.getIntegerData() + ", actual:" + i);
+            pass = false;
+          }
+
+          getEntityManager().merge(d);
+          getEntityManager().flush();
+          clearCache();
+          TestUtil.logMsg("Doing a find of merged data for id: " + d.getId());
+          DataTypes3 d2 = getEntityManager().find(DataTypes3.class, d.getId());
+          i = d2.getIntegerData();
+          if (i.equals(d2.getIntegerData())) {
+            TestUtil
+                .logTrace("find returned correct merged Integer value:" + i);
+          } else {
+            TestUtil
+                .logErr("find did not return correct Integer value, expected: "
+                    + d.getIntegerData() + ", actual:" + i);
+            pass = false;
+          }
+
+          getEntityTransaction().commit();
+        } else {
+          TestUtil.logErr("find returned null result");
+          pass = false;
+        }
+      } catch (Exception e) {
+        TestUtil.logErr("Unexpected exception occurred", e);
+        pass = false;
+      }
+    } else {
+      TestUtil.logMsg(
+          "WARNING: Test not run because db.supports.sequence set to false in ts.jte");
+    }
+    if (!pass)
+      throw new Exception("sequenceGeneratorOnEntityTest failed");
+
+  }
+
+
+  // Methods used for Tests
+
+
+  public void createDataTypes3Data() {
+    try {
+      getEntityTransaction().begin();
+
+      TestUtil.logTrace("in createDataTypes3Data");
+
+      TestUtil.logTrace("new DataType3");
+      d11 = new DataTypes3(500);
+      TestUtil.logTrace("Persist DataType3");
+      getEntityManager().persist(d11);
+      TestUtil.logTrace("DataType3 id:" + d11.getId());
+
+      getEntityManager().flush();
+      getEntityTransaction().commit();
+
+    } catch (Exception e) {
+      TestUtil.logErr("Unexpected exception occurred", e);
+    }
+  }
+
+
+}

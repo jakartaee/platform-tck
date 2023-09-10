@@ -22,8 +22,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.harness.CleanupMethod;
-import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -32,11 +30,11 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceException;
 
-public class Client extends PMClientBase {
+public class ClientIT extends PMClientBase {
 
   Properties props = null;
 
-  public Client() {
+  public ClientIT() {
   }
 
 
@@ -51,41 +49,8 @@ public class Client extends PMClientBase {
     }
   }
 
-  @BeforeEach
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      removeTestData();
-      createOrderTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
-
-  @BeforeEach
-  public void setupMember() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      removeTestData();
-      createMemberTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
-
   @AfterEach
   public void cleanupNoData() throws Exception {
-    super.cleanup();
-  }
-
-  @AfterEach
-  public void cleanup() throws Exception {
-    removeTestData();
-    TestUtil.logTrace("done cleanup, calling super.cleanup");
     super.cleanup();
   }
 
@@ -97,8 +62,6 @@ public class Client extends PMClientBase {
    * @test_Strategy: Close the EntityManagerFactory, then call
    * emf.getMetaModel()
    */
-  @SetupMethod(name = "setupNoData")
-  @CleanupMethod(name = "cleanupNoData")
   @Test
   public void getMetamodelIllegalStateExceptionTest() throws Exception {
     boolean pass = false;
@@ -129,8 +92,6 @@ public class Client extends PMClientBase {
    * @test_Strategy: Instantiate createEntityManagerFactory when there is no
    * Bean Validation provider present in the environment
    */
-  @SetupMethod(name = "setupNoData")
-  @CleanupMethod(name = "cleanupNoSuper")
   @Test
   public void createEntityManagerFactoryNoBeanValidatorTest() throws Exception {
     boolean pass = false;
@@ -161,8 +122,6 @@ public class Client extends PMClientBase {
    * 
    * @test_Strategy: Create an EntityManagerFactory via String,Map
    */
-  @SetupMethod(name = "setupNoData")
-  @CleanupMethod(name = "cleanupNoSuper")
   @Test
   public void createEntityManagerFactoryStringMapTest() throws Exception {
     boolean pass = false;
@@ -184,92 +143,5 @@ public class Client extends PMClientBase {
     }
   }
 
-  private void createOrderTestData() {
-
-    try {
-      getEntityTransaction().begin();
-      Order[] orders = new Order[5];
-      orders[0] = new Order(1, 111);
-      orders[1] = new Order(2, 222);
-      orders[2] = new Order(3, 333);
-      orders[3] = new Order(4, 444);
-      orders[4] = new Order(5, 555);
-
-      for (Order o : orders) {
-        TestUtil.logTrace("Persisting order:" + o.toString());
-        getEntityManager().persist(o);
-      }
-      getEntityManager().flush();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception fe) {
-        TestUtil.logErr("Unexpected exception rolling back TX:", fe);
-      }
-    }
-  }
-
-  private void createMemberTestData() {
-
-    try {
-      getEntityTransaction().begin();
-
-      Member[] members = new Member[5];
-      members[0] = new Member(1, "1");
-      members[1] = new Member(2, "2");
-      members[2] = new Member(3, "3");
-      members[3] = new Member(4, "4");
-      members[4] = new Member(5, "5");
-
-      for (Member m : members) {
-        TestUtil.logTrace("Persisting member:" + m.toString());
-        getEntityManager().persist(m);
-      }
-      getEntityManager().flush();
-
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception fe) {
-        TestUtil.logErr("Unexpected exception rolling back TX:", fe);
-      }
-    }
-  }
-
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      clearCache();
-      getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM MEMBER")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
 
 }

@@ -23,40 +23,23 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.harness.CleanupMethod;
-import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
-public class Client extends PMClientBase {
+public class ClientIT2 extends PMClientBase {
 
   private List<Student> expectedResults;
-
+	
   private List<Employee> expectedEmployees;
 
   private List<Employee2> expectedEmployees2;
 
-  public Client() {
+  public ClientIT2() {
   }
 
-
-  @BeforeEach
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-
-      super.setup();
-      removeTestData();
-      createStudentTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
 
   @BeforeEach
   public void setupEmployee() throws Exception {
@@ -73,88 +56,6 @@ public class Client extends PMClientBase {
   }
 
   /*
-   * @testName: orderColumn
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501;
-   * PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504; PERSISTENCE:SPEC:505;
-   * PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507; PERSISTENCE:SPEC:508;
-   * PERSISTENCE:SPEC:932; PERSISTENCE:SPEC:936; PERSISTENCE:SPEC:939;
-   * PERSISTENCE:SPEC:943; PERSISTENCE:SPEC:946; PERSISTENCE:SPEC:930;
-   * PERSISTENCE:SPEC:1018; PERSISTENCE:SPEC:1019; PERSISTENCE:SPEC:1020;
-   * PERSISTENCE:SPEC:1021; PERSISTENCE:SPEC:1023; PERSISTENCE:SPEC:1025;
-   * PERSISTENCE:SPEC:848; PERSISTENCE:SPEC:856; PERSISTENCE:SPEC:908;
-   * PERSISTENCE:SPEC:909; PERSISTENCE:SPEC:915; PERSISTENCE:SPEC:925;
-   * PERSISTENCE:SPEC:918; PERSISTENCE:SPEC:928; PERSISTENCE:SPEC:929;
-   * PERSISTENCE:JAVADOC:149; PERSISTENCE:JAVADOC:152; PERSISTENCE:JAVADOC:163;
-   * PERSISTENCE:SPEC:846; PERSISTENCE:SPEC:1204; PERSISTENCE:JAVADOC:378;
-   * PERSISTENCE:JAVADOC:379; PERSISTENCE:JAVADOC:377; PERSISTENCE:JAVADOC:380;
-   *
-   * @test_Strategy: With basic entity requirements, persist/remove an entity.
-   */
-  @Test
-  public void orderColumn() throws Exception {
-    boolean pass = false;
-    final String expectedStudentName = "Joseph";
-    final int expectedListSize = 4;
-    final int courseNumber = 101;
-    List<Student> students;
-    int numStudents = 0;
-
-    try {
-      getEntityTransaction().begin();
-
-      final Course course = getEntityManager().find(Course.class, courseNumber);
-
-      if (course != null) {
-        // force students to be read
-        numStudents = course.getStudents().size();
-      } else {
-        TestUtil.logErr("course from find() is NULL!");
-      }
-
-      if (numStudents == expectedListSize) {
-        students = course.getStudents();
-        if (students.get(0).equals(expectedResults.get(0))
-            && students.get(1).equals(expectedResults.get(1))
-            && students.get(2).equals(expectedResults.get(2))
-            && students.get(3).equals(expectedResults.get(3))) {
-          TestUtil.logTrace("****Current order of students returned via "
-              + "getStudents()\nNow checking via JPQL");
-
-          Query q = getEntityManager().createQuery("SELECT s.studentName "
-              + "FROM Course c JOIN c.students s where c.courseName ='Physics' and INDEX(s) = 1");
-          final String result = (String) q.getSingleResult();
-          if (result.equals(expectedStudentName)) {
-            TestUtil.logTrace(
-                "+++Received expected Name via Query:" + expectedStudentName);
-            pass = true;
-          } else {
-            TestUtil.logErr("Did NOT get expected name via Query: "
-                + expectedStudentName + ", received: " + result);
-          }
-
-        } else {
-          TestUtil.logErr("Failed to return the correct order of "
-              + "students via getStudents()");
-        }
-
-      } else {
-        TestUtil.logErr("course.getStudents() returned wrong number!");
-      }
-
-      getEntityTransaction().commit();
-
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-    }
-
-    if (!pass) {
-      throw new Exception("orderColumn test failed");
-    }
-
-  }
-
-  /*
    * @testName: propertyAccessWithNameTest
    * 
    * @assertion_ids: PERSISTENCE:SPEC:2097; PERSISTENCE:SPEC:2104;
@@ -162,8 +63,6 @@ public class Client extends PMClientBase {
    *
    * @test_Strategy: name is specified while using property access.
    */
-  @SetupMethod(name = "setupEmployee")
-  @CleanupMethod(name = "cleanupEmployee")
   @Test
   public void propertyAccessWithNameTest() throws Exception {
     boolean pass = false;
@@ -263,8 +162,6 @@ public class Client extends PMClientBase {
    *
    * @test_Strategy: name is specified while using property access.
    */
-  @SetupMethod(name = "setupEmployee")
-  @CleanupMethod(name = "cleanupEmployee")
   @Test
   public void fieldAccessWithNameTest() throws Exception {
     boolean pass = false;
@@ -527,45 +424,11 @@ public class Client extends PMClientBase {
   }
 
   @AfterEach
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
-
   public void cleanupEmployee() throws Exception {
     TestUtil.logTrace("cleanupEmployee");
     // removeEmployeeTestData();
     TestUtil.logTrace("cleanup complete, calling super.cleanup");
     super.cleanup();
-  }
-
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("Delete from COURSE_STUDENT")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("Delete from STUDENT")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("Delete from COURSE")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
   }
 
   private void removeEmployeeTestData() {

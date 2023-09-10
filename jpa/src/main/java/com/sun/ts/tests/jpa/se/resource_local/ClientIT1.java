@@ -26,8 +26,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.harness.CleanupMethod;
-import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -39,7 +37,7 @@ import jakarta.persistence.PersistenceException;
 import jakarta.persistence.RollbackException;
 import jakarta.persistence.SynchronizationType;
 
-public class Client extends PMClientBase {
+public class ClientIT1 extends PMClientBase {
 
   private EntityManager entityManager;
 
@@ -56,13 +54,6 @@ public class Client extends PMClientBase {
     }
   }
 
-  public void setupOnly() throws Exception {
-    try {
-      super.setup();
-    } catch (Exception e) {
-      throw new Exception("Setup Failed!", e);
-    }
-  }
   /*
    * @testName: test1
    * 
@@ -813,60 +804,6 @@ public class Client extends PMClientBase {
       throw new Exception(
           "createEntityManagerSynchronizationTypeMapIllegalStateExceptionTest failed");
     }
-  }
-
-  /*
-   * @testName: createEntityManagerSynchronizationTypeIllegalStateExceptionTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:3323;
-   * 
-   * @test_Strategy:
-   */
-  @SetupMethod(name = "setupOnly")
-  @CleanupMethod(name = "cleanupOnly")
-@Test
-public void createEntityManagerSynchronizationTypeIllegalStateExceptionTest()
-      throws Exception {
-    boolean pass1 = false;
-    boolean pass2 = false;
-    Properties p = getPersistenceUnitProperties();
-    TestUtil.logMsg("Testing for resource-local entity managers");
-    EntityManagerFactory emf = Persistence
-        .createEntityManagerFactory(getPersistenceUnitName(), p);
-
-    displayMap(emf.getProperties());
-    try {
-      emf.createEntityManager(SynchronizationType.UNSYNCHRONIZED);
-      TestUtil.logErr("IllegalStateException not thrown");
-    } catch (IllegalStateException iae) {
-      TestUtil.logTrace("Caught Expected IllegalStateException");
-      pass1 = true;
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
-    TestUtil.logMsg("Testing when EMF is closed");
-    emf = Persistence.createEntityManagerFactory(getPersistenceUnitName(), p);
-    displayMap(emf.getProperties());
-    try {
-      emf.close();
-      emf.createEntityManager(SynchronizationType.UNSYNCHRONIZED);
-      TestUtil.logErr("IllegalStateException not thrown");
-    } catch (IllegalStateException iae) {
-      TestUtil.logTrace("Caught Expected IllegalStateException");
-      pass2 = true;
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
-
-    if (!pass1 || !pass2) {
-      throw new Exception(
-          "createEntityManagerSynchronizationTypeIllegalStateExceptionTest failed");
-    }
-  }
-
-  public void cleanupOnly() throws Exception {
-    TestUtil.logTrace("cleanupOnly");
-    super.cleanup();
   }
 
   @AfterEach
