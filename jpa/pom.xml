@@ -26,7 +26,7 @@
         <version>10.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>jpa</artifactId>
+    <artifactId>jpa-tck</artifactId>
     <packaging>jar</packaging>
 
     <name>JPA</name>

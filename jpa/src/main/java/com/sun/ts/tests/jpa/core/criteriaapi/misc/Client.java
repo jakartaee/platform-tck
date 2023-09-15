@@ -22,6 +22,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.Customer;
@@ -64,6 +66,7 @@ public class Client extends Util {
    * @test_Strategy:
    *
    */
+  @Test
   public void predicateIsNegatedTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -116,6 +119,7 @@ public class Client extends Util {
    *
    * @test_Strategy:
    */
+  @Test
   public void predicateBooleanOperatorTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -185,6 +189,7 @@ public class Client extends Util {
    *
    * @test_Strategy:
    */
+  @Test
   public void predicateGetOperatorTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -255,6 +260,7 @@ public class Client extends Util {
    * @test_Strategy:
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void predicateGetExpressionsTest() throws Exception {
     boolean pass2 = false;
     boolean pass3 = false;
@@ -380,6 +386,7 @@ public class Client extends Util {
    * @test_Strategy: SELECT c FROM Customer c WHERE c.name IS NOT NULL
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void predicateIsNotNullTest() throws Exception {
     boolean pass = false;
 
@@ -448,6 +455,7 @@ public class Client extends Util {
    * @test_Strategy: SELECT c FROM Customer c WHERE c.name IS NULL
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void predicateIsNullTest() throws Exception {
     boolean pass = false;
 
@@ -498,6 +506,7 @@ public class Client extends Util {
    * @test_Strategy: SELECT c FROM Customer c WHERE c.ID IN (1,2)
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void pathInObjectArrayTest() throws Exception {
     boolean pass = false;
 
@@ -548,6 +557,7 @@ public class Client extends Util {
    * @test_Strategy: SELECT c FROM Customer c WHERE c.ID = 1
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void pathInExpressionTest() throws Exception {
     boolean pass = false;
 
@@ -600,6 +610,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void pathInExpressionArrayTest() throws Exception {
     boolean pass = false;
 
@@ -651,6 +662,7 @@ public class Client extends Util {
    * @test_Strategy: SELECT c FROM Customer c WHERE c.ID IN (1,2)
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void pathInCollectionTest() throws Exception {
     boolean pass = false;
 
@@ -705,6 +717,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void pathIsNotNullTest() throws Exception {
     boolean pass = false;
 
@@ -772,6 +785,7 @@ public class Client extends Util {
    * @test_Strategy: SELECT c FROM Customer c WHERE c.name IS NULL
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void pathIsNullTest() throws Exception {
     boolean pass = false;
 
@@ -823,6 +837,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void compoundSelectionGetCompoundSelectionItemsTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = true;
@@ -896,6 +911,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void selectionGetCompoundSelectionItemsTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = true;
@@ -963,6 +979,7 @@ public class Client extends Util {
    * 
    * @test_Strategy:
    */
+  @Test
   public void selectionGetCompoundSelectionItemsIllegalStateExceptionTest()
       throws Exception {
     boolean pass = false;
@@ -998,6 +1015,7 @@ public class Client extends Util {
    *
    * expression will never be a compound expression
    */
+  @Test
   public void expressionIsCompoundSelectionTest() throws Exception {
     boolean pass = false;
 
@@ -1024,6 +1042,7 @@ public class Client extends Util {
    * 
    * @test_Strategy:
    */
+  @Test
   public void expressionGetCompoundSelectionItemsIllegalStateExceptionTest()
       throws Exception {
     boolean pass = false;
@@ -1059,6 +1078,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void subqueryInObjectArrayTest() throws Exception {
     boolean pass = false;
 
@@ -1116,6 +1136,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void subqueryInExpressionArrayTest() throws Exception {
     boolean pass = false;
 
@@ -1173,6 +1194,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void subqueryInExpressionTest() throws Exception {
     boolean pass = false;
 
@@ -1230,6 +1252,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void subqueryInCollectionTest() throws Exception {
     boolean pass = false;
 
@@ -1287,6 +1310,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void subqueryIsNotNull() throws Exception {
     boolean pass = false;
 
@@ -1342,6 +1366,7 @@ public class Client extends Util {
    *
    */
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void subqueryIsNull() throws Exception {
     boolean pass = false;
 
@@ -1398,6 +1423,7 @@ public class Client extends Util {
    * 
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void pathGetPluralAttributeTest() throws Exception {
     boolean pass = false;
 
@@ -1444,6 +1470,7 @@ public class Client extends Util {
    * with name like Caruso. The name Caruso is derived in the subquery.
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void subquery() throws Exception {
     boolean pass = false;
     String expectedPKs[];
@@ -1494,6 +1521,7 @@ public class Client extends Util {
    * with name like Caruso. The name Caruso is derived in the subquery.
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void subqueryGroupByExpressionTest() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1613,6 +1641,7 @@ public class Client extends Util {
    * with name like Caruso. The name Caruso is derived in the subquery.
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void subqueryGroupByExpressionArrayTest() throws Exception {
     boolean pass = false;
     String expectedPKs[];
@@ -1678,6 +1707,7 @@ public class Client extends Util {
    * with name like Caruso. The name Caruso is derived in the subquery.
    */
   @SetupMethod(name = "setupOrderData")
+  @Test
   public void subqueryGroupByListTest() throws Exception {
     boolean pass = false;
     String expectedPKs[];
@@ -1743,6 +1773,7 @@ public class Client extends Util {
    * @test_Strategy: convert the following JPQL to CriteriaQuery
    *
    */
+  @Test
   public void getRoots() throws Exception {
     boolean pass = false;
 
@@ -1814,6 +1845,7 @@ public class Client extends Util {
    *
    *
    */
+  @Test
   public void getSelection() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1891,6 +1923,7 @@ public class Client extends Util {
    * @test_Strategy: select c.country.code FROM Customer c GROUP BY
    * c.country.code"
    */
+  @Test
   public void getGroupList() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;
@@ -1976,6 +2009,7 @@ public class Client extends Util {
    */
 
   @SetupMethod(name = "setupCustomerData")
+  @Test
   public void getGroupRestriction() throws Exception {
     boolean pass = false;
 
@@ -2044,6 +2078,7 @@ public class Client extends Util {
    *
    *
    */
+  @Test
   public void isDistinct() throws Exception {
     boolean pass = false;
 
@@ -2083,6 +2118,7 @@ public class Client extends Util {
    *
    *
    */
+  @Test
   public void getResultType() throws Exception {
     boolean pass1 = false;
     boolean pass2 = false;

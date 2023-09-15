@@ -51,7 +51,7 @@ import jakarta.persistence.PersistenceException;
 
 abstract public class PMClientBase implements UseEntityManager, UseEntityManagerFactory, java.io.Serializable {
 
-	protected Properties myProps;
+	protected Properties myProps = new Properties();
 
 	transient private EntityManager em;
 
@@ -78,7 +78,7 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 	transient public static final String RESOURCE_LOCAL = "RESOURCE_LOCAL";
 
 	/**
-	 * Name of a property defined in ts.jte, to denote whether tests run in
+	 * Name of a property, to denote whether tests run in
 	 * JakartaEE or Java SE mode.
 	 */
 	transient public static final String MODE_PROP = "platform.mode";
@@ -96,7 +96,7 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 	transient public static final String STANDALONE_MODE = "standalone";
 
 	/**
-	 * Name of a property defined in ts.jte, to specify the name of the persistence
+	 * Name of a property, to specify the name of the persistence
 	 * unit used in the testsuite. It must be consistent with the value in
 	 * persistence.xml
 	 */
@@ -105,11 +105,12 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 	transient public static final String SECOND_PERSISTENCE_UNIT_NAME_PROP = "persistence.unit.name.2";
 
 	/**
-	 * Name of the property in ts.jte that specifies an absolute path to the
+	 * Name of the property that specifies an absolute path to the
 	 * properties file that contains properties for initializing
 	 * EntityManagerFactory, including both standard and provider-specific
 	 * properties.
 	 */
+	
 	transient public static final String JAVAX_PERSISTENCE_PROVIDER = "jakarta.persistence.provider";
 
 	transient public static final String JAVAX_PERSISTENCE_JDBC_DRIVER = "jakarta.persistence.jdbc.driver";
@@ -168,10 +169,29 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 	public void setup() throws Exception {
 		TestUtil.logTrace("PMClientBase.setup");
 		mode = System.getProperty(MODE_PROP);
+		myProps.put(MODE_PROP, mode);
 		persistenceUnitName = System.getProperty(PERSISTENCE_UNIT_NAME_PROP);
+		myProps.put(PERSISTENCE_UNIT_NAME_PROP, persistenceUnitName);
 		TestUtil.logTrace("Persistence Unit Name =" + persistenceUnitName);
 		secondPersistenceUnitName = System.getProperty(SECOND_PERSISTENCE_UNIT_NAME_PROP);
+		myProps.put(SECOND_PERSISTENCE_UNIT_NAME_PROP, secondPersistenceUnitName);
 		TestUtil.logTrace("Second Persistence Unit Name =" + secondPersistenceUnitName);
+		
+		myProps.put(JAVAX_PERSISTENCE_PROVIDER,System.getProperty(JAVAX_PERSISTENCE_PROVIDER)); 
+
+		myProps.put(JAVAX_PERSISTENCE_JDBC_DRIVER, System.getProperty(JAVAX_PERSISTENCE_JDBC_DRIVER));
+
+		myProps.put(JAVAX_PERSISTENCE_JDBC_URL, System.getProperty(JAVAX_PERSISTENCE_JDBC_URL));
+
+		myProps.put(JAVAX_PERSISTENCE_JDBC_USER, System.getProperty(JAVAX_PERSISTENCE_JDBC_USER));
+
+		myProps.put(JAVAX_PERSISTENCE_JDBC_PASSWORD, System.getProperty(JAVAX_PERSISTENCE_JDBC_PASSWORD));
+
+		myProps.put(JPA_PROVIDER_IMPLEMENTATION_SPECIFIC_PROPERTIES, System.getProperty(JPA_PROVIDER_IMPLEMENTATION_SPECIFIC_PROPERTIES));
+
+		myProps.put(PERSISTENCE_SECOND_LEVEL_CACHING_SUPPORTED, System.getProperty(PERSISTENCE_SECOND_LEVEL_CACHING_SUPPORTED));
+
+		
 		if (JAVAEE_MODE.equalsIgnoreCase(mode)) {
 			TestUtil.logTrace(MODE_PROP + " is set to " + mode + ", so tests are running in JakartaEE environment.");
 		} else if (STANDALONE_MODE.equalsIgnoreCase(mode)) {
@@ -181,6 +201,8 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 		} else {
 			TestUtil.logMsg("WARNING: " + MODE_PROP + " is set to " + mode + ", an invalid value.");
 		}
+		
+		
 
 		cachingSupported = Boolean.parseBoolean(System.getProperty(PERSISTENCE_SECOND_LEVEL_CACHING_SUPPORTED, "true"));
 	}
@@ -431,6 +453,7 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 				displayMap(emfMap);
 			}
 			this.em = emf.createEntityManager();
+			System.out.println("###############################"+ emf.toString());
 		} else {
 			TestUtil.logMsg("The test is running in JakartaEE environment, "
 					+ "the EntityManager is initialized in the vehicle component.");

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,6 +20,12 @@
 
 package com.sun.ts.tests.jpa.core.annotations.mapkey;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -27,17 +33,22 @@ public class Client extends PMClientBase {
 
   public Client() {
   }
-  
-  protected Employee2 empRef2;
 
-  protected Employee3 empRef3;
-
-  protected Employee4 empRef4;
-
-  protected static Department deptRef[] = new Department[5];
-  
   protected Employee empRef[] = new Employee[10];
 
+  private static Department deptRef[] = new Department[5];
+
+@BeforeEach
+  public void setup() throws Exception {
+    TestUtil.logTrace("setup");
+    try {
+      super.setup();
+      removeTestData();
+    } catch (Exception e) {
+      TestUtil.logErr("Exception: ", e);
+      throw new Exception("Setup failed:", e);
+    }
+  }
 
   /*
    * 
@@ -75,6 +86,72 @@ public class Client extends PMClientBase {
         TestUtil.logErr("Unexpected Exception in rollback:", re);
       }
     }
+  }
+
+  public void createTestData() throws Exception {
+    try {
+
+      TestUtil.logTrace("createTestData");
+      createTestDataCommon();
+      getEntityTransaction().begin();
+
+      TestUtil.logTrace("Create 5 employees");
+      empRef[0] = new Employee(1, "Alan", "Frechette");
+      empRef[0].setDepartment(deptRef[0]);
+
+      empRef[1] = new Employee(2, "Arthur", "Frechette");
+      empRef[1].setDepartment(deptRef[1]);
+
+      empRef[2] = new Employee(3, "Shelly", "McGowan");
+      empRef[2].setDepartment(deptRef[0]);
+
+      empRef[3] = new Employee(4, "Robert", "Bissett");
+      empRef[3].setDepartment(deptRef[1]);
+
+      empRef[4] = new Employee(5, "Stephen", "DMilla");
+      empRef[4].setDepartment(deptRef[0]);
+
+      Map<String, Employee> link = new HashMap<String, Employee>();
+      link.put(empRef[0].getLastName(), empRef[0]);
+      link.put(empRef[2].getLastName(), empRef[2]);
+      link.put(empRef[4].getLastName(), empRef[4]);
+      deptRef[0].setLastNameEmployees(link);
+
+      Map<String, Employee> link1 = new HashMap<String, Employee>();
+      link1.put(empRef[1].getLastName(), empRef[1]);
+      link1.put(empRef[3].getLastName(), empRef[3]);
+      deptRef[1].setLastNameEmployees(link1);
+
+      TestUtil.logTrace("Start to persist employees ");
+      for (Employee emp : empRef) {
+        if (emp != null) {
+          getEntityManager().persist(emp);
+          TestUtil.logTrace("persisted employee " + emp.getId());
+        }
+      }
+
+      getEntityManager().flush();
+      getEntityTransaction().commit();
+    } catch (Exception e) {
+      TestUtil.logErr("Unexpected Exception creating test data:", e);
+    } finally {
+      try {
+        if (getEntityTransaction().isActive()) {
+          getEntityTransaction().rollback();
+        }
+      } catch (Exception re) {
+        TestUtil.logErr("Unexpected Exception in rollback:", re);
+      }
+    }
+  }
+
+ 
+  @AfterEach
+  public void cleanup() throws Exception {
+    TestUtil.logTrace("cleanup");
+    removeTestData();
+    TestUtil.logTrace("cleanup complete, calling super.cleanup");
+    super.cleanup();
   }
 
   protected void removeTestData() {
