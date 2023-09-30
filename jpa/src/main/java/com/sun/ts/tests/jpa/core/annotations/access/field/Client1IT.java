@@ -1,16 +1,33 @@
 package com.sun.ts.tests.jpa.core.annotations.access.field;
 
+import java.io.IOException;
 import java.util.Arrays;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.core.types.common.Grade;
 
 import jakarta.persistence.Query;
 
+@ExtendWith(ArquillianExtension.class)
 public class Client1IT extends Client{
+	
+	
+	@Deployment
+	public static JavaArchive createDeployment() throws IOException {
+		JavaArchive archive = ShrinkWrap.create(JavaArchive.class, "wsc_ee_clientendpoint_web.jar");
+		archive.addPackages(true,"com.sun.ts.tests.jpa.core.annotations.access.field");
+		System.out.println(archive.toString(true));
+		return archive;
+	}
+	
 	
 	 @BeforeEach
 	  public void setup() throws Exception {
