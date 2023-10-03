@@ -59,18 +59,4 @@ public class BeanTypesWithIllegalTypeTest extends AbstractTest {
         assertEquals(birdBean.getTypes().size(), 2);
     }
 
-    @Test(enabled = false)
-    // disabled due to CDITCK-575 and marked as testable false
-    // @SpecAssertions({ @SpecAssertion(section = RESOURCE_TYPES, id = "b") })
-    public void resourceBeanTypesContainsOnlyLegalTypes() {
-
-        Bean<Dog> dogBean = getUniqueBean(Dog.class, Produced.ProducedLiteral.INSTANCE);
-        for (Type type : dogBean.getTypes()) {
-            if (type instanceof ParameterizedType) {
-                assertNotEquals(((ParameterizedType) type).getRawType(), AnimalHolder.class);
-            }
-        }
-        assertEquals(dogBean.getTypes().size(), 2);
-    }
-
 }
