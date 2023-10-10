@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.jpa.se.descriptor;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -32,7 +32,7 @@ public class ClientIT extends PMClientBase {
   private static final B bRef[] = new B[5];
 
 
-  @BeforeEach
+  @BeforeAll
   public void setup() throws Exception {
     try {
 
@@ -106,7 +106,7 @@ public class ClientIT extends PMClientBase {
     }
   }
 
-  @AfterEach
+  @AfterAll
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

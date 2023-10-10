@@ -23,8 +23,10 @@ package com.sun.ts.tests.jpa.core.annotations.mapkey;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -36,9 +38,21 @@ public class Client extends PMClientBase {
 
   protected Employee empRef[] = new Employee[10];
 
-  private static Department deptRef[] = new Department[5];
+  protected static Department deptRef[] = new Department[5];
+  
+  
+  @Deployment(testable = false, managed = false)
+	public static JavaArchive createDeployment() throws Exception {
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = Client.class.getPackageName() + ".";
+		String[] classes = { pkgName + "Department", pkgName + "Employee",
+				 pkgName + "Employee2", pkgName + "Employee3", pkgName + "Employee4"};
+		return createDeploymentJar("jpa_core_annotations_mapkey.jar", pkgNameWithoutSuffix, classes);
 
-@BeforeEach
+	}
+
+
+@BeforeAll
   public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
@@ -146,7 +160,7 @@ public class Client extends PMClientBase {
   }
 
  
-  @AfterEach
+  @AfterAll
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

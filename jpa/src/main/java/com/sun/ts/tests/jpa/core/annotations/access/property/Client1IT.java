@@ -18,11 +18,18 @@ package com.sun.ts.tests.jpa.core.annotations.access.property;
 
 import java.util.Arrays;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.core.types.common.Grade;
+
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client1IT extends Client {
 
@@ -30,7 +37,7 @@ public class Client1IT extends Client {
 	public Client1IT() {
 	}
 
-	@BeforeEach
+	@BeforeAll
 	public void setup() throws Exception {
 		TestUtil.logTrace("setup");
 		try {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,8 +16,10 @@
 
 package com.sun.ts.tests.jpa.jpa22.repeatable.convert;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -29,9 +31,22 @@ public class ClientIT extends PMClientBase {
 
   public ClientIT() {
   }
+  
+  @Deployment(testable = false, managed = false)
+  public static JavaArchive createDeployment() throws Exception {
+     
+     String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+     String pkgName = ClientIT.class.getPackageName() + ".";
+     String[] classes = { pkgName + "Address", pkgName + "B", 
+    		 pkgName + "DotConverter", pkgName + "Employee3",
+    		 pkgName + "NumberToStateConverter"};
+     return createDeploymentJar("jpa_jpa22_repeatable_convert.jar", pkgNameWithoutSuffix, (String[]) classes);
+
+  }
 
 
-  @BeforeEach
+
+  @BeforeAll
   public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
@@ -112,7 +127,7 @@ public class ClientIT extends PMClientBase {
     }
   }
 
-  @AfterEach
+  @AfterAll
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

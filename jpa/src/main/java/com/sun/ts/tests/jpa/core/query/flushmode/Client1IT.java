@@ -23,7 +23,11 @@ package com.sun.ts.tests.jpa.core.query.flushmode;
 import java.sql.Date;
 import java.util.List;
 
+import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.Customer;
@@ -33,6 +37,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.FlushModeType;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
+
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client1IT extends UtilCustomerData {
 

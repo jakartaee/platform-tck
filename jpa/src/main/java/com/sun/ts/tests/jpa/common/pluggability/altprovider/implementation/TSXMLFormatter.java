@@ -82,7 +82,7 @@ public class TSXMLFormatter extends XMLFormatter {
     if (record.getSourceClassName() != null) {
       sb.append("  <class>");
       escape(sb, record.getSourceClassName());
-      sb.append("</class>\n");
+      sb.append("; pkgName +\n");
     }
 
     if (record.getSourceMethodName() != null) {
@@ -147,7 +147,7 @@ public class TSXMLFormatter extends XMLFormatter {
         sb.append("    <frame>\n");
         sb.append("      <class>");
         escape(sb, frame.getClassName());
-        sb.append("</class>\n");
+        sb.append("; pkgName +\n");
 
         sb.append("      <method>");
         escape(sb, frame.getMethodName());

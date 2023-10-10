@@ -22,7 +22,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -43,13 +45,23 @@ public class Client1IT extends Client {
   public Client1IT() {
   }
 
+  @Deployment(testable = false, managed = false)
+  public static JavaArchive createDeployment() throws Exception {
+     
+     String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
+     String pkgName = Client1IT.class.getPackageName() + ".";
+     String[] classes = { pkgName + "Employee", pkgName + "Employee2", pkgName + "EmployeeMappedSc"};
+     return createDeploymentJar("jpa_core_types_StoredProcedureQuery1.jar", pkgNameWithoutSuffix, classes);
+
+  }
+
 
   /*
    * setup() is called before each test
    *
    * @class.setup_props: jdbc.db;
    */
-  @BeforeEach
+  @BeforeAll
   public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {

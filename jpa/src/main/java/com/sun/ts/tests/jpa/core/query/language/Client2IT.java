@@ -24,7 +24,11 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
@@ -39,6 +43,9 @@ import com.sun.ts.tests.jpa.common.schema30.UtilCustomerData;
 
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
+
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client2IT extends UtilCustomerData {
 

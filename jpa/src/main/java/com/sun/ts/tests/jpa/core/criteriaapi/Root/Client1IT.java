@@ -18,8 +18,14 @@ package com.sun.ts.tests.jpa.core.criteriaapi.Root;
 
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
@@ -44,10 +50,23 @@ import jakarta.persistence.criteria.MapJoin;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.criteria.SetJoin;
 
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
+
 public class Client1IT extends Util {
+	
+	 @Deployment(testable = false, managed = false)
+	 	public static JavaArchive createDeployment() throws Exception {
+
+	 		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
+	 		String pkgName = Client1IT.class.getPackageName() + ".";
+	 		String[] classes = {};
+	 		return createDeploymentJar("jpa_core_criteriaapi_root1.jar", pkgNameWithoutSuffix, classes);
+	 }
+
 
   /* Test setup */
-	@BeforeEach
+	@BeforeAll
   public void setup() throws Exception {
     TestUtil.logTrace("Entering Setup");
     try {

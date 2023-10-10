@@ -19,21 +19,41 @@ package com.sun.ts.tests.jpa.core.types.property;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 import com.sun.ts.tests.jpa.core.types.common.Grade;
 
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
+
 public class Client2IT extends PMClientBase {
 
   public Client2IT() {
   }
+  
+  @Deployment(testable = false, managed = false)
+  public static JavaArchive createDeployment() throws Exception {
+     
+     String pkgNameWithoutSuffix = Client2IT.class.getPackageName();
+     String pkgName = Client2IT.class.getPackageName() + ".";
+     String[] classes = { Grade.class.getCanonicalName(), pkgName + "Customer"};
+     return createDeploymentJar("jpa_core_types_property2.jar", pkgNameWithoutSuffix, classes);
+
+  }
 
 
-  @BeforeEach
+
+  @BeforeAll
   public void setupCust() throws Exception {
     TestUtil.logTrace("setup");
     try {
@@ -112,7 +132,7 @@ public class Client2IT extends PMClientBase {
 
   // Methods used for Tests
 
-  @AfterEach
+  @AfterAll
   public void cleanupCust() throws Exception {
     TestUtil.logTrace("cleanup");
     removeCustTestData();

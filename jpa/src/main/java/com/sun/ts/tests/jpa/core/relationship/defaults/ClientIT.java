@@ -24,6 +24,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Vector;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -44,6 +47,20 @@ public class ClientIT extends PMClientBase {
   private static Team tRef[] = new Team[10];
 
   public ClientIT() {
+  }
+
+  
+  @Deployment(testable = false, managed = false)
+  public static JavaArchive createDeployment() throws Exception {
+     
+     String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+     String pkgName = ClientIT.class.getPackageName() + ".";
+     String[] classes = { pkgName + "Address", pkgName + "AnnualReview",
+    		 pkgName + "Company", pkgName + "Insurance",
+    		 pkgName + "Person", pkgName + "Project",
+    		 pkgName + "Team"};
+     return createDeploymentJar("jpa_core_relationship_defaults.jar", pkgNameWithoutSuffix, classes);
+
   }
 
 

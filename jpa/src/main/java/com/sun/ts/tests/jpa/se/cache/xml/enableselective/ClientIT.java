@@ -16,8 +16,10 @@
 
 package com.sun.ts.tests.jpa.se.cache.xml.enableselective;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -32,8 +34,21 @@ public class ClientIT extends PMClientBase {
 
   public ClientIT() {
   }
+  
+  @Deployment(testable = false, managed = false)
+	public static JavaArchive createDeployment() throws Exception {
 
-@BeforeEach
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] xmlFile = { pkgName + "orm.xml" };
+		String[] classes = { pkgName + "Customer", pkgName + "Department", pkgName + "Order"};
+		return createDeploymentJar("jpa_se_cache_xml_enableselective.jar", pkgNameWithoutSuffix,
+				(String[]) classes, pkgName + "persistence.xml", xmlFile);
+
+	}
+
+
+@BeforeAll
   public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
@@ -135,7 +150,7 @@ public class ClientIT extends PMClientBase {
 
   }
 
-@AfterEach
+@AfterAll
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

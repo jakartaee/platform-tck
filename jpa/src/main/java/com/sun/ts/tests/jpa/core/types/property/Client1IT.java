@@ -19,13 +19,22 @@ package com.sun.ts.tests.jpa.core.types.property;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 import com.sun.ts.tests.jpa.core.types.common.Grade;
+
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client1IT extends PMClientBase {
 
@@ -36,12 +45,23 @@ public class Client1IT extends PMClientBase {
   private final java.util.Date dateId = getPKDate(2006, 04, 15);
 
   private final java.sql.Date dateValue = getSQLDate(2006, 04, 15);
+  
+  @Deployment(testable = false, managed = false)
+  public static JavaArchive createDeployment() throws Exception {
+     
+     String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
+     String pkgName = Client1IT.class.getPackageName() + ".";
+     String[] classes = { Grade.class.getCanonicalName(), pkgName + "Customer", pkgName + "DataTypes", pkgName + "DataTypes2"};
+     return createDeploymentJar("jpa_core_types_property1.jar", pkgNameWithoutSuffix, classes);
+
+  }
+
 
   public Client1IT() {
   }
 
 
-  @BeforeEach
+  @BeforeAll
   public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
@@ -932,7 +952,7 @@ public class Client1IT extends PMClientBase {
 
   }
 
-  @AfterEach
+  @AfterAll
   public void cleanup() throws Exception {
     TestUtil.logTrace("Cleanup data");
     removeTestData();

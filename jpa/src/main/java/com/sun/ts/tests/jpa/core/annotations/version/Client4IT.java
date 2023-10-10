@@ -19,7 +19,7 @@ package com.sun.ts.tests.jpa.core.annotations.version;
 import java.sql.Timestamp;
 import java.util.Date;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -29,7 +29,7 @@ public class Client4IT extends Client {
   public Client4IT() {
   }
 
-  @BeforeEach
+  @BeforeAll
   public void setupTimestampData() throws Exception {
     TestUtil.logTrace("setupTimestampData");
     try {

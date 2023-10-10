@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2011, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,9 +22,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
@@ -39,13 +45,26 @@ import jakarta.persistence.criteria.ParameterExpression;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
+
 public class Client2IT extends PMClientBase {
 
   Employee[] empRef = new Employee[5];
 
   final java.sql.Date d1 = getSQLDate("2000-02-14");
+  
+  @Deployment(testable = false, managed = false)
+ 	public static JavaArchive createDeployment() throws Exception {
 
-@BeforeEach
+ 		String pkgNameWithoutSuffix = Client2IT.class.getPackageName();
+ 		String pkgName = Client2IT.class.getPackageName() + ".";
+ 		String[] classes = { pkgName + "Employee"};
+ 		return createDeploymentJar("jpa_core_criteriaapi_parameter2.jar", pkgNameWithoutSuffix, classes);
+ }
+
+
+@BeforeAll
   public void setupEmployee() throws Exception {
     TestUtil.logTrace("setup");
     try {
@@ -338,7 +357,7 @@ public class Client2IT extends PMClientBase {
     }
   }
 
-  @AfterEach
+  @AfterAll
   public void cleanup() throws Exception {
     TestUtil.logTrace("calling super.cleanup");
     removeTestData();

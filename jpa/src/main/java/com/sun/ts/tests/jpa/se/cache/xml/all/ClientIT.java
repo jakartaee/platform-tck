@@ -22,8 +22,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -43,12 +45,25 @@ public class ClientIT extends PMClientBase {
 
   public ClientIT() {
   }
+  
+  @Deployment(testable = false, managed = false)
+	public static JavaArchive createDeployment() throws Exception {
+
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] xmlFile = { pkgName + "orm.xml" };
+		String[] classes = { pkgName + "Order"};
+		return createDeploymentJar("jpa_se_cache_xml_disableselective.jar", pkgNameWithoutSuffix,
+				(String[]) classes, pkgName + "persistence.xml", xmlFile);
+
+	}
+
 
 
   /*
    * @class.testArgs: -ap tssql.stmt
    */
-  @BeforeEach
+  @BeforeAll
   public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
@@ -622,7 +637,7 @@ public class ClientIT extends PMClientBase {
     }
   }
 
-  @AfterEach
+  @AfterAll
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

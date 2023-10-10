@@ -22,7 +22,7 @@ package com.sun.ts.tests.jpa.ee.packaging.ejb.standalone;
 
 import java.util.Properties;
 
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -40,7 +40,7 @@ public class ClientIT  {
   /*
    * @class.setup_props:
    */
-@AfterEach
+@AfterAll
   public void setup() throws Exception {
     try {
       bean.init(props);
@@ -95,7 +95,7 @@ public class ClientIT  {
     if (!pass)
       throw new Exception("test1 failed");
   }
-@AfterEach
+@AfterAll
   public void cleanup() throws Exception {
     try {
       bean.removeTestData();

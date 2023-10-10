@@ -27,8 +27,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
@@ -47,6 +53,7 @@ import com.sun.ts.tests.jpa.common.schema30.SoftwareProduct_;
 import com.sun.ts.tests.jpa.common.schema30.Spouse;
 import com.sun.ts.tests.jpa.common.schema30.Trim;
 import com.sun.ts.tests.jpa.common.schema30.Util;
+import com.sun.ts.tests.jpa.core.callback.xml.ClientIT;
 
 import jakarta.persistence.Query;
 import jakarta.persistence.Tuple;
@@ -72,9 +79,23 @@ import jakarta.persistence.metamodel.EmbeddableType;
 import jakarta.persistence.metamodel.EntityType;
 import jakarta.persistence.metamodel.Metamodel;
 
-public class Client1IT extends Util {
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
 
-@BeforeEach
+public class Client1IT extends Util {
+	
+	  @Deployment(testable = false, managed = false)
+	 	public static JavaArchive createDeployment() throws Exception {
+
+	 		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
+	 		String pkgName = Client1IT.class.getPackageName() + ".";
+	 		String[] classes = { };
+	 		return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder1.jar", pkgNameWithoutSuffix, classes);
+
+	 	}
+
+
+@BeforeAll
   public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {

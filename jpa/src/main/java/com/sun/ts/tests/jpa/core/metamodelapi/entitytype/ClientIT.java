@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,9 +20,15 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -34,12 +40,26 @@ import jakarta.persistence.metamodel.Metamodel;
 import jakarta.persistence.metamodel.SingularAttribute;
 import jakarta.persistence.metamodel.Type;
 
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
+
 public class ClientIT extends PMClientBase {
 
   public ClientIT() {
   }
 
-@BeforeEach
+  @Deployment(testable = false, managed = false)
+	public static JavaArchive createDeployment() throws Exception {
+
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] classes = { pkgName + "A", pkgName + "Address", pkgName + "B", pkgName + "DID2Employee", pkgName + "DID2EmployeeId",
+				pkgName + "ZipCode" };
+		return createDeploymentJar("jpa_core_metamodelapi_entitytype.jar", pkgNameWithoutSuffix, classes);
+
+	}
+
+@BeforeAll
   public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
@@ -798,7 +818,7 @@ public class ClientIT extends PMClientBase {
     }
   }
 
-@AfterEach
+@AfterAll
   public void cleanup() throws Exception {
     TestUtil.logTrace("Cleanup data");
     removeTestData();

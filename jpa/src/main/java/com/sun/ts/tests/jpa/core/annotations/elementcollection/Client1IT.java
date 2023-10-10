@@ -19,20 +19,40 @@ package com.sun.ts.tests.jpa.core.annotations.elementcollection;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
+import com.sun.ts.tests.jpa.core.annotations.discriminatorValue.ClientIT;
+
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client1IT extends PMClientBase {
 
   public Client1IT() {
   }
+  
+	@Deployment(testable = false, managed = false)
+	public static JavaArchive createDeployment() throws Exception {
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] classes = { pkgName + "A", pkgName + "Address" };
+		return createDeploymentJar("jpa_core_annotations_elementcollection1.jar", pkgNameWithoutSuffix, classes);
+
+	}
 
 
-  @BeforeEach
+
+  @BeforeAll
   public void setupA() throws Exception {
     TestUtil.logTrace("setup");
     try {
@@ -149,33 +169,9 @@ public class Client1IT extends PMClientBase {
 	  }
 
 	 
-	  private void removeCustTestData() {
-	    TestUtil.logTrace("removeCustTestData");
-	    if (getEntityTransaction().isActive()) {
-	      getEntityTransaction().rollback();
-	    }
-	    try {
-	      getEntityTransaction().begin();
-	      getEntityManager().createNativeQuery("DELETE FROM CUST_TABLE")
-	          .executeUpdate();
-	      getEntityManager().createNativeQuery("DELETE FROM PHONES")
-	          .executeUpdate();
-	      getEntityTransaction().commit();
-	    } catch (Exception e) {
-	      TestUtil.logErr("Exception encountered while removing entities:", e);
-	    } finally {
-	      try {
-	        if (getEntityTransaction().isActive()) {
-	          getEntityTransaction().rollback();
-	        }
-	      } catch (Exception re) {
-	        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-	      }
-	    }
-	  }
 
 
-  @AfterEach
+  @AfterAll
   public void cleanupA() throws Exception {
     TestUtil.logTrace("cleanup");
     removeATestData();

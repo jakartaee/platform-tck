@@ -17,12 +17,10 @@
 package com.sun.ts.tests.jpa.core.annotations.version;
 
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.common.PMClientBase;
 
 public class Client1IT extends Client {
 
@@ -30,7 +28,7 @@ public class Client1IT extends Client {
   }
 
 
-  @BeforeEach
+  @BeforeAll
   public void setupIntData() throws Exception {
     TestUtil.logTrace("setupIntData");
     try {

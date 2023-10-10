@@ -20,8 +20,8 @@
 
 package com.sun.ts.tests.jpa.ee.packaging.appclient.annotation;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -47,7 +47,7 @@ public class ClientIT {
    * @class.setup_props:
    */
 
-  @BeforeEach
+  @BeforeAll
   public void setup() throws Exception {
     try {
       if (emf != null) {
@@ -156,7 +156,7 @@ public class ClientIT {
     }
   }
 
-@AfterEach
+@AfterAll
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

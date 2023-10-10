@@ -23,15 +23,24 @@ package com.sun.ts.tests.jpa.core.callback.methodoverride;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.core.callback.common.Constants;
 import com.sun.ts.tests.jpa.core.callback.common.EntityCallbackClientBase;
 
 import jakarta.persistence.Query;
+
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
 
 public class ClientIT extends EntityCallbackClientBase {
   private Product product;
@@ -43,9 +52,21 @@ public class ClientIT extends EntityCallbackClientBase {
   public ClientIT() {
     super();
   }
+  
+  @Deployment(testable = false, managed = false)
+ 	public static JavaArchive createDeployment() throws Exception {
+
+ 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+ 		String pkgName = ClientIT.class.getPackageName() + ".";
+ 		String[] classes = { pkgName + "LineItem",  pkgName + "Order",
+ 				pkgName + "Product"};
+ 		return createDeploymentJar("jpa_core_callback_methodoverride.jar", pkgNameWithoutSuffix, classes);
+
+ 	}
 
 
-  @BeforeEach
+
+  @BeforeAll
   public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
@@ -556,7 +577,7 @@ public class ClientIT extends EntityCallbackClientBase {
     return lineItem;
   }
 
-  @AfterEach
+  @AfterAll
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

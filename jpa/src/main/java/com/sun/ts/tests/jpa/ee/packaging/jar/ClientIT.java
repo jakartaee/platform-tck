@@ -16,7 +16,7 @@
 
 package com.sun.ts.tests.jpa.ee.packaging.jar;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -31,7 +31,7 @@ public class ClientIT extends PMClientBase {
   /*
    * @class.setup_props:
    */
-@BeforeEach
+@BeforeAll
   public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
@@ -108,7 +108,7 @@ public class ClientIT extends PMClientBase {
     }
   }
 
-@BeforeEach
+@BeforeAll
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

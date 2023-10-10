@@ -22,6 +22,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
@@ -46,6 +48,15 @@ import jakarta.persistence.criteria.Subquery;
 import jakarta.persistence.metamodel.EntityType;
 
 public class Client2IT extends UtilCustomerData {
+
+	 @Deployment(testable = false, managed = false)
+		public static JavaArchive createDeployment() throws Exception {
+
+			String pkgNameWithoutSuffix = Client2IT.class.getPackageName();
+			String pkgName = Client2IT.class.getPackageName() + ".";
+			String[] classes = {};
+			return createDeploymentJar("jpa_core_criteriaapi_misc.jar", pkgNameWithoutSuffix, classes);
+	 }
 
   /*
    * @testName: predicateGetExpressionsTest

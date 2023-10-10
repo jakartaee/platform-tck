@@ -21,17 +21,23 @@
 package com.sun.ts.tests.jpa.core.annotations.mapkey;
 
 
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
+
+
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client2IT extends Client {
 
   public Client2IT() {
   }
-
-  private Employee empRef[] = new Employee[10];
 
   private Employee2 empRef2;
 
@@ -39,9 +45,7 @@ public class Client2IT extends Client {
 
   private Employee4 empRef4;
 
-  private static Department deptRef[] = new Department[5];
-
-@BeforeEach
+@BeforeAll
   public void setupCreateTestData() throws Exception {
     TestUtil.logTrace("setup");
     try {

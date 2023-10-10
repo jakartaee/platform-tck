@@ -21,8 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -43,12 +45,23 @@ public class ClientIT extends PMClientBase {
 
   public ClientIT() {
   }
+  
+  @Deployment(testable = false, managed = false)
+  public static JavaArchive createDeployment() throws Exception {
+     
+     String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+     String pkgName = ClientIT.class.getPackageName() + ".";
+     String[] classes = { pkgName + "Simple"};
+     return createDeploymentJar("jpa_jpa22_se_generators_sequencegenerators.jar", pkgNameWithoutSuffix, (String[]) classes);
+
+  }
+
 
 
   /*
    * @class.setup_props: db.supports.sequence;
    */
-  @BeforeEach
+  @BeforeAll
   public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
@@ -221,7 +234,7 @@ public class ClientIT extends PMClientBase {
     }
   }
 
-  @AfterEach
+  @AfterAll
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

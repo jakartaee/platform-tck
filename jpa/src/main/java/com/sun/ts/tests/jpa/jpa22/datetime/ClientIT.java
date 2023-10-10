@@ -26,8 +26,10 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Properties;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -46,9 +48,20 @@ public class ClientIT extends PMClientBase {
   public ClientIT() {
   }
 
+  @Deployment(testable = false, managed = false)
+  public static JavaArchive createDeployment() throws Exception {
+     
+     String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+     String pkgName = ClientIT.class.getPackageName() + ".";
+     String[] classes = { pkgName + "DateTimeEntity", pkgName + "DummyEntity"};
+     return createDeploymentJar("jpa_jpa22_datetime.jar", pkgNameWithoutSuffix, (String[]) classes);
+
+  }
+
+
 
   @Override
-  @BeforeEach
+  @BeforeAll
   public void setup() throws Exception {
     TestUtil.logMsg("Setup: JPA 2.2 Java 8 date and time types test");
     try {
@@ -72,7 +85,7 @@ public class ClientIT extends PMClientBase {
   }
 
   @Override
-  @AfterEach
+  @AfterAll
   public void cleanup() throws Exception {
     TestUtil.logMsg("Cleanup: JPA 2.2 Java 8 date and time types test");
     Properties props = getPersistenceUnitProperties();

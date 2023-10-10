@@ -24,12 +24,22 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
+
+
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
 
 public class ClientIT extends PMClientBase {
 
@@ -37,6 +47,17 @@ public class ClientIT extends PMClientBase {
 
     public ClientIT() {
     }
+    
+    @Deployment(testable = false, managed = false)
+  	public static JavaArchive createDeployment() throws Exception {
+  		String pkgName = ClientIT.class.getPackageName() + ".";
+  		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+  		String[] classes = { pkgName + "Department", pkgName + "Department2", pkgName + "Department3", pkgName + "Department4", 
+  				pkgName + "EmbeddedEmployee", pkgName + "Employee", pkgName + "Employee2", pkgName + "Employee3", pkgName + "Employee4", pkgName + "Numbers",pkgName + "Offices" };
+  		return createDeploymentJar("jpa_core_annotations_mapkeyenumerated.jar", pkgNameWithoutSuffix, classes);
+
+  	}
+
 
     private static Employee empRef[] = new Employee[5];
     private static Employee2 empRef2[] = new Employee2[5];
@@ -44,7 +65,7 @@ public class ClientIT extends PMClientBase {
     private static Employee4 empRef4[] = new Employee4[5];
 
 
-    @BeforeEach
+    @BeforeAll
     public void setup() throws Exception {
         TestUtil.logTrace("setup");
         try {
@@ -599,7 +620,7 @@ public class ClientIT extends PMClientBase {
         }
     }
 
-    @AfterEach
+    @AfterAll
     public void cleanup() throws Exception {
         TestUtil.logTrace("cleanup");
         removeTestData();

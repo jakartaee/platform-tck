@@ -23,8 +23,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -52,6 +54,17 @@ public class ClientIT extends PMClientBase {
 
   public ClientIT() {
   }
+  
+  @Deployment(testable = false, managed = false)
+  public static JavaArchive createDeployment() throws Exception {
+     
+     String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+     String pkgName = ClientIT.class.getPackageName() + ".";
+     String[] classes = { pkgName + "Employee"};
+     return createDeploymentJar("jpa_jpa22_repeatable_namedstoredprocedurequery.jar", pkgNameWithoutSuffix, (String[]) classes);
+
+  }
+
 
 
   /*
@@ -78,7 +91,7 @@ public class ClientIT extends PMClientBase {
    *
    * @class.setup_props: jdbc.db;
    */
-  @BeforeEach
+  @BeforeAll
   public void setupEmployeeData() throws Exception {
     TestUtil.logTrace("setupOrderData");
     try {
@@ -100,7 +113,7 @@ public class ClientIT extends PMClientBase {
     super.cleanup();
   }
 
-  @AfterEach
+  @AfterAll
   public void cleanupData() throws Exception {
     TestUtil.logTrace("Cleanup data");
     removeTestData();

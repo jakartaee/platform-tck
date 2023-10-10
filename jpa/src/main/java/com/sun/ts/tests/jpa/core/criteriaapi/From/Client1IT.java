@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,8 +19,14 @@ package com.sun.ts.tests.jpa.core.criteriaapi.From;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
@@ -32,6 +38,7 @@ import com.sun.ts.tests.jpa.common.schema30.Department_;
 import com.sun.ts.tests.jpa.common.schema30.Employee;
 import com.sun.ts.tests.jpa.common.schema30.Order;
 import com.sun.ts.tests.jpa.common.schema30.Util;
+import com.sun.ts.tests.jpa.core.criteriaapi.CriteriaUpdate.ClientIT;
 
 import jakarta.persistence.Tuple;
 import jakarta.persistence.TypedQuery;
@@ -49,10 +56,23 @@ import jakarta.persistence.criteria.Root;
 import jakarta.persistence.criteria.SetJoin;
 import jakarta.persistence.criteria.Subquery;
 
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
+
 public class Client1IT extends Util {
+	
+	  @Deployment(testable = false, managed = false)
+		public static JavaArchive createDeployment() throws Exception {
+
+			String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
+			String pkgName = Client1IT.class.getPackageName() + ".";
+			String[] classes = {};
+			return createDeploymentJar("jpa_core_criteriaapi_from.jar", pkgNameWithoutSuffix, classes);
+	}
+
 
   /* Test setup */
-  @BeforeEach
+  @BeforeAll
   public void setup() throws Exception {
     TestUtil.logTrace("Entering Setup");
     try {

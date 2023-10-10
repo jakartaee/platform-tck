@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.types.generator;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -49,7 +49,7 @@ public class Client1IT extends Client {
    * @class.setup_props: db.supports.sequence;
    */
 
-  @BeforeEach
+  @BeforeAll
   public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {

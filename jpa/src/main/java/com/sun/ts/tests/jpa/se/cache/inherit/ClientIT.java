@@ -16,8 +16,10 @@
 
 package com.sun.ts.tests.jpa.se.cache.inherit;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -32,9 +34,23 @@ public class ClientIT extends PMClientBase {
 
   public ClientIT() {
   }
+  
+  @Deployment(testable = false, managed = false)
+	public static JavaArchive createDeployment() throws Exception {
+
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] xmlFile = { };
+		String[] classes = { pkgName + "HardwareProduct", pkgName + "HardwareProduct2", pkgName + "Product",
+				pkgName + "Product2", pkgName + "SoftwareProduct", pkgName + "SoftwareProduct2"};
+		return createDeploymentJar("jpa_se_cache_inherit.jar", pkgNameWithoutSuffix,
+				(String[]) classes, pkgName + "persistence.xml", xmlFile);
+
+	}
 
 
-  @BeforeEach
+
+  @BeforeAll
   public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
@@ -234,7 +250,7 @@ public class ClientIT extends PMClientBase {
 
   }
 
-  @AfterEach
+  @AfterAll
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

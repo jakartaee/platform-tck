@@ -20,16 +20,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
+import com.sun.ts.tests.jpa.core.relationship.annotations.ClientIT;
 
 import jakarta.persistence.Parameter;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
+
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client1IT extends PMClientBase {
   protected final Employee empRef[] = new Employee[5];
@@ -37,8 +47,18 @@ public class Client1IT extends PMClientBase {
   public Client1IT() {
   }
 
+  @Deployment(testable = false, managed = false)
+  public static JavaArchive createDeployment() throws Exception {
+     
+     String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+     String pkgName = ClientIT.class.getPackageName() + ".";
+     String[] classes = { pkgName + "Employee"};
+     return createDeploymentJar("jpa_core_relationship_annotations1.jar", pkgNameWithoutSuffix, classes);
 
-  @BeforeEach
+  }
+
+
+  @BeforeAll
   public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
@@ -715,7 +735,7 @@ public class Client1IT extends PMClientBase {
 
   }
 
- @AfterEach
+ @AfterAll
   public void cleanup() throws Exception {
     TestUtil.logTrace("calling super.cleanup");
     super.cleanup();

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2022 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,8 +23,14 @@ package com.sun.ts.tests.jpa.core.enums;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -59,12 +65,27 @@ import jakarta.persistence.metamodel.Type.PersistenceType;
 import jakarta.persistence.spi.LoadState;
 import jakarta.persistence.spi.PersistenceUnitTransactionType;
 
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
+
 public class ClientIT extends PMClientBase {
   public ClientIT() {
   }
+  
+  @Deployment(testable = false, managed = false)
+	public static JavaArchive createDeployment() throws Exception {
+
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] classes = { pkgName + "Order"};
+		return createDeploymentJar("jpa_core_enums.jar", pkgNameWithoutSuffix, classes);
+
+	}
 
 
-  @BeforeEach
+
+
+  @BeforeAll
   public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {

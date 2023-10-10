@@ -22,8 +22,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -88,7 +88,7 @@ public class Util extends PMClientBase {
   }
 
 
-  @AfterEach
+  @AfterAll
   public void cleanup() throws Exception {
     TestUtil.logTrace("Cleanup data");
     removeTestData();
@@ -96,7 +96,7 @@ public class Util extends PMClientBase {
     super.cleanup();
   }
 
-  @AfterEach
+  @AfterAll
   public void cleanupNoData() throws Exception {
     TestUtil.logTrace("in cleanupNoData");
     super.cleanup();

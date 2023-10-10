@@ -27,19 +27,29 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jpa.core.annotations.lob.ClientIT;
+
+
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client1IT extends Client {
 
   public Client1IT() {
   }
-
-  private Employee empRef[] = new Employee[10];
-
-  @BeforeEach
+  
+ 
+  @BeforeAll
   public void setupCreateTestData() throws Exception {
     TestUtil.logTrace("setup");
     try {

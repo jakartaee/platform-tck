@@ -22,12 +22,15 @@ package com.sun.ts.tests.jpa.se.resource_local;
 
 import java.util.Properties;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
+import com.sun.ts.tests.jpa.se.entityManagerFactory.ClientIT;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -42,8 +45,19 @@ public class Client1IT extends PMClientBase {
   private EntityManager entityManager;
 
   private EntityTransaction entityTransaction;
+  
+  @Deployment(testable = false, managed = false)
+  public static JavaArchive createDeployment() throws Exception {
+     
+     String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+     String pkgName = ClientIT.class.getPackageName() + ".";
+     String[] classes = { pkgName + "A", pkgName + "B"};
+     return createDeploymentJar("jpa_resource_local1.jar", pkgNameWithoutSuffix, (String[]) classes);
 
-  @BeforeEach
+  }
+
+
+  @BeforeAll
   public void setup() throws Exception {
     try {
 
@@ -806,7 +820,7 @@ public class Client1IT extends PMClientBase {
     }
   }
 
-  @AfterEach
+  @AfterAll
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     removeTestData();

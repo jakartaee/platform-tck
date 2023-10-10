@@ -16,10 +16,15 @@
 
 package com.sun.ts.tests.jpa.core.annotations.tableGenerator;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
+
 
 public class Client3IT extends Client {
 
@@ -28,7 +33,7 @@ public class Client3IT extends Client {
   public Client3IT() {
   }
 
-  @BeforeEach
+  @BeforeAll
   public void setup3() throws Exception {
     TestUtil.logTrace("setup3");
     try {

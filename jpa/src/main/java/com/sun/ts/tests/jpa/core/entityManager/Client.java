@@ -23,8 +23,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.CleanupMethod;
@@ -74,7 +74,7 @@ public class Client extends PMClientBase {
    *
    * @class.setup_props: jdbc.db;
    */
-  @BeforeEach
+  @BeforeAll
   public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {
@@ -94,7 +94,7 @@ public class Client extends PMClientBase {
    *
    * @class.setup_props: jdbc.db;
    */
-  @BeforeEach
+  @BeforeAll
   public void setupOrderData() throws Exception {
     TestUtil.logTrace("setupOrderData");
     try {
@@ -133,13 +133,13 @@ public class Client extends PMClientBase {
     }
   }
 
-  @AfterEach
+  @AfterAll
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup complete, calling super.cleanup");
     super.cleanup();
   }
 
-  @AfterEach
+  @AfterAll
   public void cleanupData() throws Exception {
     TestUtil.logTrace("Cleanup data");
     removeTestData();

@@ -1,13 +1,20 @@
 package com.sun.ts.tests.jpa.core.annotations.access.property;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
+
 public class Client2IT extends Client {
 	
-	@BeforeEach
+	@BeforeAll
 	public void setup2() throws Exception {
 		TestUtil.logTrace("setup2");
 		try {

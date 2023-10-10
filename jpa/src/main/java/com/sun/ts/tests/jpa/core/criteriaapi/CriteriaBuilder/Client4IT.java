@@ -27,8 +27,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
@@ -72,9 +78,21 @@ import jakarta.persistence.metamodel.EmbeddableType;
 import jakarta.persistence.metamodel.EntityType;
 import jakarta.persistence.metamodel.Metamodel;
 
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
+
 public class Client4IT extends UtilAliasOnlyData {
 
  
+	  @Deployment(testable = false, managed = false)
+	 	public static JavaArchive createDeployment() throws Exception {
+
+	 		String pkgNameWithoutSuffix = Client4IT.class.getPackageName();
+	 		String pkgName = Client4IT.class.getPackageName() + ".";
+	 		String[] classes = { };
+	 		return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder4.jar", pkgNameWithoutSuffix, classes);
+
+	 	}
 
   /*
    * @testName: greaterThanExpNumTest

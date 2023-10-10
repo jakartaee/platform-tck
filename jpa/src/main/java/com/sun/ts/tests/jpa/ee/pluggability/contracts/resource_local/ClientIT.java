@@ -22,8 +22,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -58,7 +58,7 @@ public class ClientIT extends PMClientBase {
   /*
    * @class.setup_props: log.file.location;
    */
-  @BeforeEach
+  @BeforeAll
   public void setup() throws Exception {
     TestUtil.logTrace("setup");
     super.setup();
@@ -702,7 +702,7 @@ public class ClientIT extends PMClientBase {
     puInfo = emfImpl.puInfo;
   }
 
-  @AfterEach
+  @AfterAll
   public void cleanup() throws Exception {
     TestUtil.logTrace("cleanup");
     TestUtil.logTrace("calling super.cleanup");

@@ -20,9 +20,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -37,6 +42,28 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.StringTokenizer;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.asset.ByteArrayAsset;
+
+import org.jboss.shrinkwrap.api.exporter.ZipExporter;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Text;
+import org.xml.sax.SAXException;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManager;
@@ -78,8 +105,7 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 	transient public static final String RESOURCE_LOCAL = "RESOURCE_LOCAL";
 
 	/**
-	 * Name of a property, to denote whether tests run in
-	 * JakartaEE or Java SE mode.
+	 * Name of a property, to denote whether tests run in JakartaEE or Java SE mode.
 	 */
 	transient public static final String MODE_PROP = "platform.mode";
 
@@ -96,21 +122,19 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 	transient public static final String STANDALONE_MODE = "standalone";
 
 	/**
-	 * Name of a property, to specify the name of the persistence
-	 * unit used in the testsuite. It must be consistent with the value in
-	 * persistence.xml
+	 * Name of a property, to specify the name of the persistence unit used in the
+	 * testsuite. It must be consistent with the value in persistence.xml
 	 */
 	transient public static final String PERSISTENCE_UNIT_NAME_PROP = "persistence.unit.name";
 
 	transient public static final String SECOND_PERSISTENCE_UNIT_NAME_PROP = "persistence.unit.name.2";
 
 	/**
-	 * Name of the property that specifies an absolute path to the
-	 * properties file that contains properties for initializing
-	 * EntityManagerFactory, including both standard and provider-specific
-	 * properties.
+	 * Name of the property that specifies an absolute path to the properties file
+	 * that contains properties for initializing EntityManagerFactory, including
+	 * both standard and provider-specific properties.
 	 */
-	
+
 	transient public static final String JAVAX_PERSISTENCE_PROVIDER = "jakarta.persistence.provider";
 
 	transient public static final String JAVAX_PERSISTENCE_JDBC_DRIVER = "jakarta.persistence.jdbc.driver";
@@ -176,8 +200,8 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 		secondPersistenceUnitName = System.getProperty(SECOND_PERSISTENCE_UNIT_NAME_PROP);
 		myProps.put(SECOND_PERSISTENCE_UNIT_NAME_PROP, secondPersistenceUnitName);
 		TestUtil.logTrace("Second Persistence Unit Name =" + secondPersistenceUnitName);
-		
-		myProps.put(JAVAX_PERSISTENCE_PROVIDER,System.getProperty(JAVAX_PERSISTENCE_PROVIDER)); 
+
+		myProps.put(JAVAX_PERSISTENCE_PROVIDER, System.getProperty(JAVAX_PERSISTENCE_PROVIDER));
 
 		myProps.put(JAVAX_PERSISTENCE_JDBC_DRIVER, System.getProperty(JAVAX_PERSISTENCE_JDBC_DRIVER));
 
@@ -187,11 +211,12 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 
 		myProps.put(JAVAX_PERSISTENCE_JDBC_PASSWORD, System.getProperty(JAVAX_PERSISTENCE_JDBC_PASSWORD));
 
-		myProps.put(JPA_PROVIDER_IMPLEMENTATION_SPECIFIC_PROPERTIES, System.getProperty(JPA_PROVIDER_IMPLEMENTATION_SPECIFIC_PROPERTIES));
+		myProps.put(JPA_PROVIDER_IMPLEMENTATION_SPECIFIC_PROPERTIES,
+				System.getProperty(JPA_PROVIDER_IMPLEMENTATION_SPECIFIC_PROPERTIES));
 
-		myProps.put(PERSISTENCE_SECOND_LEVEL_CACHING_SUPPORTED, System.getProperty(PERSISTENCE_SECOND_LEVEL_CACHING_SUPPORTED));
+		myProps.put(PERSISTENCE_SECOND_LEVEL_CACHING_SUPPORTED,
+				System.getProperty(PERSISTENCE_SECOND_LEVEL_CACHING_SUPPORTED));
 
-		
 		if (JAVAEE_MODE.equalsIgnoreCase(mode)) {
 			TestUtil.logTrace(MODE_PROP + " is set to " + mode + ", so tests are running in JakartaEE environment.");
 		} else if (STANDALONE_MODE.equalsIgnoreCase(mode)) {
@@ -201,8 +226,6 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 		} else {
 			TestUtil.logMsg("WARNING: " + MODE_PROP + " is set to " + mode + ", an invalid value.");
 		}
-		
-		
 
 		cachingSupported = Boolean.parseBoolean(System.getProperty(PERSISTENCE_SECOND_LEVEL_CACHING_SUPPORTED, "true"));
 	}
@@ -453,7 +476,6 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 				displayMap(emfMap);
 			}
 			this.em = emf.createEntityManager();
-			System.out.println("###############################"+ emf.toString());
 		} else {
 			TestUtil.logMsg("The test is running in JakartaEE environment, "
 					+ "the EntityManager is initialized in the vehicle component.");
@@ -1043,5 +1065,58 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 			TestUtil.logErr("Received unexpected exception for path:" + path, ue);
 		}
 		return sURI;
+	}
+
+	public static final String STANDALONE_PERSISTENCE_XML = "com/sun/ts/tests/jpa/common/template/standalone/persistence.xml";
+	public static final String PERSISTENCE_ELEMENT_TAG = "persistence-unit";
+	public static final String CLASS_ELEMENT_TAG = "class";
+	public static final String PERSISTENCE_FILE_NAME = "persistence.xml";
+	public static final String TEMP_DIR = System.getProperty("java.io.tmpdir");
+
+	public static JavaArchive createDeploymentJar(String jarName, String packageName, String[] classes,
+			String persistenceFile, String[] xmlFiles) throws Exception {
+
+		JavaArchive archive = ShrinkWrap.create(JavaArchive.class, jarName);
+		archive.addPackages(true, packageName);
+
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		DocumentBuilder db = dbf.newDocumentBuilder();
+		TransformerFactory tf = TransformerFactory.newInstance();
+		Transformer transformer = tf.newTransformer();
+
+		InputStream xmlStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(persistenceFile);
+		Document document = db.parse(xmlStream);
+		NodeList presistenceElement = document.getElementsByTagName(PERSISTENCE_ELEMENT_TAG);
+		for (int j = 0; j < classes.length; j++) {
+			for (int i = 0; i < presistenceElement.getLength(); i++) {
+				Element classTag = document.createElement(CLASS_ELEMENT_TAG);
+				Text classNode = document.createTextNode(classes[j]);
+				classTag.appendChild(classNode);
+				presistenceElement.item(i).appendChild(classTag);
+			}
+		}
+		StringWriter writer = new StringWriter();
+		transformer.transform(new DOMSource(document), new StreamResult(writer));
+		archive.addAsManifestResource(new StringAsset(writer.getBuffer().toString()), PERSISTENCE_FILE_NAME);
+		archive.as(ZipExporter.class).exportTo(new File(TEMP_DIR + File.separator + jarName), true);
+
+		for (int i = 0; i < xmlFiles.length; i++) {
+			InputStream xmlFileStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(xmlFiles[i]);
+			archive.addAsManifestResource(new ByteArrayAsset(xmlFileStream), xmlFiles[i]);
+		}
+		ClassLoader currentThreadClassLoader = Thread.currentThread().getContextClassLoader();
+		URLClassLoader urlClassLoader = new URLClassLoader(
+				new URL[] { new File(TEMP_DIR + File.separator + jarName).toURL() }, currentThreadClassLoader);
+		Thread.currentThread().setContextClassLoader(urlClassLoader);
+
+		return archive;
+
+	}
+
+	public static JavaArchive createDeploymentJar(String jarName, String packageName, String[] classes)
+			throws Exception {
+		String xmlFiles[] = {};
+		return createDeploymentJar(jarName, packageName, classes, STANDALONE_PERSISTENCE_XML, xmlFiles);
+
 	}
 }

@@ -19,8 +19,14 @@ package com.sun.ts.tests.jpa.core.lock.query;
 import java.sql.Date;
 import java.util.Collection;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -31,14 +37,29 @@ import jakarta.persistence.Query;
 import jakarta.persistence.TransactionRequiredException;
 import jakarta.persistence.TypedQuery;
 
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
+
 public class ClientIT extends PMClientBase {
 
   private final Date d1 = getSQLDate("2000-02-14");
 
   public ClientIT() {
   }
+  
+  @Deployment(testable = false, managed = false)
+	public static JavaArchive createDeployment() throws Exception {
 
-@BeforeEach
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] classes = { pkgName + "Department", pkgName + "Employee", 
+				 pkgName + "Insurance" };
+		return createDeploymentJar("jpa_core_lock_query.jar", pkgNameWithoutSuffix, classes);
+
+	}
+
+
+@BeforeAll
   public void setup() throws Exception {
     TestUtil.logTrace("setup");
     try {

@@ -19,15 +19,22 @@ package com.sun.ts.tests.jpa.core.annotations.ordercolumn;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client2IT extends PMClientBase {
 
@@ -41,7 +48,7 @@ public class Client2IT extends PMClientBase {
   }
 
 
-  @BeforeEach
+  @BeforeAll
   public void setupEmployee() throws Exception {
     TestUtil.logTrace("setup");
     try {
@@ -423,7 +430,7 @@ public class Client2IT extends PMClientBase {
     }
   }
 
-  @AfterEach
+  @AfterAll
   public void cleanupEmployee() throws Exception {
     TestUtil.logTrace("cleanupEmployee");
     // removeEmployeeTestData();

@@ -20,9 +20,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -33,473 +39,477 @@ import jakarta.persistence.metamodel.EntityType;
 import jakarta.persistence.metamodel.ManagedType;
 import jakarta.persistence.metamodel.Metamodel;
 
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
+
 public class ClientIT extends PMClientBase {
 
-  public ClientIT() {
-  }
+	public ClientIT() {
+	}
 
-  @BeforeEach
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	@Deployment(testable = false, managed = false)
+	public static JavaArchive createDeployment() throws Exception {
 
-  /*
-   * @testName: getMetamodel
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:330
-   *
-   * @test_Strategy:
-   * 
-   */
-  @Test
-  public void getMetamodel() throws Exception {
-    boolean pass = false;
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] classes = { pkgName + "Address", pkgName + "B", pkgName + "Employee", pkgName + "FullTimeEmployee",
+				pkgName + "Order", pkgName + "ZipCode" };
+		return createDeploymentJar("jpa_core_metamodelapi_metamodel.jar", pkgNameWithoutSuffix, classes);
 
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      pass = true;
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-    }
+	}
 
-    if (!pass) {
-      throw new Exception("getMetamodeltest failed");
-    }
-  }
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup();
+			removeTestData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-  /*
-   * @testName: getEntities
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1438
-   *
-   * @test_Strategy:
-   *
-   */
-  @Test
-  public void getEntities() throws Exception {
-    boolean pass = false;
+	/*
+	 * @testName: getMetamodel
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:330
+	 *
+	 * @test_Strategy:
+	 * 
+	 */
+	@Test
+	public void getMetamodel() throws Exception {
+		boolean pass = false;
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-      Set<EntityType<?>> orderSet = metaModel.getEntities();
-      if (orderSet != null) {
-        TestUtil.logTrace("Obtained Non-null Set of EntityType");
-        for (EntityType eType : orderSet) {
-          TestUtil.logTrace("entityType Name = " + eType.getName());
-          pass = true;
-        }
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			pass = true;
+			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+		}
 
-      }
-    }
+		if (!pass) {
+			throw new Exception("getMetamodeltest failed");
+		}
+	}
 
-    getEntityTransaction().commit();
+	/*
+	 * @testName: getEntities
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1438
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void getEntities() throws Exception {
+		boolean pass = false;
 
-    if (!pass) {
-      throw new Exception("getEntities Test  failed");
-    }
-  }
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			Set<EntityType<?>> orderSet = metaModel.getEntities();
+			if (orderSet != null) {
+				TestUtil.logTrace("Obtained Non-null Set of EntityType");
+				for (EntityType eType : orderSet) {
+					TestUtil.logTrace("entityType Name = " + eType.getName());
+					pass = true;
+				}
 
-  /*
-   * @testName: getManagedTypes
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1439
-   *
-   * @test_Strategy:
-   *
-   */
-  @Test
-  public void getManagedTypes() throws Exception {
-    boolean pass = false;
+			}
+		}
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-      Set<ManagedType<?>> orderSet = metaModel.getManagedTypes();
-      if (orderSet != null) {
-        TestUtil.logTrace("Obtained Non-null Set of ManagedType");
-        for (ManagedType mType : orderSet) {
-          Set<Attribute<Order, ?>> attribSet = mType.getDeclaredAttributes();
-          if (attribSet != null) {
-            for (Attribute attrib : attribSet) {
-              TestUtil.logTrace("attribute Name = " + attrib.getName());
-            }
-            pass = true;
-          }
-        }
-      }
-    }
+		getEntityTransaction().commit();
 
-    getEntityTransaction().commit();
+		if (!pass) {
+			throw new Exception("getEntities Test  failed");
+		}
+	}
 
-    if (!pass) {
-      throw new Exception("getManagedTypes Test  failed");
-    }
-  }
+	/*
+	 * @testName: getManagedTypes
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1439
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void getManagedTypes() throws Exception {
+		boolean pass = false;
 
-  /*
-   * @testName: getEmbeddables
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1437
-   *
-   * @test_Strategy:
-   *
-   */
-  @Test
-  public void getEmbeddables() throws Exception {
-    boolean pass = false;
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			Set<ManagedType<?>> orderSet = metaModel.getManagedTypes();
+			if (orderSet != null) {
+				TestUtil.logTrace("Obtained Non-null Set of ManagedType");
+				for (ManagedType mType : orderSet) {
+					Set<Attribute<Order, ?>> attribSet = mType.getDeclaredAttributes();
+					if (attribSet != null) {
+						for (Attribute attrib : attribSet) {
+							TestUtil.logTrace("attribute Name = " + attrib.getName());
+						}
+						pass = true;
+					}
+				}
+			}
+		}
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-      Set<EmbeddableType<?>> addrSet = metaModel.getEmbeddables();
-      if (addrSet != null) {
-        TestUtil.logTrace("Obtained Non-null Set of EmbeddableType");
-        for (EmbeddableType eType : addrSet) {
-          Set<Attribute<Address, ?>> attribSet = eType.getDeclaredAttributes();
-          if (attribSet != null) {
-            for (Attribute attrib : attribSet) {
-              TestUtil.logTrace("attribute Name = " + attrib.getName());
-            }
-            pass = true;
-          }
-        }
-      }
-    }
+		getEntityTransaction().commit();
 
-    getEntityTransaction().commit();
+		if (!pass) {
+			throw new Exception("getManagedTypes Test  failed");
+		}
+	}
 
-    if (!pass) {
-      throw new Exception("getEmbeddables Test  failed");
-    }
-  }
+	/*
+	 * @testName: getEmbeddables
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1437
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void getEmbeddables() throws Exception {
+		boolean pass = false;
 
-  /*
-   * @testName: managedType
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1440
-   *
-   * @test_Strategy:
-   *
-   */
-  @Test
-  public void managedType() throws Exception {
-    boolean pass1 = false;
-    boolean pass2 = false;
-    boolean pass3 = false;
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			Set<EmbeddableType<?>> addrSet = metaModel.getEmbeddables();
+			if (addrSet != null) {
+				TestUtil.logTrace("Obtained Non-null Set of EmbeddableType");
+				for (EmbeddableType eType : addrSet) {
+					Set<Attribute<Address, ?>> attribSet = eType.getDeclaredAttributes();
+					if (attribSet != null) {
+						for (Attribute attrib : attribSet) {
+							TestUtil.logTrace("attribute Name = " + attrib.getName());
+						}
+						pass = true;
+					}
+				}
+			}
+		}
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
+		getEntityTransaction().commit();
 
-      TestUtil.logMsg("Test entity");
-      String expected = "com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Order";
-      ManagedType mType = metaModel.managedType(
-          com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Order.class);
-      if (mType != null) {
-        ManagedType<Order> mTypeOrder = mType;
-        String cActual = mType.getJavaType().getName();
-        if (cActual.equals(expected)) {
-          Set<Attribute<Order, ?>> attribSet = mTypeOrder
-              .getDeclaredAttributes();
-          if (attribSet != null) {
-            for (Attribute attrib : attribSet) {
-              TestUtil.logTrace("attribute Name = " + attrib.getName());
-            }
-            pass1 = true;
-          } else {
-            TestUtil.logErr("getDeclaredAttributes() returned null");
-          }
-        } else {
-          TestUtil.logErr("Expected:" + expected + ", actual:" + cActual);
-        }
-      }
-      TestUtil.logMsg("Test embeddable");
-      expected = "com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Address";
-      mType = metaModel.managedType(
-          com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Address.class);
-      if (mType != null) {
-        ManagedType<Address> mTypeAddress = mType;
-        String cActual = mType.getJavaType().getName();
-        if (cActual.equals(expected)) {
-          Set<Attribute<Address, ?>> attribSet = mTypeAddress
-              .getDeclaredAttributes();
-          if (attribSet != null) {
-            for (Attribute attrib : attribSet) {
-              TestUtil.logTrace("attribute Name = " + attrib.getName());
-            }
-            pass2 = true;
-          } else {
-            TestUtil.logErr("getDeclaredAttributes() returned null");
-          }
-        } else {
-          TestUtil.logErr("Expected:" + expected + ", actual:" + cActual);
-        }
-      }
+		if (!pass) {
+			throw new Exception("getEmbeddables Test  failed");
+		}
+	}
 
-      TestUtil.logMsg("Test superclass");
-      expected = "com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Employee";
-      mType = metaModel.managedType(
-          com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Employee.class);
-      if (mType != null) {
-        ManagedType<Employee> mTypeEmployee = mType;
-        String cActual = mType.getJavaType().getName();
-        if (cActual.equals(expected)) {
-          Set<Attribute<Employee, ?>> attribSet = mTypeEmployee
-              .getDeclaredAttributes();
-          if (attribSet != null) {
-            for (Attribute attrib : attribSet) {
-              TestUtil.logTrace("attribute Name = " + attrib.getName());
-            }
-            pass3 = true;
-          } else {
-            TestUtil.logErr("getDeclaredAttributes() returned null");
-          }
-        } else {
-          TestUtil.logErr("Expected:" + expected + ", actual:" + cActual);
-        }
-      }
-    }
+	/*
+	 * @testName: managedType
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1440
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void managedType() throws Exception {
+		boolean pass1 = false;
+		boolean pass2 = false;
+		boolean pass3 = false;
 
-    getEntityTransaction().commit();
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
 
-    if (!pass1 || !pass2 || !pass3) {
-      throw new Exception("managedType Test failed");
-    }
-  }
+			TestUtil.logMsg("Test entity");
+			String expected = "com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Order";
+			ManagedType mType = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Order.class);
+			if (mType != null) {
+				ManagedType<Order> mTypeOrder = mType;
+				String cActual = mType.getJavaType().getName();
+				if (cActual.equals(expected)) {
+					Set<Attribute<Order, ?>> attribSet = mTypeOrder.getDeclaredAttributes();
+					if (attribSet != null) {
+						for (Attribute attrib : attribSet) {
+							TestUtil.logTrace("attribute Name = " + attrib.getName());
+						}
+						pass1 = true;
+					} else {
+						TestUtil.logErr("getDeclaredAttributes() returned null");
+					}
+				} else {
+					TestUtil.logErr("Expected:" + expected + ", actual:" + cActual);
+				}
+			}
+			TestUtil.logMsg("Test embeddable");
+			expected = "com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Address";
+			mType = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Address.class);
+			if (mType != null) {
+				ManagedType<Address> mTypeAddress = mType;
+				String cActual = mType.getJavaType().getName();
+				if (cActual.equals(expected)) {
+					Set<Attribute<Address, ?>> attribSet = mTypeAddress.getDeclaredAttributes();
+					if (attribSet != null) {
+						for (Attribute attrib : attribSet) {
+							TestUtil.logTrace("attribute Name = " + attrib.getName());
+						}
+						pass2 = true;
+					} else {
+						TestUtil.logErr("getDeclaredAttributes() returned null");
+					}
+				} else {
+					TestUtil.logErr("Expected:" + expected + ", actual:" + cActual);
+				}
+			}
 
-  /*
-   * @testName: managedTypeIllegalArgumentException
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1441
-   *
-   * @test_Strategy:
-   *
-   */
-  @Test
-  public void managedTypeIllegalArgumentException() throws Exception {
-    boolean pass = false;
+			TestUtil.logMsg("Test superclass");
+			expected = "com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Employee";
+			mType = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Employee.class);
+			if (mType != null) {
+				ManagedType<Employee> mTypeEmployee = mType;
+				String cActual = mType.getJavaType().getName();
+				if (cActual.equals(expected)) {
+					Set<Attribute<Employee, ?>> attribSet = mTypeEmployee.getDeclaredAttributes();
+					if (attribSet != null) {
+						for (Attribute attrib : attribSet) {
+							TestUtil.logTrace("attribute Name = " + attrib.getName());
+						}
+						pass3 = true;
+					} else {
+						TestUtil.logErr("getDeclaredAttributes() returned null");
+					}
+				} else {
+					TestUtil.logErr("Expected:" + expected + ", actual:" + cActual);
+				}
+			}
+		}
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-      try {
-        metaModel.managedType(
-            com.sun.ts.tests.jpa.core.metamodelapi.metamodel.ClientIT.class);
-        TestUtil.logErr("Did not throw IllegalArgumentException");
-      } catch (IllegalArgumentException iae) {
-        TestUtil.logTrace("Received expected IllegalArgumentException");
-        pass = true;
-      } catch (Exception e) {
-        TestUtil.logErr("Received unexpected exception", e);
-      }
-    }
+		getEntityTransaction().commit();
 
-    getEntityTransaction().commit();
+		if (!pass1 || !pass2 || !pass3) {
+			throw new Exception("managedType Test failed");
+		}
+	}
 
-    if (!pass) {
-      throw new Exception("managedTypeIllegalArgumentException failed");
-    }
-  }
+	/*
+	 * @testName: managedTypeIllegalArgumentException
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1441
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void managedTypeIllegalArgumentException() throws Exception {
+		boolean pass = false;
 
-  /*
-   * @testName: entity
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1435
-   *
-   * @test_Strategy:
-   *
-   */
-  @Test
-  public void entity() throws Exception {
-    boolean pass = false;
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			try {
+				metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.metamodel.ClientIT.class);
+				TestUtil.logErr("Did not throw IllegalArgumentException");
+			} catch (IllegalArgumentException iae) {
+				TestUtil.logTrace("Received expected IllegalArgumentException");
+				pass = true;
+			} catch (Exception e) {
+				TestUtil.logErr("Received unexpected exception", e);
+			}
+		}
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-      EntityType<Order> eTypeOrder = metaModel
-          .entity(com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Order.class);
-      if (eTypeOrder != null) {
-        TestUtil.logTrace("Obtained Non-null EntityType");
-        Set<Attribute<Order, ?>> attribSet = eTypeOrder.getDeclaredAttributes();
-        if (attribSet != null) {
-          for (Attribute attrib : attribSet) {
-            TestUtil.logTrace("attribute Name = " + attrib.getName());
-          }
-          pass = true;
-        }
-      }
-    }
+		getEntityTransaction().commit();
 
-    getEntityTransaction().commit();
+		if (!pass) {
+			throw new Exception("managedTypeIllegalArgumentException failed");
+		}
+	}
 
-    if (!pass) {
-      throw new Exception("entity Test  failed");
-    }
-  }
+	/*
+	 * @testName: entity
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1435
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void entity() throws Exception {
+		boolean pass = false;
 
-  /*
-   * @testName: entityIllegalArgumentException
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1436
-   *
-   * @test_Strategy:
-   *
-   */
-  @Test
-  public void entityIllegalArgumentException() throws Exception {
-    boolean pass = false;
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			EntityType<Order> eTypeOrder = metaModel
+					.entity(com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Order.class);
+			if (eTypeOrder != null) {
+				TestUtil.logTrace("Obtained Non-null EntityType");
+				Set<Attribute<Order, ?>> attribSet = eTypeOrder.getDeclaredAttributes();
+				if (attribSet != null) {
+					for (Attribute attrib : attribSet) {
+						TestUtil.logTrace("attribute Name = " + attrib.getName());
+					}
+					pass = true;
+				}
+			}
+		}
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      try {
-        metaModel.entity(
-            com.sun.ts.tests.jpa.core.metamodelapi.metamodel.ClientIT.class);
-        TestUtil.logErr("Did not throw IllegalArgumentException");
-      } catch (IllegalArgumentException iae) {
-        TestUtil.logTrace("Received expected IllegalArgumentException");
-        pass = true;
-      } catch (Exception e) {
-        TestUtil.logErr("Received unexpected exception", e);
-      }
-    }
+		getEntityTransaction().commit();
 
-    getEntityTransaction().commit();
+		if (!pass) {
+			throw new Exception("entity Test  failed");
+		}
+	}
 
-    if (!pass) {
-      throw new Exception("entityIllegalArgumentException  failed");
-    }
-  }
+	/*
+	 * @testName: entityIllegalArgumentException
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1436
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void entityIllegalArgumentException() throws Exception {
+		boolean pass = false;
 
-  /*
-   * @testName: embeddable
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1433
-   *
-   * @test_Strategy:
-   *
-   */
-  @Test
-  public void embeddable() throws Exception {
-    boolean pass = true;
-    Collection<String> expected = new ArrayList<String>();
-    expected.add("zipcode");
-    expected.add("street");
-    expected.add("state");
-    expected.add("city");
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			try {
+				metaModel.entity(com.sun.ts.tests.jpa.core.metamodelapi.metamodel.ClientIT.class);
+				TestUtil.logErr("Did not throw IllegalArgumentException");
+			} catch (IllegalArgumentException iae) {
+				TestUtil.logTrace("Received expected IllegalArgumentException");
+				pass = true;
+			} catch (Exception e) {
+				TestUtil.logErr("Received unexpected exception", e);
+			}
+		}
 
-    try {
+		getEntityTransaction().commit();
 
-      getEntityTransaction().begin();
-      Metamodel metaModel = getEntityManager().getMetamodel();
-      if (metaModel != null) {
-        TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-        EmbeddableType<Address> eTypeOrder = metaModel.embeddable(
-            com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Address.class);
-        if (eTypeOrder != null) {
-          TestUtil.logTrace("Obtained Non-null EmbeddableType");
-          Set<Attribute<Address, ?>> attribSet = eTypeOrder
-              .getDeclaredAttributes();
-          if (attribSet != null) {
-            if (attribSet.size() != expected.size()) {
-              pass = false;
-              TestUtil.logErr("Received wrong number of results");
-            }
-            for (Attribute attrib : attribSet) {
-              String name = attrib.getName();
-              if (expected.contains(name)) {
-                TestUtil.logTrace("received attribute Name = " + name);
-              } else {
-                TestUtil.logErr("Received unexpected result" + name);
-                pass = false;
-              }
-            }
-          } else {
-            pass = false;
-            TestUtil.logErr("getDeclaredAttributes() returned null");
-          }
-        } else {
-          pass = false;
-          TestUtil.logErr("embeddable() returned null");
-        }
-      } else {
-        pass = false;
-        TestUtil.logErr("getMetamodel() returned null");
-      }
+		if (!pass) {
+			throw new Exception("entityIllegalArgumentException  failed");
+		}
+	}
 
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      pass = false;
-      TestUtil.logErr("Received unxpected exception", e);
-    }
-  }
+	/*
+	 * @testName: embeddable
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1433
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void embeddable() throws Exception {
+		boolean pass = true;
+		Collection<String> expected = new ArrayList<String>();
+		expected.add("zipcode");
+		expected.add("street");
+		expected.add("state");
+		expected.add("city");
 
-  /*
-   * @testName: embeddableIllegalArgumentException
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1434
-   *
-   * @test_Strategy:
-   *
-   */
-  @Test
-  public void embeddableIllegalArgumentException() throws Exception {
-    boolean pass = false;
+		try {
 
-    try {
+			getEntityTransaction().begin();
+			Metamodel metaModel = getEntityManager().getMetamodel();
+			if (metaModel != null) {
+				TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+				EmbeddableType<Address> eTypeOrder = metaModel
+						.embeddable(com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Address.class);
+				if (eTypeOrder != null) {
+					TestUtil.logTrace("Obtained Non-null EmbeddableType");
+					Set<Attribute<Address, ?>> attribSet = eTypeOrder.getDeclaredAttributes();
+					if (attribSet != null) {
+						if (attribSet.size() != expected.size()) {
+							pass = false;
+							TestUtil.logErr("Received wrong number of results");
+						}
+						for (Attribute attrib : attribSet) {
+							String name = attrib.getName();
+							if (expected.contains(name)) {
+								TestUtil.logTrace("received attribute Name = " + name);
+							} else {
+								TestUtil.logErr("Received unexpected result" + name);
+								pass = false;
+							}
+						}
+					} else {
+						pass = false;
+						TestUtil.logErr("getDeclaredAttributes() returned null");
+					}
+				} else {
+					pass = false;
+					TestUtil.logErr("embeddable() returned null");
+				}
+			} else {
+				pass = false;
+				TestUtil.logErr("getMetamodel() returned null");
+			}
 
-      getEntityTransaction().begin();
-      Metamodel metaModel = getEntityManager().getMetamodel();
-      if (metaModel != null) {
-        try {
-          metaModel.embeddable(
-              com.sun.ts.tests.jpa.core.metamodelapi.metamodel.ClientIT.class);
-          TestUtil.logErr("Did not throw IllegalArgumentException");
-        } catch (IllegalArgumentException iae) {
-          TestUtil.logTrace("Received expected IllegalArgumentException");
-          pass = true;
-        } catch (Exception e) {
-          TestUtil.logErr("Received unexpected exception", e);
-        }
-      } else {
-        pass = false;
-        TestUtil.logErr("getMetamodel() returned null");
-      }
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			pass = false;
+			TestUtil.logErr("Received unxpected exception", e);
+		}
+	}
 
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      pass = false;
-      TestUtil.logErr("Received unexpected exception", e);
-    }
-    if (!pass) {
-      throw new Exception("embeddableIllegalArgumentException failed");
-    }
-  }
+	/*
+	 * @testName: embeddableIllegalArgumentException
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1434
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void embeddableIllegalArgumentException() throws Exception {
+		boolean pass = false;
 
-  @AfterEach
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup data");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+		try {
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-  }
+			getEntityTransaction().begin();
+			Metamodel metaModel = getEntityManager().getMetamodel();
+			if (metaModel != null) {
+				try {
+					metaModel.embeddable(com.sun.ts.tests.jpa.core.metamodelapi.metamodel.ClientIT.class);
+					TestUtil.logErr("Did not throw IllegalArgumentException");
+				} catch (IllegalArgumentException iae) {
+					TestUtil.logTrace("Received expected IllegalArgumentException");
+					pass = true;
+				} catch (Exception e) {
+					TestUtil.logErr("Received unexpected exception", e);
+				}
+			} else {
+				pass = false;
+				TestUtil.logErr("getMetamodel() returned null");
+			}
+
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			pass = false;
+			TestUtil.logErr("Received unexpected exception", e);
+		}
+		if (!pass) {
+			throw new Exception("embeddableIllegalArgumentException failed");
+		}
+	}
+
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("Cleanup data");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+	}
+
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+	}
 }

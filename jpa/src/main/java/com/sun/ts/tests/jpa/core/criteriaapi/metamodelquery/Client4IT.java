@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,6 +23,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.CleanupMethod;
@@ -75,6 +77,16 @@ import jakarta.persistence.metamodel.SetAttribute;
  * @author Sarada Kommalapati
  */
 public class Client4IT extends Util {
+	
+	@Deployment(testable = false, managed = false)
+	public static JavaArchive createDeployment() throws Exception {
+
+		String pkgNameWithoutSuffix = Client4IT.class.getPackageName();
+		String pkgName = Client4IT.class.getPackageName() + ".";
+		String[] classes = {};
+		return createDeploymentJar("jpa_core_criteriaapi_metamodelquery.jar", pkgNameWithoutSuffix, classes);
+}
+
 
   /* Run test */
   /*

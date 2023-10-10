@@ -2,7 +2,7 @@ package com.sun.ts.tests.jpa.core.annotations.access.field;
 
 import java.util.GregorianCalendar;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -11,7 +11,7 @@ import jakarta.persistence.TypedQuery;
 
 public class Client4IT extends Client{
 	
-	 @BeforeEach
+	 @BeforeAll
 	  public void setup4() throws Exception {
 	    TestUtil.logTrace("setup3");
 	    try {

@@ -20,8 +20,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -36,6 +38,17 @@ public class Client2IT extends Client {
 
   public Client2IT() {
   }
+  
+  @Deployment(testable = false, managed = false)
+  public static JavaArchive createDeployment() throws Exception {
+     
+     String pkgNameWithoutSuffix = Client2IT.class.getPackageName();
+     String pkgName = Client2IT.class.getPackageName() + ".";
+     String[] classes = { pkgName + "Employee", pkgName + "Employee2", pkgName + "EmployeeMappedSc"};
+     return createDeploymentJar("jpa_core_types_StoredProcedureQuery2.jar", pkgNameWithoutSuffix, classes);
+
+  }
+
 
 
   /*
@@ -43,7 +56,7 @@ public class Client2IT extends Client {
    *
    * @class.setup_props: jdbc.db;
    */
-  @BeforeEach
+  @BeforeAll
   public void setupEmployee2Data() throws Exception {
     TestUtil.logTrace("setup");
     try {
@@ -57,7 +70,7 @@ public class Client2IT extends Client {
     }
   }
 
-  @AfterEach
+  @AfterAll
   public void cleanup() throws Exception {
     TestUtil.logTrace("Cleanup data");
     removeTestData();

@@ -16,57 +16,70 @@
 
 package com.sun.ts.tests.jpa.core.annotations.access.field;
 
-import org.junit.jupiter.api.AfterEach;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
 public class Client extends PMClientBase {
 
-  protected DataTypes d1;
+	protected DataTypes d1;
 
-  protected DataTypes2 d2;
+	protected DataTypes2 d2;
 
-  final java.util.Date dateId = getPKDate(2006, 04, 15);
+	final java.util.Date dateId = getPKDate(2006, 04, 15);
 
-  public Client() {
-  }
+	public Client() {
+	}
+	
+	@Deployment(testable = false, managed = false)
+	public static JavaArchive createDeployment() throws Exception {
+		
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = Client.class.getPackageName() + ".";
+		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2", "com.sun.ts.tests.jpa.core.types.common.Grade"};
+		return createDeploymentJar("jpa_core_annotations_access_field.jar", pkgNameWithoutSuffix, (String[]) classes);
 
+	}
 
- 
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("cleanup");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+	}
 
-  
-  @AfterEach
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
-
-  protected void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      TestUtil.logMsg("isActive:" + getEntityTransaction().isActive());
-      getEntityManager().createNativeQuery("Delete from DATATYPES")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("Delete from DATATYPES2")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	protected void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			TestUtil.logMsg("isActive:" + getEntityTransaction().isActive());
+			getEntityManager().createNativeQuery("Delete from DATATYPES").executeUpdate();
+			getEntityManager().createNativeQuery("Delete from DATATYPES2").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }
