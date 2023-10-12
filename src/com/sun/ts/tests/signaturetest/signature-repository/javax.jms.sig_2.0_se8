@@ -1,8 +1,8 @@
 #Signature file v4.1
-#Version 2.0_se8
+#Version 1.0
 
 #
-# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2014, 2023 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,11 +25,11 @@ CLSS public abstract interface java.lang.AutoCloseable
 meth public abstract void close() throws java.lang.Exception
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
@@ -40,7 +40,7 @@ CLSS public abstract interface !annotation java.lang.FunctionalInterface
 intf java.lang.annotation.Annotation
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -58,20 +58,20 @@ CLSS public abstract interface java.lang.Runnable
 meth public abstract void run()
 
 CLSS public java.lang.RuntimeException
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)
@@ -200,54 +200,54 @@ CLSS public abstract interface javax.jms.ExceptionListener
 meth public abstract void onException(javax.jms.JMSException)
 
 CLSS public javax.jms.IllegalStateException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr javax.jms.JMSException
 hfds serialVersionUID
 
 CLSS public javax.jms.IllegalStateRuntimeException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Throwable)
 supr javax.jms.JMSRuntimeException
 hfds serialVersionUID
 
 CLSS public javax.jms.InvalidClientIDException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr javax.jms.JMSException
 hfds serialVersionUID
 
 CLSS public javax.jms.InvalidClientIDRuntimeException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Throwable)
 supr javax.jms.JMSRuntimeException
 hfds serialVersionUID
 
 CLSS public javax.jms.InvalidDestinationException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr javax.jms.JMSException
 hfds serialVersionUID
 
 CLSS public javax.jms.InvalidDestinationRuntimeException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Throwable)
 supr javax.jms.JMSRuntimeException
 hfds serialVersionUID
 
 CLSS public javax.jms.InvalidSelectorException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr javax.jms.JMSException
 hfds serialVersionUID
 
 CLSS public javax.jms.InvalidSelectorRuntimeException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Throwable)
 supr javax.jms.JMSRuntimeException
 hfds serialVersionUID
 
@@ -361,8 +361,8 @@ intf java.lang.annotation.Annotation
 meth public abstract javax.jms.JMSDestinationDefinition[] value()
 
 CLSS public javax.jms.JMSException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 meth public java.lang.Exception getLinkedException()
 meth public java.lang.String getErrorCode()
 meth public void setLinkedException(java.lang.Exception)
@@ -427,23 +427,23 @@ meth public abstract long getTimeToLive()
 meth public abstract short getShortProperty(java.lang.String)
 
 CLSS public javax.jms.JMSRuntimeException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Throwable)
 meth public java.lang.String getErrorCode()
 supr java.lang.RuntimeException
 hfds errorCode,serialVersionUID
 
 CLSS public javax.jms.JMSSecurityException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr javax.jms.JMSException
 hfds serialVersionUID
 
 CLSS public javax.jms.JMSSecurityRuntimeException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Throwable)
 supr javax.jms.JMSRuntimeException
 hfds serialVersionUID
 
@@ -547,21 +547,21 @@ meth public abstract void close() throws javax.jms.JMSException
 meth public abstract void setMessageListener(javax.jms.MessageListener) throws javax.jms.JMSException
 
 CLSS public javax.jms.MessageEOFException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr javax.jms.JMSException
 hfds serialVersionUID
 
 CLSS public javax.jms.MessageFormatException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr javax.jms.JMSException
 hfds serialVersionUID
 
 CLSS public javax.jms.MessageFormatRuntimeException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Throwable)
 supr javax.jms.JMSRuntimeException
 hfds serialVersionUID
 
@@ -569,21 +569,21 @@ CLSS public abstract interface javax.jms.MessageListener
 meth public abstract void onMessage(javax.jms.Message)
 
 CLSS public javax.jms.MessageNotReadableException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr javax.jms.JMSException
 hfds serialVersionUID
 
 CLSS public javax.jms.MessageNotWriteableException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr javax.jms.JMSException
 hfds serialVersionUID
 
 CLSS public javax.jms.MessageNotWriteableRuntimeException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Throwable)
 supr javax.jms.JMSRuntimeException
 hfds serialVersionUID
 
@@ -644,7 +644,7 @@ intf javax.jms.MessageConsumer
 meth public abstract javax.jms.Queue getQueue() throws javax.jms.JMSException
 
 CLSS public javax.jms.QueueRequestor
-cons public <init>(javax.jms.QueueSession,javax.jms.Queue) throws javax.jms.JMSException
+cons public init(javax.jms.QueueSession,javax.jms.Queue) throws javax.jms.JMSException
 meth public javax.jms.Message request(javax.jms.Message) throws javax.jms.JMSException
 meth public void close() throws javax.jms.JMSException
 supr java.lang.Object
@@ -669,15 +669,15 @@ meth public abstract javax.jms.QueueSender createSender(javax.jms.Queue) throws 
 meth public abstract javax.jms.TemporaryQueue createTemporaryQueue() throws javax.jms.JMSException
 
 CLSS public javax.jms.ResourceAllocationException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr javax.jms.JMSException
 hfds serialVersionUID
 
 CLSS public javax.jms.ResourceAllocationRuntimeException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Throwable)
 supr javax.jms.JMSRuntimeException
 hfds serialVersionUID
 
@@ -797,7 +797,7 @@ meth public abstract void publish(javax.jms.Topic,javax.jms.Message) throws java
 meth public abstract void publish(javax.jms.Topic,javax.jms.Message,int,int,long) throws javax.jms.JMSException
 
 CLSS public javax.jms.TopicRequestor
-cons public <init>(javax.jms.TopicSession,javax.jms.Topic) throws javax.jms.JMSException
+cons public init(javax.jms.TopicSession,javax.jms.Topic) throws javax.jms.JMSException
 meth public javax.jms.Message request(javax.jms.Message) throws javax.jms.JMSException
 meth public void close() throws javax.jms.JMSException
 supr java.lang.Object
@@ -820,28 +820,28 @@ meth public abstract boolean getNoLocal() throws javax.jms.JMSException
 meth public abstract javax.jms.Topic getTopic() throws javax.jms.JMSException
 
 CLSS public javax.jms.TransactionInProgressException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr javax.jms.JMSException
 hfds serialVersionUID
 
 CLSS public javax.jms.TransactionInProgressRuntimeException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Throwable)
 supr javax.jms.JMSRuntimeException
 hfds serialVersionUID
 
 CLSS public javax.jms.TransactionRolledBackException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 supr javax.jms.JMSException
 hfds serialVersionUID
 
 CLSS public javax.jms.TransactionRolledBackRuntimeException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.Throwable)
 supr javax.jms.JMSRuntimeException
 hfds serialVersionUID
 

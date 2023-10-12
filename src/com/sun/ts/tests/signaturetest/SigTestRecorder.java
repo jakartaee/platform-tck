@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,11 +19,11 @@
  */
 package com.sun.ts.tests.signaturetest;
 
+import java.io.File;
+import java.io.PrintWriter;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.PrintWriter;
-import java.io.File;
 
 /**
  * <p>
@@ -67,10 +67,6 @@ public class SigTestRecorder extends Recorder {
 
     command.add("-apiVersion");
     command.add(version);
-
-    String str = "Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.";
-    command.add("-CopyRight");
-    command.add(str);
 
     return ((String[]) command.toArray(new String[command.size()]));
 

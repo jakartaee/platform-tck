@@ -1,8 +1,8 @@
 #Signature file v4.1
-#Version 2.2_se8
+#Version 1.0
 
 #
-# Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2014, 2023 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,7 +25,7 @@ CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
 meth public abstract int compareTo({java.lang.Comparable%0})
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
-cons protected <init>(java.lang.String,int)
+cons protected init(java.lang.String,int)
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
@@ -42,16 +42,16 @@ supr java.lang.Object
 hfds name,ordinal
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -65,20 +65,20 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.RuntimeException
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)
@@ -352,10 +352,10 @@ intf java.lang.annotation.Annotation
 meth public abstract !hasdefault java.lang.String name()
 
 CLSS public javax.persistence.EntityExistsException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.persistence.PersistenceException
 
 CLSS public abstract interface javax.persistence.EntityGraph<%0 extends java.lang.Object>
@@ -449,8 +449,8 @@ meth public abstract void addNamedQuery(java.lang.String,javax.persistence.Query
 meth public abstract void close()
 
 CLSS public javax.persistence.EntityNotFoundException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr javax.persistence.PersistenceException
 
 CLSS public abstract interface !annotation javax.persistence.EntityResult
@@ -625,12 +625,12 @@ meth public static javax.persistence.LockModeType[] values()
 supr java.lang.Enum<javax.persistence.LockModeType>
 
 CLSS public javax.persistence.LockTimeoutException
-cons public <init>()
-cons public <init>(java.lang.Object)
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.String,java.lang.Throwable,java.lang.Object)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.Object)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String,java.lang.Throwable,java.lang.Object)
+cons public init(java.lang.Throwable)
 meth public java.lang.Object getObject()
 supr javax.persistence.PersistenceException
 hfds entity
@@ -811,13 +811,13 @@ meth public abstract java.lang.String name()
 meth public abstract javax.persistence.NamedAttributeNode[] attributeNodes()
 
 CLSS public javax.persistence.NoResultException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr javax.persistence.PersistenceException
 
 CLSS public javax.persistence.NonUniqueResultException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr javax.persistence.PersistenceException
 
 CLSS public abstract interface !annotation javax.persistence.OneToMany
@@ -842,12 +842,12 @@ meth public abstract !hasdefault javax.persistence.CascadeType[] cascade()
 meth public abstract !hasdefault javax.persistence.FetchType fetch()
 
 CLSS public javax.persistence.OptimisticLockException
-cons public <init>()
-cons public <init>(java.lang.Object)
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.String,java.lang.Throwable,java.lang.Object)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.Object)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String,java.lang.Throwable,java.lang.Object)
+cons public init(java.lang.Throwable)
 meth public java.lang.Object getEntity()
 supr javax.persistence.PersistenceException
 hfds entity
@@ -883,7 +883,7 @@ meth public static javax.persistence.ParameterMode[] values()
 supr java.lang.Enum<javax.persistence.ParameterMode>
 
 CLSS public javax.persistence.Persistence
-cons public <init>()
+cons public init()
 fld protected final static java.util.Set<javax.persistence.spi.PersistenceProvider> providers
  anno 0 java.lang.Deprecated()
 fld public final static java.lang.String PERSISTENCE_PROVIDER = "javax.persistence.spi.PeristenceProvider"
@@ -920,10 +920,10 @@ intf java.lang.annotation.Annotation
 meth public abstract javax.persistence.PersistenceContext[] value()
 
 CLSS public javax.persistence.PersistenceException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.RuntimeException
 
 CLSS public abstract interface !annotation javax.persistence.PersistenceProperty
@@ -958,12 +958,12 @@ meth public abstract boolean isLoaded(java.lang.Object)
 meth public abstract boolean isLoaded(java.lang.Object,java.lang.String)
 
 CLSS public javax.persistence.PessimisticLockException
-cons public <init>()
-cons public <init>(java.lang.Object)
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.String,java.lang.Throwable,java.lang.Object)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.Object)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String,java.lang.Throwable,java.lang.Object)
+cons public init(java.lang.Throwable)
 meth public java.lang.Object getEntity()
 supr javax.persistence.PersistenceException
 hfds entity
@@ -1070,21 +1070,21 @@ meth public abstract java.lang.String name()
 meth public abstract java.lang.String value()
 
 CLSS public javax.persistence.QueryTimeoutException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.String,java.lang.Throwable,javax.persistence.Query)
-cons public <init>(java.lang.Throwable)
-cons public <init>(javax.persistence.Query)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String,java.lang.Throwable,javax.persistence.Query)
+cons public init(java.lang.Throwable)
+cons public init(javax.persistence.Query)
 meth public javax.persistence.Query getQuery()
 supr javax.persistence.PersistenceException
 hfds query
 
 CLSS public javax.persistence.RollbackException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.persistence.PersistenceException
 
 CLSS public abstract interface !annotation javax.persistence.SecondaryTable
@@ -1251,8 +1251,8 @@ meth public static javax.persistence.TemporalType[] values()
 supr java.lang.Enum<javax.persistence.TemporalType>
 
 CLSS public javax.persistence.TransactionRequiredException
-cons public <init>()
-cons public <init>(java.lang.String)
+cons public init()
+cons public init(java.lang.String)
 supr javax.persistence.PersistenceException
 
 CLSS public abstract interface !annotation javax.persistence.Transient
@@ -1928,7 +1928,7 @@ meth public abstract java.util.List<javax.persistence.spi.PersistenceProvider> g
 meth public abstract void clearCachedProviders()
 
 CLSS public javax.persistence.spi.PersistenceProviderResolverHolder
-cons public <init>()
+cons public init()
 meth public static javax.persistence.spi.PersistenceProviderResolver getPersistenceProviderResolver()
 meth public static void setPersistenceProviderResolver(javax.persistence.spi.PersistenceProviderResolver)
 supr java.lang.Object

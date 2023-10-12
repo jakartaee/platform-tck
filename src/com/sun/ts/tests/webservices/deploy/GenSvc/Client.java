@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  * Copyright (c) 2002 International Business Machines Corp. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -766,7 +766,7 @@ public class Client extends ServiceEETest {
       TestUtil.logMsg("Call Service.getPort(Class)");
       TestUtil.logMsg("Should not find port (expect ServiceException)");
       Tests tests = (Tests) genService
-          .getPort(java.rmi.activation.Activator.class);
+          .getPort((Class) java.util.regex.Pattern.class);
       TestUtil.logErr("Did not throw expected ServiceException");
       pass = false;
     } catch (ServiceException e) {

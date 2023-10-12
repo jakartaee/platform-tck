@@ -1,8 +1,8 @@
 #Signature file v4.1
-#Version 1.3_se8
+#Version 1.0
 
 #
-# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2014, 2023 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,10 +20,10 @@
 
 
 CLSS public java.io.IOException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
@@ -33,7 +33,7 @@ CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
 meth public abstract int compareTo({java.lang.Comparable%0})
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
-cons protected <init>(java.lang.String,int)
+cons protected init(java.lang.String,int)
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
@@ -50,16 +50,16 @@ supr java.lang.Object
 hfds name,ordinal
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -73,11 +73,11 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)
@@ -193,7 +193,7 @@ intf java.lang.annotation.Annotation
 meth public abstract javax.annotation.Resource[] value()
 
 CLSS public abstract javax.annotation.processing.AbstractProcessor
-cons protected <init>()
+cons protected init()
 fld protected javax.annotation.processing.ProcessingEnvironment processingEnv
 intf javax.annotation.processing.Processor
 meth protected boolean isInitialized()
@@ -223,7 +223,7 @@ meth public abstract !varargs javax.tools.JavaFileObject createSourceFile(java.l
 meth public abstract javax.tools.FileObject getResource(javax.tools.JavaFileManager$Location,java.lang.CharSequence,java.lang.CharSequence) throws java.io.IOException
 
 CLSS public javax.annotation.processing.FilerException
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 supr java.io.IOException
 hfds serialVersionUID
 

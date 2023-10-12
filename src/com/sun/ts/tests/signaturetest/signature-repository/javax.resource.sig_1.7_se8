@@ -1,8 +1,8 @@
 #Signature file v4.1
-#Version 1.7_se8
+#Version 1.0
 
 #
-# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2014, 2023 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -30,7 +30,7 @@ CLSS public abstract interface java.lang.Comparable<%0 extends java.lang.Object>
 meth public abstract int compareTo({java.lang.Comparable%0})
 
 CLSS public abstract java.lang.Enum<%0 extends java.lang.Enum<{java.lang.Enum%0}>>
-cons protected <init>(java.lang.String,int)
+cons protected init(java.lang.String,int)
 intf java.io.Serializable
 intf java.lang.Comparable<{java.lang.Enum%0}>
 meth protected final java.lang.Object clone() throws java.lang.CloneNotSupportedException
@@ -47,11 +47,11 @@ supr java.lang.Object
 hfds name,ordinal
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
@@ -67,7 +67,7 @@ meth public java.util.Spliterator<{java.lang.Iterable%0}> spliterator()
 meth public void forEach(java.util.function.Consumer<? super {java.lang.Iterable%0}>)
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -85,11 +85,11 @@ CLSS public abstract interface java.lang.Runnable
 meth public abstract void run()
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)
@@ -374,7 +374,7 @@ meth public java.util.stream.Stream<{java.util.Collection%0}> stream()
 CLSS public abstract interface java.util.EventListener
 
 CLSS public java.util.EventObject
-cons public <init>(java.lang.Object)
+cons public init(java.lang.Object)
 fld protected java.lang.Object source
 intf java.io.Serializable
 meth public java.lang.Object getSource()
@@ -481,11 +481,11 @@ intf java.lang.annotation.Annotation
 meth public abstract javax.resource.ConnectionFactoryDefinition[] value()
 
 CLSS public javax.resource.NotSupportedException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.resource.ResourceException
 
 CLSS public abstract interface javax.resource.Referenceable
@@ -493,11 +493,11 @@ intf javax.naming.Referenceable
 meth public abstract void setReference(javax.naming.Reference)
 
 CLSS public javax.resource.ResourceException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 meth public java.lang.Exception getLinkedException()
 meth public java.lang.String getErrorCode()
 meth public java.lang.String getMessage()
@@ -587,11 +587,11 @@ meth public abstract java.lang.String getSpecVersion()
 meth public abstract java.lang.String[] getInteractionSpecsSupported()
 
 CLSS public javax.resource.cci.ResourceWarning
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 meth public javax.resource.cci.ResourceWarning getLinkedWarning()
 meth public void setLinkedWarning(javax.resource.cci.ResourceWarning)
 supr javax.resource.ResourceException
@@ -636,11 +636,11 @@ intf java.lang.annotation.Annotation
 meth public abstract !hasdefault java.lang.Class[] adminObjectInterfaces()
 
 CLSS public javax.resource.spi.ApplicationServerInternalException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.resource.ResourceException
 
 CLSS public abstract interface !annotation javax.resource.spi.AuthenticationMechanism
@@ -670,11 +670,11 @@ meth public abstract javax.resource.spi.work.WorkManager getWorkManager()
 meth public abstract javax.transaction.TransactionSynchronizationRegistry getTransactionSynchronizationRegistry()
 
 CLSS public javax.resource.spi.CommException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.resource.ResourceException
 
 CLSS public abstract interface !annotation javax.resource.spi.ConfigProperty
@@ -707,8 +707,8 @@ intf java.lang.annotation.Annotation
 meth public abstract javax.resource.spi.ConnectionDefinition[] value()
 
 CLSS public javax.resource.spi.ConnectionEvent
-cons public <init>(javax.resource.spi.ManagedConnection,int)
-cons public <init>(javax.resource.spi.ManagedConnection,int,java.lang.Exception)
+cons public init(javax.resource.spi.ManagedConnection,int)
+cons public init(javax.resource.spi.ManagedConnection,int,java.lang.Exception)
 fld protected int id
 fld public final static int CONNECTION_CLOSED = 1
 fld public final static int CONNECTION_ERROR_OCCURRED = 5
@@ -762,27 +762,27 @@ CLSS public abstract interface javax.resource.spi.DissociatableManagedConnection
 meth public abstract void dissociateConnections() throws javax.resource.ResourceException
 
 CLSS public javax.resource.spi.EISSystemException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.resource.ResourceException
 
 CLSS public javax.resource.spi.IllegalStateException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.resource.ResourceException
 
 CLSS public javax.resource.spi.InvalidPropertyException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 meth public java.beans.PropertyDescriptor[] getInvalidPropertyDescriptors()
 meth public void setInvalidPropertyDescriptors(java.beans.PropertyDescriptor[])
 supr javax.resource.ResourceException
@@ -803,11 +803,11 @@ meth public abstract void commit() throws javax.resource.ResourceException
 meth public abstract void rollback() throws javax.resource.ResourceException
 
 CLSS public javax.resource.spi.LocalTransactionException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.resource.ResourceException
 
 CLSS public abstract interface javax.resource.spi.ManagedConnection
@@ -852,40 +852,40 @@ meth public abstract javax.resource.spi.ResourceAdapter getResourceAdapter()
 meth public abstract void setResourceAdapter(javax.resource.spi.ResourceAdapter) throws javax.resource.ResourceException
 
 CLSS public javax.resource.spi.ResourceAdapterInternalException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.resource.ResourceException
 
 CLSS public javax.resource.spi.ResourceAllocationException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.resource.ResourceException
 
 CLSS public abstract interface javax.resource.spi.RetryableException
 intf java.io.Serializable
 
 CLSS public javax.resource.spi.RetryableUnavailableException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf javax.resource.spi.RetryableException
 supr javax.resource.spi.UnavailableException
 hfds serialVersionUID
 
 CLSS public javax.resource.spi.SecurityException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.resource.ResourceException
 
 CLSS public abstract interface !annotation javax.resource.spi.SecurityPermission
@@ -897,11 +897,11 @@ meth public abstract !hasdefault java.lang.String permissionSpec()
 meth public abstract !hasdefault java.lang.String[] description()
 
 CLSS public javax.resource.spi.SharingViolationException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.resource.ResourceException
 
 CLSS public abstract interface javax.resource.spi.TransactionSupport
@@ -919,11 +919,11 @@ meth public static javax.resource.spi.TransactionSupport$TransactionSupportLevel
 supr java.lang.Enum<javax.resource.spi.TransactionSupport$TransactionSupportLevel>
 
 CLSS public javax.resource.spi.UnavailableException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.resource.ResourceException
 
 CLSS public abstract interface javax.resource.spi.ValidatingManagedConnectionFactory
@@ -956,7 +956,7 @@ meth public abstract java.lang.String getMechType()
 meth public abstract java.lang.String getName()
 
 CLSS public final javax.resource.spi.security.PasswordCredential
-cons public <init>(java.lang.String,char[])
+cons public init(java.lang.String,char[])
 intf java.io.Serializable
 meth public boolean equals(java.lang.Object)
 meth public char[] getPassword()
@@ -975,7 +975,7 @@ CLSS public abstract interface javax.resource.spi.work.DistributableWorkManager
 intf javax.resource.spi.work.WorkManager
 
 CLSS public javax.resource.spi.work.ExecutionContext
-cons public <init>()
+cons public init()
 meth public javax.transaction.xa.Xid getXid()
 meth public long getTransactionTimeout()
 meth public void setTransactionTimeout(long) throws javax.resource.NotSupportedException
@@ -984,7 +984,7 @@ supr java.lang.Object
 hfds transactionTimeout,xid
 
 CLSS public javax.resource.spi.work.HintsContext
-cons public <init>()
+cons public init()
 fld protected java.lang.String description
 fld protected java.lang.String name
 fld public final static java.lang.String LONGRUNNING_HINT = "javax.resource.LongRunning"
@@ -1000,17 +1000,17 @@ supr java.lang.Object
 hfds hints,serialVersionUID
 
 CLSS public javax.resource.spi.work.RetryableWorkRejectedException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf javax.resource.spi.RetryableException
 supr javax.resource.spi.work.WorkRejectedException
 hfds serialVersionUID
 
 CLSS public abstract javax.resource.spi.work.SecurityContext
-cons public <init>()
+cons public init()
 intf javax.resource.spi.work.WorkContext
 meth public abstract void setupSecurityContext(javax.security.auth.callback.CallbackHandler,javax.security.auth.Subject,javax.security.auth.Subject)
 meth public java.lang.String getDescription()
@@ -1019,7 +1019,7 @@ supr java.lang.Object
 hfds serialVersionUID
 
 CLSS public javax.resource.spi.work.TransactionContext
-cons public <init>()
+cons public init()
 intf javax.resource.spi.work.WorkContext
 meth public java.lang.String getDescription()
 meth public java.lang.String getName()
@@ -1031,7 +1031,7 @@ intf java.lang.Runnable
 meth public abstract void release()
 
 CLSS public javax.resource.spi.work.WorkAdapter
-cons public <init>()
+cons public init()
 intf javax.resource.spi.work.WorkListener
 meth public void workAccepted(javax.resource.spi.work.WorkEvent)
 meth public void workCompleted(javax.resource.spi.work.WorkEvent)
@@ -1040,11 +1040,11 @@ meth public void workStarted(javax.resource.spi.work.WorkEvent)
 supr java.lang.Object
 
 CLSS public javax.resource.spi.work.WorkCompletedException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.resource.spi.work.WorkException
 
 CLSS public abstract interface javax.resource.spi.work.WorkContext
@@ -1053,7 +1053,7 @@ meth public abstract java.lang.String getDescription()
 meth public abstract java.lang.String getName()
 
 CLSS public javax.resource.spi.work.WorkContextErrorCodes
-cons public <init>()
+cons public init()
 fld public final static java.lang.String CONTEXT_SETUP_FAILED = "3"
 fld public final static java.lang.String CONTEXT_SETUP_UNSUPPORTED = "4"
 fld public final static java.lang.String DUPLICATE_CONTEXTS = "2"
@@ -1069,8 +1069,8 @@ intf java.io.Serializable
 meth public abstract java.util.List<javax.resource.spi.work.WorkContext> getWorkContexts()
 
 CLSS public javax.resource.spi.work.WorkEvent
-cons public <init>(java.lang.Object,int,javax.resource.spi.work.Work,javax.resource.spi.work.WorkException)
-cons public <init>(java.lang.Object,int,javax.resource.spi.work.Work,javax.resource.spi.work.WorkException,long)
+cons public init(java.lang.Object,int,javax.resource.spi.work.Work,javax.resource.spi.work.WorkException)
+cons public init(java.lang.Object,int,javax.resource.spi.work.Work,javax.resource.spi.work.WorkException,long)
 fld public final static int WORK_ACCEPTED = 1
 fld public final static int WORK_COMPLETED = 4
 fld public final static int WORK_REJECTED = 2
@@ -1083,11 +1083,11 @@ supr java.util.EventObject
 hfds exc,startDuration,type,work
 
 CLSS public javax.resource.spi.work.WorkException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 fld public final static java.lang.String INTERNAL = "-1"
 fld public final static java.lang.String START_TIMED_OUT = "1"
 fld public final static java.lang.String TX_CONCURRENT_WORK_DISALLOWED = "2"
@@ -1114,10 +1114,10 @@ meth public abstract void scheduleWork(javax.resource.spi.work.Work) throws java
 meth public abstract void scheduleWork(javax.resource.spi.work.Work,long,javax.resource.spi.work.ExecutionContext,javax.resource.spi.work.WorkListener) throws javax.resource.spi.work.WorkException
 
 CLSS public javax.resource.spi.work.WorkRejectedException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr javax.resource.spi.work.WorkException
 

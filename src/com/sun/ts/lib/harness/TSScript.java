@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -228,9 +228,14 @@ public class TSScript extends com.sun.javatest.Script {
 
       // set current.keywords so we can pass it to the sig tests
       // get keywords that are set and add them to the prop mgr
+      // also set jimage.dir for Java 11 sig tests
       TestUtil
           .logHarness("keywords (to be passed to tests) set to:  " + keywords);
       pTestProps.put("current.keywords", keywords);
+      String version = (String)System.getProperties().get("java.version");
+      if (!version.startsWith("1.")) {
+        pTestProps.put("jimage.dir", propMgr.getProperty("jimage.dir"));
+      }
 
       // so we know what kind of test this is
       String finderType = td.getParameter("finder");
@@ -317,7 +322,7 @@ public class TSScript extends com.sun.javatest.Script {
           System.err.println("*************test args = " + executeArgs);
           // If we have a negative deployment test, and we fail deployment
           // return PASS here.
-          if (executeArgs.contains("-expectdeploymentfailure")) {
+          if (executeArgs != null && executeArgs.contains("-expectdeploymentfailure")) {
             logOut.println("Deployment failed as expected");
             return Status.passed("Deployment failed as expected");
           } else {

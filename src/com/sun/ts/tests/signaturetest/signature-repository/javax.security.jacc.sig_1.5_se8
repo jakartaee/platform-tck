@@ -1,8 +1,8 @@
 #Signature file v4.1
-#Version 1.5_se8
+#Version 1.0
 
 #
-# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2014, 2023 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,16 +22,16 @@
 CLSS public abstract interface java.io.Serializable
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -45,11 +45,11 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)
@@ -72,7 +72,7 @@ CLSS public abstract interface java.security.Guard
 meth public abstract void checkGuard(java.lang.Object)
 
 CLSS public abstract java.security.Permission
-cons public <init>(java.lang.String)
+cons public init(java.lang.String)
 intf java.io.Serializable
 intf java.security.Guard
 meth public abstract boolean equals(java.lang.Object)
@@ -87,9 +87,9 @@ supr java.lang.Object
 hfds name,serialVersionUID
 
 CLSS public final javax.security.jacc.EJBMethodPermission
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String,java.lang.String,java.lang.String[])
-cons public <init>(java.lang.String,java.lang.String,java.lang.reflect.Method)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String,java.lang.String,java.lang.String[])
+cons public init(java.lang.String,java.lang.String,java.lang.reflect.Method)
 meth public boolean equals(java.lang.Object)
 meth public boolean implies(java.security.Permission)
 meth public int hashCode()
@@ -98,7 +98,7 @@ supr java.security.Permission
 hfds actions,hashCodeValue,interfaceHash,interfaceKeys,methodInterface,methodName,methodParams,otherMethodInterface,serialPersistentFields,serialVersionUID
 
 CLSS public final javax.security.jacc.EJBRoleRefPermission
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 meth public boolean equals(java.lang.Object)
 meth public boolean implies(java.security.Permission)
 meth public int hashCode()
@@ -123,7 +123,7 @@ meth public abstract void removeRole(java.lang.String) throws javax.security.jac
 meth public abstract void removeUncheckedPolicy() throws javax.security.jacc.PolicyContextException
 
 CLSS public abstract javax.security.jacc.PolicyConfigurationFactory
-cons public <init>()
+cons public init()
 meth public abstract boolean inService(java.lang.String) throws javax.security.jacc.PolicyContextException
 meth public abstract javax.security.jacc.PolicyConfiguration getPolicyConfiguration(java.lang.String,boolean) throws javax.security.jacc.PolicyContextException
 meth public static javax.security.jacc.PolicyConfigurationFactory getPolicyConfigurationFactory() throws java.lang.ClassNotFoundException,javax.security.jacc.PolicyContextException
@@ -141,10 +141,10 @@ supr java.lang.Object
 hfds handlerTable,thisContextID,thisHandlerData
 
 CLSS public javax.security.jacc.PolicyContextException
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Exception
 
 CLSS public abstract interface javax.security.jacc.PolicyContextHandler
@@ -153,9 +153,9 @@ meth public abstract java.lang.Object getContext(java.lang.String,java.lang.Obje
 meth public abstract java.lang.String[] getKeys() throws javax.security.jacc.PolicyContextException
 
 CLSS public final javax.security.jacc.WebResourcePermission
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String[])
-cons public <init>(javax.servlet.http.HttpServletRequest)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String[])
+cons public init(javax.servlet.http.HttpServletRequest)
 meth public boolean equals(java.lang.Object)
 meth public boolean implies(java.security.Permission)
 meth public int hashCode()
@@ -164,7 +164,7 @@ supr java.security.Permission
 hfds EMPTY_STRING,ESCAPED_COLON,hashCodeValue,methodSpec,serialPersistentFields,serialVersionUID,urlPatternSpec
 
 CLSS public final javax.security.jacc.WebRoleRefPermission
-cons public <init>(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String)
 intf java.io.Serializable
 meth public boolean equals(java.lang.Object)
 meth public boolean implies(java.security.Permission)
@@ -174,9 +174,9 @@ supr java.security.Permission
 hfds actions,hashCodeValue,serialPersistentFields,serialVersionUID
 
 CLSS public final javax.security.jacc.WebUserDataPermission
-cons public <init>(java.lang.String,java.lang.String)
-cons public <init>(java.lang.String,java.lang.String[],java.lang.String)
-cons public <init>(javax.servlet.http.HttpServletRequest)
+cons public init(java.lang.String,java.lang.String)
+cons public init(java.lang.String,java.lang.String[],java.lang.String)
+cons public init(javax.servlet.http.HttpServletRequest)
 meth public boolean equals(java.lang.Object)
 meth public boolean implies(java.security.Permission)
 meth public int hashCode()

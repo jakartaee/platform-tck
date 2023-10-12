@@ -2,7 +2,7 @@
 #Version 1.1_se8
 
 #
-# Copyright (c) 2014, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2014, 2023 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -42,7 +42,7 @@ supr java.lang.Object
 hfds name,ordinal
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
 cons public <init>()
 cons public <init>(java.lang.String)
 cons public <init>(java.lang.String,java.lang.Throwable)
@@ -70,7 +70,7 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.RuntimeException
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
 cons public <init>()
 cons public <init>(java.lang.String)
 cons public <init>(java.lang.String,java.lang.Throwable)
@@ -79,7 +79,7 @@ supr java.lang.Exception
 hfds serialVersionUID
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
 cons public <init>()
 cons public <init>(java.lang.String)
 cons public <init>(java.lang.String,java.lang.Throwable)

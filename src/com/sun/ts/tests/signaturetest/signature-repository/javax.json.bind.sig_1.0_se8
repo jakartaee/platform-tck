@@ -1,8 +1,8 @@
 #Signature file v4.1
-#Version 1.1_se8
+#Version 1.0
 
 #
-# Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2014, 2023 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,23 +19,22 @@
 
 
 
-
 CLSS public abstract interface java.io.Serializable
 
 CLSS public abstract interface java.lang.AutoCloseable
 meth public abstract void close() throws java.lang.Exception
 
 CLSS public java.lang.Exception
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Throwable
 hfds serialVersionUID
 
 CLSS public java.lang.Object
-cons public <init>()
+cons public init()
 meth protected java.lang.Object clone() throws java.lang.CloneNotSupportedException
 meth protected void finalize() throws java.lang.Throwable
 meth public boolean equals(java.lang.Object)
@@ -49,20 +48,20 @@ meth public int hashCode()
 meth public java.lang.String toString()
 
 CLSS public java.lang.RuntimeException
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 supr java.lang.Exception
 hfds serialVersionUID
 
 CLSS public java.lang.Throwable
-cons protected <init>(java.lang.String,java.lang.Throwable,boolean,boolean)
-cons public <init>()
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
-cons public <init>(java.lang.Throwable)
+cons protected init(java.lang.String,java.lang.Throwable,boolean,boolean)
+cons public init()
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.Throwable)
 intf java.io.Serializable
 meth public final java.lang.Throwable[] getSuppressed()
 meth public final void addSuppressed(java.lang.Throwable)
@@ -133,7 +132,7 @@ meth public static javax.json.bind.JsonbBuilder newBuilder(java.lang.String)
 meth public static javax.json.bind.JsonbBuilder newBuilder(javax.json.bind.spi.JsonbProvider)
 
 CLSS public javax.json.bind.JsonbConfig
-cons public <init>()
+cons public init()
 fld public final static java.lang.String ADAPTERS = "jsonb.adapters"
 fld public final static java.lang.String BINARY_DATA_STRATEGY = "jsonb.binary-data-strategy"
 fld public final static java.lang.String DATE_FORMAT = "jsonb.date-format"
@@ -168,8 +167,8 @@ supr java.lang.Object
 hfds configuration
 
 CLSS public javax.json.bind.JsonbException
-cons public <init>(java.lang.String)
-cons public <init>(java.lang.String,java.lang.Throwable)
+cons public init(java.lang.String)
+cons public init(java.lang.String,java.lang.Throwable)
 supr java.lang.RuntimeException
 hfds serialVersionUID
 
@@ -304,7 +303,7 @@ meth public abstract <%0 extends java.lang.Object> void serialize(java.lang.Stri
 meth public abstract <%0 extends java.lang.Object> void serialize({%%0},javax.json.stream.JsonGenerator)
 
 CLSS public abstract javax.json.bind.spi.JsonbProvider
-cons public <init>()
+cons public init()
 meth public abstract javax.json.bind.JsonbBuilder create()
 meth public static javax.json.bind.spi.JsonbProvider provider()
 meth public static javax.json.bind.spi.JsonbProvider provider(java.lang.String)
