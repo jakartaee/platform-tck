@@ -34,5 +34,25 @@
             <package name="org.jboss.cdi.tck.tests.*" />
             <package name="org.jboss.cdi.tck.interceptors.tests.*" />
         </packages>
+        <classes>
+            <!-- https://github.com/jakartaee/cdi-tck/issues/453 -->
+            <class name="org.jboss.cdi.tck.tests.implementation.simple.lifecycle.SimpleBeanLifecycleTest">
+                <methods>
+                    <exclude name="testCreateReturnsSameBeanPushed"/>
+                </methods>
+            </class>
+            <class name="org.jboss.cdi.tck.tests.context.DestroyForSameCreationalContextTest">
+                <methods>
+                    <exclude name="testDestroyForSameCreationalContextOnly"/>
+                </methods>
+            </class>
+
+            <!-- https://github.com/jakartaee/cdi-tck/issues/485 -->
+            <class name="org.jboss.cdi.tck.tests.definition.bean.types.ManagedBeanTypesTest">
+                <methods>
+                    <exclude name=".*"/>
+                </methods>
+            </class>
+        </classes>
     </test>
 </suite>
