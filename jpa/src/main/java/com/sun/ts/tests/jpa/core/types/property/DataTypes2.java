@@ -27,76 +27,75 @@ import jakarta.persistence.TemporalType;
 @Table(name = "DATATYPES2")
 public class DataTypes2 implements java.io.Serializable {
 
-  private java.util.Date id;
+	private java.util.Date id;
 
-  private java.util.Date dateData;
+	private java.util.Date dateData;
 
-  private java.sql.Time timeData;
+	private java.sql.Time timeData;
 
-  private java.sql.Timestamp tsData;
+	private java.sql.Timestamp tsData;
 
-  public DataTypes2() {
-  }
+	public DataTypes2() {
+	}
 
-  public DataTypes2(java.util.Date id) {
-    this.id = id;
-  }
+	public DataTypes2(java.util.Date id) {
+		this.id = id;
+	}
 
-  public DataTypes2(java.util.Date id, java.sql.Time timeData,
-      java.sql.Timestamp tsData) {
-    this.id = id;
-    this.timeData = timeData;
-    this.tsData = tsData;
-  }
+	public DataTypes2(java.util.Date id, java.sql.Time timeData, java.sql.Timestamp tsData) {
+		this.id = id;
+		this.timeData = timeData;
+		this.tsData = tsData;
+	}
 
-  @Id
-  @Column(name = "DATATYPES2_ID")
-  @Temporal(TemporalType.DATE)
-  public java.util.Date getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "DATATYPES2_ID")
+	@Temporal(TemporalType.DATE)
+	public java.util.Date getId() {
+		return id;
+	}
 
-  public void setId(java.util.Date id) {
-    this.id = id;
-  }
+	public void setId(java.util.Date id) {
+		this.id = id;
+	}
 
-  @Column(name = "DATEDATA")
-  @Temporal(TemporalType.DATE)
-  public java.util.Date getDateData() {
-    return dateData;
-  }
+	@Column(name = "DATEDATA")
+	@Temporal(TemporalType.DATE)
+	public java.util.Date getDateData() {
+		return dateData;
+	}
 
-  public void setDateData(java.util.Date dateData) {
-    this.dateData = dateData;
-  }
+	public void setDateData(java.util.Date dateData) {
+		this.dateData = dateData;
+	}
 
-  @Column(name = "TIMEDATA")
-  public java.sql.Time getTimeData() {
-    return timeData;
-  }
+	@Column(name = "TIMEDATA")
+	public java.sql.Time getTimeData() {
+		return timeData;
+	}
 
-  public void setTimeData(java.sql.Time timeData) {
-    this.timeData = timeData;
-  }
+	public void setTimeData(java.sql.Time timeData) {
+		this.timeData = timeData;
+	}
 
-  @Column(name = "TSDATA")
-  public java.sql.Timestamp getTsData() {
-    return tsData;
-  }
+	@Column(name = "TSDATA")
+	public java.sql.Timestamp getTsData() {
+		return tsData;
+	}
 
-  public void setTsData(java.sql.Timestamp tsData) {
-    this.tsData = tsData;
-  }
+	public void setTsData(java.sql.Timestamp tsData) {
+		this.tsData = tsData;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", date: " + getDateData());
-    result.append(", time: " + getTimeData());
-    result.append(", timestamp: " + getTsData());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", date: " + getDateData());
+		result.append(", time: " + getTimeData());
+		result.append(", timestamp: " + getTsData());
+		result.append("]");
+		return result.toString();
+	}
 }

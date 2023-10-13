@@ -33,126 +33,123 @@ import jakarta.persistence.Table;
 @Table(name = "EMP_MAPKEYCOL")
 public class Employee3 implements java.io.Serializable {
 
-  private int id;
+	private int id;
 
-  private String firstName;
+	private String firstName;
 
-  private String lastName;
+	private String lastName;
 
-  private Date hireDate;
+	private Date hireDate;
 
-  private float salary;
+	private float salary;
 
-  private Department3 department;
+	private Department3 department;
 
-  public Employee3() {
-  }
+	public Employee3() {
+	}
 
-  public Employee3(int id, String firstName, String lastName) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
+	public Employee3(int id, String firstName, String lastName) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 
-  public Employee3(int id, String firstName, String lastName, Date hireDate,
-      float salary) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.hireDate = hireDate;
-    this.salary = salary;
-  }
+	public Employee3(int id, String firstName, String lastName, Date hireDate, float salary) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.hireDate = hireDate;
+		this.salary = salary;
+	}
 
-  public Employee3(int id, String firstName, String lastName, Date hireDate,
-      float salary, Department3 department) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.hireDate = hireDate;
-    this.salary = salary;
-    this.department = department;
-  }
+	public Employee3(int id, String firstName, String lastName, Date hireDate, float salary, Department3 department) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.hireDate = hireDate;
+		this.salary = salary;
+		this.department = department;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Id
-  @Column(name = "ID")
-  public int getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  @Column(name = "FIRSTNAME")
-  public String getFirstName() {
-    return firstName;
-  }
+	@Column(name = "FIRSTNAME")
+	public String getFirstName() {
+		return firstName;
+	}
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-  @Column(name = "LASTNAME")
-  public String getLastName() {
-    return lastName;
-  }
+	@Column(name = "LASTNAME")
+	public String getLastName() {
+		return lastName;
+	}
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-  @Column(name = "HIREDATE")
-  public Date getHireDate() {
-    return hireDate;
-  }
+	@Column(name = "HIREDATE")
+	public Date getHireDate() {
+		return hireDate;
+	}
 
-  public void setHireDate(Date hireDate) {
-    this.hireDate = hireDate;
-  }
+	public void setHireDate(Date hireDate) {
+		this.hireDate = hireDate;
+	}
 
-  @Column(name = "SALARY")
-  public float getSalary() {
-    return salary;
-  }
+	@Column(name = "SALARY")
+	public float getSalary() {
+		return salary;
+	}
 
-  public void setSalary(float salary) {
-    this.salary = salary;
-  }
+	public void setSalary(float salary) {
+		this.salary = salary;
+	}
 
-  // ===========================================================
-  // getters and setters for the association fields
+	// ===========================================================
+	// getters and setters for the association fields
 
-  @ManyToOne
-  @JoinColumn(name = "FK_DEPT")
-  public Department3 getDepartment() {
-    return department;
-  }
+	@ManyToOne
+	@JoinColumn(name = "FK_DEPT")
+	public Department3 getDepartment() {
+		return department;
+	}
 
-  public void setDepartment(Department3 department) {
-    this.department = department;
-  }
+	public void setDepartment(Department3 department) {
+		this.department = department;
+	}
 
-  @Override
-  public int hashCode() {
-    return this.getId() + this.getFirstName().hashCode()
-        + this.getLastName().hashCode();
-  }
+	@Override
+	public int hashCode() {
+		return this.getId() + this.getFirstName().hashCode() + this.getLastName().hashCode();
+	}
 
-  public boolean equals(Object o) {
-    Employee3 other;
-    boolean same = true;
+	public boolean equals(Object o) {
+		Employee3 other;
+		boolean same = true;
 
-    if (!(o instanceof Employee3)) {
-      return false;
-    }
-    other = (Employee3) o;
+		if (!(o instanceof Employee3)) {
+			return false;
+		}
+		other = (Employee3) o;
 
-    same &= (this.id == other.id);
+		same &= (this.id == other.id);
 
-    return same;
-  }
+		return same;
+	}
 
 }

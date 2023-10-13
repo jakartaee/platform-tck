@@ -18,15 +18,10 @@ package com.sun.ts.tests.jpa.core.entityManagerFactory;
 
 import java.util.Properties;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -38,164 +33,157 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.metamodel.Metamodel;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client2IT extends PMClientBase {
 
-  Properties props = null;
+	Properties props = null;
 
-  public Client2IT() {
-  }
+	public Client2IT() {
+	}
 
-  @Deployment(testable = false, managed = false)
- 	public static JavaArchive createDeployment() throws Exception {
+	public static JavaArchive createDeployment() throws Exception {
 
- 		String pkgNameWithoutSuffix = Client2IT.class.getPackageName();
- 		String pkgName = Client2IT.class.getPackageName() + ".";
- 		String[] classes = { pkgName + "Member_", pkgName + "Member", pkgName + "Order_",
- 				pkgName + "Order"};
- 		return createDeploymentJar("jpa_core_entityManagerFactory2.jar", pkgNameWithoutSuffix, classes);
+		String pkgNameWithoutSuffix = Client2IT.class.getPackageName();
+		String pkgName = Client2IT.class.getPackageName() + ".";
+		String[] classes = { pkgName + "Member_", pkgName + "Member", pkgName + "Order_", pkgName + "Order" };
+		return createDeploymentJar("jpa_core_entityManagerFactory2.jar", pkgNameWithoutSuffix, classes);
 
- 	}
+	}
 
+	@BeforeAll
+	public void setupNoData() throws Exception {
+		TestUtil.logTrace("setupNoData");
+		try {
+			super.setup();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-  @BeforeAll
-  public void setupNoData() throws Exception {
-    TestUtil.logTrace("setupNoData");
-    try {
-      super.setup();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	@AfterAll
+	public void cleanupNoData() throws Exception {
+		super.cleanup();
+	}
 
-  @AfterAll
-  public void cleanupNoData() throws Exception {
-    super.cleanup();
-  }
+	/*
+	 * @testName: autoCloseableTest
+	 *
+	 * @assertion_ids: PERSISTENCE:SPEC:2517;
+	 *
+	 * @test_Strategy: Create EntityManagerFactory in try with resources block and
+	 * verify whether it's open inside and outside of the try block.
+	 */
+	@Test
+	public void autoCloseableTest() throws Exception {
+		EntityManagerFactory emf = null;
+		try (final EntityManagerFactory emfLocal = Persistence.createEntityManagerFactory(getPersistenceUnitName(),
+				getPersistenceUnitProperties())) {
+			emf = emfLocal;
+			if (emf == null) {
+				throw new Exception("autoCloseableTest failed: createEntityManagerFactory(String) returned null");
+			}
+			if (!emf.isOpen()) {
+				throw new Exception(
+						"autoCloseableTest failed: EntityManagerFactory isOpen() returned false in try block");
+			}
+		} catch (Exception f) {
+			throw f;
+		} catch (Throwable t) {
+			throw new Exception("autoCloseableTest failed with Exception", t);
+		} finally {
+			if (emf != null && emf.isOpen()) {
+				throw new Exception(
+						"autoCloseableTest failed: EntityManagerFactory isOpen() returned true outside try block");
+			}
+		}
+	}
 
+	/*
+	 * @testName: getMetamodelTest
+	 *
+	 * @assertion_ids: PERSISTENCE:JAVADOC:340;
+	 *
+	 * @test_Strategy: Get a MetaModel Object from the EntityManagerFactory and make
+	 * sure it is not null
+	 */
+	@Test
+	public void getMetamodelTest() throws Exception {
+		boolean pass = false;
+		try {
+			Metamodel mm = getEntityManager().getEntityManagerFactory().getMetamodel();
+			if (mm == null) {
+				TestUtil.logErr("getMetamodel() returned a null result");
+			} else {
+				pass = true;
+			}
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		}
+		if (!pass) {
+			throw new Exception("getMetamodelTest failed");
+		}
+	}
 
-  /*
-   * @testName: autoCloseableTest
-   *
-   * @assertion_ids: PERSISTENCE:SPEC:2517;
-   *
-   * @test_Strategy: Create EntityManagerFactory in try with resources block
-   * and verify whether it's open inside and outside of the try block.
-   */
-  @Test
-  public void autoCloseableTest() throws Exception {
-    EntityManagerFactory emf = null;
-    try (final EntityManagerFactory emfLocal
-                 = Persistence.createEntityManagerFactory(getPersistenceUnitName(), getPersistenceUnitProperties())) {
-      emf = emfLocal;
-      if (emf == null) {
-        throw new Exception("autoCloseableTest failed: createEntityManagerFactory(String) returned null");
-      }
-      if (!emf.isOpen()) {
-        throw new Exception("autoCloseableTest failed: EntityManagerFactory isOpen() returned false in try block");
-      }
-    } catch (Exception f) {
-      throw f;
-    } catch (Throwable t) {
-      throw new Exception("autoCloseableTest failed with Exception", t);
-    } finally {
-      if (emf != null && emf.isOpen()) {
-        throw new Exception("autoCloseableTest failed: EntityManagerFactory isOpen() returned true outside try block");
-      }
-    }
-  }
+	/*
+	 * @testName: getPersistenceUnitUtil
+	 *
+	 * @assertion_ids: PERSISTENCE:JAVADOC:341;
+	 *
+	 * @test_Strategy: Get a PersistenceUnitUtil Object from the
+	 * EntityManagerFactory an make sure it is not null
+	 */
+	@Test
+	public void getPersistenceUnitUtil() throws Exception {
+		boolean pass = false;
+		try {
+			PersistenceUnitUtil puu = getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil();
+			if (puu == null) {
+				TestUtil.logErr("getPersistenceUnitUtil() returned a null result");
+			} else {
+				pass = true;
+			}
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		}
+		if (!pass) {
+			throw new Exception("getPersistenceUnitUtil failed");
+		}
+	}
 
-  /*
-   * @testName: getMetamodelTest
-   *
-   * @assertion_ids: PERSISTENCE:JAVADOC:340;
-   *
-   * @test_Strategy: Get a MetaModel Object from the EntityManagerFactory and
-   * make sure it is not null
-   */
-  @Test
-  public void getMetamodelTest() throws Exception {
-    boolean pass = false;
-    try {
-      Metamodel mm = getEntityManager().getEntityManagerFactory()
-          .getMetamodel();
-      if (mm == null) {
-        TestUtil.logErr("getMetamodel() returned a null result");
-      } else {
-        pass = true;
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
-    if (!pass) {
-      throw new Exception("getMetamodelTest failed");
-    }
-  }
+	/*
+	 * @testName: getCriteriaBuilderTest
+	 *
+	 * @assertion_ids: PERSISTENCE:JAVADOC:339; PERSISTENCE:SPEC:1702;
+	 *
+	 * @test_Strategy: access EntityManagerFactory.getCriteriaBuilder and verify it
+	 * can be used to create a query
+	 *
+	 */
+	@Test
+	public void getCriteriaBuilderTest() throws Exception {
+		boolean pass = false;
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getEntityManagerFactory().getCriteriaBuilder();
+			if (cbuilder != null) {
+				getEntityTransaction().begin();
+				CriteriaQuery<Object> cquery = cbuilder.createQuery();
+				if (cquery != null) {
+					TestUtil.logTrace("Obtained Non-null Criteria Query");
+					pass = true;
+				} else {
+					TestUtil.logErr("Failed to get Non-null Criteria Query");
+				}
 
-  /*
-   * @testName: getPersistenceUnitUtil
-   *
-   * @assertion_ids: PERSISTENCE:JAVADOC:341;
-   *
-   * @test_Strategy: Get a PersistenceUnitUtil Object from the
-   * EntityManagerFactory an make sure it is not null
-   */
-  @Test
-  public void getPersistenceUnitUtil() throws Exception {
-    boolean pass = false;
-    try {
-      PersistenceUnitUtil puu = getEntityManager().getEntityManagerFactory()
-          .getPersistenceUnitUtil();
-      if (puu == null) {
-        TestUtil.logErr("getPersistenceUnitUtil() returned a null result");
-      } else {
-        pass = true;
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
-    if (!pass) {
-      throw new Exception("getPersistenceUnitUtil failed");
-    }
-  }
-
-  /*
-   * @testName: getCriteriaBuilderTest
-   *
-   * @assertion_ids: PERSISTENCE:JAVADOC:339; PERSISTENCE:SPEC:1702;
-   *
-   * @test_Strategy: access EntityManagerFactory.getCriteriaBuilder and verify
-   * it can be used to create a query
-   *
-   */
-  @Test
-  public void getCriteriaBuilderTest() throws Exception {
-    boolean pass = false;
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getEntityManagerFactory()
-          .getCriteriaBuilder();
-      if (cbuilder != null) {
-        getEntityTransaction().begin();
-        CriteriaQuery<Object> cquery = cbuilder.createQuery();
-        if (cquery != null) {
-          TestUtil.logTrace("Obtained Non-null Criteria Query");
-          pass = true;
-        } else {
-          TestUtil.logErr("Failed to get Non-null Criteria Query");
-        }
-
-        getEntityTransaction().commit();
-      } else {
-        TestUtil.logErr("getCriteriaBuilder() returned null");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
-    if (!pass) {
-      throw new Exception("getCriteriaBuilderTest failed");
-    }
-  }
+				getEntityTransaction().commit();
+			} else {
+				TestUtil.logErr("getCriteriaBuilder() returned null");
+			}
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		}
+		if (!pass) {
+			throw new Exception("getCriteriaBuilderTest failed");
+		}
+	}
 }

@@ -19,216 +19,206 @@ package com.sun.ts.tests.jpa.core.annotations.elementcollection;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
-import com.sun.ts.tests.jpa.core.annotations.discriminatorValue.ClientIT;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client2IT extends PMClientBase {
 
-  public Client2IT() {
-  }
+	public Client2IT() {
+	}
 
-	@Deployment(testable = false, managed = false)
 	public static JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
-		String[] classes = { pkgName + "Customer", pkgName + "CustomerXML" };
-		return createDeploymentJar("jpa_core_annotations_elementcollection2.jar", pkgNameWithoutSuffix, classes);
+		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
+		String pkgName = Client1IT.class.getPackageName() + ".";
+		String[] xmlFile = { pkgName + "myMappingFile.xml" };
+
+		String[] classes = { pkgName + "A", pkgName + "Address", pkgName + "Customer", pkgName + "CustomerXML" };
+
+		return createDeploymentJar("jpa_core_annotations_elementcollection2.jar", pkgNameWithoutSuffix, classes,
+				xmlFile);
 
 	}
 
+	@BeforeAll
+	public void setupCust() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup();
+			removeCustTestData();
+			createDeployment();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
 
- 
-  @BeforeAll
-  public void setupCust() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      removeCustTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
+		}
+	}
 
-    }
-  }
+	/*
+	 * @testName: elementCollectionBasicType
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:2007;
+	 * 
+	 * @test_Strategy: ElementCollection of a basic type
+	 */
+	@Test
+	public void elementCollectionBasicType() throws Exception {
+		boolean pass = false;
+		try {
+			getEntityTransaction().begin();
+			Customer expected = new Customer("1");
+			List<String> expectedphones = new ArrayList<String>();
+			expectedphones.add("781-442-2010");
+			expectedphones.add("781-442-2011");
+			expectedphones.add("781-442-2012");
 
- 
-  /*
-   * @testName: elementCollectionBasicType
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:2007;
-   * 
-   * @test_Strategy: ElementCollection of a basic type
-   */
-  @Test
-  public void elementCollectionBasicType() throws Exception {
-    boolean pass = false;
-    try {
-      getEntityTransaction().begin();
-      Customer expected = new Customer("1");
-      List<String> expectedphones = new ArrayList<String>();
-      expectedphones.add("781-442-2010");
-      expectedphones.add("781-442-2011");
-      expectedphones.add("781-442-2012");
+			expected.setPhones(expectedphones);
+			TestUtil.logTrace("Persisting Customer:" + expected.toString());
+			getEntityManager().persist(expected);
+			getEntityManager().flush();
+			getEntityTransaction().commit();
+			clearCache();
+			getEntityTransaction().begin();
+			TestUtil.logTrace("find the previously persisted Customer and Country and verify them");
+			Customer cust = getEntityManager().find(Customer.class, expected.getId());
+			if (cust != null) {
+				TestUtil.logTrace("Found Customer: " + cust.toString());
+				if (cust.getPhones().containsAll(expectedphones) && expectedphones.containsAll(cust.getPhones())
+						&& cust.getPhones().size() == expectedphones.size()) {
+					TestUtil.logTrace("Received expected Phones:");
+					for (String s : cust.getPhones()) {
+						TestUtil.logTrace("phone:" + s);
+					}
+					pass = true;
+				} else {
+					TestUtil.logErr("Did not get expected results.");
+					for (String s : expectedphones) {
+						TestUtil.logErr("expected:" + s);
+					}
+					TestUtil.logErr("actual:");
+					for (String s : cust.getPhones()) {
+						TestUtil.logErr("actual:" + s);
+					}
+				}
+			} else {
+				TestUtil.logErr("Find returned null Customer");
+			}
 
-      expected.setPhones(expectedphones);
-      TestUtil.logTrace("Persisting Customer:" + expected.toString());
-      getEntityManager().persist(expected);
-      getEntityManager().flush();
-      getEntityTransaction().commit();
-      clearCache();
-      getEntityTransaction().begin();
-      TestUtil.logTrace(
-          "find the previously persisted Customer and Country and verify them");
-      Customer cust = getEntityManager().find(Customer.class, expected.getId());
-      if (cust != null) {
-        TestUtil.logTrace("Found Customer: " + cust.toString());
-        if (cust.getPhones().containsAll(expectedphones)
-            && expectedphones.containsAll(cust.getPhones())
-            && cust.getPhones().size() == expectedphones.size()) {
-          TestUtil.logTrace("Received expected Phones:");
-          for (String s : cust.getPhones()) {
-            TestUtil.logTrace("phone:" + s);
-          }
-          pass = true;
-        } else {
-          TestUtil.logErr("Did not get expected results.");
-          for (String s : expectedphones) {
-            TestUtil.logErr("expected:" + s);
-          }
-          TestUtil.logErr("actual:");
-          for (String s : cust.getPhones()) {
-            TestUtil.logErr("actual:" + s);
-          }
-        }
-      } else {
-        TestUtil.logErr("Find returned null Customer");
-      }
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			TestUtil.logErr("Unexpected exception occurred: ", e);
+			pass = false;
+		}
+		if (!pass) {
+			throw new Exception("elementCollectionBasicType failed");
+		}
+	}
 
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred: ", e);
-      pass = false;
-    }
-    if (!pass) {
-      throw new Exception("elementCollectionBasicType failed");
-    }
-  }
+	/*
+	 * @testName: elementCollectionBasicTypeXMLTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:2008;
+	 * 
+	 * @test_Strategy: ElementCollection of a basic type using mapping file to
+	 * define annotation
+	 */
+	@Test
+	public void elementCollectionBasicTypeXMLTest() throws Exception {
+		boolean pass = false;
+		try {
+			getEntityTransaction().begin();
+			CustomerXML expected = new CustomerXML("1");
+			List<String> expectedphones = new ArrayList<String>();
+			expectedphones.add("781-442-2010");
+			expectedphones.add("781-442-2011");
+			expectedphones.add("781-442-2012");
 
-  /*
-   * @testName: elementCollectionBasicTypeXMLTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:2008;
-   * 
-   * @test_Strategy: ElementCollection of a basic type using mapping file to
-   * define annotation
-   */
-  @Test
-  public void elementCollectionBasicTypeXMLTest() throws Exception {
-    boolean pass = false;
-    try {
-      getEntityTransaction().begin();
-      CustomerXML expected = new CustomerXML("1");
-      List<String> expectedphones = new ArrayList<String>();
-      expectedphones.add("781-442-2010");
-      expectedphones.add("781-442-2011");
-      expectedphones.add("781-442-2012");
+			expected.setPhones(expectedphones);
+			TestUtil.logTrace("Persisting Customer:" + expected.toString());
+			getEntityManager().persist(expected);
+			getEntityManager().flush();
+			getEntityTransaction().commit();
+			clearCache();
+			getEntityTransaction().begin();
+			TestUtil.logTrace("find the previously persisted Customer and Country and verify them");
+			CustomerXML cust = getEntityManager().find(CustomerXML.class, expected.getId());
+			if (cust != null) {
+				TestUtil.logTrace("Found CustomerXML: " + cust.toString());
+				if (cust.getPhones().containsAll(expectedphones) && expectedphones.containsAll(cust.getPhones())
+						&& cust.getPhones().size() == expectedphones.size()) {
+					TestUtil.logTrace("Received expected Phones:");
+					for (String s : cust.getPhones()) {
+						TestUtil.logTrace("phone:" + s);
+					}
+					pass = true;
+				} else {
+					TestUtil.logErr("Did not get expected results.");
+					for (String s : expectedphones) {
+						TestUtil.logErr("expected:" + s);
+					}
+					TestUtil.logErr("actual:");
+					for (String s : cust.getPhones()) {
+						TestUtil.logErr("actual:" + s);
+					}
+				}
+			} else {
+				TestUtil.logErr("Find returned null Customer");
+			}
 
-      expected.setPhones(expectedphones);
-      TestUtil.logTrace("Persisting Customer:" + expected.toString());
-      getEntityManager().persist(expected);
-      getEntityManager().flush();
-      getEntityTransaction().commit();
-      clearCache();
-      getEntityTransaction().begin();
-      TestUtil.logTrace(
-          "find the previously persisted Customer and Country and verify them");
-      CustomerXML cust = getEntityManager().find(CustomerXML.class,
-          expected.getId());
-      if (cust != null) {
-        TestUtil.logTrace("Found CustomerXML: " + cust.toString());
-        if (cust.getPhones().containsAll(expectedphones)
-            && expectedphones.containsAll(cust.getPhones())
-            && cust.getPhones().size() == expectedphones.size()) {
-          TestUtil.logTrace("Received expected Phones:");
-          for (String s : cust.getPhones()) {
-            TestUtil.logTrace("phone:" + s);
-          }
-          pass = true;
-        } else {
-          TestUtil.logErr("Did not get expected results.");
-          for (String s : expectedphones) {
-            TestUtil.logErr("expected:" + s);
-          }
-          TestUtil.logErr("actual:");
-          for (String s : cust.getPhones()) {
-            TestUtil.logErr("actual:" + s);
-          }
-        }
-      } else {
-        TestUtil.logErr("Find returned null Customer");
-      }
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			TestUtil.logErr("Unexpected exception occurred: ", e);
+			pass = false;
+		}
+		if (!pass) {
+			throw new Exception("elementCollectionBasicTypeXMLTest failed");
+		}
+	}
+	/*
+	 *
+	 * Business Methods to set up data for Test Cases
+	 *
+	 */
 
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred: ", e);
-      pass = false;
-    }
-    if (!pass) {
-      throw new Exception("elementCollectionBasicTypeXMLTest failed");
-    }
-  }
-  /*
-   *
-   * Business Methods to set up data for Test Cases
-   *
-   */
+	@AfterAll
+	public void cleanupCust() throws Exception {
+		TestUtil.logTrace("cleanup");
+		removeCustTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+		removeDeploymentJar();
+	}
 
+	private void removeCustTestData() {
+		TestUtil.logTrace("removeCustTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM CUST_TABLE").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM PHONES").executeUpdate();
+			getEntityTransaction().commit();
+			removeDeploymentJar();
 
-  @AfterAll
-  public void cleanupCust() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeCustTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
-
-  private void removeCustTestData() {
-    TestUtil.logTrace("removeCustTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM CUST_TABLE")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM PHONES")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 
 }

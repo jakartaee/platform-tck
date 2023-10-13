@@ -20,78 +20,58 @@
 
 package com.sun.ts.tests.jpa.core.query.flushmode;
 
-import java.sql.Date;
 import java.util.List;
-import java.util.Vector;
 
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.common.schema30.CreditCard;
-import com.sun.ts.tests.jpa.common.schema30.Customer;
-import com.sun.ts.tests.jpa.common.schema30.Order;
 import com.sun.ts.tests.jpa.common.schema30.Product;
-import com.sun.ts.tests.jpa.common.schema30.Spouse;
 import com.sun.ts.tests.jpa.common.schema30.UtilProductData;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.FlushModeType;
-import jakarta.persistence.Query;
-import jakarta.persistence.TypedQuery;
-
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client3IT extends UtilProductData {
 
+	public Client3IT() {
+	}
 
-  public Client3IT() {
-  }
+	/*
+	 * @testName: secondaryTablesValueTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:192; PERSISTENCE:JAVADOC:193;
+	 * 
+	 * @test_Strategy:
+	 */
+	@Test
+	public void secondaryTablesValueTest() throws Exception {
+		boolean pass = false;
 
-  /*
-   * @testName: secondaryTablesValueTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:192; PERSISTENCE:JAVADOC:193;
-   * 
-   * @test_Strategy:
-   */
-  @Test
-  public void secondaryTablesValueTest() throws Exception {
-    boolean pass = false;
+		String[] expected = new String[4];
+		expected[0] = "20";
+		expected[1] = "24";
+		expected[2] = "31";
+		expected[3] = "37";
 
-    String[] expected = new String[4];
-    expected[0] = "20";
-    expected[1] = "24";
-    expected[2] = "31";
-    expected[3] = "37";
+		try {
+			getEntityTransaction().begin();
 
-    try {
-      getEntityTransaction().begin();
+			List<Product> result = getEntityManager()
+					.createQuery("SELECT p FROM Product p WHERE p.wareHouse = 'Lowell' ").getResultList();
 
-      List<Product> result = getEntityManager()
-          .createQuery("SELECT p FROM Product p WHERE p.wareHouse = 'Lowell' ")
-          .getResultList();
+			if (!checkEntityPK(result, expected)) {
+				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
+						+ result.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
 
-      if (!checkEntityPK(result, expected)) {
-        TestUtil.logErr("Did not get expected results. Expected "
-            + expected.length + " references, got: " + result.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
+			getEntityTransaction().rollback();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught exception: ", e);
+		}
 
-      getEntityTransaction().rollback();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: ", e);
-    }
-
-    if (!pass)
-      throw new Exception("secondaryTablesValueTest failed");
-  }
+		if (!pass)
+			throw new Exception("secondaryTablesValueTest failed");
+	}
 
 }

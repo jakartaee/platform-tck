@@ -24,61 +24,60 @@ import jakarta.persistence.Table;
 @Table(name = "PURCHASE_ORDER")
 public class Order implements java.io.Serializable {
 
-  private int id;
+	private int id;
 
-  private int total;
+	private int total;
 
-  private String description;
+	private String description;
 
-  public Order() {
-  }
+	public Order() {
+	}
 
-  public Order(int total) {
-    this.total = total;
-  }
+	public Order(int total) {
+		this.total = total;
+	}
 
-  public Order(String description) {
-    this.description = description;
-  }
+	public Order(String description) {
+		this.description = description;
+	}
 
-  public Order(int id, int total) {
-    this.id = id;
-    this.total = total;
-  }
+	public Order(int id, int total) {
+		this.id = id;
+		this.total = total;
+	}
 
-  public Order(int id, int total, String description) {
-    this.id = id;
-    this.total = total;
-    this.description = description;
-  }
+	public Order(int id, int total, String description) {
+		this.id = id;
+		this.total = total;
+		this.description = description;
+	}
 
-  @Id
-  public int getId() {
-    return id;
-  }
+	@Id
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  public int getTotal() {
-    return total;
-  }
+	public int getTotal() {
+		return total;
+	}
 
-  public void setTotal(int total) {
-    this.total = total;
-  }
+	public void setTotal(int total) {
+		this.total = total;
+	}
 
-  public String getdescription() {
-    return description;
-  }
+	public String getdescription() {
+		return description;
+	}
 
-  public void setdescription(String description) {
-    this.description = description;
-  }
+	public void setdescription(String description) {
+		this.description = description;
+	}
 
-  public String toString() {
-    return "Order id=" + getId() + ", total=" + getTotal() + ", desc="
-        + getdescription();
-  }
+	public String toString() {
+		return "Order id=" + getId() + ", total=" + getTotal() + ", desc=" + getdescription();
+	}
 }

@@ -30,20 +30,19 @@ import jakarta.persistence.EntityListeners;
 @Entity
 @DiscriminatorValue("PricedPartProduct")
 @EntityListeners(com.sun.ts.tests.jpa.core.callback.common.GenerictListener.class)
-public class PricedPartProduct extends PartProduct
-    implements java.io.Serializable, CallbackStatusIF {
-  private double price;
+public class PricedPartProduct extends PartProduct implements java.io.Serializable, CallbackStatusIF {
+	private double price;
 
-  public PricedPartProduct() {
-    super();
-  }
+	public PricedPartProduct() {
+		super();
+	}
 
-  @Column(name = "PRICE")
-  public double getPrice() {
-    return price;
-  }
+	@Column(name = "PRICE")
+	public double getPrice() {
+		return price;
+	}
 
-  public void setPrice(double price) {
-    this.price = price;
-  }
+	public void setPrice(double price) {
+		this.price = price;
+	}
 }

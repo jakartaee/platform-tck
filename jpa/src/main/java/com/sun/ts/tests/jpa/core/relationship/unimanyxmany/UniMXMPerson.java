@@ -33,73 +33,72 @@ import jakarta.persistence.ManyToMany;
 @Entity
 public class UniMXMPerson implements Serializable {
 
-  public UniMXMPerson() {
-  }
+	public UniMXMPerson() {
+	}
 
-  public UniMXMPerson(Long id, String name) {
-    this.id = id;
-    this.name = name;
-  }
+	public UniMXMPerson(Long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  @Id
-  private Long id;
+	@Id
+	private Long id;
 
-  private String name;
+	private String name;
 
-  @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name = "UNIMXMPERSON_UNIMXMPROJECT", joinColumns = @JoinColumn(name = "UniMXMPerson_ID", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "UniMXMProject_ID", referencedColumnName = "ID"))
-  private Collection<UniMXMProject> projects;
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "UNIMXMPERSON_UNIMXMPROJECT", joinColumns = @JoinColumn(name = "UniMXMPerson_ID", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "UniMXMProject_ID", referencedColumnName = "ID"))
+	private Collection<UniMXMProject> projects;
 
-  public Collection<UniMXMProject> getProjects() {
-    return projects;
-  }
+	public Collection<UniMXMProject> getProjects() {
+		return projects;
+	}
 
-  public void setProjects(Collection<UniMXMProject> projects) {
-    this.projects = projects;
-  }
+	public void setProjects(Collection<UniMXMProject> projects) {
+		this.projects = projects;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public Long getId() {
-    return id;
-  }
+	public Long getId() {
+		return id;
+	}
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  @Override
-  public int hashCode() {
-    int hash = 0;
-    hash += (id != null ? id.hashCode() : 0);
-    return hash;
-  }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (id != null ? id.hashCode() : 0);
+		return hash;
+	}
 
-  @Override
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof UniMXMPerson)) {
-      return false;
-    }
-    UniMXMPerson other = (UniMXMPerson) object;
-    if ((this.id == null && other.id != null)
-        || (this.id != null && !this.id.equals(other.id))) {
-      return false;
-    }
-    return true;
-  }
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not
+		// set
+		if (!(object instanceof UniMXMPerson)) {
+			return false;
+		}
+		UniMXMPerson other = (UniMXMPerson) object;
+		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+			return false;
+		}
+		return true;
+	}
 
-  @Override
-  public String toString() {
-    return "unimanyxmany.UniMXMPerson[id=" + id + "]";
-  }
+	@Override
+	public String toString() {
+		return "unimanyxmany.UniMXMPerson[id=" + id + "]";
+	}
 }

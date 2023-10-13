@@ -18,15 +18,10 @@ package com.sun.ts.tests.jpa.core.query.parameter;
 
 import java.util.List;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -34,254 +29,248 @@ import com.sun.ts.tests.jpa.core.relationship.annotations.ClientIT;
 
 import jakarta.persistence.Query;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client2IT extends PMClientBase {
-  protected final Employee empRef[] = new Employee[5];
+	protected final Employee empRef[] = new Employee[5];
 
-  public Client2IT() {
-  }
-  
-  @Deployment(testable = false, managed = false)
-  public static JavaArchive createDeployment() throws Exception {
-     
-     String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-     String pkgName = ClientIT.class.getPackageName() + ".";
-     String[] classes = { pkgName + "Employee"};
-     return createDeploymentJar("jpa_core_relationship_annotations2.jar", pkgNameWithoutSuffix, classes);
+	public Client2IT() {
+	}
 
-  }
+	public static JavaArchive createDeployment() throws Exception {
 
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] classes = { pkgName + "Employee" };
+		return createDeploymentJar("jpa_core_relationship_annotations2.jar", pkgNameWithoutSuffix, classes);
 
-  @BeforeAll
-  public void setupEmployee() throws Exception {
-    TestUtil.logTrace("setupEmployee");
-    try {
-      super.setup();
-      createEmployeeData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	}
 
-  /*
-   * @testName: parameterPositionalTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:1636; PERSISTENCE:SPEC:1638;
-   * PERSISTENCE:SPEC:1640;
-   * 
-   * @test_Strategy: Create a query with a having clause with a positional
-   * parameter and retrieve information about the parameter.
-   */
-  @Test
-  public void parameterPositionalTest() throws Exception {
-    boolean pass = false;
-    List result;
-    String expectedPKs[];
+	@BeforeAll
+	public void setupEmployee() throws Exception {
+		TestUtil.logTrace("setupEmployee");
+		try {
+			super.setup();
+			createDeployment();
+			createEmployeeData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-    try {
-      getEntityTransaction().begin();
-      result = getEntityManager().createQuery(
-          "SELECT e.id FROM Employee e WHERE e.id > ?2 GROUP BY e.id HAVING e.id <=?1")
-          .setParameter(2, 2).setParameter(1, 4).getResultList();
+	/*
+	 * @testName: parameterPositionalTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:1636; PERSISTENCE:SPEC:1638;
+	 * PERSISTENCE:SPEC:1640;
+	 * 
+	 * @test_Strategy: Create a query with a having clause with a positional
+	 * parameter and retrieve information about the parameter.
+	 */
+	@Test
+	public void parameterPositionalTest() throws Exception {
+		boolean pass = false;
+		List result;
+		String expectedPKs[];
 
-      expectedPKs = new String[2];
-      expectedPKs[0] = "3";
-      expectedPKs[1] = "4";
+		try {
+			getEntityTransaction().begin();
+			result = getEntityManager()
+					.createQuery("SELECT e.id FROM Employee e WHERE e.id > ?2 GROUP BY e.id HAVING e.id <=?1")
+					.setParameter(2, 2).setParameter(1, 4).getResultList();
 
-      if (!checkEntityPK(result, expectedPKs)) {
-        TestUtil.logErr("Expected 1 result, got: " + result.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception:", e);
-    }
-    if (!pass)
-      throw new Exception("parameterPositionalTest failed");
-  }
+			expectedPKs = new String[2];
+			expectedPKs[0] = "3";
+			expectedPKs[1] = "4";
 
-  /*
-   * @testName: parameterUpdateTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:1636; PERSISTENCE:SPEC:1638;
-   * PERSISTENCE:SPEC:1639;
-   * 
-   * @test_Strategy: Create an update query with a positional parameter and
-   * retrieve information about the parameter.
-   */
-  @Test
-  public void parameterUpdateTest() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
+			if (!checkEntityPK(result, expectedPKs)) {
+				TestUtil.logErr("Expected 1 result, got: " + result.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught exception:", e);
+		}
+		if (!pass)
+			throw new Exception("parameterPositionalTest failed");
+	}
 
-    try {
-      getEntityTransaction().begin();
-      Query q = getEntityManager().createQuery(
-          "UPDATE Employee e SET e.firstName=?1, e.lastName=?1 WHERE e.id=1")
-          .setParameter(1, "foo");
+	/*
+	 * @testName: parameterUpdateTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:1636; PERSISTENCE:SPEC:1638;
+	 * PERSISTENCE:SPEC:1639;
+	 * 
+	 * @test_Strategy: Create an update query with a positional parameter and
+	 * retrieve information about the parameter.
+	 */
+	@Test
+	public void parameterUpdateTest() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
 
-      int result_size = q.executeUpdate();
-      if (result_size == 1) {
-        TestUtil.logTrace("Updated 1 rows");
-      }
+		try {
+			getEntityTransaction().begin();
+			Query q = getEntityManager().createQuery("UPDATE Employee e SET e.firstName=?1, e.lastName=?1 WHERE e.id=1")
+					.setParameter(1, "foo");
 
-      doFlush();
-      clearCache();
-      Employee emp = getEntityManager().find(Employee.class, 1);
+			int result_size = q.executeUpdate();
+			if (result_size == 1) {
+				TestUtil.logTrace("Updated 1 rows");
+			}
 
-      if (emp.getFirstName().equals("foo") && emp.getLastName().equals("foo")) {
-        TestUtil.logTrace("Received expected result:" + emp.toString());
-        pass = true;
-      } else {
-        TestUtil
-            .logErr("Expected: firstName=foo, lastName=foo, actual: firstName="
-                + emp.getFirstName() + ", lastName=" + emp.getLastName());
-      }
+			doFlush();
+			clearCache();
+			Employee emp = getEntityManager().find(Employee.class, 1);
 
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception:", e);
-    }
-    if (!pass)
-      throw new Exception("parameterUpdateTest failed");
-  }
+			if (emp.getFirstName().equals("foo") && emp.getLastName().equals("foo")) {
+				TestUtil.logTrace("Received expected result:" + emp.toString());
+				pass = true;
+			} else {
+				TestUtil.logErr("Expected: firstName=foo, lastName=foo, actual: firstName=" + emp.getFirstName()
+						+ ", lastName=" + emp.getLastName());
+			}
 
-  /*
-   * @testName: parameterCaseTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:1641;
-   * 
-   * @test_Strategy: Create a query with a name parameter using different cases
-   * and retrieve information about the parameter.
-   */
-  @Test
-  public void parameterCaseTest() throws Exception {
-    boolean pass = false;
-    List result;
-    String expectedPKs[];
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught exception:", e);
+		}
+		if (!pass)
+			throw new Exception("parameterUpdateTest failed");
+	}
 
-    try {
-      getEntityTransaction().begin();
-      result = getEntityManager().createQuery(
-          "SELECT e.id FROM Employee e WHERE e.id > :Id GROUP BY e.id HAVING e.id <=:iD")
-          .setParameter("Id", 2).setParameter("iD", 4).getResultList();
+	/*
+	 * @testName: parameterCaseTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:1641;
+	 * 
+	 * @test_Strategy: Create a query with a name parameter using different cases
+	 * and retrieve information about the parameter.
+	 */
+	@Test
+	public void parameterCaseTest() throws Exception {
+		boolean pass = false;
+		List result;
+		String expectedPKs[];
 
-      expectedPKs = new String[2];
-      expectedPKs[0] = "3";
-      expectedPKs[1] = "4";
+		try {
+			getEntityTransaction().begin();
+			result = getEntityManager()
+					.createQuery("SELECT e.id FROM Employee e WHERE e.id > :Id GROUP BY e.id HAVING e.id <=:iD")
+					.setParameter("Id", 2).setParameter("iD", 4).getResultList();
 
-      if (!checkEntityPK(result, expectedPKs)) {
-        TestUtil.logErr("Expected 1 result, got: " + result.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception:", e);
-    }
-    if (!pass)
-      throw new Exception("parameterCaseTest failed");
-  }
+			expectedPKs = new String[2];
+			expectedPKs[0] = "3";
+			expectedPKs[1] = "4";
 
-  /*
-   * @testName: parameterNamedParameterTwiceTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:1642;
-   * 
-   * @test_Strategy: Create a query using a name parameter twice and retrieve
-   * information about the parameter.
-   */
-  @Test
-  public void parameterNamedParameterTwiceTest() throws Exception {
-    boolean pass = false;
-    List result;
-    String expectedPKs[];
+			if (!checkEntityPK(result, expectedPKs)) {
+				TestUtil.logErr("Expected 1 result, got: " + result.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught exception:", e);
+		}
+		if (!pass)
+			throw new Exception("parameterCaseTest failed");
+	}
 
-    try {
-      getEntityTransaction().begin();
-      Query q = getEntityManager().createQuery(
-          "SELECT e FROM Employee e WHERE e.id >=:ID AND e.id <=:ID");
-      result = q.setParameter("ID", 2).getResultList();
+	/*
+	 * @testName: parameterNamedParameterTwiceTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:1642;
+	 * 
+	 * @test_Strategy: Create a query using a name parameter twice and retrieve
+	 * information about the parameter.
+	 */
+	@Test
+	public void parameterNamedParameterTwiceTest() throws Exception {
+		boolean pass = false;
+		List result;
+		String expectedPKs[];
 
-      expectedPKs = new String[1];
-      expectedPKs[0] = "2";
+		try {
+			getEntityTransaction().begin();
+			Query q = getEntityManager().createQuery("SELECT e FROM Employee e WHERE e.id >=:ID AND e.id <=:ID");
+			result = q.setParameter("ID", 2).getResultList();
 
-      if (!checkEntityPK(result, expectedPKs)) {
-        TestUtil.logErr("Expected 1 result, got: " + result.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception:", e);
-    }
-    if (!pass)
-      throw new Exception("parameterNamedParameterTwiceTest failed");
-  }
+			expectedPKs = new String[1];
+			expectedPKs[0] = "2";
 
-  public void createEmployeeData() throws Exception {
-    TestUtil.logTrace("createDepartmentEmployeeData");
-    getEntityTransaction().begin();
+			if (!checkEntityPK(result, expectedPKs)) {
+				TestUtil.logErr("Expected 1 result, got: " + result.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught exception:", e);
+		}
+		if (!pass)
+			throw new Exception("parameterNamedParameterTwiceTest failed");
+	}
 
-    try {
-      empRef[0] = new Employee(1, "Alan", "Frechette");
-      empRef[1] = new Employee(2, "Arthur", "Frechette");
-      empRef[2] = new Employee(3, "Shelly", "McGowan");
-      empRef[3] = new Employee(4, "Robert", "Bissett");
-      empRef[4] = new Employee(5, "Stephen", "DMilla");
-      TestUtil.logTrace("Start to persist employees ");
-      for (Employee emp : empRef) {
-        if (emp != null) {
-          getEntityManager().persist(emp);
-          TestUtil.logTrace("persisted employee " + emp.getId());
-        }
-      }
-      doFlush();
-      getEntityTransaction().commit();
+	public void createEmployeeData() throws Exception {
+		TestUtil.logTrace("createDepartmentEmployeeData");
+		getEntityTransaction().begin();
 
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("createDepartmentEmployeeData failed:", e);
-    }
-  }
+		try {
+			empRef[0] = new Employee(1, "Alan", "Frechette");
+			empRef[1] = new Employee(2, "Arthur", "Frechette");
+			empRef[2] = new Employee(3, "Shelly", "McGowan");
+			empRef[3] = new Employee(4, "Robert", "Bissett");
+			empRef[4] = new Employee(5, "Stephen", "DMilla");
+			TestUtil.logTrace("Start to persist employees ");
+			for (Employee emp : empRef) {
+				if (emp != null) {
+					getEntityManager().persist(emp);
+					TestUtil.logTrace("persisted employee " + emp.getId());
+				}
+			}
+			doFlush();
+			getEntityTransaction().commit();
 
-  @AfterAll
-  public void cleanupEmployee() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("createDepartmentEmployeeData failed:", e);
+		}
+	}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM EMPLOYEE")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
+	@AfterAll
+	public void cleanupEmployee() throws Exception {
+		TestUtil.logTrace("cleanup");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+		removeDeploymentJar();
+	}
 
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM EMPLOYEE").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 
 }

@@ -25,63 +25,63 @@ import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Student implements java.io.Serializable {
-  @Id
-  int id;
+	@Id
+	int id;
 
-  String studentName;
+	String studentName;
 
-  @ManyToMany(mappedBy = "students", cascade = CascadeType.ALL)
-  List<Course> courses;
+	@ManyToMany(mappedBy = "students", cascade = CascadeType.ALL)
+	List<Course> courses;
 
-  public Student() {
-  }
+	public Student() {
+	}
 
-  public Student(int id) {
-    this.id = id;
-  }
+	public Student(int id) {
+		this.id = id;
+	}
 
-  public Student(int id, String name) {
-    this.id = id;
-    this.studentName = name;
-  }
+	public Student(int id, String name) {
+		this.id = id;
+		this.studentName = name;
+	}
 
-  public List<Course> getCourses() {
-    return courses;
-  }
+	public List<Course> getCourses() {
+		return courses;
+	}
 
-  public void setCourses(List<Course> courses) {
-    this.courses = courses;
-  }
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
 
-  public int getId() {
-    return id;
-  }
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int studentId) {
-    this.id = studentId;
-  }
+	public void setId(int studentId) {
+		this.id = studentId;
+	}
 
-  public String getStudentName() {
-    return studentName;
-  }
+	public String getStudentName() {
+		return studentName;
+	}
 
-  public void setStudentName(String studentName) {
-    this.studentName = studentName;
-  }
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
 
-  public int hashCode() {
+	public int hashCode() {
 
-    return this.id;
-  }
+		return this.id;
+	}
 
-  public boolean equals(Object obj) {
-    boolean result = false;
+	public boolean equals(Object obj) {
+		boolean result = false;
 
-    if ((obj != null) && (obj instanceof Student)) {
-      Student student = (Student) obj;
-      result = (student.id == this.id);
-    }
-    return result;
-  }
+		if ((obj != null) && (obj instanceof Student)) {
+			Student student = (Student) obj;
+			result = (student.id == this.id);
+		}
+		return result;
+	}
 
 }

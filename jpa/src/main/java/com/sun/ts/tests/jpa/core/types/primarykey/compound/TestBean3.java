@@ -32,33 +32,32 @@ import jakarta.persistence.Table;
 @Table(name = "PKEY")
 public class TestBean3 implements java.io.Serializable {
 
-  @Id
-  private Integer pmIDInteger;
+	@Id
+	private Integer pmIDInteger;
 
-  @Id
-  private String pmIDString;
+	@Id
+	private String pmIDString;
 
-  @Id
-  private Float pmIDFloat;
+	@Id
+	private Float pmIDFloat;
 
-  private String brandName;
+	private String brandName;
 
-  private float price;
+	private float price;
 
-  public TestBean3() {
-  }
+	public TestBean3() {
+	}
 
-  public TestBean3(Integer pmIDInteger, String pmIDString, Float pmIDFloat,
-      String brandName, float price) {
-    this.pmIDInteger = pmIDInteger;
-    this.pmIDString = pmIDString;
-    this.pmIDFloat = pmIDFloat;
-    this.brandName = brandName;
-    this.price = price;
-  }
+	public TestBean3(Integer pmIDInteger, String pmIDString, Float pmIDFloat, String brandName, float price) {
+		this.pmIDInteger = pmIDInteger;
+		this.pmIDString = pmIDString;
+		this.pmIDFloat = pmIDFloat;
+		this.brandName = brandName;
+		this.price = price;
+	}
 
-  public void ping() {
-    TestUtil.logTrace("[TestBean] ping()");
-  }
+	public void ping() {
+		TestUtil.logTrace("[TestBean] ping()");
+	}
 
 }

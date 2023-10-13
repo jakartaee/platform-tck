@@ -1,47 +1,27 @@
 package com.sun.ts.tests.jpa.core.annotations.access.field;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringWriter;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.Arrays;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Text;
-import org.xml.sax.SAXException;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.core.types.common.Grade;
 
 import jakarta.persistence.Query;
 
-
 public class Client1IT extends Client {
+
+	public static JavaArchive createDeployment() throws Exception {
+
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = Client.class.getPackageName() + ".";
+		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2",
+				"com.sun.ts.tests.jpa.core.types.common.Grade" };
+		return createDeploymentJar("jpa_core_annotations_access_field1.jar", pkgNameWithoutSuffix, (String[]) classes);
+
+	}
 
 	@BeforeAll
 	public void setup() throws Exception {
@@ -50,6 +30,7 @@ public class Client1IT extends Client {
 
 		try {
 			super.setup();
+			createDeployment();
 			removeTestData();
 			createTestData();
 			TestUtil.logTrace("Done creating test data");

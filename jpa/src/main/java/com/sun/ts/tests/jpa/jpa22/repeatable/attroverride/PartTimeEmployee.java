@@ -39,32 +39,31 @@ import jakarta.persistence.ManyToOne;
 @Access(AccessType.PROPERTY)
 public class PartTimeEmployee extends Employee {
 
-  private float wage;
+	private float wage;
 
-  public PartTimeEmployee() {
-  }
+	public PartTimeEmployee() {
+	}
 
-  public PartTimeEmployee(int id, String firstName, String lastName,
-      Date hireDate, float salary) {
-    super(id, firstName, lastName, hireDate);
-  }
+	public PartTimeEmployee(int id, String firstName, String lastName, Date hireDate, float salary) {
+		super(id, firstName, lastName, hireDate);
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @ManyToOne
-  @JoinColumn(name = "FK_DEPT2")
-  public Department getDepartment() {
-    return department;
-  }
+	@ManyToOne
+	@JoinColumn(name = "FK_DEPT2")
+	public Department getDepartment() {
+		return department;
+	}
 
-  @Column(name = "SALARY")
-  public float getWage() {
-    return wage;
-  }
+	@Column(name = "SALARY")
+	public float getWage() {
+		return wage;
+	}
 
-  public void setWage(float wage) {
-    this.wage = wage;
-  }
+	public void setWage(float wage) {
+		this.wage = wage;
+	}
 
 }

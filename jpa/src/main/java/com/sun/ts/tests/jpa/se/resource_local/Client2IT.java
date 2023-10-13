@@ -22,7 +22,6 @@ package com.sun.ts.tests.jpa.se.resource_local;
 
 import java.util.Properties;
 
-import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -30,93 +29,88 @@ import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
-import com.sun.ts.tests.jpa.se.entityManagerFactory.ClientIT;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
-import jakarta.persistence.PersistenceException;
-import jakarta.persistence.RollbackException;
 import jakarta.persistence.SynchronizationType;
+
 
 public class Client2IT extends PMClientBase {
 
-  private EntityManager entityManager;
+	private EntityManager entityManager;
 
-  private EntityTransaction entityTransaction;
-  
-  @Deployment(testable = false, managed = false)
-  public static JavaArchive createDeployment() throws Exception {
-     
-     String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-     String pkgName = ClientIT.class.getPackageName() + ".";
-     String[] classes = { pkgName + "A", pkgName + "B"};
-     return createDeploymentJar("jpa_resource_local2.jar", pkgNameWithoutSuffix, (String[]) classes);
+	private EntityTransaction entityTransaction;
 
-  }
+	public static JavaArchive createDeployment() throws Exception {
 
+		String pkgNameWithoutSuffix = Client2IT.class.getPackageName();
+		String pkgName = Client2IT.class.getPackageName() + ".";
+		String[] classes = { pkgName + "A", pkgName + "B" };
+		return createDeploymentJar("jpa_resource_local2.jar", pkgNameWithoutSuffix, (String[]) classes);
 
-  @BeforeAll
-  public void setupOnly() throws Exception {
-    try {
-      super.setup();
-    } catch (Exception e) {
-      throw new Exception("Setup Failed!", e);
-    }
-  }
+	}
 
-  /*
-   * @testName: createEntityManagerSynchronizationTypeIllegalStateExceptionTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:3323;
-   * 
-   * @test_Strategy:
-   */
-@Test
-public void createEntityManagerSynchronizationTypeIllegalStateExceptionTest()
-      throws Exception {
-    boolean pass1 = false;
-    boolean pass2 = false;
-    Properties p = getPersistenceUnitProperties();
-    TestUtil.logMsg("Testing for resource-local entity managers");
-    EntityManagerFactory emf = Persistence
-        .createEntityManagerFactory(getPersistenceUnitName(), p);
+	@BeforeAll
+	public void setupOnly() throws Exception {
+		try {
+			super.setup();
+			createDeployment();
+		} catch (Exception e) {
+			throw new Exception("Setup Failed!", e);
+		}
+	}
 
-    displayMap(emf.getProperties());
-    try {
-      emf.createEntityManager(SynchronizationType.UNSYNCHRONIZED);
-      TestUtil.logErr("IllegalStateException not thrown");
-    } catch (IllegalStateException iae) {
-      TestUtil.logTrace("Caught Expected IllegalStateException");
-      pass1 = true;
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
-    TestUtil.logMsg("Testing when EMF is closed");
-    emf = Persistence.createEntityManagerFactory(getPersistenceUnitName(), p);
-    displayMap(emf.getProperties());
-    try {
-      emf.close();
-      emf.createEntityManager(SynchronizationType.UNSYNCHRONIZED);
-      TestUtil.logErr("IllegalStateException not thrown");
-    } catch (IllegalStateException iae) {
-      TestUtil.logTrace("Caught Expected IllegalStateException");
-      pass2 = true;
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
+	/*
+	 * @testName: createEntityManagerSynchronizationTypeIllegalStateExceptionTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:3323;
+	 * 
+	 * @test_Strategy:
+	 */
+	@Test
+	public void createEntityManagerSynchronizationTypeIllegalStateExceptionTest() throws Exception {
+		boolean pass1 = false;
+		boolean pass2 = false;
+		Properties p = getPersistenceUnitProperties();
+		TestUtil.logMsg("Testing for resource-local entity managers");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory(getPersistenceUnitName(), p);
 
-    if (!pass1 || !pass2) {
-      throw new Exception(
-          "createEntityManagerSynchronizationTypeIllegalStateExceptionTest failed");
-    }
-  }
+		displayMap(emf.getProperties());
+		try {
+			emf.createEntityManager(SynchronizationType.UNSYNCHRONIZED);
+			TestUtil.logErr("IllegalStateException not thrown");
+		} catch (IllegalStateException iae) {
+			TestUtil.logTrace("Caught Expected IllegalStateException");
+			pass1 = true;
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		}
+		TestUtil.logMsg("Testing when EMF is closed");
+		emf = Persistence.createEntityManagerFactory(getPersistenceUnitName(), p);
+		displayMap(emf.getProperties());
+		try {
+			emf.close();
+			emf.createEntityManager(SynchronizationType.UNSYNCHRONIZED);
+			TestUtil.logErr("IllegalStateException not thrown");
+		} catch (IllegalStateException iae) {
+			TestUtil.logTrace("Caught Expected IllegalStateException");
+			pass2 = true;
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		}
 
-@AfterAll
-  public void cleanupOnly() throws Exception {
-    TestUtil.logTrace("cleanupOnly");
-    super.cleanup();
-  }
+		if (!pass1 || !pass2) {
+			throw new Exception("createEntityManagerSynchronizationTypeIllegalStateExceptionTest failed");
+		}
+	}
+
+	@AfterAll
+	public void cleanupOnly() throws Exception {
+		TestUtil.logTrace("cleanupOnly");
+		super.cleanup();
+		removeDeploymentJar();
+	}
 
 }

@@ -30,20 +30,19 @@ import jakarta.persistence.EntityListeners;
 @Entity
 @DiscriminatorValue("PartProduct")
 @EntityListeners(com.sun.ts.tests.jpa.core.callback.inheritance.PartProductListener.class)
-public class PartProduct extends Product
-    implements java.io.Serializable, CallbackStatusIF {
-  private long partNumber;
+public class PartProduct extends Product implements java.io.Serializable, CallbackStatusIF {
+	private long partNumber;
 
-  public PartProduct() {
-    super();
-  }
+	public PartProduct() {
+		super();
+	}
 
-  @Column(name = "PNUM")
-  public long getPartNumber() {
-    return partNumber;
-  }
+	@Column(name = "PNUM")
+	public long getPartNumber() {
+		return partNumber;
+	}
 
-  public void setPartNumber(long v) {
-    this.partNumber = v;
-  }
+	public void setPartNumber(long v) {
+		this.partNumber = v;
+	}
 }

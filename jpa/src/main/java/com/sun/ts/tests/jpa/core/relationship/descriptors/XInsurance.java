@@ -26,36 +26,36 @@ package com.sun.ts.tests.jpa.core.relationship.descriptors;
 
 public class XInsurance implements java.io.Serializable {
 
-  // Instance variables
-  private int xInsId;
+	// Instance variables
+	private int xInsId;
 
-  private String xCarrier;
+	private String xCarrier;
 
-  public XInsurance() {
-  }
+	public XInsurance() {
+	}
 
-  public XInsurance(int xInsId, String xCarrier) {
-    this.xInsId = xInsId;
-    this.xCarrier = xCarrier;
-  }
+	public XInsurance(int xInsId, String xCarrier) {
+		this.xInsId = xInsId;
+		this.xCarrier = xCarrier;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  public int getXInsId() {
-    return xInsId;
-  }
+	public int getXInsId() {
+		return xInsId;
+	}
 
-  public void setXInsId(int xInsId) {
-    this.xInsId = xInsId;
-  }
+	public void setXInsId(int xInsId) {
+		this.xInsId = xInsId;
+	}
 
-  public String getXCarrier() {
-    return xCarrier;
-  }
+	public String getXCarrier() {
+		return xCarrier;
+	}
 
-  public void setXCarrier(String xCarrier) {
-    this.xCarrier = xCarrier;
-  }
+	public void setXCarrier(String xCarrier) {
+		this.xCarrier = xCarrier;
+	}
 
 }

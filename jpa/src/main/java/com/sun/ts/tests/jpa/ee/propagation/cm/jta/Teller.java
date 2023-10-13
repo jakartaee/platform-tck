@@ -23,17 +23,17 @@ package com.sun.ts.tests.jpa.ee.propagation.cm.jta;
 import com.sun.ts.tests.jpa.ee.common.Account;
 
 public interface Teller {
-  public double balance(final int acct);
+	public double balance(final int acct);
 
-  public double withdraw(final int acct, final double amt);
+	public double withdraw(final int acct, final double amt);
 
-  public double deposit(final int acct, final double amt);
+	public double deposit(final int acct, final double amt);
 
-  public String getAllAccounts();
+	public String getAllAccounts();
 
-  public void removeTestData();
+	public void removeTestData();
 
-  public void createTestData();
+	public void createTestData();
 
-  public boolean checkAccountStatus(final Account account);
+	public boolean checkAccountStatus(final Account account);
 }

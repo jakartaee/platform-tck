@@ -26,69 +26,68 @@ package com.sun.ts.tests.jpa.core.relationship.descriptors;
 
 public class XAddress implements java.io.Serializable {
 
-  // Instance Variables
-  private String xId;
+	// Instance Variables
+	private String xId;
 
-  private String xStreet;
+	private String xStreet;
 
-  private String xCity;
+	private String xCity;
 
-  private String xState;
+	private String xState;
 
-  private String xZip;
+	private String xZip;
 
-  public XAddress() {
-  }
+	public XAddress() {
+	}
 
-  public XAddress(String xId, String xStreet, String xCity, String xState,
-      String xZip) {
-    this.xId = xId;
-    this.xStreet = xStreet;
-    this.xCity = xCity;
-    this.xState = xState;
-    this.xZip = xZip;
-  }
+	public XAddress(String xId, String xStreet, String xCity, String xState, String xZip) {
+		this.xId = xId;
+		this.xStreet = xStreet;
+		this.xCity = xCity;
+		this.xState = xState;
+		this.xZip = xZip;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  public String getXId() {
-    return xId;
-  }
+	public String getXId() {
+		return xId;
+	}
 
-  public void setXId(String xId) {
-    this.xId = xId;
-  }
+	public void setXId(String xId) {
+		this.xId = xId;
+	}
 
-  public String getXStreet() {
-    return xStreet;
-  }
+	public String getXStreet() {
+		return xStreet;
+	}
 
-  public void setXStreet(String xStreet) {
-    this.xStreet = xStreet;
-  }
+	public void setXStreet(String xStreet) {
+		this.xStreet = xStreet;
+	}
 
-  public String getXCity() {
-    return xCity;
-  }
+	public String getXCity() {
+		return xCity;
+	}
 
-  public void setXCity(String xCity) {
-    this.xCity = xCity;
-  }
+	public void setXCity(String xCity) {
+		this.xCity = xCity;
+	}
 
-  public String getXState() {
-    return xState;
-  }
+	public String getXState() {
+		return xState;
+	}
 
-  public void setXState(String xState) {
-    this.xState = xState;
-  }
+	public void setXState(String xState) {
+		this.xState = xState;
+	}
 
-  public String getXZip() {
-    return xZip;
-  }
+	public String getXZip() {
+		return xZip;
+	}
 
-  public void setXZip(String xZip) {
-    this.xZip = xZip;
-  }
+	public void setXZip(String xZip) {
+		this.xZip = xZip;
+	}
 }

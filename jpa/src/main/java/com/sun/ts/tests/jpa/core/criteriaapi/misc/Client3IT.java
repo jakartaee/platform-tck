@@ -18,11 +18,8 @@ package com.sun.ts.tests.jpa.core.criteriaapi.misc;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
-import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
@@ -41,521 +38,483 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Expression;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Path;
-import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.criteria.Selection;
 import jakarta.persistence.criteria.Subquery;
 import jakarta.persistence.metamodel.EntityType;
 
 public class Client3IT extends UtilOrderData {
-	
-	 @Deployment(testable = false, managed = false)
-		public static JavaArchive createDeployment() throws Exception {
 
-			String pkgNameWithoutSuffix = Client3IT.class.getPackageName();
-			String pkgName = Client3IT.class.getPackageName() + ".";
-			String[] classes = {};
-			return createDeploymentJar("jpa_core_criteriaapi_misc.jar", pkgNameWithoutSuffix, classes);
-	 }
+	public static JavaArchive createDeployment() throws Exception {
 
+		String pkgNameWithoutSuffix = Client3IT.class.getPackageName();
+		String pkgName = Client3IT.class.getPackageName() + ".";
+		String[] classes = {};
+		return createDeploymentJar("jpa_core_criteriaapi_misc.jar", pkgNameWithoutSuffix, classes);
+	}
 
-  /*
-   * @testName: compoundSelectionGetCompoundSelectionItemsTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:731; PERSISTENCE:JAVADOC:733;
-   * PERSISTENCE:JAVADOC:773
-   *
-   * @test_Strategy:
-   *
-   *
-   */
-  @SetupMethod(name = "setupOrderData")
-  @Test
-  public void compoundSelectionGetCompoundSelectionItemsTest() throws Exception {
-    boolean pass1 = false;
-    boolean pass2 = true;
+	/*
+	 * @testName: compoundSelectionGetCompoundSelectionItemsTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:731; PERSISTENCE:JAVADOC:733;
+	 * PERSISTENCE:JAVADOC:773
+	 *
+	 * @test_Strategy:
+	 *
+	 *
+	 */
+	@SetupMethod(name = "setupOrderData")
+	@Test
+	public void compoundSelectionGetCompoundSelectionItemsTest() throws Exception {
+		boolean pass1 = false;
+		boolean pass2 = true;
 
-    CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-    getEntityTransaction().begin();
-    Expression exp1 = cbuilder.literal("1");
-    Expression exp2 = cbuilder.literal("2");
-    CompoundSelection cs = cbuilder.tuple(exp1, exp2);
-    boolean bActual = cs.isCompoundSelection();
-    if (bActual == true) {
-      List<Selection<?>> lSel = cs.getCompoundSelectionItems();
-      if (lSel.size() == 2) {
+		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+		getEntityTransaction().begin();
+		Expression exp1 = cbuilder.literal("1");
+		Expression exp2 = cbuilder.literal("2");
+		CompoundSelection cs = cbuilder.tuple(exp1, exp2);
+		boolean bActual = cs.isCompoundSelection();
+		if (bActual == true) {
+			List<Selection<?>> lSel = cs.getCompoundSelectionItems();
+			if (lSel.size() == 2) {
 
-        CriteriaQuery<Tuple> cquery = cbuilder.createTupleQuery();
+				CriteriaQuery<Tuple> cquery = cbuilder.createTupleQuery();
 
-        Root<Order> order = cquery.from(Order.class);
-        cquery.select(cs);
-        cquery.where(cbuilder.equal(order.get("id"), "1"));
+				Root<Order> order = cquery.from(Order.class);
+				cquery.select(cs);
+				cquery.where(cbuilder.equal(order.get("id"), "1"));
 
-        TypedQuery<Tuple> tquery = getEntityManager().createQuery(cquery);
-        Collection<Tuple> result = tquery.getResultList();
-        if (result.size() == 1) {
-          int i = 0;
-          for (Tuple actual : result) {
-            pass1 = true;
-            TestUtil.logTrace(
-                "first=" + actual.get(0) + ", second=" + actual.get(1));
-            if (!actual.get(0).equals("1")) {
-              TestUtil.logErr("Expected: 1, actual:" + actual.get(0));
-              pass2 = false;
-            }
-            if (!actual.get(1).equals("2")) {
-              TestUtil.logErr("Expected: 2, actual:" + actual.get(1));
-              pass2 = false;
-            }
-            i++;
-          }
-        } else {
-          TestUtil.logErr("Expected: 1 tuple, actual:" + result.size());
-          for (Tuple actual : result) {
-            TestUtil
-                .logErr("first=" + actual.get(0) + ", second=" + actual.get(1));
-          }
-        }
-      } else {
-        TestUtil.logErr(
-            "Expected: 2 compound selection item, actual:" + lSel.size());
-        for (Selection s : lSel) {
-          TestUtil.logErr("selection:" + s.toString());
-        }
-      }
-    } else {
-      TestUtil.logErr(
-          "Expected isCompoundSelection() to return: true, actual:" + bActual);
-    }
-    getEntityTransaction().commit();
+				TypedQuery<Tuple> tquery = getEntityManager().createQuery(cquery);
+				Collection<Tuple> result = tquery.getResultList();
+				if (result.size() == 1) {
+					int i = 0;
+					for (Tuple actual : result) {
+						pass1 = true;
+						TestUtil.logTrace("first=" + actual.get(0) + ", second=" + actual.get(1));
+						if (!actual.get(0).equals("1")) {
+							TestUtil.logErr("Expected: 1, actual:" + actual.get(0));
+							pass2 = false;
+						}
+						if (!actual.get(1).equals("2")) {
+							TestUtil.logErr("Expected: 2, actual:" + actual.get(1));
+							pass2 = false;
+						}
+						i++;
+					}
+				} else {
+					TestUtil.logErr("Expected: 1 tuple, actual:" + result.size());
+					for (Tuple actual : result) {
+						TestUtil.logErr("first=" + actual.get(0) + ", second=" + actual.get(1));
+					}
+				}
+			} else {
+				TestUtil.logErr("Expected: 2 compound selection item, actual:" + lSel.size());
+				for (Selection s : lSel) {
+					TestUtil.logErr("selection:" + s.toString());
+				}
+			}
+		} else {
+			TestUtil.logErr("Expected isCompoundSelection() to return: true, actual:" + bActual);
+		}
+		getEntityTransaction().commit();
 
-    if (!pass1 || !pass2) {
-      throw new Exception("compoundSelectionGetCompoundSelectionItemsTest failed");
-    }
-  }
+		if (!pass1 || !pass2) {
+			throw new Exception("compoundSelectionGetCompoundSelectionItemsTest failed");
+		}
+	}
 
-  /*
-   * @testName: selectionGetCompoundSelectionItemsTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1165;
-   *
-   * @test_Strategy:
-   *
-   *
-   */
-  @SetupMethod(name = "setupOrderData")
-  @Test
-  public void selectionGetCompoundSelectionItemsTest() throws Exception {
-    boolean pass1 = false;
-    boolean pass2 = true;
+	/*
+	 * @testName: selectionGetCompoundSelectionItemsTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1165;
+	 *
+	 * @test_Strategy:
+	 *
+	 *
+	 */
+	@SetupMethod(name = "setupOrderData")
+	@Test
+	public void selectionGetCompoundSelectionItemsTest() throws Exception {
+		boolean pass1 = false;
+		boolean pass2 = true;
 
-    CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
-    Expression exp1 = cbuilder.literal("1");
-    Expression exp2 = cbuilder.literal("2");
-    Selection sel = cbuilder.tuple(exp1, exp2);
-    boolean bActual = sel.isCompoundSelection();
-    if (bActual == true) {
-      List<Selection<?>> lSel = sel.getCompoundSelectionItems();
-      if (lSel.size() == 2) {
+		Expression exp1 = cbuilder.literal("1");
+		Expression exp2 = cbuilder.literal("2");
+		Selection sel = cbuilder.tuple(exp1, exp2);
+		boolean bActual = sel.isCompoundSelection();
+		if (bActual == true) {
+			List<Selection<?>> lSel = sel.getCompoundSelectionItems();
+			if (lSel.size() == 2) {
 
-        CriteriaQuery<Tuple> cquery = cbuilder.createTupleQuery();
+				CriteriaQuery<Tuple> cquery = cbuilder.createTupleQuery();
 
-        Root<Order> order = cquery.from(Order.class);
-        cquery.select(sel);
-        cquery.where(cbuilder.equal(order.get("id"), "1"));
+				Root<Order> order = cquery.from(Order.class);
+				cquery.select(sel);
+				cquery.where(cbuilder.equal(order.get("id"), "1"));
 
-        TypedQuery<Tuple> tquery = getEntityManager().createQuery(cquery);
-        Collection<Tuple> result = tquery.getResultList();
-        if (result.size() == 1) {
-          for (Tuple actual : result) {
-            pass1 = true;
-            TestUtil.logTrace(
-                "first=" + actual.get(0) + ", second=" + actual.get(1));
-            if (!actual.get(0).equals("1")) {
-              TestUtil.logErr("Expected: 1, actual:" + actual.get(0));
-              pass2 = false;
-            }
-            if (!actual.get(1).equals("2")) {
-              TestUtil.logErr("Expected: 2, actual:" + actual.get(1));
-              pass2 = false;
-            }
-          }
-        } else {
-          TestUtil.logErr("Expected: 1 tuple, actual:" + result.size());
-          for (Tuple actual : result) {
-            TestUtil
-                .logErr("first=" + actual.get(0) + ", second=" + actual.get(1));
-          }
-        }
-      } else {
-        TestUtil.logErr(
-            "Expected: 2 compound selection item, actual:" + lSel.size());
-        for (Selection s : lSel) {
-          TestUtil.logErr("selection:" + s.toString());
-        }
-      }
-    } else {
-      TestUtil.logErr(
-          "Expected isCompoundSelection() to return: true, actual:" + bActual);
-    }
+				TypedQuery<Tuple> tquery = getEntityManager().createQuery(cquery);
+				Collection<Tuple> result = tquery.getResultList();
+				if (result.size() == 1) {
+					for (Tuple actual : result) {
+						pass1 = true;
+						TestUtil.logTrace("first=" + actual.get(0) + ", second=" + actual.get(1));
+						if (!actual.get(0).equals("1")) {
+							TestUtil.logErr("Expected: 1, actual:" + actual.get(0));
+							pass2 = false;
+						}
+						if (!actual.get(1).equals("2")) {
+							TestUtil.logErr("Expected: 2, actual:" + actual.get(1));
+							pass2 = false;
+						}
+					}
+				} else {
+					TestUtil.logErr("Expected: 1 tuple, actual:" + result.size());
+					for (Tuple actual : result) {
+						TestUtil.logErr("first=" + actual.get(0) + ", second=" + actual.get(1));
+					}
+				}
+			} else {
+				TestUtil.logErr("Expected: 2 compound selection item, actual:" + lSel.size());
+				for (Selection s : lSel) {
+					TestUtil.logErr("selection:" + s.toString());
+				}
+			}
+		} else {
+			TestUtil.logErr("Expected isCompoundSelection() to return: true, actual:" + bActual);
+		}
 
-    if (!pass1 || !pass2) {
-      throw new Exception("selectionGetCompoundSelectionItemsTest failed");
-    }
-  }
+		if (!pass1 || !pass2) {
+			throw new Exception("selectionGetCompoundSelectionItemsTest failed");
+		}
+	}
 
-  /*
-   * @testName: pathGetPluralAttributeTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1097;
-   * 
-   * @test_Strategy:
-   *
-   * SELECT c FROM Customer c WHERE ((SELECT COUNT(o.id) FROM Order o WHERE
-   * (o.customer.id = c.ID)) > 1)
-   * 
-   */
-  @SetupMethod(name = "setupOrderData")
-  @Test
-  public void pathGetPluralAttributeTest() throws Exception {
-    boolean pass = false;
+	/*
+	 * @testName: pathGetPluralAttributeTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1097;
+	 * 
+	 * @test_Strategy:
+	 *
+	 * SELECT c FROM Customer c WHERE ((SELECT COUNT(o.id) FROM Order o WHERE
+	 * (o.customer.id = c.ID)) > 1)
+	 * 
+	 */
+	@SetupMethod(name = "setupOrderData")
+	@Test
+	public void pathGetPluralAttributeTest() throws Exception {
+		boolean pass = false;
 
-    String[] expected = new String[2];
-    expected[0] = customerRef[3].getId();
-    expected[1] = customerRef[13].getId();
+		String[] expected = new String[2];
+		expected[0] = customerRef[3].getId();
+		expected[1] = customerRef[13].getId();
 
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Path<Customer> customer = cquery.from(Customer.class);
-      cquery
-          .where(cbuilder.gt(cbuilder.size(customer.get(Customer_.orders)), 1))
-          .select(customer);
-      TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
-      List<Customer> clist = tquery.getResultList();
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Path<Customer> customer = cquery.from(Customer.class);
+			cquery.where(cbuilder.gt(cbuilder.size(customer.get(Customer_.orders)), 1)).select(customer);
+			TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
+			List<Customer> clist = tquery.getResultList();
 
-      if (!checkEntityPK(clist, expected)) {
-        TestUtil.logErr("Did not get expected results. Expected "
-            + expected.length + " references, got: " + clist.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
+			if (!checkEntityPK(clist, expected)) {
+				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
+						+ clist.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
 
-    }
+		}
 
-    if (!pass) {
-      throw new Exception("pathGetPluralAttributeTest failed");
-    }
-  }
+		if (!pass) {
+			throw new Exception("pathGetPluralAttributeTest failed");
+		}
+	}
 
-  /*
-   * @testName: subquery
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:801; PERSISTENCE:JAVADOC:1172;
-   *
-   * @test_Strategy: Use LIKE expression in a sub query. Select the customers
-   * with name like Caruso. The name Caruso is derived in the subquery.
-   */
-  @SetupMethod(name = "setupOrderData")
-  @Test
-  public void subquery() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
+	/*
+	 * @testName: subquery
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:801; PERSISTENCE:JAVADOC:1172;
+	 *
+	 * @test_Strategy: Use LIKE expression in a sub query. Select the customers with
+	 * name like Caruso. The name Caruso is derived in the subquery.
+	 */
+	@SetupMethod(name = "setupOrderData")
+	@Test
+	public void subquery() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
 
-    CriteriaBuilder qbuilder = getEntityManagerFactory().getCriteriaBuilder();
+		CriteriaBuilder qbuilder = getEntityManagerFactory().getCriteriaBuilder();
 
-    try {
-      getEntityTransaction().begin();
-      CriteriaQuery<Order> cquery = qbuilder.createQuery(Order.class);
-      Root<Order> order = cquery.from(Order.class);
-      cquery.select(order);
-      // create correlated subquery
-      Subquery<Customer> sq = cquery.subquery(Customer.class);
-      Root<Order> sqo = sq.correlate(order);
-      Join<Order, Customer> sqc = sqo.join("customer");
-      sq.where(qbuilder.like(sqc.<String> get("name"), "%Caruso")).select(sqc);
-      cquery.where(qbuilder.exists(sq));
-      TypedQuery<Order> tquery = getEntityManager().createQuery(cquery);
-      List<Order> result = tquery.getResultList();
+		try {
+			getEntityTransaction().begin();
+			CriteriaQuery<Order> cquery = qbuilder.createQuery(Order.class);
+			Root<Order> order = cquery.from(Order.class);
+			cquery.select(order);
+			// create correlated subquery
+			Subquery<Customer> sq = cquery.subquery(Customer.class);
+			Root<Order> sqo = sq.correlate(order);
+			Join<Order, Customer> sqc = sqo.join("customer");
+			sq.where(qbuilder.like(sqc.<String>get("name"), "%Caruso")).select(sqc);
+			cquery.where(qbuilder.exists(sq));
+			TypedQuery<Order> tquery = getEntityManager().createQuery(cquery);
+			List<Order> result = tquery.getResultList();
 
-      expectedPKs = new String[2];
-      expectedPKs[0] = "7";
-      expectedPKs[1] = "8";
+			expectedPKs = new String[2];
+			expectedPKs[0] = "7";
+			expectedPKs[1] = "8";
 
-      if (!checkEntityPK(result, expectedPKs)) {
-        TestUtil.logErr("test_subquery_like:  Did not get expected "
-            + " results.  Expected 2 references, got: " + result.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception subquery: ", e);
-    }
+			if (!checkEntityPK(result, expectedPKs)) {
+				TestUtil.logErr("test_subquery_like:  Did not get expected " + " results.  Expected 2 references, got: "
+						+ result.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught exception subquery: ", e);
+		}
 
-    if (!pass) {
-      throw new Exception("subquery failed");
-    }
-  }
+		if (!pass) {
+			throw new Exception("subquery failed");
+		}
+	}
 
-  /*
-   * @testName: subqueryGroupByExpressionTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1182; PERSISTENCE:JAVADOC:1192;
-   *
-   * @test_Strategy: Use LIKE expression in a sub query. Select the customers
-   * with name like Caruso. The name Caruso is derived in the subquery.
-   */
-  @SetupMethod(name = "setupOrderData")
-  @Test
-  public void subqueryGroupByExpressionTest() throws Exception {
-    boolean pass1 = false;
-    boolean pass2 = false;
-    boolean pass3 = false;
-    boolean pass4 = false;
-    boolean pass5 = false;
-    String expectedPKs[];
+	/*
+	 * @testName: subqueryGroupByExpressionTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1182; PERSISTENCE:JAVADOC:1192;
+	 *
+	 * @test_Strategy: Use LIKE expression in a sub query. Select the customers with
+	 * name like Caruso. The name Caruso is derived in the subquery.
+	 */
+	@SetupMethod(name = "setupOrderData")
+	@Test
+	public void subqueryGroupByExpressionTest() throws Exception {
+		boolean pass1 = false;
+		boolean pass2 = false;
+		boolean pass3 = false;
+		boolean pass4 = false;
+		boolean pass5 = false;
+		String expectedPKs[];
 
-    CriteriaBuilder qbuilder = getEntityManagerFactory().getCriteriaBuilder();
+		CriteriaBuilder qbuilder = getEntityManagerFactory().getCriteriaBuilder();
 
-    try {
-      getEntityTransaction().begin();
-      CriteriaQuery<Order> cquery = qbuilder.createQuery(Order.class);
-      Root<Order> order = cquery.from(Order.class);
-      EntityType<Order> Order_ = order.getModel();
+		try {
+			getEntityTransaction().begin();
+			CriteriaQuery<Order> cquery = qbuilder.createQuery(Order.class);
+			Root<Order> order = cquery.from(Order.class);
+			EntityType<Order> Order_ = order.getModel();
 
-      cquery.select(order);
+			cquery.select(order);
 
-      Subquery<String> subquery = cquery.subquery(String.class);
-      List<Expression<?>> gList = subquery.getGroupList();
-      if (gList.size() == 0) {
-        TestUtil.logTrace(
-            "Received expected empty list from getGroupList() when there is no groupBy expressions");
-        pass1 = true;
-      } else {
-        TestUtil.logErr(
-            "Did not received empty list from getGroupList() when there is no groupBy expressions");
-        for (Expression e : gList) {
-          TestUtil.logErr("Item:" + e.toString());
-        }
-      }
-      Expression sel = subquery.getSelection();
-      if (sel == null) {
-        TestUtil.logTrace(
-            "Received expected null from getSelection() when there is no selection specified");
-        pass2 = true;
-      } else {
-        TestUtil.logErr(
-            "Did not received null from getSelection() when there is no selection specified:"
-                + sel.toString());
-      }
-      Root<Customer> customer = subquery.from(Customer.class);
-      EntityType<Customer> Customer_ = customer.getModel();
-      subquery.select(
-          customer.get(Customer_.getSingularAttribute("name", String.class)));
-      sel = subquery.getSelection();
-      if (sel != null) {
-        TestUtil.logTrace("Received non-result from getSelection()");
-        pass3 = true;
-      } else {
-        TestUtil.logErr(
-            "Received null from getSelection() when there is a selection specified");
-      }
-      subquery.where(qbuilder.like(
-          customer.get(Customer_.getSingularAttribute("name", String.class)),
-          "%Caruso"));
-      Expression exp = customer
-          .get(Customer_.getSingularAttribute("name", String.class));
+			Subquery<String> subquery = cquery.subquery(String.class);
+			List<Expression<?>> gList = subquery.getGroupList();
+			if (gList.size() == 0) {
+				TestUtil.logTrace(
+						"Received expected empty list from getGroupList() when there is no groupBy expressions");
+				pass1 = true;
+			} else {
+				TestUtil.logErr("Did not received empty list from getGroupList() when there is no groupBy expressions");
+				for (Expression e : gList) {
+					TestUtil.logErr("Item:" + e.toString());
+				}
+			}
+			Expression sel = subquery.getSelection();
+			if (sel == null) {
+				TestUtil.logTrace("Received expected null from getSelection() when there is no selection specified");
+				pass2 = true;
+			} else {
+				TestUtil.logErr("Did not received null from getSelection() when there is no selection specified:"
+						+ sel.toString());
+			}
+			Root<Customer> customer = subquery.from(Customer.class);
+			EntityType<Customer> Customer_ = customer.getModel();
+			subquery.select(customer.get(Customer_.getSingularAttribute("name", String.class)));
+			sel = subquery.getSelection();
+			if (sel != null) {
+				TestUtil.logTrace("Received non-result from getSelection()");
+				pass3 = true;
+			} else {
+				TestUtil.logErr("Received null from getSelection() when there is a selection specified");
+			}
+			subquery.where(
+					qbuilder.like(customer.get(Customer_.getSingularAttribute("name", String.class)), "%Caruso"));
+			Expression exp = customer.get(Customer_.getSingularAttribute("name", String.class));
 
-      subquery.groupBy(exp);
-      gList = subquery.getGroupList();
-      if (gList != null) {
-        TestUtil.logTrace(
-            "Received non-null from getGroupList() when there is groupBy expressions");
-        if (gList.size() == 1) {
-          TestUtil.logTrace("Received one groupBy expression");
-          pass4 = true;
-        } else {
-          TestUtil.logErr(
-              "Expected one groupBy expression, actual:" + gList.size());
+			subquery.groupBy(exp);
+			gList = subquery.getGroupList();
+			if (gList != null) {
+				TestUtil.logTrace("Received non-null from getGroupList() when there is groupBy expressions");
+				if (gList.size() == 1) {
+					TestUtil.logTrace("Received one groupBy expression");
+					pass4 = true;
+				} else {
+					TestUtil.logErr("Expected one groupBy expression, actual:" + gList.size());
 
-          for (Expression e : gList) {
-            TestUtil.logErr("Did not get expected result:" + e);
-          }
-        }
-      } else {
+					for (Expression e : gList) {
+						TestUtil.logErr("Did not get expected result:" + e);
+					}
+				}
+			} else {
 
-        TestUtil.logErr(
-            "Received null from getGroupList() when there is groupBy expressions");
-      }
-      cquery.where(
-          order.get(Order_.getSingularAttribute("customer", Customer.class))
-              .get(Customer_.getSingularAttribute("name", String.class))
-              .in(subquery));
+				TestUtil.logErr("Received null from getGroupList() when there is groupBy expressions");
+			}
+			cquery.where(order.get(Order_.getSingularAttribute("customer", Customer.class))
+					.get(Customer_.getSingularAttribute("name", String.class)).in(subquery));
 
-      TypedQuery<Order> tquery = getEntityManager().createQuery(cquery);
-      List<Order> result = tquery.getResultList();
+			TypedQuery<Order> tquery = getEntityManager().createQuery(cquery);
+			List<Order> result = tquery.getResultList();
 
-      expectedPKs = new String[2];
-      expectedPKs[0] = "7";
-      expectedPKs[1] = "8";
+			expectedPKs = new String[2];
+			expectedPKs[0] = "7";
+			expectedPKs[1] = "8";
 
-      if (!checkEntityPK(result, expectedPKs)) {
-        TestUtil.logErr("Did not get expected "
-            + " results.  Expected 2 references, got: " + result.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass5 = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception: ", e);
+			if (!checkEntityPK(result, expectedPKs)) {
+				TestUtil.logErr("Did not get expected " + " results.  Expected 2 references, got: " + result.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass5 = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception: ", e);
 
-    }
+		}
 
-    if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5) {
-      throw new Exception("subqueryGroupByExpressionTest failed");
-    }
-  }
+		if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5) {
+			throw new Exception("subqueryGroupByExpressionTest failed");
+		}
+	}
 
-  /*
-   * @testName: subqueryGroupByExpressionArrayTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1198;
-   *
-   * @test_Strategy: Use groupBy expression in a sub query. Select the customers
-   * with name like Caruso. The name Caruso is derived in the subquery.
-   */
-  @SetupMethod(name = "setupOrderData")
-  @Test
-  public void subqueryGroupByExpressionArrayTest() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
+	/*
+	 * @testName: subqueryGroupByExpressionArrayTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1198;
+	 *
+	 * @test_Strategy: Use groupBy expression in a sub query. Select the customers
+	 * with name like Caruso. The name Caruso is derived in the subquery.
+	 */
+	@SetupMethod(name = "setupOrderData")
+	@Test
+	public void subqueryGroupByExpressionArrayTest() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
 
-    CriteriaBuilder qbuilder = getEntityManagerFactory().getCriteriaBuilder();
+		CriteriaBuilder qbuilder = getEntityManagerFactory().getCriteriaBuilder();
 
-    try {
-      getEntityTransaction().begin();
-      CriteriaQuery<Order> cquery = qbuilder.createQuery(Order.class);
-      Root<Order> order = cquery.from(Order.class);
-      EntityType<Order> Order_ = order.getModel();
+		try {
+			getEntityTransaction().begin();
+			CriteriaQuery<Order> cquery = qbuilder.createQuery(Order.class);
+			Root<Order> order = cquery.from(Order.class);
+			EntityType<Order> Order_ = order.getModel();
 
-      cquery.select(order);
+			cquery.select(order);
 
-      Subquery<String> subquery = cquery.subquery(String.class);
-      Root<Customer> customer = subquery.from(Customer.class);
-      EntityType<Customer> Customer_ = customer.getModel();
+			Subquery<String> subquery = cquery.subquery(String.class);
+			Root<Customer> customer = subquery.from(Customer.class);
+			EntityType<Customer> Customer_ = customer.getModel();
 
-      subquery.select(
-          customer.get(Customer_.getSingularAttribute("id", String.class)));
-      subquery.where(qbuilder.like(
-          customer.get(Customer_.getSingularAttribute("name", String.class)),
-          "%Caruso"));
-      Expression[] exp = {
-          customer.get(Customer_.getSingularAttribute("id", String.class)) };
+			subquery.select(customer.get(Customer_.getSingularAttribute("id", String.class)));
+			subquery.where(
+					qbuilder.like(customer.get(Customer_.getSingularAttribute("name", String.class)), "%Caruso"));
+			Expression[] exp = { customer.get(Customer_.getSingularAttribute("id", String.class)) };
 
-      subquery.groupBy(exp);
+			subquery.groupBy(exp);
 
-      cquery.where(
-          order.get(Order_.getSingularAttribute("customer", Customer.class))
-              .get(Customer_.getSingularAttribute("id", String.class))
-              .in(subquery));
-      TypedQuery<Order> tquery = getEntityManager().createQuery(cquery);
-      List<Order> result = tquery.getResultList();
+			cquery.where(order.get(Order_.getSingularAttribute("customer", Customer.class))
+					.get(Customer_.getSingularAttribute("id", String.class)).in(subquery));
+			TypedQuery<Order> tquery = getEntityManager().createQuery(cquery);
+			List<Order> result = tquery.getResultList();
 
-      expectedPKs = new String[2];
-      expectedPKs[0] = "7";
-      expectedPKs[1] = "8";
+			expectedPKs = new String[2];
+			expectedPKs[0] = "7";
+			expectedPKs[1] = "8";
 
-      if (!checkEntityPK(result, expectedPKs)) {
-        TestUtil.logErr("Did not get expected "
-            + " results.  Expected 2 references, got: " + result.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception subquery: ", e);
-    }
+			if (!checkEntityPK(result, expectedPKs)) {
+				TestUtil.logErr("Did not get expected " + " results.  Expected 2 references, got: " + result.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught exception subquery: ", e);
+		}
 
-    if (!pass) {
-      throw new Exception("subqueryGroupByExpressionArrayTest failed");
-    }
-  }
+		if (!pass) {
+			throw new Exception("subqueryGroupByExpressionArrayTest failed");
+		}
+	}
 
-  /*
-   * @testName: subqueryGroupByListTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1183; PERSISTENCE:JAVADOC:1199;
-   *
-   * @test_Strategy: Use groupBy expression in a sub query. Select the customers
-   * with name like Caruso. The name Caruso is derived in the subquery.
-   */
-  @SetupMethod(name = "setupOrderData")
-  @Test
-  public void subqueryGroupByListTest() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
+	/*
+	 * @testName: subqueryGroupByListTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1183; PERSISTENCE:JAVADOC:1199;
+	 *
+	 * @test_Strategy: Use groupBy expression in a sub query. Select the customers
+	 * with name like Caruso. The name Caruso is derived in the subquery.
+	 */
+	@SetupMethod(name = "setupOrderData")
+	@Test
+	public void subqueryGroupByListTest() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
 
-    CriteriaBuilder qbuilder = getEntityManagerFactory().getCriteriaBuilder();
+		CriteriaBuilder qbuilder = getEntityManagerFactory().getCriteriaBuilder();
 
-    try {
-      getEntityTransaction().begin();
-      CriteriaQuery<Order> cquery = qbuilder.createQuery(Order.class);
-      Root<Order> order = cquery.from(Order.class);
-      EntityType<Order> Order_ = order.getModel();
+		try {
+			getEntityTransaction().begin();
+			CriteriaQuery<Order> cquery = qbuilder.createQuery(Order.class);
+			Root<Order> order = cquery.from(Order.class);
+			EntityType<Order> Order_ = order.getModel();
 
-      cquery.select(order);
+			cquery.select(order);
 
-      Subquery<String> subquery = cquery.subquery(String.class);
-      Root<Customer> customer = subquery.from(Customer.class);
-      EntityType<Customer> Customer_ = customer.getModel();
+			Subquery<String> subquery = cquery.subquery(String.class);
+			Root<Customer> customer = subquery.from(Customer.class);
+			EntityType<Customer> Customer_ = customer.getModel();
 
-      subquery.select(
-          customer.get(Customer_.getSingularAttribute("id", String.class)));
-      subquery.where(qbuilder.like(
-          customer.get(Customer_.getSingularAttribute("name", String.class)),
-          "%Caruso"));
-      List list = new ArrayList();
-      list.add(
-          customer.get(Customer_.getSingularAttribute("id", String.class)));
+			subquery.select(customer.get(Customer_.getSingularAttribute("id", String.class)));
+			subquery.where(
+					qbuilder.like(customer.get(Customer_.getSingularAttribute("name", String.class)), "%Caruso"));
+			List list = new ArrayList();
+			list.add(customer.get(Customer_.getSingularAttribute("id", String.class)));
 
-      subquery.groupBy(list);
+			subquery.groupBy(list);
 
-      cquery.where(
-          order.get(Order_.getSingularAttribute("customer", Customer.class))
-              .get(Customer_.getSingularAttribute("id", String.class))
-              .in(subquery));
-      TypedQuery<Order> tquery = getEntityManager().createQuery(cquery);
-      List<Order> result = tquery.getResultList();
+			cquery.where(order.get(Order_.getSingularAttribute("customer", Customer.class))
+					.get(Customer_.getSingularAttribute("id", String.class)).in(subquery));
+			TypedQuery<Order> tquery = getEntityManager().createQuery(cquery);
+			List<Order> result = tquery.getResultList();
 
-      expectedPKs = new String[2];
-      expectedPKs[0] = "7";
-      expectedPKs[1] = "8";
+			expectedPKs = new String[2];
+			expectedPKs[0] = "7";
+			expectedPKs[1] = "8";
 
-      if (!checkEntityPK(result, expectedPKs)) {
-        TestUtil.logErr("Did not get expected "
-            + " results.  Expected 2 references, got: " + result.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception subquery: ", e);
-    }
+			if (!checkEntityPK(result, expectedPKs)) {
+				TestUtil.logErr("Did not get expected " + " results.  Expected 2 references, got: " + result.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught exception subquery: ", e);
+		}
 
-    if (!pass) {
-      throw new Exception("subqueryGroupByListTest failed");
-    }
-  }
+		if (!pass) {
+			throw new Exception("subqueryGroupByListTest failed");
+		}
+	}
 }

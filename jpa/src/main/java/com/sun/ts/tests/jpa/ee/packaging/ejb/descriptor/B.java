@@ -22,69 +22,69 @@ package com.sun.ts.tests.jpa.ee.packaging.ejb.descriptor;
 
 public class B implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+	// ===========================================================
+	// instance variables
 
-  protected String id;
+	protected String id;
 
-  protected String name;
+	protected String name;
 
-  protected int value;
+	protected int value;
 
-  protected A a;
+	protected A a;
 
-  // ===========================================================
-  // constructors
+	// ===========================================================
+	// constructors
 
-  public B() {
-  }
+	public B() {
+	}
 
-  public B(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+	public B(String id, String name, int value) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
 
-  public B(String id, String name, int value, A a) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-    this.a = a;
-  }
+	public B(String id, String name, int value, A a) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+		this.a = a;
+	}
 
-  public String getId() {
-    return id;
-  }
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public int getValue() {
-    return value;
-  }
+	public int getValue() {
+		return value;
+	}
 
-  public void setValue(int value) {
-    this.value = value;
-  }
+	public void setValue(int value) {
+		this.value = value;
+	}
 
-  // ===========================================================
-  // relationship fields
+	// ===========================================================
+	// relationship fields
 
-  public A getA() {
-    return a;
-  }
+	public A getA() {
+		return a;
+	}
 
-  public void setA(A a) {
-    this.a = a;
-  }
+	public void setA(A a) {
+		this.a = a;
+	}
 
 }

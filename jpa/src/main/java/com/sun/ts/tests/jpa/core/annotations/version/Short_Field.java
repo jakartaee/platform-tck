@@ -29,91 +29,90 @@ import jakarta.persistence.Version;
 @Access(AccessType.FIELD)
 public class Short_Field implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+	// ===========================================================
+	// instance variables
 
-  @Id
-  protected String id;
+	@Id
+	protected String id;
 
-  @Version
-  protected short basicShort;
+	@Version
+	protected short basicShort;
 
-  @Basic
-  protected String name;
+	@Basic
+	protected String name;
 
-  // ===========================================================
-  // constructors
-  public Short_Field() {
-  }
+	// ===========================================================
+	// constructors
+	public Short_Field() {
+	}
 
-  public Short_Field(String id) {
-    this.id = id;
-  }
+	public Short_Field(String id) {
+		this.id = id;
+	}
 
-  public Short_Field(String id, short value) {
+	public Short_Field(String id, short value) {
 
-    this.id = id;
-    this.basicShort = value;
-  }
+		this.id = id;
+		this.basicShort = value;
+	}
 
-  public String getId() {
-    return id;
-  }
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  public String getName() {
-    return this.name;
-  }
+	public String getName() {
+		return this.name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public short getVersion() {
-    return this.basicShort;
-  }
+	public short getVersion() {
+		return this.basicShort;
+	}
 
-  public void setVersion(short value) {
-    this.basicShort = value;
-  }
+	public void setVersion(short value) {
+		this.basicShort = value;
+	}
 
-  public boolean equals(Object o) {
-    Short_Field other;
-    boolean result = false;
+	public boolean equals(Object o) {
+		Short_Field other;
+		boolean result = false;
 
-    if (!(o instanceof Short_Field)) {
-      return result;
-    }
-    other = (Short_Field) o;
+		if (!(o instanceof Short_Field)) {
+			return result;
+		}
+		other = (Short_Field) o;
 
-    if (this.getId().equals(other.getId())
-        && this.basicShort == other.basicShort
-        && this.name.equals(other.getName())) {
-      result = true;
-    }
+		if (this.getId().equals(other.getId()) && this.basicShort == other.basicShort
+				&& this.name.equals(other.getName())) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  public int hashCode() {
-    int myHash;
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.getId().hashCode() + this.basicShort + this.name.hashCode();
+		myHash = this.getId().hashCode() + this.basicShort + this.name.hashCode();
 
-    return myHash;
-  }
+		return myHash;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", version: " + basicShort);
-    result.append(", name: " + name);
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", version: " + basicShort);
+		result.append(", name: " + name);
+		result.append("]");
+		return result.toString();
+	}
 }

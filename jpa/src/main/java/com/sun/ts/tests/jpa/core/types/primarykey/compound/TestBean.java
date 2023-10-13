@@ -31,50 +31,50 @@ import jakarta.persistence.Table;
 @Table(name = "PKEY")
 public class TestBean implements java.io.Serializable {
 
-  private CompoundPK compoundPK;
+	private CompoundPK compoundPK;
 
-  private String brandName;
+	private String brandName;
 
-  private float price;
+	private float price;
 
-  public TestBean() {
-  }
+	public TestBean() {
+	}
 
-  public TestBean(CompoundPK pk, String brandName, float price) {
-    this.compoundPK = pk;
-    this.brandName = brandName;
-    this.price = price;
-  }
+	public TestBean(CompoundPK pk, String brandName, float price) {
+		this.compoundPK = pk;
+		this.brandName = brandName;
+		this.price = price;
+	}
 
-  @EmbeddedId
-  public CompoundPK getCompoundPK() {
-    return compoundPK;
-  }
+	@EmbeddedId
+	public CompoundPK getCompoundPK() {
+		return compoundPK;
+	}
 
-  public void setCompoundPK(CompoundPK compoundPK) {
-    this.compoundPK = compoundPK;
-  }
+	public void setCompoundPK(CompoundPK compoundPK) {
+		this.compoundPK = compoundPK;
+	}
 
-  @Basic
-  public String getBrandName() {
-    return brandName;
-  }
+	@Basic
+	public String getBrandName() {
+		return brandName;
+	}
 
-  public void setBrandName(String v) {
-    this.brandName = v;
-  }
+	public void setBrandName(String v) {
+		this.brandName = v;
+	}
 
-  @Basic
-  public float getPrice() {
-    return price;
-  }
+	@Basic
+	public float getPrice() {
+		return price;
+	}
 
-  public void setPrice(float v) {
-    this.price = v;
-  }
+	public void setPrice(float v) {
+		this.price = v;
+	}
 
-  public void ping() {
-    TestUtil.logTrace("[TestBean] ping()");
-  }
+	public void ping() {
+		TestUtil.logTrace("[TestBean] ping()");
+	}
 
 }

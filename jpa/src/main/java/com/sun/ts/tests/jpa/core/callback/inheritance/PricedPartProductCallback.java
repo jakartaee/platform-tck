@@ -41,69 +41,65 @@ import jakarta.persistence.PreUpdate;
  */
 
 @MappedSuperclass
-abstract public class PricedPartProductCallback extends CallbackStatusImpl
-    implements CallbackStatusIF {
+abstract public class PricedPartProductCallback extends CallbackStatusImpl implements CallbackStatusIF {
 
-  // @todo: for multiple callback listeners/methods, need to add to each
-  // callback methods:
-  // addPrePersistCalls(getEntityName());
+	// @todo: for multiple callback listeners/methods, need to add to each
+	// callback methods:
+	// addPrePersistCalls(getEntityName());
 
-  @PrePersist
-  public void prePersist() {
-    GenerictListenerImpl.logTrace("In prePersist.", this);
-    this.setPrePersistCalled(true);
-    String testName = this.getTestName();
-    if (Constants.prePersistRuntimeExceptionTest2.equals(testName)) {
-      throw new ArithmeticException("RuntimeException from PrePersist.");
-    }
-  }
+	@PrePersist
+	public void prePersist() {
+		GenerictListenerImpl.logTrace("In prePersist.", this);
+		this.setPrePersistCalled(true);
+		String testName = this.getTestName();
+		if (Constants.prePersistRuntimeExceptionTest2.equals(testName)) {
+			throw new ArithmeticException("RuntimeException from PrePersist.");
+		}
+	}
 
-  @PostPersist
-  public void postPersist() {
-    GenerictListenerImpl.logTrace("In postPersist.", this);
-    if (!this.isPrePersistCalled()) {
-      throw new IllegalStateException(
-          "When calling postPersist, prePersist has not been called.");
-    }
-    this.setPostPersistCalled(true);
-  }
+	@PostPersist
+	public void postPersist() {
+		GenerictListenerImpl.logTrace("In postPersist.", this);
+		if (!this.isPrePersistCalled()) {
+			throw new IllegalStateException("When calling postPersist, prePersist has not been called.");
+		}
+		this.setPostPersistCalled(true);
+	}
 
-  @PreRemove
-  public void preRemove() {
-    GenerictListenerImpl.logTrace("In preRemove.", this);
-    this.setPreRemoveCalled(true);
-  }
+	@PreRemove
+	public void preRemove() {
+		GenerictListenerImpl.logTrace("In preRemove.", this);
+		this.setPreRemoveCalled(true);
+	}
 
-  @PostRemove
-  public void postRemove() {
-    GenerictListenerImpl.logTrace("In postRemove.", this);
-    if (!this.isPreRemoveCalled()) {
-      throw new IllegalStateException(
-          "When calling postRemove, preRemove has not been called.");
-    }
-    this.setPostRemoveCalled(true);
-  }
+	@PostRemove
+	public void postRemove() {
+		GenerictListenerImpl.logTrace("In postRemove.", this);
+		if (!this.isPreRemoveCalled()) {
+			throw new IllegalStateException("When calling postRemove, preRemove has not been called.");
+		}
+		this.setPostRemoveCalled(true);
+	}
 
-  @PreUpdate
-  public void preUpdate() {
-    GenerictListenerImpl.logTrace("In preUpdate.", this);
-    this.setPreUpdateCalled(true);
-  }
+	@PreUpdate
+	public void preUpdate() {
+		GenerictListenerImpl.logTrace("In preUpdate.", this);
+		this.setPreUpdateCalled(true);
+	}
 
-  @PostUpdate
-  public void postUpdate() {
-    GenerictListenerImpl.logTrace("In postUpdate.", this);
-    if (!this.isPreUpdateCalled()) {
-      throw new IllegalStateException(
-          "When calling postUpdate, preUpdate has not been called.");
-    }
-    this.setPostUpdateCalled(true);
-  }
+	@PostUpdate
+	public void postUpdate() {
+		GenerictListenerImpl.logTrace("In postUpdate.", this);
+		if (!this.isPreUpdateCalled()) {
+			throw new IllegalStateException("When calling postUpdate, preUpdate has not been called.");
+		}
+		this.setPostUpdateCalled(true);
+	}
 
-  @PostLoad
-  public void postLoad() {
-    GenerictListenerImpl.logTrace("In postLoad.", this);
-    this.setPostLoadCalled(true);
-  }
+	@PostLoad
+	public void postLoad() {
+		GenerictListenerImpl.logTrace("In postLoad.", this);
+		this.setPostLoadCalled(true);
+	}
 
 }

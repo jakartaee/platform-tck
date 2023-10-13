@@ -23,33 +23,33 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "DOESNOTEXIST")
 public class DoesNotExist implements java.io.Serializable {
-  private int id;
+	private int id;
 
-  private String firstName;
+	private String firstName;
 
-  public DoesNotExist() {
-  }
+	public DoesNotExist() {
+	}
 
-  public DoesNotExist(int id) {
-    this.id = id;
-  }
-  // ===========================================================
-  // getters and setters for the state fields
+	public DoesNotExist(int id) {
+		this.id = id;
+	}
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Id
-  public int getId() {
-    return id;
-  }
+	@Id
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  public String getFirstName() {
-    return firstName;
-  }
+	public String getFirstName() {
+		return firstName;
+	}
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 }

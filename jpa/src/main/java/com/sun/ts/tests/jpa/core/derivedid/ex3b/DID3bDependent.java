@@ -34,41 +34,40 @@ import jakarta.persistence.MapsId;
  */
 @Entity
 public class DID3bDependent implements Serializable {
-  @AttributeOverrides({
-      @AttributeOverride(name = "empPK.firstName", column = @Column(name = "FIRSTNAME", updatable = false)),
-      @AttributeOverride(name = "empPK.lastName", column = @Column(name = "LASTNAME", updatable = false)),
-      @AttributeOverride(name = "name", column = @Column(name = "NAME", updatable = false)) })
-  @EmbeddedId
-  DID3bDependentId id;
+	@AttributeOverrides({
+			@AttributeOverride(name = "empPK.firstName", column = @Column(name = "FIRSTNAME", updatable = false)),
+			@AttributeOverride(name = "empPK.lastName", column = @Column(name = "LASTNAME", updatable = false)),
+			@AttributeOverride(name = "name", column = @Column(name = "NAME", updatable = false)) })
+	@EmbeddedId
+	DID3bDependentId id;
 
-  @MapsId("empPK")
-  @JoinColumns({
-      @JoinColumn(name = "FIRSTNAME", referencedColumnName = "FIRSTNAME"),
-      @JoinColumn(name = "LASTNAME", referencedColumnName = "LASTNAME") })
-  @ManyToOne
-  DID3bEmployee emp;
+	@MapsId("empPK")
+	@JoinColumns({ @JoinColumn(name = "FIRSTNAME", referencedColumnName = "FIRSTNAME"),
+			@JoinColumn(name = "LASTNAME", referencedColumnName = "LASTNAME") })
+	@ManyToOne
+	DID3bEmployee emp;
 
-  public DID3bDependent() {
-  }
+	public DID3bDependent() {
+	}
 
-  public DID3bDependent(DID3bDependentId id, DID3bEmployee emp) {
-    this.id = id;
-    this.emp = emp;
-  }
+	public DID3bDependent(DID3bDependentId id, DID3bEmployee emp) {
+		this.id = id;
+		this.emp = emp;
+	}
 
-  public DID3bDependentId getId() {
-    return id;
-  }
+	public DID3bDependentId getId() {
+		return id;
+	}
 
-  public void setId(DID3bDependentId id) {
-    this.id = id;
-  }
+	public void setId(DID3bDependentId id) {
+		this.id = id;
+	}
 
-  public DID3bEmployee getEmp() {
-    return emp;
-  }
+	public DID3bEmployee getEmp() {
+		return emp;
+	}
 
-  public void setEmp(DID3bEmployee emp) {
-    this.emp = emp;
-  }
+	public void setEmp(DID3bEmployee emp) {
+		this.emp = emp;
+	}
 }

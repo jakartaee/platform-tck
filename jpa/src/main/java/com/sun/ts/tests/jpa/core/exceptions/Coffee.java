@@ -29,80 +29,77 @@ import jakarta.persistence.Table;
 @Table(name = "COFFEE")
 public class Coffee implements java.io.Serializable {
 
-  private Integer id;
+	private Integer id;
 
-  private String brandName;
+	private String brandName;
 
-  private float price;
+	private float price;
 
-  public Coffee() {
-  }
+	public Coffee() {
+	}
 
-  public Coffee(Integer id, String brandName, float price) {
-    this.id = id;
-    this.brandName = brandName;
-    this.price = price;
-  }
+	public Coffee(Integer id, String brandName, float price) {
+		this.id = id;
+		this.brandName = brandName;
+		this.price = price;
+	}
 
-  @Id
-  @Column(name = "ID")
-  public Integer getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public Integer getId() {
+		return id;
+	}
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-  @Column(name = "BRANDNAME")
-  public String getBrandName() {
-    return brandName;
-  }
+	@Column(name = "BRANDNAME")
+	public String getBrandName() {
+		return brandName;
+	}
 
-  public void setBrandName(String bName) {
-    this.brandName = bName;
-  }
+	public void setBrandName(String bName) {
+		this.brandName = bName;
+	}
 
-  @Column(name = "PRICE")
-  public float getPrice() {
-    return price;
-  }
+	@Column(name = "PRICE")
+	public float getPrice() {
+		return price;
+	}
 
-  public void setPrice(float price) {
-    this.price = price;
-  }
+	public void setPrice(float price) {
+		this.price = price;
+	}
 
-  public String toString() {
-    return "Coffee id=" + getId() + ", brandName=" + getBrandName() + ", price="
-        + getPrice();
-  }
+	public String toString() {
+		return "Coffee id=" + getId() + ", brandName=" + getBrandName() + ", price=" + getPrice();
+	}
 
-  @Override
-  public boolean equals(Object o) {
-    // check for self-comparison
-    if (this == o)
-      return true;
-    if (!(o instanceof Coffee))
-      return false;
+	@Override
+	public boolean equals(Object o) {
+		// check for self-comparison
+		if (this == o)
+			return true;
+		if (!(o instanceof Coffee))
+			return false;
 
-    Coffee c = (Coffee) o;
+		Coffee c = (Coffee) o;
 
-    boolean result = false;
+		boolean result = false;
 
-    if (this.getId() == c.getId()
-        && this.getBrandName().equals(c.getBrandName())
-        && this.getPrice() == c.getPrice()) {
-      result = true;
-    }
+		if (this.getId() == c.getId() && this.getBrandName().equals(c.getBrandName())
+				&& this.getPrice() == c.getPrice()) {
+			result = true;
+		}
 
-    return result;
+		return result;
 
-  }
+	}
 
-  @Override
-  public int hashCode() {
-    return this.getId() + this.getBrandName().hashCode()
-        + new Float(this.getPrice()).hashCode();
-  }
+	@Override
+	public int hashCode() {
+		return this.getId() + this.getBrandName().hashCode() + new Float(this.getPrice()).hashCode();
+	}
 
 }

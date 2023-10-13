@@ -27,55 +27,55 @@ import jakarta.persistence.Table;
 @Table(name = "DATATYPES3")
 public class PropertyBigDecimalId implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+	// ===========================================================
+	// instance variables
 
-  protected BigDecimal id;
+	protected BigDecimal id;
 
-  private BigDecimal bigDecimal;
+	private BigDecimal bigDecimal;
 
-  // ===========================================================
-  // constructors
-  public PropertyBigDecimalId() {
-  }
+	// ===========================================================
+	// constructors
+	public PropertyBigDecimalId() {
+	}
 
-  public PropertyBigDecimalId(BigDecimal id, BigDecimal bigDecimal) {
+	public PropertyBigDecimalId(BigDecimal id, BigDecimal bigDecimal) {
 
-    this.id = id;
-    this.bigDecimal = bigDecimal;
+		this.id = id;
+		this.bigDecimal = bigDecimal;
 
-  }
+	}
 
-  @Id
-  @Column(name = "ID")
-  public BigDecimal getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public BigDecimal getId() {
+		return id;
+	}
 
-  public void setId(BigDecimal id) {
-    this.id = id;
-  }
+	public void setId(BigDecimal id) {
+		this.id = id;
+	}
 
-  @Column(name = "THEVALUE")
-  public BigDecimal getBigDecimal() {
-    return this.bigDecimal;
-  }
+	@Column(name = "THEVALUE")
+	public BigDecimal getBigDecimal() {
+		return this.bigDecimal;
+	}
 
-  public void setBigDecimal(BigDecimal bigDecimal) {
-    this.bigDecimal = bigDecimal;
-  }
+	public void setBigDecimal(BigDecimal bigDecimal) {
+		this.bigDecimal = bigDecimal;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    if (getBigDecimal() != null) {
-      result.append(", BigDecimal: " + getBigDecimal());
-    } else {
-      result.append(", BigDecimal: null");
-    }
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		if (getBigDecimal() != null) {
+			result.append(", BigDecimal: " + getBigDecimal());
+		} else {
+			result.append(", BigDecimal: null");
+		}
+		result.append("]");
+		return result.toString();
+	}
 }

@@ -26,11 +26,11 @@ import jakarta.persistence.AccessType;
 @Access(AccessType.FIELD)
 public abstract class AbstractPersonnel {
 
-  public String getFullTimeRep() {
-    return "Mabel Murray";
-  }
+	public String getFullTimeRep() {
+		return "Mabel Murray";
+	}
 
-  public String getPartTimeRep() {
-    return "John Cleveland";
-  }
+	public String getPartTimeRep() {
+		return "John Cleveland";
+	}
 }

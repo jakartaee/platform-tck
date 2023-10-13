@@ -27,50 +27,50 @@ import jakarta.persistence.TemporalType;
 @Table(name = "DATATYPES2")
 public class FieldUtilDateId implements java.io.Serializable {
 
-  @Id
-  @Column(name = "DATATYPES2_ID")
-  @Temporal(TemporalType.DATE)
-  protected java.util.Date id;
+	@Id
+	@Column(name = "DATATYPES2_ID")
+	@Temporal(TemporalType.DATE)
+	protected java.util.Date id;
 
-  @Column(name = "DATEDATA")
-  @Temporal(TemporalType.DATE)
-  private java.util.Date date;
+	@Column(name = "DATEDATA")
+	@Temporal(TemporalType.DATE)
+	private java.util.Date date;
 
-  public FieldUtilDateId() {
-  }
+	public FieldUtilDateId() {
+	}
 
-  public FieldUtilDateId(java.util.Date id, java.util.Date date) {
-    this.id = id;
-    this.date = date;
-  }
+	public FieldUtilDateId(java.util.Date id, java.util.Date date) {
+		this.id = id;
+		this.date = date;
+	}
 
-  public java.util.Date getId() {
-    return id;
-  }
+	public java.util.Date getId() {
+		return id;
+	}
 
-  public void setId(java.util.Date id) {
-    this.id = id;
-  }
+	public void setId(java.util.Date id) {
+		this.id = id;
+	}
 
-  public java.util.Date getDate() {
-    return date;
-  }
+	public java.util.Date getDate() {
+		return date;
+	}
 
-  public void setDate(java.util.Date date) {
-    this.date = date;
-  }
+	public void setDate(java.util.Date date) {
+		this.date = date;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    if (getDate() != null) {
-      result.append(", date: " + getDate());
-    } else {
-      result.append(", date: null");
-    }
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		if (getDate() != null) {
+			result.append(", date: " + getDate());
+		} else {
+			result.append(", date: null");
+		}
+		result.append("]");
+		return result.toString();
+	}
 }

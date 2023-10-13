@@ -20,36 +20,36 @@ import java.io.Serializable;
 
 public class Book implements Serializable {
 
-  public Book() {
-  }
+	public Book() {
+	}
 
-  private String name;
+	private String name;
 
-  private String publisher;
+	private String publisher;
 
-  private int cost;
+	private int cost;
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public String getPublisher() {
-    return publisher;
-  }
+	public String getPublisher() {
+		return publisher;
+	}
 
-  public void setPublisher(String publisher) {
-    this.publisher = publisher;
-  }
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
 
-  public int getCost() {
-    return cost;
-  }
+	public int getCost() {
+		return cost;
+	}
 
-  public void setCost(int cost) {
-    this.cost = cost;
-  }
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
 }

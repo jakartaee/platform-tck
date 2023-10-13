@@ -43,88 +43,88 @@ import jakarta.persistence.Table;
 @Access(AccessType.FIELD)
 public class Customer implements java.io.Serializable {
 
-  // Instance variables
-  @Id
-  @Column(name = "CUST_ID")
-  private String id;
+	// Instance variables
+	@Id
+	@Column(name = "CUST_ID")
+	private String id;
 
-  @Basic
-  @ElementCollection
-  @CollectionTable(name = "PHONES", joinColumns = @JoinColumn(name = "ID"))
-  @Column(name = "PHONE_NUMBER")
-  @Enumerated(EnumType.STRING)
-  private List<Grade> phones = new ArrayList<Grade>();
+	@Basic
+	@ElementCollection
+	@CollectionTable(name = "PHONES", joinColumns = @JoinColumn(name = "ID"))
+	@Column(name = "PHONE_NUMBER")
+	@Enumerated(EnumType.STRING)
+	private List<Grade> phones = new ArrayList<Grade>();
 
-  public Customer() {
-  }
+	public Customer() {
+	}
 
-  public Customer(String id) {
-    this.id = id;
-  }
+	public Customer(String id) {
+		this.id = id;
+	}
 
-  // ===========================================================
-  // getters and setters for CMP fields
+	// ===========================================================
+	// getters and setters for CMP fields
 
-  public String getId() {
-    return id;
-  }
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String v) {
-    this.id = v;
-  }
+	public void setId(String v) {
+		this.id = v;
+	}
 
-  public List<Grade> getPhones() {
-    return this.phones;
-  }
+	public List<Grade> getPhones() {
+		return this.phones;
+	}
 
-  public void setPhones(List<Grade> phones) {
-    this.phones = phones;
-  }
+	public void setPhones(List<Grade> phones) {
+		this.phones = phones;
+	}
 
-  public boolean equals(Object o) {
-    Customer other;
-    boolean same = true;
+	public boolean equals(Object o) {
+		Customer other;
+		boolean same = true;
 
-    if (!(o instanceof Customer)) {
-      return false;
-    }
-    other = (Customer) o;
+		if (!(o instanceof Customer)) {
+			return false;
+		}
+		other = (Customer) o;
 
-    same &= this.id.equals(other.id);
+		same &= this.id.equals(other.id);
 
-    return same;
-  }
+		return same;
+	}
 
-  public int hashCode() {
-    int myHash;
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.id.hashCode();
+		myHash = this.id.hashCode();
 
-    return myHash;
-  }
+		return myHash;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    if (phones.size() > 0) {
-      int size = phones.size();
-      result.append(", phones[");
-      int i = 0;
-      for (Grade g : phones) {
-        result.append(g);
-        i++;
-        if (i < size) {
-          result.append(",");
-        }
-      }
-      result.append("]");
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		if (phones.size() > 0) {
+			int size = phones.size();
+			result.append(", phones[");
+			int i = 0;
+			for (Grade g : phones) {
+				result.append(g);
+				i++;
+				if (i < size) {
+					result.append(",");
+				}
+			}
+			result.append("]");
 
-    } else {
-      result.append(", phones: null");
-    }
-    result.append("]");
-    return result.toString();
-  }
+		} else {
+			result.append(", phones: null");
+		}
+		result.append("]");
+		return result.toString();
+	}
 }

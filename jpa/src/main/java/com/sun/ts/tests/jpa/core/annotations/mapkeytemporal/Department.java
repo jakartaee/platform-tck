@@ -32,68 +32,68 @@ import jakarta.persistence.TemporalType;
 @Table(name = "DEPARTMENT2")
 public class Department implements java.io.Serializable {
 
-  // Instance variables
-  private int id;
+	// Instance variables
+	private int id;
 
-  private String name;
+	private String name;
 
-  private Map<java.util.Date, Employee> lastNameEmployees;
+	private Map<java.util.Date, Employee> lastNameEmployees;
 
-  public Department() {
-  }
+	public Department() {
+	}
 
-  public Department(int id, String name) {
-    this.id = id;
-    this.name = name;
-  }
+	public Department(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Id
-  @Column(name = "ID")
-  public int getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  @Column(name = "NAME")
-  public String getName() {
-    return name;
-  }
+	@Column(name = "NAME")
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  // ===========================================================
-  // getters and setters for the association fields
+	// ===========================================================
+	// getters and setters for the association fields
 
-  @OneToMany(mappedBy = "department")
-  @MapKeyColumn(name = "THEDATE")
-  @MapKeyTemporal(TemporalType.DATE)
-  public Map<Date, Employee> getLastNameEmployees() {
-    return lastNameEmployees;
-  }
+	@OneToMany(mappedBy = "department")
+	@MapKeyColumn(name = "THEDATE")
+	@MapKeyTemporal(TemporalType.DATE)
+	public Map<Date, Employee> getLastNameEmployees() {
+		return lastNameEmployees;
+	}
 
-  public void setLastNameEmployees(Map<Date, Employee> lastNameEmployees) {
-    this.lastNameEmployees = lastNameEmployees;
-  }
+	public void setLastNameEmployees(Map<Date, Employee> lastNameEmployees) {
+		this.lastNameEmployees = lastNameEmployees;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    if (getName() != null) {
-      result.append(", name: " + getName());
-    } else {
-      result.append(", name: null");
-    }
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		if (getName() != null) {
+			result.append(", name: " + getName());
+		} else {
+			result.append(", name: null");
+		}
+		result.append("]");
+		return result.toString();
+	}
 }

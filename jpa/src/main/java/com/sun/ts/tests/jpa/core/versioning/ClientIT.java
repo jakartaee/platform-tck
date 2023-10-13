@@ -22,180 +22,168 @@ package com.sun.ts.tests.jpa.core.versioning;
 
 import java.math.BigInteger;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
-
 public class ClientIT extends PMClientBase {
 
-  public ClientIT() {
-  }
-  
-  @Deployment(testable = false, managed = false)
-  public static JavaArchive createDeployment() throws Exception {
-     
-     String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-     String pkgName = ClientIT.class.getPackageName() + ".";
-     String[] classes = { pkgName + "Member"};
-     return createDeploymentJar("jpa_core_versioning.jar", pkgNameWithoutSuffix, (String[]) classes);
+	public ClientIT() {
+	}
 
-  }
+	public static JavaArchive createDeployment() throws Exception {
 
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] classes = { pkgName + "Member" };
+		return createDeploymentJar("jpa_core_versioning.jar", pkgNameWithoutSuffix, (String[]) classes);
 
-@BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
+	}
 
-      super.setup();
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup();
+			createDeployment();
+			removeTestData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-  /*
-   * @testName: versionTest1
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:1068; PERSISTENCE:SPEC:690;
-   * PERSISTENCE:SPEC:666; PERSISTENCE:JAVADOC:13; PERSISTENCE:JAVADOC:16;
-   * PERSISTENCE:JAVADOC:17; PERSISTENCE:JAVADOC:18; PERSISTENCE:SPEC:1400;
-   * 
-   * @test_Strategy: The version annotation specifies the version field or
-   * property of an entity class that serves as an optimistic lock value. The
-   * version is used to ensure integrity when performing the merge operation and
-   * for optimistic concurrency control.
-   *
-   * positive test with sequential tx
-   * 
-   */
-@Test
-  public void versionTest1() throws Exception {
+	/*
+	 * @testName: versionTest1
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:1068; PERSISTENCE:SPEC:690;
+	 * PERSISTENCE:SPEC:666; PERSISTENCE:JAVADOC:13; PERSISTENCE:JAVADOC:16;
+	 * PERSISTENCE:JAVADOC:17; PERSISTENCE:JAVADOC:18; PERSISTENCE:SPEC:1400;
+	 * 
+	 * @test_Strategy: The version annotation specifies the version field or
+	 * property of an entity class that serves as an optimistic lock value. The
+	 * version is used to ensure integrity when performing the merge operation and
+	 * for optimistic concurrency control.
+	 *
+	 * positive test with sequential tx
+	 * 
+	 */
+	@Test
+	public void versionTest1() throws Exception {
 
-    TestUtil.logTrace("Begin versionTest1");
-    boolean pass1 = true;
-    boolean pass2 = true;
-    boolean pass3 = true;
-    final BigInteger donation = new BigInteger("5000000");
+		TestUtil.logTrace("Begin versionTest1");
+		boolean pass1 = true;
+		boolean pass2 = true;
+		boolean pass3 = true;
+		final BigInteger donation = new BigInteger("5000000");
 
-    try {
-      getEntityTransaction().begin();
-      Member m = new Member(1, "Jie Leng", true);
-      getEntityManager().persist(m);
-      getEntityManager().flush();
-      getEntityTransaction().commit();
+		try {
+			getEntityTransaction().begin();
+			Member m = new Member(1, "Jie Leng", true);
+			getEntityManager().persist(m);
+			getEntityManager().flush();
+			getEntityTransaction().commit();
 
-      // prior to writing to database, Member may not have any version value.
-      // After writing to database, version must have a value.
+			// prior to writing to database, Member may not have any version value.
+			// After writing to database, version must have a value.
 
-      Member newMember = getEntityManager().find(Member.class, 1);
-      if (newMember.getVersion() == null) {
-        TestUtil.logErr("version after persistence is null.");
-        pass1 = false;
-      } else {
-        TestUtil.logTrace(
-            "Correct non-null version after create: " + newMember.getVersion());
-      }
+			Member newMember = getEntityManager().find(Member.class, 1);
+			if (newMember.getVersion() == null) {
+				TestUtil.logErr("version after persistence is null.");
+				pass1 = false;
+			} else {
+				TestUtil.logTrace("Correct non-null version after create: " + newMember.getVersion());
+			}
 
-      // update member
-      getEntityTransaction().begin();
-      Member newMember2 = getEntityManager().find(Member.class, 1);
-      int oldVersion = newMember2.getVersion();
-      newMember2.setDonation(donation);
-      getEntityManager().merge(newMember2);
-      getEntityManager().flush();
-      getEntityTransaction().commit();
+			// update member
+			getEntityTransaction().begin();
+			Member newMember2 = getEntityManager().find(Member.class, 1);
+			int oldVersion = newMember2.getVersion();
+			newMember2.setDonation(donation);
+			getEntityManager().merge(newMember2);
+			getEntityManager().flush();
+			getEntityTransaction().commit();
 
-      Member newMember3 = getEntityManager().find(Member.class, 1);
-      if (newMember3.getVersion() <= oldVersion) {
-        TestUtil.logErr("Wrong version after update: " + newMember3.getVersion()
-            + ", old version: " + oldVersion);
-        pass2 = false;
-      } else {
-        TestUtil.logTrace("Correct version after update: "
-            + newMember3.getVersion() + ", old version: " + oldVersion);
-      }
+			Member newMember3 = getEntityManager().find(Member.class, 1);
+			if (newMember3.getVersion() <= oldVersion) {
+				TestUtil.logErr(
+						"Wrong version after update: " + newMember3.getVersion() + ", old version: " + oldVersion);
+				pass2 = false;
+			} else {
+				TestUtil.logTrace(
+						"Correct version after update: " + newMember3.getVersion() + ", old version: " + oldVersion);
+			}
 
-      oldVersion = newMember3.getVersion();
-      // select member
-      getEntityTransaction().begin();
-      getEntityManager()
-          .createQuery("SELECT m FROM Member m where m.memberName = :name")
-          .setParameter("name", "Jie Leng").getResultList();
-      getEntityManager().flush();
-      getEntityTransaction().commit();
+			oldVersion = newMember3.getVersion();
+			// select member
+			getEntityTransaction().begin();
+			getEntityManager().createQuery("SELECT m FROM Member m where m.memberName = :name")
+					.setParameter("name", "Jie Leng").getResultList();
+			getEntityManager().flush();
+			getEntityTransaction().commit();
 
-      Member newMember4 = getEntityManager().find(Member.class, 1);
-      if (newMember4.getVersion() != oldVersion) {
-        TestUtil.logErr("Wrong version after query, expected " + oldVersion
-            + ", got " + newMember4.getVersion());
-        pass3 = false;
-      } else {
-        TestUtil.logTrace("Correct version after query, expected " + oldVersion
-            + ", got:" + newMember4.getVersion());
-      }
+			Member newMember4 = getEntityManager().find(Member.class, 1);
+			if (newMember4.getVersion() != oldVersion) {
+				TestUtil.logErr(
+						"Wrong version after query, expected " + oldVersion + ", got " + newMember4.getVersion());
+				pass3 = false;
+			} else {
+				TestUtil.logTrace(
+						"Correct version after query, expected " + oldVersion + ", got:" + newMember4.getVersion());
+			}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-      pass1 = false;
-      pass2 = false;
-      pass3 = false;
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+			pass1 = false;
+			pass2 = false;
+			pass3 = false;
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in rollback:", re);
+			}
+		}
 
-    if (!pass1 || !pass2 || !pass3)
-      throw new Exception("versionTest1 failed");
-  }
+		if (!pass1 || !pass2 || !pass3)
+			throw new Exception("versionTest1 failed");
+	}
 
-@AfterAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("cleanup");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+		removeDeploymentJar();
+	}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM MEMBER")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM MEMBER").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

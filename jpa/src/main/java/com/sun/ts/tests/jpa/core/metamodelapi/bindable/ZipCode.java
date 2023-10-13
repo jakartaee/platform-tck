@@ -21,31 +21,31 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class ZipCode implements java.io.Serializable {
 
-  protected String zip;
+	protected String zip;
 
-  protected String plusFour;
+	protected String plusFour;
 
-  public ZipCode() {
-  }
+	public ZipCode() {
+	}
 
-  public ZipCode(String zip, String plusFour) {
-    this.zip = zip;
-    this.plusFour = plusFour;
-  }
+	public ZipCode(String zip, String plusFour) {
+		this.zip = zip;
+		this.plusFour = plusFour;
+	}
 
-  public String getPlusFour() {
-    return plusFour;
-  }
+	public String getPlusFour() {
+		return plusFour;
+	}
 
-  public void setPlusFour(String plusFour) {
-    this.plusFour = plusFour;
-  }
+	public void setPlusFour(String plusFour) {
+		this.plusFour = plusFour;
+	}
 
-  public String getZip() {
-    return zip;
-  }
+	public String getZip() {
+		return zip;
+	}
 
-  public void setZip(String zip) {
-    this.zip = zip;
-  }
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
 }

@@ -24,8 +24,8 @@ import jakarta.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Trim.class)
 public class Trim_ {
 
-  public static volatile SingularAttribute<Trim, String> id;
+	public static volatile SingularAttribute<Trim, String> id;
 
-  public static volatile SingularAttribute<Trim, String> name;
+	public static volatile SingularAttribute<Trim, String> name;
 
 }

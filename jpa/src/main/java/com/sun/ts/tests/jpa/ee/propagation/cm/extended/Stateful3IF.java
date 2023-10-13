@@ -23,26 +23,26 @@ package com.sun.ts.tests.jpa.ee.propagation.cm.extended;
 import java.util.Properties;
 
 public interface Stateful3IF {
-  public void init(final Properties p);
+	public void init(final Properties p);
 
-  public void createTestData();
+	public void createTestData();
 
-  public void removeTestData();
+	public void removeTestData();
 
-  public boolean test1();
+	public boolean test1();
 
-  public boolean test2();
+	public boolean test2();
 
-  public boolean test3();
+	public boolean test3();
 
-  public boolean test4();
+	public boolean test4();
 
-  public boolean test5();
+	public boolean test5();
 
-  public boolean test6();
+	public boolean test6();
 
-  public boolean verifyTest6();
+	public boolean verifyTest6();
 
-  public boolean test7();
+	public boolean test7();
 
 }

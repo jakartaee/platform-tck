@@ -24,18 +24,18 @@ import jakarta.persistence.Entity;
 @DiscriminatorValue("1")
 public class PartProduct2 extends Product2 implements java.io.Serializable {
 
-  private long partNumber;
+	private long partNumber;
 
-  public PartProduct2() {
-    super();
-  }
+	public PartProduct2() {
+		super();
+	}
 
-  @Column(name = "PNUM")
-  public long getPartNumber() {
-    return partNumber;
-  }
+	@Column(name = "PNUM")
+	public long getPartNumber() {
+		return partNumber;
+	}
 
-  public void setPartNumber(long v) {
-    this.partNumber = v;
-  }
+	public void setPartNumber(long v) {
+		this.partNumber = v;
+	}
 }

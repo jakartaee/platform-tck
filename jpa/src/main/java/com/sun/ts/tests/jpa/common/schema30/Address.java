@@ -33,113 +33,111 @@ import jakarta.persistence.Table;
 @Table(name = "ADDRESS")
 public class Address implements java.io.Serializable {
 
-  // Instance Variables
-  private String id;
+	// Instance Variables
+	private String id;
 
-  private String street;
+	private String street;
 
-  private String city;
+	private String city;
 
-  private String state;
+	private String state;
 
-  private String zip;
+	private String zip;
 
-  private Collection<Phone> phones = new java.util.ArrayList<Phone>();
+	private Collection<Phone> phones = new java.util.ArrayList<Phone>();
 
-  public Address() {
-  }
+	public Address() {
+	}
 
-  public Address(String id, String street, String city, String state,
-      String zip) {
-    this.id = id;
-    this.street = street;
-    this.city = city;
-    this.state = state;
-    this.zip = zip;
-  }
+	public Address(String id, String street, String city, String state, String zip) {
+		this.id = id;
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+	}
 
-  public Address(String id, String street, String city, String state,
-      String zip, Collection<Phone> phones) {
-    this.id = id;
-    this.street = street;
-    this.city = city;
-    this.state = state;
-    this.zip = zip;
-    this.phones = phones;
-  }
+	public Address(String id, String street, String city, String state, String zip, Collection<Phone> phones) {
+		this.id = id;
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.phones = phones;
+	}
 
-  // ===========================================================
-  // getters and setters for the persistent fields
+	// ===========================================================
+	// getters and setters for the persistent fields
 
-  @Id
-  @Column(name = "ID")
-  public String getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  @Column(name = "STREET")
-  public String getStreet() {
-    return street;
-  }
+	@Column(name = "STREET")
+	public String getStreet() {
+		return street;
+	}
 
-  public void setStreet(String street) {
-    this.street = street;
-  }
+	public void setStreet(String street) {
+		this.street = street;
+	}
 
-  @Column(name = "CITY")
-  public String getCity() {
-    return city;
-  }
+	@Column(name = "CITY")
+	public String getCity() {
+		return city;
+	}
 
-  public void setCity(String city) {
-    this.city = city;
-  }
+	public void setCity(String city) {
+		this.city = city;
+	}
 
-  @Column(name = "STATE")
-  public String getState() {
-    return state;
-  }
+	@Column(name = "STATE")
+	public String getState() {
+		return state;
+	}
 
-  public void setState(String state) {
-    this.state = state;
-  }
+	public void setState(String state) {
+		this.state = state;
+	}
 
-  @Column(name = "ZIP")
-  public String getZip() {
-    return zip;
-  }
+	@Column(name = "ZIP")
+	public String getZip() {
+		return zip;
+	}
 
-  public void setZip(String zip) {
-    this.zip = zip;
-  }
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
 
-  // ===========================================================
-  // getters and setters for association fields
+	// ===========================================================
+	// getters and setters for association fields
 
-  // 1xMANY
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "address")
-  public Collection<Phone> getPhones() {
-    return phones;
-  }
+	// 1xMANY
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "address")
+	public Collection<Phone> getPhones() {
+		return phones;
+	}
 
-  public void setPhones(Collection<Phone> phones) {
-    this.phones = phones;
-  }
+	public void setPhones(Collection<Phone> phones) {
+		this.phones = phones;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", street: " + getStreet());
-    result.append(", city: " + getCity());
-    result.append(", state: " + getState());
-    result.append(", zip: " + getZip());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", street: " + getStreet());
+		result.append(", city: " + getCity());
+		result.append(", state: " + getState());
+		result.append(", zip: " + getZip());
+		result.append("]");
+		return result.toString();
+	}
 }

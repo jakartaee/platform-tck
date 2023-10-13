@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.se.cache.xml.none;
 
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -28,110 +29,122 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 
+
 public class ClientIT extends PMClientBase {
 
-  public ClientIT() {
-  }
+	public ClientIT() {
+	}
 
+	public static JavaArchive createDeployment() throws Exception {
 
-  @BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] xmlFile = {};
+		String[] classes = { pkgName + "Order" };
 
-      super.setup();
-      removeTestData();
+		return createDeploymentJar("jpa_se_cache_xml_none.jar", pkgNameWithoutSuffix, classes,
+				pkgName + "persistence.xml", xmlFile);
 
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	}
 
-  /*
-   * @testName: containsTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:1497; PERSISTENCE:SPEC:1866;
-   * 
-   * @test_Strategy: Using the xml shared-cache-mode element with a value of
-   * NONE persist an entity and verify it is not the cache
-   */
-  @Test
-  public void containsTest() throws Exception {
-    Cache cache;
-    boolean pass = false;
-    if (cachingSupported) {
-      try {
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
 
-        EntityManager em2 = getEntityManager();
-        EntityTransaction et = getEntityTransaction();
+			super.setup();
+			createDeployment();
+			removeTestData();
 
-        et.begin();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-        Order order = new Order(1, 101);
-        em2.persist(order);
-        TestUtil.logTrace("persisted order " + order);
+	/*
+	 * @testName: containsTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:1497; PERSISTENCE:SPEC:1866;
+	 * 
+	 * @test_Strategy: Using the xml shared-cache-mode element with a value of NONE
+	 * persist an entity and verify it is not the cache
+	 */
+	@Test
+	public void containsTest() throws Exception {
+		Cache cache;
+		boolean pass = false;
+		if (cachingSupported) {
+			try {
 
-        em2.flush();
-        et.commit();
+				EntityManager em2 = getEntityManager();
+				EntityTransaction et = getEntityTransaction();
 
-        EntityManagerFactory emf = getEntityManagerFactory();
-        cache = emf.getCache();
+				et.begin();
 
-        if (cache != null) {
-          boolean b = cache.contains(Order.class, 1);
-          if (!b) {
-            TestUtil.logTrace("Cache returned: " + b
-                + ", therefore cache does not contain order " + order);
-            pass = true;
-          } else {
-            TestUtil.logErr("Cache returned: " + b
-                + ", therefore cache does incorrectly contain order " + order);
-          }
-        } else {
-          TestUtil.logErr("Cache returned was null");
-        }
-      } catch (Exception e) {
-        TestUtil.logErr("Unexpected exception occurred", e);
-      }
-    } else {
-      TestUtil.logMsg("Cache not supported, bypassing test");
-      pass = true;
-    }
-    if (!pass) {
-      throw new Exception("containsTest failed");
-    }
+				Order order = new Order(1, 101);
+				em2.persist(order);
+				TestUtil.logTrace("persisted order " + order);
 
-  }
+				em2.flush();
+				et.commit();
 
-  @AfterAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+				EntityManagerFactory emf = getEntityManagerFactory();
+				cache = emf.getCache();
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+				if (cache != null) {
+					boolean b = cache.contains(Order.class, 1);
+					if (!b) {
+						TestUtil.logTrace("Cache returned: " + b + ", therefore cache does not contain order " + order);
+						pass = true;
+					} else {
+						TestUtil.logErr(
+								"Cache returned: " + b + ", therefore cache does incorrectly contain order " + order);
+					}
+				} else {
+					TestUtil.logErr("Cache returned was null");
+				}
+			} catch (Exception e) {
+				TestUtil.logErr("Unexpected exception occurred", e);
+			}
+		} else {
+			TestUtil.logMsg("Cache not supported, bypassing test");
+			pass = true;
+		}
+		if (!pass) {
+			throw new Exception("containsTest failed");
+		}
+
+	}
+
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("cleanup");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+		removeDeploymentJar();
+	}
+
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

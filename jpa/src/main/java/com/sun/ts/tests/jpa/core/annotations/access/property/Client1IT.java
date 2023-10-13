@@ -18,22 +18,25 @@ package com.sun.ts.tests.jpa.core.annotations.access.property;
 
 import java.util.Arrays;
 
-import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.core.types.common.Grade;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client1IT extends Client {
 
-	
+	public static JavaArchive createDeployment() throws Exception {
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = Client.class.getPackageName() + ".";
+		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2",
+				"com.sun.ts.tests.jpa.core.types.common.Grade" };
+		return createDeploymentJar("jpa_core_annotations_access_property1.jar", pkgNameWithoutSuffix, classes);
+
+	}
+
 	public Client1IT() {
 	}
 
@@ -43,6 +46,8 @@ public class Client1IT extends Client {
 		try {
 
 			super.setup();
+			createDeployment();
+
 			removeTestData();
 			createTestData();
 			TestUtil.logTrace("Done creating test data");
@@ -52,7 +57,6 @@ public class Client1IT extends Client {
 			throw new Exception("Setup failed:", e);
 		}
 	}
-
 
 	/*
 	 * @testName: propertyTypeTest1
@@ -770,7 +774,6 @@ public class Client1IT extends Client {
 			throw new Exception("propertyTypeTest13 failed");
 	}
 
-
 	// Methods used for Tests
 
 	public void createTestData() {
@@ -805,5 +808,4 @@ public class Client1IT extends Client {
 
 	}
 
-
-	}
+}

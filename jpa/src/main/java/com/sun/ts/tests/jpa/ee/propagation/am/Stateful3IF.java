@@ -23,10 +23,10 @@ package com.sun.ts.tests.jpa.ee.propagation.am;
 import java.util.Properties;
 
 public interface Stateful3IF {
-  public void init(final Properties p);
+	public void init(final Properties p);
 
-  public boolean test3();
+	public boolean test3();
 
-  public boolean test4();
+	public boolean test4();
 
 }

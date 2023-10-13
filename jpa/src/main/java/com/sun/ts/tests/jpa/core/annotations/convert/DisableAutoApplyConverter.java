@@ -21,30 +21,21 @@ import jakarta.persistence.Converter;
 
 // Having this set to false means that these methods should not be executed
 @Converter(autoApply = false)
-public class DisableAutoApplyConverter
-    implements AttributeConverter<String, String> {
+public class DisableAutoApplyConverter implements AttributeConverter<String, String> {
 
-  public String convertToDatabaseColumn(String attribute) {
-    System.out.println(
-        "*** Entering DisableAutoApplyConverter:convertToDatabaseColumn["
-            + attribute + "] ***");
-    attribute = "DisableAutoApplyConverter:convertToDatabaseColumn - THIS SHOULD NOT HAVE BEEN EXECUTED";
-    System.out.println(
-        "*** Leaving DisableAutoApplyConverter:convertToDatabaseColumn["
-            + attribute + "] ***");
-    return attribute;
-  }
+	public String convertToDatabaseColumn(String attribute) {
+		System.out.println("*** Entering DisableAutoApplyConverter:convertToDatabaseColumn[" + attribute + "] ***");
+		attribute = "DisableAutoApplyConverter:convertToDatabaseColumn - THIS SHOULD NOT HAVE BEEN EXECUTED";
+		System.out.println("*** Leaving DisableAutoApplyConverter:convertToDatabaseColumn[" + attribute + "] ***");
+		return attribute;
+	}
 
-  public String convertToEntityAttribute(String dbData) {
-    System.out.println(
-        "*** Entering DisableAutoApplyConverter:convertToEntityAttribute["
-            + dbData + "] ***");
-    dbData = "AutoApplyConverter2:convertToEntityAttribute - THIS SHOULD NOT HAVE BEEN EXECUTED";
-    System.out.println(
-        "*** Leaving DisableAutoApplyConverter:convertToEntityAttribute["
-            + dbData + "] ***");
+	public String convertToEntityAttribute(String dbData) {
+		System.out.println("*** Entering DisableAutoApplyConverter:convertToEntityAttribute[" + dbData + "] ***");
+		dbData = "AutoApplyConverter2:convertToEntityAttribute - THIS SHOULD NOT HAVE BEEN EXECUTED";
+		System.out.println("*** Leaving DisableAutoApplyConverter:convertToEntityAttribute[" + dbData + "] ***");
 
-    return dbData;
-  }
+		return dbData;
+	}
 
 }

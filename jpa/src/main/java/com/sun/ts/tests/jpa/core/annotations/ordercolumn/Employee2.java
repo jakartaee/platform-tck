@@ -31,126 +31,122 @@ import jakarta.persistence.Table;
 @Access(AccessType.FIELD)
 public class Employee2 implements java.io.Serializable {
 
-  @Id
-  @Column(name = "ID")
-  private int id;
+	@Id
+	@Column(name = "ID")
+	private int id;
 
-  @Column(name = "FIRSTNAME")
-  private String firstName;
+	@Column(name = "FIRSTNAME")
+	private String firstName;
 
-  @Column(name = "LASTNAME")
-  private String lastName;
+	@Column(name = "LASTNAME")
+	private String lastName;
 
-  @Column(name = "SALARY")
-  private float salary;
+	@Column(name = "SALARY")
+	private float salary;
 
-  @ManyToOne(cascade = CascadeType.PERSIST)
-  @JoinColumn(name = "FK_DEPT")
-  private Department2 department;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "FK_DEPT")
+	private Department2 department;
 
-  public Employee2() {
-  }
+	public Employee2() {
+	}
 
-  public Employee2(int id, String firstName, String lastName, float salary) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.salary = salary;
-  }
+	public Employee2(int id, String firstName, String lastName, float salary) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.salary = salary;
+	}
 
-  public Employee2(int id, String firstName, String lastName, float salary,
-      Department2 department) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.salary = salary;
-    this.department = department;
-  }
+	public Employee2(int id, String firstName, String lastName, float salary, Department2 department) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.salary = salary;
+		this.department = department;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  public int getId() {
-    return id;
-  }
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  public String getFirstName() {
-    return firstName;
-  }
+	public String getFirstName() {
+		return firstName;
+	}
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-  public String getLastName() {
-    return lastName;
-  }
+	public String getLastName() {
+		return lastName;
+	}
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-  public float getSalary() {
-    return salary;
-  }
+	public float getSalary() {
+		return salary;
+	}
 
-  public void setSalary(float salary) {
-    this.salary = salary;
-  }
+	public void setSalary(float salary) {
+		this.salary = salary;
+	}
 
-  // ===========================================================
-  // getters and setters for the association fields
+	// ===========================================================
+	// getters and setters for the association fields
 
-  public Department2 getDepartment() {
-    return department;
-  }
+	public Department2 getDepartment() {
+		return department;
+	}
 
-  public void setDepartment(Department2 department) {
-    this.department = department;
-  }
+	public void setDepartment(Department2 department) {
+		this.department = department;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", first: " + getFirstName());
-    result.append(", last: " + getLastName());
-    result.append(", salary: " + getSalary());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", first: " + getFirstName());
+		result.append(", last: " + getLastName());
+		result.append(", salary: " + getSalary());
+		result.append("]");
+		return result.toString();
+	}
 
-  public boolean equals(Object o) {
-    Employee2 other;
-    boolean result = false;
+	public boolean equals(Object o) {
+		Employee2 other;
+		boolean result = false;
 
-    if (!(o instanceof Employee2)) {
-      return result;
-    }
-    other = (Employee2) o;
+		if (!(o instanceof Employee2)) {
+			return result;
+		}
+		other = (Employee2) o;
 
-    if (this.getId() == other.getId()
-        && this.getFirstName().equals(other.getFirstName())
-        && this.getLastName().equals(other.getLastName())
-        && this.getSalary() == other.getSalary()
-        && this.getDepartment().equals(other.getDepartment())) {
-      result = true;
-    }
+		if (this.getId() == other.getId() && this.getFirstName().equals(other.getFirstName())
+				&& this.getLastName().equals(other.getLastName()) && this.getSalary() == other.getSalary()
+				&& this.getDepartment().equals(other.getDepartment())) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  public int hashCode() {
-    int myHash;
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.getId() + this.getFirstName().hashCode()
-        + this.getLastName().hashCode() + (int) this.getSalary();
+		myHash = this.getId() + this.getFirstName().hashCode() + this.getLastName().hashCode() + (int) this.getSalary();
 
-    return myHash;
-  }
+		return myHash;
+	}
 }

@@ -20,7 +20,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -35,154 +34,147 @@ import jakarta.persistence.TransactionRequiredException;
 
 public class ClientIT extends PMClientBase {
 
-  Properties props = null;
+	Properties props = null;
 
-  Map map = new HashMap<String, Object>();
+	Map map = new HashMap<String, Object>();
 
-  public ClientIT() {
-  }
-  
-  @Deployment(testable = false, managed = false)
-  public static JavaArchive createDeployment() throws Exception {
-     
-     String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-     String pkgName = ClientIT.class.getPackageName() + ".";
-     String[] classes = { pkgName + "Order"};
-     return createDeploymentJar("jpa_ee_entityManager.jar", pkgNameWithoutSuffix, (String[]) classes);
+	public ClientIT() {
+	}
 
-  }
+	public static JavaArchive createDeployment() throws Exception {
 
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] classes = { pkgName + "Order" };
+		return createDeploymentJar("jpa_ee_entityManager.jar", pkgNameWithoutSuffix, (String[]) classes);
 
+	}
 
-  @BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      map.putAll(getEntityManager().getProperties());
-      map.put("foo", "bar");
-      displayMap(map);
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup();
+			map.putAll(getEntityManager().getProperties());
+			map.put("foo", "bar");
+			displayMap(map);
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-  @AfterAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+	}
 
-  /*
-   * @testName: createEntityManagerSynchronizationTypeMapTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:3318; PERSISTENCE:SPEC:1801;
-   * PERSISTENCE:SPEC:1804; PERSISTENCE:SPEC:1883.2;
-   * 
-   * @test_Strategy: Create an EntityManagerFactory via SynchronizationType,Map
-   */
-  @Test
-  public void createEntityManagerSynchronizationTypeMapTest() throws Exception {
-    boolean pass1 = false;
-    boolean pass2 = false;
-    try {
-      TestUtil.logMsg("Test UNSYNCHRONIZED");
-      EntityManager em1 = getEntityManagerFactory()
-          .createEntityManager(SynchronizationType.UNSYNCHRONIZED, map);
-      if (em1 != null) {
-        TestUtil.logTrace("Received non-null EntityManager");
-        pass1 = true;
-      } else {
-        TestUtil.logErr("Received null EntityManager");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Received unexpected exception", e);
-    }
-    try {
-      TestUtil.logMsg("Test SYNCHRONIZED");
-      EntityManager em2 = getEntityManagerFactory()
-          .createEntityManager(SynchronizationType.SYNCHRONIZED, map);
-      if (em2 != null) {
-        TestUtil.logTrace("Received non-null EntityManager");
-        pass2 = true;
-      } else {
-        TestUtil.logErr("Received null EntityManager");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Received unexpected exception", e);
-    }
-    if (!pass1 || !pass2) {
-      throw new Exception("createEntityManagerSynchronizationTypeMapTest failed");
-    }
-  }
+	/*
+	 * @testName: createEntityManagerSynchronizationTypeMapTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:3318; PERSISTENCE:SPEC:1801;
+	 * PERSISTENCE:SPEC:1804; PERSISTENCE:SPEC:1883.2;
+	 * 
+	 * @test_Strategy: Create an EntityManagerFactory via SynchronizationType,Map
+	 */
+	@Test
+	public void createEntityManagerSynchronizationTypeMapTest() throws Exception {
+		boolean pass1 = false;
+		boolean pass2 = false;
+		try {
+			TestUtil.logMsg("Test UNSYNCHRONIZED");
+			EntityManager em1 = getEntityManagerFactory().createEntityManager(SynchronizationType.UNSYNCHRONIZED, map);
+			if (em1 != null) {
+				TestUtil.logTrace("Received non-null EntityManager");
+				pass1 = true;
+			} else {
+				TestUtil.logErr("Received null EntityManager");
+			}
+		} catch (Exception e) {
+			TestUtil.logErr("Received unexpected exception", e);
+		}
+		try {
+			TestUtil.logMsg("Test SYNCHRONIZED");
+			EntityManager em2 = getEntityManagerFactory().createEntityManager(SynchronizationType.SYNCHRONIZED, map);
+			if (em2 != null) {
+				TestUtil.logTrace("Received non-null EntityManager");
+				pass2 = true;
+			} else {
+				TestUtil.logErr("Received null EntityManager");
+			}
+		} catch (Exception e) {
+			TestUtil.logErr("Received unexpected exception", e);
+		}
+		if (!pass1 || !pass2) {
+			throw new Exception("createEntityManagerSynchronizationTypeMapTest failed");
+		}
+	}
 
-  /*
-   * @testName: createEntityManagerSynchronizationTypeTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:3322;
-   * 
-   * @test_Strategy: Create an EntityManagerFactory via SynchronizationType
-   */
-  @Test
-  public void createEntityManagerSynchronizationTypeTest() throws Exception {
-    boolean pass1 = false;
-    boolean pass2 = false;
-    try {
-      TestUtil.logMsg("Test UNSYNCHRONIZED");
-      EntityManager em1 = getEntityManagerFactory()
-          .createEntityManager(SynchronizationType.UNSYNCHRONIZED);
-      if (em1 != null) {
-        TestUtil.logTrace("Received non-null EntityManager");
-        pass1 = true;
-      } else {
-        TestUtil.logErr("Received null EntityManager");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Received unexpected exception", e);
-    }
-    try {
-      TestUtil.logMsg("Test SYNCHRONIZED");
-      EntityManager em2 = getEntityManagerFactory()
-          .createEntityManager(SynchronizationType.SYNCHRONIZED);
-      if (em2 != null) {
-        TestUtil.logTrace("Received non-null EntityManager");
-        pass2 = true;
-      } else {
-        TestUtil.logErr("Received null EntityManager");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Received unexpected exception", e);
-    }
-    if (!pass1 || !pass2) {
-      throw new Exception("createEntityManagerSynchronizationTypeTest failed");
-    }
-  }
+	/*
+	 * @testName: createEntityManagerSynchronizationTypeTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:3322;
+	 * 
+	 * @test_Strategy: Create an EntityManagerFactory via SynchronizationType
+	 */
+	@Test
+	public void createEntityManagerSynchronizationTypeTest() throws Exception {
+		boolean pass1 = false;
+		boolean pass2 = false;
+		try {
+			TestUtil.logMsg("Test UNSYNCHRONIZED");
+			EntityManager em1 = getEntityManagerFactory().createEntityManager(SynchronizationType.UNSYNCHRONIZED);
+			if (em1 != null) {
+				TestUtil.logTrace("Received non-null EntityManager");
+				pass1 = true;
+			} else {
+				TestUtil.logErr("Received null EntityManager");
+			}
+		} catch (Exception e) {
+			TestUtil.logErr("Received unexpected exception", e);
+		}
+		try {
+			TestUtil.logMsg("Test SYNCHRONIZED");
+			EntityManager em2 = getEntityManagerFactory().createEntityManager(SynchronizationType.SYNCHRONIZED);
+			if (em2 != null) {
+				TestUtil.logTrace("Received non-null EntityManager");
+				pass2 = true;
+			} else {
+				TestUtil.logErr("Received null EntityManager");
+			}
+		} catch (Exception e) {
+			TestUtil.logErr("Received unexpected exception", e);
+		}
+		if (!pass1 || !pass2) {
+			throw new Exception("createEntityManagerSynchronizationTypeTest failed");
+		}
+	}
 
-  /*
-   * @testName: joinTransactionTransactionRequiredExceptionTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:489
-   * 
-   * @test_Strategy: Call EntityManager.joinTransaction() method when no
-   * transaction exists
-   */
-  @Test
-  public void joinTransactionTransactionRequiredExceptionTest() throws Exception {
-    boolean pass = false;
-    try {
+	/*
+	 * @testName: joinTransactionTransactionRequiredExceptionTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:489
+	 * 
+	 * @test_Strategy: Call EntityManager.joinTransaction() method when no
+	 * transaction exists
+	 */
+	@Test
+	public void joinTransactionTransactionRequiredExceptionTest() throws Exception {
+		boolean pass = false;
+		try {
 
-      getEntityManager().joinTransaction();
-      TestUtil.logErr("TransactionRequiredException not thrown");
-    } catch (TransactionRequiredException e) {
-      TestUtil.logTrace("TransactionRequiredException Caught as Expected.");
-      pass = true;
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
+			getEntityManager().joinTransaction();
+			TestUtil.logErr("TransactionRequiredException not thrown");
+		} catch (TransactionRequiredException e) {
+			TestUtil.logTrace("TransactionRequiredException Caught as Expected.");
+			pass = true;
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		}
 
-    if (!pass) {
-      throw new Exception("joinTransactionTransactionRequiredExceptionTest failed");
-    }
-  }
+		if (!pass) {
+			throw new Exception("joinTransactionTransactionRequiredExceptionTest failed");
+		}
+	}
 }

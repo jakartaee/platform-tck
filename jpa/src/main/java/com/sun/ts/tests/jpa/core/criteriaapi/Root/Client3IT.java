@@ -18,22 +18,13 @@ package com.sun.ts.tests.jpa.core.criteriaapi.Root;
 
 import java.util.List;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.common.schema30.Address;
 import com.sun.ts.tests.jpa.common.schema30.Customer;
 import com.sun.ts.tests.jpa.common.schema30.Customer_;
-import com.sun.ts.tests.jpa.common.schema30.Department;
-import com.sun.ts.tests.jpa.common.schema30.Department_;
-import com.sun.ts.tests.jpa.common.schema30.Employee;
 import com.sun.ts.tests.jpa.common.schema30.Order;
 import com.sun.ts.tests.jpa.common.schema30.Util;
 
@@ -41,608 +32,571 @@ import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CollectionJoin;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Expression;
-import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.ListJoin;
-import jakarta.persistence.criteria.MapJoin;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.criteria.SetJoin;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client3IT extends Util {
-	
-	 @Deployment(testable = false, managed = false)
-	 	public static JavaArchive createDeployment() throws Exception {
-
-	 		String pkgNameWithoutSuffix = Client3IT.class.getPackageName();
-	 		String pkgName = Client3IT.class.getPackageName() + ".";
-	 		String[] classes = {};
-	 		return createDeploymentJar("jpa_core_criteriaapi_root3.jar", pkgNameWithoutSuffix, classes);
-	 }
-
-
-  /*
-   * @testName: joinCollectionAttributeTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1136;
-   * 
-   * @test_Strategy: This query is defined on a one-many relationship. Verify
-   * the results were accurately returned.
-   *
-   * SELECT c FROM Customer c JOIN c.orders o WHERE (o.id = 1)
-   */
-  @SetupMethod(name = "setupOrderData")
-  @Test
-  public void joinCollectionAttributeTest() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
-
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> customer = cquery.from(Customer.class);
-      CollectionJoin order = customer.join(Customer_.orders);
-      cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
-      TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
-      List<Customer> clist = tquery.getResultList();
-
-      expectedPKs = new String[1];
-      expectedPKs[0] = "1";
-      if (!checkEntityPK(clist, expectedPKs)) {
-        TestUtil
-            .logErr("Did not get expected results.  Expected 1 reference, got: "
-                + clist.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
-
-    }
-
-    if (!pass) {
-      throw new Exception("joinCollectionAttributeTest failed");
-    }
-  }
-
-  /*
-   * @testName: joinCollectionAttributeJoinTypeTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1140;
-   * 
-   * @test_Strategy: This query is defined on a one-many relationship. Verify
-   * the results were accurately returned.
-   *
-   * SELECT c FROM Customer c INNER JOIN c.orders o WHERE (o.id = 1)
-   */
-  @SetupMethod(name = "setupOrderData")
-  @Test
-  public void joinCollectionAttributeJoinTypeTest() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
-
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> customer = cquery.from(Customer.class);
-      CollectionJoin<Customer, Order> order = customer.join(Customer_.orders,
-          JoinType.INNER);
-      cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
-      TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
-      List<Customer> clist = tquery.getResultList();
-
-      expectedPKs = new String[1];
-      expectedPKs[0] = "1";
-      if (!checkEntityPK(clist, expectedPKs)) {
-        TestUtil
-            .logErr("Did not get expected results.  Expected 1 reference, got: "
-                + clist.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
-
-    }
-
-    if (!pass) {
-      throw new Exception("joinCollectionAttributeJoinTypeTest failed");
-    }
-  }
-
-  /*
-   * @testName: joinCollectionStringTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1148;
-   * 
-   * @test_Strategy: This query is defined on a one-many relationship. Verify
-   * the results were accurately returned.
-   *
-   * SELECT c FROM Customer c JOIN c.orders o WHERE (o.id = 1)
-   */
-  @SetupMethod(name = "setupOrderData")
-  @Test
-  public void joinCollectionStringTest() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
-
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> customer = cquery.from(Customer.class);
-      CollectionJoin<Customer, Order> order = customer.joinCollection("orders");
-      cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
-      TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
-      List<Customer> clist = tquery.getResultList();
-
-      expectedPKs = new String[1];
-      expectedPKs[0] = "1";
-      if (!checkEntityPK(clist, expectedPKs)) {
-        TestUtil
-            .logErr("Did not get expected results.  Expected 1 reference, got: "
-                + clist.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
-
-    }
-
-    if (!pass) {
-      throw new Exception("joinCollectionStringTest failed");
-    }
-  }
-
-  /*
-   * @testName: joinCollectionStringJoinTypeTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1150;
-   * 
-   * @test_Strategy: This query is defined on a one-many relationship. Verify
-   * the results were accurately returned.
-   *
-   * SELECT c FROM Customer c INNER JOIN c.orders o WHERE (o.id = 1)
-   */
-  @SetupMethod(name = "setupOrderData")
-  @Test
-  public void joinCollectionStringJoinTypeTest() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
-
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> customer = cquery.from(Customer.class);
-      CollectionJoin<Customer, Order> order = customer.joinCollection("orders",
-          JoinType.INNER);
-      cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
-      TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
-      List<Customer> clist = tquery.getResultList();
-
-      expectedPKs = new String[1];
-      expectedPKs[0] = "1";
-      if (!checkEntityPK(clist, expectedPKs)) {
-        TestUtil
-            .logErr("Did not get expected results.  Expected 1 reference, got: "
-                + clist.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
-
-    }
-
-    if (!pass) {
-      throw new Exception("joinCollectionStringJoinTypeTest failed");
-    }
-  }
-
-  /*
-   * @testName: joinSetAttributeTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1137;
-   * 
-   * @test_Strategy: This query is defined on a one-many relationship. Verify
-   * the results were accurately returned.
-   *
-   * SELECT c FROM Customer c JOIN c.orders2 o WHERE (o.id = 1)
-   */
-  @SetupMethod(name = "setupOrderData")
-  @Test
-  public void joinSetAttributeTest() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
-
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> customer = cquery.from(Customer.class);
-      SetJoin<Customer, Order> order = customer.join(Customer_.orders2);
-      cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
-      TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
-      List<Customer> clist = tquery.getResultList();
-
-      expectedPKs = new String[1];
-      expectedPKs[0] = "1";
-      if (!checkEntityPK(clist, expectedPKs)) {
-        TestUtil
-            .logErr("Did not get expected results.  Expected 1 reference, got: "
-                + clist.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
-
-    }
-
-    if (!pass) {
-      throw new Exception("joinSetAttributeTest failed");
-    }
-  }
-
-  /*
-   * @testName: joinSetAttributeJoinTypeTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1141;
-   * 
-   * @test_Strategy: This query is defined on a one-many relationship. Verify
-   * the results were accurately returned.
-   *
-   * SELECT c FROM Customer c INNER JOIN c.orders2 o WHERE (o.id = 1)
-   */
-  @SetupMethod(name = "setupOrderData")
-  @Test
-  public void joinSetAttributeJoinTypeTest() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
-
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> customer = cquery.from(Customer.class);
-      SetJoin<Customer, Order> order = customer.join(Customer_.orders2,
-          JoinType.INNER);
-      cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
-      TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
-      List<Customer> clist = tquery.getResultList();
-
-      expectedPKs = new String[1];
-      expectedPKs[0] = "1";
-      if (!checkEntityPK(clist, expectedPKs)) {
-        TestUtil
-            .logErr("Did not get expected results.  Expected 1 reference, got: "
-                + clist.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
-
-    }
-
-    if (!pass) {
-      throw new Exception("joinSetAttributeJoinTypeTest failed");
-    }
-  }
-
-  /*
-   * @testName: joinSetStringTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1160;
-   * 
-   * @test_Strategy: This query is defined on a one-many relationship. Verify
-   * the results were accurately returned.
-   *
-   * SELECT c FROM Customer c JOIN c.orders2 o WHERE (o.id = 1)
-   */
-  @SetupMethod(name = "setupOrderData")
-  @Test
-  public void joinSetStringTest() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
-
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> customer = cquery.from(Customer.class);
-      SetJoin<Customer, Order> order = customer.joinSet("orders2");
-      cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
-      TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
-      List<Customer> clist = tquery.getResultList();
-
-      expectedPKs = new String[1];
-      expectedPKs[0] = "1";
-      if (!checkEntityPK(clist, expectedPKs)) {
-        TestUtil
-            .logErr("Did not get expected results.  Expected 1 reference, got: "
-                + clist.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
-
-    }
-
-    if (!pass) {
-      throw new Exception("joinSetStringTest failed");
-    }
-  }
-
-  /*
-   * @testName: joinSetStringJoinTypeTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1162;
-   * 
-   * @test_Strategy: This query is defined on a one-many relationship. Verify
-   * the results were accurately returned.
-   *
-   * SELECT c FROM Customer c INNER JOIN c.orders o WHERE (o.id = 1)
-   */
-  @SetupMethod(name = "setupOrderData")
-  @Test
-  public void joinSetStringJoinTypeTest() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
-
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> customer = cquery.from(Customer.class);
-      SetJoin<Customer, Order> order = customer.joinSet("orders2",
-          JoinType.INNER);
-      cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
-      TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
-      List<Customer> clist = tquery.getResultList();
-
-      expectedPKs = new String[1];
-      expectedPKs[0] = "1";
-      if (!checkEntityPK(clist, expectedPKs)) {
-        TestUtil
-            .logErr("Did not get expected results.  Expected 1 reference, got: "
-                + clist.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
-
-    }
-
-    if (!pass) {
-      throw new Exception("joinSetStringJoinTypeTest failed");
-    }
-  }
-
-  /*
-   * @testName: joinListAttributeTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1138;
-   * 
-   * @test_Strategy: This query is defined on a one-many relationship. Verify
-   * the results were accurately returned.
-   *
-   * SELECT c FROM Customer c JOIN c.orders3 o WHERE (o.id = 1)
-   */
-  @SetupMethod(name = "setupOrderData")
-  @Test
-  public void joinListAttributeTest() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
-
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> customer = cquery.from(Customer.class);
-      ListJoin<Customer, Order> order = customer.join(Customer_.orders3);
-      cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
-      TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
-      List<Customer> clist = tquery.getResultList();
-
-      expectedPKs = new String[1];
-      expectedPKs[0] = "1";
-      if (!checkEntityPK(clist, expectedPKs)) {
-        TestUtil
-            .logErr("Did not get expected results.  Expected 1 reference, got: "
-                + clist.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
-
-    }
-
-    if (!pass) {
-      throw new Exception("joinListAttributeTest failed");
-    }
-  }
-
-  /*
-   * @testName: joinListAttributeJoinTypeTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1142;
-   * 
-   * @test_Strategy: This query is defined on a one-many relationship. Verify
-   * the results were accurately returned.
-   *
-   * SELECT c FROM Customer c INNER JOIN c.orders3 o WHERE (o.id = 1)
-   */
-  @SetupMethod(name = "setupOrderData")
-  @Test
-  public void joinListAttributeJoinTypeTest() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
-
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> customer = cquery.from(Customer.class);
-      ListJoin<Customer, Order> order = customer.join(Customer_.orders3,
-          JoinType.INNER);
-      cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
-      TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
-      List<Customer> clist = tquery.getResultList();
-
-      expectedPKs = new String[1];
-      expectedPKs[0] = "1";
-      if (!checkEntityPK(clist, expectedPKs)) {
-        TestUtil
-            .logErr("Did not get expected results.  Expected 1 reference, got: "
-                + clist.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
-
-    }
-
-    if (!pass) {
-      throw new Exception("joinListAttributeJoinTypeTest failed");
-    }
-  }
-
-  /*
-   * @testName: joinListStringTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1152;
-   * 
-   * @test_Strategy: This query is defined on a one-many relationship. Verify
-   * the results were accurately returned.
-   *
-   * SELECT c FROM Customer c JOIN c.orders3 o WHERE (o.id = 1)
-   */
-  @SetupMethod(name = "setupOrderData")
-  @Test
-  public void joinListStringTest() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
-
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> customer = cquery.from(Customer.class);
-      ListJoin<Customer, Order> order = customer.joinList("orders3");
-      cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
-      TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
-      List<Customer> clist = tquery.getResultList();
-
-      expectedPKs = new String[1];
-      expectedPKs[0] = "1";
-      if (!checkEntityPK(clist, expectedPKs)) {
-        TestUtil
-            .logErr("Did not get expected results.  Expected 1 reference, got: "
-                + clist.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
-
-    }
-
-    if (!pass) {
-      throw new Exception("joinListStringTest failed");
-    }
-  }
-
-  /*
-   * @testName: joinListStringJoinTypeTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1154;
-   * 
-   * @test_Strategy: This query is defined on a one-many relationship. Verify
-   * the results were accurately returned.
-   *
-   * SELECT c FROM Customer c INNER JOIN c.orders3 o WHERE (o.id = 1)
-   */
-  @SetupMethod(name = "setupOrderData")
-  @Test
-  public void joinListStringJoinTypeTest() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
-
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> customer = cquery.from(Customer.class);
-      ListJoin<Customer, Order> order = customer.joinList("orders3",
-          JoinType.INNER);
-      cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
-      TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
-      List<Customer> clist = tquery.getResultList();
-
-      expectedPKs = new String[1];
-      expectedPKs[0] = "1";
-      if (!checkEntityPK(clist, expectedPKs)) {
-        TestUtil
-            .logErr("Did not get expected results.  Expected 1 reference, got: "
-                + clist.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
-
-    }
-
-    if (!pass) {
-      throw new Exception("joinListStringJoinTypeTest failed");
-    }
-  }
+
+	public static JavaArchive createDeployment() throws Exception {
+
+		String pkgNameWithoutSuffix = Client3IT.class.getPackageName();
+		String pkgName = Client3IT.class.getPackageName() + ".";
+		String[] classes = {};
+		return createDeploymentJar("jpa_core_criteriaapi_root3.jar", pkgNameWithoutSuffix, classes);
+	}
+
+	/*
+	 * @testName: joinCollectionAttributeTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1136;
+	 * 
+	 * @test_Strategy: This query is defined on a one-many relationship. Verify the
+	 * results were accurately returned.
+	 *
+	 * SELECT c FROM Customer c JOIN c.orders o WHERE (o.id = 1)
+	 */
+	@SetupMethod(name = "setupOrderData")
+	@Test
+	public void joinCollectionAttributeTest() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
+
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> customer = cquery.from(Customer.class);
+			CollectionJoin order = customer.join(Customer_.orders);
+			cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
+			TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
+			List<Customer> clist = tquery.getResultList();
+
+			expectedPKs = new String[1];
+			expectedPKs[0] = "1";
+			if (!checkEntityPK(clist, expectedPKs)) {
+				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
+
+		}
+
+		if (!pass) {
+			throw new Exception("joinCollectionAttributeTest failed");
+		}
+	}
+
+	/*
+	 * @testName: joinCollectionAttributeJoinTypeTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1140;
+	 * 
+	 * @test_Strategy: This query is defined on a one-many relationship. Verify the
+	 * results were accurately returned.
+	 *
+	 * SELECT c FROM Customer c INNER JOIN c.orders o WHERE (o.id = 1)
+	 */
+	@SetupMethod(name = "setupOrderData")
+	@Test
+	public void joinCollectionAttributeJoinTypeTest() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
+
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> customer = cquery.from(Customer.class);
+			CollectionJoin<Customer, Order> order = customer.join(Customer_.orders, JoinType.INNER);
+			cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
+			TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
+			List<Customer> clist = tquery.getResultList();
+
+			expectedPKs = new String[1];
+			expectedPKs[0] = "1";
+			if (!checkEntityPK(clist, expectedPKs)) {
+				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
+
+		}
+
+		if (!pass) {
+			throw new Exception("joinCollectionAttributeJoinTypeTest failed");
+		}
+	}
+
+	/*
+	 * @testName: joinCollectionStringTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1148;
+	 * 
+	 * @test_Strategy: This query is defined on a one-many relationship. Verify the
+	 * results were accurately returned.
+	 *
+	 * SELECT c FROM Customer c JOIN c.orders o WHERE (o.id = 1)
+	 */
+	@SetupMethod(name = "setupOrderData")
+	@Test
+	public void joinCollectionStringTest() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
+
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> customer = cquery.from(Customer.class);
+			CollectionJoin<Customer, Order> order = customer.joinCollection("orders");
+			cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
+			TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
+			List<Customer> clist = tquery.getResultList();
+
+			expectedPKs = new String[1];
+			expectedPKs[0] = "1";
+			if (!checkEntityPK(clist, expectedPKs)) {
+				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
+
+		}
+
+		if (!pass) {
+			throw new Exception("joinCollectionStringTest failed");
+		}
+	}
+
+	/*
+	 * @testName: joinCollectionStringJoinTypeTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1150;
+	 * 
+	 * @test_Strategy: This query is defined on a one-many relationship. Verify the
+	 * results were accurately returned.
+	 *
+	 * SELECT c FROM Customer c INNER JOIN c.orders o WHERE (o.id = 1)
+	 */
+	@SetupMethod(name = "setupOrderData")
+	@Test
+	public void joinCollectionStringJoinTypeTest() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
+
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> customer = cquery.from(Customer.class);
+			CollectionJoin<Customer, Order> order = customer.joinCollection("orders", JoinType.INNER);
+			cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
+			TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
+			List<Customer> clist = tquery.getResultList();
+
+			expectedPKs = new String[1];
+			expectedPKs[0] = "1";
+			if (!checkEntityPK(clist, expectedPKs)) {
+				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
+
+		}
+
+		if (!pass) {
+			throw new Exception("joinCollectionStringJoinTypeTest failed");
+		}
+	}
+
+	/*
+	 * @testName: joinSetAttributeTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1137;
+	 * 
+	 * @test_Strategy: This query is defined on a one-many relationship. Verify the
+	 * results were accurately returned.
+	 *
+	 * SELECT c FROM Customer c JOIN c.orders2 o WHERE (o.id = 1)
+	 */
+	@SetupMethod(name = "setupOrderData")
+	@Test
+	public void joinSetAttributeTest() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
+
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> customer = cquery.from(Customer.class);
+			SetJoin<Customer, Order> order = customer.join(Customer_.orders2);
+			cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
+			TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
+			List<Customer> clist = tquery.getResultList();
+
+			expectedPKs = new String[1];
+			expectedPKs[0] = "1";
+			if (!checkEntityPK(clist, expectedPKs)) {
+				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
+
+		}
+
+		if (!pass) {
+			throw new Exception("joinSetAttributeTest failed");
+		}
+	}
+
+	/*
+	 * @testName: joinSetAttributeJoinTypeTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1141;
+	 * 
+	 * @test_Strategy: This query is defined on a one-many relationship. Verify the
+	 * results were accurately returned.
+	 *
+	 * SELECT c FROM Customer c INNER JOIN c.orders2 o WHERE (o.id = 1)
+	 */
+	@SetupMethod(name = "setupOrderData")
+	@Test
+	public void joinSetAttributeJoinTypeTest() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
+
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> customer = cquery.from(Customer.class);
+			SetJoin<Customer, Order> order = customer.join(Customer_.orders2, JoinType.INNER);
+			cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
+			TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
+			List<Customer> clist = tquery.getResultList();
+
+			expectedPKs = new String[1];
+			expectedPKs[0] = "1";
+			if (!checkEntityPK(clist, expectedPKs)) {
+				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
+
+		}
+
+		if (!pass) {
+			throw new Exception("joinSetAttributeJoinTypeTest failed");
+		}
+	}
+
+	/*
+	 * @testName: joinSetStringTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1160;
+	 * 
+	 * @test_Strategy: This query is defined on a one-many relationship. Verify the
+	 * results were accurately returned.
+	 *
+	 * SELECT c FROM Customer c JOIN c.orders2 o WHERE (o.id = 1)
+	 */
+	@SetupMethod(name = "setupOrderData")
+	@Test
+	public void joinSetStringTest() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
+
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> customer = cquery.from(Customer.class);
+			SetJoin<Customer, Order> order = customer.joinSet("orders2");
+			cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
+			TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
+			List<Customer> clist = tquery.getResultList();
+
+			expectedPKs = new String[1];
+			expectedPKs[0] = "1";
+			if (!checkEntityPK(clist, expectedPKs)) {
+				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
+
+		}
+
+		if (!pass) {
+			throw new Exception("joinSetStringTest failed");
+		}
+	}
+
+	/*
+	 * @testName: joinSetStringJoinTypeTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1162;
+	 * 
+	 * @test_Strategy: This query is defined on a one-many relationship. Verify the
+	 * results were accurately returned.
+	 *
+	 * SELECT c FROM Customer c INNER JOIN c.orders o WHERE (o.id = 1)
+	 */
+	@SetupMethod(name = "setupOrderData")
+	@Test
+	public void joinSetStringJoinTypeTest() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
+
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> customer = cquery.from(Customer.class);
+			SetJoin<Customer, Order> order = customer.joinSet("orders2", JoinType.INNER);
+			cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
+			TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
+			List<Customer> clist = tquery.getResultList();
+
+			expectedPKs = new String[1];
+			expectedPKs[0] = "1";
+			if (!checkEntityPK(clist, expectedPKs)) {
+				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
+
+		}
+
+		if (!pass) {
+			throw new Exception("joinSetStringJoinTypeTest failed");
+		}
+	}
+
+	/*
+	 * @testName: joinListAttributeTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1138;
+	 * 
+	 * @test_Strategy: This query is defined on a one-many relationship. Verify the
+	 * results were accurately returned.
+	 *
+	 * SELECT c FROM Customer c JOIN c.orders3 o WHERE (o.id = 1)
+	 */
+	@SetupMethod(name = "setupOrderData")
+	@Test
+	public void joinListAttributeTest() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
+
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> customer = cquery.from(Customer.class);
+			ListJoin<Customer, Order> order = customer.join(Customer_.orders3);
+			cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
+			TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
+			List<Customer> clist = tquery.getResultList();
+
+			expectedPKs = new String[1];
+			expectedPKs[0] = "1";
+			if (!checkEntityPK(clist, expectedPKs)) {
+				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
+
+		}
+
+		if (!pass) {
+			throw new Exception("joinListAttributeTest failed");
+		}
+	}
+
+	/*
+	 * @testName: joinListAttributeJoinTypeTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1142;
+	 * 
+	 * @test_Strategy: This query is defined on a one-many relationship. Verify the
+	 * results were accurately returned.
+	 *
+	 * SELECT c FROM Customer c INNER JOIN c.orders3 o WHERE (o.id = 1)
+	 */
+	@SetupMethod(name = "setupOrderData")
+	@Test
+	public void joinListAttributeJoinTypeTest() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
+
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> customer = cquery.from(Customer.class);
+			ListJoin<Customer, Order> order = customer.join(Customer_.orders3, JoinType.INNER);
+			cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
+			TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
+			List<Customer> clist = tquery.getResultList();
+
+			expectedPKs = new String[1];
+			expectedPKs[0] = "1";
+			if (!checkEntityPK(clist, expectedPKs)) {
+				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
+
+		}
+
+		if (!pass) {
+			throw new Exception("joinListAttributeJoinTypeTest failed");
+		}
+	}
+
+	/*
+	 * @testName: joinListStringTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1152;
+	 * 
+	 * @test_Strategy: This query is defined on a one-many relationship. Verify the
+	 * results were accurately returned.
+	 *
+	 * SELECT c FROM Customer c JOIN c.orders3 o WHERE (o.id = 1)
+	 */
+	@SetupMethod(name = "setupOrderData")
+	@Test
+	public void joinListStringTest() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
+
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> customer = cquery.from(Customer.class);
+			ListJoin<Customer, Order> order = customer.joinList("orders3");
+			cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
+			TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
+			List<Customer> clist = tquery.getResultList();
+
+			expectedPKs = new String[1];
+			expectedPKs[0] = "1";
+			if (!checkEntityPK(clist, expectedPKs)) {
+				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
+
+		}
+
+		if (!pass) {
+			throw new Exception("joinListStringTest failed");
+		}
+	}
+
+	/*
+	 * @testName: joinListStringJoinTypeTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1154;
+	 * 
+	 * @test_Strategy: This query is defined on a one-many relationship. Verify the
+	 * results were accurately returned.
+	 *
+	 * SELECT c FROM Customer c INNER JOIN c.orders3 o WHERE (o.id = 1)
+	 */
+	@SetupMethod(name = "setupOrderData")
+	@Test
+	public void joinListStringJoinTypeTest() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
+
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> customer = cquery.from(Customer.class);
+			ListJoin<Customer, Order> order = customer.joinList("orders3", JoinType.INNER);
+			cquery.where(cbuilder.equal(order.get("id"), "1")).select(customer);
+			TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
+			List<Customer> clist = tquery.getResultList();
+
+			expectedPKs = new String[1];
+			expectedPKs[0] = "1";
+			if (!checkEntityPK(clist, expectedPKs)) {
+				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
+
+		}
+
+		if (!pass) {
+			throw new Exception("joinListStringJoinTypeTest failed");
+		}
+	}
 }

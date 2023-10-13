@@ -1,25 +1,31 @@
 package com.sun.ts.tests.jpa.core.annotations.access.property;
 
-import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client2IT extends Client {
-	
+
+	public static JavaArchive createDeployment() throws Exception {
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = Client.class.getPackageName() + ".";
+		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2",
+				"com.sun.ts.tests.jpa.core.types.common.Grade" };
+		return createDeploymentJar("jpa_core_annotations_access_property2.jar", pkgNameWithoutSuffix, classes);
+
+	}
+
 	@BeforeAll
 	public void setup2() throws Exception {
 		TestUtil.logTrace("setup2");
 		try {
 
 			super.setup();
+			createDeployment();
+
 			removeTestData();
 			createTestData2();
 			TestUtil.logTrace("Done creating test data");
@@ -30,7 +36,6 @@ public class Client2IT extends Client {
 		}
 	}
 
-	
 	/*
 	 * @testName: transientTest
 	 * 
@@ -91,7 +96,7 @@ public class Client2IT extends Client {
 		if (!pass)
 			throw new Exception("transientTest failed");
 	}
-	
+
 	public void createTestData2() {
 		TestUtil.logTrace("createTestData2");
 
@@ -119,7 +124,5 @@ public class Client2IT extends Client {
 		}
 
 	}
-
-
 
 }

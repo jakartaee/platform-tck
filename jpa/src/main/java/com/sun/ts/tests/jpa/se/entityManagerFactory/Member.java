@@ -30,50 +30,50 @@ import jakarta.persistence.Version;
 @Table(name = "MEMBER")
 public class Member implements java.io.Serializable {
 
-  private int memberId;
+	private int memberId;
 
-  private Integer version;
+	private Integer version;
 
-  private String memberName;
+	private String memberName;
 
-  public Member() {
-  }
+	public Member() {
+	}
 
-  public Member(int memberId, String memberName) {
-    this.memberId = memberId;
-    this.memberName = memberName;
-  }
+	public Member(int memberId, String memberName) {
+		this.memberId = memberId;
+		this.memberName = memberName;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Id
-  @Column(name = "MEMBER_ID")
-  public int getMemberId() {
-    return memberId;
-  }
+	@Id
+	@Column(name = "MEMBER_ID")
+	public int getMemberId() {
+		return memberId;
+	}
 
-  public void setMemberId(int memberId) {
-    this.memberId = memberId;
-  }
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
+	}
 
-  @Version
-  @Column(name = "VERSION")
-  public Integer getVersion() {
-    return version;
-  }
+	@Version
+	@Column(name = "VERSION")
+	public Integer getVersion() {
+		return version;
+	}
 
-  public void setVersion(Integer i) {
-    version = i;
-  }
+	public void setVersion(Integer i) {
+		version = i;
+	}
 
-  @Column(name = "MEMBER_NAME")
-  public String getMemberName() {
-    return memberName;
-  }
+	@Column(name = "MEMBER_NAME")
+	public String getMemberName() {
+		return memberName;
+	}
 
-  public void setMemberName(String memberName) {
-    this.memberName = memberName;
-  }
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
 
 }

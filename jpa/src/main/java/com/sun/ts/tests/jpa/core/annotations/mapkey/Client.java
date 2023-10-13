@@ -23,8 +23,6 @@ package com.sun.ts.tests.jpa.core.annotations.mapkey;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 
@@ -33,163 +31,149 @@ import com.sun.ts.tests.jpa.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-  public Client() {
-  }
-
-  protected Employee empRef[] = new Employee[10];
-
-  protected static Department deptRef[] = new Department[5];
-  
-  
-  @Deployment(testable = false, managed = false)
-	public static JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = Client.class.getPackageName() + ".";
-		String[] classes = { pkgName + "Department", pkgName + "Employee",
-				 pkgName + "Employee2", pkgName + "Employee3", pkgName + "Employee4"};
-		return createDeploymentJar("jpa_core_annotations_mapkey.jar", pkgNameWithoutSuffix, classes);
-
+	public Client() {
 	}
 
+	protected Employee empRef[] = new Employee[10];
 
-@BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	protected static Department deptRef[] = new Department[5];
 
-  /*
-   * 
-   * Business Methods to set up data for Test Cases
-   */
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup();
+			removeTestData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-  public void createTestDataCommon() throws Exception {
-    try {
+	/*
+	 * 
+	 * Business Methods to set up data for Test Cases
+	 */
 
-      TestUtil.logTrace("createTestDataCommon");
+	public void createTestDataCommon() throws Exception {
+		try {
 
-      getEntityTransaction().begin();
-      TestUtil.logTrace("Create 2 Departments");
-      deptRef[0] = new Department(1, "Marketing");
-      deptRef[1] = new Department(2, "Administration");
+			TestUtil.logTrace("createTestDataCommon");
 
-      TestUtil.logTrace("Start to persist departments ");
-      for (Department dept : deptRef) {
-        if (dept != null) {
-          getEntityManager().persist(dept);
-          TestUtil.logTrace("persisted department " + dept.getName());
-        }
-      }
+			getEntityTransaction().begin();
+			TestUtil.logTrace("Create 2 Departments");
+			deptRef[0] = new Department(1, "Marketing");
+			deptRef[1] = new Department(2, "Administration");
 
-      getEntityManager().flush();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception creating test data:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
-  }
+			TestUtil.logTrace("Start to persist departments ");
+			for (Department dept : deptRef) {
+				if (dept != null) {
+					getEntityManager().persist(dept);
+					TestUtil.logTrace("persisted department " + dept.getName());
+				}
+			}
 
-  public void createTestData() throws Exception {
-    try {
+			getEntityManager().flush();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected Exception creating test data:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in rollback:", re);
+			}
+		}
+	}
 
-      TestUtil.logTrace("createTestData");
-      createTestDataCommon();
-      getEntityTransaction().begin();
+	public void createTestData() throws Exception {
+		try {
 
-      TestUtil.logTrace("Create 5 employees");
-      empRef[0] = new Employee(1, "Alan", "Frechette");
-      empRef[0].setDepartment(deptRef[0]);
+			TestUtil.logTrace("createTestData");
+			createTestDataCommon();
+			getEntityTransaction().begin();
 
-      empRef[1] = new Employee(2, "Arthur", "Frechette");
-      empRef[1].setDepartment(deptRef[1]);
+			TestUtil.logTrace("Create 5 employees");
+			empRef[0] = new Employee(1, "Alan", "Frechette");
+			empRef[0].setDepartment(deptRef[0]);
 
-      empRef[2] = new Employee(3, "Shelly", "McGowan");
-      empRef[2].setDepartment(deptRef[0]);
+			empRef[1] = new Employee(2, "Arthur", "Frechette");
+			empRef[1].setDepartment(deptRef[1]);
 
-      empRef[3] = new Employee(4, "Robert", "Bissett");
-      empRef[3].setDepartment(deptRef[1]);
+			empRef[2] = new Employee(3, "Shelly", "McGowan");
+			empRef[2].setDepartment(deptRef[0]);
 
-      empRef[4] = new Employee(5, "Stephen", "DMilla");
-      empRef[4].setDepartment(deptRef[0]);
+			empRef[3] = new Employee(4, "Robert", "Bissett");
+			empRef[3].setDepartment(deptRef[1]);
 
-      Map<String, Employee> link = new HashMap<String, Employee>();
-      link.put(empRef[0].getLastName(), empRef[0]);
-      link.put(empRef[2].getLastName(), empRef[2]);
-      link.put(empRef[4].getLastName(), empRef[4]);
-      deptRef[0].setLastNameEmployees(link);
+			empRef[4] = new Employee(5, "Stephen", "DMilla");
+			empRef[4].setDepartment(deptRef[0]);
 
-      Map<String, Employee> link1 = new HashMap<String, Employee>();
-      link1.put(empRef[1].getLastName(), empRef[1]);
-      link1.put(empRef[3].getLastName(), empRef[3]);
-      deptRef[1].setLastNameEmployees(link1);
+			Map<String, Employee> link = new HashMap<String, Employee>();
+			link.put(empRef[0].getLastName(), empRef[0]);
+			link.put(empRef[2].getLastName(), empRef[2]);
+			link.put(empRef[4].getLastName(), empRef[4]);
+			deptRef[0].setLastNameEmployees(link);
 
-      TestUtil.logTrace("Start to persist employees ");
-      for (Employee emp : empRef) {
-        if (emp != null) {
-          getEntityManager().persist(emp);
-          TestUtil.logTrace("persisted employee " + emp.getId());
-        }
-      }
+			Map<String, Employee> link1 = new HashMap<String, Employee>();
+			link1.put(empRef[1].getLastName(), empRef[1]);
+			link1.put(empRef[3].getLastName(), empRef[3]);
+			deptRef[1].setLastNameEmployees(link1);
 
-      getEntityManager().flush();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception creating test data:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
-  }
+			TestUtil.logTrace("Start to persist employees ");
+			for (Employee emp : empRef) {
+				if (emp != null) {
+					getEntityManager().persist(emp);
+					TestUtil.logTrace("persisted employee " + emp.getId());
+				}
+			}
 
- 
-  @AfterAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+			getEntityManager().flush();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected Exception creating test data:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in rollback:", re);
+			}
+		}
+	}
 
-  protected void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("Delete from EMPLOYEE")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("Delete from DEPARTMENT")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in RemoveSchemaData:", re);
-      }
-    }
-  }
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("cleanup");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+		removeDeploymentJar();
+	}
+
+	protected void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("Delete from EMPLOYEE").executeUpdate();
+			getEntityManager().createNativeQuery("Delete from DEPARTMENT").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in RemoveSchemaData:", re);
+			}
+		}
+	}
 }

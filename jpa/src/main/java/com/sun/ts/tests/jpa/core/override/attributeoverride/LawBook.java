@@ -24,52 +24,50 @@ import jakarta.persistence.Id;
 @Entity
 public class LawBook extends Book implements Serializable {
 
-  @Id
-  private Integer id;
+	@Id
+	private Integer id;
 
-  private String category;
+	private String category;
 
-  public LawBook() {
-  }
+	public LawBook() {
+	}
 
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.getId() != null ? this.getId().hashCode() : 0);
-    return hash;
-  }
+	public int hashCode() {
+		int hash = 0;
+		hash += (this.getId() != null ? this.getId().hashCode() : 0);
+		return hash;
+	}
 
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof LawBook)) {
-      return false;
-    }
-    LawBook other = (LawBook) object;
-    if (this.getId() != other.getId()
-        && (this.getId() == null || !this.getId().equals(other.getId()))) {
-      return false;
-    }
-    return true;
-  }
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not
+		// set
+		if (!(object instanceof LawBook)) {
+			return false;
+		}
+		LawBook other = (LawBook) object;
+		if (this.getId() != other.getId() && (this.getId() == null || !this.getId().equals(other.getId()))) {
+			return false;
+		}
+		return true;
+	}
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.attributeoverride."
-        + "LawBook[id=" + getId() + "]";
-  }
+	public String toString() {
+		return "com.sun.ts.tests.jpa.core.override.attributeoverride." + "LawBook[id=" + getId() + "]";
+	}
 
-  public Integer getId() {
-    return id;
-  }
+	public Integer getId() {
+		return id;
+	}
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-  public String getCategory() {
-    return category;
-  }
+	public String getCategory() {
+		return category;
+	}
 
-  public void setCategory(String category) {
-    this.category = category;
-  }
+	public void setCategory(String category) {
+		this.category = category;
+	}
 }

@@ -22,38 +22,33 @@ import jakarta.persistence.Converter;
 @Converter(autoApply = true)
 public class CharConverter implements AttributeConverter<char[], String> {
 
-  public String convertToDatabaseColumn(char[] attribute) {
-    StringBuffer sb = new StringBuffer();
-    for (char c : attribute) {
-      sb.append(c);
-    }
-    String s = sb.toString();
-    System.out.println(
-        "*** Entering CharConverter:convertToDatabaseColumn[" + s + "] ***");
+	public String convertToDatabaseColumn(char[] attribute) {
+		StringBuffer sb = new StringBuffer();
+		for (char c : attribute) {
+			sb.append(c);
+		}
+		String s = sb.toString();
+		System.out.println("*** Entering CharConverter:convertToDatabaseColumn[" + s + "] ***");
 
-    if ((attribute.length == 3) && (attribute[0] == 'D')
-        && (attribute[1] == 'o') && (attribute[2] == 'e')) {
-      s = "Smith";
-    }
-    System.out.println(
-        "*** Leaving CharConverter:convertToDatabaseColumn[" + s + "] ***");
+		if ((attribute.length == 3) && (attribute[0] == 'D') && (attribute[1] == 'o') && (attribute[2] == 'e')) {
+			s = "Smith";
+		}
+		System.out.println("*** Leaving CharConverter:convertToDatabaseColumn[" + s + "] ***");
 
-    return s;
-  }
+		return s;
+	}
 
-  public char[] convertToEntityAttribute(String dbData) {
-    System.out.println("*** Entering CharConverter:convertToEntityAttribute["
-        + dbData.toString() + "] ***");
-    char[] c = dbData.toCharArray();
-    if (dbData.equals("Smith")) {
-      c = new char[] { 'J', 'a', 'm', 'e', 's' };
-    }
-    StringBuffer sb = new StringBuffer();
-    for (char c1 : c) {
-      sb.append(c1);
-    }
-    System.out.println("*** Leaving CharConverter:convertToEntityAttribute["
-        + sb.toString() + "] ***");
-    return c;
-  }
+	public char[] convertToEntityAttribute(String dbData) {
+		System.out.println("*** Entering CharConverter:convertToEntityAttribute[" + dbData.toString() + "] ***");
+		char[] c = dbData.toCharArray();
+		if (dbData.equals("Smith")) {
+			c = new char[] { 'J', 'a', 'm', 'e', 's' };
+		}
+		StringBuffer sb = new StringBuffer();
+		for (char c1 : c) {
+			sb.append(c1);
+		}
+		System.out.println("*** Leaving CharConverter:convertToEntityAttribute[" + sb.toString() + "] ***");
+		return c;
+	}
 }

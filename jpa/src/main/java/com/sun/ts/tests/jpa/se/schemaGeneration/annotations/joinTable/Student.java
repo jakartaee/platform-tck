@@ -27,64 +27,64 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "SCHEMAGENSTUDENT")
 public class Student implements java.io.Serializable {
-  int studentId;
+	int studentId;
 
-  String studentName;
+	String studentName;
 
-  List<Course> courses;
+	List<Course> courses;
 
-  public Student() {
-  }
+	public Student() {
+	}
 
-  public Student(int id) {
-    this.studentId = id;
-  }
+	public Student(int id) {
+		this.studentId = id;
+	}
 
-  public Student(int id, String name) {
-    this.studentId = id;
-    this.studentName = name;
-  }
+	public Student(int id, String name) {
+		this.studentId = id;
+		this.studentName = name;
+	}
 
-  @Id
-  public int getStudentId() {
-    return studentId;
-  }
+	@Id
+	public int getStudentId() {
+		return studentId;
+	}
 
-  public void setStudentId(int id) {
-    this.studentId = id;
-  }
+	public void setStudentId(int id) {
+		this.studentId = id;
+	}
 
-  @ManyToMany(mappedBy = "students", cascade = CascadeType.ALL)
-  public List<Course> getCourses() {
-    return courses;
-  }
+	@ManyToMany(mappedBy = "students", cascade = CascadeType.ALL)
+	public List<Course> getCourses() {
+		return courses;
+	}
 
-  public void setCourses(List<Course> courses) {
-    this.courses = courses;
-  }
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
 
-  public String getStudentName() {
-    return studentName;
-  }
+	public String getStudentName() {
+		return studentName;
+	}
 
-  public void setStudentName(String studentName) {
-    this.studentName = studentName;
-  }
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
 
-  public int hashCode() {
+	public int hashCode() {
 
-    return this.getStudentId() + this.getStudentName().hashCode();
-  }
+		return this.getStudentId() + this.getStudentName().hashCode();
+	}
 
-  public boolean equals(Object obj) {
-    boolean result = false;
+	public boolean equals(Object obj) {
+		boolean result = false;
 
-    if ((obj != null) && (obj instanceof Student)) {
-      Student student = (Student) obj;
-      result = (student.getStudentId() == this.getStudentId()
-          && student.getStudentName().equals(this.getStudentName()));
-    }
-    return result;
-  }
+		if ((obj != null) && (obj instanceof Student)) {
+			Student student = (Student) obj;
+			result = (student.getStudentId() == this.getStudentId()
+					&& student.getStudentName().equals(this.getStudentName()));
+		}
+		return result;
+	}
 
 }

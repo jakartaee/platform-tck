@@ -16,90 +16,94 @@
 
 package com.sun.ts.tests.jpa.core.annotations.tableGenerator;
 
-import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 
-
 public class Client1IT extends Client {
 
-  private DataTypes d0;
+	private DataTypes d0;
 
-  public Client1IT() {
-  }
+	public Client1IT() {
+	}
 
+	public static JavaArchive createDeployment() throws Exception {
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = Client.class.getPackageName() + ".";
+		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2", pkgName + "DataTypes3",
+				pkgName + "DataTypes4" };
+		return createDeploymentJar("jpa_core_annotations_tableGenerator1.jar", pkgNameWithoutSuffix, classes);
+	}
 
-  @BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
 
-      super.setup();
-      removeTestData();
-      createTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+			super.setup();
+			createDeployment();
+			removeTestData();
+			createTestData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-    /*
-   * @testName: generatorOnEntityTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:2111; PERSISTENCE:SPEC:2111.1;
-   * PERSISTENCE:SPEC:2113;
-   * 
-   * @test_Strategy: use a generator specified on an entity
-   */
-@Test
-  public void generatorOnEntityTest() throws Exception {
+	/*
+	 * @testName: generatorOnEntityTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:2111; PERSISTENCE:SPEC:2111.1;
+	 * PERSISTENCE:SPEC:2113;
+	 * 
+	 * @test_Strategy: use a generator specified on an entity
+	 */
+	@Test
+	public void generatorOnEntityTest() throws Exception {
 
-    boolean pass = false;
+		boolean pass = false;
 
-    try {
-      getEntityTransaction().begin();
-      int id = d0.getId();
-      TestUtil.logTrace("find id: " + id);
-      DataTypes d = getEntityManager().find(DataTypes.class, id);
-      if (d != null) {
-        if (d.getStringData().equals(d0.getStringData())) {
-          pass = true;
-        }
+		try {
+			getEntityTransaction().begin();
+			int id = d0.getId();
+			TestUtil.logTrace("find id: " + id);
+			DataTypes d = getEntityManager().find(DataTypes.class, id);
+			if (d != null) {
+				if (d.getStringData().equals(d0.getStringData())) {
+					pass = true;
+				}
 
-        getEntityTransaction().commit();
-      } else {
-        TestUtil.logErr("EntityManager.find returned null result");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
+				getEntityTransaction().commit();
+			} else {
+				TestUtil.logErr("EntityManager.find returned null result");
+			}
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		}
 
-    if (!pass)
-      throw new Exception("generatorOnEntityTest failed");
-  }
+		if (!pass)
+			throw new Exception("generatorOnEntityTest failed");
+	}
 
-  // Methods used for Tests
+	// Methods used for Tests
 
-  public void createTestData() {
-    try {
-      getEntityTransaction().begin();
+	public void createTestData() {
+		try {
+			getEntityTransaction().begin();
 
-      d0 = new DataTypes();
-      d0.setStringData("testData");
-      TestUtil.logTrace("DataType:" + d0.toString());
-      getEntityManager().persist(d0);
+			d0 = new DataTypes();
+			d0.setStringData("testData");
+			TestUtil.logTrace("DataType:" + d0.toString());
+			getEntityManager().persist(d0);
 
-      getEntityManager().flush();
-      getEntityTransaction().commit();
+			getEntityManager().flush();
+			getEntityTransaction().commit();
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
-  }
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		}
+	}
 
 }

@@ -30,37 +30,37 @@ import jakarta.persistence.Id;
 @Entity
 public class Insurance implements java.io.Serializable {
 
-  // Instance variables
-  private int insid;
+	// Instance variables
+	private int insid;
 
-  private String carrier;
+	private String carrier;
 
-  public Insurance() {
-  }
+	public Insurance() {
+	}
 
-  public Insurance(int insid, String carrier) {
-    this.insid = insid;
-    this.carrier = carrier;
-  }
+	public Insurance(int insid, String carrier) {
+		this.insid = insid;
+		this.carrier = carrier;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Id
-  public int getInsId() {
-    return insid;
-  }
+	@Id
+	public int getInsId() {
+		return insid;
+	}
 
-  public void setInsId(int insid) {
-    this.insid = insid;
-  }
+	public void setInsId(int insid) {
+		this.insid = insid;
+	}
 
-  public String getCarrier() {
-    return carrier;
-  }
+	public String getCarrier() {
+		return carrier;
+	}
 
-  public void setCarrier(String carrier) {
-    this.carrier = carrier;
-  }
+	public void setCarrier(String carrier) {
+		this.carrier = carrier;
+	}
 
 }

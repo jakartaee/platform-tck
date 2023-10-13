@@ -20,411 +20,397 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.persist.basic;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class ClientIT extends PMClientBase {
 
-  public ClientIT() {
-  }
+	public ClientIT() {
+	}
 
-  @Deployment(testable = false, managed = false)
 	public static JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = ClientIT.class.getPackageName() + ".";
-		String[] classes = { pkgName + "A"};
+		String[] classes = { pkgName + "A" };
 		return createDeploymentJar("jpa_core_entitytest_persist_basic.jar", pkgNameWithoutSuffix, classes);
 
 	}
 
-@BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      removeTestData();
-    } catch (Exception e) {
-      throw new Exception("Setup failed:", e);
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup();
+			removeTestData();
+		} catch (Exception e) {
+			throw new Exception("Setup failed:", e);
 
-    }
-  }
+		}
+	}
 
-  /*
-   * BEGIN Test Cases
-   */
+	/*
+	 * BEGIN Test Cases
+	 */
 
-  /*
-   * @testName: persistBasicTest1
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:613; PERSISTENCE:SPEC:614;
-   * PERSISTENCE:SPEC:671; PERSISTENCE:SPEC:675
-   * 
-   * @test_Strategy: A new entity bean instance has no persistent identity and
-   * is not yet associated to a persistent context.
-   *
-   * The contains method [used to determine whether an entity instance is in the
-   * managed state in the current persistence context ] returns false:
-   *
-   * If the instance is new and the persist method has not been on the entity.
-   *
-   * Instantiate an entity and verify the contains method returns false.
-   */
-@Test
-  public void persistBasicTest1() throws Exception {
+	/*
+	 * @testName: persistBasicTest1
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:613; PERSISTENCE:SPEC:614;
+	 * PERSISTENCE:SPEC:671; PERSISTENCE:SPEC:675
+	 * 
+	 * @test_Strategy: A new entity bean instance has no persistent identity and is
+	 * not yet associated to a persistent context.
+	 *
+	 * The contains method [used to determine whether an entity instance is in the
+	 * managed state in the current persistence context ] returns false:
+	 *
+	 * If the instance is new and the persist method has not been on the entity.
+	 *
+	 * Instantiate an entity and verify the contains method returns false.
+	 */
+	@Test
+	public void persistBasicTest1() throws Exception {
 
-    TestUtil.logTrace("Begin persistBasicTest1");
+		TestUtil.logTrace("Begin persistBasicTest1");
 
-    boolean pass = false;
-    A aRef;
-    try {
+		boolean pass = false;
+		A aRef;
+		try {
 
-      aRef = new A("1", "A1", 1);
+			aRef = new A("1", "A1", 1);
 
-      getEntityTransaction().begin();
-      if (!getInstanceStatus(aRef)) {
-        pass = true;
-      }
-      getEntityTransaction().commit();
+			getEntityTransaction().begin();
+			if (!getInstanceStatus(aRef)) {
+				pass = true;
+			}
+			getEntityTransaction().commit();
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in rollback:", re);
+			}
+		}
 
-    if (!pass)
-      throw new Exception("persistBasicTest1 failed");
+		if (!pass)
+			throw new Exception("persistBasicTest1 failed");
 
-  }
+	}
 
-  /*
-   * @testName: persistBasicTest2
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:613; PERSISTENCE:SPEC:615;
-   * PERSISTENCE:SPEC:619; PERSISTENCE:SPEC:667; PERSISTENCE:SPEC:669
-   * 
-   * @test_Strategy: The new entity bean instance becomes both managed and
-   * persistent by invoking the persist method on it. The semantics of the
-   * persist operation as applied to entity X is as follows:
-   *
-   * If X is a new entity, it becomes managed.
-   *
-   * Invoke persist on the new entity. Find the entity instance and ensure it is
-   * managed by calling contains() verifying it returns true.
-   */
-@Test
-  public void persistBasicTest2() throws Exception {
+	/*
+	 * @testName: persistBasicTest2
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:613; PERSISTENCE:SPEC:615;
+	 * PERSISTENCE:SPEC:619; PERSISTENCE:SPEC:667; PERSISTENCE:SPEC:669
+	 * 
+	 * @test_Strategy: The new entity bean instance becomes both managed and
+	 * persistent by invoking the persist method on it. The semantics of the persist
+	 * operation as applied to entity X is as follows:
+	 *
+	 * If X is a new entity, it becomes managed.
+	 *
+	 * Invoke persist on the new entity. Find the entity instance and ensure it is
+	 * managed by calling contains() verifying it returns true.
+	 */
+	@Test
+	public void persistBasicTest2() throws Exception {
 
-    TestUtil.logTrace("Begin persistBasicTest2");
+		TestUtil.logTrace("Begin persistBasicTest2");
 
-    boolean pass = false;
-    A aRef;
+		boolean pass = false;
+		A aRef;
 
-    try {
-      TestUtil.logTrace("new A");
-      aRef = new A("2", "a2", 2);
-      createA(aRef);
+		try {
+			TestUtil.logTrace("new A");
+			aRef = new A("2", "a2", 2);
+			createA(aRef);
 
-      A newA = findA("2");
+			A newA = findA("2");
 
-      if (newA != null) {
-        TestUtil.logTrace("A IS NOT NULL");
-      }
+			if (newA != null) {
+				TestUtil.logTrace("A IS NOT NULL");
+			}
 
-      getEntityTransaction().begin();
-      pass = getInstanceStatus(findA("2"));
-      getEntityTransaction().commit();
+			getEntityTransaction().begin();
+			pass = getInstanceStatus(findA("2"));
+			getEntityTransaction().commit();
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in rollback:", re);
+			}
+		}
 
-    if (!pass)
-      throw new Exception("persistBasicTest2 failed");
+		if (!pass)
+			throw new Exception("persistBasicTest2 failed");
 
-  }
+	}
 
-  /*
-   * @testName: persistBasicTest3
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:613; PERSISTENCE:SPEC:618;
-   * PERSISTENCE:SPEC:620
-   * 
-   * @test_Strategy: The new entity bean instance becomes both managed and
-   * persistent by invoking the persist method on it. The semantics of the
-   * persist operation as applied to entity X is as follows:
-   *
-   * The entity X will be entered into the database at or before transaction
-   * commit or as a result of the flush operation.
-   *
-   * Create a new entity instance, invoke flush(), then attempt to access the
-   * entity by find and invoking a query on it.
-   *
-   */
-@Test
-  public void persistBasicTest3() throws Exception {
+	/*
+	 * @testName: persistBasicTest3
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:613; PERSISTENCE:SPEC:618;
+	 * PERSISTENCE:SPEC:620
+	 * 
+	 * @test_Strategy: The new entity bean instance becomes both managed and
+	 * persistent by invoking the persist method on it. The semantics of the persist
+	 * operation as applied to entity X is as follows:
+	 *
+	 * The entity X will be entered into the database at or before transaction
+	 * commit or as a result of the flush operation.
+	 *
+	 * Create a new entity instance, invoke flush(), then attempt to access the
+	 * entity by find and invoking a query on it.
+	 *
+	 */
+	@Test
+	public void persistBasicTest3() throws Exception {
 
-    TestUtil.logTrace("Begin persistBasicTest3");
+		TestUtil.logTrace("Begin persistBasicTest3");
 
-    boolean pass = false;
-    Object result;
-    A a1;
+		boolean pass = false;
+		Object result;
+		A a1;
 
-    try {
-      getEntityTransaction().begin();
-      a1 = new A("3", "a3", 3);
-      TestUtil.logTrace("Persist Instance");
-      getEntityManager().persist(a1);
-      getEntityManager().flush();
+		try {
+			getEntityTransaction().begin();
+			a1 = new A("3", "a3", 3);
+			TestUtil.logTrace("Persist Instance");
+			getEntityManager().persist(a1);
+			getEntityManager().flush();
 
-      TestUtil.logTrace("find By Name");
-      result = (A) findByName("a3");
+			TestUtil.logTrace("find By Name");
+			result = (A) findByName("a3");
 
-      TestUtil.logTrace("Check to see that the entities are identical");
-      if (result == a1) {
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception fe) {
-        TestUtil.logErr("Unexpected exception rolling back transaction", fe);
-      }
-    }
+			TestUtil.logTrace("Check to see that the entities are identical");
+			if (result == a1) {
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception fe) {
+				TestUtil.logErr("Unexpected exception rolling back transaction", fe);
+			}
+		}
 
-    if (!pass)
-      throw new Exception("persistBasicTest3 failed");
+		if (!pass)
+			throw new Exception("persistBasicTest3 failed");
 
-  }
+	}
 
-  /*
-   * @testName: persistBasicTest4
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:613; PERSISTENCE:SPEC:618;
-   * PERSISTENCE:SPEC:621
-   * 
-   * @test_Strategy: The new entity bean instance becomes both managed and
-   * persistent by invoking the persist method on it. The semantics of the
-   * persist operation as applied to entity X is as follows:
-   *
-   * If X is preexisting managed entity, it is ignored by the persist operation.
-   *
-   * Invoke persist on an already managed instance. Ensure no exception is
-   * thrown and that the entity is still persisted and managed.
-   *
-   */
-@Test
-  public void persistBasicTest4() throws Exception {
+	/*
+	 * @testName: persistBasicTest4
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:613; PERSISTENCE:SPEC:618;
+	 * PERSISTENCE:SPEC:621
+	 * 
+	 * @test_Strategy: The new entity bean instance becomes both managed and
+	 * persistent by invoking the persist method on it. The semantics of the persist
+	 * operation as applied to entity X is as follows:
+	 *
+	 * If X is preexisting managed entity, it is ignored by the persist operation.
+	 *
+	 * Invoke persist on an already managed instance. Ensure no exception is thrown
+	 * and that the entity is still persisted and managed.
+	 *
+	 */
+	@Test
+	public void persistBasicTest4() throws Exception {
 
-    TestUtil.logTrace("Begin persistBasicTest4");
-    final A aRef = new A("4", "a4", 4);
+		TestUtil.logTrace("Begin persistBasicTest4");
+		final A aRef = new A("4", "a4", 4);
 
-    boolean pass = false;
-    try {
+		boolean pass = false;
+		try {
 
-      TestUtil.logTrace("Persist Instance");
-      createA(aRef);
+			TestUtil.logTrace("Persist Instance");
+			createA(aRef);
 
-      getEntityTransaction().begin();
-      TestUtil.logTrace("get Instance Status ");
-      if (getInstanceStatus(findA("4"))) {
-        try {
-          TestUtil.logTrace("entity is managed, try to persist again ");
-          A newA = findA("4");
-          getEntityManager().persist(newA);
-          TestUtil.logTrace(
-              "Persist ignored on an already persisted entity as expected");
-          pass = true;
-        } catch (Exception ee) {
-          TestUtil.logErr("Unexpected exception trying to persist an"
-              + " already persisted entity", ee);
-          pass = false;
-        }
+			getEntityTransaction().begin();
+			TestUtil.logTrace("get Instance Status ");
+			if (getInstanceStatus(findA("4"))) {
+				try {
+					TestUtil.logTrace("entity is managed, try to persist again ");
+					A newA = findA("4");
+					getEntityManager().persist(newA);
+					TestUtil.logTrace("Persist ignored on an already persisted entity as expected");
+					pass = true;
+				} catch (Exception ee) {
+					TestUtil.logErr("Unexpected exception trying to persist an" + " already persisted entity", ee);
+					pass = false;
+				}
 
-      } else {
-        TestUtil.logTrace("Instance is not managed. Test Fails.");
-        pass = false;
-      }
+			} else {
+				TestUtil.logTrace("Instance is not managed. Test Fails.");
+				pass = false;
+			}
 
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected exception rolling back transaction", re);
-      }
-    }
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected exception rolling back transaction", re);
+			}
+		}
 
-    if (!pass)
-      throw new Exception("persistBasicTest4 failed");
-  }
+		if (!pass)
+			throw new Exception("persistBasicTest4 failed");
+	}
 
-  /*
-   * @testName: persistBasicTest5
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:613; PERSISTENCE:SPEC:618;
-   * PERSISTENCE:SPEC:641; PERSISTENCE:SPEC:642
-   * 
-   * @test_Strategy: The flush method can be used for force synchronization. The
-   * semantics of the flush operation applied to an entity X is as follows:
-   *
-   * If X is a managed entity, it is synchronized to the database.
-   *
-   * Execute flush on a managed entity and ensure the database reflects the
-   * change.
-   *
-   */
-@Test
-  public void persistBasicTest5() throws Exception {
+	/*
+	 * @testName: persistBasicTest5
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:613; PERSISTENCE:SPEC:618;
+	 * PERSISTENCE:SPEC:641; PERSISTENCE:SPEC:642
+	 * 
+	 * @test_Strategy: The flush method can be used for force synchronization. The
+	 * semantics of the flush operation applied to an entity X is as follows:
+	 *
+	 * If X is a managed entity, it is synchronized to the database.
+	 *
+	 * Execute flush on a managed entity and ensure the database reflects the
+	 * change.
+	 *
+	 */
+	@Test
+	public void persistBasicTest5() throws Exception {
 
-    TestUtil.logTrace("Begin persistBasicTest5");
-    final A aRef = new A("5", "a5", 5);
-    A a2;
+		TestUtil.logTrace("Begin persistBasicTest5");
+		final A aRef = new A("5", "a5", 5);
+		A a2;
 
-    boolean pass = false;
-    try {
+		boolean pass = false;
+		try {
 
-      TestUtil.logTrace("Persist Instance");
-      createA(aRef);
+			TestUtil.logTrace("Persist Instance");
+			createA(aRef);
 
-      getEntityTransaction().begin();
-      TestUtil.logTrace("get Instance Status ");
-      if (getInstanceStatus(findA("5"))) {
-        try {
-          TestUtil.logTrace("entity is managed, try to change name and flush ");
-          a2 = findA("5");
-          a2.setAName("a2");
-          getEntityManager().flush();
-          if (a2.getAName().equals("a2")) {
-            TestUtil.logTrace("sync to database successful");
-            pass = true;
-          }
-        } catch (Exception ee) {
-          TestUtil.logErr(
-              "Unexpected exception trying to flush a" + "persisted entity",
-              ee);
-          pass = false;
-        }
+			getEntityTransaction().begin();
+			TestUtil.logTrace("get Instance Status ");
+			if (getInstanceStatus(findA("5"))) {
+				try {
+					TestUtil.logTrace("entity is managed, try to change name and flush ");
+					a2 = findA("5");
+					a2.setAName("a2");
+					getEntityManager().flush();
+					if (a2.getAName().equals("a2")) {
+						TestUtil.logTrace("sync to database successful");
+						pass = true;
+					}
+				} catch (Exception ee) {
+					TestUtil.logErr("Unexpected exception trying to flush a" + "persisted entity", ee);
+					pass = false;
+				}
 
-      } else {
-        TestUtil.logTrace("Instance is not already persisted. Test Fails.");
-        pass = false;
-      }
-      getEntityTransaction().commit();
+			} else {
+				TestUtil.logTrace("Instance is not already persisted. Test Fails.");
+				pass = false;
+			}
+			getEntityTransaction().commit();
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected exception rolling back transaction", re);
-      }
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected exception rolling back transaction", re);
+			}
 
-    }
+		}
 
-    if (!pass)
-      throw new Exception("persistBasicTest5 failed");
-  }
+		if (!pass)
+			throw new Exception("persistBasicTest5 failed");
+	}
 
-  /*
-   * Business Methods for Test Cases
-   */
+	/*
+	 * Business Methods for Test Cases
+	 */
 
-  private void createA(final A a) {
-    TestUtil.logTrace("Entered createA method");
-    getEntityTransaction().begin();
-    getEntityManager().persist(a);
-    // WORKAROUND
-    getEntityManager().flush();
-    getEntityTransaction().commit();
-  }
+	private void createA(final A a) {
+		TestUtil.logTrace("Entered createA method");
+		getEntityTransaction().begin();
+		getEntityManager().persist(a);
+		// WORKAROUND
+		getEntityManager().flush();
+		getEntityTransaction().commit();
+	}
 
-  private A findA(final String id) {
-    TestUtil.logTrace("Entered findA method");
-    return getEntityManager().find(A.class, id);
-  }
+	private A findA(final String id) {
+		TestUtil.logTrace("Entered findA method");
+		return getEntityManager().find(A.class, id);
+	}
 
-  private Object findByName(final String name) {
-    TestUtil.logTrace("Entered findByName method");
-    return getEntityManager()
-        .createQuery("select a from A a where a.name = :name")
-        .setParameter("name", name).getSingleResult();
-  }
+	private Object findByName(final String name) {
+		TestUtil.logTrace("Entered findByName method");
+		return getEntityManager().createQuery("select a from A a where a.name = :name").setParameter("name", name)
+				.getSingleResult();
+	}
 
-  private boolean getInstanceStatus(final Object o) {
-    TestUtil.logTrace("Entered getInstanceStatus method");
-    return getEntityManager().contains(o);
-  }
+	private boolean getInstanceStatus(final Object o) {
+		TestUtil.logTrace("Entered getInstanceStatus method");
+		return getEntityManager().contains(o);
+	}
 
-  @AfterAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup data");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("Cleanup data");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+	}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM AEJB_1XM_BI_BTOB")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM AEJB_1XM_BI_BTOB").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 
 }

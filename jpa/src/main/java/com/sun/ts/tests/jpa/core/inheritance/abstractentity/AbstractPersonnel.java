@@ -26,11 +26,11 @@ package com.sun.ts.tests.jpa.core.inheritance.abstractentity;
 
 public abstract class AbstractPersonnel {
 
-  public String getFullTimeRep() {
-    return "Mabel Murray";
-  }
+	public String getFullTimeRep() {
+		return "Mabel Murray";
+	}
 
-  public String getPartTimeRep() {
-    return "John Cleveland";
-  }
+	public String getPartTimeRep() {
+		return "John Cleveland";
+	}
 }

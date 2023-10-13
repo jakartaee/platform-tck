@@ -20,15 +20,10 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.Set;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -36,183 +31,174 @@ import com.sun.ts.tests.jpa.common.PMClientBase;
 import jakarta.persistence.EntityManager;
 
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
-
 public class ClientIT extends PMClientBase {
 
-  private Map<Course, Semester> student2EnrollmentMap;
-  
-  
-	@Deployment(testable = false, managed = false)
+	private Map<Course, Semester> student2EnrollmentMap;
+
 	public static JavaArchive createDeployment() throws Exception {
 		String pkgName = ClientIT.class.getPackageName() + ".";
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String[] classes = { pkgName + "Course", pkgName + "Semester", pkgName + "Student"};
+		String[] classes = { pkgName + "Course", pkgName + "Semester", pkgName + "Student" };
 		return createDeploymentJar("jpa_core_annotations_mapkeyclass.jar", pkgNameWithoutSuffix, classes);
 
 	}
 
+	public ClientIT() {
+	}
 
-  public ClientIT() {
-  }
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
 
+			super.setup();
+			createDeployment();
+			removeTestData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-  @BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
+	/*
+	 * @testName: mapKeyClass
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501;
+	 * PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504; PERSISTENCE:SPEC:505;
+	 * PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507; PERSISTENCE:SPEC:508;
+	 * PERSISTENCE:SPEC:932; PERSISTENCE:SPEC:936; PERSISTENCE:SPEC:939;
+	 * PERSISTENCE:SPEC:943; PERSISTENCE:SPEC:946; PERSISTENCE:SPEC:930;
+	 * PERSISTENCE:SPEC:1018; PERSISTENCE:SPEC:1019; PERSISTENCE:SPEC:1020;
+	 * PERSISTENCE:SPEC:1021; PERSISTENCE:SPEC:1023; PERSISTENCE:SPEC:1025;
+	 * PERSISTENCE:SPEC:848; PERSISTENCE:SPEC:856; PERSISTENCE:SPEC:908;
+	 * PERSISTENCE:SPEC:909; PERSISTENCE:SPEC:915; PERSISTENCE:SPEC:925;
+	 * PERSISTENCE:SPEC:918; PERSISTENCE:SPEC:928; PERSISTENCE:SPEC:929;
+	 * PERSISTENCE:JAVADOC:149; PERSISTENCE:JAVADOC:152; PERSISTENCE:JAVADOC:163;
+	 * PERSISTENCE:SPEC:846; PERSISTENCE:SPEC:1204; PERSISTENCE:JAVADOC:350;
+	 * PERSISTENCE:JAVADOC:370;
+	 *
+	 * @test_Strategy: With basic entity requirements, persist/remove an entity.
+	 */
+	@Test
+	public void mapKeyClass() throws Exception {
+		boolean pass = false;
 
-      super.setup();
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+		try {
+			getEntityTransaction().begin();
+			createEntities();
+			getEntityManager().flush();
+			clearCache();
+			clearCache();
 
-  /*
-   * @testName: mapKeyClass
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501;
-   * PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504; PERSISTENCE:SPEC:505;
-   * PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507; PERSISTENCE:SPEC:508;
-   * PERSISTENCE:SPEC:932; PERSISTENCE:SPEC:936; PERSISTENCE:SPEC:939;
-   * PERSISTENCE:SPEC:943; PERSISTENCE:SPEC:946; PERSISTENCE:SPEC:930;
-   * PERSISTENCE:SPEC:1018; PERSISTENCE:SPEC:1019; PERSISTENCE:SPEC:1020;
-   * PERSISTENCE:SPEC:1021; PERSISTENCE:SPEC:1023; PERSISTENCE:SPEC:1025;
-   * PERSISTENCE:SPEC:848; PERSISTENCE:SPEC:856; PERSISTENCE:SPEC:908;
-   * PERSISTENCE:SPEC:909; PERSISTENCE:SPEC:915; PERSISTENCE:SPEC:925;
-   * PERSISTENCE:SPEC:918; PERSISTENCE:SPEC:928; PERSISTENCE:SPEC:929;
-   * PERSISTENCE:JAVADOC:149; PERSISTENCE:JAVADOC:152; PERSISTENCE:JAVADOC:163;
-   * PERSISTENCE:SPEC:846; PERSISTENCE:SPEC:1204; PERSISTENCE:JAVADOC:350;
-   * PERSISTENCE:JAVADOC:370;
-   *
-   * @test_Strategy: With basic entity requirements, persist/remove an entity.
-   */
-  @Test
-  public void mapKeyClass() throws Exception {
-    boolean pass = false;
+			final Student student = getEntityManager().find(Student.class, 2);
+			final Set<Course> courses = student.getCourses();
+			if (courses != null) {
+				if (courses.containsAll(student2EnrollmentMap.keySet())
+						&& student2EnrollmentMap.keySet().containsAll(courses)
+						&& courses.size() == student2EnrollmentMap.keySet().size())
+					pass = true;
+			} else {
+				TestUtil.logErr("getCourses() returned null value");
+			}
+			clearCache();
+			getEntityTransaction().commit();
 
-    try {
-      getEntityTransaction().begin();
-      createEntities();
-      getEntityManager().flush();
-      clearCache();
-      clearCache();
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred:", e);
+		}
 
-      final Student student = getEntityManager().find(Student.class, 2);
-      final Set<Course> courses = student.getCourses();
-      if (courses != null) {
-        if (courses.containsAll(student2EnrollmentMap.keySet())
-            && student2EnrollmentMap.keySet().containsAll(courses)
-            && courses.size() == student2EnrollmentMap.keySet().size())
-          pass = true;
-      } else {
-        TestUtil.logErr("getCourses() returned null value");
-      }
-      clearCache();
-      getEntityTransaction().commit();
+		if (!pass) {
+			throw new Exception("mapKeyClass Failed");
+		}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred:", e);
-    }
+	}
 
-    if (!pass) {
-      throw new Exception("mapKeyClass Failed");
-    }
+	public void createEntities() {
+		// Create 8 students;
+		final Student student1 = new Student(1, "Neo");
+		final Student student2 = new Student(2, "Vivek");
 
-  }
+		// Create 4 Semesters;
+		final Semester semester1 = new Semester(1);
+		final Semester semester2 = new Semester(2);
+		final Semester semester3 = new Semester(3);
 
-  public void createEntities() {
-    // Create 8 students;
-    final Student student1 = new Student(1, "Neo");
-    final Student student2 = new Student(2, "Vivek");
+		// Create 12 Courses;
+		final Course appliedMath = new Course(101, "AppliedMathematics");
+		final Course physics = new Course(102, "Physics");
+		final Course operationResearch = new Course(103, "OperationResearch");
+		final Course statistics = new Course(201, "Statistics");
 
-    // Create 4 Semesters;
-    final Semester semester1 = new Semester(1);
-    final Semester semester2 = new Semester(2);
-    final Semester semester3 = new Semester(3);
+		// Create Enrollment map for Student1
+		Map<Course, Semester> student1EnrollmentMap = new Hashtable();
+		student1EnrollmentMap.put(appliedMath, semester1);
+		student1EnrollmentMap.put(physics, semester1);
+		student1EnrollmentMap.put(statistics, semester2);
+		// Set Enrollment map for Student1
+		student1.setEnrollment(student1EnrollmentMap);
 
-    // Create 12 Courses;
-    final Course appliedMath = new Course(101, "AppliedMathematics");
-    final Course physics = new Course(102, "Physics");
-    final Course operationResearch = new Course(103, "OperationResearch");
-    final Course statistics = new Course(201, "Statistics");
+		// Create Enrollment map for Student2
+		student2EnrollmentMap = new Hashtable();
+		student2EnrollmentMap.put(appliedMath, semester1);
+		student2EnrollmentMap.put(physics, semester1);
+		student2EnrollmentMap.put(operationResearch, semester3);
+		student2EnrollmentMap.put(statistics, semester3);
+		// Set Enrollment map for Student2
+		student2.setEnrollment(student2EnrollmentMap);
 
-    // Create Enrollment map for Student1
-    Map<Course, Semester> student1EnrollmentMap = new Hashtable();
-    student1EnrollmentMap.put(appliedMath, semester1);
-    student1EnrollmentMap.put(physics, semester1);
-    student1EnrollmentMap.put(statistics, semester2);
-    // Set Enrollment map for Student1
-    student1.setEnrollment(student1EnrollmentMap);
+		EntityManager entityManager = getEntityManager();
 
-    // Create Enrollment map for Student2
-    student2EnrollmentMap = new Hashtable();
-    student2EnrollmentMap.put(appliedMath, semester1);
-    student2EnrollmentMap.put(physics, semester1);
-    student2EnrollmentMap.put(operationResearch, semester3);
-    student2EnrollmentMap.put(statistics, semester3);
-    // Set Enrollment map for Student2
-    student2.setEnrollment(student2EnrollmentMap);
+		// persist 8 students
+		entityManager.persist(student1);
+		entityManager.persist(student2);
+		TestUtil.logTrace("persisted 2 students");
 
-    EntityManager entityManager = getEntityManager();
+		// persist 4 semesters
+		entityManager.persist(semester1);
+		entityManager.persist(semester2);
+		entityManager.persist(semester3);
+		TestUtil.logTrace("persisted 4 semesters");
 
-    // persist 8 students
-    entityManager.persist(student1);
-    entityManager.persist(student2);
-    TestUtil.logTrace("persisted 2 students");
+		// persist 12 courses
+		entityManager.persist(appliedMath);
+		entityManager.persist(physics);
+		entityManager.persist(operationResearch);
+		entityManager.persist(statistics);
+		TestUtil.logTrace("persisted 4 Courses");
 
-    // persist 4 semesters
-    entityManager.persist(semester1);
-    entityManager.persist(semester2);
-    entityManager.persist(semester3);
-    TestUtil.logTrace("persisted 4 semesters");
+	}
 
-    // persist 12 courses
-    entityManager.persist(appliedMath);
-    entityManager.persist(physics);
-    entityManager.persist(operationResearch);
-    entityManager.persist(statistics);
-    TestUtil.logTrace("persisted 4 Courses");
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("cleanup");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+		removeDeploymentJar();
+	}
 
-  }
-
-  @AfterAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
-
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("Delete from ENROLLMENTS")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("Delete from SEMESTER")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("Delete from STUDENT")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("Delete from COURSE")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in RemoveSchemaData:", re);
-      }
-    }
-  }
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("Delete from ENROLLMENTS").executeUpdate();
+			getEntityManager().createNativeQuery("Delete from SEMESTER").executeUpdate();
+			getEntityManager().createNativeQuery("Delete from STUDENT").executeUpdate();
+			getEntityManager().createNativeQuery("Delete from COURSE").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in RemoveSchemaData:", re);
+			}
+		}
+	}
 }

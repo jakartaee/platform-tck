@@ -24,16 +24,16 @@ import jakarta.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Info.class)
 public class Info_ {
 
-  public static volatile SingularAttribute<Info, String> id;
+	public static volatile SingularAttribute<Info, String> id;
 
-  public static volatile SingularAttribute<Info, String> zip;
+	public static volatile SingularAttribute<Info, String> zip;
 
-  public static volatile SingularAttribute<Info, Spouse> spouse;
+	public static volatile SingularAttribute<Info, Spouse> spouse;
 
-  public static volatile SingularAttribute<Info, String> street;
+	public static volatile SingularAttribute<Info, String> street;
 
-  public static volatile SingularAttribute<Info, String> state;
+	public static volatile SingularAttribute<Info, String> state;
 
-  public static volatile SingularAttribute<Info, String> city;
+	public static volatile SingularAttribute<Info, String> city;
 
 }

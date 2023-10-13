@@ -16,36 +16,16 @@
 
 package com.sun.ts.tests.jpa.core.annotations.access.mappedsc;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.sql.Date;
-import java.util.Enumeration;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.io.File;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 public class ClientIT extends PMClientBase {
 
 	private static FullTimeEmployee ftRef[] = new FullTimeEmployee[5];
@@ -74,12 +54,9 @@ public class ClientIT extends PMClientBase {
 
 	public ClientIT() {
 	}
-	
 
-
-	@Deployment(testable = false, managed = false)
 	public static JavaArchive createDeployment() throws Exception {
-		
+
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = ClientIT.class.getPackageName() + ".";
 		String[] classes1 = { pkgName + "AbstractPersonnel", pkgName + "Department", pkgName + "Employee",
@@ -94,6 +71,8 @@ public class ClientIT extends PMClientBase {
 		try {
 
 			super.setup();
+			createDeployment();
+
 			removeTestData();
 			createTestData();
 			TestUtil.logTrace("Done creating test data");
@@ -222,6 +201,7 @@ public class ClientIT extends PMClientBase {
 		removeTestData();
 		TestUtil.logTrace("cleanup complete, calling super.cleanup");
 		super.cleanup();
+		removeDeploymentJar();
 	}
 
 	private void removeTestData() {

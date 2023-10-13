@@ -25,59 +25,57 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class DID3EmployeeId implements java.io.Serializable {
 
-  String firstName;
+	String firstName;
 
-  String lastName;
+	String lastName;
 
-  public DID3EmployeeId() {
-  }
+	public DID3EmployeeId() {
+	}
 
-  public DID3EmployeeId(String firstName, String lastName) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
+	public DID3EmployeeId(String firstName, String lastName) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 
-  public String getFirstName() {
-    return firstName;
-  }
+	public String getFirstName() {
+		return firstName;
+	}
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-  public String getLastName() {
-    return lastName;
-  }
+	public String getLastName() {
+		return lastName;
+	}
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-  @Override
-  public boolean equals(Object obj) {
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    final DID3EmployeeId other = (DID3EmployeeId) obj;
-    if ((this.firstName == null) ? (other.firstName != null)
-        : !this.firstName.equals(other.firstName)) {
-      return false;
-    }
-    if ((this.lastName == null) ? (other.lastName != null)
-        : !this.lastName.equals(other.lastName)) {
-      return false;
-    }
-    return true;
-  }
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final DID3EmployeeId other = (DID3EmployeeId) obj;
+		if ((this.firstName == null) ? (other.firstName != null) : !this.firstName.equals(other.firstName)) {
+			return false;
+		}
+		if ((this.lastName == null) ? (other.lastName != null) : !this.lastName.equals(other.lastName)) {
+			return false;
+		}
+		return true;
+	}
 
-  @Override
-  public int hashCode() {
-    int hash = 5;
-    hash = 29 * hash + (this.firstName != null ? this.firstName.hashCode() : 0);
-    hash = 29 * hash + (this.lastName != null ? this.lastName.hashCode() : 0);
-    return hash;
-  }
+	@Override
+	public int hashCode() {
+		int hash = 5;
+		hash = 29 * hash + (this.firstName != null ? this.firstName.hashCode() : 0);
+		hash = 29 * hash + (this.lastName != null ? this.lastName.hashCode() : 0);
+		return hash;
+	}
 }

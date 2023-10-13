@@ -28,56 +28,55 @@ import jakarta.persistence.Entity;
 @Entity
 public class DID6bPerson implements Serializable {
 
-  @EmbeddedId
-  DID6bPersonId id;
+	@EmbeddedId
+	DID6bPersonId id;
 
-  private String ssn;
+	private String ssn;
 
-  public DID6bPerson(DID6bPersonId pId, String ssn) {
-    this.id = pId;
-    this.ssn = ssn;
-  }
+	public DID6bPerson(DID6bPersonId pId, String ssn) {
+		this.id = pId;
+		this.ssn = ssn;
+	}
 
-  public DID6bPerson() {
-  }
+	public DID6bPerson() {
+	}
 
-  public String getSsn() {
-    return ssn;
-  }
+	public String getSsn() {
+		return ssn;
+	}
 
-  public void setSsn(String ssn) {
-    this.ssn = ssn;
-  }
+	public void setSsn(String ssn) {
+		this.ssn = ssn;
+	}
 
-  @Override
-  public boolean equals(Object obj) {
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    final DID6bPerson other = (DID6bPerson) obj;
-    if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
-      return false;
-    }
-    if ((this.ssn == null) ? (other.ssn != null)
-        : !this.ssn.equals(other.ssn)) {
-      return false;
-    }
-    return true;
-  }
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final DID6bPerson other = (DID6bPerson) obj;
+		if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+			return false;
+		}
+		if ((this.ssn == null) ? (other.ssn != null) : !this.ssn.equals(other.ssn)) {
+			return false;
+		}
+		return true;
+	}
 
-  @Override
-  public int hashCode() {
-    int hash = 7;
-    hash = 41 * hash + (this.id != null ? this.id.hashCode() : 0);
-    hash = 41 * hash + (this.ssn != null ? this.ssn.hashCode() : 0);
-    return hash;
-  }
+	@Override
+	public int hashCode() {
+		int hash = 7;
+		hash = 41 * hash + (this.id != null ? this.id.hashCode() : 0);
+		hash = 41 * hash + (this.ssn != null ? this.ssn.hashCode() : 0);
+		return hash;
+	}
 
-  @Override
-  public String toString() {
-    return "derivedssn6b.DID6bPerson[ssn=" + ssn + "]";
-  }
+	@Override
+	public String toString() {
+		return "derivedssn6b.DID6bPerson[ssn=" + ssn + "]";
+	}
 }

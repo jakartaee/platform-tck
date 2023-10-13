@@ -24,270 +24,253 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class ClientIT extends PMClientBase {
 
-  private static Coffee cRef[] = new Coffee[5];
+	private static Coffee cRef[] = new Coffee[5];
 
-  public ClientIT() {
-  }
-  
-  @Deployment(testable = false, managed = false)
+	public ClientIT() {
+	}
+
 	public static JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = ClientIT.class.getPackageName() + ".";
-		String[] classes = { pkgName + "Coffee"};
+		String[] classes = { pkgName + "Coffee" };
 		return createDeploymentJar("jpa_core_annotations_entity.jar", pkgNameWithoutSuffix, classes);
 
 	}
 
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
 
+			super.setup();
+			createDeployment();
+			removeTestData();
+			TestUtil.logTrace("Create Test data");
+			createTestData();
+			TestUtil.logTrace("Done creating test data");
 
-  @BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-      super.setup();
-      removeTestData();
-      TestUtil.logTrace("Create Test data");
-      createTestData();
-      TestUtil.logTrace("Done creating test data");
+	/*
+	 * @testName: annotationEntityTest1
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:993; PERSISTENCE:SPEC:995;
+	 * PERSISTENCE:JAVADOC:29; PERSISTENCE:SPEC:762; PERSISTENCE:SPEC:402;
+	 * PERSISTENCE:SPEC:404;
+	 * 
+	 * @test_Strategy: The name annotation element defaults to the unqualified name
+	 * of the entity class. This name is used to refer to the entities in queries.
+	 * 
+	 * Name the entity using a lower case name and ensure the query can be executed
+	 * with the lower case entity name as the abstract schema name.
+	 * 
+	 */
+	@Test
+	public void annotationEntityTest1() throws Exception {
 
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+		TestUtil.logTrace("Begin annotationEntityTest1");
+		boolean pass = true;
+		List c = null;
 
-  /*
-   * @testName: annotationEntityTest1
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:993; PERSISTENCE:SPEC:995;
-   * PERSISTENCE:JAVADOC:29; PERSISTENCE:SPEC:762; PERSISTENCE:SPEC:402;
-   * PERSISTENCE:SPEC:404;
-   * 
-   * @test_Strategy: The name annotation element defaults to the unqualified
-   * name of the entity class. This name is used to refer to the entities in
-   * queries.
-   * 
-   * Name the entity using a lower case name and ensure the query can be
-   * executed with the lower case entity name as the abstract schema name.
-   * 
-   */
-@Test
-  public void annotationEntityTest1() throws Exception {
+		try {
+			getEntityTransaction().begin();
+			final String[] expectedBrands = new String[] { "vanilla creme", "mocha", "hazelnut", "decaf",
+					"breakfast blend" };
 
-    TestUtil.logTrace("Begin annotationEntityTest1");
-    boolean pass = true;
-    List c = null;
+			TestUtil.logTrace("find coffees by brand name");
+			c = getEntityManager().createQuery("Select c.brandName from cof c ORDER BY c.brandName DESC")
+					.setMaxResults(10).getResultList();
 
-    try {
-      getEntityTransaction().begin();
-      final String[] expectedBrands = new String[] { "vanilla creme", "mocha",
-          "hazelnut", "decaf", "breakfast blend" };
+			final String[] result = (String[]) (c.toArray(new String[c.size()]));
+			TestUtil.logTrace("Compare results of Coffee Brand Names");
+			pass = Arrays.equals(expectedBrands, result);
 
-      TestUtil.logTrace("find coffees by brand name");
-      c = getEntityManager()
-          .createQuery(
-              "Select c.brandName from cof c ORDER BY c.brandName DESC")
-          .setMaxResults(10).getResultList();
+			if (!pass) {
+				TestUtil.logErr("Did not get expected results.  Expected 5 Coffees : "
+						+ "vanilla creme, mocha, hazelnut, decaf, breakfast blend. " + " Received: " + c.size());
+				Iterator it = c.iterator();
+				while (it.hasNext()) {
+					TestUtil.logTrace(" Coffee Brand Name: " + it.next());
+				}
+			} else {
+				TestUtil.logTrace("Expected results received");
+			}
 
-      final String[] result = (String[]) (c.toArray(new String[c.size()]));
-      TestUtil.logTrace("Compare results of Coffee Brand Names");
-      pass = Arrays.equals(expectedBrands, result);
+			getEntityTransaction().commit();
 
-      if (!pass) {
-        TestUtil.logErr("Did not get expected results.  Expected 5 Coffees : "
-            + "vanilla creme, mocha, hazelnut, decaf, breakfast blend. "
-            + " Received: " + c.size());
-        Iterator it = c.iterator();
-        while (it.hasNext()) {
-          TestUtil.logTrace(" Coffee Brand Name: " + it.next());
-        }
-      } else {
-        TestUtil.logTrace("Expected results received");
-      }
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+			pass = false;
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in rollback:", re);
+			}
+		}
 
-      getEntityTransaction().commit();
+		if (!pass)
+			throw new Exception("annotationEntityTest1 failed");
+	}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-      pass = false;
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
+	/*
+	 * @testName: annotationEntityTest2
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:993; PERSISTENCE:SPEC:995;
+	 * PERSISTENCE:JAVADOC:29
+	 * 
+	 * @test_Strategy: The name annotation element defaults to the unqualified name
+	 * of the entity class. This name is used to refer to the entities in queries.
+	 * 
+	 * Name the entity using a different name than the entity class name and ensure
+	 * the query can be executed with the lower case entity name as the abstract
+	 * schema name selecting teh
+	 * 
+	 */
+	@Test
+	public void annotationEntityTest2() throws Exception {
 
-    if (!pass)
-      throw new Exception("annotationEntityTest1 failed");
-  }
+		TestUtil.logTrace("Begin annotationEntityTest2");
+		boolean pass1 = true;
+		boolean pass2 = false;
+		List c = null;
 
-  /*
-   * @testName: annotationEntityTest2
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:993; PERSISTENCE:SPEC:995;
-   * PERSISTENCE:JAVADOC:29
-   * 
-   * @test_Strategy: The name annotation element defaults to the unqualified
-   * name of the entity class. This name is used to refer to the entities in
-   * queries.
-   * 
-   * Name the entity using a different name than the entity class name and
-   * ensure the query can be executed with the lower case entity name as the
-   * abstract schema name selecting teh
-   * 
-   */
-@Test
-  public void annotationEntityTest2() throws Exception {
+		try {
+			getEntityTransaction().begin();
+			final Integer[] expectedPKs = new Integer[] { 21, 22, 23, 24, 25 };
 
-    TestUtil.logTrace("Begin annotationEntityTest2");
-    boolean pass1 = true;
-    boolean pass2 = false;
-    List c = null;
+			TestUtil.logTrace("find all coffees");
+			c = getEntityManager().createQuery("Select c from cof c").setMaxResults(10).getResultList();
 
-    try {
-      getEntityTransaction().begin();
-      final Integer[] expectedPKs = new Integer[] { 21, 22, 23, 24, 25 };
+			if (c.size() != 5) {
+				TestUtil.logErr("Did not get expected results.  Expected 5 references, got: " + c.size());
+				pass1 = false;
+			} else if (pass1) {
+				TestUtil.logTrace("Expected size received, verify contents . . . ");
+				Iterator i = c.iterator();
+				int foundCof = 0;
+				while (i.hasNext()) {
+					TestUtil.logTrace("Check List for expected coffees");
+					Coffee o = (Coffee) i.next();
+					for (int l = 0; l < 5; l++) {
+						if (expectedPKs[l].equals(o.getId())) {
+							TestUtil.logTrace("Found coffee with PK: " + o.getId());
+							foundCof++;
+							break;
+						}
+					}
+				}
+				if (foundCof != 5) {
+					TestUtil.logErr("anotationEntityTest2: Did not get expected results");
+					pass2 = false;
+				} else {
+					TestUtil.logTrace("Expected results received");
+					pass2 = true;
+				}
+			}
 
-      TestUtil.logTrace("find all coffees");
-      c = getEntityManager().createQuery("Select c from cof c")
-          .setMaxResults(10).getResultList();
+			getEntityTransaction().commit();
 
-      if (c.size() != 5) {
-        TestUtil.logErr(
-            "Did not get expected results.  Expected 5 references, got: "
-                + c.size());
-        pass1 = false;
-      } else if (pass1) {
-        TestUtil.logTrace("Expected size received, verify contents . . . ");
-        Iterator i = c.iterator();
-        int foundCof = 0;
-        while (i.hasNext()) {
-          TestUtil.logTrace("Check List for expected coffees");
-          Coffee o = (Coffee) i.next();
-          for (int l = 0; l < 5; l++) {
-            if (expectedPKs[l].equals(o.getId())) {
-              TestUtil.logTrace("Found coffee with PK: " + o.getId());
-              foundCof++;
-              break;
-            }
-          }
-        }
-        if (foundCof != 5) {
-          TestUtil.logErr("anotationEntityTest2: Did not get expected results");
-          pass2 = false;
-        } else {
-          TestUtil.logTrace("Expected results received");
-          pass2 = true;
-        }
-      }
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+			pass2 = false;
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in rollback:", re);
+			}
+		}
 
-      getEntityTransaction().commit();
+		if (!pass1 || !pass2)
+			throw new Exception("annotationEntityTest1 failed");
+	}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-      pass2 = false;
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
+	/*
+	 * 
+	 * Business Methods to set up data for Test Cases
+	 */
 
-    if (!pass1 || !pass2)
-      throw new Exception("annotationEntityTest1 failed");
-  }
+	private void createTestData() throws Exception {
+		try {
 
-  /*
-   * 
-   * Business Methods to set up data for Test Cases
-   */
+			TestUtil.logTrace("createTestData");
 
-  private void createTestData() throws Exception {
-    try {
+			getEntityTransaction().begin();
+			TestUtil.logTrace("Create 5 Coffees");
+			cRef[0] = new Coffee(21, "hazelnut", 1.0F);
+			cRef[1] = new Coffee(22, "vanilla creme", 2.0F);
+			cRef[2] = new Coffee(23, "decaf", 3.0F);
+			cRef[3] = new Coffee(24, "breakfast blend", 4.0F);
+			cRef[4] = new Coffee(25, "mocha", 5.0F);
 
-      TestUtil.logTrace("createTestData");
+			TestUtil.logTrace("Start to persist coffees ");
+			for (Coffee coffee : cRef) {
+				getEntityManager().persist(coffee);
+				TestUtil.logTrace("persisted coffee " + coffee);
+			}
+			getEntityManager().flush();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected Exception creating test data:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in rollback:", re);
+			}
+		}
+	}
 
-      getEntityTransaction().begin();
-      TestUtil.logTrace("Create 5 Coffees");
-      cRef[0] = new Coffee(21, "hazelnut", 1.0F);
-      cRef[1] = new Coffee(22, "vanilla creme", 2.0F);
-      cRef[2] = new Coffee(23, "decaf", 3.0F);
-      cRef[3] = new Coffee(24, "breakfast blend", 4.0F);
-      cRef[4] = new Coffee(25, "mocha", 5.0F);
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("cleanup");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+		removeDeploymentJar();
+	}
 
-      TestUtil.logTrace("Start to persist coffees ");
-      for (Coffee coffee : cRef) {
-        getEntityManager().persist(coffee);
-        TestUtil.logTrace("persisted coffee " + coffee);
-      }
-      getEntityManager().flush();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception creating test data:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
-  }
-
-  @AfterAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
-
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM COFFEE")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM COFFEE").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

@@ -18,148 +18,133 @@ package com.sun.ts.tests.jpa.core.derivedid.ex4b;
 
 import java.util.List;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class ClientIT extends PMClientBase {
 
-  public ClientIT() {
-  }
-  
-  @Deployment(testable = false, managed = false)
+	public ClientIT() {
+	}
+
 	public static JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = ClientIT.class.getPackageName() + ".";
-		String[] classes = { pkgName + "DID4bMedicalHistory", pkgName + "DID4bPerson"};
+		String[] classes = { pkgName + "DID4bMedicalHistory", pkgName + "DID4bPerson" };
 		return createDeploymentJar("jpa_core_derivedid_ex4b.jar", pkgNameWithoutSuffix, classes);
-  }
+	}
 
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup();
+			removeTestData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
+	/**
+	 * @testName: DIDTest
+	 * @assertion_ids: PERSISTENCE:SPEC:1339;
+	 * @test_Strategy: Derived Identifier
+	 *                 <p/>
+	 *                 The parent entity has a simple primary key Case (b): The
+	 *                 primary key consists of a single attribute corresponding to
+	 *                 the simple primary key of the parent entity. The dependent
+	 *                 entity has a primary key attribute in addition to the
+	 *                 relationship attribute corresponding to the primary key. This
+	 *                 attribute is mapped to the primary key by the
+	 *                 MappedByIdannotation applied to the relationship.
+	 */
+	@Test
+	public void DIDTest() throws Exception {
+		boolean pass = false;
 
-@BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+		try {
 
-  /**
-   * @testName: DIDTest
-   * @assertion_ids: PERSISTENCE:SPEC:1339;
-   * @test_Strategy: Derived Identifier
-   *                 <p/>
-   *                 The parent entity has a simple primary key Case (b): The
-   *                 primary key consists of a single attribute corresponding to
-   *                 the simple primary key of the parent entity. The dependent
-   *                 entity has a primary key attribute in addition to the
-   *                 relationship attribute corresponding to the primary key.
-   *                 This attribute is mapped to the primary key by the
-   *                 MappedByIdannotation applied to the relationship.
-   */
-@Test
-  public void DIDTest() throws Exception {
-    boolean pass = false;
+			getEntityTransaction().begin();
+			final DID4bPerson person = new DID4bPerson("123456789", "DUKE");
+			final DID4bMedicalHistory mHistory = new DID4bMedicalHistory("123456789", person, "drFoo");
 
-    try {
+			getEntityManager().persist(person);
+			getEntityManager().persist(mHistory);
 
-      getEntityTransaction().begin();
-      final DID4bPerson person = new DID4bPerson("123456789", "DUKE");
-      final DID4bMedicalHistory mHistory = new DID4bMedicalHistory("123456789",
-          person, "drFoo");
+			TestUtil.logTrace("persisted Patient and MedicalHistory");
+			getEntityManager().flush();
 
-      getEntityManager().persist(person);
-      getEntityManager().persist(mHistory);
+			// Refresh MedicalHistory
+			DID4bMedicalHistory newMHistory = getEntityManager().find(DID4bMedicalHistory.class, "123456789");
+			if (newMHistory != null) {
+				getEntityManager().refresh(newMHistory);
+			}
 
-      TestUtil.logTrace("persisted Patient and MedicalHistory");
-      getEntityManager().flush();
+			final List depList = getEntityManager()
+					.createQuery("Select m from DID4bMedicalHistory m where m.patient.ssn='123456789'").getResultList();
+			newMHistory = null;
+			if (depList.size() > 0) {
+				newMHistory = (DID4bMedicalHistory) depList.get(0);
+				if (newMHistory != null) {
+					if (newMHistory.getPatient() == person) {
+						pass = true;
+						TestUtil.logTrace("Received Expected Patient");
+					} else {
+						TestUtil.logErr("Searched Patient not found");
+					}
+				} else {
+					TestUtil.logErr("getEntityManager().createQuery returned null entry");
+				}
+			} else {
+				TestUtil.logErr("getEntityManager().createQuery returned null");
+			}
 
-      // Refresh MedicalHistory
-      DID4bMedicalHistory newMHistory = getEntityManager()
-          .find(DID4bMedicalHistory.class, "123456789");
-      if (newMHistory != null) {
-        getEntityManager().refresh(newMHistory);
-      }
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+			getEntityTransaction().rollback();
+		}
 
-      final List depList = getEntityManager().createQuery(
-          "Select m from DID4bMedicalHistory m where m.patient.ssn='123456789'")
-          .getResultList();
-      newMHistory = null;
-      if (depList.size() > 0) {
-        newMHistory = (DID4bMedicalHistory) depList.get(0);
-        if (newMHistory != null) {
-          if (newMHistory.getPatient() == person) {
-            pass = true;
-            TestUtil.logTrace("Received Expected Patient");
-          } else {
-            TestUtil.logErr("Searched Patient not found");
-          }
-        } else {
-          TestUtil.logErr("getEntityManager().createQuery returned null entry");
-        }
-      } else {
-        TestUtil.logErr("getEntityManager().createQuery returned null");
-      }
+		if (!pass) {
+			throw new Exception("DTDTest failed");
+		}
+	}
 
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-      getEntityTransaction().rollback();
-    }
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("cleanup");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+	}
 
-    if (!pass) {
-      throw new Exception("DTDTest failed");
-    }
-  }
-
-@AfterAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
-
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM DID4BMEDICALHISTORY")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM DID4BPERSON")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM DID4BMEDICALHISTORY").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM DID4BPERSON").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

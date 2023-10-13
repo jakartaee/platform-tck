@@ -23,102 +23,92 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.AfterAll;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client extends PMClientBase {
 
-  public Client() {
-  }
-  
-  @Deployment(testable = false, managed = false)
-	public static JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = Client.class.getPackageName() + ".";
-		String[] classes = { pkgName + "A"};
-		return createDeploymentJar("jpa_core_annotations_basic.jar", pkgNameWithoutSuffix, classes);
+	public Client() {
+	}
+
+	public void createTestData() {
+		try {
+			getEntityTransaction().begin();
+			final Integer integer = 1234;
+			final short basicShort = 12;
+			final Short basicBigShort = basicShort;
+			final float basicFloat = 12.3f;
+			final Float basicBigFloat = basicFloat;
+			final long basicLong = 1234l;
+			final Long basicBigLong = basicLong;
+			final double basicDouble = 1234.5;
+			final Double basicBigDouble = basicDouble;
+			final char[] charArray = { 'a', 'b', 'c' };
+			final Character[] bigCharacterArray = { 'a', 'b', 'c' };
+			final byte[] byteArray = "abc".getBytes();
+			final Byte[] bigByteArray = { (byte) 111, (byte) 101, (byte) 100 };
+			final BigInteger bigInteger = new BigInteger("12345");
+			final BigDecimal bigDecimal = new BigDecimal(bigInteger);
+			final Date date = new Date();
+			final long timeInSeconds = date.getTime();
+			final Time time = new Time(timeInSeconds);
+			final Timestamp timeStamp = new Timestamp(timeInSeconds);
+			final Calendar calendar = Calendar.getInstance();
+
+			A aRef = new A("9", null, 9, integer, basicShort, basicBigShort, basicFloat, basicBigFloat, basicLong,
+					basicBigLong, basicDouble, basicBigDouble, 'a', charArray, bigCharacterArray, byteArray,
+					bigByteArray, bigInteger, bigDecimal, date, time, timeStamp, calendar);
+
+			getEntityManager().persist(aRef);
+			getEntityManager().flush();
+			getEntityTransaction().commit();
+
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected Exception in createTestData:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+			}
+		}
 
 	}
 
-  
-  public void createTestData() {
-    try {
-      getEntityTransaction().begin();
-      final Integer integer = 1234;
-      final short basicShort = 12;
-      final Short basicBigShort = basicShort;
-      final float basicFloat = 12.3f;
-      final Float basicBigFloat = basicFloat;
-      final long basicLong = 1234l;
-      final Long basicBigLong = basicLong;
-      final double basicDouble = 1234.5;
-      final Double basicBigDouble = basicDouble;
-      final char[] charArray = { 'a', 'b', 'c' };
-      final Character[] bigCharacterArray = { 'a', 'b', 'c' };
-      final byte[] byteArray = "abc".getBytes();
-      final Byte[] bigByteArray = { (byte) 111, (byte) 101, (byte) 100 };
-      final BigInteger bigInteger = new BigInteger("12345");
-      final BigDecimal bigDecimal = new BigDecimal(bigInteger);
-      final Date date = new Date();
-      final long timeInSeconds = date.getTime();
-      final Time time = new Time(timeInSeconds);
-      final Timestamp timeStamp = new Timestamp(timeInSeconds);
-      final Calendar calendar = Calendar.getInstance();
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("cleanup");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+		removeDeploymentJar();
 
-      A aRef = new A("9", null, 9, integer, basicShort, basicBigShort,
-          basicFloat, basicBigFloat, basicLong, basicBigLong, basicDouble,
-          basicBigDouble, 'a', charArray, bigCharacterArray, byteArray,
-          bigByteArray, bigInteger, bigDecimal, date, time, timeStamp,
-          calendar);
+	}
 
-      getEntityManager().persist(aRef);
-      getEntityManager().flush();
-      getEntityTransaction().commit();
-
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception in createTestData:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception during Rollback:", re);
-      }
-    }
-
-  }
-
-  protected void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM A_BASIC")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	protected void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM A_BASIC").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -39,6 +38,7 @@ import jakarta.persistence.SharedCacheMode;
 import jakarta.persistence.ValidationMode;
 import jakarta.persistence.spi.PersistenceUnitInfo;
 import jakarta.persistence.spi.PersistenceUnitTransactionType;
+
 
 public class ClientIT extends PMClientBase {
 	private static final long serialVersionUID = 1L;
@@ -64,7 +64,6 @@ public class ClientIT extends PMClientBase {
 	public ClientIT() {
 	}
 
-	@Deployment(testable = false, managed = false)
 	public static JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
@@ -85,6 +84,7 @@ public class ClientIT extends PMClientBase {
 	public void setup() throws Exception {
 		TestUtil.logTrace("setup");
 		super.setup();
+		createDeployment();
 		initEntityManager("ALTPROVIDERPU", false);
 	}
 
@@ -634,6 +634,6 @@ public class ClientIT extends PMClientBase {
 		TestUtil.logTrace("cleanup");
 		TestUtil.logTrace("calling super.cleanup");
 		super.cleanup();
-
+		removeDeploymentJar();
 	}
 }

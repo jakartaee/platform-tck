@@ -25,26 +25,26 @@ package com.sun.ts.tests.jpa.core.inheritance.nonentity;
  */
 public class Personnel implements java.io.Serializable {
 
-  /**
-   * non-persistence field, and it should not participate in any persistence
-   * operations.
-   */
-  protected java.sql.Date hireDate;
+	/**
+	 * non-persistence field, and it should not participate in any persistence
+	 * operations.
+	 */
+	protected java.sql.Date hireDate;
 
-  public java.sql.Date getHireDate() {
-    return hireDate;
-  }
+	public java.sql.Date getHireDate() {
+		return hireDate;
+	}
 
-  public void setHireDate(java.sql.Date hireDate) {
-    this.hireDate = hireDate;
-  }
+	public void setHireDate(java.sql.Date hireDate) {
+		this.hireDate = hireDate;
+	}
 
-  public String getFullTimeRep() {
-    return "Mabel Murray";
-  }
+	public String getFullTimeRep() {
+		return "Mabel Murray";
+	}
 
-  public String getPartTimeRep() {
-    return "John Cleveland";
-  }
+	public String getPartTimeRep() {
+		return "John Cleveland";
+	}
 
 }

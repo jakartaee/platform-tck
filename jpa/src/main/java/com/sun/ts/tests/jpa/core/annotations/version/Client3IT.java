@@ -16,257 +16,259 @@
 
 package com.sun.ts.tests.jpa.core.annotations.version;
 
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jpa.core.annotations.tableGenerator.Client;
 
 public class Client3IT extends Client {
 
-  public Client3IT() {
-  }
+	public Client3IT() {
+	}
 
+	public static JavaArchive createDeployment() throws Exception {
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = Client.class.getPackageName() + ".";
+		String[] classes = { pkgName + "Int_Field", pkgName + "Int_Property", pkgName + "Integer_Field",
+				pkgName + "Integer_Property", pkgName + "Long_Field", pkgName + "Long_Property",
+				pkgName + "LongClass_Field", pkgName + "LongClass_Property", pkgName + "Short_Field",
+				pkgName + "Short_Property", pkgName + "ShortClass_Field", pkgName + "ShortClass_Property",
+				pkgName + "Timestamp_Field", pkgName + "Timestamp_Property" };
+		return createDeploymentJar("jpa_core_annotations_version3.jar", pkgNameWithoutSuffix, classes);
+	}
 
-  @BeforeAll
-  public void setupLongData() throws Exception {
-    TestUtil.logTrace("setupLongData");
-    try {
-      super.setup();
+	@BeforeAll
+	public void setupLongData() throws Exception {
+		TestUtil.logTrace("setupLongData");
+		try {
+			super.setup();
+			createDeployment();
 
-      removeTestData();
-      createLongTestData();
+			removeTestData();
+			createLongTestData();
 
-    } catch (Exception e) {
-      throw new Exception("Setup failed:", e);
-    }
-  }
+		} catch (Exception e) {
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-  /*
-   * @testName: longFieldTest
-   *
-   * @assertion_ids: PERSISTENCE:SPEC:2117; PERSISTENCE:SPEC:2117.5
-   *
-   * @test_Strategy:
-   */
-  @Test
-  public void longFieldTest() throws Exception {
+	/*
+	 * @testName: longFieldTest
+	 *
+	 * @assertion_ids: PERSISTENCE:SPEC:2117; PERSISTENCE:SPEC:2117.5
+	 *
+	 * @test_Strategy:
+	 */
+	@Test
+	public void longFieldTest() throws Exception {
 
-    boolean pass = false;
-    try {
-      Long_Field a = getEntityManager().find(Long_Field.class, "1");
-      if (a != null) {
-        TestUtil.logTrace("version:" + a.getVersion());
-        // if (a.getVersion() == 1) {
-        long version = a.getVersion();
-        a.setName("two");
-        getEntityTransaction().begin();
-        getEntityManager().merge(a);
-        getEntityManager().flush();
-        getEntityTransaction().commit();
-        Long_Field a1 = getEntityManager().find(Long_Field.class, "1");
-        if (a1 != null) {
-          if (a1.getVersion() > version) {
-            TestUtil.logTrace("version:" + a1.getVersion());
-            pass = true;
-          } else {
-            TestUtil
-                .logErr("Did not get a greater version after a modification:"
-                    + a1.getVersion());
-          }
-        } else {
-          TestUtil.logErr("Second find returned null result");
-        }
-        /*
-         * } else { TestUtil.logErr("Did not get a version of 1 after find"); }
-         */
-      } else {
-        TestUtil.logErr("Find returned null result");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
+		boolean pass = false;
+		try {
+			Long_Field a = getEntityManager().find(Long_Field.class, "1");
+			if (a != null) {
+				TestUtil.logTrace("version:" + a.getVersion());
+				// if (a.getVersion() == 1) {
+				long version = a.getVersion();
+				a.setName("two");
+				getEntityTransaction().begin();
+				getEntityManager().merge(a);
+				getEntityManager().flush();
+				getEntityTransaction().commit();
+				Long_Field a1 = getEntityManager().find(Long_Field.class, "1");
+				if (a1 != null) {
+					if (a1.getVersion() > version) {
+						TestUtil.logTrace("version:" + a1.getVersion());
+						pass = true;
+					} else {
+						TestUtil.logErr("Did not get a greater version after a modification:" + a1.getVersion());
+					}
+				} else {
+					TestUtil.logErr("Second find returned null result");
+				}
+				/*
+				 * } else { TestUtil.logErr("Did not get a version of 1 after find"); }
+				 */
+			} else {
+				TestUtil.logErr("Find returned null result");
+			}
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		}
 
-    if (!pass) {
-      throw new Exception("shortFieldTest failed");
-    }
+		if (!pass) {
+			throw new Exception("shortFieldTest failed");
+		}
 
-  }
+	}
 
-  /*
-   * @testName: longPropertyTest
-   *
-   * @assertion_ids: PERSISTENCE:SPEC:2117; PERSISTENCE:SPEC:2117.5
-   *
-   * @test_Strategy:
-   */
-  @Test
-  public void longPropertyTest() throws Exception {
-    boolean pass = false;
-    try {
-      Long_Property a = getEntityManager().find(Long_Property.class, "2");
-      if (a != null) {
-        TestUtil.logTrace("version:" + a.getBasicLong());
-        // if (a.getVersion() == 1) {
-        long version = a.getBasicLong();
-        a.setName("two");
-        getEntityTransaction().begin();
-        getEntityManager().merge(a);
-        getEntityManager().flush();
-        getEntityTransaction().commit();
-        Long_Property a1 = getEntityManager().find(Long_Property.class, "2");
-        if (a1 != null) {
-          if (a1.getBasicLong() > version) {
-            TestUtil.logTrace("version:" + a1.getBasicLong());
-            pass = true;
-          } else {
-            TestUtil
-                .logErr("Did not get a greater version after a modification:"
-                    + a1.getBasicLong());
-          }
-        } else {
-          TestUtil.logErr("Second find returned null result");
-        }
-        /*
-         * } else { TestUtil.logErr("Did not get a version of 1 after find"); }
-         */
-      } else {
-        TestUtil.logErr("Find returned null result");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
+	/*
+	 * @testName: longPropertyTest
+	 *
+	 * @assertion_ids: PERSISTENCE:SPEC:2117; PERSISTENCE:SPEC:2117.5
+	 *
+	 * @test_Strategy:
+	 */
+	@Test
+	public void longPropertyTest() throws Exception {
+		boolean pass = false;
+		try {
+			Long_Property a = getEntityManager().find(Long_Property.class, "2");
+			if (a != null) {
+				TestUtil.logTrace("version:" + a.getBasicLong());
+				// if (a.getVersion() == 1) {
+				long version = a.getBasicLong();
+				a.setName("two");
+				getEntityTransaction().begin();
+				getEntityManager().merge(a);
+				getEntityManager().flush();
+				getEntityTransaction().commit();
+				Long_Property a1 = getEntityManager().find(Long_Property.class, "2");
+				if (a1 != null) {
+					if (a1.getBasicLong() > version) {
+						TestUtil.logTrace("version:" + a1.getBasicLong());
+						pass = true;
+					} else {
+						TestUtil.logErr("Did not get a greater version after a modification:" + a1.getBasicLong());
+					}
+				} else {
+					TestUtil.logErr("Second find returned null result");
+				}
+				/*
+				 * } else { TestUtil.logErr("Did not get a version of 1 after find"); }
+				 */
+			} else {
+				TestUtil.logErr("Find returned null result");
+			}
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		}
 
-    if (!pass) {
-      throw new Exception("shortPropertyTest failed");
-    }
+		if (!pass) {
+			throw new Exception("shortPropertyTest failed");
+		}
 
-  }
+	}
 
-  /*
-   * @testName: longClassFieldTest
-   *
-   * @assertion_ids: PERSISTENCE:SPEC:2117; PERSISTENCE:SPEC:2117.6
-   *
-   * @test_Strategy:
-   */
-  @Test
-  public void longClassFieldTest() throws Exception {
+	/*
+	 * @testName: longClassFieldTest
+	 *
+	 * @assertion_ids: PERSISTENCE:SPEC:2117; PERSISTENCE:SPEC:2117.6
+	 *
+	 * @test_Strategy:
+	 */
+	@Test
+	public void longClassFieldTest() throws Exception {
 
-    boolean pass = false;
-    try {
-      LongClass_Field a = getEntityManager().find(LongClass_Field.class, "3");
-      if (a != null) {
-        TestUtil.logTrace("version:" + a.getVersion());
-        // if (a.getVersion() == 1) {
-        Long version = a.getVersion();
-        a.setName("two");
-        getEntityTransaction().begin();
-        getEntityManager().merge(a);
-        getEntityManager().flush();
-        getEntityTransaction().commit();
-        LongClass_Field a1 = getEntityManager().find(LongClass_Field.class,
-            "3");
-        if (a1 != null) {
-          if (a1.getVersion() > version) {
-            TestUtil.logTrace("version:" + a1.getVersion());
-            pass = true;
-          } else {
-            TestUtil
-                .logErr("Did not get a greater version after a modification:"
-                    + a1.getVersion());
-          }
-        } else {
-          TestUtil.logErr("Second find returned null result");
-        }
-        /*
-         * } else { TestUtil.logErr("Did not get a version of 1 after find"); }
-         */
-      } else {
-        TestUtil.logErr("Find returned null result");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
+		boolean pass = false;
+		try {
+			LongClass_Field a = getEntityManager().find(LongClass_Field.class, "3");
+			if (a != null) {
+				TestUtil.logTrace("version:" + a.getVersion());
+				// if (a.getVersion() == 1) {
+				Long version = a.getVersion();
+				a.setName("two");
+				getEntityTransaction().begin();
+				getEntityManager().merge(a);
+				getEntityManager().flush();
+				getEntityTransaction().commit();
+				LongClass_Field a1 = getEntityManager().find(LongClass_Field.class, "3");
+				if (a1 != null) {
+					if (a1.getVersion() > version) {
+						TestUtil.logTrace("version:" + a1.getVersion());
+						pass = true;
+					} else {
+						TestUtil.logErr("Did not get a greater version after a modification:" + a1.getVersion());
+					}
+				} else {
+					TestUtil.logErr("Second find returned null result");
+				}
+				/*
+				 * } else { TestUtil.logErr("Did not get a version of 1 after find"); }
+				 */
+			} else {
+				TestUtil.logErr("Find returned null result");
+			}
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		}
 
-    if (!pass) {
-      throw new Exception("shortClassFieldTest failed");
-    }
+		if (!pass) {
+			throw new Exception("shortClassFieldTest failed");
+		}
 
-  }
+	}
 
-  /*
-   * @testName: longClassPropertyTest
-   *
-   * @assertion_ids: PERSISTENCE:SPEC:2117; PERSISTENCE:SPEC:2117.6
-   *
-   * @test_Strategy:
-   */
-  @Test
-  public void longClassPropertyTest() throws Exception {
-    boolean pass = false;
-    try {
-      LongClass_Property a = getEntityManager().find(LongClass_Property.class,
-          "4");
-      if (a != null) {
-        TestUtil.logTrace("version:" + a.getBasicLong());
-        // if (a.getVersion() == 1) {
-        Long version = a.getBasicLong();
-        a.setName("two");
-        getEntityTransaction().begin();
-        getEntityManager().merge(a);
-        getEntityManager().flush();
-        getEntityTransaction().commit();
-        LongClass_Property a1 = getEntityManager()
-            .find(LongClass_Property.class, "4");
-        if (a1 != null) {
-          if (a1.getBasicLong() > version) {
-            TestUtil.logTrace("version:" + a1.getBasicLong());
-            pass = true;
-          } else {
-            TestUtil
-                .logErr("Did not get a greater version after a modification:"
-                    + a1.getBasicLong());
-          }
-        } else {
-          TestUtil.logErr("Second find returned null result");
-        }
-        /*
-         * } else { TestUtil.logErr("Did not get a version of 1 after find"); }
-         */
-      } else {
-        TestUtil.logErr("Find returned null result");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
+	/*
+	 * @testName: longClassPropertyTest
+	 *
+	 * @assertion_ids: PERSISTENCE:SPEC:2117; PERSISTENCE:SPEC:2117.6
+	 *
+	 * @test_Strategy:
+	 */
+	@Test
+	public void longClassPropertyTest() throws Exception {
+		boolean pass = false;
+		try {
+			LongClass_Property a = getEntityManager().find(LongClass_Property.class, "4");
+			if (a != null) {
+				TestUtil.logTrace("version:" + a.getBasicLong());
+				// if (a.getVersion() == 1) {
+				Long version = a.getBasicLong();
+				a.setName("two");
+				getEntityTransaction().begin();
+				getEntityManager().merge(a);
+				getEntityManager().flush();
+				getEntityTransaction().commit();
+				LongClass_Property a1 = getEntityManager().find(LongClass_Property.class, "4");
+				if (a1 != null) {
+					if (a1.getBasicLong() > version) {
+						TestUtil.logTrace("version:" + a1.getBasicLong());
+						pass = true;
+					} else {
+						TestUtil.logErr("Did not get a greater version after a modification:" + a1.getBasicLong());
+					}
+				} else {
+					TestUtil.logErr("Second find returned null result");
+				}
+				/*
+				 * } else { TestUtil.logErr("Did not get a version of 1 after find"); }
+				 */
+			} else {
+				TestUtil.logErr("Find returned null result");
+			}
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		}
 
-    if (!pass) {
-      throw new Exception("shortClassPropertyTest failed");
-    }
+		if (!pass) {
+			throw new Exception("shortClassPropertyTest failed");
+		}
 
-  }
+	}
 
-  public void createLongTestData() {
-    TestUtil.logTrace("createLongTestData");
+	public void createLongTestData() {
+		TestUtil.logTrace("createLongTestData");
 
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().persist(new Long_Field("1"));
-      getEntityManager().persist(new Long_Property("2"));
-      getEntityManager().persist(new LongClass_Field("3", new Long(0)));
-      getEntityManager().persist(new LongClass_Property("4", new Long(0)));
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception in createLongTestData:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception during Rollback:", re);
-      }
-    }
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().persist(new Long_Field("1"));
+			getEntityManager().persist(new Long_Property("2"));
+			getEntityManager().persist(new LongClass_Field("3", new Long(0)));
+			getEntityManager().persist(new LongClass_Property("4", new Long(0)));
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected Exception in createLongTestData:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+			}
+		}
 
-  }
+	}
 }

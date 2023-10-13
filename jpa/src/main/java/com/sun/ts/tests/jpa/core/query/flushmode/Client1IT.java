@@ -20,14 +20,9 @@
 
 package com.sun.ts.tests.jpa.core.query.flushmode;
 
-import java.sql.Date;
 import java.util.List;
 
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.Customer;
@@ -38,146 +33,136 @@ import jakarta.persistence.FlushModeType;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client1IT extends UtilCustomerData {
 
-  public Client1IT() {
-  }
+	public Client1IT() {
+	}
 
+	/* Run test */
 
-   /* Run test */
+	/*
+	 * @testName: flushModeTest1
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:173; PERSISTENCE:JAVADOC:400;
+	 * PERSISTENCE:JAVADOC:637; PERSISTENCE:JAVADOC:684;
+	 * 
+	 * @test_Strategy: Query accessing a simple field The following updates the name
+	 * of a customer and then executes an EJBQL query selecting customers having the
+	 * updated name.
+	 *
+	 * TypedQuery accessing a simple field The following updates the name of a
+	 * customer and then executes an EJBQL query selecting customers having the
+	 * updated name.*
+	 *
+	 */
+	@Test
+	public void flushModeTest1() throws Exception {
+		boolean pass1 = false;
+		boolean pass2 = false;
+		boolean pass3 = false;
+		boolean pass4 = false;
+		boolean pass5 = false;
+		boolean pass6 = false;
+		String expectedPKs[];
+		TestUtil.logTrace("Testing TypedQuery version");
 
-  /*
-   * @testName: flushModeTest1
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:173; PERSISTENCE:JAVADOC:400;
-   * PERSISTENCE:JAVADOC:637; PERSISTENCE:JAVADOC:684;
-   * 
-   * @test_Strategy: Query accessing a simple field The following updates the
-   * name of a customer and then executes an EJBQL query selecting customers
-   * having the updated name.
-   *
-   * TypedQuery accessing a simple field The following updates the name of a
-   * customer and then executes an EJBQL query selecting customers having the
-   * updated name.*
-   *
-   */
-  @Test
-  public void flushModeTest1() throws Exception {
-    boolean pass1 = false;
-    boolean pass2 = false;
-    boolean pass3 = false;
-    boolean pass4 = false;
-    boolean pass5 = false;
-    boolean pass6 = false;
-    String expectedPKs[];
-    TestUtil.logTrace("Testing TypedQuery version");
+		try {
+			getEntityTransaction().begin();
+			EntityManager em = getEntityManager();
+			TestUtil.logTrace("Calling find");
+			Customer cust1 = em.find(Customer.class, "1");
+			cust1.setName("Michael Bouschen");
+			Query q = em.createQuery("SELECT c FROM Customer c WHERE c.name = 'Michael Bouschen'");
+			TestUtil.logTrace("EntityManager.getFlushMode() returned:" + em.getFlushMode());
+			TestUtil.logTrace("Calling Query.getFlushMode()");
+			FlushModeType fmt = q.getFlushMode();
+			if (!fmt.equals(em.getFlushMode())) {
+				TestUtil.logErr(
+						"getFlushMode() called when no mode set expected:" + em.getFlushMode() + ", actual:" + fmt);
+			} else {
+				pass1 = true;
 
-    try {
-      getEntityTransaction().begin();
-      EntityManager em = getEntityManager();
-      TestUtil.logTrace("Calling find");
-      Customer cust1 = em.find(Customer.class, "1");
-      cust1.setName("Michael Bouschen");
-      Query q = em.createQuery(
-          "SELECT c FROM Customer c WHERE c.name = 'Michael Bouschen'");
-      TestUtil.logTrace(
-          "EntityManager.getFlushMode() returned:" + em.getFlushMode());
-      TestUtil.logTrace("Calling Query.getFlushMode()");
-      FlushModeType fmt = q.getFlushMode();
-      if (!fmt.equals(em.getFlushMode())) {
-        TestUtil.logErr("getFlushMode() called when no mode set expected:"
-            + em.getFlushMode() + ", actual:" + fmt);
-      } else {
-        pass1 = true;
+				TestUtil.logTrace("Setting mode to FlushModeType.AUTO");
+				q.setFlushMode(FlushModeType.AUTO);
+				fmt = q.getFlushMode();
+				if (!fmt.equals(FlushModeType.AUTO)) {
+					TestUtil.logErr("getFlushMode() called when no mode set expected:" + FlushModeType.AUTO
+							+ ", actual:" + fmt);
+				} else {
+					pass2 = true;
 
-        TestUtil.logTrace("Setting mode to FlushModeType.AUTO");
-        q.setFlushMode(FlushModeType.AUTO);
-        fmt = q.getFlushMode();
-        if (!fmt.equals(FlushModeType.AUTO)) {
-          TestUtil.logErr("getFlushMode() called when no mode set expected:"
-              + FlushModeType.AUTO + ", actual:" + fmt);
-        } else {
-          pass2 = true;
+					List<Customer> c = q.getResultList();
+					expectedPKs = new String[1];
+					expectedPKs[0] = "1";
 
-          List<Customer> c = q.getResultList();
-          expectedPKs = new String[1];
-          expectedPKs[0] = "1";
+					if (!checkEntityPK(c, expectedPKs)) {
+						TestUtil.logErr("Did not get expected results.  Expected 1 references, got: " + c.size());
+					} else {
+						Customer newCust = em.find(Customer.class, "1");
+						if (newCust.getName().equals("Michael Bouschen")) {
+							TestUtil.logTrace("Expected results received");
 
-          if (!checkEntityPK(c, expectedPKs)) {
-            TestUtil.logErr(
-                "Did not get expected results.  Expected 1 references, got: "
-                    + c.size());
-          } else {
-            Customer newCust = em.find(Customer.class, "1");
-            if (newCust.getName().equals("Michael Bouschen")) {
-              TestUtil.logTrace("Expected results received");
+							pass3 = true;
+						}
+					}
+				}
+			}
+			getEntityTransaction().rollback();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception: ", e);
+		}
 
-              pass3 = true;
-            }
-          }
-        }
-      }
-      getEntityTransaction().rollback();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception: ", e);
-    }
+		TestUtil.logTrace("Testing TypedQuery version");
 
-    TestUtil.logTrace("Testing TypedQuery version");
+		try {
+			getEntityTransaction().begin();
+			EntityManager em = getEntityManager();
+			TestUtil.logTrace("Calling find");
+			Customer cust1 = em.find(Customer.class, "1");
+			cust1.setName("Michael Bouschen");
+			TypedQuery<Customer> q = em.createQuery("SELECT c FROM Customer c WHERE c.name = 'Michael Bouschen'",
+					Customer.class);
+			TestUtil.logTrace("Calling getFlushMode()");
+			FlushModeType fmt = q.getFlushMode();
+			if (!fmt.equals(em.getFlushMode())) {
+				TestUtil.logErr(
+						"getFlushMode() called when no mode set expected:" + em.getFlushMode() + ", actual:" + fmt);
+			} else {
+				pass4 = true;
 
-    try {
-      getEntityTransaction().begin();
-      EntityManager em = getEntityManager();
-      TestUtil.logTrace("Calling find");
-      Customer cust1 = em.find(Customer.class, "1");
-      cust1.setName("Michael Bouschen");
-      TypedQuery<Customer> q = em.createQuery(
-          "SELECT c FROM Customer c WHERE c.name = 'Michael Bouschen'",
-          Customer.class);
-      TestUtil.logTrace("Calling getFlushMode()");
-      FlushModeType fmt = q.getFlushMode();
-      if (!fmt.equals(em.getFlushMode())) {
-        TestUtil.logErr("getFlushMode() called when no mode set expected:"
-            + em.getFlushMode() + ", actual:" + fmt);
-      } else {
-        pass4 = true;
+				TestUtil.logTrace("Setting mode to FlushModeType.AUTO");
+				q.setFlushMode(FlushModeType.AUTO);
+				fmt = q.getFlushMode();
+				if (!fmt.equals(FlushModeType.AUTO)) {
+					TestUtil.logErr("getFlushMode() called when no mode set expected:" + FlushModeType.AUTO
+							+ ", actual:" + fmt);
+				} else {
+					pass5 = true;
 
-        TestUtil.logTrace("Setting mode to FlushModeType.AUTO");
-        q.setFlushMode(FlushModeType.AUTO);
-        fmt = q.getFlushMode();
-        if (!fmt.equals(FlushModeType.AUTO)) {
-          TestUtil.logErr("getFlushMode() called when no mode set expected:"
-              + FlushModeType.AUTO + ", actual:" + fmt);
-        } else {
-          pass5 = true;
+					List<Customer> c = q.getResultList();
+					expectedPKs = new String[1];
+					expectedPKs[0] = "1";
 
-          List<Customer> c = q.getResultList();
-          expectedPKs = new String[1];
-          expectedPKs[0] = "1";
+					if (!checkEntityPK(c, expectedPKs)) {
+						TestUtil.logErr("Did not get expected results.  Expected 1 references, got: " + c.size());
+					} else {
+						Customer newCust = em.find(Customer.class, "1");
+						if (newCust.getName().equals("Michael Bouschen")) {
+							pass6 = true;
 
-          if (!checkEntityPK(c, expectedPKs)) {
-            TestUtil.logErr(
-                "Did not get expected results.  Expected 1 references, got: "
-                    + c.size());
-          } else {
-            Customer newCust = em.find(Customer.class, "1");
-            if (newCust.getName().equals("Michael Bouschen")) {
-              pass6 = true;
+							TestUtil.logTrace("Expected results received");
+						}
+					}
+				}
+			}
+			getEntityTransaction().rollback();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception: ", e);
+		}
 
-              TestUtil.logTrace("Expected results received");
-            }
-          }
-        }
-      }
-      getEntityTransaction().rollback();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception: ", e);
-    }
-
-    if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6)
-      throw new Exception("flushModeTest1 failed");
-  }
+		if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6)
+			throw new Exception("flushModeTest1 failed");
+	}
 
 }

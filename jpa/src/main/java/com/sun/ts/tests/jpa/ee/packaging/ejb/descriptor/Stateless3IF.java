@@ -23,10 +23,10 @@ package com.sun.ts.tests.jpa.ee.packaging.ejb.descriptor;
 import java.util.Properties;
 
 public interface Stateless3IF {
-  public void removeTestData();
+	public void removeTestData();
 
-  public void init(Properties p);
+	public void init(Properties p);
 
-  public boolean test5();
+	public boolean test5();
 
 }

@@ -29,83 +29,82 @@ import jakarta.persistence.ManyToOne;
  */
 @Entity
 public class BiDir1XMProject implements Serializable {
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  @Id
-  private Long id;
+	@Id
+	private Long id;
 
-  private String name;
+	private String name;
 
-  private Float budget;
+	private Float budget;
 
-  @ManyToOne(cascade = CascadeType.ALL)
-  private BiDir1XMPerson biDir1XMPerson;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private BiDir1XMPerson biDir1XMPerson;
 
-  public BiDir1XMPerson getBiDir1XMPerson() {
-    return biDir1XMPerson;
-  }
+	public BiDir1XMPerson getBiDir1XMPerson() {
+		return biDir1XMPerson;
+	}
 
-  public void setBiDir1XMPerson(BiDir1XMPerson biDir1XMPerson) {
-    this.biDir1XMPerson = biDir1XMPerson;
-  }
+	public void setBiDir1XMPerson(BiDir1XMPerson biDir1XMPerson) {
+		this.biDir1XMPerson = biDir1XMPerson;
+	}
 
-  public BiDir1XMProject() {
-  }
+	public BiDir1XMProject() {
+	}
 
-  public Float getBudget() {
-    return budget;
-  }
+	public Float getBudget() {
+		return budget;
+	}
 
-  public void setBudget(Float budget) {
-    this.budget = budget;
-  }
+	public void setBudget(Float budget) {
+		this.budget = budget;
+	}
 
-  public BiDir1XMProject(long l, String string, Float aFloat) {
-    this.id = l;
-    this.name = string;
-  }
+	public BiDir1XMProject(long l, String string, Float aFloat) {
+		this.id = l;
+		this.name = string;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public Long getId() {
-    return id;
-  }
+	public Long getId() {
+		return id;
+	}
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  @Override
-  public int hashCode() {
-    int hash = 0;
-    hash += (id != null ? id.hashCode() : 0);
-    return hash;
-  }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (id != null ? id.hashCode() : 0);
+		return hash;
+	}
 
-  @Override
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof BiDir1XMProject)) {
-      return false;
-    }
-    BiDir1XMProject other = (BiDir1XMProject) object;
-    if ((this.id == null && other.id != null)
-        || (this.id != null && !this.id.equals(other.id))) {
-      return false;
-    }
-    return true;
-  }
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not
+		// set
+		if (!(object instanceof BiDir1XMProject)) {
+			return false;
+		}
+		BiDir1XMProject other = (BiDir1XMProject) object;
+		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+			return false;
+		}
+		return true;
+	}
 
-  @Override
-  public String toString() {
-    return "bidironexmany.bidir1XMProject[id=" + id + "]";
-  }
+	@Override
+	public String toString() {
+		return "bidironexmany.bidir1XMProject[id=" + id + "]";
+	}
 
 }

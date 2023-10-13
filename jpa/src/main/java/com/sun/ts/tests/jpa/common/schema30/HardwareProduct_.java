@@ -24,6 +24,6 @@ import jakarta.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(HardwareProduct.class)
 public class HardwareProduct_ extends Product_ {
 
-  public static volatile SingularAttribute<HardwareProduct, Integer> modelNumber;
+	public static volatile SingularAttribute<HardwareProduct, Integer> modelNumber;
 
 }

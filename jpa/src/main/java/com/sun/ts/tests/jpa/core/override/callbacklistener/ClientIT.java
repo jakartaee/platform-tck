@@ -16,254 +16,241 @@
 
 package com.sun.ts.tests.jpa.core.override.callbacklistener;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 import com.sun.ts.tests.jpa.core.override.util.CallBackCounts;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class ClientIT extends PMClientBase {
 
-  public ClientIT() {
-  }
-  
-  @Deployment(testable = false, managed = false)
-  public static JavaArchive createDeployment() throws Exception {
-     
-     String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-     String pkgName = ClientIT.class.getPackageName() + ".";
-     String[] classes = {     pkgName + "OverrridenCallBack"};
-     return createDeploymentJar("jpa_core_override_embeddable.jar", pkgNameWithoutSuffix, classes);
+	public ClientIT() {
+	}
 
-  }
+	public static JavaArchive createDeployment() throws Exception {
 
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] classes = { pkgName + "OverrridenCallBack" };
+		return createDeploymentJar("jpa_core_override_embeddable.jar", pkgNameWithoutSuffix, classes);
 
-@BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
+	}
 
-      super.setup();
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
 
-  /*
-   * @testName: postLoad
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:698;
-   * PERSISTENCE:SPEC:699; PERSISTENCE:SPEC:700; PERSISTENCE:SPEC:702;
-   * PERSISTENCE:SPEC:703; PERSISTENCE:SPEC:704; PERSISTENCE:SPEC:707;
-   * PERSISTENCE:SPEC:708; PERSISTENCE:SPEC:709; PERSISTENCE:SPEC:710;
-   * PERSISTENCE:SPEC:711; PERSISTENCE:SPEC:712; PERSISTENCE:SPEC:713;
-   * PERSISTENCE:SPEC:714; PERSISTENCE:SPEC:715; PERSISTENCE:SPEC:716;
-   * PERSISTENCE:SPEC:717; PERSISTENCE:SPEC:718; PERSISTENCE:SPEC:719;
-   * PERSISTENCE:SPEC:720; PERSISTENCE:SPEC:721;
-   * 
-   * @test_Strategy: CallBack methods are tested using callback listeners.
-   */
-@Test
-  public void postLoad() throws Exception {
-    boolean pass3 = false;
-    final Long ID = 1L;
+			super.setup();
+			removeTestData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-    CallBackCounts.clearCountsMap();
-    OverridenCallBack entity = new OverridenCallBack();
-    entity.setId(ID);
-    getEntityTransaction().begin();
-    getEntityManager().persist(entity);
-    getEntityManager().flush();
-    getEntityManager().refresh(entity);
-    getEntityManager().remove(entity);
-    getEntityTransaction().commit();
-    TestUtil.logTrace("persisted entity" + entity);
-    try {
-      pass3 = checkLoadCallBacks();
+	/*
+	 * @testName: postLoad
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:698;
+	 * PERSISTENCE:SPEC:699; PERSISTENCE:SPEC:700; PERSISTENCE:SPEC:702;
+	 * PERSISTENCE:SPEC:703; PERSISTENCE:SPEC:704; PERSISTENCE:SPEC:707;
+	 * PERSISTENCE:SPEC:708; PERSISTENCE:SPEC:709; PERSISTENCE:SPEC:710;
+	 * PERSISTENCE:SPEC:711; PERSISTENCE:SPEC:712; PERSISTENCE:SPEC:713;
+	 * PERSISTENCE:SPEC:714; PERSISTENCE:SPEC:715; PERSISTENCE:SPEC:716;
+	 * PERSISTENCE:SPEC:717; PERSISTENCE:SPEC:718; PERSISTENCE:SPEC:719;
+	 * PERSISTENCE:SPEC:720; PERSISTENCE:SPEC:721;
+	 * 
+	 * @test_Strategy: CallBack methods are tested using callback listeners.
+	 */
+	@Test
+	public void postLoad() throws Exception {
+		boolean pass3 = false;
+		final Long ID = 1L;
 
-      if (pass3) {
-        TestUtil.logTrace("testOverrideCallBackMethods Passed");
-      } else {
-        throw new Exception("Test failed while testing postLoad method");
-      }
-    } catch (Exception e) {
-      throw new Exception("Exception thrown while testing postLoad" + e);
-    }
-  }
+		CallBackCounts.clearCountsMap();
+		OverridenCallBack entity = new OverridenCallBack();
+		entity.setId(ID);
+		getEntityTransaction().begin();
+		getEntityManager().persist(entity);
+		getEntityManager().flush();
+		getEntityManager().refresh(entity);
+		getEntityManager().remove(entity);
+		getEntityTransaction().commit();
+		TestUtil.logTrace("persisted entity" + entity);
+		try {
+			pass3 = checkLoadCallBacks();
 
-  /*
-   * @testName: preAndPostPersist
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:698;
-   * PERSISTENCE:SPEC:699; PERSISTENCE:SPEC:700; PERSISTENCE:SPEC:702;
-   * PERSISTENCE:SPEC:703; PERSISTENCE:SPEC:704; PERSISTENCE:SPEC:707;
-   * PERSISTENCE:SPEC:708; PERSISTENCE:SPEC:709; PERSISTENCE:SPEC:710;
-   * PERSISTENCE:SPEC:711; PERSISTENCE:SPEC:712; PERSISTENCE:SPEC:713;
-   * PERSISTENCE:SPEC:714; PERSISTENCE:SPEC:715; PERSISTENCE:SPEC:716;
-   * PERSISTENCE:SPEC:717; PERSISTENCE:SPEC:718; PERSISTENCE:SPEC:719;
-   * PERSISTENCE:SPEC:720; PERSISTENCE:SPEC:721;
-   * 
-   * @test_Strategy: CallBack methods are tested using callback listeners.
-   */
-@Test
-  public void preAndPostPersist() throws Exception {
-    boolean pass1 = false;
-    final Long ID = 1L;
+			if (pass3) {
+				TestUtil.logTrace("testOverrideCallBackMethods Passed");
+			} else {
+				throw new Exception("Test failed while testing postLoad method");
+			}
+		} catch (Exception e) {
+			throw new Exception("Exception thrown while testing postLoad" + e);
+		}
+	}
 
-    CallBackCounts.clearCountsMap();
-    OverridenCallBack entity = new OverridenCallBack();
-    entity.setId(ID);
-    getEntityTransaction().begin();
-    getEntityManager().persist(entity);
-    getEntityManager().flush();
-    getEntityManager().remove(entity);
-    getEntityTransaction().commit();
-    TestUtil.logTrace("persisted entity" + entity);
-    try {
-      pass1 = checkPersistCallBacks();
+	/*
+	 * @testName: preAndPostPersist
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:698;
+	 * PERSISTENCE:SPEC:699; PERSISTENCE:SPEC:700; PERSISTENCE:SPEC:702;
+	 * PERSISTENCE:SPEC:703; PERSISTENCE:SPEC:704; PERSISTENCE:SPEC:707;
+	 * PERSISTENCE:SPEC:708; PERSISTENCE:SPEC:709; PERSISTENCE:SPEC:710;
+	 * PERSISTENCE:SPEC:711; PERSISTENCE:SPEC:712; PERSISTENCE:SPEC:713;
+	 * PERSISTENCE:SPEC:714; PERSISTENCE:SPEC:715; PERSISTENCE:SPEC:716;
+	 * PERSISTENCE:SPEC:717; PERSISTENCE:SPEC:718; PERSISTENCE:SPEC:719;
+	 * PERSISTENCE:SPEC:720; PERSISTENCE:SPEC:721;
+	 * 
+	 * @test_Strategy: CallBack methods are tested using callback listeners.
+	 */
+	@Test
+	public void preAndPostPersist() throws Exception {
+		boolean pass1 = false;
+		final Long ID = 1L;
 
-      if (pass1) {
-        TestUtil.logTrace("testOverrideCallBackMethods Passed");
-      } else {
-        throw new Exception("Test failed while testing prepersist and "
-            + "postpersist methods");
-      }
-    } catch (Exception e) {
-      throw new Exception("Exception thrown while testing preAndPostPersist" + e);
-    }
-  }
+		CallBackCounts.clearCountsMap();
+		OverridenCallBack entity = new OverridenCallBack();
+		entity.setId(ID);
+		getEntityTransaction().begin();
+		getEntityManager().persist(entity);
+		getEntityManager().flush();
+		getEntityManager().remove(entity);
+		getEntityTransaction().commit();
+		TestUtil.logTrace("persisted entity" + entity);
+		try {
+			pass1 = checkPersistCallBacks();
 
-  /*
-   * @testName: preAndPostRemove
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:698;
-   * PERSISTENCE:SPEC:699; PERSISTENCE:SPEC:700; PERSISTENCE:SPEC:702;
-   * PERSISTENCE:SPEC:703; PERSISTENCE:SPEC:704; PERSISTENCE:SPEC:707;
-   * PERSISTENCE:SPEC:708; PERSISTENCE:SPEC:709; PERSISTENCE:SPEC:710;
-   * PERSISTENCE:SPEC:711; PERSISTENCE:SPEC:712; PERSISTENCE:SPEC:713;
-   * PERSISTENCE:SPEC:714; PERSISTENCE:SPEC:715; PERSISTENCE:SPEC:716;
-   * PERSISTENCE:SPEC:717; PERSISTENCE:SPEC:718; PERSISTENCE:SPEC:719;
-   * PERSISTENCE:SPEC:720; PERSISTENCE:SPEC:721;
-   * 
-   * @test_Strategy: CallBack methods are tested using callback listeners.
-   */
-@Test
-  public void preAndPostRemove() throws Exception {
-    boolean pass2 = false;
-    final Long ID = 1L;
+			if (pass1) {
+				TestUtil.logTrace("testOverrideCallBackMethods Passed");
+			} else {
+				throw new Exception("Test failed while testing prepersist and " + "postpersist methods");
+			}
+		} catch (Exception e) {
+			throw new Exception("Exception thrown while testing preAndPostPersist" + e);
+		}
+	}
 
-    CallBackCounts.clearCountsMap();
-    OverridenCallBack entity = new OverridenCallBack();
-    entity.setId(ID);
-    getEntityTransaction().begin();
-    getEntityManager().persist(entity);
-    getEntityManager().flush();
-    getEntityManager().remove(entity);
-    getEntityManager().flush();
-    getEntityTransaction().commit();
-    TestUtil.logTrace("persisted entity" + entity);
-    try {
-      pass2 = checkRemoveCallBacks();
+	/*
+	 * @testName: preAndPostRemove
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:698;
+	 * PERSISTENCE:SPEC:699; PERSISTENCE:SPEC:700; PERSISTENCE:SPEC:702;
+	 * PERSISTENCE:SPEC:703; PERSISTENCE:SPEC:704; PERSISTENCE:SPEC:707;
+	 * PERSISTENCE:SPEC:708; PERSISTENCE:SPEC:709; PERSISTENCE:SPEC:710;
+	 * PERSISTENCE:SPEC:711; PERSISTENCE:SPEC:712; PERSISTENCE:SPEC:713;
+	 * PERSISTENCE:SPEC:714; PERSISTENCE:SPEC:715; PERSISTENCE:SPEC:716;
+	 * PERSISTENCE:SPEC:717; PERSISTENCE:SPEC:718; PERSISTENCE:SPEC:719;
+	 * PERSISTENCE:SPEC:720; PERSISTENCE:SPEC:721;
+	 * 
+	 * @test_Strategy: CallBack methods are tested using callback listeners.
+	 */
+	@Test
+	public void preAndPostRemove() throws Exception {
+		boolean pass2 = false;
+		final Long ID = 1L;
 
-      if (pass2) {
-        TestUtil.logTrace("testOverrideCallBackMethods Passed");
-      } else {
-        throw new Exception(
-            "Test failed while testing preremove and " + "postremove methods");
-      }
-    } catch (Exception e) {
-      throw new Exception("Exception thrown while testing preAndPostRemove" + e);
-    }
-  }
+		CallBackCounts.clearCountsMap();
+		OverridenCallBack entity = new OverridenCallBack();
+		entity.setId(ID);
+		getEntityTransaction().begin();
+		getEntityManager().persist(entity);
+		getEntityManager().flush();
+		getEntityManager().remove(entity);
+		getEntityManager().flush();
+		getEntityTransaction().commit();
+		TestUtil.logTrace("persisted entity" + entity);
+		try {
+			pass2 = checkRemoveCallBacks();
 
-  private boolean checkPersistCallBacks() throws Exception {
-    boolean result = false;
-    if (test("prePersistFromXML", 1) && test("postPersistFromXML", 1)) {
-      result = true;
-    }
-    return result;
+			if (pass2) {
+				TestUtil.logTrace("testOverrideCallBackMethods Passed");
+			} else {
+				throw new Exception("Test failed while testing preremove and " + "postremove methods");
+			}
+		} catch (Exception e) {
+			throw new Exception("Exception thrown while testing preAndPostRemove" + e);
+		}
+	}
 
-  }
+	private boolean checkPersistCallBacks() throws Exception {
+		boolean result = false;
+		if (test("prePersistFromXML", 1) && test("postPersistFromXML", 1)) {
+			result = true;
+		}
+		return result;
 
-  private boolean checkRemoveCallBacks() throws Exception {
-    boolean result = false;
-    if (test("preRemoveFromXML", 1) && test("postRemoveFromXML", 1)) {
-      result = true;
-    }
-    return result;
-  }
+	}
 
-  private boolean checkLoadCallBacks() throws Exception {
-    boolean result = false;
-    if (test("postLoadFromXML", 1)) {
-      result = true;
-    }
-    return result;
-  }
+	private boolean checkRemoveCallBacks() throws Exception {
+		boolean result = false;
+		if (test("preRemoveFromXML", 1) && test("postRemoveFromXML", 1)) {
+			result = true;
+		}
+		return result;
+	}
 
-  private boolean test(final String callBackName, final int expectedCount)
-      throws Exception {
+	private boolean checkLoadCallBacks() throws Exception {
+		boolean result = false;
+		if (test("postLoadFromXML", 1)) {
+			result = true;
+		}
+		return result;
+	}
 
-    String thisTestId = callBackName;
-    boolean pass = false;
+	private boolean test(final String callBackName, final int expectedCount) throws Exception {
 
-    int count = CallBackCounts.getCount(callBackName);
-    if (count == expectedCount) {
-      TestUtil.logTrace("test passed in test method" + thisTestId);
-      pass = true;
+		String thisTestId = callBackName;
+		boolean pass = false;
 
-    } else {
-      TestUtil.logErr("test failed in test method" + thisTestId);
-      TestUtil.logTrace("in CallBackName =" + callBackName);
-      TestUtil.logTrace("in expectedCount =" + expectedCount);
-      TestUtil.logTrace("in ActualCount =" + count);
-    }
+		int count = CallBackCounts.getCount(callBackName);
+		if (count == expectedCount) {
+			TestUtil.logTrace("test passed in test method" + thisTestId);
+			pass = true;
 
-    return pass;
+		} else {
+			TestUtil.logErr("test failed in test method" + thisTestId);
+			TestUtil.logTrace("in CallBackName =" + callBackName);
+			TestUtil.logTrace("in expectedCount =" + expectedCount);
+			TestUtil.logTrace("in ActualCount =" + count);
+		}
 
-  }
+		return pass;
 
-  @AfterAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup data");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+	}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM NOENTITYLISTENER_TABLE")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("Cleanup data");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+	}
+
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM NOENTITYLISTENER_TABLE").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

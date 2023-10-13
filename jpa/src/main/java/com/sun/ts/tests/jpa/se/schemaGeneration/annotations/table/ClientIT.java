@@ -19,7 +19,6 @@ package com.sun.ts.tests.jpa.se.schemaGeneration.annotations.table;
 import java.io.File;
 import java.util.Properties;
 
-import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -33,208 +32,197 @@ import jakarta.persistence.Persistence;
 
 public class ClientIT extends PMClientBase {
 
-  String schemaGenerationDir = null;
-  
-  String sTestCase ="jpa_se_schemaGeneration_annotations_table";
+	String schemaGenerationDir = null;
 
-  @Deployment(testable = false, managed = false)
-  public static JavaArchive createDeployment() throws Exception {
-     
-     String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-     String pkgName = ClientIT.class.getPackageName() + ".";
-     String[] classes = { pkgName + "Simple"};
-     return createDeploymentJar("jpa_se_schemaGeneration_annotations_table.jar", pkgNameWithoutSuffix, (String[]) classes);
+	String sTestCase = "jpa_se_schemaGeneration_annotations_table";
 
-  }
+	public static JavaArchive createDeployment() throws Exception {
 
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] classes = { pkgName + "Simple" };
+		return createDeploymentJar("jpa_se_schemaGeneration_annotations_table.jar", pkgNameWithoutSuffix,
+				(String[]) classes);
 
-  public ClientIT() {
-  }
+	}
 
-@BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
+	public ClientIT() {
+	}
 
-      schemaGenerationDir = System.getProperty("user.dir");
-      if (!schemaGenerationDir.endsWith(File.separator)) {
-        schemaGenerationDir += File.separator;
-      }
-      schemaGenerationDir += "schemaGeneration";
-      TestUtil.logMsg("schemaGenerationDir=" + this.schemaGenerationDir);
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup();
+			createDeployment();
 
-      File f = new File(schemaGenerationDir);
-      TestUtil.logMsg("Delete existing directory ");
-      deleteItem(f);
-      TestUtil.logMsg("Create new directory ");
-      if (!f.mkdir()) {
-        String msg = "Could not mkdir:" + f.getAbsolutePath();
-        throw new Exception(msg);
-      }
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+			schemaGenerationDir = System.getProperty("user.dir");
+			if (!schemaGenerationDir.endsWith(File.separator)) {
+				schemaGenerationDir += File.separator;
+			}
+			schemaGenerationDir += "schemaGeneration";
+			TestUtil.logMsg("schemaGenerationDir=" + this.schemaGenerationDir);
 
-  /*
-   * @testName: tableTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:2118.18;
-   * 
-   * @test_Strategy: Test the @Table annotation
-   */
+			File f = new File(schemaGenerationDir);
+			TestUtil.logMsg("Delete existing directory ");
+			deleteItem(f);
+			TestUtil.logMsg("Create new directory ");
+			if (!f.mkdir()) {
+				String msg = "Could not mkdir:" + f.getAbsolutePath();
+				throw new Exception(msg);
+			}
+			removeTestData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
+
+	/*
+	 * @testName: tableTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:2118.18;
+	 * 
+	 * @test_Strategy: Test the @Table annotation
+	 */
 	@Test
-  public void tableTest() throws Exception {
-    boolean pass1 = false;
-    boolean pass2 = false;
-    boolean pass3 = false;
-    boolean pass4 = false;
+	public void tableTest() throws Exception {
+		boolean pass1 = false;
+		boolean pass2 = false;
+		boolean pass3 = false;
+		boolean pass4 = false;
 
-    TestUtil.logMsg("Create the script(s)");
-    final String CREATEFILENAME = schemaGenerationDir + File.separator
-        + "create_" + this.sTestCase + ".sql";
-    final String DROPFILENAME = schemaGenerationDir + File.separator + "drop_"
-        + this.sTestCase + ".sql";
+		TestUtil.logMsg("Create the script(s)");
+		final String CREATEFILENAME = schemaGenerationDir + File.separator + "create_" + this.sTestCase + ".sql";
+		final String DROPFILENAME = schemaGenerationDir + File.separator + "drop_" + this.sTestCase + ".sql";
 
-    File f1 = new File(CREATEFILENAME);
-    TestUtil.logTrace("Deleting previous create script");
-    deleteItem(f1);
-    File f2 = new File(DROPFILENAME);
-    TestUtil.logTrace("Deleting previous drop script");
-    deleteItem(f2);
+		File f1 = new File(CREATEFILENAME);
+		TestUtil.logTrace("Deleting previous create script");
+		deleteItem(f1);
+		File f2 = new File(DROPFILENAME);
+		TestUtil.logTrace("Deleting previous drop script");
+		deleteItem(f2);
 
-    Properties props = getPersistenceUnitProperties();
-    props.put("jakarta.persistence.schema-generation.database.action", "none");
-    props.put("jakarta.persistence.schema-generation.scripts.action",
-        "drop-and-create");
-    props.put("jakarta.persistence.schema-generation.create-database-schemas",
-        "false");
-    props.put("jakarta.persistence.schema-generation.scripts.create-target",
-        convertToURI(CREATEFILENAME));
-    props.put("jakarta.persistence.schema-generation.scripts.drop-target",
-        convertToURI(DROPFILENAME));
+		Properties props = getPersistenceUnitProperties();
+		props.put("jakarta.persistence.schema-generation.database.action", "none");
+		props.put("jakarta.persistence.schema-generation.scripts.action", "drop-and-create");
+		props.put("jakarta.persistence.schema-generation.create-database-schemas", "false");
+		props.put("jakarta.persistence.schema-generation.scripts.create-target", convertToURI(CREATEFILENAME));
+		props.put("jakarta.persistence.schema-generation.scripts.drop-target", convertToURI(DROPFILENAME));
 
-    displayProperties(props);
+		displayProperties(props);
 
-    TestUtil.logMsg("Executing Persistence.createEntityManagerFactory(...)");
-    EntityManagerFactory emf = Persistence
-        .createEntityManagerFactory(getPersistenceUnitName(), props);
-    emf.close();
-    emf = null;
+		TestUtil.logMsg("Executing Persistence.createEntityManagerFactory(...)");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory(getPersistenceUnitName(), props);
+		emf.close();
+		emf = null;
 
-    TestUtil.logMsg("Check script(s) content");
+		TestUtil.logMsg("Check script(s) content");
 
-    pass1 = findDataInFile(f1, "CREATE TABLE SCHEMAGENSIMPLE");
-    pass2 = findDataInFile(f2, "DROP TABLE SCHEMAGENSIMPLE");
+		pass1 = findDataInFile(f1, "CREATE TABLE SCHEMAGENSIMPLE");
+		pass2 = findDataInFile(f2, "DROP TABLE SCHEMAGENSIMPLE");
 
-    TestUtil.logTrace("Execute the create script");
-    props = getPersistenceUnitProperties();
+		TestUtil.logTrace("Execute the create script");
+		props = getPersistenceUnitProperties();
 
-    props.put("jakarta.persistence.schema-generation.database.action", "create");
-    props.put("jakarta.persistence.schema-generation.scripts.action", "none");
-    props.put("jakarta.persistence.schema-generation.create-database-schemas",
-        "true");
-    props.put("jakarta.persistence.schema-generation.create-script-source",
-        convertToURI(CREATEFILENAME));
-    displayProperties(props);
+		props.put("jakarta.persistence.schema-generation.database.action", "create");
+		props.put("jakarta.persistence.schema-generation.scripts.action", "none");
+		props.put("jakarta.persistence.schema-generation.create-database-schemas", "true");
+		props.put("jakarta.persistence.schema-generation.create-script-source", convertToURI(CREATEFILENAME));
+		displayProperties(props);
 
-    TestUtil.logMsg("Executing Persistence.generateSchema(...)");
-    Persistence.generateSchema(getPersistenceUnitName(), props);
+		TestUtil.logMsg("Executing Persistence.generateSchema(...)");
+		Persistence.generateSchema(getPersistenceUnitName(), props);
 
-    clearEMAndEMF();
-    try {
-      TestUtil.logMsg("Persist some data");
-      getEntityTransaction(true).begin();
-      Simple s = new Simple(1);
-      getEntityManager().persist(s);
-      getEntityTransaction().commit();
-      clearCache();
-      Simple s2 = getEntityManager().find(Simple.class, 1);
-      if (s.equals(s2)) {
-        TestUtil.logTrace("Received expected result:" + s.toString());
-        pass3 = true;
-      } else {
-        TestUtil.logErr("Expected:" + s.toString());
-        TestUtil.logErr("Actual:" + s2.toString());
-      }
-    } catch (Throwable t) {
-      TestUtil.logErr("Received unexpected exception", t);
-    }
-    clearEMAndEMF();
+		clearEMAndEMF();
+		try {
+			TestUtil.logMsg("Persist some data");
+			getEntityTransaction(true).begin();
+			Simple s = new Simple(1);
+			getEntityManager().persist(s);
+			getEntityTransaction().commit();
+			clearCache();
+			Simple s2 = getEntityManager().find(Simple.class, 1);
+			if (s.equals(s2)) {
+				TestUtil.logTrace("Received expected result:" + s.toString());
+				pass3 = true;
+			} else {
+				TestUtil.logErr("Expected:" + s.toString());
+				TestUtil.logErr("Actual:" + s2.toString());
+			}
+		} catch (Throwable t) {
+			TestUtil.logErr("Received unexpected exception", t);
+		}
+		clearEMAndEMF();
 
-    TestUtil.logTrace("Execute the drop script");
-    props = getPersistenceUnitProperties();
-    props.put("jakarta.persistence.schema-generation.database.action", "drop");
-    props.put("jakarta.persistence.schema-generation.scripts.action", "none");
-    props.put("jakarta.persistence.schema-generation.drop-script-source",
-        convertToURI(DROPFILENAME));
-    displayProperties(props);
+		TestUtil.logTrace("Execute the drop script");
+		props = getPersistenceUnitProperties();
+		props.put("jakarta.persistence.schema-generation.database.action", "drop");
+		props.put("jakarta.persistence.schema-generation.scripts.action", "none");
+		props.put("jakarta.persistence.schema-generation.drop-script-source", convertToURI(DROPFILENAME));
+		displayProperties(props);
 
-    TestUtil.logMsg("Executing Persistence.generateSchema(...)");
-    Persistence.generateSchema(getPersistenceUnitName(), props);
-    clearEMAndEMF();
+		TestUtil.logMsg("Executing Persistence.generateSchema(...)");
+		Persistence.generateSchema(getPersistenceUnitName(), props);
+		clearEMAndEMF();
 
-    TestUtil.logMsg("Try to persist an entity, it should fail");
-    try {
-      getEntityTransaction(true).begin();
-      Simple s3 = new Simple(2);
-      getEntityManager().persist(s3);
-      getEntityManager().flush();
-      getEntityTransaction().commit();
-      TestUtil.logErr(
-          "An exception should have been thrown if drop had occurred successfully");
-    } catch (Exception ex) {
-      TestUtil.logTrace("Receive expected exception");
-      pass4 = true;
-    }
-    TestUtil.logTrace("pass1:" + pass1);
-    TestUtil.logTrace("pass2:" + pass2);
-    TestUtil.logTrace("pass3:" + pass3);
-    TestUtil.logTrace("pass4:" + pass4);
-    if (!pass1 || !pass2 || !pass3 || !pass4) {
-      throw new Exception("tableTest failed");
-    }
-  }
+		TestUtil.logMsg("Try to persist an entity, it should fail");
+		try {
+			getEntityTransaction(true).begin();
+			Simple s3 = new Simple(2);
+			getEntityManager().persist(s3);
+			getEntityManager().flush();
+			getEntityTransaction().commit();
+			TestUtil.logErr("An exception should have been thrown if drop had occurred successfully");
+		} catch (Exception ex) {
+			TestUtil.logTrace("Receive expected exception");
+			pass4 = true;
+		}
+		TestUtil.logTrace("pass1:" + pass1);
+		TestUtil.logTrace("pass2:" + pass2);
+		TestUtil.logTrace("pass3:" + pass3);
+		TestUtil.logTrace("pass4:" + pass4);
+		if (!pass1 || !pass2 || !pass3 || !pass4) {
+			throw new Exception("tableTest failed");
+		}
+	}
 
-@AfterAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("cleanup");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+		removeDeploymentJar();
+	}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      TestUtil.logMsg("Try to drop table SCHEMAGENSIMPLE");
-      getEntityManager().createNativeQuery("DROP TABLE SCHEMAGENSIMPLE")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Throwable t) {
-      TestUtil.logMsg(
-          "AN EXCEPTION WAS THROWN DURING DROP TABLE SCHEMAGENSIMPLE, IT MAY OR MAY NOT BE A PROBLEM, "
-              + t.getMessage());
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-        clearEntityTransaction();
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			TestUtil.logMsg("Try to drop table SCHEMAGENSIMPLE");
+			getEntityManager().createNativeQuery("DROP TABLE SCHEMAGENSIMPLE").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Throwable t) {
+			TestUtil.logMsg(
+					"AN EXCEPTION WAS THROWN DURING DROP TABLE SCHEMAGENSIMPLE, IT MAY OR MAY NOT BE A PROBLEM, "
+							+ t.getMessage());
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+				clearEntityTransaction();
 
-        // ensure that we close the EM and EMF before proceeding.
-        clearEMAndEMF();
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+				// ensure that we close the EM and EMF before proceeding.
+				clearEMAndEMF();
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 
 }

@@ -20,443 +20,418 @@
 
 package com.sun.ts.tests.jpa.core.annotations.mapkey;
 
-
-import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
-
 public class Client2IT extends Client {
 
-  public Client2IT() {
-  }
+	public Client2IT() {
+	}
 
-  private Employee2 empRef2;
+	public static JavaArchive createDeployment() throws Exception {
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = Client.class.getPackageName() + ".";
+		String[] classes = { pkgName + "Department", pkgName + "Employee", pkgName + "Employee2", pkgName + "Employee3",
+				pkgName + "Employee4" };
+		return createDeploymentJar("jpa_core_annotations_mapkey2.jar", pkgNameWithoutSuffix, classes);
 
-  private Employee3 empRef3;
+	}
 
-  private Employee4 empRef4;
+	private Employee2 empRef2;
 
-@BeforeAll
-  public void setupCreateTestData() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      removeTestData();
-      createTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	private Employee3 empRef3;
 
-  /*
-   * @testName: joinColumnInsertable
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:90
-   *
-   * @test_Strategy: The JoinColumn annotation with an attribute of insertable
-   * used to specify the mapping for the fk column to a second entity Execute a
-   * query returning Employees objects.
-   */
-  @Test
-  public void joinColumnInsertable() throws Exception {
-    boolean pass = true;
+	private Employee4 empRef4;
 
-    try {
-      getEntityTransaction().begin();
-      clearCache();
-      TestUtil.logTrace("find employee2");
-      Employee2 emp2 = getEntityManager().find(Employee2.class, 6);
-      TestUtil
-          .logTrace("Name:" + emp2.getFirstName() + " " + emp2.getLastName());
-      Department dept = emp2.getDepartment();
+	@BeforeAll
+	public void setupCreateTestData() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup();
+			createDeployment();
+			removeTestData();
+			createTestData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-      if (dept == null) {
-        TestUtil.logTrace("Received expected null department for employee2");
-      } else {
-        pass = false;
-        TestUtil.logErr("Expected null department, actual:" + dept.getName());
-      }
-      clearCache();
+	/*
+	 * @testName: joinColumnInsertable
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:90
+	 *
+	 * @test_Strategy: The JoinColumn annotation with an attribute of insertable
+	 * used to specify the mapping for the fk column to a second entity Execute a
+	 * query returning Employees objects.
+	 */
+	@Test
+	public void joinColumnInsertable() throws Exception {
+		boolean pass = true;
 
-      TestUtil.logTrace("--------------");
-      TestUtil.logTrace("find employee3");
-      Employee3 emp3 = getEntityManager().find(Employee3.class, 7);
-      TestUtil
-          .logTrace("Name:" + emp3.getFirstName() + " " + emp3.getLastName());
-      dept = emp3.getDepartment();
+		try {
+			getEntityTransaction().begin();
+			clearCache();
+			TestUtil.logTrace("find employee2");
+			Employee2 emp2 = getEntityManager().find(Employee2.class, 6);
+			TestUtil.logTrace("Name:" + emp2.getFirstName() + " " + emp2.getLastName());
+			Department dept = emp2.getDepartment();
 
-      if (dept != null && dept.getName().equals(deptRef[0].getName())) {
-        TestUtil.logTrace(
-            "Received expected department for employee3:" + dept.getName());
-      } else {
-        pass = false;
-        if (dept != null) {
-          TestUtil.logErr("Expected department:" + deptRef[0].getName()
-              + ", actual:" + dept.getName());
-        } else {
-          TestUtil.logErr(
-              "Expected department:" + deptRef[0].getName() + ", actual:null");
-        }
-      }
+			if (dept == null) {
+				TestUtil.logTrace("Received expected null department for employee2");
+			} else {
+				pass = false;
+				TestUtil.logErr("Expected null department, actual:" + dept.getName());
+			}
+			clearCache();
 
-      clearCache();
-      TestUtil.logTrace("--------------");
-      TestUtil.logTrace("find employee4");
-      Employee4 emp4 = getEntityManager().find(Employee4.class, 8);
-      TestUtil
-          .logTrace("Name:" + emp4.getFirstName() + " " + emp4.getLastName());
-      dept = emp4.getDepartment();
+			TestUtil.logTrace("--------------");
+			TestUtil.logTrace("find employee3");
+			Employee3 emp3 = getEntityManager().find(Employee3.class, 7);
+			TestUtil.logTrace("Name:" + emp3.getFirstName() + " " + emp3.getLastName());
+			dept = emp3.getDepartment();
 
-      if (dept == null) {
-        TestUtil.logTrace("Received expected null department for employee4");
-      } else {
-        pass = false;
-        TestUtil.logErr("Expected department: null, actual:" + dept.getName());
-      }
-      getEntityTransaction().commit();
+			if (dept != null && dept.getName().equals(deptRef[0].getName())) {
+				TestUtil.logTrace("Received expected department for employee3:" + dept.getName());
+			} else {
+				pass = false;
+				if (dept != null) {
+					TestUtil.logErr("Expected department:" + deptRef[0].getName() + ", actual:" + dept.getName());
+				} else {
+					TestUtil.logErr("Expected department:" + deptRef[0].getName() + ", actual:null");
+				}
+			}
 
-    } catch (Exception e) {
-      pass = false;
-      TestUtil.logErr("Received unexpected exception", e);
-    }
+			clearCache();
+			TestUtil.logTrace("--------------");
+			TestUtil.logTrace("find employee4");
+			Employee4 emp4 = getEntityManager().find(Employee4.class, 8);
+			TestUtil.logTrace("Name:" + emp4.getFirstName() + " " + emp4.getLastName());
+			dept = emp4.getDepartment();
 
-    if (!pass) {
-      throw new Exception("joinColumnInsertable Failed");
-    }
-  }
+			if (dept == null) {
+				TestUtil.logTrace("Received expected null department for employee4");
+			} else {
+				pass = false;
+				TestUtil.logErr("Expected department: null, actual:" + dept.getName());
+			}
+			getEntityTransaction().commit();
 
-  /*
-   * @testName: joinColumnUpdatable
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:96
-   *
-   * @test_Strategy: The JoinColumn annotation with an attribute of updatable
-   * used to specify the mapping for the fk column to a second entity Execute a
-   * query returning Employees objects.
-   */
-  @Test
-  public void joinColumnUpdatable() throws Exception {
-    boolean pass = true;
+		} catch (Exception e) {
+			pass = false;
+			TestUtil.logErr("Received unexpected exception", e);
+		}
 
-    try {
-      getEntityTransaction().begin();
-      clearCache();
-      TestUtil.logTrace("find employee2");
-      Employee2 emp2 = getEntityManager().find(Employee2.class, 6);
-      TestUtil
-          .logTrace("Name:" + emp2.getFirstName() + " " + emp2.getLastName());
-      TestUtil.logTrace("set department to:" + deptRef[1].getId() + ", "
-          + deptRef[1].getName());
-      emp2.setDepartment(deptRef[1]);
-      getEntityManager().merge(emp2);
-      getEntityManager().flush();
-      clearCache();
-      TestUtil.logTrace("find employee2 again");
-      emp2 = getEntityManager().find(Employee2.class, 6);
-      TestUtil
-          .logTrace("Name:" + emp2.getFirstName() + " " + emp2.getLastName());
-      Department dept = emp2.getDepartment();
-      if (dept == null) {
-        TestUtil.logTrace("Received expected null department");
-      } else {
-        pass = false;
-        TestUtil.logErr("Expected null department, actual:" + dept.getName());
-      }
+		if (!pass) {
+			throw new Exception("joinColumnInsertable Failed");
+		}
+	}
 
-      clearCache();
-      TestUtil.logTrace("--------------");
-      TestUtil.logTrace("find employee3");
-      Employee3 emp3 = getEntityManager().find(Employee3.class, 7);
-      TestUtil
-          .logTrace("Name:" + emp3.getFirstName() + " " + emp3.getLastName());
-      TestUtil.logTrace("Department:" + emp3.getDepartment().getId() + ", "
-          + emp3.getDepartment().getName());
-      TestUtil.logTrace("set department to:" + deptRef[1].getId() + ", "
-          + deptRef[1].getName());
-      emp3.setDepartment(deptRef[1]);
-      getEntityManager().merge(emp3);
-      getEntityManager().flush();
-      clearCache();
-      TestUtil.logTrace("find employee3 again");
-      emp3 = getEntityManager().find(Employee3.class, 7);
-      TestUtil
-          .logTrace("Name:" + emp3.getFirstName() + " " + emp3.getLastName());
-      dept = emp3.getDepartment();
-      if (dept != null && dept.getName().equals(deptRef[0].getName())) {
-        TestUtil.logTrace("Received expected department:" + dept.getName());
-      } else {
-        pass = false;
-        if (dept != null) {
-          TestUtil.logErr("Expected department:" + deptRef[0].getName()
-              + ", actual:" + dept.getName());
-        } else {
-          TestUtil.logErr(
-              "Expected department:" + deptRef[0].getName() + ", actual:null");
-        }
-      }
+	/*
+	 * @testName: joinColumnUpdatable
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:96
+	 *
+	 * @test_Strategy: The JoinColumn annotation with an attribute of updatable used
+	 * to specify the mapping for the fk column to a second entity Execute a query
+	 * returning Employees objects.
+	 */
+	@Test
+	public void joinColumnUpdatable() throws Exception {
+		boolean pass = true;
 
-      clearCache();
-      TestUtil.logTrace("--------------");
-      TestUtil.logTrace("find employee4");
-      Employee4 emp4 = getEntityManager().find(Employee4.class, 8);
-      TestUtil
-          .logTrace("Name:" + emp4.getFirstName() + " " + emp4.getLastName());
-      if (emp4.getFirstName() != null) {
-        TestUtil.logErr(
-            "Expected first name to be null, actual:" + emp4.getFirstName());
-        pass = false;
-      }
-      if (emp4.getDepartment() != null) {
-        TestUtil.logErr("Expected Department to be null, actual:"
-            + emp4.getDepartment().toString());
-        pass = false;
-      }
-      TestUtil.logTrace("set department to:" + deptRef[1].getId() + ", "
-          + deptRef[1].getName());
-      emp4.setDepartment(deptRef[1]);
-      getEntityManager().merge(emp4);
-      getEntityManager().flush();
-      clearCache();
-      TestUtil.logTrace("find employee4 again");
-      emp4 = getEntityManager().find(Employee4.class, 8);
-      TestUtil
-          .logTrace("Name:" + emp4.getFirstName() + " " + emp4.getLastName());
-      dept = emp4.getDepartment();
-      if (dept != null && dept.getName().equals(deptRef[1].getName())) {
-        TestUtil.logTrace("Received expected department:" + dept.getName());
-      } else {
-        pass = false;
-        if (dept != null) {
-          TestUtil.logErr("Expected " + deptRef[1].getName()
-              + " department, actual:" + dept.getName());
-        } else {
-          TestUtil.logErr(
-              "Expected " + deptRef[1].getName() + " department, actual:null");
-        }
-      }
+		try {
+			getEntityTransaction().begin();
+			clearCache();
+			TestUtil.logTrace("find employee2");
+			Employee2 emp2 = getEntityManager().find(Employee2.class, 6);
+			TestUtil.logTrace("Name:" + emp2.getFirstName() + " " + emp2.getLastName());
+			TestUtil.logTrace("set department to:" + deptRef[1].getId() + ", " + deptRef[1].getName());
+			emp2.setDepartment(deptRef[1]);
+			getEntityManager().merge(emp2);
+			getEntityManager().flush();
+			clearCache();
+			TestUtil.logTrace("find employee2 again");
+			emp2 = getEntityManager().find(Employee2.class, 6);
+			TestUtil.logTrace("Name:" + emp2.getFirstName() + " " + emp2.getLastName());
+			Department dept = emp2.getDepartment();
+			if (dept == null) {
+				TestUtil.logTrace("Received expected null department");
+			} else {
+				pass = false;
+				TestUtil.logErr("Expected null department, actual:" + dept.getName());
+			}
 
-      getEntityTransaction().commit();
+			clearCache();
+			TestUtil.logTrace("--------------");
+			TestUtil.logTrace("find employee3");
+			Employee3 emp3 = getEntityManager().find(Employee3.class, 7);
+			TestUtil.logTrace("Name:" + emp3.getFirstName() + " " + emp3.getLastName());
+			TestUtil.logTrace("Department:" + emp3.getDepartment().getId() + ", " + emp3.getDepartment().getName());
+			TestUtil.logTrace("set department to:" + deptRef[1].getId() + ", " + deptRef[1].getName());
+			emp3.setDepartment(deptRef[1]);
+			getEntityManager().merge(emp3);
+			getEntityManager().flush();
+			clearCache();
+			TestUtil.logTrace("find employee3 again");
+			emp3 = getEntityManager().find(Employee3.class, 7);
+			TestUtil.logTrace("Name:" + emp3.getFirstName() + " " + emp3.getLastName());
+			dept = emp3.getDepartment();
+			if (dept != null && dept.getName().equals(deptRef[0].getName())) {
+				TestUtil.logTrace("Received expected department:" + dept.getName());
+			} else {
+				pass = false;
+				if (dept != null) {
+					TestUtil.logErr("Expected department:" + deptRef[0].getName() + ", actual:" + dept.getName());
+				} else {
+					TestUtil.logErr("Expected department:" + deptRef[0].getName() + ", actual:null");
+				}
+			}
 
-    } catch (Exception e) {
-      pass = false;
-      TestUtil.logErr("Received unexpected exception", e);
-    }
+			clearCache();
+			TestUtil.logTrace("--------------");
+			TestUtil.logTrace("find employee4");
+			Employee4 emp4 = getEntityManager().find(Employee4.class, 8);
+			TestUtil.logTrace("Name:" + emp4.getFirstName() + " " + emp4.getLastName());
+			if (emp4.getFirstName() != null) {
+				TestUtil.logErr("Expected first name to be null, actual:" + emp4.getFirstName());
+				pass = false;
+			}
+			if (emp4.getDepartment() != null) {
+				TestUtil.logErr("Expected Department to be null, actual:" + emp4.getDepartment().toString());
+				pass = false;
+			}
+			TestUtil.logTrace("set department to:" + deptRef[1].getId() + ", " + deptRef[1].getName());
+			emp4.setDepartment(deptRef[1]);
+			getEntityManager().merge(emp4);
+			getEntityManager().flush();
+			clearCache();
+			TestUtil.logTrace("find employee4 again");
+			emp4 = getEntityManager().find(Employee4.class, 8);
+			TestUtil.logTrace("Name:" + emp4.getFirstName() + " " + emp4.getLastName());
+			dept = emp4.getDepartment();
+			if (dept != null && dept.getName().equals(deptRef[1].getName())) {
+				TestUtil.logTrace("Received expected department:" + dept.getName());
+			} else {
+				pass = false;
+				if (dept != null) {
+					TestUtil.logErr("Expected " + deptRef[1].getName() + " department, actual:" + dept.getName());
+				} else {
+					TestUtil.logErr("Expected " + deptRef[1].getName() + " department, actual:null");
+				}
+			}
 
-    if (!pass) {
-      throw new Exception("joinColumnUpdatable Failed");
-    }
-  }
+			getEntityTransaction().commit();
 
-  /*
-   * @testName: columnInsertable
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:12
-   *
-   * @test_Strategy: The JoinColumn annotation with an attribute of insertable
-   * used to specify the mapping for the fk column to a second entity Execute a
-   * query returning Employees objects.
-   */
-  @Test
-  public void columnInsertable() throws Exception {
-    boolean pass = true;
+		} catch (Exception e) {
+			pass = false;
+			TestUtil.logErr("Received unexpected exception", e);
+		}
 
-    try {
+		if (!pass) {
+			throw new Exception("joinColumnUpdatable Failed");
+		}
+	}
 
-      getEntityTransaction().begin();
-      clearCache();
-      TestUtil.logTrace("find employee2");
-      Employee2 emp2 = getEntityManager().find(Employee2.class, 6);
-      String firstName = emp2.getFirstName();
-      TestUtil.logTrace("Name:" + firstName + " " + emp2.getLastName());
+	/*
+	 * @testName: columnInsertable
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:12
+	 *
+	 * @test_Strategy: The JoinColumn annotation with an attribute of insertable
+	 * used to specify the mapping for the fk column to a second entity Execute a
+	 * query returning Employees objects.
+	 */
+	@Test
+	public void columnInsertable() throws Exception {
+		boolean pass = true;
 
-      if (firstName == null) {
-        TestUtil.logTrace("Received expected null firstName");
-      } else {
-        pass = false;
-        TestUtil.logErr("Expected firstName: null, actual:" + firstName);
-      }
+		try {
 
-      clearCache();
-      TestUtil.logTrace("--------------");
-      TestUtil.logTrace("find employee3");
-      Employee3 emp3 = getEntityManager().find(Employee3.class, 7);
-      firstName = emp3.getFirstName();
-      TestUtil.logTrace("Name:" + firstName + " " + emp3.getLastName());
+			getEntityTransaction().begin();
+			clearCache();
+			TestUtil.logTrace("find employee2");
+			Employee2 emp2 = getEntityManager().find(Employee2.class, 6);
+			String firstName = emp2.getFirstName();
+			TestUtil.logTrace("Name:" + firstName + " " + emp2.getLastName());
 
-      if (firstName != null && firstName.equals("Paul")) {
-        TestUtil.logTrace("Received expected firstName:" + firstName);
-      } else {
-        pass = false;
-        TestUtil.logErr("Expected firstName: Paul, actual: null");
-      }
+			if (firstName == null) {
+				TestUtil.logTrace("Received expected null firstName");
+			} else {
+				pass = false;
+				TestUtil.logErr("Expected firstName: null, actual:" + firstName);
+			}
 
-      clearCache();
-      TestUtil.logTrace("--------------");
-      TestUtil.logTrace("find employee4");
-      Employee4 emp4 = getEntityManager().find(Employee4.class, 8);
-      firstName = emp4.getFirstName();
-      TestUtil.logTrace("Name:" + firstName + " " + emp4.getLastName());
-      if (firstName == null) {
-        TestUtil.logTrace("Received expected null firstName");
-      } else {
-        pass = false;
-        TestUtil.logErr("Expected firstName: null, actual:" + firstName);
-      }
-      getEntityTransaction().commit();
+			clearCache();
+			TestUtil.logTrace("--------------");
+			TestUtil.logTrace("find employee3");
+			Employee3 emp3 = getEntityManager().find(Employee3.class, 7);
+			firstName = emp3.getFirstName();
+			TestUtil.logTrace("Name:" + firstName + " " + emp3.getLastName());
 
-    } catch (Exception e) {
-      pass = false;
-      TestUtil.logErr("Received unexpected exception", e);
-    }
+			if (firstName != null && firstName.equals("Paul")) {
+				TestUtil.logTrace("Received expected firstName:" + firstName);
+			} else {
+				pass = false;
+				TestUtil.logErr("Expected firstName: Paul, actual: null");
+			}
 
-    if (!pass) {
-      throw new Exception("columnInsertable Failed");
-    }
-  }
+			clearCache();
+			TestUtil.logTrace("--------------");
+			TestUtil.logTrace("find employee4");
+			Employee4 emp4 = getEntityManager().find(Employee4.class, 8);
+			firstName = emp4.getFirstName();
+			TestUtil.logTrace("Name:" + firstName + " " + emp4.getLastName());
+			if (firstName == null) {
+				TestUtil.logTrace("Received expected null firstName");
+			} else {
+				pass = false;
+				TestUtil.logErr("Expected firstName: null, actual:" + firstName);
+			}
+			getEntityTransaction().commit();
 
-  /*
-   * @testName: columnUpdatable
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:20
-   *
-   * @test_Strategy: The JoinColumn annotation with an attribute of updatable
-   * used to specify the mapping for the fk column to a second entity Execute a
-   * query returning Employees objects.
-   */
-  @Test
-  public void columnUpdatable() throws Exception {
-    boolean pass = true;
+		} catch (Exception e) {
+			pass = false;
+			TestUtil.logErr("Received unexpected exception", e);
+		}
 
-    try {
-      getEntityTransaction().begin();
-      clearCache();
-      TestUtil.logTrace("find employee2");
-      Employee2 emp2 = getEntityManager().find(Employee2.class, 6);
-      TestUtil
-          .logTrace("Name:" + emp2.getFirstName() + " " + emp2.getLastName());
-      TestUtil.logTrace("set firstName and save");
-      emp2.setFirstName("foo");
-      getEntityManager().merge(emp2);
-      getEntityManager().flush();
-      clearCache();
-      TestUtil.logTrace("find employee2 again");
-      emp2 = getEntityManager().find(Employee2.class, 6);
-      TestUtil
-          .logTrace("Name:" + emp2.getFirstName() + " " + emp2.getLastName());
-      String firstName = emp2.getFirstName();
-      if (firstName == null) {
-        TestUtil.logTrace("Received expected null firstName");
-      } else {
-        pass = false;
-        TestUtil.logErr("Expected firstName: null, actual:" + firstName);
-      }
+		if (!pass) {
+			throw new Exception("columnInsertable Failed");
+		}
+	}
 
-      clearCache();
-      TestUtil.logTrace("--------------");
-      TestUtil.logTrace("find employee3");
-      Employee3 emp3 = getEntityManager().find(Employee3.class, 7);
-      TestUtil
-          .logTrace("Name:" + emp3.getFirstName() + " " + emp3.getLastName());
-      TestUtil.logTrace("set firstName and save");
-      emp3.setFirstName("foo");
-      getEntityManager().merge(emp3);
-      getEntityManager().flush();
-      clearCache();
-      TestUtil.logTrace("find employee3 again");
-      emp3 = getEntityManager().find(Employee3.class, 7);
-      TestUtil
-          .logTrace("Name:" + emp3.getFirstName() + " " + emp3.getLastName());
-      firstName = emp3.getFirstName();
-      if (firstName != null && firstName.equals("Paul")) {
-        TestUtil.logTrace("Received expected firstName:" + firstName);
-      } else {
-        pass = false;
-        TestUtil.logErr("Expected firstName: Paul, actual: null");
-      }
+	/*
+	 * @testName: columnUpdatable
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:20
+	 *
+	 * @test_Strategy: The JoinColumn annotation with an attribute of updatable used
+	 * to specify the mapping for the fk column to a second entity Execute a query
+	 * returning Employees objects.
+	 */
+	@Test
+	public void columnUpdatable() throws Exception {
+		boolean pass = true;
 
-      clearCache();
-      TestUtil.logTrace("--------------");
-      TestUtil.logTrace("find employee4");
-      Employee4 emp4 = getEntityManager().find(Employee4.class, 8);
-      TestUtil
-          .logTrace("Name:" + emp4.getFirstName() + " " + emp4.getLastName());
-      TestUtil.logTrace("set firstName and save");
-      emp4.setFirstName("foo");
-      getEntityManager().merge(emp4);
-      getEntityManager().flush();
-      clearCache();
-      TestUtil.logTrace("find employee4 again");
-      emp4 = getEntityManager().find(Employee4.class, 8);
-      TestUtil
-          .logTrace("Name:" + emp4.getFirstName() + " " + emp4.getLastName());
-      firstName = emp4.getFirstName();
-      if (firstName != null && firstName.equals("foo")) {
-        TestUtil.logTrace("Received expected firstName:" + firstName);
-      } else {
-        pass = false;
-        TestUtil.logErr("Expected firstName: foo, actual: null");
-      }
+		try {
+			getEntityTransaction().begin();
+			clearCache();
+			TestUtil.logTrace("find employee2");
+			Employee2 emp2 = getEntityManager().find(Employee2.class, 6);
+			TestUtil.logTrace("Name:" + emp2.getFirstName() + " " + emp2.getLastName());
+			TestUtil.logTrace("set firstName and save");
+			emp2.setFirstName("foo");
+			getEntityManager().merge(emp2);
+			getEntityManager().flush();
+			clearCache();
+			TestUtil.logTrace("find employee2 again");
+			emp2 = getEntityManager().find(Employee2.class, 6);
+			TestUtil.logTrace("Name:" + emp2.getFirstName() + " " + emp2.getLastName());
+			String firstName = emp2.getFirstName();
+			if (firstName == null) {
+				TestUtil.logTrace("Received expected null firstName");
+			} else {
+				pass = false;
+				TestUtil.logErr("Expected firstName: null, actual:" + firstName);
+			}
 
-      getEntityTransaction().commit();
+			clearCache();
+			TestUtil.logTrace("--------------");
+			TestUtil.logTrace("find employee3");
+			Employee3 emp3 = getEntityManager().find(Employee3.class, 7);
+			TestUtil.logTrace("Name:" + emp3.getFirstName() + " " + emp3.getLastName());
+			TestUtil.logTrace("set firstName and save");
+			emp3.setFirstName("foo");
+			getEntityManager().merge(emp3);
+			getEntityManager().flush();
+			clearCache();
+			TestUtil.logTrace("find employee3 again");
+			emp3 = getEntityManager().find(Employee3.class, 7);
+			TestUtil.logTrace("Name:" + emp3.getFirstName() + " " + emp3.getLastName());
+			firstName = emp3.getFirstName();
+			if (firstName != null && firstName.equals("Paul")) {
+				TestUtil.logTrace("Received expected firstName:" + firstName);
+			} else {
+				pass = false;
+				TestUtil.logErr("Expected firstName: Paul, actual: null");
+			}
 
-    } catch (Exception e) {
-      pass = false;
-      TestUtil.logErr("Received unexpected exception", e);
-    }
+			clearCache();
+			TestUtil.logTrace("--------------");
+			TestUtil.logTrace("find employee4");
+			Employee4 emp4 = getEntityManager().find(Employee4.class, 8);
+			TestUtil.logTrace("Name:" + emp4.getFirstName() + " " + emp4.getLastName());
+			TestUtil.logTrace("set firstName and save");
+			emp4.setFirstName("foo");
+			getEntityManager().merge(emp4);
+			getEntityManager().flush();
+			clearCache();
+			TestUtil.logTrace("find employee4 again");
+			emp4 = getEntityManager().find(Employee4.class, 8);
+			TestUtil.logTrace("Name:" + emp4.getFirstName() + " " + emp4.getLastName());
+			firstName = emp4.getFirstName();
+			if (firstName != null && firstName.equals("foo")) {
+				TestUtil.logTrace("Received expected firstName:" + firstName);
+			} else {
+				pass = false;
+				TestUtil.logErr("Expected firstName: foo, actual: null");
+			}
 
-    if (!pass) {
-      throw new Exception("columnUpdatable Failed");
-    }
+			getEntityTransaction().commit();
 
-  }
+		} catch (Exception e) {
+			pass = false;
+			TestUtil.logErr("Received unexpected exception", e);
+		}
 
-  public void createTestData2() throws Exception {
-    try {
+		if (!pass) {
+			throw new Exception("columnUpdatable Failed");
+		}
 
-      TestUtil.logTrace("createTestData2");
-      createTestDataCommon();
-      getEntityTransaction().begin();
+	}
 
-      // insertable = false, updatable = false
-      TestUtil.logTrace("Create and persist employee2 ");
-      empRef2 = new Employee2(6, "John", "Smith");
-      empRef2.setDepartment(deptRef[0]);
-      getEntityManager().persist(empRef2);
+	public void createTestData2() throws Exception {
+		try {
 
-      // insertable = true, updatable = false
-      TestUtil.logTrace("Create and persist employee3 ");
-      empRef3 = new Employee3(7, "Paul", "Jones");
-      empRef3.setDepartment(deptRef[0]);
-      getEntityManager().persist(empRef3);
+			TestUtil.logTrace("createTestData2");
+			createTestDataCommon();
+			getEntityTransaction().begin();
 
-      // insertable = false, updatable = true
-      TestUtil.logTrace("Create and persist employee4 ");
-      empRef4 = new Employee4(8, "Thomas", "Brady");
-      empRef4.setDepartment(deptRef[0]);
-      getEntityManager().persist(empRef4);
-      getEntityManager().flush();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception creating test data:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
-  }
+			// insertable = false, updatable = false
+			TestUtil.logTrace("Create and persist employee2 ");
+			empRef2 = new Employee2(6, "John", "Smith");
+			empRef2.setDepartment(deptRef[0]);
+			getEntityManager().persist(empRef2);
 
- }
+			// insertable = true, updatable = false
+			TestUtil.logTrace("Create and persist employee3 ");
+			empRef3 = new Employee3(7, "Paul", "Jones");
+			empRef3.setDepartment(deptRef[0]);
+			getEntityManager().persist(empRef3);
+
+			// insertable = false, updatable = true
+			TestUtil.logTrace("Create and persist employee4 ");
+			empRef4 = new Employee4(8, "Thomas", "Brady");
+			empRef4.setDepartment(deptRef[0]);
+			getEntityManager().persist(empRef4);
+			getEntityManager().flush();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected Exception creating test data:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in rollback:", re);
+			}
+		}
+	}
+
+}

@@ -16,45 +16,44 @@
 
 package com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation;
 
-public class EntityTransactionImpl
-    implements jakarta.persistence.EntityTransaction {
-  protected boolean isActive;
+public class EntityTransactionImpl implements jakarta.persistence.EntityTransaction {
+	protected boolean isActive;
 
-  protected TSLogger logger;
+	protected TSLogger logger;
 
-  public EntityTransactionImpl() {
-    logger = TSLogger.getInstance();
-    isActive = false;
-  }
+	public EntityTransactionImpl() {
+		logger = TSLogger.getInstance();
+		isActive = false;
+	}
 
-  @Override
-  public void begin() {
-    isActive = true;
-  }
+	@Override
+	public void begin() {
+		isActive = true;
+	}
 
-  @Override
-  public void commit() {
-    isActive = false;
-  }
+	@Override
+	public void commit() {
+		isActive = false;
+	}
 
-  @Override
-  public boolean getRollbackOnly() {
-    return false;
-  }
+	@Override
+	public boolean getRollbackOnly() {
+		return false;
+	}
 
-  @Override
-  public boolean isActive() {
-    return this.isActive;
-  }
+	@Override
+	public boolean isActive() {
+		return this.isActive;
+	}
 
-  @Override
-  public void rollback() {
+	@Override
+	public void rollback() {
 
-  }
+	}
 
-  @Override
-  public void setRollbackOnly() {
+	@Override
+	public void setRollbackOnly() {
 
-  }
+	}
 
 }

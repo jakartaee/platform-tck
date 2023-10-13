@@ -29,23 +29,23 @@ import jakarta.persistence.Entity;
 @Entity
 public class DID3bEmployee implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  @EmbeddedId
-  DID3bEmployeeId empId;
+	@EmbeddedId
+	DID3bEmployeeId empId;
 
-  public DID3bEmployee() {
-  }
+	public DID3bEmployee() {
+	}
 
-  public DID3bEmployee(DID3bEmployeeId eId) {
-    this.empId = eId;
-  }
+	public DID3bEmployee(DID3bEmployeeId eId) {
+		this.empId = eId;
+	}
 
-  public DID3bEmployeeId getEmpId() {
-    return empId;
-  }
+	public DID3bEmployeeId getEmpId() {
+		return empId;
+	}
 
-  public void setEmpId(DID3bEmployeeId empId) {
-    this.empId = empId;
-  }
+	public void setEmpId(DID3bEmployeeId empId) {
+		this.empId = empId;
+	}
 }

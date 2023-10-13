@@ -24,41 +24,40 @@ import jakarta.persistence.NamedQuery;
 @Entity
 public class NameOnlyInXML implements java.io.Serializable {
 
-  private Long id;
+	private Long id;
 
-  public NameOnlyInXML() {
-  }
+	public NameOnlyInXML() {
+	}
 
-  @Id
-  public Long getId() {
-    return id;
-  }
+	@Id
+	public Long getId() {
+		return id;
+	}
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.id != null ? this.id.hashCode() : 0);
-    return hash;
-  }
+	public int hashCode() {
+		int hash = 0;
+		hash += (this.id != null ? this.id.hashCode() : 0);
+		return hash;
+	}
 
-  public boolean equals(java.lang.Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof NameOnlyInXML)) {
-      return false;
-    }
-    NameOnlyInXML other = (NameOnlyInXML) object;
-    if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
-      return false;
-    }
-    return true;
-  }
+	public boolean equals(java.lang.Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not
+		// set
+		if (!(object instanceof NameOnlyInXML)) {
+			return false;
+		}
+		NameOnlyInXML other = (NameOnlyInXML) object;
+		if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+			return false;
+		}
+		return true;
+	}
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.entity.NameOnlyInXML[id=" + id
-        + "]";
-  }
+	public String toString() {
+		return "com.sun.ts.tests.jpa.core.override.entity.NameOnlyInXML[id=" + id + "]";
+	}
 }

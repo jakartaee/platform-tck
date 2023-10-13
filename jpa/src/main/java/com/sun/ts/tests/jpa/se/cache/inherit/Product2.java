@@ -39,79 +39,78 @@ import jakarta.persistence.Table;
 @Entity
 @Cacheable(false)
 @Table(name = "PRODUCT_TABLE")
-@SecondaryTables({
-    @SecondaryTable(name = "PRODUCT_DETAILS", pkJoinColumns = @PrimaryKeyJoinColumn(name = "ID")) })
+@SecondaryTables({ @SecondaryTable(name = "PRODUCT_DETAILS", pkJoinColumns = @PrimaryKeyJoinColumn(name = "ID")) })
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "PRODUCT_TYPE", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("Product2")
 public class Product2 implements java.io.Serializable {
-  private static final long serialVersionUID = 22L;
+	private static final long serialVersionUID = 22L;
 
-  // Instance variables
-  private String id;
+	// Instance variables
+	private String id;
 
-  private int quantity;
+	private int quantity;
 
-  public Product2() {
-  }
+	public Product2() {
+	}
 
-  public Product2(String id, int quantity) {
-    this.id = id;
-    this.quantity = quantity;
-  }
+	public Product2(String id, int quantity) {
+		this.id = id;
+		this.quantity = quantity;
+	}
 
-  // ===========================================================
-  // getters and setters for State fields
+	// ===========================================================
+	// getters and setters for State fields
 
-  @Id
-  @Column(name = "ID")
-  public String getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  @Column(name = "QUANTITY")
-  public int getQuantity() {
-    return quantity;
-  }
+	@Column(name = "QUANTITY")
+	public int getQuantity() {
+		return quantity;
+	}
 
-  public void setQuantity(int v) {
-    this.quantity = v;
-  }
+	public void setQuantity(int v) {
+		this.quantity = v;
+	}
 
-  public boolean equals(Object o) {
-    Product2 other;
-    boolean same = true;
+	public boolean equals(Object o) {
+		Product2 other;
+		boolean same = true;
 
-    if (!(o instanceof Product2)) {
-      return false;
-    }
-    other = (Product2) o;
+		if (!(o instanceof Product2)) {
+			return false;
+		}
+		other = (Product2) o;
 
-    same &= this.id.equals(other.id);
+		same &= this.id.equals(other.id);
 
-    return same;
-  }
+		return same;
+	}
 
-  public int hashCode() {
-    int myHash;
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.id.hashCode();
+		myHash = this.id.hashCode();
 
-    return myHash;
-  }
+		return myHash;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", quantity: " + getQuantity());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", quantity: " + getQuantity());
+		result.append("]");
+		return result.toString();
+	}
 
 }

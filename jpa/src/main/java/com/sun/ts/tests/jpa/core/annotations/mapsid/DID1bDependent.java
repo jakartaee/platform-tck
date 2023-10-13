@@ -30,33 +30,33 @@ import jakarta.persistence.MapsId;
 @Entity
 public class DID1bDependent implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  @EmbeddedId
-  DID1bDependentId id;
+	@EmbeddedId
+	DID1bDependentId id;
 
-  @MapsId("empPK")
-  @ManyToOne
-  DID1bEmployee emp;
+	@MapsId("empPK")
+	@ManyToOne
+	DID1bEmployee emp;
 
-  public DID1bDependent() {
-  }
+	public DID1bDependent() {
+	}
 
-  public DID1bDependent(DID1bDependentId id, DID1bEmployee emp) {
-    this.id = id;
-    this.emp = emp;
-  }
+	public DID1bDependent(DID1bDependentId id, DID1bEmployee emp) {
+		this.id = id;
+		this.emp = emp;
+	}
 
-  public DID1bEmployee getEmp() {
-    return emp;
-  }
+	public DID1bEmployee getEmp() {
+		return emp;
+	}
 
-  public void setEmp(DID1bEmployee emp) {
-    this.emp = emp;
-  }
+	public void setEmp(DID1bEmployee emp) {
+		this.emp = emp;
+	}
 
-  @Override
-  public String toString() {
-    return "ex1b.DID1bDependent[id=" + id + "]";
-  }
+	@Override
+	public String toString() {
+		return "ex1b.DID1bDependent[id=" + id + "]";
+	}
 }

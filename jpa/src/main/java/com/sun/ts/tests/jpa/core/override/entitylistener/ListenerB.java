@@ -22,15 +22,15 @@ import jakarta.persistence.PostRemove;
 
 public class ListenerB {
 
-  public ListenerB() {
-  }
+	public ListenerB() {
+	}
 
-  @PostRemove
-  public void postRemoveFromXML(Object obj) {
-    updateCallBackCount("postRemove");
-  }
+	@PostRemove
+	public void postRemoveFromXML(Object obj) {
+		updateCallBackCount("postRemove");
+	}
 
-  protected void updateCallBackCount(String callBackKeyName) {
-    CallBackCounts.updateCount(callBackKeyName);
-  }
+	protected void updateCallBackCount(String callBackKeyName) {
+		CallBackCounts.updateCount(callBackKeyName);
+	}
 }

@@ -25,53 +25,53 @@ import jakarta.persistence.Embedded;
 @Access(AccessType.PROPERTY)
 public class Address implements java.io.Serializable {
 
-  protected String street;
+	protected String street;
 
-  protected String city;
+	protected String city;
 
-  protected String state;
+	protected String state;
 
-  @Embedded
-  protected ZipCode zipcode;
+	@Embedded
+	protected ZipCode zipcode;
 
-  public Address() {
-  }
+	public Address() {
+	}
 
-  public Address(String street, String city, String state) {
-    this.street = street;
-    this.city = city;
-    this.state = state;
-  }
+	public Address(String street, String city, String state) {
+		this.street = street;
+		this.city = city;
+		this.state = state;
+	}
 
-  public String getCity() {
-    return city;
-  }
+	public String getCity() {
+		return city;
+	}
 
-  public void setCity(String city) {
-    this.city = city;
-  }
+	public void setCity(String city) {
+		this.city = city;
+	}
 
-  public String getState() {
-    return state;
-  }
+	public String getState() {
+		return state;
+	}
 
-  public void setState(String state) {
-    this.state = state;
-  }
+	public void setState(String state) {
+		this.state = state;
+	}
 
-  public String getStreet() {
-    return street;
-  }
+	public String getStreet() {
+		return street;
+	}
 
-  public void setStreet(String street) {
-    this.street = street;
-  }
+	public void setStreet(String street) {
+		this.street = street;
+	}
 
-  public ZipCode getZipCode() {
-    return zipcode;
-  }
+	public ZipCode getZipCode() {
+		return zipcode;
+	}
 
-  public void setZipCode(ZipCode zipcode) {
-    this.zipcode = zipcode;
-  }
+	public void setZipCode(ZipCode zipcode) {
+		this.zipcode = zipcode;
+	}
 }

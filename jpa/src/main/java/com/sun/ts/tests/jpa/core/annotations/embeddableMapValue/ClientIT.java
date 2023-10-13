@@ -19,15 +19,10 @@ package com.sun.ts.tests.jpa.core.annotations.embeddableMapValue;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -35,182 +30,168 @@ import com.sun.ts.tests.jpa.common.PMClientBase;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class ClientIT extends PMClientBase {
 
-  public ClientIT() {
-  }
-  
-	@Deployment(testable = false, managed = false)
+	public ClientIT() {
+	}
+
 	public static JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = ClientIT.class.getPackageName() + ".";
-		String[] classes = { pkgName + "Address", pkgName + "Employee"};
+		String[] classes = { pkgName + "Address", pkgName + "Employee" };
 		return createDeploymentJar("jpa_core_annotations_embeddableMapValue.jar", pkgNameWithoutSuffix, classes);
 
 	}
 
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup();
+			removeTestData();
+			createDeployment();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
 
+		}
+	}
 
-  @BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
+	/*
+	 * @testName: embeddableMapValue
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:1195;
+	 * 
+	 * @test_Strategy: Use Embeddable class in MapValue
+	 *
+	 */
+	@Test
+	public void embeddableMapValue() throws Exception {
+		TestUtil.logTrace("Begin embeddableMapValue");
+		boolean pass1 = false;
+		boolean pass2 = false;
+		boolean pass3 = false;
+		boolean pass4 = false;
+		boolean pass5 = false;
+		EntityManager em = getEntityManager();
+		EntityTransaction et = getEntityTransaction();
 
-    }
-  }
+		try {
+			TestUtil.logTrace("New instances");
 
-  /*
-   * @testName: embeddableMapValue
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:1195;
-   * 
-   * @test_Strategy: Use Embeddable class in MapValue
-   *
-   */
-  @Test
-  public void embeddableMapValue() throws Exception {
-    TestUtil.logTrace("Begin embeddableMapValue");
-    boolean pass1 = false;
-    boolean pass2 = false;
-    boolean pass3 = false;
-    boolean pass4 = false;
-    boolean pass5 = false;
-    EntityManager em = getEntityManager();
-    EntityTransaction et = getEntityTransaction();
+			final Address addr1 = new Address("1", "1 Network Drive", "Burlington", "MA", "01801");
+			final Address addr2 = new Address("2", "Some Address", "Boston", "MA", "01803");
 
-    try {
-      TestUtil.logTrace("New instances");
+			Employee emp1 = new Employee(1, "Barack", "Obama");
 
-      final Address addr1 = new Address("1", "1 Network Drive", "Burlington",
-          "MA", "01801");
-      final Address addr2 = new Address("2", "Some Address", "Boston", "MA",
-          "01803");
+			Map<String, Address> locationAddressMap = new HashMap<String, Address>();
+			locationAddressMap.put("home", addr2);
+			locationAddressMap.put("office", addr1);
+			emp1.setLocationAddress(locationAddressMap);
 
-      Employee emp1 = new Employee(1, "Barack", "Obama");
+			TestUtil.logTrace("Created new Employee");
 
-      Map<String, Address> locationAddressMap = new HashMap<String, Address>();
-      locationAddressMap.put("home", addr2);
-      locationAddressMap.put("office", addr1);
-      emp1.setLocationAddress(locationAddressMap);
+			et.begin();
+			em.persist(emp1);
+			TestUtil.logTrace("persisted new Employee");
+			em.flush();
+			clearCache();
 
-      TestUtil.logTrace("Created new Employee");
+			TestUtil.logTrace("query for Employee");
+			final Employee newEmployee = em.find(Employee.class, 1);
 
-      et.begin();
-      em.persist(emp1);
-      TestUtil.logTrace("persisted new Employee");
-      em.flush();
-      clearCache();
+			final int newEmployeeId = newEmployee.getId();
+			final String newEmployeeFirstName = newEmployee.getFirstName();
+			final String newEmployeeLastName = newEmployee.getLastName();
 
-      TestUtil.logTrace("query for Employee");
-      final Employee newEmployee = em.find(Employee.class, 1);
+			TestUtil.logTrace("Employee Id = " + newEmployeeId);
+			TestUtil.logTrace("Employee First Name = " + newEmployeeFirstName);
+			TestUtil.logTrace("Employee Last Name = " + newEmployeeLastName);
 
-      final int newEmployeeId = newEmployee.getId();
-      final String newEmployeeFirstName = newEmployee.getFirstName();
-      final String newEmployeeLastName = newEmployee.getLastName();
+			if (newEmployeeId == 1) {
+				pass1 = true;
+				TestUtil.logTrace("Employee Id match");
+			}
 
-      TestUtil.logTrace("Employee Id = " + newEmployeeId);
-      TestUtil.logTrace("Employee First Name = " + newEmployeeFirstName);
-      TestUtil.logTrace("Employee Last Name = " + newEmployeeLastName);
+			if (newEmployeeFirstName.equals("Barack")) {
+				TestUtil.logTrace("Employee First Name match");
+				pass2 = true;
+			}
 
-      if (newEmployeeId == 1) {
-        pass1 = true;
-        TestUtil.logTrace("Employee Id match");
-      }
+			if (newEmployeeLastName.equals("Obama")) {
+				TestUtil.logTrace("Employee Last Name match");
+				pass3 = true;
+			}
 
-      if (newEmployeeFirstName.equals("Barack")) {
-        TestUtil.logTrace("Employee First Name match");
-        pass2 = true;
-      }
+			final Map<String, Address> newLocationAddressMap = newEmployee.getLocationAddress();
+			final Address homeAddress = newLocationAddressMap.get("home");
+			final Address officeAddress = newLocationAddressMap.get("office");
 
-      if (newEmployeeLastName.equals("Obama")) {
-        TestUtil.logTrace("Employee Last Name match");
-        pass3 = true;
-      }
+			if (officeAddress.getStreet().equals("1 Network Drive") && officeAddress.getCity().equals("Burlington")
+					&& officeAddress.getState().equals("MA") && officeAddress.getZip().equals("01801")) {
 
-      final Map<String, Address> newLocationAddressMap = newEmployee
-          .getLocationAddress();
-      final Address homeAddress = newLocationAddressMap.get("home");
-      final Address officeAddress = newLocationAddressMap.get("office");
+				pass4 = true;
+				TestUtil.logTrace("Employee officeAddress match");
+			}
 
-      if (officeAddress.getStreet().equals("1 Network Drive")
-          && officeAddress.getCity().equals("Burlington")
-          && officeAddress.getState().equals("MA")
-          && officeAddress.getZip().equals("01801")) {
+			if (homeAddress.getStreet().equals("Some Address") && homeAddress.getCity().equals("Boston")
+					&& homeAddress.getState().equals("MA") && homeAddress.getZip().equals("01803")) {
 
-        pass4 = true;
-        TestUtil.logTrace("Employee officeAddress match");
-      }
+				pass5 = true;
+				TestUtil.logTrace("Employee HomeAddress match");
+			}
 
-      if (homeAddress.getStreet().equals("Some Address")
-          && homeAddress.getCity().equals("Boston")
-          && homeAddress.getState().equals("MA")
-          && homeAddress.getZip().equals("01803")) {
+			et.commit();
 
-        pass5 = true;
-        TestUtil.logTrace("Employee HomeAddress match");
-      }
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected Exception :", e);
+		} finally {
+			try {
+				if (et.isActive()) {
+					et.rollback();
+				}
+			} catch (Exception fe) {
+				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+			}
 
-      et.commit();
+		}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception :", e);
-    } finally {
-      try {
-        if (et.isActive()) {
-          et.rollback();
-        }
-      } catch (Exception fe) {
-        TestUtil.logErr("Unexpected exception rolling back TX:", fe);
-      }
+		if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5) {
+			TestUtil.logErr("embeddableMapValue failed");
+		}
 
-    }
+	}
 
-    if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5) {
-      TestUtil.logErr("embeddableMapValue failed");
-    }
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("cleanup");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+		removeDeploymentJar();
+	}
 
-  }
-
-  @AfterAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
-
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager()
-          .createNativeQuery("Delete from COLTAB_EMP_EMBEDED_ADDRESS")
-          .executeUpdate();
-      getEntityManager()
-          .createNativeQuery("Delete from EMPLOYEE_EMBEDED_ADDRESS")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("Delete from COLTAB_EMP_EMBEDED_ADDRESS").executeUpdate();
+			getEntityManager().createNativeQuery("Delete from EMPLOYEE_EMBEDED_ADDRESS").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

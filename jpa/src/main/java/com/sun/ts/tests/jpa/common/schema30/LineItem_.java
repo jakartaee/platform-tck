@@ -24,12 +24,12 @@ import jakarta.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(LineItem.class)
 public class LineItem_ {
 
-  public static volatile SingularAttribute<LineItem, String> id;
+	public static volatile SingularAttribute<LineItem, String> id;
 
-  public static volatile SingularAttribute<LineItem, Product> product;
+	public static volatile SingularAttribute<LineItem, Product> product;
 
-  public static volatile SingularAttribute<LineItem, Order> order;
+	public static volatile SingularAttribute<LineItem, Order> order;
 
-  public static volatile SingularAttribute<LineItem, Integer> quantity;
+	public static volatile SingularAttribute<LineItem, Integer> quantity;
 
 }

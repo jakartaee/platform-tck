@@ -18,250 +18,219 @@ package com.sun.ts.tests.jpa.core.criteriaapi.Root;
 
 import java.util.List;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.common.schema30.Address;
-import com.sun.ts.tests.jpa.common.schema30.Customer;
-import com.sun.ts.tests.jpa.common.schema30.Customer_;
 import com.sun.ts.tests.jpa.common.schema30.Department;
 import com.sun.ts.tests.jpa.common.schema30.Department_;
 import com.sun.ts.tests.jpa.common.schema30.Employee;
-import com.sun.ts.tests.jpa.common.schema30.Order;
 import com.sun.ts.tests.jpa.common.schema30.Util;
 
 import jakarta.persistence.TypedQuery;
-import jakarta.persistence.criteria.CollectionJoin;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Expression;
-import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.JoinType;
-import jakarta.persistence.criteria.ListJoin;
 import jakarta.persistence.criteria.MapJoin;
 import jakarta.persistence.criteria.Root;
-import jakarta.persistence.criteria.SetJoin;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client4IT extends Util {
-	
-	 @Deployment(testable = false, managed = false)
-	 	public static JavaArchive createDeployment() throws Exception {
 
-	 		String pkgNameWithoutSuffix = Client4IT.class.getPackageName();
-	 		String pkgName = Client4IT.class.getPackageName() + ".";
-	 		String[] classes = {};
-	 		return createDeploymentJar("jpa_core_criteriaapi_root4.jar", pkgNameWithoutSuffix, classes);
-	 }
+	public static JavaArchive createDeployment() throws Exception {
 
+		String pkgNameWithoutSuffix = Client4IT.class.getPackageName();
+		String pkgName = Client4IT.class.getPackageName() + ".";
+		String[] classes = {};
+		return createDeploymentJar("jpa_core_criteriaapi_root4.jar", pkgNameWithoutSuffix, classes);
+	}
 
-  /*
-   * @testName: joinMapAttributeTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1139;
-   * 
-   * @test_Strategy: This query is defined on a one-many relationship. Verify
-   * the results were accurately returned.
-   *
-   * SELECT d FROM Department d JOIN d.lastNameEmployees e WHERE (e.id = 1)
-   *
-   */
-  @SetupMethod(name = "setupDepartmentEmployeeData")
-  @Test
-  public void joinMapAttributeTest() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
+	/*
+	 * @testName: joinMapAttributeTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1139;
+	 * 
+	 * @test_Strategy: This query is defined on a one-many relationship. Verify the
+	 * results were accurately returned.
+	 *
+	 * SELECT d FROM Department d JOIN d.lastNameEmployees e WHERE (e.id = 1)
+	 *
+	 */
+	@SetupMethod(name = "setupDepartmentEmployeeData")
+	@Test
+	public void joinMapAttributeTest() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
 
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
-      getEntityTransaction().begin();
-      CriteriaQuery<Department> cquery = cbuilder.createQuery(Department.class);
-      Root<Department> department = cquery.from(Department.class);
-      MapJoin<Department, String, Employee> employee = department
-          .join(Department_.lastNameEmployees);
-      cquery.where(cbuilder.equal(employee.get("id"), "1")).select(department);
-      TypedQuery<Department> tquery = getEntityManager().createQuery(cquery);
-      List<Department> clist = tquery.getResultList();
+			getEntityTransaction().begin();
+			CriteriaQuery<Department> cquery = cbuilder.createQuery(Department.class);
+			Root<Department> department = cquery.from(Department.class);
+			MapJoin<Department, String, Employee> employee = department.join(Department_.lastNameEmployees);
+			cquery.where(cbuilder.equal(employee.get("id"), "1")).select(department);
+			TypedQuery<Department> tquery = getEntityManager().createQuery(cquery);
+			List<Department> clist = tquery.getResultList();
 
-      expectedPKs = new String[1];
-      expectedPKs[0] = "1";
-      if (!checkEntityPK(clist, expectedPKs)) {
-        TestUtil
-            .logErr("Did not get expected results.  Expected 1 reference, got: "
-                + clist.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
+			expectedPKs = new String[1];
+			expectedPKs[0] = "1";
+			if (!checkEntityPK(clist, expectedPKs)) {
+				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
 
-    }
+		}
 
-    if (!pass) {
-      throw new Exception("joinMapAttributeTest failed");
-    }
-  }
+		if (!pass) {
+			throw new Exception("joinMapAttributeTest failed");
+		}
+	}
 
-  /*
-   * @testName: joinMapAttributeJoinTypeTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1143;
-   * 
-   * @test_Strategy: This query is defined on a one-many relationship. Verify
-   * the results were accurately returned.
-   *
-   * SELECT d FROM Department d INNER JOIN d.lastNameEmployees e WHERE (e.id =
-   * 1)
-   */
-  @SetupMethod(name = "setupDepartmentEmployeeData")
-  @Test
-  public void joinMapAttributeJoinTypeTest() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
+	/*
+	 * @testName: joinMapAttributeJoinTypeTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1143;
+	 * 
+	 * @test_Strategy: This query is defined on a one-many relationship. Verify the
+	 * results were accurately returned.
+	 *
+	 * SELECT d FROM Department d INNER JOIN d.lastNameEmployees e WHERE (e.id = 1)
+	 */
+	@SetupMethod(name = "setupDepartmentEmployeeData")
+	@Test
+	public void joinMapAttributeJoinTypeTest() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
 
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
-      getEntityTransaction().begin();
-      CriteriaQuery<Department> cquery = cbuilder.createQuery(Department.class);
-      Root<Department> department = cquery.from(Department.class);
-      MapJoin<Department, String, Employee> employee = department
-          .join(Department_.lastNameEmployees, JoinType.INNER);
-      cquery.where(cbuilder.equal(employee.get("id"), "1")).select(department);
-      TypedQuery<Department> tquery = getEntityManager().createQuery(cquery);
-      List<Department> clist = tquery.getResultList();
+			getEntityTransaction().begin();
+			CriteriaQuery<Department> cquery = cbuilder.createQuery(Department.class);
+			Root<Department> department = cquery.from(Department.class);
+			MapJoin<Department, String, Employee> employee = department.join(Department_.lastNameEmployees,
+					JoinType.INNER);
+			cquery.where(cbuilder.equal(employee.get("id"), "1")).select(department);
+			TypedQuery<Department> tquery = getEntityManager().createQuery(cquery);
+			List<Department> clist = tquery.getResultList();
 
-      expectedPKs = new String[1];
-      expectedPKs[0] = "1";
-      if (!checkEntityPK(clist, expectedPKs)) {
-        TestUtil
-            .logErr("Did not get expected results.  Expected 1 reference, got: "
-                + clist.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
+			expectedPKs = new String[1];
+			expectedPKs[0] = "1";
+			if (!checkEntityPK(clist, expectedPKs)) {
+				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
 
-    }
+		}
 
-    if (!pass) {
-      throw new Exception("joinMapAttributeJoinTypeTest failed");
-    }
-  }
+		if (!pass) {
+			throw new Exception("joinMapAttributeJoinTypeTest failed");
+		}
+	}
 
-  /*
-   * @testName: joinMapStringTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1156;
-   * 
-   * @test_Strategy: This query is defined on a one-many relationship. Verify
-   * the results were accurately returned.
-   *
-   * SELECT d FROM Department d JOIN d.lastNameEmployees e WHERE (e.id = 1)
-   */
-  @SetupMethod(name = "setupDepartmentEmployeeData")
-  @Test
-  public void joinMapStringTest() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
+	/*
+	 * @testName: joinMapStringTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1156;
+	 * 
+	 * @test_Strategy: This query is defined on a one-many relationship. Verify the
+	 * results were accurately returned.
+	 *
+	 * SELECT d FROM Department d JOIN d.lastNameEmployees e WHERE (e.id = 1)
+	 */
+	@SetupMethod(name = "setupDepartmentEmployeeData")
+	@Test
+	public void joinMapStringTest() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
 
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
-      getEntityTransaction().begin();
+			getEntityTransaction().begin();
 
-      CriteriaQuery<Department> cquery = cbuilder.createQuery(Department.class);
-      Root<Department> department = cquery.from(Department.class);
-      MapJoin<Department, String, Employee> employee = department
-          .joinMap("lastNameEmployees");
-      cquery.where(cbuilder.equal(employee.get("id"), "1")).select(department);
-      TypedQuery<Department> tquery = getEntityManager().createQuery(cquery);
-      List<Department> clist = tquery.getResultList();
+			CriteriaQuery<Department> cquery = cbuilder.createQuery(Department.class);
+			Root<Department> department = cquery.from(Department.class);
+			MapJoin<Department, String, Employee> employee = department.joinMap("lastNameEmployees");
+			cquery.where(cbuilder.equal(employee.get("id"), "1")).select(department);
+			TypedQuery<Department> tquery = getEntityManager().createQuery(cquery);
+			List<Department> clist = tquery.getResultList();
 
-      expectedPKs = new String[1];
-      expectedPKs[0] = "1";
-      if (!checkEntityPK(clist, expectedPKs)) {
-        TestUtil
-            .logErr("Did not get expected results.  Expected 1 reference, got: "
-                + clist.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
+			expectedPKs = new String[1];
+			expectedPKs[0] = "1";
+			if (!checkEntityPK(clist, expectedPKs)) {
+				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
 
-    }
+		}
 
-    if (!pass) {
-      throw new Exception("joinMapStringTest failed");
-    }
-  }
+		if (!pass) {
+			throw new Exception("joinMapStringTest failed");
+		}
+	}
 
-  /*
-   * @testName: joinMapStringJoinTypeTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1158;
-   * 
-   * @test_Strategy: This query is defined on a one-many relationship. Verify
-   * the results were accurately returned.
-   *
-   * SELECT d FROM Department d INNER JOIN d.lastNameEmployees e WHERE (e.id =
-   * 1)
-   */
-  @SetupMethod(name = "setupDepartmentEmployeeData")
-  @Test
-  public void joinMapStringJoinTypeTest() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
+	/*
+	 * @testName: joinMapStringJoinTypeTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1158;
+	 * 
+	 * @test_Strategy: This query is defined on a one-many relationship. Verify the
+	 * results were accurately returned.
+	 *
+	 * SELECT d FROM Department d INNER JOIN d.lastNameEmployees e WHERE (e.id = 1)
+	 */
+	@SetupMethod(name = "setupDepartmentEmployeeData")
+	@Test
+	public void joinMapStringJoinTypeTest() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
 
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
-      getEntityTransaction().begin();
+			getEntityTransaction().begin();
 
-      CriteriaQuery<Department> cquery = cbuilder.createQuery(Department.class);
-      Root<Department> department = cquery.from(Department.class);
-      MapJoin<Department, String, Employee> employee = department
-          .joinMap("lastNameEmployees", JoinType.INNER);
-      cquery.where(cbuilder.equal(employee.get("id"), "1")).select(department);
-      TypedQuery<Department> tquery = getEntityManager().createQuery(cquery);
-      List<Department> clist = tquery.getResultList();
+			CriteriaQuery<Department> cquery = cbuilder.createQuery(Department.class);
+			Root<Department> department = cquery.from(Department.class);
+			MapJoin<Department, String, Employee> employee = department.joinMap("lastNameEmployees", JoinType.INNER);
+			cquery.where(cbuilder.equal(employee.get("id"), "1")).select(department);
+			TypedQuery<Department> tquery = getEntityManager().createQuery(cquery);
+			List<Department> clist = tquery.getResultList();
 
-      expectedPKs = new String[1];
-      expectedPKs[0] = "1";
-      if (!checkEntityPK(clist, expectedPKs)) {
-        TestUtil
-            .logErr("Did not get expected results.  Expected 1 reference, got: "
-                + clist.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
+			expectedPKs = new String[1];
+			expectedPKs[0] = "1";
+			if (!checkEntityPK(clist, expectedPKs)) {
+				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
 
-    }
+		}
 
-    if (!pass) {
-      throw new Exception("joinMapStringJoinTypeTest failed");
-    }
-  }
+		if (!pass) {
+			throw new Exception("joinMapStringJoinTypeTest failed");
+		}
+	}
 }

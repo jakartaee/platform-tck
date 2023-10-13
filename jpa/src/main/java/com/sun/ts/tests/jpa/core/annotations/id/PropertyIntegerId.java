@@ -25,51 +25,51 @@ import jakarta.persistence.Table;
 @Table(name = "DATATYPES")
 public class PropertyIntegerId implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+	// ===========================================================
+	// instance variables
 
-  protected Integer id;
+	protected Integer id;
 
-  private Integer integerData;
+	private Integer integerData;
 
-  // ===========================================================
-  // constructors
-  public PropertyIntegerId() {
-  }
+	// ===========================================================
+	// constructors
+	public PropertyIntegerId() {
+	}
 
-  public PropertyIntegerId(Integer id, Integer integerData) {
+	public PropertyIntegerId(Integer id, Integer integerData) {
 
-    this.id = id;
-    this.integerData = integerData;
+		this.id = id;
+		this.integerData = integerData;
 
-  }
+	}
 
-  @Id
-  @Column(name = "ID")
-  public Integer getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public Integer getId() {
+		return id;
+	}
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-  @Column(name = "INTDATA")
-  public Integer getIntegerData() {
-    return integerData;
-  }
+	@Column(name = "INTDATA")
+	public Integer getIntegerData() {
+		return integerData;
+	}
 
-  public void setIntegerData(Integer integerData) {
-    this.integerData = integerData;
-  }
+	public void setIntegerData(Integer integerData) {
+		this.integerData = integerData;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", integer: " + getIntegerData());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", integer: " + getIntegerData());
+		result.append("]");
+		return result.toString();
+	}
 }

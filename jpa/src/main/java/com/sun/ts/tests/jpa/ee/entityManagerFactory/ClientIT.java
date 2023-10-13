@@ -18,7 +18,6 @@ package com.sun.ts.tests.jpa.ee.entityManagerFactory;
 
 import java.util.Properties;
 
-import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -33,139 +32,135 @@ import jakarta.persistence.Persistence;
 
 public class ClientIT extends PMClientBase {
 
-  Properties props = null;
+	Properties props = null;
 
-  public ClientIT() {
-  }
-  
-  @Deployment(testable = false, managed = false)
-  public static JavaArchive createDeployment() throws Exception {
-     
-     String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-     String pkgName = ClientIT.class.getPackageName() + ".";
-     String[] classes = { pkgName + "Order"};
-     return createDeploymentJar("jpa_ee_entityManagerFactory.jar", pkgNameWithoutSuffix, (String[]) classes);
+	public ClientIT() {
+	}
 
-  }
+	public static JavaArchive createDeployment() throws Exception {
 
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] classes = { pkgName + "Order" };
+		return createDeploymentJar("jpa_ee_entityManagerFactory.jar", pkgNameWithoutSuffix, (String[]) classes);
 
-  @BeforeAll
-  public void setupNoData() throws Exception {
-    TestUtil.logTrace("setupNoData");
-    try {
-      super.setup();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	}
 
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      removeTestData();
-      createOrderTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	@BeforeAll
+	public void setupNoData() throws Exception {
+		TestUtil.logTrace("setupNoData");
+		try {
+			super.setup();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-  @AfterAll
-  public void cleanupNoData() throws Exception {
-    super.cleanup();
-  }
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup();
+			removeTestData();
+			createOrderTestData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-  public void cleanup() throws Exception {
-    removeTestData();
-    TestUtil.logTrace("done cleanup, calling super.cleanup");
-    super.cleanup();
-  }
+	@AfterAll
+	public void cleanupNoData() throws Exception {
+		super.cleanup();
+	}
 
-  /*
-   * 
-   * /*
-   * 
-   * @testName: createEntityManagerFactoryStringTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:146;
-   * 
-   * @test_Strategy: Create an EntityManagerFactory via String
-   */
-  @Test
-  public void createEntityManagerFactoryStringTest() throws Exception {
-    boolean pass = false;
+	public void cleanup() throws Exception {
+		removeTestData();
+		TestUtil.logTrace("done cleanup, calling super.cleanup");
+		super.cleanup();
+	}
 
-    try {
-      EntityManagerFactory emf = Persistence
-          .createEntityManagerFactory(getPersistenceUnitName());
-      if (emf != null) {
-        TestUtil.logTrace("Received non-null EntityManagerFactory");
-        pass = true;
-      } else {
-        TestUtil.logErr("Received null EntityManagerFactory");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Received unexpected exception", e);
-    }
-    if (!pass) {
-      throw new Exception("createEntityManagerFactoryStringTest failed");
-    }
-  }
+	/*
+	 * 
+	 * /*
+	 * 
+	 * @testName: createEntityManagerFactoryStringTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:146;
+	 * 
+	 * @test_Strategy: Create an EntityManagerFactory via String
+	 */
+	@Test
+	public void createEntityManagerFactoryStringTest() throws Exception {
+		boolean pass = false;
 
-  private void createOrderTestData() {
+		try {
+			EntityManagerFactory emf = Persistence.createEntityManagerFactory(getPersistenceUnitName());
+			if (emf != null) {
+				TestUtil.logTrace("Received non-null EntityManagerFactory");
+				pass = true;
+			} else {
+				TestUtil.logErr("Received null EntityManagerFactory");
+			}
+		} catch (Exception e) {
+			TestUtil.logErr("Received unexpected exception", e);
+		}
+		if (!pass) {
+			throw new Exception("createEntityManagerFactoryStringTest failed");
+		}
+	}
 
-    try {
-      getEntityTransaction().begin();
-      Order[] orders = new Order[5];
-      orders[0] = new Order(1, 111);
-      orders[1] = new Order(2, 222);
-      orders[2] = new Order(3, 333);
-      orders[3] = new Order(4, 444);
-      orders[4] = new Order(5, 555);
+	private void createOrderTestData() {
 
-      for (Order o : orders) {
-        TestUtil.logTrace("Persisting order:" + o.toString());
-        getEntityManager().persist(o);
-      }
-      getEntityManager().flush();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception fe) {
-        TestUtil.logErr("Unexpected exception rolling back TX:", fe);
-      }
-    }
-  }
+		try {
+			getEntityTransaction().begin();
+			Order[] orders = new Order[5];
+			orders[0] = new Order(1, 111);
+			orders[1] = new Order(2, 222);
+			orders[2] = new Order(3, 333);
+			orders[3] = new Order(4, 444);
+			orders[4] = new Order(5, 555);
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      clearCache();
-      getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+			for (Order o : orders) {
+				TestUtil.logTrace("Persisting order:" + o.toString());
+				getEntityManager().persist(o);
+			}
+			getEntityManager().flush();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception fe) {
+				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+			}
+		}
+	}
+
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			clearCache();
+			getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 
 }

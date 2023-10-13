@@ -24,18 +24,18 @@ import jakarta.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Product.class)
 public class Product_ {
 
-  public static volatile SingularAttribute<Product, String> id;
+	public static volatile SingularAttribute<Product, String> id;
 
-  public static volatile SingularAttribute<Product, ShelfLife> shelfLife;
+	public static volatile SingularAttribute<Product, ShelfLife> shelfLife;
 
-  public static volatile SingularAttribute<Product, Double> price;
+	public static volatile SingularAttribute<Product, Double> price;
 
-  public static volatile SingularAttribute<Product, String> wareHouse;
+	public static volatile SingularAttribute<Product, String> wareHouse;
 
-  public static volatile SingularAttribute<Product, String> name;
+	public static volatile SingularAttribute<Product, String> name;
 
-  public static volatile SingularAttribute<Product, Integer> quantity;
+	public static volatile SingularAttribute<Product, Integer> quantity;
 
-  public static volatile SingularAttribute<Product, Long> partNumber;
+	public static volatile SingularAttribute<Product, Long> partNumber;
 
 }

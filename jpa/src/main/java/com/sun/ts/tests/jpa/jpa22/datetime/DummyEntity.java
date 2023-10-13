@@ -28,72 +28,69 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "JPA22_DT_DUMMY_ENTITY")
 public class DummyEntity implements java.io.Serializable {
-  private static final long serialVersionUID = 22L;
+	private static final long serialVersionUID = 22L;
 
-  /**
-   * Creates an instance of dummy entity. Entity attributes are not initialized.
-   */
-  public DummyEntity() {
-  }
+	/**
+	 * Creates an instance of dummy entity. Entity attributes are not initialized.
+	 */
+	public DummyEntity() {
+	}
 
-  /**
-   * Creates an instance of dummy entity. Entity attributes are initialized
-   * using provided values.
-   * 
-   * @param id
-   *          dummy entity primary key
-   */
-  public DummyEntity(Long id) {
-    this.id = id;
-  }
+	/**
+	 * Creates an instance of dummy entity. Entity attributes are initialized using
+	 * provided values.
+	 * 
+	 * @param id dummy entity primary key
+	 */
+	public DummyEntity(Long id) {
+		this.id = id;
+	}
 
-  /** Entity primary key. */
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  Long id;
+	/** Entity primary key. */
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	Long id;
 
-  /**
-   * Get entity primary key.
-   * 
-   * @return primary key
-   */
-  public Long getId() {
-    return id;
-  }
+	/**
+	 * Get entity primary key.
+	 * 
+	 * @return primary key
+	 */
+	public Long getId() {
+		return id;
+	}
 
-  /**
-   * Set entity primary key.
-   * 
-   * @param id
-   *          primary key to set
-   */
-  public void setId(Long id) {
-    this.id = id;
-  }
+	/**
+	 * Set entity primary key.
+	 * 
+	 * @param id primary key to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  @Override
-  public int hashCode() {
-    return (id != null ? id.hashCode() : 0);
-  }
+	@Override
+	public int hashCode() {
+		return (id != null ? id.hashCode() : 0);
+	}
 
-  @Override
-  public boolean equals(Object object) {
-    if (object instanceof DummyEntity) {
-      final DummyEntity other = (DummyEntity) object;
-      return (this.id == null && other.id == null)
-          || this.id != null && this.id.equals(other.id);
-    } else {
-      return false;
-    }
-  }
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof DummyEntity) {
+			final DummyEntity other = (DummyEntity) object;
+			return (this.id == null && other.id == null) || this.id != null && this.id.equals(other.id);
+		} else {
+			return false;
+		}
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName()).append('[');
-    result.append("id=").append(id != null ? id.toString() : "null");
-    result.append(']');
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName()).append('[');
+		result.append("id=").append(id != null ? id.toString() : "null");
+		result.append(']');
+		return result.toString();
+	}
 
 }

@@ -21,32 +21,32 @@ import java.util.Map;
 
 public class CallBackCounts {
 
-  private static Map<String, Integer> counts = new HashMap<String, Integer>();
+	private static Map<String, Integer> counts = new HashMap<String, Integer>();
 
-  public CallBackCounts() {
-  }
+	public CallBackCounts() {
+	}
 
-  public static void updateCount(String callBackKeyName) {
-    if (counts.containsKey(callBackKeyName)) {
-      int currentCallBackCount = counts.get(callBackKeyName);
-      System.out.println("callback key name is " + currentCallBackCount);
-      counts.put(callBackKeyName, ++currentCallBackCount);
-    } else {
-      counts.put(callBackKeyName, 1);
-    }
+	public static void updateCount(String callBackKeyName) {
+		if (counts.containsKey(callBackKeyName)) {
+			int currentCallBackCount = counts.get(callBackKeyName);
+			System.out.println("callback key name is " + currentCallBackCount);
+			counts.put(callBackKeyName, ++currentCallBackCount);
+		} else {
+			counts.put(callBackKeyName, 1);
+		}
 
-  }
+	}
 
-  public static int getCount(String callBackKeyName) {
-    Integer count = counts.get(callBackKeyName);
-    return count == null ? 0 : count;
-  }
+	public static int getCount(String callBackKeyName) {
+		Integer count = counts.get(callBackKeyName);
+		return count == null ? 0 : count;
+	}
 
-  public static Map getCallBackCounts() {
-    return counts;
-  }
+	public static Map getCallBackCounts() {
+		return counts;
+	}
 
-  public static void clearCountsMap() {
-    counts.clear();
-  }
+	public static void clearCountsMap() {
+		counts.clear();
+	}
 }

@@ -18,169 +18,154 @@ package com.sun.ts.tests.jpa.core.derivedid.ex5b;
 
 import java.util.List;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class ClientIT extends PMClientBase {
 
-  public ClientIT() {
-  }
-  
-  @Deployment(testable = false, managed = false)
- 	public static JavaArchive createDeployment() throws Exception {
+	public ClientIT() {
+	}
 
- 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
- 		String pkgName = ClientIT.class.getPackageName() + ".";
- 		String[] classes = { pkgName + "DID5bMedicalHistory", pkgName + "DID5bPerson",
- 				pkgName + "DID5bPersonId"};
- 		return createDeploymentJar("jpa_core_derivedid_ex5b.jar", pkgNameWithoutSuffix, classes);
+	public static JavaArchive createDeployment() throws Exception {
 
- 	}
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] classes = { pkgName + "DID5bMedicalHistory", pkgName + "DID5bPerson", pkgName + "DID5bPersonId" };
+		return createDeploymentJar("jpa_core_derivedid_ex5b.jar", pkgNameWithoutSuffix, classes);
 
+	}
 
-@BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup();
+			removeTestData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-  /**
-   * @testName: DIDTest
-   * @assertion_ids: PERSISTENCE:SPEC:1339; PERSISTENCE:SPEC:1340;
-   *                 PERSISTENCE:SPEC:1341;
-   * @test_Strategy: Derived Identifier
-   *                 <p/>
-   *                 Case (b): The dependent entity uses the EmbeddedId and
-   *                 MappedById annotations. The PersonId class either needs to
-   *                 be annotated Embeddable or denoted as an embeddable class
-   *                 in the XML descriptor.
-   */
-@Test
-  public void DIDTest() throws Exception {
-    boolean pass = false;
-    boolean pass1 = false;
-    boolean pass2 = true;
+	/**
+	 * @testName: DIDTest
+	 * @assertion_ids: PERSISTENCE:SPEC:1339; PERSISTENCE:SPEC:1340;
+	 *                 PERSISTENCE:SPEC:1341;
+	 * @test_Strategy: Derived Identifier
+	 *                 <p/>
+	 *                 Case (b): The dependent entity uses the EmbeddedId and
+	 *                 MappedById annotations. The PersonId class either needs to be
+	 *                 annotated Embeddable or denoted as an embeddable class in the
+	 *                 XML descriptor.
+	 */
+	@Test
+	public void DIDTest() throws Exception {
+		boolean pass = false;
+		boolean pass1 = false;
+		boolean pass2 = true;
 
-    try {
+		try {
 
-      getEntityTransaction().begin();
+			getEntityTransaction().begin();
 
-      final DID5bPersonId personId = new DID5bPersonId("Java", "DUKE");
-      final DID5bPerson person = new DID5bPerson(personId, "123456789");
-      final DID5bMedicalHistory mHistory = new DID5bMedicalHistory(personId,
-          person, "drFoo");
+			final DID5bPersonId personId = new DID5bPersonId("Java", "DUKE");
+			final DID5bPerson person = new DID5bPerson(personId, "123456789");
+			final DID5bMedicalHistory mHistory = new DID5bMedicalHistory(personId, person, "drFoo");
 
-      getEntityManager().persist(person);
-      getEntityManager().persist(mHistory);
+			getEntityManager().persist(person);
+			getEntityManager().persist(mHistory);
 
-      TestUtil.logTrace("persisted Patient and MedicalHistory");
-      getEntityManager().flush();
+			TestUtil.logTrace("persisted Patient and MedicalHistory");
+			getEntityManager().flush();
 
-      // Refresh MedicalHistory
-      DID5bMedicalHistory newMHistory = getEntityManager()
-          .find(DID5bMedicalHistory.class, new DID5bPersonId("Java", "DUKE"));
-      if (newMHistory != null) {
-        getEntityManager().refresh(newMHistory);
-      }
+			// Refresh MedicalHistory
+			DID5bMedicalHistory newMHistory = getEntityManager().find(DID5bMedicalHistory.class,
+					new DID5bPersonId("Java", "DUKE"));
+			if (newMHistory != null) {
+				getEntityManager().refresh(newMHistory);
+			}
 
-      final List depList = getEntityManager().createQuery(
-          "Select m from DID5bMedicalHistory m where m.patient.firstName='Java'")
-          .getResultList();
-      newMHistory = null;
-      if (depList.size() > 0) {
-        newMHistory = (DID5bMedicalHistory) depList.get(0);
-        if (newMHistory.getPatient() == person) {
-          pass1 = true;
-          TestUtil.logTrace("Received Expected Patient");
-        } else {
-          TestUtil.logErr("Searched Patient not found");
-        }
-      }
-      List depList2 = getEntityManager()
-          .createQuery(
-              "Select m from DID5bMedicalHistory m where m.id.firstName='Java'")
-          .getResultList();
-      DID5bMedicalHistory newMHistory2 = null;
-      if (depList2.size() > 0) {
-        newMHistory2 = (DID5bMedicalHistory) depList.get(0);
-        if (newMHistory2 != null) {
-          if (newMHistory2.getPatient() == person) {
-            pass = true;
-            TestUtil.logTrace("Received Expected Patient");
-          } else {
-            TestUtil.logErr("Searched Patient not found");
-          }
-        } else {
-          TestUtil.logErr("getEntityManager().createQuery returned null entry");
-        }
-      } else {
-        TestUtil.logErr("getEntityManager().createQuery returned null");
-      }
+			final List depList = getEntityManager()
+					.createQuery("Select m from DID5bMedicalHistory m where m.patient.firstName='Java'")
+					.getResultList();
+			newMHistory = null;
+			if (depList.size() > 0) {
+				newMHistory = (DID5bMedicalHistory) depList.get(0);
+				if (newMHistory.getPatient() == person) {
+					pass1 = true;
+					TestUtil.logTrace("Received Expected Patient");
+				} else {
+					TestUtil.logErr("Searched Patient not found");
+				}
+			}
+			List depList2 = getEntityManager()
+					.createQuery("Select m from DID5bMedicalHistory m where m.id.firstName='Java'").getResultList();
+			DID5bMedicalHistory newMHistory2 = null;
+			if (depList2.size() > 0) {
+				newMHistory2 = (DID5bMedicalHistory) depList.get(0);
+				if (newMHistory2 != null) {
+					if (newMHistory2.getPatient() == person) {
+						pass = true;
+						TestUtil.logTrace("Received Expected Patient");
+					} else {
+						TestUtil.logErr("Searched Patient not found");
+					}
+				} else {
+					TestUtil.logErr("getEntityManager().createQuery returned null entry");
+				}
+			} else {
+				TestUtil.logErr("getEntityManager().createQuery returned null");
+			}
 
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-      getEntityTransaction().rollback();
-    }
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+			getEntityTransaction().rollback();
+		}
 
-    if (pass1 && pass2) {
-      pass = true;
-    }
+		if (pass1 && pass2) {
+			pass = true;
+		}
 
-    if (!pass) {
-      throw new Exception("DIDTest failed");
-    }
-  }
+		if (!pass) {
+			throw new Exception("DIDTest failed");
+		}
+	}
 
-@AfterAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("cleanup");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+	}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM DID5BMEDICALHISTORY")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM DID5BPERSON")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM DID5BMEDICALHISTORY").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM DID5BPERSON").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

@@ -39,81 +39,80 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "EMPLOYEE")
 @DiscriminatorColumn(name = "STATUS", discriminatorType = DiscriminatorType.STRING)
-public abstract class Employee extends AbstractPersonnel
-    implements java.io.Serializable {
+public abstract class Employee extends AbstractPersonnel implements java.io.Serializable {
 
-  protected int id;
+	protected int id;
 
-  protected String firstName;
+	protected String firstName;
 
-  protected String lastName;
+	protected String lastName;
 
-  protected Date hireDate;
+	protected Date hireDate;
 
-  /** the project this Employee leads */
-  protected Project project;
+	/** the project this Employee leads */
+	protected Project project;
 
-  /** the department this Employee belongs to */
-  protected Department department;
+	/** the department this Employee belongs to */
+	protected Department department;
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Id
-  @Column(name = "ID")
-  public int getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  @Column(name = "FIRSTNAME")
-  public String getFirstName() {
-    return firstName;
-  }
+	@Column(name = "FIRSTNAME")
+	public String getFirstName() {
+		return firstName;
+	}
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-  @Column(name = "LASTNAME")
-  public String getLastName() {
-    return lastName;
-  }
+	@Column(name = "LASTNAME")
+	public String getLastName() {
+		return lastName;
+	}
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-  @Column(name = "HIREDATE")
-  public Date getHireDate() {
-    return hireDate;
-  }
+	@Column(name = "HIREDATE")
+	public Date getHireDate() {
+		return hireDate;
+	}
 
-  public void setHireDate(Date hireDate) {
-    this.hireDate = hireDate;
-  }
+	public void setHireDate(Date hireDate) {
+		this.hireDate = hireDate;
+	}
 
-  @ManyToOne
-  @JoinColumn(name = "FK_DEPT")
-  public Department getDepartment() {
-    return department;
-  }
+	@ManyToOne
+	@JoinColumn(name = "FK_DEPT")
+	public Department getDepartment() {
+		return department;
+	}
 
-  public void setDepartment(Department department) {
-    this.department = department;
-  }
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
 
-  @OneToOne
-  @JoinColumn(name = "FK_PROJECT")
-  public Project getProject() {
-    return project;
-  }
+	@OneToOne
+	@JoinColumn(name = "FK_PROJECT")
+	public Project getProject() {
+		return project;
+	}
 
-  public void setProject(Project project) {
-    this.project = project;
-  }
+	public void setProject(Project project) {
+		this.project = project;
+	}
 
 }

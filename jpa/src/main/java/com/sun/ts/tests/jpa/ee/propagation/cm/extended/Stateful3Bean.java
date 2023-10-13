@@ -41,294 +41,289 @@ import jakarta.persistence.PersistenceContextType;
 @Remote({ Stateful3IF.class })
 public class Stateful3Bean implements Stateful3IF {
 
-  /*
-   * If multiple persistence units exist the unitName element must be specified.
-   * In this archive, only one persistence unit exists; thus, unitName is
-   * omitted.
-   */
+	/*
+	 * If multiple persistence units exist the unitName element must be specified.
+	 * In this archive, only one persistence unit exists; thus, unitName is omitted.
+	 */
 
-  @PersistenceContext(type = PersistenceContextType.EXTENDED, unitName = "CTS-EXT-UNIT")
-  private EntityManager entityManager;
+	@PersistenceContext(type = PersistenceContextType.EXTENDED, unitName = "CTS-EXT-UNIT")
+	private EntityManager entityManager;
 
-  public SessionContext sessionContext;
+	public SessionContext sessionContext;
 
-  private static final B bRef[] = new B[5];
+	private static final B bRef[] = new B[5];
 
-  @EJB(beanName = "TellerBean", beanInterface = Teller.class)
-  private Teller beanRef;
+	@EJB(beanName = "TellerBean", beanInterface = Teller.class)
+	private Teller beanRef;
 
-  @Resource
-  public void setSessionContext(SessionContext sessionContext) {
-    this.sessionContext = sessionContext;
-  }
+	@Resource
+	public void setSessionContext(SessionContext sessionContext) {
+		this.sessionContext = sessionContext;
+	}
 
-  public void init(final Properties p) {
-    TestUtil.logTrace("init");
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
-    }
-  }
+	public void init(final Properties p) {
+		TestUtil.logTrace("init");
+		try {
+			TestUtil.init(p);
+		} catch (RemoteLoggingInitException e) {
+			TestUtil.printStackTrace(e);
+			throw new EJBException(e.getMessage());
+		}
+	}
 
-  public void createTestData() {
-    try {
+	public void createTestData() {
+		try {
 
-      TestUtil.logTrace("createTestData");
+			TestUtil.logTrace("createTestData");
 
-      TestUtil.logTrace("Create 5 Bees");
-      bRef[0] = new B("1", "customerB1", 1);
-      bRef[1] = new B("2", "customerB2", 2);
-      bRef[2] = new B("3", "customerB3", 3);
-      bRef[3] = new B("4", "customerB4", 4);
-      bRef[4] = new B("5", "customerB5", 5);
+			TestUtil.logTrace("Create 5 Bees");
+			bRef[0] = new B("1", "customerB1", 1);
+			bRef[1] = new B("2", "customerB2", 2);
+			bRef[2] = new B("3", "customerB3", 3);
+			bRef[3] = new B("4", "customerB4", 4);
+			bRef[4] = new B("5", "customerB5", 5);
 
-      TestUtil.logTrace("Start to persist Bees ");
-      for (B b : bRef) {
-        if (b != null) {
-          entityManager.persist(b);
-          TestUtil.logTrace("persisted B " + b);
-        }
-      }
-      entityManager.flush();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected while creating test data:" + e);
-    }
-  }
+			TestUtil.logTrace("Start to persist Bees ");
+			for (B b : bRef) {
+				if (b != null) {
+					entityManager.persist(b);
+					TestUtil.logTrace("persisted B " + b);
+				}
+			}
+			entityManager.flush();
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected while creating test data:" + e);
+		}
+	}
 
-  public void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    try {
-      entityManager.createNativeQuery("DELETE FROM BEJB_1X1_BI_BTOB")
-          .executeUpdate();
-      entityManager.createNativeQuery("DELETE FROM AEJB_1X1_BI_BTOB")
-          .executeUpdate();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    }
-    // clear the cache if the provider supports caching otherwise
-    // the evictAll is ignored.
-    TestUtil.logTrace("Clearing cache");
-    entityManager.getEntityManagerFactory().getCache().evictAll();
+	public void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		try {
+			entityManager.createNativeQuery("DELETE FROM BEJB_1X1_BI_BTOB").executeUpdate();
+			entityManager.createNativeQuery("DELETE FROM AEJB_1X1_BI_BTOB").executeUpdate();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		}
+		// clear the cache if the provider supports caching otherwise
+		// the evictAll is ignored.
+		TestUtil.logTrace("Clearing cache");
+		entityManager.getEntityManagerFactory().getCache().evictAll();
 
-  }
+	}
 
-  public boolean test1() {
+	public boolean test1() {
 
-    TestUtil.logTrace("Begin test1");
-    boolean pass = false;
+		TestUtil.logTrace("Begin test1");
+		boolean pass = false;
 
-    try {
-      removeTestData();
+		try {
+			removeTestData();
 
-      createTestData();
-      B anotherB = entityManager.find(B.class, "3");
+			createTestData();
+			B anotherB = entityManager.find(B.class, "3");
 
-      if (anotherB != null) {
-        TestUtil.logTrace("newB found" + anotherB.getName());
-        pass = true;
-      }
+			if (anotherB != null) {
+				TestUtil.logTrace("newB found" + anotherB.getName());
+				pass = true;
+			}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception :", e);
-      pass = false;
-    } finally {
-      removeTestData();
-    }
-    return pass;
-  }
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected Exception :", e);
+			pass = false;
+		} finally {
+			removeTestData();
+		}
+		return pass;
+	}
 
-  /*
-   * test_Strategy: getTransaction will throw an IllegalStateException if
-   * invoked on a Container-Managed JTA EM
-   *
-   */
+	/*
+	 * test_Strategy: getTransaction will throw an IllegalStateException if invoked
+	 * on a Container-Managed JTA EM
+	 *
+	 */
 
-  public boolean test2() {
+	public boolean test2() {
 
-    TestUtil.logTrace("Begin test2");
-    boolean pass = false;
+		TestUtil.logTrace("Begin test2");
+		boolean pass = false;
 
-    try {
-      entityManager.getTransaction();
-    } catch (IllegalStateException ise) {
-      pass = true;
-      TestUtil.logTrace("IllegalStateException Caught as Expected: " + ise);
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception :", e);
-    }
-    return pass;
-  }
+		try {
+			entityManager.getTransaction();
+		} catch (IllegalStateException ise) {
+			pass = true;
+			TestUtil.logTrace("IllegalStateException Caught as Expected: " + ise);
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected Exception :", e);
+		}
+		return pass;
+	}
 
-  public boolean test3() {
-    String accounts;
-    boolean pass = false;
+	public boolean test3() {
+		String accounts;
+		boolean pass = false;
 
-    try {
-      beanRef.removeTestData();
-      TestUtil.logTrace("DEBUG:  createAccountData");
-      beanRef.createTestData();
+		try {
+			beanRef.removeTestData();
+			TestUtil.logTrace("DEBUG:  createAccountData");
+			beanRef.createTestData();
 
-      accounts = beanRef.getAllAccounts();
+			accounts = beanRef.getAllAccounts();
 
-      if (accounts != null) {
-        TestUtil.logTrace(accounts);
-      }
+			if (accounts != null) {
+				TestUtil.logTrace(accounts);
+			}
 
-      Account ACCOUNT = entityManager.find(Account.class, 1075);
+			Account ACCOUNT = entityManager.find(Account.class, 1075);
 
-      pass = beanRef.checkAccountStatus(ACCOUNT);
+			pass = beanRef.checkAccountStatus(ACCOUNT);
 
-    } catch (Exception e) {
-      pass = false;
-      TestUtil.logErr("Unexpected Exception:", e);
-    } finally {
-      beanRef.removeTestData();
-    }
-    return pass;
-  }
+		} catch (Exception e) {
+			pass = false;
+			TestUtil.logErr("Unexpected Exception:", e);
+		} finally {
+			beanRef.removeTestData();
+		}
+		return pass;
+	}
 
-  public boolean test4() {
-    Double EXPECTED_BALANCE = 10540.75D;
-    Double balance;
-    boolean pass = false;
+	public boolean test4() {
+		Double EXPECTED_BALANCE = 10540.75D;
+		Double balance;
+		boolean pass = false;
 
-    try {
-      beanRef.removeTestData();
-      System.out.println("DEBUG:  createAccountData");
-      beanRef.createTestData();
+		try {
+			beanRef.removeTestData();
+			System.out.println("DEBUG:  createAccountData");
+			beanRef.createTestData();
 
-      Account ACCOUNT = entityManager.find(Account.class, 1075);
+			Account ACCOUNT = entityManager.find(Account.class, 1075);
 
-      balance = beanRef.balance(ACCOUNT.id());
-      balance = beanRef.deposit(ACCOUNT.id(), 100.0);
-      balance = beanRef.withdraw(ACCOUNT.id(), 50.0);
+			balance = beanRef.balance(ACCOUNT.id());
+			balance = beanRef.deposit(ACCOUNT.id(), 100.0);
+			balance = beanRef.withdraw(ACCOUNT.id(), 50.0);
 
-      if (EXPECTED_BALANCE.equals(balance)) {
-        TestUtil.logTrace("Expected balance received.");
-        pass = true;
-      } else {
-        TestUtil.logErr(" Did not get Expected balance, got:" + balance
-            + "Expected: " + EXPECTED_BALANCE);
-      }
+			if (EXPECTED_BALANCE.equals(balance)) {
+				TestUtil.logTrace("Expected balance received.");
+				pass = true;
+			} else {
+				TestUtil.logErr(" Did not get Expected balance, got:" + balance + "Expected: " + EXPECTED_BALANCE);
+			}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception:", e);
-    } finally {
-      beanRef.removeTestData();
-    }
-    return pass;
-  }
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected Exception:", e);
+		} finally {
+			beanRef.removeTestData();
+		}
+		return pass;
+	}
 
-  public boolean test5() {
-    boolean pass = false;
-    boolean pass1 = false;
+	public boolean test5() {
+		boolean pass = false;
+		boolean pass1 = false;
 
-    try {
-      removeTestData();
-      TestUtil.logTrace("createTestData");
-      createTestData();
-      TestUtil.logTrace("find customerB");
-      B customerB = entityManager.find(B.class, "4");
+		try {
+			removeTestData();
+			TestUtil.logTrace("createTestData");
+			createTestData();
+			TestUtil.logTrace("find customerB");
+			B customerB = entityManager.find(B.class, "4");
 
-      if (null != customerB) {
-        TestUtil.logTrace("check customer status");
-        pass1 = beanRef.checkCustomerStatus(customerB);
-      }
+			if (null != customerB) {
+				TestUtil.logTrace("check customer status");
+				pass1 = beanRef.checkCustomerStatus(customerB);
+			}
 
-      entityManager.refresh(customerB);
+			entityManager.refresh(customerB);
 
-      if ((pass1) && (customerB.getA().getName().equals("customerA9"))) {
-        pass = true;
-      }
+			if ((pass1) && (customerB.getA().getName().equals("customerA9"))) {
+				pass = true;
+			}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception:", e);
-    } finally {
-      removeTestData();
-    }
-    return pass;
-  }
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected Exception:", e);
+		} finally {
+			removeTestData();
+		}
+		return pass;
+	}
 
-  public boolean test6() {
-    boolean pass = false;
+	public boolean test6() {
+		boolean pass = false;
 
-    try {
+		try {
 
-      TestUtil.logTrace("find customerB");
-      B customerB = entityManager.find(B.class, "3");
+			TestUtil.logTrace("find customerB");
+			B customerB = entityManager.find(B.class, "3");
 
-      if (null != customerB) {
-        TestUtil.logTrace("customer is not null, call rollbackStatus()");
-        pass = beanRef.rollbackStatus(customerB);
-      }
+			if (null != customerB) {
+				TestUtil.logTrace("customer is not null, call rollbackStatus()");
+				pass = beanRef.rollbackStatus(customerB);
+			}
 
-    } catch (Exception e) {
-      pass = false;
-      TestUtil.logErr("Unexpected Exception:", e);
-    }
-    return pass;
-  }
+		} catch (Exception e) {
+			pass = false;
+			TestUtil.logErr("Unexpected Exception:", e);
+		}
+		return pass;
+	}
 
-  public boolean verifyTest6() {
-    boolean pass = false;
+	public boolean verifyTest6() {
+		boolean pass = false;
 
-    try {
+		try {
 
-      TestUtil.logTrace("verifyTest6:  find customerB");
-      B customerB = entityManager.find(B.class, "3");
+			TestUtil.logTrace("verifyTest6:  find customerB");
+			B customerB = entityManager.find(B.class, "3");
 
-      if ((customerB.getName().equals("customerB3"))) {
-        pass = true;
-      } else {
-        TestUtil.logErr(" did not get the expected result.  Expected"
-            + " customerB3, got: " + customerB.getName());
-      }
+			if ((customerB.getName().equals("customerB3"))) {
+				pass = true;
+			} else {
+				TestUtil.logErr(
+						" did not get the expected result.  Expected" + " customerB3, got: " + customerB.getName());
+			}
 
-    } catch (Exception e) {
-      pass = false;
-      TestUtil.logErr("Unexpected Exception in verifyTest6:", e);
-    } finally {
-      removeTestData();
+		} catch (Exception e) {
+			pass = false;
+			TestUtil.logErr("Unexpected Exception in verifyTest6:", e);
+		} finally {
+			removeTestData();
 
-    }
-    return pass;
-  }
+		}
+		return pass;
+	}
 
-  public boolean test7() {
-    boolean pass = false;
-    boolean pass1 = false;
+	public boolean test7() {
+		boolean pass = false;
+		boolean pass1 = false;
 
-    try {
-      removeTestData();
-      TestUtil.logTrace("createTestData");
-      createTestData();
-      B customerB = entityManager.find(B.class, "5");
+		try {
+			removeTestData();
+			TestUtil.logTrace("createTestData");
+			createTestData();
+			B customerB = entityManager.find(B.class, "5");
 
-      if (null != customerB) {
-        TestUtil.logTrace("customer is not null, call flushStatus()");
-        pass1 = beanRef.flushStatus(customerB);
+			if (null != customerB) {
+				TestUtil.logTrace("customer is not null, call flushStatus()");
+				pass1 = beanRef.flushStatus(customerB);
 
-        TestUtil.logTrace(
-            "refresh customerB entity to be sure to get actual state");
-        entityManager.refresh(customerB);
+				TestUtil.logTrace("refresh customerB entity to be sure to get actual state");
+				entityManager.refresh(customerB);
 
-        if ((pass1) && (customerB.getName().equals("flushB"))) {
-          pass = true;
-        } else {
-          TestUtil.logErr(" did not get the expected result.  Expected"
-              + " flushB, got: " + customerB.getName());
-        }
-      }
-    } catch (Exception e) {
-      pass = false;
-      TestUtil.logErr("Unexpected Exception:", e);
-    } finally {
-      removeTestData();
+				if ((pass1) && (customerB.getName().equals("flushB"))) {
+					pass = true;
+				} else {
+					TestUtil.logErr(
+							" did not get the expected result.  Expected" + " flushB, got: " + customerB.getName());
+				}
+			}
+		} catch (Exception e) {
+			pass = false;
+			TestUtil.logErr("Unexpected Exception:", e);
+		} finally {
+			removeTestData();
 
-    }
-    return pass;
-  }
+		}
+		return pass;
+	}
 
 }

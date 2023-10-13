@@ -36,109 +36,106 @@ import jakarta.persistence.TemporalType;
 @Table(name = "A_BASIC")
 public class A_Property implements java.io.Serializable {
 
-  protected String id;
+	protected String id;
 
-  protected Date basicDate;
+	protected Date basicDate;
 
-  protected Calendar basicCalendar;
+	protected Calendar basicCalendar;
 
-  private List<Calendar> dates = new ArrayList<Calendar>();
+	private List<Calendar> dates = new ArrayList<Calendar>();
 
-  public A_Property() {
-  }
+	public A_Property() {
+	}
 
-  public A_Property(String id, Date basicDate, Calendar basicCalendar) {
+	public A_Property(String id, Date basicDate, Calendar basicCalendar) {
 
-    this.id = id;
-    this.basicDate = basicDate;
-    this.basicCalendar = basicCalendar;
+		this.id = id;
+		this.basicDate = basicDate;
+		this.basicCalendar = basicCalendar;
 
-  }
+	}
 
-  public A_Property(String id, Date basicDate, Calendar basicCalendar,
-      List<Calendar> dates) {
-    this.id = id;
-    this.basicDate = basicDate;
-    this.basicCalendar = basicCalendar;
-    this.dates = dates;
-  }
+	public A_Property(String id, Date basicDate, Calendar basicCalendar, List<Calendar> dates) {
+		this.id = id;
+		this.basicDate = basicDate;
+		this.basicCalendar = basicCalendar;
+		this.dates = dates;
+	}
 
-  @Id
-  public String getId() {
-    return id;
-  }
+	@Id
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  @Basic
-  @Temporal(TemporalType.DATE)
-  public Calendar getBasicCalendar() {
-    return basicCalendar;
-  }
+	@Basic
+	@Temporal(TemporalType.DATE)
+	public Calendar getBasicCalendar() {
+		return basicCalendar;
+	}
 
-  public void setBasicCalendar(Calendar basicCalendar) {
-    this.basicCalendar = basicCalendar;
-  }
+	public void setBasicCalendar(Calendar basicCalendar) {
+		this.basicCalendar = basicCalendar;
+	}
 
-  @Basic
-  @Temporal(TemporalType.DATE)
-  public Date getBasicDate() {
-    return basicDate;
-  }
+	@Basic
+	@Temporal(TemporalType.DATE)
+	public Date getBasicDate() {
+		return basicDate;
+	}
 
-  public void setBasicDate(Date basicDate) {
-    this.basicDate = basicDate;
-  }
+	public void setBasicDate(Date basicDate) {
+		this.basicDate = basicDate;
+	}
 
-  @ElementCollection
-  @CollectionTable(name = "DATES_TABLE", joinColumns = @JoinColumn(name = "ID"))
-  @Temporal(TemporalType.DATE)
-  @Column(name = "DATES")
-  public List<Calendar> getDates() {
-    return dates;
-  }
+	@ElementCollection
+	@CollectionTable(name = "DATES_TABLE", joinColumns = @JoinColumn(name = "ID"))
+	@Temporal(TemporalType.DATE)
+	@Column(name = "DATES")
+	public List<Calendar> getDates() {
+		return dates;
+	}
 
-  public void setDates(List<Calendar> dates) {
-    this.dates = dates;
-  }
+	public void setDates(List<Calendar> dates) {
+		this.dates = dates;
+	}
 
-  public boolean equals(Object o) {
-    A_Property other;
-    boolean result = false;
+	public boolean equals(Object o) {
+		A_Property other;
+		boolean result = false;
 
-    if (!(o instanceof A_Property)) {
-      return result;
-    }
-    other = (A_Property) o;
+		if (!(o instanceof A_Property)) {
+			return result;
+		}
+		other = (A_Property) o;
 
-    if (this.getId().equals(other.getId())
-        && this.getBasicCalendar().equals(other.getBasicCalendar())
-        && this.getBasicDate().equals(other.getBasicDate())) {
-      result = true;
-    }
+		if (this.getId().equals(other.getId()) && this.getBasicCalendar().equals(other.getBasicCalendar())
+				&& this.getBasicDate().equals(other.getBasicDate())) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  public int hashCode() {
-    int myHash;
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.getId().hashCode() + this.getBasicCalendar().hashCode()
-        + this.getBasicDate().hashCode();
+		myHash = this.getId().hashCode() + this.getBasicCalendar().hashCode() + this.getBasicDate().hashCode();
 
-    return myHash;
-  }
+		return myHash;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", date: " + getBasicDate());
-    result.append(", calendar: " + getBasicCalendar());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", date: " + getBasicDate());
+		result.append(", calendar: " + getBasicCalendar());
+		result.append("]");
+		return result.toString();
+	}
 }

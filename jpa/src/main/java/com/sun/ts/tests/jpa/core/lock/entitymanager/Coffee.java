@@ -28,61 +28,59 @@ import jakarta.persistence.SqlResultSetMapping;
 import jakarta.persistence.Table;
 
 @NamedNativeQueries({
-    @NamedNativeQuery(name = "findAllSQLCoffees2", query = "select * from COFFEE", resultClass = com.sun.ts.tests.jpa.core.lock.entitymanager.Coffee.class),
-    @NamedNativeQuery(name = "findAllSQLCoffees", query = "select * from COFFEE", resultSetMapping = "CoffeeResult") })
+		@NamedNativeQuery(name = "findAllSQLCoffees2", query = "select * from COFFEE", resultClass = com.sun.ts.tests.jpa.core.lock.entitymanager.Coffee.class),
+		@NamedNativeQuery(name = "findAllSQLCoffees", query = "select * from COFFEE", resultSetMapping = "CoffeeResult") })
 @SqlResultSetMapping(name = "CoffeeResult", entities = @EntityResult(entityClass = com.sun.ts.tests.jpa.core.lock.entitymanager.Coffee.class))
-@NamedQueries({
-    @NamedQuery(name = "findAllCoffees", query = "Select Distinct c from Coffee c"),
-    @NamedQuery(name = "findAllNewCoffees", query = "Select NEW com.sun.ts.tests.jpa.core.lock.entitymanager.Coffee(c.id, c.brandName, c.price) from Coffee c where c.price <> 0") })
+@NamedQueries({ @NamedQuery(name = "findAllCoffees", query = "Select Distinct c from Coffee c"),
+		@NamedQuery(name = "findAllNewCoffees", query = "Select NEW com.sun.ts.tests.jpa.core.lock.entitymanager.Coffee(c.id, c.brandName, c.price) from Coffee c where c.price <> 0") })
 @Entity
 @Table(name = "COFFEE")
 public class Coffee implements java.io.Serializable {
 
-  private Integer id;
+	private Integer id;
 
-  private String brandName;
+	private String brandName;
 
-  private float price;
+	private float price;
 
-  public Coffee() {
-  }
+	public Coffee() {
+	}
 
-  public Coffee(Integer id, String brandName, float price) {
-    this.id = id;
-    this.brandName = brandName;
-    this.price = price;
-  }
+	public Coffee(Integer id, String brandName, float price) {
+		this.id = id;
+		this.brandName = brandName;
+		this.price = price;
+	}
 
-  @Id
-  @Column(name = "ID")
-  public Integer getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public Integer getId() {
+		return id;
+	}
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-  @Column(name = "BRANDNAME")
-  public String getBrandName() {
-    return brandName;
-  }
+	@Column(name = "BRANDNAME")
+	public String getBrandName() {
+		return brandName;
+	}
 
-  public void setBrandName(String bName) {
-    this.brandName = bName;
-  }
+	public void setBrandName(String bName) {
+		this.brandName = bName;
+	}
 
-  @Column(name = "PRICE")
-  public float getPrice() {
-    return price;
-  }
+	@Column(name = "PRICE")
+	public float getPrice() {
+		return price;
+	}
 
-  public void setPrice(float price) {
-    this.price = price;
-  }
+	public void setPrice(float price) {
+		this.price = price;
+	}
 
-  public String toString() {
-    return "Coffee id=" + getId() + ", brandName=" + getBrandName() + ", price="
-        + getPrice();
-  }
+	public String toString() {
+		return "Coffee id=" + getId() + ", brandName=" + getBrandName() + ", price=" + getPrice();
+	}
 }

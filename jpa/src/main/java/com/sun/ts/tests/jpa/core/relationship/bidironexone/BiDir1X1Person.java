@@ -29,52 +29,52 @@ import jakarta.persistence.OneToOne;
  */
 @Entity
 public class BiDir1X1Person implements Serializable {
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  @Id
-  private Long id;
+	@Id
+	private Long id;
 
-  private String name;
+	private String name;
 
-  // Bi-directional OnePerson OneProject
-  @OneToOne(cascade = CascadeType.ALL)
-  private BiDir1X1Project project;
+	// Bi-directional OnePerson OneProject
+	@OneToOne(cascade = CascadeType.ALL)
+	private BiDir1X1Project project;
 
-  public BiDir1X1Person() {
-  }
+	public BiDir1X1Person() {
+	}
 
-  public BiDir1X1Project getProject() {
-    return project;
-  }
+	public BiDir1X1Project getProject() {
+		return project;
+	}
 
-  public void setProject(BiDir1X1Project project) {
-    this.project = project;
-  }
+	public void setProject(BiDir1X1Project project) {
+		this.project = project;
+	}
 
-  public BiDir1X1Person(Long i, String string) {
-    this.id = i;
-    this.name = string;
-  }
+	public BiDir1X1Person(Long i, String string) {
+		this.id = i;
+		this.name = string;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public Long getId() {
-    return id;
-  }
+	public Long getId() {
+		return id;
+	}
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  @Override
-  public String toString() {
-    return "bindironexone.BiDir1X1Person[id=" + id + "]";
-  }
+	@Override
+	public String toString() {
+		return "bindironexone.BiDir1X1Person[id=" + id + "]";
+	}
 
 }

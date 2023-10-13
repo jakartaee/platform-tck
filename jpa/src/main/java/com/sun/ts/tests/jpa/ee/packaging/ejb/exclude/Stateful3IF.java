@@ -23,12 +23,12 @@ package com.sun.ts.tests.jpa.ee.packaging.ejb.exclude;
 import java.util.Properties;
 
 public interface Stateful3IF {
-  public void removeTestData();
+	public void removeTestData();
 
-  public void init(final Properties p);
+	public void init(final Properties p);
 
-  public boolean test1();
+	public boolean test1();
 
-  public boolean test2();
+	public boolean test2();
 
 }

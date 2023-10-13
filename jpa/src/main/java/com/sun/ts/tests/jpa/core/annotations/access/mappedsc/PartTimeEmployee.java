@@ -33,41 +33,39 @@ import jakarta.persistence.ManyToOne;
  */
 
 @Entity
-@AttributeOverrides({
-    @AttributeOverride(name = "id", column = @Column(name = "ID")),
-    @AttributeOverride(name = "firstName", column = @Column(name = "FIRSTNAME")),
-    @AttributeOverride(name = "lastName", column = @Column(name = "LASTNAME")),
-    @AttributeOverride(name = "hireDate", column = @Column(name = "HIREDATE")) })
+@AttributeOverrides({ @AttributeOverride(name = "id", column = @Column(name = "ID")),
+		@AttributeOverride(name = "firstName", column = @Column(name = "FIRSTNAME")),
+		@AttributeOverride(name = "lastName", column = @Column(name = "LASTNAME")),
+		@AttributeOverride(name = "hireDate", column = @Column(name = "HIREDATE")) })
 @Access(AccessType.PROPERTY)
 public class PartTimeEmployee extends Employee {
 
-  private float wage;
+	private float wage;
 
-  public PartTimeEmployee() {
-  }
+	public PartTimeEmployee() {
+	}
 
-  public PartTimeEmployee(int id, String firstName, String lastName,
-      Date hireDate, float salary) {
-    super(id, firstName, lastName, hireDate);
-    this.wage = wage;
-  }
+	public PartTimeEmployee(int id, String firstName, String lastName, Date hireDate, float salary) {
+		super(id, firstName, lastName, hireDate);
+		this.wage = wage;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @ManyToOne
-  @JoinColumn(name = "FK_DEPT2")
-  public Department getDepartment() {
-    return department;
-  }
+	@ManyToOne
+	@JoinColumn(name = "FK_DEPT2")
+	public Department getDepartment() {
+		return department;
+	}
 
-  @Column(name = "SALARY")
-  public float getWage() {
-    return wage;
-  }
+	@Column(name = "SALARY")
+	public float getWage() {
+		return wage;
+	}
 
-  public void setWage(float wage) {
-    this.wage = wage;
-  }
+	public void setWage(float wage) {
+		this.wage = wage;
+	}
 
 }

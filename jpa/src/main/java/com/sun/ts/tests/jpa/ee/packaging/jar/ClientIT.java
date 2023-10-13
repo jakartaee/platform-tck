@@ -24,121 +24,118 @@ import com.sun.ts.tests.jpa.common.PMClientBase;
 
 public class ClientIT extends PMClientBase {
 
-  public ClientIT() {
-  }
+	public ClientIT() {
+	}
 
+	/*
+	 * @class.setup_props:
+	 */
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup();
+			removeTestData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-  /*
-   * @class.setup_props:
-   */
-@BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	/*
+	 * @testName: JarFileElementsTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:957
+	 * 
+	 * @test_Strategy: With the above archive (jar-file elements), deploy, create
+	 * entities persist, then find.
+	 *
+	 */
+	@Test
+	public void JarFileElementsTest() throws Exception {
+		boolean pass = true;
+		final int count = 2;
+		getEntityTransaction().begin();
+		for (int i = 1; i <= count; i++) {
+			A a = new A(Integer.toString(i), "name_" + Integer.toString(i), i);
+			getEntityManager().persist(a);
+			TestUtil.logTrace("persisted order " + a.toString());
+		}
+		for (int i = 1 + count; i <= count + count; i++) {
+			C c = new C(Integer.toString(i), "name_" + Integer.toString(i), i);
+			getEntityManager().persist(c);
+			TestUtil.logTrace("persisted order " + c.toString());
+		}
+		for (int i = 1; i <= count; i++) {
+			B b = new B(Integer.toString(i), "name_" + Integer.toString(i), i);
+			getEntityManager().persist(b);
+			TestUtil.logTrace("persisted order " + b.toString());
+		}
 
-  /*
-   * @testName: JarFileElementsTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:957
-   * 
-   * @test_Strategy: With the above archive (jar-file elements), deploy, create
-   * entities persist, then find.
-   *
-   */
-@Test
-  public void JarFileElementsTest() throws Exception {
-    boolean pass = true;
-    final int count = 2;
-    getEntityTransaction().begin();
-    for (int i = 1; i <= count; i++) {
-      A a = new A(Integer.toString(i), "name_" + Integer.toString(i), i);
-      getEntityManager().persist(a);
-      TestUtil.logTrace("persisted order " + a.toString());
-    }
-    for (int i = 1 + count; i <= count + count; i++) {
-      C c = new C(Integer.toString(i), "name_" + Integer.toString(i), i);
-      getEntityManager().persist(c);
-      TestUtil.logTrace("persisted order " + c.toString());
-    }
-    for (int i = 1; i <= count; i++) {
-      B b = new B(Integer.toString(i), "name_" + Integer.toString(i), i);
-      getEntityManager().persist(b);
-      TestUtil.logTrace("persisted order " + b.toString());
-    }
+		getEntityTransaction().commit();
 
-    getEntityTransaction().commit();
+		TestUtil.logTrace("find the previously persisted entities");
+		for (int i = 1; i <= count; i++) {
+			A a = getEntityManager().find(A.class, Integer.toString(i));
+			if (a != null) {
+				TestUtil.logTrace("Find returned non-null A entity:" + a.toString());
+			} else {
+				TestUtil.logErr("persisted A[" + i + "] DOES NOT EXIST");
+				pass = false;
+			}
+		}
+		for (int i = 1 + count; i <= count + count; i++) {
+			C c = getEntityManager().find(C.class, Integer.toString(i));
+			if (c != null) {
+				TestUtil.logTrace("Find returned non-null C entity:" + c.toString());
+			} else {
+				TestUtil.logErr("persisted C[" + i + "] DOES NOT EXIST");
+				pass = false;
+			}
+		}
+		for (int i = 1; i <= count; i++) {
+			B b = getEntityManager().find(B.class, Integer.toString(i));
+			if (b != null) {
+				TestUtil.logTrace("Find returned non-null B entity:" + b.toString());
+			} else {
+				TestUtil.logErr("persisted B[" + i + "] DOES NOT EXIST");
+				pass = false;
+			}
+		}
+		if (!pass) {
+			throw new Exception("JarFileElementsTest failed");
+		}
+	}
 
-    TestUtil.logTrace("find the previously persisted entities");
-    for (int i = 1; i <= count; i++) {
-      A a = getEntityManager().find(A.class, Integer.toString(i));
-      if (a != null) {
-        TestUtil.logTrace("Find returned non-null A entity:" + a.toString());
-      } else {
-        TestUtil.logErr("persisted A[" + i + "] DOES NOT EXIST");
-        pass = false;
-      }
-    }
-    for (int i = 1 + count; i <= count + count; i++) {
-      C c = getEntityManager().find(C.class, Integer.toString(i));
-      if (c != null) {
-        TestUtil.logTrace("Find returned non-null C entity:" + c.toString());
-      } else {
-        TestUtil.logErr("persisted C[" + i + "] DOES NOT EXIST");
-        pass = false;
-      }
-    }
-    for (int i = 1; i <= count; i++) {
-      B b = getEntityManager().find(B.class, Integer.toString(i));
-      if (b != null) {
-        TestUtil.logTrace("Find returned non-null B entity:" + b.toString());
-      } else {
-        TestUtil.logErr("persisted B[" + i + "] DOES NOT EXIST");
-        pass = false;
-      }
-    }
-    if (!pass) {
-      throw new Exception("JarFileElementsTest failed");
-    }
-  }
+	@BeforeAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("cleanup");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+	}
 
-@BeforeAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
-
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM BEJB_1X1_BI_BTOB")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM AEJB_1X1_BI_BTOB")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM BEJB_1X1_BI_BTOB").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM AEJB_1X1_BI_BTOB").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 
 }

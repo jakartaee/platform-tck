@@ -28,87 +28,85 @@ import jakarta.persistence.Version;
 @Table(name = "A_BASIC")
 public class Timestamp_Property implements java.io.Serializable {
 
-  protected String id;
+	protected String id;
 
-  protected Timestamp basicTimestamp;
+	protected Timestamp basicTimestamp;
 
-  protected String name;
+	protected String name;
 
-  public Timestamp_Property() {
-  }
+	public Timestamp_Property() {
+	}
 
-  public Timestamp_Property(String id) {
-    this.id = id;
-  }
+	public Timestamp_Property(String id) {
+		this.id = id;
+	}
 
-  public Timestamp_Property(String id, Timestamp basicTimestamp) {
+	public Timestamp_Property(String id, Timestamp basicTimestamp) {
 
-    this.id = id;
-    this.basicTimestamp = basicTimestamp;
-  }
+		this.id = id;
+		this.basicTimestamp = basicTimestamp;
+	}
 
-  @Id
-  public String getId() {
-    return id;
-  }
+	@Id
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  @Basic
-  public String getName() {
-    return this.name;
-  }
+	@Basic
+	public String getName() {
+		return this.name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  @Version
-  public Timestamp getBasicTimestamp() {
-    return this.basicTimestamp;
-  }
+	@Version
+	public Timestamp getBasicTimestamp() {
+		return this.basicTimestamp;
+	}
 
-  public void setBasicTimestamp(Timestamp basicTimestamp) {
-    this.basicTimestamp = basicTimestamp;
-  }
+	public void setBasicTimestamp(Timestamp basicTimestamp) {
+		this.basicTimestamp = basicTimestamp;
+	}
 
-  public boolean equals(Object o) {
-    Timestamp_Property other;
-    boolean result = false;
+	public boolean equals(Object o) {
+		Timestamp_Property other;
+		boolean result = false;
 
-    if (!(o instanceof Integer_Field)) {
-      return result;
-    }
-    other = (Timestamp_Property) o;
+		if (!(o instanceof Integer_Field)) {
+			return result;
+		}
+		other = (Timestamp_Property) o;
 
-    if (this.getId().equals(other.getId())
-        && this.basicTimestamp.equals(other.basicTimestamp)
-        && this.name.equals(other.getName())) {
-      result = true;
-    }
+		if (this.getId().equals(other.getId()) && this.basicTimestamp.equals(other.basicTimestamp)
+				&& this.name.equals(other.getName())) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  public int hashCode() {
-    int myHash;
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.getId().hashCode() + this.basicTimestamp.hashCode()
-        + this.name.hashCode();
+		myHash = this.getId().hashCode() + this.basicTimestamp.hashCode() + this.name.hashCode();
 
-    return myHash;
-  }
+		return myHash;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", version: " + basicTimestamp);
-    result.append(", name: " + name);
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", version: " + basicTimestamp);
+		result.append(", name: " + name);
+		result.append("]");
+		return result.toString();
+	}
 }

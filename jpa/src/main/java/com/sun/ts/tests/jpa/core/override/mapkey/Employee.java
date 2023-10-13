@@ -26,62 +26,60 @@ import jakarta.persistence.Table;
 @Table(name = "EMPLOYEE_2")
 public class Employee implements Serializable {
 
-  @Id
-  private Long id;
+	@Id
+	private Long id;
 
-  private String code;
+	private String code;
 
-  private Department department;
+	private Department department;
 
-  public Employee() {
-  }
+	public Employee() {
+	}
 
-  public Long getId() {
-    return id;
-  }
+	public Long getId() {
+		return id;
+	}
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.getId() != null ? this.getId().hashCode() : 0);
-    return hash;
-  }
+	public int hashCode() {
+		int hash = 0;
+		hash += (this.getId() != null ? this.getId().hashCode() : 0);
+		return hash;
+	}
 
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof Employee)) {
-      return false;
-    }
-    Employee other = (Employee) object;
-    if (this.getId() != other.getId()
-        && (this.getId() == null || !this.getId().equals(other.getId()))) {
-      return false;
-    }
-    return true;
-  }
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not
+		// set
+		if (!(object instanceof Employee)) {
+			return false;
+		}
+		Employee other = (Employee) object;
+		if (this.getId() != other.getId() && (this.getId() == null || !this.getId().equals(other.getId()))) {
+			return false;
+		}
+		return true;
+	}
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.mapkey." + "Employee[id="
-        + getId() + "]";
-  }
+	public String toString() {
+		return "com.sun.ts.tests.jpa.core.override.mapkey." + "Employee[id=" + getId() + "]";
+	}
 
-  public String getCode() {
-    return code;
-  }
+	public String getCode() {
+		return code;
+	}
 
-  public void setCode(String code) {
-    this.code = code;
-  }
+	public void setCode(String code) {
+		this.code = code;
+	}
 
-  public Department getDepartment() {
-    return department;
-  }
+	public Department getDepartment() {
+		return department;
+	}
 
-  public void setDepartment(Department department) {
-    this.department = department;
-  }
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
 }

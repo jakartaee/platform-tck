@@ -29,35 +29,35 @@ import jakarta.persistence.Entity;
 @Cacheable(false)
 @DiscriminatorValue("SW")
 public class SoftwareProduct extends Product implements java.io.Serializable {
-  private static final long serialVersionUID = 22L;
+	private static final long serialVersionUID = 22L;
 
-  // Instance variables
-  private double revisionNumber;
+	// Instance variables
+	private double revisionNumber;
 
-  public SoftwareProduct() {
-    super();
-  }
+	public SoftwareProduct() {
+		super();
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Column(name = "REV", nullable = true)
-  public double getRevisionNumber() {
-    return revisionNumber;
-  }
+	@Column(name = "REV", nullable = true)
+	public double getRevisionNumber() {
+		return revisionNumber;
+	}
 
-  public void setRevisionNumber(double revisionNumber) {
-    this.revisionNumber = revisionNumber;
-  }
+	public void setRevisionNumber(double revisionNumber) {
+		this.revisionNumber = revisionNumber;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", revisionNumber: " + getRevisionNumber());
-    result.append(", quantity: " + getQuantity());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", revisionNumber: " + getRevisionNumber());
+		result.append(", quantity: " + getQuantity());
+		result.append("]");
+		return result.toString();
+	}
 }

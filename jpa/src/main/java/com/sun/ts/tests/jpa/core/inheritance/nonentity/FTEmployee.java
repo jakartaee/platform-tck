@@ -28,18 +28,17 @@ import java.sql.Date;
 
 public class FTEmployee extends Employee {
 
-  private float salary;
+	private float salary;
 
-  public FTEmployee() {
-  }
+	public FTEmployee() {
+	}
 
-  public FTEmployee(int id, String firstName, String lastName, Date hireDate,
-      float salary) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.hireDate = hireDate;
-    this.salary = salary;
-  }
+	public FTEmployee(int id, String firstName, String lastName, Date hireDate, float salary) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.hireDate = hireDate;
+		this.salary = salary;
+	}
 
 }

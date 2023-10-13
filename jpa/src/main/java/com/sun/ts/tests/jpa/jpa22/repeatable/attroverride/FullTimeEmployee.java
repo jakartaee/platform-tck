@@ -42,35 +42,34 @@ import jakarta.persistence.Table;
 @Access(AccessType.PROPERTY)
 public class FullTimeEmployee extends Employee implements Serializable {
 
-  private static final long serialVersionUID = 22L;
+	private static final long serialVersionUID = 22L;
 
-  private float salary;
+	private float salary;
 
-  public FullTimeEmployee() {
-  }
+	public FullTimeEmployee() {
+	}
 
-  public FullTimeEmployee(int id, String firstName, String lastName,
-      Date hireDate, float salary) {
-    super(id, firstName, lastName, hireDate);
-    this.salary = salary;
-  }
+	public FullTimeEmployee(int id, String firstName, String lastName, Date hireDate, float salary) {
+		super(id, firstName, lastName, hireDate);
+		this.salary = salary;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @ManyToOne
-  @JoinColumn(name = "FK_DEPT")
-  public Department getDepartment() {
-    return department;
-  }
+	@ManyToOne
+	@JoinColumn(name = "FK_DEPT")
+	public Department getDepartment() {
+		return department;
+	}
 
-  @Column(name = "SALARY")
-  public float getSalary() {
-    return salary;
-  }
+	@Column(name = "SALARY")
+	public float getSalary() {
+		return salary;
+	}
 
-  public void setSalary(float salary) {
-    this.salary = salary;
-  }
+	public void setSalary(float salary) {
+		this.salary = salary;
+	}
 
 }

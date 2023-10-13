@@ -59,7 +59,7 @@ package com.sun.ts.tests.jpa.ee.util;
 
 public final class Data {
 
-  public static final String PASSED = "Test PASSED";
+	public static final String PASSED = "Test PASSED";
 
-  public static final String FAILED = "Test FAILED";
+	public static final String FAILED = "Test FAILED";
 }

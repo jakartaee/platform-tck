@@ -30,87 +30,87 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class Address implements java.io.Serializable {
 
-  protected String street;
+	protected String street;
 
-  protected String city;
+	protected String city;
 
-  protected String state;
+	protected String state;
 
-  @ElementCollection
-  protected Collection<ZipCode> cZipcode = new ArrayList<ZipCode>();
+	@ElementCollection
+	protected Collection<ZipCode> cZipcode = new ArrayList<ZipCode>();
 
-  @ElementCollection
-  protected List<ZipCode> lZipcode = new ArrayList<ZipCode>();
+	@ElementCollection
+	protected List<ZipCode> lZipcode = new ArrayList<ZipCode>();
 
-  @ElementCollection
-  protected Map<ZipCode, String> mZipcode = new HashMap<ZipCode, String>();
+	@ElementCollection
+	protected Map<ZipCode, String> mZipcode = new HashMap<ZipCode, String>();
 
-  @ElementCollection
-  protected Set<ZipCode> sZipcode = new HashSet<ZipCode>();
+	@ElementCollection
+	protected Set<ZipCode> sZipcode = new HashSet<ZipCode>();
 
-  public Address() {
-  }
+	public Address() {
+	}
 
-  public Address(String street, String city, String state) {
-    this.street = street;
-    this.city = city;
-    this.state = state;
-  }
+	public Address(String street, String city, String state) {
+		this.street = street;
+		this.city = city;
+		this.state = state;
+	}
 
-  public String getCity() {
-    return city;
-  }
+	public String getCity() {
+		return city;
+	}
 
-  public void setCity(String city) {
-    this.city = city;
-  }
+	public void setCity(String city) {
+		this.city = city;
+	}
 
-  public String getState() {
-    return state;
-  }
+	public String getState() {
+		return state;
+	}
 
-  public void setState(String state) {
-    this.state = state;
-  }
+	public void setState(String state) {
+		this.state = state;
+	}
 
-  public String getStreet() {
-    return street;
-  }
+	public String getStreet() {
+		return street;
+	}
 
-  public void setStreet(String street) {
-    this.street = street;
-  }
+	public void setStreet(String street) {
+		this.street = street;
+	}
 
-  public Set<ZipCode> getZipcodeSet() {
-    return sZipcode;
-  }
+	public Set<ZipCode> getZipcodeSet() {
+		return sZipcode;
+	}
 
-  public void setZipcode(Set<ZipCode> zip) {
-    this.sZipcode = zip;
-  }
+	public void setZipcode(Set<ZipCode> zip) {
+		this.sZipcode = zip;
+	}
 
-  public Collection<ZipCode> getZipcodeCollection() {
-    return cZipcode;
-  }
+	public Collection<ZipCode> getZipcodeCollection() {
+		return cZipcode;
+	}
 
-  public void setZipcode(Collection<ZipCode> zip) {
-    this.cZipcode = zip;
-  }
+	public void setZipcode(Collection<ZipCode> zip) {
+		this.cZipcode = zip;
+	}
 
-  public List<ZipCode> getZipcodeList() {
-    return lZipcode;
-  }
+	public List<ZipCode> getZipcodeList() {
+		return lZipcode;
+	}
 
-  public void setZipcode(List<ZipCode> zip) {
-    this.lZipcode = zip;
-  }
+	public void setZipcode(List<ZipCode> zip) {
+		this.lZipcode = zip;
+	}
 
-  public Map<ZipCode, String> getZipcodeMap() {
-    return mZipcode;
-  }
+	public Map<ZipCode, String> getZipcodeMap() {
+		return mZipcode;
+	}
 
-  public void setZipcode(Map<ZipCode, String> zip) {
-    this.mZipcode = zip;
-  }
+	public void setZipcode(Map<ZipCode, String> zip) {
+		this.mZipcode = zip;
+	}
 
 }

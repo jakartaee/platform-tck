@@ -18,7 +18,6 @@ package com.sun.ts.tests.jpa.se.entityManagerFactory;
 
 import java.util.Properties;
 
-import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -32,128 +31,126 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceException;
 
+
 public class ClientIT extends PMClientBase {
 
-  Properties props = null;
+	Properties props = null;
 
-  public ClientIT() {
-  }
+	public ClientIT() {
+	}
 
-  @Deployment(testable = false, managed = false)
-  public static JavaArchive createDeployment() throws Exception {
-     
-     String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-     String pkgName = ClientIT.class.getPackageName() + ".";
-     String[] classes = { pkgName + "Member", pkgName + "Member_", pkgName + "Order", pkgName + "Order_"};
-     return createDeploymentJar("jpa_jpa22_se_entityManagerFactory.jar", pkgNameWithoutSuffix, (String[]) classes);
+	public static JavaArchive createDeployment() throws Exception {
 
-  }
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] classes = { pkgName + "Member", pkgName + "Member_", pkgName + "Order", pkgName + "Order_" };
+		return createDeploymentJar("jpa_jpa22_se_entityManagerFactory.jar", pkgNameWithoutSuffix, (String[]) classes);
 
+	}
 
-  @BeforeAll
-  public void setupNoData() throws Exception {
-    TestUtil.logTrace("setupNoData");
-    try {
-      super.setup();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	@BeforeAll
+	public void setupNoData() throws Exception {
+		TestUtil.logTrace("setupNoData");
+		try {
+			super.setup();
+			createDeployment();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-  @AfterAll
-  public void cleanupNoData() throws Exception {
-    super.cleanup();
-  }
+	@AfterAll
+	public void cleanupNoData() throws Exception {
+		super.cleanup();
+		removeDeploymentJar();
+	}
 
-  /*
-   * @testName: getMetamodelIllegalStateExceptionTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:536;
-   * 
-   * @test_Strategy: Close the EntityManagerFactory, then call
-   * emf.getMetaModel()
-   */
-  @Test
-  public void getMetamodelIllegalStateExceptionTest() throws Exception {
-    boolean pass = false;
-    try {
-      EntityManagerFactory emf = getEntityManager().getEntityManagerFactory();
-      emf.close();
-      try {
-        emf.getMetamodel();
-        TestUtil.logErr("IllegalStateException not thrown");
-      } catch (IllegalStateException ise) {
-        TestUtil.logTrace("Received expected IllegalStateException");
-        pass = true;
-      }
+	/*
+	 * @testName: getMetamodelIllegalStateExceptionTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:536;
+	 * 
+	 * @test_Strategy: Close the EntityManagerFactory, then call emf.getMetaModel()
+	 */
+	@Test
+	public void getMetamodelIllegalStateExceptionTest() throws Exception {
+		boolean pass = false;
+		try {
+			EntityManagerFactory emf = getEntityManager().getEntityManagerFactory();
+			emf.close();
+			try {
+				emf.getMetamodel();
+				TestUtil.logErr("IllegalStateException not thrown");
+			} catch (IllegalStateException ise) {
+				TestUtil.logTrace("Received expected IllegalStateException");
+				pass = true;
+			}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
-    if (!pass) {
-      throw new Exception("getMetamodelIllegalStateExceptionTest failed");
-    }
-  }
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		}
+		if (!pass) {
+			throw new Exception("getMetamodelIllegalStateExceptionTest failed");
+		}
+	}
 
-  /*
-   * @testName: createEntityManagerFactoryNoBeanValidatorTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:1291; PERSISTENCE:SPEC:1914;
-   * 
-   * @test_Strategy: Instantiate createEntityManagerFactory when there is no
-   * Bean Validation provider present in the environment
-   */
-  @Test
-  public void createEntityManagerFactoryNoBeanValidatorTest() throws Exception {
-    boolean pass = false;
-    myProps.put("jakarta.persistence.validation.mode", "callback");
-    displayMap(myProps);
-    try {
-      EntityManagerFactory emf = Persistence
-          .createEntityManagerFactory(getPersistenceUnitName(), myProps);
-      EntityManager em = emf.createEntityManager();
-      em.getTransaction().begin();
-      em.persist(new Order(1, 111));
-      TestUtil.logErr("Did not receive expected PersistenceException");
-    } catch (PersistenceException pe) {
-      TestUtil.logTrace("Received expected PersistenceException");
-      pass = true;
-    } catch (Exception ex) {
-      TestUtil.logErr("Received unexpected Exception", ex);
-    }
-    if (!pass) {
-      throw new Exception("createEntityManagerFactoryNoBeanValidatorTest failed");
-    }
-  }
+	/*
+	 * @testName: createEntityManagerFactoryNoBeanValidatorTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:1291; PERSISTENCE:SPEC:1914;
+	 * 
+	 * @test_Strategy: Instantiate createEntityManagerFactory when there is no Bean
+	 * Validation provider present in the environment
+	 */
+	@Test
+	public void createEntityManagerFactoryNoBeanValidatorTest() throws Exception {
+		boolean pass = false;
+		myProps.put("jakarta.persistence.validation.mode", "callback");
+		displayMap(myProps);
+		try {
+			EntityManagerFactory emf = Persistence.createEntityManagerFactory(getPersistenceUnitName(), myProps);
+			EntityManager em = emf.createEntityManager();
+			em.getTransaction().begin();
+			em.persist(new Order(1, 111));
+			TestUtil.logErr("Did not receive expected PersistenceException");
+		} catch (PersistenceException pe) {
+			TestUtil.logTrace("Received expected PersistenceException");
+			pass = true;
+		} catch (Exception ex) {
+			TestUtil.logErr("Received unexpected Exception", ex);
+		}
+		if (!pass) {
+			throw new Exception("createEntityManagerFactoryNoBeanValidatorTest failed");
+		}
+	}
 
-  /*
-   * @testName: createEntityManagerFactoryStringMapTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1480;
-   * 
-   * @test_Strategy: Create an EntityManagerFactory via String,Map
-   */
-  @Test
-  public void createEntityManagerFactoryStringMapTest() throws Exception {
-    boolean pass = false;
+	/*
+	 * @testName: createEntityManagerFactoryStringMapTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1480;
+	 * 
+	 * @test_Strategy: Create an EntityManagerFactory via String,Map
+	 */
+	@Test
+	public void createEntityManagerFactoryStringMapTest() throws Exception {
+		boolean pass = false;
 
-    try {
-      EntityManagerFactory emf = Persistence.createEntityManagerFactory(
-          getPersistenceUnitName(), getPersistenceUnitProperties());
-      if (emf != null) {
-        TestUtil.logTrace("Received non-null EntityManagerFactory");
-        pass = true;
-      } else {
-        TestUtil.logErr("Received null EntityManagerFactory");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Received unexpected exception", e);
-    }
-    if (!pass) {
-      throw new Exception("createEntityManagerFactoryStringTest failed");
-    }
-  }
-
+		try {
+			EntityManagerFactory emf = Persistence.createEntityManagerFactory(getPersistenceUnitName(),
+					getPersistenceUnitProperties());
+			if (emf != null) {
+				TestUtil.logTrace("Received non-null EntityManagerFactory");
+				pass = true;
+			} else {
+				TestUtil.logErr("Received null EntityManagerFactory");
+			}
+		} catch (Exception e) {
+			TestUtil.logErr("Received unexpected exception", e);
+		}
+		if (!pass) {
+			throw new Exception("createEntityManagerFactoryStringTest failed");
+		}
+	}
 
 }

@@ -20,320 +20,296 @@
 
 package com.sun.ts.tests.jpa.core.query.flushmode;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Vector;
 
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.CreditCard;
 import com.sun.ts.tests.jpa.common.schema30.Customer;
 import com.sun.ts.tests.jpa.common.schema30.Order;
-import com.sun.ts.tests.jpa.common.schema30.Product;
 import com.sun.ts.tests.jpa.common.schema30.Spouse;
 import com.sun.ts.tests.jpa.common.schema30.UtilOrderData;
 
-import jakarta.persistence.EntityManager;
 import jakarta.persistence.FlushModeType;
-import jakarta.persistence.Query;
-import jakarta.persistence.TypedQuery;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client2IT extends UtilOrderData {
 
-  public Client2IT() {
-  }
+	public Client2IT() {
+	}
 
+	/*
+	 * @testName: flushModeTest2
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:173
+	 * 
+	 * @test_Strategy: Query navigating a single-valued relationship. The following
+	 * updates the customer relationship of an order. It then executes an EJBQL
+	 * query selecting orders where the related customer has the name of the
+	 * customer used in the setCustomer call.
+	 * 
+	 */
+	@Test
+	public void flushModeTest2() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
 
+		try {
+			getEntityTransaction().begin();
+			TestUtil.logTrace("Execute Starting flushModeTest2");
+			Order o1 = getEntityManager().find(Order.class, "1");
+			Customer cust2 = getEntityManager().find(Customer.class, "2");
+			o1.setCustomer(cust2);
+			List<Order> result = getEntityManager()
+					.createQuery("SELECT o FROM Order o WHERE o.customer.name = 'Arthur D. Frechette'")
+					.setFlushMode(FlushModeType.AUTO).getResultList();
 
-  /*
-   * @testName: flushModeTest2
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:173
-   * 
-   * @test_Strategy: Query navigating a single-valued relationship. The
-   * following updates the customer relationship of an order. It then executes
-   * an EJBQL query selecting orders where the related customer has the name of
-   * the customer used in the setCustomer call.
-   * 
-   */
-  @Test
-  public void flushModeTest2() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
+			expectedPKs = new String[2];
+			expectedPKs[0] = "1";
+			expectedPKs[1] = "2";
 
-    try {
-      getEntityTransaction().begin();
-      TestUtil.logTrace("Execute Starting flushModeTest2");
-      Order o1 = getEntityManager().find(Order.class, "1");
-      Customer cust2 = getEntityManager().find(Customer.class, "2");
-      o1.setCustomer(cust2);
-      List<Order> result = getEntityManager().createQuery(
-          "SELECT o FROM Order o WHERE o.customer.name = 'Arthur D. Frechette'")
-          .setFlushMode(FlushModeType.AUTO).getResultList();
+			if (!checkEntityPK(result, expectedPKs)) {
+				TestUtil.logErr("Did not get expected results.  Expected 2 references, got: " + result.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().rollback();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexception: " + e);
+		}
 
-      expectedPKs = new String[2];
-      expectedPKs[0] = "1";
-      expectedPKs[1] = "2";
+		if (!pass)
+			throw new Exception("flushModeTest2 failed");
+	}
 
-      if (!checkEntityPK(result, expectedPKs)) {
-        TestUtil.logErr(
-            "Did not get expected results.  Expected 2 references, got: "
-                + result.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().rollback();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexception: " + e);
-    }
+	/*
+	 * @testName: flushModeTest3
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:173
+	 * 
+	 * @test_Strategy: Query navigating a single-valued relationship. The following
+	 * updates the name of a customer. It then executes an EJBQL query selecting
+	 * orders where the related customer has the updated name.
+	 */
+	@Test
+	public void flushModeTest3() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
+		List o;
+		try {
+			getEntityTransaction().begin();
+			TestUtil.logTrace("Execute Starting flushModeTest3");
+			Customer cust1 = getEntityManager().find(Customer.class, "1");
+			cust1.setName("Michael Bouschen");
+			o = getEntityManager().createQuery("SELECT o FROM Order o WHERE o.customer.name = 'Michael Bouschen'")
+					.setFlushMode(FlushModeType.AUTO).getResultList();
 
-    if (!pass)
-      throw new Exception("flushModeTest2 failed");
-  }
+			expectedPKs = new String[1];
+			expectedPKs[0] = "1";
+			if (!checkEntityPK(o, expectedPKs)) {
+				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + o.size());
+			} else {
+				Customer newCust = getEntityManager().find(Customer.class, "1");
+				if (newCust.getName().equals("Michael Bouschen")) {
+					pass = true;
+				}
 
-  /*
-   * @testName: flushModeTest3
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:173
-   * 
-   * @test_Strategy: Query navigating a single-valued relationship. The
-   * following updates the name of a customer. It then executes an EJBQL query
-   * selecting orders where the related customer has the updated name.
-   */
-  @Test
-  public void flushModeTest3() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
-    List o;
-    try {
-      getEntityTransaction().begin();
-      TestUtil.logTrace("Execute Starting flushModeTest3");
-      Customer cust1 = getEntityManager().find(Customer.class, "1");
-      cust1.setName("Michael Bouschen");
-      o = getEntityManager().createQuery(
-          "SELECT o FROM Order o WHERE o.customer.name = 'Michael Bouschen'")
-          .setFlushMode(FlushModeType.AUTO).getResultList();
+				TestUtil.logTrace("Expected results received");
+			}
+			getEntityTransaction().rollback();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexception: " + e);
+		}
 
-      expectedPKs = new String[1];
-      expectedPKs[0] = "1";
-      if (!checkEntityPK(o, expectedPKs)) {
-        TestUtil
-            .logErr("Did not get expected results.  Expected 1 reference, got: "
-                + o.size());
-      } else {
-        Customer newCust = getEntityManager().find(Customer.class, "1");
-        if (newCust.getName().equals("Michael Bouschen")) {
-          pass = true;
-        }
+		if (!pass)
+			throw new Exception("flushModeTest3 failed");
+	}
 
-        TestUtil.logTrace("Expected results received");
-      }
-      getEntityTransaction().rollback();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexception: " + e);
-    }
+	/*
+	 * @testName: flushModeTest4
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:173; PERSISTENCE:SPEC:2079;
+	 * 
+	 * @test_Strategy: Query navigating multiple single-valued relationships The
+	 * following updates the spouse relationship of a customer. It then executes an
+	 * EJBQL query selecting orders where the spouse of the related customer has the
+	 * name of the new spouse.
+	 *
+	 */
+	@Test
+	public void flushModeTest4() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
 
-    if (!pass)
-      throw new Exception("flushModeTest3 failed");
-  }
+		try {
+			getEntityTransaction().begin();
+			TestUtil.logTrace("Execute Starting flushModeTest4");
+			Customer cust6 = getEntityManager().find(Customer.class, "6");
+			Spouse s4 = getEntityManager().find(Spouse.class, "4");
+			cust6.setSpouse(s4);
+			getEntityManager().merge(cust6);
+			s4.setCustomer(cust6);
+			getEntityManager().merge(s4);
+			List<Order> result = getEntityManager()
+					.createQuery("SELECT o FROM Order o WHERE o.customer.spouse.lastName = 'Mullen'")
+					.setFlushMode(FlushModeType.AUTO).getResultList();
 
-  /*
-   * @testName: flushModeTest4
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:173; PERSISTENCE:SPEC:2079;
-   * 
-   * @test_Strategy: Query navigating multiple single-valued relationships The
-   * following updates the spouse relationship of a customer. It then executes
-   * an EJBQL query selecting orders where the spouse of the related customer
-   * has the name of the new spouse.
-   *
-   */
-  @Test
-  public void flushModeTest4() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
+			expectedPKs = new String[1];
+			expectedPKs[0] = "6";
 
-    try {
-      getEntityTransaction().begin();
-      TestUtil.logTrace("Execute Starting flushModeTest4");
-      Customer cust6 = getEntityManager().find(Customer.class, "6");
-      Spouse s4 = getEntityManager().find(Spouse.class, "4");
-      cust6.setSpouse(s4);
-      getEntityManager().merge(cust6);
-      s4.setCustomer(cust6);
-      getEntityManager().merge(s4);
-      List<Order> result = getEntityManager().createQuery(
-          "SELECT o FROM Order o WHERE o.customer.spouse.lastName = 'Mullen'")
-          .setFlushMode(FlushModeType.AUTO).getResultList();
+			if (!checkEntityPK(result, expectedPKs)) {
+				TestUtil.logErr("Did not get expected results.  Expected " + " 2 references, got: " + result.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
 
-      expectedPKs = new String[1];
-      expectedPKs[0] = "6";
+			}
+			getEntityTransaction().rollback();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexception: " + e);
+		}
 
-      if (!checkEntityPK(result, expectedPKs)) {
-        TestUtil.logErr("Did not get expected results.  Expected "
-            + " 2 references, got: " + result.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
+		if (!pass)
+			throw new Exception("flushModeTest4 failed");
+	}
 
-      }
-      getEntityTransaction().rollback();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexception: " + e);
-    }
+	/*
+	 * @testName: flushModeTest5
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:173
+	 * 
+	 * @test_Strategy: Query navigating multiple single-valued relationships The
+	 * following updates the name of a spouse. It then executes an EJBQL query
+	 * selecting orders where the related spouse of the related customer has the
+	 * updated name.
+	 */
+	@Test
+	public void flushModeTest5() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
 
-    if (!pass)
-      throw new Exception("flushModeTest4 failed");
-  }
+		try {
+			getEntityTransaction().begin();
+			TestUtil.logTrace("Starting flushModeTest5");
+			Spouse s4 = getEntityManager().find(Spouse.class, "4");
+			s4.setLastName("Miller");
+			List<Order> result = getEntityManager()
+					.createQuery("SELECT o FROM Order o WHERE o.customer.spouse.lastName = 'Miller'")
+					.setFlushMode(FlushModeType.AUTO).getResultList();
 
-  /*
-   * @testName: flushModeTest5
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:173
-   * 
-   * @test_Strategy: Query navigating multiple single-valued relationships The
-   * following updates the name of a spouse. It then executes an EJBQL query
-   * selecting orders where the related spouse of the related customer has the
-   * updated name.
-   */
-  @Test
-  public void flushModeTest5() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
+			expectedPKs = new String[1];
+			expectedPKs[0] = "11";
 
-    try {
-      getEntityTransaction().begin();
-      TestUtil.logTrace("Starting flushModeTest5");
-      Spouse s4 = getEntityManager().find(Spouse.class, "4");
-      s4.setLastName("Miller");
-      List<Order> result = getEntityManager().createQuery(
-          "SELECT o FROM Order o WHERE o.customer.spouse.lastName = 'Miller'")
-          .setFlushMode(FlushModeType.AUTO).getResultList();
+			if (!checkEntityPK(result, expectedPKs)) {
+				TestUtil.logErr("Did not get expected results.  Expected " + " 1 reference, got: " + result.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().rollback();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexception: " + e);
+		}
 
-      expectedPKs = new String[1];
-      expectedPKs[0] = "11";
+		if (!pass)
+			throw new Exception("flushModeTest5 failed");
+	}
 
-      if (!checkEntityPK(result, expectedPKs)) {
-        TestUtil.logErr("Did not get expected results.  Expected "
-            + " 1 reference, got: " + result.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().rollback();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexception: " + e);
-    }
+	/*
+	 * @testName: flushModeTest6
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:173
+	 * 
+	 * @test_Strategy: Query navigating a collection-valued relationship The
+	 * following removes an order from the customer's orders relationship. It then
+	 * executes an EJBQL query selecting customers having an order with the removed
+	 * number.
+	 */
+	@Test
+	public void flushModeTest6() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
 
-    if (!pass)
-      throw new Exception("flushModeTest5 failed");
-  }
+		try {
+			getEntityTransaction().begin();
+			TestUtil.logTrace("Starting flushModeTest6");
+			Customer cust4 = getEntityManager().find(Customer.class, "4");
+			Order order4 = getEntityManager().find(Order.class, "4");
+			Order order9 = getEntityManager().find(Order.class, "9");
+			order9.setCustomer(cust4);
+			getEntityManager().merge(order9);
+			order4.setCustomer(null);
+			getEntityManager().merge(order4);
+			Vector<Order> orders = new Vector<Order>();
+			orders.add(order9);
+			cust4.setOrders(orders);
+			getEntityManager().merge(cust4);
+			List<Customer> result = getEntityManager()
+					.createQuery("SELECT c FROM Customer c JOIN c.orders o where o.id = '4' ")
+					.setFlushMode(FlushModeType.AUTO).getResultList();
 
-  /*
-   * @testName: flushModeTest6
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:173
-   * 
-   * @test_Strategy: Query navigating a collection-valued relationship The
-   * following removes an order from the customer's orders relationship. It then
-   * executes an EJBQL query selecting customers having an order with the
-   * removed number.
-   */
-  @Test
-  public void flushModeTest6() throws Exception {
-    boolean pass = false;
-    String expectedPKs[];
+			expectedPKs = new String[0];
 
-    try {
-      getEntityTransaction().begin();
-      TestUtil.logTrace("Starting flushModeTest6");
-      Customer cust4 = getEntityManager().find(Customer.class, "4");
-      Order order4 = getEntityManager().find(Order.class, "4");
-      Order order9 = getEntityManager().find(Order.class, "9");
-      order9.setCustomer(cust4);
-      getEntityManager().merge(order9);
-      order4.setCustomer(null);
-      getEntityManager().merge(order4);
-      Vector<Order> orders = new Vector<Order>();
-      orders.add(order9);
-      cust4.setOrders(orders);
-      getEntityManager().merge(cust4);
-      List<Customer> result = getEntityManager()
-          .createQuery(
-              "SELECT c FROM Customer c JOIN c.orders o where o.id = '4' ")
-          .setFlushMode(FlushModeType.AUTO).getResultList();
+			if (!checkEntityPK(result, expectedPKs)) {
+				TestUtil.logErr("Did not get expected results.  Expected " + " 0 references, got: " + result.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().rollback();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught exception: ", e);
+		}
 
-      expectedPKs = new String[0];
+		if (!pass)
+			throw new Exception("flushModeTest6 failed");
+	}
 
-      if (!checkEntityPK(result, expectedPKs)) {
-        TestUtil.logErr("Did not get expected results.  Expected "
-            + " 0 references, got: " + result.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-      getEntityTransaction().rollback();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: ", e);
-    }
+	/*
+	 * @testName: flushModeTest7
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:173
+	 * 
+	 * @test_Strategy: Query navigating a single-valued and a collection-valued
+	 * relationship The following changes the number of a credit card. It then
+	 * executes an EJBQL query selecting a spouse whose customer has an order with
+	 * an credit card having the new number.
+	 */
+	@Test
+	public void flushModeTest7() throws Exception {
+		boolean pass = false;
+		String[] expected = new String[1];
+		expected[0] = "2";
 
-    if (!pass)
-      throw new Exception("flushModeTest6 failed");
-  }
+		try {
+			getEntityTransaction().begin();
+			TestUtil.logTrace("Starting flushModeTest7");
 
-  /*
-   * @testName: flushModeTest7
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:173
-   * 
-   * @test_Strategy: Query navigating a single-valued and a collection-valued
-   * relationship The following changes the number of a credit card. It then
-   * executes an EJBQL query selecting a spouse whose customer has an order with
-   * an credit card having the new number.
-   */
-  @Test
-  public void flushModeTest7() throws Exception {
-    boolean pass = false;
-    String[] expected = new String[1];
-    expected[0] = "2";
+			CreditCard c17 = getEntityManager().find(CreditCard.class, "17");
+			c17.setNumber("1111-1111-1111-1111");
+			List<Spouse> result = getEntityManager()
+					.createQuery("SELECT s FROM Spouse s JOIN s.customer c JOIN c.orders o "
+							+ "WHERE o.creditCard.number = '1111-1111-1111-1111'")
+					.setFlushMode(FlushModeType.AUTO).getResultList();
 
-    try {
-      getEntityTransaction().begin();
-      TestUtil.logTrace("Starting flushModeTest7");
+			if (!checkEntityPK(result, expected)) {
+				TestUtil.logErr("Did not get expected results.  Expected " + expected.length + " references, got: "
+						+ result.size());
+			} else {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			}
 
-      CreditCard c17 = getEntityManager().find(CreditCard.class, "17");
-      c17.setNumber("1111-1111-1111-1111");
-      List<Spouse> result = getEntityManager()
-          .createQuery(
-              "SELECT s FROM Spouse s JOIN s.customer c JOIN c.orders o "
-                  + "WHERE o.creditCard.number = '1111-1111-1111-1111'")
-          .setFlushMode(FlushModeType.AUTO).getResultList();
+			getEntityTransaction().rollback();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught exception: ", e);
+		}
 
-      if (!checkEntityPK(result, expected)) {
-        TestUtil.logErr("Did not get expected results.  Expected "
-            + expected.length + " references, got: " + result.size());
-      } else {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      }
-
-      getEntityTransaction().rollback();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: ", e);
-    }
-
-    if (!pass)
-      throw new Exception("flushModeTest7 failed");
-  }
+		if (!pass)
+			throw new Exception("flushModeTest7 failed");
+	}
 
 }

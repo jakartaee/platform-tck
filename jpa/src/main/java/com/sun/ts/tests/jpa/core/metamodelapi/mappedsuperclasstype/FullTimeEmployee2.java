@@ -30,21 +30,21 @@ import jakarta.persistence.Table;
 
 public class FullTimeEmployee2 extends Employee2 {
 
-  private float salary;
+	private float salary;
 
-  public FullTimeEmployee2() {
-  }
+	public FullTimeEmployee2() {
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Column(name = "SALARY")
-  public float getSalary() {
-    return salary;
-  }
+	@Column(name = "SALARY")
+	public float getSalary() {
+		return salary;
+	}
 
-  public void setSalary(float salary) {
-    this.salary = salary;
-  }
+	public void setSalary(float salary) {
+		this.salary = salary;
+	}
 
 }

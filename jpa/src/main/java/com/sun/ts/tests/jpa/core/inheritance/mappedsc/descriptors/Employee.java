@@ -29,79 +29,79 @@ import java.sql.Date;
 
 public abstract class Employee extends AbstractPersonnel {
 
-  private int id;
+	private int id;
 
-  private String firstName;
+	private String firstName;
 
-  private String lastName;
+	private String lastName;
 
-  private Date hireDate;
+	private Date hireDate;
 
-  /** the project this Employee leads */
-  protected Project project;
+	/** the project this Employee leads */
+	protected Project project;
 
-  /** the department this Employee belongs to */
-  protected Department department;
+	/** the department this Employee belongs to */
+	protected Department department;
 
-  protected Employee() {
-  }
+	protected Employee() {
+	}
 
-  protected Employee(int id, String firstName, String lastName, Date hireDate) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.hireDate = (Date) hireDate.clone();
-  }
+	protected Employee(int id, String firstName, String lastName, Date hireDate) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.hireDate = (Date) hireDate.clone();
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  public int getId() {
-    return id;
-  }
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  public String getFirstName() {
-    return firstName;
-  }
+	public String getFirstName() {
+		return firstName;
+	}
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-  public String getLastName() {
-    return lastName;
-  }
+	public String getLastName() {
+		return lastName;
+	}
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-  public Date getHireDate() {
-    return hireDate;
-  }
+	public Date getHireDate() {
+		return hireDate;
+	}
 
-  public void setHireDate(Date hireDate) {
-    this.hireDate = hireDate;
-  }
+	public void setHireDate(Date hireDate) {
+		this.hireDate = hireDate;
+	}
 
-  public Department getDepartment() {
-    return department;
-  }
+	public Department getDepartment() {
+		return department;
+	}
 
-  public void setDepartment(Department department) {
-    this.department = department;
-  }
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
 
-  public Project getProject() {
-    return project;
-  }
+	public Project getProject() {
+		return project;
+	}
 
-  public void setProject(Project project) {
-    this.project = project;
-  }
+	public void setProject(Project project) {
+		this.project = project;
+	}
 
 }

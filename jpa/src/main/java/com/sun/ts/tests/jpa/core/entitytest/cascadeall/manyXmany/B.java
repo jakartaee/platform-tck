@@ -36,65 +36,65 @@ import jakarta.persistence.Table;
 @Table(name = "BEJB_MXM_BI_BTOB")
 public class B implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
-  @Id
-  protected String id;
+	// ===========================================================
+	// instance variables
+	@Id
+	protected String id;
 
-  @Basic
-  protected String name;
+	@Basic
+	protected String name;
 
-  @Basic
-  protected int value;
+	@Basic
+	protected int value;
 
-  // ===========================================================
-  // relationship fields
+	// ===========================================================
+	// relationship fields
 
-  @ManyToMany(targetEntity = com.sun.ts.tests.jpa.core.entitytest.cascadeall.manyXmany.A.class, mappedBy = "bCol", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-  protected Collection aCol = new java.util.ArrayList();
+	@ManyToMany(targetEntity = com.sun.ts.tests.jpa.core.entitytest.cascadeall.manyXmany.A.class, mappedBy = "bCol", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	protected Collection aCol = new java.util.ArrayList();
 
-  // ===========================================================
-  // constructors
+	// ===========================================================
+	// constructors
 
-  public B() {
-    TestUtil.logTrace("Entity B no arg constructor");
-  }
+	public B() {
+		TestUtil.logTrace("Entity B no arg constructor");
+	}
 
-  public B(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+	public B(String id, String name, int value) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
 
-  public B(String id, String name, int value, Collection aCol) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-    this.aCol = aCol;
-  }
+	public B(String id, String name, int value, Collection aCol) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+		this.aCol = aCol;
+	}
 
-  // ==========================================================
-  // Business Methods for Test Cases
+	// ==========================================================
+	// Business Methods for Test Cases
 
-  public Collection getACol() {
-    TestUtil.logTrace("getACol");
-    return aCol;
-  }
+	public Collection getACol() {
+		TestUtil.logTrace("getACol");
+		return aCol;
+	}
 
-  public void setACol(Collection aCol) {
-    TestUtil.logTrace("setACol");
-    this.aCol = aCol;
-  }
+	public void setACol(Collection aCol) {
+		TestUtil.logTrace("setACol");
+		this.aCol = aCol;
+	}
 
-  public String getBId() {
-    return id;
-  }
+	public String getBId() {
+		return id;
+	}
 
-  public String getBName() {
-    return name;
-  }
+	public String getBName() {
+		return name;
+	}
 
-  public int getBValue() {
-    return value;
-  }
+	public int getBValue() {
+		return value;
+	}
 }

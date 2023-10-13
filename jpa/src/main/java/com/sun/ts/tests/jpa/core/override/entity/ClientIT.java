@@ -18,247 +18,224 @@ package com.sun.ts.tests.jpa.core.override.entity;
 
 import java.util.List;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class ClientIT extends PMClientBase {
 
-  private final static Long ID = 9l;
+	private final static Long ID = 9l;
 
-  public ClientIT() {
-  }
-  
-  @Deployment(testable = false, managed = false)
-  public static JavaArchive createDeployment() throws Exception {
-     
-     String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-     String pkgName = ClientIT.class.getPackageName() + ".";
-     String[] classes = {     pkgName + "NameOnlyInAnnotation",
-    		    pkgName + "NameOnlyInXML",
-    		    pkgName + "NameOverrride",
-    		    pkgName + "NoEntityAnnotation" };
-     return createDeploymentJar("jpa_core_override_entity.jar", pkgNameWithoutSuffix, classes);
+	public ClientIT() {
+	}
 
-  }
+	public static JavaArchive createDeployment() throws Exception {
 
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] classes = { pkgName + "NameOnlyInAnnotation", pkgName + "NameOnlyInXML", pkgName + "NameOverrride",
+				pkgName + "NoEntityAnnotation" };
+		return createDeploymentJar("jpa_core_override_entity.jar", pkgNameWithoutSuffix, classes);
 
-@BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception:test failed ", e);
-    }
-  }
+	}
 
-  /*
-   * @testName: testNameOnlyInXML
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501;
-   * PERSISTENCE:SPEC:502; PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504;
-   * PERSISTENCE:SPEC:505; PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507;
-   * PERSISTENCE:SPEC:508; PERSISTENCE:SPEC:509; PERSISTENCE:SPEC:510;
-   * PERSISTENCE:SPEC:511; PERSISTENCE:SPEC:512; PERSISTENCE:SPEC:513;
-   * PERSISTENCE:SPEC:514; PERSISTENCE:SPEC:515; PERSISTENCE:SPEC:516;
-   * PERSISTENCE:SPEC:517; PERSISTENCE:SPEC:518; PERSISTENCE:SPEC:519;
-   * PERSISTENCE:SPEC:520; PERSISTENCE:SPEC:521; PERSISTENCE:SPEC:522;
-   * PERSISTENCE:SPEC:523; PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:525;
-   * PERSISTENCE:SPEC:526; PERSISTENCE:SPEC:527; PERSISTENCE:SPEC:528;
-   * PERSISTENCE:SPEC:529; PERSISTENCE:SPEC:530; PERSISTENCE:SPEC:531;
-   * PERSISTENCE:SPEC:532; PERSISTENCE:SPEC:533; PERSISTENCE:SPEC:534;
-   * PERSISTENCE:SPEC:1004;
-   * 
-   * @test_Strategy: Table name is specified only in orm.xml and the test is
-   * performed by retrieving data from that table.
-   */
-@Test
-  public void testNameOnlyInXML() throws Exception {
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup();
+			removeTestData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception:test failed ", e);
+		}
+	}
 
-    getEntityTransaction().begin();
-    NameOnlyInXML entity = new NameOnlyInXML();
-    entity.setId(ID);
-    getEntityManager().persist(entity);
-    getEntityManager().flush();
-    try {
-      List result = getEntityManager().createNamedQuery("findAll")
-          .getResultList();
-      TestUtil.logTrace("Result of the entity is " + result.size());
-      if (result.size() == 1) {
-        TestUtil.logTrace("Test Passed");
-      } else {
-        throw new Exception(
-            "Expected the size to be 1 " + " but it is -" + result.size());
-      }
-    } catch (Exception e) {
-      throw new Exception("Exception thrown while testing testNameOnlyInXML" + e);
-    } finally {
-      getEntityManager().remove(entity);
-      getEntityTransaction().commit();
-    }
-  }
+	/*
+	 * @testName: testNameOnlyInXML
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501;
+	 * PERSISTENCE:SPEC:502; PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504;
+	 * PERSISTENCE:SPEC:505; PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507;
+	 * PERSISTENCE:SPEC:508; PERSISTENCE:SPEC:509; PERSISTENCE:SPEC:510;
+	 * PERSISTENCE:SPEC:511; PERSISTENCE:SPEC:512; PERSISTENCE:SPEC:513;
+	 * PERSISTENCE:SPEC:514; PERSISTENCE:SPEC:515; PERSISTENCE:SPEC:516;
+	 * PERSISTENCE:SPEC:517; PERSISTENCE:SPEC:518; PERSISTENCE:SPEC:519;
+	 * PERSISTENCE:SPEC:520; PERSISTENCE:SPEC:521; PERSISTENCE:SPEC:522;
+	 * PERSISTENCE:SPEC:523; PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:525;
+	 * PERSISTENCE:SPEC:526; PERSISTENCE:SPEC:527; PERSISTENCE:SPEC:528;
+	 * PERSISTENCE:SPEC:529; PERSISTENCE:SPEC:530; PERSISTENCE:SPEC:531;
+	 * PERSISTENCE:SPEC:532; PERSISTENCE:SPEC:533; PERSISTENCE:SPEC:534;
+	 * PERSISTENCE:SPEC:1004;
+	 * 
+	 * @test_Strategy: Table name is specified only in orm.xml and the test is
+	 * performed by retrieving data from that table.
+	 */
+	@Test
+	public void testNameOnlyInXML() throws Exception {
 
-  /*
-   * @testName: testNameOnlyInAnnotation
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501;
-   * PERSISTENCE:SPEC:502; PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504;
-   * PERSISTENCE:SPEC:505; PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507;
-   * PERSISTENCE:SPEC:508; PERSISTENCE:SPEC:509; PERSISTENCE:SPEC:510;
-   * PERSISTENCE:SPEC:511; PERSISTENCE:SPEC:512; PERSISTENCE:SPEC:513;
-   * PERSISTENCE:SPEC:514; PERSISTENCE:SPEC:515; PERSISTENCE:SPEC:516;
-   * PERSISTENCE:SPEC:517; PERSISTENCE:SPEC:518; PERSISTENCE:SPEC:519;
-   * PERSISTENCE:SPEC:520; PERSISTENCE:SPEC:521; PERSISTENCE:SPEC:522;
-   * PERSISTENCE:SPEC:523; PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:525;
-   * PERSISTENCE:SPEC:526; PERSISTENCE:SPEC:527; PERSISTENCE:SPEC:528;
-   * PERSISTENCE:SPEC:529; PERSISTENCE:SPEC:530; PERSISTENCE:SPEC:531;
-   * PERSISTENCE:SPEC:532; PERSISTENCE:SPEC:533; PERSISTENCE:SPEC:534;
-   * PERSISTENCE:SPEC:1004;
-   * 
-   * @test_Strategy: Entity name is specified in the entity using annotation.
-   * Test is executed by retrieving data from the table.
-   */
-@Test
-  public void testNameOnlyInAnnotation() throws Exception {
+		getEntityTransaction().begin();
+		NameOnlyInXML entity = new NameOnlyInXML();
+		entity.setId(ID);
+		getEntityManager().persist(entity);
+		getEntityManager().flush();
+		try {
+			List result = getEntityManager().createNamedQuery("findAll").getResultList();
+			TestUtil.logTrace("Result of the entity is " + result.size());
+			if (result.size() == 1) {
+				TestUtil.logTrace("Test Passed");
+			} else {
+				throw new Exception("Expected the size to be 1 " + " but it is -" + result.size());
+			}
+		} catch (Exception e) {
+			throw new Exception("Exception thrown while testing testNameOnlyInXML" + e);
+		} finally {
+			getEntityManager().remove(entity);
+			getEntityTransaction().commit();
+		}
+	}
 
-    List result = getEntityManager()
-        .createQuery("SELECT m FROM NAMEONLYINANNOTATION" + " m")
-        .getResultList();
-    if (result.size() == 0) {
-      TestUtil.logTrace("Test Passed");
-    } else {
-      throw new Exception(
-          "Expected the size to be 0 " + " but it is -" + result.size());
-    }
-  }
+	/*
+	 * @testName: testNameOnlyInAnnotation
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501;
+	 * PERSISTENCE:SPEC:502; PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504;
+	 * PERSISTENCE:SPEC:505; PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507;
+	 * PERSISTENCE:SPEC:508; PERSISTENCE:SPEC:509; PERSISTENCE:SPEC:510;
+	 * PERSISTENCE:SPEC:511; PERSISTENCE:SPEC:512; PERSISTENCE:SPEC:513;
+	 * PERSISTENCE:SPEC:514; PERSISTENCE:SPEC:515; PERSISTENCE:SPEC:516;
+	 * PERSISTENCE:SPEC:517; PERSISTENCE:SPEC:518; PERSISTENCE:SPEC:519;
+	 * PERSISTENCE:SPEC:520; PERSISTENCE:SPEC:521; PERSISTENCE:SPEC:522;
+	 * PERSISTENCE:SPEC:523; PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:525;
+	 * PERSISTENCE:SPEC:526; PERSISTENCE:SPEC:527; PERSISTENCE:SPEC:528;
+	 * PERSISTENCE:SPEC:529; PERSISTENCE:SPEC:530; PERSISTENCE:SPEC:531;
+	 * PERSISTENCE:SPEC:532; PERSISTENCE:SPEC:533; PERSISTENCE:SPEC:534;
+	 * PERSISTENCE:SPEC:1004;
+	 * 
+	 * @test_Strategy: Entity name is specified in the entity using annotation. Test
+	 * is executed by retrieving data from the table.
+	 */
+	@Test
+	public void testNameOnlyInAnnotation() throws Exception {
 
-  /*
-   * @testName: testNameOverride
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501;
-   * PERSISTENCE:SPEC:502; PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504;
-   * PERSISTENCE:SPEC:505; PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507;
-   * PERSISTENCE:SPEC:508; PERSISTENCE:SPEC:509; PERSISTENCE:SPEC:510;
-   * PERSISTENCE:SPEC:511; PERSISTENCE:SPEC:512; PERSISTENCE:SPEC:513;
-   * PERSISTENCE:SPEC:514; PERSISTENCE:SPEC:515; PERSISTENCE:SPEC:516;
-   * PERSISTENCE:SPEC:517; PERSISTENCE:SPEC:518; PERSISTENCE:SPEC:519;
-   * PERSISTENCE:SPEC:520; PERSISTENCE:SPEC:521; PERSISTENCE:SPEC:522;
-   * PERSISTENCE:SPEC:523; PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:525;
-   * PERSISTENCE:SPEC:526; PERSISTENCE:SPEC:527; PERSISTENCE:SPEC:528;
-   * PERSISTENCE:SPEC:529; PERSISTENCE:SPEC:530; PERSISTENCE:SPEC:531;
-   * PERSISTENCE:SPEC:532; PERSISTENCE:SPEC:533; PERSISTENCE:SPEC:534;
-   * PERSISTENCE:SPEC:1004;
-   * 
-   * @test_Strategy: Entity is given a name using annotation. But also is
-   * overriden by another name in orm.xml. Test is executed by retrieving data
-   * from the overriden table name.
-   */
-@Test
-  public void testNameOverride() throws Exception {
+		List result = getEntityManager().createQuery("SELECT m FROM NAMEONLYINANNOTATION" + " m").getResultList();
+		if (result.size() == 0) {
+			TestUtil.logTrace("Test Passed");
+		} else {
+			throw new Exception("Expected the size to be 0 " + " but it is -" + result.size());
+		}
+	}
 
-    List result = getEntityManager()
-        .createQuery("SELECT n FROM NAMEOVERRIDE" + " n").getResultList();
-    if (result.size() == 0) {
-      TestUtil.logTrace("Test Passed");
-    } else {
-      throw new Exception(
-          "Expected the size to be 0 " + " but it is -" + result.size());
-    }
-  }
+	/*
+	 * @testName: testNameOverride
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501;
+	 * PERSISTENCE:SPEC:502; PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504;
+	 * PERSISTENCE:SPEC:505; PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507;
+	 * PERSISTENCE:SPEC:508; PERSISTENCE:SPEC:509; PERSISTENCE:SPEC:510;
+	 * PERSISTENCE:SPEC:511; PERSISTENCE:SPEC:512; PERSISTENCE:SPEC:513;
+	 * PERSISTENCE:SPEC:514; PERSISTENCE:SPEC:515; PERSISTENCE:SPEC:516;
+	 * PERSISTENCE:SPEC:517; PERSISTENCE:SPEC:518; PERSISTENCE:SPEC:519;
+	 * PERSISTENCE:SPEC:520; PERSISTENCE:SPEC:521; PERSISTENCE:SPEC:522;
+	 * PERSISTENCE:SPEC:523; PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:525;
+	 * PERSISTENCE:SPEC:526; PERSISTENCE:SPEC:527; PERSISTENCE:SPEC:528;
+	 * PERSISTENCE:SPEC:529; PERSISTENCE:SPEC:530; PERSISTENCE:SPEC:531;
+	 * PERSISTENCE:SPEC:532; PERSISTENCE:SPEC:533; PERSISTENCE:SPEC:534;
+	 * PERSISTENCE:SPEC:1004;
+	 * 
+	 * @test_Strategy: Entity is given a name using annotation. But also is
+	 * overriden by another name in orm.xml. Test is executed by retrieving data
+	 * from the overriden table name.
+	 */
+	@Test
+	public void testNameOverride() throws Exception {
 
-  /*
-   * @testName: testNoEntityAnnotation
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501;
-   * PERSISTENCE:SPEC:502; PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504;
-   * PERSISTENCE:SPEC:505; PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507;
-   * PERSISTENCE:SPEC:508; PERSISTENCE:SPEC:509; PERSISTENCE:SPEC:510;
-   * PERSISTENCE:SPEC:511; PERSISTENCE:SPEC:512; PERSISTENCE:SPEC:513;
-   * PERSISTENCE:SPEC:514; PERSISTENCE:SPEC:515; PERSISTENCE:SPEC:516;
-   * PERSISTENCE:SPEC:517; PERSISTENCE:SPEC:518; PERSISTENCE:SPEC:519;
-   * PERSISTENCE:SPEC:520; PERSISTENCE:SPEC:521; PERSISTENCE:SPEC:522;
-   * PERSISTENCE:SPEC:523; PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:525;
-   * PERSISTENCE:SPEC:526; PERSISTENCE:SPEC:527; PERSISTENCE:SPEC:528;
-   * PERSISTENCE:SPEC:529; PERSISTENCE:SPEC:530; PERSISTENCE:SPEC:531;
-   * PERSISTENCE:SPEC:532; PERSISTENCE:SPEC:533; PERSISTENCE:SPEC:534;
-   * PERSISTENCE:SPEC:1004;
-   * 
-   * @test_Strategy: Query name and the query is specified in an entity which is
-   * declared as entity only in orm.xml without actually specifying it using
-   * annotation. Test is performed by select from the entity name that is
-   * specified in the orm.xml.
-   */
-@Test
-  public void testNoEntityAnnotation() throws Exception {
+		List result = getEntityManager().createQuery("SELECT n FROM NAMEOVERRIDE" + " n").getResultList();
+		if (result.size() == 0) {
+			TestUtil.logTrace("Test Passed");
+		} else {
+			throw new Exception("Expected the size to be 0 " + " but it is -" + result.size());
+		}
+	}
 
-    getEntityTransaction().begin();
-    NoEntityAnnotation entity = new NoEntityAnnotation();
-    entity.setId(ID);
-    getEntityManager().persist(entity);
-    getEntityManager().flush();
-    try {
-      List result = getEntityManager()
-          .createNamedQuery("findAllNoEntityAnnotation").getResultList();
-      TestUtil.logTrace("Result of the entity is " + result.size());
-      if (result.size() == 1) {
-        TestUtil.logTrace("Test Passed");
-      } else {
-        throw new Exception(
-            "Expected the size to be 1 " + " but it is -" + result.size());
-      }
-    } catch (Exception e) {
-      throw new Exception(
-          "Exception thrown while testing testNoEntityAnnotation" + e);
-    } finally {
-      getEntityManager().remove(entity);
-      getEntityTransaction().commit();
-    }
-  }
+	/*
+	 * @testName: testNoEntityAnnotation
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501;
+	 * PERSISTENCE:SPEC:502; PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504;
+	 * PERSISTENCE:SPEC:505; PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507;
+	 * PERSISTENCE:SPEC:508; PERSISTENCE:SPEC:509; PERSISTENCE:SPEC:510;
+	 * PERSISTENCE:SPEC:511; PERSISTENCE:SPEC:512; PERSISTENCE:SPEC:513;
+	 * PERSISTENCE:SPEC:514; PERSISTENCE:SPEC:515; PERSISTENCE:SPEC:516;
+	 * PERSISTENCE:SPEC:517; PERSISTENCE:SPEC:518; PERSISTENCE:SPEC:519;
+	 * PERSISTENCE:SPEC:520; PERSISTENCE:SPEC:521; PERSISTENCE:SPEC:522;
+	 * PERSISTENCE:SPEC:523; PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:525;
+	 * PERSISTENCE:SPEC:526; PERSISTENCE:SPEC:527; PERSISTENCE:SPEC:528;
+	 * PERSISTENCE:SPEC:529; PERSISTENCE:SPEC:530; PERSISTENCE:SPEC:531;
+	 * PERSISTENCE:SPEC:532; PERSISTENCE:SPEC:533; PERSISTENCE:SPEC:534;
+	 * PERSISTENCE:SPEC:1004;
+	 * 
+	 * @test_Strategy: Query name and the query is specified in an entity which is
+	 * declared as entity only in orm.xml without actually specifying it using
+	 * annotation. Test is performed by select from the entity name that is
+	 * specified in the orm.xml.
+	 */
+	@Test
+	public void testNoEntityAnnotation() throws Exception {
 
-@AfterAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup data");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+		getEntityTransaction().begin();
+		NoEntityAnnotation entity = new NoEntityAnnotation();
+		entity.setId(ID);
+		getEntityManager().persist(entity);
+		getEntityManager().flush();
+		try {
+			List result = getEntityManager().createNamedQuery("findAllNoEntityAnnotation").getResultList();
+			TestUtil.logTrace("Result of the entity is " + result.size());
+			if (result.size() == 1) {
+				TestUtil.logTrace("Test Passed");
+			} else {
+				throw new Exception("Expected the size to be 1 " + " but it is -" + result.size());
+			}
+		} catch (Exception e) {
+			throw new Exception("Exception thrown while testing testNoEntityAnnotation" + e);
+		} finally {
+			getEntityManager().remove(entity);
+			getEntityTransaction().commit();
+		}
+	}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM NAMEONLYINXML")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM NOENTITYANNOTATION")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("Cleanup data");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+	}
+
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM NAMEONLYINXML").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM NOENTITYANNOTATION").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

@@ -34,85 +34,81 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "EMPLOYEE")
-@AttributeOverrides({
-    @AttributeOverride(name = "id", column = @Column(name = "ID")),
-    @AttributeOverride(name = "firstName", column = @Column(name = "FIRSTNAME")),
-    @AttributeOverride(name = "lastName", column = @Column(name = "LASTNAME")) })
+@AttributeOverrides({ @AttributeOverride(name = "id", column = @Column(name = "ID")),
+		@AttributeOverride(name = "firstName", column = @Column(name = "FIRSTNAME")),
+		@AttributeOverride(name = "lastName", column = @Column(name = "LASTNAME")) })
 @Access(AccessType.PROPERTY)
 public class FullTimeEmployee extends Employee2 implements Serializable {
 
-  private String salary;
+	private String salary;
 
-  public FullTimeEmployee() {
-  }
+	public FullTimeEmployee() {
+	}
 
-  public FullTimeEmployee(int id, String firstName, char[] lastName,
-      String salary) {
-    super(id, firstName, lastName);
-    this.salary = salary;
-  }
+	public FullTimeEmployee(int id, String firstName, char[] lastName, String salary) {
+		super(id, firstName, lastName);
+		this.salary = salary;
+	}
 
-  @Column(name = "SALARY")
-  @Convert(converter = SalaryConverter.class)
-  public String getSalary() {
-    return salary;
-  }
+	@Column(name = "SALARY")
+	@Convert(converter = SalaryConverter.class)
+	public String getSalary() {
+		return salary;
+	}
 
-  public void setSalary(String salary) {
-    this.salary = salary;
-  }
+	public void setSalary(String salary) {
+		this.salary = salary;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", first: " + getFirstName());
-    StringBuffer sb = new StringBuffer();
-    for (char c : getLastName()) {
-      sb.append(c);
-    }
-    result.append(", last: " + sb.toString());
-    result.append(", salary: " + getSalary());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", first: " + getFirstName());
+		StringBuffer sb = new StringBuffer();
+		for (char c : getLastName()) {
+			sb.append(c);
+		}
+		result.append(", last: " + sb.toString());
+		result.append(", salary: " + getSalary());
+		result.append("]");
+		return result.toString();
+	}
 
-  @Override
-  public int hashCode() {
-    return this.getId() + this.getFirstName().hashCode()
-        + this.getLastName().hashCode() + this.getSalary().hashCode();
-  }
+	@Override
+	public int hashCode() {
+		return this.getId() + this.getFirstName().hashCode() + this.getLastName().hashCode()
+				+ this.getSalary().hashCode();
+	}
 
-  @Override
-  public boolean equals(Object o) {
-    // check for self-comparison
-    if (this == o)
-      return true;
-    if (!(o instanceof FullTimeEmployee))
-      return false;
+	@Override
+	public boolean equals(Object o) {
+		// check for self-comparison
+		if (this == o)
+			return true;
+		if (!(o instanceof FullTimeEmployee))
+			return false;
 
-    FullTimeEmployee o1 = (FullTimeEmployee) o;
+		FullTimeEmployee o1 = (FullTimeEmployee) o;
 
-    boolean result = false;
+		boolean result = false;
 
-    StringBuffer sb = new StringBuffer();
-    for (char c : this.getLastName()) {
-      sb.append(c);
-    }
+		StringBuffer sb = new StringBuffer();
+		for (char c : this.getLastName()) {
+			sb.append(c);
+		}
 
-    StringBuffer sb1 = new StringBuffer();
-    for (char c : o1.getLastName()) {
-      sb1.append(c);
-    }
+		StringBuffer sb1 = new StringBuffer();
+		for (char c : o1.getLastName()) {
+			sb1.append(c);
+		}
 
-    if (this.getId() == o1.getId()
-        && this.getFirstName().equals(o1.getFirstName())
-        && sb.toString().equals(sb1.toString())
-        && this.getSalary().equals(o1.getSalary())) {
-      result = true;
-    }
+		if (this.getId() == o1.getId() && this.getFirstName().equals(o1.getFirstName())
+				&& sb.toString().equals(sb1.toString()) && this.getSalary().equals(o1.getSalary())) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 }

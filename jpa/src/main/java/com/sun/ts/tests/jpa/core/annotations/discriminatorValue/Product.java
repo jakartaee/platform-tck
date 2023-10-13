@@ -37,85 +37,84 @@ import jakarta.persistence.Table;
  * //@DiscriminatorValue("Product")
  */
 public class Product implements java.io.Serializable {
-  private String id;
+	private String id;
 
-  private String name;
+	private String name;
 
-  private int quantity;
+	private int quantity;
 
-  public Product() {
-    super();
-  }
+	public Product() {
+		super();
+	}
 
-  public Product(String id, String name, int quantity) {
-    this.id = id;
-    this.name = name;
-    this.quantity = quantity;
-  }
+	public Product(String id, String name, int quantity) {
+		this.id = id;
+		this.name = name;
+		this.quantity = quantity;
+	}
 
-  @Id
-  @Column(name = "ID")
-  public String getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  @Column(name = "NAME")
-  public String getName() {
-    return name;
-  }
+	@Column(name = "NAME")
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  @Column(name = "QUANTITY")
-  public int getQuantity() {
-    return quantity;
-  }
+	@Column(name = "QUANTITY")
+	public int getQuantity() {
+		return quantity;
+	}
 
-  public void setQuantity(int v) {
-    this.quantity = v;
-  }
+	public void setQuantity(int v) {
+		this.quantity = v;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    if (getName() != null) {
-      result.append(", name: " + getName());
-    } else {
-      result.append(", name: null");
-    }
-    result.append(", quantity: " + getQuantity());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		if (getName() != null) {
+			result.append(", name: " + getName());
+		} else {
+			result.append(", name: null");
+		}
+		result.append(", quantity: " + getQuantity());
+		result.append("]");
+		return result.toString();
+	}
 
-  @Override
-  public int hashCode() {
-    return this.getId().hashCode();
-  }
+	@Override
+	public int hashCode() {
+		return this.getId().hashCode();
+	}
 
-  public boolean equals(Object o) {
-    Product other;
-    boolean result = false;
+	public boolean equals(Object o) {
+		Product other;
+		boolean result = false;
 
-    if (!(o instanceof Product)) {
-      return result;
-    }
-    other = (Product) o;
+		if (!(o instanceof Product)) {
+			return result;
+		}
+		other = (Product) o;
 
-    if (this.getId().equals(other.getId())
-        && this.getName().equals(other.getName())
-        && this.getQuantity() == other.getQuantity()) {
-      result = true;
-    }
+		if (this.getId().equals(other.getId()) && this.getName().equals(other.getName())
+				&& this.getQuantity() == other.getQuantity()) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 }

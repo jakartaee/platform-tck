@@ -25,14 +25,14 @@ import jakarta.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Alias.class)
 public class Alias_ {
 
-  public static volatile SingularAttribute<Alias, String> id;
+	public static volatile SingularAttribute<Alias, String> id;
 
-  public static volatile CollectionAttribute<Alias, Customer> customersNoop;
+	public static volatile CollectionAttribute<Alias, Customer> customersNoop;
 
-  public static volatile SingularAttribute<Alias, String> alias;
+	public static volatile SingularAttribute<Alias, String> alias;
 
-  public static volatile CollectionAttribute<Alias, Customer> customers;
+	public static volatile CollectionAttribute<Alias, Customer> customers;
 
-  public static volatile SingularAttribute<Alias, Customer> customerNoop;
+	public static volatile SingularAttribute<Alias, Customer> customerNoop;
 
 }

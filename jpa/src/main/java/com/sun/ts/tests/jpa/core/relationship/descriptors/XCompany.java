@@ -30,67 +30,67 @@ import com.sun.ts.lib.util.TestUtil;
 
 public class XCompany implements java.io.Serializable {
 
-  private long xCompanyId;
+	private long xCompanyId;
 
-  private String xName;
+	private String xName;
 
-  private XAddress xAddress;
+	private XAddress xAddress;
 
-  private Collection<XTeam> xTeams = new java.util.ArrayList<XTeam>();
+	private Collection<XTeam> xTeams = new java.util.ArrayList<XTeam>();
 
-  public XCompany() {
-    TestUtil.logTrace("Company no arg constructor");
-  }
+	public XCompany() {
+		TestUtil.logTrace("Company no arg constructor");
+	}
 
-  public XCompany(long xCompanyId, String xName) {
-    this.xCompanyId = xCompanyId;
-    this.xName = xName;
-  }
+	public XCompany(long xCompanyId, String xName) {
+		this.xCompanyId = xCompanyId;
+		this.xName = xName;
+	}
 
-  public XCompany(long xCompanyId, String xName, XAddress xAddress) {
-    this.xCompanyId = xCompanyId;
-    this.xName = xName;
-    this.xAddress = xAddress;
-  }
+	public XCompany(long xCompanyId, String xName, XAddress xAddress) {
+		this.xCompanyId = xCompanyId;
+		this.xName = xName;
+		this.xAddress = xAddress;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  public long getXCompanyId() {
-    return xCompanyId;
-  }
+	public long getXCompanyId() {
+		return xCompanyId;
+	}
 
-  public void setXCompanyId(long xCompanyId) {
-    this.xCompanyId = xCompanyId;
-  }
+	public void setXCompanyId(long xCompanyId) {
+		this.xCompanyId = xCompanyId;
+	}
 
-  public String getXName() {
-    return xName;
-  }
+	public String getXName() {
+		return xName;
+	}
 
-  public void setXName(String xName) {
-    this.xName = xName;
-  }
+	public void setXName(String xName) {
+		this.xName = xName;
+	}
 
-  // ===========================================================
-  // getters and setters for the association fields
+	// ===========================================================
+	// getters and setters for the association fields
 
-  /* Uni-directional Single-Valued One(Company)ToOne(Address) - Company Owner */
-  public XAddress getXAddress() {
-    return xAddress;
-  }
+	/* Uni-directional Single-Valued One(Company)ToOne(Address) - Company Owner */
+	public XAddress getXAddress() {
+		return xAddress;
+	}
 
-  public void setXAddress(XAddress xAddress) {
-    this.xAddress = xAddress;
-  }
+	public void setXAddress(XAddress xAddress) {
+		this.xAddress = xAddress;
+	}
 
-  /* Bi-directional One(Company)ToMany(Teams) - Owner Teams */
-  public Collection<XTeam> getXTeams() {
-    return xTeams;
-  }
+	/* Bi-directional One(Company)ToMany(Teams) - Owner Teams */
+	public Collection<XTeam> getXTeams() {
+		return xTeams;
+	}
 
-  public void setXTeams(Collection<XTeam> xTeams) {
-    this.xTeams = xTeams;
-  }
+	public void setXTeams(Collection<XTeam> xTeams) {
+		this.xTeams = xTeams;
+	}
 
 }

@@ -24,53 +24,50 @@ import jakarta.persistence.PostLoad;
 
 public class ListenerAA extends ListenerBase {
 
-  public ListenerAA() {
-    super();
-  }
+	public ListenerAA() {
+		super();
+	}
 
-  @Override
-  protected void prePersist(CallbackStatusIF b) {
-    GenerictListenerImpl.logTrace("In ListenerAA.prePersist." + this, b);
-    super.prePersist(b);
-  }
+	@Override
+	protected void prePersist(CallbackStatusIF b) {
+		GenerictListenerImpl.logTrace("In ListenerAA.prePersist." + this, b);
+		super.prePersist(b);
+	}
 
-  @Override
-  protected void postPersist(Object b) {
-    GenerictListenerImpl.logTrace("In ListenerAA.postPersist." + this,
-        (CallbackStatusIF) b);
-    super.postPersist(b);
-  }
+	@Override
+	protected void postPersist(Object b) {
+		GenerictListenerImpl.logTrace("In ListenerAA.postPersist." + this, (CallbackStatusIF) b);
+		super.postPersist(b);
+	}
 
-  @Override
-  protected void preRemove(CallbackStatusIF b) {
-    GenerictListenerImpl.logTrace("In ListenerAA.prePersist." + this, b);
-    super.preRemove(b);
-  }
+	@Override
+	protected void preRemove(CallbackStatusIF b) {
+		GenerictListenerImpl.logTrace("In ListenerAA.prePersist." + this, b);
+		super.preRemove(b);
+	}
 
-  @Override
-  protected void postRemove(Object b) {
-    GenerictListenerImpl.logTrace("In ListenerAA.preRemove." + this,
-        (CallbackStatusIF) b);
-    super.postRemove(b);
-  }
+	@Override
+	protected void postRemove(Object b) {
+		GenerictListenerImpl.logTrace("In ListenerAA.preRemove." + this, (CallbackStatusIF) b);
+		super.postRemove(b);
+	}
 
-  @Override
-  protected void preUpdate(CallbackStatusIF b) {
-    GenerictListenerImpl.logTrace("In ListenerAA.preUpdate." + this, b);
-    super.preUpdate(b);
-  }
+	@Override
+	protected void preUpdate(CallbackStatusIF b) {
+		GenerictListenerImpl.logTrace("In ListenerAA.preUpdate." + this, b);
+		super.preUpdate(b);
+	}
 
-  @Override
-  protected void postUpdate(Object b) {
-    GenerictListenerImpl.logTrace("In ListenerAA.postUpdate." + this,
-        (CallbackStatusIF) b);
-    super.postUpdate(b);
-  }
+	@Override
+	protected void postUpdate(Object b) {
+		GenerictListenerImpl.logTrace("In ListenerAA.postUpdate." + this, (CallbackStatusIF) b);
+		super.postUpdate(b);
+	}
 
-  @PostLoad
-  protected void postLoad(CallbackStatusIF b) {
-    GenerictListenerImpl.logTrace("In ListenerAA.postLoad." + this, b);
-    super.postLoad(b);
-  }
+	@PostLoad
+	protected void postLoad(CallbackStatusIF b) {
+		GenerictListenerImpl.logTrace("In ListenerAA.postLoad." + this, b);
+		super.postLoad(b);
+	}
 
 }

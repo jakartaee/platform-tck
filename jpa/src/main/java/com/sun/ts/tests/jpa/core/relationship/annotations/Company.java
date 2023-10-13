@@ -37,71 +37,71 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Company implements java.io.Serializable {
 
-  private long companyId;
+	private long companyId;
 
-  private String name;
+	private String name;
 
-  private Address address;
+	private Address address;
 
-  private Collection<Team> teams = new java.util.ArrayList<Team>();
+	private Collection<Team> teams = new java.util.ArrayList<Team>();
 
-  public Company() {
-    TestUtil.logTrace("Company no arg constructor");
-  }
+	public Company() {
+		TestUtil.logTrace("Company no arg constructor");
+	}
 
-  public Company(long companyId, String name) {
-    this.companyId = companyId;
-    this.name = name;
-  }
+	public Company(long companyId, String name) {
+		this.companyId = companyId;
+		this.name = name;
+	}
 
-  public Company(long companyId, String name, Address addr) {
-    this.companyId = companyId;
-    this.name = name;
-    this.address = addr;
-  }
+	public Company(long companyId, String name, Address addr) {
+		this.companyId = companyId;
+		this.name = name;
+		this.address = addr;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Id
-  public long getCompanyId() {
-    return companyId;
-  }
+	@Id
+	public long getCompanyId() {
+		return companyId;
+	}
 
-  public void setCompanyId(long companyId) {
-    this.companyId = companyId;
-  }
+	public void setCompanyId(long companyId) {
+		this.companyId = companyId;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  // ===========================================================
-  // getters and setters for the association fields
+	// ===========================================================
+	// getters and setters for the association fields
 
-  /* Uni-directional Single-Valued One(Company)ToOne(Address) - Company Owner */
-  @OneToOne
-  @JoinColumn(name = "ADDRESS_ID")
-  public Address getAddress() {
-    return address;
-  }
+	/* Uni-directional Single-Valued One(Company)ToOne(Address) - Company Owner */
+	@OneToOne
+	@JoinColumn(name = "ADDRESS_ID")
+	public Address getAddress() {
+		return address;
+	}
 
-  public void setAddress(Address address) {
-    this.address = address;
-  }
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
-  /* Bi-directional One(Company)ToMany(Teams) - Owner Teams */
-  @OneToMany(mappedBy = "company")
-  public Collection<Team> getTeams() {
-    return teams;
-  }
+	/* Bi-directional One(Company)ToMany(Teams) - Owner Teams */
+	@OneToMany(mappedBy = "company")
+	public Collection<Team> getTeams() {
+		return teams;
+	}
 
-  public void setTeams(Collection<Team> teams) {
-    this.teams = teams;
-  }
+	public void setTeams(Collection<Team> teams) {
+		this.teams = teams;
+	}
 
 }

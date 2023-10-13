@@ -19,188 +19,177 @@ package com.sun.ts.tests.jpa.core.relationship.unimanyxmany;
 import java.util.Collection;
 import java.util.Vector;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class ClientIT extends PMClientBase {
 
-  public ClientIT() {
-  }
-  
-  @Deployment(testable = false, managed = false)
-  public static JavaArchive createDeployment() throws Exception {
-     
-     String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-     String pkgName = ClientIT.class.getPackageName() + ".";
-     String[] classes = { pkgName + "UniMXMPerson", pkgName + "UniMXMProject"};
-     return createDeploymentJar("jpa_core_relationship_unimanyxmany.jar", pkgNameWithoutSuffix, classes);
+	public ClientIT() {
+	}
 
-  }
+	public static JavaArchive createDeployment() throws Exception {
 
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] classes = { pkgName + "UniMXMPerson", pkgName + "UniMXMProject" };
+		return createDeploymentJar("jpa_core_relationship_unimanyxmany.jar", pkgNameWithoutSuffix, classes);
 
-@BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	}
 
-  /*
-   * @testName: uniMXMTest1
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:1094; PERSISTENCE:JAVADOC:135;
-   * PERSISTENCE:JAVADOC:91; PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:562;
-   * PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:570; PERSISTENCE:SPEC:571;
-   * PERSISTENCE:SPEC:573; PERSISTENCE:SPEC:961; PERSISTENCE:SPEC:1028;
-   * PERSISTENCE:SPEC:1037; PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039
-   * 
-   * @test_Strategy: RelationShip OneToMany Mapping
-   *
-   */
-@Test
-  public void uniMXMTest1() throws Exception {
-    TestUtil.logTrace("Begin uniMXMTest1");
-    boolean pass = false;
-    try {
-      getEntityTransaction().begin();
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup();
+			createDeployment();
+			removeTestData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-      UniMXMProject project1 = new UniMXMProject(1L, "JavaEE", 500.0F);
-      UniMXMProject project2 = new UniMXMProject(2L, "Identity", 300F);
+	/*
+	 * @testName: uniMXMTest1
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:1094; PERSISTENCE:JAVADOC:135;
+	 * PERSISTENCE:JAVADOC:91; PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:562;
+	 * PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:570; PERSISTENCE:SPEC:571;
+	 * PERSISTENCE:SPEC:573; PERSISTENCE:SPEC:961; PERSISTENCE:SPEC:1028;
+	 * PERSISTENCE:SPEC:1037; PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039
+	 * 
+	 * @test_Strategy: RelationShip OneToMany Mapping
+	 *
+	 */
+	@Test
+	public void uniMXMTest1() throws Exception {
+		TestUtil.logTrace("Begin uniMXMTest1");
+		boolean pass = false;
+		try {
+			getEntityTransaction().begin();
 
-      UniMXMPerson person1 = new UniMXMPerson(1L, "Duke");
-      UniMXMPerson person2 = new UniMXMPerson(2L, "Foo");
+			UniMXMProject project1 = new UniMXMProject(1L, "JavaEE", 500.0F);
+			UniMXMProject project2 = new UniMXMProject(2L, "Identity", 300F);
 
-      getEntityManager().persist(project1);
-      getEntityManager().persist(project2);
-      getEntityManager().persist(person1);
-      getEntityManager().persist(person2);
+			UniMXMPerson person1 = new UniMXMPerson(1L, "Duke");
+			UniMXMPerson person2 = new UniMXMPerson(2L, "Foo");
 
-      Vector<UniMXMProject> projects = new Vector<UniMXMProject>();
-      projects.add(project1);
-      projects.add(project2);
+			getEntityManager().persist(project1);
+			getEntityManager().persist(project2);
+			getEntityManager().persist(person1);
+			getEntityManager().persist(person2);
 
-      person1.setProjects(projects);
+			Vector<UniMXMProject> projects = new Vector<UniMXMProject>();
+			projects.add(project1);
+			projects.add(project2);
 
-      Vector<UniMXMProject> projects2 = new Vector<UniMXMProject>();
-      projects2.add(project2);
+			person1.setProjects(projects);
 
-      person2.setProjects(projects2);
+			Vector<UniMXMProject> projects2 = new Vector<UniMXMProject>();
+			projects2.add(project2);
 
-      getEntityManager().merge(person1);
-      getEntityManager().merge(person2);
+			person2.setProjects(projects2);
 
-      TestUtil.logTrace("persisted Persons and Project");
+			getEntityManager().merge(person1);
+			getEntityManager().merge(person2);
 
-      boolean pass1 = false;
-      boolean pass2 = false;
+			TestUtil.logTrace("persisted Persons and Project");
 
-      UniMXMPerson newPerson = getEntityManager().find(UniMXMPerson.class, 1L);
+			boolean pass1 = false;
+			boolean pass2 = false;
 
-      if (newPerson != null) {
+			UniMXMPerson newPerson = getEntityManager().find(UniMXMPerson.class, 1L);
 
-        Collection<UniMXMProject> newProjects = newPerson.getProjects();
-        for (UniMXMProject prj : newProjects) {
-          if (prj.getName().equals("Identity")) {
-            pass1 = true;
-          } else if (prj.getName().equals("JavaEE")) {
-            pass2 = true;
-          }
-        }
+			if (newPerson != null) {
 
-      }
+				Collection<UniMXMProject> newProjects = newPerson.getProjects();
+				for (UniMXMProject prj : newProjects) {
+					if (prj.getName().equals("Identity")) {
+						pass1 = true;
+					} else if (prj.getName().equals("JavaEE")) {
+						pass2 = true;
+					}
+				}
 
-      boolean pass3 = false;
-      UniMXMPerson newPerson2 = getEntityManager().find(UniMXMPerson.class, 2L);
+			}
 
-      if (newPerson2 != null) {
+			boolean pass3 = false;
+			UniMXMPerson newPerson2 = getEntityManager().find(UniMXMPerson.class, 2L);
 
-        Collection<UniMXMProject> newProjects2 = newPerson2.getProjects();
-        for (UniMXMProject prj : newProjects2) {
-          if (prj.getName().equals("Identity")) {
-            pass3 = true;
-          }
-        }
+			if (newPerson2 != null) {
 
-      }
+				Collection<UniMXMProject> newProjects2 = newPerson2.getProjects();
+				for (UniMXMProject prj : newProjects2) {
+					if (prj.getName().equals("Identity")) {
+						pass3 = true;
+					}
+				}
 
-      if (pass1 && pass2 && pass3) {
-        TestUtil.logTrace("Expected results received");
-        pass = true;
-      } else {
-        TestUtil.logErr("Unexpected results received");
-        pass = false;
-      }
+			}
 
-      getEntityTransaction().commit();
+			if (pass1 && pass2 && pass3) {
+				TestUtil.logTrace("Expected results received");
+				pass = true;
+			} else {
+				TestUtil.logErr("Unexpected results received");
+				pass = false;
+			}
 
-    } catch (Exception e) {
+			getEntityTransaction().commit();
 
-      TestUtil.logErr("Unexpected exception occurred", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
+		} catch (Exception e) {
 
-    if (!pass) {
-      throw new Exception("uniMXMTest1 failed");
-    }
-  }
-@AfterAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+			TestUtil.logErr("Unexpected exception occurred", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in rollback:", re);
+			}
+		}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager()
-          .createNativeQuery("DELETE FROM UNIMXMPERSON_UNIMXMPROJECT")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM UNIMXMPROJECT")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM UNIMXMPERSON")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+		if (!pass) {
+			throw new Exception("uniMXMTest1 failed");
+		}
+	}
+
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("cleanup");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+	}
+
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM UNIMXMPERSON_UNIMXMPROJECT").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM UNIMXMPROJECT").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM UNIMXMPERSON").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

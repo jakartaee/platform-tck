@@ -16,275 +16,219 @@
 
 package com.sun.ts.tests.jpa.core.criteriaapi.CriteriaBuilder;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.sql.Date;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.common.schema30.Address;
-import com.sun.ts.tests.jpa.common.schema30.Alias;
-import com.sun.ts.tests.jpa.common.schema30.Customer;
-import com.sun.ts.tests.jpa.common.schema30.Customer_;
-import com.sun.ts.tests.jpa.common.schema30.HardwareProduct;
-import com.sun.ts.tests.jpa.common.schema30.LineItem;
-import com.sun.ts.tests.jpa.common.schema30.Order;
-import com.sun.ts.tests.jpa.common.schema30.Order_;
-import com.sun.ts.tests.jpa.common.schema30.Product;
-import com.sun.ts.tests.jpa.common.schema30.ShelfLife;
-import com.sun.ts.tests.jpa.common.schema30.SoftwareProduct;
-import com.sun.ts.tests.jpa.common.schema30.SoftwareProduct_;
-import com.sun.ts.tests.jpa.common.schema30.Spouse;
 import com.sun.ts.tests.jpa.common.schema30.Trim;
 import com.sun.ts.tests.jpa.common.schema30.UtilTrimData;
 
-import jakarta.persistence.Query;
-import jakarta.persistence.Tuple;
-import jakarta.persistence.TupleElement;
 import jakarta.persistence.TypedQuery;
-import jakarta.persistence.criteria.CollectionJoin;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaBuilder.Trimspec;
-import jakarta.persistence.criteria.CriteriaDelete;
 import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.CriteriaUpdate;
-import jakarta.persistence.criteria.Expression;
-import jakarta.persistence.criteria.Join;
-import jakarta.persistence.criteria.JoinType;
-import jakarta.persistence.criteria.ParameterExpression;
-import jakarta.persistence.criteria.Path;
-import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
-import jakarta.persistence.criteria.Selection;
-import jakarta.persistence.criteria.Subquery;
-import jakarta.persistence.metamodel.Bindable;
-import jakarta.persistence.metamodel.EmbeddableType;
 import jakarta.persistence.metamodel.EntityType;
-import jakarta.persistence.metamodel.Metamodel;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client8IT extends UtilTrimData {
 
+	public static JavaArchive createDeployment() throws Exception {
 
-	  @Deployment(testable = false, managed = false)
-	 	public static JavaArchive createDeployment() throws Exception {
+		String pkgNameWithoutSuffix = Client8IT.class.getPackageName();
+		String pkgName = Client8IT.class.getPackageName() + ".";
+		String[] classes = {};
+		return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder8.jar", pkgNameWithoutSuffix, classes);
 
-	 		String pkgNameWithoutSuffix = Client8IT.class.getPackageName();
-	 		String pkgName = Client8IT.class.getPackageName() + ".";
-	 		String[] classes = { };
-	 		return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder8.jar", pkgNameWithoutSuffix, classes);
+	}
 
-	 	}
+	/*
+	 * @testName: trimExpTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:866
+	 *
+	 * @test_Strategy: Select trim(both from t.name) from Trim t where
+	 * trim(t.name)='David R. Vincent'
+	 *
+	 *
+	 */
+	@SetupMethod(name = "setupTrimData")
+	@Test
+	public void trimExpTest() throws Exception {
+		boolean pass = false;
+		final String expected = " David R. Vincent ";
+		final String expected2 = "David R. Vincent";
 
-  /*
-   * @testName: trimExpTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:866
-   *
-   * @test_Strategy: Select trim(both from t.name) from Trim t where
-   * trim(t.name)='David R. Vincent'
-   *
-   *
-   */
-  @SetupMethod(name = "setupTrimData")
-  @Test
-  public void trimExpTest() throws Exception {
-    boolean pass = false;
-    final String expected = " David R. Vincent ";
-    final String expected2 = "David R. Vincent";
+		CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
 
-    CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+		getEntityTransaction().begin();
+		/*
+		 * Trim tTrim = getEntityManager().find(Trim.class, "19");
+		 * TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
+		 * (tTrim.getName().equals(expected)) {
+		 * TestUtil.logTrace("Received expected find result: " + tTrim.getName()); pass1
+		 * = true; } else {
+		 * TestUtil.logErr("Name returned by find does not match expected");
+		 * TestUtil.logErr("Expected:|" + expected + "|, actual:|" + tTrim.getName() +
+		 * "|"); }
+		 * 
+		 */
+		CriteriaQuery<String> cquery = cb.createQuery(String.class);
+		if (cquery != null) {
+			Root<Trim> trim = cquery.from(Trim.class);
 
-    getEntityTransaction().begin();
-    /*
-     * Trim tTrim = getEntityManager().find(Trim.class, "19");
-     * TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
-     * (tTrim.getName().equals(expected)) {
-     * TestUtil.logTrace("Received expected find result: " + tTrim.getName());
-     * pass1 = true; } else {
-     * TestUtil.logErr("Name returned by find does not match expected");
-     * TestUtil.logErr("Expected:|" + expected + "|, actual:|" + tTrim.getName()
-     * + "|"); }
-     * 
-     */
-    CriteriaQuery<String> cquery = cb.createQuery(String.class);
-    if (cquery != null) {
-      Root<Trim> trim = cquery.from(Trim.class);
+			// Get Metamodel from Root
+			EntityType<Trim> trim_ = trim.getModel();
 
-      // Get Metamodel from Root
-      EntityType<Trim> trim_ = trim.getModel();
+			cquery.where(cb.equal(cb.trim(trim.get(trim_.getSingularAttribute("name", String.class))),
+					cb.literal(expected.trim())));
+			cquery.select(cb.trim(trim.get(trim_.getSingularAttribute("name", String.class))));
 
-      cquery.where(cb.equal(
-          cb.trim(trim.get(trim_.getSingularAttribute("name", String.class))),
-          cb.literal(expected.trim())));
-      cquery.select(
-          cb.trim(trim.get(trim_.getSingularAttribute("name", String.class))));
+			TypedQuery<String> tq = getEntityManager().createQuery(cquery);
 
-      TypedQuery<String> tq = getEntityManager().createQuery(cquery);
+			String result = tq.getSingleResult();
 
-      String result = tq.getSingleResult();
+			if (result.equals(expected2)) {
+				TestUtil.logTrace("Received expected result:|" + result + "|");
+				pass = true;
+			} else {
+				TestUtil.logErr(
+						"Mismatch in received results - expected = |" + expected2 + "|, received = |" + result + "|");
+			}
 
-      if (result.equals(expected2)) {
-        TestUtil.logTrace("Received expected result:|" + result + "|");
-        pass = true;
-      } else {
-        TestUtil.logErr("Mismatch in received results - expected = |"
-            + expected2 + "|, received = |" + result + "|");
-      }
+		} else {
+			TestUtil.logErr("Failed to get Non-null Criteria Query");
+		}
 
-    } else {
-      TestUtil.logErr("Failed to get Non-null Criteria Query");
-    }
+		getEntityTransaction().commit();
 
-    getEntityTransaction().commit();
+		if (!pass) {
+			throw new Exception("trimExpTest failed");
 
-    if (!pass) {
-      throw new Exception("trimExpTest failed");
+		}
+	}
 
-    }
-  }
+	/*
+	 * testName: trimLeadingExpTest assertion_ids: PERSISTENCE:JAVADOC:867
+	 *
+	 * test_Strategy: Select trim(leading from t.name) from Trim t where t.name= '
+	 * David R. Vincent '
+	 *
+	 *
+	 */
+	/*
+	 * @SetupMethod(name = "setupTrimData") // TODO - once TRIM issues are resolved,
+	 * re-enable this test public void trimLeadingExpTest() throws Exception {
+	 * boolean pass = false; final String expected = " David R. Vincent "; final
+	 * String expected2 = "David R. Vincent             ";
+	 * 
+	 * CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+	 * 
+	 * 
+	 * getEntityTransaction().begin();
+	 * 
+	 * Trim tTrim = getEntityManager().find(Trim.class, "19");
+	 * TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
+	 * (!tTrim.getName().equals(expected)) {
+	 * TestUtil.logErr("Name returned by find does not match expected");
+	 * TestUtil.logErr("Expected:|" + expected + "|, actual:|" + tTrim.getName() +
+	 * "|"); }
+	 * 
+	 * 
+	 * CriteriaQuery<String> cquery = cb.createQuery(String.class); if (cquery !=
+	 * null) { Root<Trim> trim = cquery.from(Trim.class);
+	 * 
+	 * 
+	 * //Get Metamodel from Root EntityType<Trim> trim_ = trim.getModel();
+	 * 
+	 * cquery.where(cb.equal( trim.get(trim_.getSingularAttribute("name",
+	 * String.class)), cb.literal(expected)));
+	 * cquery.select(cb.trim(Trimspec.LEADING,
+	 * trim.get(trim_.getSingularAttribute("name", String.class))));
+	 * 
+	 * TypedQuery<String> tq = getEntityManager().createQuery(cquery);
+	 * 
+	 * String result = tq.getSingleResult();
+	 * 
+	 * if (result.equals(expected2)) {
+	 * TestUtil.logTrace("Received expected result:|" + result + "|"); pass = true;
+	 * } else { TestUtil.logErr("Mismatch in received results - expected = |" +
+	 * expected2 + "|, received = |" + result + "|"); }
+	 * 
+	 * } else { TestUtil.logErr("Failed to get Non-null Criteria Query"); }
+	 * 
+	 * getEntityTransaction().commit();
+	 * 
+	 * if (!pass) { throw new Exception("trimLeadingExpTest failed");
+	 * 
+	 * } }
+	 */
 
-  /*
-   * testName: trimLeadingExpTest assertion_ids: PERSISTENCE:JAVADOC:867
-   *
-   * test_Strategy: Select trim(leading from t.name) from Trim t where t.name= '
-   * David R. Vincent '
-   *
-   *
-   */
-  /*
-   * @SetupMethod(name = "setupTrimData") // TODO - once TRIM issues are
-   * resolved, re-enable this test public void trimLeadingExpTest() throws Exception
-   * { boolean pass = false; final String expected = " David R. Vincent "; final
-   * String expected2 = "David R. Vincent             ";
-   * 
-   * CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
-   * 
-   * 
-   * getEntityTransaction().begin();
-   * 
-   * Trim tTrim = getEntityManager().find(Trim.class, "19");
-   * TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
-   * (!tTrim.getName().equals(expected)) {
-   * TestUtil.logErr("Name returned by find does not match expected");
-   * TestUtil.logErr("Expected:|" + expected + "|, actual:|" + tTrim.getName() +
-   * "|"); }
-   * 
-   * 
-   * CriteriaQuery<String> cquery = cb.createQuery(String.class); if (cquery !=
-   * null) { Root<Trim> trim = cquery.from(Trim.class);
-   * 
-   * 
-   * //Get Metamodel from Root EntityType<Trim> trim_ = trim.getModel();
-   * 
-   * cquery.where(cb.equal( trim.get(trim_.getSingularAttribute("name",
-   * String.class)), cb.literal(expected)));
-   * cquery.select(cb.trim(Trimspec.LEADING,
-   * trim.get(trim_.getSingularAttribute("name", String.class))));
-   * 
-   * TypedQuery<String> tq = getEntityManager().createQuery(cquery);
-   * 
-   * String result = tq.getSingleResult();
-   * 
-   * if (result.equals(expected2)) {
-   * TestUtil.logTrace("Received expected result:|" + result + "|"); pass =
-   * true; } else {
-   * TestUtil.logErr("Mismatch in received results - expected = |" + expected2 +
-   * "|, received = |" + result + "|"); }
-   * 
-   * } else { TestUtil.logErr("Failed to get Non-null Criteria Query"); }
-   * 
-   * getEntityTransaction().commit();
-   * 
-   * if (!pass) { throw new Exception("trimLeadingExpTest failed");
-   * 
-   * } }
-   */
+	/*
+	 * @testName: trimTrailingCharExpTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:867
+	 *
+	 * @test_Strategy: Select trim(trailing from t.name) from Trim t where
+	 * trim(t.name)= 'David R. Vincent'
+	 *
+	 */
+	@SetupMethod(name = "setupTrimData")
+	@Test
+	public void trimTrailingCharExpTest() throws Exception {
+		boolean pass = false;
+		final String expected = " David R. Vincent ";
+		final String expected2 = " David R. Vincent";
 
-  /*
-   * @testName: trimTrailingCharExpTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:867
-   *
-   * @test_Strategy: Select trim(trailing from t.name) from Trim t where
-   * trim(t.name)= 'David R. Vincent'
-   *
-   */
-  @SetupMethod(name = "setupTrimData")
-  @Test
-  public void trimTrailingCharExpTest() throws Exception {
-    boolean pass = false;
-    final String expected = " David R. Vincent ";
-    final String expected2 = " David R. Vincent";
+		CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
 
-    CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+		getEntityTransaction().begin();
 
-    getEntityTransaction().begin();
+		/*
+		 * Trim tTrim = getEntityManager().find(Trim.class, "19");
+		 * TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
+		 * (tTrim.getName().equals(expected)) {
+		 * TestUtil.logTrace("Received expected find result: " + tTrim.getName()); pass1
+		 * = true; } else {
+		 * TestUtil.logErr("Name returned by find does not match expected");
+		 * TestUtil.logErr("Expected:|" + expected + "|, actual:|" + tTrim.getName() +
+		 * "|"); }
+		 */
 
-    /*
-     * Trim tTrim = getEntityManager().find(Trim.class, "19");
-     * TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
-     * (tTrim.getName().equals(expected)) {
-     * TestUtil.logTrace("Received expected find result: " + tTrim.getName());
-     * pass1 = true; } else {
-     * TestUtil.logErr("Name returned by find does not match expected");
-     * TestUtil.logErr("Expected:|" + expected + "|, actual:|" + tTrim.getName()
-     * + "|"); }
-     */
+		CriteriaQuery<String> cquery = cb.createQuery(String.class);
+		if (cquery != null) {
+			Root<Trim> trim = cquery.from(Trim.class);
 
-    CriteriaQuery<String> cquery = cb.createQuery(String.class);
-    if (cquery != null) {
-      Root<Trim> trim = cquery.from(Trim.class);
+			// Get Metamodel from Root
+			EntityType<Trim> trim_ = trim.getModel();
 
-      // Get Metamodel from Root
-      EntityType<Trim> trim_ = trim.getModel();
+			cquery.where(cb.equal(cb.trim(trim.get(trim_.getSingularAttribute("name", String.class))),
+					cb.literal(expected.trim())));
+			cquery.select(cb.trim(Trimspec.TRAILING, trim.get(trim_.getSingularAttribute("name", String.class))));
 
-      cquery.where(cb.equal(
-          cb.trim(trim.get(trim_.getSingularAttribute("name", String.class))),
-          cb.literal(expected.trim())));
-      cquery.select(cb.trim(Trimspec.TRAILING,
-          trim.get(trim_.getSingularAttribute("name", String.class))));
+			TypedQuery<String> tq = getEntityManager().createQuery(cquery);
 
-      TypedQuery<String> tq = getEntityManager().createQuery(cquery);
+			String result = tq.getSingleResult();
 
-      String result = tq.getSingleResult();
+			if (result.equals(expected2)) {
+				TestUtil.logTrace("Received expected result:|" + result + "|");
+				pass = true;
+			} else {
+				TestUtil.logErr(
+						"Mismatch in received results - expected = |" + expected2 + "|, received = |" + result + "|");
+			}
 
-      if (result.equals(expected2)) {
-        TestUtil.logTrace("Received expected result:|" + result + "|");
-        pass = true;
-      } else {
-        TestUtil.logErr("Mismatch in received results - expected = |"
-            + expected2 + "|, received = |" + result + "|");
-      }
+		} else {
+			TestUtil.logErr("Failed to get Non-null Criteria Query");
+		}
 
-    } else {
-      TestUtil.logErr("Failed to get Non-null Criteria Query");
-    }
+		getEntityTransaction().commit();
 
-    getEntityTransaction().commit();
+		if (!pass) {
+			throw new Exception("trimTrailingCharExpTest failed");
 
-    if (!pass) {
-      throw new Exception("trimTrailingCharExpTest failed");
-
-    }
-  }
+		}
+	}
 
 }

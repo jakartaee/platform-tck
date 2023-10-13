@@ -32,73 +32,71 @@ import jakarta.persistence.MapsId;
 @Entity
 public class DID2bDependent implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  @EmbeddedId
-  DID2bDependentId id;
+	@EmbeddedId
+	DID2bDependentId id;
 
-  @MapsId("empPK")
-  @JoinColumns({
-      @JoinColumn(name = "FIRSTNAME", referencedColumnName = "firstname"),
-      @JoinColumn(name = "LASTNAME", referencedColumnName = "lastname") })
-  @ManyToOne
-  DID2bEmployee emp;
+	@MapsId("empPK")
+	@JoinColumns({ @JoinColumn(name = "FIRSTNAME", referencedColumnName = "firstname"),
+			@JoinColumn(name = "LASTNAME", referencedColumnName = "lastname") })
+	@ManyToOne
+	DID2bEmployee emp;
 
-  public DID2bDependent() {
-  }
+	public DID2bDependent() {
+	}
 
-  public DID2bDependent(DID2bDependentId dId, DID2bEmployee emp) {
-    this.id = dId;
-    this.emp = emp;
+	public DID2bDependent(DID2bDependentId dId, DID2bEmployee emp) {
+		this.id = dId;
+		this.emp = emp;
 
-  }
+	}
 
-  public DID2bDependent(String name, DID2bEmployee emp) {
-    this.id.name = name;
-    this.emp = emp;
-  }
+	public DID2bDependent(String name, DID2bEmployee emp) {
+		this.id.name = name;
+		this.emp = emp;
+	}
 
-  @Override
-  public boolean equals(Object obj) {
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    final DID2bDependent other = (DID2bDependent) obj;
-    if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
-      return false;
-    }
-    if (this.emp != other.emp
-        && (this.emp == null || !this.emp.equals(other.emp))) {
-      return false;
-    }
-    return true;
-  }
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final DID2bDependent other = (DID2bDependent) obj;
+		if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+			return false;
+		}
+		if (this.emp != other.emp && (this.emp == null || !this.emp.equals(other.emp))) {
+			return false;
+		}
+		return true;
+	}
 
-  @Override
-  public int hashCode() {
-    int hash = 5;
-    hash = 59 * hash + (this.id != null ? this.id.hashCode() : 0);
-    hash = 59 * hash + (this.emp != null ? this.emp.hashCode() : 0);
-    return hash;
-  }
+	@Override
+	public int hashCode() {
+		int hash = 5;
+		hash = 59 * hash + (this.id != null ? this.id.hashCode() : 0);
+		hash = 59 * hash + (this.emp != null ? this.emp.hashCode() : 0);
+		return hash;
+	}
 
-  public DID2bEmployee getEmp() {
-    return emp;
-  }
+	public DID2bEmployee getEmp() {
+		return emp;
+	}
 
-  public void setEmp(DID2bEmployee emp) {
-    this.emp = emp;
-  }
+	public void setEmp(DID2bEmployee emp) {
+		this.emp = emp;
+	}
 
-  public String getName() {
-    return this.id.name;
-  }
+	public String getName() {
+		return this.id.name;
+	}
 
-  public void setName(String name) {
-    this.id.name = name;
-  }
+	public void setName(String name) {
+		this.id.name = name;
+	}
 
 }

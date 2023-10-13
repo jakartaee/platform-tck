@@ -20,52 +20,41 @@ import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter
-public class NumberToStateConverter
-    implements AttributeConverter<Integer, String> {
+public class NumberToStateConverter implements AttributeConverter<Integer, String> {
 
-  public String convertToDatabaseColumn(Integer attribute) {
-    System.out
-        .println("*** Entering NumberToStateConverter:convertToDatabaseColumn["
-            + attribute + "] ***");
-    String value = "NumberToStateConverter:convertToDatabaseColumn";
+	public String convertToDatabaseColumn(Integer attribute) {
+		System.out.println("*** Entering NumberToStateConverter:convertToDatabaseColumn[" + attribute + "] ***");
+		String value = "NumberToStateConverter:convertToDatabaseColumn";
 
-    if (attribute.equals(1)) {
-      value = "MA";
-    } else if (attribute.equals(2)) {
-      value = "CA";
-    } else if (attribute.equals(-1)) {
-      throw new RuntimeException(
-          "Exception was thrown from convertToDatabaseColumn");
-    } else {
-      value = attribute.toString();
-    }
-    System.out
-        .println("*** Leaving NumberToStateConverter:convertToDatabaseColumn["
-            + value + "] ***");
+		if (attribute.equals(1)) {
+			value = "MA";
+		} else if (attribute.equals(2)) {
+			value = "CA";
+		} else if (attribute.equals(-1)) {
+			throw new RuntimeException("Exception was thrown from convertToDatabaseColumn");
+		} else {
+			value = attribute.toString();
+		}
+		System.out.println("*** Leaving NumberToStateConverter:convertToDatabaseColumn[" + value + "] ***");
 
-    return value;
-  }
+		return value;
+	}
 
-  public Integer convertToEntityAttribute(String dbData) {
-    System.out
-        .println("*** Entering NumberToStateConverter:convertToEntityAttribute["
-            + dbData + "] ***");
-    int value = 0;
-    if (dbData.equals("MA")) {
-      value = 1;
-    } else if (dbData.equals("CA")) {
-      value = 2;
-    } else if (dbData.equals("-2")) {
-      throw new RuntimeException(
-          "Exception was thrown from convertToEntityAttribute");
-    } else {
-      value = Integer.valueOf(dbData);
-    }
+	public Integer convertToEntityAttribute(String dbData) {
+		System.out.println("*** Entering NumberToStateConverter:convertToEntityAttribute[" + dbData + "] ***");
+		int value = 0;
+		if (dbData.equals("MA")) {
+			value = 1;
+		} else if (dbData.equals("CA")) {
+			value = 2;
+		} else if (dbData.equals("-2")) {
+			throw new RuntimeException("Exception was thrown from convertToEntityAttribute");
+		} else {
+			value = Integer.valueOf(dbData);
+		}
 
-    System.out
-        .println("*** Entering NumberToStateConverter:convertToEntityAttribute["
-            + value + "] ***");
-    return value;
-  }
+		System.out.println("*** Entering NumberToStateConverter:convertToEntityAttribute[" + value + "] ***");
+		return value;
+	}
 
 }

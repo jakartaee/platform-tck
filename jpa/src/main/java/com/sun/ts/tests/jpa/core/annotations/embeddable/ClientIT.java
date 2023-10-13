@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,15 +16,10 @@
 
 package com.sun.ts.tests.jpa.core.annotations.embeddable;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -32,178 +27,169 @@ import com.sun.ts.tests.jpa.common.PMClientBase;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class ClientIT extends PMClientBase {
 
-  public ClientIT() {
-  }
+	public ClientIT() {
+	}
 
-	@Deployment(testable = false, managed = false)
 	public static JavaArchive createDeployment() throws Exception {
 		String pkgName = ClientIT.class.getPackageName() + ".";
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String[] classes = { pkgName + "Address", pkgName + "B", pkgName + "ZipCode"};
+		String[] classes = { pkgName + "Address", pkgName + "B", pkgName + "ZipCode" };
 		return createDeploymentJar("jpa_core_annotations_embeddable.jar", pkgNameWithoutSuffix, classes);
 
 	}
 
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup();
+			createDeployment();
+			removeTestData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
 
-  @BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
+		}
+	}
 
-    }
-  }
+	/*
+	 * @testName: EM1XMTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:553; PERSISTENCE:SPEC:557;
+	 * PERSISTENCE:SPEC:1239; PERSISTENCE:SPEC:1190; PERSISTENCE:SPEC:1191;
+	 * 
+	 * @test_Strategy: Use Nested embeddable class in Query
+	 *
+	 */
+	@Test
+	public void EM1XMTest() throws Exception {
+		TestUtil.logTrace("Begin EM1XMTest2");
+		boolean pass = false;
+		EntityManager em = getEntityManager();
+		EntityTransaction et = getEntityTransaction();
 
-  /*
-   * @testName: EM1XMTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:553; PERSISTENCE:SPEC:557;
-   * PERSISTENCE:SPEC:1239; PERSISTENCE:SPEC:1190; PERSISTENCE:SPEC:1191;
-   * 
-   * @test_Strategy: Use Nested embeddable class in Query
-   *
-   */
-  @Test
-  public void EM1XMTest() throws Exception {
-    TestUtil.logTrace("Begin EM1XMTest2");
-    boolean pass = false;
-    EntityManager em = getEntityManager();
-    EntityTransaction et = getEntityTransaction();
+		try {
+			et.begin();
+			TestUtil.logTrace("New instances");
 
-    try {
-      et.begin();
-      TestUtil.logTrace("New instances");
+			final ZipCode z1 = new ZipCode("01801", "1234");
 
-      final ZipCode z1 = new ZipCode("01801", "1234");
+			Address addr1 = new Address("1 Network Drive", "Burlington", "MA");
 
-      Address addr1 = new Address("1 Network Drive", "Burlington", "MA");
+			addr1.setZipCode(z1);
 
-      addr1.setZipCode(z1);
+			B b1 = new B("1", "b1", 1);
+			b1.setAddress(addr1);
 
-      B b1 = new B("1", "b1", 1);
-      b1.setAddress(addr1);
+			em.persist(b1);
+			em.flush();
 
-      em.persist(b1);
-      em.flush();
+			B newB = findB("1");
+			em.refresh(newB);
 
-      B newB = findB("1");
-      em.refresh(newB);
+			final String newStreet = (String) em.createQuery("Select b.address.street from B b ").getSingleResult();
+			final String newState = (String) em.createQuery("Select b.address.state from B b ").getSingleResult();
+			final String newCity = (String) em.createQuery("Select b.address.city from B b ").getSingleResult();
+			final String newPlusFour = (String) em.createQuery("Select b.address.zipCode.plusFour from B b ")
+					.getSingleResult();
+			final String newZip = (String) em.createQuery("Select b.address.zipCode.zip from B b ").getSingleResult();
 
-      final String newStreet = (String) em
-          .createQuery("Select b.address.street from B b ").getSingleResult();
-      final String newState = (String) em
-          .createQuery("Select b.address.state from B b ").getSingleResult();
-      final String newCity = (String) em
-          .createQuery("Select b.address.city from B b ").getSingleResult();
-      final String newPlusFour = (String) em
-          .createQuery("Select b.address.zipCode.plusFour from B b ")
-          .getSingleResult();
-      final String newZip = (String) em
-          .createQuery("Select b.address.zipCode.zip from B b ")
-          .getSingleResult();
+			boolean pass1 = false;
+			boolean pass2 = false;
+			boolean pass3 = false;
+			boolean pass4 = false;
+			boolean pass5 = false;
 
-      boolean pass1 = false;
-      boolean pass2 = false;
-      boolean pass3 = false;
-      boolean pass4 = false;
-      boolean pass5 = false;
+			// Verify Embedded contents
+			if (addr1.getStreet().equals(newStreet)) {
+				pass1 = true;
+				TestUtil.logTrace("Received Street match");
+			}
 
-      // Verify Embedded contents
-      if (addr1.getStreet().equals(newStreet)) {
-        pass1 = true;
-        TestUtil.logTrace("Received Street match");
-      }
+			if (addr1.getState().equals(newState)) {
+				pass2 = true;
+				TestUtil.logTrace("Received State match");
+			}
 
-      if (addr1.getState().equals(newState)) {
-        pass2 = true;
-        TestUtil.logTrace("Received State match");
-      }
+			if (addr1.getCity().equals(newCity)) {
+				pass3 = true;
+				TestUtil.logTrace("Received City match");
+			}
 
-      if (addr1.getCity().equals(newCity)) {
-        pass3 = true;
-        TestUtil.logTrace("Received City match");
-      }
+			if (addr1.getZipCode().getPlusFour().equals(newPlusFour)) {
+				pass4 = true;
+				TestUtil.logTrace("Received zipCode PlusFour match");
+			}
 
-      if (addr1.getZipCode().getPlusFour().equals(newPlusFour)) {
-        pass4 = true;
-        TestUtil.logTrace("Received zipCode PlusFour match");
-      }
+			if (addr1.getZipCode().getZip().equals(newZip)) {
+				pass5 = true;
+				TestUtil.logTrace("Received zipCode zip match");
+			}
 
-      if (addr1.getZipCode().getZip().equals(newZip)) {
-        pass5 = true;
-        TestUtil.logTrace("Received zipCode zip match");
-      }
+			if (pass1 && pass2 && pass3 && pass4 && pass5) {
+				pass = true;
+				TestUtil.logTrace("Received Address match");
 
-      if (pass1 && pass2 && pass3 && pass4 && pass5) {
-        pass = true;
-        TestUtil.logTrace("Received Address match");
+			} else {
+				TestUtil.logTrace("Received incorrect data");
 
-      } else {
-        TestUtil.logTrace("Received incorrect data");
+			}
 
-      }
+			et.commit();
 
-      et.commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		} finally {
+			try {
+				if (et.isActive()) {
+					et.rollback();
+				}
+			} catch (Exception fe) {
+				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+			}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    } finally {
-      try {
-        if (et.isActive()) {
-          et.rollback();
-        }
-      } catch (Exception fe) {
-        TestUtil.logErr("Unexpected exception rolling back TX:", fe);
-      }
+		}
+		if (!pass) {
+			throw new Exception("EM1XMTest failed");
+		}
+	}
 
-    }
-    if (!pass) {
-      throw new Exception("EM1XMTest failed");
-    }
-  }
+	private B findB(String id) {
+		// TestUtil.logTrace("Entered findB method");
+		return getEntityManager().find(B.class, id);
+	}
 
-  private B findB(String id) {
-    // TestUtil.logTrace("Entered findB method");
-    return getEntityManager().find(B.class, id);
-  }
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("cleanup");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+		removeDeploymentJar();
+	}
 
-  @AfterAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
-
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("Delete from B_EMBEDDABLE")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("Delete from B_EMBEDDABLE").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

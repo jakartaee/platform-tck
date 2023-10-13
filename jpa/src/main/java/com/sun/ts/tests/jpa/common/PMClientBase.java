@@ -25,7 +25,6 @@ import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.sql.Date;
@@ -45,25 +44,24 @@ import java.util.StringTokenizer;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.asset.ByteArrayAsset;
-
+import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
-import org.xml.sax.SAXException;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManager;
@@ -75,6 +73,9 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceException;
+
+@ExtendWith(ArquillianExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
 
 abstract public class PMClientBase implements UseEntityManager, UseEntityManagerFactory, java.io.Serializable {
 
@@ -1077,8 +1078,12 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 			String persistenceFile, String[] xmlFiles) throws Exception {
 
 		JavaArchive archive = ShrinkWrap.create(JavaArchive.class, jarName);
-		archive.addPackages(true, packageName);
 
+		for (int j = 0; j < classes.length; j++) {
+			archive.addClass(classes[j]);
+		}
+		
+		if(persistenceFile.equals(STANDALONE_PERSISTENCE_XML)) {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbf.newDocumentBuilder();
 		TransformerFactory tf = TransformerFactory.newInstance();
@@ -1098,12 +1103,17 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 		StringWriter writer = new StringWriter();
 		transformer.transform(new DOMSource(document), new StreamResult(writer));
 		archive.addAsManifestResource(new StringAsset(writer.getBuffer().toString()), PERSISTENCE_FILE_NAME);
-		archive.as(ZipExporter.class).exportTo(new File(TEMP_DIR + File.separator + jarName), true);
-
+		} else {
+			InputStream xmlFileStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(persistenceFile);
+			archive.addAsManifestResource(new ByteArrayAsset(xmlFileStream), persistenceFile);
+		}
 		for (int i = 0; i < xmlFiles.length; i++) {
 			InputStream xmlFileStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(xmlFiles[i]);
 			archive.addAsManifestResource(new ByteArrayAsset(xmlFileStream), xmlFiles[i]);
 		}
+
+		archive.as(ZipExporter.class).exportTo(new File(TEMP_DIR + File.separator + jarName), true);
+
 		ClassLoader currentThreadClassLoader = Thread.currentThread().getContextClassLoader();
 		URLClassLoader urlClassLoader = new URLClassLoader(
 				new URL[] { new File(TEMP_DIR + File.separator + jarName).toURL() }, currentThreadClassLoader);
@@ -1113,10 +1123,22 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 
 	}
 
+	public static JavaArchive createDeploymentJar(String jarName, String packageName, String[] classes,
+			String[] xmlFiles) throws Exception {
+		return createDeploymentJar(jarName, packageName, classes, STANDALONE_PERSISTENCE_XML, xmlFiles);
+	}
+
 	public static JavaArchive createDeploymentJar(String jarName, String packageName, String[] classes)
 			throws Exception {
 		String xmlFiles[] = {};
 		return createDeploymentJar(jarName, packageName, classes, STANDALONE_PERSISTENCE_XML, xmlFiles);
 
 	}
+
+	public static void removeDeploymentJar() throws Exception {
+		URLClassLoader currentThreadClassLoader = (URLClassLoader) Thread.currentThread().getContextClassLoader();
+		Thread.currentThread().setContextClassLoader(currentThreadClassLoader.getParent());
+		currentThreadClassLoader.close();
+	}
+
 }

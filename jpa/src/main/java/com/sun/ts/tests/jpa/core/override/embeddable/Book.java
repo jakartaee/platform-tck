@@ -25,53 +25,51 @@ import jakarta.persistence.Id;
 @Entity
 public class Book implements Serializable {
 
-  @Id
-  private Integer id;
+	@Id
+	private Integer id;
 
-  @Embedded
-  private Publisher1 publisher1;
+	@Embedded
+	private Publisher1 publisher1;
 
-  public Book() {
-  }
+	public Book() {
+	}
 
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.getId() != null ? this.getId().hashCode() : 0);
-    return hash;
-  }
+	public int hashCode() {
+		int hash = 0;
+		hash += (this.getId() != null ? this.getId().hashCode() : 0);
+		return hash;
+	}
 
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof BookStore)) {
-      return false;
-    }
-    BookStore other = (BookStore) object;
-    if (this.getId() != other.getId()
-        && (this.getId() == null || !this.getId().equals(other.getId()))) {
-      return false;
-    }
-    return true;
-  }
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not
+		// set
+		if (!(object instanceof BookStore)) {
+			return false;
+		}
+		BookStore other = (BookStore) object;
+		if (this.getId() != other.getId() && (this.getId() == null || !this.getId().equals(other.getId()))) {
+			return false;
+		}
+		return true;
+	}
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.embeddable." + "Book[id="
-        + getId() + "]";
-  }
+	public String toString() {
+		return "com.sun.ts.tests.jpa.core.override.embeddable." + "Book[id=" + getId() + "]";
+	}
 
-  public Integer getId() {
-    return id;
-  }
+	public Integer getId() {
+		return id;
+	}
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-  public Publisher1 getPublisher1() {
-    return publisher1;
-  }
+	public Publisher1 getPublisher1() {
+		return publisher1;
+	}
 
-  public void setPublisher1(Publisher1 publisher1) {
-    this.publisher1 = publisher1;
-  }
+	public void setPublisher1(Publisher1 publisher1) {
+		this.publisher1 = publisher1;
+	}
 }

@@ -29,72 +29,72 @@ import jakarta.persistence.MapKeyJoinColumn;
 @Entity
 public class Student implements java.io.Serializable {
 
-  @Id
-  int id;
+	@Id
+	int id;
 
-  String studentName;
+	String studentName;
 
-  public Student() {
-  }
+	public Student() {
+	}
 
-  public Student(int id) {
-    this.id = id;
-  }
+	public Student(int id) {
+		this.id = id;
+	}
 
-  public Student(int id, String name) {
-    this.id = id;
-    this.studentName = name;
-  }
+	public Student(int id, String name) {
+		this.id = id;
+		this.studentName = name;
+	}
 
-  /*
-   * students and semesters are many-many enrollment contains past and present
-   * student enrollments
-   */
-  @ManyToMany
-  @MapKeyJoinColumn(name = "ENROLLMENT_KEY", insertable = true, nullable = false, unique = true, updatable = false)
-  @JoinTable(name = "ENROLLMENTS", joinColumns = @JoinColumn(name = "STUDENT"), inverseJoinColumns = @JoinColumn(name = "SEMESTER"))
-  Map<Course, Semester> enrollment;
+	/*
+	 * students and semesters are many-many enrollment contains past and present
+	 * student enrollments
+	 */
+	@ManyToMany
+	@MapKeyJoinColumn(name = "ENROLLMENT_KEY", insertable = true, nullable = false, unique = true, updatable = false)
+	@JoinTable(name = "ENROLLMENTS", joinColumns = @JoinColumn(name = "STUDENT"), inverseJoinColumns = @JoinColumn(name = "SEMESTER"))
+	Map<Course, Semester> enrollment;
 
-  public Set<Course> getCourses() {
-    return enrollment.keySet();
-  }
+	public Set<Course> getCourses() {
+		return enrollment.keySet();
+	}
 
-  public Map<Course, Semester> getEnrollment() {
-    return enrollment;
-  }
+	public Map<Course, Semester> getEnrollment() {
+		return enrollment;
+	}
 
-  public void setEnrollment(Map<Course, Semester> enrollment) {
-    this.enrollment = enrollment;
-  }
+	public void setEnrollment(Map<Course, Semester> enrollment) {
+		this.enrollment = enrollment;
+	}
 
-  public int getId() {
-    return id;
-  }
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int studentId) {
-    this.id = studentId;
-  }
+	public void setId(int studentId) {
+		this.id = studentId;
+	}
 
-  public String getStudentName() {
-    return studentName;
-  }
+	public String getStudentName() {
+		return studentName;
+	}
 
-  public void setStudentName(String studentName) {
-    this.studentName = studentName;
-  }
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
 
-  public int hashCode() {
+	public int hashCode() {
 
-    return this.id;
-  }
+		return this.id;
+	}
 
-  public boolean equals(Object obj) {
-    boolean result = false;
+	public boolean equals(Object obj) {
+		boolean result = false;
 
-    if ((obj != null) && (obj instanceof Student)) {
-      Student student = (Student) obj;
-      result = (student.id == this.id);
-    }
-    return result;
-  }
+		if ((obj != null) && (obj instanceof Student)) {
+			Student student = (Student) obj;
+			result = (student.id == this.id);
+		}
+		return result;
+	}
 }

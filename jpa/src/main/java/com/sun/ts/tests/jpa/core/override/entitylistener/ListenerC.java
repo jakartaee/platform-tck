@@ -24,22 +24,22 @@ import jakarta.persistence.PrePersist;
 
 public class ListenerC {
 
-  public ListenerC() {
-  }
+	public ListenerC() {
+	}
 
-  @PrePersist
-  public void prePersistFromXML(Object obj) {
-    updateCallBackCount("prePersist");
-    TestUtil.logTrace("in perpersist");
-  }
+	@PrePersist
+	public void prePersistFromXML(Object obj) {
+		updateCallBackCount("prePersist");
+		TestUtil.logTrace("in perpersist");
+	}
 
-  @PostPersist
-  public void postPersistFromXML(Object obj) {
-    updateCallBackCount("postPersist");
-    TestUtil.logTrace("in postpersist");
-  }
+	@PostPersist
+	public void postPersistFromXML(Object obj) {
+		updateCallBackCount("postPersist");
+		TestUtil.logTrace("in postpersist");
+	}
 
-  protected void updateCallBackCount(String callBackKeyName) {
-    CallBackCounts.updateCount(callBackKeyName);
-  }
+	protected void updateCallBackCount(String callBackKeyName) {
+		CallBackCounts.updateCount(callBackKeyName);
+	}
 }

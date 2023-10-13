@@ -31,80 +31,78 @@ import jakarta.persistence.Table;
 @Table(name = "AEJB_1XM_BI_BTOB")
 public class A implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+	// ===========================================================
+	// instance variables
 
-  @Id
-  protected String id;
+	@Id
+	protected String id;
 
-  @Basic
-  protected String name;
+	@Basic
+	protected String name;
 
-  @Basic
-  protected int value;
+	@Basic
+	protected int value;
 
-  // ===========================================================
-  // constructors
+	// ===========================================================
+	// constructors
 
-  public A() {
-    TestUtil.logTrace("in entity A no arg constructor");
-  }
+	public A() {
+		TestUtil.logTrace("in entity A no arg constructor");
+	}
 
-  public A(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+	public A(String id, String name, int value) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
 
-  // ===========================================================
-  // methods used by test cases
+	// ===========================================================
+	// methods used by test cases
 
-  public String getAId() {
-    return id;
-  }
+	public String getAId() {
+		return id;
+	}
 
-  public String getAName() {
-    return name;
-  }
+	public String getAName() {
+		return name;
+	}
 
-  public void setAName(String name) {
-    this.name = name;
-  }
+	public void setAName(String name) {
+		this.name = name;
+	}
 
-  public int getAValue() {
-    return value;
-  }
+	public int getAValue() {
+		return value;
+	}
 
-  @Override
-  public boolean equals(Object o) {
-    // check for self-comparison
-    if (this == o)
-      return true;
-    if (!(o instanceof A))
-      return false;
+	@Override
+	public boolean equals(Object o) {
+		// check for self-comparison
+		if (this == o)
+			return true;
+		if (!(o instanceof A))
+			return false;
 
-    A o1 = (A) o;
+		A o1 = (A) o;
 
-    boolean result = false;
+		boolean result = false;
 
-    if (this.getAId() == o1.getAId() && this.getAName().equals(o1.getAName())
-        && this.getAValue() == o1.getAValue()) {
-      result = true;
-    }
+		if (this.getAId() == o1.getAId() && this.getAName().equals(o1.getAName())
+				&& this.getAValue() == o1.getAValue()) {
+			result = true;
+		}
 
-    return result;
+		return result;
 
-  }
+	}
 
-  @Override
-  public int hashCode() {
-    return this.getAId().hashCode() + this.getAName().hashCode()
-        + this.getAValue();
-  }
+	@Override
+	public int hashCode() {
+		return this.getAId().hashCode() + this.getAName().hashCode() + this.getAValue();
+	}
 
-  @Override
-  public String toString() {
-    return "[" + this.getAId() + ":" + this.getAName() + ":" + this.getAValue()
-        + "]";
-  }
+	@Override
+	public String toString() {
+		return "[" + this.getAId() + ":" + this.getAName() + ":" + this.getAValue() + "]";
+	}
 }

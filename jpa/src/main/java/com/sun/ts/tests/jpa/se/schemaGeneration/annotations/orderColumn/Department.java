@@ -28,67 +28,67 @@ import jakarta.persistence.Table;
 @Table(name = "SCHEMAGENDEPT")
 public class Department implements java.io.Serializable {
 
-  // Instance variables
-  private int deptId;
+	// Instance variables
+	private int deptId;
 
-  private List<Employee> employees;
+	private List<Employee> employees;
 
-  public Department() {
-  }
+	public Department() {
+	}
 
-  public Department(int id) {
-    this.deptId = id;
-  }
+	public Department(int id) {
+		this.deptId = id;
+	}
 
-  @Id
-  public int getDeptId() {
-    return deptId;
-  }
+	@Id
+	public int getDeptId() {
+		return deptId;
+	}
 
-  public void setDeptId(int id) {
-    this.deptId = id;
-  }
+	public void setDeptId(int id) {
+		this.deptId = id;
+	}
 
-  @OneToMany(mappedBy = "department")
-  @OrderColumn(name = "THEORDERCOLUMN")
-  public List<Employee> getEmployees() {
-    return employees;
-  }
+	@OneToMany(mappedBy = "department")
+	@OrderColumn(name = "THEORDERCOLUMN")
+	public List<Employee> getEmployees() {
+		return employees;
+	}
 
-  public void setEmployees(List<Employee> employees) {
-    this.employees = employees;
-  }
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getDeptId());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getDeptId());
+		result.append("]");
+		return result.toString();
+	}
 
-  public boolean equals(Object o) {
-    Department other;
-    boolean result = false;
+	public boolean equals(Object o) {
+		Department other;
+		boolean result = false;
 
-    if (!(o instanceof Department)) {
-      return result;
-    }
-    other = (Department) o;
+		if (!(o instanceof Department)) {
+			return result;
+		}
+		other = (Department) o;
 
-    if (this.getDeptId() == other.getDeptId()) {
-      result = true;
-    }
+		if (this.getDeptId() == other.getDeptId()) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  public int hashCode() {
-    int myHash;
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.getDeptId();
+		myHash = this.getDeptId();
 
-    return myHash;
-  }
+		return myHash;
+	}
 }

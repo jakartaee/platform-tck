@@ -40,202 +40,199 @@ import jakarta.persistence.Table;
 @Table(name = "ORDER_TABLE")
 public class Order implements java.io.Serializable, Comparable<Order> {
 
-  // Instance variables
-  private String id;
+	// Instance variables
+	private String id;
 
-  private double totalPrice;
+	private double totalPrice;
 
-  private Customer customer;
+	private Customer customer;
 
-  private CreditCard creditCard;
+	private CreditCard creditCard;
 
-  private LineItem sampleLineItem;
+	private LineItem sampleLineItem;
 
-  private Collection<LineItem> lineItemsCollection = new ArrayList<LineItem>();
+	private Collection<LineItem> lineItemsCollection = new ArrayList<LineItem>();
 
-  private List<LineItem> lineItemsList = new ArrayList<LineItem>();
+	private List<LineItem> lineItemsList = new ArrayList<LineItem>();
 
-  private Set<LineItem> lineItemsSet = new HashSet();
+	private Set<LineItem> lineItemsSet = new HashSet();
 
-  public Order() {
-  }
+	public Order() {
+	}
 
-  public Order(String id, double totalPrice) {
-    this.id = id;
-    this.totalPrice = totalPrice;
-  }
+	public Order(String id, double totalPrice) {
+		this.id = id;
+		this.totalPrice = totalPrice;
+	}
 
-  public Order(String id, Customer customer) {
-    this.id = id;
-    this.customer = customer;
-  }
+	public Order(String id, Customer customer) {
+		this.id = id;
+		this.customer = customer;
+	}
 
-  public Order(String id) {
-    this.id = id;
-  }
+	public Order(String id) {
+		this.id = id;
+	}
 
-  // ====================================================================
-  // getters and setters for State fields
+	// ====================================================================
+	// getters and setters for State fields
 
-  @Id
-  @Column(name = "ID")
-  public String getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  @Column(name = "TOTALPRICE")
-  public double getTotalPrice() {
-    return totalPrice;
-  }
+	@Column(name = "TOTALPRICE")
+	public double getTotalPrice() {
+		return totalPrice;
+	}
 
-  public void setTotalPrice(double price) {
-    this.totalPrice = price;
-  }
+	public void setTotalPrice(double price) {
+		this.totalPrice = price;
+	}
 
-  // ====================================================================
-  // getters and setters for Association fields
+	// ====================================================================
+	// getters and setters for Association fields
 
-  // MANYx1
-  @ManyToOne
-  @JoinColumn(name = "FK4_FOR_CUSTOMER_TABLE")
-  public Customer getCustomer() {
-    return customer;
-  }
+	// MANYx1
+	@ManyToOne
+	@JoinColumn(name = "FK4_FOR_CUSTOMER_TABLE")
+	public Customer getCustomer() {
+		return customer;
+	}
 
-  public void setCustomer(Customer customer) {
-    this.customer = customer;
-  }
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 
-  // 1x1
-  @OneToOne(mappedBy = "order")
-  public CreditCard getCreditCard() {
-    return creditCard;
-  }
+	// 1x1
+	@OneToOne(mappedBy = "order")
+	public CreditCard getCreditCard() {
+		return creditCard;
+	}
 
-  public void setCreditCard(CreditCard cc) {
-    this.creditCard = cc;
-  }
+	public void setCreditCard(CreditCard cc) {
+		this.creditCard = cc;
+	}
 
-  // 1x1
-  @OneToOne(cascade = CascadeType.REMOVE)
-  @JoinColumn(name = "FK0_FOR_LINEITEM_TABLE")
-  public LineItem getSampleLineItem() {
-    return sampleLineItem;
-  }
+	// 1x1
+	@OneToOne(cascade = CascadeType.REMOVE)
+	@JoinColumn(name = "FK0_FOR_LINEITEM_TABLE")
+	public LineItem getSampleLineItem() {
+		return sampleLineItem;
+	}
 
-  public void setSampleLineItem(LineItem l) {
-    this.sampleLineItem = l;
-  }
+	public void setSampleLineItem(LineItem l) {
+		this.sampleLineItem = l;
+	}
 
-  // 1xMANY
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
-  public Collection<LineItem> getLineItemsCollection() {
-    return lineItemsCollection;
-  }
+	// 1xMANY
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+	public Collection<LineItem> getLineItemsCollection() {
+		return lineItemsCollection;
+	}
 
-  public void setLineItemsCollection(Collection<LineItem> c) {
-    this.lineItemsCollection = c;
-  }
+	public void setLineItemsCollection(Collection<LineItem> c) {
+		this.lineItemsCollection = c;
+	}
 
-  // 1xMANY
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
-  public List<LineItem> getLineItemsList() {
-    return lineItemsList;
-  }
+	// 1xMANY
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+	public List<LineItem> getLineItemsList() {
+		return lineItemsList;
+	}
 
-  public void setLineItemsList(List<LineItem> l) {
-    this.lineItemsList = l;
-  }
+	public void setLineItemsList(List<LineItem> l) {
+		this.lineItemsList = l;
+	}
 
-  // 1xMANY
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
-  public Set<LineItem> getLineItemsSet() {
-    return lineItemsSet;
-  }
+	// 1xMANY
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+	public Set<LineItem> getLineItemsSet() {
+		return lineItemsSet;
+	}
 
-  public void setLineItemsSet(Set<LineItem> s) {
-    this.lineItemsSet = s;
-  }
+	public void setLineItemsSet(Set<LineItem> s) {
+		this.lineItemsSet = s;
+	}
 
-  // ====================================================================
-  // Miscellaneous Business Methods
+	// ====================================================================
+	// Miscellaneous Business Methods
 
-  public void addLineItem(LineItem p) throws LineItemException {
-    getLineItemsCollection().add(p);
-  }
+	public void addLineItem(LineItem p) throws LineItemException {
+		getLineItemsCollection().add(p);
+	}
 
-  public void addSampleLineItem(LineItem p) throws LineItemException {
-    setSampleLineItem(p);
-  }
+	public void addSampleLineItem(LineItem p) throws LineItemException {
+		setSampleLineItem(p);
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", totalPrice: " + getTotalPrice());
-    result.append(", lineitem.id[");
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", totalPrice: " + getTotalPrice());
+		result.append(", lineitem.id[");
 
-    boolean found = false;
-    StringBuilder tmp = new StringBuilder();
-    for (LineItem li : getLineItemsCollection()) {
-      found = true;
-      tmp.append(li.getId() + ",");
-    }
-    if (found) {
-      result.append(tmp.toString().substring(0, tmp.length() - 1));
-    }
-    result.append("]");
-    if (getCustomer() != null) {
-      result.append(", custId: " + getCustomer().getId());
-      result.append(", custName: " + getCustomer().getName());
-    } else {
-      result.append(", custId: null");
-      result.append(", custName: null");
-    }
-    if (getCreditCard() != null) {
-      result.append(", cc: " + getCreditCard().getId());
-      result.append(", type: " + getCreditCard().getType());
-    } else {
-      result.append(", cc: null");
-      result.append(", type: null");
-    }
-    result.append("]");
-    return result.toString();
-  }
+		boolean found = false;
+		StringBuilder tmp = new StringBuilder();
+		for (LineItem li : getLineItemsCollection()) {
+			found = true;
+			tmp.append(li.getId() + ",");
+		}
+		if (found) {
+			result.append(tmp.toString().substring(0, tmp.length() - 1));
+		}
+		result.append("]");
+		if (getCustomer() != null) {
+			result.append(", custId: " + getCustomer().getId());
+			result.append(", custName: " + getCustomer().getName());
+		} else {
+			result.append(", custId: null");
+			result.append(", custName: null");
+		}
+		if (getCreditCard() != null) {
+			result.append(", cc: " + getCreditCard().getId());
+			result.append(", type: " + getCreditCard().getType());
+		} else {
+			result.append(", cc: null");
+			result.append(", type: null");
+		}
+		result.append("]");
+		return result.toString();
+	}
 
-  @Override
-  public int hashCode() {
-    return this.getId().hashCode();
-  }
+	@Override
+	public int hashCode() {
+		return this.getId().hashCode();
+	}
 
-  public boolean equals(Object o) {
-    Order other;
-    boolean result = false;
+	public boolean equals(Object o) {
+		Order other;
+		boolean result = false;
 
-    if (!(o instanceof Order)) {
-      return result;
-    }
-    other = (Order) o;
+		if (!(o instanceof Order)) {
+			return result;
+		}
+		other = (Order) o;
 
-    if (this.getId().equals(other.getId())
-        && this.getCreditCard().getId().equals(other.getCreditCard().getId())
-        && this.getCustomer().getId().equals(other.getCustomer().getId())) {
-      result = true;
-    }
+		if (this.getId().equals(other.getId()) && this.getCreditCard().getId().equals(other.getCreditCard().getId())
+				&& this.getCustomer().getId().equals(other.getCustomer().getId())) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  public int compareTo(Order order) {
-    int lastCmp = Integer.valueOf(getId())
-        .compareTo(Integer.valueOf(order.getId()));
-    return (lastCmp != 0 ? lastCmp
-        : Integer.valueOf(getId()).compareTo(Integer.valueOf(order.getId())));
-  }
+	public int compareTo(Order order) {
+		int lastCmp = Integer.valueOf(getId()).compareTo(Integer.valueOf(order.getId()));
+		return (lastCmp != 0 ? lastCmp : Integer.valueOf(getId()).compareTo(Integer.valueOf(order.getId())));
+	}
 
 }

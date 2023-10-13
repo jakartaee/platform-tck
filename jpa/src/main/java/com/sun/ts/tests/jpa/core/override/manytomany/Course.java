@@ -28,62 +28,60 @@ import jakarta.persistence.Table;
 @Table(name = "COURSE_2")
 public class Course implements Serializable {
 
-  @Id
-  private Integer id;
+	@Id
+	private Integer id;
 
-  private String name;
+	private String name;
 
-  private Set<Student> students = new HashSet();
+	private Set<Student> students = new HashSet();
 
-  public Course() {
-  }
+	public Course() {
+	}
 
-  public Integer getId() {
-    return id;
-  }
+	public Integer getId() {
+		return id;
+	}
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.getId() != null ? this.getId().hashCode() : 0);
-    return hash;
-  }
+	public int hashCode() {
+		int hash = 0;
+		hash += (this.getId() != null ? this.getId().hashCode() : 0);
+		return hash;
+	}
 
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields
-    // are not set
-    if (!(object instanceof Course)) {
-      return false;
-    }
-    Course other = (Course) object;
-    if (this.getId() != other.getId()
-        && (this.getId() == null || !this.getId().equals(other.getId()))) {
-      return false;
-    }
-    return true;
-  }
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields
+		// are not set
+		if (!(object instanceof Course)) {
+			return false;
+		}
+		Course other = (Course) object;
+		if (this.getId() != other.getId() && (this.getId() == null || !this.getId().equals(other.getId()))) {
+			return false;
+		}
+		return true;
+	}
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.manytomany." + "Course[id="
-        + getId() + "]";
-  }
+	public String toString() {
+		return "com.sun.ts.tests.jpa.core.override.manytomany." + "Course[id=" + getId() + "]";
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public Set<Student> getStudents() {
-    return students;
-  }
+	public Set<Student> getStudents() {
+		return students;
+	}
 
-  public void setStudents(Set<Student> students) {
-    this.students = students;
-  }
+	public void setStudents(Set<Student> students) {
+		this.students = students;
+	}
 }

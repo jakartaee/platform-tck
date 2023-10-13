@@ -26,86 +26,85 @@ import jakarta.persistence.Version;
 @Table(name = "A_BASIC")
 public class Integer_Property implements java.io.Serializable {
 
-  protected String id;
+	protected String id;
 
-  protected Integer basicInteger;
+	protected Integer basicInteger;
 
-  protected String name;
+	protected String name;
 
-  public Integer_Property() {
-  }
+	public Integer_Property() {
+	}
 
-  public Integer_Property(String id) {
-    this.id = id;
-  }
+	public Integer_Property(String id) {
+		this.id = id;
+	}
 
-  public Integer_Property(String id, Integer basicInteger) {
+	public Integer_Property(String id, Integer basicInteger) {
 
-    this.id = id;
-    this.basicInteger = basicInteger;
-  }
+		this.id = id;
+		this.basicInteger = basicInteger;
+	}
 
-  @Id
-  public String getId() {
-    return id;
-  }
+	@Id
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  @Basic
-  public String getName() {
-    return this.name;
-  }
+	@Basic
+	public String getName() {
+		return this.name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  @Version
-  public Integer getBasicInteger() {
-    return this.basicInteger;
-  }
+	@Version
+	public Integer getBasicInteger() {
+		return this.basicInteger;
+	}
 
-  public void setBasicInteger(Integer basicInteger) {
-    this.basicInteger = basicInteger;
-  }
+	public void setBasicInteger(Integer basicInteger) {
+		this.basicInteger = basicInteger;
+	}
 
-  public boolean equals(Object o) {
-    Integer_Field other;
-    boolean result = false;
+	public boolean equals(Object o) {
+		Integer_Field other;
+		boolean result = false;
 
-    if (!(o instanceof Integer_Field)) {
-      return result;
-    }
-    other = (Integer_Field) o;
+		if (!(o instanceof Integer_Field)) {
+			return result;
+		}
+		other = (Integer_Field) o;
 
-    if (this.getId().equals(other.getId())
-        && this.basicInteger.equals(other.basicInteger)
-        && this.name.equals(other.getName())) {
-      result = true;
-    }
+		if (this.getId().equals(other.getId()) && this.basicInteger.equals(other.basicInteger)
+				&& this.name.equals(other.getName())) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  public int hashCode() {
-    int myHash;
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.getId().hashCode() + this.basicInteger + this.name.hashCode();
+		myHash = this.getId().hashCode() + this.basicInteger + this.name.hashCode();
 
-    return myHash;
-  }
+		return myHash;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", version: " + basicInteger);
-    result.append(", name: " + name);
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", version: " + basicInteger);
+		result.append(", name: " + name);
+		result.append("]");
+		return result.toString();
+	}
 }

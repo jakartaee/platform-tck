@@ -26,50 +26,50 @@ package com.sun.ts.tests.jpa.core.relationship.descriptors;
 
 public class XTeam implements java.io.Serializable {
 
-  // Instance variables
-  private int xteamid;
+	// Instance variables
+	private int xteamid;
 
-  private String xname;
+	private String xname;
 
-  private XCompany xcompany;
+	private XCompany xcompany;
 
-  public XTeam() {
-  }
+	public XTeam() {
+	}
 
-  public XTeam(int xteamid, String xname) {
-    this.xteamid = xteamid;
-    this.xname = xname;
-  }
+	public XTeam(int xteamid, String xname) {
+		this.xteamid = xteamid;
+		this.xname = xname;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  public int getXTeamId() {
-    return xteamid;
-  }
+	public int getXTeamId() {
+		return xteamid;
+	}
 
-  public void setXTeamId(int xteamid) {
-    this.xteamid = xteamid;
-  }
+	public void setXTeamId(int xteamid) {
+		this.xteamid = xteamid;
+	}
 
-  public String getXName() {
-    return xname;
-  }
+	public String getXName() {
+		return xname;
+	}
 
-  public void setXName(String xname) {
-    this.xname = xname;
-  }
+	public void setXName(String xname) {
+		this.xname = xname;
+	}
 
-  // ===========================================================
-  // getters and setters for the association fields
+	// ===========================================================
+	// getters and setters for the association fields
 
-  /* Bi-Directional Many(Teams)ToOne(Company) - Owner Team */
-  public XCompany getXCompany() {
-    return xcompany;
-  }
+	/* Bi-Directional Many(Teams)ToOne(Company) - Owner Team */
+	public XCompany getXCompany() {
+		return xcompany;
+	}
 
-  public void setXCompany(XCompany xcompany) {
-    this.xcompany = xcompany;
-  }
+	public void setXCompany(XCompany xcompany) {
+		this.xcompany = xcompany;
+	}
 
 }

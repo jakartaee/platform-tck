@@ -25,61 +25,61 @@ import jakarta.persistence.Version;
 @Table(name = "COLTAB")
 public class A implements java.io.Serializable {
 
-  @Id
-  protected String id;
+	@Id
+	protected String id;
 
-  protected String name;
+	protected String name;
 
-  @Version
-  protected Integer value;
+	@Version
+	protected Integer value;
 
-  protected Address address;
+	protected Address address;
 
-  public A() {
-  }
+	public A() {
+	}
 
-  public A(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+	public A(String id, String name, int value) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
 
-  public A(String id, String name, int value, Address addr) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-    this.address = addr;
-  }
+	public A(String id, String name, int value, Address addr) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+		this.address = addr;
+	}
 
-  public String getId() {
-    return id;
-  }
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public Integer getValue() {
-    return value;
-  }
+	public Integer getValue() {
+		return value;
+	}
 
-  public void setValue(Integer val) {
-    this.value = val;
-  }
+	public void setValue(Integer val) {
+		this.value = val;
+	}
 
-  public Address getAddress() {
-    return address;
-  }
+	public Address getAddress() {
+		return address;
+	}
 
-  public void setAddress(Address addr) {
-    this.address = addr;
-  }
+	public void setAddress(Address addr) {
+		this.address = addr;
+	}
 }

@@ -18,225 +18,213 @@ package com.sun.ts.tests.jpa.core.annotations.lob;
 
 import java.util.Arrays;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
-
 public class ClientIT extends PMClientBase {
 
-  private DataTypes dataTypes;
+	private DataTypes dataTypes;
 
-  private Byte[] smallByteArray = null;
-  
-	@Deployment(testable = false, managed = false)
+	private Byte[] smallByteArray = null;
+
 	public static JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = ClientIT.class.getPackageName() + ".";
-		String[] classes = { pkgName + "DataTypes"};
+		String[] classes = { pkgName + "DataTypes" };
 		return createDeploymentJar("jpa_core_annotations_lob.jar", pkgNameWithoutSuffix, classes);
 
 	}
 
+	public ClientIT() {
+	}
 
-  public ClientIT() {
-  }
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup();
+			createDeployment();
+			removeTestData();
+			createTestData();
+			TestUtil.logTrace("Done creating test data");
 
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-  @BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      removeTestData();
-      createTestData();
-      TestUtil.logTrace("Done creating test data");
+	/*
+	 * @testName: lobTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:528
+	 * 
+	 * @test_Strategy: The persistent property of an entity may be of the following
+	 * type: Byte[]
+	 *
+	 */
+	@Test
+	public void lobTest() throws Exception {
 
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+		boolean pass1 = false;
+		boolean pass2 = false;
 
-  /*
-   * @testName: lobTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:528
-   * 
-   * @test_Strategy: The persistent property of an entity may be of the
-   * following type: Byte[]
-   *
-   */
-  @Test
-  public void lobTest() throws Exception {
+		Byte[] largeByteArray = null;
 
-    boolean pass1 = false;
-    boolean pass2 = false;
+		try {
+			getEntityTransaction().begin();
+			TestUtil.logMsg("FIND DataTypes and verify initial value");
+			dataTypes = getEntityManager().find(DataTypes.class, 1);
+			if ((null != dataTypes) && (Arrays.equals(smallByteArray, dataTypes.getByteArrayData()))) {
+				TestUtil.logTrace("Expected results received");
+				pass1 = true;
+				TestUtil.logTrace("DataType Entity is not null, setting byteData ");
+				largeByteArray = createLargeByteArray();
+				dataTypes.setByteArrayData(largeByteArray);
+				getEntityManager().merge(dataTypes);
+				getEntityManager().flush();
 
-    Byte[] largeByteArray = null;
+				TestUtil.logMsg("FIND DataTypes again and verify updated value");
+				dataTypes = getEntityManager().find(DataTypes.class, 1);
 
-    try {
-      getEntityTransaction().begin();
-      TestUtil.logMsg("FIND DataTypes and verify initial value");
-      dataTypes = getEntityManager().find(DataTypes.class, 1);
-      if ((null != dataTypes)
-          && (Arrays.equals(smallByteArray, dataTypes.getByteArrayData()))) {
-        TestUtil.logTrace("Expected results received");
-        pass1 = true;
-        TestUtil.logTrace("DataType Entity is not null, setting byteData ");
-        largeByteArray = createLargeByteArray();
-        dataTypes.setByteArrayData(largeByteArray);
-        getEntityManager().merge(dataTypes);
-        getEntityManager().flush();
+				TestUtil.logTrace("Check results");
+				if ((null != dataTypes) && (Arrays.equals(largeByteArray, dataTypes.getByteArrayData()))) {
+					TestUtil.logTrace("Expected results received");
+					pass2 = true;
+				} else {
+					TestUtil.logErr("Unexpected result in array comparison.");
+				}
+			} else {
+				TestUtil.logErr("Unexpected result in array comparison.");
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+			}
+		}
 
-        TestUtil.logMsg("FIND DataTypes again and verify updated value");
-        dataTypes = getEntityManager().find(DataTypes.class, 1);
+		if (!pass1 || !pass2) {
+			throw new Exception("lobTest failed");
+		}
+	}
 
-        TestUtil.logTrace("Check results");
-        if ((null != dataTypes)
-            && (Arrays.equals(largeByteArray, dataTypes.getByteArrayData()))) {
-          TestUtil.logTrace("Expected results received");
-          pass2 = true;
-        } else {
-          TestUtil.logErr("Unexpected result in array comparison.");
-        }
-      } else {
-        TestUtil.logErr("Unexpected result in array comparison.");
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception during Rollback:", re);
-      }
-    }
+	// Methods used for Tests
+	public void createTestData() {
+		TestUtil.logTrace("createTestData");
 
-    if (!pass1 || !pass2) {
-      throw new Exception("lobTest failed");
-    }
-  }
+		try {
+			getEntityTransaction().begin();
+			smallByteArray = createSmallByteArray();
+			dataTypes = new DataTypes(1, smallByteArray);
+			getEntityManager().persist(dataTypes);
 
-  // Methods used for Tests
-  public void createTestData() {
-    TestUtil.logTrace("createTestData");
+			getEntityManager().flush();
 
-    try {
-      getEntityTransaction().begin();
-      smallByteArray = createSmallByteArray();
-      dataTypes = new DataTypes(1, smallByteArray);
-      getEntityManager().persist(dataTypes);
+			getEntityTransaction().commit();
 
-      getEntityManager().flush();
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected Exception in createTestData:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+			}
+		}
 
-      getEntityTransaction().commit();
+	}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception in createTestData:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception during Rollback:", re);
-      }
-    }
+	private Byte[] createSmallByteArray() {
 
-  }
+		// Create a String of size 1MB
+		StringBuffer strbuf = new StringBuffer();
+		for (int i = 0; i < 1024; i++) {
+			strbuf.append(i);
+		}
 
-  private Byte[] createSmallByteArray() {
+		String value = strbuf.toString();
+		System.out.println("String Buffer :" + value);
 
-    // Create a String of size 1MB
-    StringBuffer strbuf = new StringBuffer();
-    for (int i = 0; i < 1024; i++) {
-      strbuf.append(i);
-    }
+		// get byte array from the string
+		final byte myByte[] = value.getBytes();
 
-    String value = strbuf.toString();
-    System.out.println("String Buffer :" + value);
+		// store primitive byte array to array of Byte objects
+		Byte convertedByte[] = new Byte[myByte.length];
+		for (int i = 0; i < myByte.length; i++) {
+			convertedByte[i] = Byte.valueOf(myByte[i]);
+		}
 
-    // get byte array from the string
-    final byte myByte[] = value.getBytes();
+		return convertedByte;
 
-    // store primitive byte array to array of Byte objects
-    Byte convertedByte[] = new Byte[myByte.length];
-    for (int i = 0; i < myByte.length; i++) {
-      convertedByte[i] = Byte.valueOf(myByte[i]);
-    }
+	}
 
-    return convertedByte;
+	private Byte[] createLargeByteArray() {
 
-  }
+		// Create a String of size 4MB
+		StringBuffer strbuf = new StringBuffer();
+		for (int i = 0; i < 4096; i++) {
+			strbuf.append(i);
+		}
 
-  private Byte[] createLargeByteArray() {
+		String value = strbuf.toString();
+		System.out.println("String Buffer :" + value);
 
-    // Create a String of size 4MB
-    StringBuffer strbuf = new StringBuffer();
-    for (int i = 0; i < 4096; i++) {
-      strbuf.append(i);
-    }
+		// get byte array from the string
+		final byte myByte[] = value.getBytes();
 
-    String value = strbuf.toString();
-    System.out.println("String Buffer :" + value);
+		// store primitive byte array to array of Byte objects
+		Byte convertedByte[] = new Byte[myByte.length];
+		for (int i = 0; i < myByte.length; i++) {
+			convertedByte[i] = Byte.valueOf(myByte[i]);
+		}
 
-    // get byte array from the string
-    final byte myByte[] = value.getBytes();
+		return convertedByte;
 
-    // store primitive byte array to array of Byte objects
-    Byte convertedByte[] = new Byte[myByte.length];
-    for (int i = 0; i < myByte.length; i++) {
-      convertedByte[i] = Byte.valueOf(myByte[i]);
-    }
+	}
 
-    return convertedByte;
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("cleanup");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+		removeDeploymentJar();
+	}
 
-  }
-
-  @AfterAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
-
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM DATATYPES")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM DATATYPES").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

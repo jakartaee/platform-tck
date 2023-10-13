@@ -40,69 +40,68 @@ import jakarta.persistence.Table;
 @EntityListeners({ ListenerC.class, ListenerB.class })
 @ExcludeDefaultListeners()
 @ExcludeSuperclassListeners
-public class LineItem extends LineItemSuper
-    implements java.io.Serializable, CallbackStatusIF {
-  private String id;
+public class LineItem extends LineItemSuper implements java.io.Serializable, CallbackStatusIF {
+	private String id;
 
-  // moved to LineItemSuper
-  // private int quantity;
+	// moved to LineItemSuper
+	// private int quantity;
 
-  private Order order;
+	private Order order;
 
-  private Product product;
+	private Product product;
 
-  public LineItem() {
-  }
+	public LineItem() {
+	}
 
-  public LineItem(String v1, int v2, Order v3, Product v4) {
-    id = v1;
-    quantity = v2;
-    order = v3;
-    product = v4;
-  }
+	public LineItem(String v1, int v2, Order v3, Product v4) {
+		id = v1;
+		quantity = v2;
+		order = v3;
+		product = v4;
+	}
 
-  public LineItem(String v1, int v2) {
-    id = v1;
-    quantity = v2;
-  }
+	public LineItem(String v1, int v2) {
+		id = v1;
+		quantity = v2;
+	}
 
-  @Id
-  @Column(name = "ID")
-  public String getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String v) {
-    id = v;
-  }
+	public void setId(String v) {
+		id = v;
+	}
 
-  // moved to LineItemSuper
-  // @Column(name="QUANTITY")
-  // public int getQuantity() {
-  // return quantity;
-  // }
-  //
-  // public void setQuantity(int v) {
-  // quantity = v;
-  // }
+	// moved to LineItemSuper
+	// @Column(name="QUANTITY")
+	// public int getQuantity() {
+	// return quantity;
+	// }
+	//
+	// public void setQuantity(int v) {
+	// quantity = v;
+	// }
 
-  @ManyToOne
-  @JoinColumn(name = "FK1_FOR_ORDER_TABLE")
-  public Order getOrder() {
-    return order;
-  }
+	@ManyToOne
+	@JoinColumn(name = "FK1_FOR_ORDER_TABLE")
+	public Order getOrder() {
+		return order;
+	}
 
-  public void setOrder(Order v) {
-    order = v;
-  }
+	public void setOrder(Order v) {
+		order = v;
+	}
 
-  @ManyToOne
-  @JoinColumn(name = "FK_FOR_PRODUCT_TABLE")
-  public Product getProduct() {
-    return product;
-  }
+	@ManyToOne
+	@JoinColumn(name = "FK_FOR_PRODUCT_TABLE")
+	public Product getProduct() {
+		return product;
+	}
 
-  public void setProduct(Product v) {
-    product = v;
-  }
+	public void setProduct(Product v) {
+		product = v;
+	}
 }

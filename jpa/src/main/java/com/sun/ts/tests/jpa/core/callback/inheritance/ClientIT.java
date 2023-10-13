@@ -20,15 +20,10 @@
 
 package com.sun.ts.tests.jpa.core.callback.inheritance;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.core.callback.common.Constants;
@@ -36,8 +31,6 @@ import com.sun.ts.tests.jpa.core.callback.common.EntityCallbackClientBase;
 
 import jakarta.persistence.Query;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class ClientIT extends EntityCallbackClientBase {
 	private PricedPartProduct p1;
@@ -48,7 +41,6 @@ public class ClientIT extends EntityCallbackClientBase {
 		super();
 	}
 
-	@Deployment(testable = false, managed = false)
 	public static JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
@@ -66,6 +58,7 @@ public class ClientIT extends EntityCallbackClientBase {
 		try {
 
 			super.setup();
+			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
 			TestUtil.logErr("Exception: ", e);
@@ -475,6 +468,7 @@ public class ClientIT extends EntityCallbackClientBase {
 		removeTestData();
 		TestUtil.logTrace("cleanup complete, calling super.cleanup");
 		super.cleanup();
+		removeDeploymentJar();
 	}
 
 	private void removeTestData() {

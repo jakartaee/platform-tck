@@ -21,19 +21,19 @@ import java.util.Comparator;
 
 public class EmployeeComparator implements Comparator, Serializable {
 
-  public EmployeeComparator() {
-  }
+	public EmployeeComparator() {
+	}
 
-  public int compare(Object o1, Object o2) {
-    Employee emp1 = (Employee) o1;
-    Employee emp2 = (Employee) o2;
+	public int compare(Object o1, Object o2) {
+		Employee emp1 = (Employee) o1;
+		Employee emp2 = (Employee) o2;
 
-    if (emp1.getId() < emp2.getId()) {
-      return -1;
-    }
-    if (emp1.getId() > emp2.getId()) {
-      return 1;
-    }
-    return 0;
-  }
+		if (emp1.getId() < emp2.getId()) {
+			return -1;
+		}
+		if (emp1.getId() > emp2.getId()) {
+			return 1;
+		}
+		return 0;
+	}
 }

@@ -19,202 +19,188 @@ package com.sun.ts.tests.jpa.core.relationship.bidirmanyxmany;
 import java.util.Collection;
 import java.util.Vector;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class ClientIT extends PMClientBase {
 
-	
-	 @Deployment(testable = false, managed = false)
-	  public static JavaArchive createDeployment() throws Exception {
-	     
-	     String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-	     String pkgName = ClientIT.class.getPackageName() + ".";
-	     String[] classes = { pkgName + "BiDirMXMPerson", pkgName + "BiDirMXMProject"};
-	     return createDeploymentJar("jpa_core_relationship_bidirmanyxmany.jar", pkgNameWithoutSuffix, classes);
+	public static JavaArchive createDeployment() throws Exception {
 
-	  }
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] classes = { pkgName + "BiDirMXMPerson", pkgName + "BiDirMXMProject" };
+		return createDeploymentJar("jpa_core_relationship_bidirmanyxmany.jar", pkgNameWithoutSuffix, classes);
 
-  public ClientIT() {
-  }
+	}
 
-@BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
+	public ClientIT() {
+	}
 
-      super.setup();
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
 
-  /*
-   * @testName: biDirMXMTest1
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:1094; PERSISTENCE:JAVADOC:135;
-   * PERSISTENCE:JAVADOC:91; PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:562;
-   * PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:570; PERSISTENCE:SPEC:571;
-   * PERSISTENCE:SPEC:573; PERSISTENCE:SPEC:961; PERSISTENCE:SPEC:1028;
-   * PERSISTENCE:SPEC:1037; PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039
-   *
-   * @test_Strategy: Bi-Directional RelationShip OneToMany Mapping
-   *
-   */
-@Test
-  public void biDirMXMTest1() throws Exception {
-    TestUtil.logTrace("Begin biDirMXMTest1");
-    boolean pass = false;
-    try {
+			super.setup();
+			createDeployment();
+			removeTestData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-      getEntityTransaction().begin();
+	/*
+	 * @testName: biDirMXMTest1
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:1094; PERSISTENCE:JAVADOC:135;
+	 * PERSISTENCE:JAVADOC:91; PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:562;
+	 * PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:570; PERSISTENCE:SPEC:571;
+	 * PERSISTENCE:SPEC:573; PERSISTENCE:SPEC:961; PERSISTENCE:SPEC:1028;
+	 * PERSISTENCE:SPEC:1037; PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039
+	 *
+	 * @test_Strategy: Bi-Directional RelationShip OneToMany Mapping
+	 *
+	 */
+	@Test
+	public void biDirMXMTest1() throws Exception {
+		TestUtil.logTrace("Begin biDirMXMTest1");
+		boolean pass = false;
+		try {
 
-      BiDirMXMProject project1 = new BiDirMXMProject(1L, "JavaEE", 500.0F);
-      BiDirMXMProject project2 = new BiDirMXMProject(2L, "Identity", 300F);
+			getEntityTransaction().begin();
 
-      BiDirMXMPerson person1 = new BiDirMXMPerson(1L, "Duke");
-      BiDirMXMPerson person2 = new BiDirMXMPerson(2L, "Foo");
+			BiDirMXMProject project1 = new BiDirMXMProject(1L, "JavaEE", 500.0F);
+			BiDirMXMProject project2 = new BiDirMXMProject(2L, "Identity", 300F);
 
-      getEntityManager().persist(project1);
-      getEntityManager().persist(project2);
-      getEntityManager().persist(person1);
-      getEntityManager().persist(person2);
+			BiDirMXMPerson person1 = new BiDirMXMPerson(1L, "Duke");
+			BiDirMXMPerson person2 = new BiDirMXMPerson(2L, "Foo");
 
-      Vector<BiDirMXMProject> projects = new Vector<BiDirMXMProject>();
-      projects.add(project1);
-      projects.add(project2);
+			getEntityManager().persist(project1);
+			getEntityManager().persist(project2);
+			getEntityManager().persist(person1);
+			getEntityManager().persist(person2);
 
-      person1.setProjects(projects);
+			Vector<BiDirMXMProject> projects = new Vector<BiDirMXMProject>();
+			projects.add(project1);
+			projects.add(project2);
 
-      Vector<BiDirMXMProject> projects2 = new Vector<BiDirMXMProject>();
-      projects2.add(project2);
+			person1.setProjects(projects);
 
-      person2.setProjects(projects2);
+			Vector<BiDirMXMProject> projects2 = new Vector<BiDirMXMProject>();
+			projects2.add(project2);
 
-      getEntityManager().merge(person1);
-      getEntityManager().merge(person2);
+			person2.setProjects(projects2);
 
-      getEntityManager().flush();
-      getEntityTransaction().commit();
-      TestUtil.logTrace("persisted Persons and Project");
+			getEntityManager().merge(person1);
+			getEntityManager().merge(person2);
 
-      getEntityTransaction().begin();
+			getEntityManager().flush();
+			getEntityTransaction().commit();
+			TestUtil.logTrace("persisted Persons and Project");
 
-      TestUtil.logTrace("persisted Persons and Project");
+			getEntityTransaction().begin();
 
-      boolean pass1 = false;
-      boolean pass2 = false;
+			TestUtil.logTrace("persisted Persons and Project");
 
-      BiDirMXMPerson newPerson = getEntityManager().find(BiDirMXMPerson.class,
-          1L);
+			boolean pass1 = false;
+			boolean pass2 = false;
 
-      if (newPerson != null) {
+			BiDirMXMPerson newPerson = getEntityManager().find(BiDirMXMPerson.class, 1L);
 
-        Collection<BiDirMXMProject> newProjects = newPerson.getProjects();
-        for (BiDirMXMProject prj : newProjects) {
-          if (prj.getName().equals("Identity")) {
-            TestUtil.logTrace("Found Searched Project Identity");
-            pass1 = true;
-          } else if (prj.getName().equals("JavaEE")) {
-            TestUtil.logTrace("Found Searched Project JavaEE");
-            pass2 = true;
-          }
-        }
+			if (newPerson != null) {
 
-      }
+				Collection<BiDirMXMProject> newProjects = newPerson.getProjects();
+				for (BiDirMXMProject prj : newProjects) {
+					if (prj.getName().equals("Identity")) {
+						TestUtil.logTrace("Found Searched Project Identity");
+						pass1 = true;
+					} else if (prj.getName().equals("JavaEE")) {
+						TestUtil.logTrace("Found Searched Project JavaEE");
+						pass2 = true;
+					}
+				}
 
-      boolean pass3 = false;
-      BiDirMXMPerson newPerson2 = getEntityManager().find(BiDirMXMPerson.class,
-          2L);
+			}
 
-      if (newPerson2 != null) {
+			boolean pass3 = false;
+			BiDirMXMPerson newPerson2 = getEntityManager().find(BiDirMXMPerson.class, 2L);
 
-        Collection<BiDirMXMProject> newProjects2 = newPerson2.getProjects();
-        for (BiDirMXMProject prj : newProjects2) {
-          if (prj.getName().equals("Identity")) {
-            TestUtil.logTrace("Found Searched Project for Person id=2");
-            pass3 = true;
-          }
-        }
+			if (newPerson2 != null) {
 
-      }
+				Collection<BiDirMXMProject> newProjects2 = newPerson2.getProjects();
+				for (BiDirMXMProject prj : newProjects2) {
+					if (prj.getName().equals("Identity")) {
+						TestUtil.logTrace("Found Searched Project for Person id=2");
+						pass3 = true;
+					}
+				}
 
-      if (pass1 && pass2 && pass3) {
-        TestUtil.logTrace("biDirMXMTest1: Expected results received");
-        pass = true;
-      } else {
-        TestUtil.logErr("Unexpected results received");
-        pass = false;
-      }
+			}
 
-      getEntityTransaction().commit();
+			if (pass1 && pass2 && pass3) {
+				TestUtil.logTrace("biDirMXMTest1: Expected results received");
+				pass = true;
+			} else {
+				TestUtil.logErr("Unexpected results received");
+				pass = false;
+			}
 
-    } catch (Exception e) {
+			getEntityTransaction().commit();
 
-      TestUtil.logErr("Unexpected exception occurred", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
+		} catch (Exception e) {
 
-    if (!pass) {
-      throw new Exception("biDirMXMTest1 failed");
-    }
-  }
+			TestUtil.logErr("Unexpected exception occurred", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in rollback:", re);
+			}
+		}
 
-@AfterAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+		if (!pass) {
+			throw new Exception("biDirMXMTest1 failed");
+		}
+	}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager()
-          .createNativeQuery("DELETE FROM BIDIRMXMPERSON_BIDIRMXMPROJECT")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM BIDIRMXMPERSON")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM BIDIRMXMPROJECT")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("cleanup");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+	}
+
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM BIDIRMXMPERSON_BIDIRMXMPROJECT").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM BIDIRMXMPERSON").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM BIDIRMXMPROJECT").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

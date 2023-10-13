@@ -20,15 +20,10 @@ package com.sun.ts.tests.jpa.core.annotations.convert;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -39,15 +34,12 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.CriteriaUpdate;
 import jakarta.persistence.criteria.Root;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class ClientIT extends PMClientBase {
 
 	public ClientIT() {
 	}
 
-	@Deployment(testable = false, managed = false)
 	public static JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = ClientIT.class.getPackageName() + ".";
@@ -66,6 +58,7 @@ public class ClientIT extends PMClientBase {
 		TestUtil.logTrace("setup");
 		try {
 			super.setup();
+			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
 			TestUtil.logErr("Exception: ", e);
@@ -115,6 +108,7 @@ public class ClientIT extends PMClientBase {
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
+			e.printStackTrace();
 			TestUtil.logErr("Unexpected exception occurred: ", e);
 			pass = false;
 		}
@@ -741,6 +735,7 @@ public class ClientIT extends PMClientBase {
 		removeTestData();
 		TestUtil.logTrace("cleanup complete, calling super.cleanup");
 		super.cleanup();
+		removeDeploymentJar();
 	}
 
 	private void removeTestData() {
@@ -756,6 +751,8 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM CUST_TABLE").executeUpdate();
 			getEntityManager().createNativeQuery("DELETE FROM PHONES").executeUpdate();
 			getEntityTransaction().commit();
+			removeDeploymentJar();
+
 		} catch (Exception e) {
 			TestUtil.logErr("Exception encountered while removing entities:", e);
 

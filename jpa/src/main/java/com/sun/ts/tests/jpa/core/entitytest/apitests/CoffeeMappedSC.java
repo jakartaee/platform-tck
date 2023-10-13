@@ -24,32 +24,32 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 
 @NamedNativeQueries({
-    @NamedNativeQuery(name = "findDecafSQLCoffees", query = "Select c.\"ID\", c.\"BRANDNAME\", c.\"PRICE\" from \"COFFEE\" c where c.\"BRANDNAME\" like '%decaf%' ", resultClass = com.sun.ts.tests.jpa.core.entitytest.apitests.Coffee.class) })
+		@NamedNativeQuery(name = "findDecafSQLCoffees", query = "Select c.\"ID\", c.\"BRANDNAME\", c.\"PRICE\" from \"COFFEE\" c where c.\"BRANDNAME\" like '%decaf%' ", resultClass = com.sun.ts.tests.jpa.core.entitytest.apitests.Coffee.class) })
 @NamedQueries({
-    @NamedQuery(name = "findDecafCoffees", query = "Select c from Coffee c where c.brandName like '%decaf%'") })
+		@NamedQuery(name = "findDecafCoffees", query = "Select c from Coffee c where c.brandName like '%decaf%'") })
 
 @MappedSuperclass()
 public abstract class CoffeeMappedSC implements java.io.Serializable {
 
-  private String brandName;
+	private String brandName;
 
-  protected CoffeeMappedSC() {
-  }
+	protected CoffeeMappedSC() {
+	}
 
-  protected CoffeeMappedSC(String brandName) {
-    this.brandName = brandName;
-  }
+	protected CoffeeMappedSC(String brandName) {
+		this.brandName = brandName;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Column(name = "BRANDNAME")
-  public String getBrandName() {
-    return brandName;
-  }
+	@Column(name = "BRANDNAME")
+	public String getBrandName() {
+		return brandName;
+	}
 
-  public void setBrandName(String bName) {
-    this.brandName = bName;
-  }
+	public void setBrandName(String bName) {
+		this.brandName = bName;
+	}
 
 }

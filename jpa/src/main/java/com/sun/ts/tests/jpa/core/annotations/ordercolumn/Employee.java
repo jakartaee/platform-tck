@@ -28,126 +28,122 @@ import jakarta.persistence.Table;
 @Table(name = "EMPLOYEE")
 public class Employee implements java.io.Serializable {
 
-  private int id;
+	private int id;
 
-  private String firstName;
+	private String firstName;
 
-  private String lastName;
+	private String lastName;
 
-  private float salary;
+	private float salary;
 
-  private Department department;
+	private Department department;
 
-  public Employee() {
-  }
+	public Employee() {
+	}
 
-  public Employee(int id, String firstName, String lastName, float salary) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.salary = salary;
-  }
+	public Employee(int id, String firstName, String lastName, float salary) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.salary = salary;
+	}
 
-  public Employee(int id, String firstName, String lastName, float salary,
-      Department department) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.salary = salary;
-    this.department = department;
-  }
+	public Employee(int id, String firstName, String lastName, float salary, Department department) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.salary = salary;
+		this.department = department;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Id
-  @Column(name = "ID")
-  public int getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  @Column(name = "FIRSTNAME")
-  public String getFirstName() {
-    return firstName;
-  }
+	@Column(name = "FIRSTNAME")
+	public String getFirstName() {
+		return firstName;
+	}
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-  @Column(name = "LASTNAME")
-  public String getLastName() {
-    return lastName;
-  }
+	@Column(name = "LASTNAME")
+	public String getLastName() {
+		return lastName;
+	}
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-  @Column(name = "SALARY")
-  public float getSalary() {
-    return salary;
-  }
+	@Column(name = "SALARY")
+	public float getSalary() {
+		return salary;
+	}
 
-  public void setSalary(float salary) {
-    this.salary = salary;
-  }
+	public void setSalary(float salary) {
+		this.salary = salary;
+	}
 
-  // ===========================================================
-  // getters and setters for the association fields
+	// ===========================================================
+	// getters and setters for the association fields
 
-  @ManyToOne(cascade = CascadeType.PERSIST)
-  @JoinColumn(name = "FK_DEPT")
-  public Department getDepartment() {
-    return department;
-  }
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "FK_DEPT")
+	public Department getDepartment() {
+		return department;
+	}
 
-  public void setDepartment(Department department) {
-    this.department = department;
-  }
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", first: " + getFirstName());
-    result.append(", last: " + getLastName());
-    result.append(", salary: " + getSalary());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", first: " + getFirstName());
+		result.append(", last: " + getLastName());
+		result.append(", salary: " + getSalary());
+		result.append("]");
+		return result.toString();
+	}
 
-  public boolean equals(Object o) {
-    Employee other;
-    boolean result = false;
+	public boolean equals(Object o) {
+		Employee other;
+		boolean result = false;
 
-    if (!(o instanceof Employee)) {
-      return result;
-    }
-    other = (Employee) o;
+		if (!(o instanceof Employee)) {
+			return result;
+		}
+		other = (Employee) o;
 
-    if (this.getId() == other.getId()
-        && this.getFirstName().equals(other.getFirstName())
-        && this.getLastName().equals(other.getLastName())
-        && this.getSalary() == other.getSalary()
-        && this.getDepartment().equals(other.getDepartment())) {
-      result = true;
-    }
+		if (this.getId() == other.getId() && this.getFirstName().equals(other.getFirstName())
+				&& this.getLastName().equals(other.getLastName()) && this.getSalary() == other.getSalary()
+				&& this.getDepartment().equals(other.getDepartment())) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  public int hashCode() {
-    int myHash;
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.getId() + this.getFirstName().hashCode()
-        + this.getLastName().hashCode() + (int) this.getSalary();
+		myHash = this.getId() + this.getFirstName().hashCode() + this.getLastName().hashCode() + (int) this.getSalary();
 
-    return myHash;
-  }
+		return myHash;
+	}
 }

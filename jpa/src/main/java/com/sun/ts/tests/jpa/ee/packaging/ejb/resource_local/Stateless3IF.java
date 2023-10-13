@@ -24,38 +24,38 @@ import java.util.Properties;
 
 public interface Stateless3IF {
 
-  public void removeTestData();
+	public void removeTestData();
 
-  public void init(final Properties p);
+	public void init(final Properties p);
 
-  public boolean test1();
+	public boolean test1();
 
-  public boolean test2();
+	public boolean test2();
 
-  public boolean test3();
+	public boolean test3();
 
-  public boolean test4();
+	public boolean test4();
 
-  public boolean test5();
+	public boolean test5();
 
-  public boolean test6();
+	public boolean test6();
 
-  public boolean test7();
+	public boolean test7();
 
-  public boolean test8();
+	public boolean test8();
 
-  public boolean test9();
+	public boolean test9();
 
-  public boolean test10();
+	public boolean test10();
 
-  public boolean test11();
+	public boolean test11();
 
-  public boolean test12();
+	public boolean test12();
 
-  public boolean test13();
+	public boolean test13();
 
-  public boolean test14();
+	public boolean test14();
 
-  public boolean test15();
+	public boolean test15();
 
 }

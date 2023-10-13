@@ -36,91 +36,82 @@ import java.util.logging.LogRecord;
  */
 public class TSLogRecord extends LogRecord {
 
-  /**
-   * @serial The logging context Id
-   */
-  private String contextId;
+	/**
+	 * @serial The logging context Id
+	 */
+	private String contextId;
 
-  private String dateTime;
+	private String dateTime;
 
-  public static final DateFormat df = new SimpleDateFormat(
-      "dd-MM-yyyy'T'HH:mm:ss.SSS");
+	public static final DateFormat df = new SimpleDateFormat("dd-MM-yyyy'T'HH:mm:ss.SSS");
 
-  /**
-   * Construct a LogRecord with the given level, message and context values.
-   *
-   * @param level
-   *          a logging level value
-   * @param dateTime
-   *          dateTime of the entry
-   * @param contextId
-   *          the logging contextId
-   * @param msg
-   *          the raw non-localized logging message
-   */
-  TSLogRecord(Level level, String dateTime, String message, String contextId) {
-    // set the rest of the fields using parent constructor
-    super(level, message);
-    this.contextId = contextId;
-    this.dateTime = dateTime;
+	/**
+	 * Construct a LogRecord with the given level, message and context values.
+	 *
+	 * @param level     a logging level value
+	 * @param dateTime  dateTime of the entry
+	 * @param contextId the logging contextId
+	 * @param msg       the raw non-localized logging message
+	 */
+	TSLogRecord(Level level, String dateTime, String message, String contextId) {
+		// set the rest of the fields using parent constructor
+		super(level, message);
+		this.contextId = contextId;
+		this.dateTime = dateTime;
 
-  }
+	}
 
-  /**
-   * Construct a LogRecord with the given level and message
-   *
-   * @param level
-   *          a logging level value
-   * @param msg
-   *          the raw non-localized logging message
-   */
-  TSLogRecord(Level level, String message) {
-    super(level, message);
-    // Add JPA for default contextId
-    this.contextId = "JPA";
-    this.dateTime = createDateTime();
+	/**
+	 * Construct a LogRecord with the given level and message
+	 *
+	 * @param level a logging level value
+	 * @param msg   the raw non-localized logging message
+	 */
+	TSLogRecord(Level level, String message) {
+		super(level, message);
+		// Add JPA for default contextId
+		this.contextId = "JPA";
+		this.dateTime = createDateTime();
 
-  }
+	}
 
-  /**
-   * Get the contextId
-   *
-   * @ return contextId
-   */
-  public String getContextId() {
-    return this.contextId;
-  }
+	/**
+	 * Get the contextId
+	 *
+	 * @ return contextId
+	 */
+	public String getContextId() {
+		return this.contextId;
+	}
 
-  /**
-   * Set the contextId
-   *
-   * @param contextId
-   *          the logging context Id
-   */
-  public void setContextId(String cId) {
-    this.contextId = cId;
-  }
+	/**
+	 * Set the contextId
+	 *
+	 * @param contextId the logging context Id
+	 */
+	public void setContextId(String cId) {
+		this.contextId = cId;
+	}
 
-  /**
-   * Get the dateTime
-   *
-   * @ return dateTime
-   */
-  public String getDateTime() {
-    return this.dateTime;
-  }
+	/**
+	 * Get the dateTime
+	 *
+	 * @ return dateTime
+	 */
+	public String getDateTime() {
+		return this.dateTime;
+	}
 
-  /**
-   * Set the dateTime
-   *
-   * @param dt
-   *          the date time
-   */
-  public void setDateTime(String dt) {
-    this.dateTime = dt;
-  }
+	/**
+	 * Set the dateTime
+	 *
+	 * @param dt the date time
+	 */
+	public void setDateTime(String dt) {
+		this.dateTime = dt;
+	}
 
-  public String createDateTime() {
-    return df.format(new Date());
-  }
+	public String createDateTime() {
+		return df.format(new Date());
+	}
 }

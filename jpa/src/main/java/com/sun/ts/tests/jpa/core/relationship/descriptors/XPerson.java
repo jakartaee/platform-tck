@@ -28,104 +28,104 @@ import java.util.Collection;
 
 public class XPerson implements java.io.Serializable {
 
-  private int xPersonId;
+	private int xPersonId;
 
-  private String firstName;
+	private String firstName;
 
-  private String lastName;
+	private String lastName;
 
-  private XProject xProject;
+	private XProject xProject;
 
-  private XTeam xTeam;
+	private XTeam xTeam;
 
-  private Collection<XAnnualReview> xAnnualReviews = new java.util.ArrayList<XAnnualReview>();
+	private Collection<XAnnualReview> xAnnualReviews = new java.util.ArrayList<XAnnualReview>();
 
-  private Collection<XInsurance> xCarriers = new java.util.ArrayList<XInsurance>();
+	private Collection<XInsurance> xCarriers = new java.util.ArrayList<XInsurance>();
 
-  private Collection<XProject> xProjects = new java.util.ArrayList<XProject>();
+	private Collection<XProject> xProjects = new java.util.ArrayList<XProject>();
 
-  public XPerson() {
-  }
+	public XPerson() {
+	}
 
-  public XPerson(int xPersonId, String firstName, String lastName) {
-    this.xPersonId = xPersonId;
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
+	public XPerson(int xPersonId, String firstName, String lastName) {
+		this.xPersonId = xPersonId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  public int getXPersonId() {
-    return xPersonId;
-  }
+	public int getXPersonId() {
+		return xPersonId;
+	}
 
-  public void setXPersonId(int xPersonId) {
-    this.xPersonId = xPersonId;
-  }
+	public void setXPersonId(int xPersonId) {
+		this.xPersonId = xPersonId;
+	}
 
-  public String getFirstName() {
-    return firstName;
-  }
+	public String getFirstName() {
+		return firstName;
+	}
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-  public String getLastName() {
-    return lastName;
-  }
+	public String getLastName() {
+		return lastName;
+	}
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-  // ===========================================================
-  // getters and setters for the association fields
+	// ===========================================================
+	// getters and setters for the association fields
 
-  /* Uni-Directional Single-Valued Many(Persons)ToOne(Team) */
-  public XTeam getXTeam() {
-    return xTeam;
-  }
+	/* Uni-Directional Single-Valued Many(Persons)ToOne(Team) */
+	public XTeam getXTeam() {
+		return xTeam;
+	}
 
-  public void setXTeam(XTeam xTeam) {
-    this.xTeam = xTeam;
-  }
+	public void setXTeam(XTeam xTeam) {
+		this.xTeam = xTeam;
+	}
 
-  /* Bi-Directional OneProjectLead(Person)ToOneProject */
-  public XProject getXProject() {
-    return xProject;
-  }
+	/* Bi-Directional OneProjectLead(Person)ToOneProject */
+	public XProject getXProject() {
+		return xProject;
+	}
 
-  public void setXProject(XProject xProject) {
-    this.xProject = xProject;
-  }
+	public void setXProject(XProject xProject) {
+		this.xProject = xProject;
+	}
 
-  /* Bi-Directional ManyPersonsToManyProjects */
-  public Collection<XProject> getXProjects() {
-    return xProjects;
-  }
+	/* Bi-Directional ManyPersonsToManyProjects */
+	public Collection<XProject> getXProjects() {
+		return xProjects;
+	}
 
-  public void setXProjects(Collection<XProject> xProjects) {
-    this.xProjects = xProjects;
-  }
+	public void setXProjects(Collection<XProject> xProjects) {
+		this.xProjects = xProjects;
+	}
 
-  /* Uni-Directional Single-Valued OnePersonToManyReviews */
-  public Collection<XAnnualReview> getXAnnualReviews() {
-    return xAnnualReviews;
-  }
+	/* Uni-Directional Single-Valued OnePersonToManyReviews */
+	public Collection<XAnnualReview> getXAnnualReviews() {
+		return xAnnualReviews;
+	}
 
-  public void setXAnnualReviews(Collection<XAnnualReview> xAnnualReviews) {
-    this.xAnnualReviews = xAnnualReviews;
-  }
+	public void setXAnnualReviews(Collection<XAnnualReview> xAnnualReviews) {
+		this.xAnnualReviews = xAnnualReviews;
+	}
 
-  /* Uni-Directional Multi-Valued Relationship ManyInsuranceToManyPersons */
-  public Collection<XInsurance> getXInsurance() {
-    return xCarriers;
-  }
+	/* Uni-Directional Multi-Valued Relationship ManyInsuranceToManyPersons */
+	public Collection<XInsurance> getXInsurance() {
+		return xCarriers;
+	}
 
-  public void setXInsurance(Collection<XInsurance> xCarriers) {
-    this.xCarriers = xCarriers;
-  }
+	public void setXInsurance(Collection<XInsurance> xCarriers) {
+		this.xCarriers = xCarriers;
+	}
 
 }

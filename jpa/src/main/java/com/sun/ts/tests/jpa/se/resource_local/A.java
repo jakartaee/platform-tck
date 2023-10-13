@@ -30,73 +30,73 @@ import jakarta.persistence.Table;
 @Table(name = "AEJB_1X1_BI_BTOB")
 public class A implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+	// ===========================================================
+	// instance variables
 
-  protected String id;
+	protected String id;
 
-  protected String name;
+	protected String name;
 
-  protected int value;
+	protected int value;
 
-  protected B b;
+	protected B b;
 
-  // ===========================================================
-  // constructors
+	// ===========================================================
+	// constructors
 
-  public A() {
-  }
+	public A() {
+	}
 
-  public A(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+	public A(String id, String name, int value) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
 
-  public A(String id, String name, int value, B b) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-    this.b = b;
-  }
+	public A(String id, String name, int value, B b) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+		this.b = b;
+	}
 
-  @Id
-  public String getId() {
-    return id;
-  }
+	@Id
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  @Basic
-  public String getName() {
-    return name;
-  }
+	@Basic
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  @Basic
-  public int getValue() {
-    return value;
-  }
+	@Basic
+	public int getValue() {
+		return value;
+	}
 
-  public void setValue(int value) {
-    this.value = value;
-  }
+	public void setValue(int value) {
+		this.value = value;
+	}
 
-  // ===========================================================
-  // relationship fields
+	// ===========================================================
+	// relationship fields
 
-  @OneToOne(mappedBy = "a")
-  public B getB() {
-    return b;
-  }
+	@OneToOne(mappedBy = "a")
+	public B getB() {
+		return b;
+	}
 
-  public void setB(B b) {
-    this.b = b;
-  }
+	public void setB(B b) {
+		this.b = b;
+	}
 
 }

@@ -22,86 +22,85 @@ package com.sun.ts.tests.jpa.core.entitytest.apitests;
 
 public class Bar implements java.io.Serializable {
 
-  private Integer id;
+	private Integer id;
 
-  private String brandName;
+	private String brandName;
 
-  private Float price;
+	private Float price;
 
-  public Bar() {
-  }
+	public Bar() {
+	}
 
-  public Bar(Integer id, String brandName, float price) {
-    this.id = id;
-    this.brandName = brandName;
-    this.price = price;
-  }
+	public Bar(Integer id, String brandName, float price) {
+		this.id = id;
+		this.brandName = brandName;
+		this.price = price;
+	}
 
-  public Integer getId() {
-    return id;
-  }
+	public Integer getId() {
+		return id;
+	}
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-  public String getBrandName() {
-    return brandName;
-  }
+	public String getBrandName() {
+		return brandName;
+	}
 
-  public void setBrandName(String brandName) {
-    this.brandName = brandName;
-  }
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
+	}
 
-  public Float getPrice() {
-    return price;
-  }
+	public Float getPrice() {
+		return price;
+	}
 
-  public void setPrice(Float price) {
-    this.price = price;
-  }
+	public void setPrice(Float price) {
+		this.price = price;
+	}
 
-  @Override
-  public int hashCode() {
-    return this.getId() + this.getBrandName().hashCode()
-        + this.getPrice().intValue();
-  }
+	@Override
+	public int hashCode() {
+		return this.getId() + this.getBrandName().hashCode() + this.getPrice().intValue();
+	}
 
-  public boolean equals(Object o) {
-    Bar other;
-    boolean same = true;
+	public boolean equals(Object o) {
+		Bar other;
+		boolean same = true;
 
-    if (!(o instanceof Bar)) {
-      return false;
-    }
-    other = (Bar) o;
+		if (!(o instanceof Bar)) {
+			return false;
+		}
+		other = (Bar) o;
 
-    if (getId() != other.getId() || !getBrandName().equals(other.getBrandName())
-        || !getPrice().equals(other.getPrice())) {
-      return false;
+		if (getId() != other.getId() || !getBrandName().equals(other.getBrandName())
+				|| !getPrice().equals(other.getPrice())) {
+			return false;
 
-    }
+		}
 
-    return same;
-  }
+		return same;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(",  brandName: " + getBrandName());
-    if (getBrandName() != null) {
-      result.append(", brandName: " + getBrandName());
-    } else {
-      result.append(", brandName: null");
-    }
-    if (getPrice() != null) {
-      result.append(", price: " + getPrice());
-    } else {
-      result.append(", price: null");
-    }
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(",  brandName: " + getBrandName());
+		if (getBrandName() != null) {
+			result.append(", brandName: " + getBrandName());
+		} else {
+			result.append(", brandName: null");
+		}
+		if (getPrice() != null) {
+			result.append(", price: " + getPrice());
+		} else {
+			result.append(", price: null");
+		}
+		result.append("]");
+		return result.toString();
+	}
 }

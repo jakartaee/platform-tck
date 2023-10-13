@@ -27,41 +27,40 @@ import jakarta.persistence.Table;
 @Table(name = "NOENTITYLISTENER_TABLE")
 public class NoListener implements Serializable {
 
-  @Id
-  @Column(name = "ID")
-  private Long id;
+	@Id
+	@Column(name = "ID")
+	private Long id;
 
-  public NoListener() {
-  }
+	public NoListener() {
+	}
 
-  public Long getId() {
-    return id;
-  }
+	public Long getId() {
+		return id;
+	}
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.id != null ? this.id.hashCode() : 0);
-    return hash;
-  }
+	public int hashCode() {
+		int hash = 0;
+		hash += (this.id != null ? this.id.hashCode() : 0);
+		return hash;
+	}
 
-  public boolean equals(Object object) {
+	public boolean equals(Object object) {
 
-    if (!(object instanceof NoListener)) {
-      return false;
-    }
-    NoListener other = (NoListener) object;
-    if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
-      return false;
-    }
-    return true;
-  }
+		if (!(object instanceof NoListener)) {
+			return false;
+		}
+		NoListener other = (NoListener) object;
+		if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+			return false;
+		}
+		return true;
+	}
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.entitylistener."
-        + "NoListener[id=" + id + "]";
-  }
+	public String toString() {
+		return "com.sun.ts.tests.jpa.core.override.entitylistener." + "NoListener[id=" + id + "]";
+	}
 }

@@ -30,88 +30,85 @@ import jakarta.persistence.IdClass;
 @IdClass(DID5PersonId.class)
 public class DID5Person implements Serializable {
 
-  @Id
-  String firstName;
+	@Id
+	String firstName;
 
-  @Id
-  String lastName;
+	@Id
+	String lastName;
 
-  String ssn;
+	String ssn;
 
-  public DID5Person(String firstName, String lastName, String ssn) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.ssn = ssn;
-  }
+	public DID5Person(String firstName, String lastName, String ssn) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.ssn = ssn;
+	}
 
-  public DID5Person(DID5PersonId pId, String ssn) {
-    this.firstName = pId.getFirstName();
-    this.lastName = pId.getLastName();
-    this.ssn = ssn;
-  }
+	public DID5Person(DID5PersonId pId, String ssn) {
+		this.firstName = pId.getFirstName();
+		this.lastName = pId.getLastName();
+		this.ssn = ssn;
+	}
 
-  public String getFirstName() {
-    return firstName;
-  }
+	public String getFirstName() {
+		return firstName;
+	}
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-  public String getLastName() {
-    return lastName;
-  }
+	public String getLastName() {
+		return lastName;
+	}
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-  public DID5Person() {
-  }
+	public DID5Person() {
+	}
 
-  public String getSsn() {
-    return ssn;
-  }
+	public String getSsn() {
+		return ssn;
+	}
 
-  public void setSsn(String ssn) {
-    this.ssn = ssn;
-  }
+	public void setSsn(String ssn) {
+		this.ssn = ssn;
+	}
 
-  @Override
-  public boolean equals(Object obj) {
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    final DID5Person other = (DID5Person) obj;
-    if ((this.firstName == null) ? (other.firstName != null)
-        : !this.firstName.equals(other.firstName)) {
-      return false;
-    }
-    if ((this.lastName == null) ? (other.lastName != null)
-        : !this.lastName.equals(other.lastName)) {
-      return false;
-    }
-    if ((this.ssn == null) ? (other.ssn != null)
-        : !this.ssn.equals(other.ssn)) {
-      return false;
-    }
-    return true;
-  }
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final DID5Person other = (DID5Person) obj;
+		if ((this.firstName == null) ? (other.firstName != null) : !this.firstName.equals(other.firstName)) {
+			return false;
+		}
+		if ((this.lastName == null) ? (other.lastName != null) : !this.lastName.equals(other.lastName)) {
+			return false;
+		}
+		if ((this.ssn == null) ? (other.ssn != null) : !this.ssn.equals(other.ssn)) {
+			return false;
+		}
+		return true;
+	}
 
-  @Override
-  public int hashCode() {
-    int hash = 3;
-    hash = 53 * hash + (this.firstName != null ? this.firstName.hashCode() : 0);
-    hash = 53 * hash + (this.lastName != null ? this.lastName.hashCode() : 0);
-    hash = 53 * hash + (this.ssn != null ? this.ssn.hashCode() : 0);
-    return hash;
-  }
+	@Override
+	public int hashCode() {
+		int hash = 3;
+		hash = 53 * hash + (this.firstName != null ? this.firstName.hashCode() : 0);
+		hash = 53 * hash + (this.lastName != null ? this.lastName.hashCode() : 0);
+		hash = 53 * hash + (this.ssn != null ? this.ssn.hashCode() : 0);
+		return hash;
+	}
 
-  @Override
-  public String toString() {
-    return "derivedssn5.DID5Person[ssn=" + ssn + "]";
-  }
+	@Override
+	public String toString() {
+		return "derivedssn5.DID5Person[ssn=" + ssn + "]";
+	}
 }

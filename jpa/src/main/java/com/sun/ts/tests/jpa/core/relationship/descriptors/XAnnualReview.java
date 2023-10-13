@@ -26,36 +26,36 @@ package com.sun.ts.tests.jpa.core.relationship.descriptors;
 
 public class XAnnualReview implements java.io.Serializable {
 
-  // Instance variables
-  private Integer xAid;
+	// Instance variables
+	private Integer xAid;
 
-  private Integer xService;
+	private Integer xService;
 
-  public XAnnualReview() {
-  }
+	public XAnnualReview() {
+	}
 
-  public XAnnualReview(Integer xAid, Integer xService) {
-    this.xAid = xAid;
-    this.xService = xService;
-  }
+	public XAnnualReview(Integer xAid, Integer xService) {
+		this.xAid = xAid;
+		this.xService = xService;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  public Integer getXAid() {
-    return xAid;
-  }
+	public Integer getXAid() {
+		return xAid;
+	}
 
-  public void setXAid(Integer xAid) {
-    this.xAid = xAid;
-  }
+	public void setXAid(Integer xAid) {
+		this.xAid = xAid;
+	}
 
-  public Integer getXService() {
-    return xService;
-  }
+	public Integer getXService() {
+		return xService;
+	}
 
-  public void setXService(Integer xService) {
-    this.xService = xService;
-  }
+	public void setXService(Integer xService) {
+		this.xService = xService;
+	}
 
 }

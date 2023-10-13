@@ -37,88 +37,87 @@ import jakarta.persistence.Table;
 @Table(name = "INSURANCE")
 public class Insurance implements java.io.Serializable {
 
-  // Instance variables
-  private int id;
+	// Instance variables
+	private int id;
 
-  private String carrier;
+	private String carrier;
 
-  private Collection<Employee> employees = new java.util.ArrayList<Employee>();
+	private Collection<Employee> employees = new java.util.ArrayList<Employee>();
 
-  public Insurance() {
-  }
+	public Insurance() {
+	}
 
-  public Insurance(int id, String carrier) {
-    this.id = id;
-    this.carrier = carrier;
-  }
+	public Insurance(int id, String carrier) {
+		this.id = id;
+		this.carrier = carrier;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Id
-  @Column(name = "INSID")
-  public int getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "INSID")
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  @Column(name = "CARRIER")
-  public String getCarrier() {
-    return carrier;
-  }
+	@Column(name = "CARRIER")
+	public String getCarrier() {
+		return carrier;
+	}
 
-  public void setCarrier(String carrier) {
-    this.carrier = carrier;
-  }
+	public void setCarrier(String carrier) {
+		this.carrier = carrier;
+	}
 
-  // ===========================================================
-  // getters and setters for the association fields
+	// ===========================================================
+	// getters and setters for the association fields
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "insurance")
-  public Collection<Employee> getEmployees() {
-    return employees;
-  }
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "insurance")
+	public Collection<Employee> getEmployees() {
+		return employees;
+	}
 
-  public void setEmployees(Collection<Employee> employees) {
-    this.employees = employees;
-  }
+	public void setEmployees(Collection<Employee> employees) {
+		this.employees = employees;
+	}
 
-  @Override
-  public boolean equals(Object o) {
-    // check for self-comparison
-    if (this == o)
-      return true;
-    if (!(o instanceof Insurance))
-      return false;
+	@Override
+	public boolean equals(Object o) {
+		// check for self-comparison
+		if (this == o)
+			return true;
+		if (!(o instanceof Insurance))
+			return false;
 
-    Insurance o1 = (Insurance) o;
+		Insurance o1 = (Insurance) o;
 
-    boolean result = false;
+		boolean result = false;
 
-    if (this.getId() == o1.getId()
-        && this.getCarrier().equals(o1.getCarrier())) {
-      result = true;
-    }
+		if (this.getId() == o1.getId() && this.getCarrier().equals(o1.getCarrier())) {
+			result = true;
+		}
 
-    return result;
+		return result;
 
-  }
+	}
 
-  @Override
-  public int hashCode() {
-    return this.getId() + this.getCarrier().hashCode();
-  }
+	@Override
+	public int hashCode() {
+		return this.getId() + this.getCarrier().hashCode();
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", carrier: " + getCarrier());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", carrier: " + getCarrier());
+		result.append("]");
+		return result.toString();
+	}
 }

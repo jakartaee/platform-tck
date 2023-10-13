@@ -30,113 +30,112 @@ import jakarta.persistence.Table;
 @Table(name = "INFO_TABLE")
 public class Info implements java.io.Serializable {
 
-  // Instance variables
-  private String id;
+	// Instance variables
+	private String id;
 
-  private String street;
+	private String street;
 
-  private String city;
+	private String city;
 
-  private String state;
+	private String state;
 
-  private String zip;
+	private String zip;
 
-  private Spouse spouse;
+	private Spouse spouse;
 
-  public Info() {
-  }
+	public Info() {
+	}
 
-  public Info(String v1, String v2, String v3, String v4, String v5) {
-    id = v1;
-    street = v2;
-    city = v3;
-    state = v4;
-    zip = v5;
-  }
+	public Info(String v1, String v2, String v3, String v4, String v5) {
+		id = v1;
+		street = v2;
+		city = v3;
+		state = v4;
+		zip = v5;
+	}
 
-  public Info(String v1, String v2, String v3, String v4, String v5,
-      Spouse v6) {
-    id = v1;
-    street = v2;
-    city = v3;
-    state = v4;
-    zip = v5;
-    spouse = v6;
-  }
+	public Info(String v1, String v2, String v3, String v4, String v5, Spouse v6) {
+		id = v1;
+		street = v2;
+		city = v3;
+		state = v4;
+		zip = v5;
+		spouse = v6;
+	}
 
-  // ===========================================================
-  // getters and setters for state fields
+	// ===========================================================
+	// getters and setters for state fields
 
-  @Id
-  @Column(name = "ID")
-  public String getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String v) {
-    id = v;
-  }
+	public void setId(String v) {
+		id = v;
+	}
 
-  @Column(name = "INFOSTREET")
-  public String getStreet() {
-    return street;
-  }
+	@Column(name = "INFOSTREET")
+	public String getStreet() {
+		return street;
+	}
 
-  public void setStreet(String v) {
-    street = v;
-  }
+	public void setStreet(String v) {
+		street = v;
+	}
 
-  @Column(name = "INFOSTATE")
-  public String getState() {
-    return state;
-  }
+	@Column(name = "INFOSTATE")
+	public String getState() {
+		return state;
+	}
 
-  public void setState(String v) {
-    state = v;
-  }
+	public void setState(String v) {
+		state = v;
+	}
 
-  @Column(name = "INFOCITY")
-  public String getCity() {
-    return city;
-  }
+	@Column(name = "INFOCITY")
+	public String getCity() {
+		return city;
+	}
 
-  public void setCity(String v) {
-    city = v;
-  }
+	public void setCity(String v) {
+		city = v;
+	}
 
-  @Column(name = "INFOZIP")
-  public String getZip() {
-    return zip;
-  }
+	@Column(name = "INFOZIP")
+	public String getZip() {
+		return zip;
+	}
 
-  public void setZip(String v) {
-    zip = v;
-  }
+	public void setZip(String v) {
+		zip = v;
+	}
 
-  // ===========================================================
-  // getters and setters for association fields
+	// ===========================================================
+	// getters and setters for association fields
 
-  // ONEXONE
-  @OneToOne(mappedBy = "info")
-  public Spouse getSpouse() {
-    return spouse;
-  }
+	// ONEXONE
+	@OneToOne(mappedBy = "info")
+	public Spouse getSpouse() {
+		return spouse;
+	}
 
-  public void setSpouse(Spouse v) {
-    this.spouse = v;
-  }
+	public void setSpouse(Spouse v) {
+		this.spouse = v;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", street: " + getStreet());
-    result.append(", city: " + getCity());
-    result.append(", state: " + getState());
-    result.append(", zip: " + getZip());
-    result.append("]");
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", street: " + getStreet());
+		result.append(", city: " + getCity());
+		result.append(", state: " + getState());
+		result.append(", zip: " + getZip());
+		result.append("]");
 
-    return result.toString();
-  }
+		return result.toString();
+	}
 }

@@ -26,79 +26,77 @@ package com.sun.ts.tests.jpa.core.types.primarykey.compound;
 
 public class CompoundPK2 implements java.io.Serializable {
 
-  /* Fields */
-  private Integer pmIDInteger;
+	/* Fields */
+	private Integer pmIDInteger;
 
-  private String pmIDString;
+	private String pmIDString;
 
-  private Float pmIDFloat;
+	private Float pmIDFloat;
 
-  /** No-arg Constructor */
-  public CompoundPK2() {
-  }
+	/** No-arg Constructor */
+	public CompoundPK2() {
+	}
 
-  /** Standard Constructor */
-  public CompoundPK2(int intID, String strID, float floatID) {
-    this.pmIDInteger = intID;
-    this.pmIDString = strID;
-    this.pmIDFloat = floatID;
-  }
+	/** Standard Constructor */
+	public CompoundPK2(int intID, String strID, float floatID) {
+		this.pmIDInteger = intID;
+		this.pmIDString = strID;
+		this.pmIDFloat = floatID;
+	}
 
-  public Integer getPmIDInteger() {
-    return pmIDInteger;
-  }
+	public Integer getPmIDInteger() {
+		return pmIDInteger;
+	}
 
-  public void setPmIDInteger(Integer pmIDInteger) {
-    this.pmIDInteger = pmIDInteger;
-  }
+	public void setPmIDInteger(Integer pmIDInteger) {
+		this.pmIDInteger = pmIDInteger;
+	}
 
-  public String getPmIDString() {
-    return pmIDString;
-  }
+	public String getPmIDString() {
+		return pmIDString;
+	}
 
-  public void setPmIDString(String pmIDString) {
-    this.pmIDString = pmIDString;
-  }
+	public void setPmIDString(String pmIDString) {
+		this.pmIDString = pmIDString;
+	}
 
-  public Float getPmIDFloat() {
-    return pmIDFloat;
-  }
+	public Float getPmIDFloat() {
+		return pmIDFloat;
+	}
 
-  public void setPmIDFloat(Float pmIDFloat) {
-    this.pmIDFloat = pmIDFloat;
-  }
+	public void setPmIDFloat(Float pmIDFloat) {
+		this.pmIDFloat = pmIDFloat;
+	}
 
-  /** Override java.lang.Object method */
-  public int hashCode() {
-    int myHash;
+	/** Override java.lang.Object method */
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.pmIDInteger.hashCode() + this.pmIDString.hashCode()
-        + this.pmIDFloat.hashCode();
+		myHash = this.pmIDInteger.hashCode() + this.pmIDString.hashCode() + this.pmIDFloat.hashCode();
 
-    return myHash;
-  }
+		return myHash;
+	}
 
-  /** Override java.lang.Object method */
-  public boolean equals(Object o) {
-    CompoundPK2 other;
-    boolean same = true;
+	/** Override java.lang.Object method */
+	public boolean equals(Object o) {
+		CompoundPK2 other;
+		boolean same = true;
 
-    if (!(o instanceof CompoundPK2)) {
-      return false;
-    }
-    other = (CompoundPK2) o;
+		if (!(o instanceof CompoundPK2)) {
+			return false;
+		}
+		other = (CompoundPK2) o;
 
-    same &= this.pmIDInteger.equals(other.pmIDInteger);
-    same &= this.pmIDString.equals(other.pmIDString);
-    same &= this.pmIDFloat.equals(other.pmIDFloat);
+		same &= this.pmIDInteger.equals(other.pmIDInteger);
+		same &= this.pmIDString.equals(other.pmIDString);
+		same &= this.pmIDFloat.equals(other.pmIDFloat);
 
-    return same;
-  }
+		return same;
+	}
 
-  /** Override java.lang.Object method */
-  public String toString() {
-    return "CompoundPK2 [ " + pmIDInteger + ", " + pmIDString + ", " + pmIDFloat
-        + " ]";
-  }
+	/** Override java.lang.Object method */
+	public String toString() {
+		return "CompoundPK2 [ " + pmIDInteger + ", " + pmIDString + ", " + pmIDFloat + " ]";
+	}
 
 }

@@ -24,43 +24,43 @@ import jakarta.persistence.PostLoad;
 
 public class ListenerBB extends ListenerBase {
 
-  public ListenerBB() {
-    super();
-  }
+	public ListenerBB() {
+		super();
+	}
 
-  @Override
-  public void prePersist(CallbackStatusIF b) {
-    super.prePersist(b);
-  }
+	@Override
+	public void prePersist(CallbackStatusIF b) {
+		super.prePersist(b);
+	}
 
-  @Override
-  public void postPersist(Object b) {
-    super.postPersist(b);
-  }
+	@Override
+	public void postPersist(Object b) {
+		super.postPersist(b);
+	}
 
-  @Override
-  public void preRemove(CallbackStatusIF b) {
-    super.preRemove(b);
-  }
+	@Override
+	public void preRemove(CallbackStatusIF b) {
+		super.preRemove(b);
+	}
 
-  @Override
-  public void postRemove(Object b) {
-    super.postRemove(b);
-  }
+	@Override
+	public void postRemove(Object b) {
+		super.postRemove(b);
+	}
 
-  @Override
-  public void preUpdate(CallbackStatusIF b) {
-    super.preUpdate(b);
-  }
+	@Override
+	public void preUpdate(CallbackStatusIF b) {
+		super.preUpdate(b);
+	}
 
-  @Override
-  public void postUpdate(Object b) {
-    super.postUpdate(b);
-  }
+	@Override
+	public void postUpdate(Object b) {
+		super.postUpdate(b);
+	}
 
-  @PostLoad
-  public void postLoad(CallbackStatusIF b) {
-    super.postLoad(b);
-  }
+	@PostLoad
+	public void postLoad(CallbackStatusIF b) {
+		super.postLoad(b);
+	}
 
 }

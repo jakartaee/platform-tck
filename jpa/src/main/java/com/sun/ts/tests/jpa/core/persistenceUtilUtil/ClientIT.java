@@ -16,15 +16,10 @@
 
 package com.sun.ts.tests.jpa.core.persistenceUtilUtil;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -32,165 +27,155 @@ import com.sun.ts.tests.jpa.common.PMClientBase;
 import jakarta.persistence.PersistenceUnitUtil;
 
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
-
 public class ClientIT extends PMClientBase {
 
-  public ClientIT() {
-  }
+	public ClientIT() {
+	}
 
-  @Deployment(testable = false, managed = false)
-  public static JavaArchive createDeployment() throws Exception {
-     
-     String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-     String pkgName = ClientIT.class.getPackageName() + ".";
-     String[] classes = { pkgName + "Employee"};
-     return createDeploymentJar("jpa_core_persistenceUtilUtil.jar", pkgNameWithoutSuffix, classes);
+	public static JavaArchive createDeployment() throws Exception {
 
-  }
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] classes = { pkgName + "Employee" };
+		return createDeploymentJar("jpa_core_persistenceUtilUtil.jar", pkgNameWithoutSuffix, classes);
 
-@BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	}
 
-  /*
-   * @testName: getPersistenceUtilUtilTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:384;
-   * 
-   * @test_Strategy:
-   *
-   */
-@Test
-  public void getPersistenceUtilUtilTest() throws Exception {
-    boolean pass = false;
-    PersistenceUnitUtil puu = getEntityManager().getEntityManagerFactory()
-        .getPersistenceUnitUtil();
-    if (puu != null) {
-      pass = true;
-    } else {
-      TestUtil.logErr("getPersistenceUtil() returned null");
-    }
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-    if (!pass) {
-      throw new Exception("getPersistenceUtilUtilTest failed");
-    }
-  }
+	/*
+	 * @testName: getPersistenceUtilUtilTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:384;
+	 * 
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void getPersistenceUtilUtilTest() throws Exception {
+		boolean pass = false;
+		PersistenceUnitUtil puu = getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil();
+		if (puu != null) {
+			pass = true;
+		} else {
+			TestUtil.logErr("getPersistenceUtil() returned null");
+		}
 
-  /*
-   * @testName: getIdentifierTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:385;
-   * 
-   * @test_Strategy: Call PersistenceUnitUtil.getIdentifierTest on an entity and
-   * verify the correct id is returned
-   */
-@Test
-  public void getIdentifierTest() throws Exception {
-    boolean pass = true;
-    Employee emp = new Employee(1, "foo", "bar", getSQLDate("2000-02-14"),
-        (float) 35000.0);
+		if (!pass) {
+			throw new Exception("getPersistenceUtilUtilTest failed");
+		}
+	}
 
-    TestUtil.logMsg("Test entity not yet persisted");
-    try {
-      PersistenceUnitUtil puu = getEntityManager().getEntityManagerFactory()
-          .getPersistenceUnitUtil();
-      Integer id = (Integer) puu.getIdentifier(emp);
-      if (id == null || id != 1) {
-        TestUtil.logErr("expected a null or id: 1, actual id:" + id);
-        pass = false;
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-      pass = false;
-    }
-    TestUtil.logMsg("Test entity persisted");
+	/*
+	 * @testName: getIdentifierTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:385;
+	 * 
+	 * @test_Strategy: Call PersistenceUnitUtil.getIdentifierTest on an entity and
+	 * verify the correct id is returned
+	 */
+	@Test
+	public void getIdentifierTest() throws Exception {
+		boolean pass = true;
+		Employee emp = new Employee(1, "foo", "bar", getSQLDate("2000-02-14"), (float) 35000.0);
 
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().persist(emp);
+		TestUtil.logMsg("Test entity not yet persisted");
+		try {
+			PersistenceUnitUtil puu = getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil();
+			Integer id = (Integer) puu.getIdentifier(emp);
+			if (id == null || id != 1) {
+				TestUtil.logErr("expected a null or id: 1, actual id:" + id);
+				pass = false;
+			}
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+			pass = false;
+		}
+		TestUtil.logMsg("Test entity persisted");
 
-      PersistenceUnitUtil puu = getEntityManager().getEntityManagerFactory()
-          .getPersistenceUnitUtil();
-      Integer id = (Integer) puu.getIdentifier(emp);
-      if (id != 1) {
-        TestUtil.logErr("expected a null or id: 1, actual id:" + id);
-        pass = false;
-      }
-      getEntityTransaction().commit();
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().persist(emp);
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-      pass = false;
-    }
-    if (!pass) {
-      throw new Exception("getIdentifierTest failed");
-    }
-  }
+			PersistenceUnitUtil puu = getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil();
+			Integer id = (Integer) puu.getIdentifier(emp);
+			if (id != 1) {
+				TestUtil.logErr("expected a null or id: 1, actual id:" + id);
+				pass = false;
+			}
+			getEntityTransaction().commit();
 
-  /*
-   * @testName: getIdentifierIllegalArgumentExceptionTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:548;
-   * 
-   * @test_Strategy: Call PersistenceUnitUtil.getIdentifierTest of a non-entity
-   * and verify IllegalArgumentException is thrown
-   */
-@Test
-  public void getIdentifierIllegalArgumentExceptionTest() throws Exception {
-    boolean pass = false;
-    try {
-      PersistenceUnitUtil puu = getEntityManager().getEntityManagerFactory()
-          .getPersistenceUnitUtil();
-      puu.getIdentifier(this);
-      TestUtil.logErr("IllegalArgumentException was not thrown");
-    } catch (IllegalArgumentException iae) {
-      pass = true;
-      TestUtil.logTrace("Received expected IllegalArgumentException");
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
-    if (!pass) {
-      throw new Exception("getIdentifierIllegalArgumentExceptionTest failed");
-    }
-  }
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+			pass = false;
+		}
+		if (!pass) {
+			throw new Exception("getIdentifierTest failed");
+		}
+	}
 
-@AfterAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+	/*
+	 * @testName: getIdentifierIllegalArgumentExceptionTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:548;
+	 * 
+	 * @test_Strategy: Call PersistenceUnitUtil.getIdentifierTest of a non-entity
+	 * and verify IllegalArgumentException is thrown
+	 */
+	@Test
+	public void getIdentifierIllegalArgumentExceptionTest() throws Exception {
+		boolean pass = false;
+		try {
+			PersistenceUnitUtil puu = getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil();
+			puu.getIdentifier(this);
+			TestUtil.logErr("IllegalArgumentException was not thrown");
+		} catch (IllegalArgumentException iae) {
+			pass = true;
+			TestUtil.logTrace("Received expected IllegalArgumentException");
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		}
+		if (!pass) {
+			throw new Exception("getIdentifierIllegalArgumentExceptionTest failed");
+		}
+	}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM EMPLOYEE")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("cleanup");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+	}
+
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM EMPLOYEE").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

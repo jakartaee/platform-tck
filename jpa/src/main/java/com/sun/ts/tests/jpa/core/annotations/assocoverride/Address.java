@@ -26,69 +26,68 @@ import jakarta.persistence.Id;
 @Entity
 public class Address implements java.io.Serializable {
 
-  // Instance Variables
-  private String id;
+	// Instance Variables
+	private String id;
 
-  private String street;
+	private String street;
 
-  private String city;
+	private String city;
 
-  private String state;
+	private String state;
 
-  private String zip;
+	private String zip;
 
-  public Address() {
-  }
+	public Address() {
+	}
 
-  public Address(String id, String street, String city, String state,
-      String zip) {
-    this.id = id;
-    this.street = street;
-    this.city = city;
-    this.state = state;
-    this.zip = zip;
-  }
+	public Address(String id, String street, String city, String state, String zip) {
+		this.id = id;
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
-  @Id
-  public String getId() {
-    return id;
-  }
+	// ===========================================================
+	// getters and setters for the state fields
+	@Id
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  public String getStreet() {
-    return street;
-  }
+	public String getStreet() {
+		return street;
+	}
 
-  public void setStreet(String street) {
-    this.street = street;
-  }
+	public void setStreet(String street) {
+		this.street = street;
+	}
 
-  public String getCity() {
-    return city;
-  }
+	public String getCity() {
+		return city;
+	}
 
-  public void setCity(String city) {
-    this.city = city;
-  }
+	public void setCity(String city) {
+		this.city = city;
+	}
 
-  public String getState() {
-    return state;
-  }
+	public String getState() {
+		return state;
+	}
 
-  public void setState(String state) {
-    this.state = state;
-  }
+	public void setState(String state) {
+		this.state = state;
+	}
 
-  public String getZip() {
-    return zip;
-  }
+	public String getZip() {
+		return zip;
+	}
 
-  public void setZip(String zip) {
-    this.zip = zip;
-  }
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
 }

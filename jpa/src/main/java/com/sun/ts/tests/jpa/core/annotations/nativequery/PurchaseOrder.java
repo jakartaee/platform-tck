@@ -17,78 +17,77 @@
 package com.sun.ts.tests.jpa.core.annotations.nativequery;
 
 public class PurchaseOrder implements java.io.Serializable {
-  private static final long serialVersionUID = 22L;
+	private static final long serialVersionUID = 22L;
 
-  private int id;
+	private int id;
 
-  private int total;
+	private int total;
 
-  public PurchaseOrder() {
-  }
+	public PurchaseOrder() {
+	}
 
-  public PurchaseOrder(int total) {
-    this.total = total;
-  }
+	public PurchaseOrder(int total) {
+		this.total = total;
+	}
 
-  public PurchaseOrder(Number total) {
-    this.total = total.intValue();
-  }
+	public PurchaseOrder(Number total) {
+		this.total = total.intValue();
+	}
 
-  public PurchaseOrder(int id, int total) {
-    this.id = id;
-    this.total = total;
-  }
+	public PurchaseOrder(int id, int total) {
+		this.id = id;
+		this.total = total;
+	}
 
-  public PurchaseOrder(Number id, Number total) {
-    this.id = id.intValue();
-    this.total = total.intValue();
-  }
+	public PurchaseOrder(Number id, Number total) {
+		this.id = id.intValue();
+		this.total = total.intValue();
+	}
 
-  public int getId() {
-    return id;
-  }
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  public int getTotal() {
-    return total;
-  }
+	public int getTotal() {
+		return total;
+	}
 
-  public void setTotal(int total) {
-    this.total = total;
-  }
+	public void setTotal(int total) {
+		this.total = total;
+	}
 
-  @Override
-  public String toString() {
-    return "Order id=" + getId() + ", total=" + getTotal();
-  }
+	@Override
+	public String toString() {
+		return "Order id=" + getId() + ", total=" + getTotal();
+	}
 
-  @Override
-  public int hashCode() {
-    int myHash;
+	@Override
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.getId() + this.getTotal();
+		myHash = this.getId() + this.getTotal();
 
-    return myHash;
-  }
+		return myHash;
+	}
 
-  @Override
-  public boolean equals(Object o) {
-    PurchaseOrder other;
-    boolean result = false;
+	@Override
+	public boolean equals(Object o) {
+		PurchaseOrder other;
+		boolean result = false;
 
-    if (!(o instanceof PurchaseOrder)) {
-      return result;
-    }
-    other = (PurchaseOrder) o;
+		if (!(o instanceof PurchaseOrder)) {
+			return result;
+		}
+		other = (PurchaseOrder) o;
 
-    if (this.getId() == other.getId()
-        && this.getTotal() == (other.getTotal())) {
-      result = true;
-    }
+		if (this.getId() == other.getId() && this.getTotal() == (other.getTotal())) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 }

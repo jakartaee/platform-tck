@@ -26,64 +26,62 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Customers implements Serializable {
 
-  @Id
-  private Integer id;
+	@Id
+	private Integer id;
 
-  @ManyToOne
-  private Store store;
+	@ManyToOne
+	private Store store;
 
-  @Column(unique = true, nullable = false)
-  private String custName;
+	@Column(unique = true, nullable = false)
+	private String custName;
 
-  public Customers() {
-  }
+	public Customers() {
+	}
 
-  public Integer getId() {
-    return id;
-  }
+	public Integer getId() {
+		return id;
+	}
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.getId() != null ? this.getId().hashCode() : 0);
-    return hash;
-  }
+	public int hashCode() {
+		int hash = 0;
+		hash += (this.getId() != null ? this.getId().hashCode() : 0);
+		return hash;
+	}
 
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof Customers)) {
-      return false;
-    }
-    Customers other = (Customers) object;
-    if (this.getId() != other.getId()
-        && (this.getId() == null || !this.getId().equals(other.getId()))) {
-      return false;
-    }
-    return true;
-  }
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not
+		// set
+		if (!(object instanceof Customers)) {
+			return false;
+		}
+		Customers other = (Customers) object;
+		if (this.getId() != other.getId() && (this.getId() == null || !this.getId().equals(other.getId()))) {
+			return false;
+		}
+		return true;
+	}
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.mapkey." + "Customers[id="
-        + getId() + "]";
-  }
+	public String toString() {
+		return "com.sun.ts.tests.jpa.core.override.mapkey." + "Customers[id=" + getId() + "]";
+	}
 
-  public Store getStore() {
-    return store;
-  }
+	public Store getStore() {
+		return store;
+	}
 
-  public void setStore(Store store) {
-    this.store = store;
-  }
+	public void setStore(Store store) {
+		this.store = store;
+	}
 
-  public String getCustName() {
-    return custName;
-  }
+	public String getCustName() {
+		return custName;
+	}
 
-  public void setCustName(String custname) {
-    this.custName = custname;
-  }
+	public void setCustName(String custname) {
+		this.custName = custname;
+	}
 }

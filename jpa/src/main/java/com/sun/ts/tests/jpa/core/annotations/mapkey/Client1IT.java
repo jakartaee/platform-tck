@@ -22,191 +22,187 @@ package com.sun.ts.tests.jpa.core.annotations.mapkey;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Properties;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.core.annotations.lob.ClientIT;
 
-
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client1IT extends Client {
 
-  public Client1IT() {
-  }
-  
- 
-  @BeforeAll
-  public void setupCreateTestData() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      removeTestData();
-      createTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	public Client1IT() {
+	}
 
+	public static JavaArchive createDeployment() throws Exception {
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = Client.class.getPackageName() + ".";
+		String[] classes = { pkgName + "Department", pkgName + "Employee", pkgName + "Employee2", pkgName + "Employee3",
+				pkgName + "Employee4" };
+		return createDeploymentJar("jpa_core_annotations_mapkey1.jar", pkgNameWithoutSuffix, classes);
 
-  /*
-   * @testName: annotationMapKeyTest1
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:114; PERSISTENCE:SPEC:1100;
-   * PERSISTENCE:SPEC:1101; PERSISTENCE:SPEC:518; PERSISTENCE:SPEC:1980;
-   * 
-   * @test_Strategy: The MapKey annotation is used to specify the map key for
-   * associations of type java.util.Map.
-   *
-   * The name element designates the name of the persistence property or field
-   * of the associated entity that is used as the map key.
-   * 
-   * Execute a query returning Employees objects.
-   * 
-   */
-  @Test
-  public void annotationMapKeyTest1() throws Exception {
+	}
 
-    boolean pass = true;
+	@BeforeAll
+	public void setupCreateTestData() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup();
+			removeTestData();
+			createDeployment();
 
-    try {
-      List<Integer> expected = new ArrayList<Integer>();
-      List<Integer> actual = new ArrayList<Integer>();
+			createTestData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-      expected.add(empRef[0].getId());
-      expected.add(empRef[2].getId());
-      expected.add(empRef[4].getId());
+	/*
+	 * @testName: annotationMapKeyTest1
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:114; PERSISTENCE:SPEC:1100;
+	 * PERSISTENCE:SPEC:1101; PERSISTENCE:SPEC:518; PERSISTENCE:SPEC:1980;
+	 * 
+	 * @test_Strategy: The MapKey annotation is used to specify the map key for
+	 * associations of type java.util.Map.
+	 *
+	 * The name element designates the name of the persistence property or field of
+	 * the associated entity that is used as the map key.
+	 * 
+	 * Execute a query returning Employees objects.
+	 * 
+	 */
+	@Test
+	public void annotationMapKeyTest1() throws Exception {
 
-      getEntityTransaction().begin();
+		boolean pass = true;
 
-      TestUtil.logTrace("find Employees belonging to Department: Marketing");
-      List l = getEntityManager()
-          .createQuery(
-              "Select e from Employee e where e.department.name = 'Marketing'")
-          .getResultList();
+		try {
+			List<Integer> expected = new ArrayList<Integer>();
+			List<Integer> actual = new ArrayList<Integer>();
 
-      for (Object o : l) {
-        Employee e = (Employee) o;
-        actual.add(e.getId());
-      }
+			expected.add(empRef[0].getId());
+			expected.add(empRef[2].getId());
+			expected.add(empRef[4].getId());
 
-      Collections.sort(actual);
-      if (expected.equals(actual)) {
-        TestUtil.logTrace("Received expected employees");
-      } else {
-        TestUtil.logErr("Expected id values were:");
-        for (Integer i : expected) {
-          TestUtil.logErr("id: " + i);
-        }
-        TestUtil.logErr("actual id values were:");
-        Collections.sort(actual);
-        for (Integer i : actual) {
-          TestUtil.logErr("id: " + i);
-        }
-      }
+			getEntityTransaction().begin();
 
-      getEntityTransaction().commit();
+			TestUtil.logTrace("find Employees belonging to Department: Marketing");
+			List l = getEntityManager().createQuery("Select e from Employee e where e.department.name = 'Marketing'")
+					.getResultList();
 
-    } catch (Exception ex) {
-      TestUtil.logErr("Unexpected exception occurred", ex);
-      pass = false;
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
+			for (Object o : l) {
+				Employee e = (Employee) o;
+				actual.add(e.getId());
+			}
 
-    if (!pass)
-      throw new Exception("annotationMapKeyTest1 failed");
-  }
+			Collections.sort(actual);
+			if (expected.equals(actual)) {
+				TestUtil.logTrace("Received expected employees");
+			} else {
+				TestUtil.logErr("Expected id values were:");
+				for (Integer i : expected) {
+					TestUtil.logErr("id: " + i);
+				}
+				TestUtil.logErr("actual id values were:");
+				Collections.sort(actual);
+				for (Integer i : actual) {
+					TestUtil.logErr("id: " + i);
+				}
+			}
 
-  /*
-   * @testName: annotationMapKeyTest2
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:114; PERSISTENCE:SPEC:1100;
-   * PERSISTENCE:SPEC:1101
-   * 
-   * @test_Strategy: The MapKey annotation is used to specify the map key for
-   * associations of type java.util.Map.
-   *
-   * The name element designates the name of the persistence property or field
-   * of the associated entity that is used as the map key.
-   *
-   * Execute a query returning Employee IDs.
-   */
-  @Test
-  public void annotationMapKeyTest2() throws Exception {
+			getEntityTransaction().commit();
 
-    boolean pass = true;
+		} catch (Exception ex) {
+			TestUtil.logErr("Unexpected exception occurred", ex);
+			pass = false;
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in rollback:", re);
+			}
+		}
 
-    try {
-      List<Integer> expected = new ArrayList<Integer>();
-      List<Integer> actual = new ArrayList<Integer>();
+		if (!pass)
+			throw new Exception("annotationMapKeyTest1 failed");
+	}
 
-      expected.add(empRef[1].getId());
-      expected.add(empRef[3].getId());
+	/*
+	 * @testName: annotationMapKeyTest2
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:114; PERSISTENCE:SPEC:1100;
+	 * PERSISTENCE:SPEC:1101
+	 * 
+	 * @test_Strategy: The MapKey annotation is used to specify the map key for
+	 * associations of type java.util.Map.
+	 *
+	 * The name element designates the name of the persistence property or field of
+	 * the associated entity that is used as the map key.
+	 *
+	 * Execute a query returning Employee IDs.
+	 */
+	@Test
+	public void annotationMapKeyTest2() throws Exception {
 
-      getEntityTransaction().begin();
+		boolean pass = true;
 
-      TestUtil.logTrace("find Employees belonging to Department: Marketing");
-      List l = getEntityManager().createQuery(
-          "Select e.id from Employee e where e.department.name = 'Administration' ORDER BY e.id DESC")
-          .getResultList();
+		try {
+			List<Integer> expected = new ArrayList<Integer>();
+			List<Integer> actual = new ArrayList<Integer>();
 
-      for (Object o : l) {
-        Integer i = (Integer) o;
-        actual.add(i);
-      }
+			expected.add(empRef[1].getId());
+			expected.add(empRef[3].getId());
 
-      Collections.sort(actual);
-      if (expected.equals(actual)) {
-        TestUtil.logTrace("Received expected employees");
-      } else {
-        TestUtil.logErr("Expected id values were:");
-        for (Integer i : expected) {
-          TestUtil.logErr("id: " + i);
-        }
-        TestUtil.logErr("actual id values were:");
-        Collections.sort(actual);
-        for (Integer i : actual) {
-          TestUtil.logErr("id: " + i);
-        }
-      }
+			getEntityTransaction().begin();
 
-      getEntityTransaction().commit();
+			TestUtil.logTrace("find Employees belonging to Department: Marketing");
+			List l = getEntityManager()
+					.createQuery(
+							"Select e.id from Employee e where e.department.name = 'Administration' ORDER BY e.id DESC")
+					.getResultList();
 
-    } catch (Exception ex) {
-      TestUtil.logErr("Unexpected exception occurred", ex);
-      pass = false;
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
+			for (Object o : l) {
+				Integer i = (Integer) o;
+				actual.add(i);
+			}
 
-    if (!pass)
-      throw new Exception("annotationMapKeyTest2 failed");
-  }
+			Collections.sort(actual);
+			if (expected.equals(actual)) {
+				TestUtil.logTrace("Received expected employees");
+			} else {
+				TestUtil.logErr("Expected id values were:");
+				for (Integer i : expected) {
+					TestUtil.logErr("id: " + i);
+				}
+				TestUtil.logErr("actual id values were:");
+				Collections.sort(actual);
+				for (Integer i : actual) {
+					TestUtil.logErr("id: " + i);
+				}
+			}
+
+			getEntityTransaction().commit();
+
+		} catch (Exception ex) {
+			TestUtil.logErr("Unexpected exception occurred", ex);
+			pass = false;
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in rollback:", re);
+			}
+		}
+
+		if (!pass)
+			throw new Exception("annotationMapKeyTest2 failed");
+	}
 }

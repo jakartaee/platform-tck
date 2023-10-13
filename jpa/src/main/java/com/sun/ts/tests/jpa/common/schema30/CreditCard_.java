@@ -24,20 +24,20 @@ import jakarta.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(CreditCard.class)
 public class CreditCard_ {
 
-  public static volatile SingularAttribute<CreditCard, String> id;
+	public static volatile SingularAttribute<CreditCard, String> id;
 
-  public static volatile SingularAttribute<CreditCard, Double> balance;
+	public static volatile SingularAttribute<CreditCard, Double> balance;
 
-  public static volatile SingularAttribute<CreditCard, Boolean> approved;
+	public static volatile SingularAttribute<CreditCard, Boolean> approved;
 
-  public static volatile SingularAttribute<CreditCard, String> expires;
+	public static volatile SingularAttribute<CreditCard, String> expires;
 
-  public static volatile SingularAttribute<CreditCard, Order> order;
+	public static volatile SingularAttribute<CreditCard, Order> order;
 
-  public static volatile SingularAttribute<CreditCard, String> number;
+	public static volatile SingularAttribute<CreditCard, String> number;
 
-  public static volatile SingularAttribute<CreditCard, Customer> customer;
+	public static volatile SingularAttribute<CreditCard, Customer> customer;
 
-  public static volatile SingularAttribute<CreditCard, String> type;
+	public static volatile SingularAttribute<CreditCard, String> type;
 
 }

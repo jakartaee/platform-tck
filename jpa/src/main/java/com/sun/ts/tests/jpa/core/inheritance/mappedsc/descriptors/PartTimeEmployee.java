@@ -29,26 +29,25 @@ import java.sql.Date;
 
 public class PartTimeEmployee extends Employee {
 
-  private float wage;
+	private float wage;
 
-  public PartTimeEmployee() {
-  }
+	public PartTimeEmployee() {
+	}
 
-  public PartTimeEmployee(int id, String firstName, String lastName,
-      Date hireDate, float salary) {
-    super(id, firstName, lastName, hireDate);
-    this.wage = wage;
-  }
+	public PartTimeEmployee(int id, String firstName, String lastName, Date hireDate, float salary) {
+		super(id, firstName, lastName, hireDate);
+		this.wage = wage;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  public float getWage() {
-    return wage;
-  }
+	public float getWage() {
+		return wage;
+	}
 
-  public void setWage(float wage) {
-    this.wage = wage;
-  }
+	public void setWage(float wage) {
+		this.wage = wage;
+	}
 
 }

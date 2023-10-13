@@ -27,20 +27,20 @@ import jakarta.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Order.class)
 public class Order_ {
 
-  public static volatile SingularAttribute<Order, String> id;
+	public static volatile SingularAttribute<Order, String> id;
 
-  public static volatile SingularAttribute<Order, CreditCard> creditCard;
+	public static volatile SingularAttribute<Order, CreditCard> creditCard;
 
-  public static volatile SingularAttribute<Order, LineItem> sampleLineItem;
+	public static volatile SingularAttribute<Order, LineItem> sampleLineItem;
 
-  public static volatile SingularAttribute<Order, Customer> customer;
+	public static volatile SingularAttribute<Order, Customer> customer;
 
-  public static volatile CollectionAttribute<Order, LineItem> lineItemsCollection;
+	public static volatile CollectionAttribute<Order, LineItem> lineItemsCollection;
 
-  public static volatile SetAttribute<Order, LineItem> lineItemsSet;
+	public static volatile SetAttribute<Order, LineItem> lineItemsSet;
 
-  public static volatile ListAttribute<Order, LineItem> lineItemsList;
+	public static volatile ListAttribute<Order, LineItem> lineItemsList;
 
-  public static volatile SingularAttribute<Order, Double> totalPrice;
+	public static volatile SingularAttribute<Order, Double> totalPrice;
 
 }

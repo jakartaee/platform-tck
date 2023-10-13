@@ -26,51 +26,50 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class DID1bDependentId implements java.io.Serializable {
 
-  String name;
+	String name;
 
-  long empPK;
+	long empPK;
 
-  public DID1bDependentId() {
-  }
+	public DID1bDependentId() {
+	}
 
-  public DID1bDependentId(String name, long emp) {
-    this.name = name;
-    this.empPK = emp;
-  }
+	public DID1bDependentId(String name, long emp) {
+		this.name = name;
+		this.empPK = emp;
+	}
 
-  public long getEmpPK() {
-    return empPK;
-  }
+	public long getEmpPK() {
+		return empPK;
+	}
 
-  public void setEmpPK(long emp) {
-    this.empPK = emp;
-  }
+	public void setEmpPK(long emp) {
+		this.empPK = emp;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  @Override
-  public int hashCode() {
-    int hash = 0;
-    hash += (int) empPK;
-    return hash;
-  }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (int) empPK;
+		return hash;
+	}
 
-  @Override
-  public boolean equals(Object object) {
-    if (!(object instanceof DID1bDependentId)) {
-      return false;
-    }
-    DID1bDependentId other = (DID1bDependentId) object;
-    if (this.empPK != other.empPK || this.name == null
-        || !(this.name.equals(other.name))) {
-      return false;
-    }
-    return true;
-  }
+	@Override
+	public boolean equals(Object object) {
+		if (!(object instanceof DID1bDependentId)) {
+			return false;
+		}
+		DID1bDependentId other = (DID1bDependentId) object;
+		if (this.empPK != other.empPK || this.name == null || !(this.name.equals(other.name))) {
+			return false;
+		}
+		return true;
+	}
 }

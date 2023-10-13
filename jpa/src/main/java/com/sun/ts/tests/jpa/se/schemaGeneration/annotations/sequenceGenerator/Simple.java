@@ -27,56 +27,56 @@ import jakarta.persistence.Table;
 @Table(name = "SCHEMAGENSIMPLE")
 public class Simple implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
-  int id;
+	// ===========================================================
+	// instance variables
+	int id;
 
-  // ===========================================================
-  // constructors
-  public Simple() {
-  }
+	// ===========================================================
+	// constructors
+	public Simple() {
+	}
 
-  public Simple(int id) {
-    this.id = id;
-  }
+	public Simple(int id) {
+		this.id = id;
+	}
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQGENERATOR")
-  @SequenceGenerator(name = "SEQGENERATOR", allocationSize = 1, initialValue = 10)
-  public int getId() {
-    return id;
-  }
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQGENERATOR")
+	@SequenceGenerator(name = "SEQGENERATOR", allocationSize = 1, initialValue = 10)
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  @Override
-  public boolean equals(Object o) {
-    // check for self-comparison
-    if (this == o)
-      return true;
-    if (!(o instanceof Simple))
-      return false;
+	@Override
+	public boolean equals(Object o) {
+		// check for self-comparison
+		if (this == o)
+			return true;
+		if (!(o instanceof Simple))
+			return false;
 
-    Simple o1 = (Simple) o;
+		Simple o1 = (Simple) o;
 
-    boolean result = false;
+		boolean result = false;
 
-    if (this.getId() == o1.getId()) {
-      result = true;
-    }
+		if (this.getId() == o1.getId()) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append("]");
+		return result.toString();
+	}
 
 }

@@ -24,10 +24,10 @@ import jakarta.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Member.class)
 public class Member_ {
 
-  public static volatile SingularAttribute<Member, Integer> memberId;
+	public static volatile SingularAttribute<Member, Integer> memberId;
 
-  public static volatile SingularAttribute<Member, String> memberName;
+	public static volatile SingularAttribute<Member, String> memberName;
 
-  public static volatile SingularAttribute<Member, Integer> version;
+	public static volatile SingularAttribute<Member, Integer> version;
 
 }

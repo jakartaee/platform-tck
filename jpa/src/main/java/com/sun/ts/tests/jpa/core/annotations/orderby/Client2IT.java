@@ -19,290 +19,263 @@ package com.sun.ts.tests.jpa.core.annotations.orderby;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
-
 public class Client2IT extends PMClientBase {
 
-  List<Address> addrRef;
+	List<Address> addrRef;
 
-  Address addr1 = null;
+	Address addr1 = null;
 
-  Address addr2 = null;
+	Address addr2 = null;
 
-  Address addr3 = null;
+	Address addr3 = null;
 
-  List<Address2> addrRef2;
+	List<Address2> addrRef2;
 
-  Address2 addr11 = null;
+	Address2 addr11 = null;
 
-  Address2 addr12 = null;
+	Address2 addr12 = null;
 
-  Address2 addr13 = null;
+	Address2 addr13 = null;
 
-  public Client2IT() {
-  }
-  
-  @Deployment(testable = false, managed = false)
- 	public static JavaArchive createDeployment() throws Exception {
- 		String pkgNameWithoutSuffix = Client2IT.class.getPackageName();
- 		String pkgName = Client2IT.class.getPackageName() + ".";
- 		String[] classes = { pkgName + "A", pkgName + "A2",
- 				pkgName + "Address", pkgName + "Address2",
- 				pkgName + "Customer", pkgName + "Customer2",
- 				pkgName + "Department", pkgName + "Employee",
- 				pkgName + "Insurance", pkgName + "ZipCode",
- 				pkgName + "ZipCode2"};
- 		return createDeploymentJar("jpa_core_annotations_orderby2.jar", pkgNameWithoutSuffix, classes);
- 	}
+	public Client2IT() {
+	}
 
+	public static JavaArchive createDeployment() throws Exception {
+		String pkgNameWithoutSuffix = Client2IT.class.getPackageName();
+		String pkgName = Client2IT.class.getPackageName() + ".";
+		String[] classes = { pkgName + "A", pkgName + "A2", pkgName + "Address", pkgName + "Address2",
+				pkgName + "Customer", pkgName + "Customer2", pkgName + "Department", pkgName + "Employee",
+				pkgName + "Insurance", pkgName + "ZipCode", pkgName + "ZipCode2" };
+		return createDeploymentJar("jpa_core_annotations_orderby2.jar", pkgNameWithoutSuffix, classes);
+	}
 
+	@BeforeAll
+	public void setupAddress() throws Exception {
+		TestUtil.logTrace("setupAddress");
+		try {
+			super.setup();
+			createDeployment();
 
-@BeforeAll
-  public void setupAddress() throws Exception {
-    TestUtil.logTrace("setupAddress");
-    try {
-      super.setup();
-      removeAddressData();
-      createAddressData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+			removeAddressData();
+			createAddressData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
+	/*
+	 * @testName: propertyDotNotationTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:2089; PERSISTENCE:SPEC:2092;
+	 * PERSISTENCE:SPEC:2091;
+	 * 
+	 * @test_Strategy: identifier is the name of the respective property
+	 *
+	 */
+	@Test
+	public void propertyDotNotationTest() throws Exception {
+		boolean pass = false;
 
-  /*
-   * @testName: propertyDotNotationTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:2089; PERSISTENCE:SPEC:2092;
-   * PERSISTENCE:SPEC:2091;
-   * 
-   * @test_Strategy: identifier is the name of the respective property
-   *
-   */
-  @Test
-  public void propertyDotNotationTest() throws Exception {
-    boolean pass = false;
+		try {
+			addrRef = new ArrayList<Address>();
+			List<Address> expected = new ArrayList<Address>();
+			expected.add(addr2);
+			expected.add(addr3);
+			expected.add(addr1);
 
-    try {
-      addrRef = new ArrayList<Address>();
-      List<Address> expected = new ArrayList<Address>();
-      expected.add(addr2);
-      expected.add(addr3);
-      expected.add(addr1);
+			clearCache();
+			A a = getEntityManager().find(A.class, "1");
 
-      clearCache();
-      A a = getEntityManager().find(A.class, "1");
+			List<Address> actual = a.getAddressList();
 
-      List<Address> actual = a.getAddressList();
+			if (actual.size() == expected.size()) {
+				int count = 0;
+				for (int i = 0; i < expected.size(); i++) {
+					TestUtil.logTrace("Testing - expected[" + expected.get(i) + "], actual[" + actual.get(i) + "]");
 
-      if (actual.size() == expected.size()) {
-        int count = 0;
-        for (int i = 0; i < expected.size(); i++) {
-          TestUtil.logTrace("Testing - expected[" + expected.get(i)
-              + "], actual[" + actual.get(i) + "]");
+					if (expected.get(i).equals(actual.get(i))) {
+						count++;
+					}
+				}
+				if (count == expected.size()) {
+					pass = true;
+				} else {
+					TestUtil.logErr("count=" + count + ", expected size:" + expected.size());
+					for (Address aa : expected) {
+						TestUtil.logErr("expected:" + aa);
+					}
+					TestUtil.logErr("------------");
+					for (Address aa : actual) {
+						TestUtil.logErr("actual:" + aa);
+					}
+				}
+			} else {
+				TestUtil.logErr("Expected list size:" + expected.size() + ", actual size:" + actual.size());
+				for (Address aa : expected) {
+					TestUtil.logErr("expected:" + aa);
+				}
+				TestUtil.logErr("------------");
+				for (Address aa : actual) {
+					TestUtil.logErr("actual:" + aa);
+				}
+			}
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		}
+		if (!pass) {
+			throw new Exception("propertyDotNotationTest failed");
+		}
+	}
 
-          if (expected.get(i).equals(actual.get(i))) {
-            count++;
-          }
-        }
-        if (count == expected.size()) {
-          pass = true;
-        } else {
-          TestUtil
-              .logErr("count=" + count + ", expected size:" + expected.size());
-          for (Address aa : expected) {
-            TestUtil.logErr("expected:" + aa);
-          }
-          TestUtil.logErr("------------");
-          for (Address aa : actual) {
-            TestUtil.logErr("actual:" + aa);
-          }
-        }
-      } else {
-        TestUtil.logErr("Expected list size:" + expected.size()
-            + ", actual size:" + actual.size());
-        for (Address aa : expected) {
-          TestUtil.logErr("expected:" + aa);
-        }
-        TestUtil.logErr("------------");
-        for (Address aa : actual) {
-          TestUtil.logErr("actual:" + aa);
-        }
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
-    if (!pass) {
-      throw new Exception("propertyDotNotationTest failed");
-    }
-  }
+	/*
+	 * @testName: fieldDotNotationTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:2089; PERSISTENCE:SPEC:2092;
+	 * PERSISTENCE:SPEC:2091;
+	 * 
+	 * @test_Strategy: identifier is the name of the respective field
+	 *
+	 */
+	@Test
+	public void fieldDotNotationTest() throws Exception {
+		boolean pass = false;
 
-  /*
-   * @testName: fieldDotNotationTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:2089; PERSISTENCE:SPEC:2092;
-   * PERSISTENCE:SPEC:2091;
-   * 
-   * @test_Strategy: identifier is the name of the respective field
-   *
-   */
-  @Test
-  public void fieldDotNotationTest() throws Exception {
-    boolean pass = false;
+		try {
+			addrRef = new ArrayList<Address>();
+			List<Address2> expected = new ArrayList<Address2>();
+			expected.add(addr12);
+			expected.add(addr13);
+			expected.add(addr11);
 
-    try {
-      addrRef = new ArrayList<Address>();
-      List<Address2> expected = new ArrayList<Address2>();
-      expected.add(addr12);
-      expected.add(addr13);
-      expected.add(addr11);
+			TestUtil.logTrace("Clearing the cache");
+			clearCache();
+			A2 a = getEntityManager().find(A2.class, "2");
 
-      TestUtil.logTrace("Clearing the cache");
-      clearCache();
-      A2 a = getEntityManager().find(A2.class, "2");
+			List<Address2> actual = a.getAddressList();
 
-      List<Address2> actual = a.getAddressList();
+			if (actual.size() == expected.size()) {
+				int count = 0;
+				for (int i = 0; i < expected.size(); i++) {
+					TestUtil.logTrace("Testing - expected[" + expected.get(i) + "], actual[" + actual.get(i) + "]");
 
-      if (actual.size() == expected.size()) {
-        int count = 0;
-        for (int i = 0; i < expected.size(); i++) {
-          TestUtil.logTrace("Testing - expected[" + expected.get(i)
-              + "], actual[" + actual.get(i) + "]");
+					if (expected.get(i).equals(actual.get(i))) {
+						count++;
+					}
+				}
 
-          if (expected.get(i).equals(actual.get(i))) {
-            count++;
-          }
-        }
+				if (count == expected.size()) {
+					pass = true;
+				} else {
+					TestUtil.logTrace("count=" + count + ", expected size:" + expected.size());
+					for (Address2 aa : expected) {
+						TestUtil.logErr("expected:" + aa);
+					}
+					TestUtil.logErr("------------");
+					for (Address2 aa : actual) {
+						TestUtil.logErr("actual:" + aa);
+					}
+				}
+			} else {
+				TestUtil.logErr("Expected list size:" + expected.size() + ", actual size:" + actual.size());
+				for (Address2 aa : expected) {
+					TestUtil.logErr("expected:" + aa);
+				}
+				TestUtil.logErr("------------");
+				for (Address2 aa : actual) {
+					TestUtil.logErr("actual:" + aa);
+				}
+			}
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+		}
+		if (!pass) {
+			throw new Exception("propertyDotNotationTest failed");
+		}
+	}
 
-        if (count == expected.size()) {
-          pass = true;
-        } else {
-          TestUtil.logTrace(
-              "count=" + count + ", expected size:" + expected.size());
-          for (Address2 aa : expected) {
-            TestUtil.logErr("expected:" + aa);
-          }
-          TestUtil.logErr("------------");
-          for (Address2 aa : actual) {
-            TestUtil.logErr("actual:" + aa);
-          }
-        }
-      } else {
-        TestUtil.logErr("Expected list size:" + expected.size()
-            + ", actual size:" + actual.size());
-        for (Address2 aa : expected) {
-          TestUtil.logErr("expected:" + aa);
-        }
-        TestUtil.logErr("------------");
-        for (Address2 aa : actual) {
-          TestUtil.logErr("actual:" + aa);
-        }
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
-    if (!pass) {
-      throw new Exception("propertyDotNotationTest failed");
-    }
-  }
+	private void createAddressData() throws Exception {
+		try {
+			TestUtil.logTrace("createAddressData");
+			getEntityTransaction().begin();
 
- 
-  private void createAddressData() throws Exception {
-    try {
-      TestUtil.logTrace("createAddressData");
-      getEntityTransaction().begin();
+			addr1 = new Address("1 Network Drive", "Burlington", "MA", new ZipCode("01801"));
+			addr2 = new Address("634 Goldstar Road", "Peabody", "MA", new ZipCode("88444"));
+			addr3 = new Address("3212 Boston Road", "Chelmsford", "MA", new ZipCode("01824"));
+			addrRef = new ArrayList<Address>();
+			addrRef.add(addr1);
+			addrRef.add(addr2);
+			addrRef.add(addr3);
+			A a1 = new A("1", "b1", addrRef);
 
-      addr1 = new Address("1 Network Drive", "Burlington", "MA",
-          new ZipCode("01801"));
-      addr2 = new Address("634 Goldstar Road", "Peabody", "MA",
-          new ZipCode("88444"));
-      addr3 = new Address("3212 Boston Road", "Chelmsford", "MA",
-          new ZipCode("01824"));
-      addrRef = new ArrayList<Address>();
-      addrRef.add(addr1);
-      addrRef.add(addr2);
-      addrRef.add(addr3);
-      A a1 = new A("1", "b1", addrRef);
+			addr11 = new Address2("1 Network Drive", "Burlington", "MA", new ZipCode2("01801"));
+			addr12 = new Address2("634 Goldstar Road", "Peabody", "MA", new ZipCode2("88444"));
+			addr13 = new Address2("3212 Boston Road", "Chelmsford", "MA", new ZipCode2("01824"));
+			addrRef2 = new ArrayList<Address2>();
+			addrRef2.add(addr11);
+			addrRef2.add(addr12);
+			addrRef2.add(addr13);
+			A2 a2 = new A2("2", "b2", addrRef2);
 
-      addr11 = new Address2("1 Network Drive", "Burlington", "MA",
-          new ZipCode2("01801"));
-      addr12 = new Address2("634 Goldstar Road", "Peabody", "MA",
-          new ZipCode2("88444"));
-      addr13 = new Address2("3212 Boston Road", "Chelmsford", "MA",
-          new ZipCode2("01824"));
-      addrRef2 = new ArrayList<Address2>();
-      addrRef2.add(addr11);
-      addrRef2.add(addr12);
-      addrRef2.add(addr13);
-      A2 a2 = new A2("2", "b2", addrRef2);
+			getEntityManager().persist(a1);
+			getEntityManager().persist(a2);
 
-      getEntityManager().persist(a1);
-      getEntityManager().persist(a2);
+			getEntityManager().flush();
+			getEntityManager().refresh(a1);
+			getEntityManager().refresh(a2);
 
-      getEntityManager().flush();
-      getEntityManager().refresh(a1);
-      getEntityManager().refresh(a2);
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected Exception creating test data:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in rollback:", re);
+			}
+		}
+	}
 
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception creating test data:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
-  }
+	@AfterAll
+	public void cleanupAddress() throws Exception {
+		TestUtil.logTrace("cleanup");
+		removeAddressData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+		removeDeploymentJar();
+	}
 
-  @AfterAll
-   public void cleanupAddress() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeAddressData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
-
-  private void removeAddressData() {
-    TestUtil.logTrace("removeAddressData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("Delete from COLTAB_ADDRESS")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("Delete from COLTAB")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	private void removeAddressData() {
+		TestUtil.logTrace("removeAddressData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("Delete from COLTAB_ADDRESS").executeUpdate();
+			getEntityManager().createNativeQuery("Delete from COLTAB").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

@@ -16,20 +16,11 @@
 
 package com.sun.ts.tests.jpa.core.annotations.access.field;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 public class Client extends PMClientBase {
 
 	protected DataTypes d1;
@@ -40,16 +31,6 @@ public class Client extends PMClientBase {
 
 	public Client() {
 	}
-	
-	@Deployment(testable = false, managed = false)
-	public static JavaArchive createDeployment() throws Exception {
-		
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = Client.class.getPackageName() + ".";
-		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2", "com.sun.ts.tests.jpa.core.types.common.Grade"};
-		return createDeploymentJar("jpa_core_annotations_access_field.jar", pkgNameWithoutSuffix, (String[]) classes);
-
-	}
 
 	@AfterAll
 	public void cleanup() throws Exception {
@@ -57,6 +38,7 @@ public class Client extends PMClientBase {
 		removeTestData();
 		TestUtil.logTrace("cleanup complete, calling super.cleanup");
 		super.cleanup();
+		removeDeploymentJar();
 	}
 
 	protected void removeTestData() {

@@ -36,250 +36,248 @@ import jakarta.persistence.Transient;
 @Access(AccessType.FIELD)
 public class DataTypes implements java.io.Serializable {
 
-  @Id
-  protected int id;
+	@Id
+	protected int id;
 
-  @Basic(fetch = FetchType.EAGER)
-  @Column(name = "BOOLEANDATA")
-  @Access(AccessType.FIELD)
-  protected boolean booleanData;
+	@Basic(fetch = FetchType.EAGER)
+	@Column(name = "BOOLEANDATA")
+	@Access(AccessType.FIELD)
+	protected boolean booleanData;
 
-  @Column(name = "BYTEDATA")
-  protected byte byteData;
+	@Column(name = "BYTEDATA")
+	protected byte byteData;
 
-  @Column(name = "CHARDATA")
-  protected char characterData;
+	@Column(name = "CHARDATA")
+	protected char characterData;
 
-  @Column(name = "SHORTDATA")
-  protected short shortData;
+	@Column(name = "SHORTDATA")
+	protected short shortData;
 
-  @Column(name = "INTDATA")
-  protected int intData;
+	@Column(name = "INTDATA")
+	protected int intData;
 
-  @Column(name = "LONGDATA")
-  protected long longData;
+	@Column(name = "LONGDATA")
+	protected long longData;
 
-  @Column(name = "DBLDATA")
-  protected double doubleData;
+	@Column(name = "DBLDATA")
+	protected double doubleData;
 
-  @Column(name = "FLOATDATA")
-  protected float floatData;
+	@Column(name = "FLOATDATA")
+	protected float floatData;
 
-  @Column(name = "ENUMSDATA")
-  @Enumerated(EnumType.STRING)
-  protected Grade enumData;
+	@Column(name = "ENUMSDATA")
+	@Enumerated(EnumType.STRING)
+	protected Grade enumData;
 
-  @Column(name = "CHARARRAYDATA")
-  protected char[] charArrayData;
+	@Column(name = "CHARARRAYDATA")
+	protected char[] charArrayData;
 
-  @Lob
-  @Column(name = "BYTEARRAYDATA")
-  protected byte[] byteArrayData;
+	@Lob
+	@Column(name = "BYTEARRAYDATA")
+	protected byte[] byteArrayData;
 
-  @Transient
-  private int intData2;
+	@Transient
+	private int intData2;
 
-  @Transient
-  public byte trans;
+	@Transient
+	public byte trans;
 
-  public DataTypes() {
-  }
+	public DataTypes() {
+	}
 
-  public DataTypes(int id) {
-    this.id = id;
-  }
+	public DataTypes(int id) {
+		this.id = id;
+	}
 
-  public DataTypes(int id, boolean booleanData, byte byteData,
-      char characterData, short shortData, int intData, long longData,
-      double doubleData, float floatData, char[] charArrayData,
-      byte[] byteArrayData) {
-    this.id = id;
-    this.booleanData = booleanData;
-    this.byteData = byteData;
-    this.characterData = characterData;
-    this.shortData = shortData;
-    this.intData = intData;
-    this.longData = longData;
-    this.doubleData = doubleData;
-    this.floatData = floatData;
-    this.charArrayData = charArrayData;
-    this.byteArrayData = byteArrayData;
+	public DataTypes(int id, boolean booleanData, byte byteData, char characterData, short shortData, int intData,
+			long longData, double doubleData, float floatData, char[] charArrayData, byte[] byteArrayData) {
+		this.id = id;
+		this.booleanData = booleanData;
+		this.byteData = byteData;
+		this.characterData = characterData;
+		this.shortData = shortData;
+		this.intData = intData;
+		this.longData = longData;
+		this.doubleData = doubleData;
+		this.floatData = floatData;
+		this.charArrayData = charArrayData;
+		this.byteArrayData = byteArrayData;
 
-  }
+	}
 
-  public DataTypes(int id, int intData2) {
-    this.id = id;
-    this.intData2 = intData2;
-    // these values can not be null because of postgres
-    this.characterData = ' ';
-    byte[] bArray = { (byte) 32 };
-    this.byteArrayData = bArray;
-  }
+	public DataTypes(int id, int intData2) {
+		this.id = id;
+		this.intData2 = intData2;
+		// these values can not be null because of postgres
+		this.characterData = ' ';
+		byte[] bArray = { (byte) 32 };
+		this.byteArrayData = bArray;
+	}
 
-  public DataTypes(int id, byte trans) {
-    this.id = id;
-    this.trans = trans;
-    // these values can not be null because of postgres
-    this.characterData = ' ';
-    byte[] bArray = { (byte) 32 };
-    this.byteArrayData = bArray;
+	public DataTypes(int id, byte trans) {
+		this.id = id;
+		this.trans = trans;
+		// these values can not be null because of postgres
+		this.characterData = ' ';
+		byte[] bArray = { (byte) 32 };
+		this.byteArrayData = bArray;
 
-  }
+	}
 
-  public Integer getIdData() {
-    return id;
-  }
+	public Integer getIdData() {
+		return id;
+	}
 
-  public boolean isProperty() {
-    return booleanData;
-  }
+	public boolean isProperty() {
+		return booleanData;
+	}
 
-  public void setBooleanData(boolean booleanData) {
-    this.booleanData = booleanData;
-  }
+	public void setBooleanData(boolean booleanData) {
+		this.booleanData = booleanData;
+	}
 
-  public byte getByteData() {
-    return byteData;
-  }
+	public byte getByteData() {
+		return byteData;
+	}
 
-  public void setByteData(byte byteData) {
-    this.byteData = byteData;
-  }
+	public void setByteData(byte byteData) {
+		this.byteData = byteData;
+	}
 
-  public char getCharacterData() {
-    return characterData;
-  }
+	public char getCharacterData() {
+		return characterData;
+	}
 
-  public void setCharacterData(char characterData) {
-    this.characterData = characterData;
-  }
+	public void setCharacterData(char characterData) {
+		this.characterData = characterData;
+	}
 
-  public short getShortData() {
-    return shortData;
-  }
+	public short getShortData() {
+		return shortData;
+	}
 
-  public void setShortData(short shortData) {
-    this.shortData = shortData;
-  }
+	public void setShortData(short shortData) {
+		this.shortData = shortData;
+	}
 
-  public int getIntData() {
-    return intData;
-  }
+	public int getIntData() {
+		return intData;
+	}
 
-  public void setIntData(int integerData) {
-    this.intData = integerData;
-  }
+	public void setIntData(int integerData) {
+		this.intData = integerData;
+	}
 
-  public long getLongData() {
-    return longData;
-  }
+	public long getLongData() {
+		return longData;
+	}
 
-  public void setLongData(long longData) {
-    this.longData = longData;
-  }
+	public void setLongData(long longData) {
+		this.longData = longData;
+	}
 
-  public double getDoubleData() {
-    return doubleData;
-  }
+	public double getDoubleData() {
+		return doubleData;
+	}
 
-  public void setDoubleData(double doubleData) {
-    this.doubleData = doubleData;
-  }
+	public void setDoubleData(double doubleData) {
+		this.doubleData = doubleData;
+	}
 
-  public float getFloatData() {
-    return floatData;
-  }
+	public float getFloatData() {
+		return floatData;
+	}
 
-  public void setFloatData(float floatData) {
-    this.floatData = floatData;
-  }
+	public void setFloatData(float floatData) {
+		this.floatData = floatData;
+	}
 
-  public Grade getEnumData() {
-    return enumData;
-  }
+	public Grade getEnumData() {
+		return enumData;
+	}
 
-  public void setEnumData(Grade enumData) {
-    this.enumData = enumData;
-  }
+	public void setEnumData(Grade enumData) {
+		this.enumData = enumData;
+	}
 
-  public char[] getCharArrayData() {
-    return charArrayData;
-  }
+	public char[] getCharArrayData() {
+		return charArrayData;
+	}
 
-  public void setCharArrayData(char[] charArrayData) {
-    this.charArrayData = charArrayData;
-  }
+	public void setCharArrayData(char[] charArrayData) {
+		this.charArrayData = charArrayData;
+	}
 
-  public byte[] getByteArrayData() {
-    return byteArrayData;
-  }
+	public byte[] getByteArrayData() {
+		return byteArrayData;
+	}
 
-  public void setByteArrayData(byte[] byteArrayData) {
-    this.byteArrayData = byteArrayData;
-  }
+	public void setByteArrayData(byte[] byteArrayData) {
+		this.byteArrayData = byteArrayData;
+	}
 
-  @Access(AccessType.PROPERTY)
-  @Column(name = "INTDATA2")
-  public int getIntData2() {
-    return intData2;
-  }
+	@Access(AccessType.PROPERTY)
+	@Column(name = "INTDATA2")
+	public int getIntData2() {
+		return intData2;
+	}
 
-  public void setIntData2(int intData2) {
-    this.intData2 = intData2;
-  }
+	public void setIntData2(int intData2) {
+		this.intData2 = intData2;
+	}
 
-  public byte getTransient() {
-    return trans;
-  }
+	public byte getTransient() {
+		return trans;
+	}
 
-  public void setTransient(byte trans) {
-    this.trans = trans;
-  }
+	public void setTransient(byte trans) {
+		this.trans = trans;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getIdData());
-    result.append(", boolean: " + isProperty());
-    result.append(", byte: " + getByteData());
-    result.append(", char: " + getCharacterData());
-    result.append(", short: " + getShortData());
-    result.append(", integer: " + getIntData());
-    result.append(", long: " + getLongData());
-    result.append(", double: " + getDoubleData());
-    result.append(", float: " + getFloatData());
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getIdData());
+		result.append(", boolean: " + isProperty());
+		result.append(", byte: " + getByteData());
+		result.append(", char: " + getCharacterData());
+		result.append(", short: " + getShortData());
+		result.append(", integer: " + getIntData());
+		result.append(", long: " + getLongData());
+		result.append(", double: " + getDoubleData());
+		result.append(", float: " + getFloatData());
 
-    if (getCharArrayData() != null && getCharArrayData().length > 0) {
-      StringBuilder sb = new StringBuilder(", CharData: [");
-      for (int i = 0; i < charArrayData.length; i++) {
-        sb.append(charArrayData[i]);
-        if (i < charArrayData.length - 1) {
-          sb.append(", ");
-        }
-      }
-      sb.append("],");
-      result.append(sb.toString());
-    } else {
-      result.append(", CharData: null");
-    }
-    if (getByteArrayData() != null && getByteArrayData().length > 0) {
-      StringBuilder sb = new StringBuilder(", ByteData: [");
-      for (int i = 0; i < byteArrayData.length; i++) {
-        sb.append(byteArrayData[i]);
-        if (i < byteArrayData.length - 1) {
-          sb.append(", ");
-        }
-      }
-      sb.append("],");
-      result.append(sb.toString());
-    } else {
-      result.append(", ByteData: null");
-    }
+		if (getCharArrayData() != null && getCharArrayData().length > 0) {
+			StringBuilder sb = new StringBuilder(", CharData: [");
+			for (int i = 0; i < charArrayData.length; i++) {
+				sb.append(charArrayData[i]);
+				if (i < charArrayData.length - 1) {
+					sb.append(", ");
+				}
+			}
+			sb.append("],");
+			result.append(sb.toString());
+		} else {
+			result.append(", CharData: null");
+		}
+		if (getByteArrayData() != null && getByteArrayData().length > 0) {
+			StringBuilder sb = new StringBuilder(", ByteData: [");
+			for (int i = 0; i < byteArrayData.length; i++) {
+				sb.append(byteArrayData[i]);
+				if (i < byteArrayData.length - 1) {
+					sb.append(", ");
+				}
+			}
+			sb.append("],");
+			result.append(sb.toString());
+		} else {
+			result.append(", ByteData: null");
+		}
 
-    result.append(", intData2: " + getIntData());
+		result.append(", intData2: " + getIntData());
 
-    result.append("]");
-    return result.toString();
-  }
+		result.append("]");
+		return result.toString();
+	}
 }

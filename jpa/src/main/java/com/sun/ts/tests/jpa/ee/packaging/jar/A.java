@@ -18,49 +18,49 @@ package com.sun.ts.tests.jpa.ee.packaging.jar;
 
 public class A implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+	// ===========================================================
+	// instance variables
 
-  String id;
+	String id;
 
-  String name;
+	String name;
 
-  int value;
+	int value;
 
-  // ===========================================================
-  // constructors
+	// ===========================================================
+	// constructors
 
-  public A() {
-  }
+	public A() {
+	}
 
-  public A(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+	public A(String id, String name, int value) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
 
-  public String getId() {
-    return id;
-  }
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public int getValue() {
-    return value;
-  }
+	public int getValue() {
+		return value;
+	}
 
-  public void setValue(int value) {
-    this.value = value;
-  }
+	public void setValue(int value) {
+		this.value = value;
+	}
 
 }

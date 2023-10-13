@@ -35,60 +35,60 @@ import jakarta.persistence.Table;
 @Table(name = "EMPLOYEE_EMBEDED_ADDRESS")
 public class Employee implements java.io.Serializable {
 
-  private int id;
+	private int id;
 
-  private String firstName;
+	private String firstName;
 
-  private String lastName;
+	private String lastName;
 
-  private Map<String, Address> locationAddress;
+	private Map<String, Address> locationAddress;
 
-  public Employee() {
-  }
+	public Employee() {
+	}
 
-  public Employee(int id, String firstName, String lastName) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
+	public Employee(int id, String firstName, String lastName) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 
-  @Id
-  @Column(name = "ID")
-  public int getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  @Column(name = "FIRSTNAME")
-  public String getFirstName() {
-    return firstName;
-  }
+	@Column(name = "FIRSTNAME")
+	public String getFirstName() {
+		return firstName;
+	}
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-  @Column(name = "LASTNAME")
-  public String getLastName() {
-    return lastName;
-  }
+	@Column(name = "LASTNAME")
+	public String getLastName() {
+		return lastName;
+	}
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-  @ElementCollection
-  @CollectionTable(name = "COLTAB_EMP_EMBEDED_ADDRESS", joinColumns = @JoinColumn(name = "EMPEMBADDRID"))
-  @MapKeyColumn(name = "ADDRESS_LOCATION")
-  public Map<String, Address> getLocationAddress() {
-    return locationAddress;
-  }
+	@ElementCollection
+	@CollectionTable(name = "COLTAB_EMP_EMBEDED_ADDRESS", joinColumns = @JoinColumn(name = "EMPEMBADDRID"))
+	@MapKeyColumn(name = "ADDRESS_LOCATION")
+	public Map<String, Address> getLocationAddress() {
+		return locationAddress;
+	}
 
-  public void setLocationAddress(Map<String, Address> locationAddress) {
-    this.locationAddress = locationAddress;
-  }
+	public void setLocationAddress(Map<String, Address> locationAddress) {
+		this.locationAddress = locationAddress;
+	}
 
 }

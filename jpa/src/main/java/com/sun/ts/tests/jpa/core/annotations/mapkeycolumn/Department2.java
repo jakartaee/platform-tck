@@ -34,56 +34,56 @@ import jakarta.persistence.Table;
 @Table(name = "DEPARTMENT")
 public class Department2 implements java.io.Serializable {
 
-  // Instance variables
-  private int id;
+	// Instance variables
+	private int id;
 
-  private String name;
+	private String name;
 
-  private Map<String, Employee> lastNameEmployees;
+	private Map<String, Employee> lastNameEmployees;
 
-  private Map<String, Employee> salaryEmployees;
+	private Map<String, Employee> salaryEmployees;
 
-  public Department2() {
-  }
+	public Department2() {
+	}
 
-  public Department2(int id, String name) {
-    this.id = id;
-    this.name = name;
-  }
+	public Department2(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Id
-  @Column(name = "ID")
-  public int getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  @Column(name = "NAME")
-  public String getName() {
-    return name;
-  }
+	@Column(name = "NAME")
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  // ===========================================================
-  // getters and setters for the association fields
+	// ===========================================================
+	// getters and setters for the association fields
 
-  @OneToMany(mappedBy = "department")
-  @MapKeyColumn(name = "OFFICE_ID", insertable = false, updatable = false)
-  public Map<String, Employee> getLastNameEmployees() {
-    return lastNameEmployees;
-  }
+	@OneToMany(mappedBy = "department")
+	@MapKeyColumn(name = "OFFICE_ID", insertable = false, updatable = false)
+	public Map<String, Employee> getLastNameEmployees() {
+		return lastNameEmployees;
+	}
 
-  public void setLastNameEmployees(Map<String, Employee> lastNameEmployees) {
-    this.lastNameEmployees = lastNameEmployees;
-  }
+	public void setLastNameEmployees(Map<String, Employee> lastNameEmployees) {
+		this.lastNameEmployees = lastNameEmployees;
+	}
 
 }

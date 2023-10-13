@@ -24,52 +24,50 @@ import jakarta.persistence.Id;
 @Entity
 public class RetailOrder1 implements Serializable {
 
-  @Id
-  private Long id;
+	@Id
+	private Long id;
 
-  private double cost;
+	private double cost;
 
-  public RetailOrder1() {
-  }
+	public RetailOrder1() {
+	}
 
-  public Long getId() {
-    return id;
-  }
+	public Long getId() {
+		return id;
+	}
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.getId() != null ? this.getId().hashCode() : 0);
-    return hash;
-  }
+	public int hashCode() {
+		int hash = 0;
+		hash += (this.getId() != null ? this.getId().hashCode() : 0);
+		return hash;
+	}
 
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof RetailOrder1)) {
-      return false;
-    }
-    RetailOrder1 other = (RetailOrder1) object;
-    if (this.getId() != other.getId()
-        && (this.getId() == null || !this.getId().equals(other.getId()))) {
-      return false;
-    }
-    return true;
-  }
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not
+		// set
+		if (!(object instanceof RetailOrder1)) {
+			return false;
+		}
+		RetailOrder1 other = (RetailOrder1) object;
+		if (this.getId() != other.getId() && (this.getId() == null || !this.getId().equals(other.getId()))) {
+			return false;
+		}
+		return true;
+	}
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.joincolumn." + "RetailOrder1[id="
-        + getId() + "]";
-  }
+	public String toString() {
+		return "com.sun.ts.tests.jpa.core.override.joincolumn." + "RetailOrder1[id=" + getId() + "]";
+	}
 
-  public double getCost() {
-    return cost;
-  }
+	public double getCost() {
+		return cost;
+	}
 
-  public void setCost(double cost) {
-    this.cost = cost;
-  }
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
 }

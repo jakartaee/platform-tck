@@ -24,8 +24,8 @@ import jakarta.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Order.class)
 public class Order_ {
 
-  public static volatile SingularAttribute<Order, Integer> id;
+	public static volatile SingularAttribute<Order, Integer> id;
 
-  public static volatile SingularAttribute<Order, Integer> total;
+	public static volatile SingularAttribute<Order, Integer> total;
 
 }

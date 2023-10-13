@@ -16,430 +16,398 @@
 
 package com.sun.ts.tests.jpa.core.criteriaapi.Root;
 
-import java.util.List;
-
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.common.schema30.Address;
 import com.sun.ts.tests.jpa.common.schema30.Customer;
-import com.sun.ts.tests.jpa.common.schema30.Customer_;
-import com.sun.ts.tests.jpa.common.schema30.Department;
-import com.sun.ts.tests.jpa.common.schema30.Department_;
-import com.sun.ts.tests.jpa.common.schema30.Employee;
-import com.sun.ts.tests.jpa.common.schema30.Order;
 import com.sun.ts.tests.jpa.common.schema30.Util;
 
-import jakarta.persistence.TypedQuery;
-import jakarta.persistence.criteria.CollectionJoin;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Expression;
-import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.JoinType;
-import jakarta.persistence.criteria.ListJoin;
-import jakarta.persistence.criteria.MapJoin;
 import jakarta.persistence.criteria.Root;
-import jakarta.persistence.criteria.SetJoin;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class Client1IT extends Util {
-	
-	 @Deployment(testable = false, managed = false)
-	 	public static JavaArchive createDeployment() throws Exception {
 
-	 		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
-	 		String pkgName = Client1IT.class.getPackageName() + ".";
-	 		String[] classes = {};
-	 		return createDeploymentJar("jpa_core_criteriaapi_root1.jar", pkgNameWithoutSuffix, classes);
-	 }
+	public static JavaArchive createDeployment() throws Exception {
 
+		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
+		String pkgName = Client1IT.class.getPackageName() + ".";
+		String[] classes = {};
+		return createDeploymentJar("jpa_core_criteriaapi_root1.jar", pkgNameWithoutSuffix, classes);
+	}
 
-  /* Test setup */
+	/* Test setup */
 	@BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("Entering Setup");
-    try {
-      super.setup();
-      getEntityManager();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	public void setup() throws Exception {
+		TestUtil.logTrace("Entering Setup");
+		try {
+			super.setup();
+			getEntityManager();
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
+	/*
+	 * @testName: joinStringIllegalArgumentExceptionTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1145; PERSISTENCE:JAVADOC:1147;
+	 * 
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void joinStringIllegalArgumentExceptionTest() throws Exception {
+		boolean pass1 = false;
+		boolean pass2 = false;
+		TestUtil.logMsg("String Test");
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
-  /*
-   * @testName: joinStringIllegalArgumentExceptionTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1145; PERSISTENCE:JAVADOC:1147;
-   * 
-   * @test_Strategy:
-   *
-   */
-  @Test
-  public void joinStringIllegalArgumentExceptionTest() throws Exception {
-    boolean pass1 = false;
-    boolean pass2 = false;
-    TestUtil.logMsg("String Test");
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> customer = cquery.from(Customer.class);
+			try {
+				customer.join("doesnotexist");
+				TestUtil.logErr("Did not throw IllegalArgumentException");
+			} catch (IllegalArgumentException iae) {
+				TestUtil.logTrace("Received expected exception");
+				pass1 = true;
+			} catch (Exception e) {
+				TestUtil.logErr("Received unexpected exception", e);
+			}
 
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> customer = cquery.from(Customer.class);
-      try {
-        customer.join("doesnotexist");
-        TestUtil.logErr("Did not throw IllegalArgumentException");
-      } catch (IllegalArgumentException iae) {
-        TestUtil.logTrace("Received expected exception");
-        pass1 = true;
-      } catch (Exception e) {
-        TestUtil.logErr("Received unexpected exception", e);
-      }
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
 
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
+		}
 
-    }
+		TestUtil.logMsg("String, JoinType Test");
 
-    TestUtil.logMsg("String, JoinType Test");
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> customer = cquery.from(Customer.class);
+			try {
+				customer.join("doesnotexist", JoinType.INNER);
+				TestUtil.logErr("Did not throw IllegalArgumentException");
+			} catch (IllegalArgumentException iae) {
+				TestUtil.logTrace("Received expected exception");
+				pass2 = true;
+			} catch (Exception e) {
+				TestUtil.logErr("Received unexpected exception", e);
+			}
 
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> customer = cquery.from(Customer.class);
-      try {
-        customer.join("doesnotexist", JoinType.INNER);
-        TestUtil.logErr("Did not throw IllegalArgumentException");
-      } catch (IllegalArgumentException iae) {
-        TestUtil.logTrace("Received expected exception");
-        pass2 = true;
-      } catch (Exception e) {
-        TestUtil.logErr("Received unexpected exception", e);
-      }
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
 
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
+		}
 
-    }
+		if (!pass1 || !pass2) {
+			throw new Exception("joinStringIllegalArgumentExceptionTest failed");
+		}
+	}
 
-    if (!pass1 || !pass2) {
-      throw new Exception("joinStringIllegalArgumentExceptionTest failed");
-    }
-  }
+	/*
+	 * @testName: joinCollectionIllegalArgumentExceptionTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1149; PERSISTENCE:JAVADOC:1151;
+	 * 
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void joinCollectionIllegalArgumentExceptionTest() throws Exception {
+		boolean pass1 = false;
+		boolean pass2 = false;
 
+		TestUtil.logMsg("String Test");
 
-  /*
-   * @testName: joinCollectionIllegalArgumentExceptionTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1149; PERSISTENCE:JAVADOC:1151;
-   * 
-   * @test_Strategy:
-   *
-   */
-  @Test
-  public void joinCollectionIllegalArgumentExceptionTest() throws Exception {
-    boolean pass1 = false;
-    boolean pass2 = false;
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
-    TestUtil.logMsg("String Test");
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> customer = cquery.from(Customer.class);
+			try {
+				customer.joinCollection("doesnotexist");
+				TestUtil.logErr("Did not throw IllegalArgumentException");
+			} catch (IllegalArgumentException iae) {
+				TestUtil.logTrace("Received expected exception");
+				pass1 = true;
+			} catch (Exception e) {
+				TestUtil.logErr("Received unexpected exception", e);
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
 
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+		}
 
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> customer = cquery.from(Customer.class);
-      try {
-        customer.joinCollection("doesnotexist");
-        TestUtil.logErr("Did not throw IllegalArgumentException");
-      } catch (IllegalArgumentException iae) {
-        TestUtil.logTrace("Received expected exception");
-        pass1 = true;
-      } catch (Exception e) {
-        TestUtil.logErr("Received unexpected exception", e);
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
+		TestUtil.logMsg("String, JoinType Test");
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
-    }
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> customer = cquery.from(Customer.class);
+			try {
+				customer.joinCollection("doesnotexist", JoinType.INNER);
+				TestUtil.logErr("Did not throw IllegalArgumentException");
+			} catch (IllegalArgumentException iae) {
+				TestUtil.logTrace("Received expected exception");
+				pass2 = true;
+			} catch (Exception e) {
+				TestUtil.logErr("Received unexpected exception", e);
 
-    TestUtil.logMsg("String, JoinType Test");
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
 
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> customer = cquery.from(Customer.class);
-      try {
-        customer.joinCollection("doesnotexist", JoinType.INNER);
-        TestUtil.logErr("Did not throw IllegalArgumentException");
-      } catch (IllegalArgumentException iae) {
-        TestUtil.logTrace("Received expected exception");
-        pass2 = true;
-      } catch (Exception e) {
-        TestUtil.logErr("Received unexpected exception", e);
+		}
 
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
+		if (!pass1 || !pass2) {
+			throw new Exception("joinCollectionIllegalArgumentExceptionTest failed");
+		}
+	}
 
-    }
+	/*
+	 * @testName: joinSetIllegalArgumentExceptionTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1161; PERSISTENCE:JAVADOC:1163;
+	 * 
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void joinSetIllegalArgumentExceptionTest() throws Exception {
+		boolean pass1 = false;
+		boolean pass2 = false;
+		TestUtil.logMsg("String Test");
 
-    if (!pass1 || !pass2) {
-      throw new Exception("joinCollectionIllegalArgumentExceptionTest failed");
-    }
-  }
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> customer = cquery.from(Customer.class);
+			try {
+				customer.joinSet("doesnotexist");
+				TestUtil.logErr("Did not throw IllegalArgumentException");
+			} catch (IllegalArgumentException iae) {
+				TestUtil.logTrace("Received expected exception");
+				pass1 = true;
+			} catch (Exception e) {
+				TestUtil.logErr("Received unexpected exception", e);
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
 
-  /*
-   * @testName: joinSetIllegalArgumentExceptionTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1161; PERSISTENCE:JAVADOC:1163;
-   * 
-   * @test_Strategy:
-   *
-   */
-  @Test
-  public void joinSetIllegalArgumentExceptionTest() throws Exception {
-    boolean pass1 = false;
-    boolean pass2 = false;
-    TestUtil.logMsg("String Test");
+		}
 
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+		TestUtil.logMsg("String, JoinType Test");
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> customer = cquery.from(Customer.class);
-      try {
-        customer.joinSet("doesnotexist");
-        TestUtil.logErr("Did not throw IllegalArgumentException");
-      } catch (IllegalArgumentException iae) {
-        TestUtil.logTrace("Received expected exception");
-        pass1 = true;
-      } catch (Exception e) {
-        TestUtil.logErr("Received unexpected exception", e);
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> customer = cquery.from(Customer.class);
+			try {
+				customer.joinSet("doesnotexist", JoinType.INNER);
+				TestUtil.logErr("Did not throw IllegalArgumentException");
+			} catch (IllegalArgumentException iae) {
+				TestUtil.logTrace("Received expected exception");
+				pass2 = true;
+			} catch (Exception e) {
+				TestUtil.logErr("Received unexpected exception", e);
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
 
-    }
+		}
 
-    TestUtil.logMsg("String, JoinType Test");
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+		if (!pass1 || !pass2) {
+			throw new Exception("joinSetIllegalArgumentExceptionTest failed");
+		}
+	}
 
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> customer = cquery.from(Customer.class);
-      try {
-        customer.joinSet("doesnotexist", JoinType.INNER);
-        TestUtil.logErr("Did not throw IllegalArgumentException");
-      } catch (IllegalArgumentException iae) {
-        TestUtil.logTrace("Received expected exception");
-        pass2 = true;
-      } catch (Exception e) {
-        TestUtil.logErr("Received unexpected exception", e);
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
+	/*
+	 * @testName: joinListIllegalArgumentExceptionTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1153; PERSISTENCE:JAVADOC:1155;
+	 * 
+	 * @test_Strategy:
+	 */
+	@Test
+	public void joinListIllegalArgumentExceptionTest() throws Exception {
+		boolean pass1 = false;
+		boolean pass2 = false;
+		TestUtil.logMsg("Testing String");
 
-    }
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
-    if (!pass1 || !pass2) {
-      throw new Exception("joinSetIllegalArgumentExceptionTest failed");
-    }
-  }
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> root = cquery.from(Customer.class);
+			try {
+				root.joinList("doesnotexist");
+				TestUtil.logErr("Did not throw IllegalArgumentException");
+			} catch (IllegalArgumentException iae) {
+				TestUtil.logTrace("Received expected IllegalArgumentException");
+				pass1 = true;
+			} catch (Exception e) {
 
+				TestUtil.logErr("Received unexpected exception", e);
+			}
+			getEntityTransaction().commit();
 
-  /*
-   * @testName: joinListIllegalArgumentExceptionTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1153; PERSISTENCE:JAVADOC:1155;
-   * 
-   * @test_Strategy:
-   */
-  @Test
-  public void joinListIllegalArgumentExceptionTest() throws Exception {
-    boolean pass1 = false;
-    boolean pass2 = false;
-    TestUtil.logMsg("Testing String");
+		} catch (Exception e) {
 
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+			TestUtil.logErr("Caught unexpected exception", e);
 
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> root = cquery.from(Customer.class);
-      try {
-        root.joinList("doesnotexist");
-        TestUtil.logErr("Did not throw IllegalArgumentException");
-      } catch (IllegalArgumentException iae) {
-        TestUtil.logTrace("Received expected IllegalArgumentException");
-        pass1 = true;
-      } catch (Exception e) {
+		}
 
-        TestUtil.logErr("Received unexpected exception", e);
-      }
-      getEntityTransaction().commit();
+		TestUtil.logMsg("Testing String, JoinType");
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
-    } catch (Exception e) {
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> root = cquery.from(Customer.class);
+			try {
+				root.joinList("doesnotexist", JoinType.INNER);
+				TestUtil.logErr("Did not throw IllegalArgumentException");
+			} catch (IllegalArgumentException iae) {
+				TestUtil.logTrace("Received expected IllegalArgumentException");
+				pass2 = true;
+			} catch (Exception e) {
+				TestUtil.logErr("Received unexpected exception", e);
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
 
-      TestUtil.logErr("Caught unexpected exception", e);
+		}
 
-    }
+		if (!pass1 || !pass2) {
+			throw new Exception("joinListIllegalArgumentExceptionTest failed");
+		}
+	}
 
-    TestUtil.logMsg("Testing String, JoinType");
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+	/*
+	 * @testName: joinMapIllegalArgumentExceptionTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1157; PERSISTENCE:JAVADOC:1159
+	 * 
+	 * @test_Strategy:
+	 */
+	@Test
+	public void joinMapIllegalArgumentExceptionTest() throws Exception {
+		boolean pass1 = false;
+		boolean pass2 = false;
+		TestUtil.logMsg("Testing String");
 
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> root = cquery.from(Customer.class);
-      try {
-        root.joinList("doesnotexist", JoinType.INNER);
-        TestUtil.logErr("Did not throw IllegalArgumentException");
-      } catch (IllegalArgumentException iae) {
-        TestUtil.logTrace("Received expected IllegalArgumentException");
-        pass2 = true;
-      } catch (Exception e) {
-        TestUtil.logErr("Received unexpected exception", e);
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
-    }
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> root = cquery.from(Customer.class);
+			try {
+				root.joinMap("doesnotexist");
+				TestUtil.logErr("Did not throw IllegalArgumentException");
+			} catch (IllegalArgumentException iae) {
+				TestUtil.logTrace("Received expected IllegalArgumentException");
+				pass1 = true;
+			} catch (Exception e) {
+				TestUtil.logErr("Received unexpected exception", e);
+			}
+			getEntityTransaction().commit();
 
-    if (!pass1 || !pass2) {
-      throw new Exception("joinListIllegalArgumentExceptionTest failed");
-    }
-  }
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
 
+		}
 
-  /*
-   * @testName: joinMapIllegalArgumentExceptionTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1157; PERSISTENCE:JAVADOC:1159
-   * 
-   * @test_Strategy:
-   */
-  @Test
-  public void joinMapIllegalArgumentExceptionTest() throws Exception {
-    boolean pass1 = false;
-    boolean pass2 = false;
-    TestUtil.logMsg("Testing String");
+		TestUtil.logMsg("Testing String, JoinType");
+		try {
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+			getEntityTransaction().begin();
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> root = cquery.from(Customer.class);
+			try {
+				root.joinMap("doesnotexist", JoinType.INNER);
+				TestUtil.logErr("Did not throw IllegalArgumentException");
+			} catch (IllegalArgumentException iae) {
+				TestUtil.logTrace("Received expected IllegalArgumentException");
+				pass2 = true;
+			} catch (Exception e) {
+				TestUtil.logErr("Received unexpected exception", e);
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
 
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> root = cquery.from(Customer.class);
-      try {
-        root.joinMap("doesnotexist");
-        TestUtil.logErr("Did not throw IllegalArgumentException");
-      } catch (IllegalArgumentException iae) {
-        TestUtil.logTrace("Received expected IllegalArgumentException");
-        pass1 = true;
-      } catch (Exception e) {
-        TestUtil.logErr("Received unexpected exception", e);
-      }
-      getEntityTransaction().commit();
+		}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
+		if (!pass1 || !pass2) {
+			throw new Exception("joinMapIllegalArgumentExceptionTest failed");
+		}
+	}
 
-    }
+	/*
+	 * @testName: rootGetCorrelationParentIllegalStateExceptionTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1131;
+	 * 
+	 * @test_Strategy:
+	 */
+	@Test
+	public void rootGetCorrelationParentIllegalStateExceptionTest() throws Exception {
+		boolean pass1 = false;
+		boolean pass2 = false;
 
-    TestUtil.logMsg("Testing String, JoinType");
-    try {
-      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
-      getEntityTransaction().begin();
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> root = cquery.from(Customer.class);
-      try {
-        root.joinMap("doesnotexist", JoinType.INNER);
-        TestUtil.logErr("Did not throw IllegalArgumentException");
-      } catch (IllegalArgumentException iae) {
-        TestUtil.logTrace("Received expected IllegalArgumentException");
-        pass2 = true;
-      } catch (Exception e) {
-        TestUtil.logErr("Received unexpected exception", e);
-      }
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
+		try {
+			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
+			Root<Customer> customer = cquery.from(Customer.class);
+			boolean isCorr = customer.isCorrelated();
+			if (!isCorr) {
+				TestUtil.logTrace("isCorrelated() return false");
+				pass1 = true;
+			} else {
+				TestUtil.logErr("Expected isCorrelated() to return false, actual:" + isCorr);
+			}
+			try {
+				customer.getCorrelationParent();
+				TestUtil.logErr("Did not throw IllegalStateException");
+			} catch (IllegalStateException ise) {
+				TestUtil.logTrace("Received expected IllegalStateException");
+				pass2 = true;
+			} catch (Exception e) {
+				TestUtil.logErr("Received unexpected exception", e);
+			}
+		} catch (Exception e) {
+			TestUtil.logErr("Caught unexpected exception", e);
+		}
 
-    }
-
-    if (!pass1 || !pass2) {
-      throw new Exception("joinMapIllegalArgumentExceptionTest failed");
-    }
-  }
-
-  /*
-   * @testName: rootGetCorrelationParentIllegalStateExceptionTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1131;
-   * 
-   * @test_Strategy:
-   */
-  @Test
-  public void rootGetCorrelationParentIllegalStateExceptionTest() throws Exception {
-    boolean pass1 = false;
-    boolean pass2 = false;
-
-    CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-
-    try {
-      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      Root<Customer> customer = cquery.from(Customer.class);
-      boolean isCorr = customer.isCorrelated();
-      if (!isCorr) {
-        TestUtil.logTrace("isCorrelated() return false");
-        pass1 = true;
-      } else {
-        TestUtil.logErr(
-            "Expected isCorrelated() to return false, actual:" + isCorr);
-      }
-      try {
-        customer.getCorrelationParent();
-        TestUtil.logErr("Did not throw IllegalStateException");
-      } catch (IllegalStateException ise) {
-        TestUtil.logTrace("Received expected IllegalStateException");
-        pass2 = true;
-      } catch (Exception e) {
-        TestUtil.logErr("Received unexpected exception", e);
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception", e);
-    }
-
-    if (!pass1 || !pass2) {
-      throw new Exception(
-          "rootGetCorrelationParentIllegalStateExceptionTest failed");
-    }
-  }
+		if (!pass1 || !pass2) {
+			throw new Exception("rootGetCorrelationParentIllegalStateExceptionTest failed");
+		}
+	}
 }

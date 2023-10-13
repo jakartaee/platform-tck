@@ -28,70 +28,69 @@ import jakarta.persistence.ManyToOne;
 @IdClass(DID2DependentId.class)
 public class DID2Dependent implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  @Id
-  String name;
+	@Id
+	String name;
 
-  @Id
-  @JoinColumn(name = "FIRSTNAME", referencedColumnName = "firstname")
-  @JoinColumn(name = "LASTNAME", referencedColumnName = "lastname")
-  @ManyToOne
-  DID2Employee emp;
+	@Id
+	@JoinColumn(name = "FIRSTNAME", referencedColumnName = "firstname")
+	@JoinColumn(name = "LASTNAME", referencedColumnName = "lastname")
+	@ManyToOne
+	DID2Employee emp;
 
-  public DID2Dependent() {
-  }
+	public DID2Dependent() {
+	}
 
-  public DID2Dependent(DID2DependentId dId, DID2Employee emp) {
-    this.name = dId.getName();
-    this.emp = emp;
-  }
+	public DID2Dependent(DID2DependentId dId, DID2Employee emp) {
+		this.name = dId.getName();
+		this.emp = emp;
+	}
 
-  public DID2Dependent(String name, DID2Employee emp) {
-    this.name = name;
-    this.emp = emp;
-  }
+	public DID2Dependent(String name, DID2Employee emp) {
+		this.name = name;
+		this.emp = emp;
+	}
 
-  public DID2Employee getEmp() {
-    return emp;
-  }
+	public DID2Employee getEmp() {
+		return emp;
+	}
 
-  public void setEmp(DID2Employee emp) {
-    this.emp = emp;
-  }
+	public void setEmp(DID2Employee emp) {
+		this.emp = emp;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  @Override
-  public int hashCode() {
-    int hash = 0;
-    hash += (name != null ? name.hashCode() : 0);
-    return hash;
-  }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (name != null ? name.hashCode() : 0);
+		return hash;
+	}
 
-  @Override
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof DID2Dependent)) {
-      return false;
-    }
-    DID2Dependent other = (DID2Dependent) object;
-    if ((this.name == null && other.name != null)
-        || (this.name != null && !this.name.equals(other.name))) {
-      return false;
-    }
-    return true;
-  }
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not
+		// set
+		if (!(object instanceof DID2Dependent)) {
+			return false;
+		}
+		DID2Dependent other = (DID2Dependent) object;
+		if ((this.name == null && other.name != null) || (this.name != null && !this.name.equals(other.name))) {
+			return false;
+		}
+		return true;
+	}
 
-  @Override
-  public String toString() {
-    return "derivedid2.DID2Dependent[name=" + name + "]";
-  }
+	@Override
+	public String toString() {
+		return "derivedid2.DID2Dependent[name=" + name + "]";
+	}
 }

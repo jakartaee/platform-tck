@@ -24,50 +24,48 @@ import jakarta.persistence.Id;
 @Entity
 public class RetailOrder2 implements Serializable {
 
-  @Id
-  private Long id;
+	@Id
+	private Long id;
 
-  private double cost;
+	private double cost;
 
-  public RetailOrder2() {
-  }
+	public RetailOrder2() {
+	}
 
-  public Long getId() {
-    return id;
-  }
+	public Long getId() {
+		return id;
+	}
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.getId() != null ? this.getId().hashCode() : 0);
-    return hash;
-  }
+	public int hashCode() {
+		int hash = 0;
+		hash += (this.getId() != null ? this.getId().hashCode() : 0);
+		return hash;
+	}
 
-  public boolean equals(Object object) {
-    if (!(object instanceof RetailOrder2)) {
-      return false;
-    }
-    RetailOrder2 other = (RetailOrder2) object;
-    if (this.getId() != other.getId()
-        && (this.getId() == null || !this.getId().equals(other.getId()))) {
-      return false;
-    }
-    return true;
-  }
+	public boolean equals(Object object) {
+		if (!(object instanceof RetailOrder2)) {
+			return false;
+		}
+		RetailOrder2 other = (RetailOrder2) object;
+		if (this.getId() != other.getId() && (this.getId() == null || !this.getId().equals(other.getId()))) {
+			return false;
+		}
+		return true;
+	}
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.annotations.onexmanyuni."
-        + "RetailOrder2[id=" + getId() + "]";
-  }
+	public String toString() {
+		return "com.sun.ts.tests.jpa.core.annotations.onexmanyuni." + "RetailOrder2[id=" + getId() + "]";
+	}
 
-  public double getCost() {
-    return cost;
-  }
+	public double getCost() {
+		return cost;
+	}
 
-  public void setCost(double cost) {
-    this.cost = cost;
-  }
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
 }

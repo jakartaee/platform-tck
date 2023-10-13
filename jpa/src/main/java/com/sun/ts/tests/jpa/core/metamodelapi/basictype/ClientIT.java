@@ -16,15 +16,10 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.basictype;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -35,139 +30,135 @@ import jakarta.persistence.metamodel.ManagedType;
 import jakarta.persistence.metamodel.Metamodel;
 import jakarta.persistence.metamodel.Type;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class ClientIT extends PMClientBase {
 
-  public ClientIT() {
-  }
-  
-  @Deployment(testable = false, managed = false)
- 	public static JavaArchive createDeployment() throws Exception {
+	public ClientIT() {
+	}
 
- 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
- 		String pkgName = ClientIT.class.getPackageName() + ".";
- 		String[] classes = { pkgName + "Order" };
- 		return createDeploymentJar("jpa_core_metamodelapi_basictype.jar", pkgNameWithoutSuffix, classes);
+	public static JavaArchive createDeployment() throws Exception {
 
- 	}
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] classes = { pkgName + "Order" };
+		return createDeploymentJar("jpa_core_metamodelapi_basictype.jar", pkgNameWithoutSuffix, classes);
 
+	}
 
-@BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup();
+			removeTestData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-  /*
-   * @testName: getJavaType
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1222
-   *
-   * @test_Strategy: Get the javaType of the ID
-   *
-   */
-@Test
-  public void getJavaType() throws Exception {
-    boolean pass = false;
+	/*
+	 * @testName: getJavaType
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1222
+	 *
+	 * @test_Strategy: Get the javaType of the ID
+	 *
+	 */
+	@Test
+	public void getJavaType() throws Exception {
+		boolean pass = false;
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-      ManagedType<Order> mTypeOrder = metaModel.managedType(Order.class);
-      if (mTypeOrder != null) {
-        TestUtil.logTrace("Obtained Non-null ManagedType");
-        Attribute attrib = mTypeOrder.getDeclaredAttribute("id");
-        if (attrib != null) {
-          String type = attrib.getJavaType().getName();
-          if (type.equals("int")) {
-            TestUtil.logTrace("Received expected type: int");
-            pass = true;
-          } else {
-            TestUtil.logErr("Expected: int, actual:" + type);
-          }
-        } else {
-          TestUtil.logErr("getDeclaredAttribute(...) returned null");
-        }
-      } else {
-        TestUtil.logErr("managedType(...) returned null");
-      }
-    } else {
-      TestUtil.logErr("getMetamodel() returned null");
-    }
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			ManagedType<Order> mTypeOrder = metaModel.managedType(Order.class);
+			if (mTypeOrder != null) {
+				TestUtil.logTrace("Obtained Non-null ManagedType");
+				Attribute attrib = mTypeOrder.getDeclaredAttribute("id");
+				if (attrib != null) {
+					String type = attrib.getJavaType().getName();
+					if (type.equals("int")) {
+						TestUtil.logTrace("Received expected type: int");
+						pass = true;
+					} else {
+						TestUtil.logErr("Expected: int, actual:" + type);
+					}
+				} else {
+					TestUtil.logErr("getDeclaredAttribute(...) returned null");
+				}
+			} else {
+				TestUtil.logErr("managedType(...) returned null");
+			}
+		} else {
+			TestUtil.logErr("getMetamodel() returned null");
+		}
 
-    getEntityTransaction().commit();
+		getEntityTransaction().commit();
 
-    if (!pass) {
-      throw new Exception("getJavaType Test failed");
-    }
-  }
+		if (!pass) {
+			throw new Exception("getJavaType Test failed");
+		}
+	}
 
-  /*
-   * @testName: getPersistenceType
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1223
-   *
-   * @test_Strategy: Get the persistent type of the Order class
-   *
-   */
-@Test
-  public void getPersistenceType() throws Exception {
-    boolean pass = false;
+	/*
+	 * @testName: getPersistenceType
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1223
+	 *
+	 * @test_Strategy: Get the persistent type of the Order class
+	 *
+	 */
+	@Test
+	public void getPersistenceType() throws Exception {
+		boolean pass = false;
 
-    String expected = Type.PersistenceType.ENTITY.name();
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-      EntityType<Order> eType = metaModel.entity(Order.class);
-      if (eType != null) {
-        Type.PersistenceType type = eType.getPersistenceType();
-        if (type != null) {
-          String sType = type.name();
-          if (sType.equals(expected)) {
-            TestUtil.logTrace("Received:" + sType);
-            pass = true;
-          } else {
-            TestUtil.logErr("Expected: " + expected + ", actual:" + sType);
-          }
-        } else {
-          TestUtil.logErr("getPersistenceType() returned null");
-        }
-      } else {
-        TestUtil.logErr("entity(...) returned null");
-      }
-    } else {
-      TestUtil.logErr("getMetamodel() returned null");
-    }
+		String expected = Type.PersistenceType.ENTITY.name();
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			EntityType<Order> eType = metaModel.entity(Order.class);
+			if (eType != null) {
+				Type.PersistenceType type = eType.getPersistenceType();
+				if (type != null) {
+					String sType = type.name();
+					if (sType.equals(expected)) {
+						TestUtil.logTrace("Received:" + sType);
+						pass = true;
+					} else {
+						TestUtil.logErr("Expected: " + expected + ", actual:" + sType);
+					}
+				} else {
+					TestUtil.logErr("getPersistenceType() returned null");
+				}
+			} else {
+				TestUtil.logErr("entity(...) returned null");
+			}
+		} else {
+			TestUtil.logErr("getMetamodel() returned null");
+		}
 
-    getEntityTransaction().commit();
+		getEntityTransaction().commit();
 
-    if (!pass) {
-      throw new Exception("getPersistenceType failed");
-    }
-  }
+		if (!pass) {
+			throw new Exception("getPersistenceType failed");
+		}
+	}
 
-@AfterAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup data");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("Cleanup data");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+	}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-  }
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+	}
 }

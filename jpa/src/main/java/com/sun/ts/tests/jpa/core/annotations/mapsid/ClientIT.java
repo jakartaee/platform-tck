@@ -18,15 +18,10 @@ package com.sun.ts.tests.jpa.core.annotations.mapsid;
 
 import java.util.List;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -34,154 +29,144 @@ import com.sun.ts.tests.jpa.common.PMClientBase;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class ClientIT extends PMClientBase {
 
-  public ClientIT() {
-  }
-  
-	@Deployment(testable = false, managed = false)
+	public ClientIT() {
+	}
+
 	public static JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = ClientIT.class.getPackageName() + ".";
-		String[] classes = { pkgName + "DID1bDependent", pkgName + "DID1bDependentId", pkgName + "DID1bEmployee"};
+		String[] classes = { pkgName + "DID1bDependent", pkgName + "DID1bDependentId", pkgName + "DID1bEmployee" };
 		return createDeploymentJar("jpa_core_annotations_mapsid.jar", pkgNameWithoutSuffix, classes);
 	}
 
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup();
+			createDeployment();
+			removeTestData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
 
+		}
+	}
 
-  @BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
+	/*
+	 * BEGIN Test Cases
+	 */
 
-    }
-  }
+	/*
+	 * @testName: persistMX1Test1
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:1090; PERSISTENCE:SPEC:1091;
+	 * PERSISTENCE:SPEC:1070; PERSISTENCE:SPEC:1071; PERSISTENCE:SPEC:618;
+	 * PERSISTENCE:SPEC:622; PERSISTENCE:JAVADOC:372;
+	 * 
+	 * @test_Strategy: The new entity bean instance becomes both managed and
+	 * persistent by invoking the persist method on it. The semantics of the persist
+	 * operation as applied to entity X is as follows: The perist operation is
+	 * cascaded to entities referenced by X, if the relationship from X to these
+	 * other entities is annotated with cascade=PERSIST annotation member.
+	 *
+	 * Invoke persist on a ManyToOne relationship from X annotated with
+	 * cascade=PERSIST and ensure the persist operation is cascaded.
+	 *
+	 */
+	@Test
+	public void persistMX1Test1() throws Exception {
+		TestUtil.logTrace("Begin persistMX1Test1");
+		boolean pass = false;
+		EntityManager em = null;
+		EntityTransaction et = null;
+		em = getEntityManager();
+		et = getEntityTransaction();
+		et.begin();
+		try {
 
-  /*
-   * BEGIN Test Cases
-   */
+			final DID1bEmployee employee1 = new DID1bEmployee(1L, "Duke");
+			final DID1bEmployee employee2 = new DID1bEmployee(2L, "foo");
 
-  /*
-   * @testName: persistMX1Test1
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:1090; PERSISTENCE:SPEC:1091;
-   * PERSISTENCE:SPEC:1070; PERSISTENCE:SPEC:1071; PERSISTENCE:SPEC:618;
-   * PERSISTENCE:SPEC:622; PERSISTENCE:JAVADOC:372;
-   * 
-   * @test_Strategy: The new entity bean instance becomes both managed and
-   * persistent by invoking the persist method on it. The semantics of the
-   * persist operation as applied to entity X is as follows: The perist
-   * operation is cascaded to entities referenced by X, if the relationship from
-   * X to these other entities is annotated with cascade=PERSIST annotation
-   * member.
-   *
-   * Invoke persist on a ManyToOne relationship from X annotated with
-   * cascade=PERSIST and ensure the persist operation is cascaded.
-   *
-   */
-  @Test
-  public void persistMX1Test1() throws Exception {
-    TestUtil.logTrace("Begin persistMX1Test1");
-    boolean pass = false;
-    EntityManager em = null;
-    EntityTransaction et = null;
-    em = getEntityManager();
-    et = getEntityTransaction();
-    et.begin();
-    try {
+			final DID1bDependent dep1 = new DID1bDependent(new DID1bDependentId("Obama", 1L), employee1);
+			final DID1bDependent dep2 = new DID1bDependent(new DID1bDependentId("Michelle", 1L), employee1);
+			final DID1bDependent dep3 = new DID1bDependent(new DID1bDependentId("John", 2L), employee2);
 
-      final DID1bEmployee employee1 = new DID1bEmployee(1L, "Duke");
-      final DID1bEmployee employee2 = new DID1bEmployee(2L, "foo");
+			em.persist(dep1);
+			em.persist(dep2);
+			em.persist(dep3);
+			em.persist(employee1);
+			em.persist(employee2);
 
-      final DID1bDependent dep1 = new DID1bDependent(
-          new DID1bDependentId("Obama", 1L), employee1);
-      final DID1bDependent dep2 = new DID1bDependent(
-          new DID1bDependentId("Michelle", 1L), employee1);
-      final DID1bDependent dep3 = new DID1bDependent(
-          new DID1bDependentId("John", 2L), employee2);
+			TestUtil.logTrace("persisted Employees and Dependents");
+			em.flush();
 
-      em.persist(dep1);
-      em.persist(dep2);
-      em.persist(dep3);
-      em.persist(employee1);
-      em.persist(employee2);
+			// Refresh dependent
+			DID1bDependent newDependent = em.find(DID1bDependent.class, new DID1bDependentId("Obama", 1L));
+			if (newDependent != null) {
+				em.refresh(newDependent);
+			}
 
-      TestUtil.logTrace("persisted Employees and Dependents");
-      em.flush();
+			final List depList = em
+					.createQuery("Select d from DID1bDependent d where d.id.name='Obama' and d.emp.name='Duke'")
+					.getResultList();
 
-      // Refresh dependent
-      DID1bDependent newDependent = em.find(DID1bDependent.class,
-          new DID1bDependentId("Obama", 1L));
-      if (newDependent != null) {
-        em.refresh(newDependent);
-      }
+			newDependent = null;
+			if (depList.size() > 0) {
+				newDependent = (DID1bDependent) depList.get(0);
 
-      final List depList = em.createQuery(
-          "Select d from DID1bDependent d where d.id.name='Obama' and d.emp.name='Duke'")
-          .getResultList();
+			}
 
-      newDependent = null;
-      if (depList.size() > 0) {
-        newDependent = (DID1bDependent) depList.get(0);
+			if (newDependent == dep1) {
+				pass = true;
+				TestUtil.logTrace("Received Expected Dependent");
+			} else {
+				TestUtil.logTrace("searched Dependent not found");
+			}
 
-      }
+			et.commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Unexpected exception occurred", e);
+			et.rollback();
+		}
 
-      if (newDependent == dep1) {
-        pass = true;
-        TestUtil.logTrace("Received Expected Dependent");
-      } else {
-        TestUtil.logTrace("searched Dependent not found");
-      }
+		if (!pass) {
+			throw new Exception("persistMX1Test1 failed");
+		}
+	}
 
-      et.commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-      et.rollback();
-    }
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("cleanup");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+		removeDeploymentJar();
+	}
 
-    if (!pass) {
-      throw new Exception("persistMX1Test1 failed");
-    }
-  }
-
-  @AfterAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
-
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("Delete from DID1BDEPENDENT")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("Delete from DID1BEMPLOYEE")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("Delete from DID1BDEPENDENT").executeUpdate();
+			getEntityManager().createNativeQuery("Delete from DID1BEMPLOYEE").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

@@ -32,74 +32,74 @@ import jakarta.persistence.Table;
 @Table(name = "BEJB_1X1_BI_BTOB")
 public class B implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+	// ===========================================================
+	// instance variables
 
-  protected String id;
+	protected String id;
 
-  protected String name;
+	protected String name;
 
-  protected int value;
+	protected int value;
 
-  protected A a;
+	protected A a;
 
-  // ===========================================================
-  // constructors
+	// ===========================================================
+	// constructors
 
-  public B() {
-  }
+	public B() {
+	}
 
-  public B(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+	public B(String id, String name, int value) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
 
-  public B(String id, String name, int value, A a) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-    this.a = a;
-  }
+	public B(String id, String name, int value, A a) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+		this.a = a;
+	}
 
-  @Id
-  public String getId() {
-    return id;
-  }
+	@Id
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  @Basic
-  public String getName() {
-    return name;
-  }
+	@Basic
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  @Basic
-  public int getValue() {
-    return value;
-  }
+	@Basic
+	public int getValue() {
+		return value;
+	}
 
-  public void setValue(int value) {
-    this.value = value;
-  }
+	public void setValue(int value) {
+		this.value = value;
+	}
 
-  // ===========================================================
-  // relationship fields
+	// ===========================================================
+	// relationship fields
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "FK_FOR_AEJB_1X1_BI_BTOB")
-  public A getA() {
-    return a;
-  }
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "FK_FOR_AEJB_1X1_BI_BTOB")
+	public A getA() {
+		return a;
+	}
 
-  public void setA(A a) {
-    this.a = a;
-  }
+	public void setA(A a) {
+		this.a = a;
+	}
 
 }

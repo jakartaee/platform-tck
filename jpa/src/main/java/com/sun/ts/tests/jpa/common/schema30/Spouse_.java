@@ -24,18 +24,18 @@ import jakarta.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Spouse.class)
 public class Spouse_ {
 
-  public static volatile SingularAttribute<Spouse, String> id;
+	public static volatile SingularAttribute<Spouse, String> id;
 
-  public static volatile SingularAttribute<Spouse, String> lastName;
+	public static volatile SingularAttribute<Spouse, String> lastName;
 
-  public static volatile SingularAttribute<Spouse, String> socialSecurityNumber;
+	public static volatile SingularAttribute<Spouse, String> socialSecurityNumber;
 
-  public static volatile SingularAttribute<Spouse, String> firstName;
+	public static volatile SingularAttribute<Spouse, String> firstName;
 
-  public static volatile SingularAttribute<Spouse, Customer> customer;
+	public static volatile SingularAttribute<Spouse, Customer> customer;
 
-  public static volatile SingularAttribute<Spouse, String> maidenName;
+	public static volatile SingularAttribute<Spouse, String> maidenName;
 
-  public static volatile SingularAttribute<Spouse, Info> info;
+	public static volatile SingularAttribute<Spouse, Info> info;
 
 }

@@ -16,15 +16,10 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.setattribute;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -34,175 +29,164 @@ import jakarta.persistence.metamodel.Metamodel;
 import jakarta.persistence.metamodel.SetAttribute;
 import jakarta.persistence.metamodel.Type;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
 
 public class ClientIT extends PMClientBase {
 
-  public ClientIT() {
-  }
-  
-  @Deployment(testable = false, managed = false)
-  public static JavaArchive createDeployment() throws Exception {
-     
-     String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-     String pkgName = ClientIT.class.getPackageName() + ".";
-     String[] classes = {   pkgName + "A",  pkgName + "Address",  pkgName + "ZipCode"};
-     return createDeploymentJar("jpa_core_metamodelapi_setattribute.jar", pkgNameWithoutSuffix, classes);
+	public ClientIT() {
+	}
 
-  }
+	public static JavaArchive createDeployment() throws Exception {
 
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] classes = { pkgName + "A", pkgName + "Address", pkgName + "ZipCode" };
+		return createDeploymentJar("jpa_core_metamodelapi_setattribute.jar", pkgNameWithoutSuffix, classes);
 
-@BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup();
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	}
 
-  /*
-   * @testName: getSet
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1271;
-   *
-   * @test_Strategy:
-   *
-   */
-@Test
-  public void getSet() throws Exception {
-    boolean pass = false;
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup();
+			removeTestData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-      ManagedType<A> mType = metaModel.managedType(
-          com.sun.ts.tests.jpa.core.metamodelapi.setattribute.A.class);
-      if (mType != null) {
-        TestUtil.logTrace("Obtained Non-null ManagedType");
-        SetAttribute<? super A, Address> setAttrib = mType.getSet("address",
-            com.sun.ts.tests.jpa.core.metamodelapi.setattribute.Address.class);
-        Type t = setAttrib.getElementType();
-        if (t != null) {
-          TestUtil.logTrace("element Java Type  = " + t.getJavaType());
-          if (t.getJavaType().getName().equals(
-              "com.sun.ts.tests.jpa.core.metamodelapi.setattribute.Address")) {
-            pass = true;
-          }
-        }
-      }
-    }
+	/*
+	 * @testName: getSet
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1271;
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void getSet() throws Exception {
+		boolean pass = false;
 
-    getEntityTransaction().commit();
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			ManagedType<A> mType = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.setattribute.A.class);
+			if (mType != null) {
+				TestUtil.logTrace("Obtained Non-null ManagedType");
+				SetAttribute<? super A, Address> setAttrib = mType.getSet("address",
+						com.sun.ts.tests.jpa.core.metamodelapi.setattribute.Address.class);
+				Type t = setAttrib.getElementType();
+				if (t != null) {
+					TestUtil.logTrace("element Java Type  = " + t.getJavaType());
+					if (t.getJavaType().getName()
+							.equals("com.sun.ts.tests.jpa.core.metamodelapi.setattribute.Address")) {
+						pass = true;
+					}
+				}
+			}
+		}
 
-    if (!pass) {
-      throw new Exception("getSet Test  failed");
-    }
-  }
+		getEntityTransaction().commit();
 
-  /*
-   * @testName: getCollectionType
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1455;
-   *
-   * @test_Strategy:
-   *
-   */
-@Test
-  public void getCollectionType() throws Exception {
-    boolean pass = false;
+		if (!pass) {
+			throw new Exception("getSet Test  failed");
+		}
+	}
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-      ManagedType<A> mType = metaModel.managedType(
-          com.sun.ts.tests.jpa.core.metamodelapi.setattribute.A.class);
-      if (mType != null) {
-        TestUtil.logTrace("Obtained Non-null ManagedType");
-        SetAttribute<? super A, Address> setAttrib = mType.getSet("address",
-            com.sun.ts.tests.jpa.core.metamodelapi.setattribute.Address.class);
+	/*
+	 * @testName: getCollectionType
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1455;
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void getCollectionType() throws Exception {
+		boolean pass = false;
 
-        SetAttribute.CollectionType setAttribColType = setAttrib
-            .getCollectionType();
-        TestUtil.logTrace("collection Type = " + setAttrib.getCollectionType());
-        if (setAttribColType == SetAttribute.CollectionType.SET) {
-          TestUtil.logTrace("Received expected result = " + setAttribColType);
-          pass = true;
-        } else {
-          TestUtil.logErr("Received unexpected result = " + setAttribColType);
-        }
-      }
-    }
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			ManagedType<A> mType = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.setattribute.A.class);
+			if (mType != null) {
+				TestUtil.logTrace("Obtained Non-null ManagedType");
+				SetAttribute<? super A, Address> setAttrib = mType.getSet("address",
+						com.sun.ts.tests.jpa.core.metamodelapi.setattribute.Address.class);
 
-    getEntityTransaction().commit();
+				SetAttribute.CollectionType setAttribColType = setAttrib.getCollectionType();
+				TestUtil.logTrace("collection Type = " + setAttrib.getCollectionType());
+				if (setAttribColType == SetAttribute.CollectionType.SET) {
+					TestUtil.logTrace("Received expected result = " + setAttribColType);
+					pass = true;
+				} else {
+					TestUtil.logErr("Received unexpected result = " + setAttribColType);
+				}
+			}
+		}
 
-    if (!pass) {
-      throw new Exception("getCollectionType Test  failed");
-    }
-  }
+		getEntityTransaction().commit();
 
-  /*
-   * @testName: getElementType
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1456;
-   *
-   * @test_Strategy:
-   *
-   */
-@Test
-  public void getElementType() throws Exception {
-    boolean pass = false;
+		if (!pass) {
+			throw new Exception("getCollectionType Test  failed");
+		}
+	}
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-      ManagedType<A> mType = metaModel.managedType(
-          com.sun.ts.tests.jpa.core.metamodelapi.setattribute.A.class);
-      if (mType != null) {
-        TestUtil.logTrace("Obtained Non-null ManagedType");
-        SetAttribute<? super A, Address> setAttrib = mType.getSet("address",
-            com.sun.ts.tests.jpa.core.metamodelapi.setattribute.Address.class);
+	/*
+	 * @testName: getElementType
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1456;
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void getElementType() throws Exception {
+		boolean pass = false;
 
-        TestUtil.logTrace("collection Element Type = "
-            + setAttrib.getElementType().getJavaType().getName());
-        String elementTypeName = setAttrib.getElementType().getJavaType()
-            .getName();
-        if (elementTypeName.equals(
-            "com.sun.ts.tests.jpa.core.metamodelapi.setattribute.Address")) {
-          TestUtil.logTrace("Received expected result = " + elementTypeName);
-          pass = true;
-        } else {
-          TestUtil.logErr("Received unexpected result = " + elementTypeName);
-        }
-      }
-    }
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			ManagedType<A> mType = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.setattribute.A.class);
+			if (mType != null) {
+				TestUtil.logTrace("Obtained Non-null ManagedType");
+				SetAttribute<? super A, Address> setAttrib = mType.getSet("address",
+						com.sun.ts.tests.jpa.core.metamodelapi.setattribute.Address.class);
 
-    getEntityTransaction().commit();
+				TestUtil.logTrace("collection Element Type = " + setAttrib.getElementType().getJavaType().getName());
+				String elementTypeName = setAttrib.getElementType().getJavaType().getName();
+				if (elementTypeName.equals("com.sun.ts.tests.jpa.core.metamodelapi.setattribute.Address")) {
+					TestUtil.logTrace("Received expected result = " + elementTypeName);
+					pass = true;
+				} else {
+					TestUtil.logErr("Received unexpected result = " + elementTypeName);
+				}
+			}
+		}
 
-    if (!pass) {
-      throw new Exception("getElementType Test  failed");
-    }
-  }
+		getEntityTransaction().commit();
 
-@AfterAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup data");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+		if (!pass) {
+			throw new Exception("getElementType Test  failed");
+		}
+	}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-  }
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("Cleanup data");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+	}
+
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+	}
 }

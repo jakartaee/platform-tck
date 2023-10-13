@@ -16,7 +16,6 @@
 
 package com.sun.ts.tests.jpa.jpa22.se.repeatable.secondarytable;
 
-import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -30,165 +29,160 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 
+
 public class ClientIT extends PMClientBase {
 
-  private static final long serialVersionUID = 22L;
+	private static final long serialVersionUID = 22L;
 
-  public ClientIT() {
-  }
-  
-  @Deployment(testable = false, managed = false)
- 	public static JavaArchive createDeployment() throws Exception {
+	public ClientIT() {
+	}
 
- 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
- 		String pkgName = ClientIT.class.getPackageName() + ".";
- 		String[] xmlFile = {  };
- 		String[] classes = { pkgName + "HardwareProduct",  pkgName + "Product",
- 				pkgName + "SoftwareProduct"};
- 		return createDeploymentJar("jpa_se_repeatable_secondarytable.jar", pkgNameWithoutSuffix,
- 				(String[]) classes, pkgName + "persistence.xml", xmlFile);
+	public static JavaArchive createDeployment() throws Exception {
 
- 	}
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] xmlFile = {};
+		String[] classes = { pkgName + "HardwareProduct", pkgName + "Product", pkgName + "SoftwareProduct" };
+		return createDeploymentJar("jpa_se_repeatable_secondarytable.jar", pkgNameWithoutSuffix, (String[]) classes,
+				pkgName + "persistence.xml", xmlFile);
 
+	}
 
- 
+	@BeforeAll
+	public void setup() throws Exception {
+		TestUtil.logTrace("setup");
+		try {
 
-  @BeforeAll
-  public void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    try {
+			super.setup();
+			removeTestData();
 
-      super.setup();
-      removeTestData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	/*
+	 * @testName: subClassInheritsCacheableTrue
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:189; PERSISTENCE:JAVADOC:190;
+	 * PERSISTENCE:SPEC:1979; PERSISTENCE:SPEC:1980;
+	 * 
+	 * @test_Strategy: follow se/cache/inherit but without @SecondaryTables
+	 */
+	@Test
+	public void subClassInheritsCacheableTrue() throws Exception {
+		Cache cache;
+		boolean pass1 = false;
+		boolean pass2 = false;
+		boolean pass3 = false;
+		if (cachingSupported) {
+			try {
 
-  /*
-   * @testName: subClassInheritsCacheableTrue
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:189; PERSISTENCE:JAVADOC:190;
-   * PERSISTENCE:SPEC:1979; PERSISTENCE:SPEC:1980;
-   * 
-   * @test_Strategy: follow se/cache/inherit but without @SecondaryTables
-   */
-  @Test
-  public void subClassInheritsCacheableTrue() throws Exception {
-    Cache cache;
-    boolean pass1 = false;
-    boolean pass2 = false;
-    boolean pass3 = false;
-    if (cachingSupported) {
-      try {
+				EntityManager em2 = getEntityManager();
+				EntityTransaction et = getEntityTransaction();
 
-        EntityManager em2 = getEntityManager();
-        EntityTransaction et = getEntityTransaction();
+				et.begin();
 
-        et.begin();
+				Product product = new Product("1", 101);
+				em2.persist(product);
+				TestUtil.logTrace("persisted Product " + product);
 
-        Product product = new Product("1", 101);
-        em2.persist(product);
-        TestUtil.logTrace("persisted Product " + product);
+				SoftwareProduct sp = new SoftwareProduct();
+				sp.setId("2");
+				sp.setRevisionNumber(1D);
+				sp.setQuantity(202);
+				em2.persist(sp);
+				TestUtil.logTrace("persisted SoftwareProduct " + sp);
 
-        SoftwareProduct sp = new SoftwareProduct();
-        sp.setId("2");
-        sp.setRevisionNumber(1D);
-        sp.setQuantity(202);
-        em2.persist(sp);
-        TestUtil.logTrace("persisted SoftwareProduct " + sp);
+				HardwareProduct hp = new HardwareProduct();
+				hp.setId("3");
+				hp.setModelNumber(3);
+				hp.setQuantity(303);
+				em2.persist(hp);
+				TestUtil.logTrace("persisted HardwareProduct " + hp);
 
-        HardwareProduct hp = new HardwareProduct();
-        hp.setId("3");
-        hp.setModelNumber(3);
-        hp.setQuantity(303);
-        em2.persist(hp);
-        TestUtil.logTrace("persisted HardwareProduct " + hp);
+				em2.flush();
+				et.commit();
 
-        em2.flush();
-        et.commit();
+				EntityManagerFactory emf = getEntityManagerFactory();
+				cache = emf.getCache();
 
-        EntityManagerFactory emf = getEntityManagerFactory();
-        cache = emf.getCache();
+				if (cache != null) {
+					boolean b1 = cache.contains(Product.class, "1");
+					if (b1) {
+						TestUtil.logTrace(
+								"Cache returned: " + b1 + ", therefore cache does contain Product " + product);
+						pass1 = true;
+					} else {
+						TestUtil.logErr(
+								"Cache returned: " + b1 + ", therefore cache does not contain Product " + product);
+					}
+					boolean b2 = cache.contains(SoftwareProduct.class, "2");
+					if (!b2) {
+						TestUtil.logTrace(
+								"Cache returned: " + b2 + ", therefore cache does not contain SoftwareProduct " + sp);
+						pass2 = true;
+					} else {
+						TestUtil.logErr(
+								"Cache returned: " + b2 + ", therefore cache does contain SoftwareProduct " + sp);
+					}
+					boolean b3 = cache.contains(HardwareProduct.class, "3");
+					if (b3) {
+						TestUtil.logTrace(
+								"Cache returned: " + b3 + ", therefore cache does contain HardwareProduct " + hp);
+						pass3 = true;
+					} else {
+						TestUtil.logErr(
+								"Cache returned: " + b3 + ", therefore cache does not contain HardwareProduct " + hp);
+					}
+				} else {
+					TestUtil.logErr("Cache returned was null");
+				}
+			} catch (Exception e) {
+				TestUtil.logErr("Unexpected exception occurred", e);
+			}
+		} else {
+			TestUtil.logMsg("Cache not supported, bypassing test");
+			pass1 = true;
+			pass2 = true;
+			pass3 = true;
+		}
+		if (!pass1 || !pass2 || !pass3) {
+			throw new Exception("subClassInheritsCacheableTrue failed");
+		}
 
-        if (cache != null) {
-          boolean b1 = cache.contains(Product.class, "1");
-          if (b1) {
-            TestUtil.logTrace("Cache returned: " + b1
-                + ", therefore cache does contain Product " + product);
-            pass1 = true;
-          } else {
-            TestUtil.logErr("Cache returned: " + b1
-                + ", therefore cache does not contain Product " + product);
-          }
-          boolean b2 = cache.contains(SoftwareProduct.class, "2");
-          if (!b2) {
-            TestUtil.logTrace("Cache returned: " + b2
-                + ", therefore cache does not contain SoftwareProduct " + sp);
-            pass2 = true;
-          } else {
-            TestUtil.logErr("Cache returned: " + b2
-                + ", therefore cache does contain SoftwareProduct " + sp);
-          }
-          boolean b3 = cache.contains(HardwareProduct.class, "3");
-          if (b3) {
-            TestUtil.logTrace("Cache returned: " + b3
-                + ", therefore cache does contain HardwareProduct " + hp);
-            pass3 = true;
-          } else {
-            TestUtil.logErr("Cache returned: " + b3
-                + ", therefore cache does not contain HardwareProduct " + hp);
-          }
-        } else {
-          TestUtil.logErr("Cache returned was null");
-        }
-      } catch (Exception e) {
-        TestUtil.logErr("Unexpected exception occurred", e);
-      }
-    } else {
-      TestUtil.logMsg("Cache not supported, bypassing test");
-      pass1 = true;
-      pass2 = true;
-      pass3 = true;
-    }
-    if (!pass1 || !pass2 || !pass3) {
-      throw new Exception("subClassInheritsCacheableTrue failed");
-    }
+	}
 
-  }
+	@AfterAll
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("cleanup");
+		removeTestData();
+		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		super.cleanup();
+		removeDeploymentJar();
+	}
 
-  @AfterAll
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
-
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM PRODUCT_DETAILS")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM PRODUCT_TABLE")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	private void removeTestData() {
+		TestUtil.logTrace("removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM PRODUCT_DETAILS").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM PRODUCT_TABLE").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

@@ -34,52 +34,51 @@ import jakarta.persistence.Version;
 
 @Entity
 @Table(name = "COLTAB")
-@AttributeOverrides({
-    @AttributeOverride(name = "name", column = @Column(name = "NAME")) })
+@AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "NAME")) })
 public class A extends B {
 
-  @Id
-  protected String id;
+	@Id
+	protected String id;
 
-  @Version
-  protected Integer value;
+	@Version
+	protected Integer value;
 
-  @ElementCollection
-  @CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
-  protected Set<Address> address = new HashSet();
+	@ElementCollection
+	@CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
+	protected Set<Address> address = new HashSet();
 
-  public A() {
-  }
+	public A() {
+	}
 
-  public A(String id, String name, int value) {
-    super(name);
-    this.id = id;
-    this.value = value;
-  }
+	public A(String id, String name, int value) {
+		super(name);
+		this.id = id;
+		this.value = value;
+	}
 
-  public Set<Address> getAddress() {
-    TestUtil.logTrace("getAddress");
-    return address;
-  }
+	public Set<Address> getAddress() {
+		TestUtil.logTrace("getAddress");
+		return address;
+	}
 
-  public void setAddress(Set<Address> addr) {
-    TestUtil.logTrace("setAddress");
-    this.address = addr;
-  }
+	public void setAddress(Set<Address> addr) {
+		TestUtil.logTrace("setAddress");
+		this.address = addr;
+	}
 
-  public String getId() {
-    return id;
-  }
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  public Integer getValue() {
-    return value;
-  }
+	public Integer getValue() {
+		return value;
+	}
 
-  public void setValue(Integer val) {
-    this.value = val;
-  }
+	public void setValue(Integer val) {
+		this.value = val;
+	}
 }
