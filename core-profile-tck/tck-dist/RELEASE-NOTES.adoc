@@ -1,5 +1,11 @@
 = Jakarta Core Profile TCK Release notes
 
+== Version 10.0.3
+
+Adds bug fix for Core Profile TCK challenge:
+
+* https://github.com/jakartaee/platform-tck/issues/1196[Add missing exclusions from the CDI TCK's tck-tests.xml to the Jakarta EE Core Profiles cdi-lite-tck-suite.xml]
+
 == Version 10.0.2
 
 Adds bug fixes for Core Profile TCK:
