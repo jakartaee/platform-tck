@@ -16,12 +16,13 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.basictype;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.metamodel.Attribute;
@@ -30,8 +31,9 @@ import jakarta.persistence.metamodel.ManagedType;
 import jakarta.persistence.metamodel.Metamodel;
 import jakarta.persistence.metamodel.Type;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public ClientIT() {
 	}
@@ -47,12 +49,12 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -72,27 +74,27 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Order> mTypeOrder = metaModel.managedType(Order.class);
 			if (mTypeOrder != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				Attribute attrib = mTypeOrder.getDeclaredAttribute("id");
 				if (attrib != null) {
 					String type = attrib.getJavaType().getName();
 					if (type.equals("int")) {
-						TestUtil.logTrace("Received expected type: int");
+						logger.log(Logger.Level.TRACE, "Received expected type: int");
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: int, actual:" + type);
+						logger.log(Logger.Level.ERROR, "Expected: int, actual:" + type);
 					}
 				} else {
-					TestUtil.logErr("getDeclaredAttribute(...) returned null");
+					logger.log(Logger.Level.ERROR, "getDeclaredAttribute(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("managedType(...) returned null");
+				logger.log(Logger.Level.ERROR, "managedType(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -118,26 +120,26 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EntityType<Order> eType = metaModel.entity(Order.class);
 			if (eType != null) {
 				Type.PersistenceType type = eType.getPersistenceType();
 				if (type != null) {
 					String sType = type.name();
 					if (sType.equals(expected)) {
-						TestUtil.logTrace("Received:" + sType);
+						logger.log(Logger.Level.TRACE, "Received:" + sType);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: " + expected + ", actual:" + sType);
+						logger.log(Logger.Level.ERROR, "Expected: " + expected + ", actual:" + sType);
 					}
 				} else {
-					TestUtil.logErr("getPersistenceType() returned null");
+					logger.log(Logger.Level.ERROR, "getPersistenceType() returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -149,14 +151,14 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("Cleanup data");
+		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}

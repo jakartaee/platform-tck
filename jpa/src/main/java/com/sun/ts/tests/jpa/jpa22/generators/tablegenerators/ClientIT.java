@@ -16,15 +16,19 @@
 
 package com.sun.ts.tests.jpa.jpa22.generators.tablegenerators;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
+
 	private static final long serialVersionUID = 22L;
 
 	private DataTypes d0;
@@ -44,14 +48,14 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 			createTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -71,7 +75,7 @@ public class ClientIT extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			int id = d0.getId();
-			TestUtil.logTrace("find id: " + id);
+			logger.log(Logger.Level.TRACE, "find id: " + id);
 			DataTypes d = getEntityManager().find(DataTypes.class, id);
 			if (d != null) {
 				if (d.getStringData().equals(d0.getStringData())) {
@@ -80,10 +84,10 @@ public class ClientIT extends PMClientBase {
 
 				getEntityTransaction().commit();
 			} else {
-				TestUtil.logErr("EntityManager.find returned null result");
+				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -97,27 +101,27 @@ public class ClientIT extends PMClientBase {
 
 			d0 = new DataTypes();
 			d0.setStringData("testData");
-			TestUtil.logTrace("DataType:" + d0.toString());
+			logger.log(Logger.Level.TRACE, "DataType:" + d0.toString());
 			getEntityManager().persist(d0);
 
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 	}
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("Cleanup data");
+		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -126,14 +130,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM DATATYPES").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

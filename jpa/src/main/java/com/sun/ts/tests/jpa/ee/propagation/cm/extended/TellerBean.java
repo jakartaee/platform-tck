@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.jpa.ee.propagation.cm.extended;
 
+import java.lang.System.Logger;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
@@ -42,6 +43,8 @@ import jakarta.persistence.PersistenceContextType;
 @Stateful(name = "TellerBean")
 @Local({ Teller.class })
 public class TellerBean implements Teller {
+
+	private static final Logger logger = (Logger) System.getLogger(TellerBean.class.getName());
 
 	public SessionContext sessionContext;
 
@@ -67,7 +70,7 @@ public class TellerBean implements Teller {
 	// Teller interface (our business methods)
 
 	public double balance(final int acct) {
-		TestUtil.logTrace("balance");
+		logger.log(Logger.Level.TRACE, "balance");
 		Account thisAccount = entityManager.find(Account.class, acct);
 		double balance;
 		try {
@@ -80,7 +83,7 @@ public class TellerBean implements Teller {
 	}
 
 	public double deposit(final int acct, final double amt) {
-		TestUtil.logTrace("deposit");
+		logger.log(Logger.Level.TRACE, "deposit");
 		double balance;
 		Account thisAccount = entityManager.find(Account.class, acct);
 		try {
@@ -93,7 +96,7 @@ public class TellerBean implements Teller {
 	}
 
 	public double withdraw(final int acct, final double amt) {
-		TestUtil.logTrace("withdraw");
+		logger.log(Logger.Level.TRACE, "withdraw");
 		double balance;
 		Account thisAccount = entityManager.find(Account.class, acct);
 		try {
@@ -106,7 +109,7 @@ public class TellerBean implements Teller {
 	}
 
 	public boolean checkAccountStatus(final Account acct) {
-		TestUtil.logTrace("checkAccountStatus");
+		logger.log(Logger.Level.TRACE, "checkAccountStatus");
 		Account thisAccount = entityManager.find(Account.class, acct.id());
 		if (acct.equals(thisAccount)) {
 			return true;
@@ -116,14 +119,14 @@ public class TellerBean implements Teller {
 	}
 
 	public boolean checkCustomerStatus(final B b) {
-		TestUtil.logTrace("checkCustomerStatus");
+		logger.log(Logger.Level.TRACE, "checkCustomerStatus");
 		boolean pass = false;
 		B thisB = entityManager.find(B.class, b.getId());
 
 		if (null == thisB) {
-			TestUtil.logErr("checkCustomerStatus: customerB is NULL");
+			logger.log(Logger.Level.ERROR, "checkCustomerStatus: customerB is NULL");
 		} else {
-			TestUtil.logTrace("checkCustomerStatus: customerB is Not Null, set A");
+			logger.log(Logger.Level.TRACE, "checkCustomerStatus: customerB is Not Null, set A");
 			A newA = new A("9", "customerA9", 9);
 			thisB.setA(newA);
 			entityManager.merge(thisB);
@@ -135,16 +138,16 @@ public class TellerBean implements Teller {
 	}
 
 	public boolean rollbackStatus(final B b) {
-		TestUtil.logTrace("rollbackStatus");
+		logger.log(Logger.Level.TRACE, "rollbackStatus");
 		boolean pass = false;
 
 		try {
 			B thisB = entityManager.find(B.class, b.getId());
 
 			if (null == thisB) {
-				TestUtil.logErr("rollbackStatus: customerB is NULL");
+				logger.log(Logger.Level.ERROR, "rollbackStatus: customerB is NULL");
 			} else {
-				TestUtil.logTrace("rollbackStatus: customerB is not Null, setName");
+				logger.log(Logger.Level.TRACE, "rollbackStatus: customerB is not Null, setName");
 				System.out.println("rollbackStatus: customerB is NOT NULL, set Name");
 				thisB.setName("rolledBackB");
 				entityManager.merge(thisB);
@@ -152,12 +155,13 @@ public class TellerBean implements Teller {
 				pass = true;
 			}
 
-			TestUtil.logTrace("rollbackStatus - setRollbackOnly so the only " + "outcome is to roll back the changes");
+			logger.log(Logger.Level.TRACE,
+					"rollbackStatus - setRollbackOnly so the only " + "outcome is to roll back the changes");
 
 			sessionContext.setRollbackOnly();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception caught in rollbackStatus", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception caught in rollbackStatus", e);
 			pass = false;
 		}
 
@@ -165,16 +169,16 @@ public class TellerBean implements Teller {
 	}
 
 	public boolean flushStatus(final B b) {
-		TestUtil.logTrace("flushStatus");
+		logger.log(Logger.Level.TRACE, "flushStatus");
 		boolean pass = false;
 
 		try {
 			B thisB = entityManager.find(B.class, b.getId());
 
 			if (null == thisB) {
-				TestUtil.logErr("flushStatus: customerB is NULL");
+				logger.log(Logger.Level.ERROR, "flushStatus: customerB is NULL");
 			} else {
-				TestUtil.logTrace("flushStatus: customerB is not Null, setName");
+				logger.log(Logger.Level.TRACE, "flushStatus: customerB is not Null, setName");
 				System.out.println("flushStatus: customerB is NOT NULL, set Name");
 				thisB.setName("flushB");
 				entityManager.merge(thisB);
@@ -183,7 +187,7 @@ public class TellerBean implements Teller {
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception caught in flushStatus", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception caught in flushStatus", e);
 			pass = false;
 		}
 
@@ -215,11 +219,11 @@ public class TellerBean implements Teller {
 	public void createTestData() {
 		try {
 
-			TestUtil.logTrace("createTestData");
+			logger.log(Logger.Level.TRACE, "createTestData");
 
-			TestUtil.logTrace("Create 5 Account Entities");
+			logger.log(Logger.Level.TRACE, "Create 5 Account Entities");
 			for (int i = 0; i < ACCOUNTS.length; i++) {
-				TestUtil.logTrace("Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
+				logger.log(Logger.Level.TRACE, "Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
 				System.out.println("Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
 
 				accountRef = new Account(ACCOUNTS[i], BALANCES[i]);
@@ -227,29 +231,29 @@ public class TellerBean implements Teller {
 
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected while creating test data:", e);
+			logger.log(Logger.Level.ERROR, "Unexpected while creating test data:", e);
 		}
 	}
 
 	public void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		try {
 			entityManager.createNativeQuery("DELETE FROM BEJB_1X1_BI_BTOB").executeUpdate();
 			entityManager.createNativeQuery("DELETE FROM ACCOUNT").executeUpdate();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		}
 
 		// clear the cache if the provider supports caching otherwise
 		// the evictAll is ignored.
-		TestUtil.logTrace("Clearing cache");
+		logger.log(Logger.Level.TRACE, "Clearing cache");
 		entityManager.getEntityManagerFactory().getCache().evictAll();
 
-		TestUtil.logTrace("TellerBean: cleanup complete");
+		logger.log(Logger.Level.TRACE, "TellerBean: cleanup complete");
 	}
 
 	public void init(final Properties p) {
-		TestUtil.logTrace("init");
+		logger.log(Logger.Level.TRACE, "init");
 		try {
 			TestUtil.init(p);
 		} catch (RemoteLoggingInitException e) {

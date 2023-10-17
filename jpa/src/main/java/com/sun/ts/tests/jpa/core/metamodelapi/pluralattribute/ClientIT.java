@@ -16,12 +16,13 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.pluralattribute;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.metamodel.Bindable;
@@ -30,8 +31,9 @@ import jakarta.persistence.metamodel.Metamodel;
 import jakarta.persistence.metamodel.PluralAttribute;
 import jakarta.persistence.metamodel.Type;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public ClientIT() {
 	}
@@ -47,11 +49,11 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -71,24 +73,25 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Uni1XMPerson> mType = metaModel.managedType(Uni1XMPerson.class);
 			if (mType != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				PluralAttribute pluralAttrib = mType.getCollection("projects", Uni1XMProject.class);
 
 				PluralAttribute.CollectionType pluralColType = pluralAttrib.getCollectionType();
-				TestUtil.logTrace("collection Type = " + pluralAttrib.getCollectionType());
+				logger.log(Logger.Level.TRACE, "collection Type = " + pluralAttrib.getCollectionType());
 				if (pluralColType == PluralAttribute.CollectionType.COLLECTION) {
-					TestUtil.logTrace("Received Expected Collection type = " + pluralColType);
+					logger.log(Logger.Level.TRACE, "Received Expected Collection type = " + pluralColType);
 					pass = true;
 				} else {
-					TestUtil.logTrace("Received UnExpected Collection type = " + pluralColType);
+					logger.log(Logger.Level.TRACE, "Received UnExpected Collection type = " + pluralColType);
 				}
 
 				/*
 				 * Type t = pluralAttrib.getElementType(); if (t != null) {
-				 * TestUtil.logTrace("element Type  = " + t.getJavaType()); pass = true; }
+				 * logger.log(Logger.Level.TRACE,"element Type  = " + t.getJavaType()); pass =
+				 * true; }
 				 */
 			}
 		}
@@ -115,19 +118,20 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Uni1XMPerson> mType = metaModel.managedType(Uni1XMPerson.class);
 			if (mType != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				PluralAttribute pluralAttrib = mType.getCollection("projects", Uni1XMProject.class);
 
-				TestUtil.logTrace("collection Element Type = " + pluralAttrib.getElementType().getJavaType().getName());
+				logger.log(Logger.Level.TRACE,
+						"collection Element Type = " + pluralAttrib.getElementType().getJavaType().getName());
 				String elementTypeName = pluralAttrib.getElementType().getJavaType().getName();
 				if (elementTypeName.equals("com.sun.ts.tests.jpa.core.metamodelapi.pluralattribute.Uni1XMProject")) {
-					TestUtil.logTrace("Received Expected Element type = " + elementTypeName);
+					logger.log(Logger.Level.TRACE, "Received Expected Element type = " + elementTypeName);
 					pass = true;
 				} else {
-					TestUtil.logTrace("Received UnExpected Element type = " + elementTypeName);
+					logger.log(Logger.Level.TRACE, "Received UnExpected Element type = " + elementTypeName);
 				}
 			}
 		}
@@ -154,24 +158,24 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Uni1XMPerson> mTypeUni1XMPerson = metaModel.managedType(Uni1XMPerson.class);
 			if (mTypeUni1XMPerson != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				PluralAttribute pluralAttrib = mTypeUni1XMPerson.getCollection("projects", Uni1XMProject.class);
 
 				boolean b = pluralAttrib.isCollection();
 				if (b) {
-					TestUtil.logTrace("Received expected result:" + b);
+					logger.log(Logger.Level.TRACE, "Received expected result:" + b);
 					pass = true;
 				} else {
-					TestUtil.logErr("Expected: true, actual: " + b);
+					logger.log(Logger.Level.ERROR, "Expected: true, actual: " + b);
 				}
 			} else {
-				TestUtil.logErr("managedType() returned null");
+				logger.log(Logger.Level.ERROR, "managedType() returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 		getEntityTransaction().commit();
 
@@ -195,24 +199,24 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Uni1XMPerson> mTypeUni1XMPerson = metaModel.managedType(Uni1XMPerson.class);
 			if (mTypeUni1XMPerson != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				PluralAttribute pluralAttrib = mTypeUni1XMPerson.getCollection("projects", Uni1XMProject.class);
 
 				boolean b = pluralAttrib.isAssociation();
 				if (b) {
-					TestUtil.logTrace("Received expected result:" + b);
+					logger.log(Logger.Level.TRACE, "Received expected result:" + b);
 					pass = true;
 				} else {
-					TestUtil.logErr("Expected: true, actual: " + b);
+					logger.log(Logger.Level.ERROR, "Expected: true, actual: " + b);
 				}
 			} else {
-				TestUtil.logErr("managedType() returned null");
+				logger.log(Logger.Level.ERROR, "managedType() returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 		getEntityTransaction().commit();
 
@@ -236,20 +240,21 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Uni1XMPerson> mTypeUni1XMPerson = metaModel.managedType(Uni1XMPerson.class);
 			if (mTypeUni1XMPerson != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				PluralAttribute pluralAttrib = mTypeUni1XMPerson.getCollection("projects", Uni1XMProject.class);
 				if (pluralAttrib != null) {
 					PluralAttribute.PersistentAttributeType pAttribType = pluralAttrib.getPersistentAttributeType();
 					if (pAttribType == PluralAttribute.PersistentAttributeType.ONE_TO_MANY) {
-						TestUtil.logTrace("Received expected result " + pAttribType);
+						logger.log(Logger.Level.TRACE, "Received expected result " + pAttribType);
 						pass = true;
 
 					} else {
-						TestUtil.logErr("Expected: " + PluralAttribute.PersistentAttributeType.ONE_TO_MANY.toString()
-								+ ", actual:" + pAttribType);
+						logger.log(Logger.Level.ERROR,
+								"Expected: " + PluralAttribute.PersistentAttributeType.ONE_TO_MANY.toString()
+										+ ", actual:" + pAttribType);
 					}
 				}
 			}
@@ -277,19 +282,19 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Uni1XMPerson> mTypeUni1XMPerson = metaModel.managedType(Uni1XMPerson.class);
 			if (mTypeUni1XMPerson != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				PluralAttribute pluralAttrib = mTypeUni1XMPerson.getCollection("projects", Uni1XMProject.class);
 				if (pluralAttrib != null) {
 					String name = pluralAttrib.getName();
 					if (name.equals("projects")) {
-						TestUtil.logTrace("Received expected result" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result" + name);
 						pass = true;
 
 					} else {
-						TestUtil.logErr("Expected: projects, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: projects, actual:" + name);
 					}
 				}
 			}
@@ -317,18 +322,19 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Uni1XMPerson> mTypeUni1XMPerson = metaModel.managedType(Uni1XMPerson.class);
 			if (mTypeUni1XMPerson != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				PluralAttribute pluralAttrib = mTypeUni1XMPerson.getCollection("projects", Uni1XMProject.class);
 				if (pluralAttrib != null) {
 					Class pPluralAttribJavaType = pluralAttrib.getJavaType();
 					if (pPluralAttribJavaType.getName().equals("java.util.Collection")) {
-						TestUtil.logTrace("Received expected result " + pPluralAttribJavaType);
+						logger.log(Logger.Level.TRACE, "Received expected result " + pPluralAttribJavaType);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: java.util.Collection, actual:" + pPluralAttribJavaType);
+						logger.log(Logger.Level.ERROR,
+								"Expected: java.util.Collection, actual:" + pPluralAttribJavaType);
 					}
 				}
 			}
@@ -356,19 +362,20 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Uni1XMPerson> mTypeUni1XMPerson = metaModel.managedType(Uni1XMPerson.class);
 			if (mTypeUni1XMPerson != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				PluralAttribute pluralAttrib = mTypeUni1XMPerson.getCollection("projects", Uni1XMProject.class);
 				if (pluralAttrib != null) {
-					TestUtil.logTrace("Singular attribute JavaMember = " + pluralAttrib.getJavaMember().getName());
+					logger.log(Logger.Level.TRACE,
+							"Singular attribute JavaMember = " + pluralAttrib.getJavaMember().getName());
 					java.lang.reflect.Member javaMember = pluralAttrib.getJavaMember();
 					if (javaMember.getName().equals("projects")) {
-						TestUtil.logTrace("Received expected result " + javaMember.getName());
+						logger.log(Logger.Level.TRACE, "Received expected result " + javaMember.getName());
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: projects, actual:" + javaMember.getName());
+						logger.log(Logger.Level.ERROR, "Expected: projects, actual:" + javaMember.getName());
 					}
 				}
 			}
@@ -396,22 +403,22 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Uni1XMPerson> mTypeUni1XMPerson = metaModel.managedType(Uni1XMPerson.class);
 			if (mTypeUni1XMPerson != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				PluralAttribute pluralAttrib = mTypeUni1XMPerson.getCollection("projects", Uni1XMProject.class);
 				if (pluralAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + pluralAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + pluralAttrib.getName());
 					Bindable.BindableType bType = pluralAttrib.getBindableType();
 					if (bType != null) {
 
 						if (bType.name().equals(Bindable.BindableType.PLURAL_ATTRIBUTE.name())) {
-							TestUtil.logTrace("Received expected result:" + bType.name());
+							logger.log(Logger.Level.TRACE, "Received expected result:" + bType.name());
 							pass = true;
 						} else {
-							TestUtil.logErr("Expected: " + Bindable.BindableType.PLURAL_ATTRIBUTE.name() + ", actual:"
-									+ bType.name());
+							logger.log(Logger.Level.ERROR, "Expected: " + Bindable.BindableType.PLURAL_ATTRIBUTE.name()
+									+ ", actual:" + bType.name());
 						}
 					}
 				}
@@ -440,20 +447,20 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Uni1XMPerson> mTypeUni1XMPerson = metaModel.managedType(Uni1XMPerson.class);
 			if (mTypeUni1XMPerson != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				PluralAttribute pluralAttrib = mTypeUni1XMPerson.getCollection("projects", Uni1XMProject.class);
 				if (pluralAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + pluralAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + pluralAttrib.getName());
 					Class cType = pluralAttrib.getBindableJavaType();
 					if (cType != null) {
 						if (cType.getName().equals(expected)) {
-							TestUtil.logTrace("Received expected result:" + cType.getName());
+							logger.log(Logger.Level.TRACE, "Received expected result:" + cType.getName());
 							pass = true;
 						} else {
-							TestUtil.logErr("Expected: " + expected + ", actual:" + cType.getName());
+							logger.log(Logger.Level.ERROR, "Expected: " + expected + ", actual:" + cType.getName());
 						}
 					}
 				}
@@ -482,32 +489,32 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Uni1XMPerson> mTypeUni1XMPerson = metaModel.managedType(Uni1XMPerson.class);
 			if (mTypeUni1XMPerson != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				PluralAttribute pluralAttrib = mTypeUni1XMPerson.getCollection("projects", Uni1XMProject.class);
 				if (pluralAttrib != null) {
 					Type type = pluralAttrib.getDeclaringType();
 					if (type != null) {
 						String name = type.getJavaType().getName();
 						if (name.equals(expected)) {
-							TestUtil.logTrace("Received expected result:" + name);
+							logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 							pass = true;
 						} else {
-							TestUtil.logErr("Expected: " + expected + ", actual:" + name);
+							logger.log(Logger.Level.ERROR, "Expected: " + expected + ", actual:" + name);
 						}
 					} else {
-						TestUtil.logErr("getDeclaringType() returned null");
+						logger.log(Logger.Level.ERROR, "getDeclaringType() returned null");
 					}
 				} else {
-					TestUtil.logErr("getCollection(...) returned null");
+					logger.log(Logger.Level.ERROR, "getCollection(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("managedType() returned null");
+				logger.log(Logger.Level.ERROR, "managedType() returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -519,21 +526,21 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("Cleanup data");
+		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 
 		try {
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
 		} catch (Exception re) {
-			TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 		}
 
 	}

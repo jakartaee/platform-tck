@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.jpa22.repeatable.namedentitygraph;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,13 +27,13 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.EntityGraph;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	private static final long serialVersionUID = 22L;
 
@@ -56,40 +57,40 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			createDeployment();
 			displayMap(new Properties());
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
 
 	@BeforeAll
 	public void setupEmployeeData() throws Exception {
-		TestUtil.logTrace("setupOrderData");
+		logger.log(Logger.Level.TRACE, "setupOrderData");
 		try {
 			super.setup();
 			removeTestData();
 			createEmployeeData();
 			displayMap(new Properties());
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	@AfterAll
 	public void cleanupEmployeeData() throws Exception {
-		TestUtil.logTrace("Cleanup data");
+		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
 		cleanup();
 	}
@@ -110,13 +111,13 @@ public class ClientIT extends PMClientBase {
 		if (egs.size() == 1) {
 			EntityGraph<?> e = egs.get(0);
 			if (e.getName().equals("Employee2")) {
-				TestUtil.logTrace("Received expected name:" + e.getName());
+				logger.log(Logger.Level.TRACE, "Received expected name:" + e.getName());
 				pass = true;
 			} else {
-				TestUtil.logErr("Expected name: Employee2, actual:" + e.getName());
+				logger.log(Logger.Level.ERROR, "Expected name: Employee2, actual:" + e.getName());
 			}
 		} else {
-			TestUtil.logErr("Expected 1 graph to be returned, instead got:" + egs.size());
+			logger.log(Logger.Level.ERROR, "Expected 1 graph to be returned, instead got:" + egs.size());
 		}
 
 		if (!pass) {
@@ -138,10 +139,10 @@ public class ClientIT extends PMClientBase {
 		EntityGraph<Employee2> eg = getEntityManager().createEntityGraph(Employee2.class);
 
 		if (eg.getName() == null) {
-			TestUtil.logTrace("Received expected null");
+			logger.log(Logger.Level.TRACE, "Received expected null");
 			pass = true;
 		} else {
-			TestUtil.logErr("Expected name: null, actual:" + eg.getName());
+			logger.log(Logger.Level.ERROR, "Expected name: null, actual:" + eg.getName());
 		}
 
 		if (!pass) {
@@ -173,20 +174,20 @@ public class ClientIT extends PMClientBase {
 				actual.add(e.getName());
 			}
 			if (actual.containsAll(expected) && expected.containsAll(actual) && actual.size() == expected.size()) {
-				TestUtil.logTrace("Received expected results");
+				logger.log(Logger.Level.TRACE, "Received expected results");
 				pass = true;
 			} else {
-				TestUtil.logErr("Expected results");
+				logger.log(Logger.Level.ERROR, "Expected results");
 				for (String s : expected) {
-					TestUtil.logErr("expected:" + s);
+					logger.log(Logger.Level.ERROR, "expected:" + s);
 				}
-				TestUtil.logErr("Actual results");
+				logger.log(Logger.Level.ERROR, "Actual results");
 				for (String s : actual) {
-					TestUtil.logErr("actual:" + s);
+					logger.log(Logger.Level.ERROR, "actual:" + s);
 				}
 			}
 		} else {
-			TestUtil.logErr("No named entity graphs were returned eventhough they exist in entity");
+			logger.log(Logger.Level.ERROR, "No named entity graphs were returned eventhough they exist in entity");
 		}
 
 		if (!pass) {
@@ -198,7 +199,7 @@ public class ClientIT extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logMsg("Creating Employees");
+			logger.log(Logger.Level.INFO, "Creating Employees");
 
 			final Date d1 = getUtilDate("2000-02-14");
 			final Date d2 = getUtilDate("2001-06-27");
@@ -210,7 +211,7 @@ public class ClientIT extends PMClientBase {
 			deptRef[1] = new Department(2, "Administration");
 			for (Department d : deptRef) {
 				getEntityManager().persist(d);
-				TestUtil.logTrace("persisted department:" + d);
+				logger.log(Logger.Level.TRACE, "persisted department:" + d);
 			}
 
 			empRef[0] = new Employee3(1, "Alan", "Frechette", d1, (float) 35000.0);
@@ -227,26 +228,26 @@ public class ClientIT extends PMClientBase {
 			for (Employee3 e : empRef) {
 				if (e != null) {
 					getEntityManager().persist(e);
-					TestUtil.logTrace("persisted employee3:" + e);
+					logger.log(Logger.Level.TRACE, "persisted employee3:" + e);
 				}
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -256,14 +257,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM DEPARTMENT").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

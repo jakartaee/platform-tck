@@ -16,16 +16,18 @@
 
 package com.sun.ts.tests.jpa.core.annotations.discriminatorValue;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public static JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
@@ -42,14 +44,14 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 
 			super.setup();
 			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -99,20 +101,20 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().flush();
 			clearCache();
 			PricedPartProduct2 p2 = getEntityManager().find(PricedPartProduct2.class, testName);
-			TestUtil.logTrace("finding PricedPartProduct2 with id '" + testName + "'");
+			logger.log(Logger.Level.TRACE, "finding PricedPartProduct2 with id '" + testName + "'");
 
 			if (p1.equals(p2)) {
-				TestUtil.logTrace("Received expected PricedPartProduct2:" + p2);
+				logger.log(Logger.Level.TRACE, "Received expected PricedPartProduct2:" + p2);
 				pass = true;
 			} else {
-				TestUtil.logErr("Did not get expected result.");
-				TestUtil.logErr("Expected:" + p1);
-				TestUtil.logErr("Actual:" + p2);
+				logger.log(Logger.Level.ERROR, "Did not get expected result.");
+				logger.log(Logger.Level.ERROR, "Expected:" + p1);
+				logger.log(Logger.Level.ERROR, "Actual:" + p2);
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -138,15 +140,15 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().flush();
 			clearCache();
 			PartProduct p2 = getEntityManager().find(PartProduct.class, testName);
-			TestUtil.logTrace("finding PartProduct with id '" + testName + "'");
+			logger.log(Logger.Level.TRACE, "finding PartProduct with id '" + testName + "'");
 
 			if (p1.equals(p2)) {
-				TestUtil.logTrace("Received expected PartProduct:" + p2);
+				logger.log(Logger.Level.TRACE, "Received expected PartProduct:" + p2);
 				pass1 = true;
 			} else {
-				TestUtil.logErr("Did not get expected result.");
-				TestUtil.logErr("Expected:" + p1);
-				TestUtil.logErr("Actual:" + p2);
+				logger.log(Logger.Level.ERROR, "Did not get expected result.");
+				logger.log(Logger.Level.ERROR, "Expected:" + p1);
+				logger.log(Logger.Level.ERROR, "Actual:" + p2);
 			}
 
 			Product p3 = newProduct(testName);
@@ -154,20 +156,20 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().flush();
 			clearCache();
 			Product p4 = getEntityManager().find(Product.class, testName);
-			TestUtil.logTrace("finding Product with id '" + testName + "'");
+			logger.log(Logger.Level.TRACE, "finding Product with id '" + testName + "'");
 
 			if (p3.equals(p4)) {
-				TestUtil.logTrace("Received expected Product:" + p2);
+				logger.log(Logger.Level.TRACE, "Received expected Product:" + p2);
 				pass1 = true;
 			} else {
-				TestUtil.logErr("Did not get expected result.");
-				TestUtil.logErr("Expected:" + p3);
-				TestUtil.logErr("Actual:" + p4);
+				logger.log(Logger.Level.ERROR, "Did not get expected result.");
+				logger.log(Logger.Level.ERROR, "Expected:" + p3);
+				logger.log(Logger.Level.ERROR, "Actual:" + p4);
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass1) {
@@ -177,15 +179,15 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 		removeDeploymentJar();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -197,14 +199,14 @@ public class ClientIT extends PMClientBase {
 			removeDeploymentJar();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

@@ -20,16 +20,18 @@
 
 package com.sun.ts.tests.jpa.se.descriptor;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	private static final B bRef[] = new B[5];
 
@@ -82,15 +84,15 @@ public class ClientIT extends PMClientBase {
 
 			if (anotherB != null) {
 				if (anotherB.equals(bRef[0])) {
-					TestUtil.logTrace("get expected B");
+					logger.log(Logger.Level.TRACE, "get expected B");
 					pass = true;
 				} else {
-					TestUtil.logErr("Did not get expected B:" + anotherB.toString());
+					logger.log(Logger.Level.ERROR, "Did not get expected B:" + anotherB.toString());
 				}
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -99,37 +101,37 @@ public class ClientIT extends PMClientBase {
 	}
 
 	public void createTestData() {
-		TestUtil.logTrace("createTestData");
+		logger.log(Logger.Level.TRACE, "createTestData");
 
 		try {
 
-			TestUtil.logTrace("Create 2 B Entities");
+			logger.log(Logger.Level.TRACE, "Create 2 B Entities");
 			bRef[0] = new B("1", "myB", 1);
 			bRef[1] = new B("2", "yourB", 2);
 
-			TestUtil.logTrace("Start to persist Bs ");
+			logger.log(Logger.Level.TRACE, "Start to persist Bs ");
 			for (B b : bRef) {
 				if (b != null) {
 					getEntityManager().persist(b);
-					TestUtil.logTrace("persisted B " + b);
+					logger.log(Logger.Level.TRACE, "persisted B " + b);
 				}
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception while creating test data:" + e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception while creating test data:" + e);
 		}
 	}
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
 		super.cleanup();
 		removeDeploymentJar();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -139,14 +141,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM BEJB_1X1_BI_BTOB").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

@@ -16,15 +16,17 @@
 
 package com.sun.ts.tests.jpa.core.annotations.tableGenerator;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
-
 public class Client4IT extends Client {
 
 	private DataTypes4 d4;
+
+	private static final Logger logger = (Logger) System.getLogger(Client4IT.class.getName());
 
 	public Client4IT() {
 	}
@@ -39,7 +41,7 @@ public class Client4IT extends Client {
 
 	@BeforeAll
 	public void setup4() throws Exception {
-		TestUtil.logTrace("setup4");
+		logger.log(Logger.Level.TRACE, "setup4");
 		try {
 
 			super.setup();
@@ -48,7 +50,7 @@ public class Client4IT extends Client {
 			removeTestData();
 			createTestData4();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -68,7 +70,7 @@ public class Client4IT extends Client {
 		try {
 			getEntityTransaction().begin();
 			int id = d4.getId();
-			TestUtil.logTrace("find id: " + id);
+			logger.log(Logger.Level.TRACE, "find id: " + id);
 			DataTypes4 d = getEntityManager().find(DataTypes4.class, id);
 			if (d != null) {
 				if (d.getStringData().equals(d4.getStringData())) {
@@ -77,10 +79,10 @@ public class Client4IT extends Client {
 
 				getEntityTransaction().commit();
 			} else {
-				TestUtil.logErr("EntityManager.find returned null result");
+				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -95,14 +97,14 @@ public class Client4IT extends Client {
 
 			d4 = new DataTypes4();
 			d4.setStringData("testData4");
-			TestUtil.logTrace("DataType4:" + d4.toString());
+			logger.log(Logger.Level.TRACE, "DataType4:" + d4.toString());
 			getEntityManager().persist(d4);
 
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 	}
 

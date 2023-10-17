@@ -20,9 +20,8 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.persist.manyXmany;
 
+import java.lang.System.Logger;
 import java.util.Collection;
-
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
@@ -34,6 +33,8 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "BEJB_MXM_BI_BTOB")
 public class B implements java.io.Serializable {
+
+	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
 
 	// ===========================================================
 	// instance variables
@@ -56,7 +57,7 @@ public class B implements java.io.Serializable {
 	// constructors
 
 	public B() {
-		TestUtil.logTrace("Entity B no arg constructor");
+		logger.log(Logger.Level.TRACE, "Entity B no arg constructor");
 	}
 
 	public B(String id, String name, int value) {
@@ -76,12 +77,12 @@ public class B implements java.io.Serializable {
 	// Business Methods for Test Cases
 
 	public Collection getACol() {
-		TestUtil.logTrace("getACol");
+		logger.log(Logger.Level.TRACE, "getACol");
 		return aCol;
 	}
 
 	public void setACol(Collection aCol) {
-		TestUtil.logTrace("setACol");
+		logger.log(Logger.Level.TRACE, "setACol");
 		this.aCol = aCol;
 	}
 

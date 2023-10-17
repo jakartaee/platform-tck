@@ -20,16 +20,17 @@
 
 package com.sun.ts.tests.jpa.core.query.flushmode;
 
+import java.lang.System.Logger;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.Product;
 import com.sun.ts.tests.jpa.common.schema30.UtilProductData;
 
-
 public class Client3IT extends UtilProductData {
+
+	private static final Logger logger = (Logger) System.getLogger(Client3IT.class.getName());
 
 	public Client3IT() {
 	}
@@ -58,16 +59,16 @@ public class Client3IT extends UtilProductData {
 					.createQuery("SELECT p FROM Product p WHERE p.wareHouse = 'Lowell' ").getResultList();
 
 			if (!checkEntityPK(result, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ result.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().rollback();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception: ", e);
+			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
 		}
 
 		if (!pass)

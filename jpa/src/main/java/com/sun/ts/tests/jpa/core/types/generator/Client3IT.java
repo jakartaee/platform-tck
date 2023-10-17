@@ -20,13 +20,15 @@
 
 package com.sun.ts.tests.jpa.core.types.generator;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
-
 public class Client3IT extends Client {
+
+	private static final Logger logger = (Logger) System.getLogger(Client3IT.class.getName());
 
 	private DataTypes3 d11;
 
@@ -48,7 +50,7 @@ public class Client3IT extends Client {
 	 */
 	@BeforeAll
 	public void setupDataTypes3() throws Exception {
-		TestUtil.logTrace("setupDataTypes3");
+		logger.log(Logger.Level.TRACE, "setupDataTypes3");
 		try {
 
 			super.setup();
@@ -56,20 +58,20 @@ public class Client3IT extends Client {
 			String s = System.getProperty("db.supports.sequence");
 			if (s != null) {
 				supports_sequence = Boolean.parseBoolean(s);
-				TestUtil.logMsg("db.supports.sequence:" + supports_sequence);
+				logger.log(Logger.Level.INFO, "db.supports.sequence:" + supports_sequence);
 				if (supports_sequence) {
 					removeTestData();
 					createDataTypes3Data();
 				}
 			} else {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"The property db.supports.sequence is not defined in the ts.jte, this must be corrected before running tests");
 				throw new Exception("setupDataTypes3 failed");
 
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("setupDataTypes3 failed:", e);
 		}
 	}
@@ -91,45 +93,45 @@ public class Client3IT extends Client {
 			try {
 				getEntityTransaction().begin();
 				clearCache();
-				TestUtil.logMsg("Doing a find of id: " + d11.getId());
+				logger.log(Logger.Level.INFO, "Doing a find of id: " + d11.getId());
 				DataTypes3 d = getEntityManager().find(DataTypes3.class, d11.getId());
 
 				if (d != null) {
 					Integer i = d.getIntegerData();
 					if (i.equals(d11.getIntegerData())) {
-						TestUtil.logTrace("find returned correct Integer value:" + i);
+						logger.log(Logger.Level.TRACE, "find returned correct Integer value:" + i);
 						d.setIntegerData(newInt);
 					} else {
-						TestUtil.logErr("find did not return correct Integer value, expected: " + d11.getIntegerData()
-								+ ", actual:" + i);
+						logger.log(Logger.Level.ERROR, "find did not return correct Integer value, expected: "
+								+ d11.getIntegerData() + ", actual:" + i);
 						pass = false;
 					}
 
 					getEntityManager().merge(d);
 					getEntityManager().flush();
 					clearCache();
-					TestUtil.logMsg("Doing a find of merged data for id: " + d.getId());
+					logger.log(Logger.Level.INFO, "Doing a find of merged data for id: " + d.getId());
 					DataTypes3 d2 = getEntityManager().find(DataTypes3.class, d.getId());
 					i = d2.getIntegerData();
 					if (i.equals(d2.getIntegerData())) {
-						TestUtil.logTrace("find returned correct merged Integer value:" + i);
+						logger.log(Logger.Level.TRACE, "find returned correct merged Integer value:" + i);
 					} else {
-						TestUtil.logErr("find did not return correct Integer value, expected: " + d.getIntegerData()
-								+ ", actual:" + i);
+						logger.log(Logger.Level.ERROR, "find did not return correct Integer value, expected: "
+								+ d.getIntegerData() + ", actual:" + i);
 						pass = false;
 					}
 
 					getEntityTransaction().commit();
 				} else {
-					TestUtil.logErr("find returned null result");
+					logger.log(Logger.Level.ERROR, "find returned null result");
 					pass = false;
 				}
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 				pass = false;
 			}
 		} else {
-			TestUtil.logMsg("WARNING: Test not run because db.supports.sequence set to false in ts.jte");
+			logger.log(Logger.Level.INFO, "WARNING: Test not run because db.supports.sequence set to false in ts.jte");
 		}
 		if (!pass)
 			throw new Exception("sequenceGeneratorOnEntityTest failed");
@@ -142,19 +144,19 @@ public class Client3IT extends Client {
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logTrace("in createDataTypes3Data");
+			logger.log(Logger.Level.TRACE, "in createDataTypes3Data");
 
-			TestUtil.logTrace("new DataType3");
+			logger.log(Logger.Level.TRACE, "new DataType3");
 			d11 = new DataTypes3(500);
-			TestUtil.logTrace("Persist DataType3");
+			logger.log(Logger.Level.TRACE, "Persist DataType3");
 			getEntityManager().persist(d11);
-			TestUtil.logTrace("DataType3 id:" + d11.getId());
+			logger.log(Logger.Level.TRACE, "DataType3 id:" + d11.getId());
 
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 	}
 

@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.se.entityManager;
 
+import java.lang.System.Logger;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -27,7 +28,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.FlushModeType;
@@ -43,8 +43,9 @@ import jakarta.persistence.criteria.CriteriaUpdate;
 import jakarta.persistence.criteria.ParameterExpression;
 import jakarta.persistence.criteria.Root;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	Properties props = null;
 
@@ -71,7 +72,7 @@ public class ClientIT extends PMClientBase {
 	 */
 	@BeforeAll
 	public void setupOrderData() throws Exception {
-		TestUtil.logTrace("setupOrderData");
+		logger.log(Logger.Level.TRACE, "setupOrderData");
 		try {
 			super.setup();
 			createDeployment();
@@ -81,14 +82,14 @@ public class ClientIT extends PMClientBase {
 			map.put("foo", "bar");
 			displayMap(map);
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
 
 	@AfterAll
 	public void cleanupData() throws Exception {
-		TestUtil.logTrace("cleanupData");
+		logger.log(Logger.Level.TRACE, "cleanupData");
 		removeTestData();
 		cleanup();
 		removeDeploymentJar();
@@ -112,17 +113,17 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().persist(order);
 
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -148,17 +149,17 @@ public class ClientIT extends PMClientBase {
 			Order order = new Order(6, 666, "desc6");
 			getEntityManager().merge(order);
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -185,17 +186,17 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().remove(order);
 
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -221,17 +222,17 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().find(Order.class, 0);
 
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -257,17 +258,17 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().getReference(Order.class, 0);
 
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -293,17 +294,17 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().flush();
 
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -329,17 +330,17 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().setFlushMode(FlushModeType.AUTO);
 
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -365,17 +366,17 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().getFlushMode();
 
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -402,17 +403,17 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().lock(order, LockModeType.WRITE);
 
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -439,17 +440,17 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().refresh(order);
 
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -473,20 +474,20 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().clear();
-			TestUtil.logErr("IllegalStateException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException was not thrown");
 
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -513,17 +514,17 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().contains(order);
 
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -549,17 +550,17 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createQuery("SELECT Object (orders) FROM Order orders");
 
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -585,17 +586,17 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNamedQuery("CTS NamedQuery");
 
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -621,17 +622,17 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("SELECT o.ID from ORDER o WHERE (o.TOTALPRICE >100");
 
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -657,17 +658,17 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().joinTransaction();
 
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -693,17 +694,17 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().getDelegate();
 
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -729,17 +730,17 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().close();
 
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -761,12 +762,12 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().getEntityManagerFactory();
-			TestUtil.logErr("IllegalStateException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException was not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass) {
 			throw new Exception("getEntityManagerFactoryIllegalStateExceptionTest failed");
@@ -787,12 +788,12 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().getMetamodel();
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException ise) {
-			TestUtil.logTrace("Received expected IllegalStateException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass) {
 			throw new Exception("emGetMetamodelIllegalStateExceptionTest failed");
@@ -815,12 +816,12 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().getCriteriaBuilder();
-			TestUtil.logErr("IllegalStateException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException was not thrown");
 		} catch (IllegalStateException ise) {
 			pass = true;
-			TestUtil.logTrace("Received expected IllegalStateException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass) {
 			throw new Exception("getCriteriaBuilderIllegalStateExceptionTest failed");
@@ -842,19 +843,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().createNamedQuery("foo", Employee.class);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -877,19 +878,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().createNamedStoredProcedureQuery("foo");
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -913,19 +914,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().createNativeQuery("Select * from Employee", Employee.class);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -949,19 +950,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().createNativeQuery("Select * from Employee", "resultSetMapping");
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -988,19 +989,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().createQuery(cd);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1026,19 +1027,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().createQuery(cq);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1064,19 +1065,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().createQuery(cu);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1100,19 +1101,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().createQuery("Select * from Employee", Employee.class);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1136,19 +1137,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().createStoredProcedureQuery("procedureName");
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1172,19 +1173,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().createStoredProcedureQuery("procedureName", Employee.class);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1208,19 +1209,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().createStoredProcedureQuery("procedureName", "resultSetMappings");
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1246,19 +1247,19 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().close();
 			Employee emp = new Employee(1, "foo", "bar", getUtilDate("2000-02-14"), (float) 35000.0);
 			getEntityManager().detach(emp);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1282,19 +1283,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().find(Employee.class, 1, LockModeType.NONE);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1318,19 +1319,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().find(Employee.class, 1, LockModeType.NONE, map);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1354,19 +1355,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().find(Employee.class, 1, map);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1390,19 +1391,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().getCriteriaBuilder();
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1426,19 +1427,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().getEntityManagerFactory();
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1464,19 +1465,19 @@ public class ClientIT extends PMClientBase {
 
 		try {
 			getEntityManager().getLockMode(emp);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1500,19 +1501,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().getMetamodel();
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1536,19 +1537,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().isJoinedToTransaction();
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1574,19 +1575,19 @@ public class ClientIT extends PMClientBase {
 
 		try {
 			getEntityManager().lock(emp, LockModeType.NONE, map);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1612,19 +1613,19 @@ public class ClientIT extends PMClientBase {
 
 		try {
 			getEntityManager().refresh(emp, LockModeType.NONE);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1650,19 +1651,19 @@ public class ClientIT extends PMClientBase {
 
 		try {
 			getEntityManager().refresh(emp, LockModeType.NONE, map);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1688,19 +1689,19 @@ public class ClientIT extends PMClientBase {
 		Employee emp = new Employee(1, "foo", "bar", getUtilDate("2000-02-14"), (float) 35000.0);
 		try {
 			getEntityManager().refresh(emp, map);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1724,12 +1725,12 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().setProperty("foo", "bar");
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -1737,7 +1738,7 @@ public class ClientIT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1766,19 +1767,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.executeUpdate();
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -1804,19 +1805,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.getFirstResult();
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -1843,19 +1844,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.getFlushMode();
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -1877,25 +1878,25 @@ public class ClientIT extends PMClientBase {
 	public void queryMethodsAfterClose4Test() throws Exception {
 		boolean pass = false;
 
-		TestUtil.logMsg("Testing getHints() )");
+		logger.log(Logger.Level.INFO, "Testing getHints() )");
 		getEntityTransaction().begin();
 		Query query = getEntityManager().createQuery("select e.id from Employee e");
 		getEntityManager().close();
 		try {
 			query.getHints();
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -1922,24 +1923,24 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.getLockMode();
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			if (getEntityTransaction().getRollbackOnly() == true) {
-				TestUtil.logErr("Transaction was marked for rollback and should not have been");
+				logger.log(Logger.Level.ERROR, "Transaction was marked for rollback and should not have been");
 			} else {
 				pass = true;
-				TestUtil.logTrace("Transaction was not marked for rollback");
+				logger.log(Logger.Level.TRACE, "Transaction was not marked for rollback");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -1965,19 +1966,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.getMaxResults();
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2004,24 +2005,24 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.getParameter(1);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			if (getEntityTransaction().getRollbackOnly() == true) {
-				TestUtil.logErr("Transaction was marked for rollback and should not have been");
+				logger.log(Logger.Level.ERROR, "Transaction was marked for rollback and should not have been");
 			} else {
 				pass = true;
-				TestUtil.logTrace("Transaction was not marked for rollback");
+				logger.log(Logger.Level.TRACE, "Transaction was not marked for rollback");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2048,24 +2049,24 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.getParameter(1, Integer.class);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			if (getEntityTransaction().getRollbackOnly() == true) {
-				TestUtil.logErr("Transaction was marked for rollback and should not have been");
+				logger.log(Logger.Level.ERROR, "Transaction was marked for rollback and should not have been");
 			} else {
 				pass = true;
-				TestUtil.logTrace("Transaction was not marked for rollback");
+				logger.log(Logger.Level.TRACE, "Transaction was not marked for rollback");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2092,24 +2093,24 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.getParameter("name");
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			if (getEntityTransaction().getRollbackOnly() == true) {
-				TestUtil.logErr("Transaction was marked for rollback and should not have been");
+				logger.log(Logger.Level.ERROR, "Transaction was marked for rollback and should not have been");
 			} else {
 				pass = true;
-				TestUtil.logTrace("Transaction was not marked for rollback");
+				logger.log(Logger.Level.TRACE, "Transaction was not marked for rollback");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2136,24 +2137,24 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.getParameter("name", String.class);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			if (getEntityTransaction().getRollbackOnly() == true) {
-				TestUtil.logErr("Transaction was marked for rollback and should not have been");
+				logger.log(Logger.Level.ERROR, "Transaction was marked for rollback and should not have been");
 			} else {
 				pass = true;
-				TestUtil.logTrace("Transaction was not marked for rollback");
+				logger.log(Logger.Level.TRACE, "Transaction was not marked for rollback");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2180,24 +2181,24 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.getParameters();
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			if (getEntityTransaction().getRollbackOnly() == true) {
-				TestUtil.logErr("Transaction was marked for rollback and should not have been");
+				logger.log(Logger.Level.ERROR, "Transaction was marked for rollback and should not have been");
 			} else {
 				pass = true;
-				TestUtil.logTrace("Transaction was not marked for rollback");
+				logger.log(Logger.Level.TRACE, "Transaction was not marked for rollback");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2224,24 +2225,24 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.getParameterValue(1);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			if (getEntityTransaction().getRollbackOnly() == true) {
-				TestUtil.logErr("Transaction was marked for rollback and should not have been");
+				logger.log(Logger.Level.ERROR, "Transaction was marked for rollback and should not have been");
 			} else {
 				pass = true;
-				TestUtil.logTrace("Transaction was not marked for rollback");
+				logger.log(Logger.Level.TRACE, "Transaction was not marked for rollback");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2269,24 +2270,24 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.getParameterValue(p);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			if (getEntityTransaction().getRollbackOnly() == true) {
-				TestUtil.logErr("Transaction was marked for rollback and should not have been");
+				logger.log(Logger.Level.ERROR, "Transaction was marked for rollback and should not have been");
 			} else {
 				pass = true;
-				TestUtil.logTrace("Transaction was not marked for rollback");
+				logger.log(Logger.Level.TRACE, "Transaction was not marked for rollback");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2313,24 +2314,24 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.getParameterValue("id");
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			if (getEntityTransaction().getRollbackOnly() == true) {
-				TestUtil.logErr("Transaction was marked for rollback and should not have been");
+				logger.log(Logger.Level.ERROR, "Transaction was marked for rollback and should not have been");
 			} else {
 				pass = true;
-				TestUtil.logTrace("Transaction was not marked for rollback");
+				logger.log(Logger.Level.TRACE, "Transaction was not marked for rollback");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2356,19 +2357,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.getResultList();
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2394,19 +2395,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.getSingleResult();
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2434,19 +2435,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.isBound(p);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2472,19 +2473,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.setFirstResult(1);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2510,19 +2511,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.setFlushMode(FlushModeType.AUTO);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2548,19 +2549,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.setHint("foo", "bar");
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2586,19 +2587,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.setLockMode(LockModeType.NONE);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2624,19 +2625,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.setMaxResults(1);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2662,19 +2663,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.setParameter(1, getCalDate(), TemporalType.DATE);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2700,19 +2701,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.setParameter(1, getUtilDate(), TemporalType.DATE);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2738,19 +2739,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.setParameter(1, 1);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2779,19 +2780,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.setParameter(p, getCalDate(), TemporalType.DATE);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2819,19 +2820,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.setParameter(p, getUtilDate(), TemporalType.DATE);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2859,19 +2860,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.setParameter(p, 1);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2897,19 +2898,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.setParameter("date", getCalDate(), TemporalType.DATE);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2935,19 +2936,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.setParameter("date", getUtilDate(), TemporalType.DATE);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -2973,19 +2974,19 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			query.setParameter("id", 1);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -3017,19 +3018,19 @@ public class ClientIT extends PMClientBase {
 		try {
 			tquery.getResultList();
 
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -3061,12 +3062,12 @@ public class ClientIT extends PMClientBase {
 		try {
 			tquery.getSingleResult();
 
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3074,7 +3075,7 @@ public class ClientIT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -3106,12 +3107,12 @@ public class ClientIT extends PMClientBase {
 		try {
 			tquery.setFirstResult(1);
 
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3119,7 +3120,7 @@ public class ClientIT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -3151,12 +3152,12 @@ public class ClientIT extends PMClientBase {
 		try {
 			tquery.setFlushMode(FlushModeType.AUTO);
 
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3164,7 +3165,7 @@ public class ClientIT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -3196,12 +3197,12 @@ public class ClientIT extends PMClientBase {
 		try {
 			tquery.setHint("foo", "bar");
 
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3209,7 +3210,7 @@ public class ClientIT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -3241,12 +3242,12 @@ public class ClientIT extends PMClientBase {
 		try {
 			tquery.setLockMode(LockModeType.NONE);
 
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3254,7 +3255,7 @@ public class ClientIT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -3286,12 +3287,12 @@ public class ClientIT extends PMClientBase {
 		try {
 			tquery.setMaxResults(1);
 
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3299,7 +3300,7 @@ public class ClientIT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -3328,12 +3329,12 @@ public class ClientIT extends PMClientBase {
 		try {
 			tquery.setParameter(1, getCalDate(), TemporalType.DATE);
 
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3341,7 +3342,7 @@ public class ClientIT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -3369,12 +3370,12 @@ public class ClientIT extends PMClientBase {
 		try {
 			tquery.setParameter(1, getUtilDate(), TemporalType.DATE);
 
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3382,7 +3383,7 @@ public class ClientIT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -3410,12 +3411,12 @@ public class ClientIT extends PMClientBase {
 		try {
 			tquery.setParameter(1, "1");
 
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3423,7 +3424,7 @@ public class ClientIT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -3458,12 +3459,12 @@ public class ClientIT extends PMClientBase {
 		try {
 			tquery.setParameter(param1, getCalDate(), TemporalType.DATE);
 
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3471,7 +3472,7 @@ public class ClientIT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -3506,12 +3507,12 @@ public class ClientIT extends PMClientBase {
 		try {
 			tquery.setParameter(param1, getUtilDate(), TemporalType.DATE);
 
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3519,7 +3520,7 @@ public class ClientIT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -3553,12 +3554,12 @@ public class ClientIT extends PMClientBase {
 		try {
 			tquery.setParameter(param1, "1");
 
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3566,7 +3567,7 @@ public class ClientIT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -3600,12 +3601,12 @@ public class ClientIT extends PMClientBase {
 		try {
 			tquery.setParameter("calDate", getCalDate(), TemporalType.DATE);
 
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3613,7 +3614,7 @@ public class ClientIT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -3647,12 +3648,12 @@ public class ClientIT extends PMClientBase {
 		try {
 			tquery.setParameter("utilDate", getUtilDate(), TemporalType.DATE);
 
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3660,7 +3661,7 @@ public class ClientIT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -3694,12 +3695,12 @@ public class ClientIT extends PMClientBase {
 		try {
 			tquery.setParameter("idParam", "1");
 
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3707,7 +3708,7 @@ public class ClientIT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -3732,24 +3733,24 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().getCriteriaBuilder();
-			TestUtil.logErr("RuntimeException not thrown");
+			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			TestUtil.logTrace("RuntimeException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				TestUtil.logErr("Transaction was not marked for rollback");
+				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
 			} else {
-				TestUtil.logTrace("Transaction was marked for rollback");
+				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -3774,24 +3775,24 @@ public class ClientIT extends PMClientBase {
 		try {
 
 			getEntityManager().getDelegate();
-			TestUtil.logErr("RuntimeException not thrown");
+			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			TestUtil.logTrace("RuntimeException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				TestUtil.logErr("Transaction was not marked for rollback");
+				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
 			} else {
-				TestUtil.logTrace("Transaction was marked for rollback");
+				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -3816,24 +3817,24 @@ public class ClientIT extends PMClientBase {
 		try {
 
 			getEntityManager().getEntityManagerFactory();
-			TestUtil.logErr("RuntimeException not thrown");
+			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			TestUtil.logTrace("RuntimeException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				TestUtil.logErr("Transaction was not marked for rollback");
+				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
 			} else {
-				TestUtil.logTrace("Transaction was marked for rollback");
+				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -3857,24 +3858,24 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().getMetamodel();
-			TestUtil.logErr("RuntimeException not thrown");
+			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			TestUtil.logTrace("RuntimeException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				TestUtil.logErr("Transaction was not marked for rollback");
+				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
 			} else {
-				TestUtil.logTrace("Transaction was marked for rollback");
+				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -3898,12 +3899,12 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().createNamedStoredProcedureQuery("get-id-firstname-lastname");
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass) {
 			throw new Exception("storedProcedureQueryMethodsAfterClose1Test failed");
@@ -3926,12 +3927,12 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().close();
 		try {
 			getEntityManager().createStoredProcedureQuery("GetEmpIdFNameLNameFromRS");
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass) {
 			throw new Exception("storedProcedureQueryMethodsAfterClose2Test failed");
@@ -3955,12 +3956,12 @@ public class ClientIT extends PMClientBase {
 		try {
 			getEntityManager().createStoredProcedureQuery("GetEmpASCFromRS", Employee.class);
 
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass) {
 			throw new Exception("storedProcedureQueryMethodsAfterClose3Test failed");
@@ -3984,12 +3985,12 @@ public class ClientIT extends PMClientBase {
 		try {
 			getEntityManager().createStoredProcedureQuery("GetEmpIdFNameLNameFromRS", "id-firstname-lastname");
 
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected.");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass) {
 			throw new Exception("storedProcedureQueryMethodsAfterClose4Test failed");
@@ -4001,32 +4002,32 @@ public class ClientIT extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logMsg("Creating Orders");
+			logger.log(Logger.Level.INFO, "Creating Orders");
 			orders[0] = new Order(1, 111, "desc1");
 			orders[1] = new Order(2, 222, "desc2");
 			orders[2] = new Order(3, 333, "desc3");
 			orders[3] = new Order(4, 444, "desc4");
 			orders[4] = new Order(5, 555, "desc5");
 			for (Order o : orders) {
-				TestUtil.logTrace("Persisting order:" + o.toString());
+				logger.log(Logger.Level.TRACE, "Persisting order:" + o.toString());
 				getEntityManager().persist(o);
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -4036,14 +4037,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

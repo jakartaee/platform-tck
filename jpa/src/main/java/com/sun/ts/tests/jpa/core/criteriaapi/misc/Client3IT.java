@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2012, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.criteriaapi.misc;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -24,7 +25,6 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.Customer;
 import com.sun.ts.tests.jpa.common.schema30.Customer_;
 import com.sun.ts.tests.jpa.common.schema30.Order;
@@ -44,6 +44,8 @@ import jakarta.persistence.criteria.Subquery;
 import jakarta.persistence.metamodel.EntityType;
 
 public class Client3IT extends UtilOrderData {
+
+	private static final Logger logger = (Logger) System.getLogger(Client3IT.class.getName());
 
 	public static JavaArchive createDeployment() throws Exception {
 
@@ -91,31 +93,31 @@ public class Client3IT extends UtilOrderData {
 					int i = 0;
 					for (Tuple actual : result) {
 						pass1 = true;
-						TestUtil.logTrace("first=" + actual.get(0) + ", second=" + actual.get(1));
+						logger.log(Logger.Level.TRACE, "first=" + actual.get(0) + ", second=" + actual.get(1));
 						if (!actual.get(0).equals("1")) {
-							TestUtil.logErr("Expected: 1, actual:" + actual.get(0));
+							logger.log(Logger.Level.ERROR, "Expected: 1, actual:" + actual.get(0));
 							pass2 = false;
 						}
 						if (!actual.get(1).equals("2")) {
-							TestUtil.logErr("Expected: 2, actual:" + actual.get(1));
+							logger.log(Logger.Level.ERROR, "Expected: 2, actual:" + actual.get(1));
 							pass2 = false;
 						}
 						i++;
 					}
 				} else {
-					TestUtil.logErr("Expected: 1 tuple, actual:" + result.size());
+					logger.log(Logger.Level.ERROR, "Expected: 1 tuple, actual:" + result.size());
 					for (Tuple actual : result) {
-						TestUtil.logErr("first=" + actual.get(0) + ", second=" + actual.get(1));
+						logger.log(Logger.Level.ERROR, "first=" + actual.get(0) + ", second=" + actual.get(1));
 					}
 				}
 			} else {
-				TestUtil.logErr("Expected: 2 compound selection item, actual:" + lSel.size());
+				logger.log(Logger.Level.ERROR, "Expected: 2 compound selection item, actual:" + lSel.size());
 				for (Selection s : lSel) {
-					TestUtil.logErr("selection:" + s.toString());
+					logger.log(Logger.Level.ERROR, "selection:" + s.toString());
 				}
 			}
 		} else {
-			TestUtil.logErr("Expected isCompoundSelection() to return: true, actual:" + bActual);
+			logger.log(Logger.Level.ERROR, "Expected isCompoundSelection() to return: true, actual:" + bActual);
 		}
 		getEntityTransaction().commit();
 
@@ -160,30 +162,30 @@ public class Client3IT extends UtilOrderData {
 				if (result.size() == 1) {
 					for (Tuple actual : result) {
 						pass1 = true;
-						TestUtil.logTrace("first=" + actual.get(0) + ", second=" + actual.get(1));
+						logger.log(Logger.Level.TRACE, "first=" + actual.get(0) + ", second=" + actual.get(1));
 						if (!actual.get(0).equals("1")) {
-							TestUtil.logErr("Expected: 1, actual:" + actual.get(0));
+							logger.log(Logger.Level.ERROR, "Expected: 1, actual:" + actual.get(0));
 							pass2 = false;
 						}
 						if (!actual.get(1).equals("2")) {
-							TestUtil.logErr("Expected: 2, actual:" + actual.get(1));
+							logger.log(Logger.Level.ERROR, "Expected: 2, actual:" + actual.get(1));
 							pass2 = false;
 						}
 					}
 				} else {
-					TestUtil.logErr("Expected: 1 tuple, actual:" + result.size());
+					logger.log(Logger.Level.ERROR, "Expected: 1 tuple, actual:" + result.size());
 					for (Tuple actual : result) {
-						TestUtil.logErr("first=" + actual.get(0) + ", second=" + actual.get(1));
+						logger.log(Logger.Level.ERROR, "first=" + actual.get(0) + ", second=" + actual.get(1));
 					}
 				}
 			} else {
-				TestUtil.logErr("Expected: 2 compound selection item, actual:" + lSel.size());
+				logger.log(Logger.Level.ERROR, "Expected: 2 compound selection item, actual:" + lSel.size());
 				for (Selection s : lSel) {
-					TestUtil.logErr("selection:" + s.toString());
+					logger.log(Logger.Level.ERROR, "selection:" + s.toString());
 				}
 			}
 		} else {
-			TestUtil.logErr("Expected isCompoundSelection() to return: true, actual:" + bActual);
+			logger.log(Logger.Level.ERROR, "Expected isCompoundSelection() to return: true, actual:" + bActual);
 		}
 
 		if (!pass1 || !pass2) {
@@ -222,15 +224,15 @@ public class Client3IT extends UtilOrderData {
 			List<Customer> clist = tquery.getResultList();
 
 			if (!checkEntityPK(clist, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ clist.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -274,15 +276,15 @@ public class Client3IT extends UtilOrderData {
 			expectedPKs[1] = "8";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				TestUtil.logErr("test_subquery_like:  Did not get expected " + " results.  Expected 2 references, got: "
-						+ result.size());
+				logger.log(Logger.Level.ERROR, "test_subquery_like:  Did not get expected "
+						+ " results.  Expected 2 references, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception subquery: ", e);
+			logger.log(Logger.Level.ERROR, "Caught exception subquery: ", e);
 		}
 
 		if (!pass) {
@@ -321,32 +323,35 @@ public class Client3IT extends UtilOrderData {
 			Subquery<String> subquery = cquery.subquery(String.class);
 			List<Expression<?>> gList = subquery.getGroupList();
 			if (gList.size() == 0) {
-				TestUtil.logTrace(
+				logger.log(Logger.Level.TRACE,
 						"Received expected empty list from getGroupList() when there is no groupBy expressions");
 				pass1 = true;
 			} else {
-				TestUtil.logErr("Did not received empty list from getGroupList() when there is no groupBy expressions");
+				logger.log(Logger.Level.ERROR,
+						"Did not received empty list from getGroupList() when there is no groupBy expressions");
 				for (Expression e : gList) {
-					TestUtil.logErr("Item:" + e.toString());
+					logger.log(Logger.Level.ERROR, "Item:" + e.toString());
 				}
 			}
 			Expression sel = subquery.getSelection();
 			if (sel == null) {
-				TestUtil.logTrace("Received expected null from getSelection() when there is no selection specified");
+				logger.log(Logger.Level.TRACE,
+						"Received expected null from getSelection() when there is no selection specified");
 				pass2 = true;
 			} else {
-				TestUtil.logErr("Did not received null from getSelection() when there is no selection specified:"
-						+ sel.toString());
+				logger.log(Logger.Level.ERROR,
+						"Did not received null from getSelection() when there is no selection specified:"
+								+ sel.toString());
 			}
 			Root<Customer> customer = subquery.from(Customer.class);
 			EntityType<Customer> Customer_ = customer.getModel();
 			subquery.select(customer.get(Customer_.getSingularAttribute("name", String.class)));
 			sel = subquery.getSelection();
 			if (sel != null) {
-				TestUtil.logTrace("Received non-result from getSelection()");
+				logger.log(Logger.Level.TRACE, "Received non-result from getSelection()");
 				pass3 = true;
 			} else {
-				TestUtil.logErr("Received null from getSelection() when there is a selection specified");
+				logger.log(Logger.Level.ERROR, "Received null from getSelection() when there is a selection specified");
 			}
 			subquery.where(
 					qbuilder.like(customer.get(Customer_.getSingularAttribute("name", String.class)), "%Caruso"));
@@ -355,20 +360,21 @@ public class Client3IT extends UtilOrderData {
 			subquery.groupBy(exp);
 			gList = subquery.getGroupList();
 			if (gList != null) {
-				TestUtil.logTrace("Received non-null from getGroupList() when there is groupBy expressions");
+				logger.log(Logger.Level.TRACE,
+						"Received non-null from getGroupList() when there is groupBy expressions");
 				if (gList.size() == 1) {
-					TestUtil.logTrace("Received one groupBy expression");
+					logger.log(Logger.Level.TRACE, "Received one groupBy expression");
 					pass4 = true;
 				} else {
-					TestUtil.logErr("Expected one groupBy expression, actual:" + gList.size());
+					logger.log(Logger.Level.ERROR, "Expected one groupBy expression, actual:" + gList.size());
 
 					for (Expression e : gList) {
-						TestUtil.logErr("Did not get expected result:" + e);
+						logger.log(Logger.Level.ERROR, "Did not get expected result:" + e);
 					}
 				}
 			} else {
 
-				TestUtil.logErr("Received null from getGroupList() when there is groupBy expressions");
+				logger.log(Logger.Level.ERROR, "Received null from getGroupList() when there is groupBy expressions");
 			}
 			cquery.where(order.get(Order_.getSingularAttribute("customer", Customer.class))
 					.get(Customer_.getSingularAttribute("name", String.class)).in(subquery));
@@ -381,14 +387,15 @@ public class Client3IT extends UtilOrderData {
 			expectedPKs[1] = "8";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				TestUtil.logErr("Did not get expected " + " results.  Expected 2 references, got: " + result.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected " + " results.  Expected 2 references, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass5 = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception: ", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception: ", e);
 
 		}
 
@@ -442,14 +449,15 @@ public class Client3IT extends UtilOrderData {
 			expectedPKs[1] = "8";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				TestUtil.logErr("Did not get expected " + " results.  Expected 2 references, got: " + result.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected " + " results.  Expected 2 references, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception subquery: ", e);
+			logger.log(Logger.Level.ERROR, "Caught exception subquery: ", e);
 		}
 
 		if (!pass) {
@@ -503,14 +511,15 @@ public class Client3IT extends UtilOrderData {
 			expectedPKs[1] = "8";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				TestUtil.logErr("Did not get expected " + " results.  Expected 2 references, got: " + result.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected " + " results.  Expected 2 references, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception subquery: ", e);
+			logger.log(Logger.Level.ERROR, "Caught exception subquery: ", e);
 		}
 
 		if (!pass) {

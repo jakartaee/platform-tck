@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.criteriaapi.strquery;
 
+import java.lang.System.Logger;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -25,7 +26,6 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.Alias;
 import com.sun.ts.tests.jpa.common.schema30.Customer;
 import com.sun.ts.tests.jpa.common.schema30.UtilAliasData;
@@ -38,8 +38,9 @@ import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Root;
 
-
 public class Client5IT extends UtilAliasData {
+
+	private static final Logger logger = (Logger) System.getLogger(Client5IT.class.getName());
 
 	public static JavaArchive createDeployment() throws Exception {
 
@@ -71,7 +72,7 @@ public class Client5IT extends UtilAliasData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("find All Customers with Alias: imc");
+			logger.log(Logger.Level.TRACE, "find All Customers with Alias: imc");
 			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
 			Root<Customer> customer = cquery.from(Customer.class);
 			Join<Customer, Alias> alias = customer.join("aliases");
@@ -84,14 +85,15 @@ public class Client5IT extends UtilAliasData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "8";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -119,7 +121,7 @@ public class Client5IT extends UtilAliasData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("find all customers who do not have aliases");
+			logger.log(Logger.Level.TRACE, "find all customers who do not have aliases");
 			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
 			Root<Customer> customer = cquery.from(Customer.class);
 			cquery.where(cbuilder.isEmpty(customer.<Set<String>>get("aliases")));
@@ -137,14 +139,15 @@ public class Client5IT extends UtilAliasData {
 			expectedPKs[6] = "20";
 
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 7 references, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 7 references, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -170,7 +173,7 @@ public class Client5IT extends UtilAliasData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("find all customers who have aliases");
+			logger.log(Logger.Level.TRACE, "find all customers who have aliases");
 			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
 			Root<Customer> customer = cquery.from(Customer.class);
 			cquery.where(cbuilder.isNotEmpty(customer.<Set<String>>get("aliases")));
@@ -194,14 +197,15 @@ public class Client5IT extends UtilAliasData {
 			expectedPKs[12] = "14";
 
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 15 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 15 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -228,7 +232,7 @@ public class Client5IT extends UtilAliasData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("find all aliases who have match: stevie");
+			logger.log(Logger.Level.TRACE, "find all aliases who have match: stevie");
 			CriteriaQuery<Alias> cquery = cbuilder.createQuery(Alias.class);
 			Root<Alias> alias = cquery.from(Alias.class);
 			cquery.where(cbuilder.equal(alias.get("alias"), cbuilder.concat(cbuilder.literal("ste"), "vie")));
@@ -239,14 +243,15 @@ public class Client5IT extends UtilAliasData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "14";
 			if (!checkEntityPK(alist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + alist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + alist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -274,7 +279,7 @@ public class Client5IT extends UtilAliasData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("find all aliases containing the substring: iris");
+			logger.log(Logger.Level.TRACE, "find all aliases containing the substring: iris");
 			CriteriaQuery<Alias> cquery = cbuilder.createQuery(Alias.class);
 			Root<Alias> alias = cquery.from(Alias.class);
 			cquery.where(
@@ -290,14 +295,15 @@ public class Client5IT extends UtilAliasData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "20";
 			if (!checkEntityPK(alist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + alist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + alist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -325,7 +331,7 @@ public class Client5IT extends UtilAliasData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("find aliases whose alias name is greater than 4 characters");
+			logger.log(Logger.Level.TRACE, "find aliases whose alias name is greater than 4 characters");
 			CriteriaQuery<Alias> cquery = cbuilder.createQuery(Alias.class);
 			Root<Alias> alias = cquery.from(Alias.class);
 			cquery.where(cbuilder.gt(cbuilder.length(alias.<String>get("alias")), 4));
@@ -342,14 +348,15 @@ public class Client5IT extends UtilAliasData {
 			expectedPKs[5] = "28";
 			expectedPKs[6] = "29";
 			if (!checkEntityPK(alist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 7 references, got: " + alist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 7 references, got: " + alist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -376,7 +383,7 @@ public class Client5IT extends UtilAliasData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("find all aliases who contain the string: ev in their alias name");
+			logger.log(Logger.Level.TRACE, "find all aliases who contain the string: ev in their alias name");
 			CriteriaQuery<Alias> cquery = cbuilder.createQuery(Alias.class);
 			Root<Alias> alias = cquery.from(Alias.class);
 			cquery.where(cbuilder.equal(cbuilder.locate(alias.<String>get("alias"), "ev"), 3));
@@ -389,14 +396,15 @@ public class Client5IT extends UtilAliasData {
 			expectedPKs[1] = "14";
 			expectedPKs[2] = "18";
 			if (!checkEntityPK(alist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 3 references, got: " + alist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 3 references, got: " + alist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -422,7 +430,7 @@ public class Client5IT extends UtilAliasData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("find aliases who are members of customersNoop");
+			logger.log(Logger.Level.TRACE, "find aliases who are members of customersNoop");
 			CriteriaQuery<Alias> cquery = cbuilder.createQuery(Alias.class);
 			Root<Alias> alias = cquery.from(Alias.class);
 			cquery.where(cbuilder.isMember(alias.<Customer>get("customerNoop"),
@@ -433,16 +441,17 @@ public class Client5IT extends UtilAliasData {
 
 			expectedPKs = new String[0];
 			if (!checkEntityPK(alist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 0 references, got: " + alist.size());
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 0 references, got: " + alist.size());
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -468,7 +477,7 @@ public class Client5IT extends UtilAliasData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("find aliases who are NOT members of collection");
+			logger.log(Logger.Level.TRACE, "find aliases who are NOT members of collection");
 			CriteriaQuery<Alias> cquery = cbuilder.createQuery(Alias.class);
 			Root<Alias> alias = cquery.from(Alias.class);
 			cquery.where(cbuilder.isNotMember(alias.<Customer>get("customerNoop"),
@@ -483,15 +492,15 @@ public class Client5IT extends UtilAliasData {
 				expectedPKs[i] = Integer.toString(i + 1);
 			}
 			if (!checkEntityPK(alist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected " + aliasRef.length + " references, got: "
-						+ alist.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results.  Expected " + aliasRef.length
+						+ " references, got: " + alist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -519,7 +528,7 @@ public class Client5IT extends UtilAliasData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("find all customers with an alias LIKE: sh_ll");
+			logger.log(Logger.Level.TRACE, "find all customers with an alias LIKE: sh_ll");
 			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
 			Root<Customer> customer = cquery.from(Customer.class);
 			Join<Customer, Alias> a = customer.join("aliases");
@@ -531,15 +540,16 @@ public class Client5IT extends UtilAliasData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "3";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.TRACE, "Expected results received");
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -565,7 +575,8 @@ public class Client5IT extends UtilAliasData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("find customers whose id is greater than 1 " + "OR where the relationship is NOT EMPTY");
+			logger.log(Logger.Level.TRACE,
+					"find customers whose id is greater than 1 " + "OR where the relationship is NOT EMPTY");
 			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
 			Root<Customer> customer = cquery.from(Customer.class);
 			cquery.where(cbuilder.or(cbuilder.isNotEmpty(customer.<Collection>get("aliasesNoop")),
@@ -595,14 +606,15 @@ public class Client5IT extends UtilAliasData {
 			expectedPKs[17] = "19";
 			expectedPKs[18] = "20";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 19 references, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 19 references, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -629,7 +641,7 @@ public class Client5IT extends UtilAliasData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("find All Customers who have a null relationship");
+			logger.log(Logger.Level.TRACE, "find All Customers who have a null relationship");
 			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
 			Root<Customer> customer = cquery.from(Customer.class);
 			Join<Customer, Alias> a = customer.join("aliases");
@@ -654,15 +666,16 @@ public class Client5IT extends UtilAliasData {
 			expectedPKs[12] = "14";
 
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 13 references, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 13 references, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -691,7 +704,7 @@ public class Client5IT extends UtilAliasData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("find all customers with an alias that contains an underscore");
+			logger.log(Logger.Level.TRACE, "find all customers with an alias that contains an underscore");
 			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
 			Root<Customer> customer = cquery.from(Customer.class);
 			Join<Customer, Alias> a = customer.join("aliases");
@@ -703,15 +716,16 @@ public class Client5IT extends UtilAliasData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "3";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -738,7 +752,7 @@ public class Client5IT extends UtilAliasData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("find All Customers who do not have null relationship");
+			logger.log(Logger.Level.TRACE, "find All Customers who do not have null relationship");
 			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
 			Root<Customer> customer = cquery.from(Customer.class);
 			Join<Customer, Alias> a = customer.join("aliases");
@@ -748,15 +762,16 @@ public class Client5IT extends UtilAliasData {
 			List<Customer> clist = tquery.getResultList();
 
 			if (clist.size() != 0) {
-				TestUtil.logErr("Did not get expected results.  Expected 0 references, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 0 references, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -783,7 +798,7 @@ public class Client5IT extends UtilAliasData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("determine if customer has a NULL relationship");
+			logger.log(Logger.Level.TRACE, "determine if customer has a NULL relationship");
 			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
 			Root<Customer> customer = cquery.from(Customer.class);
 			Join<Customer, Alias> a = customer.join("aliases");
@@ -810,15 +825,16 @@ public class Client5IT extends UtilAliasData {
 			expectedPKs[12] = "14";
 
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 13 references, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 13 references, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -844,7 +860,7 @@ public class Client5IT extends UtilAliasData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("determine if customers have a NULL relationship");
+			logger.log(Logger.Level.TRACE, "determine if customers have a NULL relationship");
 			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
 			Root<Customer> customer = cquery.from(Customer.class);
 			Join<Customer, Alias> a = customer.join("aliases");
@@ -854,15 +870,16 @@ public class Client5IT extends UtilAliasData {
 			List<Customer> clist = tquery.getResultList();
 
 			if (clist.size() != 0) {
-				TestUtil.logErr("Did not get expected results.  Expected 0 references, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 0 references, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -904,11 +921,11 @@ public class Client5IT extends UtilAliasData {
 			List<Tuple> q = tquery.getResultList();
 
 			if (q.size() != 6) {
-				TestUtil.logTrace(
+				logger.log(Logger.Level.TRACE,
 						"test_leftouterjoin_MxM:  Did not get expected results. " + "Expected 6,  got: " + q.size());
 			} else {
 				pass1 = true;
-				TestUtil.logTrace("Expected size received, verify contents . . . ");
+				logger.log(Logger.Level.TRACE, "Expected size received, verify contents . . . ");
 				// each element of the list q should be a size-2 array
 				for (int i = 0; i < q.size(); i++) {
 					Object obj = q.get(i);
@@ -916,17 +933,19 @@ public class Client5IT extends UtilAliasData {
 					Tuple customerAndAliasTuple = null;
 					Object[] customerAndAlias = null;
 					if (obj instanceof Tuple) {
-						TestUtil.logTrace("The element in the result list is of type Object[], continue . . .");
+						logger.log(Logger.Level.TRACE,
+								"The element in the result list is of type Object[], continue . . .");
 						customerAndAliasTuple = (Tuple) obj;
 						customerAndAlias = customerAndAliasTuple.toArray();
 						if (!Arrays.equals(customerAndAliasExpected, customerAndAlias)) {
-							TestUtil.logErr("Expecting element value: " + Arrays.asList(customerAndAliasExpected)
-									+ ", actual element value: " + Arrays.asList(customerAndAlias));
+							logger.log(Logger.Level.ERROR,
+									"Expecting element value: " + Arrays.asList(customerAndAliasExpected)
+											+ ", actual element value: " + Arrays.asList(customerAndAlias));
 							pass2 = false;
 							break;
 						}
 					} else {
-						TestUtil.logErr("The element in the result list is not of type Object[]:" + obj);
+						logger.log(Logger.Level.ERROR, "The element in the result list is not of type Object[]:" + obj);
 						break;
 					}
 				}
@@ -934,7 +953,7 @@ public class Client5IT extends UtilAliasData {
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 
 		if (!pass1 || !pass2) {
@@ -974,14 +993,15 @@ public class Client5IT extends UtilAliasData {
 			expectedPKs[0] = "7";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 references, got: " + result.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 references, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -1020,14 +1040,15 @@ public class Client5IT extends UtilAliasData {
 			expectedPKs[0] = "7";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 references, got: " + result.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 references, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -1067,14 +1088,15 @@ public class Client5IT extends UtilAliasData {
 			expectedPKs[1] = "2";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 2 references, got: " + result.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 2 references, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -1100,7 +1122,7 @@ public class Client5IT extends UtilAliasData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("FETCHJOIN-MXM Executing Query");
+			logger.log(Logger.Level.TRACE, "FETCHJOIN-MXM Executing Query");
 			CriteriaQuery<Alias> cquery = cbuilder.createQuery(Alias.class);
 			Root<Alias> alias = cquery.from(Alias.class);
 			cquery.where(cbuilder.like(alias.<String>get("alias"), "a%")).select(alias);
@@ -1114,14 +1136,15 @@ public class Client5IT extends UtilAliasData {
 			expectedPKs[3] = "6";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 4 references, got: " + result.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 4 references, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -1148,7 +1171,7 @@ public class Client5IT extends UtilAliasData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("Executing Query");
+			logger.log(Logger.Level.TRACE, "Executing Query");
 			CriteriaQuery<Long> cquery = cbuilder.createQuery(Long.class);
 			Root<Customer> customer = cquery.from(Customer.class);
 			Join<Customer, Alias> a = customer.join("aliases");
@@ -1161,17 +1184,17 @@ public class Client5IT extends UtilAliasData {
 			tquery.setParameter("int2", Integer.valueOf(4));
 			result = (Long) tquery.getSingleResult();
 
-			TestUtil.logTrace("Check results received .  .  .");
+			logger.log(Logger.Level.TRACE, "Check results received .  .  .");
 			if (expectedCount.equals(result)) {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			} else {
-				TestUtil.logErr("Did not get expected results. Expected Count of 2, got: " + result);
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected Count of 2, got: " + result);
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 
 		if (!pass) {

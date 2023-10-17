@@ -16,16 +16,17 @@
 
 package com.sun.ts.tests.jpa.core.query.language;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.sun.ts.lib.harness.SetupMethod;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.Department;
 import com.sun.ts.tests.jpa.common.schema30.Util;
 
-
 public class Client6IT extends Util {
+
+	private static final Logger logger = (Logger) System.getLogger(Client6IT.class.getName());
 
 	/* Run test */
 
@@ -55,16 +56,16 @@ public class Client6IT extends Util {
 			List<Integer> actual = new ArrayList<Integer>();
 			actual.add(result.get(0).getId());
 			if (!checkEntityPK(actual, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.size() + " references, got: "
-						+ result.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.size()
+						+ " references, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 		} else {
-			TestUtil.logErr("More than 1 result got returned:");
+			logger.log(Logger.Level.ERROR, "More than 1 result got returned:");
 			for (Department dept : result) {
-				TestUtil.logErr("Dept:" + dept.toString());
+				logger.log(Logger.Level.ERROR, "Dept:" + dept.toString());
 			}
 		}
 

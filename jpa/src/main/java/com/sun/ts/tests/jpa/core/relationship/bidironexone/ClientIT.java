@@ -16,16 +16,18 @@
 
 package com.sun.ts.tests.jpa.core.relationship.bidironexone;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public ClientIT() {
 	}
@@ -41,14 +43,14 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 
 			super.setup();
 			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -67,7 +69,7 @@ public class ClientIT extends PMClientBase {
 	 */
 	@Test
 	public void biDir1X1Test1() throws Exception {
-		TestUtil.logTrace("Begin biDir1X1Test1");
+		logger.log(Logger.Level.TRACE, "Begin biDir1X1Test1");
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -80,7 +82,7 @@ public class ClientIT extends PMClientBase {
 			// persist project
 			getEntityManager().persist(project);
 			getEntityTransaction().commit();
-			TestUtil.logTrace("persisted Project this in turn must persist Person too..");
+			logger.log(Logger.Level.TRACE, "persisted Project this in turn must persist Person too..");
 
 			getEntityTransaction().begin();
 
@@ -88,26 +90,26 @@ public class ClientIT extends PMClientBase {
 			// persisting project must have persisted person too
 			BiDir1X1Person newPerson = getEntityManager().find(BiDir1X1Person.class, 1L);
 			if (newPerson != null) {
-				TestUtil.logTrace("Found Searched Person Entity");
+				logger.log(Logger.Level.TRACE, "Found Searched Person Entity");
 				if ((getEntityManager().contains(newPerson)) && (newPerson.getName().equals("Duke"))) {
-					TestUtil.logTrace("biDir1X1Test1: Expected results received");
+					logger.log(Logger.Level.TRACE, "biDir1X1Test1: Expected results received");
 					pass = true;
 				}
 			} else {
-				TestUtil.logTrace("searched Person not found");
+				logger.log(Logger.Level.TRACE, "searched Person not found");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
 
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -118,14 +120,14 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -135,14 +137,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM BIDIR1X1PROJECT").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

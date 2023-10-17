@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.types.property;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,12 +25,12 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 import com.sun.ts.tests.jpa.core.types.common.Grade;
 
-
 public class Client2IT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(Client2IT.class.getName());
 
 	public Client2IT() {
 	}
@@ -45,13 +46,13 @@ public class Client2IT extends PMClientBase {
 
 	@BeforeAll
 	public void setupCust() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeCustTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 
 		}
@@ -78,40 +79,40 @@ public class Client2IT extends PMClientBase {
 			expectedphones.add(Grade.C);
 
 			expected.setPhones(expectedphones);
-			TestUtil.logTrace("Persisting Customer:" + expected.toString());
+			logger.log(Logger.Level.TRACE, "Persisting Customer:" + expected.toString());
 			getEntityManager().persist(expected);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 			clearCache();
 			getEntityTransaction().begin();
-			TestUtil.logTrace("find the previously persisted Customer and Country and verify them");
+			logger.log(Logger.Level.TRACE, "find the previously persisted Customer and Country and verify them");
 			Customer cust = getEntityManager().find(Customer.class, expected.getId());
 			if (cust != null) {
-				TestUtil.logTrace("Found Customer: " + cust.toString());
+				logger.log(Logger.Level.TRACE, "Found Customer: " + cust.toString());
 				if (cust.getPhones().containsAll(expectedphones) && expectedphones.containsAll(cust.getPhones())
 						&& cust.getPhones().size() == expectedphones.size()) {
-					TestUtil.logTrace("Received expected Phones:");
+					logger.log(Logger.Level.TRACE, "Received expected Phones:");
 					for (Grade g : cust.getPhones()) {
-						TestUtil.logTrace("phone:" + g);
+						logger.log(Logger.Level.TRACE, "phone:" + g);
 					}
 					pass = true;
 				} else {
-					TestUtil.logErr("Did not get expected results.");
+					logger.log(Logger.Level.ERROR, "Did not get expected results.");
 					for (Grade g : expectedphones) {
-						TestUtil.logErr("expected:" + g);
+						logger.log(Logger.Level.ERROR, "expected:" + g);
 					}
-					TestUtil.logErr("actual:");
+					logger.log(Logger.Level.ERROR, "actual:");
 					for (Grade g : cust.getPhones()) {
-						TestUtil.logErr("actual:" + g);
+						logger.log(Logger.Level.ERROR, "actual:" + g);
 					}
 				}
 			} else {
-				TestUtil.logErr("Find returned null Customer");
+				logger.log(Logger.Level.ERROR, "Find returned null Customer");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred: ", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred: ", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -123,15 +124,15 @@ public class Client2IT extends PMClientBase {
 
 	@AfterAll
 	public void cleanupCust() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeCustTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 		removeDeploymentJar();
 	}
 
 	private void removeCustTestData() {
-		TestUtil.logTrace("removeCustTestData");
+		logger.log(Logger.Level.TRACE, "removeCustTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -141,14 +142,14 @@ public class Client2IT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM PHONES").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

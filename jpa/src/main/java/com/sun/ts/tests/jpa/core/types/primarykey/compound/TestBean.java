@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.types.primarykey.compound;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.lang.System.Logger;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.EmbeddedId;
@@ -30,6 +30,8 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "PKEY")
 public class TestBean implements java.io.Serializable {
+
+	private static final Logger logger = (Logger) System.getLogger(TestBean.class.getName());
 
 	private CompoundPK compoundPK;
 
@@ -74,7 +76,7 @@ public class TestBean implements java.io.Serializable {
 	}
 
 	public void ping() {
-		TestUtil.logTrace("[TestBean] ping()");
+		logger.log(Logger.Level.TRACE, "[TestBean] ping()");
 	}
 
 }

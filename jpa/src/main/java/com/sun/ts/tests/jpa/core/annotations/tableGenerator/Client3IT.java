@@ -16,11 +16,11 @@
 
 package com.sun.ts.tests.jpa.core.annotations.tableGenerator;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import com.sun.ts.lib.util.TestUtil;
 
 public class Client3IT extends Client {
 
@@ -28,6 +28,8 @@ public class Client3IT extends Client {
 
 	public Client3IT() {
 	}
+
+	private static final Logger logger = (Logger) System.getLogger(Client3IT.class.getName());
 
 	public static JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = Client.class.getPackageName();
@@ -39,16 +41,15 @@ public class Client3IT extends Client {
 
 	@BeforeAll
 	public void setup3() throws Exception {
-		TestUtil.logTrace("setup3");
+		logger.log(Logger.Level.TRACE, "setup3");
 		try {
 
 			super.setup();
-			removeTestData();
 			createDeployment();
-
+			removeTestData();
 			createTestData3();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -69,7 +70,7 @@ public class Client3IT extends Client {
 		try {
 			getEntityTransaction().begin();
 			int id = d3.getId();
-			TestUtil.logTrace("find id: " + id);
+			logger.log(Logger.Level.TRACE, "find id: " + id);
 			DataTypes3 d = getEntityManager().find(DataTypes3.class, id);
 			if (d != null) {
 				if (d.getStringData().equals(d3.getStringData())) {
@@ -78,10 +79,10 @@ public class Client3IT extends Client {
 
 				getEntityTransaction().commit();
 			} else {
-				TestUtil.logErr("EntityManager.find returned null result");
+				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -96,14 +97,14 @@ public class Client3IT extends Client {
 
 			d3 = new DataTypes3();
 			d3.setStringData("testData3");
-			TestUtil.logTrace("DataType3:" + d3.toString());
+			logger.log(Logger.Level.TRACE, "DataType3:" + d3.toString());
 			getEntityManager().persist(d3);
 
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 	}
 

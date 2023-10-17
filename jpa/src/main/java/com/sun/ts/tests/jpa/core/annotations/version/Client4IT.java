@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.annotations.version;
 
+import java.lang.System.Logger;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -23,10 +24,9 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.core.annotations.tableGenerator.Client;
-
 public class Client4IT extends Client {
+
+	private static final Logger logger = (Logger) System.getLogger(Client4IT.class.getName());
 
 	public Client4IT() {
 	}
@@ -44,7 +44,7 @@ public class Client4IT extends Client {
 
 	@BeforeAll
 	public void setupTimestampData() throws Exception {
-		TestUtil.logTrace("setupTimestampData");
+		logger.log(Logger.Level.TRACE, "setupTimestampData");
 		try {
 			super.setup();
 			createDeployment();
@@ -71,7 +71,7 @@ public class Client4IT extends Client {
 		try {
 			Timestamp_Field a = getEntityManager().find(Timestamp_Field.class, "1");
 			if (a != null) {
-				TestUtil.logTrace("version:" + a.getVersion());
+				logger.log(Logger.Level.TRACE, "version:" + a.getVersion());
 				// if (a.getVersion() == 1) {
 				Timestamp version = a.getVersion();
 				a.setName("two");
@@ -88,22 +88,24 @@ public class Client4IT extends Client {
 				Timestamp_Field a1 = getEntityManager().find(Timestamp_Field.class, "1");
 				if (a1 != null) {
 					if (a1.getVersion().after(version)) {
-						TestUtil.logTrace("version:" + a1.getVersion());
+						logger.log(Logger.Level.TRACE, "version:" + a1.getVersion());
 						pass = true;
 					} else {
-						TestUtil.logErr("Did not get a greater version after a modification:" + a1.getVersion());
+						logger.log(Logger.Level.ERROR,
+								"Did not get a greater version after a modification:" + a1.getVersion());
 					}
 				} else {
-					TestUtil.logErr("Second find returned null result");
+					logger.log(Logger.Level.ERROR, "Second find returned null result");
 				}
 				/*
-				 * } else { TestUtil.logErr("Did not get a version of 1 after find"); }
+				 * } else {
+				 * logger.log(Logger.Level.ERROR,"Did not get a version of 1 after find"); }
 				 */
 			} else {
-				TestUtil.logErr("Find returned null result");
+				logger.log(Logger.Level.ERROR, "Find returned null result");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -125,7 +127,7 @@ public class Client4IT extends Client {
 		try {
 			Timestamp_Property a = getEntityManager().find(Timestamp_Property.class, "2");
 			if (a != null) {
-				TestUtil.logTrace("version:" + a.getBasicTimestamp());
+				logger.log(Logger.Level.TRACE, "version:" + a.getBasicTimestamp());
 				// if (a.getVersion() == 1) {
 				Timestamp version = a.getBasicTimestamp();
 				a.setName("two");
@@ -142,22 +144,24 @@ public class Client4IT extends Client {
 				Timestamp_Property a1 = getEntityManager().find(Timestamp_Property.class, "2");
 				if (a1 != null) {
 					if (a1.getBasicTimestamp().after(version)) {
-						TestUtil.logTrace("version:" + a1.getBasicTimestamp());
+						logger.log(Logger.Level.TRACE, "version:" + a1.getBasicTimestamp());
 						pass = true;
 					} else {
-						TestUtil.logErr("Did not get a greater version after a modification:" + a1.getBasicTimestamp());
+						logger.log(Logger.Level.ERROR,
+								"Did not get a greater version after a modification:" + a1.getBasicTimestamp());
 					}
 				} else {
-					TestUtil.logErr("Second find returned null result");
+					logger.log(Logger.Level.ERROR, "Second find returned null result");
 				}
 				/*
-				 * } else { TestUtil.logErr("Did not get a version of 1 after find"); }
+				 * } else {
+				 * logger.log(Logger.Level.ERROR,"Did not get a version of 1 after find"); }
 				 */
 			} else {
-				TestUtil.logErr("Find returned null result");
+				logger.log(Logger.Level.ERROR, "Find returned null result");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -167,7 +171,7 @@ public class Client4IT extends Client {
 	}
 
 	public void createTimestampTestData() {
-		TestUtil.logTrace("createTimestampTestData");
+		logger.log(Logger.Level.TRACE, "createTimestampTestData");
 
 		try {
 			getEntityTransaction().begin();
@@ -176,14 +180,14 @@ public class Client4IT extends Client {
 			getEntityManager().persist(new Timestamp_Property("2", currentTime));
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception in createTimestampTestData:", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception in createTimestampTestData:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
 			}
 		}
 

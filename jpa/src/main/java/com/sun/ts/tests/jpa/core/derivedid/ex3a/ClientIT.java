@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.derivedid.ex3a;
 
+import java.lang.System.Logger;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -23,11 +24,11 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public ClientIT() {
 	}
@@ -44,12 +45,12 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -92,7 +93,7 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().persist(employee2);
 
 			getEntityManager().flush();
-			TestUtil.logTrace("persisted Employees and Dependents");
+			logger.log(Logger.Level.TRACE, "persisted Employees and Dependents");
 
 			// Refresh dependent
 			DID3Dependent newDependent = getEntityManager().find(DID3Dependent.class, depId1);
@@ -108,17 +109,17 @@ public class ClientIT extends PMClientBase {
 				newDependent = (DID3Dependent) depList.get(0);
 				if (newDependent == dep1) {
 					pass = true;
-					TestUtil.logTrace("Received Expected Dependent");
+					logger.log(Logger.Level.TRACE, "Received Expected Dependent");
 				} else {
-					TestUtil.logErr("Searched Dependent not found");
+					logger.log(Logger.Level.ERROR, "Searched Dependent not found");
 				}
 			} else {
-				TestUtil.logErr("getEntityManager().createQuery returned null entry");
+				logger.log(Logger.Level.ERROR, "getEntityManager().createQuery returned null entry");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			getEntityTransaction().rollback();
 		}
 
@@ -129,14 +130,14 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -146,14 +147,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM DID3EMPLOYEE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,13 +16,13 @@
 
 package com.sun.ts.tests.jpa.core.criteriaapi.Root;
 
+import java.lang.System.Logger;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.Customer;
 import com.sun.ts.tests.jpa.common.schema30.Customer_;
 import com.sun.ts.tests.jpa.common.schema30.Order;
@@ -37,8 +37,9 @@ import jakarta.persistence.criteria.ListJoin;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.criteria.SetJoin;
 
-
 public class Client3IT extends Util {
+
+	private static final Logger logger = (Logger) System.getLogger(Client3IT.class.getName());
 
 	public static JavaArchive createDeployment() throws Exception {
 
@@ -78,14 +79,15 @@ public class Client3IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -124,14 +126,15 @@ public class Client3IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -170,14 +173,15 @@ public class Client3IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -216,14 +220,15 @@ public class Client3IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -262,14 +267,15 @@ public class Client3IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -308,14 +314,15 @@ public class Client3IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -354,14 +361,15 @@ public class Client3IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -400,14 +408,15 @@ public class Client3IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -446,14 +455,15 @@ public class Client3IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -492,14 +502,15 @@ public class Client3IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -538,14 +549,15 @@ public class Client3IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -584,14 +596,15 @@ public class Client3IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 

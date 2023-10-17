@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,12 +16,13 @@
 
 package com.sun.ts.tests.jpa.core.cache.basicTests;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.Cache;
@@ -29,8 +30,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public ClientIT() {
 	}
@@ -40,13 +42,14 @@ public class ClientIT extends PMClientBase {
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = ClientIT.class.getPackageName() + ".";
 		String[] classes = { pkgName + "Order" };
-		return createDeploymentJar("jpa_core_cache_basicTests.jar", pkgNameWithoutSuffix, classes);
-
+		String[] xmlFiles = {};
+		return createDeploymentJar("jpa_core_cache_basicTests.jar", pkgNameWithoutSuffix, classes,
+				pkgName + "persistence_se.xml", xmlFiles);
 	}
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 
 			super.setup();
@@ -54,7 +57,7 @@ public class ClientIT extends PMClientBase {
 			removeTestData();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -94,7 +97,7 @@ public class ClientIT extends PMClientBase {
 				for (int i = 1; i < count; i++) {
 					orders[i] = new Order(i, 100 * i);
 					em2.persist(orders[i]);
-					TestUtil.logTrace("persisted order " + orders[i]);
+					logger.log(Logger.Level.TRACE, "persisted order " + orders[i]);
 				}
 				em2.flush();
 
@@ -104,21 +107,21 @@ public class ClientIT extends PMClientBase {
 				if (cache != null) {
 					pass = true;
 				} else {
-					TestUtil.logErr("Cache returned was null");
+					logger.log(Logger.Level.ERROR, "Cache returned was null");
 				}
 
 				for (int i = 1; i < count; i++) {
 					em2.remove(orders[i]);
-					TestUtil.logTrace("Removed order " + orders[i]);
+					logger.log(Logger.Level.TRACE, "Removed order " + orders[i]);
 				}
 
 				et.commit();
 
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 		} else {
-			TestUtil.logMsg("Cache not supported, bypassing test");
+			logger.log(Logger.Level.INFO, "Cache not supported, bypassing test");
 			pass = true;
 		}
 		if (!pass) {
@@ -156,28 +159,28 @@ public class ClientIT extends PMClientBase {
 			try {
 
 				getEntityTransaction().begin();
-				TestUtil.logTrace("Transaction status after begin:" + getEntityTransaction().isActive());
+				logger.log(Logger.Level.TRACE, "Transaction status after begin:" + getEntityTransaction().isActive());
 				Order[] orders = new Order[count];
 
 				for (int i = 1; i < count; i++) {
 					orders[i] = new Order(i, 100 * i);
 					getEntityManager().persist(orders[i]);
-					TestUtil.logTrace("persisted order " + orders[i]);
+					logger.log(Logger.Level.TRACE, "persisted order " + orders[i]);
 				}
 				getEntityManager().flush();
 				getEntityTransaction().commit();
-				TestUtil.logTrace("Transaction status after commit:" + getEntityTransaction().isActive());
+				logger.log(Logger.Level.TRACE, "Transaction status after commit:" + getEntityTransaction().isActive());
 
 				cache = getEntityManagerFactory().getCache();
 
 				if (cache != null) {
 					pass1 = true;
-					TestUtil.logTrace("cache was successfully obtained");
+					logger.log(Logger.Level.TRACE, "cache was successfully obtained");
 
 					boolean cacheContains = cache.contains(Order.class, 1);
 
 					if (cacheContains) {
-						TestUtil.logTrace("Order 1 found, evicting it from cache");
+						logger.log(Logger.Level.TRACE, "Order 1 found, evicting it from cache");
 						cache.evict(Order.class, 1);
 
 						// Recheck whether the removed entity is still in cache
@@ -186,19 +189,19 @@ public class ClientIT extends PMClientBase {
 						// if not found then evict was successful
 						if (!cacheContains) {
 							pass2 = true;
-							TestUtil.logTrace("Order 1 was successfully evicted");
+							logger.log(Logger.Level.TRACE, "Order 1 was successfully evicted");
 						}
 					} else {
-						TestUtil.logErr("cache did not contain Order 1");
+						logger.log(Logger.Level.ERROR, "cache did not contain Order 1");
 					}
 				} else {
-					TestUtil.logErr("Cache returned was null, eventhough Cache is supported.");
+					logger.log(Logger.Level.ERROR, "Cache returned was null, eventhough Cache is supported.");
 				}
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 		} else {
-			TestUtil.logMsg("Cache not supported, bypassing test");
+			logger.log(Logger.Level.INFO, "Cache not supported, bypassing test");
 			pass1 = true;
 			pass2 = true;
 		}
@@ -242,7 +245,7 @@ public class ClientIT extends PMClientBase {
 				for (int i = 1; i < count; i++) {
 					orders[i] = new Order(i, 100 * i);
 					getEntityManager().persist(orders[i]);
-					TestUtil.logTrace("persisted order " + orders[i]);
+					logger.log(Logger.Level.TRACE, "persisted order " + orders[i]);
 				}
 				getEntityManager().flush();
 				getEntityTransaction().commit();
@@ -251,12 +254,12 @@ public class ClientIT extends PMClientBase {
 
 				if (cache != null) {
 					pass1 = true;
-					TestUtil.logTrace("cache was successfully obtained");
+					logger.log(Logger.Level.TRACE, "cache was successfully obtained");
 
 					boolean cacheContains = cache.contains(Order.class, 1);
 
 					if (cacheContains) {
-						TestUtil.logTrace("evicting Order 1 from cache");
+						logger.log(Logger.Level.TRACE, "evicting Order 1 from cache");
 						cache.evict(Order.class);
 
 						// Recheck whether the removed entity is still in cache
@@ -265,19 +268,19 @@ public class ClientIT extends PMClientBase {
 						// if not found then evict was successful
 						if (!cacheContains) {
 							pass2 = true;
-							TestUtil.logTrace("Order 1 was successfully evicted");
+							logger.log(Logger.Level.TRACE, "Order 1 was successfully evicted");
 						}
 					} else {
-						TestUtil.logErr("Cache did not contain Order 1");
+						logger.log(Logger.Level.ERROR, "Cache did not contain Order 1");
 					}
 				} else {
-					TestUtil.logErr("Cache returned was null, eventhough Cache is supported.");
+					logger.log(Logger.Level.ERROR, "Cache returned was null, eventhough Cache is supported.");
 				}
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 		} else {
-			TestUtil.logMsg("Cache not supported, bypassing test");
+			logger.log(Logger.Level.INFO, "Cache not supported, bypassing test");
 			pass1 = true;
 			pass2 = true;
 		}
@@ -322,7 +325,7 @@ public class ClientIT extends PMClientBase {
 					orders[i] = new Order(i, 100 * i);
 					ids[i] = orders[i].getId();
 					getEntityManager().persist(orders[i]);
-					TestUtil.logTrace("persisted order " + orders[i]);
+					logger.log(Logger.Level.TRACE, "persisted order " + orders[i]);
 				}
 				getEntityManager().flush();
 				getEntityTransaction().commit();
@@ -331,31 +334,31 @@ public class ClientIT extends PMClientBase {
 
 				if (cache != null) {
 					pass1 = true;
-					TestUtil.logTrace("cache was successfully obtained, evicting all Orders from cache");
+					logger.log(Logger.Level.TRACE, "cache was successfully obtained, evicting all Orders from cache");
 					cache.evictAll();
 					for (int i : ids) {
 						// Recheck whether the evicted entities are still in cache
-						TestUtil.logTrace("Testing order:" + i);
+						logger.log(Logger.Level.TRACE, "Testing order:" + i);
 						boolean cacheContains = cache.contains(Order.class, i);
 
 						if (!cacheContains) {
 							pass2Count++;
-							TestUtil.logTrace("Order:" + i + " was successfully evicted");
+							logger.log(Logger.Level.TRACE, "Order:" + i + " was successfully evicted");
 						}
 					}
 					if (pass2Count == orders.length) {
 						pass2 = true;
 					} else {
-						TestUtil.logErr("Not all orders were evicted.");
+						logger.log(Logger.Level.ERROR, "Not all orders were evicted.");
 					}
 				} else {
-					TestUtil.logErr("Cache returned was null, eventhough Cache is supported.");
+					logger.log(Logger.Level.ERROR, "Cache returned was null, eventhough Cache is supported.");
 				}
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 		} else {
-			TestUtil.logMsg("Cache not supported, bypassing test");
+			logger.log(Logger.Level.INFO, "Cache not supported, bypassing test");
 			pass1 = true;
 			pass2 = true;
 		}
@@ -367,16 +370,16 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 		removeDeploymentJar();
 
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -385,14 +388,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

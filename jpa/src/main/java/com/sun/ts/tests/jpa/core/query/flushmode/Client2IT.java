@@ -20,12 +20,12 @@
 
 package com.sun.ts.tests.jpa.core.query.flushmode;
 
+import java.lang.System.Logger;
 import java.util.List;
 import java.util.Vector;
 
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.CreditCard;
 import com.sun.ts.tests.jpa.common.schema30.Customer;
 import com.sun.ts.tests.jpa.common.schema30.Order;
@@ -34,8 +34,9 @@ import com.sun.ts.tests.jpa.common.schema30.UtilOrderData;
 
 import jakarta.persistence.FlushModeType;
 
-
 public class Client2IT extends UtilOrderData {
+
+	private static final Logger logger = (Logger) System.getLogger(Client2IT.class.getName());
 
 	public Client2IT() {
 	}
@@ -58,7 +59,7 @@ public class Client2IT extends UtilOrderData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("Execute Starting flushModeTest2");
+			logger.log(Logger.Level.TRACE, "Execute Starting flushModeTest2");
 			Order o1 = getEntityManager().find(Order.class, "1");
 			Customer cust2 = getEntityManager().find(Customer.class, "2");
 			o1.setCustomer(cust2);
@@ -71,14 +72,15 @@ public class Client2IT extends UtilOrderData {
 			expectedPKs[1] = "2";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 2 references, got: " + result.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 2 references, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().rollback();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexception: " + e);
+			logger.log(Logger.Level.ERROR, "Caught unexception: " + e);
 		}
 
 		if (!pass)
@@ -101,7 +103,7 @@ public class Client2IT extends UtilOrderData {
 		List o;
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("Execute Starting flushModeTest3");
+			logger.log(Logger.Level.TRACE, "Execute Starting flushModeTest3");
 			Customer cust1 = getEntityManager().find(Customer.class, "1");
 			cust1.setName("Michael Bouschen");
 			o = getEntityManager().createQuery("SELECT o FROM Order o WHERE o.customer.name = 'Michael Bouschen'")
@@ -110,18 +112,18 @@ public class Client2IT extends UtilOrderData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(o, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + o.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results.  Expected 1 reference, got: " + o.size());
 			} else {
 				Customer newCust = getEntityManager().find(Customer.class, "1");
 				if (newCust.getName().equals("Michael Bouschen")) {
 					pass = true;
 				}
 
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 			}
 			getEntityTransaction().rollback();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexception: " + e);
+			logger.log(Logger.Level.ERROR, "Caught unexception: " + e);
 		}
 
 		if (!pass)
@@ -146,7 +148,7 @@ public class Client2IT extends UtilOrderData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("Execute Starting flushModeTest4");
+			logger.log(Logger.Level.TRACE, "Execute Starting flushModeTest4");
 			Customer cust6 = getEntityManager().find(Customer.class, "6");
 			Spouse s4 = getEntityManager().find(Spouse.class, "4");
 			cust6.setSpouse(s4);
@@ -161,15 +163,16 @@ public class Client2IT extends UtilOrderData {
 			expectedPKs[0] = "6";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected " + " 2 references, got: " + result.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected " + " 2 references, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 
 			}
 			getEntityTransaction().rollback();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexception: " + e);
+			logger.log(Logger.Level.ERROR, "Caught unexception: " + e);
 		}
 
 		if (!pass)
@@ -193,7 +196,7 @@ public class Client2IT extends UtilOrderData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("Starting flushModeTest5");
+			logger.log(Logger.Level.TRACE, "Starting flushModeTest5");
 			Spouse s4 = getEntityManager().find(Spouse.class, "4");
 			s4.setLastName("Miller");
 			List<Order> result = getEntityManager()
@@ -204,14 +207,15 @@ public class Client2IT extends UtilOrderData {
 			expectedPKs[0] = "11";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected " + " 1 reference, got: " + result.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected " + " 1 reference, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().rollback();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexception: " + e);
+			logger.log(Logger.Level.ERROR, "Caught unexception: " + e);
 		}
 
 		if (!pass)
@@ -235,7 +239,7 @@ public class Client2IT extends UtilOrderData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("Starting flushModeTest6");
+			logger.log(Logger.Level.TRACE, "Starting flushModeTest6");
 			Customer cust4 = getEntityManager().find(Customer.class, "4");
 			Order order4 = getEntityManager().find(Order.class, "4");
 			Order order9 = getEntityManager().find(Order.class, "9");
@@ -254,14 +258,15 @@ public class Client2IT extends UtilOrderData {
 			expectedPKs = new String[0];
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected " + " 0 references, got: " + result.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected " + " 0 references, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().rollback();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception: ", e);
+			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -286,7 +291,7 @@ public class Client2IT extends UtilOrderData {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("Starting flushModeTest7");
+			logger.log(Logger.Level.TRACE, "Starting flushModeTest7");
 
 			CreditCard c17 = getEntityManager().find(CreditCard.class, "17");
 			c17.setNumber("1111-1111-1111-1111");
@@ -296,16 +301,16 @@ public class Client2IT extends UtilOrderData {
 					.setFlushMode(FlushModeType.AUTO).getResultList();
 
 			if (!checkEntityPK(result, expected)) {
-				TestUtil.logErr("Did not get expected results.  Expected " + expected.length + " references, got: "
-						+ result.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results.  Expected " + expected.length
+						+ " references, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().rollback();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception: ", e);
+			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
 		}
 
 		if (!pass)

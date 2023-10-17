@@ -16,16 +16,18 @@
 
 package com.sun.ts.tests.jpa.core.override.embeddable;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	private static final Integer BOOKSTORE_ID = 12345;
 
@@ -68,12 +70,12 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception:test failed ", e);
+			logger.log(Logger.Level.ERROR, "Exception:test failed ", e);
 		}
 	}
 
@@ -109,7 +111,7 @@ public class ClientIT extends PMClientBase {
 			Publisher retrievePublisher = retrieveBook.getPublisher();
 			if (retrievePublisher.getName().equals(PUBLISHER_NAME)) {
 				if (retrievePublisher.getLocation() == null) {
-					TestUtil.logTrace("Test Passed");
+					logger.log(Logger.Level.TRACE, "Test Passed");
 				} else {
 					throw new Exception("The Location fields was expected to be empty, "
 							+ "expected Length - null, actual - " + "" + retrievePublisher.getLocation());
@@ -159,7 +161,7 @@ public class ClientIT extends PMClientBase {
 			if (retrieveComplaint.getComplaintNumber() == COMPLAINT_NUMBER
 					&& retrieveApplicant.getName().equals(APPLICANT_NAME)
 					&& retrieveApplicant.getAddress().equals(APPLICANT_ADDRESS)) {
-				TestUtil.logTrace("Test Passed");
+				logger.log(Logger.Level.TRACE, "Test Passed");
 			} else {
 				throw new Exception("Expected Complaint Number COMPLAINT_NUMBER to be"
 						+ " retrieved; complaint in DB - " + retrieveComplaint.getComplaintNumber());
@@ -203,7 +205,7 @@ public class ClientIT extends PMClientBase {
 			MovieTicket retrieveTicket = getEntityManager().find(MovieTicket.class, MOVIETICKET_ID);
 			Film retrieveFilm = retrieveTicket.getFilm();
 			if (retrieveFilm.getFilmName().equals(FILM_NAME) && retrieveFilm.getFilmCode().equals(FILM_CODE)) {
-				TestUtil.logTrace("Test Passed");
+				logger.log(Logger.Level.TRACE, "Test Passed");
 			} else {
 				throw new Exception("Expected MovieTicket(FILM_NAME)" + " to be retrieved; film in DB - "
 						+ retrieveFilm.getFilmName());
@@ -255,7 +257,7 @@ public class ClientIT extends PMClientBase {
 			Publisher1 retrievePublisher1 = retrieveBook.getPublisher1();
 			if (retrievePublisher1.getName().equals(PUBLISHER1_NAME)
 					&& retrievePublisher1.getState().equals(PUBLISHER1_STATE)) {
-				TestUtil.logTrace("Test Passed");
+				logger.log(Logger.Level.TRACE, "Test Passed");
 			} else {
 				throw new Exception("Publisher1's name and state were not persisted "
 						+ "as expected -- metadata-complete=true is not" + " read from orm.xml");
@@ -270,14 +272,14 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("Cleanup data");
+		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -290,14 +292,14 @@ public class ClientIT extends PMClientBase {
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

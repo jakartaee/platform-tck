@@ -16,10 +16,9 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.bindable;
 
+import java.lang.System.Logger;
 import java.util.HashSet;
 import java.util.Set;
-
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;
@@ -32,6 +31,8 @@ import jakarta.persistence.Version;
 @Entity
 @Table(name = "COLTAB")
 public class A implements java.io.Serializable {
+
+	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
 
 	@Id
 	protected String id;
@@ -55,12 +56,12 @@ public class A implements java.io.Serializable {
 	}
 
 	public Set<Address> getAddress() {
-		TestUtil.logTrace("getAddress");
+		logger.log(Logger.Level.TRACE, "getAddress");
 		return address;
 	}
 
 	public void setAddress(Set<Address> addr) {
-		TestUtil.logTrace("setAddress");
+		logger.log(Logger.Level.TRACE, "setAddress");
 		this.address = addr;
 	}
 

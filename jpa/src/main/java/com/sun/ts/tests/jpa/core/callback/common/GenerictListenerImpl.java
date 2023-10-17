@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.callback.common;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.lang.System.Logger;
 
 /**
  * An annotation-free class that holds the logics for recording entity lifecycle
@@ -29,13 +29,15 @@ import com.sun.ts.lib.util.TestUtil;
  */
 public class GenerictListenerImpl {
 
+	private static final Logger logger = (Logger) System.getLogger(GenerictListenerImpl.class.getName());
+
 	public GenerictListenerImpl() {
 		super();
 	}
 
 	public static void logTrace(String s, CallbackStatusIF b) {
 		String ss = b.getEntityName() + ": " + s;
-		TestUtil.logTrace(ss);
+		logger.log(Logger.Level.TRACE, ss);
 	}
 
 	public void prePersist(CallbackStatusIF b) {
@@ -52,7 +54,7 @@ public class GenerictListenerImpl {
 		CallbackStatusIF p = (CallbackStatusIF) b;
 		logTrace("In postPersist.", p);
 		if (!p.isPrePersistCalled()) {
-			TestUtil.logTrace("When calling postPersist, prePersist has not been called.");
+			logger.log(Logger.Level.TRACE, "When calling postPersist, prePersist has not been called.");
 			throw new IllegalStateException("When calling postPersist, prePersist has not been called.");
 		}
 		p.setPostPersistCalled(true);
@@ -69,7 +71,7 @@ public class GenerictListenerImpl {
 		CallbackStatusIF p = (CallbackStatusIF) b;
 		logTrace("In postRemove.", p);
 		if (!p.isPreRemoveCalled()) {
-			TestUtil.logTrace("When calling postRemove, preRemove has not been called.");
+			logger.log(Logger.Level.TRACE, "When calling postRemove, preRemove has not been called.");
 			throw new IllegalStateException("When calling postRemove, preRemove has not been called.");
 		}
 		p.setPostRemoveCalled(true);
@@ -86,7 +88,7 @@ public class GenerictListenerImpl {
 		CallbackStatusIF p = (CallbackStatusIF) b;
 		logTrace("In postUpdate.", p);
 		if (!p.isPreUpdateCalled()) {
-			TestUtil.logErr("When calling postUpdate, preUpdate has not been called.");
+			logger.log(Logger.Level.ERROR, "When calling postUpdate, preUpdate has not been called.");
 			throw new IllegalStateException("When calling postUpdate, preUpdate has not been called.");
 		}
 		p.setPostUpdateCalled(true);

@@ -16,10 +16,11 @@
 
 package com.sun.ts.tests.jpa.core.annotations.elementcollection;
 
+import java.lang.System.Logger;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jpa.common.pluggability.util.LogFileProcessor;
 
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -38,6 +39,8 @@ public class A implements java.io.Serializable {
 
 	protected int value;
 
+	private static final Logger logger = (Logger) System.getLogger(LogFileProcessor.class.getName());
+
 	@ElementCollection(fetch = FetchType.EAGER, targetClass = Address.class)
 	// @CollectionTable(name="A_ADDRESS2")
 	protected Set<Address> address = new HashSet();
@@ -53,12 +56,12 @@ public class A implements java.io.Serializable {
 
 	// Default to table A_ADDRESS
 	public Set<Address> getAddress() {
-		TestUtil.logTrace("getAddress");
+		logger.log(Logger.Level.TRACE, "getAddress");
 		return address;
 	}
 
 	public void setAddress(Set<Address> addr) {
-		TestUtil.logTrace("setAddress");
+		logger.log(Logger.Level.TRACE, "setAddress");
 		this.address = addr;
 	}
 

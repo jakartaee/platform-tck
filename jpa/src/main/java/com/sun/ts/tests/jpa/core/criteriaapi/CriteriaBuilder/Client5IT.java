@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.criteriaapi.CriteriaBuilder;
 
+import java.lang.System.Logger;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Date;
@@ -29,7 +30,6 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.HardwareProduct;
 import com.sun.ts.tests.jpa.common.schema30.Product;
 import com.sun.ts.tests.jpa.common.schema30.ShelfLife;
@@ -47,8 +47,9 @@ import jakarta.persistence.metamodel.EmbeddableType;
 import jakarta.persistence.metamodel.EntityType;
 import jakarta.persistence.metamodel.Metamodel;
 
-
 public class Client5IT extends UtilProductData {
+
+	private static final Logger logger = (Logger) System.getLogger(Client5IT.class.getName());
 
 	public static JavaArchive createDeployment() throws Exception {
 
@@ -84,16 +85,16 @@ public class Client5IT extends UtilProductData {
 			List<Product> result = tq.getResultList();
 
 			if (result.size() == 1 && result.get(0).getWareHouse().equals("WH5")) {
-				TestUtil.logTrace("Expected results received:" + result.get(0).getWareHouse());
+				logger.log(Logger.Level.TRACE, "Expected results received:" + result.get(0).getWareHouse());
 				pass = true;
 			} else {
-				TestUtil.logErr("test returned: " + result.get(0).getWareHouse() + ", expected: WH5");
+				logger.log(Logger.Level.ERROR, "test returned: " + result.get(0).getWareHouse() + ", expected: WH5");
 				for (Product p : result) {
-					TestUtil.logErr("**id=" + p.getId() + ", model=" + p.getWareHouse());
+					logger.log(Logger.Level.ERROR, "**id=" + p.getId() + ", model=" + p.getWareHouse());
 				}
 			}
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -124,7 +125,7 @@ public class Client5IT extends UtilProductData {
 		getEntityTransaction().begin();
 		CriteriaQuery<HardwareProduct> cquery = cbuilder.createQuery(HardwareProduct.class);
 		if (cquery != null) {
-			TestUtil.logTrace("Obtained Non-null Criteria Query");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
 			Root<HardwareProduct> hardProd = cquery.from(HardwareProduct.class);
 			EntityType<HardwareProduct> HardwareProduct_ = hardProd.getModel();
 			cquery.select(hardProd);
@@ -133,17 +134,17 @@ public class Client5IT extends UtilProductData {
 			List<HardwareProduct> result = tq.getResultList();
 
 			if (result.size() == expectedResultSize && result.get(0).getModelNumber() == expectedModelNumber) {
-				TestUtil.logTrace("Expected results received.");
+				logger.log(Logger.Level.TRACE, "Expected results received.");
 				pass = true;
 			} else {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"test returned: " + result.get(0).getModelNumber() + ", expected: " + expectedModelNumber);
 				for (HardwareProduct o : result) {
-					TestUtil.logErr("**id=" + o.getId() + ", model=" + o.getModelNumber());
+					logger.log(Logger.Level.ERROR, "**id=" + o.getId() + ", model=" + o.getModelNumber());
 				}
 			}
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -173,7 +174,7 @@ public class Client5IT extends UtilProductData {
 		getEntityTransaction().begin();
 		CriteriaQuery<HardwareProduct> cquery = cbuilder.createQuery(HardwareProduct.class);
 		if (cquery != null) {
-			TestUtil.logTrace("Obtained Non-null Criteria Query");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
 			Root<HardwareProduct> hardProd = cquery.from(HardwareProduct.class);
 			EntityType<HardwareProduct> HardwareProduct_ = hardProd.getModel();
 			cquery.select(hardProd);
@@ -182,17 +183,17 @@ public class Client5IT extends UtilProductData {
 			List<HardwareProduct> result = tq.getResultList();
 
 			if (result.size() == expectedResultSize && result.get(7).getModelNumber() == expectedModelNumber) {
-				TestUtil.logTrace("Expected results received.");
+				logger.log(Logger.Level.TRACE, "Expected results received.");
 				pass = true;
 			} else {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"test returned: " + result.get(7).getModelNumber() + "expected: " + expectedModelNumber);
 				for (HardwareProduct o : result) {
-					TestUtil.logErr("**id=" + o.getId() + ", model=" + o.getModelNumber());
+					logger.log(Logger.Level.ERROR, "**id=" + o.getId() + ", model=" + o.getModelNumber());
 				}
 			}
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -222,7 +223,7 @@ public class Client5IT extends UtilProductData {
 		getEntityTransaction().begin();
 		CriteriaQuery<Number> cquery = cbuilder.createQuery(Number.class);
 		if (cquery != null) {
-			TestUtil.logTrace("Obtained Non-null Criteria Query");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
 			Root<Product> product = cquery.from(Product.class);
 
 			// Get Metamodel from Root
@@ -236,19 +237,19 @@ public class Client5IT extends UtilProductData {
 
 			Number d3 = tq.getSingleResult();
 			if (d3 instanceof Double) {
-				TestUtil.logTrace("Received expected type of Double");
+				logger.log(Logger.Level.TRACE, "Received expected type of Double");
 				pass1 = true;
 			} else {
-				TestUtil.logErr("Expected type Double, actual:" + d3);
+				logger.log(Logger.Level.ERROR, "Expected type Double, actual:" + d3);
 			}
 			double d4 = d3.doubleValue();
 			if (((d4 >= d1) && (d4 < d2))) {
-				TestUtil.logTrace("sum returned expected results: " + d1);
+				logger.log(Logger.Level.TRACE, "sum returned expected results: " + d1);
 				pass2 = true;
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -276,7 +277,7 @@ public class Client5IT extends UtilProductData {
 		getEntityTransaction().begin();
 		CriteriaQuery<Integer> cquery = cbuilder.createQuery(Integer.class);
 		if (cquery != null) {
-			TestUtil.logTrace("Obtained Non-null Criteria Query");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
 			Root<Product> product = cquery.from(Product.class);
 
 			// Get Metamodel from Root
@@ -290,14 +291,14 @@ public class Client5IT extends UtilProductData {
 			Integer actual = tq.getSingleResult();
 			Integer expected = productRef[0].getQuantity() + 100;
 			if (actual.equals(expected)) {
-				TestUtil.logTrace("sum returned expected results: " + actual);
+				logger.log(Logger.Level.TRACE, "sum returned expected results: " + actual);
 				pass = true;
 			} else {
-				TestUtil.logErr("Expected value:" + expected + ", actual value:" + actual);
+				logger.log(Logger.Level.ERROR, "Expected value:" + expected + ", actual value:" + actual);
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -325,7 +326,7 @@ public class Client5IT extends UtilProductData {
 		getEntityTransaction().begin();
 		CriteriaQuery<Integer> cquery = cbuilder.createQuery(Integer.class);
 		if (cquery != null) {
-			TestUtil.logTrace("Obtained Non-null Criteria Query");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
 			Root<Product> product = cquery.from(Product.class);
 
 			// Get Metamodel from Root
@@ -339,14 +340,14 @@ public class Client5IT extends UtilProductData {
 			Integer actual = tq.getSingleResult();
 			Integer expected = productRef[0].getQuantity() + 100;
 			if (actual.equals(expected)) {
-				TestUtil.logTrace("sum test returned expected results: " + actual);
+				logger.log(Logger.Level.TRACE, "sum test returned expected results: " + actual);
 				pass = true;
 			} else {
-				TestUtil.logErr("Expected value:" + expected + ", actual value:" + actual);
+				logger.log(Logger.Level.ERROR, "Expected value:" + expected + ", actual value:" + actual);
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 
 		}
 
@@ -375,7 +376,7 @@ public class Client5IT extends UtilProductData {
 		getEntityTransaction().begin();
 		CriteriaQuery<Integer> cquery = cbuilder.createQuery(Integer.class);
 		if (cquery != null) {
-			TestUtil.logTrace("Obtained Non-null Criteria Query");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
 			Root<Product> product = cquery.from(Product.class);
 
 			// Get Metamodel from Root
@@ -389,14 +390,14 @@ public class Client5IT extends UtilProductData {
 			Integer actual = tq.getSingleResult();
 			Integer expected = productRef[0].getQuantity() + productRef[0].getQuantity();
 			if (actual.equals(expected)) {
-				TestUtil.logTrace("sum test returned expected results: " + actual);
+				logger.log(Logger.Level.TRACE, "sum test returned expected results: " + actual);
 				pass = true;
 			} else {
-				TestUtil.logErr("Expected value:" + expected + ", actual value:" + actual);
+				logger.log(Logger.Level.ERROR, "Expected value:" + expected + ", actual value:" + actual);
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -432,7 +433,7 @@ public class Client5IT extends UtilProductData {
 		getEntityTransaction().begin();
 		CriteriaQuery<Product> cquery = cbuilder.createQuery(Product.class);
 		if (cquery != null) {
-			TestUtil.logTrace("Obtained Non-null Criteria Query");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
 			Root<Product> product = cquery.from(Product.class);
 
 			// Get Metamodel from Root
@@ -442,9 +443,9 @@ public class Client5IT extends UtilProductData {
 			Subquery<Product> sq = cquery.subquery(Product.class);
 			Root<Product> hardProd = sq.from(Product.class);
 			if (hardProd.getModel().getName().equals(Product.class.getSimpleName())) {
-				TestUtil.logTrace("Received expected subquery root");
+				logger.log(Logger.Level.TRACE, "Received expected subquery root");
 			} else {
-				TestUtil.logErr("Expected subquery root:" + Product.class.getSimpleName() + ", actual:"
+				logger.log(Logger.Level.ERROR, "Expected subquery root:" + Product.class.getSimpleName() + ", actual:"
 						+ hardProd.getModel().getName());
 			}
 
@@ -465,15 +466,15 @@ public class Client5IT extends UtilProductData {
 				actual.add(Integer.parseInt(p.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -508,7 +509,7 @@ public class Client5IT extends UtilProductData {
 		getEntityTransaction().begin();
 		CriteriaQuery<Product> cquery = cbuilder.createQuery(Product.class);
 		if (cquery != null) {
-			TestUtil.logTrace("Obtained Non-null Criteria Query");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
 			Root<Product> product = cquery.from(Product.class);
 
 			// Get Metamodel from Root
@@ -518,9 +519,9 @@ public class Client5IT extends UtilProductData {
 			Subquery<Product> sq = cquery.subquery(Product.class);
 			Root<Product> hardProd = sq.from(Product_);
 			if (hardProd.getModel().getName().equals(Product_.getName())) {
-				TestUtil.logTrace("Received expected subquery root");
+				logger.log(Logger.Level.TRACE, "Received expected subquery root");
 			} else {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Expected subquery root:" + Product_.getName() + ", actual:" + hardProd.getModel().getName());
 			}
 
@@ -541,15 +542,15 @@ public class Client5IT extends UtilProductData {
 				actual.add(Integer.parseInt(p.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -591,7 +592,7 @@ public class Client5IT extends UtilProductData {
 		getEntityTransaction().begin();
 		CriteriaQuery<Integer> cquery = cbuilder.createQuery(Integer.class);
 		if (cquery != null) {
-			TestUtil.logTrace("Obtained Non-null Criteria Query");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
 			Root<HardwareProduct> hardProd = cquery.from(HardwareProduct.class);
 
 			// Get Metamodel from Root
@@ -613,20 +614,20 @@ public class Client5IT extends UtilProductData {
 			List<Integer> actual = tq.getResultList();
 			Collections.sort(actual);
 			if (expected.containsAll(actual) && actual.containsAll(expected) && expected.size() == actual.size()) {
-				TestUtil.logTrace("Received expected results");
+				logger.log(Logger.Level.TRACE, "Received expected results");
 				pass = true;
 			} else {
-				TestUtil.logErr("Did not get expected results");
+				logger.log(Logger.Level.ERROR, "Did not get expected results");
 				for (Integer i : expected) {
-					TestUtil.logErr("expected:" + i);
+					logger.log(Logger.Level.ERROR, "expected:" + i);
 				}
 				for (Integer i : actual) {
-					TestUtil.logErr("actual:" + i);
+					logger.log(Logger.Level.ERROR, "actual:" + i);
 				}
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -673,18 +674,18 @@ public class Client5IT extends UtilProductData {
 			TypedQuery<Double> tq = getEntityManager().createQuery(cquery);
 			Double actual = tq.getSingleResult();
 
-			TestUtil.logTrace("actual" + actual);
+			logger.log(Logger.Level.TRACE, "actual" + actual);
 
 			if (expected == actual) {
-				TestUtil.logTrace("Successfully returned expected results");
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 				pass = true;
 			} else {
-				TestUtil.logErr("expected: " + expected + ", actual: " + actual);
+				logger.log(Logger.Level.ERROR, "expected: " + expected + ", actual: " + actual);
 
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -730,17 +731,17 @@ public class Client5IT extends UtilProductData {
 			TypedQuery<Long> tq = getEntityManager().createQuery(cquery);
 			Long actual = tq.getSingleResult();
 
-			TestUtil.logTrace("actual" + actual);
+			logger.log(Logger.Level.TRACE, "actual" + actual);
 
 			if (expected == actual) {
-				TestUtil.logTrace("Successfully returned expected results");
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 				pass = true;
 			} else {
-				TestUtil.logErr("expected: " + expected + ", actual: " + actual);
+				logger.log(Logger.Level.ERROR, "expected: " + expected + ", actual: " + actual);
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -811,15 +812,15 @@ public class Client5IT extends UtilProductData {
 				actual.add(Integer.parseInt(p.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -891,15 +892,15 @@ public class Client5IT extends UtilProductData {
 				actual.add(Integer.parseInt(p.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -969,15 +970,15 @@ public class Client5IT extends UtilProductData {
 				actual.add(Integer.parseInt(p.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -1047,15 +1048,15 @@ public class Client5IT extends UtilProductData {
 				actual.add(Integer.parseInt(p.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -1117,15 +1118,15 @@ public class Client5IT extends UtilProductData {
 				actual.add(Integer.parseInt(p.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -1192,15 +1193,15 @@ public class Client5IT extends UtilProductData {
 				actual.add(Integer.parseInt(p.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -1268,15 +1269,15 @@ public class Client5IT extends UtilProductData {
 				actual.add(Integer.parseInt(p.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -1346,15 +1347,15 @@ public class Client5IT extends UtilProductData {
 				actual.add(Integer.parseInt(p.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -1425,15 +1426,15 @@ public class Client5IT extends UtilProductData {
 				actual.add(Integer.parseInt(p.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -1476,14 +1477,15 @@ public class Client5IT extends UtilProductData {
 			Integer expectedResult = Integer.valueOf(-5);
 
 			if (result.intValue() == expectedResult.intValue()) {
-				TestUtil.logTrace("Successfully returned expected results");
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 				pass = true;
 			} else {
-				TestUtil.logErr("test returned:" + result.intValue() + "expected: " + expectedResult.intValue());
+				logger.log(Logger.Level.ERROR,
+						"test returned:" + result.intValue() + "expected: " + expectedResult.intValue());
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -1528,21 +1530,22 @@ public class Client5IT extends UtilProductData {
 			Float expectedResult = 5F * 10F;
 
 			if (result instanceof Float) {
-				TestUtil.logTrace("Received expected type of Float");
+				logger.log(Logger.Level.TRACE, "Received expected type of Float");
 				pass1 = true;
 			} else {
-				TestUtil.logErr("Expected type Double, actual:" + result);
+				logger.log(Logger.Level.ERROR, "Expected type Double, actual:" + result);
 			}
 			Float f = result.floatValue();
 			if (f == expectedResult.intValue()) {
-				TestUtil.logTrace("Successfully returned expected results:" + f);
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results:" + f);
 				pass2 = true;
 			} else {
-				TestUtil.logErr("test returned:" + result.intValue() + "expected: " + expectedResult.intValue());
+				logger.log(Logger.Level.ERROR,
+						"test returned:" + result.intValue() + "expected: " + expectedResult.intValue());
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -1584,14 +1587,15 @@ public class Client5IT extends UtilProductData {
 			Integer expectedResult = 10 * 5;
 
 			if (result.intValue() == expectedResult.intValue()) {
-				TestUtil.logTrace("Successfully returned expected results:" + result);
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results:" + result);
 				pass = true;
 			} else {
-				TestUtil.logErr("test returned:" + result.intValue() + "expected: " + expectedResult.intValue());
+				logger.log(Logger.Level.ERROR,
+						"test returned:" + result.intValue() + "expected: " + expectedResult.intValue());
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -1635,14 +1639,15 @@ public class Client5IT extends UtilProductData {
 			Integer expectedResult = 5 * 5;
 
 			if (result.intValue() == expectedResult.intValue()) {
-				TestUtil.logTrace("Successfully returned expected results:" + result);
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results:" + result);
 				pass = true;
 			} else {
-				TestUtil.logErr("expected: " + expectedResult.intValue() + ", actual result:" + result.intValue());
+				logger.log(Logger.Level.ERROR,
+						"expected: " + expectedResult.intValue() + ", actual result:" + result.intValue());
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -1684,14 +1689,14 @@ public class Client5IT extends UtilProductData {
 			Integer expected = Integer.valueOf(3);
 
 			if (result.intValue() == expected.intValue()) {
-				TestUtil.logTrace("Successfully returned expected results" + result.intValue());
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results" + result.intValue());
 				pass = true;
 			} else {
-				TestUtil.logErr("Expected: " + expected.intValue() + ", actual:" + result.intValue());
+				logger.log(Logger.Level.ERROR, "Expected: " + expected.intValue() + ", actual:" + result.intValue());
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -1733,14 +1738,14 @@ public class Client5IT extends UtilProductData {
 			Integer expected = Integer.valueOf(3);
 
 			if (result.intValue() == expected.intValue()) {
-				TestUtil.logTrace("Successfully returned expected results" + result.intValue());
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results" + result.intValue());
 				pass = true;
 			} else {
-				TestUtil.logErr("Expected: " + expected.intValue() + ", actual:" + result.intValue());
+				logger.log(Logger.Level.ERROR, "Expected: " + expected.intValue() + ", actual:" + result.intValue());
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -1784,14 +1789,14 @@ public class Client5IT extends UtilProductData {
 			Integer expected = Integer.valueOf(0);
 
 			if (result.intValue() == expected.intValue()) {
-				TestUtil.logTrace("Successfully returned expected results" + result.intValue());
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results" + result.intValue());
 				pass = true;
 			} else {
-				TestUtil.logErr("Expected: " + expected.intValue() + ", actual:" + result.intValue());
+				logger.log(Logger.Level.ERROR, "Expected: " + expected.intValue() + ", actual:" + result.intValue());
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -1833,14 +1838,14 @@ public class Client5IT extends UtilProductData {
 			Integer expected = Integer.valueOf(2);
 
 			if (actual.intValue() == expected.intValue()) {
-				TestUtil.logTrace("Successfully returned expected results");
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 				pass = true;
 			} else {
-				TestUtil.logErr("expected: " + expected.intValue() + ", actual:" + actual.intValue());
+				logger.log(Logger.Level.ERROR, "expected: " + expected.intValue() + ", actual:" + actual.intValue());
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -1882,14 +1887,14 @@ public class Client5IT extends UtilProductData {
 			Integer expected = Integer.valueOf(2);
 
 			if (actual.intValue() == expected.intValue()) {
-				TestUtil.logTrace("Successfully returned expected results");
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 				pass = true;
 			} else {
-				TestUtil.logErr("expected: " + expected.intValue() + ", actual:" + actual.intValue());
+				logger.log(Logger.Level.ERROR, "expected: " + expected.intValue() + ", actual:" + actual.intValue());
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -1932,14 +1937,14 @@ public class Client5IT extends UtilProductData {
 			Integer expected = Integer.valueOf(1);
 
 			if (actual.intValue() == expected.intValue()) {
-				TestUtil.logTrace("Successfully returned expected results");
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 				pass = true;
 			} else {
-				TestUtil.logErr("expected: " + expected.intValue() + ", actual:" + actual.intValue());
+				logger.log(Logger.Level.ERROR, "expected: " + expected.intValue() + ", actual:" + actual.intValue());
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -1988,15 +1993,15 @@ public class Client5IT extends UtilProductData {
 				actual.add(Integer.parseInt(p.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -2045,15 +2050,15 @@ public class Client5IT extends UtilProductData {
 				actual.add(Integer.parseInt(p.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -2102,15 +2107,15 @@ public class Client5IT extends UtilProductData {
 				actual.add(Integer.parseInt(p.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -2151,16 +2156,18 @@ public class Client5IT extends UtilProductData {
 			Double expectedResult = 2.1D;
 
 			if (result.intValue() == expectedResult.intValue()) {
-				TestUtil.logTrace("Successfully returned expected results");
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 				pass = true;
 			} else {
-				// TestUtil.logErr("test returned:" + result.doubleValue() + "expected:
+				// logger.log(Logger.Level.ERROR,"test returned:" + result.doubleValue() +
+				// "expected:
 				// " + expectedResult.doubleValue());
-				TestUtil.logErr("test returned:" + result.intValue() + "expected: " + expectedResult.intValue());
+				logger.log(Logger.Level.ERROR,
+						"test returned:" + result.intValue() + "expected: " + expectedResult.intValue());
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -2204,14 +2211,15 @@ public class Client5IT extends UtilProductData {
 			Long expectedResult = Long.valueOf(25);
 
 			if (result.intValue() == expectedResult.intValue()) {
-				TestUtil.logTrace("Successfully returned expected results");
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 				pass = true;
 			} else {
-				TestUtil.logErr("test returned:" + result.intValue() + "expected: " + expectedResult.intValue());
+				logger.log(Logger.Level.ERROR,
+						"test returned:" + result.intValue() + "expected: " + expectedResult.intValue());
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -2255,14 +2263,15 @@ public class Client5IT extends UtilProductData {
 			Integer expectedResult = Integer.valueOf(5);
 
 			if (result.intValue() == expectedResult.intValue()) {
-				TestUtil.logTrace("Successfully returned expected results");
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 				pass = true;
 			} else {
-				TestUtil.logErr("test returned:" + result.intValue() + "expected: " + expectedResult.intValue());
+				logger.log(Logger.Level.ERROR,
+						"test returned:" + result.intValue() + "expected: " + expectedResult.intValue());
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -2305,14 +2314,15 @@ public class Client5IT extends UtilProductData {
 			Float expectedResult = 2.5F;
 
 			if (result.intValue() == expectedResult.intValue()) {
-				TestUtil.logTrace("Successfully returned expected results");
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 				pass = true;
 			} else {
-				TestUtil.logErr("test returned:" + result.intValue() + "expected: " + expectedResult.intValue());
+				logger.log(Logger.Level.ERROR,
+						"test returned:" + result.intValue() + "expected: " + expectedResult.intValue());
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -2356,14 +2366,15 @@ public class Client5IT extends UtilProductData {
 			Double expectedResult = 2.1D;
 
 			if (result.intValue() == expectedResult.intValue()) {
-				TestUtil.logTrace("Successfully returned expected results");
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 				pass = true;
 			} else {
-				TestUtil.logErr("test returned:" + result.intValue() + "expected: " + expectedResult.intValue());
+				logger.log(Logger.Level.ERROR,
+						"test returned:" + result.intValue() + "expected: " + expectedResult.intValue());
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -2407,14 +2418,14 @@ public class Client5IT extends UtilProductData {
 			BigDecimal result = tq.getSingleResult();
 
 			if (result.compareTo(expectedResult) == 0) {
-				TestUtil.logTrace("Successfully returned expected results");
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 				pass = true;
 			} else {
-				TestUtil.logErr("test returned:" + result + "expected: " + expectedResult);
+				logger.log(Logger.Level.ERROR, "test returned:" + result + "expected: " + expectedResult);
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -2459,13 +2470,13 @@ public class Client5IT extends UtilProductData {
 			BigInteger expectedResult = new BigInteger("50000000000");
 
 			if (result.compareTo(expectedResult) == 0) {
-				TestUtil.logTrace("Successfully returned expected results");
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 				pass = true;
 			} else {
-				TestUtil.logErr("test returned:" + result + "expected: " + expectedResult);
+				logger.log(Logger.Level.ERROR, "test returned:" + result + "expected: " + expectedResult);
 			}
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -2507,14 +2518,14 @@ public class Client5IT extends UtilProductData {
 			String expectedResult = "a";
 
 			if (result.equals(expectedResult)) {
-				TestUtil.logTrace("Successfully returned expected results");
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 				pass = true;
 			} else {
-				TestUtil.logErr("test returned:" + result + "expected: " + expectedResult);
+				logger.log(Logger.Level.ERROR, "test returned:" + result + "expected: " + expectedResult);
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -2557,14 +2568,15 @@ public class Client5IT extends UtilProductData {
 			Integer expectedResult = 5;
 
 			if (result.intValue() == expectedResult.intValue()) {
-				TestUtil.logTrace("Successfully returned expected results");
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 				pass = true;
 			} else {
-				TestUtil.logErr("test returned:" + result.intValue() + "expected: " + expectedResult.intValue());
+				logger.log(Logger.Level.ERROR,
+						"test returned:" + result.intValue() + "expected: " + expectedResult.intValue());
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -2601,14 +2613,14 @@ public class Client5IT extends UtilProductData {
 			Date result = tq.getSingleResult();
 			Date d = Date.valueOf(result.toString());
 			if (d.equals(result)) {
-				TestUtil.logTrace("Successfully returned expected results");
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 				pass = true;
 			} else {
-				TestUtil.logErr("Did not get the expected Date object");
+				logger.log(Logger.Level.ERROR, "Did not get the expected Date object");
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -2645,14 +2657,14 @@ public class Client5IT extends UtilProductData {
 			Time result = tq.getSingleResult();
 			Time ts = new Time(result.getTime());
 			if (result.equals(ts)) {
-				TestUtil.logTrace("Successfully returned expected results");
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 				pass = true;
 			} else {
-				TestUtil.logErr("Did not get the expected Time object");
+				logger.log(Logger.Level.ERROR, "Did not get the expected Time object");
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -2689,14 +2701,14 @@ public class Client5IT extends UtilProductData {
 			Timestamp result = tq.getSingleResult();
 			Timestamp ts = Timestamp.valueOf(result.toString());
 			if (ts.equals(result)) {
-				TestUtil.logTrace("Successfully returned expected results");
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 				pass = true;
 			} else {
-				TestUtil.logErr("Did not get the expected Timestamp object");
+				logger.log(Logger.Level.ERROR, "Did not get the expected Timestamp object");
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -2721,11 +2733,11 @@ public class Client5IT extends UtilProductData {
 	public void treatPathClassTest() throws Exception {
 		boolean pass = false;
 
-		TestUtil.logTrace("*****************************");
-		TestUtil.logTrace("SoftwareProducts:");
-		TestUtil.logTrace("--------------------");
+		logger.log(Logger.Level.TRACE, "*****************************");
+		logger.log(Logger.Level.TRACE, "SoftwareProducts:");
+		logger.log(Logger.Level.TRACE, "--------------------");
 		for (SoftwareProduct p : softwareRef) {
-			TestUtil.logTrace("ID:" + p.getId() + ":" + getEntityManager().find(Product.class, p.getId()));
+			logger.log(Logger.Level.TRACE, "ID:" + p.getId() + ":" + getEntityManager().find(Product.class, p.getId()));
 		}
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -2749,15 +2761,15 @@ public class Client5IT extends UtilProductData {
 			List<String> expected = new ArrayList<String>();
 			expected.add("34");
 			if (!checkEntityPK(actual, expected)) {
-				TestUtil.logErr("Did not get expected results.  Expected: " + expected.size() + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results.  Expected: " + expected.size()
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();

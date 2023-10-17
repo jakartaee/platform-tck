@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.override.attributeoverride;
 
+import java.lang.System.Logger;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -23,11 +24,11 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	private static final int ENTITY_ID = 3039;
 
@@ -51,12 +52,12 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception:test failed ", e);
+			logger.log(Logger.Level.ERROR, "Exception:test failed ", e);
 		}
 	}
 
@@ -87,7 +88,7 @@ public class ClientIT extends PMClientBase {
 			List result = getEntityManager().createQuery("SELECT b FROM LawBook b where b.name= " + ":name")
 					.setParameter("name", NAME).getResultList();
 			if (result.size() == 1) {
-				TestUtil.logTrace("test Overriding Attributes passed");
+				logger.log(Logger.Level.TRACE, "test Overriding Attributes passed");
 			} else {
 				throw new Exception("Expected the size to be 1 " + " but it is -" + result.size());
 			}
@@ -101,14 +102,14 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("Cleanup data");
+		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -117,14 +118,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM LAWBOOK").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

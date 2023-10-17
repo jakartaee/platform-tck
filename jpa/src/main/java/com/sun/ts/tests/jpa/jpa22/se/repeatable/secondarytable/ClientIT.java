@@ -16,12 +16,13 @@
 
 package com.sun.ts.tests.jpa.jpa22.se.repeatable.secondarytable;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.Cache;
@@ -29,8 +30,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	private static final long serialVersionUID = 22L;
 
@@ -50,14 +52,14 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 
 			super.setup();
 			removeTestData();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -86,21 +88,21 @@ public class ClientIT extends PMClientBase {
 
 				Product product = new Product("1", 101);
 				em2.persist(product);
-				TestUtil.logTrace("persisted Product " + product);
+				logger.log(Logger.Level.TRACE, "persisted Product " + product);
 
 				SoftwareProduct sp = new SoftwareProduct();
 				sp.setId("2");
 				sp.setRevisionNumber(1D);
 				sp.setQuantity(202);
 				em2.persist(sp);
-				TestUtil.logTrace("persisted SoftwareProduct " + sp);
+				logger.log(Logger.Level.TRACE, "persisted SoftwareProduct " + sp);
 
 				HardwareProduct hp = new HardwareProduct();
 				hp.setId("3");
 				hp.setModelNumber(3);
 				hp.setQuantity(303);
 				em2.persist(hp);
-				TestUtil.logTrace("persisted HardwareProduct " + hp);
+				logger.log(Logger.Level.TRACE, "persisted HardwareProduct " + hp);
 
 				em2.flush();
 				et.commit();
@@ -111,39 +113,39 @@ public class ClientIT extends PMClientBase {
 				if (cache != null) {
 					boolean b1 = cache.contains(Product.class, "1");
 					if (b1) {
-						TestUtil.logTrace(
+						logger.log(Logger.Level.TRACE,
 								"Cache returned: " + b1 + ", therefore cache does contain Product " + product);
 						pass1 = true;
 					} else {
-						TestUtil.logErr(
+						logger.log(Logger.Level.ERROR,
 								"Cache returned: " + b1 + ", therefore cache does not contain Product " + product);
 					}
 					boolean b2 = cache.contains(SoftwareProduct.class, "2");
 					if (!b2) {
-						TestUtil.logTrace(
+						logger.log(Logger.Level.TRACE,
 								"Cache returned: " + b2 + ", therefore cache does not contain SoftwareProduct " + sp);
 						pass2 = true;
 					} else {
-						TestUtil.logErr(
+						logger.log(Logger.Level.ERROR,
 								"Cache returned: " + b2 + ", therefore cache does contain SoftwareProduct " + sp);
 					}
 					boolean b3 = cache.contains(HardwareProduct.class, "3");
 					if (b3) {
-						TestUtil.logTrace(
+						logger.log(Logger.Level.TRACE,
 								"Cache returned: " + b3 + ", therefore cache does contain HardwareProduct " + hp);
 						pass3 = true;
 					} else {
-						TestUtil.logErr(
+						logger.log(Logger.Level.ERROR,
 								"Cache returned: " + b3 + ", therefore cache does not contain HardwareProduct " + hp);
 					}
 				} else {
-					TestUtil.logErr("Cache returned was null");
+					logger.log(Logger.Level.ERROR, "Cache returned was null");
 				}
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 		} else {
-			TestUtil.logMsg("Cache not supported, bypassing test");
+			logger.log(Logger.Level.INFO, "Cache not supported, bypassing test");
 			pass1 = true;
 			pass2 = true;
 			pass3 = true;
@@ -156,15 +158,15 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 		removeDeploymentJar();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -174,14 +176,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM PRODUCT_TABLE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.override.mapkey;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -27,13 +28,13 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.Query;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	private static final long DEPT1_ID = 777l;
 
@@ -121,12 +122,12 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception:test failed ", e);
+			logger.log(Logger.Level.ERROR, "Exception:test failed ", e);
 		}
 	}
 
@@ -178,7 +179,7 @@ public class ClientIT extends PMClientBase {
 			List<Employee> actualList = dept1.getEmployees();
 
 			if (employeeList.equals(actualList)) {
-				TestUtil.logTrace("Test Passed");
+				logger.log(Logger.Level.TRACE, "Test Passed");
 			} else {
 				throw new Exception("The expected Employee List is not equal to the " + "actual List read from the DB");
 			}
@@ -231,7 +232,7 @@ public class ClientIT extends PMClientBase {
 
 			if ((retrieveLocations.get(LOCATION_CODE).getId() == LOCATION_ID)
 					&& (retrieveLocations.get(CITY_CODE).getId() == CITY_ID)) {
-				TestUtil.logTrace("Test Passed");
+				logger.log(Logger.Level.TRACE, "Test Passed");
 			} else {
 				throw new Exception("Expected to read the relationship as a Map with keys" + " - " + LOCATION_CODE
 						+ " and " + CITY_CODE + "; Actual Locations Found - "
@@ -290,7 +291,7 @@ public class ClientIT extends PMClientBase {
 			Map<String, Customers> retrieveCustomers = retrieveStore.getCustomers();
 			if ((retrieveCustomers.get(CUSTOMER1_NAME).getId() == CUSTOMER1_ID)
 					&& (retrieveCustomers.get(CUSTOMER2_NAME).getId() == CUSTOMER2_ID)) {
-				TestUtil.logTrace("Test Passed");
+				logger.log(Logger.Level.TRACE, "Test Passed");
 			} else {
 				throw new Exception("Expected to read relationship as a Map with " + "customers - " + CUSTOMER1_ID
 						+ " and " + CUSTOMER2_ID + "Actual Customers in the Map - "
@@ -354,7 +355,7 @@ public class ClientIT extends PMClientBase {
 			List<RetailOrder> actualRetailOrders = consumer.getOrders();
 
 			if (consumer1Orders.equals(actualRetailOrders)) {
-				TestUtil.logTrace("Test Passed");
+				logger.log(Logger.Level.TRACE, "Test Passed");
 			} else {
 				throw new Exception("The expected Orders List is not equal to the actual List read from the DB");
 			}
@@ -417,14 +418,14 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -443,14 +444,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("Delete from  THEATRECOMPANY").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

@@ -16,14 +16,15 @@
 
 package com.sun.ts.tests.jpa.core.query.language;
 
+import java.lang.System.Logger;
 import java.util.List;
 
 import com.sun.ts.lib.harness.SetupMethod;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.Util;
 
-
 public class Client5IT extends Util {
+
+	private static final Logger logger = (Logger) System.getLogger(Client5IT.class.getName());
 
 	/* Run test */
 
@@ -43,7 +44,7 @@ public class Client5IT extends Util {
 		List c;
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("determine which customers have an area code beginning with 9");
+			logger.log(Logger.Level.TRACE, "determine which customers have an area code beginning with 9");
 			c = getEntityManager()
 					.createQuery(
 							"SELECT Distinct Object(c) From Customer c, IN(c.home.phones) p where p.area LIKE :area")
@@ -55,14 +56,15 @@ public class Client5IT extends Util {
 			expectedPKs[2] = "16";
 
 			if (!checkEntityPK(c, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 3 references, got: " + c.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 3 references, got: " + c.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception: ", e);
+			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
 		}
 
 		if (!pass)

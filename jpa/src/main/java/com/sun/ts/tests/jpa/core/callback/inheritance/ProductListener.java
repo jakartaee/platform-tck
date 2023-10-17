@@ -20,7 +20,8 @@
 
 package com.sun.ts.tests.jpa.core.callback.inheritance;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.lang.System.Logger;
+
 import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusIF;
 
 import jakarta.persistence.PostLoad;
@@ -37,13 +38,15 @@ import jakarta.persistence.PreUpdate;
  */
 public class ProductListener {
 
+	private static final Logger logger = (Logger) System.getLogger(ProductListener.class.getName());
+
 	public ProductListener() {
 		super();
 	}
 
 	@PrePersist
 	public void prePersist(CallbackStatusIF b) {
-		TestUtil.logTrace("In ProductListener.prePersist");
+		logger.log(Logger.Level.TRACE, "In ProductListener.prePersist");
 		b.setPrePersistCalled(true);
 		b.addPrePersistCall(this.getClass().getSimpleName());
 	}
@@ -56,35 +59,35 @@ public class ProductListener {
 
 	@PreRemove
 	public void preRemove(CallbackStatusIF b) {
-		TestUtil.logTrace("In ProductListener.preRemove");
+		logger.log(Logger.Level.TRACE, "In ProductListener.preRemove");
 		b.setPreRemoveCalled(true);
 		b.addPreRemoveCall(this.getClass().getSimpleName());
 	}
 
 	@PostRemove
 	public void postRemove(Object b) {
-		TestUtil.logTrace("In PartProductListener.postRemove.");
+		logger.log(Logger.Level.TRACE, "In PartProductListener.postRemove.");
 		((CallbackStatusIF) b).setPostRemoveCalled(true);
 		((CallbackStatusIF) b).addPostRemoveCall(this.getClass().getSimpleName());
 	}
 
 	@PreUpdate
 	public void preUpdate(CallbackStatusIF b) {
-		TestUtil.logTrace("In PartProductListener.preUpdate.");
+		logger.log(Logger.Level.TRACE, "In PartProductListener.preUpdate.");
 		b.setPreUpdateCalled(true);
 		b.addPreUpdateCall(this.getClass().getSimpleName());
 	}
 
 	@PostUpdate
 	public void postUpdate(Object b) {
-		TestUtil.logTrace("In PartProductListener.postUpdate.");
+		logger.log(Logger.Level.TRACE, "In PartProductListener.postUpdate.");
 		((CallbackStatusIF) b).setPostUpdateCalled(true);
 		((CallbackStatusIF) b).addPostUpdateCall(this.getClass().getSimpleName());
 	}
 
 	@PostLoad
 	public void postLoad(CallbackStatusIF b) {
-		TestUtil.logTrace("In PartProductListener.postLoad.");
+		logger.log(Logger.Level.TRACE, "In PartProductListener.postLoad.");
 		b.setPostLoadCalled(true);
 		b.addPostLoadCall(this.getClass().getSimpleName());
 	}

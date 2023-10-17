@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.lock.query;
 
+import java.lang.System.Logger;
 import java.sql.Date;
 import java.util.Collection;
 
@@ -23,7 +24,6 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.EntityManager;
@@ -32,8 +32,9 @@ import jakarta.persistence.Query;
 import jakarta.persistence.TransactionRequiredException;
 import jakarta.persistence.TypedQuery;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	private final Date d1 = getSQLDate("2000-02-14");
 
@@ -51,17 +52,17 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 
-			TestUtil.logTrace("Create Test Data");
+			logger.log(Logger.Level.TRACE, "Create Test Data");
 			removeTestData();
 			createTestData();
-			TestUtil.logTrace("Done creating test data");
+			logger.log(Logger.Level.TRACE, "Done creating test data");
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			throw new Exception("Setup failed:", e);
 
 		}
@@ -84,9 +85,9 @@ public class ClientIT extends PMClientBase {
 	public void getResultListTest1() throws Exception {
 		boolean pass = true;
 
-		TestUtil.logTrace("Begin getResultListTest1");
+		logger.log(Logger.Level.TRACE, "Begin getResultListTest1");
 		try {
-			TestUtil.logTrace("Testing Query version");
+			logger.log(Logger.Level.TRACE, "Testing Query version");
 
 			getEntityTransaction().begin();
 			EntityManager em = getEntityManager();
@@ -96,21 +97,22 @@ public class ClientIT extends PMClientBase {
 			LockModeType lm = query.getLockMode();
 			if (lm == null || lm.equals(LockModeType.NONE)) {
 				if (lm == null) {
-					TestUtil.logTrace("Received null when no LockModeType had been set");
+					logger.log(Logger.Level.TRACE, "Received null when no LockModeType had been set");
 				} else {
-					TestUtil.logTrace("Received " + lm.toString() + " when no LockModeType had been specifically set");
+					logger.log(Logger.Level.TRACE,
+							"Received " + lm.toString() + " when no LockModeType had been specifically set");
 
 				}
 				query.setLockMode(LockModeType.PESSIMISTIC_READ);
 				lm = query.getLockMode();
 				if (lm.equals(LockModeType.PESSIMISTIC_READ)) {
-					TestUtil.logTrace("Received LockModeType:" + lm.name());
+					logger.log(Logger.Level.TRACE, "Received LockModeType:" + lm.name());
 				} else if (lm.equals(LockModeType.PESSIMISTIC_WRITE)) {
-					TestUtil.logTrace(
+					logger.log(Logger.Level.TRACE,
 							"Received LockModeType:" + lm + " inplace of " + LockModeType.PESSIMISTIC_READ.name());
 				} else {
-					TestUtil.logErr("Expected LockModeType:" + LockModeType.PESSIMISTIC_READ.name() + " or "
-							+ LockModeType.PESSIMISTIC_WRITE.name() + ", Actual:" + lm);
+					logger.log(Logger.Level.ERROR, "Expected LockModeType:" + LockModeType.PESSIMISTIC_READ.name()
+							+ " or " + LockModeType.PESSIMISTIC_WRITE.name() + ", Actual:" + lm);
 					pass = false;
 				}
 
@@ -119,13 +121,13 @@ public class ClientIT extends PMClientBase {
 				for (Employee e : c) {
 					lm = em.getLockMode(e);
 					if (lm.equals(LockModeType.PESSIMISTIC_READ)) {
-						TestUtil.logTrace("Received LockModeType:" + lm.name());
+						logger.log(Logger.Level.TRACE, "Received LockModeType:" + lm.name());
 					} else if (lm.equals(LockModeType.PESSIMISTIC_WRITE)) {
-						TestUtil.logTrace(
+						logger.log(Logger.Level.TRACE,
 								"Received LockModeType:" + lm + " inplace of " + LockModeType.PESSIMISTIC_READ.name());
 					} else {
-						TestUtil.logErr("LockMoteType for the Employee[" + e.getId() + "] was wrong - Expected:"
-								+ LockModeType.PESSIMISTIC_READ.name() + ", Actual:" + lm);
+						logger.log(Logger.Level.ERROR, "LockMoteType for the Employee[" + e.getId()
+								+ "] was wrong - Expected:" + LockModeType.PESSIMISTIC_READ.name() + ", Actual:" + lm);
 						pass = false;
 					}
 				}
@@ -134,14 +136,14 @@ public class ClientIT extends PMClientBase {
 				Employee employeeFound = getEntityManager().find(Employee.class, 1, LockModeType.PESSIMISTIC_WRITE);
 				employeeFound.setSalary(90000F);
 			} else {
-				TestUtil.logErr("Expected null when no LockModeType had been set, Actual:" + lm);
+				logger.log(Logger.Level.ERROR, "Expected null when no LockModeType had been set, Actual:" + lm);
 				pass = false;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		} finally {
 			try {
@@ -150,11 +152,11 @@ public class ClientIT extends PMClientBase {
 				}
 
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 				pass = false;
 			}
 		}
-		TestUtil.logTrace("Testing TypedQuery version");
+		logger.log(Logger.Level.TRACE, "Testing TypedQuery version");
 
 		try {
 
@@ -166,33 +168,34 @@ public class ClientIT extends PMClientBase {
 			LockModeType lm = query.getLockMode();
 			if (lm == null || lm.equals(LockModeType.NONE)) {
 				if (lm == null) {
-					TestUtil.logTrace("Received null when no LockModeType had been set");
+					logger.log(Logger.Level.TRACE, "Received null when no LockModeType had been set");
 				} else {
-					TestUtil.logTrace("Received " + lm.toString() + " when no LockModeType had been specifically set");
+					logger.log(Logger.Level.TRACE,
+							"Received " + lm.toString() + " when no LockModeType had been specifically set");
 
 				}
 				query.setLockMode(LockModeType.PESSIMISTIC_READ);
 				lm = query.getLockMode();
 				if (lm.equals(LockModeType.PESSIMISTIC_READ)) {
-					TestUtil.logTrace("Received LockModeType:" + lm.name());
+					logger.log(Logger.Level.TRACE, "Received LockModeType:" + lm.name());
 				} else if (lm.equals(LockModeType.PESSIMISTIC_WRITE)) {
-					TestUtil.logTrace(
+					logger.log(Logger.Level.TRACE,
 							"Received LockModeType:" + lm + " inplace of " + LockModeType.PESSIMISTIC_READ.name());
 				} else {
-					TestUtil.logErr("Expected LockModeType:" + LockModeType.PESSIMISTIC_READ.name() + " or "
-							+ LockModeType.PESSIMISTIC_WRITE.name() + ", Actual:" + lm);
+					logger.log(Logger.Level.ERROR, "Expected LockModeType:" + LockModeType.PESSIMISTIC_READ.name()
+							+ " or " + LockModeType.PESSIMISTIC_WRITE.name() + ", Actual:" + lm);
 					pass = false;
 				}
 				query.setLockMode(LockModeType.PESSIMISTIC_READ);
 				lm = query.getLockMode();
 				if (lm.equals(LockModeType.PESSIMISTIC_READ)) {
-					TestUtil.logTrace("Received LockModeType:" + lm.name());
+					logger.log(Logger.Level.TRACE, "Received LockModeType:" + lm.name());
 				} else if (lm.equals(LockModeType.PESSIMISTIC_WRITE)) {
-					TestUtil.logTrace(
+					logger.log(Logger.Level.TRACE,
 							"Received LockModeType:" + lm + " inplace of " + LockModeType.PESSIMISTIC_READ.name());
 				} else {
-					TestUtil.logErr("Expected LockModeType:" + LockModeType.PESSIMISTIC_READ.name() + " or "
-							+ LockModeType.PESSIMISTIC_WRITE.name() + ", Actual:" + lm);
+					logger.log(Logger.Level.ERROR, "Expected LockModeType:" + LockModeType.PESSIMISTIC_READ.name()
+							+ " or " + LockModeType.PESSIMISTIC_WRITE.name() + ", Actual:" + lm);
 					pass = false;
 				}
 				Collection<Employee> c = query.getResultList();
@@ -200,13 +203,13 @@ public class ClientIT extends PMClientBase {
 				for (Employee e : c) {
 					lm = em.getLockMode(e);
 					if (lm.equals(LockModeType.PESSIMISTIC_READ)) {
-						TestUtil.logTrace("Received LockModeType:" + lm.name());
+						logger.log(Logger.Level.TRACE, "Received LockModeType:" + lm.name());
 					} else if (lm.equals(LockModeType.PESSIMISTIC_WRITE)) {
-						TestUtil.logTrace(
+						logger.log(Logger.Level.TRACE,
 								"Received LockModeType:" + lm + " inplace of " + LockModeType.PESSIMISTIC_READ.name());
 					} else {
-						TestUtil.logErr("LockMoteType for the Employee[" + e.getId() + "] was wrong - Expected:"
-								+ LockModeType.PESSIMISTIC_READ.name() + ", Actual:" + lm);
+						logger.log(Logger.Level.ERROR, "LockMoteType for the Employee[" + e.getId()
+								+ "] was wrong - Expected:" + LockModeType.PESSIMISTIC_READ.name() + ", Actual:" + lm);
 						pass = false;
 					}
 				}
@@ -215,7 +218,7 @@ public class ClientIT extends PMClientBase {
 				Employee employeeFound = getEntityManager().find(Employee.class, 1, LockModeType.PESSIMISTIC_WRITE);
 				employeeFound.setSalary(90000F);
 			} else {
-				TestUtil.logErr("query.getLockMode() returned a null instead of " + LockModeType.NONE
+				logger.log(Logger.Level.ERROR, "query.getLockMode() returned a null instead of " + LockModeType.NONE
 						+ ", when no LockModeType had been set");
 				pass = false;
 			}
@@ -223,7 +226,7 @@ public class ClientIT extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		} finally {
 			try {
@@ -232,7 +235,7 @@ public class ClientIT extends PMClientBase {
 				}
 
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 				pass = false;
 			}
 		}
@@ -257,22 +260,22 @@ public class ClientIT extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logMsg("Testing Query");
+			logger.log(Logger.Level.INFO, "Testing Query");
 			getEntityManager().createQuery("UPDATE Employee e SET e.salary = e.salary * 10.0").getLockMode();
-			TestUtil.logErr("IllegalStateException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException was not thrown");
 			getEntityTransaction().commit();
 		} catch (IllegalStateException ise) {
-			TestUtil.logTrace("Received expected IllegalStateException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 		if (!pass) {
@@ -294,7 +297,7 @@ public class ClientIT extends PMClientBase {
 	public void getLockModeObjectIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 
-		TestUtil.logTrace("Begin getLockModeObjectIllegalArgumentExceptionTest");
+		logger.log(Logger.Level.TRACE, "Begin getLockModeObjectIllegalArgumentExceptionTest");
 		try {
 
 			getEntityTransaction().begin();
@@ -305,12 +308,12 @@ public class ClientIT extends PMClientBase {
 			try {
 				em.getLockMode(e);
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 				pass = true;
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
@@ -318,7 +321,7 @@ public class ClientIT extends PMClientBase {
 				}
 
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -353,25 +356,26 @@ public class ClientIT extends PMClientBase {
 			query.setLockMode(LockModeType.PESSIMISTIC_READ);
 			Collection<Employee> c = query.getResultList();
 			getEntityTransaction().commit();
-			TestUtil.logTrace("isActive=" + getEntityTransaction().isActive());
+			logger.log(Logger.Level.TRACE, "isActive=" + getEntityTransaction().isActive());
 			int found = 0;
 			for (Employee e : c) {
 				try {
 					em.getLockMode(e);
-					TestUtil.logErr("Did not get TransactionRequiredException for employee:" + e);
+					logger.log(Logger.Level.ERROR, "Did not get TransactionRequiredException for employee:" + e);
 				} catch (TransactionRequiredException tre) {
 					found++;
 				}
 			}
 			if (found == expected) {
-				TestUtil.logTrace("Got expected number of TransactionRequiredExceptions:" + expected);
+				logger.log(Logger.Level.TRACE, "Got expected number of TransactionRequiredExceptions:" + expected);
 				pass = true;
 			} else {
-				TestUtil.logErr("Number of TransactionRequiredException Expected:" + c.size() + ", Actual:" + found);
+				logger.log(Logger.Level.ERROR,
+						"Number of TransactionRequiredException Expected:" + c.size() + ", Actual:" + found);
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
@@ -379,7 +383,7 @@ public class ClientIT extends PMClientBase {
 				}
 
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -410,15 +414,15 @@ public class ClientIT extends PMClientBase {
 
 			Query query = em.createQuery("select e from Employee e where e.id < 10 ");
 
-			TestUtil.logTrace("Setting lock mode to PESSIMISTIC_READ");
+			logger.log(Logger.Level.TRACE, "Setting lock mode to PESSIMISTIC_READ");
 			query.setLockMode(LockModeType.PESSIMISTIC_READ);
 			Collection<Employee> c = query.getResultList();
 			int found = 0;
 			for (Employee e : c) {
 				try {
-					TestUtil.logTrace("Detaching Employee:" + e.getId());
+					logger.log(Logger.Level.TRACE, "Detaching Employee:" + e.getId());
 					em.detach(e);
-					TestUtil.logTrace("Calling getLockMode()");
+					logger.log(Logger.Level.TRACE, "Calling getLockMode()");
 					em.getLockMode(e);
 				} catch (IllegalArgumentException iae) {
 					found++;
@@ -427,11 +431,12 @@ public class ClientIT extends PMClientBase {
 			if (found == c.size()) {
 				pass = true;
 			} else {
-				TestUtil.logErr("Number of IllegalArgumentException Expected:" + c.size() + ", Actual:" + found);
+				logger.log(Logger.Level.ERROR,
+						"Number of IllegalArgumentException Expected:" + c.size() + ", Actual:" + found);
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
@@ -439,7 +444,7 @@ public class ClientIT extends PMClientBase {
 				}
 
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -463,33 +468,33 @@ public class ClientIT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
-		TestUtil.logMsg("Testing Native version");
+		logger.log(Logger.Level.INFO, "Testing Native version");
 		try {
 			Query nativeQuery = getEntityManager().createNativeQuery("Select ID from DEPARTMENT where ID=1");
 			nativeQuery.setLockMode(LockModeType.PESSIMISTIC_READ);
-			TestUtil.logErr("IllegalStateException should have been thrown after setLockMode");
+			logger.log(Logger.Level.ERROR, "IllegalStateException should have been thrown after setLockMode");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("Got IllegalStateException as expected");
+			logger.log(Logger.Level.TRACE, "Got IllegalStateException as expected");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
 		}
 
-		TestUtil.logMsg("Testing Query version");
+		logger.log(Logger.Level.INFO, "Testing Query version");
 
 		try {
 			Query q = getEntityManager().createQuery("UPDATE Employee e SET e.salary = e.salary * 10.0");
 			q.setLockMode(LockModeType.PESSIMISTIC_READ);
-			TestUtil.logErr("IllegalStateException should have been thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException should have been thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("Got IllegalStateException as expected");
+			logger.log(Logger.Level.TRACE, "Got IllegalStateException as expected");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass1 || !pass2) {
@@ -513,40 +518,40 @@ public class ClientIT extends PMClientBase {
 	public void getResultListTest2() throws Exception {
 		boolean pass = true;
 
-		TestUtil.logTrace("Testing Query version");
+		logger.log(Logger.Level.TRACE, "Testing Query version");
 
 		try {
-			TestUtil.logTrace("Invoking query for getResultListTest2");
+			logger.log(Logger.Level.TRACE, "Invoking query for getResultListTest2");
 			Query query = getEntityManager()
 					.createQuery("select e.department from Employee e where e.id < 10 order by e.department.id")
 					.setFirstResult(3);
 			query.setLockMode(LockModeType.PESSIMISTIC_READ);
 			query.getResultList();
-			TestUtil.logErr("TransactionRequiredException not thrown");
+			logger.log(Logger.Level.ERROR, "TransactionRequiredException not thrown");
 			pass = false;
 		} catch (TransactionRequiredException e) {
-			TestUtil.logTrace("Got TransactionRequiredException as expected");
+			logger.log(Logger.Level.TRACE, "Got TransactionRequiredException as expected");
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		}
 
-		TestUtil.logTrace("Testing TypedQuery version");
+		logger.log(Logger.Level.TRACE, "Testing TypedQuery version");
 
 		try {
-			TestUtil.logTrace("Invoking query for getResultListTest2");
+			logger.log(Logger.Level.TRACE, "Invoking query for getResultListTest2");
 			TypedQuery<Department> query = getEntityManager()
 					.createQuery("select e.department from Employee e where e.id < 10 order by e.department.id",
 							Department.class)
 					.setFirstResult(3);
 			query.setLockMode(LockModeType.PESSIMISTIC_READ);
 			query.getResultList();
-			TestUtil.logErr("TransactionRequiredException not thrown");
+			logger.log(Logger.Level.ERROR, "TransactionRequiredException not thrown");
 			pass = false;
 		} catch (TransactionRequiredException e) {
-			TestUtil.logTrace("Got TransactionRequiredException as expected");
+			logger.log(Logger.Level.TRACE, "Got TransactionRequiredException as expected");
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -572,7 +577,7 @@ public class ClientIT extends PMClientBase {
 	public void getSingleResultTest() throws Exception {
 		boolean pass = false;
 
-		TestUtil.logTrace("Begin getSingleResultTest");
+		logger.log(Logger.Level.TRACE, "Begin getSingleResultTest");
 		try {
 
 			getEntityTransaction().begin();
@@ -590,7 +595,7 @@ public class ClientIT extends PMClientBase {
 			pass = true;
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
@@ -598,7 +603,7 @@ public class ClientIT extends PMClientBase {
 				}
 
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -608,7 +613,7 @@ public class ClientIT extends PMClientBase {
 	}
 
 	private void createTestData() throws Exception {
-		TestUtil.logTrace("createTestData");
+		logger.log(Logger.Level.TRACE, "createTestData");
 		Employee empRef[] = new Employee[20];
 		Department deptRef[] = new Department[10];
 		Insurance insRef[] = new Insurance[5];
@@ -626,37 +631,37 @@ public class ClientIT extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logTrace("Create 5 Departments");
+			logger.log(Logger.Level.TRACE, "Create 5 Departments");
 			deptRef[0] = new Department(1, "Engineering");
 			deptRef[1] = new Department(2, "Marketing");
 			deptRef[2] = new Department(3, "Sales");
 			deptRef[3] = new Department(4, "Accounting");
 			deptRef[4] = new Department(5, "Training");
 
-			TestUtil.logTrace("Start to persist departments ");
+			logger.log(Logger.Level.TRACE, "Start to persist departments ");
 			for (Department dept : deptRef) {
 				if (dept != null) {
 					getEntityManager().persist(dept);
 					doFlush();
-					TestUtil.logTrace("persisted department " + dept);
+					logger.log(Logger.Level.TRACE, "persisted department " + dept);
 				}
 			}
 
-			TestUtil.logTrace("Create 3 Insurance Carriers");
+			logger.log(Logger.Level.TRACE, "Create 3 Insurance Carriers");
 			insRef[0] = new Insurance(1, "Prudential");
 			insRef[1] = new Insurance(2, "Cigna");
 			insRef[2] = new Insurance(3, "Sentry");
 
-			TestUtil.logTrace("Start to persist insurance ");
+			logger.log(Logger.Level.TRACE, "Start to persist insurance ");
 			for (Insurance ins : insRef) {
 				if (ins != null) {
 					getEntityManager().persist(ins);
 					doFlush();
-					TestUtil.logTrace("persisted insurance " + ins);
+					logger.log(Logger.Level.TRACE, "persisted insurance " + ins);
 				}
 			}
 
-			TestUtil.logTrace("Create 20 employees");
+			logger.log(Logger.Level.TRACE, "Create 20 employees");
 			empRef[0] = new Employee(1, "Alan", "Frechette", d1, (float) 35000.0);
 			empRef[0].setDepartment(deptRef[0]);
 			empRef[0].setInsurance(insRef[0]);
@@ -737,39 +742,39 @@ public class ClientIT extends PMClientBase {
 			empRef[19].setDepartment(deptRef[4]);
 			empRef[19].setInsurance(insRef[1]);
 
-			TestUtil.logTrace("Start to persist employees ");
+			logger.log(Logger.Level.TRACE, "Start to persist employees ");
 			for (Employee emp : empRef) {
 				if (emp != null) {
 					getEntityManager().persist(emp);
 					doFlush();
-					TestUtil.logTrace("persisted employee " + emp);
+					logger.log(Logger.Level.TRACE, "persisted employee " + emp);
 				}
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception re) {
-			TestUtil.logErr("Unexpected Exception in createTestData:", re);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception in createTestData:", re);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in createTestData while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in createTestData while rolling back TX:", re);
 			}
 		}
 
 	}
 
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("Cleanup data");
+		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -780,14 +785,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM DEPARTMENT").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

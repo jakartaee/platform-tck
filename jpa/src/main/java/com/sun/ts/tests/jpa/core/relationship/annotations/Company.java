@@ -20,9 +20,8 @@
 
 package com.sun.ts.tests.jpa.core.relationship.annotations;
 
+import java.lang.System.Logger;
 import java.util.Collection;
-
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -36,6 +35,7 @@ import jakarta.persistence.OneToOne;
 
 @Entity
 public class Company implements java.io.Serializable {
+	private static final Logger logger = (Logger) System.getLogger(Company.class.getName());
 
 	private long companyId;
 
@@ -46,7 +46,7 @@ public class Company implements java.io.Serializable {
 	private Collection<Team> teams = new java.util.ArrayList<Team>();
 
 	public Company() {
-		TestUtil.logTrace("Company no arg constructor");
+		logger.log(Logger.Level.TRACE, "Company no arg constructor");
 	}
 
 	public Company(long companyId, String name) {

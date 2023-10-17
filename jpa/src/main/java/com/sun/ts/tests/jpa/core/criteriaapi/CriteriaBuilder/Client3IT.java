@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.criteriaapi.CriteriaBuilder;
 
+import java.lang.System.Logger;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,7 +28,6 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.Alias;
 import com.sun.ts.tests.jpa.common.schema30.Customer;
 import com.sun.ts.tests.jpa.common.schema30.UtilAliasData;
@@ -44,8 +44,9 @@ import jakarta.persistence.criteria.Selection;
 import jakarta.persistence.metamodel.Bindable;
 import jakarta.persistence.metamodel.EntityType;
 
-
 public class Client3IT extends UtilAliasData {
+
+	private static final Logger logger = (Logger) System.getLogger(Client3IT.class.getName());
 
 	public static JavaArchive createDeployment() throws Exception {
 
@@ -77,12 +78,12 @@ public class Client3IT extends UtilAliasData {
 		getEntityTransaction().begin();
 		CriteriaQuery<Tuple> cquery = cbuilder.createTupleQuery();
 		if (cquery != null) {
-			TestUtil.logTrace("Obtained Non-null Criteria Query");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
 			Root<Customer> customer = cquery.from(Customer.class);
 
 			// Get Metamodel from Root
 			EntityType<Customer> Customer_ = customer.getModel();
-			TestUtil.logTrace("Use Tuple Query");
+			logger.log(Logger.Level.TRACE, "Use Tuple Query");
 
 			cquery.multiselect(
 					new Selection[] { customer.get(Customer_.getSingularAttribute("id", String.class)).alias("ID"),
@@ -93,26 +94,27 @@ public class Client3IT extends UtilAliasData {
 			List<Tuple> result = tq.getResultList();
 
 			for (Tuple t : result) {
-				TestUtil.logMsg("Testing invalid index");
+				logger.log(Logger.Level.INFO, "Testing invalid index");
 				try {
 					t.get(99);
-					TestUtil.logErr("Did not get expected IllegalArgumentException for invalid index:" + t.get(99));
+					logger.log(Logger.Level.ERROR,
+							"Did not get expected IllegalArgumentException for invalid index:" + t.get(99));
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Got expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Got expected IllegalArgumentException");
 					if (getEntityTransaction().getRollbackOnly() != true) {
 						pass = true;
 					} else {
-						TestUtil.logErr("Transaction was marked for rollback and should not have been");
+						logger.log(Logger.Level.ERROR, "Transaction was marked for rollback and should not have been");
 					}
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception", ex);
 				}
 				break;
 			}
 
 		} else {
 
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -146,12 +148,12 @@ public class Client3IT extends UtilAliasData {
 		getEntityTransaction().begin();
 		CriteriaQuery<Tuple> cquery = cbuilder.createTupleQuery();
 		if (cquery != null) {
-			TestUtil.logTrace("Obtained Non-null Criteria Query");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
 			Root<Customer> customer = cquery.from(Customer.class);
 
 			// Get Metamodel from Root
 			EntityType<Customer> Customer_ = customer.getModel();
-			TestUtil.logTrace("Use Tuple Query");
+			logger.log(Logger.Level.TRACE, "Use Tuple Query");
 
 			cquery.multiselect(customer.get(Customer_.getSingularAttribute("id", String.class)).alias("ID"),
 					customer.get(Customer_.getSingularAttribute("name", String.class)).alias("NAME"));
@@ -164,7 +166,7 @@ public class Client3IT extends UtilAliasData {
 			for (Tuple t : result) {
 				String expId = (String) t.get("ID");
 				String expName = (String) t.get("NAME");
-				TestUtil.logTrace("Received:" + expId + ", " + expName);
+				logger.log(Logger.Level.TRACE, "Received:" + expId + ", " + expName);
 
 				List<TupleElement<?>> lte = t.getElements();
 				for (TupleElement<?> te : lte) {
@@ -173,45 +175,47 @@ public class Client3IT extends UtilAliasData {
 					if (alias.equals("ID")) {
 						String actId = (String) t.get(te);
 						if (actId.equals(expId)) {
-							TestUtil.logTrace("Received expected id:" + actId);
+							logger.log(Logger.Level.TRACE, "Received expected id:" + actId);
 							pass1 = true;
 
 						} else {
-							TestUtil.logErr("Expected id:" + expId + ", actual:|" + actId + "|");
+							logger.log(Logger.Level.ERROR, "Expected id:" + expId + ", actual:|" + actId + "|");
 						}
 						if (type.equals("java.lang.String")) {
 							pass2 = true;
 
-							TestUtil.logTrace("Received expected Java Type for ID:" + type);
+							logger.log(Logger.Level.TRACE, "Received expected Java Type for ID:" + type);
 						} else {
-							TestUtil.logErr("Expected java type of ID: java.lang.String, actual:|" + type + "|");
+							logger.log(Logger.Level.ERROR,
+									"Expected java type of ID: java.lang.String, actual:|" + type + "|");
 						}
 
 					} else if (alias.equals("NAME")) {
 						String actName = (String) t.get(te);
 						if (actName.equals(expName)) {
-							TestUtil.logTrace("Received expected name:" + actName);
+							logger.log(Logger.Level.TRACE, "Received expected name:" + actName);
 							pass3 = true;
 
 						} else {
-							TestUtil.logErr("Expected name:|" + expName + "|, actual:|" + actName + "|");
+							logger.log(Logger.Level.ERROR, "Expected name:|" + expName + "|, actual:|" + actName + "|");
 						}
 
 						if (type.equals("java.lang.String")) {
-							TestUtil.logTrace("Received expected Java Type for NAME:" + type);
+							logger.log(Logger.Level.TRACE, "Received expected Java Type for NAME:" + type);
 							pass4 = true;
 
 						} else {
-							TestUtil.logErr("Expected java type of NAME: java.lang.String, actual:|" + type + "|");
+							logger.log(Logger.Level.ERROR,
+									"Expected java type of NAME: java.lang.String, actual:|" + type + "|");
 						}
 
 					} else {
-						TestUtil.logErr("Received unexpected TupleElement:" + alias);
+						logger.log(Logger.Level.ERROR, "Received unexpected TupleElement:" + alias);
 					}
 				}
 			}
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -247,12 +251,12 @@ public class Client3IT extends UtilAliasData {
 		getEntityTransaction().begin();
 		CriteriaQuery<Tuple> cquery = cbuilder.createTupleQuery();
 		if (cquery != null) {
-			TestUtil.logTrace("Obtained Non-null Criteria Query");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
 			Root<Customer> customer = cquery.from(Customer.class);
 
 			// Get Metamodel from Root
 			EntityType<Customer> Customer_ = customer.getModel();
-			TestUtil.logTrace("Use Tuple Query");
+			logger.log(Logger.Level.TRACE, "Use Tuple Query");
 
 			cquery.multiselect(customer.get(Customer_.getSingularAttribute("id", String.class)).alias("ID"),
 					customer.get(Customer_.getSingularAttribute("name", String.class)).alias("NAME"));
@@ -270,14 +274,16 @@ public class Client3IT extends UtilAliasData {
 					if (customerRef[id - 1].getName().equals(name)) {
 						actual.add(id);
 					} else {
-						TestUtil.logErr("Expected name:|" + customerRef[id - 1].getName() + "|, actual:|" + name + "|");
+						logger.log(Logger.Level.ERROR,
+								"Expected name:|" + customerRef[id - 1].getName() + "|, actual:|" + name + "|");
 						pass1 = false;
 					}
 				} else {
 					if (customerRef[id - 1].getName() == null) {
 						actual.add(id);
 					} else {
-						TestUtil.logErr("Expected name:" + customerRef[id - 1].getName() + ", actual:null");
+						logger.log(Logger.Level.ERROR,
+								"Expected name:" + customerRef[id - 1].getName() + ", actual:null");
 						pass1 = false;
 					}
 				}
@@ -286,15 +292,15 @@ public class Client3IT extends UtilAliasData {
 			Collections.sort(actual);
 
 			if (!checkEntityPK(actual, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.size() + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.size()
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass2 = true;
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -324,12 +330,12 @@ public class Client3IT extends UtilAliasData {
 		getEntityTransaction().begin();
 		CriteriaQuery<Tuple> cquery = cbuilder.createTupleQuery();
 		if (cquery != null) {
-			TestUtil.logTrace("Obtained Non-null Criteria Query");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
 			Root<Customer> customer = cquery.from(Customer.class);
 
 			// Get Metamodel from Root
 			EntityType<Customer> Customer_ = customer.getModel();
-			TestUtil.logTrace("Use Tuple Query");
+			logger.log(Logger.Level.TRACE, "Use Tuple Query");
 
 			cquery.multiselect(customer.get(Customer_.getSingularAttribute("id", String.class)).alias("ID"),
 					customer.get(Customer_.getSingularAttribute("name", String.class)).alias("NAME"));
@@ -340,28 +346,28 @@ public class Client3IT extends UtilAliasData {
 			List<Tuple> result = tq.getResultList();
 
 			Tuple t = result.get(0);
-			TestUtil.logMsg("Testing valid alias");
-			TestUtil.logTrace("value:" + t.get("NAME"));
+			logger.log(Logger.Level.INFO, "Testing valid alias");
+			logger.log(Logger.Level.TRACE, "value:" + t.get("NAME"));
 
-			TestUtil.logMsg("Testing invalid alias");
+			logger.log(Logger.Level.INFO, "Testing invalid alias");
 			try {
 				t.get("doesnotexist");
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Did not get expected IllegalArgumentException for TupleElement:t.get(\"doesnotexist\")");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Got expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Got expected IllegalArgumentException");
 				if (getEntityTransaction().getRollbackOnly() != true) {
 					pass = true;
 				} else {
-					TestUtil.logErr("Transaction was marked for rollback and should not have been");
+					logger.log(Logger.Level.ERROR, "Transaction was marked for rollback and should not have been");
 				}
 			} catch (Exception e) {
-				TestUtil.logErr("Received unexpected exception:" + e);
+				logger.log(Logger.Level.ERROR, "Received unexpected exception:" + e);
 
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -392,12 +398,12 @@ public class Client3IT extends UtilAliasData {
 		getEntityTransaction().begin();
 		CriteriaQuery<Tuple> cquery = cbuilder.createTupleQuery();
 		if (cquery != null) {
-			TestUtil.logTrace("Obtained Non-null Criteria Query");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
 			Root<Customer> customer = cquery.from(Customer.class);
 
 			// Get Metamodel from Root
 			EntityType<Customer> Customer_ = customer.getModel();
-			TestUtil.logTrace("Use Tuple Query");
+			logger.log(Logger.Level.TRACE, "Use Tuple Query");
 
 			cquery.multiselect(customer.get(Customer_.getSingularAttribute("id", String.class)).alias("ID"),
 					customer.get(Customer_.getSingularAttribute("name", String.class)).alias("NAME"));
@@ -408,38 +414,39 @@ public class Client3IT extends UtilAliasData {
 			List<Tuple> result = tq.getResultList();
 
 			Tuple t = result.get(0);
-			TestUtil.logMsg("Testing valid index");
-			TestUtil.logTrace("value:" + t.get("NAME"));
-			TestUtil.logMsg("Testing a name that does not exist");
+			logger.log(Logger.Level.INFO, "Testing valid index");
+			logger.log(Logger.Level.TRACE, "value:" + t.get("NAME"));
+			logger.log(Logger.Level.INFO, "Testing a name that does not exist");
 
 			try {
 				t.get("doesnotexist", String.class);
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Did not throw IllegalArgumentException for TupleElement: t.get(\"doesnotexist\", String.class)");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Got expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Got expected IllegalArgumentException");
 				if (getEntityTransaction().getRollbackOnly() != true) {
 					pass1 = true;
 				} else {
-					TestUtil.logErr("Transaction was marked for rollback and should not have been");
+					logger.log(Logger.Level.ERROR, "Transaction was marked for rollback and should not have been");
 				}
 			} catch (Exception e) {
-				TestUtil.logErr("Received unexpected exception:" + e);
+				logger.log(Logger.Level.ERROR, "Received unexpected exception:" + e);
 			}
-			TestUtil.logMsg("Testing invalid type");
+			logger.log(Logger.Level.INFO, "Testing invalid type");
 
 			try {
 				t.get("ID", Date.class);
-				TestUtil.logErr("Did not throw IllegalArgumentException for TupleElement:t.get(\"ID\", Date.class)");
+				logger.log(Logger.Level.ERROR,
+						"Did not throw IllegalArgumentException for TupleElement:t.get(\"ID\", Date.class)");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Got expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Got expected IllegalArgumentException");
 				pass2 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Received unexpected exception:" + e);
+				logger.log(Logger.Level.ERROR, "Received unexpected exception:" + e);
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -476,12 +483,12 @@ public class Client3IT extends UtilAliasData {
 		getEntityTransaction().begin();
 		CriteriaQuery<Tuple> cquery = cbuilder.createTupleQuery();
 		if (cquery != null) {
-			TestUtil.logTrace("Obtained Non-null Criteria Query");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
 			Root<Customer> customer = cquery.from(Customer.class);
 
 			// Get Metamodel from Root
 			EntityType<Customer> Customer_ = customer.getModel();
-			TestUtil.logTrace("Use Tuple Query");
+			logger.log(Logger.Level.TRACE, "Use Tuple Query");
 
 			cquery.multiselect(customer.get(Customer_.getSingularAttribute("id", String.class)).alias("ID"),
 					customer.get(Customer_.getSingularAttribute("name", String.class)).alias("NAME"));
@@ -500,14 +507,16 @@ public class Client3IT extends UtilAliasData {
 					if (customerRef[id - 1].getName().equals(name)) {
 						actual.add(id);
 					} else {
-						TestUtil.logErr("Expected name:|" + customerRef[id - 1].getName() + "|, actual:|" + name + "|");
+						logger.log(Logger.Level.ERROR,
+								"Expected name:|" + customerRef[id - 1].getName() + "|, actual:|" + name + "|");
 						pass2 = false;
 					}
 				} else {
 					if (customerRef[id - 1].getName() == null) {
 						actual.add(id);
 					} else {
-						TestUtil.logErr("Expected name:" + customerRef[id - 1].getName() + ", actual:null");
+						logger.log(Logger.Level.ERROR,
+								"Expected name:" + customerRef[id - 1].getName() + ", actual:null");
 						pass2 = false;
 					}
 				}
@@ -516,15 +525,15 @@ public class Client3IT extends UtilAliasData {
 			Collections.sort(actual);
 
 			if (!checkEntityPK(actual, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.size() + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.size()
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass3 = true;
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -555,44 +564,45 @@ public class Client3IT extends UtilAliasData {
 
 		CriteriaQuery<Tuple> cquery = cbuilder.createTupleQuery();
 		if (cquery != null) {
-			TestUtil.logTrace("Obtained Non-null Criteria Query");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
 			Root<Customer> customer = cquery.from(Customer.class);
 
 			// Get Metamodel from Root
 			EntityType<Customer> Customer_ = customer.getModel();
-			TestUtil.logTrace("Use Tuple Query");
+			logger.log(Logger.Level.TRACE, "Use Tuple Query");
 
 			Path<String> idPath = customer.get(Customer_.getSingularAttribute("id", String.class));
 			String id = idPath.alias("IDID").getAlias();
 			if (id.equals("IDID")) {
-				TestUtil.logTrace("id=" + id);
+				logger.log(Logger.Level.TRACE, "id=" + id);
 				pass1 = true;
 			} else {
-				TestUtil.logErr("Expected id value:IDID, actual value:" + id);
+				logger.log(Logger.Level.ERROR, "Expected id value:IDID, actual value:" + id);
 			}
 			Bindable b = idPath.getModel();
 			Bindable.BindableType bbt = b.getBindableType();
 			if (bbt.equals(Bindable.BindableType.SINGULAR_ATTRIBUTE)) {
-				TestUtil.logTrace("Received expected model:" + bbt.name());
+				logger.log(Logger.Level.TRACE, "Received expected model:" + bbt.name());
 				pass2 = true;
 
 			} else {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Expected model:" + Bindable.BindableType.SINGULAR_ATTRIBUTE.name() + ", actual:" + bbt.name());
 			}
 
 			Path p = idPath.getParentPath();
 			Class parent = p.getJavaType();
 			if (parent.getName().equals(Customer.class.getName())) {
-				TestUtil.logTrace("Received expected parent:" + parent.getName());
+				logger.log(Logger.Level.TRACE, "Received expected parent:" + parent.getName());
 				pass3 = true;
 
 			} else {
-				TestUtil.logErr("Expected parent class:" + Customer.class.getName() + ", actual:" + parent.getName());
+				logger.log(Logger.Level.ERROR,
+						"Expected parent class:" + Customer.class.getName() + ", actual:" + parent.getName());
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		if (!pass1 || !pass2 || !pass3) {
@@ -638,15 +648,15 @@ public class Client3IT extends UtilAliasData {
 				actual.add(Integer.parseInt(c.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -695,15 +705,15 @@ public class Client3IT extends UtilAliasData {
 				actual.add(Integer.parseInt(c.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -742,14 +752,15 @@ public class Client3IT extends UtilAliasData {
 			Integer expectedSize = 2;
 
 			if (result.intValue() == expectedSize.intValue()) {
-				TestUtil.logTrace("Successfully returned expected results");
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 				pass = true;
 			} else {
-				TestUtil.logErr("test returned:" + result.intValue() + "expected: " + expectedSize.intValue());
+				logger.log(Logger.Level.ERROR,
+						"test returned:" + result.intValue() + "expected: " + expectedSize.intValue());
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -790,14 +801,15 @@ public class Client3IT extends UtilAliasData {
 			Integer expectedSize = 2;
 
 			if (result.intValue() == expectedSize.intValue()) {
-				TestUtil.logTrace("Successfully returned expected results:" + result.intValue());
+				logger.log(Logger.Level.TRACE, "Successfully returned expected results:" + result.intValue());
 				pass = true;
 			} else {
-				TestUtil.logErr("Expected: " + expectedSize.intValue() + ", actual:" + result.intValue());
+				logger.log(Logger.Level.ERROR,
+						"Expected: " + expectedSize.intValue() + ", actual:" + result.intValue());
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -837,21 +849,21 @@ public class Client3IT extends UtilAliasData {
 			List<Customer> result = tq.getResultList();
 			if (result.size() == 1) {
 				if (result.get(0).equals(customerRef[0])) {
-					TestUtil.logTrace("Successfully returned expected results" + result.toString());
+					logger.log(Logger.Level.TRACE, "Successfully returned expected results" + result.toString());
 					pass = true;
 				} else {
-					TestUtil.logErr("expected customer:" + customerRef[0].toString());
-					TestUtil.logErr("actual customer:" + result.toString());
+					logger.log(Logger.Level.ERROR, "expected customer:" + customerRef[0].toString());
+					logger.log(Logger.Level.ERROR, "actual customer:" + result.toString());
 				}
 			} else {
-				TestUtil.logErr("Expected number customers: 1, actual:" + result.size());
+				logger.log(Logger.Level.ERROR, "Expected number customers: 1, actual:" + result.size());
 				for (Customer c : result) {
-					TestUtil.logErr("Received customer:" + c.toString());
+					logger.log(Logger.Level.ERROR, "Received customer:" + c.toString());
 				}
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -903,15 +915,15 @@ public class Client3IT extends UtilAliasData {
 				actual.add(Integer.parseInt(a.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -948,14 +960,14 @@ public class Client3IT extends UtilAliasData {
 			Expression idPath = customer.get(Customer_.getSingularAttribute("id", String.class));
 			String id = idPath.alias("IDID").getAlias();
 			if (id.equals("IDID")) {
-				TestUtil.logTrace("id=" + id);
+				logger.log(Logger.Level.TRACE, "id=" + id);
 				pass = true;
 			} else {
-				TestUtil.logErr("Expected id value:IDID, actual value:" + id);
+				logger.log(Logger.Level.ERROR, "Expected id value:IDID, actual value:" + id);
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		if (!pass) {

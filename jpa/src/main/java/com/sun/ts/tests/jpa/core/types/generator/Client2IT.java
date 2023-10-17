@@ -20,13 +20,15 @@
 
 package com.sun.ts.tests.jpa.core.types.generator;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
-
 public class Client2IT extends Client {
+
+	private static final Logger logger = (Logger) System.getLogger(Client2IT.class.getName());
 
 	private DataTypes2 d10;
 
@@ -46,7 +48,7 @@ public class Client2IT extends Client {
 	 */
 	@BeforeAll
 	public void setupDataTypes2() throws Exception {
-		TestUtil.logTrace("setupDataTypes2");
+		logger.log(Logger.Level.TRACE, "setupDataTypes2");
 		try {
 
 			super.setup();
@@ -54,20 +56,20 @@ public class Client2IT extends Client {
 			String s = System.getProperty("db.supports.sequence");
 			if (s != null) {
 				supports_sequence = Boolean.parseBoolean(s);
-				TestUtil.logMsg("db.supports.sequence:" + supports_sequence);
+				logger.log(Logger.Level.INFO, "db.supports.sequence:" + supports_sequence);
 				if (supports_sequence) {
 					removeTestData();
 					createDataTypes2Data();
 				}
 			} else {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"The property db.supports.sequence is not defined in the ts.jte, this must be corrected before running tests");
 				throw new Exception("setupDataTypes2 failed");
 
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("setupDataTypes2 failed:", e);
 		}
 	}
@@ -97,16 +99,17 @@ public class Client2IT extends Client {
 			try {
 				getEntityTransaction().begin();
 				int id = d10.getId();
-				TestUtil.logTrace("Doing a find of id: " + id);
+				logger.log(Logger.Level.TRACE, "Doing a find of id: " + id);
 				DataTypes2 d = getEntityManager().find(DataTypes2.class, id);
 
 				if (null != d) {
 					Float f = d.getFloatData();
 					if (f.equals(d10.getFloatData())) {
-						TestUtil.logTrace("find returned correct float value:" + f);
+						logger.log(Logger.Level.TRACE, "find returned correct float value:" + f);
 						d.setFloatData(newFloat);
 					} else {
-						TestUtil.logErr("find did not return correct float value, expected: 1.0, actual:" + f);
+						logger.log(Logger.Level.ERROR,
+								"find did not return correct float value, expected: 1.0, actual:" + f);
 						pass = false;
 					}
 
@@ -114,23 +117,24 @@ public class Client2IT extends Client {
 					getEntityManager().flush();
 					f = d.getFloatData();
 					if (f.equals(newFloat)) {
-						TestUtil.logTrace("Successfully set float value to:" + newFloat);
+						logger.log(Logger.Level.TRACE, "Successfully set float value to:" + newFloat);
 					} else {
-						TestUtil.logErr("Could not update float value, expected: " + newFloat + ", actual:" + f);
+						logger.log(Logger.Level.ERROR,
+								"Could not update float value, expected: " + newFloat + ", actual:" + f);
 						pass = false;
 					}
 
 					getEntityTransaction().commit();
 				} else {
-					TestUtil.logErr("find returned null result");
+					logger.log(Logger.Level.ERROR, "find returned null result");
 					pass = false;
 				}
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 				pass = false;
 			}
 		} else {
-			TestUtil.logMsg("WARNING: Test not run because db.supports.sequence set to false in ts.jte");
+			logger.log(Logger.Level.INFO, "WARNING: Test not run because db.supports.sequence set to false in ts.jte");
 		}
 		if (!pass)
 			throw new Exception("generatorTypeSequenceTest failed");
@@ -141,19 +145,19 @@ public class Client2IT extends Client {
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logTrace("in createDataTypes2Data");
+			logger.log(Logger.Level.TRACE, "in createDataTypes2Data");
 
-			TestUtil.logTrace("new DataType2");
+			logger.log(Logger.Level.TRACE, "new DataType2");
 			d10 = new DataTypes2('a', (short) 100, 500, 300L, 50D, 1.0F);
-			TestUtil.logTrace("Persist DataType2");
+			logger.log(Logger.Level.TRACE, "Persist DataType2");
 			getEntityManager().persist(d10);
-			TestUtil.logTrace("DataType2 id:" + d10.getId());
+			logger.log(Logger.Level.TRACE, "DataType2 id:" + d10.getId());
 
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 	}
 

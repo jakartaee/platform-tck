@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.jpa.ee.packaging.ejb.descriptor;
 
+import java.lang.System.Logger;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -42,6 +43,8 @@ import jakarta.persistence.EntityManagerFactory;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class Stateful3Bean implements Stateful3IF {
 
+	private static final Logger logger = (Logger) System.getLogger(Stateful3Bean.class.getName());
+
 	private EntityManager entityManager;
 
 	private EntityManagerFactory emf;
@@ -55,7 +58,7 @@ public class Stateful3Bean implements Stateful3IF {
 	private static final C cRef[] = new C[5];
 
 	private EntityManager getEntityManager() {
-		TestUtil.logTrace("Look up EntityManagerFactory,get EntityManager");
+		logger.log(Logger.Level.TRACE, "Look up EntityManagerFactory,get EntityManager");
 		try {
 
 			emf = (EntityManagerFactory) sessionContext.lookup("persistence/MyPersistenceUnit");
@@ -63,11 +66,11 @@ public class Stateful3Bean implements Stateful3IF {
 			if (emf != null) {
 				entityManager = emf.createEntityManager(myMap);
 			} else {
-				TestUtil.logErr("EntityManagerFactory is null");
+				logger.log(Logger.Level.ERROR, "EntityManagerFactory is null");
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Exception caught while setting EntityManager", e);
+			logger.log(Logger.Level.ERROR, "Exception caught while setting EntityManager", e);
 		}
 		return entityManager;
 	}
@@ -80,38 +83,38 @@ public class Stateful3Bean implements Stateful3IF {
 	public void createTestData() {
 		try {
 
-			TestUtil.logTrace("createTestData");
+			logger.log(Logger.Level.TRACE, "createTestData");
 
-			TestUtil.logTrace("Create 2 B Entities");
+			logger.log(Logger.Level.TRACE, "Create 2 B Entities");
 			bRef[0] = new B("1", "myB", 1);
 			bRef[1] = new B("2", "yourB", 2);
 
-			TestUtil.logTrace("Start to persist Bs ");
+			logger.log(Logger.Level.TRACE, "Start to persist Bs ");
 			for (B b : bRef) {
 				if (b != null) {
 					entityManager.persist(b);
-					TestUtil.logTrace("persisted B " + b);
+					logger.log(Logger.Level.TRACE, "persisted B " + b);
 				}
 			}
 
-			TestUtil.logTrace("Create 2 C Entities");
+			logger.log(Logger.Level.TRACE, "Create 2 C Entities");
 			cRef[0] = new C("5", "myC", 5);
 			cRef[1] = new C("6", "yourC", 6);
 
-			TestUtil.logTrace("Start to persist Cs ");
+			logger.log(Logger.Level.TRACE, "Start to persist Cs ");
 			for (C c : cRef) {
 				if (c != null) {
 					entityManager.persist(c);
-					TestUtil.logTrace("persisted C " + c);
+					logger.log(Logger.Level.TRACE, "persisted C " + c);
 				}
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected while creating test data:" + e);
+			logger.log(Logger.Level.ERROR, "Unexpected while creating test data:" + e);
 		}
 	}
 
 	public void removeTestData() {
-		TestUtil.logTrace("stateful3Bean removeTestData");
+		logger.log(Logger.Level.TRACE, "stateful3Bean removeTestData");
 
 		try {
 			if ((entityManager == null) || (!entityManager.isOpen())) {
@@ -120,7 +123,7 @@ public class Stateful3Bean implements Stateful3IF {
 			entityManager.createNativeQuery("DELETE FROM BEJB_1X1_BI_BTOB").executeUpdate();
 			entityManager.createNativeQuery("DELETE FROM AEJB_1X1_BI_BTOB").executeUpdate();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception caught while cleaning up:", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception caught while cleaning up:", e);
 		} finally {
 
 			if (entityManager.isOpen()) {
@@ -129,13 +132,13 @@ public class Stateful3Bean implements Stateful3IF {
 		}
 		// clear the cache if the provider supports caching otherwise
 		// the evictAll is ignored.
-		TestUtil.logTrace("Clearing cache");
+		logger.log(Logger.Level.TRACE, "Clearing cache");
 		emf.getCache().evictAll();
-		TestUtil.logTrace("cleanup complete");
+		logger.log(Logger.Level.TRACE, "cleanup complete");
 	}
 
 	public void init(Properties p) {
-		TestUtil.logTrace("init");
+		logger.log(Logger.Level.TRACE, "init");
 		try {
 			TestUtil.init(p);
 		} catch (RemoteLoggingInitException e) {
@@ -146,7 +149,7 @@ public class Stateful3Bean implements Stateful3IF {
 
 	public boolean test1() {
 
-		TestUtil.logTrace("Begin test1");
+		logger.log(Logger.Level.TRACE, "Begin test1");
 		boolean pass = false;
 		EntityManager em = getEntityManager();
 
@@ -156,21 +159,21 @@ public class Stateful3Bean implements Stateful3IF {
 			B anotherB = em.find(B.class, "1");
 
 			if (anotherB != null) {
-				TestUtil.logTrace("anotherB found");
+				logger.log(Logger.Level.TRACE, "anotherB found");
 				pass = true;
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("test1: Unexpected Exception :", e);
+			logger.log(Logger.Level.ERROR, "test1: Unexpected Exception :", e);
 		} finally {
 			try {
 				if (em.isOpen()) {
 					em.close();
 				}
 			} catch (IllegalStateException ise) {
-				TestUtil.logErr("Unexpected IllegalStateException caught closing EntityManager", ise);
+				logger.log(Logger.Level.ERROR, "Unexpected IllegalStateException caught closing EntityManager", ise);
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected Exception caught in while closing EntityManager", e);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception caught in while closing EntityManager", e);
 			}
 		}
 
@@ -178,34 +181,34 @@ public class Stateful3Bean implements Stateful3IF {
 	}
 
 	public boolean test2() {
-		TestUtil.logTrace("Begin test2");
+		logger.log(Logger.Level.TRACE, "Begin test2");
 		boolean pass = false;
 		EntityManager thisEM = getEntityManager();
 
 		try {
 			if (thisEM.isOpen()) {
-				TestUtil.logTrace("EntityManager is OPEN, try close");
+				logger.log(Logger.Level.TRACE, "EntityManager is OPEN, try close");
 				thisEM.close();
 			}
 
 			if (!thisEM.isOpen()) {
-				TestUtil.logTrace("EntityManager isOpen, returns false as expected");
+				logger.log(Logger.Level.TRACE, "EntityManager isOpen, returns false as expected");
 				pass = true;
 			} else {
-				TestUtil.logErr("EntityManager isOpen, returns false - unexpected");
+				logger.log(Logger.Level.ERROR, "EntityManager isOpen, returns false - unexpected");
 			}
 
 		} catch (IllegalStateException ise) {
-			TestUtil.logErr("Unexpected IllegalStateException caught:", ise);
+			logger.log(Logger.Level.ERROR, "Unexpected IllegalStateException caught:", ise);
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception caught:", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception caught:", e);
 		}
 
 		return pass;
 	}
 
 	public boolean test3() {
-		TestUtil.logTrace("Begin test3");
+		logger.log(Logger.Level.TRACE, "Begin test3");
 		boolean pass = false;
 		EntityManager thatEM = getEntityManager();
 
@@ -218,24 +221,24 @@ public class Stateful3Bean implements Stateful3IF {
 				thatEM.close();
 			}
 		} catch (IllegalStateException ise) {
-			TestUtil.logTrace("IllegalStateException caught as expected");
+			logger.log(Logger.Level.TRACE, "IllegalStateException caught as expected");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception caught in test3", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception caught in test3", e);
 		}
 
 		return pass;
 	}
 
 	public boolean test4() {
-		TestUtil.logTrace("Begin test4");
+		logger.log(Logger.Level.TRACE, "Begin test4");
 		boolean pass = false;
 		try {
 			EntityManager entityManager = getEntityManager();
 			entityManager.getTransaction();
 
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("Caught Expected Exception :" + e);
+			logger.log(Logger.Level.TRACE, "Caught Expected Exception :" + e);
 			pass = true;
 		} finally {
 			try {
@@ -243,9 +246,9 @@ public class Stateful3Bean implements Stateful3IF {
 					entityManager.close();
 				}
 			} catch (IllegalStateException ise) {
-				TestUtil.logErr("Unexpected IllegalStateException caught closing EntityManager", ise);
+				logger.log(Logger.Level.ERROR, "Unexpected IllegalStateException caught closing EntityManager", ise);
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected Exception caught while closing EntityManager", e);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception caught while closing EntityManager", e);
 			}
 		}
 
@@ -254,7 +257,7 @@ public class Stateful3Bean implements Stateful3IF {
 
 	public boolean test6() {
 
-		TestUtil.logTrace("Begin test6");
+		logger.log(Logger.Level.TRACE, "Begin test6");
 		boolean pass = false;
 		EntityManager em = getEntityManager();
 
@@ -264,21 +267,21 @@ public class Stateful3Bean implements Stateful3IF {
 			C c = em.find(C.class, "5");
 
 			if (c != null) {
-				TestUtil.logTrace("c found");
+				logger.log(Logger.Level.TRACE, "c found");
 				pass = true;
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("test1: Unexpected Exception :", e);
+			logger.log(Logger.Level.ERROR, "test1: Unexpected Exception :", e);
 		} finally {
 			try {
 				if (em.isOpen()) {
 					em.close();
 				}
 			} catch (IllegalStateException ise) {
-				TestUtil.logErr("Unexpected IllegalStateException caught closing EntityManager", ise);
+				logger.log(Logger.Level.ERROR, "Unexpected IllegalStateException caught closing EntityManager", ise);
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected Exception caught in while closing EntityManager", e);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception caught in while closing EntityManager", e);
 			}
 		}
 

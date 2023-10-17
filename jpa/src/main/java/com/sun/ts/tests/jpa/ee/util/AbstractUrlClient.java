@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.jpa.ee.util;
 
+import java.lang.System.Logger;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.webclient.BaseUrlClient;
 import com.sun.ts.tests.common.webclient.WebTestCase;
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
@@ -29,6 +29,8 @@ import com.sun.ts.tests.common.webclient.http.HttpRequest;
  */
 
 public abstract class AbstractUrlClient extends BaseUrlClient {
+
+	private static final Logger logger = (Logger) System.getLogger(AbstractUrlClient.class.getName());
 
 	protected static final String APITEST = "apitest";
 
@@ -180,7 +182,7 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
 				}
 			}
 			result = sb.toString();
-			TestUtil.logTrace("[AbstractUrlClient] Interface info: " + result);
+			logger.log(Logger.Level.TRACE, "[AbstractUrlClient] Interface info: " + result);
 		}
 		return result;
 	}
@@ -190,7 +192,7 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
 			try {
 				_addrs = InetAddress.getAllByName(InetAddress.getLocalHost().getCanonicalHostName());
 			} catch (UnknownHostException uhe) {
-				TestUtil.logMsg("[AbstractUrlClient][WARNING] Unable to obtain local host information.");
+				logger.log(Logger.Level.INFO, "[AbstractUrlClient][WARNING] Unable to obtain local host information.");
 			}
 		}
 	}

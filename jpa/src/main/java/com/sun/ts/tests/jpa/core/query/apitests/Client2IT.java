@@ -16,19 +16,21 @@
 
 package com.sun.ts.tests.jpa.core.query.apitests;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
-
 public class Client2IT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(Client2IT.class.getName());
 
 	final Department deptRef[] = new Department[5];
 
@@ -47,12 +49,12 @@ public class Client2IT extends PMClientBase {
 
 	@BeforeAll
 	public void setupNoData() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
-			TestUtil.logTrace("Done creating test data");
+			logger.log(Logger.Level.TRACE, "Done creating test data");
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception caught in Setup: ", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception caught in Setup: ", e);
 			throw new Exception("Setup failed:", e);
 
 		}
@@ -60,7 +62,7 @@ public class Client2IT extends PMClientBase {
 
 	@AfterAll
 	public void cleanupNoData() throws Exception {
-		TestUtil.logTrace("in cleanupNoData");
+		logger.log(Logger.Level.TRACE, "in cleanupNoData");
 		super.cleanup();
 	}
 
@@ -80,30 +82,30 @@ public class Client2IT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			Query query = getEntityManager().createQuery("select e from Employee e where e.firstName = ?1")
 					.setParameter(1, "Tom");
 			query.getParameter(1, java.util.List.class);
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			TypedQuery<Employee> query = getEntityManager()
 					.createQuery("select e from Employee e where e.firstName = ?1", Employee.class)
 					.setParameter(1, "Tom");
 			query.getParameter(1, java.util.List.class);
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass1 || !pass2) {
 			throw new Exception("getParameterIntIllegalArgumentException2Test failed");

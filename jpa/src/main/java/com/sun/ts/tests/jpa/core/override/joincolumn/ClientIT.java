@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.override.joincolumn;
 
+import java.lang.System.Logger;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,11 +26,10 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-
 public class ClientIT extends PMClientBase {
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	private static final long COMPANY_ID = 676l;
 
@@ -123,12 +123,12 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception:test failed ", e);
+			logger.log(Logger.Level.ERROR, "Exception:test failed ", e);
 		}
 	}
 
@@ -168,7 +168,7 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().flush();
 			List result = getEntityManager().createQuery("SELECT l FROM TheatreLocation1 l").getResultList();
 			if (result.size() == 2) {
-				TestUtil.logTrace("testNoJoinColumnAnnotation passed");
+				logger.log(Logger.Level.TRACE, "testNoJoinColumnAnnotation passed");
 			} else {
 				throw new Exception("Expected the size to be 1 " + " but it is -" + result.size());
 			}
@@ -227,7 +227,7 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().flush();
 			getEntityManager().persist(chemCourse);
 			getEntityManager().flush();
-			TestUtil.logTrace("testNoJoinTableAnnotation passed");
+			logger.log(Logger.Level.TRACE, "testNoJoinTableAnnotation passed");
 		} catch (Exception e) {
 
 			throw new Exception(" Test failed -" + e);
@@ -279,7 +279,7 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().flush();
 			getEntityManager().persist(equipment2);
 			getEntityManager().flush();
-			TestUtil.logTrace("Test Passed");
+			logger.log(Logger.Level.TRACE, "Test Passed");
 		} catch (Exception e) {
 
 			throw new Exception("test failed" + e);
@@ -333,7 +333,7 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().flush();
 			getEntityManager().persist(customer2);
 			getEntityManager().flush();
-			TestUtil.logTrace("Test Passed");
+			logger.log(Logger.Level.TRACE, "Test Passed");
 		} catch (Exception e) {
 
 			throw new Exception("Test failed" + e);
@@ -393,14 +393,14 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("Cleanup data");
+		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -418,14 +418,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM THEATRELOCATION1").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

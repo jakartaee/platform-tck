@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.StoredProcedureQuery;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,13 +24,13 @@ import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.StoredProcedureQuery;
 
-
 public class Client extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
 	List<Employee> empRef = new ArrayList<Employee>();
 
@@ -54,15 +55,15 @@ public class Client extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("Cleanup data");
+		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 		removeDeploymentJar();
 	}
 
 	public List<List> getResultSetsFromStoredProcedure(StoredProcedureQuery spq) {
-		TestUtil.logTrace("in getResultSetsFromStoredProcedure");
+		logger.log(Logger.Level.TRACE, "in getResultSetsFromStoredProcedure");
 		boolean results = true;
 		List<List> listOfList = new ArrayList<List>();
 		int rsnum = 1;
@@ -70,18 +71,18 @@ public class Client extends PMClientBase {
 
 		do {
 			if (results) {
-				TestUtil.logTrace("Processing set:" + rsnum);
+				logger.log(Logger.Level.TRACE, "Processing set:" + rsnum);
 				List<Employee> empList = new ArrayList<Employee>();
 				List list = spq.getResultList();
 				if (list != null) {
-					TestUtil.logTrace("Getting result set: " + (rsnum) + ", size:" + list.size());
+					logger.log(Logger.Level.TRACE, "Getting result set: " + (rsnum) + ", size:" + list.size());
 					for (Object o : list) {
 						if (o instanceof Employee) {
 							Employee e = (Employee) o;
-							TestUtil.logTrace("Saving:" + e);
+							logger.log(Logger.Level.TRACE, "Saving:" + e);
 							empList.add(e);
 						} else {
-							TestUtil.logErr(
+							logger.log(Logger.Level.ERROR,
 									"Did not get instance of Employee, instead got:" + o.getClass().getSimpleName());
 						}
 					}
@@ -89,16 +90,16 @@ public class Client extends PMClientBase {
 						listOfList.add(empList);
 					}
 				} else {
-					TestUtil.logErr("Result set[" + rsnum + "] returned was null");
+					logger.log(Logger.Level.ERROR, "Result set[" + rsnum + "] returned was null");
 				}
 				rsnum++;
 			} else {
 				rowsAffected = spq.getUpdateCount();
 				if (rowsAffected >= 0)
-					TestUtil.logTrace("rowsAffected:" + rowsAffected);
+					logger.log(Logger.Level.TRACE, "rowsAffected:" + rowsAffected);
 			}
 			results = spq.hasMoreResults();
-			TestUtil.logTrace("Results:" + results);
+			logger.log(Logger.Level.TRACE, "Results:" + results);
 
 		} while (results || rowsAffected != -1);
 		return listOfList;
@@ -116,23 +117,23 @@ public class Client extends PMClientBase {
 				}
 
 				if (expected.containsAll(actual) && actual.containsAll(expected) && expected.size() == actual.size()) {
-					TestUtil.logTrace("Received expected result:");
+					logger.log(Logger.Level.TRACE, "Received expected result:");
 					for (Integer a : actual) {
-						TestUtil.logTrace("id:" + a);
+						logger.log(Logger.Level.TRACE, "id:" + a);
 					}
 					count++;
 				} else {
-					TestUtil.logErr("Did not receive expected result:");
+					logger.log(Logger.Level.ERROR, "Did not receive expected result:");
 					for (Integer e : expected) {
-						TestUtil.logErr(" Expected id:" + e);
+						logger.log(Logger.Level.ERROR, " Expected id:" + e);
 					}
 					for (Integer a : actual) {
-						TestUtil.logErr("Actual id:" + a);
+						logger.log(Logger.Level.ERROR, "Actual id:" + a);
 					}
 				}
 
 			} else {
-				TestUtil.logErr("Result set that was returned had 0 length");
+				logger.log(Logger.Level.ERROR, "Result set that was returned had 0 length");
 			}
 
 		}
@@ -156,7 +157,7 @@ public class Client extends PMClientBase {
 					count++;
 				}
 			} else {
-				TestUtil.logErr("Result set that was returned had 0 length");
+				logger.log(Logger.Level.ERROR, "Result set that was returned had 0 length");
 			}
 		}
 		if (count == listOfList.size()) {
@@ -169,23 +170,23 @@ public class Client extends PMClientBase {
 		boolean result = false;
 		if (expected.containsAll(actual) && actual.containsAll(expected) && expected.size() == actual.size()) {
 			for (Employee e : expected) {
-				TestUtil.logTrace("Received expected result:" + e);
+				logger.log(Logger.Level.TRACE, "Received expected result:" + e);
 			}
 			result = true;
 		} else {
-			TestUtil.logErr("Did not receive expected result:");
+			logger.log(Logger.Level.ERROR, "Did not receive expected result:");
 			for (Employee e : expected) {
-				TestUtil.logErr("expected employee:" + e);
+				logger.log(Logger.Level.ERROR, "expected employee:" + e);
 			}
 			for (Employee e : actual) {
-				TestUtil.logErr("actual employee :" + e);
+				logger.log(Logger.Level.ERROR, "actual employee :" + e);
 			}
 		}
 		return result;
 	}
 
 	protected void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -195,14 +196,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM INSURANCE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

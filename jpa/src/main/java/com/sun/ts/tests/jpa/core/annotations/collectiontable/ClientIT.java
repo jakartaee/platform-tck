@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.annotations.collectiontable;
 
+import java.lang.System.Logger;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,14 +26,14 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
-
 
 public class ClientIT extends PMClientBase {
 
 	public ClientIT() {
 	}
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public static JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
@@ -44,13 +45,13 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 
 		}
@@ -67,14 +68,14 @@ public class ClientIT extends PMClientBase {
 	 */
 	@Test
 	public void collectionTable1() throws Exception {
-		TestUtil.logTrace("Begin collectionTable1");
+		logger.log(Logger.Level.TRACE, "Begin collectionTable1");
 		boolean pass = false;
 		A aRef = null;
 		Collection bCol = null;
 		Collection newCol = null;
 
 		try {
-			TestUtil.logTrace("New instances");
+			logger.log(Logger.Level.TRACE, "New instances");
 
 			final Address addr1 = new Address("1 Network Drive", "Burlington", "MA", "01801");
 			final Address addr2 = new Address("Some Address", "Boston", "MA", "01803");
@@ -102,12 +103,12 @@ public class ClientIT extends PMClientBase {
 				if (addr.getStreet().equals("1 Network Drive") && addr.getCity().equals("Burlington")
 						&& addr.getState().equals("MA") && addr.getZip().equals("01801")) {
 					pass1 = true;
-					TestUtil.logTrace("pass1 = " + pass1);
+					logger.log(Logger.Level.TRACE, "pass1 = " + pass1);
 				}
 				if (addr.getStreet().equals("Some Address") && addr.getCity().equals("Boston")
 						&& addr.getState().equals("MA") && addr.getZip().equals("01803")) {
 					pass2 = true;
-					TestUtil.logTrace("pass2 = " + pass2);
+					logger.log(Logger.Level.TRACE, "pass2 = " + pass2);
 				}
 			}
 
@@ -116,14 +117,14 @@ public class ClientIT extends PMClientBase {
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 
 		}
@@ -144,33 +145,33 @@ public class ClientIT extends PMClientBase {
 	}
 
 	private void dumpAddresses(final Set<Address> addr) {
-		TestUtil.logTrace("address Data");
-		TestUtil.logTrace("---------------");
-		TestUtil.logTrace("size=" + addr.size());
+		logger.log(Logger.Level.TRACE, "address Data");
+		logger.log(Logger.Level.TRACE, "---------------");
+		logger.log(Logger.Level.TRACE, "size=" + addr.size());
 		int elem = 1;
 		for (Address v : addr) {
-			TestUtil.logTrace("- Element #" + elem++);
+			logger.log(Logger.Level.TRACE, "- Element #" + elem++);
 			if (v != null) {
-				TestUtil.logTrace("  street=" + v.getStreet() + ", city=" + v.getCity() + ", state=" + v.getState()
-						+ ", zip=" + v.getZip());
+				logger.log(Logger.Level.TRACE, "  street=" + v.getStreet() + ", city=" + v.getCity() + ", state="
+						+ v.getState() + ", zip=" + v.getZip());
 			} else {
-				TestUtil.logTrace("  address=numm");
+				logger.log(Logger.Level.TRACE, "  address=numm");
 			}
 		}
 	}
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 		removeDeploymentJar();
 
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -180,14 +181,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("Delete from COLTAB").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

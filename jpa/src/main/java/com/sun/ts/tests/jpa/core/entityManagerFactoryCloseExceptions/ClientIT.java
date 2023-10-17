@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.entityManagerFactoryCloseExceptions;
 
+import java.lang.System.Logger;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -26,13 +27,13 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.CleanupMethod;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.EntityManagerFactory;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	Properties props = null;
 
@@ -50,11 +51,11 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -84,7 +85,7 @@ public class ClientIT extends PMClientBase {
 		myMap.put("some.cts.specific.property", "nothing.in.particular");
 
 		EntityManagerFactory emf;
-		TestUtil.logMsg("Getting EntityManagerFactory");
+		logger.log(Logger.Level.INFO, "Getting EntityManagerFactory");
 		if (isStandAloneMode()) {
 			emf = getEntityManager().getEntityManagerFactory();
 		} else {
@@ -92,100 +93,100 @@ public class ClientIT extends PMClientBase {
 		}
 		if (emf != null) {
 			if (emf.isOpen()) {
-				TestUtil.logMsg("EMF is open, now closing it");
+				logger.log(Logger.Level.INFO, "EMF is open, now closing it");
 				emf.close();
 			} else {
-				TestUtil.logMsg("EMF is already closed");
+				logger.log(Logger.Level.INFO, "EMF is already closed");
 			}
 
-			TestUtil.logMsg("Testing getMetamodel() after close");
+			logger.log(Logger.Level.INFO, "Testing getMetamodel() after close");
 			try {
 				emf.getMetamodel();
-				TestUtil.logErr("IllegalStateException not thrown");
+				logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 			} catch (IllegalStateException ise) {
-				TestUtil.logTrace("Received expected IllegalStateException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
 				passCount++;
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 
-			TestUtil.logMsg("Testing emf.getProperties()");
+			logger.log(Logger.Level.INFO, "Testing emf.getProperties()");
 			try {
 				emf.getProperties();
-				TestUtil.logErr("IllegalStateException not thrown");
+				logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 			} catch (IllegalStateException ise) {
-				TestUtil.logTrace("Received expected IllegalStateException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
 				passCount++;
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 
-			TestUtil.logMsg("Testing getPersistenceUnitUtil() after close");
+			logger.log(Logger.Level.INFO, "Testing getPersistenceUnitUtil() after close");
 			try {
 				emf.getPersistenceUnitUtil();
-				TestUtil.logErr("Did no throw IllegalStateException");
+				logger.log(Logger.Level.ERROR, "Did no throw IllegalStateException");
 			} catch (IllegalStateException ise) {
-				TestUtil.logTrace("Received expected IllegalStateException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
 				passCount++;
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 
-			TestUtil.logMsg("Testing close after close ");
+			logger.log(Logger.Level.INFO, "Testing close after close ");
 			try {
 				emf.close();
-				TestUtil.logErr("IllegalStateException not thrown");
+				logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 			} catch (IllegalStateException e) {
-				TestUtil.logTrace("IllegalStateException Caught as Expected.");
+				logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 				passCount++;
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 
-			TestUtil.logMsg("Testing createEntityManager() after close");
+			logger.log(Logger.Level.INFO, "Testing createEntityManager() after close");
 			try {
 				emf.createEntityManager();
-				TestUtil.logErr("IllegalStateException not thrown");
+				logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 			} catch (IllegalStateException e) {
-				TestUtil.logTrace("IllegalStateException Caught as Expected.");
+				logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 				passCount++;
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 
-			TestUtil.logMsg("Testing createEntityManager(Map) after close");
+			logger.log(Logger.Level.INFO, "Testing createEntityManager(Map) after close");
 			try {
 				emf.createEntityManager(myMap);
-				TestUtil.logErr("IllegalStateException not thrown");
+				logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 			} catch (IllegalStateException e) {
-				TestUtil.logTrace("IllegalStateException Caught as Expected.");
+				logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 				passCount++;
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 
-			TestUtil.logMsg("Testing getCache after close ");
+			logger.log(Logger.Level.INFO, "Testing getCache after close ");
 			try {
 				emf.getCache();
-				TestUtil.logErr("IllegalStateException not thrown");
+				logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 			} catch (IllegalStateException e) {
-				TestUtil.logTrace("IllegalStateException Caught as Expected.");
+				logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
 				passCount++;
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 
 			try {
 				emf.getCriteriaBuilder();
-				TestUtil.logErr("IllegalStateException was not thrown");
+				logger.log(Logger.Level.ERROR, "IllegalStateException was not thrown");
 			} catch (IllegalStateException ise) {
 				passCount++;
-				TestUtil.logTrace("Received expected IllegalStateException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 		} else {
-			TestUtil.logErr("Could not obtain an EntityManagerFactory");
+			logger.log(Logger.Level.ERROR, "Could not obtain an EntityManagerFactory");
 		}
 		if (passCount != 8) {
 			throw new Exception("exceptionsTest failed");

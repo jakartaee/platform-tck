@@ -20,16 +20,17 @@
 
 package com.sun.ts.tests.jpa.ee.packaging.ejb.standalone;
 
+import java.lang.System.Logger;
 import java.util.Properties;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.EJB;
 
 public class ClientIT {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	@EJB(name = "ejb/Stateful3Bean", beanInterface = Stateful3IF.class)
 	private static Stateful3IF bean;
@@ -80,14 +81,14 @@ public class ClientIT {
 	@Test
 	public void test1() throws Exception {
 
-		TestUtil.logTrace("Begin test1");
+		logger.log(Logger.Level.TRACE, "Begin test1");
 		boolean pass = false;
 
 		try {
 			pass = bean.test1();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception :", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
 
 		}
 
@@ -100,9 +101,9 @@ public class ClientIT {
 		try {
 			bean.removeTestData();
 		} catch (Exception re) {
-			TestUtil.logErr("Unexpected Exception in entity cleanup:", re);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception in entity cleanup:", re);
 		}
-		TestUtil.logTrace("cleanup complete");
+		logger.log(Logger.Level.TRACE, "cleanup complete");
 	}
 
 }

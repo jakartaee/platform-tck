@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.criteriaapi.Join;
 
+import java.lang.System.Logger;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -24,7 +25,6 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.CreditCard;
 import com.sun.ts.tests.jpa.common.schema30.Customer;
 import com.sun.ts.tests.jpa.common.schema30.Customer_;
@@ -48,8 +48,9 @@ import jakarta.persistence.criteria.Root;
 import jakarta.persistence.criteria.SetJoin;
 import jakarta.persistence.metamodel.PluralAttribute;
 
-
 public class Client2IT extends Util {
+
+	private static final Logger logger = (Logger) System.getLogger(Client2IT.class.getName());
 
 	public static JavaArchive createDeployment() throws Exception {
 
@@ -87,13 +88,13 @@ public class Client2IT extends Util {
 
 			Set sJoins = customer.getJoins();
 			if (!sJoins.isEmpty()) {
-				TestUtil.logErr("Expected getJoins() to return empty set instead got:");
+				logger.log(Logger.Level.ERROR, "Expected getJoins() to return empty set instead got:");
 				for (Iterator<Join<Order, ?>> i = sJoins.iterator(); i.hasNext();) {
 					Join j = i.next();
-					TestUtil.logErr("join:" + j.toString());
+					logger.log(Logger.Level.ERROR, "join:" + j.toString());
 				}
 			} else {
-				TestUtil.logTrace("getJoin() returned empty set as expected");
+				logger.log(Logger.Level.TRACE, "getJoin() returned empty set as expected");
 				pass1 = true;
 			}
 
@@ -101,30 +102,30 @@ public class Client2IT extends Util {
 
 			Set<Join<Customer, ?>> s = customer.getJoins();
 			if (s.isEmpty()) {
-				TestUtil.logErr("Expected getJoins() to return non empty set");
+				logger.log(Logger.Level.ERROR, "Expected getJoins() to return non empty set");
 			} else {
 
 				if (s.size() == 1) {
-					TestUtil.logTrace("getJoins returned:");
+					logger.log(Logger.Level.TRACE, "getJoins returned:");
 					for (Iterator<Join<Customer, ?>> i = s.iterator(); i.hasNext();) {
 						pass2 = true;
 						Join j = i.next();
-						TestUtil.logTrace("join:" + j.toString());
+						logger.log(Logger.Level.TRACE, "join:" + j.toString());
 						String name = j.getAttribute().getName();
 						if (name.equals("orders")) {
-							TestUtil.logTrace("Received expected attribute: orders");
+							logger.log(Logger.Level.TRACE, "Received expected attribute: orders");
 						} else {
-							TestUtil.logErr("Expected attribute: orders, actual:" + name);
+							logger.log(Logger.Level.ERROR, "Expected attribute: orders, actual:" + name);
 							pass3 = false;
 						}
 					}
 				} else {
 					pass3 = false;
-					TestUtil.logErr("Expected getJoins to return 1 join, actual:" + s.size());
-					TestUtil.logErr("getJoins returned:");
+					logger.log(Logger.Level.ERROR, "Expected getJoins to return 1 join, actual:" + s.size());
+					logger.log(Logger.Level.ERROR, "getJoins returned:");
 					for (Iterator<Join<Customer, ?>> i = s.iterator(); i.hasNext();) {
 						Join j = i.next();
-						TestUtil.logErr("join:" + j.toString());
+						logger.log(Logger.Level.ERROR, "join:" + j.toString());
 					}
 				}
 
@@ -139,14 +140,15 @@ public class Client2IT extends Util {
 			expectedPKs[0] = "1";
 
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass4 = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -189,14 +191,15 @@ public class Client2IT extends Util {
 			expectedPKs[0] = "1";
 
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -238,14 +241,15 @@ public class Client2IT extends Util {
 			expectedPKs[0] = "2";
 
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -288,14 +292,15 @@ public class Client2IT extends Util {
 			expectedPKs[0] = "2";
 
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -333,10 +338,10 @@ public class Client2IT extends Util {
 			PluralAttribute pa = lineItem.getModel();
 			String name = pa.getName();
 			if (name.equals("lineItemsCollection")) {
-				TestUtil.logTrace("Received expected attribute:" + name);
+				logger.log(Logger.Level.TRACE, "Received expected attribute:" + name);
 				pass1 = true;
 			} else {
-				TestUtil.logErr("getModel - Expected: lineItemsCollection, actual:" + name);
+				logger.log(Logger.Level.ERROR, "getModel - Expected: lineItemsCollection, actual:" + name);
 			}
 
 			cquery.where(cbuilder.equal(lineItem.get("id"), "1")).select(customer);
@@ -346,14 +351,15 @@ public class Client2IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass2 = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -396,14 +402,15 @@ public class Client2IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -439,9 +446,9 @@ public class Client2IT extends Util {
 			CollectionJoin<Order, LineItem> lineItem = order.joinCollection("lineItemsCollection");
 			String name = lineItem.getModel().getName();
 			if (name.equals("lineItemsCollection")) {
-				TestUtil.logTrace("Received expected CollectionAttribute:" + name);
+				logger.log(Logger.Level.TRACE, "Received expected CollectionAttribute:" + name);
 			} else {
-				TestUtil.logErr("Expected CollectionAttribute:lineItems, actual:" + name);
+				logger.log(Logger.Level.ERROR, "Expected CollectionAttribute:lineItems, actual:" + name);
 			}
 			cquery.where(cbuilder.equal(lineItem.get("id"), "1")).select(customer);
 			TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
@@ -450,14 +457,15 @@ public class Client2IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -498,14 +506,15 @@ public class Client2IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -547,14 +556,15 @@ public class Client2IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -595,14 +605,15 @@ public class Client2IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -643,14 +654,15 @@ public class Client2IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -691,14 +703,15 @@ public class Client2IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -735,9 +748,9 @@ public class Client2IT extends Util {
 			PluralAttribute pa = lineItem.getModel();
 			String name = pa.getName();
 			if (name.equals("lineItemsList")) {
-				TestUtil.logTrace("Received expected attribute:" + name);
+				logger.log(Logger.Level.TRACE, "Received expected attribute:" + name);
 			} else {
-				TestUtil.logErr("getModel - Expected: lineItemsList, actual:" + name);
+				logger.log(Logger.Level.ERROR, "getModel - Expected: lineItemsList, actual:" + name);
 			}
 			cquery.where(cbuilder.equal(lineItem.get("id"), "1")).select(customer);
 			TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
@@ -746,14 +759,15 @@ public class Client2IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -794,14 +808,15 @@ public class Client2IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -838,10 +853,10 @@ public class Client2IT extends Util {
 			ListJoin<Order, LineItem> lineItem = order.joinList("lineItemsList");
 			String name = lineItem.getModel().getName();
 			if (name.equals("lineItemsList")) {
-				TestUtil.logTrace("Received expected ListAttribute:" + name);
+				logger.log(Logger.Level.TRACE, "Received expected ListAttribute:" + name);
 				pass1 = true;
 			} else {
-				TestUtil.logErr("Expected ListAttribute:lineItemsList, actual:" + name);
+				logger.log(Logger.Level.ERROR, "Expected ListAttribute:lineItemsList, actual:" + name);
 			}
 			cquery.where(cbuilder.equal(lineItem.get("id"), "1")).select(customer);
 			TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
@@ -850,14 +865,15 @@ public class Client2IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass2 = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -898,14 +914,15 @@ public class Client2IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -946,32 +963,33 @@ public class Client2IT extends Util {
 			PluralJoin lineItem = order.joinCollection("lineItemsCollection");
 			String name = lineItem.getModel().getName();
 			if (name.equals("lineItemsCollection")) {
-				TestUtil.logTrace("Received expected PluralAttribute:" + name);
+				logger.log(Logger.Level.TRACE, "Received expected PluralAttribute:" + name);
 				pass1 = true;
 			} else {
-				TestUtil.logErr("Expected PluralAttribute:lineItems, actual:" + name);
+				logger.log(Logger.Level.ERROR, "Expected PluralAttribute:lineItems, actual:" + name);
 			}
 			name = lineItem.getAttribute().getName();
 			if (name.equals("lineItemsCollection")) {
-				TestUtil.logTrace("Received expected attribute:" + name);
+				logger.log(Logger.Level.TRACE, "Received expected attribute:" + name);
 				pass2 = true;
 			} else {
-				TestUtil.logErr("Expected attribute name: lineItems, actual:" + name);
+				logger.log(Logger.Level.ERROR, "Expected attribute name: lineItems, actual:" + name);
 			}
 			JoinType type = lineItem.getJoinType();
 			if (type.equals(JoinType.INNER)) {
-				TestUtil.logTrace("Received expected JoinType:" + type);
+				logger.log(Logger.Level.TRACE, "Received expected JoinType:" + type);
 				pass3 = true;
 			} else {
-				TestUtil.logErr("Expected JoinType : " + JoinType.INNER.toString() + ", actual:" + type);
+				logger.log(Logger.Level.ERROR, "Expected JoinType : " + JoinType.INNER.toString() + ", actual:" + type);
 			}
 			From from = lineItem.getParent();
 			String parent = from.getJavaType().getName();
 			if (parent.equals("com.sun.ts.tests.jpa.common.schema30.Order")) {
-				TestUtil.logTrace("Received expected parent:" + parent);
+				logger.log(Logger.Level.TRACE, "Received expected parent:" + parent);
 				pass4 = true;
 			} else {
-				TestUtil.logErr("Expected parent: com.sun.ts.tests.jpa.common.schema30.Order, actual:" + parent);
+				logger.log(Logger.Level.ERROR,
+						"Expected parent: com.sun.ts.tests.jpa.common.schema30.Order, actual:" + parent);
 			}
 			cquery.where(cbuilder.equal(lineItem.get("id"), "1")).select(customer);
 			TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
@@ -980,14 +998,15 @@ public class Client2IT extends Util {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass5 = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -1020,32 +1039,32 @@ public class Client2IT extends Util {
 			Root<Customer> customer = cquery.from(Customer.class);
 			PluralJoin order = customer.join(Customer_.orders);
 			if (order.getOn() == null) {
-				TestUtil.logTrace("Received expected null from getOn()");
+				logger.log(Logger.Level.TRACE, "Received expected null from getOn()");
 				pass1 = true;
 			} else {
-				TestUtil.logErr("Expected null from getOn(), actual:" + order.toString());
+				logger.log(Logger.Level.ERROR, "Expected null from getOn(), actual:" + order.toString());
 			}
 
 			Join join = order.on(cbuilder.equal(order.get("id"), "1"));
 			Predicate pred = join.getOn();
 			if (pred != null) {
-				TestUtil.logTrace("Received expected non-null from getOn()");
+				logger.log(Logger.Level.TRACE, "Received expected non-null from getOn()");
 				pass2 = true;
 			} else {
-				TestUtil.logErr("Received unexpected null from getOn()");
+				logger.log(Logger.Level.ERROR, "Received unexpected null from getOn()");
 			}
 			cquery.select(cbuilder.count(join));
 			TypedQuery<Long> tquery = getEntityManager().createQuery(cquery);
 			Long actual = tquery.getSingleResult();
 			if (actual == 1) {
-				TestUtil.logTrace("Received expected number: " + actual);
+				logger.log(Logger.Level.TRACE, "Received expected number: " + actual);
 				pass3 = true;
 			} else {
-				TestUtil.logErr("Expected: 1, actual:" + actual);
+				logger.log(Logger.Level.ERROR, "Expected: 1, actual:" + actual);
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -1084,10 +1103,10 @@ public class Client2IT extends Util {
 
 			Predicate pred3 = join.getOn();
 			if (pred3.getExpressions().size() == 2) {
-				TestUtil.logTrace("Received expected number of predicates");
+				logger.log(Logger.Level.TRACE, "Received expected number of predicates");
 				pass1 = true;
 			} else {
-				TestUtil.logErr("Expected: 2 predicates, actual:" + pred3.getExpressions().size());
+				logger.log(Logger.Level.ERROR, "Expected: 2 predicates, actual:" + pred3.getExpressions().size());
 
 			}
 
@@ -1095,14 +1114,14 @@ public class Client2IT extends Util {
 			TypedQuery<Long> tquery = getEntityManager().createQuery(cquery);
 			Long actual = tquery.getSingleResult();
 			if (actual == 1) {
-				TestUtil.logTrace("Received expected number: " + actual);
+				logger.log(Logger.Level.TRACE, "Received expected number: " + actual);
 				pass2 = true;
 			} else {
-				TestUtil.logErr("Expected: 1, actual:" + actual);
+				logger.log(Logger.Level.ERROR, "Expected: 1, actual:" + actual);
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -1142,16 +1161,16 @@ public class Client2IT extends Util {
 			expectedPKs[1] = "12";
 
 			if (!checkEntityPK(oList, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected: " + expectedPKs.length + "  reference, got: "
-						+ oList.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results.  Expected: " + expectedPKs.length
+						+ "  reference, got: " + oList.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception: ", e);
+			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -1190,16 +1209,16 @@ public class Client2IT extends Util {
 			expectedPKs[0] = "12";
 
 			if (!checkEntityPK(oList, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected: " + expectedPKs.length + "  reference, got: "
-						+ oList.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results.  Expected: " + expectedPKs.length
+						+ "  reference, got: " + oList.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception: ", e);
+			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -1238,16 +1257,16 @@ public class Client2IT extends Util {
 			expectedPKs[1] = "12";
 
 			if (!checkEntityPK(oList, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected: " + expectedPKs.length + "  reference, got: "
-						+ oList.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results.  Expected: " + expectedPKs.length
+						+ "  reference, got: " + oList.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception: ", e);
+			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -1286,16 +1305,16 @@ public class Client2IT extends Util {
 			expectedPKs[0] = "12";
 
 			if (!checkEntityPK(oList, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected: " + expectedPKs.length + "  reference, got: "
-						+ oList.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results.  Expected: " + expectedPKs.length
+						+ "  reference, got: " + oList.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception: ", e);
+			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -1334,16 +1353,16 @@ public class Client2IT extends Util {
 			expectedPKs[1] = "12";
 
 			if (!checkEntityPK(oList, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected: " + expectedPKs.length + "  reference, got: "
-						+ oList.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results.  Expected: " + expectedPKs.length
+						+ "  reference, got: " + oList.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception: ", e);
+			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -1382,16 +1401,16 @@ public class Client2IT extends Util {
 			expectedPKs[0] = "12";
 
 			if (!checkEntityPK(oList, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected: " + expectedPKs.length + "  reference, got: "
-						+ oList.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results.  Expected: " + expectedPKs.length
+						+ "  reference, got: " + oList.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception: ", e);
+			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
 		}
 
 		if (!pass)

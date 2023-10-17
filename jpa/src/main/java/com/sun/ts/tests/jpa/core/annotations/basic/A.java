@@ -16,14 +16,13 @@
 
 package com.sun.ts.tests.jpa.core.annotations.basic;
 
+import java.lang.System.Logger;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
-
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Cacheable;
@@ -37,6 +36,8 @@ import jakarta.persistence.TemporalType;
 @Table(name = "A_BASIC")
 @Cacheable(value = true)
 public class A implements java.io.Serializable {
+
+	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
 
 	// ===========================================================
 	// instance variables
@@ -115,7 +116,7 @@ public class A implements java.io.Serializable {
 	// ===========================================================
 	// constructors
 	public A() {
-		TestUtil.logTrace("Entity A no arg constructor");
+		logger.log(Logger.Level.TRACE, "Entity A no arg constructor");
 	}
 
 	public A(String id, String name, int value, Integer basicInteger, short basicShort, Short basicBigShort,

@@ -16,15 +16,18 @@
 
 package com.sun.ts.tests.jpa.jpa22.repeatable.convert;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	private static final long serialVersionUID = 22L;
 
@@ -43,13 +46,13 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -79,38 +82,40 @@ public class ClientIT extends PMClientBase {
 			clearCache();
 			getEntityTransaction().begin();
 			B b1 = getEntityManager().find(B.class, b.id);
-			TestUtil.logTrace("B:" + b1.toString());
+			logger.log(Logger.Level.TRACE, "B:" + b1.toString());
 			if (b1.getBValue().equals(1000)) {
-				TestUtil.logTrace("Received expected value:" + b1.getBValue());
+				logger.log(Logger.Level.TRACE, "Received expected value:" + b1.getBValue());
 				pass1 = true;
 			} else {
-				TestUtil.logErr("Converter was not properly applied, expected value:1000, actual" + b1.getBValue());
+				logger.log(Logger.Level.ERROR,
+						"Converter was not properly applied, expected value:1000, actual" + b1.getBValue());
 			}
 			Address a = b1.getAddress();
 			if (a.getStreet().equals(street.replace(".", "_"))) {
-				TestUtil.logTrace("Received expected street:" + a.getStreet());
+				logger.log(Logger.Level.TRACE, "Received expected street:" + a.getStreet());
 				pass2 = true;
 			} else {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Converter was not properly applied, expected street:" + street + ", actual:" + a.getStreet());
 			}
 			if (a.getState() == 1) {
-				TestUtil.logTrace("Received expected state:" + a.getState());
+				logger.log(Logger.Level.TRACE, "Received expected state:" + a.getState());
 				pass3 = true;
 			} else {
-				TestUtil.logErr("Converter was not properly applied, expected state: 1, actual: " + a.getState());
+				logger.log(Logger.Level.ERROR,
+						"Converter was not properly applied, expected state: 1, actual: " + a.getState());
 			}
 			getEntityTransaction().rollback();
 
 		} catch (Exception ex) {
-			TestUtil.logErr("Unexpected exception received:", ex);
+			logger.log(Logger.Level.ERROR, "Unexpected exception received:", ex);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception while rolling back TX:", re);
 			}
 		}
 
@@ -121,14 +126,14 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -141,7 +146,7 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM PHONES").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 
 		} finally {
 			try {
@@ -149,7 +154,7 @@ public class ClientIT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

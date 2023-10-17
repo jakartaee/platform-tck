@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.criteriaapi.CriteriaUpdate;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -23,7 +24,6 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.Product;
 import com.sun.ts.tests.jpa.common.schema30.SoftwareProduct;
 import com.sun.ts.tests.jpa.common.schema30.Util;
@@ -38,8 +38,9 @@ import jakarta.persistence.criteria.Subquery;
 import jakarta.persistence.metamodel.EntityType;
 import jakarta.persistence.metamodel.Metamodel;
 
-
 public class ClientIT extends Util {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public ClientIT() {
 
@@ -55,13 +56,13 @@ public class ClientIT extends Util {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			removeTestData();
 			createProductData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -89,49 +90,49 @@ public class ClientIT extends Util {
 		CriteriaUpdate<Product> cd = cbuilder.createCriteriaUpdate(Product.class);
 		Root<Product> root = cd.from(Product.class);
 		if (root != null) {
-			TestUtil.logTrace("Obtained Non-null root");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null root");
 			if (root.equals(cd.getRoot())) {
-				TestUtil.logTrace("Obtained expected root");
+				logger.log(Logger.Level.TRACE, "Obtained expected root");
 				cd.set("quantity", 0);
 				int actual = getEntityManager().createQuery(cd).executeUpdate();
 				if (actual == productRef.length + softwareRef.length + hardwareRef.length) {
 					pass1 = true;
-					TestUtil.logTrace("Received expected number deleted:" + actual);
+					logger.log(Logger.Level.TRACE, "Received expected number deleted:" + actual);
 					clearCache();
 					for (Product p : productRef) {
 						Product pp = getEntityManager().find(Product.class, p.getId());
 						if (pp.getQuantity() != 0) {
-							TestUtil.logErr("Expected product:" + p.getId() + " to have quantity of 0, actual:"
-									+ pp.getQuantity());
+							logger.log(Logger.Level.ERROR, "Expected product:" + p.getId()
+									+ " to have quantity of 0, actual:" + pp.getQuantity());
 							pass2 = false;
 						}
 					}
 					for (Product p : softwareRef) {
 						Product pp = getEntityManager().find(Product.class, p.getId());
 						if (pp.getQuantity() != 0) {
-							TestUtil.logErr("Expected product:" + p.getId() + " to have quantity of 0, actual:"
-									+ pp.getQuantity());
+							logger.log(Logger.Level.ERROR, "Expected product:" + p.getId()
+									+ " to have quantity of 0, actual:" + pp.getQuantity());
 							pass3 = false;
 						}
 					}
 					for (Product p : hardwareRef) {
 						Product pp = getEntityManager().find(Product.class, p.getId());
 						if (pp.getQuantity() != 0) {
-							TestUtil.logErr("Expected product:" + p.getId() + " to have quantity of 0, actual:"
-									+ pp.getQuantity());
+							logger.log(Logger.Level.ERROR, "Expected product:" + p.getId()
+									+ " to have quantity of 0, actual:" + pp.getQuantity());
 							pass4 = false;
 						}
 					}
 				} else {
-					TestUtil.logErr("Expected:" + productRef.length + softwareRef.length + hardwareRef.length
-							+ ", actual:" + actual);
+					logger.log(Logger.Level.ERROR, "Expected:" + productRef.length + softwareRef.length
+							+ hardwareRef.length + ", actual:" + actual);
 				}
 			} else {
-				TestUtil.logErr("Failed to get expected root");
-				TestUtil.logErr("Expected:" + cd.getRoot() + ", actual:" + root);
+				logger.log(Logger.Level.ERROR, "Failed to get expected root");
+				logger.log(Logger.Level.ERROR, "Expected:" + cd.getRoot() + ", actual:" + root);
 			}
 		} else {
-			TestUtil.logErr("Failed to get Non-null root");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
 		}
 		getEntityTransaction().commit();
 		if (!pass1 || !pass2 || !pass3 || !pass4) {
@@ -163,17 +164,17 @@ public class ClientIT extends Util {
 
 		Root<Product> root = cd.from(Product_);
 		if (root != null) {
-			TestUtil.logTrace("Obtained Non-null root");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null root");
 			cd.set("quantity", 0);
 			int actual = getEntityManager().createQuery(cd).executeUpdate();
 			if (actual == productRef.length + softwareRef.length + hardwareRef.length) {
 				pass1 = true;
-				TestUtil.logTrace("Received expected number deleted:" + actual);
+				logger.log(Logger.Level.TRACE, "Received expected number deleted:" + actual);
 				clearCache();
 				for (Product p : productRef) {
 					Product pp = getEntityManager().find(Product.class, p.getId());
 					if (pp.getQuantity() != 0) {
-						TestUtil.logErr(
+						logger.log(Logger.Level.ERROR,
 								"Expected product:" + p.getId() + " to have quantity of 0, actual:" + pp.getQuantity());
 						pass2 = false;
 					}
@@ -181,7 +182,7 @@ public class ClientIT extends Util {
 				for (Product p : softwareRef) {
 					Product pp = getEntityManager().find(Product.class, p.getId());
 					if (pp.getQuantity() != 0) {
-						TestUtil.logErr(
+						logger.log(Logger.Level.ERROR,
 								"Expected product:" + p.getId() + " to have quantity of 0, actual:" + pp.getQuantity());
 						pass3 = false;
 					}
@@ -189,17 +190,17 @@ public class ClientIT extends Util {
 				for (Product p : hardwareRef) {
 					Product pp = getEntityManager().find(Product.class, p.getId());
 					if (pp.getQuantity() != 0) {
-						TestUtil.logErr(
+						logger.log(Logger.Level.ERROR,
 								"Expected product:" + p.getId() + " to have quantity of 0, actual:" + pp.getQuantity());
 						pass4 = false;
 					}
 				}
 			} else {
-				TestUtil.logErr("Expected:" + productRef.length + softwareRef.length + hardwareRef.length + ", actual:"
-						+ actual);
+				logger.log(Logger.Level.ERROR, "Expected:" + productRef.length + softwareRef.length + hardwareRef.length
+						+ ", actual:" + actual);
 			}
 		} else {
-			TestUtil.logErr("Failed to get Non-null root");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
 		}
 		getEntityTransaction().commit();
 		if (!pass1 || !pass2 || !pass3 || !pass4) {
@@ -227,7 +228,7 @@ public class ClientIT extends Util {
 		CriteriaUpdate<Product> cd = cbuilder.createCriteriaUpdate(Product.class);
 		Root<Product> root = cd.from(Product.class);
 		if (root != null) {
-			TestUtil.logTrace("Obtained Non-null root");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null root");
 			EntityType<Product> product_ = root.getModel();
 			cd.set(product_.getSingularAttribute("quantity", Integer.class), 0);
 
@@ -241,26 +242,26 @@ public class ClientIT extends Util {
 
 			int actual = getEntityManager().createQuery(cd).executeUpdate();
 			if (actual == col.size()) {
-				TestUtil.logTrace("Received expected number of updates:" + actual);
+				logger.log(Logger.Level.TRACE, "Received expected number of updates:" + actual);
 				pass2 = true;
 				clearCache();
 				for (Product p : productRef) {
 					Product pp = getEntityManager().find(Product.class, p.getId());
 					if (p.getId().equals("1") || p.getId().equals("2") || p.getId().equals("3")) {
 						if (pp.getQuantity() != 0) {
-							TestUtil.logErr("Expected product:" + p.getId() + " to have quantity of 0, actual:"
-									+ pp.getQuantity());
+							logger.log(Logger.Level.ERROR, "Expected product:" + p.getId()
+									+ " to have quantity of 0, actual:" + pp.getQuantity());
 							pass3 = false;
 						} else {
-							TestUtil.logTrace("Product:" + p.getId() + " update was successfully");
+							logger.log(Logger.Level.TRACE, "Product:" + p.getId() + " update was successfully");
 						}
 					} else {
 						if (pp.getQuantity() != p.getQuantity()) {
-							TestUtil.logErr("Product:" + p.getId() + " quantity does not equal original value:"
-									+ p.getQuantity());
+							logger.log(Logger.Level.ERROR, "Product:" + p.getId()
+									+ " quantity does not equal original value:" + p.getQuantity());
 							pass3 = false;
 						} else {
-							TestUtil.logTrace(
+							logger.log(Logger.Level.TRACE,
 									"Product:" + pp.getId() + " quantity matches original value" + p.getQuantity());
 						}
 					}
@@ -268,28 +269,28 @@ public class ClientIT extends Util {
 				for (Product p : softwareRef) {
 					Product pp = getEntityManager().find(Product.class, p.getId());
 					if (pp.getQuantity() != p.getQuantity()) {
-						TestUtil.logErr("Expected product:" + p.getId() + " to have quantity of " + p.getQuantity()
-								+ ", actual:" + pp.getQuantity());
+						logger.log(Logger.Level.ERROR, "Expected product:" + p.getId() + " to have quantity of "
+								+ p.getQuantity() + ", actual:" + pp.getQuantity());
 						pass4 = false;
 					} else {
-						TestUtil.logTrace("Received expected software quantity:" + pp.getQuantity());
+						logger.log(Logger.Level.TRACE, "Received expected software quantity:" + pp.getQuantity());
 					}
 				}
 				for (Product p : hardwareRef) {
 					Product pp = getEntityManager().find(Product.class, p.getId());
 					if (pp.getQuantity() != p.getQuantity()) {
-						TestUtil.logErr("Expected product:" + p.getId() + " to have quantity of " + p.getQuantity()
-								+ ", actual:" + pp.getQuantity());
+						logger.log(Logger.Level.ERROR, "Expected product:" + p.getId() + " to have quantity of "
+								+ p.getQuantity() + ", actual:" + pp.getQuantity());
 						pass5 = false;
 					} else {
-						TestUtil.logTrace("Received expected hardware quantity:" + pp.getQuantity());
+						logger.log(Logger.Level.TRACE, "Received expected hardware quantity:" + pp.getQuantity());
 					}
 				}
 			} else {
-				TestUtil.logErr("Expected:" + col.size() + ", actual:" + actual);
+				logger.log(Logger.Level.ERROR, "Expected:" + col.size() + ", actual:" + actual);
 			}
 		} else {
-			TestUtil.logErr("Failed to get Non-null root");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
 		}
 
 		getEntityTransaction().commit();
@@ -321,7 +322,7 @@ public class ClientIT extends Util {
 		Root<Product> root = cd.from(Product.class);
 
 		if (root != null) {
-			TestUtil.logTrace("Obtained Non-null root");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null root");
 
 			EntityType<Product> product_ = root.getModel();
 			cd.set(product_.getSingularAttribute("quantity", Integer.class), 0);
@@ -332,26 +333,26 @@ public class ClientIT extends Util {
 
 			int actual = getEntityManager().createQuery(cd).executeUpdate();
 			if (actual == predArray.length) {
-				TestUtil.logTrace("Received expected number of updates:" + actual);
+				logger.log(Logger.Level.TRACE, "Received expected number of updates:" + actual);
 				pass1 = true;
 				clearCache();
 				for (Product p : productRef) {
 					Product pp = getEntityManager().find(Product.class, p.getId());
 					if (p.getId().equals("2")) {
 						if (pp.getQuantity() != 0) {
-							TestUtil.logErr("Expected product:" + p.getId() + " to have quantity of 0, actual:"
-									+ pp.getQuantity());
+							logger.log(Logger.Level.ERROR, "Expected product:" + p.getId()
+									+ " to have quantity of 0, actual:" + pp.getQuantity());
 							pass2 = false;
 						} else {
-							TestUtil.logTrace("Product:" + p.getId() + " update was successfully");
+							logger.log(Logger.Level.TRACE, "Product:" + p.getId() + " update was successfully");
 						}
 					} else {
 						if (pp.getQuantity() != p.getQuantity()) {
-							TestUtil.logErr("Product:" + p.getId() + " quantity does not equal original value:"
-									+ p.getQuantity());
+							logger.log(Logger.Level.ERROR, "Product:" + p.getId()
+									+ " quantity does not equal original value:" + p.getQuantity());
 							pass2 = false;
 						} else {
-							TestUtil.logTrace(
+							logger.log(Logger.Level.TRACE,
 									"Product:" + pp.getId() + " quantity matches original value" + p.getQuantity());
 						}
 					}
@@ -359,29 +360,29 @@ public class ClientIT extends Util {
 				for (Product p : softwareRef) {
 					Product pp = getEntityManager().find(Product.class, p.getId());
 					if (pp.getQuantity() != p.getQuantity()) {
-						TestUtil.logErr("Expected product:" + p.getId() + " to have quantity of " + p.getQuantity()
-								+ ", actual:" + pp.getQuantity());
+						logger.log(Logger.Level.ERROR, "Expected product:" + p.getId() + " to have quantity of "
+								+ p.getQuantity() + ", actual:" + pp.getQuantity());
 
 						pass3 = false;
 					} else {
-						TestUtil.logTrace("Received expected software quantity:" + pp.getQuantity());
+						logger.log(Logger.Level.TRACE, "Received expected software quantity:" + pp.getQuantity());
 					}
 				}
 				for (Product p : hardwareRef) {
 					Product pp = getEntityManager().find(Product.class, p.getId());
 					if (pp.getQuantity() != p.getQuantity()) {
-						TestUtil.logErr("Expected product:" + p.getId() + " to have quantity of " + p.getQuantity()
-								+ ", actual:" + pp.getQuantity());
+						logger.log(Logger.Level.ERROR, "Expected product:" + p.getId() + " to have quantity of "
+								+ p.getQuantity() + ", actual:" + pp.getQuantity());
 						pass4 = false;
 					} else {
-						TestUtil.logTrace("Received expected hardware quantity:" + pp.getQuantity());
+						logger.log(Logger.Level.TRACE, "Received expected hardware quantity:" + pp.getQuantity());
 					}
 				}
 			} else {
-				TestUtil.logErr("Expected updates:" + predArray.length + ", actual:" + actual);
+				logger.log(Logger.Level.ERROR, "Expected updates:" + predArray.length + ", actual:" + actual);
 			}
 		} else {
-			TestUtil.logErr("Failed to get Non-null root");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
 		}
 
 		getEntityTransaction().commit();
@@ -412,9 +413,9 @@ public class ClientIT extends Util {
 		CriteriaUpdate<Product> cd = cbuilder.createCriteriaUpdate(Product.class);
 		Root<Product> root = cd.from(Product.class);
 		if (root != null) {
-			TestUtil.logTrace("Obtained Non-null root");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null root");
 			if (root.getModel().getName().equals(cd.getRoot().getModel().getName())) {
-				TestUtil.logTrace("Obtained expected root");
+				logger.log(Logger.Level.TRACE, "Obtained expected root");
 
 				EntityType<Product> product_ = root.getModel();
 				cd.set(product_.getSingularAttribute("quantity", Integer.class), 0);
@@ -422,43 +423,43 @@ public class ClientIT extends Util {
 				int actual = getEntityManager().createQuery(cd).executeUpdate();
 				if (actual == productRef.length + softwareRef.length + hardwareRef.length) {
 					pass1 = true;
-					TestUtil.logTrace("Received expected number of updates:" + actual);
+					logger.log(Logger.Level.TRACE, "Received expected number of updates:" + actual);
 					clearCache();
 					for (Product p : productRef) {
 						Product pp = getEntityManager().find(Product.class, p.getId());
 						if (pp.getQuantity() != 0) {
-							TestUtil.logErr("Expected product:" + p.getId() + " to have quantity of 0, actual:"
-									+ pp.getQuantity());
+							logger.log(Logger.Level.ERROR, "Expected product:" + p.getId()
+									+ " to have quantity of 0, actual:" + pp.getQuantity());
 							pass2 = false;
 						}
 					}
 					for (Product p : softwareRef) {
 						Product pp = getEntityManager().find(Product.class, p.getId());
 						if (pp.getQuantity() != 0) {
-							TestUtil.logErr("Expected product:" + p.getId() + " to have quantity of 0, actual:"
-									+ pp.getQuantity());
+							logger.log(Logger.Level.ERROR, "Expected product:" + p.getId()
+									+ " to have quantity of 0, actual:" + pp.getQuantity());
 							pass3 = false;
 						}
 					}
 					for (Product p : hardwareRef) {
 						Product pp = getEntityManager().find(Product.class, p.getId());
 						if (pp.getQuantity() != 0) {
-							TestUtil.logErr("Expected product:" + p.getId() + " to have quantity of 0, actual:"
-									+ pp.getQuantity());
+							logger.log(Logger.Level.ERROR, "Expected product:" + p.getId()
+									+ " to have quantity of 0, actual:" + pp.getQuantity());
 							pass4 = false;
 						}
 					}
 				} else {
-					TestUtil.logErr("Expected:" + productRef.length + softwareRef.length + hardwareRef.length
-							+ ", actual:" + actual);
+					logger.log(Logger.Level.ERROR, "Expected:" + productRef.length + softwareRef.length
+							+ hardwareRef.length + ", actual:" + actual);
 				}
 			} else {
-				TestUtil.logErr("Failed to get expected root");
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR, "Failed to get expected root");
+				logger.log(Logger.Level.ERROR,
 						"Expected:" + cd.getRoot().getModel().getName() + ", actual:" + root.getModel().getName());
 			}
 		} else {
-			TestUtil.logErr("Failed to get Non-null root");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
 		}
 		getEntityTransaction().commit();
 		if (!pass1 || !pass2 || !pass3 || !pass4) {
@@ -487,9 +488,9 @@ public class ClientIT extends Util {
 		CriteriaUpdate<Product> cd = cbuilder.createCriteriaUpdate(Product.class);
 		Root<Product> root = cd.from(Product.class);
 		if (root != null) {
-			TestUtil.logTrace("Obtained Non-null root");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null root");
 			if (root.getModel().getName().equals(cd.getRoot().getModel().getName())) {
-				TestUtil.logTrace("Obtained expected root");
+				logger.log(Logger.Level.TRACE, "Obtained expected root");
 
 				EntityType<Product> product_ = root.getModel();
 				Expression exp = cbuilder.prod(root.get(product_.getSingularAttribute("quantity", Integer.class)), 0);
@@ -497,43 +498,43 @@ public class ClientIT extends Util {
 				int actual = getEntityManager().createQuery(cd).executeUpdate();
 				if (actual == productRef.length + softwareRef.length + hardwareRef.length) {
 					pass1 = true;
-					TestUtil.logTrace("Received expected number of updates:" + actual);
+					logger.log(Logger.Level.TRACE, "Received expected number of updates:" + actual);
 					clearCache();
 					for (Product p : productRef) {
 						Product pp = getEntityManager().find(Product.class, p.getId());
 						if (pp.getQuantity() != 0) {
-							TestUtil.logErr("Expected product:" + p.getId() + " to have quantity of 0, actual:"
-									+ pp.getQuantity());
+							logger.log(Logger.Level.ERROR, "Expected product:" + p.getId()
+									+ " to have quantity of 0, actual:" + pp.getQuantity());
 							pass2 = false;
 						}
 					}
 					for (Product p : softwareRef) {
 						Product pp = getEntityManager().find(Product.class, p.getId());
 						if (pp.getQuantity() != 0) {
-							TestUtil.logErr("Expected product:" + p.getId() + " to have quantity of 0, actual:"
-									+ pp.getQuantity());
+							logger.log(Logger.Level.ERROR, "Expected product:" + p.getId()
+									+ " to have quantity of 0, actual:" + pp.getQuantity());
 							pass3 = false;
 						}
 					}
 					for (Product p : hardwareRef) {
 						Product pp = getEntityManager().find(Product.class, p.getId());
 						if (pp.getQuantity() != 0) {
-							TestUtil.logErr("Expected product:" + p.getId() + " to have quantity of 0, actual:"
-									+ pp.getQuantity());
+							logger.log(Logger.Level.ERROR, "Expected product:" + p.getId()
+									+ " to have quantity of 0, actual:" + pp.getQuantity());
 							pass4 = false;
 						}
 					}
 				} else {
-					TestUtil.logErr("Expected:" + productRef.length + softwareRef.length + hardwareRef.length
-							+ ", actual:" + actual);
+					logger.log(Logger.Level.ERROR, "Expected:" + productRef.length + softwareRef.length
+							+ hardwareRef.length + ", actual:" + actual);
 				}
 			} else {
-				TestUtil.logErr("Failed to get expected root");
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR, "Failed to get expected root");
+				logger.log(Logger.Level.ERROR,
 						"Expected:" + cd.getRoot().getModel().getName() + ", actual:" + root.getModel().getName());
 			}
 		} else {
-			TestUtil.logErr("Failed to get Non-null root");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
 		}
 		getEntityTransaction().commit();
 		if (!pass1 || !pass2 || !pass3 || !pass4) {
@@ -562,50 +563,50 @@ public class ClientIT extends Util {
 		CriteriaUpdate<Product> cd = cbuilder.createCriteriaUpdate(Product.class);
 		Root<Product> root = cd.from(Product.class);
 		if (root != null) {
-			TestUtil.logTrace("Obtained Non-null root");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null root");
 			if (root.getModel().getName().equals(cd.getRoot().getModel().getName())) {
-				TestUtil.logTrace("Obtained expected root");
+				logger.log(Logger.Level.TRACE, "Obtained expected root");
 				cd.set(root.get("quantity"), 0);
 				int actual = getEntityManager().createQuery(cd).executeUpdate();
 				if (actual == productRef.length + softwareRef.length + hardwareRef.length) {
 					pass1 = true;
-					TestUtil.logTrace("Received expected number of updates:" + actual);
+					logger.log(Logger.Level.TRACE, "Received expected number of updates:" + actual);
 					clearCache();
 					for (Product p : productRef) {
 						Product pp = getEntityManager().find(Product.class, p.getId());
 						if (pp.getQuantity() != 0) {
-							TestUtil.logErr("Expected product:" + p.getId() + " to have quantity of 0, actual:"
-									+ pp.getQuantity());
+							logger.log(Logger.Level.ERROR, "Expected product:" + p.getId()
+									+ " to have quantity of 0, actual:" + pp.getQuantity());
 							pass2 = false;
 						}
 					}
 					for (Product p : softwareRef) {
 						Product pp = getEntityManager().find(Product.class, p.getId());
 						if (pp.getQuantity() != 0) {
-							TestUtil.logErr("Expected product:" + p.getId() + " to have quantity of 0, actual:"
-									+ pp.getQuantity());
+							logger.log(Logger.Level.ERROR, "Expected product:" + p.getId()
+									+ " to have quantity of 0, actual:" + pp.getQuantity());
 							pass3 = false;
 						}
 					}
 					for (Product p : hardwareRef) {
 						Product pp = getEntityManager().find(Product.class, p.getId());
 						if (pp.getQuantity() != 0) {
-							TestUtil.logErr("Expected product:" + p.getId() + " to have quantity of 0, actual:"
-									+ pp.getQuantity());
+							logger.log(Logger.Level.ERROR, "Expected product:" + p.getId()
+									+ " to have quantity of 0, actual:" + pp.getQuantity());
 							pass4 = false;
 						}
 					}
 				} else {
-					TestUtil.logErr("Expected:" + productRef.length + softwareRef.length + hardwareRef.length
-							+ ", actual:" + actual);
+					logger.log(Logger.Level.ERROR, "Expected:" + productRef.length + softwareRef.length
+							+ hardwareRef.length + ", actual:" + actual);
 				}
 			} else {
-				TestUtil.logErr("Failed to get expected root");
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR, "Failed to get expected root");
+				logger.log(Logger.Level.ERROR,
 						"Expected:" + cd.getRoot().getModel().getName() + ", actual:" + root.getModel().getName());
 			}
 		} else {
-			TestUtil.logErr("Failed to get Non-null root");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
 		}
 		getEntityTransaction().commit();
 		if (!pass1 || !pass2 || !pass3 || !pass4) {
@@ -634,7 +635,7 @@ public class ClientIT extends Util {
 		CriteriaUpdate<Product> cd = cbuilder.createCriteriaUpdate(Product.class);
 		Root<Product> root = cd.from(Product.class);
 		if (root != null) {
-			TestUtil.logTrace("Obtained Non-null root");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null root");
 
 			EntityType<Product> product_ = root.getModel();
 			Expression<Integer> exp = cbuilder.prod(root.get(product_.getSingularAttribute("quantity", Integer.class)),
@@ -644,12 +645,12 @@ public class ClientIT extends Util {
 			int actual = getEntityManager().createQuery(cd).executeUpdate();
 			if (actual == productRef.length + softwareRef.length + hardwareRef.length) {
 				pass1 = true;
-				TestUtil.logTrace("Received expected number of updates:" + actual);
+				logger.log(Logger.Level.TRACE, "Received expected number of updates:" + actual);
 				clearCache();
 				for (Product p : productRef) {
 					Product pp = getEntityManager().find(Product.class, p.getId());
 					if (pp.getQuantity() != 0) {
-						TestUtil.logErr(
+						logger.log(Logger.Level.ERROR,
 								"Expected product:" + p.getId() + " to have quantity of 0, actual:" + pp.getQuantity());
 						pass2 = false;
 					}
@@ -657,7 +658,7 @@ public class ClientIT extends Util {
 				for (Product p : softwareRef) {
 					Product pp = getEntityManager().find(Product.class, p.getId());
 					if (pp.getQuantity() != 0) {
-						TestUtil.logErr(
+						logger.log(Logger.Level.ERROR,
 								"Expected product:" + p.getId() + " to have quantity of 0, actual:" + pp.getQuantity());
 						pass3 = false;
 					}
@@ -665,17 +666,17 @@ public class ClientIT extends Util {
 				for (Product p : hardwareRef) {
 					Product pp = getEntityManager().find(Product.class, p.getId());
 					if (pp.getQuantity() != 0) {
-						TestUtil.logErr(
+						logger.log(Logger.Level.ERROR,
 								"Expected product:" + p.getId() + " to have quantity of 0, actual:" + pp.getQuantity());
 						pass4 = false;
 					}
 				}
 			} else {
-				TestUtil.logErr("Expected:" + productRef.length + softwareRef.length + hardwareRef.length + ", actual:"
-						+ actual);
+				logger.log(Logger.Level.ERROR, "Expected:" + productRef.length + softwareRef.length + hardwareRef.length
+						+ ", actual:" + actual);
 			}
 		} else {
-			TestUtil.logErr("Failed to get Non-null root");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
 		}
 		getEntityTransaction().commit();
 		if (!pass1 || !pass2 || !pass3 || !pass4) {
@@ -703,7 +704,7 @@ public class ClientIT extends Util {
 		getEntityTransaction().begin();
 		CriteriaUpdate<Product> cu = cbuilder.createCriteriaUpdate(Product.class);
 		if (cu != null) {
-			TestUtil.logTrace("Obtained Non-null Criteria Query");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
 			Root<Product> product = cu.from(Product.class);
 			EntityType<Product> product_ = product.getModel();
 
@@ -728,20 +729,21 @@ public class ClientIT extends Util {
 
 			int actual = getEntityManager().createQuery(cu).executeUpdate();
 			if (actual == 1) {
-				TestUtil.logTrace("Received expected number of updates:" + actual);
+				logger.log(Logger.Level.TRACE, "Received expected number of updates:" + actual);
 				clearCache();
 				Product pp = getEntityManager().find(Product.class, "1");
 				if (pp.getQuantity() != 0) {
-					TestUtil.logErr("Expected product:1 to have quantity of 0, actual:" + pp.getQuantity());
+					logger.log(Logger.Level.ERROR,
+							"Expected product:1 to have quantity of 0, actual:" + pp.getQuantity());
 				} else {
 					pass = true;
 				}
 			} else {
-				TestUtil.logErr("Expected:1, actual:" + actual);
+				logger.log(Logger.Level.ERROR, "Expected:1, actual:" + actual);
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null Criteria Query");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -769,7 +771,7 @@ public class ClientIT extends Util {
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 		getEntityTransaction().begin();
-		TestUtil.logMsg("Testing initial query");
+		logger.log(Logger.Level.INFO, "Testing initial query");
 		CriteriaUpdate<SoftwareProduct> cd = cbuilder.createCriteriaUpdate(SoftwareProduct.class);
 		Root<SoftwareProduct> softwareproduct = cd.from(SoftwareProduct.class);
 		if (softwareproduct != null) {
@@ -778,48 +780,49 @@ public class ClientIT extends Util {
 			cd.where(cbuilder.lt(softwareproduct.get(softwareproduct_.getSingularAttribute("quantity", Integer.class)),
 					35));
 			Query q = getEntityManager().createQuery(cd);
-			TestUtil.logMsg("Modify CriteriaUpdate object");
+			logger.log(Logger.Level.INFO, "Modify CriteriaUpdate object");
 			cd.where(cbuilder.lt(softwareproduct.get(softwareproduct_.getSingularAttribute("quantity", Integer.class)),
 					500));
 			int actual = q.executeUpdate();
 			if (actual == 4) {
-				TestUtil.logTrace("Received expected number of updates:" + actual);
+				logger.log(Logger.Level.TRACE, "Received expected number of updates:" + actual);
 				clearCache();
 				for (Product p : softwareRef) {
 					Product pp = getEntityManager().find(SoftwareProduct.class, p.getId());
 					if (p.getId().equals("30") || p.getId().equals("31") || p.getId().equals("36")
 							|| p.getId().equals("37")) {
 						if (pp.getQuantity() != 0) {
-							TestUtil.logErr("id:" + p.getId() + " to have quantity of 0, actual:" + pp.getQuantity());
+							logger.log(Logger.Level.ERROR,
+									"id:" + p.getId() + " to have quantity of 0, actual:" + pp.getQuantity());
 						} else {
-							TestUtil.logTrace("id:" + p.getId() + " update was successfully");
+							logger.log(Logger.Level.TRACE, "id:" + p.getId() + " update was successfully");
 							passModifiedCount1++;
 						}
 					} else {
 						if (pp.getQuantity() != p.getQuantity()) {
-							TestUtil.logErr(
+							logger.log(Logger.Level.ERROR,
 									"id:" + p.getId() + " quantity does not equal original value:" + p.getQuantity());
 						} else {
-							TestUtil.logTrace(
+							logger.log(Logger.Level.TRACE,
 									"id:" + pp.getId() + " quantity matches original value:" + p.getQuantity());
 							passUnModifiedCount1++;
 						}
 					}
 				}
 			} else {
-				TestUtil.logErr("Expected: 4 updates, actual:" + actual);
+				logger.log(Logger.Level.ERROR, "Expected: 4 updates, actual:" + actual);
 				for (Product p : softwareRef) {
 					Product pp = getEntityManager().find(Product.class, p.getId());
-					TestUtil.logErr("id:" + p.getId() + ", quantity:" + pp.getQuantity());
+					logger.log(Logger.Level.ERROR, "id:" + p.getId() + ", quantity:" + pp.getQuantity());
 				}
 			}
-			TestUtil.logMsg("Testing modified CriteriaQuery");
+			logger.log(Logger.Level.INFO, "Testing modified CriteriaQuery");
 			cd.where(cbuilder.gt(softwareproduct.get(softwareproduct_.getSingularAttribute("quantity", Integer.class)),
 					100));
 
 			actual = getEntityManager().createQuery(cd).executeUpdate();
 			if (actual == 3) {
-				TestUtil.logTrace("Received expected number of updates:" + actual);
+				logger.log(Logger.Level.TRACE, "Received expected number of updates:" + actual);
 				clearCache();
 				for (Product p : softwareRef) {
 					Product pp = getEntityManager().find(SoftwareProduct.class, p.getId());
@@ -827,32 +830,33 @@ public class ClientIT extends Util {
 							|| p.getId().equals("30") || p.getId().equals("31") || p.getId().equals("36")
 							|| p.getId().equals("37")) {
 						if (pp.getQuantity() != 0) {
-							TestUtil.logErr("id:" + p.getId() + " to have quantity of 0, actual:" + pp.getQuantity());
+							logger.log(Logger.Level.ERROR,
+									"id:" + p.getId() + " to have quantity of 0, actual:" + pp.getQuantity());
 						} else {
-							TestUtil.logTrace("id:" + p.getId() + " update was successfully");
+							logger.log(Logger.Level.TRACE, "id:" + p.getId() + " update was successfully");
 							passModifiedCount2++;
 						}
 					} else {
 						if (pp.getQuantity() != p.getQuantity()) {
-							TestUtil.logErr(
+							logger.log(Logger.Level.ERROR,
 									"id:" + p.getId() + " quantity does not equal original value:" + p.getQuantity());
 						} else {
-							TestUtil.logTrace(
+							logger.log(Logger.Level.TRACE,
 									"id:" + pp.getId() + " quantity matches original value:" + p.getQuantity());
 							passUnModifiedCount2++;
 						}
 					}
 				}
 			} else {
-				TestUtil.logErr("Expected: 3, actual:" + actual);
+				logger.log(Logger.Level.ERROR, "Expected: 3, actual:" + actual);
 				for (Product p : softwareRef) {
 					Product pp = getEntityManager().find(Product.class, p.getId());
-					TestUtil.logErr("id:" + p.getId() + ", quantity:" + pp.getQuantity());
+					logger.log(Logger.Level.ERROR, "id:" + p.getId() + ", quantity:" + pp.getQuantity());
 				}
 			}
 
 		} else {
-			TestUtil.logErr("Failed to get Non-null root");
+			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
 		}
 
 		getEntityTransaction().commit();
@@ -864,7 +868,7 @@ public class ClientIT extends Util {
 	}
 
 	public void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -874,14 +878,14 @@ public class ClientIT extends Util {
 			getEntityManager().createNativeQuery("DELETE FROM PRODUCT_TABLE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

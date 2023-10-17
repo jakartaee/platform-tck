@@ -16,12 +16,13 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.mapattribute;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.metamodel.ManagedType;
@@ -30,8 +31,9 @@ import jakarta.persistence.metamodel.Metamodel;
 import jakarta.persistence.metamodel.PluralAttribute;
 import jakarta.persistence.metamodel.Type;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public ClientIT() {
 	}
@@ -47,12 +49,12 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -72,20 +74,22 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Department> mType = metaModel.managedType(Department.class);
 			if (mType != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				MapAttribute<Department, String, Employee> mapAttrib = mType.getDeclaredMap("lastNameEmployees",
 						java.lang.String.class, com.sun.ts.tests.jpa.core.metamodelapi.mapattribute.Employee.class);
 				Class javaKeyType = mapAttrib.getKeyJavaType();
 
 				if (javaKeyType.getName().equals("java.lang.String")) {
-					TestUtil.logTrace("Received Expected Map Attribute's Java Key Type  = " + javaKeyType.getName());
+					logger.log(Logger.Level.TRACE,
+							"Received Expected Map Attribute's Java Key Type  = " + javaKeyType.getName());
 					pass = true;
 
 				} else {
-					TestUtil.logTrace("Received UnExpected Map Attribute's Java Key Type  = " + javaKeyType.getName());
+					logger.log(Logger.Level.TRACE,
+							"Received UnExpected Map Attribute's Java Key Type  = " + javaKeyType.getName());
 				}
 			}
 		}
@@ -112,21 +116,23 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Department> mType = metaModel.managedType(Department.class);
 			if (mType != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				MapAttribute<Department, String, Employee> mapAttrib = mType.getDeclaredMap("lastNameEmployees",
 						java.lang.String.class, com.sun.ts.tests.jpa.core.metamodelapi.mapattribute.Employee.class);
 				Type keyType = mapAttrib.getKeyType();
 				String javaKeyTypeName = keyType.getJavaType().getName();
 
 				if (javaKeyTypeName.equals("java.lang.String")) {
-					TestUtil.logTrace("Received Expected Map Attribute's Java Key Type  = " + javaKeyTypeName);
+					logger.log(Logger.Level.TRACE,
+							"Received Expected Map Attribute's Java Key Type  = " + javaKeyTypeName);
 					pass = true;
 
 				} else {
-					TestUtil.logTrace("Received UnExpected Map Attribute's Java Key Type  = " + javaKeyTypeName);
+					logger.log(Logger.Level.TRACE,
+							"Received UnExpected Map Attribute's Java Key Type  = " + javaKeyTypeName);
 				}
 			}
 		}
@@ -155,10 +161,10 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Department> mType = metaModel.managedType(Department.class);
 			if (mType != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				MapAttribute<Department, String, Employee> mapAttrib = mType.getDeclaredMap("lastNameEmployees",
 						java.lang.String.class, com.sun.ts.tests.jpa.core.metamodelapi.mapattribute.Employee.class);
 				PluralAttribute.CollectionType type = mapAttrib.getCollectionType();
@@ -166,20 +172,20 @@ public class ClientIT extends PMClientBase {
 					String name = type.name();
 
 					if (name.equals(expected)) {
-						TestUtil.logTrace("Received expected result: " + name);
+						logger.log(Logger.Level.TRACE, "Received expected result: " + name);
 						pass = true;
 
 					} else {
-						TestUtil.logTrace("Expected: " + expected + ", actual: " + name);
+						logger.log(Logger.Level.TRACE, "Expected: " + expected + ", actual: " + name);
 					}
 				} else {
-					TestUtil.logErr("getCollectionType() returned null");
+					logger.log(Logger.Level.ERROR, "getCollectionType() returned null");
 				}
 			} else {
-				TestUtil.logErr("managedType() returned null");
+				logger.log(Logger.Level.ERROR, "managedType() returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -206,10 +212,10 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Department> mType = metaModel.managedType(Department.class);
 			if (mType != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				MapAttribute<Department, String, Employee> mapAttrib = mType.getDeclaredMap("lastNameEmployees",
 						java.lang.String.class, com.sun.ts.tests.jpa.core.metamodelapi.mapattribute.Employee.class);
 				Type type = mapAttrib.getElementType();
@@ -217,20 +223,20 @@ public class ClientIT extends PMClientBase {
 					String name = type.getJavaType().getName();
 
 					if (name.equals(expected)) {
-						TestUtil.logTrace("Received expected result: " + name);
+						logger.log(Logger.Level.TRACE, "Received expected result: " + name);
 						pass = true;
 
 					} else {
-						TestUtil.logTrace("Expected: " + expected + ", actual: " + name);
+						logger.log(Logger.Level.TRACE, "Expected: " + expected + ", actual: " + name);
 					}
 				} else {
-					TestUtil.logErr("getElementType() returned null");
+					logger.log(Logger.Level.ERROR, "getElementType() returned null");
 				}
 			} else {
-				TestUtil.logErr("managedType() returned null");
+				logger.log(Logger.Level.ERROR, "managedType() returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -242,14 +248,14 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("Cleanup data");
+		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}

@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.versioning;
 
+import java.lang.System.Logger;
 import java.math.BigInteger;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -27,11 +28,11 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public ClientIT() {
 	}
@@ -47,13 +48,13 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -76,7 +77,7 @@ public class ClientIT extends PMClientBase {
 	@Test
 	public void versionTest1() throws Exception {
 
-		TestUtil.logTrace("Begin versionTest1");
+		logger.log(Logger.Level.TRACE, "Begin versionTest1");
 		boolean pass1 = true;
 		boolean pass2 = true;
 		boolean pass3 = true;
@@ -94,10 +95,10 @@ public class ClientIT extends PMClientBase {
 
 			Member newMember = getEntityManager().find(Member.class, 1);
 			if (newMember.getVersion() == null) {
-				TestUtil.logErr("version after persistence is null.");
+				logger.log(Logger.Level.ERROR, "version after persistence is null.");
 				pass1 = false;
 			} else {
-				TestUtil.logTrace("Correct non-null version after create: " + newMember.getVersion());
+				logger.log(Logger.Level.TRACE, "Correct non-null version after create: " + newMember.getVersion());
 			}
 
 			// update member
@@ -111,11 +112,11 @@ public class ClientIT extends PMClientBase {
 
 			Member newMember3 = getEntityManager().find(Member.class, 1);
 			if (newMember3.getVersion() <= oldVersion) {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Wrong version after update: " + newMember3.getVersion() + ", old version: " + oldVersion);
 				pass2 = false;
 			} else {
-				TestUtil.logTrace(
+				logger.log(Logger.Level.TRACE,
 						"Correct version after update: " + newMember3.getVersion() + ", old version: " + oldVersion);
 			}
 
@@ -129,16 +130,16 @@ public class ClientIT extends PMClientBase {
 
 			Member newMember4 = getEntityManager().find(Member.class, 1);
 			if (newMember4.getVersion() != oldVersion) {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Wrong version after query, expected " + oldVersion + ", got " + newMember4.getVersion());
 				pass3 = false;
 			} else {
-				TestUtil.logTrace(
+				logger.log(Logger.Level.TRACE,
 						"Correct version after query, expected " + oldVersion + ", got:" + newMember4.getVersion());
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass1 = false;
 			pass2 = false;
 			pass3 = false;
@@ -148,7 +149,7 @@ public class ClientIT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -158,15 +159,15 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 		removeDeploymentJar();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -175,14 +176,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM MEMBER").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

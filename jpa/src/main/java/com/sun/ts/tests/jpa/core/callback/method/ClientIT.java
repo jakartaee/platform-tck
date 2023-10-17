@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.callback.method;
 
+import java.lang.System.Logger;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,14 +29,14 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.core.callback.common.Constants;
 import com.sun.ts.tests.jpa.core.callback.common.EntityCallbackClientBase;
 
 import jakarta.persistence.Query;
 
-
 public class ClientIT extends EntityCallbackClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	private static final long serialVersionUID = 1L;
 
@@ -54,20 +55,21 @@ public class ClientIT extends EntityCallbackClientBase {
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = ClientIT.class.getPackageName() + ".";
 		String[] classes = { pkgName + "LineItem", pkgName + "Order", pkgName + "Product" };
-		return createDeploymentJar("jpa_core_callback_method.jar", pkgNameWithoutSuffix, classes);
+		String[] xmlFiles = { "orm.xml" };
+		return createDeploymentJar("jpa_core_callback_listeneroverride.jar", pkgNameWithoutSuffix, classes, xmlFiles);
 
 	}
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 
 			super.setup();
 			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -90,14 +92,14 @@ public class ClientIT extends EntityCallbackClientBase {
 
 			if (product.isPrePersistCalled()) {
 				reason = "Product: prePersist was called.";
-				TestUtil.logTrace(reason);
+				logger.log(Logger.Level.TRACE, reason);
 			} else {
 				reason = "Product: prePersist was not called.";
 				throw new Exception(reason);
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception caught during prePersistTest", e);
+			logger.log(Logger.Level.ERROR, "Exception caught during prePersistTest", e);
 			throw new Exception(e);
 		} finally {
 			try {
@@ -105,7 +107,7 @@ public class ClientIT extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Exception caught while rolling back TX", re);
+				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -139,7 +141,7 @@ public class ClientIT extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Exception caught while rolling back TX", re);
+				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -168,7 +170,7 @@ public class ClientIT extends EntityCallbackClientBase {
 
 			if (order.isPrePersistCalled()) {
 				reason = "Order: prePersist was called.";
-				TestUtil.logTrace(reason);
+				logger.log(Logger.Level.TRACE, reason);
 			} else {
 				reason = "Order: prePersist was not called.";
 				throw new Exception(reason);
@@ -176,7 +178,7 @@ public class ClientIT extends EntityCallbackClientBase {
 
 			if (lineItem.isPrePersistCalled()) {
 				reason = "LineItem: prePersist was called.";
-				TestUtil.logTrace(reason);
+				logger.log(Logger.Level.TRACE, reason);
 			} else {
 				reason = "LineItem: prePersist was not called.";
 				throw new Exception(reason);
@@ -184,7 +186,7 @@ public class ClientIT extends EntityCallbackClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Exception caught during prePersistCascadeTest", e);
+			logger.log(Logger.Level.ERROR, "Exception caught during prePersistCascadeTest", e);
 			throw new Exception(e);
 		} finally {
 			try {
@@ -192,7 +194,7 @@ public class ClientIT extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Exception caught while rolling back TX", re);
+				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -239,7 +241,7 @@ public class ClientIT extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Exception caught while rolling back TX", re);
+				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -263,7 +265,7 @@ public class ClientIT extends EntityCallbackClientBase {
 
 			if (product.isPreRemoveCalled()) {
 				reason = "Product: preRemove was called.";
-				TestUtil.logTrace(reason);
+				logger.log(Logger.Level.TRACE, reason);
 			} else {
 				reason = "Product: preRemove was not called.";
 				throw new Exception(reason);
@@ -271,7 +273,7 @@ public class ClientIT extends EntityCallbackClientBase {
 			product = null;
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception caught during preRemoveTest", e);
+			logger.log(Logger.Level.ERROR, "Exception caught during preRemoveTest", e);
 			throw new Exception(e);
 		} finally {
 			try {
@@ -279,7 +281,7 @@ public class ClientIT extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Exception caught while rolling back TX", re);
+				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -316,7 +318,7 @@ public class ClientIT extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Exception caught while rolling back TX", re);
+				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -348,7 +350,7 @@ public class ClientIT extends EntityCallbackClientBase {
 
 			if (b) {
 				reason = "Order: preRemove was called.";
-				TestUtil.logTrace(reason);
+				logger.log(Logger.Level.TRACE, reason);
 			} else {
 				reason = "Order: preRemove was not called.";
 				throw new Exception(reason);
@@ -356,7 +358,7 @@ public class ClientIT extends EntityCallbackClientBase {
 
 			if (lineItem.isPreRemoveCalled()) {
 				reason = "LineItem: preRemove was called.";
-				TestUtil.logTrace(reason);
+				logger.log(Logger.Level.TRACE, reason);
 			} else {
 				reason = "LineItem: preRemove was not called.";
 				throw new Exception(reason);
@@ -364,7 +366,7 @@ public class ClientIT extends EntityCallbackClientBase {
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception caught during preRemoveCascadeTest", e);
+			logger.log(Logger.Level.ERROR, "Exception caught during preRemoveCascadeTest", e);
 			throw new Exception(e);
 		} finally {
 			try {
@@ -372,7 +374,7 @@ public class ClientIT extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Exception caught while rolling back TX", re);
+				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -414,7 +416,7 @@ public class ClientIT extends EntityCallbackClientBase {
 			order = null;
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception caught during preRemoveMultiCascadeTest", e);
+			logger.log(Logger.Level.ERROR, "Exception caught during preRemoveMultiCascadeTest", e);
 			throw new Exception(e);
 		} finally {
 			try {
@@ -422,7 +424,7 @@ public class ClientIT extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Exception caught while rolling back TX", re);
+				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -446,7 +448,7 @@ public class ClientIT extends EntityCallbackClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Exception caught during preUpdateTest", e);
+			logger.log(Logger.Level.ERROR, "Exception caught during preUpdateTest", e);
 			throw new Exception(e);
 		} finally {
 			try {
@@ -454,7 +456,7 @@ public class ClientIT extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Exception caught while rolling back TX", re);
+				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -481,11 +483,11 @@ public class ClientIT extends EntityCallbackClientBase {
 			// for(int i = 0, n = results.size(); i < n; i++) {
 			//
 			// }
-			TestUtil.logTrace(results.toString());
+			logger.log(Logger.Level.TRACE, results.toString());
 
 			if (product.isPostLoadCalled()) {
 				reason = "Product: postLoad was called after the query result was returned.";
-				TestUtil.logTrace(reason);
+				logger.log(Logger.Level.TRACE, reason);
 			} else {
 				reason = "Product: postLoad was not called even after the query result was returned.";
 				throw new Exception(reason);
@@ -493,7 +495,7 @@ public class ClientIT extends EntityCallbackClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Exception caught during postLoadTest", e);
+			logger.log(Logger.Level.ERROR, "Exception caught during postLoadTest", e);
 			throw new Exception(e);
 		} finally {
 			try {
@@ -501,7 +503,7 @@ public class ClientIT extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Exception caught while rolling back TX", re);
+				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -525,7 +527,7 @@ public class ClientIT extends EntityCallbackClientBase {
 			getEntityManager().refresh(product);
 			final Query q = getEntityManager().createQuery("select distinct p from Product p");
 			final java.util.List results = q.getResultList();
-			TestUtil.logTrace(results.toString());
+			logger.log(Logger.Level.TRACE, results.toString());
 
 			final List expected = Arrays.asList(Constants.LISTENER_A, Constants.LISTENER_B, Constants.LISTENER_C,
 					Constants.PRODUCT);
@@ -541,7 +543,7 @@ public class ClientIT extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Exception caught while rolling back TX", re);
+				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -573,15 +575,15 @@ public class ClientIT extends EntityCallbackClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 		removeDeploymentJar();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -592,14 +594,14 @@ public class ClientIT extends EntityCallbackClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM PRODUCT_TABLE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

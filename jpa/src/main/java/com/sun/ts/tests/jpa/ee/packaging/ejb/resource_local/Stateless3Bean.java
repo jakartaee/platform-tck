@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.jpa.ee.packaging.ejb.resource_local;
 
+import java.lang.System.Logger;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -44,6 +45,8 @@ import jakarta.persistence.RollbackException;
 @Stateless(name = "Stateless3Bean")
 @Remote({ Stateless3IF.class })
 public class Stateless3Bean implements Stateless3IF {
+
+	private static final Logger logger = (Logger) System.getLogger(Stateless3Bean.class.getName());
 
 	public Stateless3Bean() {
 	}
@@ -73,9 +76,9 @@ public class Stateless3Bean implements Stateless3IF {
 				entityManager.close();
 			}
 		} catch (IllegalStateException ise) {
-			TestUtil.logTrace("IllegalStateException caught during entityManager.close()" + ise);
+			logger.log(Logger.Level.TRACE, "IllegalStateException caught during entityManager.close()" + ise);
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception caught during cleanupEM method" + e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception caught during cleanupEM method" + e);
 		}
 	}
 
@@ -85,7 +88,7 @@ public class Stateless3Bean implements Stateless3IF {
 			entityManager.createNativeQuery("DELETE FROM AEJB_1X1_BI_BTOB").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception caught while cleaning up:", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception caught while cleaning up:", e);
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
@@ -94,13 +97,13 @@ public class Stateless3Bean implements Stateless3IF {
 		}
 		// clear the cache if the provider supports caching otherwise
 		// the evictAll is ignored.
-		TestUtil.logTrace("Clearing cache");
+		logger.log(Logger.Level.TRACE, "Clearing cache");
 		emf.getCache().evictAll();
-		TestUtil.logTrace("cleanup complete");
+		logger.log(Logger.Level.TRACE, "cleanup complete");
 	}
 
 	public void init(final Properties p) {
-		TestUtil.logTrace("init");
+		logger.log(Logger.Level.TRACE, "init");
 		try {
 			TestUtil.init(p);
 		} catch (RemoteLoggingInitException e) {
@@ -117,23 +120,23 @@ public class Stateless3Bean implements Stateless3IF {
 	@PostConstruct
 	public void prepareEnvironment() {
 		try {
-			TestUtil.logTrace("In PostContruct");
-			TestUtil.logTrace("Obtain naming context");
+			logger.log(Logger.Level.TRACE, "In PostContruct");
+			logger.log(Logger.Level.TRACE, "Obtain naming context");
 			TSNamingContext nctx = new TSNamingContext();
 			if (emf == null) {
 				emf = (EntityManagerFactory) nctx.lookup(thisEMF);
 			}
 			if (emf != null) {
-				TestUtil.logTrace("EMF is not null, create Entity Manager");
+				logger.log(Logger.Level.TRACE, "EMF is not null, create Entity Manager");
 				entityManager = emf.createEntityManager(thisMap);
 				if (entityManager == null) {
-					TestUtil.logErr("EntityManager is null!");
+					logger.log(Logger.Level.ERROR, "EntityManager is null!");
 				}
 			} else {
-				TestUtil.logErr("EntityManagerFactory is null!");
+				logger.log(Logger.Level.ERROR, "EntityManagerFactory is null!");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("In PostConstruct: Exception caught during init", e);
+			logger.log(Logger.Level.ERROR, "In PostConstruct: Exception caught during init", e);
 		}
 	}
 
@@ -156,7 +159,7 @@ public class Stateless3Bean implements Stateless3IF {
 			pass = entityTransaction.isActive();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception", e);
 			pass = false;
 		} finally {
 			try {
@@ -164,7 +167,7 @@ public class Stateless3Bean implements Stateless3IF {
 					entityTransaction.rollback();
 				}
 			} catch (PersistenceException e) {
-				TestUtil.logErr("Unexpected Exception rolling back TX", e);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception rolling back TX", e);
 			}
 		}
 		return pass;
@@ -181,18 +184,18 @@ public class Stateless3Bean implements Stateless3IF {
 			}
 
 		} catch (IllegalStateException iae) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected");
 			pass = true;
 		} catch (Exception e) {
 			pass = false;
-			TestUtil.logErr("Unexpected Exception Caught:", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught:", e);
 		} finally {
 			try {
 				if (entityTransaction.isActive()) {
 					entityTransaction.rollback();
 				}
 			} catch (PersistenceException e) {
-				TestUtil.logErr("Unexpected Exception rolling back TX", e);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception rolling back TX", e);
 			}
 		}
 		return pass;
@@ -226,14 +229,14 @@ public class Stateless3Bean implements Stateless3IF {
 
 		} catch (Exception e) {
 			pass = false;
-			TestUtil.logErr("Unexpected Exception Caught", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
 		} finally {
 			try {
 				if (entityTransaction.isActive()) {
 					entityTransaction.rollback();
 				}
 			} catch (PersistenceException e) {
-				TestUtil.logErr("Unexpected Exception rolling back TX", e);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception rolling back TX", e);
 			}
 		}
 		return pass;
@@ -249,18 +252,18 @@ public class Stateless3Bean implements Stateless3IF {
 			}
 
 		} catch (IllegalStateException iae) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected in test4");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected in test4");
 			pass = true;
 		} catch (Exception e) {
 			pass = false;
-			TestUtil.logErr("Unexpected Exception Caught", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
 		} finally {
 			try {
 				if (entityTransaction.isActive()) {
 					entityTransaction.rollback();
 				}
 			} catch (PersistenceException e) {
-				TestUtil.logErr("Unexpected Exception rolling back TX", e);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception rolling back TX", e);
 			}
 		}
 		return pass;
@@ -278,18 +281,18 @@ public class Stateless3Bean implements Stateless3IF {
 			entityTransaction.commit();
 
 		} catch (RollbackException re) {
-			TestUtil.logTrace("RollbackException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "RollbackException Caught as Expected");
 			pass = true;
 		} catch (Exception e) {
 			pass = false;
-			TestUtil.logErr("Unexpected Exception Caught", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
 		} finally {
 			try {
 				if (entityTransaction.isActive()) {
 					entityTransaction.rollback();
 				}
 			} catch (PersistenceException e) {
-				TestUtil.logErr("Unexpected Exception rolling back TX", e);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception rolling back TX", e);
 			}
 		}
 		return pass;
@@ -322,14 +325,14 @@ public class Stateless3Bean implements Stateless3IF {
 
 		} catch (Exception e) {
 			pass = false;
-			TestUtil.logErr("Unexpected Exception Caught", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
 		} finally {
 			try {
 				if (entityTransaction.isActive()) {
 					entityTransaction.rollback();
 				}
 			} catch (PersistenceException e) {
-				TestUtil.logErr("Unexpected Exception rolling back TX", e);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception rolling back TX", e);
 			}
 		}
 
@@ -355,14 +358,14 @@ public class Stateless3Bean implements Stateless3IF {
 
 		} catch (Exception e) {
 			pass = false;
-			TestUtil.logErr("Unexpected Exception Caught", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
 		} finally {
 			try {
 				if (entityTransaction.isActive()) {
 					entityTransaction.rollback();
 				}
 			} catch (PersistenceException e) {
-				TestUtil.logErr("Unexpected Exception rolling back TX", e);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception rolling back TX", e);
 			}
 		}
 		return pass;
@@ -379,18 +382,18 @@ public class Stateless3Bean implements Stateless3IF {
 			}
 
 		} catch (IllegalStateException iae) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected");
 			pass = true;
 		} catch (Exception e) {
 			pass = false;
-			TestUtil.logErr("Unexpected Exception Caught", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
 		} finally {
 			try {
 				if (entityTransaction.isActive()) {
 					entityTransaction.rollback();
 				}
 			} catch (PersistenceException e) {
-				TestUtil.logErr("Unexpected Exception rolling back TX", e);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception rolling back TX", e);
 			}
 		}
 		return pass;
@@ -415,14 +418,14 @@ public class Stateless3Bean implements Stateless3IF {
 
 		} catch (Exception e) {
 			pass = false;
-			TestUtil.logErr("Unexpected Exception Caught", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
 		} finally {
 			try {
 				if (entityTransaction.isActive()) {
 					entityTransaction.rollback();
 				}
 			} catch (PersistenceException e) {
-				TestUtil.logErr("Unexpected Exception rolling back TX", e);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception rolling back TX", e);
 			}
 		}
 		return pass;
@@ -438,19 +441,19 @@ public class Stateless3Bean implements Stateless3IF {
 			}
 
 		} catch (IllegalStateException iae) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected");
 			pass = true;
 
 		} catch (Exception e) {
 			pass = false;
-			TestUtil.logErr("Unexpected Exception Caught in test10", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught in test10", e);
 		} finally {
 			try {
 				if (entityTransaction.isActive()) {
 					entityTransaction.rollback();
 				}
 			} catch (PersistenceException e) {
-				TestUtil.logErr("Unexpected Exception rolling back TX", e);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception rolling back TX", e);
 			}
 		}
 		return pass;
@@ -473,14 +476,14 @@ public class Stateless3Bean implements Stateless3IF {
 
 		} catch (Exception e) {
 			pass = false;
-			TestUtil.logErr("Unexpected Exception Caught", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
 		} finally {
 			try {
 				if (entityTransaction.isActive()) {
 					entityTransaction.rollback();
 				}
 			} catch (PersistenceException e) {
-				TestUtil.logErr("Unexpected Exception rolling back TX", e);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception rolling back TX", e);
 			}
 		}
 		return pass;
@@ -499,14 +502,14 @@ public class Stateless3Bean implements Stateless3IF {
 
 		} catch (PersistenceException e) {
 			pass = false;
-			TestUtil.logErr("Unexpected PersistenceException Caught", e);
+			logger.log(Logger.Level.ERROR, "Unexpected PersistenceException Caught", e);
 		} finally {
 			try {
 				if (entityTransaction.isActive()) {
 					entityTransaction.rollback();
 				}
 			} catch (PersistenceException e) {
-				TestUtil.logErr("Unexpected PersistenceException rolling back TX", e);
+				logger.log(Logger.Level.ERROR, "Unexpected PersistenceException rolling back TX", e);
 			}
 		}
 		return pass;
@@ -521,14 +524,14 @@ public class Stateless3Bean implements Stateless3IF {
 
 		} catch (PersistenceException e) {
 			pass = false;
-			TestUtil.logErr("Unexpected PersistenceException Caught", e);
+			logger.log(Logger.Level.ERROR, "Unexpected PersistenceException Caught", e);
 		} finally {
 			try {
 				if (entityTransaction.isActive()) {
 					entityTransaction.rollback();
 				}
 			} catch (PersistenceException e) {
-				TestUtil.logErr("Unexpected PersistenceException rolling back TX", e);
+				logger.log(Logger.Level.ERROR, "Unexpected PersistenceException rolling back TX", e);
 			}
 		}
 		return pass;
@@ -552,20 +555,20 @@ public class Stateless3Bean implements Stateless3IF {
 				entityManager.persist(newA2);
 				entityManager.flush();
 			} catch (Exception ex) {
-				TestUtil.logTrace("newA2 has the same PK as newA");
+				logger.log(Logger.Level.TRACE, "newA2 has the same PK as newA");
 				pass = entityTransaction.getRollbackOnly();
 			}
 			entityTransaction.rollback();
 		} catch (Exception e) {
 			pass = false;
-			TestUtil.logErr("Unexpected Exception Caught", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
 		} finally {
 			try {
 				if (entityTransaction.isActive()) {
 					entityTransaction.rollback();
 				}
 			} catch (PersistenceException e) {
-				TestUtil.logErr("Unexpected PersistenceException rolling back TX", e);
+				logger.log(Logger.Level.ERROR, "Unexpected PersistenceException rolling back TX", e);
 			}
 		}
 		return pass;
@@ -590,7 +593,7 @@ public class Stateless3Bean implements Stateless3IF {
 
 		} catch (IllegalStateException ise) {
 			pass = false;
-			TestUtil.logErr("Unexpected Exception Caught", ise);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", ise);
 		} finally {
 			try {
 				if (et != null) {
@@ -598,12 +601,12 @@ public class Stateless3Bean implements Stateless3IF {
 						et.rollback();
 					}
 				} else {
-					TestUtil.logTrace("EntityTransaction never got assigned and is null");
+					logger.log(Logger.Level.TRACE, "EntityTransaction never got assigned and is null");
 					pass = false;
 				}
 
 			} catch (PersistenceException e) {
-				TestUtil.logErr("Unexpected PersistenceException rolling back TX", e);
+				logger.log(Logger.Level.ERROR, "Unexpected PersistenceException rolling back TX", e);
 			}
 		}
 		return pass;

@@ -22,6 +22,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
+import java.lang.System.Logger;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
@@ -63,7 +64,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManager;
 import com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory;
 
@@ -78,6 +78,8 @@ import jakarta.persistence.PersistenceException;
 @TestInstance(Lifecycle.PER_CLASS)
 
 abstract public class PMClientBase implements UseEntityManager, UseEntityManagerFactory, java.io.Serializable {
+
+	private static final Logger logger = (Logger) System.getLogger(PMClientBase.class.getName());
 
 	protected Properties myProps = new Properties();
 
@@ -171,18 +173,18 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 			try {
 				getEntityManager().remove(o);
 			} catch (Exception e) {
-				TestUtil.logErr("removeEntity: Exception caught when removing entity: ", e);
+				logger.log(Logger.Level.ERROR, "removeEntity: Exception caught when removing entity: ", e);
 			}
 		}
 	}
 
 	public String getPersistenceUnitName() {
-		TestUtil.logTrace("getPersistenceUnitName() - Persistence Unit Name:" + this.persistenceUnitName);
+		logger.log(Logger.Level.TRACE, "getPersistenceUnitName() - Persistence Unit Name:" + this.persistenceUnitName);
 		return this.persistenceUnitName;
 	}
 
 	public String getSecondPersistenceUnitName() {
-		TestUtil.logTrace(
+		logger.log(Logger.Level.TRACE,
 				"getSecondPersistenceUnitName() - Second Persistence Unit Name:" + this.secondPersistenceUnitName);
 		return secondPersistenceUnitName;
 	}
@@ -192,15 +194,15 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 	 * super.setup() at the beginning.
 	 */
 	public void setup() throws Exception {
-		TestUtil.logTrace("PMClientBase.setup");
+		logger.log(Logger.Level.TRACE, "PMClientBase.setup");
 		mode = System.getProperty(MODE_PROP);
 		myProps.put(MODE_PROP, mode);
 		persistenceUnitName = System.getProperty(PERSISTENCE_UNIT_NAME_PROP);
 		myProps.put(PERSISTENCE_UNIT_NAME_PROP, persistenceUnitName);
-		TestUtil.logTrace("Persistence Unit Name =" + persistenceUnitName);
+		logger.log(Logger.Level.TRACE, "Persistence Unit Name =" + persistenceUnitName);
 		secondPersistenceUnitName = System.getProperty(SECOND_PERSISTENCE_UNIT_NAME_PROP);
 		myProps.put(SECOND_PERSISTENCE_UNIT_NAME_PROP, secondPersistenceUnitName);
-		TestUtil.logTrace("Second Persistence Unit Name =" + secondPersistenceUnitName);
+		logger.log(Logger.Level.TRACE, "Second Persistence Unit Name =" + secondPersistenceUnitName);
 
 		myProps.put(JAVAX_PERSISTENCE_PROVIDER, System.getProperty(JAVAX_PERSISTENCE_PROVIDER));
 
@@ -219,26 +221,28 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 				System.getProperty(PERSISTENCE_SECOND_LEVEL_CACHING_SUPPORTED));
 
 		if (JAVAEE_MODE.equalsIgnoreCase(mode)) {
-			TestUtil.logTrace(MODE_PROP + " is set to " + mode + ", so tests are running in JakartaEE environment.");
+			logger.log(Logger.Level.TRACE,
+					MODE_PROP + " is set to " + mode + ", so tests are running in JakartaEE environment.");
 		} else if (STANDALONE_MODE.equalsIgnoreCase(mode)) {
-			TestUtil.logTrace(
+			logger.log(Logger.Level.TRACE,
 					MODE_PROP + " is set to " + mode + ", so tests are running in J2SE environment standalone mode."
 							+ PERSISTENCE_UNIT_NAME_PROP + " is set to " + persistenceUnitName);
 		} else {
-			TestUtil.logMsg("WARNING: " + MODE_PROP + " is set to " + mode + ", an invalid value.");
+			logger.log(Logger.Level.INFO, "WARNING: " + MODE_PROP + " is set to " + mode + ", an invalid value.");
 		}
 
 		cachingSupported = Boolean.parseBoolean(System.getProperty(PERSISTENCE_SECOND_LEVEL_CACHING_SUPPORTED, "true"));
 	}
 
 	public void displayProperties(Properties props) {
-		TestUtil.logMsg("Current properties:");
+		logger.log(Logger.Level.INFO, "Current properties:");
 
 		for (Object entry : props.keySet()) {
 			if (props.get(entry) instanceof String) {
-				TestUtil.logTrace("Key:" + (String) entry + ", value:[" + props.get(entry) + "]");
+				logger.log(Logger.Level.TRACE, "Key:" + (String) entry + ", value:[" + props.get(entry) + "]");
 			} else {
-				TestUtil.logTrace("Key:" + (String) entry + ", value:" + props.get(entry).getClass().getSimpleName());
+				logger.log(Logger.Level.TRACE,
+						"Key:" + (String) entry + ", value:" + props.get(entry).getClass().getSimpleName());
 
 			}
 		}
@@ -269,19 +273,20 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 	public void closeEMAndEMF() throws Exception {
 
 		try {
-			TestUtil.logTrace("Rolling back any existing transaction before closing EMF and EM if one exists.");
+			logger.log(Logger.Level.TRACE,
+					"Rolling back any existing transaction before closing EMF and EM if one exists.");
 			if (getEntityTransaction(false) != null && getEntityTransaction(false).isActive()) {
-				TestUtil.logTrace("An active transaction was found, rolling it back.");
+				logger.log(Logger.Level.TRACE, "An active transaction was found, rolling it back.");
 				getEntityTransaction(false).rollback();
 			}
 		} catch (Exception fe) {
-			TestUtil.logMsg("Unexpected exception rolling back TX:", fe);
+			logger.log(Logger.Level.INFO, "Unexpected exception rolling back TX:", fe);
 		}
 
 		clearCache();
 
 		if (isStandAloneMode()) {
-			TestUtil.logTrace("Closing EM and EMF");
+			logger.log(Logger.Level.TRACE, "Closing EM and EMF");
 			if (getEntityManager(false) != null && getEntityManager(false).isOpen()) {
 				getEntityManager(false).close();
 			}
@@ -319,27 +324,29 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 
 					// if the EntityManager is open, clear the context causing all
 					// managed entities to become detached
-					TestUtil.logTrace("Clearing context");
+					logger.log(Logger.Level.TRACE, "Clearing context");
 					getEntityManager().clear();
 
-					TestUtil.logTrace("Trying to clear cache via call to EMF.getCache().evictAll().");
+					logger.log(Logger.Level.TRACE, "Trying to clear cache via call to EMF.getCache().evictAll().");
 					Cache cache = getEntityManager().getEntityManagerFactory().getCache();
 					if (cache != null) {
 						cache.evictAll();
-						TestUtil.logTrace("EMF.getCache().evictAll() was executed.");
+						logger.log(Logger.Level.TRACE, "EMF.getCache().evictAll() was executed.");
 					} else {
-						TestUtil.logErr("Cache supported is true in ts.jte but getCache() is returning null");
+						logger.log(Logger.Level.ERROR,
+								"Cache supported is true in ts.jte but getCache() is returning null");
 					}
 
 				} else {
-					TestUtil.logTrace(
+					logger.log(Logger.Level.TRACE,
 							"Clearing of cache did not occur because either EntityManagerFactory was null or closed");
 				}
 			} else {
-				TestUtil.logTrace("Clearing of cache did not occur because either EntityManager was null or closed");
+				logger.log(Logger.Level.TRACE,
+						"Clearing of cache did not occur because either EntityManager was null or closed");
 			}
 		} else {
-			TestUtil.logTrace("Clearing of cache did not occur because it is not supposed.");
+			logger.log(Logger.Level.TRACE, "Clearing of cache did not occur because it is not supposed.");
 		}
 	}
 
@@ -361,16 +368,16 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 		// otherwise this returns new EntityManager
 		if (!reInit) {
 			if (this.em != null) {
-				TestUtil.logTrace(
+				logger.log(Logger.Level.TRACE,
 						"Using existing entity manager class:" + em.getClass().getName() + " isOpen:" + em.isOpen());
 				return this.em;
 			}
-			TestUtil.logTrace("getEntityManager: false was specified and EM is null");
+			logger.log(Logger.Level.TRACE, "getEntityManager: false was specified and EM is null");
 		}
-		TestUtil.logTrace("Need to Initialize EntityManager");
+		logger.log(Logger.Level.TRACE, "Need to Initialize EntityManager");
 		if (isStandAloneMode()) {
 			initEntityManager(persistenceUnitName, true);
-			TestUtil.logTrace("EntityManager class:" + em.getClass().getName() + " isOpen:" + em.isOpen());
+			logger.log(Logger.Level.TRACE, "EntityManager class:" + em.getClass().getName() + " isOpen:" + em.isOpen());
 			return this.em;
 		}
 		throw new IllegalStateException("The test is running in JakartaEE environment, "
@@ -380,13 +387,14 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 	public EntityManagerFactory getEntityManagerFactory() {
 		if (isStandAloneMode()) {
 			if (emf != null) {
-				TestUtil.logTrace("EntityManagerFactory class:" + emf.getClass().getName() + " isOpen:" + emf.isOpen());
+				logger.log(Logger.Level.TRACE,
+						"EntityManagerFactory class:" + emf.getClass().getName() + " isOpen:" + emf.isOpen());
 			}
 			return emf;
 		} else {
 			if (jakartaEEemf != null) {
-				TestUtil.logTrace("EntityManagerFactory class:" + jakartaEEemf.getClass().getName() + " isOpen:"
-						+ jakartaEEemf.isOpen());
+				logger.log(Logger.Level.TRACE, "EntityManagerFactory class:" + jakartaEEemf.getClass().getName()
+						+ " isOpen:" + jakartaEEemf.isOpen());
 			}
 			return jakartaEEemf;
 		}
@@ -402,14 +410,16 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 
 	public EntityTransaction getEntityTransaction() {
 		if (this.et != null) {
-			TestUtil.logTrace("Transaction class:" + et.getClass().getName() + " isActive():" + et.isActive());
+			logger.log(Logger.Level.TRACE,
+					"Transaction class:" + et.getClass().getName() + " isActive():" + et.isActive());
 			return this.et;
 		}
-		TestUtil.logTrace("Need to get Transaction");
+		logger.log(Logger.Level.TRACE, "Need to get Transaction");
 		if (isStandAloneMode()) {
 			initEntityTransaction();
 			if (et != null) {
-				TestUtil.logTrace("Transaction class:" + et.getClass().getName() + " isActive():" + et.isActive());
+				logger.log(Logger.Level.TRACE,
+						"Transaction class:" + et.getClass().getName() + " isActive():" + et.isActive());
 			}
 			return this.et;
 		}
@@ -422,14 +432,16 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 		// otherwise this returns new EntityTransaction
 		if (!reInit) {
 			if (this.et != null) {
-				TestUtil.logTrace("Transaction class:" + et.getClass().getName() + " isActive():" + et.isActive());
+				logger.log(Logger.Level.TRACE,
+						"Transaction class:" + et.getClass().getName() + " isActive():" + et.isActive());
 				return this.et;
 			}
 		}
 		if (isStandAloneMode()) {
 			initEntityTransaction(em);
 			if (et != null) {
-				TestUtil.logTrace("Transaction class:" + et.getClass().getName() + " isActive():" + et.isActive());
+				logger.log(Logger.Level.TRACE,
+						"Transaction class:" + et.getClass().getName() + " isActive():" + et.isActive());
 			}
 			return this.et;
 		}
@@ -442,14 +454,16 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 		// otherwise this returns new EntityTransaction
 		if (!reInit) {
 			if (this.et != null) {
-				TestUtil.logTrace("Transaction class:" + et.getClass().getName() + " isActive():" + et.isActive());
+				logger.log(Logger.Level.TRACE,
+						"Transaction class:" + et.getClass().getName() + " isActive():" + et.isActive());
 				return this.et;
 			}
 		}
 		if (isStandAloneMode()) {
 			initEntityTransaction();
 			if (et != null) {
-				TestUtil.logTrace("Transaction class:" + et.getClass().getName() + " isActive():" + et.isActive());
+				logger.log(Logger.Level.TRACE,
+						"Transaction class:" + et.getClass().getName() + " isActive():" + et.isActive());
 			}
 			return this.et;
 		}
@@ -463,13 +477,13 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 	 */
 	protected void initEntityManager(String persistenceUnitName, boolean useProps) {
 		if (isStandAloneMode()) {
-			TestUtil.logTrace("in initEntityManager(String, boolean): " + persistenceUnitName);
+			logger.log(Logger.Level.TRACE, "in initEntityManager(String, boolean): " + persistenceUnitName);
 			if (useProps) {
 				Properties propsMap = getPersistenceUnitProperties();
-				TestUtil.logTrace("createEntityManagerFactory(String,Map)");
+				logger.log(Logger.Level.TRACE, "createEntityManagerFactory(String,Map)");
 				emf = Persistence.createEntityManagerFactory(persistenceUnitName, propsMap);
 			} else {
-				TestUtil.logTrace("createEntityManagerFactory(String)");
+				logger.log(Logger.Level.TRACE, "createEntityManagerFactory(String)");
 				emf = Persistence.createEntityManagerFactory(persistenceUnitName);
 			}
 			Map<java.lang.String, java.lang.Object> emfMap = emf.getProperties();
@@ -478,7 +492,7 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 			}
 			this.em = emf.createEntityManager();
 		} else {
-			TestUtil.logMsg("The test is running in JakartaEE environment, "
+			logger.log(Logger.Level.INFO, "The test is running in JakartaEE environment, "
 					+ "the EntityManager is initialized in the vehicle component.");
 		}
 	}
@@ -552,7 +566,7 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 	 * Persistence.createEntityManagerFactory.
 	 */
 	private void checkPersistenceUnitProperties(Properties jpaProps) {
-		TestUtil.logTrace("persistence unit properites from user: " + jpaProps.toString());
+		logger.log(Logger.Level.TRACE, "persistence unit properites from user: " + jpaProps.toString());
 		String provider = jpaProps.getProperty(PROVIDER_PROP);
 		if (provider == null) {
 			throw new IllegalStateException(PROVIDER_PROP + " not specified in persistence unit properties file");
@@ -565,9 +579,10 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 		}
 		String jtaDataSource = jpaProps.getProperty(JTA_DATASOURCE_PROP);
 		if (jtaDataSource != null) {
-			TestUtil.logMsg("WARNING: " + JTA_DATASOURCE_PROP + " is specified as " + jtaDataSource
-					+ ", and it will be passed to the persistence "
-					+ "provider.  However, this is in general not supported in " + "Java SE environment");
+			logger.log(Logger.Level.INFO,
+					"WARNING: " + JTA_DATASOURCE_PROP + " is specified as " + jtaDataSource
+							+ ", and it will be passed to the persistence "
+							+ "provider.  However, this is in general not supported in " + "Java SE environment");
 			// jpaProps.remove(JTA_DATASOURCE_PROP);
 		}
 		// String nonJtaDataSource = jpaProps.getProperty(NON_JTA_DATASOURCE_PROP);
@@ -577,7 +592,7 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 		// "in Java SE environment. It has not been specified. Please " +
 		// "set it in persistence unit properties file.");
 		// }
-		TestUtil.logTrace("persistence unit properites verified: " + jpaProps.toString());
+		logger.log(Logger.Level.TRACE, "persistence unit properites verified: " + jpaProps.toString());
 	}
 
 	public Calendar getCalDate() {
@@ -586,13 +601,13 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 
 	public Calendar getCalDate(final int yy, final int mm, final int dd) {
 		Calendar cal = new GregorianCalendar(yy, mm, dd);
-		TestUtil.logTrace("returning date:" + cal);
+		logger.log(Logger.Level.TRACE, "returning date:" + cal);
 		return cal;
 	}
 
 	public java.sql.Date getSQLDate(final String sDate) {
 		Date d = java.sql.Date.valueOf(sDate);
-		TestUtil.logTrace("returning date:" + d);
+		logger.log(Logger.Level.TRACE, "returning date:" + d);
 		return d;
 	}
 
@@ -602,7 +617,7 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 		newCal.set(yy, mm, dd);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String sDate = sdf.format(newCal.getTime());
-		TestUtil.logTrace("returning date:" + java.sql.Date.valueOf(sDate));
+		logger.log(Logger.Level.TRACE, "returning date:" + java.sql.Date.valueOf(sDate));
 		return java.sql.Date.valueOf(sDate);
 	}
 
@@ -611,13 +626,13 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String sDate = sdf.format(calDate.getTime());
 		java.sql.Date d = java.sql.Date.valueOf(sDate);
-		TestUtil.logTrace("returning date:" + d);
+		logger.log(Logger.Level.TRACE, "returning date:" + d);
 		return d;
 	}
 
 	public java.util.Date getUtilDate() {
 		java.util.Date d = new java.util.Date();
-		TestUtil.logTrace("getPKDate: returning date:" + d);
+		logger.log(Logger.Level.TRACE, "getPKDate: returning date:" + d);
 		return d;
 	}
 
@@ -627,15 +642,15 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 		try {
 			d = formatter.parse(sDate);
 		} catch (ParseException pe) {
-			TestUtil.logErr("Received unexpected exception:" + pe);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception:" + pe);
 		}
-		TestUtil.logTrace("getPKDate: returning date:" + d);
+		logger.log(Logger.Level.TRACE, "getPKDate: returning date:" + d);
 		return d;
 	}
 
 	public java.sql.Time getTimeData(final String sTime) {
 		java.sql.Time t = java.sql.Time.valueOf(sTime);
-		TestUtil.logTrace("getTimeData: returning Time:" + t);
+		logger.log(Logger.Level.TRACE, "getTimeData: returning Time:" + t);
 		return t;
 	}
 
@@ -645,25 +660,25 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 		newCal.set(hh, mm, ss);
 		SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
 		String sDate = sdf.format(newCal.getTime());
-		TestUtil.logTrace("getTimeData: returning Time:" + java.sql.Time.valueOf(sDate));
+		logger.log(Logger.Level.TRACE, "getTimeData: returning Time:" + java.sql.Time.valueOf(sDate));
 		return java.sql.Time.valueOf(sDate);
 	}
 
 	public java.sql.Timestamp getTimestampData(final String sDate) {
 		String tFormat = sDate + " " + "10:10:10";
 		java.sql.Timestamp ts = java.sql.Timestamp.valueOf(tFormat);
-		TestUtil.logTrace("getTimestampData: returning TimeStamp:" + ts);
+		logger.log(Logger.Level.TRACE, "getTimestampData: returning TimeStamp:" + ts);
 		return ts;
 	}
 
 	public Timestamp getTimestampData(final int yy, final int mm, final int dd) {
-		TestUtil.logTrace("Entering getTimestampData");
+		logger.log(Logger.Level.TRACE, "Entering getTimestampData");
 		Calendar newCal = Calendar.getInstance();
 		newCal.clear();
 		newCal.set(yy, mm, dd);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String sDate = sdf.format(newCal.getTime());
-		TestUtil.logTrace("getTimestampData: returning TimeStamp:" + java.sql.Timestamp.valueOf(sDate));
+		logger.log(Logger.Level.TRACE, "getTimestampData: returning TimeStamp:" + java.sql.Timestamp.valueOf(sDate));
 		return java.sql.Timestamp.valueOf(sDate);
 	}
 
@@ -671,29 +686,29 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 		Calendar newCal = Calendar.getInstance();
 		newCal.clear();
 		newCal.set(yy, mm, dd);
-		TestUtil.logTrace("getPKDate: returning date:" + newCal.getTime());
+		logger.log(Logger.Level.TRACE, "getPKDate: returning date:" + newCal.getTime());
 		return newCal.getTime();
 	}
 
 	public void doFlush() throws PersistenceException {
-		// TestUtil.logTrace("Entering doFlush method");
+		// logger.log(Logger.Level.TRACE,"Entering doFlush method");
 		try {
 			getEntityManager().flush();
 		} catch (PersistenceException pe) {
-			TestUtil.logErr("Unexpected Exception caught while flushing: ", pe);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception caught while flushing: ", pe);
 			throw new PersistenceException("Unexpected Exception caught while flushing: " + pe);
 		}
 	}
 
 	public <T> boolean checkEntityPK(Collection<T> actualPKS, Collection<T> expectedPKS) {
-		TestUtil.logTrace("PMClientBase.checkEntityPK(Collection<T>,Collection<T>)");
+		logger.log(Logger.Level.TRACE, "PMClientBase.checkEntityPK(Collection<T>,Collection<T>)");
 		return checkEntityPK(actualPKS, expectedPKS, false);
 	}
 
 	public <T> boolean checkEntityPK(final Collection<T> actualPKS, final Collection<T> expectedPKS,
 			final boolean allowDups) {
 		Integer epks2[] = new Integer[expectedPKS.size()];
-		TestUtil.logTrace("PMClientBase.checkEntityPK(Collection<T>,Collection<T>, boolean)");
+		logger.log(Logger.Level.TRACE, "PMClientBase.checkEntityPK(Collection<T>,Collection<T>, boolean)");
 		if (expectedPKS.size() != 0) {
 			int i = 0;
 			for (T o : expectedPKS) {
@@ -714,11 +729,11 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 						}
 					}
 				} catch (NoSuchMethodException nsme) {
-					TestUtil.logErr("Unexpected exception thrown", nsme);
+					logger.log(Logger.Level.ERROR, "Unexpected exception thrown", nsme);
 				} catch (IllegalAccessException iae) {
-					TestUtil.logErr("Unexpected exception thrown", iae);
+					logger.log(Logger.Level.ERROR, "Unexpected exception thrown", iae);
 				} catch (InvocationTargetException ite) {
-					TestUtil.logErr("Unexpected exception thrown", ite);
+					logger.log(Logger.Level.ERROR, "Unexpected exception thrown", ite);
 				}
 			}
 		}
@@ -726,13 +741,13 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 	}
 
 	public <T> boolean checkEntityPK(final Collection<T> actualPKS, final String expectedPKS[]) {
-		TestUtil.logTrace("PMClientBase.checkEntityPK(Collection<T>,String[])");
+		logger.log(Logger.Level.TRACE, "PMClientBase.checkEntityPK(Collection<T>,String[])");
 		return checkEntityPK(actualPKS, expectedPKS, false);
 	}
 
 	public <T> boolean checkEntityPK(Collection<T> actualPKS, String expectedPKS[], boolean allowDups) {
 		Integer epks2[] = new Integer[expectedPKS.length];
-		TestUtil.logTrace("PMClientBase.checkEntityPK(Collection<T>,String[], boolean)");
+		logger.log(Logger.Level.TRACE, "PMClientBase.checkEntityPK(Collection<T>,String[], boolean)");
 		if (expectedPKS.length != 0) {
 			int i = 0;
 			for (String s : expectedPKS) {
@@ -743,7 +758,7 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 	}
 
 	public <T> boolean checkEntityPK(final Collection<T> actualPKS, final Integer expectedPKS[]) {
-		TestUtil.logTrace("PMClientBase.checkEntityPK(Collection<T>,Integer[])");
+		logger.log(Logger.Level.TRACE, "PMClientBase.checkEntityPK(Collection<T>,Integer[])");
 		return checkEntityPK(actualPKS, expectedPKS, false, true);
 	}
 
@@ -752,7 +767,7 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 		Integer cpks2[] = new Integer[actualPKS.size()];
 		String cpks;
 		String epks;
-		TestUtil.logTrace("PMClientBase.checkEntityPK(Collection<T>,Integer[], boolean)");
+		logger.log(Logger.Level.TRACE, "PMClientBase.checkEntityPK(Collection<T>,Integer[], boolean)");
 		try {
 			if (expectedPKS.length == 0) {
 				epks = "()";
@@ -784,13 +799,13 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 								cpks2[k++] = (Integer) oo;
 							}
 						}
-						// TestUtil.logTrace("cpks2[" + k + "]=" + cpks2[k]);
+						// logger.log(Logger.Level.TRACE,"cpks2[" + k + "]=" + cpks2[k]);
 					} catch (NoSuchMethodException nsme) {
-						TestUtil.logErr("Unexpected exception thrown", nsme);
+						logger.log(Logger.Level.ERROR, "Unexpected exception thrown", nsme);
 					} catch (IllegalAccessException iae) {
-						TestUtil.logErr("Unexpected exception thrown", iae);
+						logger.log(Logger.Level.ERROR, "Unexpected exception thrown", iae);
 					} catch (InvocationTargetException ite) {
-						TestUtil.logErr("Unexpected exception thrown", ite);
+						logger.log(Logger.Level.ERROR, "Unexpected exception thrown", ite);
 					}
 				}
 			}
@@ -800,22 +815,25 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 			cpks = createStringVersionOfPKS(cpks2);
 
 			if (checkWrongSize(expectedPKS, cpks2)) {
-				TestUtil.logErr("Wrong size returned, expected " + "PKs of " + epks + ", got PKs of " + cpks);
+				logger.log(Logger.Level.ERROR,
+						"Wrong size returned, expected " + "PKs of " + epks + ", got PKs of " + cpks);
 				return false;
 			}
 			if (!allowDups) {
 				if (checkDuplicates(cpks2)) {
-					TestUtil.logErr("Duplicate values returned, expected " + "PKs of " + epks + ", got PKs of " + cpks);
+					logger.log(Logger.Level.ERROR,
+							"Duplicate values returned, expected " + "PKs of " + epks + ", got PKs of " + cpks);
 					return false;
 				}
 			}
 			if (!Arrays.equals(expectedPKS, cpks2)) {
-				TestUtil.logErr("Wrong values returned, expected PKs of " + epks + ", got PKs of " + cpks);
+				logger.log(Logger.Level.ERROR,
+						"Wrong values returned, expected PKs of " + epks + ", got PKs of " + cpks);
 				return false;
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Exception in PMClientBase.checkEntityPK(Collection<T>,Integer[]: ", e);
+			logger.log(Logger.Level.ERROR, "Exception in PMClientBase.checkEntityPK(Collection<T>,Integer[]: ", e);
 			return false;
 		}
 
@@ -837,9 +855,9 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 	}
 
 	public boolean checkWrongSize(final Integer[] expected, final Integer[] actual) {
-		TestUtil.logTrace("PMClientbase.checkWrongSize");
+		logger.log(Logger.Level.TRACE, "PMClientbase.checkWrongSize");
 		if (expected.length != actual.length) {
-			TestUtil.logErr(
+			logger.log(Logger.Level.ERROR,
 					"Wrong collection size returned (expected " + expected.length + ", got " + actual.length + ")");
 			return true;
 		}
@@ -847,7 +865,7 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 	}
 
 	public boolean checkDuplicates(final Integer[] iArray) {
-		TestUtil.logTrace("PMClientbase.checkDuplicates");
+		logger.log(Logger.Level.TRACE, "PMClientbase.checkDuplicates");
 		boolean duplicates = false;
 		for (int ii = 0; ii < iArray.length; ii++) {
 			for (int j = 0; j < iArray.length; j++) {
@@ -860,7 +878,7 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 			}
 		}
 		if (duplicates) {
-			TestUtil.logErr("Wrong collection contents returned " + "(contains duplicate entries)");
+			logger.log(Logger.Level.ERROR, "Wrong collection contents returned " + "(contains duplicate entries)");
 			return true;
 		}
 		return false;
@@ -870,7 +888,7 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 		String reason;
 		if (expected.equals(actual)) {
 			reason = "Got expected result list: " + expected;
-			TestUtil.logTrace(reason);
+			logger.log(Logger.Level.TRACE, reason);
 		} else {
 			reason = "Expecting result list: " + expected + "  , actual: " + actual;
 			throw new RuntimeException(reason);
@@ -885,13 +903,14 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 
 			for (Map.Entry<String, Object> me : set) {
 				if (me.getValue() instanceof String) {
-					TestUtil.logTrace("Map - name:" + me.getKey() + ", value:" + me.getValue());
+					logger.log(Logger.Level.TRACE, "Map - name:" + me.getKey() + ", value:" + me.getValue());
 				} else {
-					TestUtil.logTrace("Map - name:" + me.getKey() + ", value:" + me.getValue().getClass().getName());
+					logger.log(Logger.Level.TRACE,
+							"Map - name:" + me.getKey() + ", value:" + me.getValue().getClass().getName());
 				}
 			}
 		} else {
-			TestUtil.logTrace("Map passed in to displayMap was null");
+			logger.log(Logger.Level.TRACE, "Map passed in to displayMap was null");
 		}
 	}
 
@@ -926,29 +945,30 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 			for (String fileContent : fileContents) {
 				fileContentLineCount++;
 				foundCount = 0;
-				// TestUtil.logTrace("----------------");
-				// TestUtil.logTrace("line:"+fileContent);
+				// logger.log(Logger.Level.TRACE,"----------------");
+				// logger.log(Logger.Level.TRACE,"line:"+fileContent);
 
 				for (String searchString : searchStrings) {
-					TestUtil.logTrace("searchString:" + searchString);
+					logger.log(Logger.Level.TRACE, "searchString:" + searchString);
 
 					if (fileContent.toLowerCase().indexOf(searchString.toLowerCase()) >= 0) {
-						TestUtil.logTrace("Found string[" + searchString + "] in line [" + fileContent + "]");
+						logger.log(Logger.Level.TRACE,
+								"Found string[" + searchString + "] in line [" + fileContent + "]");
 						foundCount++;
-						// TestUtil.logTrace("foundCount:"+foundCount);
+						// logger.log(Logger.Level.TRACE,"foundCount:"+foundCount);
 						// } else {
-						// TestUtil.logTrace("^^^^^^^^^^^^^^^^^^");
+						// logger.log(Logger.Level.TRACE,"^^^^^^^^^^^^^^^^^^");
 						//
-						// TestUtil.logTrace("index="+fileContent.toLowerCase().indexOf(searchString.toLowerCase()));
-						// TestUtil.logTrace("fileContent.toLowerCase["+fileContent.toLowerCase()+"],
+						// logger.log(Logger.Level.TRACE,"index="+fileContent.toLowerCase().indexOf(searchString.toLowerCase()));
+						// logger.log(Logger.Level.TRACE,"fileContent.toLowerCase["+fileContent.toLowerCase()+"],
 						// searchString.toLowerCase["+searchString.toLowerCase()+"]");
-						// TestUtil.logTrace("^^^^^^^^^^^^^^^^^^");
+						// logger.log(Logger.Level.TRACE,"^^^^^^^^^^^^^^^^^^");
 
 					}
 				}
-				// TestUtil.logTrace("----------------");
+				// logger.log(Logger.Level.TRACE,"----------------");
 				//
-				// TestUtil.logTrace("foundCount:"+foundCount+",
+				// logger.log(Logger.Level.TRACE,"foundCount:"+foundCount+",
 				// searchStrings.size():"+searchStrings.size());
 
 				if (foundCount == searchStrings.size()) {
@@ -957,11 +977,11 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 				}
 			}
 		}
-		// TestUtil.logTrace("foundCount:"+foundCount+",
+		// logger.log(Logger.Level.TRACE,"foundCount:"+foundCount+",
 		// searchStrings.size():"+searchStrings.size());
-		// TestUtil.logTrace("fileContentLineCount:"+fileContentLineCount+",
+		// logger.log(Logger.Level.TRACE,"fileContentLineCount:"+fileContentLineCount+",
 		// fileContents.size():"+fileContents.size());
-		// TestUtil.logTrace("found:"+found);
+		// logger.log(Logger.Level.TRACE,"found:"+found);
 
 		if (!found) {
 			if (searchStrings.size() > 1) {
@@ -974,13 +994,14 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 						sb.append(" and ");
 					}
 				}
-				TestUtil.logErr("Entries:" + sb.toString() + ", not found in file:" + file.toString());
+				logger.log(Logger.Level.ERROR, "Entries:" + sb.toString() + ", not found in file:" + file.toString());
 				for (String s : fileContents) {
-					TestUtil.logErr("File line[" + s + "]");
+					logger.log(Logger.Level.ERROR, "File line[" + s + "]");
 				}
 
 			} else {
-				TestUtil.logErr("Entry:" + searchStrings.get(0) + ", not found in file:" + file.toString());
+				logger.log(Logger.Level.ERROR,
+						"Entry:" + searchStrings.get(0) + ", not found in file:" + file.toString());
 
 			}
 		}
@@ -992,13 +1013,13 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 		List<String> list = new ArrayList<String>();
 		try {
 			if (file.exists()) {
-				TestUtil.logTrace("found file:" + file.getAbsolutePath());
+				logger.log(Logger.Level.TRACE, "found file:" + file.getAbsolutePath());
 				if (file.length() > 0) {
 					BufferedReader input = new BufferedReader(new FileReader(file));
 					try {
 						String line = null;
 						while ((line = input.readLine()) != null) {
-							TestUtil.logTrace("read line:" + line);
+							logger.log(Logger.Level.TRACE, "read line:" + line);
 							line = line.trim();
 							list.add(line);
 						}
@@ -1007,10 +1028,10 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 						input.close();
 					}
 				} else {
-					TestUtil.logErr("File is empty: " + file.getAbsolutePath());
+					logger.log(Logger.Level.ERROR, "File is empty: " + file.getAbsolutePath());
 				}
 			} else {
-				TestUtil.logErr("Specified file " + file.getAbsolutePath() + " does not exist");
+				logger.log(Logger.Level.ERROR, "Specified file " + file.getAbsolutePath() + " does not exist");
 			}
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -1020,7 +1041,7 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 
 	public void deleteItem(File file) {
 		if (file.exists()) {
-			TestUtil.logTrace("item:" + file.getAbsolutePath() + " exists");
+			logger.log(Logger.Level.TRACE, "item:" + file.getAbsolutePath() + " exists");
 			if (file.isDirectory()) {
 				// item is a directory
 				File[] files = file.listFiles();
@@ -1030,30 +1051,30 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 					}
 					// delete the empty directory
 					if (file.delete()) {
-						TestUtil.logTrace("directory: " + file.getAbsolutePath() + " deleted");
+						logger.log(Logger.Level.TRACE, "directory: " + file.getAbsolutePath() + " deleted");
 						if (file.exists()) {
-							TestUtil.logErr("directory still exists even after calling delete");
+							logger.log(Logger.Level.ERROR, "directory still exists even after calling delete");
 						}
 					} else {
-						TestUtil.logErr("Could not delete directory: " + file.getAbsolutePath());
+						logger.log(Logger.Level.ERROR, "Could not delete directory: " + file.getAbsolutePath());
 					}
 
 				} else {
-					TestUtil.logErr("listFiles returned null");
+					logger.log(Logger.Level.ERROR, "listFiles returned null");
 				}
 			} else {
 				// item is a file
 				if (file.delete()) {
-					TestUtil.logTrace("file: " + file.getAbsolutePath() + " deleted");
+					logger.log(Logger.Level.TRACE, "file: " + file.getAbsolutePath() + " deleted");
 					if (file.exists()) {
-						TestUtil.logErr("file still exists even after calling delete");
+						logger.log(Logger.Level.ERROR, "file still exists even after calling delete");
 					}
 				} else {
-					TestUtil.logErr("Could not delete file: " + file.getAbsolutePath());
+					logger.log(Logger.Level.ERROR, "Could not delete file: " + file.getAbsolutePath());
 				}
 			}
 		} else {
-			TestUtil.logTrace("file:" + file.getAbsolutePath() + " does not exist");
+			logger.log(Logger.Level.TRACE, "file:" + file.getAbsolutePath() + " does not exist");
 		}
 	}
 
@@ -1061,9 +1082,9 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 		String sURI = null;
 		try {
 			sURI = new File(path).toURI().toASCIIString();
-			TestUtil.logTrace("URI=" + sURI);
+			logger.log(Logger.Level.TRACE, "URI=" + sURI);
 		} catch (Exception ue) {
-			TestUtil.logErr("Received unexpected exception for path:" + path, ue);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception for path:" + path, ue);
 		}
 		return sURI;
 	}
@@ -1082,29 +1103,30 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 		for (int j = 0; j < classes.length; j++) {
 			archive.addClass(classes[j]);
 		}
-		
-		if(persistenceFile.equals(STANDALONE_PERSISTENCE_XML)) {
-		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-		DocumentBuilder db = dbf.newDocumentBuilder();
-		TransformerFactory tf = TransformerFactory.newInstance();
-		Transformer transformer = tf.newTransformer();
 
-		InputStream xmlStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(persistenceFile);
-		Document document = db.parse(xmlStream);
-		NodeList presistenceElement = document.getElementsByTagName(PERSISTENCE_ELEMENT_TAG);
-		for (int j = 0; j < classes.length; j++) {
-			for (int i = 0; i < presistenceElement.getLength(); i++) {
-				Element classTag = document.createElement(CLASS_ELEMENT_TAG);
-				Text classNode = document.createTextNode(classes[j]);
-				classTag.appendChild(classNode);
-				presistenceElement.item(i).appendChild(classTag);
+		if (persistenceFile.equals(STANDALONE_PERSISTENCE_XML)) {
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			TransformerFactory tf = TransformerFactory.newInstance();
+			Transformer transformer = tf.newTransformer();
+
+			InputStream xmlStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(persistenceFile);
+			Document document = db.parse(xmlStream);
+			NodeList presistenceElement = document.getElementsByTagName(PERSISTENCE_ELEMENT_TAG);
+			for (int j = 0; j < classes.length; j++) {
+				for (int i = 0; i < presistenceElement.getLength(); i++) {
+					Element classTag = document.createElement(CLASS_ELEMENT_TAG);
+					Text classNode = document.createTextNode(classes[j]);
+					classTag.appendChild(classNode);
+					presistenceElement.item(i).appendChild(classTag);
+				}
 			}
-		}
-		StringWriter writer = new StringWriter();
-		transformer.transform(new DOMSource(document), new StreamResult(writer));
-		archive.addAsManifestResource(new StringAsset(writer.getBuffer().toString()), PERSISTENCE_FILE_NAME);
+			StringWriter writer = new StringWriter();
+			transformer.transform(new DOMSource(document), new StreamResult(writer));
+			archive.addAsManifestResource(new StringAsset(writer.getBuffer().toString()), PERSISTENCE_FILE_NAME);
 		} else {
-			InputStream xmlFileStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(persistenceFile);
+			InputStream xmlFileStream = Thread.currentThread().getContextClassLoader()
+					.getResourceAsStream(persistenceFile);
 			archive.addAsManifestResource(new ByteArrayAsset(xmlFileStream), persistenceFile);
 		}
 		for (int i = 0; i < xmlFiles.length; i++) {

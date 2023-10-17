@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.cascadeall.oneXmany;
 
+import java.lang.System.Logger;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Vector;
-
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
@@ -36,6 +35,8 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "AEJB_1XM_BI_BTOB")
 public class A implements java.io.Serializable {
+
+	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
 
 	// ===========================================================
 	// instance variables
@@ -53,7 +54,7 @@ public class A implements java.io.Serializable {
 	// constructors
 
 	public A() {
-		TestUtil.logTrace("Entity A no arg constructor");
+		logger.log(Logger.Level.TRACE, "Entity A no arg constructor");
 	}
 
 	public A(String id, String name, int value) {
@@ -79,12 +80,12 @@ public class A implements java.io.Serializable {
 	// Business methods for test cases
 
 	public Collection getBCol() {
-		TestUtil.logTrace("getBCol");
+		logger.log(Logger.Level.TRACE, "getBCol");
 		return bCol;
 	}
 
 	public void setBCol(Collection bCol) {
-		TestUtil.logTrace("setBCol");
+		logger.log(Logger.Level.TRACE, "setBCol");
 		this.bCol = bCol;
 	}
 
@@ -105,7 +106,7 @@ public class A implements java.io.Serializable {
 	}
 
 	public Collection getBInfoFromA() {
-		TestUtil.logTrace("getBInfoFromA");
+		logger.log(Logger.Level.TRACE, "getBInfoFromA");
 		Vector v = new Vector();
 		if (getBCol().size() != 0) {
 			Collection bcol = getBCol();

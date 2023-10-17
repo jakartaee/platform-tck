@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.criteriaapi.strquery;
 
+import java.lang.System.Logger;
 import java.sql.Date;
 import java.util.List;
 
@@ -23,7 +24,6 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.Product;
 import com.sun.ts.tests.jpa.common.schema30.UtilProductData;
 
@@ -32,8 +32,9 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
-
 public class Client4IT extends UtilProductData {
+
+	private static final Logger logger = (Logger) System.getLogger(Client4IT.class.getName());
 
 	public static JavaArchive createDeployment() throws Exception {
 
@@ -64,7 +65,7 @@ public class Client4IT extends UtilProductData {
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
 		try {
-			TestUtil.logTrace("find SUM of all product prices");
+			logger.log(Logger.Level.TRACE, "find SUM of all product prices");
 			CriteriaQuery<Double> cquery = cbuilder.createQuery(Double.class);
 			Root<Product> product = cquery.from(Product.class);
 			cquery.select(cbuilder.sum(product.<Double>get("price")));
@@ -72,13 +73,13 @@ public class Client4IT extends UtilProductData {
 			d3 = (Double) tquery.getSingleResult();
 
 			if (((d3 >= d1) && (d3 < d2))) {
-				TestUtil.logTrace("queryTest68 returned expected results: " + d1);
+				logger.log(Logger.Level.TRACE, "queryTest68 returned expected results: " + d1);
 				pass = true;
 			} else {
-				TestUtil.logTrace("queryTest68 returned " + d3 + "expected: " + d1);
+				logger.log(Logger.Level.TRACE, "queryTest68 returned " + d3 + "expected: " + d1);
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("queryTest68 failed");
@@ -105,7 +106,7 @@ public class Client4IT extends UtilProductData {
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
 		try {
-			TestUtil.logTrace("find SUM of all product prices");
+			logger.log(Logger.Level.TRACE, "find SUM of all product prices");
 			CriteriaQuery<Integer> cquery = cbuilder.createQuery(Integer.class);
 			Root<Product> product = cquery.from(Product.class);
 			cquery.select(cbuilder.sum(product.<Integer>get("quantity")));
@@ -113,13 +114,13 @@ public class Client4IT extends UtilProductData {
 			result = (Integer) tquery.getSingleResult();
 
 			if (expectedValue.equals(result)) {
-				TestUtil.logTrace("queryTest70 returned expected results: " + result);
+				logger.log(Logger.Level.TRACE, "queryTest70 returned expected results: " + result);
 				pass = true;
 			} else {
-				TestUtil.logTrace("queryTest70 returned " + result + "expected: " + expectedValue);
+				logger.log(Logger.Level.TRACE, "queryTest70 returned " + result + "expected: " + expectedValue);
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("queryTest70 failed");
@@ -151,7 +152,7 @@ public class Client4IT extends UtilProductData {
 			getEntityTransaction().begin();
 			final Date date1 = getSQLDate(2000, 2, 14);
 			final Date date6 = getSQLDate(2005, 2, 18);
-			TestUtil.logTrace("The dates used in test_betweenDates is : " + date1 + " and " + date6);
+			logger.log(Logger.Level.TRACE, "The dates used in test_betweenDates is : " + date1 + " and " + date6);
 			CriteriaQuery<Product> cquery = cbuilder.createQuery(Product.class);
 			Root<Product> product = cquery.from(Product.class);
 			cquery.where(cbuilder.between(product.get("shelfLife").<java.sql.Date>get("soldDate"),
@@ -170,15 +171,16 @@ public class Client4IT extends UtilProductData {
 			expectedPKs[3] = "37";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 3 references, got: " + result.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 3 references, got: " + result.size());
 			} else {
 
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 
 		if (!pass)
@@ -201,7 +203,7 @@ public class Client4IT extends UtilProductData {
 		String expectedPKs[];
 		final Date date1 = getSQLDate("2000-02-14");
 		final Date newdate = getSQLDate("2005-02-17");
-		TestUtil.logTrace("The dates used in test_betweenDates is : " + date1 + " and " + newdate);
+		logger.log(Logger.Level.TRACE, "The dates used in test_betweenDates is : " + date1 + " and " + newdate);
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
@@ -221,14 +223,15 @@ public class Client4IT extends UtilProductData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "31";
 			if (!checkEntityPK(result, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 1 references, got: " + result.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 references, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 		}
 
 		if (!pass)

@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.io.Reader;
+import java.lang.System.Logger;
 import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -35,14 +36,14 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	String schemaGenerationDir = null;
 	String sTestCase = "jpa_se_schemaGeneration_scripts";
@@ -61,7 +62,7 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			createDeployment();
@@ -71,19 +72,19 @@ public class ClientIT extends PMClientBase {
 				schemaGenerationDir += File.separator;
 			}
 			schemaGenerationDir += "schemaGeneration";
-			TestUtil.logMsg("schemaGenerationDir=" + this.schemaGenerationDir);
+			logger.log(Logger.Level.INFO, "schemaGenerationDir=" + this.schemaGenerationDir);
 
 			File f = new File(schemaGenerationDir);
-			TestUtil.logMsg("Delete existing directory ");
+			logger.log(Logger.Level.INFO, "Delete existing directory ");
 			deleteItem(f);
-			TestUtil.logMsg("Create new directory ");
+			logger.log(Logger.Level.INFO, "Create new directory ");
 			if (!f.mkdir()) {
 				String msg = "Could not mkdir:" + f.getAbsolutePath();
 				throw new Exception(msg);
 			}
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -103,15 +104,15 @@ public class ClientIT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
-		TestUtil.logMsg("Create the script(s)");
+		logger.log(Logger.Level.INFO, "Create the script(s)");
 		final String CREATEFILENAME = schemaGenerationDir + File.separator + "create_" + this.sTestCase + ".sql";
 		final String DROPFILENAME = schemaGenerationDir + File.separator + "drop_" + this.sTestCase + ".sql";
 
 		File f1 = new File(CREATEFILENAME);
-		TestUtil.logTrace("Deleting previous create script");
+		logger.log(Logger.Level.TRACE, "Deleting previous create script");
 		deleteItem(f1);
 		File f2 = new File(DROPFILENAME);
-		TestUtil.logTrace("Deleting previous drop script");
+		logger.log(Logger.Level.TRACE, "Deleting previous drop script");
 		deleteItem(f2);
 
 		Properties props = getPersistenceUnitProperties();
@@ -123,12 +124,12 @@ public class ClientIT extends PMClientBase {
 
 		displayProperties(props);
 
-		TestUtil.logMsg("Executing Persistence.createEntityManagerFactory(...)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.createEntityManagerFactory(...)");
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(getPersistenceUnitName(), props);
 		emf.close();
 		emf = null;
 
-		TestUtil.logMsg("Check script(s) content");
+		logger.log(Logger.Level.INFO, "Check script(s) content");
 
 		pass1 = findDataInFile(f1, "create table schemaGenSimple");
 		pass2 = findDataInFile(f2, "drop table schemaGenSimple");
@@ -151,7 +152,7 @@ public class ClientIT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
-		TestUtil.logMsg("Create the script(s)");
+		logger.log(Logger.Level.INFO, "Create the script(s)");
 
 		final String CREATEFILENAME = schemaGenerationDir + File.separator + "create_" + this.sTestCase + ".sql";
 		final String DROPFILENAME = schemaGenerationDir + File.separator + "drop_" + this.sTestCase + ".sql";
@@ -160,22 +161,22 @@ public class ClientIT extends PMClientBase {
 		PrintWriter pw1 = null;
 		try {
 			f1 = new File(CREATEFILENAME);
-			TestUtil.logTrace("Deleting previous create script");
+			logger.log(Logger.Level.TRACE, "Deleting previous create script");
 			deleteItem(f1);
 			pw1 = new PrintWriter(new File(CREATEFILENAME));
 		} catch (Exception ex) {
-			TestUtil.logErr("Unexpected exception occurred:" + ex);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred:" + ex);
 		}
 		File f2 = null;
 		PrintWriter pw2 = null;
 		try {
 			f2 = new File(DROPFILENAME);
-			TestUtil.logTrace("Deleting previous drop script");
+			logger.log(Logger.Level.TRACE, "Deleting previous drop script");
 			deleteItem(f2);
 
 			pw2 = new PrintWriter(new File(DROPFILENAME));
 		} catch (Exception ex) {
-			TestUtil.logErr("Unexpected exception occurred:" + ex);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred:" + ex);
 		}
 
 		Properties props = getPersistenceUnitProperties();
@@ -187,7 +188,7 @@ public class ClientIT extends PMClientBase {
 
 		displayProperties(props);
 
-		TestUtil.logMsg("Executing Persistence.createEntityManagerFactory(...)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.createEntityManagerFactory(...)");
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(getPersistenceUnitName(), props);
 		emf.close();
 		emf = null;
@@ -197,7 +198,7 @@ public class ClientIT extends PMClientBase {
 		if (pw2 != null)
 			pw2.close();
 
-		TestUtil.logMsg("Check script(s) content");
+		logger.log(Logger.Level.INFO, "Check script(s) content");
 
 		pass1 = findDataInFile(f1, "create table schemaGenSimple");
 		pass2 = findDataInFile(f2, "drop table schemaGenSimple");
@@ -222,15 +223,15 @@ public class ClientIT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
-		TestUtil.logMsg("Create the script(s)");
+		logger.log(Logger.Level.INFO, "Create the script(s)");
 		final String CREATEFILENAME = schemaGenerationDir + File.separator + "create_" + this.sTestCase + ".sql";
 		final String DROPFILENAME = schemaGenerationDir + File.separator + "drop_" + this.sTestCase + ".sql";
 
 		File f1 = new File(CREATEFILENAME);
-		TestUtil.logTrace("Deleting previous create script");
+		logger.log(Logger.Level.TRACE, "Deleting previous create script");
 		deleteItem(f1);
 		File f2 = new File(DROPFILENAME);
-		TestUtil.logTrace("Deleting previous drop script");
+		logger.log(Logger.Level.TRACE, "Deleting previous drop script");
 		deleteItem(f2);
 
 		Properties props = getPersistenceUnitProperties();
@@ -242,10 +243,10 @@ public class ClientIT extends PMClientBase {
 
 		displayProperties(props);
 
-		TestUtil.logMsg("Executing Persistence.generateSchema(...)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.generateSchema(...)");
 		Persistence.generateSchema(getPersistenceUnitName(), props);
 
-		TestUtil.logMsg("Check script(s) content");
+		logger.log(Logger.Level.INFO, "Check script(s) content");
 
 		pass1 = findDataInFile(f1, "create table schemaGenSimple");
 		pass2 = findDataInFile(f2, "drop table schemaGenSimple");
@@ -270,7 +271,7 @@ public class ClientIT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
-		TestUtil.logMsg("Create the script(s)");
+		logger.log(Logger.Level.INFO, "Create the script(s)");
 
 		final String CREATEFILENAME = schemaGenerationDir + File.separator + "create_" + this.sTestCase + ".sql";
 		final String DROPFILENAME = schemaGenerationDir + File.separator + "drop_" + this.sTestCase + ".sql";
@@ -279,22 +280,22 @@ public class ClientIT extends PMClientBase {
 		PrintWriter pw1 = null;
 		try {
 			f1 = new File(CREATEFILENAME);
-			TestUtil.logTrace("Deleting previous create script");
+			logger.log(Logger.Level.TRACE, "Deleting previous create script");
 			deleteItem(f1);
 			pw1 = new PrintWriter(new File(CREATEFILENAME));
 		} catch (Exception ex) {
-			TestUtil.logErr("Unexpected exception occurred:" + ex);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred:" + ex);
 		}
 
 		File f2 = null;
 		PrintWriter pw2 = null;
 		try {
 			f2 = new File(DROPFILENAME);
-			TestUtil.logTrace("Deleting previous drop script");
+			logger.log(Logger.Level.TRACE, "Deleting previous drop script");
 			deleteItem(f2);
 			pw2 = new PrintWriter(new File(DROPFILENAME));
 		} catch (Exception ex) {
-			TestUtil.logErr("Unexpected exception occurred:" + ex);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred:" + ex);
 		}
 
 		Properties props = getPersistenceUnitProperties();
@@ -306,7 +307,7 @@ public class ClientIT extends PMClientBase {
 
 		displayProperties(props);
 
-		TestUtil.logMsg("Executing Persistence.generateSchema(...)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.generateSchema(...)");
 		Persistence.generateSchema(getPersistenceUnitName(), props);
 
 		if (pw1 != null)
@@ -314,7 +315,7 @@ public class ClientIT extends PMClientBase {
 		if (pw2 != null)
 			pw2.close();
 
-		TestUtil.logMsg("Check script(s) content");
+		logger.log(Logger.Level.INFO, "Check script(s) content");
 
 		pass1 = findDataInFile(f1, "create table schemaGenSimple");
 		pass2 = findDataInFile(f2, "drop table schemaGenSimple");
@@ -338,15 +339,15 @@ public class ClientIT extends PMClientBase {
 		boolean pass2 = false;
 		boolean pass3 = false;
 
-		TestUtil.logMsg("Create the script(s)");
+		logger.log(Logger.Level.INFO, "Create the script(s)");
 		final String CREATEFILENAME = schemaGenerationDir + File.separator + "create_" + this.sTestCase + ".sql";
 		final String DROPFILENAME = schemaGenerationDir + File.separator + "drop_" + this.sTestCase + ".sql";
 
 		File f1 = new File(CREATEFILENAME);
-		TestUtil.logTrace("Deleting previous create script");
+		logger.log(Logger.Level.TRACE, "Deleting previous create script");
 		deleteItem(f1);
 		File f2 = new File(DROPFILENAME);
-		TestUtil.logTrace("Deleting previous drop script");
+		logger.log(Logger.Level.TRACE, "Deleting previous drop script");
 		deleteItem(f2);
 
 		Properties props = getPersistenceUnitProperties();
@@ -358,19 +359,19 @@ public class ClientIT extends PMClientBase {
 
 		displayProperties(props);
 
-		TestUtil.logMsg("Executing Persistence.createEntityManagerFactory(...)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.createEntityManagerFactory(...)");
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(getPersistenceUnitName(), props);
 		emf.close();
 		emf = null;
 
-		TestUtil.logMsg("Check script(s) content");
+		logger.log(Logger.Level.INFO, "Check script(s) content");
 
 		pass2 = findDataInFile(f1, "create table schemaGenSimple");
 		pass3 = findDataInFile(f2, "drop table schemaGenSimple");
 		clearEMAndEMF();
 
 		try {
-			TestUtil.logMsg("Persist some data");
+			logger.log(Logger.Level.INFO, "Persist some data");
 			getEntityTransaction(true).begin();
 			Simple s = new Simple(1, "1");
 			getEntityManager().persist(s);
@@ -380,14 +381,14 @@ public class ClientIT extends PMClientBase {
 			Simple s2 = getEntityManager().find(Simple.class, 1);
 			getEntityTransaction().commit();
 			if (s.equals(s2)) {
-				TestUtil.logTrace("Received expected result:" + s.toString());
+				logger.log(Logger.Level.TRACE, "Received expected result:" + s.toString());
 				pass1 = true;
 			} else {
-				TestUtil.logErr("Expected:" + s.toString());
-				TestUtil.logErr("Actual:" + s2.toString());
+				logger.log(Logger.Level.ERROR, "Expected:" + s.toString());
+				logger.log(Logger.Level.ERROR, "Actual:" + s2.toString());
 			}
 		} catch (Throwable t) {
-			TestUtil.logErr("Received unexpected exception", t);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", t);
 		}
 		if (!pass1 || !pass2 || !pass3) {
 			throw new Exception("databaseAndScriptsURLTest failed");
@@ -408,7 +409,7 @@ public class ClientIT extends PMClientBase {
 		boolean pass2 = false;
 		boolean pass3 = false;
 
-		TestUtil.logMsg("Create the script(s)");
+		logger.log(Logger.Level.INFO, "Create the script(s)");
 
 		final String CREATEFILENAME = schemaGenerationDir + File.separator + "create_" + this.sTestCase + ".sql";
 		final String DROPFILENAME = schemaGenerationDir + File.separator + "drop_" + this.sTestCase + ".sql";
@@ -417,21 +418,21 @@ public class ClientIT extends PMClientBase {
 		PrintWriter pw1 = null;
 		try {
 			f1 = new File(CREATEFILENAME);
-			TestUtil.logTrace("Deleting previous create script");
+			logger.log(Logger.Level.TRACE, "Deleting previous create script");
 			deleteItem(f1);
 			pw1 = new PrintWriter(new File(CREATEFILENAME));
 		} catch (Exception ex) {
-			TestUtil.logErr("Unexpected exception occurred:" + ex);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred:" + ex);
 		}
 		File f2 = null;
 		PrintWriter pw2 = null;
 		try {
 			f2 = new File(DROPFILENAME);
-			TestUtil.logTrace("Deleting previous drop script");
+			logger.log(Logger.Level.TRACE, "Deleting previous drop script");
 			deleteItem(f2);
 			pw2 = new PrintWriter(new File(DROPFILENAME));
 		} catch (Exception ex) {
-			TestUtil.logErr("Unexpected exception occurred:" + ex);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred:" + ex);
 		}
 
 		Properties props = getPersistenceUnitProperties();
@@ -443,7 +444,7 @@ public class ClientIT extends PMClientBase {
 
 		displayProperties(props);
 
-		TestUtil.logMsg("Executing Persistence.createEntityManagerFactory(...)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.createEntityManagerFactory(...)");
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(getPersistenceUnitName(), props);
 		emf.close();
 		emf = null;
@@ -452,14 +453,14 @@ public class ClientIT extends PMClientBase {
 		if (pw2 != null)
 			pw2.close();
 
-		TestUtil.logMsg("Check script(s) content");
+		logger.log(Logger.Level.INFO, "Check script(s) content");
 
 		pass2 = findDataInFile(f1, "create table schemaGenSimple");
 		pass3 = findDataInFile(f2, "drop table schemaGenSimple");
 		clearEMAndEMF();
 
 		try {
-			TestUtil.logMsg("Persist some data");
+			logger.log(Logger.Level.INFO, "Persist some data");
 			getEntityTransaction(true).begin();
 			Simple s = new Simple(1, "1");
 			getEntityManager().persist(s);
@@ -469,14 +470,14 @@ public class ClientIT extends PMClientBase {
 			Simple s2 = getEntityManager().find(Simple.class, 1);
 			getEntityTransaction().commit();
 			if (s.equals(s2)) {
-				TestUtil.logTrace("Received expected result:" + s.toString());
+				logger.log(Logger.Level.TRACE, "Received expected result:" + s.toString());
 				pass1 = true;
 			} else {
-				TestUtil.logErr("Expected:" + s.toString());
-				TestUtil.logErr("Actual:" + s2.toString());
+				logger.log(Logger.Level.ERROR, "Expected:" + s.toString());
+				logger.log(Logger.Level.ERROR, "Actual:" + s2.toString());
 			}
 		} catch (Throwable t) {
-			TestUtil.logErr("Received unexpected exception", t);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", t);
 		}
 		if (!pass1 || !pass2 || !pass3) {
 			throw new Exception("databaseAndScriptsPrintWriterTest failed");
@@ -498,15 +499,15 @@ public class ClientIT extends PMClientBase {
 	public void databaseAndScriptsURL2Test() throws Exception {
 		boolean pass = false;
 
-		TestUtil.logMsg("Create the script(s)");
+		logger.log(Logger.Level.INFO, "Create the script(s)");
 		final String CREATEFILENAME = schemaGenerationDir + File.separator + "create_" + this.sTestCase + ".sql";
 		final String DROPFILENAME = schemaGenerationDir + File.separator + "drop_" + this.sTestCase + ".sql";
 
 		File f1 = new File(CREATEFILENAME);
-		TestUtil.logTrace("Deleting previous create script");
+		logger.log(Logger.Level.TRACE, "Deleting previous create script");
 		deleteItem(f1);
 		File f2 = new File(DROPFILENAME);
-		TestUtil.logTrace("Deleting previous drop script");
+		logger.log(Logger.Level.TRACE, "Deleting previous drop script");
 		deleteItem(f2);
 
 		Properties props = getPersistenceUnitProperties();
@@ -518,12 +519,12 @@ public class ClientIT extends PMClientBase {
 
 		displayProperties(props);
 
-		TestUtil.logMsg("Executing Persistence.generateSchema(...)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.generateSchema(...)");
 		Persistence.generateSchema(getPersistenceUnitName(), props);
 		clearEMAndEMF();
 
 		try {
-			TestUtil.logMsg("Persist some data");
+			logger.log(Logger.Level.INFO, "Persist some data");
 			getEntityTransaction(true).begin();
 			Simple s = new Simple(1, "1");
 			getEntityManager().persist(s);
@@ -533,14 +534,14 @@ public class ClientIT extends PMClientBase {
 			Simple s2 = getEntityManager().find(Simple.class, 1);
 			getEntityTransaction().commit();
 			if (s.equals(s2)) {
-				TestUtil.logTrace("Received expected result:" + s.toString());
+				logger.log(Logger.Level.TRACE, "Received expected result:" + s.toString());
 				pass = true;
 			} else {
-				TestUtil.logErr("Expected:" + s.toString());
-				TestUtil.logErr("Actual:" + s2.toString());
+				logger.log(Logger.Level.ERROR, "Expected:" + s.toString());
+				logger.log(Logger.Level.ERROR, "Actual:" + s2.toString());
 			}
 		} catch (Throwable t) {
-			TestUtil.logErr("Received unexpected exception", t);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", t);
 		}
 		if (!pass) {
 			throw new Exception("databaseAndScriptsURL2Test failed");
@@ -564,7 +565,7 @@ public class ClientIT extends PMClientBase {
 		boolean pass2 = false;
 		boolean pass3 = false;
 
-		TestUtil.logMsg("Create the script(s)");
+		logger.log(Logger.Level.INFO, "Create the script(s)");
 
 		final String CREATEFILENAME = schemaGenerationDir + File.separator + "create_" + this.sTestCase + ".sql";
 		final String DROPFILENAME = schemaGenerationDir + File.separator + "drop_" + this.sTestCase + ".sql";
@@ -573,21 +574,21 @@ public class ClientIT extends PMClientBase {
 		PrintWriter pw1 = null;
 		try {
 			f1 = new File(CREATEFILENAME);
-			TestUtil.logTrace("Deleting previous create script");
+			logger.log(Logger.Level.TRACE, "Deleting previous create script");
 			deleteItem(f1);
 			pw1 = new PrintWriter(new File(CREATEFILENAME));
 		} catch (Exception ex) {
-			TestUtil.logErr("Unexpected exception occurred:" + ex);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred:" + ex);
 		}
 		File f2 = null;
 		PrintWriter pw2 = null;
 		try {
 			f2 = new File(DROPFILENAME);
-			TestUtil.logTrace("Deleting previous drop script");
+			logger.log(Logger.Level.TRACE, "Deleting previous drop script");
 			deleteItem(f2);
 			pw2 = new PrintWriter(new File(DROPFILENAME));
 		} catch (Exception ex) {
-			TestUtil.logErr("Unexpected exception occurred:" + ex);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred:" + ex);
 		}
 
 		Properties props = getPersistenceUnitProperties();
@@ -599,7 +600,7 @@ public class ClientIT extends PMClientBase {
 
 		displayProperties(props);
 
-		TestUtil.logMsg("Executing Persistence.generateSchema(...)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.generateSchema(...)");
 		Persistence.generateSchema(getPersistenceUnitName(), props);
 		if (pw1 != null)
 			pw1.close();
@@ -609,7 +610,7 @@ public class ClientIT extends PMClientBase {
 		clearEMAndEMF();
 
 		try {
-			TestUtil.logMsg("Persist some data");
+			logger.log(Logger.Level.INFO, "Persist some data");
 			getEntityTransaction(true).begin();
 			Simple s = new Simple(1, "1");
 			getEntityManager().persist(s);
@@ -619,17 +620,17 @@ public class ClientIT extends PMClientBase {
 			Simple s2 = getEntityManager().find(Simple.class, 1);
 			getEntityTransaction().commit();
 			if (s.equals(s2)) {
-				TestUtil.logTrace("Received expected result:" + s.toString());
+				logger.log(Logger.Level.TRACE, "Received expected result:" + s.toString());
 				pass1 = true;
 			} else {
-				TestUtil.logErr("Expected:" + s.toString());
-				TestUtil.logErr("Actual:" + s2.toString());
+				logger.log(Logger.Level.ERROR, "Expected:" + s.toString());
+				logger.log(Logger.Level.ERROR, "Actual:" + s2.toString());
 			}
 		} catch (Throwable t) {
-			TestUtil.logErr("Received unexpected exception", t);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", t);
 		}
 
-		TestUtil.logMsg("Check script(s) content");
+		logger.log(Logger.Level.INFO, "Check script(s) content");
 
 		pass2 = findDataInFile(f1, "create table schemaGenSimple");
 		pass3 = findDataInFile(f2, "drop table schemaGenSimple");
@@ -661,13 +662,13 @@ public class ClientIT extends PMClientBase {
 
 		displayProperties(props);
 
-		TestUtil.logMsg("Executing Persistence.generateSchema(...)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.generateSchema(...)");
 		Persistence.generateSchema(getPersistenceUnitName(), props);
 
 		clearEMAndEMF();
 
 		try {
-			TestUtil.logMsg("Persist some data");
+			logger.log(Logger.Level.INFO, "Persist some data");
 			getEntityTransaction(true).begin();
 			Simple s = new Simple(1, "1");
 			getEntityManager().persist(s);
@@ -677,14 +678,14 @@ public class ClientIT extends PMClientBase {
 			Simple s2 = getEntityManager().find(Simple.class, 1);
 			getEntityTransaction().commit();
 			if (s.equals(s2)) {
-				TestUtil.logTrace("Received expected result:" + s.toString());
+				logger.log(Logger.Level.TRACE, "Received expected result:" + s.toString());
 				pass = true;
 			} else {
-				TestUtil.logErr("Expected:" + s.toString());
-				TestUtil.logErr("Actual:" + s2.toString());
+				logger.log(Logger.Level.ERROR, "Expected:" + s.toString());
+				logger.log(Logger.Level.ERROR, "Actual:" + s2.toString());
 			}
 		} catch (Throwable t) {
-			TestUtil.logErr("Received unexpected exception", t);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", t);
 		}
 
 		if (!pass) {
@@ -708,13 +709,13 @@ public class ClientIT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
-		TestUtil.logMsg("Create the script(s)");
+		logger.log(Logger.Level.INFO, "Create the script(s)");
 		final String CREATEFILENAME = schemaGenerationDir + File.separator + "create_" + this.sTestCase + ".sql";
 
 		Properties props = getPersistenceUnitProperties();
 
 		File f1 = new File(CREATEFILENAME);
-		TestUtil.logTrace("Deleting previous create script");
+		logger.log(Logger.Level.TRACE, "Deleting previous create script");
 		deleteItem(f1);
 
 		props.put("jakarta.persistence.schema-generation.database.action", "none");
@@ -724,16 +725,16 @@ public class ClientIT extends PMClientBase {
 
 		displayProperties(props);
 
-		TestUtil.logMsg("Executing Persistence.createEntityManagerFactory(...)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.createEntityManagerFactory(...)");
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(getPersistenceUnitName(), props);
 		emf.close();
 		emf = null;
 
-		TestUtil.logMsg("Check script(s) content");
+		logger.log(Logger.Level.INFO, "Check script(s) content");
 
 		pass1 = findDataInFile(f1, "create table schemaGenSimple");
 
-		TestUtil.logTrace("Execute the create script");
+		logger.log(Logger.Level.TRACE, "Execute the create script");
 		props = getPersistenceUnitProperties();
 
 		props.put("jakarta.persistence.schema-generation.database.action", "create");
@@ -742,12 +743,12 @@ public class ClientIT extends PMClientBase {
 		props.put("jakarta.persistence.schema-generation.create-script-source", convertToURI(CREATEFILENAME));
 		displayProperties(props);
 
-		TestUtil.logMsg("Executing Persistence.generateSchema(...)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.generateSchema(...)");
 		Persistence.generateSchema(getPersistenceUnitName(), props);
 
 		clearEMAndEMF();
 		try {
-			TestUtil.logMsg("Persist some data");
+			logger.log(Logger.Level.INFO, "Persist some data");
 			getEntityTransaction(true).begin();
 			Simple s = new Simple(1, "1");
 			getEntityManager().persist(s);
@@ -757,14 +758,14 @@ public class ClientIT extends PMClientBase {
 			Simple s2 = getEntityManager().find(Simple.class, 1);
 			getEntityTransaction().commit();
 			if (s.equals(s2)) {
-				TestUtil.logTrace("Received expected result:" + s.toString());
+				logger.log(Logger.Level.TRACE, "Received expected result:" + s.toString());
 				pass2 = true;
 			} else {
-				TestUtil.logErr("Expected:" + s.toString());
-				TestUtil.logErr("Actual:" + s2.toString());
+				logger.log(Logger.Level.ERROR, "Expected:" + s.toString());
+				logger.log(Logger.Level.ERROR, "Actual:" + s2.toString());
 			}
 		} catch (Throwable t) {
-			TestUtil.logErr("Received unexpected exception", t);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", t);
 		}
 		if (!pass1 || !pass2) {
 			throw new Exception("executeCreateScriptURLTest failed");
@@ -787,7 +788,7 @@ public class ClientIT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
-		TestUtil.logMsg("Create the script(s)");
+		logger.log(Logger.Level.INFO, "Create the script(s)");
 
 		final String CREATEFILENAME = schemaGenerationDir + File.separator + "create_" + this.sTestCase + ".sql";
 
@@ -795,11 +796,11 @@ public class ClientIT extends PMClientBase {
 		PrintWriter pw1 = null;
 		try {
 			f1 = new File(CREATEFILENAME);
-			TestUtil.logTrace("Deleting previous create script");
+			logger.log(Logger.Level.TRACE, "Deleting previous create script");
 			deleteItem(f1);
 			pw1 = new PrintWriter(new File(CREATEFILENAME));
 		} catch (Exception ex) {
-			TestUtil.logErr("Unexpected exception occurred:" + ex);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred:" + ex);
 		}
 
 		Properties props = getPersistenceUnitProperties();
@@ -810,21 +811,21 @@ public class ClientIT extends PMClientBase {
 
 		displayProperties(props);
 
-		TestUtil.logMsg("Executing Persistence.generateSchema(...)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.generateSchema(...)");
 		Persistence.generateSchema(getPersistenceUnitName(), props);
 
-		TestUtil.logMsg("Check script(s) content");
+		logger.log(Logger.Level.INFO, "Check script(s) content");
 
 		pass1 = findDataInFile(f1, "create table schemaGenSimple");
 
-		TestUtil.logMsg("Execute the script");
+		logger.log(Logger.Level.INFO, "Execute the script");
 		props = getPersistenceUnitProperties();
 
 		Reader reader = null;
 		try {
 			reader = new BufferedReader(new FileReader(f1));
 		} catch (Exception ex) {
-			TestUtil.logErr("Unexpected exception occurred:" + ex);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred:" + ex);
 		}
 
 		props.put("jakarta.persistence.schema-generation.database.action", "create");
@@ -833,7 +834,7 @@ public class ClientIT extends PMClientBase {
 		props.put("jakarta.persistence.schema-generation.create-script-source", reader);
 		displayProperties(props);
 
-		TestUtil.logMsg("Executing Persistence.generateSchema(...)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.generateSchema(...)");
 		Persistence.generateSchema(getPersistenceUnitName(), props);
 		if (pw1 != null)
 			pw1.close();
@@ -841,7 +842,7 @@ public class ClientIT extends PMClientBase {
 		clearEMAndEMF();
 
 		try {
-			TestUtil.logMsg("Persist some data");
+			logger.log(Logger.Level.INFO, "Persist some data");
 			getEntityTransaction(true).begin();
 			Simple s = new Simple(1, "1");
 			getEntityManager().persist(s);
@@ -851,14 +852,14 @@ public class ClientIT extends PMClientBase {
 			Simple s2 = getEntityManager().find(Simple.class, 1);
 			getEntityTransaction().commit();
 			if (s.equals(s2)) {
-				TestUtil.logTrace("Received expected result:" + s.toString());
+				logger.log(Logger.Level.TRACE, "Received expected result:" + s.toString());
 				pass2 = true;
 			} else {
-				TestUtil.logErr("Expected:" + s.toString());
-				TestUtil.logErr("Actual:" + s2.toString());
+				logger.log(Logger.Level.ERROR, "Expected:" + s.toString());
+				logger.log(Logger.Level.ERROR, "Actual:" + s2.toString());
 			}
 		} catch (Throwable t) {
-			TestUtil.logErr("Received unexpected exception", t);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", t);
 		}
 		if (!pass1 || !pass2) {
 			throw new Exception("executeCreateScriptReaderTest failed");
@@ -883,11 +884,11 @@ public class ClientIT extends PMClientBase {
 		boolean pass2 = false;
 		boolean pass3 = false;
 
-		TestUtil.logMsg("Create the script(s)");
+		logger.log(Logger.Level.INFO, "Create the script(s)");
 		final String DROPFILENAME = schemaGenerationDir + File.separator + "drop_" + this.sTestCase + ".sql";
 
 		File f2 = new File(DROPFILENAME);
-		TestUtil.logTrace("Deleting previous drop script");
+		logger.log(Logger.Level.TRACE, "Deleting previous drop script");
 		deleteItem(f2);
 		Properties props = getPersistenceUnitProperties();
 		props.put("jakarta.persistence.schema-generation.database.action", "none");
@@ -896,29 +897,29 @@ public class ClientIT extends PMClientBase {
 
 		displayProperties(props);
 
-		TestUtil.logMsg("Executing Persistence.createEntityManagerFactory(...)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.createEntityManagerFactory(...)");
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(getPersistenceUnitName(), props);
 		emf.close();
 		emf = null;
 
-		TestUtil.logMsg("Check script(s) content");
+		logger.log(Logger.Level.INFO, "Check script(s) content");
 
 		pass1 = findDataInFile(f2, "drop table schemaGenSimple");
 
-		TestUtil.logTrace("Generate schema");
+		logger.log(Logger.Level.TRACE, "Generate schema");
 		props = getPersistenceUnitProperties();
 		props.put("jakarta.persistence.schema-generation.database.action", "create");
 		props.put("jakarta.persistence.schema-generation.scripts.action", "none");
 		props.put("jakarta.persistence.schema-generation.create-database-schemas", "true");
 		displayProperties(props);
 
-		TestUtil.logMsg("Executing Persistence.generateSchema(...)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.generateSchema(...)");
 		Persistence.generateSchema(getPersistenceUnitName(), props);
 
 		clearEMAndEMF();
 
 		try {
-			TestUtil.logMsg("Persist some data");
+			logger.log(Logger.Level.INFO, "Persist some data");
 			getEntityTransaction(true).begin();
 			Simple s = new Simple(1, "1");
 			getEntityManager().persist(s);
@@ -928,37 +929,37 @@ public class ClientIT extends PMClientBase {
 			Simple s2 = getEntityManager().find(Simple.class, 1);
 			getEntityTransaction().commit();
 			if (s.equals(s2)) {
-				TestUtil.logTrace("Received expected result:" + s.toString());
+				logger.log(Logger.Level.TRACE, "Received expected result:" + s.toString());
 				pass2 = true;
 			} else {
-				TestUtil.logErr("Expected:" + s.toString());
-				TestUtil.logErr("Actual:" + s2.toString());
+				logger.log(Logger.Level.ERROR, "Expected:" + s.toString());
+				logger.log(Logger.Level.ERROR, "Actual:" + s2.toString());
 			}
 		} catch (Throwable t) {
-			TestUtil.logErr("Received unexpected exception", t);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", t);
 		}
 		clearEMAndEMF();
 
-		TestUtil.logTrace("Execute the drop script");
+		logger.log(Logger.Level.TRACE, "Execute the drop script");
 		props = getPersistenceUnitProperties();
 		props.put("jakarta.persistence.schema-generation.database.action", "drop");
 		props.put("jakarta.persistence.schema-generation.scripts.action", "none");
 		props.put("jakarta.persistence.schema-generation.drop-script-source", convertToURI(DROPFILENAME));
 		displayProperties(props);
 
-		TestUtil.logMsg("Executing Persistence.generateSchema(...)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.generateSchema(...)");
 		Persistence.generateSchema(getPersistenceUnitName(), props);
 		clearEMAndEMF();
 
-		TestUtil.logMsg("Try to persist an entity, it should fail");
+		logger.log(Logger.Level.INFO, "Try to persist an entity, it should fail");
 		try {
 			getEntityTransaction(true).begin();
 			Simple s3 = new Simple(2, "2");
 			getEntityManager().persist(s3);
 			getEntityTransaction().commit();
-			TestUtil.logErr("An exception should have been thrown if drop had occurred successfully");
+			logger.log(Logger.Level.ERROR, "An exception should have been thrown if drop had occurred successfully");
 		} catch (Exception ex) {
-			TestUtil.logTrace("Received expected exception");
+			logger.log(Logger.Level.TRACE, "Received expected exception");
 			pass3 = true;
 		}
 
@@ -983,7 +984,7 @@ public class ClientIT extends PMClientBase {
 		boolean pass2 = false;
 		boolean pass3 = false;
 
-		TestUtil.logMsg("Create the script(s)");
+		logger.log(Logger.Level.INFO, "Create the script(s)");
 
 		final String DROPFILENAME = schemaGenerationDir + File.separator + "drop_" + this.sTestCase + ".sql";
 
@@ -991,11 +992,11 @@ public class ClientIT extends PMClientBase {
 		PrintWriter pw2 = null;
 		try {
 			f2 = new File(DROPFILENAME);
-			TestUtil.logTrace("Deleting previous drop script");
+			logger.log(Logger.Level.TRACE, "Deleting previous drop script");
 			deleteItem(f2);
 			pw2 = new PrintWriter(new File(DROPFILENAME));
 		} catch (Exception ex) {
-			TestUtil.logErr("Unexpected exception occurred:" + ex);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred:" + ex);
 		}
 
 		Properties props = getPersistenceUnitProperties();
@@ -1005,30 +1006,30 @@ public class ClientIT extends PMClientBase {
 
 		displayProperties(props);
 
-		TestUtil.logMsg("Executing Persistence.generateSchema(...)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.generateSchema(...)");
 		Persistence.generateSchema(getPersistenceUnitName(), props);
 
 		if (pw2 != null)
 			pw2.close();
 
-		TestUtil.logMsg("Check script(s) content");
+		logger.log(Logger.Level.INFO, "Check script(s) content");
 
 		pass1 = findDataInFile(f2, "drop table schemaGenSimple");
 
-		TestUtil.logTrace("Generate schema");
+		logger.log(Logger.Level.TRACE, "Generate schema");
 		props = getPersistenceUnitProperties();
 		props.put("jakarta.persistence.schema-generation.database.action", "create");
 		props.put("jakarta.persistence.schema-generation.scripts.action", "none");
 		props.put("jakarta.persistence.schema-generation.create-database-schemas", "true");
 		displayProperties(props);
 
-		TestUtil.logMsg("Executing Persistence.generateSchema(...)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.generateSchema(...)");
 		Persistence.generateSchema(getPersistenceUnitName(), props);
 
 		clearEMAndEMF();
 
 		try {
-			TestUtil.logTrace("Try to persist some data");
+			logger.log(Logger.Level.TRACE, "Try to persist some data");
 			getEntityTransaction(true).begin();
 			Simple s = new Simple(1, "1");
 			getEntityManager().persist(s);
@@ -1038,23 +1039,23 @@ public class ClientIT extends PMClientBase {
 			Simple s2 = getEntityManager().find(Simple.class, 1);
 			getEntityTransaction().commit();
 			if (s.equals(s2)) {
-				TestUtil.logTrace("Received expected result:" + s.toString());
+				logger.log(Logger.Level.TRACE, "Received expected result:" + s.toString());
 				pass2 = true;
 			} else {
-				TestUtil.logErr("Expected:" + s.toString());
-				TestUtil.logErr("Actual:" + s2.toString());
+				logger.log(Logger.Level.ERROR, "Expected:" + s.toString());
+				logger.log(Logger.Level.ERROR, "Actual:" + s2.toString());
 			}
 		} catch (Throwable t) {
-			TestUtil.logErr("Received unexpected exception", t);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", t);
 		}
 		clearEMAndEMF();
-		TestUtil.logTrace("Execute the drop script");
+		logger.log(Logger.Level.TRACE, "Execute the drop script");
 
 		Reader reader = null;
 		try {
 			reader = new BufferedReader(new FileReader(f2));
 		} catch (Exception ex) {
-			TestUtil.logErr("Unexpected exception occurred:" + ex);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred:" + ex);
 		}
 		props = getPersistenceUnitProperties();
 		props.put("jakarta.persistence.schema-generation.database.action", "drop");
@@ -1062,19 +1063,19 @@ public class ClientIT extends PMClientBase {
 		props.put("jakarta.persistence.schema-generation.drop-script-source", reader);
 		displayProperties(props);
 
-		TestUtil.logMsg("Executing Persistence.generateSchema(...)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.generateSchema(...)");
 		Persistence.generateSchema(getPersistenceUnitName(), props);
 		clearEMAndEMF();
 
-		TestUtil.logMsg("Try to persist an entity, it should fail because table should not exist");
+		logger.log(Logger.Level.INFO, "Try to persist an entity, it should fail because table should not exist");
 		try {
 			getEntityTransaction(true).begin();
 			Simple s3 = new Simple(2, "2");
 			getEntityManager().persist(s3);
 			getEntityTransaction().commit();
-			TestUtil.logErr("An exception should have been thrown if drop script executed successfully");
+			logger.log(Logger.Level.ERROR, "An exception should have been thrown if drop script executed successfully");
 		} catch (Exception ex) {
-			TestUtil.logTrace("Received expected exception");
+			logger.log(Logger.Level.TRACE, "Received expected exception");
 			pass3 = true;
 		}
 		if (!pass1 || !pass2 || !pass3) {
@@ -1084,25 +1085,25 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 		removeDeploymentJar();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logMsg("Try to drop table SCHEMAGENSIMPLE");
+			logger.log(Logger.Level.INFO, "Try to drop table SCHEMAGENSIMPLE");
 			getEntityManager().createNativeQuery("DROP TABLE SCHEMAGENSIMPLE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Throwable t) {
-			TestUtil.logMsg(
+			logger.log(Logger.Level.INFO,
 					"AN EXCEPTION WAS THROWN DURING DROP TABLE SCHEMAGENSIMPLE, IT MAY OR MAY NOT BE A PROBLEM, "
 							+ t.getMessage());
 		} finally {
@@ -1115,7 +1116,7 @@ public class ClientIT extends PMClientBase {
 				// ensure that we close the EM and EMF before proceeding.
 				clearEMAndEMF();
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

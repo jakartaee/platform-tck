@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.identifiabletype;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -24,8 +25,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.JoinColumn;
@@ -33,6 +32,8 @@ import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass()
 public abstract class B implements java.io.Serializable {
+
+	private static final Logger logger = (Logger) System.getLogger(B.class.getName());
 
 	protected String name;
 
@@ -60,42 +61,42 @@ public abstract class B implements java.io.Serializable {
 	}
 
 	public Set<Address> getAddressSet() {
-		TestUtil.logTrace("getAddressSet");
+		logger.log(Logger.Level.TRACE, "getAddressSet");
 		return sAddress_inherited;
 	}
 
 	public void setAddressSet(Set<Address> addr) {
-		TestUtil.logTrace("setAddressSet");
+		logger.log(Logger.Level.TRACE, "setAddressSet");
 		this.sAddress_inherited = addr;
 	}
 
 	public Collection<Address> getAddressCollection() {
-		TestUtil.logTrace("getAddressCollection");
+		logger.log(Logger.Level.TRACE, "getAddressCollection");
 		return cAddress_inherited;
 	}
 
 	public void setAddressCollection(Collection<Address> addr) {
-		TestUtil.logTrace("setAddressCollection");
+		logger.log(Logger.Level.TRACE, "setAddressCollection");
 		this.cAddress_inherited = addr;
 	}
 
 	public List<Address> getAddressList() {
-		TestUtil.logTrace("getAddressList");
+		logger.log(Logger.Level.TRACE, "getAddressList");
 		return lAddress_inherited;
 	}
 
 	public void setAddressList(List<Address> addr) {
-		TestUtil.logTrace("setAddressList");
+		logger.log(Logger.Level.TRACE, "setAddressList");
 		this.lAddress_inherited = addr;
 	}
 
 	public Map<Address, String> getAddressMap() {
-		TestUtil.logTrace("getAddressMap");
+		logger.log(Logger.Level.TRACE, "getAddressMap");
 		return mAddress_inherited;
 	}
 
 	public void setAddressMap(Map<Address, String> addr) {
-		TestUtil.logTrace("setAddressMap");
+		logger.log(Logger.Level.TRACE, "setAddressMap");
 		this.mAddress_inherited = addr;
 	}
 

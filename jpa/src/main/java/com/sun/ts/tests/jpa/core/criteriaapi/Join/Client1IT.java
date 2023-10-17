@@ -16,11 +16,12 @@
 
 package com.sun.ts.tests.jpa.core.criteriaapi.Join;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.Customer;
 import com.sun.ts.tests.jpa.common.schema30.Customer_;
 import com.sun.ts.tests.jpa.common.schema30.Department;
@@ -35,8 +36,9 @@ import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Root;
 
-
 public class Client1IT extends Util {
+
+	private static final Logger logger = (Logger) System.getLogger(Client1IT.class.getName());
 
 	public static JavaArchive createDeployment() throws Exception {
 
@@ -49,12 +51,12 @@ public class Client1IT extends Util {
 	/* Test setup */
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("Entering Setup");
+		logger.log(Logger.Level.TRACE, "Entering Setup");
 		try {
 			super.setup();
 			getEntityManager();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -71,7 +73,7 @@ public class Client1IT extends Util {
 	public void joinStringIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
-		TestUtil.logMsg("String Test");
+		logger.log(Logger.Level.INFO, "String Test");
 		try {
 			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
@@ -81,21 +83,21 @@ public class Client1IT extends Util {
 			Join<Customer, Order> order = customer.join(Customer_.orders);
 			try {
 				order.join("doesnotexist");
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected exception");
+				logger.log(Logger.Level.TRACE, "Received expected exception");
 				pass1 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Received unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
-		TestUtil.logMsg("String, JoinType Test");
+		logger.log(Logger.Level.INFO, "String, JoinType Test");
 
 		try {
 			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -106,17 +108,17 @@ public class Client1IT extends Util {
 			Join<Customer, Order> order = customer.join(Customer_.orders);
 			try {
 				order.join("doesnotexist", JoinType.INNER);
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected exception");
+				logger.log(Logger.Level.TRACE, "Received expected exception");
 				pass2 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Received unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -138,7 +140,7 @@ public class Client1IT extends Util {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
-		TestUtil.logMsg("String Test");
+		logger.log(Logger.Level.INFO, "String Test");
 
 		try {
 			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -149,20 +151,20 @@ public class Client1IT extends Util {
 			Join<Customer, Order> order = customer.join(Customer_.orders);
 			try {
 				order.joinCollection("doesnotexist");
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected exception");
+				logger.log(Logger.Level.TRACE, "Received expected exception");
 				pass1 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Received unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
-		TestUtil.logMsg("String, JoinType Test");
+		logger.log(Logger.Level.INFO, "String, JoinType Test");
 		try {
 			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
@@ -172,17 +174,17 @@ public class Client1IT extends Util {
 			Join<Customer, Order> order = customer.join(Customer_.orders);
 			try {
 				order.joinCollection("doesnotexist", JoinType.INNER);
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected exception");
+				logger.log(Logger.Level.TRACE, "Received expected exception");
 				pass2 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Received unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -204,7 +206,7 @@ public class Client1IT extends Util {
 	public void joinSetIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
-		TestUtil.logMsg("String Test");
+		logger.log(Logger.Level.INFO, "String Test");
 
 		try {
 			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -215,20 +217,20 @@ public class Client1IT extends Util {
 			Join<Customer, Order> order = customer.join(Customer_.orders2);
 			try {
 				order.joinSet("doesnotexist");
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected exception");
+				logger.log(Logger.Level.TRACE, "Received expected exception");
 				pass1 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Received unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
-		TestUtil.logMsg("String, JoinType Test");
+		logger.log(Logger.Level.INFO, "String, JoinType Test");
 		try {
 			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
@@ -238,16 +240,16 @@ public class Client1IT extends Util {
 			Join<Customer, Order> order = customer.join(Customer_.orders2);
 			try {
 				order.joinSet("doesnotexist", JoinType.INNER);
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected exception");
+				logger.log(Logger.Level.TRACE, "Received expected exception");
 				pass2 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Received unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -267,7 +269,7 @@ public class Client1IT extends Util {
 	public void joinListIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
-		TestUtil.logMsg("Testing String");
+		logger.log(Logger.Level.INFO, "Testing String");
 
 		try {
 			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -278,21 +280,21 @@ public class Client1IT extends Util {
 			Join<Customer, Order> order = customer.join("orders3");
 			try {
 				order.joinList("doesnotexist");
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 				pass1 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Received unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
-		TestUtil.logMsg("Testing String, JoinType");
+		logger.log(Logger.Level.INFO, "Testing String, JoinType");
 		try {
 			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
@@ -302,16 +304,16 @@ public class Client1IT extends Util {
 			Join<Customer, Order> order = customer.join("orders3");
 			try {
 				order.joinList("doesnotexist", JoinType.INNER);
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 				pass2 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Received unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -331,7 +333,7 @@ public class Client1IT extends Util {
 	public void joinMapIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
-		TestUtil.logMsg("Testing String");
+		logger.log(Logger.Level.INFO, "Testing String");
 
 		try {
 			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -343,21 +345,21 @@ public class Client1IT extends Util {
 
 			try {
 				department.joinMap("doesnotexist");
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 				pass1 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Received unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
-		TestUtil.logMsg("Testing String, JoinType");
+		logger.log(Logger.Level.INFO, "Testing String, JoinType");
 		try {
 			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
@@ -367,16 +369,16 @@ public class Client1IT extends Util {
 			Join<Employee, Department> department = employee.join(Employee_.department);
 			try {
 				department.joinMap("doesnotexist", JoinType.INNER);
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 				pass2 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Received unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 

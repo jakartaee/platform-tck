@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.annotations.mapkeycolumn;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -35,8 +36,9 @@ import org.junit.jupiter.api.Test;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public ClientIT() {
 	}
@@ -59,16 +61,16 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 			createTestData();
-			TestUtil.logTrace("Done creating test data");
+			logger.log(Logger.Level.TRACE, "Done creating test data");
 
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -98,14 +100,15 @@ public class ClientIT extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logTrace("find Employees belonging to Department: Marketing");
+			logger.log(Logger.Level.TRACE, "find Employees belonging to Department: Marketing");
 			e = getEntityManager().createQuery("Select e from Employee e where e.department.name = 'Marketing'")
 					.setMaxResults(10).getResultList();
 
 			if (e.size() != 3) {
-				TestUtil.logErr("Did not get expected results" + "Expected 3 Employees, Received: " + e.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results" + "Expected 3 Employees, Received: " + e.size());
 			} else {
-				TestUtil.logTrace("annotationMapKeyColumnTest1: Expected results received. "
+				logger.log(Logger.Level.TRACE, "annotationMapKeyColumnTest1: Expected results received. "
 						+ "Expected 3 Employees, Received: " + e.size());
 				pass = true;
 			}
@@ -113,14 +116,14 @@ public class ClientIT extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception ex) {
-			TestUtil.logErr("Unexpected exception occurred", ex);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", ex);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -154,30 +157,31 @@ public class ClientIT extends PMClientBase {
 			getEntityTransaction().begin();
 			final Integer[] expectedEmps = new Integer[] { 4, 2 };
 
-			TestUtil.logTrace("find Employees belonging to Department: Marketing");
+			logger.log(Logger.Level.TRACE, "find Employees belonging to Department: Marketing");
 			e = getEntityManager()
 					.createQuery(
 							"Select e.id from Employee e where e.department.name = 'Administration' ORDER BY e.id DESC")
 					.setMaxResults(10).getResultList();
 
 			final Integer[] result = (Integer[]) (e.toArray(new Integer[e.size()]));
-			TestUtil.logTrace("Compare results of Employee Ids ");
+			logger.log(Logger.Level.TRACE, "Compare results of Employee Ids ");
 			pass = Arrays.equals(expectedEmps, result);
 
 			if (!pass) {
-				TestUtil.logErr("Did not get expected results.  Expected 2 Employees : " + " Received: " + e.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 2 Employees : " + " Received: " + e.size());
 				Iterator it = e.iterator();
 				while (it.hasNext()) {
-					TestUtil.logTrace(" Employee PK : " + it.next());
+					logger.log(Logger.Level.TRACE, " Employee PK : " + it.next());
 				}
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception ex) {
-			TestUtil.logErr("Unexpected exception occurred", ex);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", ex);
 			pass = false;
 		} finally {
 			try {
@@ -185,7 +189,7 @@ public class ClientIT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -221,43 +225,43 @@ public class ClientIT extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			Employee emp = getEntityManager().find(Employee.class, 1);
-			TestUtil.logTrace("Name:" + emp.getFirstName() + " " + emp.getLastName());
+			logger.log(Logger.Level.TRACE, "Name:" + emp.getFirstName() + " " + emp.getLastName());
 			Department dept = emp.getDepartment();
-			TestUtil.logTrace("Dept=" + dept.getName());
+			logger.log(Logger.Level.TRACE, "Dept=" + dept.getName());
 			Map<String, Employee> emps = dept.getLastNameEmployees();
 			if (emps.size() == 3) {
-				TestUtil.logTrace("number of employees=" + emps.size());
+				logger.log(Logger.Level.TRACE, "number of employees=" + emps.size());
 				for (Map.Entry<String, Employee> entry : emps.entrySet()) {
-					TestUtil.logTrace("id=" + entry.getValue().getId() + ", Name=" + entry.getValue().getFirstName()
-							+ " " + entry.getValue().getLastName());
+					logger.log(Logger.Level.TRACE, "id=" + entry.getValue().getId() + ", Name="
+							+ entry.getValue().getFirstName() + " " + entry.getValue().getLastName());
 					actual.add(entry.getValue().getId() - 1);
 				}
 
 				Collections.sort(actual);
 				if (expected.equals(actual)) {
-					TestUtil.logTrace("Received expected employees");
+					logger.log(Logger.Level.TRACE, "Received expected employees");
 					pass = true;
 				} else {
-					TestUtil.logErr("Did not get correct employees");
-					TestUtil.logErr("Expected:");
+					logger.log(Logger.Level.ERROR, "Did not get correct employees");
+					logger.log(Logger.Level.ERROR, "Expected:");
 					for (Integer i : expected) {
-						TestUtil.logTrace("id=" + empRef[i].getId() + ", Name=" + empRef[i].getFirstName() + " "
-								+ empRef[i].getLastName());
+						logger.log(Logger.Level.TRACE, "id=" + empRef[i].getId() + ", Name=" + empRef[i].getFirstName()
+								+ " " + empRef[i].getLastName());
 					}
-					TestUtil.logErr("Actual:");
+					logger.log(Logger.Level.ERROR, "Actual:");
 					for (Integer i : actual) {
-						TestUtil.logTrace("id=" + empRef[i].getId() + ", Name=" + empRef[i].getFirstName() + " "
-								+ empRef[i].getLastName());
+						logger.log(Logger.Level.TRACE, "id=" + empRef[i].getId() + ", Name=" + empRef[i].getFirstName()
+								+ " " + empRef[i].getLastName());
 					}
 				}
 
 			} else {
-				TestUtil.logErr("Expected 3 employees, actual:" + emps.size());
+				logger.log(Logger.Level.ERROR, "Expected 3 employees, actual:" + emps.size());
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Received unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -283,26 +287,26 @@ public class ClientIT extends PMClientBase {
 			clearCache();
 			Department2 dept = getEntityManager().find(Department2.class, 3);
 			if (dept != null) {
-				TestUtil.logTrace("Dept=" + dept.getName());
+				logger.log(Logger.Level.TRACE, "Dept=" + dept.getName());
 				Map<String, Employee> emps = dept.getLastNameEmployees();
 				if (emps.size() == 0) {
-					TestUtil.logTrace("Received expected number of employees");
+					logger.log(Logger.Level.TRACE, "Received expected number of employees");
 					pass = true;
 				} else {
-					TestUtil.logErr("Expected 0 employees, actual:" + emps.size());
-					TestUtil.logErr("Actual:");
+					logger.log(Logger.Level.ERROR, "Expected 0 employees, actual:" + emps.size());
+					logger.log(Logger.Level.ERROR, "Actual:");
 					for (Map.Entry<String, Employee> entry : emps.entrySet()) {
-						TestUtil.logErr("id=" + entry.getValue().getId() + ", Name=" + entry.getValue().getFirstName()
-								+ " " + entry.getValue().getLastName());
+						logger.log(Logger.Level.ERROR, "id=" + entry.getValue().getId() + ", Name="
+								+ entry.getValue().getFirstName() + " " + entry.getValue().getLastName());
 					}
 				}
 			} else {
-				TestUtil.logErr("Department2 returned was null");
+				logger.log(Logger.Level.ERROR, "Department2 returned was null");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Received unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -329,28 +333,29 @@ public class ClientIT extends PMClientBase {
 			clearCache();
 
 			// department 3
-			TestUtil.logTrace("find Department");
+			logger.log(Logger.Level.TRACE, "find Department");
 			Department2 dept = getEntityManager().find(Department2.class, deptRef2[0].getId());
-			TestUtil.logTrace("Dept=" + dept.getName());
+			logger.log(Logger.Level.TRACE, "Dept=" + dept.getName());
 			link = new HashMap<String, Employee>();
 			link.put("OFF-006", empRef[6]);
-			TestUtil.logTrace("set last names of employees and save");
+			logger.log(Logger.Level.TRACE, "set last names of employees and save");
 			dept.setLastNameEmployees(link);
 			getEntityManager().merge(dept);
 			getEntityManager().flush();
 			clearCache();
-			TestUtil.logTrace("find Department again");
+			logger.log(Logger.Level.TRACE, "find Department again");
 			dept = getEntityManager().find(Department2.class, deptRef2[0].getId());
 			Map<String, Employee> emps = dept.getLastNameEmployees();
 			if (emps.size() == 0) {
-				TestUtil.logTrace("Received expected number of employees for department: " + deptRef2[0].getId());
+				logger.log(Logger.Level.TRACE,
+						"Received expected number of employees for department: " + deptRef2[0].getId());
 				pass = true;
 			} else {
-				TestUtil.logErr("Expected 0 employees, actual:" + emps.size());
-				TestUtil.logErr("Actual:");
+				logger.log(Logger.Level.ERROR, "Expected 0 employees, actual:" + emps.size());
+				logger.log(Logger.Level.ERROR, "Actual:");
 				for (Map.Entry<String, Employee> entry : emps.entrySet()) {
-					TestUtil.logErr("id=" + entry.getValue().getId() + ", Name=" + entry.getValue().getFirstName() + " "
-							+ entry.getValue().getLastName());
+					logger.log(Logger.Level.ERROR, "id=" + entry.getValue().getId() + ", Name="
+							+ entry.getValue().getFirstName() + " " + entry.getValue().getLastName());
 				}
 			}
 
@@ -358,7 +363,7 @@ public class ClientIT extends PMClientBase {
 
 		} catch (Exception e) {
 			pass = false;
-			TestUtil.logErr("Received unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("mapKeyColumnUpdatableFalseTest Failed");
@@ -393,26 +398,26 @@ public class ClientIT extends PMClientBase {
 			Map<String, Employee> emps = dept.getLastNameEmployees();
 			if (TestUtil.traceflag) {
 				for (Map.Entry<String, Employee> entry : emps.entrySet()) {
-					TestUtil.logTrace("map:" + entry.getKey() + ", " + entry.getValue().getId() + " "
+					logger.log(Logger.Level.TRACE, "map:" + entry.getKey() + ", " + entry.getValue().getId() + " "
 							+ entry.getValue().getFirstName() + " " + entry.getValue().getLastName());
 				}
 			}
 			Set<String> keys = emps.keySet();
 			for (String key : keys) {
-				TestUtil.logTrace("key:" + key);
+				logger.log(Logger.Level.TRACE, "key:" + key);
 			}
 			if (expected.containsAll(keys) && keys.containsAll(expected) && expected.size() == keys.size()) {
-				TestUtil.logTrace("Received expected keys");
+				logger.log(Logger.Level.TRACE, "Received expected keys");
 				pass1 = true;
 			} else {
-				TestUtil.logErr("Did not received expected keys");
-				TestUtil.logErr("Expected:");
+				logger.log(Logger.Level.ERROR, "Did not received expected keys");
+				logger.log(Logger.Level.ERROR, "Expected:");
 				for (String key : expected) {
-					TestUtil.logTrace("key:" + key);
+					logger.log(Logger.Level.TRACE, "key:" + key);
 				}
-				TestUtil.logErr("Actual:");
+				logger.log(Logger.Level.ERROR, "Actual:");
 				for (String key : keys) {
-					TestUtil.logTrace("key:" + key);
+					logger.log(Logger.Level.TRACE, "key:" + key);
 				}
 			}
 
@@ -423,27 +428,29 @@ public class ClientIT extends PMClientBase {
 
 			Collection<Employee> employees = emps.values();
 			for (Employee e : employees) {
-				TestUtil.logTrace("values:" + e.getId() + " " + e.getFirstName() + " " + e.getLastName());
+				logger.log(Logger.Level.TRACE, "values:" + e.getId() + " " + e.getFirstName() + " " + e.getLastName());
 			}
 			if (sExpected.containsAll(employees) && employees.containsAll(sExpected)
 					&& sExpected.size() == employees.size()) {
-				TestUtil.logTrace("Received expected values");
+				logger.log(Logger.Level.TRACE, "Received expected values");
 				pass2 = true;
 			} else {
-				TestUtil.logErr("Did not received expected values");
-				TestUtil.logErr("Expected:");
+				logger.log(Logger.Level.ERROR, "Did not received expected values");
+				logger.log(Logger.Level.ERROR, "Expected:");
 				for (Employee e : sExpected) {
-					TestUtil.logTrace("Employee:" + e.getId() + " " + e.getFirstName() + " " + e.getLastName());
+					logger.log(Logger.Level.TRACE,
+							"Employee:" + e.getId() + " " + e.getFirstName() + " " + e.getLastName());
 				}
-				TestUtil.logErr("Actual:");
+				logger.log(Logger.Level.ERROR, "Actual:");
 				for (Employee e : employees) {
-					TestUtil.logTrace("Employee:" + e.getId() + " " + e.getFirstName() + " " + e.getLastName());
+					logger.log(Logger.Level.TRACE,
+							"Employee:" + e.getId() + " " + e.getFirstName() + " " + e.getLastName());
 				}
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception ex) {
-			TestUtil.logErr("Unexpected exception occurred", ex);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", ex);
 		}
 
 		if (!pass1 || !pass2) {
@@ -455,34 +462,34 @@ public class ClientIT extends PMClientBase {
 	 * Business Methods to set up data for Test Cases
 	 */
 	private void createTestData() throws Exception {
-		TestUtil.logTrace("createTestData");
+		logger.log(Logger.Level.TRACE, "createTestData");
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logTrace("Create 2 Departments");
+			logger.log(Logger.Level.TRACE, "Create 2 Departments");
 			deptRef[0] = new Department(1, "Marketing");
 			deptRef[1] = new Department(2, "Administration");
 
-			TestUtil.logTrace("Start to persist departments ");
+			logger.log(Logger.Level.TRACE, "Start to persist departments ");
 			for (Department dept : deptRef) {
 				if (dept != null) {
 					getEntityManager().persist(dept);
-					TestUtil.logTrace("persisted department " + dept.getName());
+					logger.log(Logger.Level.TRACE, "persisted department " + dept.getName());
 				}
 			}
 
-			TestUtil.logTrace("Create 2 Department2 ");
+			logger.log(Logger.Level.TRACE, "Create 2 Department2 ");
 			deptRef2[0] = new Department2(3, "IT");
 
-			TestUtil.logTrace("Start to persist Department2 ");
+			logger.log(Logger.Level.TRACE, "Start to persist Department2 ");
 			for (Department2 dept : deptRef2) {
 				if (dept != null) {
 					getEntityManager().persist(dept);
-					TestUtil.logTrace("persisted department " + dept.getName());
+					logger.log(Logger.Level.TRACE, "persisted department " + dept.getName());
 				}
 			}
 
-			TestUtil.logTrace("Create 5 employees");
+			logger.log(Logger.Level.TRACE, "Create 5 employees");
 			empRef[0] = new Employee(1, "Alan", "Frechette");
 			empRef[0].setDepartment(deptRef[0]);
 
@@ -512,67 +519,67 @@ public class ClientIT extends PMClientBase {
 			link.put("OFF-005", empRef[5]);
 			deptRef2[0].setLastNameEmployees(link);
 
-			TestUtil.logTrace("Start to persist employees ");
+			logger.log(Logger.Level.TRACE, "Start to persist employees ");
 			for (Employee emp : empRef) {
 				if (emp != null) {
 					getEntityManager().persist(emp);
-					TestUtil.logTrace("persisted employee " + emp.getId());
+					logger.log(Logger.Level.TRACE, "persisted employee " + emp.getId());
 				}
 			}
 
 			// Merge Department
-			TestUtil.logTrace("Start to Merge department ");
+			logger.log(Logger.Level.TRACE, "Start to Merge department ");
 			for (Department dept : deptRef) {
 				if (dept != null) {
 					getEntityManager().merge(dept);
-					TestUtil.logTrace("merged department " + dept.getName());
+					logger.log(Logger.Level.TRACE, "merged department " + dept.getName());
 
 				}
 			}
 
 			// Merge Department2
-			TestUtil.logTrace("Start to Merge department ");
+			logger.log(Logger.Level.TRACE, "Start to Merge department ");
 			for (Department2 dept : deptRef2) {
 				if (dept != null) {
 					getEntityManager().merge(dept);
-					TestUtil.logTrace("merged department " + dept.getName());
+					logger.log(Logger.Level.TRACE, "merged department " + dept.getName());
 
 				}
 			}
 
-			TestUtil.logTrace("Start to persist employees ");
+			logger.log(Logger.Level.TRACE, "Start to persist employees ");
 			for (Employee emp : empRef) {
 				if (emp != null) {
 					getEntityManager().persist(emp);
-					TestUtil.logTrace("persisted employee " + emp.getId());
+					logger.log(Logger.Level.TRACE, "persisted employee " + emp.getId());
 				}
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception creating test data:", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception creating test data:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 	}
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 		removeDeploymentJar();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
@@ -583,14 +590,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("Delete from DEPARTMENT").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

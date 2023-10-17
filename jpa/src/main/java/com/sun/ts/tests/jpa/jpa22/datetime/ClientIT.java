@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.jpa22.datetime;
 
+import java.lang.System.Logger;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -31,7 +32,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.EntityTransaction;
@@ -39,6 +39,8 @@ import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
 
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	private static final long serialVersionUID = 22L;
 
@@ -59,7 +61,7 @@ public class ClientIT extends PMClientBase {
 	@Override
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logMsg("Setup: JPA 2.2 Java 8 date and time types test");
+		logger.log(Logger.Level.INFO, "Setup: JPA 2.2 Java 8 date and time types test");
 		try {
 			super.setup();
 
@@ -67,11 +69,11 @@ public class ClientIT extends PMClientBase {
 			props.put("jakarta.persistence.schema-generation.database.action", "drop-and-create");
 			props.put("jakarta.persistence.schema-generation.create-database-schemas", "true");
 			displayProperties(props);
-			TestUtil.logMsg(" - executing persistence schema generation");
+			logger.log(Logger.Level.INFO, " - executing persistence schema generation");
 			Persistence.generateSchema(getPersistenceUnitName(), props);
 			clearEMAndEMF();
 		} catch (Exception e) {
-			TestUtil.logErr("caught Exception: ", e);
+			logger.log(Logger.Level.ERROR, "caught Exception: ", e);
 			throw new Exception(" ! JPA 2.2 Java 8 date and time types test setup failed", e);
 		}
 		verifySchema();
@@ -80,11 +82,11 @@ public class ClientIT extends PMClientBase {
 	@Override
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logMsg("Cleanup: JPA 2.2 Java 8 date and time types test");
+		logger.log(Logger.Level.INFO, "Cleanup: JPA 2.2 Java 8 date and time types test");
 		Properties props = getPersistenceUnitProperties();
 		props.put("jakarta.persistence.schema-generation.database.action", "drop");
 		displayProperties(props);
-		TestUtil.logMsg(" - executing persistence schema cleanup");
+		logger.log(Logger.Level.INFO, " - executing persistence schema cleanup");
 		Persistence.generateSchema(getPersistenceUnitName(), props);
 		closeEMAndEMF();
 		super.cleanup();
@@ -153,7 +155,7 @@ public class ClientIT extends PMClientBase {
 	 */
 	@Test
 	public void dateTimeTest() throws Exception {
-		TestUtil.logMsg("Test: JPA 2.2 Java 8 date and time types");
+		logger.log(Logger.Level.INFO, "Test: JPA 2.2 Java 8 date and time types");
 		verifySchema();
 		boolean createResult = createEntities();
 		boolean allFindResult = true;
@@ -181,8 +183,9 @@ public class ClientIT extends PMClientBase {
 		boolean offsetDateTimeRangeResult = queryEntitiesRange("DateTimeEntity.findOffsetDateTimeRange", "min",
 				OFFSET_DATE_TIME.minus(10, ChronoUnit.DAYS).minus(10, ChronoUnit.MINUTES), "max",
 				OFFSET_DATE_TIME.plus(10, ChronoUnit.DAYS).plus(10, ChronoUnit.MINUTES), entities[4]);
-		TestUtil.logMsg("--------------------------------------------------------------------------------");
-		TestUtil.logMsg(" - JPA 2.2 Java 8 date and time types test results:");
+		logger.log(Logger.Level.INFO,
+				"--------------------------------------------------------------------------------");
+		logger.log(Logger.Level.INFO, " - JPA 2.2 Java 8 date and time types test results:");
 		logTestResult("Entities creation", createResult);
 		for (int i = 0; i < entities.length; i++) {
 			logTestResult("Find by ID=" + entities[i].getId().toString(), findResults[i]);
@@ -198,7 +201,8 @@ public class ClientIT extends PMClientBase {
 		logTestResult("Query DateTimeEntity.findLocalDateTimeRange", localDateTimeRangeResult);
 		logTestResult("Query DateTimeEntity.findOffsetTimeRange", offsetTimeRangeResult);
 		logTestResult("Query DateTimeEntity.findOffsetDateTimeRange", offsetDateTimeRangeResult);
-		TestUtil.logMsg("--------------------------------------------------------------------------------");
+		logger.log(Logger.Level.INFO,
+				"--------------------------------------------------------------------------------");
 		if (!(createResult && allFindResult && localDateResult && localTimeResult && localDateTimeResult
 				&& offsetTimeResult && offsetDateTimeResult)) {
 			throw new Exception("dateTimeTest (JPA 2.2 Java 8 date and time types test) failed");
@@ -212,7 +216,7 @@ public class ClientIT extends PMClientBase {
 	 *         {@code false} otherwise
 	 */
 	private boolean createEntities() {
-		TestUtil.logMsg(" - creating test entities");
+		logger.log(Logger.Level.INFO, " - creating test entities");
 		try {
 			getEntityTransaction().begin();
 			for (DateTimeEntity e : entities) {
@@ -221,7 +225,7 @@ public class ClientIT extends PMClientBase {
 			getEntityTransaction().commit();
 			return true;
 		} catch (Exception e) {
-			TestUtil.logErr("caught Exception: ", e);
+			logger.log(Logger.Level.ERROR, "caught Exception: ", e);
 			return false;
 		} finally {
 			if (getEntityTransaction().isActive()) {
@@ -238,22 +242,22 @@ public class ClientIT extends PMClientBase {
 	 *         {@code expected} argument or {@code false} otherwise
 	 */
 	private boolean findEntityById(DateTimeEntity expected) {
-		TestUtil.logMsg(" - executing find by ID=" + expected.getId().toString());
+		logger.log(Logger.Level.INFO, " - executing find by ID=" + expected.getId().toString());
 		try {
 			DateTimeEntity result = getEntityManager().find(DateTimeEntity.class, expected.getId());
 			if (result == null) {
-				TestUtil.logErr("no result returned for " + expected.toString());
+				logger.log(Logger.Level.ERROR, "no result returned for " + expected.toString());
 				return false;
 			}
 			if (!expected.equals(result)) {
-				TestUtil.logErr("returned entity does not match expected");
-				TestUtil.logErr(" - expected: " + expected.toString());
-				TestUtil.logErr(" - returned: " + result.toString());
+				logger.log(Logger.Level.ERROR, "returned entity does not match expected");
+				logger.log(Logger.Level.ERROR, " - expected: " + expected.toString());
+				logger.log(Logger.Level.ERROR, " - returned: " + result.toString());
 				return false;
 			}
 			return true;
 		} catch (Exception e) {
-			TestUtil.logErr("caught Exception: ", e);
+			logger.log(Logger.Level.ERROR, "caught Exception: ", e);
 			return false;
 		}
 	}
@@ -270,31 +274,32 @@ public class ClientIT extends PMClientBase {
 	 *         {@code expected} argument or {@code false} otherwise
 	 */
 	private boolean queryEntities(String queryName, String paramName, Object paramValue, DateTimeEntity expected) {
-		TestUtil.logMsg(" - executing query " + queryName + ": " + paramName + "=" + paramValue.toString());
+		logger.log(Logger.Level.INFO,
+				" - executing query " + queryName + ": " + paramName + "=" + paramValue.toString());
 		try {
 			TypedQuery<DateTimeEntity> query = getEntityManager().createNamedQuery(queryName, DateTimeEntity.class);
 			query.setParameter(paramName, paramValue);
 			List<DateTimeEntity> result = query.getResultList();
 			if (result == null || result.isEmpty()) {
-				TestUtil.logErr("no result returned for query " + queryName + " with " + paramName + "="
+				logger.log(Logger.Level.ERROR, "no result returned for query " + queryName + " with " + paramName + "="
 						+ paramValue.toString());
 				return false;
 			}
 			if (result.size() > 1) {
-				TestUtil.logErr("too many results (" + Integer.toString(result.size()) + ") returned for query "
-						+ queryName + " with " + paramName + "=" + paramValue.toString());
+				logger.log(Logger.Level.ERROR, "too many results (" + Integer.toString(result.size())
+						+ ") returned for query " + queryName + " with " + paramName + "=" + paramValue.toString());
 				return false;
 			}
 			DateTimeEntity returned = result.get(0);
 			if (!expected.equals(returned)) {
-				TestUtil.logErr("returned entity does not match expected");
-				TestUtil.logErr(" - expected: " + expected.toString());
-				TestUtil.logErr(" - returned: " + (returned != null ? returned.toString() : "null"));
+				logger.log(Logger.Level.ERROR, "returned entity does not match expected");
+				logger.log(Logger.Level.ERROR, " - expected: " + expected.toString());
+				logger.log(Logger.Level.ERROR, " - returned: " + (returned != null ? returned.toString() : "null"));
 				return false;
 			}
 			return true;
 		} catch (Exception e) {
-			TestUtil.logErr("caught Exception: ", e);
+			logger.log(Logger.Level.ERROR, "caught Exception: ", e);
 			return false;
 		}
 	}
@@ -312,34 +317,35 @@ public class ClientIT extends PMClientBase {
 	 */
 	private boolean queryEntitiesRange(String queryName, String minName, Object minValue, String maxName,
 			Object maxValue, DateTimeEntity expected) {
-		TestUtil.logMsg(" - executing query " + queryName + ": " + minName + "=" + minValue.toString() + ", " + maxName
-				+ "=" + maxValue.toString());
+		logger.log(Logger.Level.INFO, " - executing query " + queryName + ": " + minName + "=" + minValue.toString()
+				+ ", " + maxName + "=" + maxValue.toString());
 		try {
 			TypedQuery<DateTimeEntity> query = getEntityManager().createNamedQuery(queryName, DateTimeEntity.class);
 			query.setParameter(minName, minValue);
 			query.setParameter(maxName, maxValue);
 			List<DateTimeEntity> result = query.getResultList();
 			if (result == null || result.isEmpty()) {
-				TestUtil.logErr("no result returned for query " + queryName + " with " + minName + "="
+				logger.log(Logger.Level.ERROR, "no result returned for query " + queryName + " with " + minName + "="
 						+ minValue.toString() + ", " + maxName + "=" + maxValue.toString());
 				return false;
 			}
 			if (result.size() > 1) {
-				TestUtil.logErr("too many results (" + Integer.toString(result.size()) + ") returned for query "
-						+ queryName + " with " + minName + "=" + minValue.toString() + ", " + maxName + "="
-						+ maxValue.toString());
+				logger.log(Logger.Level.ERROR,
+						"too many results (" + Integer.toString(result.size()) + ") returned for query " + queryName
+								+ " with " + minName + "=" + minValue.toString() + ", " + maxName + "="
+								+ maxValue.toString());
 				return false;
 			}
 			DateTimeEntity returned = result.get(0);
 			if (!expected.equals(returned)) {
-				TestUtil.logErr("returned entity does not match expected");
-				TestUtil.logErr(" - expected: " + expected.toString());
-				TestUtil.logErr(" - returned: " + (returned != null ? returned.toString() : "null"));
+				logger.log(Logger.Level.ERROR, "returned entity does not match expected");
+				logger.log(Logger.Level.ERROR, " - expected: " + expected.toString());
+				logger.log(Logger.Level.ERROR, " - returned: " + (returned != null ? returned.toString() : "null"));
 				return false;
 			}
 			return true;
 		} catch (Exception e) {
-			TestUtil.logErr("caught Exception: ", e);
+			logger.log(Logger.Level.ERROR, "caught Exception: ", e);
 			return false;
 		}
 	}
@@ -351,16 +357,16 @@ public class ClientIT extends PMClientBase {
 	 * @return verification result
 	 */
 	private void verifySchema() throws Exception {
-		TestUtil.logMsg(" - executing persistence schema check");
+		logger.log(Logger.Level.INFO, " - executing persistence schema check");
 		try {
 			getEntityTransaction().begin();
 			DummyEntity e = new DummyEntity();
 			getEntityManager().persist(e);
 			getEntityTransaction().commit();
-			TestUtil.logTrace("   - stored " + e.toString());
+			logger.log(Logger.Level.TRACE, "   - stored " + e.toString());
 			DummyEntity result = getEntityManager().find(DummyEntity.class, e.getId());
 			if (result == null) {
-				TestUtil.logErr("   ! no entity was found");
+				logger.log(Logger.Level.ERROR, "   ! no entity was found");
 				throw new Exception("dateTimeTest: Schema verification failed");
 			}
 			getEntityTransaction().begin();
@@ -368,7 +374,7 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().remove(result);
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("caught Exception: ", e);
+			logger.log(Logger.Level.ERROR, "caught Exception: ", e);
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
@@ -396,7 +402,7 @@ public class ClientIT extends PMClientBase {
 		sb.append("   ").append(result ? '+' : '-').append(' ');
 		sb.append(name).append(": ");
 		sb.append(result ? "PASSED" : "FAILED");
-		TestUtil.logMsg(sb.toString());
+		logger.log(Logger.Level.INFO, sb.toString());
 	}
 
 }

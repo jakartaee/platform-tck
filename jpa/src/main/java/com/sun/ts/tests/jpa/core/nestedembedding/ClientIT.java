@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.nestedembedding;
 
+import java.lang.System.Logger;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -26,11 +27,11 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public ClientIT() {
 	}
@@ -46,12 +47,12 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 
 		}
@@ -81,7 +82,7 @@ public class ClientIT extends PMClientBase {
 
 		getEntityTransaction().begin();
 		try {
-			TestUtil.logTrace("New instances");
+			logger.log(Logger.Level.TRACE, "New instances");
 
 			ZipCode z1 = new ZipCode("01801", "1234");
 			ZipCode z2 = new ZipCode("01803", "1234");
@@ -125,47 +126,47 @@ public class ClientIT extends PMClientBase {
 							&& newB.getAddress().getZipCode().getZip().equals("01801")
 							&& newB.getAddress().getZipCode().getPlusFour().equals("1234")) {
 						pass = true;
-						TestUtil.logTrace("verified nested embedded class contents ");
+						logger.log(Logger.Level.TRACE, "verified nested embedded class contents ");
 					} else {
-						TestUtil.logErr("Expected address:" + addr1.toString());
-						TestUtil.logErr("actual address:" + newB.getAddress().toString());
+						logger.log(Logger.Level.ERROR, "Expected address:" + addr1.toString());
+						logger.log(Logger.Level.ERROR, "actual address:" + newB.getAddress().toString());
 					}
 				} else {
-					TestUtil.logErr("b not found in Collection");
+					logger.log(Logger.Level.ERROR, "b not found in Collection");
 				}
 			} else {
-				TestUtil.logErr("Collection did not contain all entries:");
+				logger.log(Logger.Level.ERROR, "Collection did not contain all entries:");
 				if (newCol.contains(b1)) {
-					TestUtil.logTrace("found b1");
+					logger.log(Logger.Level.TRACE, "found b1");
 				} else {
-					TestUtil.logErr("b1 NOT FOUND");
+					logger.log(Logger.Level.ERROR, "b1 NOT FOUND");
 				}
 				if (newCol.contains(b2)) {
-					TestUtil.logTrace("found b2");
+					logger.log(Logger.Level.TRACE, "found b2");
 				} else {
-					TestUtil.logErr("b2 NOT FOUND");
+					logger.log(Logger.Level.ERROR, "b2 NOT FOUND");
 				}
 				if (newCol.contains(b3)) {
-					TestUtil.logTrace("found b3");
+					logger.log(Logger.Level.TRACE, "found b3");
 				} else {
-					TestUtil.logErr("b3 NOT FOUND");
+					logger.log(Logger.Level.ERROR, "b3 NOT FOUND");
 				}
 				if (newCol.contains(b4)) {
-					TestUtil.logTrace("found b4");
+					logger.log(Logger.Level.TRACE, "found b4");
 				} else {
-					TestUtil.logErr("b4 NOT FOUND");
+					logger.log(Logger.Level.ERROR, "b4 NOT FOUND");
 				}
 
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 
 		}
@@ -192,7 +193,7 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 
 		try {
-			TestUtil.logTrace("New instances");
+			logger.log(Logger.Level.TRACE, "New instances");
 
 			ZipCode z1 = new ZipCode("01801", "1234");
 			ZipCode z2 = new ZipCode("01803", "1234");
@@ -228,30 +229,30 @@ public class ClientIT extends PMClientBase {
 
 				// Verify Embedded contents
 				if (newB != null) {
-					TestUtil.logTrace("newB:" + newB.toString());
+					logger.log(Logger.Level.TRACE, "newB:" + newB.toString());
 					if (newCol.contains(newB)) {
-						TestUtil.logTrace("b contains the searched embeddable Address");
+						logger.log(Logger.Level.TRACE, "b contains the searched embeddable Address");
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected:" + newCol.toString() + ", actual:" + newB.toString());
+						logger.log(Logger.Level.ERROR, "Expected:" + newCol.toString() + ", actual:" + newB.toString());
 					}
 
 				} else {
-					TestUtil.logErr("newB is null");
+					logger.log(Logger.Level.ERROR, "newB is null");
 				}
 			} else {
-				TestUtil.logErr("newA is null");
+				logger.log(Logger.Level.ERROR, "newA is null");
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 
 		}
@@ -277,7 +278,7 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 
 		try {
-			TestUtil.logTrace("New instances");
+			logger.log(Logger.Level.TRACE, "New instances");
 
 			ZipCode z1 = new ZipCode("01801", "1234");
 			ZipCode z2 = new ZipCode("01803", "1234");
@@ -314,28 +315,28 @@ public class ClientIT extends PMClientBase {
 				// Verify Embedded contents
 				if (newB != null) {
 					if (newCol.contains(newB)) {
-						TestUtil.logTrace("b contains the searched embeddable Address");
+						logger.log(Logger.Level.TRACE, "b contains the searched embeddable Address");
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected:" + newCol.toString() + ", actual:" + newB.toString());
+						logger.log(Logger.Level.ERROR, "Expected:" + newCol.toString() + ", actual:" + newB.toString());
 					}
 
 				} else {
-					TestUtil.logErr("newB is null");
+					logger.log(Logger.Level.ERROR, "newB is null");
 				}
 			} else {
-				TestUtil.logErr("newA is null");
+				logger.log(Logger.Level.ERROR, "newA is null");
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 
 		}
@@ -350,68 +351,70 @@ public class ClientIT extends PMClientBase {
 	 *
 	 */
 	private void createA(final A a) {
-		TestUtil.logTrace("Entered createA method");
+		logger.log(Logger.Level.TRACE, "Entered createA method");
 		getEntityTransaction().begin();
 		getEntityManager().persist(a);
 		getEntityTransaction().commit();
 	}
 
 	private A findA(final String id) {
-		// TestUtil.logTrace("Entered findA method");
+		// logger.log(Logger.Level.TRACE,"Entered findA method");
 		return getEntityManager().find(A.class, id);
 	}
 
 	private void createB(final B b) {
-		TestUtil.logTrace("Entered createB method");
+		logger.log(Logger.Level.TRACE, "Entered createB method");
 		getEntityTransaction().begin();
 		getEntityManager().persist(b);
 		getEntityTransaction().commit();
 	}
 
 	private B findB(final String id) {
-		// TestUtil.logTrace("Entered findB method");
+		// logger.log(Logger.Level.TRACE,"Entered findB method");
 		return getEntityManager().find(B.class, id);
 	}
 
 	private List findByName(final String name) {
-		TestUtil.logTrace("Entered findByName method");
+		logger.log(Logger.Level.TRACE, "Entered findByName method");
 		return getEntityManager().createQuery("select a from A a where a.name = :name").setParameter("name", name)
 				.getResultList();
 	}
 
 	private boolean getInstanceStatus(final Object o) {
-		TestUtil.logTrace("Entered getInstanceStatus method");
+		logger.log(Logger.Level.TRACE, "Entered getInstanceStatus method");
 		return getEntityManager().contains(o);
 	}
 
 	private void dumpCollectionDataA(final Collection c) {
-		TestUtil.logTrace("collection Data");
-		TestUtil.logTrace("---------------");
-		TestUtil.logTrace("- size=" + c.size());
+		logger.log(Logger.Level.TRACE, "collection Data");
+		logger.log(Logger.Level.TRACE, "---------------");
+		logger.log(Logger.Level.TRACE, "- size=" + c.size());
 		Iterator i = c.iterator();
 		int elem = 1;
 		while (i.hasNext()) {
 			A v = (A) i.next();
-			TestUtil.logTrace("- Element #" + elem++);
-			TestUtil.logTrace("  id=" + v.getAId() + ", name=" + v.getAName() + ", value=" + v.getAValue());
+			logger.log(Logger.Level.TRACE, "- Element #" + elem++);
+			logger.log(Logger.Level.TRACE,
+					"  id=" + v.getAId() + ", name=" + v.getAName() + ", value=" + v.getAValue());
 		}
 	}
 
 	private void dumpCollectionDataB(final Collection c) {
-		TestUtil.logTrace("collection Data");
-		TestUtil.logTrace("---------------");
-		TestUtil.logTrace("- size=" + c.size());
+		logger.log(Logger.Level.TRACE, "collection Data");
+		logger.log(Logger.Level.TRACE, "---------------");
+		logger.log(Logger.Level.TRACE, "- size=" + c.size());
 		Iterator i = c.iterator();
 		int elem = 1;
 		while (i.hasNext()) {
 			B v = (B) i.next();
-			TestUtil.logTrace("- Element #" + elem++);
-			TestUtil.logTrace("  id=" + v.getBId() + ", name=" + v.getBName() + ", value=" + v.getBValue());
+			logger.log(Logger.Level.TRACE, "- Element #" + elem++);
+			logger.log(Logger.Level.TRACE,
+					"  id=" + v.getBId() + ", name=" + v.getBName() + ", value=" + v.getBValue());
 		}
 	}
 
 	public B getBFromCollection(final Collection c, final B b) {
-		TestUtil.logTrace("getBFromCollection");
+		logger.log(Logger.Level.TRACE, "getBFromCollection");
 		B resultB = null;
 		if (c.size() != 0) {
 			Iterator iterator = c.iterator();
@@ -419,11 +422,11 @@ public class ClientIT extends PMClientBase {
 				B newB = (B) iterator.next();
 				if (newB.getBId().equals(b.getBId()) && newB.getBName().equals(b.getBName())
 						&& newB.getBValue() == b.getBValue()) {
-					TestUtil.logTrace("Found B in Collection");
+					logger.log(Logger.Level.TRACE, "Found B in Collection");
 					resultB = newB;
 					return resultB;
 				} else {
-					TestUtil.logTrace("b not found in Collection");
+					logger.log(Logger.Level.TRACE, "b not found in Collection");
 				}
 			}
 		}
@@ -432,14 +435,14 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("Cleanup data");
+		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -449,14 +452,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM BNE_1XM_BI_BTOB").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

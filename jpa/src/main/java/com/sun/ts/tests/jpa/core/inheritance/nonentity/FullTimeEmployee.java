@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.inheritance.nonentity;
 
+import java.lang.System.Logger;
 import java.sql.Date;
 
 import jakarta.persistence.Column;
@@ -33,6 +34,8 @@ import jakarta.persistence.Entity;
 @Entity
 @DiscriminatorValue("EXEMPT")
 public class FullTimeEmployee extends Employee {
+
+	private static final Logger logger = (Logger) System.getLogger(FullTimeEmployee.class.getName());
 
 	private float salary;
 

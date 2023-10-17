@@ -16,10 +16,9 @@
 
 package com.sun.ts.tests.jpa.core.annotations.collectiontable;
 
+import java.lang.System.Logger;
 import java.util.HashSet;
 import java.util.Set;
-
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;
@@ -39,6 +38,8 @@ public class A implements java.io.Serializable {
 
 	protected int value;
 
+	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
+
 	@ElementCollection
 	@CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
 	protected Set<Address> address = new HashSet();
@@ -53,12 +54,12 @@ public class A implements java.io.Serializable {
 	}
 
 	public Set<Address> getAddress() {
-		TestUtil.logTrace("getAddress");
+		logger.log(Logger.Level.TRACE, "getAddress");
 		return address;
 	}
 
 	public void setAddress(Set<Address> addr) {
-		TestUtil.logTrace("setAddress");
+		logger.log(Logger.Level.TRACE, "setAddress");
 		this.address = addr;
 	}
 

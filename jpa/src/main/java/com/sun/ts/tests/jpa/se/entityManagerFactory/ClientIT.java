@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.se.entityManagerFactory;
 
+import java.lang.System.Logger;
 import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -23,7 +24,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.EntityManager;
@@ -31,8 +31,9 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceException;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	Properties props = null;
 
@@ -50,12 +51,12 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setupNoData() throws Exception {
-		TestUtil.logTrace("setupNoData");
+		logger.log(Logger.Level.TRACE, "setupNoData");
 		try {
 			super.setup();
 			createDeployment();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -81,14 +82,14 @@ public class ClientIT extends PMClientBase {
 			emf.close();
 			try {
 				emf.getMetamodel();
-				TestUtil.logErr("IllegalStateException not thrown");
+				logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 			} catch (IllegalStateException ise) {
-				TestUtil.logTrace("Received expected IllegalStateException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
 				pass = true;
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass) {
 			throw new Exception("getMetamodelIllegalStateExceptionTest failed");
@@ -113,12 +114,12 @@ public class ClientIT extends PMClientBase {
 			EntityManager em = emf.createEntityManager();
 			em.getTransaction().begin();
 			em.persist(new Order(1, 111));
-			TestUtil.logErr("Did not receive expected PersistenceException");
+			logger.log(Logger.Level.ERROR, "Did not receive expected PersistenceException");
 		} catch (PersistenceException pe) {
-			TestUtil.logTrace("Received expected PersistenceException");
+			logger.log(Logger.Level.TRACE, "Received expected PersistenceException");
 			pass = true;
 		} catch (Exception ex) {
-			TestUtil.logErr("Received unexpected Exception", ex);
+			logger.log(Logger.Level.ERROR, "Received unexpected Exception", ex);
 		}
 		if (!pass) {
 			throw new Exception("createEntityManagerFactoryNoBeanValidatorTest failed");
@@ -140,13 +141,13 @@ public class ClientIT extends PMClientBase {
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory(getPersistenceUnitName(),
 					getPersistenceUnitProperties());
 			if (emf != null) {
-				TestUtil.logTrace("Received non-null EntityManagerFactory");
+				logger.log(Logger.Level.TRACE, "Received non-null EntityManagerFactory");
 				pass = true;
 			} else {
-				TestUtil.logErr("Received null EntityManagerFactory");
+				logger.log(Logger.Level.ERROR, "Received null EntityManagerFactory");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Received unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("createEntityManagerFactoryStringTest failed");

@@ -19,15 +19,17 @@
  */
 package com.sun.ts.tests.jpa.core.entitytest.cascadeall.oneXone;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public ClientIT() {
 	}
@@ -43,12 +45,12 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("Entering Setup");
+		logger.log(Logger.Level.TRACE, "Entering Setup");
 		try {
 			super.setup();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 
 		}
@@ -76,7 +78,7 @@ public class ClientIT extends PMClientBase {
 	 */
 	@Test
 	public void cascadeAll1X1Test1() throws Exception {
-		TestUtil.logTrace("Begin cascadeAll1X1Test1");
+		logger.log(Logger.Level.TRACE, "Begin cascadeAll1X1Test1");
 		boolean pass = false;
 		A a1;
 		A a2;
@@ -84,31 +86,31 @@ public class ClientIT extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("New instances");
+			logger.log(Logger.Level.TRACE, "New instances");
 			a1 = new A("1", "a1", 1);
 			bRef = new B("1", "bean1", 1, a1);
 			getEntityManager().persist(bRef);
 
-			TestUtil.logTrace("getA1");
+			logger.log(Logger.Level.TRACE, "getA1");
 			a2 = bRef.getA1();
 
 			if ((a1 == a2) && (getEntityManager().contains(bRef))) {
 				pass = true;
 			} else {
-				TestUtil.logErr("Unexpected results - test fails.");
+				logger.log(Logger.Level.ERROR, "Unexpected results - test fails.");
 				pass = false;
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -135,7 +137,7 @@ public class ClientIT extends PMClientBase {
 	 */
 	@Test
 	public void cascadeAll1X1Test2() throws Exception {
-		TestUtil.logTrace("Begin cascadeAll1X1Test2");
+		logger.log(Logger.Level.TRACE, "Begin cascadeAll1X1Test2");
 		B bRef;
 		A a1;
 
@@ -145,39 +147,39 @@ public class ClientIT extends PMClientBase {
 			getEntityTransaction().begin();
 			a1 = new A("2", "a2", 2);
 			bRef = new B("2", "b2", 2, a1);
-			TestUtil.logTrace("Persist Instance");
+			logger.log(Logger.Level.TRACE, "Persist Instance");
 			getEntityManager().persist(bRef);
 
-			TestUtil.logTrace("get Instance Status ");
+			logger.log(Logger.Level.TRACE, "get Instance Status ");
 			if (getInstanceStatus(findB("2"))) {
 				try {
-					TestUtil.logTrace("entity is managed, remove it ");
+					logger.log(Logger.Level.TRACE, "entity is managed, remove it ");
 					getEntityManager().remove(findB("2"));
 					getEntityManager().flush();
 
-					TestUtil.logTrace("Persist a removed entity");
+					logger.log(Logger.Level.TRACE, "Persist a removed entity");
 					getEntityManager().persist(bRef);
 					pass = getInstanceStatus(bRef);
 				} catch (Exception ee) {
-					TestUtil.logErr("Unexpected exception trying to persist a removed entity", ee);
+					logger.log(Logger.Level.ERROR, "Unexpected exception trying to persist a removed entity", ee);
 					pass = false;
 				}
 
 			} else {
-				TestUtil.logTrace("Instance is not already persisted. Test Fails.");
+				logger.log(Logger.Level.TRACE, "Instance is not already persisted. Test Fails.");
 				pass = false;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -207,14 +209,14 @@ public class ClientIT extends PMClientBase {
 	@Test
 	public void cascadeAll1X1Test3() throws Exception {
 
-		TestUtil.logTrace("Begin cascadeAll1X1Test3");
+		logger.log(Logger.Level.TRACE, "Begin cascadeAll1X1Test3");
 		boolean pass = false;
 		B bRef;
 		A a1;
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("New instances");
+			logger.log(Logger.Level.TRACE, "New instances");
 			a1 = new A("3", "a3", 3);
 			bRef = new B("3", "bean3", 3, a1);
 			getEntityManager().persist(bRef);
@@ -224,20 +226,20 @@ public class ClientIT extends PMClientBase {
 			if ((a1 == a2) && (getEntityManager().contains(a2))) {
 				pass = true;
 			} else {
-				TestUtil.logErr("Unexpected results received - test failed");
+				logger.log(Logger.Level.ERROR, "Unexpected results received - test failed");
 				pass = false;
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 
 		}
@@ -259,19 +261,19 @@ public class ClientIT extends PMClientBase {
 	 */
 	@Test
 	public void cascadeAll1X1Test4() throws Exception {
-		TestUtil.logTrace("Begin cascadeAll1X1Test4");
+		logger.log(Logger.Level.TRACE, "Begin cascadeAll1X1Test4");
 		boolean pass = false;
 		B bRef;
 		A a1;
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("New instances");
+			logger.log(Logger.Level.TRACE, "New instances");
 			a1 = new A("4", "a4", 4);
 			bRef = new B("4", "bean4", 4, a1);
 			getEntityManager().persist(bRef);
 
-			TestUtil.logTrace("bref created, try find");
+			logger.log(Logger.Level.TRACE, "bref created, try find");
 			A newA = findA("4");
 			if (null != newA) {
 				pass = getEntityManager().contains(newA);
@@ -279,14 +281,14 @@ public class ClientIT extends PMClientBase {
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 
 		}
@@ -309,14 +311,14 @@ public class ClientIT extends PMClientBase {
 	@Test
 	public void cascadeAll1X1Test5() throws Exception {
 
-		TestUtil.logTrace("Begin cascadeAll1X1Test5");
+		logger.log(Logger.Level.TRACE, "Begin cascadeAll1X1Test5");
 		boolean pass1 = true;
 		boolean pass2 = true;
 		boolean pass = true;
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("New instances");
+			logger.log(Logger.Level.TRACE, "New instances");
 			B b1 = new B("5", "b5", 5);
 			A aRef = new A("5", "bean5", 5, b1);
 
@@ -325,7 +327,7 @@ public class ClientIT extends PMClientBase {
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		} finally {
 			try {
@@ -333,12 +335,12 @@ public class ClientIT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
 		if (pass1 || pass2 || !pass) {
-			TestUtil.logErr("pass=" + pass + ", pass1=" + pass1 + ", pass2=" + pass2);
+			logger.log(Logger.Level.ERROR, "pass=" + pass + ", pass1=" + pass1 + ", pass2=" + pass2);
 			throw new Exception("cascadeAll1X1Test5 failed");
 		}
 	}
@@ -367,7 +369,7 @@ public class ClientIT extends PMClientBase {
 	 */
 	@Test
 	public void cascadeAll1X1Test6() throws Exception {
-		TestUtil.logTrace("Begin cascadeAll1X1Test6");
+		logger.log(Logger.Level.TRACE, "Begin cascadeAll1X1Test6");
 		boolean pass = false;
 
 		B bRef;
@@ -376,7 +378,7 @@ public class ClientIT extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("New instances");
+			logger.log(Logger.Level.TRACE, "New instances");
 			a1 = new A("6", "a6", 6);
 			bRef = new B("6", "bean6", 6);
 			getEntityManager().persist(bRef);
@@ -387,25 +389,25 @@ public class ClientIT extends PMClientBase {
 				getEntityManager().persist(bRef1);
 				getEntityManager().flush();
 
-				TestUtil.logTrace("try to find A");
+				logger.log(Logger.Level.TRACE, "try to find A");
 				A a2 = findA("6");
 
 				if (null != a2) {
-					TestUtil.logTrace("A2 is not null");
+					logger.log(Logger.Level.TRACE, "A2 is not null");
 					pass = getEntityManager().contains(a2);
 				}
 
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -432,7 +434,7 @@ public class ClientIT extends PMClientBase {
 	@Test
 	public void cascadeAll1X1Test7() throws Exception {
 
-		TestUtil.logTrace("Begin cascadeAll1X1Test7");
+		logger.log(Logger.Level.TRACE, "Begin cascadeAll1X1Test7");
 		boolean pass = false;
 
 		A aRef;
@@ -440,14 +442,14 @@ public class ClientIT extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("New instances");
+			logger.log(Logger.Level.TRACE, "New instances");
 			b1 = new B("7", "b7", 7);
 			aRef = new A("7", "bean7", 7, b1);
 			getEntityManager().persist(aRef);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logTrace("IllegalArgumentException caught as expected:" + e);
+			logger.log(Logger.Level.TRACE, "IllegalArgumentException caught as expected:" + e);
 			pass = true;
 		} finally {
 			try {
@@ -455,7 +457,7 @@ public class ClientIT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (IllegalStateException fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -486,7 +488,7 @@ public class ClientIT extends PMClientBase {
 	 */
 	@Test
 	public void cascadeAll1X1Test8() throws Exception {
-		TestUtil.logTrace("Begin cascadeAll1X1Test8");
+		logger.log(Logger.Level.TRACE, "Begin cascadeAll1X1Test8");
 		boolean pass = false;
 
 		try {
@@ -499,9 +501,9 @@ public class ClientIT extends PMClientBase {
 
 			if ((getInstanceStatus(bRef)) && (a2 == a1)) {
 				try {
-					TestUtil.logTrace("Status is true as expected, try remove()");
+					logger.log(Logger.Level.TRACE, "Status is true as expected, try remove()");
 					getEntityManager().remove(findB("8"));
-					TestUtil.logTrace("Remove is immediately visible to the contains method");
+					logger.log(Logger.Level.TRACE, "Remove is immediately visible to the contains method");
 					if ((!getEntityManager().contains(a2)) && (!getEntityManager().contains(bRef))) {
 						getEntityManager().flush();
 					}
@@ -512,23 +514,23 @@ public class ClientIT extends PMClientBase {
 					}
 
 				} catch (Exception onfe) {
-					TestUtil.logTrace("Expected Exception :" + onfe);
+					logger.log(Logger.Level.TRACE, "Expected Exception :" + onfe);
 				}
 			} else {
-				TestUtil.logTrace("Instance is not managed- Unexpected");
+				logger.log(Logger.Level.TRACE, "Instance is not managed- Unexpected");
 				pass = false;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -550,7 +552,7 @@ public class ClientIT extends PMClientBase {
 	 */
 	@Test
 	public void cascadeAll1X1Test9() throws Exception {
-		TestUtil.logTrace("Begin cascadeAll1X1Test9");
+		logger.log(Logger.Level.TRACE, "Begin cascadeAll1X1Test9");
 		boolean pass = false;
 
 		try {
@@ -559,12 +561,12 @@ public class ClientIT extends PMClientBase {
 			final B bRef = new B("9", "a9", 9, a1);
 			getEntityManager().persist(bRef);
 
-			TestUtil.logTrace("get Instance ");
+			logger.log(Logger.Level.TRACE, "get Instance ");
 			A a2 = bRef.getA1();
 
 			if ((getInstanceStatus(bRef)) && (a2 == a1)) {
 				try {
-					TestUtil.logTrace("Status is true as expected, try remove()");
+					logger.log(Logger.Level.TRACE, "Status is true as expected, try remove()");
 					B newB = findB("9");
 					getEntityManager().remove(newB);
 
@@ -572,23 +574,23 @@ public class ClientIT extends PMClientBase {
 						pass = true;
 					}
 				} catch (Exception onfe) {
-					TestUtil.logErr("Unexpected Exception :" + onfe);
+					logger.log(Logger.Level.ERROR, "Unexpected Exception :" + onfe);
 				}
 			} else {
-				TestUtil.logTrace("Instance is not managed- Unexpected");
+				logger.log(Logger.Level.TRACE, "Instance is not managed- Unexpected");
 				pass = false;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -614,7 +616,7 @@ public class ClientIT extends PMClientBase {
 	 */
 	@Test
 	public void cascadeAll1X1Test10() throws Exception {
-		TestUtil.logTrace("Begin cascadeAll1X1Test10");
+		logger.log(Logger.Level.TRACE, "Begin cascadeAll1X1Test10");
 		boolean pass = false;
 		boolean status = true;
 
@@ -627,16 +629,16 @@ public class ClientIT extends PMClientBase {
 
 			if (getInstanceStatus(a1)) {
 				try {
-					TestUtil.logTrace("entity is new, remove ignored on bRef, a1 should be removed");
+					logger.log(Logger.Level.TRACE, "entity is new, remove ignored on bRef, a1 should be removed");
 					getEntityManager().remove(bRef);
 					status = getEntityManager().contains(a1);
 					getEntityManager().flush();
 				} catch (Exception e) {
-					TestUtil.logErr("Unexpected exception occurred", e);
+					logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 					pass = false;
 				}
 			} else {
-				TestUtil.logTrace("Instance is not managed- Unexpected");
+				logger.log(Logger.Level.TRACE, "Instance is not managed- Unexpected");
 				pass = false;
 			}
 
@@ -647,14 +649,14 @@ public class ClientIT extends PMClientBase {
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -668,29 +670,29 @@ public class ClientIT extends PMClientBase {
 	 */
 
 	private A findA(final String id) {
-		TestUtil.logTrace("Entered findA method");
+		logger.log(Logger.Level.TRACE, "Entered findA method");
 		return getEntityManager().find(A.class, id);
 	}
 
 	private B findB(final String id) {
-		TestUtil.logTrace("Entered findB method");
+		logger.log(Logger.Level.TRACE, "Entered findB method");
 		return getEntityManager().find(B.class, id);
 	}
 
 	private boolean getInstanceStatus(final Object o) {
-		TestUtil.logTrace("Entered getInstanceStatus method");
+		logger.log(Logger.Level.TRACE, "Entered getInstanceStatus method");
 		return getEntityManager().contains(o);
 	}
 
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("Cleanup data");
+		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -700,14 +702,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM AEJB_1X1_BI_BTOB").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

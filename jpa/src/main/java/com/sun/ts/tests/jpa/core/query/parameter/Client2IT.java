@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.query.parameter;
 
+import java.lang.System.Logger;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -23,14 +24,15 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 import com.sun.ts.tests.jpa.core.relationship.annotations.ClientIT;
 
 import jakarta.persistence.Query;
 
-
 public class Client2IT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(Client2IT.class.getName());
+
 	protected final Employee empRef[] = new Employee[5];
 
 	public Client2IT() {
@@ -47,13 +49,13 @@ public class Client2IT extends PMClientBase {
 
 	@BeforeAll
 	public void setupEmployee() throws Exception {
-		TestUtil.logTrace("setupEmployee");
+		logger.log(Logger.Level.TRACE, "setupEmployee");
 		try {
 			super.setup();
 			createDeployment();
 			createEmployeeData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -84,14 +86,14 @@ public class Client2IT extends PMClientBase {
 			expectedPKs[1] = "4";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				TestUtil.logErr("Expected 1 result, got: " + result.size());
+				logger.log(Logger.Level.ERROR, "Expected 1 result, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception:", e);
+			logger.log(Logger.Level.ERROR, "Caught exception:", e);
 		}
 		if (!pass)
 			throw new Exception("parameterPositionalTest failed");
@@ -118,7 +120,7 @@ public class Client2IT extends PMClientBase {
 
 			int result_size = q.executeUpdate();
 			if (result_size == 1) {
-				TestUtil.logTrace("Updated 1 rows");
+				logger.log(Logger.Level.TRACE, "Updated 1 rows");
 			}
 
 			doFlush();
@@ -126,16 +128,16 @@ public class Client2IT extends PMClientBase {
 			Employee emp = getEntityManager().find(Employee.class, 1);
 
 			if (emp.getFirstName().equals("foo") && emp.getLastName().equals("foo")) {
-				TestUtil.logTrace("Received expected result:" + emp.toString());
+				logger.log(Logger.Level.TRACE, "Received expected result:" + emp.toString());
 				pass = true;
 			} else {
-				TestUtil.logErr("Expected: firstName=foo, lastName=foo, actual: firstName=" + emp.getFirstName()
-						+ ", lastName=" + emp.getLastName());
+				logger.log(Logger.Level.ERROR, "Expected: firstName=foo, lastName=foo, actual: firstName="
+						+ emp.getFirstName() + ", lastName=" + emp.getLastName());
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception:", e);
+			logger.log(Logger.Level.ERROR, "Caught exception:", e);
 		}
 		if (!pass)
 			throw new Exception("parameterUpdateTest failed");
@@ -166,14 +168,14 @@ public class Client2IT extends PMClientBase {
 			expectedPKs[1] = "4";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				TestUtil.logErr("Expected 1 result, got: " + result.size());
+				logger.log(Logger.Level.ERROR, "Expected 1 result, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception:", e);
+			logger.log(Logger.Level.ERROR, "Caught exception:", e);
 		}
 		if (!pass)
 			throw new Exception("parameterCaseTest failed");
@@ -202,21 +204,21 @@ public class Client2IT extends PMClientBase {
 			expectedPKs[0] = "2";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				TestUtil.logErr("Expected 1 result, got: " + result.size());
+				logger.log(Logger.Level.ERROR, "Expected 1 result, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception:", e);
+			logger.log(Logger.Level.ERROR, "Caught exception:", e);
 		}
 		if (!pass)
 			throw new Exception("parameterNamedParameterTwiceTest failed");
 	}
 
 	public void createEmployeeData() throws Exception {
-		TestUtil.logTrace("createDepartmentEmployeeData");
+		logger.log(Logger.Level.TRACE, "createDepartmentEmployeeData");
 		getEntityTransaction().begin();
 
 		try {
@@ -225,33 +227,33 @@ public class Client2IT extends PMClientBase {
 			empRef[2] = new Employee(3, "Shelly", "McGowan");
 			empRef[3] = new Employee(4, "Robert", "Bissett");
 			empRef[4] = new Employee(5, "Stephen", "DMilla");
-			TestUtil.logTrace("Start to persist employees ");
+			logger.log(Logger.Level.TRACE, "Start to persist employees ");
 			for (Employee emp : empRef) {
 				if (emp != null) {
 					getEntityManager().persist(emp);
-					TestUtil.logTrace("persisted employee " + emp.getId());
+					logger.log(Logger.Level.TRACE, "persisted employee " + emp.getId());
 				}
 			}
 			doFlush();
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("createDepartmentEmployeeData failed:", e);
 		}
 	}
 
 	@AfterAll
 	public void cleanupEmployee() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 		removeDeploymentJar();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -260,7 +262,7 @@ public class Client2IT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM EMPLOYEE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 
 		} finally {
 			try {
@@ -268,7 +270,7 @@ public class Client2IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

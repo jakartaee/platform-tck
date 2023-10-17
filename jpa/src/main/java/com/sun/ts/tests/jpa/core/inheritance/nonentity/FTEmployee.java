@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.inheritance.nonentity;
 
+import java.lang.System.Logger;
 import java.sql.Date;
 
 /*
@@ -27,6 +28,8 @@ import java.sql.Date;
  */
 
 public class FTEmployee extends Employee {
+
+	private static final Logger logger = (Logger) System.getLogger(FTEmployee.class.getName());
 
 	private float salary;
 

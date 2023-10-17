@@ -1,17 +1,19 @@
 package com.sun.ts.tests.jpa.core.annotations.access.field;
 
+import java.lang.System.Logger;
 import java.util.Arrays;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.core.types.common.Grade;
 
 import jakarta.persistence.Query;
 
 public class Client1IT extends Client {
+
+	private static final Logger logger = (Logger) System.getLogger(Client1IT.class.getName());
 
 	public static JavaArchive createDeployment() throws Exception {
 
@@ -26,17 +28,17 @@ public class Client1IT extends Client {
 	@BeforeAll
 	public void setup() throws Exception {
 
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 			createTestData();
-			TestUtil.logTrace("Done creating test data");
+			logger.log(Logger.Level.TRACE, "Done creating test data");
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			e.printStackTrace();
 			throw new Exception("Setup failed:", e);
 		}
@@ -70,18 +72,18 @@ public class Client1IT extends Client {
 				getEntityManager().flush();
 
 				if (d1.isProperty()) {
-					TestUtil.logTrace("Received expected result:" + d1.isProperty());
+					logger.log(Logger.Level.TRACE, "Received expected result:" + d1.isProperty());
 					pass = true;
 				} else {
-					TestUtil.logErr("Expected: true, actual:" + d1.isProperty());
+					logger.log(Logger.Level.ERROR, "Expected: true, actual:" + d1.isProperty());
 				}
 
 				getEntityTransaction().commit();
 			} else {
-				TestUtil.logErr("find returned null");
+				logger.log(Logger.Level.ERROR, "find returned null");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			e.printStackTrace();
 			pass = false;
 		} finally {
@@ -90,7 +92,7 @@ public class Client1IT extends Client {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
 				re.printStackTrace();
 			}
 		}
@@ -126,15 +128,15 @@ public class Client1IT extends Client {
 				if (d1.getByteData() == newByte) {
 					pass = true;
 				} else {
-					TestUtil.logErr("Expected: 100, actual:" + d1.getByteData());
+					logger.log(Logger.Level.ERROR, "Expected: 100, actual:" + d1.getByteData());
 				}
 
 				getEntityTransaction().commit();
 			} else {
-				TestUtil.logErr("find returned null");
+				logger.log(Logger.Level.ERROR, "find returned null");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			e.printStackTrace();
 			pass = false;
 		} finally {
@@ -143,7 +145,7 @@ public class Client1IT extends Client {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
 			}
 		}
 
@@ -179,14 +181,14 @@ public class Client1IT extends Client {
 				if (d1.getCharacterData() == newChar) {
 					pass = true;
 				} else {
-					TestUtil.logErr("Expected: a, actual:" + d1.getCharacterData());
+					logger.log(Logger.Level.ERROR, "Expected: a, actual:" + d1.getCharacterData());
 				}
 				getEntityTransaction().commit();
 			} else {
-				TestUtil.logErr("find returned null");
+				logger.log(Logger.Level.ERROR, "find returned null");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		} finally {
 			try {
@@ -194,7 +196,7 @@ public class Client1IT extends Client {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
 			}
 		}
 
@@ -230,21 +232,21 @@ public class Client1IT extends Client {
 				if (d1.getShortData() == newShort) {
 					pass = true;
 				} else {
-					TestUtil.logErr("Expected: 100, actual:" + d1.getShortData());
+					logger.log(Logger.Level.ERROR, "Expected: 100, actual:" + d1.getShortData());
 				}
 				getEntityTransaction().commit();
 			} else {
-				TestUtil.logErr("find returned null");
+				logger.log(Logger.Level.ERROR, "find returned null");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
 				pass = false;
 			}
 		}
@@ -280,14 +282,14 @@ public class Client1IT extends Client {
 				if (d1.getIntData() == newInt) {
 					pass = true;
 				} else {
-					TestUtil.logErr("Expected: 300, actual:" + d1.getIntData());
+					logger.log(Logger.Level.ERROR, "Expected: 300, actual:" + d1.getIntData());
 				}
 				getEntityTransaction().commit();
 			} else {
-				TestUtil.logErr("find returned null");
+				logger.log(Logger.Level.ERROR, "find returned null");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		} finally {
 			try {
@@ -295,7 +297,7 @@ public class Client1IT extends Client {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
 			}
 		}
 
@@ -330,15 +332,15 @@ public class Client1IT extends Client {
 				if (d1.getLongData() == newLong) {
 					pass = true;
 				} else {
-					TestUtil.logErr("Expected: 600, actual:" + d1.getLongData());
+					logger.log(Logger.Level.ERROR, "Expected: 600, actual:" + d1.getLongData());
 				}
 
 				getEntityTransaction().commit();
 			} else {
-				TestUtil.logErr("find returned null");
+				logger.log(Logger.Level.ERROR, "find returned null");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		} finally {
 			try {
@@ -346,7 +348,7 @@ public class Client1IT extends Client {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
 			}
 		}
 
@@ -381,14 +383,14 @@ public class Client1IT extends Client {
 				if (d1.getDoubleData() == newDbl) {
 					pass = true;
 				} else {
-					TestUtil.logErr("Expected: 50, actual:" + d1.getDoubleData());
+					logger.log(Logger.Level.ERROR, "Expected: 50, actual:" + d1.getDoubleData());
 				}
 				getEntityTransaction().commit();
 			} else {
-				TestUtil.logErr("find returned null");
+				logger.log(Logger.Level.ERROR, "find returned null");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		} finally {
 			try {
@@ -396,7 +398,7 @@ public class Client1IT extends Client {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
 			}
 		}
 
@@ -427,7 +429,7 @@ public class Client1IT extends Client {
 			d1 = getEntityManager().find(DataTypes.class, 1);
 			if (null != d1) {
 
-				TestUtil.logTrace("float value is: " + d1.getFloatData());
+				logger.log(Logger.Level.TRACE, "float value is: " + d1.getFloatData());
 
 				if ((d1.getFloatData() >= expFloat) && (d1.getFloatData() < floatRange)) {
 					d1.setFloatData(newFloat);
@@ -438,16 +440,16 @@ public class Client1IT extends Client {
 					if ((d1.getFloatData() >= newFloat) && (d1.getFloatData() < newfloatRange)) {
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: >= " + newFloat + " and < " + newfloatRange + ", actual:"
-								+ d1.getFloatData());
+						logger.log(Logger.Level.ERROR, "Expected: >= " + newFloat + " and < " + newfloatRange
+								+ ", actual:" + d1.getFloatData());
 					}
 				}
 				getEntityTransaction().commit();
 			} else {
-				TestUtil.logErr("find returned null");
+				logger.log(Logger.Level.ERROR, "find returned null");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		} finally {
 			try {
@@ -455,7 +457,7 @@ public class Client1IT extends Client {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
 			}
 		}
 
@@ -481,30 +483,30 @@ public class Client1IT extends Client {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("find DataTypes entity in fieldTypeTest9");
+			logger.log(Logger.Level.TRACE, "find DataTypes entity in fieldTypeTest9");
 			d1 = getEntityManager().find(DataTypes.class, 1);
 
 			if (null != d1) {
-				TestUtil.logTrace("DataTypes is not null, setting enumData");
+				logger.log(Logger.Level.TRACE, "DataTypes is not null, setting enumData");
 				d1.setEnumData(Grade.B);
 
 				getEntityManager().merge(d1);
 				getEntityManager().flush();
 
-				TestUtil.logTrace("Update performed, check results");
+				logger.log(Logger.Level.TRACE, "Update performed, check results");
 				if ((null != d1) && (d1.getEnumData().equals(Grade.B))) {
-					TestUtil.logTrace("Expected results received");
+					logger.log(Logger.Level.TRACE, "Expected results received");
 					pass = true;
 				} else {
-					TestUtil.logErr("Expected: " + Grade.B.toString() + ", actual:" + d1.getEnumData());
+					logger.log(Logger.Level.ERROR, "Expected: " + Grade.B.toString() + ", actual:" + d1.getEnumData());
 				}
 
 				getEntityTransaction().commit();
 			} else {
-				TestUtil.logErr("find returned null");
+				logger.log(Logger.Level.ERROR, "find returned null");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		} finally {
 			try {
@@ -512,7 +514,7 @@ public class Client1IT extends Client {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
 			}
 		}
 
@@ -542,24 +544,24 @@ public class Client1IT extends Client {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("FIND D2 IN fieldTypeTest10");
+			logger.log(Logger.Level.TRACE, "FIND D2 IN fieldTypeTest10");
 			d2 = getEntityManager().find(DataTypes2.class, dateId);
 			if (null != d2) {
 
-				TestUtil.logTrace("fieldTypeTest10:  Check results");
+				logger.log(Logger.Level.TRACE, "fieldTypeTest10:  Check results");
 				if (d2.getId().equals(dateId)) {
-					TestUtil.logTrace("Got expected PK of:" + d2.getId() + "received");
+					logger.log(Logger.Level.TRACE, "Got expected PK of:" + d2.getId() + "received");
 					pass = true;
 				} else {
-					TestUtil.logErr("Expected: " + dateId + ", actual: " + d2.getId());
+					logger.log(Logger.Level.ERROR, "Expected: " + dateId + ", actual: " + d2.getId());
 				}
 
 				getEntityTransaction().commit();
 			} else {
-				TestUtil.logErr("find returned null");
+				logger.log(Logger.Level.ERROR, "find returned null");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		} finally {
 			try {
@@ -567,7 +569,7 @@ public class Client1IT extends Client {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
 			}
 		}
 
@@ -595,11 +597,11 @@ public class Client1IT extends Client {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("FIND D1 IN fieldTypeTest11");
+			logger.log(Logger.Level.TRACE, "FIND D1 IN fieldTypeTest11");
 			d1 = getEntityManager().find(DataTypes.class, 1);
 
 			if (null != d1) {
-				TestUtil.logTrace("DataType Entity is not null, setting byteData ");
+				logger.log(Logger.Level.TRACE, "DataType Entity is not null, setting byteData ");
 				d1.setByteArrayData(b);
 				a = d1.getByteArrayData();
 				a[0] = (byte) (a[0] + bv);
@@ -608,27 +610,27 @@ public class Client1IT extends Client {
 				getEntityManager().merge(d2);
 				getEntityManager().flush();
 
-				TestUtil.logTrace("fieldTypeTest11:  Check results");
+				logger.log(Logger.Level.TRACE, "fieldTypeTest11:  Check results");
 				if ((null != d2) && (Arrays.equals(d1.getByteArrayData(), a))) {
-					TestUtil.logTrace("fieldTypeTest11: Expected results received");
+					logger.log(Logger.Level.TRACE, "fieldTypeTest11: Expected results received");
 					pass = true;
 				} else {
-					TestUtil.logErr("Unexpected result in array comparison.");
+					logger.log(Logger.Level.ERROR, "Unexpected result in array comparison.");
 					for (Byte aByte : a) {
-						TestUtil.logErr("Array a in propertyTest9 equals: " + aByte);
+						logger.log(Logger.Level.ERROR, "Array a in propertyTest9 equals: " + aByte);
 					}
 					for (Byte bByte : b) {
-						TestUtil.logErr("Array b in propertyTest9 equals: " + bByte);
+						logger.log(Logger.Level.ERROR, "Array b in propertyTest9 equals: " + bByte);
 					}
 					pass = false;
 				}
 
 				getEntityTransaction().commit();
 			} else {
-				TestUtil.logErr("find returned null");
+				logger.log(Logger.Level.ERROR, "find returned null");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		} finally {
 			try {
@@ -636,7 +638,7 @@ public class Client1IT extends Client {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
 			}
 		}
 
@@ -662,31 +664,31 @@ public class Client1IT extends Client {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("FIND D1 IN fieldTypeTest12");
+			logger.log(Logger.Level.TRACE, "FIND D1 IN fieldTypeTest12");
 			d1 = getEntityManager().find(DataTypes.class, 1);
 
 			if (null != d1) {
-				TestUtil.logTrace("DataType Entity is not null, setting charData ");
+				logger.log(Logger.Level.TRACE, "DataType Entity is not null, setting charData ");
 				d1.setCharArrayData(charData);
 
 				getEntityManager().merge(d1);
 				getEntityManager().flush();
 
-				TestUtil.logTrace("fieldTypeTest12:  Check results");
+				logger.log(Logger.Level.TRACE, "fieldTypeTest12:  Check results");
 				if ((null != d1) && (Arrays.equals(d1.getCharArrayData(), charData))) {
-					TestUtil.logTrace("fieldTypeTest12: Expected Results Received");
+					logger.log(Logger.Level.TRACE, "fieldTypeTest12: Expected Results Received");
 					pass = true;
 				} else {
-					TestUtil.logErr("Expected " + Arrays.toString(charData) + ", actual: "
+					logger.log(Logger.Level.ERROR, "Expected " + Arrays.toString(charData) + ", actual: "
 							+ Arrays.toString(d1.getCharArrayData()));
 				}
 
 				getEntityTransaction().commit();
 			} else {
-				TestUtil.logErr("find returned null");
+				logger.log(Logger.Level.ERROR, "find returned null");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		} finally {
 			try {
@@ -694,7 +696,7 @@ public class Client1IT extends Client {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
 			}
 		}
 
@@ -719,30 +721,30 @@ public class Client1IT extends Client {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("FIND D2 IN fieldTypeTest13");
+			logger.log(Logger.Level.TRACE, "FIND D2 IN fieldTypeTest13");
 			d2 = getEntityManager().find(DataTypes2.class, dateId);
 
 			if (null != d2) {
-				TestUtil.logTrace("DataType Entity is not null, setting TimeData ");
+				logger.log(Logger.Level.TRACE, "DataType Entity is not null, setting TimeData ");
 				d2.setTimeData(timeValue);
 
 				getEntityManager().merge(d2);
 				getEntityManager().flush();
 
-				TestUtil.logTrace("fieldTypeTest13:  Check results");
+				logger.log(Logger.Level.TRACE, "fieldTypeTest13:  Check results");
 				if ((null != d2) && (d2.getTimeData().equals(timeValue))) {
-					TestUtil.logTrace("fieldTypeTest13: Expected Time Received");
+					logger.log(Logger.Level.TRACE, "fieldTypeTest13: Expected Time Received");
 					pass = true;
 				} else {
-					TestUtil.logErr("Expected " + timeValue + " , actual: " + d2.getTimeData());
+					logger.log(Logger.Level.ERROR, "Expected " + timeValue + " , actual: " + d2.getTimeData());
 				}
 
 				getEntityTransaction().commit();
 			} else {
-				TestUtil.logErr("find returned null");
+				logger.log(Logger.Level.ERROR, "find returned null");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		} finally {
 			try {
@@ -750,7 +752,7 @@ public class Client1IT extends Client {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
 			}
 		}
 
@@ -775,30 +777,30 @@ public class Client1IT extends Client {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("FIND D2 IN fieldTypeTest14");
+			logger.log(Logger.Level.TRACE, "FIND D2 IN fieldTypeTest14");
 			d2 = getEntityManager().find(DataTypes2.class, dateId);
 
 			if (null != d2) {
-				TestUtil.logTrace("DataType Entity is not null, setting TimestampData ");
+				logger.log(Logger.Level.TRACE, "DataType Entity is not null, setting TimestampData ");
 				d2.setTsData(tsValue);
 
 				getEntityManager().merge(d2);
 				getEntityManager().flush();
 
-				TestUtil.logTrace("fieldTypeTest14:  Check results");
+				logger.log(Logger.Level.TRACE, "fieldTypeTest14:  Check results");
 				if ((null != d2) && (d2.getTsData().equals(tsValue))) {
-					TestUtil.logTrace("fieldTypeTest14: Expected Timestamp Received");
+					logger.log(Logger.Level.TRACE, "fieldTypeTest14: Expected Timestamp Received");
 					pass = true;
 				} else {
-					TestUtil.logErr("Expected " + tsValue + " , actual: " + d2.getTsData());
+					logger.log(Logger.Level.ERROR, "Expected " + tsValue + " , actual: " + d2.getTsData());
 				}
 
 				getEntityTransaction().commit();
 			} else {
-				TestUtil.logErr("find returned null");
+				logger.log(Logger.Level.ERROR, "find returned null");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		} finally {
 			try {
@@ -806,7 +808,7 @@ public class Client1IT extends Client {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
 			}
 		}
 
@@ -850,24 +852,24 @@ public class Client1IT extends Client {
 
 				if (d1.equals(result)) {
 					pass = true;
-					TestUtil.logTrace("Received expected result:" + d1.toString());
+					logger.log(Logger.Level.TRACE, "Received expected result:" + d1.toString());
 				} else {
-					TestUtil.logErr("Expected:" + d1.toString() + ", actual:" + result.toString());
+					logger.log(Logger.Level.ERROR, "Expected:" + d1.toString() + ", actual:" + result.toString());
 				}
 
 				getEntityTransaction().commit();
 			} else {
-				TestUtil.logErr("find returned null");
+				logger.log(Logger.Level.ERROR, "find returned null");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
 			}
 		}
 
@@ -911,23 +913,23 @@ public class Client1IT extends Client {
 
 				if (d1.equals(result)) {
 					pass = true;
-					TestUtil.logTrace("Received expected result:" + d1.toString());
+					logger.log(Logger.Level.TRACE, "Received expected result:" + d1.toString());
 				} else {
-					TestUtil.logErr("Expected:" + d1.toString() + ", actual:" + result.toString());
+					logger.log(Logger.Level.ERROR, "Expected:" + d1.toString() + ", actual:" + result.toString());
 				}
 				getEntityTransaction().commit();
 			} else {
-				TestUtil.logErr("find returned null");
+				logger.log(Logger.Level.ERROR, "find returned null");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
 			}
 		}
 
@@ -974,17 +976,17 @@ public class Client1IT extends Client {
 
 				if (d1.equals(result)) {
 					pass = true;
-					TestUtil.logTrace("Received expected result:" + d1.toString());
+					logger.log(Logger.Level.TRACE, "Received expected result:" + d1.toString());
 				} else {
-					TestUtil.logErr("Expected:" + d1.toString() + ", actual:" + result.toString());
+					logger.log(Logger.Level.ERROR, "Expected:" + d1.toString() + ", actual:" + result.toString());
 				}
 
 				getEntityTransaction().commit();
 			} else {
-				TestUtil.logErr("find returned null");
+				logger.log(Logger.Level.ERROR, "find returned null");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		} finally {
 			try {
@@ -992,7 +994,7 @@ public class Client1IT extends Client {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
 			}
 		}
 
@@ -1003,7 +1005,7 @@ public class Client1IT extends Client {
 	// Methods used for Tests
 
 	public void createTestData() {
-		TestUtil.logTrace("createTestData");
+		logger.log(Logger.Level.TRACE, "createTestData");
 
 		try {
 			getEntityTransaction().begin();
@@ -1011,7 +1013,7 @@ public class Client1IT extends Client {
 			byte[] bArray = { (byte) 100 };
 			d1 = new DataTypes(1, false, (byte) 100, 'a', (short) 100, 300, 600L, 50D, 1.0F, cArray, bArray);
 
-			TestUtil.logTrace("dateId is: " + dateId);
+			logger.log(Logger.Level.TRACE, "dateId is: " + dateId);
 			d2 = new DataTypes2(dateId);
 
 			getEntityManager().persist(d1);
@@ -1019,14 +1021,14 @@ public class Client1IT extends Client {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception in createTestData:", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception in createTestData:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
 			}
 		}
 

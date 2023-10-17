@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.jpa.ee.packaging.ejb.standalone;
 
+import java.lang.System.Logger;
 import java.util.Properties;
 
 import com.sun.ts.lib.util.RemoteLoggingInitException;
@@ -38,15 +39,17 @@ import jakarta.persistence.EntityManager;
 @Remote({ Stateful3IF.class })
 public class Stateful3Bean implements Stateful3IF {
 
+	private static final Logger logger = (Logger) System.getLogger(Stateful3Bean.class.getName());
+
 	private EntityManager entityManager;
 
 	@PostConstruct
 	public void prepareEnvironment() {
 		try {
-			TestUtil.logTrace("In PostContruct");
+			logger.log(Logger.Level.TRACE, "In PostContruct");
 			entityManager = (EntityManager) sessionContext.lookup("persistence/MyPersistenceContext");
 		} catch (Exception e) {
-			TestUtil.logErr(" In PostConstruct: Exception caught while looking up EntityManager", e);
+			logger.log(Logger.Level.ERROR, " In PostConstruct: Exception caught while looking up EntityManager", e);
 		}
 	}
 
@@ -60,25 +63,25 @@ public class Stateful3Bean implements Stateful3IF {
 	}
 
 	public void createTestData() {
-		TestUtil.logTrace("createTestData");
+		logger.log(Logger.Level.TRACE, "createTestData");
 
 		try {
-			TestUtil.logTrace("Create 5 Bees");
+			logger.log(Logger.Level.TRACE, "Create 5 Bees");
 			bRef[0] = new B("1", "b1", 1);
 			bRef[1] = new B("2", "b2", 2);
 			bRef[2] = new B("3", "b3", 3);
 			bRef[3] = new B("4", "b4", 4);
 			bRef[4] = new B("5", "b5", 5);
 
-			TestUtil.logTrace("Start to persist Bees ");
+			logger.log(Logger.Level.TRACE, "Start to persist Bees ");
 			for (B b : bRef) {
 				if (b != null) {
 					entityManager.persist(b);
-					TestUtil.logTrace("persisted B " + b);
+					logger.log(Logger.Level.TRACE, "persisted B " + b);
 				}
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected while creating test data:" + e);
+			logger.log(Logger.Level.ERROR, "Unexpected while creating test data:" + e);
 		}
 	}
 
@@ -86,17 +89,17 @@ public class Stateful3Bean implements Stateful3IF {
 		try {
 			entityManager.createNativeQuery("DELETE FROM BEJB_1X1_BI_BTOB").executeUpdate();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception caught while cleaning up:", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception caught while cleaning up:", e);
 		}
 		// clear the cache if the provider supports caching otherwise
 		// the evictAll is ignored.
-		TestUtil.logTrace("Clearing cache");
+		logger.log(Logger.Level.TRACE, "Clearing cache");
 		entityManager.getEntityManagerFactory().getCache().evictAll();
-		TestUtil.logTrace("cleanup complete");
+		logger.log(Logger.Level.TRACE, "cleanup complete");
 	}
 
 	public void init(Properties p) {
-		TestUtil.logTrace("init");
+		logger.log(Logger.Level.TRACE, "init");
 		try {
 			TestUtil.init(p);
 		} catch (RemoteLoggingInitException e) {
@@ -106,7 +109,7 @@ public class Stateful3Bean implements Stateful3IF {
 	}
 
 	public boolean test1() {
-		TestUtil.logTrace("Begin test1");
+		logger.log(Logger.Level.TRACE, "Begin test1");
 		boolean pass = false;
 
 		try {
@@ -115,12 +118,12 @@ public class Stateful3Bean implements Stateful3IF {
 			B anotherB = entityManager.find(B.class, "3");
 
 			if (anotherB != null) {
-				TestUtil.logTrace("newB found" + anotherB.getName());
+				logger.log(Logger.Level.TRACE, "newB found" + anotherB.getName());
 				pass = true;
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception :", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
 		}
 		return pass;
 	}

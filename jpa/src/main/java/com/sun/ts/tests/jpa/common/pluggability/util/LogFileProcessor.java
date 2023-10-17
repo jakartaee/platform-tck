@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.SequenceInputStream;
+import java.lang.System.Logger;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.StringTokenizer;
@@ -35,13 +36,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import com.sun.ts.lib.util.TestUtil;
-
-/**
- *
- * @author Raja Perumal
- */
 
 /**
  * LogFileProcessor does the following operations
@@ -70,6 +64,8 @@ public class LogFileProcessor {
 
 	private Collection appSpecificRecordCollection = null;
 
+	private static final Logger logger = (Logger) System.getLogger(LogFileProcessor.class.getName());
+
 	public LogFileProcessor() {
 		setup();
 	}
@@ -82,13 +78,13 @@ public class LogFileProcessor {
 		logFileLocation = System.getProperty("log.file.location");
 
 		if (logFileLocation == null) {
-			TestUtil.logErr("LogFileProcessor setup failed ");
-			TestUtil.logErr("Please verify that the property log.file.location exists in ts.jte");
+			logger.log(Logger.Level.ERROR, "LogFileProcessor setup failed ");
+			logger.log(Logger.Level.ERROR, "Please verify that the property log.file.location exists in ts.jte");
 		} else {
-			TestUtil.logMsg("log.file.location = " + logFileLocation);
+			logger.log(Logger.Level.INFO, "log.file.location = " + logFileLocation);
 		}
 		logFileLocation = getLogFileName(logFileLocation);
-		TestUtil.logTrace("LogFileProcessor setup finished");
+		logger.log(Logger.Level.TRACE, "LogFileProcessor setup finished");
 	}
 
 	/**
@@ -98,18 +94,18 @@ public class LogFileProcessor {
 	public long getCurrentSequenceNumber() {
 		LogRecordEntry recordEntry = null;
 		long seqNum = 0L;
-		TestUtil.logTrace("Searching for current Sequence Number");
+		logger.log(Logger.Level.TRACE, "Searching for current Sequence Number");
 		if (recordCollection != null) {
-			TestUtil.logTrace("Record collection has:  " + recordCollection.size() + " records.");
+			logger.log(Logger.Level.TRACE, "Record collection has:  " + recordCollection.size() + " records.");
 			for (Iterator iterator = recordCollection.iterator(); iterator.hasNext();) {
 				// loop thru all message tag/entries in the log file searching for last
 				// sequence number
 				recordEntry = (LogRecordEntry) iterator.next();
 				seqNum = recordEntry.getSequenceNumber();
-				// TestUtil.logTrace("seq:" + seqNum);
+				// logger.log(Logger.Level.TRACE,"seq:" + seqNum);
 			}
 		} else {
-			TestUtil.logErr("Record collection empty : No log records found");
+			logger.log(Logger.Level.ERROR, "Record collection empty : No log records found");
 		}
 		// System.out.println("final number:" + seqNum);
 		return seqNum;
@@ -126,9 +122,9 @@ public class LogFileProcessor {
 				logfile = new File(logFileLocation);
 
 			if (logFileLocation == null || !logfile.exists()) {
-				TestUtil.logErr("Log File : " + logFileLocation + " does not exists");
+				logger.log(Logger.Level.ERROR, "Log File : " + logFileLocation + " does not exists");
 			} else {
-				TestUtil.logTrace("Purging log file : " + logFileLocation);
+				logger.log(Logger.Level.TRACE, "Purging log file : " + logFileLocation);
 
 				BufferedWriter writer = new BufferedWriter(new FileWriter(logFileLocation));
 				writer.newLine();
@@ -136,7 +132,7 @@ public class LogFileProcessor {
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Exception occurred while purging log:" + e);
+			logger.log(Logger.Level.ERROR, "Exception occurred while purging log:" + e);
 		}
 
 	}
@@ -155,9 +151,9 @@ public class LogFileProcessor {
 				logfile = new File(logFileLocation);
 
 			if (logFileLocation == null || !logfile.exists()) {
-				TestUtil.logErr("Log File : " + logFileLocation + " does not exists");
-				TestUtil.logErr("Check permissions for log file ");
-				TestUtil.logErr("See User guide for Configuring log file permissions");
+				logger.log(Logger.Level.ERROR, "Log File : " + logFileLocation + " does not exists");
+				logger.log(Logger.Level.ERROR, "Check permissions for log file ");
+				logger.log(Logger.Level.ERROR, "See User guide for Configuring log file permissions");
 			} else {
 				// LogRecords will be added to JPALog.txt as long as the server is
 				// up and running. Since JPALog.txt is continuously updated with
@@ -174,7 +170,7 @@ public class LogFileProcessor {
 				// FileInputStream and a ByteArrayInputStream, where the
 				// ByteArrayInputStream contains the bytes for </log>
 				//
-				TestUtil.logTrace("Log File : " + logfile.getAbsolutePath());
+				logger.log(Logger.Level.TRACE, "Log File : " + logfile.getAbsolutePath());
 
 				String endLogTag = "</log>";
 				ByteArrayInputStream bais = new ByteArrayInputStream(endLogTag.getBytes());
@@ -193,7 +189,7 @@ public class LogFileProcessor {
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Exception occurred while fetching log:" + e);
+			logger.log(Logger.Level.ERROR, "Exception occurred while fetching log:" + e);
 		}
 		return logRetrieved;
 	}
@@ -270,15 +266,15 @@ public class LogFileProcessor {
 	 */
 	public boolean verifyLogContains(String args[], long sequenceNum) {
 		LogRecordEntry recordEntry = null;
-		TestUtil.logTrace("Searching log records for the following:");
+		logger.log(Logger.Level.TRACE, "Searching log records for the following:");
 		for (String s : args) {
-			TestUtil.logTrace("item:" + s);
+			logger.log(Logger.Level.TRACE, "item:" + s);
 		}
 		if (recordCollection == null) {
-			TestUtil.logTrace("Record collection empty : No log records found");
+			logger.log(Logger.Level.TRACE, "Record collection empty : No log records found");
 			return false;
 		} else {
-			TestUtil.logTrace("Record collection has:  " + recordCollection.size() + " records.");
+			logger.log(Logger.Level.TRACE, "Record collection has:  " + recordCollection.size() + " records.");
 		}
 
 		int numberOfArgs = args.length;
@@ -310,7 +306,7 @@ public class LogFileProcessor {
 			long seqNum = recordEntry.getSequenceNumber();
 			if (seqNum >= sequenceNum) {
 				String message = recordEntry.getMessage();
-				// TestUtil.logTrace("record:"+message);
+				// logger.log(Logger.Level.TRACE,"record:"+message);
 
 				// loop through all arguments to search for a match
 				for (int i = 0; i < numberOfArgs; i++) {
@@ -320,8 +316,9 @@ public class LogFileProcessor {
 						// see if one of the search argument matches with
 						// the logfile message entry and if so return true
 						if ((message != null) && message.equals(args[i])) {
-							TestUtil.logTrace("Matching Record :");
-							TestUtil.logTrace(recordEntry.getSequenceNumber() + ":" + recordEntry.getMessage());
+							logger.log(Logger.Level.TRACE, "Matching Record :");
+							logger.log(Logger.Level.TRACE,
+									recordEntry.getSequenceNumber() + ":" + recordEntry.getMessage());
 
 							// Increment match count
 							numberOfMatches++;
@@ -340,16 +337,16 @@ public class LogFileProcessor {
 				if (numberOfMatches == numberOfArgs)
 					return true;
 			} else {
-				// TestUtil.logTrace("bypassing record sequence number too low,
+				// logger.log(Logger.Level.TRACE,"bypassing record sequence number too low,
 				// min:"+sequenceNum+", actual:"+seqNum);
 			}
 		}
 
 		// Print unmatched Strings(i.e no matches were found for these strings)
-		TestUtil.logTrace("No Matching log Record(s) found for the following String(s) :");
+		logger.log(Logger.Level.TRACE, "No Matching log Record(s) found for the following String(s) :");
 		for (int i = 0; i < numberOfArgs; i++) {
 			if (argsMatchIndex[i] == false) {
-				TestUtil.logTrace(args[i]);
+				logger.log(Logger.Level.TRACE, args[i]);
 			}
 		}
 
@@ -375,15 +372,15 @@ public class LogFileProcessor {
 		LogRecordEntry recordEntry = null;
 		boolean result = false;
 
-		TestUtil.logTrace("Searching log records for one of the following:");
+		logger.log(Logger.Level.TRACE, "Searching log records for one of the following:");
 		for (String s : args) {
-			TestUtil.logTrace("item:" + s);
+			logger.log(Logger.Level.TRACE, "item:" + s);
 		}
 		if (recordCollection == null) {
-			TestUtil.logTrace("Record collection empty : No log records found");
+			logger.log(Logger.Level.TRACE, "Record collection empty : No log records found");
 			return false;
 		} else {
-			TestUtil.logTrace("Record collection has:  " + recordCollection.size() + " records.");
+			logger.log(Logger.Level.TRACE, "Record collection has:  " + recordCollection.size() + " records.");
 		}
 
 		int numberOfArgs = args.length;
@@ -399,8 +396,8 @@ public class LogFileProcessor {
 				// see if one of the search argument matches with
 				// the logfile message entry and if so return true
 				if ((message != null) && message.equals(args[i])) {
-					TestUtil.logTrace("Matching Record :");
-					TestUtil.logTrace(recordEntry.getSequenceNumber() + ":" + recordEntry.getMessage());
+					logger.log(Logger.Level.TRACE, "Matching Record :");
+					logger.log(Logger.Level.TRACE, recordEntry.getSequenceNumber() + ":" + recordEntry.getMessage());
 					result = true;
 
 					// If a match is found no need to search further
@@ -412,9 +409,9 @@ public class LogFileProcessor {
 
 		if (!result) {
 			// Print unmatched Strings(i.e no matches were found for these strings)
-			TestUtil.logTrace("No Matching log Record(s) found for the following String(s) :");
+			logger.log(Logger.Level.TRACE, "No Matching log Record(s) found for the following String(s) :");
 			for (int i = 0; i < numberOfArgs; i++) {
-				TestUtil.logTrace(args[i]);
+				logger.log(Logger.Level.TRACE, args[i]);
 			}
 		}
 
@@ -449,12 +446,13 @@ public class LogFileProcessor {
 		LogRecordEntry recordEntry = null;
 		boolean result = false;
 
-		TestUtil.logTrace("Searching log records for the presence of one of the String" + " from a given string array");
+		logger.log(Logger.Level.TRACE,
+				"Searching log records for the presence of one of the String" + " from a given string array");
 		if (recordCollection == null) {
-			TestUtil.logTrace("Record collection empty : No log records found");
+			logger.log(Logger.Level.TRACE, "Record collection empty : No log records found");
 			return false;
 		} else {
-			TestUtil.logTrace("Record collection has:  " + recordCollection.size() + " records.");
+			logger.log(Logger.Level.TRACE, "Record collection has:  " + recordCollection.size() + " records.");
 		}
 
 		int numberOfArgs = args.length;
@@ -470,8 +468,8 @@ public class LogFileProcessor {
 				// see if one of the search argument matches with
 				// the logfile message entry and if so return true
 				if ((message != null) && (message.startsWith(srchStrPrefix, 0)) && (message.indexOf(args[i]) > 0)) {
-					TestUtil.logTrace("Matching Record :");
-					TestUtil.logTrace(recordEntry.getMessage());
+					logger.log(Logger.Level.TRACE, "Matching Record :");
+					logger.log(Logger.Level.TRACE, recordEntry.getMessage());
 					result = true;
 
 					// If a match is found no need to search further
@@ -483,9 +481,9 @@ public class LogFileProcessor {
 
 		if (!result) {
 			// Print unmatched Strings(i.e no matches were found for these strings)
-			TestUtil.logTrace("No Matching log Record(s) found for the following String(s) :");
+			logger.log(Logger.Level.TRACE, "No Matching log Record(s) found for the following String(s) :");
 			for (int i = 0; i < numberOfArgs; i++) {
-				TestUtil.logTrace(args[i]);
+				logger.log(Logger.Level.TRACE, args[i]);
 			}
 		}
 
@@ -503,20 +501,20 @@ public class LogFileProcessor {
 	}
 
 	public void printRecordEntry(LogRecordEntry rec) {
-		TestUtil.logTrace("*******Log Content*******");
+		logger.log(Logger.Level.TRACE, "*******Log Content*******");
 
-		TestUtil.logTrace("Milli Seconds  =" + rec.getMilliSeconds());
-		TestUtil.logTrace("Seqence no  =" + rec.getSequenceNumber());
-		TestUtil.logTrace("Message     =" + rec.getMessage());
+		logger.log(Logger.Level.TRACE, "Milli Seconds  =" + rec.getMilliSeconds());
+		logger.log(Logger.Level.TRACE, "Seqence no  =" + rec.getSequenceNumber());
+		logger.log(Logger.Level.TRACE, "Message     =" + rec.getMessage());
 		if (rec.getClassName() != null)
-			TestUtil.logTrace("Class name  =" + rec.getClassName());
+			logger.log(Logger.Level.TRACE, "Class name  =" + rec.getClassName());
 		if (rec.getMethodName() != null)
-			TestUtil.logTrace("Method name =" + rec.getMethodName());
+			logger.log(Logger.Level.TRACE, "Method name =" + rec.getMethodName());
 		if (rec.getLevel() != null)
-			TestUtil.logTrace("Level        =" + rec.getLevel());
+			logger.log(Logger.Level.TRACE, "Level        =" + rec.getLevel());
 		if (rec.getThrown() != null)
-			TestUtil.logTrace("Thrown       =" + rec.getThrown());
-		TestUtil.logTrace("");
+			logger.log(Logger.Level.TRACE, "Thrown       =" + rec.getThrown());
+		logger.log(Logger.Level.TRACE, "");
 	}
 
 	public String extractQueryToken(String str, String ContextId) {
@@ -554,9 +552,9 @@ public class LogFileProcessor {
 			array[1] = str.substring(array[0].length() + 3, str.length());
 		}
 
-		// TestUtil.logTrace("Input String ="+str);
-		// TestUtil.logTrace("array[0] ="+array[0]);
-		// TestUtil.logTrace("array[1] ="+array[1]);
+		// logger.log(Logger.Level.TRACE,"Input String ="+str);
+		// logger.log(Logger.Level.TRACE,"array[0] ="+array[0]);
+		// logger.log(Logger.Level.TRACE,"array[1] ="+array[1]);
 		return array;
 	}
 
@@ -624,10 +622,10 @@ public class LogFileProcessor {
 		int lastFileIndex = 0;
 		File dir = new File(logFileLocation);
 		if (dir.exists()) {
-			TestUtil.logTrace("log file location exists:" + logFileLocation);
+			logger.log(Logger.Level.TRACE, "log file location exists:" + logFileLocation);
 			String[] chld = dir.list();
 			if (chld == null) {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Appserver log directory does not exist or is not a directory, using default log file location.");
 			} else {
 				boolean found = false;
@@ -644,19 +642,19 @@ public class LogFileProcessor {
 							}
 						}
 						logName = logFileLocation + File.separator + lastFileName;
-						TestUtil.logMsg("Found log file:" + logName);
+						logger.log(Logger.Level.INFO, "Found log file:" + logName);
 						found = true;
 						// break;
 					} else {
-						TestUtil.logTrace("Ignoring file:" + fName);
+						logger.log(Logger.Level.TRACE, "Ignoring file:" + fName);
 					}
 				}
 				if (!found) {
-					TestUtil.logMsg("Log file not found, using default location:" + logName);
+					logger.log(Logger.Level.INFO, "Log file not found, using default location:" + logName);
 				}
 			}
 		} else {
-			TestUtil.logErr("Log file location DOES NOT exist, using default location:" + logName);
+			logger.log(Logger.Level.ERROR, "Log file location DOES NOT exist, using default location:" + logName);
 		}
 		return logName;
 

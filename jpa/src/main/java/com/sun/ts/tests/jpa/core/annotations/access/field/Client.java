@@ -16,9 +16,10 @@
 
 package com.sun.ts.tests.jpa.core.annotations.access.field;
 
+import java.lang.System.Logger;
+
 import org.junit.jupiter.api.AfterAll;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 public class Client extends PMClientBase {
@@ -32,35 +33,37 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 		removeDeploymentJar();
 	}
 
 	protected void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logMsg("isActive:" + getEntityTransaction().isActive());
+			logger.log(Logger.Level.INFO, "isActive:" + getEntityTransaction().isActive());
 			getEntityManager().createNativeQuery("Delete from DATATYPES").executeUpdate();
 			getEntityManager().createNativeQuery("Delete from DATATYPES2").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

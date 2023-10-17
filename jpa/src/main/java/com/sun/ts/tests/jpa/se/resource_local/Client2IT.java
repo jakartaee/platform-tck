@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.jpa.se.resource_local;
 
+import java.lang.System.Logger;
 import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -27,8 +28,8 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
+import com.sun.ts.tests.jpa.ee.propagation.cm.jta.ClientIT;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -36,8 +37,9 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.SynchronizationType;
 
-
 public class Client2IT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	private EntityManager entityManager;
 
@@ -74,31 +76,31 @@ public class Client2IT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		Properties p = getPersistenceUnitProperties();
-		TestUtil.logMsg("Testing for resource-local entity managers");
+		logger.log(Logger.Level.INFO, "Testing for resource-local entity managers");
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(getPersistenceUnitName(), p);
 
 		displayMap(emf.getProperties());
 		try {
 			emf.createEntityManager(SynchronizationType.UNSYNCHRONIZED);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException iae) {
-			TestUtil.logTrace("Caught Expected IllegalStateException");
+			logger.log(Logger.Level.TRACE, "Caught Expected IllegalStateException");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
-		TestUtil.logMsg("Testing when EMF is closed");
+		logger.log(Logger.Level.INFO, "Testing when EMF is closed");
 		emf = Persistence.createEntityManagerFactory(getPersistenceUnitName(), p);
 		displayMap(emf.getProperties());
 		try {
 			emf.close();
 			emf.createEntityManager(SynchronizationType.UNSYNCHRONIZED);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException iae) {
-			TestUtil.logTrace("Caught Expected IllegalStateException");
+			logger.log(Logger.Level.TRACE, "Caught Expected IllegalStateException");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass1 || !pass2) {
@@ -108,7 +110,7 @@ public class Client2IT extends PMClientBase {
 
 	@AfterAll
 	public void cleanupOnly() throws Exception {
-		TestUtil.logTrace("cleanupOnly");
+		logger.log(Logger.Level.TRACE, "cleanupOnly");
 		super.cleanup();
 		removeDeploymentJar();
 	}

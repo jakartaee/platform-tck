@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.criteriaapi.Join;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,6 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.Department;
 import com.sun.ts.tests.jpa.common.schema30.Department_;
 import com.sun.ts.tests.jpa.common.schema30.Employee;
@@ -40,8 +40,9 @@ import jakarta.persistence.criteria.MapJoin;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.metamodel.PluralAttribute;
 
-
 public class Client3IT extends Util {
+
+	private static final Logger logger = (Logger) System.getLogger(Client3IT.class.getName());
 
 	public static JavaArchive createDeployment() throws Exception {
 
@@ -81,9 +82,9 @@ public class Client3IT extends Util {
 			PluralAttribute pa = mEmployee.getModel();
 			String name = pa.getName();
 			if (name.equals("lastNameEmployees")) {
-				TestUtil.logTrace("Received expected attribute:" + name);
+				logger.log(Logger.Level.TRACE, "Received expected attribute:" + name);
 			} else {
-				TestUtil.logErr("getModel - Expected: lastNameEmployees, actual:" + name);
+				logger.log(Logger.Level.ERROR, "getModel - Expected: lastNameEmployees, actual:" + name);
 			}
 			cquery.where(cbuilder.equal(mEmployee.get("id"), "1")).select(employee);
 			TypedQuery<Employee> tquery = getEntityManager().createQuery(cquery);
@@ -94,14 +95,15 @@ public class Client3IT extends Util {
 			expectedPKs[1] = "3";
 			expectedPKs[2] = "5";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 3 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 3 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -146,14 +148,15 @@ public class Client3IT extends Util {
 			expectedPKs[1] = "3";
 			expectedPKs[2] = "5";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 3 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 3 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -190,9 +193,9 @@ public class Client3IT extends Util {
 			MapJoin<Department, String, Employee> mEmployee = department.joinMap("lastNameEmployees");
 			String name = mEmployee.getModel().getName();
 			if (name.equals("lastNameEmployees")) {
-				TestUtil.logTrace("Received expected attribute:" + name);
+				logger.log(Logger.Level.TRACE, "Received expected attribute:" + name);
 			} else {
-				TestUtil.logErr("getModel - Expected: lastNameEmployees, actual:" + name);
+				logger.log(Logger.Level.ERROR, "getModel - Expected: lastNameEmployees, actual:" + name);
 			}
 			cquery.where(cbuilder.equal(mEmployee.get("id"), "1")).select(employee);
 			TypedQuery<Employee> tquery = getEntityManager().createQuery(cquery);
@@ -203,14 +206,15 @@ public class Client3IT extends Util {
 			expectedPKs[1] = "3";
 			expectedPKs[2] = "5";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 3 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 3 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -254,14 +258,15 @@ public class Client3IT extends Util {
 			expectedPKs[1] = "3";
 			expectedPKs[2] = "5";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				TestUtil.logErr("Did not get expected results.  Expected 3 reference, got: " + clist.size());
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 3 reference, got: " + clist.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 
@@ -317,25 +322,25 @@ public class Client3IT extends Util {
 			List<Tuple> clist = tquery.getResultList();
 
 			for (Tuple t : clist) {
-				TestUtil.logTrace("result:" + t.get(0) + ", " + t.get(1) + ", " + t.get(2));
+				logger.log(Logger.Level.TRACE, "result:" + t.get(0) + ", " + t.get(1) + ", " + t.get(2));
 				actual.add(t.get(0) + ", " + t.get(1) + ", " + t.get(2));
 			}
 			if (expected.containsAll(actual) && actual.containsAll(expected) && expected.size() == actual.size()) {
 
-				TestUtil.logTrace("Received expected results");
+				logger.log(Logger.Level.TRACE, "Received expected results");
 				pass = true;
 			} else {
-				TestUtil.logErr("Did not get expected results:");
+				logger.log(Logger.Level.ERROR, "Did not get expected results:");
 				for (String s : expected) {
-					TestUtil.logErr("expected:" + s);
+					logger.log(Logger.Level.ERROR, "expected:" + s);
 				}
 				for (String s : actual) {
-					TestUtil.logErr("actual:" + s);
+					logger.log(Logger.Level.ERROR, "actual:" + s);
 				}
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 		}
 

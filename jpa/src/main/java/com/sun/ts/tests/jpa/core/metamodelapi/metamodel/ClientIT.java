@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.metamodel;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
@@ -25,7 +26,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.metamodel.Attribute;
@@ -34,8 +34,9 @@ import jakarta.persistence.metamodel.EntityType;
 import jakarta.persistence.metamodel.ManagedType;
 import jakarta.persistence.metamodel.Metamodel;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public ClientIT() {
 	}
@@ -52,12 +53,12 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -77,7 +78,7 @@ public class ClientIT extends PMClientBase {
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
 			pass = true;
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 		}
 
 		if (!pass) {
@@ -100,12 +101,12 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			Set<EntityType<?>> orderSet = metaModel.getEntities();
 			if (orderSet != null) {
-				TestUtil.logTrace("Obtained Non-null Set of EntityType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Set of EntityType");
 				for (EntityType eType : orderSet) {
-					TestUtil.logTrace("entityType Name = " + eType.getName());
+					logger.log(Logger.Level.TRACE, "entityType Name = " + eType.getName());
 					pass = true;
 				}
 
@@ -134,15 +135,15 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			Set<ManagedType<?>> orderSet = metaModel.getManagedTypes();
 			if (orderSet != null) {
-				TestUtil.logTrace("Obtained Non-null Set of ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Set of ManagedType");
 				for (ManagedType mType : orderSet) {
 					Set<Attribute<Order, ?>> attribSet = mType.getDeclaredAttributes();
 					if (attribSet != null) {
 						for (Attribute attrib : attribSet) {
-							TestUtil.logTrace("attribute Name = " + attrib.getName());
+							logger.log(Logger.Level.TRACE, "attribute Name = " + attrib.getName());
 						}
 						pass = true;
 					}
@@ -172,15 +173,15 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			Set<EmbeddableType<?>> addrSet = metaModel.getEmbeddables();
 			if (addrSet != null) {
-				TestUtil.logTrace("Obtained Non-null Set of EmbeddableType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Set of EmbeddableType");
 				for (EmbeddableType eType : addrSet) {
 					Set<Attribute<Address, ?>> attribSet = eType.getDeclaredAttributes();
 					if (attribSet != null) {
 						for (Attribute attrib : attribSet) {
-							TestUtil.logTrace("attribute Name = " + attrib.getName());
+							logger.log(Logger.Level.TRACE, "attribute Name = " + attrib.getName());
 						}
 						pass = true;
 					}
@@ -213,7 +214,7 @@ public class ClientIT extends PMClientBase {
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
 
-			TestUtil.logMsg("Test entity");
+			logger.log(Logger.Level.INFO, "Test entity");
 			String expected = "com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Order";
 			ManagedType mType = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Order.class);
 			if (mType != null) {
@@ -223,17 +224,17 @@ public class ClientIT extends PMClientBase {
 					Set<Attribute<Order, ?>> attribSet = mTypeOrder.getDeclaredAttributes();
 					if (attribSet != null) {
 						for (Attribute attrib : attribSet) {
-							TestUtil.logTrace("attribute Name = " + attrib.getName());
+							logger.log(Logger.Level.TRACE, "attribute Name = " + attrib.getName());
 						}
 						pass1 = true;
 					} else {
-						TestUtil.logErr("getDeclaredAttributes() returned null");
+						logger.log(Logger.Level.ERROR, "getDeclaredAttributes() returned null");
 					}
 				} else {
-					TestUtil.logErr("Expected:" + expected + ", actual:" + cActual);
+					logger.log(Logger.Level.ERROR, "Expected:" + expected + ", actual:" + cActual);
 				}
 			}
-			TestUtil.logMsg("Test embeddable");
+			logger.log(Logger.Level.INFO, "Test embeddable");
 			expected = "com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Address";
 			mType = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Address.class);
 			if (mType != null) {
@@ -243,18 +244,18 @@ public class ClientIT extends PMClientBase {
 					Set<Attribute<Address, ?>> attribSet = mTypeAddress.getDeclaredAttributes();
 					if (attribSet != null) {
 						for (Attribute attrib : attribSet) {
-							TestUtil.logTrace("attribute Name = " + attrib.getName());
+							logger.log(Logger.Level.TRACE, "attribute Name = " + attrib.getName());
 						}
 						pass2 = true;
 					} else {
-						TestUtil.logErr("getDeclaredAttributes() returned null");
+						logger.log(Logger.Level.ERROR, "getDeclaredAttributes() returned null");
 					}
 				} else {
-					TestUtil.logErr("Expected:" + expected + ", actual:" + cActual);
+					logger.log(Logger.Level.ERROR, "Expected:" + expected + ", actual:" + cActual);
 				}
 			}
 
-			TestUtil.logMsg("Test superclass");
+			logger.log(Logger.Level.INFO, "Test superclass");
 			expected = "com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Employee";
 			mType = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Employee.class);
 			if (mType != null) {
@@ -264,14 +265,14 @@ public class ClientIT extends PMClientBase {
 					Set<Attribute<Employee, ?>> attribSet = mTypeEmployee.getDeclaredAttributes();
 					if (attribSet != null) {
 						for (Attribute attrib : attribSet) {
-							TestUtil.logTrace("attribute Name = " + attrib.getName());
+							logger.log(Logger.Level.TRACE, "attribute Name = " + attrib.getName());
 						}
 						pass3 = true;
 					} else {
-						TestUtil.logErr("getDeclaredAttributes() returned null");
+						logger.log(Logger.Level.ERROR, "getDeclaredAttributes() returned null");
 					}
 				} else {
-					TestUtil.logErr("Expected:" + expected + ", actual:" + cActual);
+					logger.log(Logger.Level.ERROR, "Expected:" + expected + ", actual:" + cActual);
 				}
 			}
 		}
@@ -298,15 +299,15 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			try {
 				metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.metamodel.ClientIT.class);
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 				pass = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Received unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 			}
 		}
 
@@ -332,15 +333,15 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EntityType<Order> eTypeOrder = metaModel
 					.entity(com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Order.class);
 			if (eTypeOrder != null) {
-				TestUtil.logTrace("Obtained Non-null EntityType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null EntityType");
 				Set<Attribute<Order, ?>> attribSet = eTypeOrder.getDeclaredAttributes();
 				if (attribSet != null) {
 					for (Attribute attrib : attribSet) {
-						TestUtil.logTrace("attribute Name = " + attrib.getName());
+						logger.log(Logger.Level.TRACE, "attribute Name = " + attrib.getName());
 					}
 					pass = true;
 				}
@@ -371,12 +372,12 @@ public class ClientIT extends PMClientBase {
 		if (metaModel != null) {
 			try {
 				metaModel.entity(com.sun.ts.tests.jpa.core.metamodelapi.metamodel.ClientIT.class);
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 				pass = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Received unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 			}
 		}
 
@@ -409,43 +410,43 @@ public class ClientIT extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 				EmbeddableType<Address> eTypeOrder = metaModel
 						.embeddable(com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Address.class);
 				if (eTypeOrder != null) {
-					TestUtil.logTrace("Obtained Non-null EmbeddableType");
+					logger.log(Logger.Level.TRACE, "Obtained Non-null EmbeddableType");
 					Set<Attribute<Address, ?>> attribSet = eTypeOrder.getDeclaredAttributes();
 					if (attribSet != null) {
 						if (attribSet.size() != expected.size()) {
 							pass = false;
-							TestUtil.logErr("Received wrong number of results");
+							logger.log(Logger.Level.ERROR, "Received wrong number of results");
 						}
 						for (Attribute attrib : attribSet) {
 							String name = attrib.getName();
 							if (expected.contains(name)) {
-								TestUtil.logTrace("received attribute Name = " + name);
+								logger.log(Logger.Level.TRACE, "received attribute Name = " + name);
 							} else {
-								TestUtil.logErr("Received unexpected result" + name);
+								logger.log(Logger.Level.ERROR, "Received unexpected result" + name);
 								pass = false;
 							}
 						}
 					} else {
 						pass = false;
-						TestUtil.logErr("getDeclaredAttributes() returned null");
+						logger.log(Logger.Level.ERROR, "getDeclaredAttributes() returned null");
 					}
 				} else {
 					pass = false;
-					TestUtil.logErr("embeddable() returned null");
+					logger.log(Logger.Level.ERROR, "embeddable() returned null");
 				}
 			} else {
 				pass = false;
-				TestUtil.logErr("getMetamodel() returned null");
+				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
 			pass = false;
-			TestUtil.logErr("Received unxpected exception", e);
+			logger.log(Logger.Level.ERROR, "Received unxpected exception", e);
 		}
 	}
 
@@ -468,22 +469,22 @@ public class ClientIT extends PMClientBase {
 			if (metaModel != null) {
 				try {
 					metaModel.embeddable(com.sun.ts.tests.jpa.core.metamodelapi.metamodel.ClientIT.class);
-					TestUtil.logErr("Did not throw IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception e) {
-					TestUtil.logErr("Received unexpected exception", e);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 				}
 			} else {
 				pass = false;
-				TestUtil.logErr("getMetamodel() returned null");
+				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
 			pass = false;
-			TestUtil.logErr("Received unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("embeddableIllegalArgumentException failed");
@@ -492,14 +493,14 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("Cleanup data");
+		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}

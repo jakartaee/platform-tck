@@ -20,13 +20,15 @@
 
 package com.sun.ts.tests.jpa.core.types.generator;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
-
 public class Client1IT extends Client {
+
+	private static final Logger logger = (Logger) System.getLogger(Client1IT.class.getName());
 
 	private DataTypes d0;
 
@@ -59,7 +61,7 @@ public class Client1IT extends Client {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 
 			super.setup();
@@ -67,19 +69,19 @@ public class Client1IT extends Client {
 			String s = System.getProperty("db.supports.sequence");
 			if (s != null) {
 				supports_sequence = Boolean.parseBoolean(s);
-				TestUtil.logMsg("db.supports.sequence:" + supports_sequence);
+				logger.log(Logger.Level.INFO, "db.supports.sequence:" + supports_sequence);
 				if (supports_sequence) {
 					removeTestData();
 					createTestData();
 				}
 			} else {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"The property db.supports.sequence is not defined in the ts.jte, this must be corrected before running tests");
 				throw new Exception("setupDataTypes2 failed");
 
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -113,7 +115,7 @@ public class Client1IT extends Client {
 			try {
 				getEntityTransaction().begin();
 				int id = d0.getId();
-				TestUtil.logTrace("Doing a find of id: " + id);
+				logger.log(Logger.Level.TRACE, "Doing a find of id: " + id);
 				d1 = getEntityManager().find(DataTypes.class, id);
 
 				if (null != d1) {
@@ -130,13 +132,13 @@ public class Client1IT extends Client {
 
 					getEntityTransaction().commit();
 				} else {
-					TestUtil.logErr("EntityManager.find returned null result");
+					logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
 				}
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 		} else {
-			TestUtil.logMsg("WARNING: Test not run because db.supports.sequence set to false in ts.jte");
+			logger.log(Logger.Level.INFO, "WARNING: Test not run because db.supports.sequence set to false in ts.jte");
 			pass = true;
 		}
 		if (!pass)
@@ -168,7 +170,7 @@ public class Client1IT extends Client {
 			try {
 				getEntityTransaction().begin();
 				int id = d0.getId();
-				TestUtil.logTrace("Doing a find of id: " + id);
+				logger.log(Logger.Level.TRACE, "Doing a find of id: " + id);
 				d2 = getEntityManager().find(DataTypes.class, id);
 
 				if (null != d2) {
@@ -185,13 +187,13 @@ public class Client1IT extends Client {
 
 					getEntityTransaction().commit();
 				} else {
-					TestUtil.logErr("EntityManager.find returned null result");
+					logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
 				}
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 		} else {
-			TestUtil.logMsg("WARNING: Test not run because db.supports.sequence set to false in ts.jte");
+			logger.log(Logger.Level.INFO, "WARNING: Test not run because db.supports.sequence set to false in ts.jte");
 			pass = true;
 		}
 		if (!pass)
@@ -223,7 +225,7 @@ public class Client1IT extends Client {
 			try {
 				getEntityTransaction().begin();
 				int id = d0.getId();
-				TestUtil.logTrace("Doing a find of id: " + id);
+				logger.log(Logger.Level.TRACE, "Doing a find of id: " + id);
 				d3 = getEntityManager().find(DataTypes.class, id);
 
 				if (null != d3) {
@@ -239,13 +241,13 @@ public class Client1IT extends Client {
 					}
 					getEntityTransaction().commit();
 				} else {
-					TestUtil.logErr("EntityManager.find returned null result");
+					logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
 				}
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 		} else {
-			TestUtil.logMsg("WARNING: Test not run because db.supports.sequence set to false in ts.jte");
+			logger.log(Logger.Level.INFO, "WARNING: Test not run because db.supports.sequence set to false in ts.jte");
 			pass = true;
 		}
 		if (!pass)
@@ -277,7 +279,7 @@ public class Client1IT extends Client {
 			try {
 				getEntityTransaction().begin();
 				int id = d0.getId();
-				TestUtil.logTrace("Doing a find of id: " + id);
+				logger.log(Logger.Level.TRACE, "Doing a find of id: " + id);
 				d4 = getEntityManager().find(DataTypes.class, id);
 
 				if (null != d4) {
@@ -294,14 +296,14 @@ public class Client1IT extends Client {
 
 					getEntityTransaction().commit();
 				} else {
-					TestUtil.logErr("EntityManager.find returned null result");
+					logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
 				}
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 
 		} else {
-			TestUtil.logMsg("WARNING: Test not run because db.supports.sequence set to false in ts.jte");
+			logger.log(Logger.Level.INFO, "WARNING: Test not run because db.supports.sequence set to false in ts.jte");
 			pass = true;
 		}
 		if (!pass)
@@ -333,7 +335,7 @@ public class Client1IT extends Client {
 			try {
 				getEntityTransaction().begin();
 				int id = d0.getId();
-				TestUtil.logTrace("Doing a find of id: " + id);
+				logger.log(Logger.Level.TRACE, "Doing a find of id: " + id);
 				d5 = getEntityManager().find(DataTypes.class, id);
 
 				if (null != d5) {
@@ -350,13 +352,13 @@ public class Client1IT extends Client {
 
 					getEntityTransaction().commit();
 				} else {
-					TestUtil.logErr("EntityManager.find returned null result");
+					logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
 				}
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 		} else {
-			TestUtil.logMsg("WARNING: Test not run because db.supports.sequence set to false in ts.jte");
+			logger.log(Logger.Level.INFO, "WARNING: Test not run because db.supports.sequence set to false in ts.jte");
 			pass = true;
 		}
 		if (!pass)
@@ -388,7 +390,7 @@ public class Client1IT extends Client {
 			try {
 				getEntityTransaction().begin();
 				int id = d0.getId();
-				TestUtil.logTrace("Doing a find of id: " + id);
+				logger.log(Logger.Level.TRACE, "Doing a find of id: " + id);
 				d6 = getEntityManager().find(DataTypes.class, id);
 
 				if (null != d6) {
@@ -405,13 +407,13 @@ public class Client1IT extends Client {
 
 					getEntityTransaction().commit();
 				} else {
-					TestUtil.logErr("EntityManager.find returned null result");
+					logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
 				}
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 		} else {
-			TestUtil.logMsg("WARNING: Test not run because db.supports.sequence set to false in ts.jte");
+			logger.log(Logger.Level.INFO, "WARNING: Test not run because db.supports.sequence set to false in ts.jte");
 			pass = true;
 		}
 		if (!pass)
@@ -425,19 +427,19 @@ public class Client1IT extends Client {
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logTrace("in createTestData");
+			logger.log(Logger.Level.TRACE, "in createTestData");
 
-			TestUtil.logTrace("new DataType");
+			logger.log(Logger.Level.TRACE, "new DataType");
 			d0 = new DataTypes('a', (short) 100, 500, 300L, 50D, 1.0F);
-			TestUtil.logTrace("Persist DataType");
+			logger.log(Logger.Level.TRACE, "Persist DataType");
 			getEntityManager().persist(d0);
-			TestUtil.logTrace("DataType id:" + d0.getId());
+			logger.log(Logger.Level.TRACE, "DataType id:" + d0.getId());
 
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 	}
 

@@ -20,11 +20,15 @@
 
 package com.sun.ts.tests.jpa.ee.propagation.cm.jta;
 
+import java.lang.System.Logger;
+
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.ee.util.AbstractUrlClient;
 
 public class ClientIT extends AbstractUrlClient {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public static final String SERVLET_NAME = "ServletTest";
 

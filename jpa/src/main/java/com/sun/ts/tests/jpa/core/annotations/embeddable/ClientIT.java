@@ -16,22 +16,24 @@
 
 package com.sun.ts.tests.jpa.core.annotations.embeddable;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
-
 public class ClientIT extends PMClientBase {
 
 	public ClientIT() {
 	}
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public static JavaArchive createDeployment() throws Exception {
 		String pkgName = ClientIT.class.getPackageName() + ".";
@@ -43,13 +45,13 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 
 		}
@@ -66,14 +68,14 @@ public class ClientIT extends PMClientBase {
 	 */
 	@Test
 	public void EM1XMTest() throws Exception {
-		TestUtil.logTrace("Begin EM1XMTest2");
+		logger.log(Logger.Level.TRACE, "Begin EM1XMTest2");
 		boolean pass = false;
 		EntityManager em = getEntityManager();
 		EntityTransaction et = getEntityTransaction();
 
 		try {
 			et.begin();
-			TestUtil.logTrace("New instances");
+			logger.log(Logger.Level.TRACE, "New instances");
 
 			final ZipCode z1 = new ZipCode("01801", "1234");
 
@@ -106,49 +108,49 @@ public class ClientIT extends PMClientBase {
 			// Verify Embedded contents
 			if (addr1.getStreet().equals(newStreet)) {
 				pass1 = true;
-				TestUtil.logTrace("Received Street match");
+				logger.log(Logger.Level.TRACE, "Received Street match");
 			}
 
 			if (addr1.getState().equals(newState)) {
 				pass2 = true;
-				TestUtil.logTrace("Received State match");
+				logger.log(Logger.Level.TRACE, "Received State match");
 			}
 
 			if (addr1.getCity().equals(newCity)) {
 				pass3 = true;
-				TestUtil.logTrace("Received City match");
+				logger.log(Logger.Level.TRACE, "Received City match");
 			}
 
 			if (addr1.getZipCode().getPlusFour().equals(newPlusFour)) {
 				pass4 = true;
-				TestUtil.logTrace("Received zipCode PlusFour match");
+				logger.log(Logger.Level.TRACE, "Received zipCode PlusFour match");
 			}
 
 			if (addr1.getZipCode().getZip().equals(newZip)) {
 				pass5 = true;
-				TestUtil.logTrace("Received zipCode zip match");
+				logger.log(Logger.Level.TRACE, "Received zipCode zip match");
 			}
 
 			if (pass1 && pass2 && pass3 && pass4 && pass5) {
 				pass = true;
-				TestUtil.logTrace("Received Address match");
+				logger.log(Logger.Level.TRACE, "Received Address match");
 
 			} else {
-				TestUtil.logTrace("Received incorrect data");
+				logger.log(Logger.Level.TRACE, "Received incorrect data");
 
 			}
 
 			et.commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (et.isActive()) {
 					et.rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 
 		}
@@ -158,21 +160,21 @@ public class ClientIT extends PMClientBase {
 	}
 
 	private B findB(String id) {
-		// TestUtil.logTrace("Entered findB method");
+		// logger.log(Logger.Level.TRACE,"Entered findB method");
 		return getEntityManager().find(B.class, id);
 	}
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 		removeDeploymentJar();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -181,14 +183,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("Delete from B_EMBEDDABLE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

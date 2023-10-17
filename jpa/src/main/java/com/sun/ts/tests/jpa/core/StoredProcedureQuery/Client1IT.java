@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.StoredProcedureQuery;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -25,8 +26,6 @@ import java.util.Set;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.persistence.FlushModeType;
 import jakarta.persistence.LockModeType;
@@ -40,6 +39,8 @@ import jakarta.persistence.TemporalType;
 import jakarta.persistence.TransactionRequiredException;
 
 public class Client1IT extends Client {
+
+	private static final Logger logger = (Logger) System.getLogger(Client1IT.class.getName());
 
 	public Client1IT() {
 	}
@@ -60,7 +61,7 @@ public class Client1IT extends Client {
 	 */
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			createDeployment();
@@ -68,7 +69,7 @@ public class Client1IT extends Client {
 			createEmployeeTestData();
 			dataBaseName = System.getProperty("jdbc.db");
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -93,15 +94,15 @@ public class Client1IT extends Client {
 		try {
 			getEntityTransaction().begin();
 			try {
-				TestUtil.logMsg("Testing using name,class");
+				logger.log(Logger.Level.INFO, "Testing using name,class");
 				clearCache();
 				StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpASCFromRS",
 						Employee.class);
 				if (dataBaseName.equalsIgnoreCase(ORACLE) || dataBaseName.equalsIgnoreCase(POSTGRESQL)) {
-					TestUtil.logTrace("register refcursor parameter");
+					logger.log(Logger.Level.TRACE, "register refcursor parameter");
 					spq.registerStoredProcedureParameter(1, void.class, ParameterMode.REF_CURSOR);
 				}
-				TestUtil.logTrace("executing:" + spq.toString());
+				logger.log(Logger.Level.TRACE, "executing:" + spq.toString());
 				if (spq.execute()) {
 
 					List<List> listOfList = getResultSetsFromStoredProcedure(spq);
@@ -112,23 +113,24 @@ public class Client1IT extends Client {
 						}
 						pass1 = verifyEmployeeIds(expected, listOfList);
 					} else {
-						TestUtil.logErr("Did not get the correct number of result sets returned, expected: 1, actual:"
-								+ listOfList.size());
+						logger.log(Logger.Level.ERROR,
+								"Did not get the correct number of result sets returned, expected: 1, actual:"
+										+ listOfList.size());
 					}
 				} else {
-					TestUtil.logErr("Expected execute() to return true, actual: false");
+					logger.log(Logger.Level.ERROR, "Expected execute() to return true, actual: false");
 				}
 			} catch (Exception ex) {
-				TestUtil.logErr("Received unexpected exception:", ex);
+				logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 			}
 			try {
-				TestUtil.logMsg("Testing using name,result mapping");
+				logger.log(Logger.Level.INFO, "Testing using name,result mapping");
 				clearCache();
 				StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpIdFNameLNameFromRS",
 						"id-firstname-lastname");
 				spq.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
 				if (dataBaseName.equalsIgnoreCase(ORACLE) || dataBaseName.equalsIgnoreCase(POSTGRESQL)) {
-					TestUtil.logTrace("register refcursor parameter");
+					logger.log(Logger.Level.TRACE, "register refcursor parameter");
 					spq.registerStoredProcedureParameter(2, void.class, ParameterMode.REF_CURSOR);
 				}
 				spq.setParameter(1, 1);
@@ -140,21 +142,22 @@ public class Client1IT extends Client {
 						expected.add(new Employee(emp0.getId(), emp0.getFirstName(), emp0.getLastName()));
 						pass2 = verifyListOfListEmployees(expected, listOfList);
 					} else {
-						TestUtil.logErr("Did not get the correct number of result sets returned, expected: 1, actual:"
-								+ listOfList.size());
+						logger.log(Logger.Level.ERROR,
+								"Did not get the correct number of result sets returned, expected: 1, actual:"
+										+ listOfList.size());
 					}
 				} else {
-					TestUtil.logErr("Expected execute() to return false, actual: true");
+					logger.log(Logger.Level.ERROR, "Expected execute() to return false, actual: true");
 				}
 			} catch (Exception ex) {
-				TestUtil.logErr("Received unexpected exception:", ex);
+				logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 			}
 			try {
-				TestUtil.logMsg("Testing using named stored procedure");
+				logger.log(Logger.Level.INFO, "Testing using named stored procedure");
 				clearCache();
 				StoredProcedureQuery spq;
 				if (dataBaseName.equalsIgnoreCase(ORACLE) || dataBaseName.equalsIgnoreCase(POSTGRESQL)) {
-					TestUtil.logTrace("Calling refcursor specific named stored procedure query");
+					logger.log(Logger.Level.TRACE, "Calling refcursor specific named stored procedure query");
 					spq = getEntityManager().createNamedStoredProcedureQuery("get-id-firstname-lastname-refcursor");
 				} else {
 					spq = getEntityManager().createNamedStoredProcedureQuery("get-id-firstname-lastname");
@@ -167,20 +170,21 @@ public class Client1IT extends Client {
 						expected.add(new Employee(emp0.getId(), emp0.getFirstName(), emp0.getLastName()));
 						pass3 = verifyListOfListEmployees(expected, listOfList);
 					} else {
-						TestUtil.logErr("Did not get the correct number of result sets returned, expected: 1, actual:"
-								+ listOfList.size());
+						logger.log(Logger.Level.ERROR,
+								"Did not get the correct number of result sets returned, expected: 1, actual:"
+										+ listOfList.size());
 					}
 				} else {
-					TestUtil.logErr("Expected execute() to return false, actual: true");
+					logger.log(Logger.Level.ERROR, "Expected execute() to return false, actual: true");
 				}
 			} catch (Exception ex) {
-				TestUtil.logErr("Received unexpected exception:", ex);
+				logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception ex) {
-			TestUtil.logErr("Received unexpected exception:", ex);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 		}
 
 		if (!pass1 || !pass2 || !pass3) {
@@ -208,7 +212,7 @@ public class Client1IT extends Client {
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logMsg("Get the value from an OUT only parameter");
+			logger.log(Logger.Level.INFO, "Get the value from an OUT only parameter");
 			StoredProcedureQuery spq3 = getEntityManager().createStoredProcedureQuery("GetEmpOneFirstNameFromOut");
 			spq3.registerStoredProcedureParameter(1, String.class, ParameterMode.OUT);
 			if (!spq3.execute()) {
@@ -217,22 +221,23 @@ public class Client1IT extends Client {
 				if (oActual instanceof String) {
 					String actual = (String) oActual;
 					if (actual.equals(emp0.getFirstName())) {
-						TestUtil.logTrace("Received expected result:" + actual);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + actual);
 						pass6 = true;
 					} else {
-						TestUtil.logErr("Expected result: " + emp0.getFirstName() + ", actual:" + actual);
+						logger.log(Logger.Level.ERROR,
+								"Expected result: " + emp0.getFirstName() + ", actual:" + actual);
 					}
 				} else {
-					TestUtil.logErr("Did not get instance of String, instead:" + oActual);
+					logger.log(Logger.Level.ERROR, "Did not get instance of String, instead:" + oActual);
 				}
 			} else {
-				TestUtil.logErr("Expected execute() to return false, actual: true");
+				logger.log(Logger.Level.ERROR, "Expected execute() to return false, actual: true");
 			}
 		} catch (Exception ex) {
-			TestUtil.logErr("Received unexpected exception:", ex);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 		}
 		try {
-			TestUtil.logMsg("Get the value from an IN and OUT parameter");
+			logger.log(Logger.Level.INFO, "Get the value from an IN and OUT parameter");
 			StoredProcedureQuery spq1 = getEntityManager().createStoredProcedureQuery("GetEmpFirstNameFromOut");
 			spq1.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
 			spq1.registerStoredProcedureParameter(2, String.class, ParameterMode.OUT);
@@ -243,22 +248,23 @@ public class Client1IT extends Client {
 				if (oActual instanceof String) {
 					String actual = (String) oActual;
 					if (actual.equals(emp0.getFirstName())) {
-						TestUtil.logTrace("Received expected result:" + actual);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + actual);
 						pass2 = true;
 					} else {
-						TestUtil.logErr("Expected result: " + emp0.getFirstName() + ", actual:" + actual);
+						logger.log(Logger.Level.ERROR,
+								"Expected result: " + emp0.getFirstName() + ", actual:" + actual);
 					}
 				} else {
-					TestUtil.logErr("Did not get instance of String, instead:" + oActual);
+					logger.log(Logger.Level.ERROR, "Did not get instance of String, instead:" + oActual);
 				}
 			} else {
-				TestUtil.logErr("Expected execute() to return false, actual: true");
+				logger.log(Logger.Level.ERROR, "Expected execute() to return false, actual: true");
 			}
 		} catch (Exception ex) {
-			TestUtil.logErr("Received unexpected exception:", ex);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 		}
 		try {
-			TestUtil.logMsg("Get the value from an INOUT parameter");
+			logger.log(Logger.Level.INFO, "Get the value from an INOUT parameter");
 			StoredProcedureQuery spq2 = getEntityManager().createStoredProcedureQuery("GetEmpLastNameFromInOut");
 			spq2.registerStoredProcedureParameter(1, String.class, ParameterMode.INOUT);
 			spq2.setParameter(1, "1");
@@ -269,21 +275,21 @@ public class Client1IT extends Client {
 				if (oActual instanceof String) {
 					String actual = (String) oActual;
 					if (actual.equals(emp0.getLastName())) {
-						TestUtil.logTrace("Received expected result:" + actual);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + actual);
 						pass4 = true;
 					} else {
-						TestUtil.logErr("Expected result: " + emp0.getLastName() + ", actual:" + actual);
+						logger.log(Logger.Level.ERROR, "Expected result: " + emp0.getLastName() + ", actual:" + actual);
 					}
 				} else {
-					TestUtil.logErr("Expected Integer to be returned, actual:" + oActual);
+					logger.log(Logger.Level.ERROR, "Expected Integer to be returned, actual:" + oActual);
 				}
 			} else {
-				TestUtil.logErr("Expected execute() to return false, actual: true");
+				logger.log(Logger.Level.ERROR, "Expected execute() to return false, actual: true");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception ex) {
-			TestUtil.logErr("Received unexpected exception:", ex);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 		}
 
 		if (!pass2 || !pass4 || !pass6) {
@@ -308,7 +314,7 @@ public class Client1IT extends Client {
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logMsg("Get a value that does not exist");
+			logger.log(Logger.Level.INFO, "Get a value that does not exist");
 			StoredProcedureQuery spq1 = getEntityManager().createStoredProcedureQuery("GetEmpFirstNameFromOut");
 			spq1.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
 			spq1.registerStoredProcedureParameter(2, String.class, ParameterMode.OUT);
@@ -317,22 +323,22 @@ public class Client1IT extends Client {
 			if (!spq1.execute()) {
 				try {
 					spq1.getOutputParameterValue(99);
-					TestUtil.logErr("Did not throw IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					if (getEntityTransaction().getRollbackOnly() != true) {
 						pass2 = true;
-						TestUtil.logTrace("Transaction was not marked for rollback");
+						logger.log(Logger.Level.TRACE, "Transaction was not marked for rollback");
 					} else {
-						TestUtil.logErr("Transaction was marked for rollback and should not have been");
+						logger.log(Logger.Level.ERROR, "Transaction was marked for rollback and should not have been");
 					}
 				} catch (Exception e) {
-					TestUtil.logErr("Caught unexpected exception", e);
+					logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 				}
 			} else {
-				TestUtil.logErr("Expected execute() to return false, actual: true");
+				logger.log(Logger.Level.ERROR, "Expected execute() to return false, actual: true");
 			}
-			TestUtil.logMsg("Get the value from an IN parameter");
+			logger.log(Logger.Level.INFO, "Get the value from an IN parameter");
 			StoredProcedureQuery spq2 = getEntityManager().createStoredProcedureQuery("GetEmpLastNameFromInOut");
 			spq2.registerStoredProcedureParameter(1, String.class, ParameterMode.INOUT);
 			spq2.setParameter(1, "1");
@@ -340,22 +346,22 @@ public class Client1IT extends Client {
 			if (!spq2.execute()) {
 				try {
 					spq2.getOutputParameterValue(99);
-					TestUtil.logErr("Did not throw IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass4 = true;
 				} catch (Exception e) {
-					TestUtil.logErr("Caught unexpected exception", e);
+					logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 				}
 
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} else {
-				TestUtil.logErr("Expected execute() to return false, actual: true");
+				logger.log(Logger.Level.ERROR, "Expected execute() to return false, actual: true");
 			}
 		} catch (Exception ex) {
-			TestUtil.logErr("Received unexpected exception:", ex);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 		}
 
 		if (!pass2 || !pass4) {
@@ -383,34 +389,34 @@ public class Client1IT extends Client {
 
 			StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpASCFromRS", Employee.class);
 			if (dataBaseName.equalsIgnoreCase(ORACLE) || dataBaseName.equalsIgnoreCase(POSTGRESQL)) {
-				TestUtil.logTrace("register refcursor parameter");
+				logger.log(Logger.Level.TRACE, "register refcursor parameter");
 				spq.registerStoredProcedureParameter(1, void.class, ParameterMode.REF_CURSOR);
 			}
 			int num = spq.getFirstResult();
 			if (num == 0) {
-				TestUtil.logTrace("Received expected first result when none is set:" + num);
+				logger.log(Logger.Level.TRACE, "Received expected first result when none is set:" + num);
 				pass1 = true;
 			} else {
-				TestUtil.logErr("Expected first result when none is set: 0, actual:" + num);
+				logger.log(Logger.Level.ERROR, "Expected first result when none is set: 0, actual:" + num);
 			}
 
 			List<Employee> actual = spq.getResultList();
 			num = spq.getFirstResult();
 			if (num == 0) {
-				TestUtil.logTrace("Received expected first result:" + num + " after getResultList");
+				logger.log(Logger.Level.TRACE, "Received expected first result:" + num + " after getResultList");
 				pass2 = true;
 			} else {
-				TestUtil.logErr("Expected first result: 0, actual:" + num + " after getResultList");
+				logger.log(Logger.Level.ERROR, "Expected first result: 0, actual:" + num + " after getResultList");
 			}
 			if (actual.size() > 0) {
 				pass3 = verifyListEmployees(empRef, actual);
 			} else {
-				TestUtil.logErr("getResultList() returned 0 results");
+				logger.log(Logger.Level.ERROR, "getResultList() returned 0 results");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception ex) {
-			TestUtil.logErr("Received unexpected exception:", ex);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 		}
 
 		if (!pass1 || !pass2 || !pass3) {
@@ -438,34 +444,34 @@ public class Client1IT extends Client {
 
 			StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpASCFromRS", Employee.class);
 			if (dataBaseName.equalsIgnoreCase(ORACLE) || dataBaseName.equalsIgnoreCase(POSTGRESQL)) {
-				TestUtil.logTrace("register refcursor parameter");
+				logger.log(Logger.Level.TRACE, "register refcursor parameter");
 				spq.registerStoredProcedureParameter(1, void.class, ParameterMode.REF_CURSOR);
 			}
 			int num = spq.getMaxResults();
 			if (num == Integer.MAX_VALUE) {
-				TestUtil.logTrace("Received expected max result:" + num);
+				logger.log(Logger.Level.TRACE, "Received expected max result:" + num);
 				pass1 = true;
 			} else {
-				TestUtil.logErr("Expected max result: " + Integer.MAX_VALUE + ", actual:" + num);
+				logger.log(Logger.Level.ERROR, "Expected max result: " + Integer.MAX_VALUE + ", actual:" + num);
 			}
 			List<Employee> actual = spq.getResultList();
 			num = spq.getMaxResults();
 			if (num == Integer.MAX_VALUE) {
-				TestUtil.logTrace("Received expected max result:" + num + " after getResultList");
+				logger.log(Logger.Level.TRACE, "Received expected max result:" + num + " after getResultList");
 				pass2 = true;
 			} else {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Expected max result:" + Integer.MAX_VALUE + ", actual:" + num + " after getResultList");
 			}
 			if (actual.size() > 0) {
 				pass3 = verifyListEmployees(empRef, actual);
 			} else {
-				TestUtil.logErr("getResultList() returned 0 results");
+				logger.log(Logger.Level.ERROR, "getResultList() returned 0 results");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception ex) {
-			TestUtil.logErr("Received unexpected exception:", ex);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 		}
 
 		if (!pass1 || !pass2 || !pass3) {
@@ -494,7 +500,7 @@ public class Client1IT extends Client {
 					"id-firstname-lastname");
 			spq.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
 			if (dataBaseName.equalsIgnoreCase(ORACLE) || dataBaseName.equalsIgnoreCase(POSTGRESQL)) {
-				TestUtil.logTrace("register refcursor parameter");
+				logger.log(Logger.Level.TRACE, "register refcursor parameter");
 				spq.registerStoredProcedureParameter(2, void.class, ParameterMode.REF_CURSOR);
 			}
 			spq.setParameter(1, 1);
@@ -503,18 +509,18 @@ public class Client1IT extends Client {
 			if (o instanceof Employee) {
 				Employee actual = (Employee) o;
 				if (actual.equals(expected)) {
-					TestUtil.logTrace("Received expected result:" + actual);
+					logger.log(Logger.Level.TRACE, "Received expected result:" + actual);
 					pass = true;
 				} else {
-					TestUtil.logErr("Expected result:" + expected + ", actual:" + actual);
+					logger.log(Logger.Level.ERROR, "Expected result:" + expected + ", actual:" + actual);
 				}
 			} else {
-				TestUtil.logErr("Did not get Integer result:" + o);
+				logger.log(Logger.Level.ERROR, "Did not get Integer result:" + o);
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception ex) {
-			TestUtil.logErr("Received unexpected exception:", ex);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 		}
 
 		if (!pass) {
@@ -541,25 +547,25 @@ public class Client1IT extends Client {
 			StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpIdFNameLNameFromRS");
 			spq.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
 			if (dataBaseName.equalsIgnoreCase(ORACLE) || dataBaseName.equalsIgnoreCase(POSTGRESQL)) {
-				TestUtil.logTrace("register refcursor parameter");
+				logger.log(Logger.Level.TRACE, "register refcursor parameter");
 				spq.registerStoredProcedureParameter(2, void.class, ParameterMode.REF_CURSOR);
 			}
 			spq.setParameter(1, 99);
 			try {
 				spq.getSingleResult();
-				TestUtil.logErr("Did not throw NoResultException");
+				logger.log(Logger.Level.ERROR, "Did not throw NoResultException");
 			} catch (NoResultException nre) {
-				TestUtil.logTrace("Received expected NoResultException");
+				logger.log(Logger.Level.TRACE, "Received expected NoResultException");
 				pass = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Caught unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 
 			}
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
 		} catch (Exception ex) {
-			TestUtil.logErr("Received unexpected exception:", ex);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 		}
 
 		if (!pass) {
@@ -586,23 +592,23 @@ public class Client1IT extends Client {
 
 			StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpASCFromRS", Employee.class);
 			if (dataBaseName.equalsIgnoreCase(ORACLE) || dataBaseName.equalsIgnoreCase(POSTGRESQL)) {
-				TestUtil.logTrace("register refcursor parameter");
+				logger.log(Logger.Level.TRACE, "register refcursor parameter");
 				spq.registerStoredProcedureParameter(1, void.class, ParameterMode.REF_CURSOR);
 			}
 			try {
 				spq.getSingleResult();
-				TestUtil.logErr("Did not throw NonUniqueResultException");
+				logger.log(Logger.Level.ERROR, "Did not throw NonUniqueResultException");
 			} catch (NonUniqueResultException nure) {
-				TestUtil.logTrace("Received expected NonUniqueResultException");
+				logger.log(Logger.Level.TRACE, "Received expected NonUniqueResultException");
 				pass = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Caught unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 			}
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
 		} catch (Exception ex) {
-			TestUtil.logErr("Received unexpected exception:", ex);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 		}
 
 		if (!pass) {
@@ -624,71 +630,72 @@ public class Client1IT extends Client {
 		boolean pass2 = false;
 
 		try {
-			TestUtil.logMsg("Testing StoredProcedureQuery");
+			logger.log(Logger.Level.INFO, "Testing StoredProcedureQuery");
 			StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpASCFromRS", Employee.class);
 			if (dataBaseName.equalsIgnoreCase(ORACLE) || dataBaseName.equalsIgnoreCase(POSTGRESQL)) {
-				TestUtil.logTrace("register refcursor parameter");
+				logger.log(Logger.Level.TRACE, "register refcursor parameter");
 				spq.registerStoredProcedureParameter(1, void.class, ParameterMode.REF_CURSOR);
 			}
 			FlushModeType fmt = spq.getFlushMode();
 			if (fmt != null) {
 				if (fmt.equals(getEntityManager().getFlushMode())) {
-					TestUtil.logTrace("Setting mode to returned default mode");
+					logger.log(Logger.Level.TRACE, "Setting mode to returned default mode");
 					spq.setFlushMode(fmt);
-					TestUtil.logTrace("Setting mode to FlushModeType.COMMIT");
+					logger.log(Logger.Level.TRACE, "Setting mode to FlushModeType.COMMIT");
 					spq.setFlushMode(FlushModeType.COMMIT);
 					fmt = spq.getFlushMode();
 					if (fmt.equals(FlushModeType.COMMIT)) {
-						TestUtil.logTrace("Setting mode to FlushModeType.AUTO");
+						logger.log(Logger.Level.TRACE, "Setting mode to FlushModeType.AUTO");
 						spq.setFlushMode(FlushModeType.AUTO);
 						fmt = spq.getFlushMode();
 						if (fmt.equals(FlushModeType.AUTO)) {
-							TestUtil.logTrace("Query object returned from setFlushMode");
+							logger.log(Logger.Level.TRACE, "Query object returned from setFlushMode");
 							Query q = spq.setFlushMode(FlushModeType.COMMIT);
 							fmt = q.getFlushMode();
 							if (fmt.equals(FlushModeType.COMMIT)) {
-								TestUtil.logTrace("Received expected Query FlushModeType:" + fmt.name());
+								logger.log(Logger.Level.TRACE, "Received expected Query FlushModeType:" + fmt.name());
 								pass1 = true;
 							} else {
-								TestUtil.logErr("Expected a value of:" + FlushModeType.COMMIT.name() + ", actual:"
-										+ fmt.name());
+								logger.log(Logger.Level.ERROR, "Expected a value of:" + FlushModeType.COMMIT.name()
+										+ ", actual:" + fmt.name());
 							}
 						} else {
-							TestUtil.logErr(
+							logger.log(Logger.Level.ERROR,
 									"Expected a value of:" + FlushModeType.AUTO.name() + ", actual:" + fmt.name());
 						}
 					} else {
-						TestUtil.logErr("Expected a default value of:" + FlushModeType.COMMIT.name() + ", actual:"
-								+ fmt.name());
+						logger.log(Logger.Level.ERROR, "Expected a default value of:" + FlushModeType.COMMIT.name()
+								+ ", actual:" + fmt.name());
 					}
 				} else {
-					TestUtil.logErr("Expected EntityManager value of:" + getEntityManager().getFlushMode() + ", actual:"
-							+ fmt.name());
+					logger.log(Logger.Level.ERROR, "Expected EntityManager value of:"
+							+ getEntityManager().getFlushMode() + ", actual:" + fmt.name());
 				}
 			} else {
-				TestUtil.logErr("getFlushMode return null");
+				logger.log(Logger.Level.ERROR, "getFlushMode return null");
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception: ", e);
+			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
 		}
 		try {
-			TestUtil.logMsg("Testing Query object returned from setFlushMode");
+			logger.log(Logger.Level.INFO, "Testing Query object returned from setFlushMode");
 			StoredProcedureQuery spq2 = getEntityManager().createStoredProcedureQuery("GetEmpASCFromRS",
 					Employee.class);
 
-			TestUtil.logTrace("Setting mode to FlushModeType.AUTO");
+			logger.log(Logger.Level.TRACE, "Setting mode to FlushModeType.AUTO");
 			Query q = spq2.setFlushMode(FlushModeType.AUTO);
 			FlushModeType fmt = q.getFlushMode();
 			if (fmt.equals(FlushModeType.AUTO)) {
-				TestUtil.logTrace("Received expected value of:" + fmt.name());
+				logger.log(Logger.Level.TRACE, "Received expected value of:" + fmt.name());
 				pass2 = true;
 			} else {
-				TestUtil.logErr("Expected a value of:" + FlushModeType.AUTO.name() + ", actual:" + fmt.name());
+				logger.log(Logger.Level.ERROR,
+						"Expected a value of:" + FlushModeType.AUTO.name() + ", actual:" + fmt.name());
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception: ", e);
+			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
 		}
 
 		if (!pass1 || !pass2)
@@ -711,18 +718,18 @@ public class Client1IT extends Client {
 			StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("UpdateEmpSalaryColumn");
 			try {
 				spq.setLockMode(LockModeType.PESSIMISTIC_READ);
-				TestUtil.logErr("Did not throw IllegalStateException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalStateException");
 			} catch (IllegalStateException ise) {
-				TestUtil.logTrace("Received expected IllegalStateException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
 				pass = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Caught unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 			}
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception: ", e);
+			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -745,18 +752,18 @@ public class Client1IT extends Client {
 			StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("UpdateEmpSalaryColumn");
 			try {
 				spq.getLockMode();
-				TestUtil.logErr("Did not throw IllegalStateException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalStateException");
 			} catch (IllegalStateException ise) {
-				TestUtil.logTrace("Received expected IllegalStateException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
 				pass = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Caught unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 			}
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception: ", e);
+			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -777,7 +784,7 @@ public class Client1IT extends Client {
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logMsg("Testing StoredProcedureQuery");
+			logger.log(Logger.Level.INFO, "Testing StoredProcedureQuery");
 			StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpFirstNameFromOut");
 			spq.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
 			spq.registerStoredProcedureParameter(2, String.class, ParameterMode.OUT);
@@ -785,13 +792,13 @@ public class Client1IT extends Client {
 			Parameter p = spq.getParameter(1);
 			int pos = p.getPosition();
 			if (pos == 1) {
-				TestUtil.logTrace("Received expected parameter:" + pos);
+				logger.log(Logger.Level.TRACE, "Received expected parameter:" + pos);
 				pass1 = true;
 			} else {
-				TestUtil.logErr("Expected position: 1, actual:" + pos);
+				logger.log(Logger.Level.ERROR, "Expected position: 1, actual:" + pos);
 			}
 
-			TestUtil.logMsg("Testing Query object returned from getParameter");
+			logger.log(Logger.Level.INFO, "Testing Query object returned from getParameter");
 			StoredProcedureQuery spq2 = getEntityManager().createStoredProcedureQuery("GetEmpFirstNameFromOut");
 			spq2.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
 			spq2.registerStoredProcedureParameter(2, String.class, ParameterMode.OUT);
@@ -799,15 +806,15 @@ public class Client1IT extends Client {
 			p = q.getParameter(1);
 			pos = p.getPosition();
 			if (pos == 1) {
-				TestUtil.logTrace("Received expected parameter:" + pos);
+				logger.log(Logger.Level.TRACE, "Received expected parameter:" + pos);
 				pass2 = true;
 			} else {
-				TestUtil.logErr("Expected position: 1, actual:" + pos);
+				logger.log(Logger.Level.ERROR, "Expected position: 1, actual:" + pos);
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception: ", e);
+			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
 		}
 
 		if (!pass1 || !pass2)
@@ -827,26 +834,29 @@ public class Client1IT extends Client {
 	 * false; boolean pass2 = false; boolean pass3 = false; try {
 	 * getEntityTransaction().begin();
 	 * 
-	 * TestUtil.logMsg("Testing StoredProcedureQuery"); StoredProcedureQuery spq =
+	 * logger.log(Logger.Level.INFO,"Testing StoredProcedureQuery");
+	 * StoredProcedureQuery spq =
 	 * getEntityManager().createStoredProcedureQuery("GetEmpFirstNameFromOut");
 	 * spq.registerStoredProcedureParameter("IN_PARAM", Integer.class,
 	 * ParameterMode.IN); spq.registerStoredProcedureParameter("OUT_PARAM",
 	 * String.class, ParameterMode.OUT); spq.setParameter("IN_PARAM", 1);
 	 * 
 	 * Parameter p = spq.getParameter("OUT_PARAM"); Integer pos = p.getPosition();
-	 * if (pos == null){ TestUtil.logTrace("Received expected null"); pass1 = true;
-	 * } else { TestUtil.logErr("Expected position: null, actual:" + pos); }
+	 * if (pos == null){ logger.log(Logger.Level.TRACE,"Received expected null");
+	 * pass1 = true; } else {
+	 * logger.log(Logger.Level.ERROR,"Expected position: null, actual:" + pos); }
 	 * 
 	 * spq.execute(); Object oActual = spq.getOutputParameterValue("OUT_PARAM"); if
 	 * (oActual instanceof String) { String actual = (String) oActual; if
 	 * (actual.equals(emp0.getFirstName())) {
-	 * TestUtil.logTrace("Received expected result:" + actual); pass2 = true; } else
-	 * { TestUtil.logErr("Expected result: " + emp0.getFirstName() + ", actual:" +
-	 * actual); } } else {
-	 * TestUtil.logErr("Did not get instance of String, instead:" +
+	 * logger.log(Logger.Level.TRACE,"Received expected result:" + actual); pass2 =
+	 * true; } else { logger.log(Logger.Level.ERROR,"Expected result: " +
+	 * emp0.getFirstName() + ", actual:" + actual); } } else {
+	 * logger.log(Logger.Level.ERROR,"Did not get instance of String, instead:" +
 	 * oActual.getClass()); } getEntityTransaction().commit();
 	 * 
-	 * } catch (Exception e) { TestUtil.logErr("Caught exception: ", e); }
+	 * } catch (Exception e) { logger.log(Logger.Level.ERROR,"Caught exception: ",
+	 * e); }
 	 * 
 	 * if (!pass1 || !pass2 ) throw new
 	 * Exception("setGetParameterStringTest failed"); }
@@ -865,7 +875,7 @@ public class Client1IT extends Client {
 		boolean pass2 = false;
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logMsg("Testing StoredProcedureQuery ");
+			logger.log(Logger.Level.INFO, "Testing StoredProcedureQuery ");
 
 			StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpFirstNameFromOut");
 			spq.registerStoredProcedureParameter("ID", Integer.class, ParameterMode.IN);
@@ -873,40 +883,40 @@ public class Client1IT extends Client {
 			spq.setParameter("ID", 1);
 			try {
 				spq.getParameter("DOESNOTEXIST");
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 				pass1 = true;
 			} catch (IllegalStateException ise) {
-				TestUtil.logTrace("Received expected IllegalStateException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
 				pass1 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Caught unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 			}
 
-			TestUtil.logMsg("Testing Query object returned from getParameter");
+			logger.log(Logger.Level.INFO, "Testing Query object returned from getParameter");
 			StoredProcedureQuery spq2 = getEntityManager().createStoredProcedureQuery("GetEmpFirstNameFromOut");
 			spq2.registerStoredProcedureParameter("ID", Integer.class, ParameterMode.IN);
 			spq2.registerStoredProcedureParameter("FIRSTNAME", String.class, ParameterMode.OUT);
 			Query q = spq2.setParameter("ID", 1);
 			try {
 				q.getParameter("DOESNOTEXIST");
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 				pass2 = true;
 			} catch (IllegalStateException ise) {
-				TestUtil.logTrace("Received expected IllegalStateException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
 				pass2 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Caught unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 			}
 
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception", e);
+			logger.log(Logger.Level.ERROR, "Caught exception", e);
 		}
 
 		if (!pass1 || !pass2)
@@ -926,7 +936,7 @@ public class Client1IT extends Client {
 		boolean pass2 = false;
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logMsg("Testing StoredProcedureQuery ");
+			logger.log(Logger.Level.INFO, "Testing StoredProcedureQuery ");
 
 			StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpFirstNameFromOut");
 			spq.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
@@ -934,34 +944,34 @@ public class Client1IT extends Client {
 			spq.setParameter(1, 1);
 			try {
 				spq.getParameter(99);
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 				pass1 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Caught unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 			}
 
-			TestUtil.logMsg("Testing Query object returned from getParameter");
+			logger.log(Logger.Level.INFO, "Testing Query object returned from getParameter");
 			StoredProcedureQuery spq2 = getEntityManager().createStoredProcedureQuery("GetEmpFirstNameFromOut");
 			spq2.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
 			spq2.registerStoredProcedureParameter(2, String.class, ParameterMode.OUT);
 			Query q = spq2.setParameter(1, 1);
 			try {
 				q.getParameter(99);
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 				pass2 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Caught unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 			}
 
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception", e);
+			logger.log(Logger.Level.ERROR, "Caught exception", e);
 		}
 
 		if (!pass1 || !pass2)
@@ -982,7 +992,7 @@ public class Client1IT extends Client {
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logMsg("Testing StoredProcedureQuery ");
+			logger.log(Logger.Level.INFO, "Testing StoredProcedureQuery ");
 
 			StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpFirstNameFromOut");
 			spq.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
@@ -996,21 +1006,22 @@ public class Client1IT extends Client {
 				if (oActual instanceof String) {
 					String actual = (String) oActual;
 					if (actual.equals(emp0.getFirstName())) {
-						TestUtil.logTrace("Received expected result:" + actual);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + actual);
 						pass2 = true;
 					} else {
-						TestUtil.logErr("Expected result: " + emp0.getFirstName() + ", actual:" + actual);
+						logger.log(Logger.Level.ERROR,
+								"Expected result: " + emp0.getFirstName() + ", actual:" + actual);
 					}
 				} else {
-					TestUtil.logErr("Did not get instance of String, instead:" + oActual.getClass());
+					logger.log(Logger.Level.ERROR, "Did not get instance of String, instead:" + oActual.getClass());
 				}
 			} else {
-				TestUtil.logErr("Expected execute() to return false, actual: true");
+				logger.log(Logger.Level.ERROR, "Expected execute() to return false, actual: true");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception", e);
+			logger.log(Logger.Level.ERROR, "Caught exception", e);
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
@@ -1018,7 +1029,7 @@ public class Client1IT extends Client {
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logMsg("Testing Query object returned from setParameter");
+			logger.log(Logger.Level.INFO, "Testing Query object returned from setParameter");
 			StoredProcedureQuery spq2 = getEntityManager().createStoredProcedureQuery("GetEmpFirstNameFromOut");
 			spq2.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
 			spq2.registerStoredProcedureParameter(2, String.class, ParameterMode.OUT);
@@ -1032,21 +1043,22 @@ public class Client1IT extends Client {
 				if (oActual instanceof String) {
 					String actual = (String) oActual;
 					if (actual.equals(emp0.getFirstName())) {
-						TestUtil.logTrace("Received expected result:" + actual);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + actual);
 						pass4 = true;
 					} else {
-						TestUtil.logErr("Expected result: " + emp0.getFirstName() + ", actual:" + actual);
+						logger.log(Logger.Level.ERROR,
+								"Expected result: " + emp0.getFirstName() + ", actual:" + actual);
 					}
 				} else {
-					TestUtil.logErr("Did not get instance of String, instead:" + oActual);
+					logger.log(Logger.Level.ERROR, "Did not get instance of String, instead:" + oActual);
 				}
 			} else {
-				TestUtil.logErr("Expected execute() to return false, actual: true");
+				logger.log(Logger.Level.ERROR, "Expected execute() to return false, actual: true");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception", e);
+			logger.log(Logger.Level.ERROR, "Caught exception", e);
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
@@ -1071,7 +1083,7 @@ public class Client1IT extends Client {
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logTrace("Get parameter from other stored procedure");
+			logger.log(Logger.Level.TRACE, "Get parameter from other stored procedure");
 			StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpLastNameFromInOut");
 			spq.registerStoredProcedureParameter(1, String.class, ParameterMode.INOUT);
 			spq.setParameter(1, "INOUT");
@@ -1084,19 +1096,19 @@ public class Client1IT extends Client {
 
 			try {
 				spq2.setParameter(p, 1);
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 				pass1 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Caught unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 			}
 
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception", e);
+			logger.log(Logger.Level.ERROR, "Caught exception", e);
 		}
 
 		if (!pass1)
@@ -1118,70 +1130,70 @@ public class Client1IT extends Client {
 		boolean pass4 = false;
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logMsg("Testing StoredProcedureQuery with incorrect position specified");
+			logger.log(Logger.Level.INFO, "Testing StoredProcedureQuery with incorrect position specified");
 
 			StoredProcedureQuery spq1 = getEntityManager().createStoredProcedureQuery("GetEmpFirstNameFromOut");
 			spq1.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
 			spq1.registerStoredProcedureParameter(2, String.class, ParameterMode.OUT);
 			try {
 				spq1.setParameter(99, 1);
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 				pass1 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Caught unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 			}
 
-			TestUtil.logMsg("Testing StoredProcedureQuery with incorrect type specified");
+			logger.log(Logger.Level.INFO, "Testing StoredProcedureQuery with incorrect type specified");
 
 			StoredProcedureQuery spq2 = getEntityManager().createStoredProcedureQuery("GetEmpFirstNameFromOut");
 			spq2.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
 			spq2.registerStoredProcedureParameter(2, String.class, ParameterMode.OUT);
 			try {
 				spq2.setParameter(1, new java.util.Date());
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 				pass2 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Caught unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 			}
 
-			TestUtil.logMsg("Testing Query object with incorrect position specified");
+			logger.log(Logger.Level.INFO, "Testing Query object with incorrect position specified");
 			StoredProcedureQuery spq3 = getEntityManager().createStoredProcedureQuery("GetEmpFirstNameFromOut");
 			spq3.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
 			spq3.registerStoredProcedureParameter(2, String.class, ParameterMode.OUT);
 			Query q1 = spq3.setParameter(1, 1);
 			try {
 				spq3.setParameter(99, 1);
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 				pass3 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Caught unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 			}
 
-			TestUtil.logMsg("Testing Query object with incorrect type specified");
+			logger.log(Logger.Level.INFO, "Testing Query object with incorrect type specified");
 			StoredProcedureQuery spq4 = getEntityManager().createStoredProcedureQuery("GetEmpFirstNameFromOut");
 			spq4.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
 			spq4.registerStoredProcedureParameter(2, String.class, ParameterMode.OUT);
 			Query q2 = spq4.setParameter(1, 1);
 			try {
 				q2.setParameter(1, new java.util.Date());
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 				pass4 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Caught unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 			}
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception", e);
+			logger.log(Logger.Level.ERROR, "Caught exception", e);
 		}
 
 		if (!pass1 || !pass2 || !pass3 || !pass4)
@@ -1205,10 +1217,10 @@ public class Client1IT extends Client {
 			StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpFirstNameFromOut");
 			Set<Parameter<?>> p1 = spq.getParameters();
 			if (p1.size() == 0) {
-				TestUtil.logTrace("Received expected number of parameters when non exist:" + p1.size());
+				logger.log(Logger.Level.TRACE, "Received expected number of parameters when non exist:" + p1.size());
 				pass1 = true;
 			} else {
-				TestUtil.logErr("Expected number of parameters when non exist: 0, actual:" + p1);
+				logger.log(Logger.Level.ERROR, "Expected number of parameters when non exist: 0, actual:" + p1);
 			}
 			spq.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
 			spq.registerStoredProcedureParameter(2, String.class, ParameterMode.OUT);
@@ -1217,18 +1229,18 @@ public class Client1IT extends Client {
 			if (!spq.execute()) {
 				Set<Parameter<?>> p2 = spq.getParameters();
 				if (p2.size() == 2) {
-					TestUtil.logTrace("Received expected number of parameters:" + p2.size());
+					logger.log(Logger.Level.TRACE, "Received expected number of parameters:" + p2.size());
 					pass3 = true;
 				} else {
-					TestUtil.logErr("Expected number of parameters: 2, actual:" + p2.size());
+					logger.log(Logger.Level.ERROR, "Expected number of parameters: 2, actual:" + p2.size());
 				}
 			} else {
-				TestUtil.logErr("Expected execute() to return false, actual: true");
+				logger.log(Logger.Level.ERROR, "Expected execute() to return false, actual: true");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception: ", e);
+			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
 		}
 
 		if (!pass1 || !pass3)
@@ -1250,7 +1262,7 @@ public class Client1IT extends Client {
 		try {
 			getEntityTransaction().begin();
 			try {
-				TestUtil.logMsg("Testing StoredProcedureQuery");
+				logger.log(Logger.Level.INFO, "Testing StoredProcedureQuery");
 
 				StoredProcedureQuery spq = getEntityManager()
 						.createStoredProcedureQuery("GetEmpIdUsingHireDateFromOut");
@@ -1264,23 +1276,23 @@ public class Client1IT extends Client {
 					if (o instanceof Integer) {
 						Integer actual = (Integer) o;
 						if (actual == 1) {
-							TestUtil.logTrace("Received expected id:" + actual);
+							logger.log(Logger.Level.TRACE, "Received expected id:" + actual);
 							pass2 = true;
 						} else {
-							TestUtil.logErr("Expected id: 1, actual:" + actual);
+							logger.log(Logger.Level.ERROR, "Expected id: 1, actual:" + actual);
 						}
 
 					} else {
-						TestUtil.logErr("Did not get instance of Integer back:" + o);
+						logger.log(Logger.Level.ERROR, "Did not get instance of Integer back:" + o);
 					}
 				} else {
-					TestUtil.logErr("Expected execute() to return false, actual: true");
+					logger.log(Logger.Level.ERROR, "Expected execute() to return false, actual: true");
 				}
 			} catch (Exception e) {
-				TestUtil.logErr("Caught exception: ", e);
+				logger.log(Logger.Level.ERROR, "Caught exception: ", e);
 			}
 			try {
-				TestUtil.logMsg("Testing Query object");
+				logger.log(Logger.Level.INFO, "Testing Query object");
 				StoredProcedureQuery spq1 = getEntityManager()
 						.createStoredProcedureQuery("GetEmpIdUsingHireDateFromOut");
 				spq1.registerStoredProcedureParameter(1, Date.class, ParameterMode.IN);
@@ -1295,25 +1307,25 @@ public class Client1IT extends Client {
 					if (o instanceof Integer) {
 						int actual = (Integer) o;
 						if (actual == 1) {
-							TestUtil.logTrace("Received expected id:" + actual);
+							logger.log(Logger.Level.TRACE, "Received expected id:" + actual);
 							pass4 = true;
 						} else {
-							TestUtil.logErr("Expected id: 1, actual:" + actual);
+							logger.log(Logger.Level.ERROR, "Expected id: 1, actual:" + actual);
 						}
 
 					} else {
-						TestUtil.logErr("Did not get instance of Integer back:" + o);
+						logger.log(Logger.Level.ERROR, "Did not get instance of Integer back:" + o);
 					}
 				} else {
-					TestUtil.logErr("Expected execute() to return false, actual: true");
+					logger.log(Logger.Level.ERROR, "Expected execute() to return false, actual: true");
 				}
 			} catch (Exception e) {
-				TestUtil.logErr("Caught exception: ", e);
+				logger.log(Logger.Level.ERROR, "Caught exception: ", e);
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception: ", e);
+			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
 		}
 
 		if (!pass2 || !pass4)
@@ -1334,39 +1346,39 @@ public class Client1IT extends Client {
 		boolean pass2 = false;
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logMsg("Testing StoredProcedureQuery with incorrect position specified");
+			logger.log(Logger.Level.INFO, "Testing StoredProcedureQuery with incorrect position specified");
 
 			StoredProcedureQuery spq1 = getEntityManager().createStoredProcedureQuery("GetEmpIdUsingHireDateFromOut");
 			spq1.registerStoredProcedureParameter(1, Date.class, ParameterMode.IN);
 			try {
 				spq1.setParameter(99, utilDate, TemporalType.DATE);
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 				pass1 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Caught unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 			}
 
-			TestUtil.logMsg("Testing Query object with incorrect position specified");
+			logger.log(Logger.Level.INFO, "Testing Query object with incorrect position specified");
 			StoredProcedureQuery spq3 = getEntityManager().createStoredProcedureQuery("GetEmpIdUsingHireDateFromOut");
 			spq3.registerStoredProcedureParameter(1, Date.class, ParameterMode.IN);
 			Query q1 = spq3.setParameter(1, getUtilDate());
 			try {
 				q1.setParameter(99, utilDate, TemporalType.DATE);
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 				pass2 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Caught unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 			}
 
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception", e);
+			logger.log(Logger.Level.ERROR, "Caught exception", e);
 		}
 
 		if (!pass1 || !pass2)
@@ -1401,22 +1413,22 @@ public class Client1IT extends Client {
 				if (o instanceof Integer) {
 					int actual = (Integer) o;
 					if (actual == 1) {
-						TestUtil.logTrace("Received expected id:" + actual);
+						logger.log(Logger.Level.TRACE, "Received expected id:" + actual);
 						pass2 = true;
 					} else {
-						TestUtil.logErr("Expected id: 1, actual:" + actual);
+						logger.log(Logger.Level.ERROR, "Expected id: 1, actual:" + actual);
 					}
 
 				} else {
-					TestUtil.logErr("Did not get instance of Integer back:" + o);
+					logger.log(Logger.Level.ERROR, "Did not get instance of Integer back:" + o);
 				}
 			} else {
-				TestUtil.logErr("Expected execute() to return false, actual: true");
+				logger.log(Logger.Level.ERROR, "Expected execute() to return false, actual: true");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception: ", e);
+			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
@@ -1424,7 +1436,7 @@ public class Client1IT extends Client {
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logMsg("Testing Query object");
+			logger.log(Logger.Level.INFO, "Testing Query object");
 			StoredProcedureQuery spq1 = getEntityManager().createStoredProcedureQuery("GetEmpIdUsingHireDateFromOut");
 			spq1.registerStoredProcedureParameter(1, Date.class, ParameterMode.IN);
 			spq1.registerStoredProcedureParameter(2, Integer.class, ParameterMode.OUT);
@@ -1438,10 +1450,10 @@ public class Client1IT extends Client {
 
 			Parameter p2 = q.getParameter(1);
 			if (p.getPosition().equals(p2.getPosition()) && p.getParameterType().equals(p2.getParameterType())) {
-				TestUtil.logTrace("Received expected parameter");
+				logger.log(Logger.Level.TRACE, "Received expected parameter");
 				pass3 = true;
 			} else {
-				TestUtil.logErr("Expected parameter:" + p + ", actual:" + p2);
+				logger.log(Logger.Level.ERROR, "Expected parameter:" + p + ", actual:" + p2);
 			}
 			StoredProcedureQuery spq2 = (StoredProcedureQuery) q;
 			if (!spq2.execute()) {
@@ -1450,22 +1462,22 @@ public class Client1IT extends Client {
 				if (o instanceof Integer) {
 					int actual = (Integer) o;
 					if (actual == emp0.getId()) {
-						TestUtil.logTrace("Received expected id:" + actual);
+						logger.log(Logger.Level.TRACE, "Received expected id:" + actual);
 						pass5 = true;
 					} else {
-						TestUtil.logErr("Expected id: 1, actual:" + actual);
+						logger.log(Logger.Level.ERROR, "Expected id: 1, actual:" + actual);
 					}
 
 				} else {
-					TestUtil.logErr("Did not get instance of Integer back:" + o);
+					logger.log(Logger.Level.ERROR, "Did not get instance of Integer back:" + o);
 				}
 			} else {
-				TestUtil.logErr("Expected execute() to return false, actual: true");
+				logger.log(Logger.Level.ERROR, "Expected execute() to return false, actual: true");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception: ", e);
+			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
@@ -1488,38 +1500,38 @@ public class Client1IT extends Client {
 		boolean pass2 = false;
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("Get parameter from other stored procedure");
+			logger.log(Logger.Level.TRACE, "Get parameter from other stored procedure");
 			StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpLastNameFromInOut");
 			spq.registerStoredProcedureParameter(1, String.class, ParameterMode.INOUT);
 			spq.setParameter(1, "INOUT");
 			// Parameter to be used in next StoredProcedure
 			Parameter p = spq.getParameter(1);
-			TestUtil.logMsg("Testing StoredProcedureQuery with parameter specified from another query");
+			logger.log(Logger.Level.INFO, "Testing StoredProcedureQuery with parameter specified from another query");
 			StoredProcedureQuery spq1 = getEntityManager().createStoredProcedureQuery("GetEmpIdUsingHireDateFromOut");
 			spq1.registerStoredProcedureParameter(1, Date.class, ParameterMode.IN);
 			spq1.setParameter(1, getUtilDate(), TemporalType.DATE);
 			try {
 				spq1.setParameter(p, getUtilDate(), TemporalType.DATE);
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 				pass1 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Caught unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 			}
 
-			TestUtil.logMsg("Testing Query object with parameter specified from another query");
+			logger.log(Logger.Level.INFO, "Testing Query object with parameter specified from another query");
 			StoredProcedureQuery spq3 = getEntityManager().createStoredProcedureQuery("GetEmpIdUsingHireDateFromOut");
 			spq3.registerStoredProcedureParameter(1, Calendar.class, ParameterMode.IN);
 			Query q1 = spq3.setParameter(1, getCalDate());
 			try {
 				q1.setParameter(p, getCalDate(), TemporalType.DATE);
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 				pass2 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Caught unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 			}
 
 			if (getEntityTransaction().isActive()) {
@@ -1527,7 +1539,7 @@ public class Client1IT extends Client {
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception", e);
+			logger.log(Logger.Level.ERROR, "Caught exception", e);
 		}
 
 		if (!pass1 || !pass2)
@@ -1552,15 +1564,15 @@ public class Client1IT extends Client {
 			spq.executeUpdate();
 			int updateCount = spq.getUpdateCount();
 			if (updateCount == -1) {
-				TestUtil.logTrace("Received expected update count:" + updateCount);
+				logger.log(Logger.Level.TRACE, "Received expected update count:" + updateCount);
 				pass = true;
 			} else {
-				TestUtil.logErr("Expected update count: -1, actual:" + updateCount);
+				logger.log(Logger.Level.ERROR, "Expected update count: -1, actual:" + updateCount);
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -1584,15 +1596,15 @@ public class Client1IT extends Client {
 			spq.executeUpdate();
 			int updateCount = spq.getUpdateCount();
 			if (updateCount == -1) {
-				TestUtil.logTrace("Received expected update count:" + updateCount);
+				logger.log(Logger.Level.TRACE, "Received expected update count:" + updateCount);
 				pass = true;
 			} else {
-				TestUtil.logErr("Expected update count: -1, actual:" + updateCount);
+				logger.log(Logger.Level.ERROR, "Expected update count: -1, actual:" + updateCount);
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -1612,18 +1624,18 @@ public class Client1IT extends Client {
 		try {
 			StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("DeleteAllEmp");
 			try {
-				TestUtil.logMsg("IsActive returns:" + getEntityTransaction().isActive());
+				logger.log(Logger.Level.INFO, "IsActive returns:" + getEntityTransaction().isActive());
 				spq.executeUpdate();
-				TestUtil.logErr("Did not throw TransactionRequiredException");
+				logger.log(Logger.Level.ERROR, "Did not throw TransactionRequiredException");
 			} catch (TransactionRequiredException tre) {
-				TestUtil.logTrace("Received expected TransactionRequiredException");
+				logger.log(Logger.Level.TRACE, "Received expected TransactionRequiredException");
 				pass = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Caught unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -1650,35 +1662,36 @@ public class Client1IT extends Client {
 			Parameter p = spq.getParameter(1);
 			boolean b = spq.isBound(p);
 			if (b == true) {
-				TestUtil.logTrace("Received expected from isBound():" + b);
+				logger.log(Logger.Level.TRACE, "Received expected from isBound():" + b);
 				pass1 = true;
 			} else {
-				TestUtil.logErr("Expected result from isBound():true, actual:" + b);
+				logger.log(Logger.Level.ERROR, "Expected result from isBound():true, actual:" + b);
 			}
 			if (!spq.execute()) {
 				p = spq.getParameter(1);
 				Object o = spq.getParameterValue(p);
 				if (o instanceof Integer) {
-					TestUtil.logTrace("Received expected parameter type: Integer");
+					logger.log(Logger.Level.TRACE, "Received expected parameter type: Integer");
 					Integer i = (Integer) o;
 					if (i.equals(emp0.getId())) {
-						TestUtil.logTrace("Received expected parameter value:" + i);
+						logger.log(Logger.Level.TRACE, "Received expected parameter value:" + i);
 						pass3 = true;
 					} else {
-						TestUtil.logErr("Expected getParameterValue() result: " + emp0.getId() + ", actual:" + i);
+						logger.log(Logger.Level.ERROR,
+								"Expected getParameterValue() result: " + emp0.getId() + ", actual:" + i);
 					}
 
 				} else {
-					TestUtil.logErr("Did not get instance of Integer from getParameterValue():" + o);
+					logger.log(Logger.Level.ERROR, "Did not get instance of Integer from getParameterValue():" + o);
 				}
 
 			} else {
-				TestUtil.logErr("Expected execute() to return false, actual: true");
+				logger.log(Logger.Level.ERROR, "Expected execute() to return false, actual: true");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass1 || !pass3)
@@ -1711,18 +1724,18 @@ public class Client1IT extends Client {
 			spq1.setParameter(1, 1);
 			try {
 				spq1.getParameterValue(p);
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 				pass = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Caught unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 			}
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -1750,27 +1763,27 @@ public class Client1IT extends Client {
 			Parameter p = spq.getParameter(1);
 			boolean b = spq.isBound(p);
 			if (b == true) {
-				TestUtil.logTrace("Received expected from isBound():" + b);
+				logger.log(Logger.Level.TRACE, "Received expected from isBound():" + b);
 				pass1 = true;
 			} else {
-				TestUtil.logErr("Expected result from isBound():true, actual:" + b);
+				logger.log(Logger.Level.ERROR, "Expected result from isBound():true, actual:" + b);
 			}
 			Parameter p2 = spq.getParameter(2);
 
 			try {
 				spq.getParameterValue(p2);
-				TestUtil.logErr("Did not throw IllegalStateException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalStateException");
 			} catch (IllegalStateException iae) {
-				TestUtil.logTrace("Received expected IllegalStateException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
 				pass2 = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Caught unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 			}
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass1 || !pass2)
@@ -1794,43 +1807,43 @@ public class Client1IT extends Client {
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logMsg("Testing createStoredProcedureQuery");
+			logger.log(Logger.Level.INFO, "Testing createStoredProcedureQuery");
 			StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpLastNameFromInOut");
 			spq.registerStoredProcedureParameter(1, String.class, ParameterMode.INOUT);
 			spq.setParameter(1, "1");
 			Object o = spq.getParameterValue(1);
 			if (o instanceof String) {
-				TestUtil.logTrace("Received expected parameter type: String");
+				logger.log(Logger.Level.TRACE, "Received expected parameter type: String");
 				String s = (String) o;
 				if (s.equals("1")) {
-					TestUtil.logTrace("Received expected parameter value:" + s);
+					logger.log(Logger.Level.TRACE, "Received expected parameter value:" + s);
 					pass1 = true;
 				} else {
-					TestUtil.logErr("Expected getParameterValue() result: 1, actual:" + s);
+					logger.log(Logger.Level.ERROR, "Expected getParameterValue() result: 1, actual:" + s);
 				}
 
 			} else {
-				TestUtil.logErr("Did not get instance of String from getParameterValue():" + o);
+				logger.log(Logger.Level.ERROR, "Did not get instance of String from getParameterValue():" + o);
 			}
 
 			if (!spq.execute()) {
 				o = spq.getParameterValue(1);
 				if (o instanceof String) {
-					TestUtil.logTrace("Received expected parameter type: String");
+					logger.log(Logger.Level.TRACE, "Received expected parameter type: String");
 					String s = (String) o;
 					if (s.equals("1")) {
-						TestUtil.logTrace("Received expected parameter value:" + s);
+						logger.log(Logger.Level.TRACE, "Received expected parameter value:" + s);
 						pass2 = true;
 					} else {
-						TestUtil.logErr("Expected getParameterValue() result: 1, actual:" + s);
+						logger.log(Logger.Level.ERROR, "Expected getParameterValue() result: 1, actual:" + s);
 					}
 				}
 			} else {
-				TestUtil.logErr("Expected execute() to return false, actual: true");
+				logger.log(Logger.Level.ERROR, "Expected execute() to return false, actual: true");
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
@@ -1838,42 +1851,42 @@ public class Client1IT extends Client {
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logMsg("Testing createNamedStoredProcedureQuery");
+			logger.log(Logger.Level.INFO, "Testing createNamedStoredProcedureQuery");
 			StoredProcedureQuery spq = getEntityManager().createNamedStoredProcedureQuery("getemplastnamefrominout");
 			spq.setParameter(1, "1");
 			Object o = spq.getParameterValue(1);
 			if (o instanceof String) {
-				TestUtil.logTrace("Received expected parameter type: String");
+				logger.log(Logger.Level.TRACE, "Received expected parameter type: String");
 				String s = (String) o;
 				if (s.equals("1")) {
-					TestUtil.logTrace("Received expected parameter value:" + s);
+					logger.log(Logger.Level.TRACE, "Received expected parameter value:" + s);
 					pass3 = true;
 				} else {
-					TestUtil.logErr("Expected getParameterValue() result: 1, actual:" + s);
+					logger.log(Logger.Level.ERROR, "Expected getParameterValue() result: 1, actual:" + s);
 				}
 
 			} else {
-				TestUtil.logErr("Did not get instance of String from getParameterValue():" + o);
+				logger.log(Logger.Level.ERROR, "Did not get instance of String from getParameterValue():" + o);
 			}
 
 			if (!spq.execute()) {
 				o = spq.getParameterValue(1);
 				if (o instanceof String) {
-					TestUtil.logTrace("Received expected parameter type: String");
+					logger.log(Logger.Level.TRACE, "Received expected parameter type: String");
 					String s = (String) o;
 					if (s.equals("1")) {
-						TestUtil.logTrace("Received expected parameter value:" + s);
+						logger.log(Logger.Level.TRACE, "Received expected parameter value:" + s);
 						pass4 = true;
 					} else {
-						TestUtil.logErr("Expected getParameterValue() result: 1, actual:" + s);
+						logger.log(Logger.Level.ERROR, "Expected getParameterValue() result: 1, actual:" + s);
 					}
 				}
 			} else {
-				TestUtil.logErr("Expected execute() to return false, actual: true");
+				logger.log(Logger.Level.ERROR, "Expected execute() to return false, actual: true");
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
@@ -1903,18 +1916,18 @@ public class Client1IT extends Client {
 			spq.setParameter(1, 1);
 			try {
 				spq.getParameterValue(99);
-				TestUtil.logErr("Did not throw IllegalArgumentException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("Received expected IllegalArgumentException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 				pass = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Caught unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 			}
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -1940,18 +1953,18 @@ public class Client1IT extends Client {
 			spq.setParameter(1, 1);
 			try {
 				spq.getParameterValue(2);
-				TestUtil.logErr("Did not throw IllegalStateException");
+				logger.log(Logger.Level.ERROR, "Did not throw IllegalStateException");
 			} catch (IllegalStateException iae) {
-				TestUtil.logTrace("Received expected IllegalStateException");
+				logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
 				pass = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Caught unexpected exception", e);
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
 			}
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -1982,7 +1995,7 @@ public class Client1IT extends Client {
 			getEntityTransaction().commit();
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -2009,37 +2022,37 @@ public class Client1IT extends Client {
 			spq.setParameter(1, 1);
 			Object o = spq.getParameterValue(1);
 			if (o instanceof Integer) {
-				TestUtil.logTrace("Received expected parameter type: Integer");
+				logger.log(Logger.Level.TRACE, "Received expected parameter type: Integer");
 				Integer i = (Integer) o;
 				if (i.equals(1)) {
-					TestUtil.logTrace("Received expected parameter value:" + i);
+					logger.log(Logger.Level.TRACE, "Received expected parameter value:" + i);
 					pass1 = true;
 				} else {
-					TestUtil.logErr("Expected getParameterValue() result: 1, actual:" + i);
+					logger.log(Logger.Level.ERROR, "Expected getParameterValue() result: 1, actual:" + i);
 				}
 
 			} else {
-				TestUtil.logErr("Did not get instance of Integer from getParameterValue():" + o);
+				logger.log(Logger.Level.ERROR, "Did not get instance of Integer from getParameterValue():" + o);
 			}
 
 			if (!spq.execute()) {
 				o = spq.getOutputParameterValue(2);
 				if (o instanceof String) {
-					TestUtil.logTrace("Received expected parameter type: String");
+					logger.log(Logger.Level.TRACE, "Received expected parameter type: String");
 					String s = (String) o;
 					if (s.equals(emp0.getFirstName())) {
-						TestUtil.logTrace("Received expected parameter value:" + s);
+						logger.log(Logger.Level.TRACE, "Received expected parameter value:" + s);
 						pass2 = true;
 					} else {
-						TestUtil.logErr(
+						logger.log(Logger.Level.ERROR,
 								"Expected getParameterValue() result: " + emp0.getFirstName() + ", actual:" + s);
 					}
 				}
 			} else {
-				TestUtil.logErr("Expected execute() to return false, actual: true");
+				logger.log(Logger.Level.ERROR, "Expected execute() to return false, actual: true");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass1 || !pass2)
@@ -2062,13 +2075,13 @@ public class Client1IT extends Client {
 		try {
 			getEntityTransaction().begin();
 			try {
-				TestUtil.logMsg("Testing using name,result mapping");
+				logger.log(Logger.Level.INFO, "Testing using name,result mapping");
 				clearCache();
 				StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpIdFNameLNameFromRS",
 						"tobeoverridden2");
 				spq.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
 				if (dataBaseName.equalsIgnoreCase(ORACLE) || dataBaseName.equalsIgnoreCase(POSTGRESQL)) {
-					TestUtil.logTrace("register refcursor parameter");
+					logger.log(Logger.Level.TRACE, "register refcursor parameter");
 					spq.registerStoredProcedureParameter(2, void.class, ParameterMode.REF_CURSOR);
 				}
 				spq.setParameter(1, 1);
@@ -2080,20 +2093,21 @@ public class Client1IT extends Client {
 						expected.add(new Employee(emp0.getId(), emp0.getFirstName(), emp0.getLastName()));
 						pass = verifyListOfListEmployees(expected, listOfList);
 					} else {
-						TestUtil.logErr("Did not get the correct number of result sets returned, expected: 1, actual:"
-								+ listOfList.size());
+						logger.log(Logger.Level.ERROR,
+								"Did not get the correct number of result sets returned, expected: 1, actual:"
+										+ listOfList.size());
 					}
 				} else {
-					TestUtil.logErr("Expected execute() to return true, actual: false");
+					logger.log(Logger.Level.ERROR, "Expected execute() to return true, actual: false");
 				}
 			} catch (Exception ex) {
-				TestUtil.logErr("Received unexpected exception:", ex);
+				logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception ex) {
-			TestUtil.logErr("Received unexpected exception:", ex);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 		}
 
 		if (!pass) {
@@ -2107,7 +2121,7 @@ public class Client1IT extends Client {
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logMsg("Creating Employees");
+			logger.log(Logger.Level.INFO, "Creating Employees");
 
 			final Date d2 = getUtilDate("2001-06-27");
 			final Date d3 = getUtilDate("2002-07-07");
@@ -2123,21 +2137,21 @@ public class Client1IT extends Client {
 			for (Employee e : empRef) {
 				if (e != null) {
 					getEntityManager().persist(e);
-					TestUtil.logTrace("persisted employee:" + e);
+					logger.log(Logger.Level.TRACE, "persisted employee:" + e);
 				}
 			}
 
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 	}

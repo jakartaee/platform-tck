@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.annotations.embeddableMapValue;
 
+import java.lang.System.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,17 +25,17 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
-
 public class ClientIT extends PMClientBase {
 
 	public ClientIT() {
 	}
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public static JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
@@ -46,13 +47,13 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			removeTestData();
 			createDeployment();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 
 		}
@@ -68,7 +69,7 @@ public class ClientIT extends PMClientBase {
 	 */
 	@Test
 	public void embeddableMapValue() throws Exception {
-		TestUtil.logTrace("Begin embeddableMapValue");
+		logger.log(Logger.Level.TRACE, "Begin embeddableMapValue");
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -78,7 +79,7 @@ public class ClientIT extends PMClientBase {
 		EntityTransaction et = getEntityTransaction();
 
 		try {
-			TestUtil.logTrace("New instances");
+			logger.log(Logger.Level.TRACE, "New instances");
 
 			final Address addr1 = new Address("1", "1 Network Drive", "Burlington", "MA", "01801");
 			final Address addr2 = new Address("2", "Some Address", "Boston", "MA", "01803");
@@ -90,37 +91,37 @@ public class ClientIT extends PMClientBase {
 			locationAddressMap.put("office", addr1);
 			emp1.setLocationAddress(locationAddressMap);
 
-			TestUtil.logTrace("Created new Employee");
+			logger.log(Logger.Level.TRACE, "Created new Employee");
 
 			et.begin();
 			em.persist(emp1);
-			TestUtil.logTrace("persisted new Employee");
+			logger.log(Logger.Level.TRACE, "persisted new Employee");
 			em.flush();
 			clearCache();
 
-			TestUtil.logTrace("query for Employee");
+			logger.log(Logger.Level.TRACE, "query for Employee");
 			final Employee newEmployee = em.find(Employee.class, 1);
 
 			final int newEmployeeId = newEmployee.getId();
 			final String newEmployeeFirstName = newEmployee.getFirstName();
 			final String newEmployeeLastName = newEmployee.getLastName();
 
-			TestUtil.logTrace("Employee Id = " + newEmployeeId);
-			TestUtil.logTrace("Employee First Name = " + newEmployeeFirstName);
-			TestUtil.logTrace("Employee Last Name = " + newEmployeeLastName);
+			logger.log(Logger.Level.TRACE, "Employee Id = " + newEmployeeId);
+			logger.log(Logger.Level.TRACE, "Employee First Name = " + newEmployeeFirstName);
+			logger.log(Logger.Level.TRACE, "Employee Last Name = " + newEmployeeLastName);
 
 			if (newEmployeeId == 1) {
 				pass1 = true;
-				TestUtil.logTrace("Employee Id match");
+				logger.log(Logger.Level.TRACE, "Employee Id match");
 			}
 
 			if (newEmployeeFirstName.equals("Barack")) {
-				TestUtil.logTrace("Employee First Name match");
+				logger.log(Logger.Level.TRACE, "Employee First Name match");
 				pass2 = true;
 			}
 
 			if (newEmployeeLastName.equals("Obama")) {
-				TestUtil.logTrace("Employee Last Name match");
+				logger.log(Logger.Level.TRACE, "Employee Last Name match");
 				pass3 = true;
 			}
 
@@ -132,48 +133,48 @@ public class ClientIT extends PMClientBase {
 					&& officeAddress.getState().equals("MA") && officeAddress.getZip().equals("01801")) {
 
 				pass4 = true;
-				TestUtil.logTrace("Employee officeAddress match");
+				logger.log(Logger.Level.TRACE, "Employee officeAddress match");
 			}
 
 			if (homeAddress.getStreet().equals("Some Address") && homeAddress.getCity().equals("Boston")
 					&& homeAddress.getState().equals("MA") && homeAddress.getZip().equals("01803")) {
 
 				pass5 = true;
-				TestUtil.logTrace("Employee HomeAddress match");
+				logger.log(Logger.Level.TRACE, "Employee HomeAddress match");
 			}
 
 			et.commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception :", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
 		} finally {
 			try {
 				if (et.isActive()) {
 					et.rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 
 		}
 
 		if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5) {
-			TestUtil.logErr("embeddableMapValue failed");
+			logger.log(Logger.Level.ERROR, "embeddableMapValue failed");
 		}
 
 	}
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 		removeDeploymentJar();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -183,14 +184,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("Delete from EMPLOYEE_EMBEDED_ADDRESS").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

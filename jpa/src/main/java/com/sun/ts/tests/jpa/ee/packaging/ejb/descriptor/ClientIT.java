@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.jpa.ee.packaging.ejb.descriptor;
 
+import java.lang.System.Logger;
 import java.util.Properties;
 
 import org.junit.jupiter.api.AfterAll;
@@ -27,9 +28,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TSNamingContext;
-import com.sun.ts.lib.util.TestUtil;
 
 public class ClientIT {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public static final String StatefulRef = "java:comp/env/ejb/Stateful3Bean";
 
@@ -49,10 +51,10 @@ public class ClientIT {
 	public void setup() throws Exception {
 		try {
 			TSNamingContext nctx = new TSNamingContext();
-			TestUtil.logTrace("Look up bean: " + StatefulRef);
+			logger.log(Logger.Level.TRACE, "Look up bean: " + StatefulRef);
 			bean = (Stateful3IF) nctx.lookup(StatefulRef);
 
-			TestUtil.logTrace("Look up bean: " + StatelessRef);
+			logger.log(Logger.Level.TRACE, "Look up bean: " + StatelessRef);
 			bean1 = (Stateless3IF) nctx.lookup(StatelessRef);
 
 			cleanup();
@@ -82,7 +84,7 @@ public class ClientIT {
 	@Test
 	public void test1() throws Exception {
 
-		TestUtil.logTrace("Begin test1");
+		logger.log(Logger.Level.TRACE, "Begin test1");
 		boolean pass = false;
 
 		try {
@@ -91,7 +93,7 @@ public class ClientIT {
 			pass = bean.test1();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception :", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
 
 		}
 
@@ -124,7 +126,7 @@ public class ClientIT {
 	@Test
 	public void test2() throws Exception {
 
-		TestUtil.logTrace("Begin test2");
+		logger.log(Logger.Level.TRACE, "Begin test2");
 		boolean pass = false;
 
 		try {
@@ -133,7 +135,7 @@ public class ClientIT {
 			pass = bean.test2();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception :", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
 
 		}
 
@@ -161,7 +163,7 @@ public class ClientIT {
 	@Test
 	public void test3() throws Exception {
 
-		TestUtil.logTrace("Begin test3");
+		logger.log(Logger.Level.TRACE, "Begin test3");
 		boolean pass = false;
 
 		try {
@@ -170,7 +172,7 @@ public class ClientIT {
 			pass = bean.test3();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception :", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
 
 		}
 
@@ -201,7 +203,7 @@ public class ClientIT {
 	@Test
 	public void test4() throws Exception {
 
-		TestUtil.logTrace("Begin test4");
+		logger.log(Logger.Level.TRACE, "Begin test4");
 		boolean pass = false;
 
 		try {
@@ -210,7 +212,7 @@ public class ClientIT {
 			pass = bean.test4();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception :", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
 
 		}
 
@@ -230,7 +232,7 @@ public class ClientIT {
 	@Test
 	public void test5() throws Exception {
 
-		TestUtil.logTrace("Begin test5");
+		logger.log(Logger.Level.TRACE, "Begin test5");
 		boolean pass = false;
 
 		try {
@@ -239,7 +241,7 @@ public class ClientIT {
 			pass = bean1.test5();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception :", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
 
 		}
 
@@ -260,7 +262,7 @@ public class ClientIT {
 	@Test
 	public void test6() throws Exception {
 
-		TestUtil.logTrace("Begin test6");
+		logger.log(Logger.Level.TRACE, "Begin test6");
 		boolean pass = false;
 
 		try {
@@ -269,7 +271,7 @@ public class ClientIT {
 			pass = bean.test6();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception :", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
 
 		}
 
@@ -283,9 +285,9 @@ public class ClientIT {
 			bean.removeTestData();
 			bean1.removeTestData();
 		} catch (Exception re) {
-			TestUtil.logTrace("Unexpected Exception in entity cleanup:", re);
+			logger.log(Logger.Level.TRACE, "Unexpected Exception in entity cleanup:", re);
 		}
-		TestUtil.logTrace("cleanup complete");
+		logger.log(Logger.Level.TRACE, "cleanup complete");
 	}
 
 }

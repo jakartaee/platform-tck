@@ -17,6 +17,7 @@
 package com.sun.ts.tests.jpa.se.schemaGeneration.annotations.joinTable;
 
 import java.io.File;
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -27,14 +28,14 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	private static final long serialVersionUID = 22L;
 
@@ -57,7 +58,7 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			createDeployment();
@@ -67,19 +68,19 @@ public class ClientIT extends PMClientBase {
 				schemaGenerationDir += File.separator;
 			}
 			schemaGenerationDir += "schemaGeneration";
-			TestUtil.logMsg("schemaGenerationDir=" + this.schemaGenerationDir);
+			logger.log(Logger.Level.INFO, "schemaGenerationDir=" + this.schemaGenerationDir);
 
 			File f = new File(schemaGenerationDir);
-			TestUtil.logMsg("Delete existing directory ");
+			logger.log(Logger.Level.INFO, "Delete existing directory ");
 			deleteItem(f);
-			TestUtil.logMsg("Create new directory ");
+			logger.log(Logger.Level.INFO, "Create new directory ");
 			if (!f.mkdir()) {
 				String msg = "Could not mkdir:" + f.getAbsolutePath();
 				throw new Exception(msg);
 			}
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -108,15 +109,15 @@ public class ClientIT extends PMClientBase {
 		boolean pass4 = false;
 		boolean pass5 = false;
 
-		TestUtil.logMsg("Create the script(s)");
+		logger.log(Logger.Level.INFO, "Create the script(s)");
 		final String CREATEFILENAME = schemaGenerationDir + File.separator + "create_" + this.sTestCase + ".sql";
 		final String DROPFILENAME = schemaGenerationDir + File.separator + "drop_" + this.sTestCase + ".sql";
 
 		File f1 = new File(CREATEFILENAME);
-		TestUtil.logTrace("Deleting previous create script");
+		logger.log(Logger.Level.TRACE, "Deleting previous create script");
 		deleteItem(f1);
 		File f2 = new File(DROPFILENAME);
-		TestUtil.logTrace("Deleting previous drop script");
+		logger.log(Logger.Level.TRACE, "Deleting previous drop script");
 		deleteItem(f2);
 
 		Properties props = getPersistenceUnitProperties();
@@ -128,12 +129,12 @@ public class ClientIT extends PMClientBase {
 
 		displayProperties(props);
 
-		TestUtil.logMsg("Executing Persistence.createEntityManagerFactory(...)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.createEntityManagerFactory(...)");
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(getPersistenceUnitName(), props);
 		emf.close();
 		emf = null;
 
-		TestUtil.logMsg("Check script(s) content");
+		logger.log(Logger.Level.INFO, "Check script(s) content");
 		List<String> expected = new ArrayList<String>();
 		expected.add("CREATE TABLE SCHEMAGENCOURSE");
 		expected.add("COURSEID");
@@ -200,7 +201,7 @@ public class ClientIT extends PMClientBase {
 		pass2d = findDataInFile(f2, "DROP TABLE SCHEMAGENCOURSE");
 		pass2e = findDataInFile(f2, "DROP TABLE SCHEMAGENSTUDENT");
 
-		TestUtil.logTrace("Execute the create script");
+		logger.log(Logger.Level.TRACE, "Execute the create script");
 		props = getPersistenceUnitProperties();
 
 		props.put("jakarta.persistence.schema-generation.database.action", "create");
@@ -209,12 +210,12 @@ public class ClientIT extends PMClientBase {
 		props.put("jakarta.persistence.schema-generation.create-script-source", convertToURI(CREATEFILENAME));
 		displayProperties(props);
 
-		TestUtil.logMsg("Executing Persistence.generateSchema(...)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.generateSchema(...)");
 		Persistence.generateSchema(getPersistenceUnitName(), props);
 
 		clearEMAndEMF();
 		try {
-			TestUtil.logMsg("Persist some data");
+			logger.log(Logger.Level.INFO, "Persist some data");
 			getEntityTransaction(true).begin();
 
 			Student expectedStudent = new Student(1, "Neo");
@@ -256,49 +257,49 @@ public class ClientIT extends PMClientBase {
 					if (course.getStudents().size() == 1) {
 						Student s1 = course.getStudents().get(0);
 						if (expectedStudent.equals(s1)) {
-							TestUtil.logTrace("Received expected result:" + s1);
+							logger.log(Logger.Level.TRACE, "Received expected result:" + s1);
 							pass3 = true;
 						} else {
-							TestUtil.logErr("Expected:" + expectedStudent.toString());
-							TestUtil.logErr("Actual:" + s1.toString());
+							logger.log(Logger.Level.ERROR, "Expected:" + expectedStudent.toString());
+							logger.log(Logger.Level.ERROR, "Actual:" + s1.toString());
 						}
 					} else {
-						TestUtil.logErr(
+						logger.log(Logger.Level.ERROR,
 								"Did not get list of students of size 1, actual:" + course.getStudents().size());
 					}
 				} else {
-					TestUtil.logErr("Expected Course:" + appliedMath.courseName);
-					TestUtil.logErr("Actual Course:" + course.courseName);
+					logger.log(Logger.Level.ERROR, "Expected Course:" + appliedMath.courseName);
+					logger.log(Logger.Level.ERROR, "Actual Course:" + course.courseName);
 				}
 			} else {
-				TestUtil.logErr("Received null result from find");
+				logger.log(Logger.Level.ERROR, "Received null result from find");
 			}
 		} catch (Throwable t) {
-			TestUtil.logErr("Received unexpected exception", t);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", t);
 		}
 		clearEMAndEMF();
 
-		TestUtil.logTrace("Execute the drop script");
+		logger.log(Logger.Level.TRACE, "Execute the drop script");
 		props = getPersistenceUnitProperties();
 		props.put("jakarta.persistence.schema-generation.database.action", "drop");
 		props.put("jakarta.persistence.schema-generation.scripts.action", "none");
 		props.put("jakarta.persistence.schema-generation.drop-script-source", convertToURI(DROPFILENAME));
 		displayProperties(props);
 
-		TestUtil.logMsg("Executing Persistence.generateSchema(...)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.generateSchema(...)");
 		Persistence.generateSchema(getPersistenceUnitName(), props);
 		clearEMAndEMF();
 
-		TestUtil.logMsg("Try to persist an entity, it should fail");
+		logger.log(Logger.Level.INFO, "Try to persist an entity, it should fail");
 		try {
 			getEntityTransaction(true).begin();
 			Student joe = new Student(2, "Joe");
 			getEntityManager().persist(joe);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
-			TestUtil.logErr("An exception should have been thrown if drop had occurred successfully");
+			logger.log(Logger.Level.ERROR, "An exception should have been thrown if drop had occurred successfully");
 		} catch (Exception ex) {
-			TestUtil.logTrace("Receive expected exception");
+			logger.log(Logger.Level.TRACE, "Receive expected exception");
 			pass4 = true;
 		}
 		try {
@@ -307,25 +308,25 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().persist(accounting);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
-			TestUtil.logErr("An exception should have been thrown if drop had occurred successfully");
+			logger.log(Logger.Level.ERROR, "An exception should have been thrown if drop had occurred successfully");
 		} catch (Exception ex) {
-			TestUtil.logTrace("Receive expected exception");
+			logger.log(Logger.Level.TRACE, "Receive expected exception");
 			pass5 = true;
 		}
 
-		TestUtil.logTrace("pass1a:" + pass1a);
-		TestUtil.logTrace("pass1b:" + pass1b);
-		TestUtil.logTrace("pass1c:" + pass1c);
-		TestUtil.logTrace("pass1d:" + pass1d);
-		TestUtil.logTrace("pass1e:" + pass1e);
-		TestUtil.logTrace("pass2a:" + pass2a);
-		TestUtil.logTrace("pass2b:" + pass2b);
-		TestUtil.logTrace("pass2c:" + pass2c);
-		TestUtil.logTrace("pass2d:" + pass2d);
-		TestUtil.logTrace("pass2e:" + pass2e);
-		TestUtil.logTrace("pass3:" + pass3);
-		TestUtil.logTrace("pass4:" + pass4);
-		TestUtil.logTrace("pass5:" + pass5);
+		logger.log(Logger.Level.TRACE, "pass1a:" + pass1a);
+		logger.log(Logger.Level.TRACE, "pass1b:" + pass1b);
+		logger.log(Logger.Level.TRACE, "pass1c:" + pass1c);
+		logger.log(Logger.Level.TRACE, "pass1d:" + pass1d);
+		logger.log(Logger.Level.TRACE, "pass1e:" + pass1e);
+		logger.log(Logger.Level.TRACE, "pass2a:" + pass2a);
+		logger.log(Logger.Level.TRACE, "pass2b:" + pass2b);
+		logger.log(Logger.Level.TRACE, "pass2c:" + pass2c);
+		logger.log(Logger.Level.TRACE, "pass2d:" + pass2d);
+		logger.log(Logger.Level.TRACE, "pass2e:" + pass2e);
+		logger.log(Logger.Level.TRACE, "pass3:" + pass3);
+		logger.log(Logger.Level.TRACE, "pass4:" + pass4);
+		logger.log(Logger.Level.TRACE, "pass5:" + pass5);
 		if (!pass1a || !pass1b || !pass1c || !pass1d || !pass1e || !pass2a || !pass2b || !pass2c || !pass2d || !pass2e
 				|| !pass3 || !pass4 || !pass5) {
 			throw new Exception("joinTableTest failed");
@@ -334,27 +335,28 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 		removeDeploymentJar();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logMsg("Try to drop table SCHEMAGENSIMPLE");
+			logger.log(Logger.Level.INFO, "Try to drop table SCHEMAGENSIMPLE");
 			getEntityManager().createNativeQuery("DROP TABLE SCHEMAGENCOURSE").executeUpdate();
 			getEntityManager().createNativeQuery("DROP TABLE SCHEMAGENSTUDENT").executeUpdate();
 			getEntityManager().createNativeQuery("DROP TABLE SCHEMAGEN_COURSE_STUDENT").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Throwable t) {
-			TestUtil.logMsg("AN EXCEPTION WAS THROWN DURING DROPS, IT MAY OR MAY NOT BE A PROBLEM, " + t.getMessage());
+			logger.log(Logger.Level.INFO,
+					"AN EXCEPTION WAS THROWN DURING DROPS, IT MAY OR MAY NOT BE A PROBLEM, " + t.getMessage());
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
@@ -365,7 +367,7 @@ public class ClientIT extends PMClientBase {
 				// ensure that we close the EM and EMF before proceeding.
 				clearEMAndEMF();
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

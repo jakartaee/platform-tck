@@ -20,18 +20,20 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.detach.manyXone;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.EntityExistsException;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public ClientIT() {
 	}
@@ -47,12 +49,12 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -78,45 +80,46 @@ public class ClientIT extends PMClientBase {
 	 */
 	@Test
 	public void detachMX1Test1() throws Exception {
-		TestUtil.logTrace("Begin detachMX1Test1");
+		logger.log(Logger.Level.TRACE, "Begin detachMX1Test1");
 		boolean pass = false;
 		final A aRef = new A("3", "a3", 3);
 
 		try {
-			TestUtil.logTrace("Persist Instance");
+			logger.log(Logger.Level.TRACE, "Persist Instance");
 			createA(aRef);
-			TestUtil.logTrace("Call EntityManager.clear()");
+			logger.log(Logger.Level.TRACE, "Call EntityManager.clear()");
 			clearCache();
 
 			getEntityTransaction().begin();
-			TestUtil.logTrace("Call getEntityManager.contains to determine if the instance is detached");
+			logger.log(Logger.Level.TRACE, "Call getEntityManager.contains to determine if the instance is detached");
 
 			if (getEntityManager().contains(aRef)) {
-				TestUtil.logTrace("entity is not detached, unexpected cannot proceed with test.");
+				logger.log(Logger.Level.TRACE, "entity is not detached, unexpected cannot proceed with test.");
 			} else {
 
 				try {
-					TestUtil.logTrace("Status is false as expected, try perist()");
+					logger.log(Logger.Level.TRACE, "Status is false as expected, try perist()");
 					getEntityManager().persist(aRef);
-					TestUtil.logMsg("Did not throw IllegalArgumentException");
+					logger.log(Logger.Level.INFO, "Did not throw IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logMsg(
+					logger.log(Logger.Level.INFO,
 							"received expected IllegalArgumentException when trying to persist a detached entity");
 					pass = true;
 				} catch (EntityExistsException eee) {
-					TestUtil.logMsg("EntityExistsException thrown trying to persist an existing entity");
+					logger.log(Logger.Level.INFO, "EntityExistsException thrown trying to persist an existing entity");
 					pass = true;
 				}
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logMsg("or, Transaction commit will fail.  " + " Test the commit failed by testing"
+			logger.log(Logger.Level.INFO, "or, Transaction commit will fail.  " + " Test the commit failed by testing"
 					+ " the transaction is marked for rollback");
 
 			if ((!pass) && (e instanceof jakarta.transaction.TransactionRolledbackException
 					|| e instanceof jakarta.persistence.PersistenceException)) {
-				TestUtil.logMsg("Received exception TransactionRolledbackException or PersistenceException");
+				logger.log(Logger.Level.INFO,
+						"Received exception TransactionRolledbackException or PersistenceException");
 				pass = true;
 			}
 
@@ -126,7 +129,7 @@ public class ClientIT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 
 		}
@@ -142,7 +145,7 @@ public class ClientIT extends PMClientBase {
 	 */
 
 	private void createA(final A a) {
-		TestUtil.logTrace("Entered createA method");
+		logger.log(Logger.Level.TRACE, "Entered createA method");
 		getEntityTransaction().begin();
 		getEntityManager().persist(a);
 		getEntityTransaction().commit();
@@ -150,14 +153,14 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("Cleanup data");
+		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -167,14 +170,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM AEJB_MX1_UNI_BTOB").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.annotations.orderby;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,11 +25,11 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-
 public class Client2IT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(Client2IT.class.getName());
 
 	List<Address> addrRef;
 
@@ -51,7 +52,7 @@ public class Client2IT extends PMClientBase {
 
 	public static JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = Client2IT.class.getPackageName();
-		String pkgName = Client2IT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "A", pkgName + "A2", pkgName + "Address", pkgName + "Address2",
 				pkgName + "Customer", pkgName + "Customer2", pkgName + "Department", pkgName + "Employee",
 				pkgName + "Insurance", pkgName + "ZipCode", pkgName + "ZipCode2" };
@@ -60,7 +61,7 @@ public class Client2IT extends PMClientBase {
 
 	@BeforeAll
 	public void setupAddress() throws Exception {
-		TestUtil.logTrace("setupAddress");
+		logger.log(Logger.Level.TRACE, "setupAddress");
 		try {
 			super.setup();
 			createDeployment();
@@ -68,7 +69,7 @@ public class Client2IT extends PMClientBase {
 			removeAddressData();
 			createAddressData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -101,7 +102,8 @@ public class Client2IT extends PMClientBase {
 			if (actual.size() == expected.size()) {
 				int count = 0;
 				for (int i = 0; i < expected.size(); i++) {
-					TestUtil.logTrace("Testing - expected[" + expected.get(i) + "], actual[" + actual.get(i) + "]");
+					logger.log(Logger.Level.TRACE,
+							"Testing - expected[" + expected.get(i) + "], actual[" + actual.get(i) + "]");
 
 					if (expected.get(i).equals(actual.get(i))) {
 						count++;
@@ -110,27 +112,28 @@ public class Client2IT extends PMClientBase {
 				if (count == expected.size()) {
 					pass = true;
 				} else {
-					TestUtil.logErr("count=" + count + ", expected size:" + expected.size());
+					logger.log(Logger.Level.ERROR, "count=" + count + ", expected size:" + expected.size());
 					for (Address aa : expected) {
-						TestUtil.logErr("expected:" + aa);
+						logger.log(Logger.Level.ERROR, "expected:" + aa);
 					}
-					TestUtil.logErr("------------");
+					logger.log(Logger.Level.ERROR, "------------");
 					for (Address aa : actual) {
-						TestUtil.logErr("actual:" + aa);
+						logger.log(Logger.Level.ERROR, "actual:" + aa);
 					}
 				}
 			} else {
-				TestUtil.logErr("Expected list size:" + expected.size() + ", actual size:" + actual.size());
+				logger.log(Logger.Level.ERROR,
+						"Expected list size:" + expected.size() + ", actual size:" + actual.size());
 				for (Address aa : expected) {
-					TestUtil.logErr("expected:" + aa);
+					logger.log(Logger.Level.ERROR, "expected:" + aa);
 				}
-				TestUtil.logErr("------------");
+				logger.log(Logger.Level.ERROR, "------------");
 				for (Address aa : actual) {
-					TestUtil.logErr("actual:" + aa);
+					logger.log(Logger.Level.ERROR, "actual:" + aa);
 				}
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass) {
 			throw new Exception("propertyDotNotationTest failed");
@@ -157,7 +160,7 @@ public class Client2IT extends PMClientBase {
 			expected.add(addr13);
 			expected.add(addr11);
 
-			TestUtil.logTrace("Clearing the cache");
+			logger.log(Logger.Level.TRACE, "Clearing the cache");
 			clearCache();
 			A2 a = getEntityManager().find(A2.class, "2");
 
@@ -166,7 +169,8 @@ public class Client2IT extends PMClientBase {
 			if (actual.size() == expected.size()) {
 				int count = 0;
 				for (int i = 0; i < expected.size(); i++) {
-					TestUtil.logTrace("Testing - expected[" + expected.get(i) + "], actual[" + actual.get(i) + "]");
+					logger.log(Logger.Level.TRACE,
+							"Testing - expected[" + expected.get(i) + "], actual[" + actual.get(i) + "]");
 
 					if (expected.get(i).equals(actual.get(i))) {
 						count++;
@@ -176,27 +180,28 @@ public class Client2IT extends PMClientBase {
 				if (count == expected.size()) {
 					pass = true;
 				} else {
-					TestUtil.logTrace("count=" + count + ", expected size:" + expected.size());
+					logger.log(Logger.Level.TRACE, "count=" + count + ", expected size:" + expected.size());
 					for (Address2 aa : expected) {
-						TestUtil.logErr("expected:" + aa);
+						logger.log(Logger.Level.ERROR, "expected:" + aa);
 					}
-					TestUtil.logErr("------------");
+					logger.log(Logger.Level.ERROR, "------------");
 					for (Address2 aa : actual) {
-						TestUtil.logErr("actual:" + aa);
+						logger.log(Logger.Level.ERROR, "actual:" + aa);
 					}
 				}
 			} else {
-				TestUtil.logErr("Expected list size:" + expected.size() + ", actual size:" + actual.size());
+				logger.log(Logger.Level.ERROR,
+						"Expected list size:" + expected.size() + ", actual size:" + actual.size());
 				for (Address2 aa : expected) {
-					TestUtil.logErr("expected:" + aa);
+					logger.log(Logger.Level.ERROR, "expected:" + aa);
 				}
-				TestUtil.logErr("------------");
+				logger.log(Logger.Level.ERROR, "------------");
 				for (Address2 aa : actual) {
-					TestUtil.logErr("actual:" + aa);
+					logger.log(Logger.Level.ERROR, "actual:" + aa);
 				}
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass) {
 			throw new Exception("propertyDotNotationTest failed");
@@ -205,7 +210,7 @@ public class Client2IT extends PMClientBase {
 
 	private void createAddressData() throws Exception {
 		try {
-			TestUtil.logTrace("createAddressData");
+			logger.log(Logger.Level.TRACE, "createAddressData");
 			getEntityTransaction().begin();
 
 			addr1 = new Address("1 Network Drive", "Burlington", "MA", new ZipCode("01801"));
@@ -235,29 +240,29 @@ public class Client2IT extends PMClientBase {
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception creating test data:", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception creating test data:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 	}
 
 	@AfterAll
 	public void cleanupAddress() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeAddressData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 		removeDeploymentJar();
 	}
 
 	private void removeAddressData() {
-		TestUtil.logTrace("removeAddressData");
+		logger.log(Logger.Level.TRACE, "removeAddressData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -267,14 +272,14 @@ public class Client2IT extends PMClientBase {
 			getEntityManager().createNativeQuery("Delete from COLTAB").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

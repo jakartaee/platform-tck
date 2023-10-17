@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.query.parameter;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -33,8 +34,10 @@ import jakarta.persistence.Parameter;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
-
 public class Client1IT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(Client1IT.class.getName());
+
 	protected final Employee empRef[] = new Employee[5];
 
 	public Client1IT() {
@@ -51,13 +54,13 @@ public class Client1IT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			createDeployment();
 			getEntityManager();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -90,23 +93,23 @@ public class Client1IT extends PMClientBase {
 		if (TestUtil.traceflag) {
 			Set<Parameter<?>> sParameters = query.getParameters();
 			for (Parameter p : sParameters) {
-				TestUtil.logTrace("Parameter name = " + p.getName());
-				TestUtil.logTrace("Parameter position = " + p.getPosition());
-				TestUtil.logTrace("Parameter type =" + p.getParameterType());
+				logger.log(Logger.Level.TRACE, "Parameter name = " + p.getName());
+				logger.log(Logger.Level.TRACE, "Parameter position = " + p.getPosition());
+				logger.log(Logger.Level.TRACE, "Parameter type =" + p.getParameterType());
 			}
 		}
 
 		String sExpected = "first";
 		Parameter p1 = query.getParameter(sExpected);
 		if (query.isBound(p1)) {
-			TestUtil.logErr("isBound believes there is a value bound to the parameter:" + sExpected);
+			logger.log(Logger.Level.ERROR, "isBound believes there is a value bound to the parameter:" + sExpected);
 		} else {
 			pass1 = true;
 		}
 
 		String sActual = p1.getName();
 		if (!sActual.equals(sExpected)) {
-			TestUtil.logErr("p1.getName() - Expected: " + sExpected + ", actual:" + sActual);
+			logger.log(Logger.Level.ERROR, "p1.getName() - Expected: " + sExpected + ", actual:" + sActual);
 		} else {
 			pass2 = true;
 		}
@@ -114,7 +117,7 @@ public class Client1IT extends PMClientBase {
 		sExpected = null;
 		Integer iActual = p1.getPosition();
 		if (iActual != null) {
-			TestUtil.logErr("p1.getPosition() - Expected: " + sExpected + ", actual:" + iActual);
+			logger.log(Logger.Level.ERROR, "p1.getPosition() - Expected: " + sExpected + ", actual:" + iActual);
 		} else {
 			pass3 = true;
 		}
@@ -123,33 +126,34 @@ public class Client1IT extends PMClientBase {
 			sExpected = "java.lang.String";
 			sActual = p1.getParameterType().getName();
 			if (!sActual.equals(sExpected)) {
-				TestUtil.logErr("p1.getParameterType() - Expected: " + sExpected + ", actual:" + sActual);
+				logger.log(Logger.Level.ERROR,
+						"p1.getParameterType() - Expected: " + sExpected + ", actual:" + sActual);
 			} else {
 				pass4 = true;
 			}
 		} catch (IllegalStateException ise) {
-			TestUtil.logMsg(
+			logger.log(Logger.Level.INFO,
 					"warning: p1.getParameterType() threw IllegalStateException, this is not considered a failure");
 		}
 
 		sExpected = "last";
 		Parameter p2 = query.getParameter(sExpected);
 		if (query.isBound(p2)) {
-			TestUtil.logErr("isBound believes there is a value bound to the parameter:" + sExpected);
+			logger.log(Logger.Level.ERROR, "isBound believes there is a value bound to the parameter:" + sExpected);
 		} else {
 			pass5 = true;
 		}
 
 		sActual = p2.getName();
 		if (!sActual.equals(sExpected)) {
-			TestUtil.logErr("p2.getName() - Expected: " + sExpected + ", actual:" + sActual);
+			logger.log(Logger.Level.ERROR, "p2.getName() - Expected: " + sExpected + ", actual:" + sActual);
 		} else {
 			pass6 = true;
 		}
 		sExpected = null;
 		iActual = p2.getPosition();
 		if (iActual != null) {
-			TestUtil.logErr("p2.getPosition() - Expected: " + sExpected + ", actual:" + iActual);
+			logger.log(Logger.Level.ERROR, "p2.getPosition() - Expected: " + sExpected + ", actual:" + iActual);
 		} else {
 			pass7 = true;
 		}
@@ -158,12 +162,13 @@ public class Client1IT extends PMClientBase {
 			sExpected = "java.lang.String";
 			sActual = p2.getParameterType().getName();
 			if (!sActual.equals(sExpected)) {
-				TestUtil.logErr("p2.getParameterType() - Expected: " + sExpected + ", actual:" + sActual);
+				logger.log(Logger.Level.ERROR,
+						"p2.getParameterType() - Expected: " + sExpected + ", actual:" + sActual);
 			} else {
 				pass8 = true;
 			}
 		} catch (IllegalStateException ise) {
-			TestUtil.logMsg(
+			logger.log(Logger.Level.INFO,
 					"warning: p2.getParameterType() threw IllegalStateException, this is not considered a failure");
 		}
 
@@ -198,23 +203,23 @@ public class Client1IT extends PMClientBase {
 		if (TestUtil.traceflag) {
 			Set<Parameter<?>> sParameters = query.getParameters();
 			for (Parameter p : sParameters) {/**/
-				TestUtil.logTrace("Parameter name = " + p.getName());
-				TestUtil.logTrace("Parameter position = " + p.getPosition());
-				TestUtil.logTrace("Parameter type =" + p.getParameterType());
+				logger.log(Logger.Level.TRACE, "Parameter name = " + p.getName());
+				logger.log(Logger.Level.TRACE, "Parameter position = " + p.getPosition());
+				logger.log(Logger.Level.TRACE, "Parameter type =" + p.getParameterType());
 			}
 		}
 
 		String sExpected = "first";
 		Parameter p1 = query.getParameter(sExpected);
 		if (query.isBound(p1)) {
-			TestUtil.logErr("isBound believes there is a value bound to the parameter:" + sExpected);
+			logger.log(Logger.Level.ERROR, "isBound believes there is a value bound to the parameter:" + sExpected);
 		} else {
 			pass1 = true;
 		}
 
 		String sActual = p1.getName();
 		if (!sActual.equals(sExpected)) {
-			TestUtil.logErr("p1.getName() - Expected: " + sExpected + ", actual:" + sActual);
+			logger.log(Logger.Level.ERROR, "p1.getName() - Expected: " + sExpected + ", actual:" + sActual);
 		} else {
 			pass2 = true;
 		}
@@ -222,7 +227,7 @@ public class Client1IT extends PMClientBase {
 		sExpected = null;
 		Integer iActual = p1.getPosition();
 		if (iActual != null) {
-			TestUtil.logErr("p1.getPosition() - Expected: " + sExpected + ", actual:" + iActual);
+			logger.log(Logger.Level.ERROR, "p1.getPosition() - Expected: " + sExpected + ", actual:" + iActual);
 		} else {
 			pass3 = true;
 		}
@@ -231,33 +236,34 @@ public class Client1IT extends PMClientBase {
 			sExpected = "java.lang.String";
 			sActual = p1.getParameterType().getName();
 			if (!sActual.equals(sExpected)) {
-				TestUtil.logErr("p1.getParameterType() - Expected: " + sExpected + ", actual:" + sActual);
+				logger.log(Logger.Level.ERROR,
+						"p1.getParameterType() - Expected: " + sExpected + ", actual:" + sActual);
 			} else {
 				pass4 = true;
 			}
 		} catch (IllegalStateException ise) {
-			TestUtil.logMsg(
+			logger.log(Logger.Level.INFO,
 					"warning: p1.getParameterType() threw IllegalStateException, this is not considered a failure");
 		}
 
 		sExpected = "last";
 		Parameter p2 = query.getParameter(sExpected);
 		if (query.isBound(p2)) {
-			TestUtil.logErr("isBound believes there is a value bound to the parameter:" + sExpected);
+			logger.log(Logger.Level.ERROR, "isBound believes there is a value bound to the parameter:" + sExpected);
 		} else {
 			pass5 = true;
 		}
 
 		sActual = p2.getName();
 		if (!sActual.equals(sExpected)) {
-			TestUtil.logErr("p2.getName() - Expected: " + sExpected + ", actual:" + sActual);
+			logger.log(Logger.Level.ERROR, "p2.getName() - Expected: " + sExpected + ", actual:" + sActual);
 		} else {
 			pass6 = true;
 		}
 		sExpected = null;
 		iActual = p2.getPosition();
 		if (iActual != null) {
-			TestUtil.logErr("p2.getPosition() - Expected: " + sExpected + ", actual:" + iActual);
+			logger.log(Logger.Level.ERROR, "p2.getPosition() - Expected: " + sExpected + ", actual:" + iActual);
 		} else {
 			pass7 = true;
 		}
@@ -266,12 +272,13 @@ public class Client1IT extends PMClientBase {
 			sExpected = "java.lang.String";
 			sActual = p2.getParameterType().getName();
 			if (!sActual.equals(sExpected)) {
-				TestUtil.logErr("p2.getParameterType() - Expected: " + sExpected + ", actual:" + sActual);
+				logger.log(Logger.Level.ERROR,
+						"p2.getParameterType() - Expected: " + sExpected + ", actual:" + sActual);
 			} else {
 				pass8 = true;
 			}
 		} catch (IllegalStateException ise) {
-			TestUtil.logMsg(
+			logger.log(Logger.Level.INFO,
 					"warning: p2.getParameterType() threw IllegalStateException, this is not considered a failure");
 		}
 
@@ -303,14 +310,14 @@ public class Client1IT extends PMClientBase {
 		if (sParameters.size() == 2) {
 			for (Parameter p : sParameters) {
 				if (TestUtil.traceflag) {
-					TestUtil.logTrace("parameter name = " + p.getName());
-					TestUtil.logTrace("parameter position = " + p.getPosition());
-					TestUtil.logTrace("parameter type =" + p.getParameterType());
+					logger.log(Logger.Level.TRACE, "parameter name = " + p.getName());
+					logger.log(Logger.Level.TRACE, "parameter position = " + p.getPosition());
+					logger.log(Logger.Level.TRACE, "parameter type =" + p.getParameterType());
 				}
 				if (query.isBound(p)) {
-					TestUtil.logErr("isBound believes there is a value bound to the parameter:" + p);
+					logger.log(Logger.Level.ERROR, "isBound believes there is a value bound to the parameter:" + p);
 				} else {
-					TestUtil.logTrace("query isBound = " + query.isBound(p));
+					logger.log(Logger.Level.TRACE, "query isBound = " + query.isBound(p));
 					pass1++;
 
 				}
@@ -319,7 +326,7 @@ public class Client1IT extends PMClientBase {
 					if (pos == 1 || pos == 2) {
 						String sActual = p.getName();
 						if (sActual != null) {
-							TestUtil.logErr("getName() - Expected: null, actual:" + sActual);
+							logger.log(Logger.Level.ERROR, "getName() - Expected: null, actual:" + sActual);
 						} else {
 							pass2++;
 						}
@@ -327,25 +334,26 @@ public class Client1IT extends PMClientBase {
 							String sExpected = "java.lang.String";
 							sActual = p.getParameterType().getName();
 							if (!sActual.equals(sExpected)) {
-								TestUtil.logErr("getParameterType().getName() - Expected: " + sExpected + ", actual:"
-										+ sActual);
+								logger.log(Logger.Level.ERROR, "getParameterType().getName() - Expected: " + sExpected
+										+ ", actual:" + sActual);
 							} else {
 								pass3++;
 							}
 						} catch (IllegalStateException ise) {
-							TestUtil.logMsg(
+							logger.log(Logger.Level.INFO,
 									"warning: getParameterType().getName() threw IllegalStateException, this is not considered a failure");
 						}
 					} else {
-						TestUtil.logErr("getPosition() returned an invalid position:" + pos);
+						logger.log(Logger.Level.ERROR, "getPosition() returned an invalid position:" + pos);
 					}
 				} else {
-					TestUtil.logErr("getPosition() returned null");
+					logger.log(Logger.Level.ERROR, "getPosition() returned null");
 				}
 
 			}
 		} else {
-			TestUtil.logErr("query.getParameters(): Expected: 2 parameters, actual: " + sParameters.size());
+			logger.log(Logger.Level.ERROR,
+					"query.getParameters(): Expected: 2 parameters, actual: " + sParameters.size());
 		}
 
 		if (pass1 != 2 || pass2 != 2 || pass3 != 2) {
@@ -373,14 +381,14 @@ public class Client1IT extends PMClientBase {
 		if (sParameters.size() == 2) {
 			for (Parameter p : sParameters) {
 				if (TestUtil.traceflag) {
-					TestUtil.logTrace("parameter name = " + p.getName());
-					TestUtil.logTrace("parameter position = " + p.getPosition());
-					TestUtil.logTrace("parameter type =" + p.getParameterType());
+					logger.log(Logger.Level.TRACE, "parameter name = " + p.getName());
+					logger.log(Logger.Level.TRACE, "parameter position = " + p.getPosition());
+					logger.log(Logger.Level.TRACE, "parameter type =" + p.getParameterType());
 				}
 				if (query.isBound(p)) {
-					TestUtil.logErr("isBound believes there is a value bound to the parameter:" + p);
+					logger.log(Logger.Level.ERROR, "isBound believes there is a value bound to the parameter:" + p);
 				} else {
-					TestUtil.logTrace("query isBound = " + query.isBound(p));
+					logger.log(Logger.Level.TRACE, "query isBound = " + query.isBound(p));
 					pass1++;
 				}
 				Integer pos = p.getPosition();
@@ -388,7 +396,7 @@ public class Client1IT extends PMClientBase {
 					if (pos == 1 || pos == 2) {
 						String sActual = p.getName();
 						if (sActual != null) {
-							TestUtil.logErr("getName() - Expected: null, actual:" + sActual);
+							logger.log(Logger.Level.ERROR, "getName() - Expected: null, actual:" + sActual);
 						} else {
 							pass2++;
 						}
@@ -396,25 +404,26 @@ public class Client1IT extends PMClientBase {
 							String sExpected = "java.lang.String";
 							sActual = p.getParameterType().getName();
 							if (!sActual.equals(sExpected)) {
-								TestUtil.logErr("getParameterType().getName() - Expected: " + sExpected + ", actual:"
-										+ sActual);
+								logger.log(Logger.Level.ERROR, "getParameterType().getName() - Expected: " + sExpected
+										+ ", actual:" + sActual);
 							} else {
 								pass3++;
 							}
 						} catch (IllegalStateException ise) {
-							TestUtil.logMsg(
+							logger.log(Logger.Level.INFO,
 									"warning: getParameterType().getName() threw IllegalStateException, this is not considered a failure");
 						}
 					} else {
-						TestUtil.logErr("getPosition() returned an invalid position:" + pos);
+						logger.log(Logger.Level.ERROR, "getPosition() returned an invalid position:" + pos);
 					}
 				} else {
-					TestUtil.logErr("getPosition() returned null");
+					logger.log(Logger.Level.ERROR, "getPosition() returned null");
 				}
 
 			}
 		} else {
-			TestUtil.logErr("query.getParameters(): Expected: 2 parameters, actual: " + sParameters.size());
+			logger.log(Logger.Level.ERROR,
+					"query.getParameters(): Expected: 2 parameters, actual: " + sParameters.size());
 		}
 		if (pass1 != 2 || pass2 != 2 || pass3 != 2) {
 			throw new Exception("parameterTQTest2 failed");
@@ -440,8 +449,8 @@ public class Client1IT extends PMClientBase {
 		if (TestUtil.traceflag) {
 			Set<Parameter<?>> sParameters = query.getParameters();
 			for (Parameter p : sParameters) {
-				TestUtil.logTrace("Parameter name = " + p.getName());
-				TestUtil.logTrace("Parameter position = " + p.getPosition());
+				logger.log(Logger.Level.TRACE, "Parameter name = " + p.getName());
+				logger.log(Logger.Level.TRACE, "Parameter position = " + p.getPosition());
 			}
 		}
 
@@ -449,7 +458,7 @@ public class Client1IT extends PMClientBase {
 		Parameter p1 = query.getParameter(sExpected);
 		String sActual = p1.getName();
 		if (!sActual.equals(sExpected)) {
-			TestUtil.logErr("p1.getName() - Expected: " + sExpected + ", actual:" + sActual);
+			logger.log(Logger.Level.ERROR, "p1.getName() - Expected: " + sExpected + ", actual:" + sActual);
 		} else {
 			pass1 = true;
 		}
@@ -457,7 +466,7 @@ public class Client1IT extends PMClientBase {
 		sExpected = null;
 		Integer iActual = p1.getPosition();
 		if (iActual != null) {
-			TestUtil.logErr("p1.getPosition() - Expected: " + sExpected + ", actual:" + iActual);
+			logger.log(Logger.Level.ERROR, "p1.getPosition() - Expected: " + sExpected + ", actual:" + iActual);
 		} else {
 			pass2 = true;
 		}
@@ -487,8 +496,8 @@ public class Client1IT extends PMClientBase {
 		if (TestUtil.traceflag) {
 			Set<Parameter<?>> sParameters = query.getParameters();
 			for (Parameter p : sParameters) {
-				TestUtil.logTrace("Parameter name = " + p.getName());
-				TestUtil.logTrace("Parameter position = " + p.getPosition());
+				logger.log(Logger.Level.TRACE, "Parameter name = " + p.getName());
+				logger.log(Logger.Level.TRACE, "Parameter position = " + p.getPosition());
 			}
 		}
 
@@ -496,7 +505,7 @@ public class Client1IT extends PMClientBase {
 		Parameter p1 = query.getParameter(sExpected);
 		String sActual = p1.getName();
 		if (!sActual.equals(sExpected)) {
-			TestUtil.logErr("p1.getName() - Expected: " + sExpected + ", actual:" + sActual);
+			logger.log(Logger.Level.ERROR, "p1.getName() - Expected: " + sExpected + ", actual:" + sActual);
 		} else {
 			pass1 = true;
 		}
@@ -504,7 +513,7 @@ public class Client1IT extends PMClientBase {
 		sExpected = null;
 		Integer iActual = p1.getPosition();
 		if (iActual != null) {
-			TestUtil.logErr("p1.getPosition() - Expected: " + sExpected + ", actual:" + iActual);
+			logger.log(Logger.Level.ERROR, "p1.getPosition() - Expected: " + sExpected + ", actual:" + iActual);
 		} else {
 			pass2 = true;
 		}
@@ -526,7 +535,7 @@ public class Client1IT extends PMClientBase {
 	@Test
 	public void getParametersTest() throws Exception {
 		boolean pass = false;
-		TestUtil.logTrace("Starting getParametersTest");
+		logger.log(Logger.Level.TRACE, "Starting getParametersTest");
 
 		try {
 			Query query = getEntityManager()
@@ -535,9 +544,9 @@ public class Client1IT extends PMClientBase {
 			if (TestUtil.traceflag) {
 				Set<Parameter<?>> sParameters = query.getParameters();
 				for (Parameter p : sParameters) {
-					TestUtil.logTrace("Parameter name = " + p.getName());
-					TestUtil.logTrace("Parameter position = " + p.getPosition());
-					TestUtil.logTrace("Parameter type =" + p.getParameterType());
+					logger.log(Logger.Level.TRACE, "Parameter name = " + p.getName());
+					logger.log(Logger.Level.TRACE, "Parameter position = " + p.getPosition());
+					logger.log(Logger.Level.TRACE, "Parameter type =" + p.getParameterType());
 				}
 			}
 
@@ -547,7 +556,7 @@ public class Client1IT extends PMClientBase {
 			List<Object> list = new ArrayList<Object>(query.getParameters());
 			for (int i = 0; i < list.size(); i++) {
 				Parameter p = (Parameter) list.get(i);
-				TestUtil.logTrace("Parameter name = " + p.getName());
+				logger.log(Logger.Level.TRACE, "Parameter name = " + p.getName());
 				if (p.getName().equals("first")) {
 					foundFirstName = true;
 					found++;
@@ -561,18 +570,18 @@ public class Client1IT extends PMClientBase {
 				pass = true;
 			} else {
 				if (found != 2) {
-					TestUtil.logErr("Wrong number of parameters returned, expected:2, actual:" + found);
+					logger.log(Logger.Level.ERROR, "Wrong number of parameters returned, expected:2, actual:" + found);
 				}
 				if (!foundFirstName) {
-					TestUtil.logErr("Parameter 'first' was not returned");
+					logger.log(Logger.Level.ERROR, "Parameter 'first' was not returned");
 				}
 				if (!foundLastName) {
-					TestUtil.logErr("Parameter 'last' was not returned");
+					logger.log(Logger.Level.ERROR, "Parameter 'last' was not returned");
 				}
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass) {
 			throw new Exception("getParametersTest failed");
@@ -591,7 +600,7 @@ public class Client1IT extends PMClientBase {
 	@Test
 	public void getParametersTQTest() throws Exception {
 		boolean pass = false;
-		TestUtil.logTrace("Starting getParametersTest");
+		logger.log(Logger.Level.TRACE, "Starting getParametersTest");
 
 		try {
 			TypedQuery<Employee> query = getEntityManager().createQuery(
@@ -600,9 +609,9 @@ public class Client1IT extends PMClientBase {
 			if (TestUtil.traceflag) {
 				Set<Parameter<?>> sParameters = query.getParameters();
 				for (Parameter p : sParameters) {
-					TestUtil.logTrace("Parameter name = " + p.getName());
-					TestUtil.logTrace("Parameter position = " + p.getPosition());
-					TestUtil.logTrace("Parameter type =" + p.getParameterType());
+					logger.log(Logger.Level.TRACE, "Parameter name = " + p.getName());
+					logger.log(Logger.Level.TRACE, "Parameter position = " + p.getPosition());
+					logger.log(Logger.Level.TRACE, "Parameter type =" + p.getParameterType());
 				}
 			}
 
@@ -612,7 +621,7 @@ public class Client1IT extends PMClientBase {
 			List<Object> list = new ArrayList<Object>(query.getParameters());
 			for (int i = 0; i < list.size(); i++) {
 				Parameter p = (Parameter) list.get(i);
-				TestUtil.logTrace("Parameter name = " + p.getName());
+				logger.log(Logger.Level.TRACE, "Parameter name = " + p.getName());
 				if (p.getName().equals("first")) {
 					foundFirstName = true;
 					found++;
@@ -626,18 +635,18 @@ public class Client1IT extends PMClientBase {
 				pass = true;
 			} else {
 				if (found != 2) {
-					TestUtil.logErr("Wrong number of parameters returned, expected:2, actual:" + found);
+					logger.log(Logger.Level.ERROR, "Wrong number of parameters returned, expected:2, actual:" + found);
 				}
 				if (!foundFirstName) {
-					TestUtil.logErr("Parameter 'first' was not returned");
+					logger.log(Logger.Level.ERROR, "Parameter 'first' was not returned");
 				}
 				if (!foundLastName) {
-					TestUtil.logErr("Parameter 'last' was not returned");
+					logger.log(Logger.Level.ERROR, "Parameter 'last' was not returned");
 				}
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass) {
 			throw new Exception("getParametersTQTest failed");
@@ -655,15 +664,15 @@ public class Client1IT extends PMClientBase {
 	public void getParametersNoParametersTest() throws Exception {
 		boolean pass = false;
 		try {
-			TestUtil.logTrace("Starting getParametersTest");
+			logger.log(Logger.Level.TRACE, "Starting getParametersTest");
 			Query query = getEntityManager().createQuery("SELECT e FROM Employee e");
 
 			if (TestUtil.traceflag) {
 				Set<Parameter<?>> sParameters = query.getParameters();
 				for (Parameter p : sParameters) {
-					TestUtil.logTrace("parameter name = " + p.getName());
-					TestUtil.logTrace("parameter position = " + p.getPosition());
-					TestUtil.logTrace("pParameter type =" + p.getParameterType());
+					logger.log(Logger.Level.TRACE, "parameter name = " + p.getName());
+					logger.log(Logger.Level.TRACE, "parameter position = " + p.getPosition());
+					logger.log(Logger.Level.TRACE, "pParameter type =" + p.getParameterType());
 				}
 			}
 
@@ -671,13 +680,13 @@ public class Client1IT extends PMClientBase {
 				List<Object> list = new ArrayList<Object>(query.getParameters());
 				for (int i = 0; i < list.size(); i++) {
 					Parameter p = (Parameter) list.get(i);
-					TestUtil.logErr("parameter name = " + p.getName());
+					logger.log(Logger.Level.ERROR, "parameter name = " + p.getName());
 				}
 			} else {
 				pass = true;
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -688,7 +697,7 @@ public class Client1IT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "calling super.cleanup");
 		super.cleanup();
 		removeDeploymentJar();
 	}

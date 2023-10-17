@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.criteriaapi.parameter;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -27,7 +28,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.Query;
@@ -38,8 +38,9 @@ import jakarta.persistence.criteria.ParameterExpression;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
-
 public class Client2IT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(Client2IT.class.getName());
 
 	Employee[] empRef = new Employee[5];
 
@@ -55,13 +56,13 @@ public class Client2IT extends PMClientBase {
 
 	@BeforeAll
 	public void setupEmployee() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			removeTestData();
 			createTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -112,16 +113,16 @@ public class Client2IT extends PMClientBase {
 					actual.add(e.getId());
 				}
 				Collections.sort(actual);
-				TestUtil.logTrace("actual" + actual);
+				logger.log(Logger.Level.TRACE, "actual" + actual);
 
 				if (expected.equals(actual)) {
-					TestUtil.logTrace("Successfully returned expected results");
+					logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 					pass = true;
 				} else {
-					TestUtil.logErr("expected: " + expected + ", actual: " + actual);
+					logger.log(Logger.Level.ERROR, "expected: " + expected + ", actual: " + actual);
 				}
 			} else {
-				TestUtil.logErr("Failed to get Non-null Criteria Query");
+				logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 			}
 			getEntityTransaction().commit();
 		} finally {
@@ -180,16 +181,16 @@ public class Client2IT extends PMClientBase {
 					actual.add(e.getId());
 				}
 				Collections.sort(actual);
-				TestUtil.logTrace("actual" + actual);
+				logger.log(Logger.Level.TRACE, "actual" + actual);
 
 				if (expected.equals(actual)) {
-					TestUtil.logTrace("Successfully returned expected results");
+					logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 					pass = true;
 				} else {
-					TestUtil.logErr("expected: " + expected + ", actual: " + actual);
+					logger.log(Logger.Level.ERROR, "expected: " + expected + ", actual: " + actual);
 				}
 			} else {
-				TestUtil.logErr("Failed to get Non-null Criteria Query");
+				logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 			}
 			getEntityTransaction().commit();
 		} finally {
@@ -250,16 +251,16 @@ public class Client2IT extends PMClientBase {
 					actual.add(e.getId());
 				}
 				Collections.sort(actual);
-				TestUtil.logTrace("actual" + actual);
+				logger.log(Logger.Level.TRACE, "actual" + actual);
 
 				if (expected.equals(actual)) {
-					TestUtil.logTrace("Successfully returned expected results");
+					logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 					pass = true;
 				} else {
-					TestUtil.logErr("expected: " + expected + ", actual: " + actual);
+					logger.log(Logger.Level.ERROR, "expected: " + expected + ", actual: " + actual);
 				}
 			} else {
-				TestUtil.logErr("Failed to get Non-null Criteria Query");
+				logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 			}
 			getEntityTransaction().commit();
 		} finally {
@@ -318,16 +319,16 @@ public class Client2IT extends PMClientBase {
 					actual.add(e.getId());
 				}
 				Collections.sort(actual);
-				TestUtil.logTrace("actual" + actual);
+				logger.log(Logger.Level.TRACE, "actual" + actual);
 
 				if (expected.equals(actual)) {
-					TestUtil.logTrace("Successfully returned expected results");
+					logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 					pass = true;
 				} else {
-					TestUtil.logErr("expected: " + expected + ", actual: " + actual);
+					logger.log(Logger.Level.ERROR, "expected: " + expected + ", actual: " + actual);
 				}
 			} else {
-				TestUtil.logErr("Failed to get Non-null Criteria Query");
+				logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
 			}
 			getEntityTransaction().commit();
 		} finally {
@@ -342,7 +343,7 @@ public class Client2IT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "calling super.cleanup");
 		removeTestData();
 		super.cleanup();
 	}
@@ -352,7 +353,7 @@ public class Client2IT extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logMsg("Creating Employees");
+			logger.log(Logger.Level.INFO, "Creating Employees");
 
 			final java.sql.Date d2 = getSQLDate("2001-06-27");
 			final java.sql.Date d3 = getSQLDate("2002-07-07");
@@ -367,25 +368,25 @@ public class Client2IT extends PMClientBase {
 			for (Employee e : empRef) {
 				if (e != null) {
 					getEntityManager().persist(e);
-					TestUtil.logTrace("persisted employee:" + e);
+					logger.log(Logger.Level.TRACE, "persisted employee:" + e);
 				}
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				TestUtil.logErr("Unexpected exception rolling back TX:", fe);
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
 		}
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -394,14 +395,14 @@ public class Client2IT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM EMPLOYEE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

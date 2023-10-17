@@ -20,17 +20,18 @@
 
 package com.sun.ts.tests.jpa.core.annotations.mapkey;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import com.sun.ts.lib.util.TestUtil;
-
 
 public class Client2IT extends Client {
 
 	public Client2IT() {
 	}
+
+	private static final Logger logger = (Logger) System.getLogger(Client2IT.class.getName());
 
 	public static JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = Client.class.getPackageName();
@@ -49,14 +50,14 @@ public class Client2IT extends Client {
 
 	@BeforeAll
 	public void setupCreateTestData() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 			createTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -77,54 +78,55 @@ public class Client2IT extends Client {
 		try {
 			getEntityTransaction().begin();
 			clearCache();
-			TestUtil.logTrace("find employee2");
+			logger.log(Logger.Level.TRACE, "find employee2");
 			Employee2 emp2 = getEntityManager().find(Employee2.class, 6);
-			TestUtil.logTrace("Name:" + emp2.getFirstName() + " " + emp2.getLastName());
+			logger.log(Logger.Level.TRACE, "Name:" + emp2.getFirstName() + " " + emp2.getLastName());
 			Department dept = emp2.getDepartment();
 
 			if (dept == null) {
-				TestUtil.logTrace("Received expected null department for employee2");
+				logger.log(Logger.Level.TRACE, "Received expected null department for employee2");
 			} else {
 				pass = false;
-				TestUtil.logErr("Expected null department, actual:" + dept.getName());
+				logger.log(Logger.Level.ERROR, "Expected null department, actual:" + dept.getName());
 			}
 			clearCache();
 
-			TestUtil.logTrace("--------------");
-			TestUtil.logTrace("find employee3");
+			logger.log(Logger.Level.TRACE, "--------------");
+			logger.log(Logger.Level.TRACE, "find employee3");
 			Employee3 emp3 = getEntityManager().find(Employee3.class, 7);
-			TestUtil.logTrace("Name:" + emp3.getFirstName() + " " + emp3.getLastName());
+			logger.log(Logger.Level.TRACE, "Name:" + emp3.getFirstName() + " " + emp3.getLastName());
 			dept = emp3.getDepartment();
 
 			if (dept != null && dept.getName().equals(deptRef[0].getName())) {
-				TestUtil.logTrace("Received expected department for employee3:" + dept.getName());
+				logger.log(Logger.Level.TRACE, "Received expected department for employee3:" + dept.getName());
 			} else {
 				pass = false;
 				if (dept != null) {
-					TestUtil.logErr("Expected department:" + deptRef[0].getName() + ", actual:" + dept.getName());
+					logger.log(Logger.Level.ERROR,
+							"Expected department:" + deptRef[0].getName() + ", actual:" + dept.getName());
 				} else {
-					TestUtil.logErr("Expected department:" + deptRef[0].getName() + ", actual:null");
+					logger.log(Logger.Level.ERROR, "Expected department:" + deptRef[0].getName() + ", actual:null");
 				}
 			}
 
 			clearCache();
-			TestUtil.logTrace("--------------");
-			TestUtil.logTrace("find employee4");
+			logger.log(Logger.Level.TRACE, "--------------");
+			logger.log(Logger.Level.TRACE, "find employee4");
 			Employee4 emp4 = getEntityManager().find(Employee4.class, 8);
-			TestUtil.logTrace("Name:" + emp4.getFirstName() + " " + emp4.getLastName());
+			logger.log(Logger.Level.TRACE, "Name:" + emp4.getFirstName() + " " + emp4.getLastName());
 			dept = emp4.getDepartment();
 
 			if (dept == null) {
-				TestUtil.logTrace("Received expected null department for employee4");
+				logger.log(Logger.Level.TRACE, "Received expected null department for employee4");
 			} else {
 				pass = false;
-				TestUtil.logErr("Expected department: null, actual:" + dept.getName());
+				logger.log(Logger.Level.ERROR, "Expected department: null, actual:" + dept.getName());
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
 			pass = false;
-			TestUtil.logErr("Received unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -148,81 +150,85 @@ public class Client2IT extends Client {
 		try {
 			getEntityTransaction().begin();
 			clearCache();
-			TestUtil.logTrace("find employee2");
+			logger.log(Logger.Level.TRACE, "find employee2");
 			Employee2 emp2 = getEntityManager().find(Employee2.class, 6);
-			TestUtil.logTrace("Name:" + emp2.getFirstName() + " " + emp2.getLastName());
-			TestUtil.logTrace("set department to:" + deptRef[1].getId() + ", " + deptRef[1].getName());
+			logger.log(Logger.Level.TRACE, "Name:" + emp2.getFirstName() + " " + emp2.getLastName());
+			logger.log(Logger.Level.TRACE, "set department to:" + deptRef[1].getId() + ", " + deptRef[1].getName());
 			emp2.setDepartment(deptRef[1]);
 			getEntityManager().merge(emp2);
 			getEntityManager().flush();
 			clearCache();
-			TestUtil.logTrace("find employee2 again");
+			logger.log(Logger.Level.TRACE, "find employee2 again");
 			emp2 = getEntityManager().find(Employee2.class, 6);
-			TestUtil.logTrace("Name:" + emp2.getFirstName() + " " + emp2.getLastName());
+			logger.log(Logger.Level.TRACE, "Name:" + emp2.getFirstName() + " " + emp2.getLastName());
 			Department dept = emp2.getDepartment();
 			if (dept == null) {
-				TestUtil.logTrace("Received expected null department");
+				logger.log(Logger.Level.TRACE, "Received expected null department");
 			} else {
 				pass = false;
-				TestUtil.logErr("Expected null department, actual:" + dept.getName());
+				logger.log(Logger.Level.ERROR, "Expected null department, actual:" + dept.getName());
 			}
 
 			clearCache();
-			TestUtil.logTrace("--------------");
-			TestUtil.logTrace("find employee3");
+			logger.log(Logger.Level.TRACE, "--------------");
+			logger.log(Logger.Level.TRACE, "find employee3");
 			Employee3 emp3 = getEntityManager().find(Employee3.class, 7);
-			TestUtil.logTrace("Name:" + emp3.getFirstName() + " " + emp3.getLastName());
-			TestUtil.logTrace("Department:" + emp3.getDepartment().getId() + ", " + emp3.getDepartment().getName());
-			TestUtil.logTrace("set department to:" + deptRef[1].getId() + ", " + deptRef[1].getName());
+			logger.log(Logger.Level.TRACE, "Name:" + emp3.getFirstName() + " " + emp3.getLastName());
+			logger.log(Logger.Level.TRACE,
+					"Department:" + emp3.getDepartment().getId() + ", " + emp3.getDepartment().getName());
+			logger.log(Logger.Level.TRACE, "set department to:" + deptRef[1].getId() + ", " + deptRef[1].getName());
 			emp3.setDepartment(deptRef[1]);
 			getEntityManager().merge(emp3);
 			getEntityManager().flush();
 			clearCache();
-			TestUtil.logTrace("find employee3 again");
+			logger.log(Logger.Level.TRACE, "find employee3 again");
 			emp3 = getEntityManager().find(Employee3.class, 7);
-			TestUtil.logTrace("Name:" + emp3.getFirstName() + " " + emp3.getLastName());
+			logger.log(Logger.Level.TRACE, "Name:" + emp3.getFirstName() + " " + emp3.getLastName());
 			dept = emp3.getDepartment();
 			if (dept != null && dept.getName().equals(deptRef[0].getName())) {
-				TestUtil.logTrace("Received expected department:" + dept.getName());
+				logger.log(Logger.Level.TRACE, "Received expected department:" + dept.getName());
 			} else {
 				pass = false;
 				if (dept != null) {
-					TestUtil.logErr("Expected department:" + deptRef[0].getName() + ", actual:" + dept.getName());
+					logger.log(Logger.Level.ERROR,
+							"Expected department:" + deptRef[0].getName() + ", actual:" + dept.getName());
 				} else {
-					TestUtil.logErr("Expected department:" + deptRef[0].getName() + ", actual:null");
+					logger.log(Logger.Level.ERROR, "Expected department:" + deptRef[0].getName() + ", actual:null");
 				}
 			}
 
 			clearCache();
-			TestUtil.logTrace("--------------");
-			TestUtil.logTrace("find employee4");
+			logger.log(Logger.Level.TRACE, "--------------");
+			logger.log(Logger.Level.TRACE, "find employee4");
 			Employee4 emp4 = getEntityManager().find(Employee4.class, 8);
-			TestUtil.logTrace("Name:" + emp4.getFirstName() + " " + emp4.getLastName());
+			logger.log(Logger.Level.TRACE, "Name:" + emp4.getFirstName() + " " + emp4.getLastName());
 			if (emp4.getFirstName() != null) {
-				TestUtil.logErr("Expected first name to be null, actual:" + emp4.getFirstName());
+				logger.log(Logger.Level.ERROR, "Expected first name to be null, actual:" + emp4.getFirstName());
 				pass = false;
 			}
 			if (emp4.getDepartment() != null) {
-				TestUtil.logErr("Expected Department to be null, actual:" + emp4.getDepartment().toString());
+				logger.log(Logger.Level.ERROR,
+						"Expected Department to be null, actual:" + emp4.getDepartment().toString());
 				pass = false;
 			}
-			TestUtil.logTrace("set department to:" + deptRef[1].getId() + ", " + deptRef[1].getName());
+			logger.log(Logger.Level.TRACE, "set department to:" + deptRef[1].getId() + ", " + deptRef[1].getName());
 			emp4.setDepartment(deptRef[1]);
 			getEntityManager().merge(emp4);
 			getEntityManager().flush();
 			clearCache();
-			TestUtil.logTrace("find employee4 again");
+			logger.log(Logger.Level.TRACE, "find employee4 again");
 			emp4 = getEntityManager().find(Employee4.class, 8);
-			TestUtil.logTrace("Name:" + emp4.getFirstName() + " " + emp4.getLastName());
+			logger.log(Logger.Level.TRACE, "Name:" + emp4.getFirstName() + " " + emp4.getLastName());
 			dept = emp4.getDepartment();
 			if (dept != null && dept.getName().equals(deptRef[1].getName())) {
-				TestUtil.logTrace("Received expected department:" + dept.getName());
+				logger.log(Logger.Level.TRACE, "Received expected department:" + dept.getName());
 			} else {
 				pass = false;
 				if (dept != null) {
-					TestUtil.logErr("Expected " + deptRef[1].getName() + " department, actual:" + dept.getName());
+					logger.log(Logger.Level.ERROR,
+							"Expected " + deptRef[1].getName() + " department, actual:" + dept.getName());
 				} else {
-					TestUtil.logErr("Expected " + deptRef[1].getName() + " department, actual:null");
+					logger.log(Logger.Level.ERROR, "Expected " + deptRef[1].getName() + " department, actual:null");
 				}
 			}
 
@@ -230,7 +236,7 @@ public class Client2IT extends Client {
 
 		} catch (Exception e) {
 			pass = false;
-			TestUtil.logErr("Received unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -255,49 +261,49 @@ public class Client2IT extends Client {
 
 			getEntityTransaction().begin();
 			clearCache();
-			TestUtil.logTrace("find employee2");
+			logger.log(Logger.Level.TRACE, "find employee2");
 			Employee2 emp2 = getEntityManager().find(Employee2.class, 6);
 			String firstName = emp2.getFirstName();
-			TestUtil.logTrace("Name:" + firstName + " " + emp2.getLastName());
+			logger.log(Logger.Level.TRACE, "Name:" + firstName + " " + emp2.getLastName());
 
 			if (firstName == null) {
-				TestUtil.logTrace("Received expected null firstName");
+				logger.log(Logger.Level.TRACE, "Received expected null firstName");
 			} else {
 				pass = false;
-				TestUtil.logErr("Expected firstName: null, actual:" + firstName);
+				logger.log(Logger.Level.ERROR, "Expected firstName: null, actual:" + firstName);
 			}
 
 			clearCache();
-			TestUtil.logTrace("--------------");
-			TestUtil.logTrace("find employee3");
+			logger.log(Logger.Level.TRACE, "--------------");
+			logger.log(Logger.Level.TRACE, "find employee3");
 			Employee3 emp3 = getEntityManager().find(Employee3.class, 7);
 			firstName = emp3.getFirstName();
-			TestUtil.logTrace("Name:" + firstName + " " + emp3.getLastName());
+			logger.log(Logger.Level.TRACE, "Name:" + firstName + " " + emp3.getLastName());
 
 			if (firstName != null && firstName.equals("Paul")) {
-				TestUtil.logTrace("Received expected firstName:" + firstName);
+				logger.log(Logger.Level.TRACE, "Received expected firstName:" + firstName);
 			} else {
 				pass = false;
-				TestUtil.logErr("Expected firstName: Paul, actual: null");
+				logger.log(Logger.Level.ERROR, "Expected firstName: Paul, actual: null");
 			}
 
 			clearCache();
-			TestUtil.logTrace("--------------");
-			TestUtil.logTrace("find employee4");
+			logger.log(Logger.Level.TRACE, "--------------");
+			logger.log(Logger.Level.TRACE, "find employee4");
 			Employee4 emp4 = getEntityManager().find(Employee4.class, 8);
 			firstName = emp4.getFirstName();
-			TestUtil.logTrace("Name:" + firstName + " " + emp4.getLastName());
+			logger.log(Logger.Level.TRACE, "Name:" + firstName + " " + emp4.getLastName());
 			if (firstName == null) {
-				TestUtil.logTrace("Received expected null firstName");
+				logger.log(Logger.Level.TRACE, "Received expected null firstName");
 			} else {
 				pass = false;
-				TestUtil.logErr("Expected firstName: null, actual:" + firstName);
+				logger.log(Logger.Level.ERROR, "Expected firstName: null, actual:" + firstName);
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
 			pass = false;
-			TestUtil.logErr("Received unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -321,72 +327,72 @@ public class Client2IT extends Client {
 		try {
 			getEntityTransaction().begin();
 			clearCache();
-			TestUtil.logTrace("find employee2");
+			logger.log(Logger.Level.TRACE, "find employee2");
 			Employee2 emp2 = getEntityManager().find(Employee2.class, 6);
-			TestUtil.logTrace("Name:" + emp2.getFirstName() + " " + emp2.getLastName());
-			TestUtil.logTrace("set firstName and save");
+			logger.log(Logger.Level.TRACE, "Name:" + emp2.getFirstName() + " " + emp2.getLastName());
+			logger.log(Logger.Level.TRACE, "set firstName and save");
 			emp2.setFirstName("foo");
 			getEntityManager().merge(emp2);
 			getEntityManager().flush();
 			clearCache();
-			TestUtil.logTrace("find employee2 again");
+			logger.log(Logger.Level.TRACE, "find employee2 again");
 			emp2 = getEntityManager().find(Employee2.class, 6);
-			TestUtil.logTrace("Name:" + emp2.getFirstName() + " " + emp2.getLastName());
+			logger.log(Logger.Level.TRACE, "Name:" + emp2.getFirstName() + " " + emp2.getLastName());
 			String firstName = emp2.getFirstName();
 			if (firstName == null) {
-				TestUtil.logTrace("Received expected null firstName");
+				logger.log(Logger.Level.TRACE, "Received expected null firstName");
 			} else {
 				pass = false;
-				TestUtil.logErr("Expected firstName: null, actual:" + firstName);
+				logger.log(Logger.Level.ERROR, "Expected firstName: null, actual:" + firstName);
 			}
 
 			clearCache();
-			TestUtil.logTrace("--------------");
-			TestUtil.logTrace("find employee3");
+			logger.log(Logger.Level.TRACE, "--------------");
+			logger.log(Logger.Level.TRACE, "find employee3");
 			Employee3 emp3 = getEntityManager().find(Employee3.class, 7);
-			TestUtil.logTrace("Name:" + emp3.getFirstName() + " " + emp3.getLastName());
-			TestUtil.logTrace("set firstName and save");
+			logger.log(Logger.Level.TRACE, "Name:" + emp3.getFirstName() + " " + emp3.getLastName());
+			logger.log(Logger.Level.TRACE, "set firstName and save");
 			emp3.setFirstName("foo");
 			getEntityManager().merge(emp3);
 			getEntityManager().flush();
 			clearCache();
-			TestUtil.logTrace("find employee3 again");
+			logger.log(Logger.Level.TRACE, "find employee3 again");
 			emp3 = getEntityManager().find(Employee3.class, 7);
-			TestUtil.logTrace("Name:" + emp3.getFirstName() + " " + emp3.getLastName());
+			logger.log(Logger.Level.TRACE, "Name:" + emp3.getFirstName() + " " + emp3.getLastName());
 			firstName = emp3.getFirstName();
 			if (firstName != null && firstName.equals("Paul")) {
-				TestUtil.logTrace("Received expected firstName:" + firstName);
+				logger.log(Logger.Level.TRACE, "Received expected firstName:" + firstName);
 			} else {
 				pass = false;
-				TestUtil.logErr("Expected firstName: Paul, actual: null");
+				logger.log(Logger.Level.ERROR, "Expected firstName: Paul, actual: null");
 			}
 
 			clearCache();
-			TestUtil.logTrace("--------------");
-			TestUtil.logTrace("find employee4");
+			logger.log(Logger.Level.TRACE, "--------------");
+			logger.log(Logger.Level.TRACE, "find employee4");
 			Employee4 emp4 = getEntityManager().find(Employee4.class, 8);
-			TestUtil.logTrace("Name:" + emp4.getFirstName() + " " + emp4.getLastName());
-			TestUtil.logTrace("set firstName and save");
+			logger.log(Logger.Level.TRACE, "Name:" + emp4.getFirstName() + " " + emp4.getLastName());
+			logger.log(Logger.Level.TRACE, "set firstName and save");
 			emp4.setFirstName("foo");
 			getEntityManager().merge(emp4);
 			getEntityManager().flush();
 			clearCache();
-			TestUtil.logTrace("find employee4 again");
+			logger.log(Logger.Level.TRACE, "find employee4 again");
 			emp4 = getEntityManager().find(Employee4.class, 8);
-			TestUtil.logTrace("Name:" + emp4.getFirstName() + " " + emp4.getLastName());
+			logger.log(Logger.Level.TRACE, "Name:" + emp4.getFirstName() + " " + emp4.getLastName());
 			firstName = emp4.getFirstName();
 			if (firstName != null && firstName.equals("foo")) {
-				TestUtil.logTrace("Received expected firstName:" + firstName);
+				logger.log(Logger.Level.TRACE, "Received expected firstName:" + firstName);
 			} else {
 				pass = false;
-				TestUtil.logErr("Expected firstName: foo, actual: null");
+				logger.log(Logger.Level.ERROR, "Expected firstName: foo, actual: null");
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
 			pass = false;
-			TestUtil.logErr("Received unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -398,38 +404,38 @@ public class Client2IT extends Client {
 	public void createTestData2() throws Exception {
 		try {
 
-			TestUtil.logTrace("createTestData2");
+			logger.log(Logger.Level.TRACE, "createTestData2");
 			createTestDataCommon();
 			getEntityTransaction().begin();
 
 			// insertable = false, updatable = false
-			TestUtil.logTrace("Create and persist employee2 ");
+			logger.log(Logger.Level.TRACE, "Create and persist employee2 ");
 			empRef2 = new Employee2(6, "John", "Smith");
 			empRef2.setDepartment(deptRef[0]);
 			getEntityManager().persist(empRef2);
 
 			// insertable = true, updatable = false
-			TestUtil.logTrace("Create and persist employee3 ");
+			logger.log(Logger.Level.TRACE, "Create and persist employee3 ");
 			empRef3 = new Employee3(7, "Paul", "Jones");
 			empRef3.setDepartment(deptRef[0]);
 			getEntityManager().persist(empRef3);
 
 			// insertable = false, updatable = true
-			TestUtil.logTrace("Create and persist employee4 ");
+			logger.log(Logger.Level.TRACE, "Create and persist employee4 ");
 			empRef4 = new Employee4(8, "Thomas", "Brady");
 			empRef4.setDepartment(deptRef[0]);
 			getEntityManager().persist(empRef4);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception creating test data:", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception creating test data:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 	}

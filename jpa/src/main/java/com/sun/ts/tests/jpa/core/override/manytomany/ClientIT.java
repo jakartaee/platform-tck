@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.override.manytomany;
 
+import java.lang.System.Logger;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,11 +25,11 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	private static final Integer COURSE1_ID = 203;
 
@@ -64,12 +65,12 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception:test failed ", e);
+			logger.log(Logger.Level.ERROR, "Exception:test failed ", e);
 		}
 	}
 
@@ -118,7 +119,7 @@ public class ClientIT extends PMClientBase {
 			Course retrieveScience = getEntityManager().find(Course.class, COURSE2_ID);
 
 			if (retrieveMath.getStudents().size() == 2 && retrieveScience.getStudents().size() == 2) {
-				TestUtil.logTrace("Test Passed");
+				logger.log(Logger.Level.TRACE, "Test Passed");
 			} else {
 				throw new Exception("Expected many to many relationship between course "
 						+ "and student to have been set. Expected 2 students in Math " + "and 2 in Science, Actual - "
@@ -146,14 +147,14 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -164,14 +165,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM STUDENT_2").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

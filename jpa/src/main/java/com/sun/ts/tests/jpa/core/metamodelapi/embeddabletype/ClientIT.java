@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.embeddabletype;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -28,7 +29,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.metamodel.Attribute;
@@ -40,8 +40,9 @@ import jakarta.persistence.metamodel.Metamodel;
 import jakarta.persistence.metamodel.SetAttribute;
 import jakarta.persistence.metamodel.SingularAttribute;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public ClientIT() {
 	}
@@ -57,12 +58,12 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -92,42 +93,42 @@ public class ClientIT extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 				EmbeddableType<Address> eTypeOrder = metaModel.embeddable(Address.class);
 				if (eTypeOrder != null) {
-					TestUtil.logTrace("Obtained Non-null EmbeddableType");
+					logger.log(Logger.Level.TRACE, "Obtained Non-null EmbeddableType");
 					Set<Attribute<Address, ?>> attribSet = eTypeOrder.getDeclaredAttributes();
 					if (attribSet != null) {
 						if (attribSet.size() != expected.size()) {
 							pass = false;
-							TestUtil.logErr("Received wrong number of results");
+							logger.log(Logger.Level.ERROR, "Received wrong number of results");
 						}
 						for (Attribute attrib : attribSet) {
 							String name = attrib.getName();
 							if (expected.contains(name)) {
-								TestUtil.logTrace("Received expected result:" + name);
+								logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 							} else {
-								TestUtil.logErr("Received unexpected result:" + name);
+								logger.log(Logger.Level.ERROR, "Received unexpected result:" + name);
 								pass = false;
 							}
 						}
 					} else {
 						pass = false;
-						TestUtil.logErr("getDeclaredAttributes() returned null");
+						logger.log(Logger.Level.ERROR, "getDeclaredAttributes() returned null");
 					}
 				} else {
 					pass = false;
-					TestUtil.logErr("embeddable() returned null");
+					logger.log(Logger.Level.ERROR, "embeddable() returned null");
 				}
 			} else {
 				pass = false;
-				TestUtil.logErr("getMetamodel() returned null");
+				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
 			pass = false;
-			TestUtil.logErr("Received unexpected exception", e);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("embeddableTest failed");
@@ -149,28 +150,28 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				Attribute attrib = eType.getAttribute("street");
 				if (attrib != null) {
-					TestUtil.logTrace("attribute Name = " + attrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + attrib.getName());
 					String name = attrib.getName();
 					if (name.equals("street")) {
-						TestUtil.logTrace("Received expected result:" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: street, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: street, actual:" + name);
 					}
 				} else {
-					TestUtil.logErr("getAttribute(...) returned null");
+					logger.log(Logger.Level.ERROR, "getAttribute(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -195,24 +196,24 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				try {
 					eType.getAttribute("doesnotexist");
-					TestUtil.logErr("Did not receive expected IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not receive expected IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception:", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -251,10 +252,10 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				Set set = eType.getAttributes();
 				if (set != null) {
 					if (set.size() > 0) {
@@ -266,33 +267,33 @@ public class ClientIT extends PMClientBase {
 						if (expected.containsAll(actual) && actual.containsAll(expected)
 								&& expected.size() == actual.size()) {
 
-							TestUtil.logTrace("Received expected attributes");
+							logger.log(Logger.Level.TRACE, "Received expected attributes");
 							for (String attribName : expected) {
-								TestUtil.logTrace("attrib:" + attribName);
+								logger.log(Logger.Level.TRACE, "attrib:" + attribName);
 							}
 							pass = true;
 						} else {
-							TestUtil.logErr("Received unexpected attributes");
-							TestUtil.logErr("Expected(" + expected.size() + "):");
+							logger.log(Logger.Level.ERROR, "Received unexpected attributes");
+							logger.log(Logger.Level.ERROR, "Expected(" + expected.size() + "):");
 							for (String attribName : expected) {
-								TestUtil.logErr("attrib:" + attribName);
+								logger.log(Logger.Level.ERROR, "attrib:" + attribName);
 							}
-							TestUtil.logErr("Actual(" + actual.size() + "):");
+							logger.log(Logger.Level.ERROR, "Actual(" + actual.size() + "):");
 							for (String attribName : actual) {
-								TestUtil.logErr("attrib:" + attribName);
+								logger.log(Logger.Level.ERROR, "attrib:" + attribName);
 							}
 						}
 					} else {
-						TestUtil.logErr("getAttributes() returned 0 results");
+						logger.log(Logger.Level.ERROR, "getAttributes() returned 0 results");
 					}
 				} else {
-					TestUtil.logErr("getAttributes() returned null");
+					logger.log(Logger.Level.ERROR, "getAttributes() returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -317,28 +318,28 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				CollectionAttribute cAttrib = eType.getCollection("cZipcode", ZipCode.class);
 				if (cAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + cAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + cAttrib.getName());
 					String name = cAttrib.getName();
 					if (name.equals("cZipcode")) {
-						TestUtil.logTrace("Received expected result:" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: cZipcode, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: cZipcode, actual:" + name);
 					}
 				} else {
-					TestUtil.logErr("getCollection(...) returned null");
+					logger.log(Logger.Level.ERROR, "getCollection(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -363,23 +364,23 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
 				try {
 					eType.getCollection("doesnotexist", Address.class);
-					TestUtil.logErr("Did not receive expected IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not receive expected IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception:", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -404,28 +405,28 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				CollectionAttribute cAttrib = eType.getCollection("cZipcode");
 				if (cAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + cAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + cAttrib.getName());
 					String name = cAttrib.getName();
 					if (name.equals("cZipcode")) {
-						TestUtil.logTrace("Received expected result:" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: cZipcode, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: cZipcode, actual:" + name);
 					}
 				} else {
-					TestUtil.logErr("getCollection(...) returned null");
+					logger.log(Logger.Level.ERROR, "getCollection(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -450,23 +451,23 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
 				try {
 					eType.getCollection("doesnotexist");
-					TestUtil.logErr("Did not receive expected IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not receive expected IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception:", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -491,28 +492,28 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				Attribute attrib = eType.getDeclaredAttribute("cZipcode");
 				if (attrib != null) {
-					TestUtil.logTrace("attribute Name = " + attrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + attrib.getName());
 					String name = attrib.getName();
 					if (name.equals("cZipcode")) {
-						TestUtil.logTrace("Received expected result:" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: cZipcode, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: cZipcode, actual:" + name);
 					}
 				} else {
-					TestUtil.logErr("getDeclaredAttribute(...) returned null");
+					logger.log(Logger.Level.ERROR, "getDeclaredAttribute(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -537,23 +538,23 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
 				try {
 					eType.getDeclaredAttribute("doesnotexist");
-					TestUtil.logErr("Did not receive expected IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not receive expected IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception:", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -591,10 +592,10 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				Set set = eType.getDeclaredAttributes();
 				if (set != null) {
 					if (set.size() > 0) {
@@ -607,33 +608,33 @@ public class ClientIT extends PMClientBase {
 						if (expected.containsAll(actual) && actual.containsAll(expected)
 								&& expected.size() == actual.size()) {
 
-							TestUtil.logTrace("Received expected attributes");
+							logger.log(Logger.Level.TRACE, "Received expected attributes");
 							for (String attribName : expected) {
-								TestUtil.logTrace("attrib:" + attribName);
+								logger.log(Logger.Level.TRACE, "attrib:" + attribName);
 							}
 							pass = true;
 						} else {
-							TestUtil.logErr("Received unexpected attributes:");
-							TestUtil.logErr("Expected (" + expected.size() + "):");
+							logger.log(Logger.Level.ERROR, "Received unexpected attributes:");
+							logger.log(Logger.Level.ERROR, "Expected (" + expected.size() + "):");
 							for (String attribName : expected) {
-								TestUtil.logErr("attrib:" + attribName);
+								logger.log(Logger.Level.ERROR, "attrib:" + attribName);
 							}
-							TestUtil.logErr("Actual(" + actual.size() + "):");
+							logger.log(Logger.Level.ERROR, "Actual(" + actual.size() + "):");
 							for (String attribName : actual) {
-								TestUtil.logErr("attrib:" + attribName);
+								logger.log(Logger.Level.ERROR, "attrib:" + attribName);
 							}
 						}
 					} else {
-						TestUtil.logErr("getAttributes() returned 0 results");
+						logger.log(Logger.Level.ERROR, "getAttributes() returned 0 results");
 					}
 				} else {
-					TestUtil.logErr("getDeclaredAttributes() returned null");
+					logger.log(Logger.Level.ERROR, "getDeclaredAttributes() returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -658,28 +659,28 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				CollectionAttribute cAttrib = eType.getCollection("cZipcode", ZipCode.class);
 				if (cAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + cAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + cAttrib.getName());
 					String name = cAttrib.getName();
 					if (name.equals("cZipcode")) {
-						TestUtil.logTrace("Received expected result:" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: cZipcode, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: cZipcode, actual:" + name);
 					}
 				} else {
-					TestUtil.logErr("getCollection(...) returned null");
+					logger.log(Logger.Level.ERROR, "getCollection(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -704,23 +705,23 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
 				try {
 					eType.getDeclaredCollection("doesnotexist", Address.class);
-					TestUtil.logErr("Did not receive expected IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not receive expected IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception:", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -745,28 +746,28 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				CollectionAttribute cAttrib = eType.getCollection("cZipcode", ZipCode.class);
 				if (cAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + cAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + cAttrib.getName());
 					String name = cAttrib.getName();
 					if (name.equals("cZipcode")) {
-						TestUtil.logTrace("Received expected result:" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: cZipcode, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: cZipcode, actual:" + name);
 					}
 				} else {
-					TestUtil.logErr("getCollection(...) returned null");
+					logger.log(Logger.Level.ERROR, "getCollection(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -791,23 +792,23 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
 				try {
 					eType.getDeclaredCollection("doesnotexist", Address.class);
-					TestUtil.logErr("Did not receive expected IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not receive expected IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception:", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -832,28 +833,28 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				ListAttribute lAttrib = eType.getDeclaredList("lZipcode", ZipCode.class);
 				if (lAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + lAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + lAttrib.getName());
 					String name = lAttrib.getName();
 					if (name.equals("lZipcode")) {
-						TestUtil.logTrace("Received expected result:" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: lZipcode, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: lZipcode, actual:" + name);
 					}
 				} else {
-					TestUtil.logErr("getDeclaredList(...) returned null");
+					logger.log(Logger.Level.ERROR, "getDeclaredList(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -878,23 +879,23 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
 				try {
 					eType.getDeclaredList("doesnotexist", Address.class);
-					TestUtil.logErr("Did not receive expected IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not receive expected IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception:", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -919,28 +920,28 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				ListAttribute lAttrib = eType.getDeclaredList("lZipcode");
 				if (lAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + lAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + lAttrib.getName());
 					String name = lAttrib.getName();
 					if (name.equals("lZipcode")) {
-						TestUtil.logTrace("Received expected result:" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: lZipcode, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: lZipcode, actual:" + name);
 					}
 				} else {
-					TestUtil.logErr("getDeclaredList(...) returned null");
+					logger.log(Logger.Level.ERROR, "getDeclaredList(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -965,23 +966,23 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
 				try {
 					eType.getDeclaredList("doesnotexist");
-					TestUtil.logErr("Did not receive expected IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not receive expected IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception:", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -1006,28 +1007,28 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				MapAttribute mAttrib = eType.getDeclaredMap("mZipcode", ZipCode.class, String.class);
 				if (mAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + mAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + mAttrib.getName());
 					String name = mAttrib.getName();
 					if (name.equals("mZipcode")) {
-						TestUtil.logTrace("Received expected result:" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: mZipcode, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: mZipcode, actual:" + name);
 					}
 				} else {
-					TestUtil.logErr("getDeclaredMap(...) returned null");
+					logger.log(Logger.Level.ERROR, "getDeclaredMap(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -1052,23 +1053,23 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
 				try {
 					eType.getDeclaredMap("doesnotexist", Address.class, String.class);
-					TestUtil.logErr("Did not receive expected IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not receive expected IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception:", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -1093,28 +1094,28 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				MapAttribute mAttrib = eType.getDeclaredMap("mZipcode");
 				if (mAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + mAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + mAttrib.getName());
 					String name = mAttrib.getName();
 					if (name.equals("mZipcode")) {
-						TestUtil.logTrace("Received expected result:" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: mZipcode, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: mZipcode, actual:" + name);
 					}
 				} else {
-					TestUtil.logErr("getDeclaredMap(...) returned null");
+					logger.log(Logger.Level.ERROR, "getDeclaredMap(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -1139,23 +1140,23 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
 				try {
 					eType.getDeclaredMap("doesnotexist");
-					TestUtil.logErr("Did not receive expected IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not receive expected IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception:", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -1180,28 +1181,28 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				SetAttribute sAttrib = eType.getDeclaredSet("sZipcode", ZipCode.class);
 				if (sAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + sAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + sAttrib.getName());
 					String name = sAttrib.getName();
 					if (name.equals("sZipcode")) {
-						TestUtil.logTrace("Received expected result:" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: sZipcode, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: sZipcode, actual:" + name);
 					}
 				} else {
-					TestUtil.logErr("getDeclaredSet(...) returned null");
+					logger.log(Logger.Level.ERROR, "getDeclaredSet(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -1226,23 +1227,23 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
 				try {
 					eType.getDeclaredSet("doesnotexist", Address.class);
-					TestUtil.logErr("Did not receive expected IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not receive expected IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception:", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -1267,28 +1268,28 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				SetAttribute sAttrib = eType.getDeclaredSet("sZipcode");
 				if (sAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + sAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + sAttrib.getName());
 					String name = sAttrib.getName();
 					if (name.equals("sZipcode")) {
-						TestUtil.logTrace("Received expected result:" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: sZipcode, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: sZipcode, actual:" + name);
 					}
 				} else {
-					TestUtil.logErr("getDeclaredSet(...) returned null");
+					logger.log(Logger.Level.ERROR, "getDeclaredSet(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -1313,23 +1314,23 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
 				try {
 					eType.getDeclaredSet("doesnotexist");
-					TestUtil.logErr("Did not receive expected IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not receive expected IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception:", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -1354,28 +1355,28 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				SingularAttribute singAttrib = eType.getDeclaredSingularAttribute("city", String.class);
 				if (singAttrib != null) {
-					TestUtil.logTrace("attribute city = " + singAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute city = " + singAttrib.getName());
 					String name = singAttrib.getName();
 					if (name.equals("city")) {
-						TestUtil.logTrace("Received expected result:" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: name, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: name, actual:" + name);
 					}
 				} else {
-					TestUtil.logErr("getDeclaredSingularAttribute(...) returned null");
+					logger.log(Logger.Level.ERROR, "getDeclaredSingularAttribute(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -1400,24 +1401,24 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				try {
 					eType.getDeclaredSingularAttribute("value", Integer.class);
-					TestUtil.logErr("Did not receive expected IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not receive expected IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception:", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -1442,28 +1443,28 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				SingularAttribute singAttrib = eType.getDeclaredSingularAttribute("street");
 				if (singAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + singAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + singAttrib.getName());
 					String name = singAttrib.getName();
 					if (name.equals("street")) {
-						TestUtil.logTrace("Received expected result:" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: street, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: street, actual:" + name);
 					}
 				} else {
-					TestUtil.logErr("getDeclaredSingularAttribute(...) returned null");
+					logger.log(Logger.Level.ERROR, "getDeclaredSingularAttribute(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -1488,24 +1489,24 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				try {
 					eType.getDeclaredSingularAttribute("value");
-					TestUtil.logErr("Did not receive expected IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not receive expected IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception:", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -1539,10 +1540,10 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				Set set = eType.getDeclaredSingularAttributes();
 				if (set != null) {
 					if (set.size() > 0) {
@@ -1555,33 +1556,33 @@ public class ClientIT extends PMClientBase {
 						if (expected.containsAll(actual) && actual.containsAll(expected)
 								&& expected.size() == actual.size()) {
 
-							TestUtil.logTrace("Received expected attributes");
+							logger.log(Logger.Level.TRACE, "Received expected attributes");
 							for (String attribName : expected) {
-								TestUtil.logTrace("attrib:" + attribName);
+								logger.log(Logger.Level.TRACE, "attrib:" + attribName);
 							}
 							pass = true;
 						} else {
-							TestUtil.logErr("Received unexpected attributes");
-							TestUtil.logErr("Expected(" + expected.size() + "):");
+							logger.log(Logger.Level.ERROR, "Received unexpected attributes");
+							logger.log(Logger.Level.ERROR, "Expected(" + expected.size() + "):");
 							for (String attribName : expected) {
-								TestUtil.logErr("attrib:" + attribName);
+								logger.log(Logger.Level.ERROR, "attrib:" + attribName);
 							}
-							TestUtil.logErr("Actual(" + actual.size() + "):");
+							logger.log(Logger.Level.ERROR, "Actual(" + actual.size() + "):");
 							for (String attribName : actual) {
-								TestUtil.logErr("attrib:" + attribName);
+								logger.log(Logger.Level.ERROR, "attrib:" + attribName);
 							}
 						}
 					} else {
-						TestUtil.logErr("getDeclaredSingularAttributes() returned 0 results");
+						logger.log(Logger.Level.ERROR, "getDeclaredSingularAttributes() returned 0 results");
 					}
 				} else {
-					TestUtil.logErr("getDeclaredSingularAttributes() returned null");
+					logger.log(Logger.Level.ERROR, "getDeclaredSingularAttributes() returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -1606,28 +1607,28 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				ListAttribute lAttrib = eType.getList("lZipcode", ZipCode.class);
 				if (lAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + lAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + lAttrib.getName());
 					String name = lAttrib.getName();
 					if (name.equals("lZipcode")) {
-						TestUtil.logTrace("Received expected result:" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: lZipcode, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: lZipcode, actual:" + name);
 					}
 				} else {
-					TestUtil.logErr("getList(...) returned null");
+					logger.log(Logger.Level.ERROR, "getList(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -1652,23 +1653,23 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
 				try {
 					eType.getList("doesnotexist", Address.class);
-					TestUtil.logErr("Did not receive expected IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not receive expected IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception:", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -1693,28 +1694,28 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				ListAttribute lAttrib = eType.getList("lZipcode");
 				if (lAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + lAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + lAttrib.getName());
 					String name = lAttrib.getName();
 					if (name.equals("lZipcode")) {
-						TestUtil.logTrace("Received expected result:" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: lZipcode, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: lZipcode, actual:" + name);
 					}
 				} else {
-					TestUtil.logErr("getList(...) returned null");
+					logger.log(Logger.Level.ERROR, "getList(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -1739,23 +1740,23 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
 				try {
 					eType.getDeclaredList("doesnotexist");
-					TestUtil.logErr("Did not receive expected IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not receive expected IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception:", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -1780,28 +1781,28 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				MapAttribute mAttrib = eType.getMap("mZipcode", ZipCode.class, String.class);
 				if (mAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + mAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + mAttrib.getName());
 					String name = mAttrib.getName();
 					if (name.equals("mZipcode")) {
-						TestUtil.logTrace("Received expected result:" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: mZipcode, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: mZipcode, actual:" + name);
 					}
 				} else {
-					TestUtil.logErr("getMap(...) returned null");
+					logger.log(Logger.Level.ERROR, "getMap(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -1826,23 +1827,23 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
 				try {
 					eType.getMap("doesnotexist", Address.class, String.class);
-					TestUtil.logErr("Did not receive expected IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not receive expected IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception:", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -1867,28 +1868,28 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				MapAttribute mAttrib = eType.getMap("mZipcode");
 				if (mAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + mAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + mAttrib.getName());
 					String name = mAttrib.getName();
 					if (name.equals("mZipcode")) {
-						TestUtil.logTrace("Received expected result:" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: mZipcode, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: mZipcode, actual:" + name);
 					}
 				} else {
-					TestUtil.logErr("getMap(...) returned null");
+					logger.log(Logger.Level.ERROR, "getMap(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -1913,23 +1914,23 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
 				try {
 					eType.getMap("doesnotexist");
-					TestUtil.logErr("Did not receive expected IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not receive expected IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception:", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -1964,10 +1965,10 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				Set set = eType.getPluralAttributes();
 				if (set != null) {
 					if (set.size() > 0) {
@@ -1980,33 +1981,33 @@ public class ClientIT extends PMClientBase {
 						if (expected.containsAll(actual) && actual.containsAll(expected)
 								&& expected.size() == actual.size()) {
 
-							TestUtil.logTrace("Received expected attributes");
+							logger.log(Logger.Level.TRACE, "Received expected attributes");
 							for (String attribName : expected) {
-								TestUtil.logTrace("attrib:" + attribName);
+								logger.log(Logger.Level.TRACE, "attrib:" + attribName);
 							}
 							pass = true;
 						} else {
-							TestUtil.logErr("Received Unexpected attributes");
-							TestUtil.logErr("Expected(" + expected.size() + "):");
+							logger.log(Logger.Level.ERROR, "Received Unexpected attributes");
+							logger.log(Logger.Level.ERROR, "Expected(" + expected.size() + "):");
 							for (String attribName : expected) {
-								TestUtil.logErr("attrib:" + attribName);
+								logger.log(Logger.Level.ERROR, "attrib:" + attribName);
 							}
-							TestUtil.logErr("Actual(" + actual.size() + "):");
+							logger.log(Logger.Level.ERROR, "Actual(" + actual.size() + "):");
 							for (String attribName : actual) {
-								TestUtil.logErr("attrib:" + attribName);
+								logger.log(Logger.Level.ERROR, "attrib:" + attribName);
 							}
 						}
 					} else {
-						TestUtil.logErr("getPluralAttributes() returned 0 results");
+						logger.log(Logger.Level.ERROR, "getPluralAttributes() returned 0 results");
 					}
 				} else {
-					TestUtil.logErr("getPluralAttributes() returned null");
+					logger.log(Logger.Level.ERROR, "getPluralAttributes() returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -2031,28 +2032,28 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				SetAttribute sAttrib = eType.getSet("sZipcode", ZipCode.class);
 				if (sAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + sAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + sAttrib.getName());
 					String name = sAttrib.getName();
 					if (name.equals("sZipcode")) {
-						TestUtil.logTrace("Received expected result:" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: sZipcode, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: sZipcode, actual:" + name);
 					}
 				} else {
-					TestUtil.logErr("getSet(...) returned null");
+					logger.log(Logger.Level.ERROR, "getSet(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -2077,23 +2078,23 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
 				try {
 					eType.getSet("doesnotexist", Address.class);
-					TestUtil.logErr("Did not receive expected IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not receive expected IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception:", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -2118,28 +2119,28 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				SetAttribute sAttrib = eType.getSet("sZipcode");
 				if (sAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + sAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + sAttrib.getName());
 					String name = sAttrib.getName();
 					if (name.equals("sZipcode")) {
-						TestUtil.logTrace("Received expected result:" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: sZipcode, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: sZipcode, actual:" + name);
 					}
 				} else {
-					TestUtil.logErr("getSet(...) returned null");
+					logger.log(Logger.Level.ERROR, "getSet(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -2164,23 +2165,23 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
 				try {
 					eType.getSet("doesnotexist");
-					TestUtil.logErr("Did not receive expected IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not receive expected IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception:", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -2205,28 +2206,28 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				SingularAttribute singAttrib = eType.getSingularAttribute("street", String.class);
 				if (singAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + singAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + singAttrib.getName());
 					String name = singAttrib.getName();
 					if (name.equals("street")) {
-						TestUtil.logTrace("Received expected result:" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: street, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: street, actual:" + name);
 					}
 				} else {
-					TestUtil.logErr("getSingularAttribute(...) returned null");
+					logger.log(Logger.Level.ERROR, "getSingularAttribute(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -2251,24 +2252,24 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				try {
 					eType.getSingularAttribute("doesnotexist", Address.class);
-					TestUtil.logErr("Did not receive expected IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not receive expected IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception:", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -2293,28 +2294,28 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				SingularAttribute singAttrib = eType.getSingularAttribute("street");
 				if (singAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + singAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + singAttrib.getName());
 					String name = singAttrib.getName();
 					if (name.equals("street")) {
-						TestUtil.logTrace("Received expected result:" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result:" + name);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: street, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: street, actual:" + name);
 					}
 				} else {
-					TestUtil.logErr("getSingularAttribute(...) returned null");
+					logger.log(Logger.Level.ERROR, "getSingularAttribute(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -2339,24 +2340,24 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				try {
 					eType.getSingularAttribute("doesnotexist");
-					TestUtil.logErr("Did not receive expected IllegalArgumentException");
+					logger.log(Logger.Level.ERROR, "Did not receive expected IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					TestUtil.logTrace("Received expected IllegalArgumentException");
+					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 					pass = true;
 				} catch (Exception ex) {
-					TestUtil.logErr("Received unexpected exception:", ex);
+					logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -2390,10 +2391,10 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
-				TestUtil.logTrace("Obtained Non-null Entity Address");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Entity Address");
 				Set set = eType.getSingularAttributes();
 				if (set != null) {
 					if (set.size() > 0) {
@@ -2406,33 +2407,33 @@ public class ClientIT extends PMClientBase {
 						if (expected.containsAll(actual) && actual.containsAll(expected)
 								&& expected.size() == actual.size()) {
 
-							TestUtil.logTrace("Received expected attributes");
+							logger.log(Logger.Level.TRACE, "Received expected attributes");
 							for (String attribName : expected) {
-								TestUtil.logTrace("attrib:" + attribName);
+								logger.log(Logger.Level.TRACE, "attrib:" + attribName);
 							}
 							pass = true;
 						} else {
-							TestUtil.logErr("Received Unexpected attributes");
-							TestUtil.logErr("Expected(" + expected.size() + "):");
+							logger.log(Logger.Level.ERROR, "Received Unexpected attributes");
+							logger.log(Logger.Level.ERROR, "Expected(" + expected.size() + "):");
 							for (String attribName : expected) {
-								TestUtil.logErr("attrib:" + attribName);
+								logger.log(Logger.Level.ERROR, "attrib:" + attribName);
 							}
-							TestUtil.logErr("Actual(" + actual.size() + "):");
+							logger.log(Logger.Level.ERROR, "Actual(" + actual.size() + "):");
 							for (String attribName : actual) {
-								TestUtil.logErr("attrib:" + attribName);
+								logger.log(Logger.Level.ERROR, "attrib:" + attribName);
 							}
 						}
 					} else {
-						TestUtil.logErr("getSingularAttributes() returned 0 results");
+						logger.log(Logger.Level.ERROR, "getSingularAttributes() returned 0 results");
 					}
 				} else {
-					TestUtil.logErr("getSingularAttributes(...) returned null");
+					logger.log(Logger.Level.ERROR, "getSingularAttributes(...) returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -2467,7 +2468,7 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			EmbeddableType<Address> eType = metaModel.embeddable(Address.class);
 			if (eType != null) {
 				Set set = eType.getDeclaredPluralAttributes();
@@ -2482,33 +2483,33 @@ public class ClientIT extends PMClientBase {
 						if (expected.containsAll(actual) && actual.containsAll(expected)
 								&& expected.size() == actual.size()) {
 
-							TestUtil.logTrace("Received expected attributes");
+							logger.log(Logger.Level.TRACE, "Received expected attributes");
 							for (String attribName : expected) {
-								TestUtil.logTrace("attrib:" + attribName);
+								logger.log(Logger.Level.TRACE, "attrib:" + attribName);
 							}
 							pass = true;
 						} else {
-							TestUtil.logErr("Received Unexpected attributes");
-							TestUtil.logErr("Expected(" + expected.size() + "):");
+							logger.log(Logger.Level.ERROR, "Received Unexpected attributes");
+							logger.log(Logger.Level.ERROR, "Expected(" + expected.size() + "):");
 							for (String attribName : expected) {
-								TestUtil.logErr("attrib:" + attribName);
+								logger.log(Logger.Level.ERROR, "attrib:" + attribName);
 							}
-							TestUtil.logErr("Actual(" + actual.size() + "):");
+							logger.log(Logger.Level.ERROR, "Actual(" + actual.size() + "):");
 							for (String attribName : actual) {
-								TestUtil.logErr("attrib:" + attribName);
+								logger.log(Logger.Level.ERROR, "attrib:" + attribName);
 							}
 						}
 					} else {
-						TestUtil.logErr("getPluralAttributes() returned 0 results");
+						logger.log(Logger.Level.ERROR, "getPluralAttributes() returned 0 results");
 					}
 				} else {
-					TestUtil.logErr("getPluralAttributes() returned null");
+					logger.log(Logger.Level.ERROR, "getPluralAttributes() returned null");
 				}
 			} else {
-				TestUtil.logErr("entity(...) returned null");
+				logger.log(Logger.Level.ERROR, "entity(...) returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 
 		getEntityTransaction().commit();
@@ -2520,14 +2521,14 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("Cleanup data");
+		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}

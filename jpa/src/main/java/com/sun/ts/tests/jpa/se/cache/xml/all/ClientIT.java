@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.se.cache.xml.all;
 
+import java.lang.System.Logger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,7 +28,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.DriverManagerConnection;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -38,8 +38,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	Properties jpaprops = null;
 
@@ -62,14 +63,14 @@ public class ClientIT extends PMClientBase {
 	 */
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			// displayMap(p);
 			super.setup();
 			removeTestData();
 			jpaprops = null;
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -96,7 +97,7 @@ public class ClientIT extends PMClientBase {
 
 				Order order = new Order(1, 101);
 				em2.persist(order);
-				TestUtil.logTrace("persisted order " + order);
+				logger.log(Logger.Level.TRACE, "persisted order " + order);
 
 				em2.flush();
 				et.commit();
@@ -107,19 +108,21 @@ public class ClientIT extends PMClientBase {
 				if (cache != null) {
 					boolean b = cache.contains(Order.class, 1);
 					if (b) {
-						TestUtil.logTrace("Cache returned: " + b + ", therefore cache contains order " + order);
+						logger.log(Logger.Level.TRACE,
+								"Cache returned: " + b + ", therefore cache contains order " + order);
 						pass = true;
 					} else {
-						TestUtil.logErr("Cache returned: " + b + ", therefore cache does not contain order " + order);
+						logger.log(Logger.Level.ERROR,
+								"Cache returned: " + b + ", therefore cache does not contain order " + order);
 					}
 				} else {
-					TestUtil.logErr("Cache returned was null");
+					logger.log(Logger.Level.ERROR, "Cache returned was null");
 				}
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 		} else {
-			TestUtil.logMsg("Cache not supported, bypassing test");
+			logger.log(Logger.Level.INFO, "Cache not supported, bypassing test");
 			pass = true;
 		}
 		if (!pass) {
@@ -144,59 +147,64 @@ public class ClientIT extends PMClientBase {
 		pass1 = pass2 = pass3 = false;
 		if (cachingSupported) {
 			try {
-				TestUtil.logTrace("Persist an order");
+				logger.log(Logger.Level.TRACE, "Persist an order");
 				getEntityTransaction().begin();
 				getEntityManager().setProperty("jakarta.persistence.cache.storeMode", CacheStoreMode.BYPASS);
 				Order order = new Order(1, 101);
 				getEntityManager().persist(order);
-				TestUtil.logTrace("persisted order " + order);
+				logger.log(Logger.Level.TRACE, "persisted order " + order);
 
 				getEntityManager().flush();
 				getEntityTransaction().commit();
-				TestUtil.logTrace("Verify the order persisted successfully, but it is not in the cache");
+				logger.log(Logger.Level.TRACE, "Verify the order persisted successfully, but it is not in the cache");
 				cache = getEntityManagerFactory().getCache();
 
 				if (cache != null) {
 					boolean b = cache.contains(Order.class, 1);
 					if (!b) {
-						TestUtil.logTrace("Cache returned: " + b + ", therefore cache does not contain order " + order);
+						logger.log(Logger.Level.TRACE,
+								"Cache returned: " + b + ", therefore cache does not contain order " + order);
 						pass1 = true;
 					} else {
-						TestUtil.logErr("Cache returned: " + b + ", therefore cache does contain order " + order);
+						logger.log(Logger.Level.ERROR,
+								"Cache returned: " + b + ", therefore cache does contain order " + order);
 					}
 				} else {
-					TestUtil.logErr("Cache returned was null");
+					logger.log(Logger.Level.ERROR, "Cache returned was null");
 				}
 
 				int[] result = selectDataVIAJDBC(this.jpaprops, 1);
 				Order order2 = new Order(result[0], result[1]);
 				if (order.equals(order2)) {
-					TestUtil.logTrace("Entity was persisted correctly");
+					logger.log(Logger.Level.TRACE, "Entity was persisted correctly");
 					pass2 = true;
 				} else {
-					TestUtil.logErr("Entity was not persisted correctly - expected:" + order + ", actual:" + order2);
+					logger.log(Logger.Level.ERROR,
+							"Entity was not persisted correctly - expected:" + order + ", actual:" + order2);
 				}
 
-				TestUtil.logTrace("Find the order and verify it is not loaded into the cache");
+				logger.log(Logger.Level.TRACE, "Find the order and verify it is not loaded into the cache");
 
 				getEntityManager().find(Order.class, 1);
 				cache = getEntityManagerFactory().getCache();
 				if (cache != null) {
 					boolean b = cache.contains(Order.class, 1);
 					if (!b) {
-						TestUtil.logTrace("Cache returned: " + b + ", therefore cache does not contain order " + order);
+						logger.log(Logger.Level.TRACE,
+								"Cache returned: " + b + ", therefore cache does not contain order " + order);
 						pass3 = true;
 					} else {
-						TestUtil.logErr("Cache returned: " + b + ", therefore cache does contain order " + order);
+						logger.log(Logger.Level.ERROR,
+								"Cache returned: " + b + ", therefore cache does contain order " + order);
 					}
 				} else {
-					TestUtil.logErr("Cache returned was null");
+					logger.log(Logger.Level.ERROR, "Cache returned was null");
 				}
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 		} else {
-			TestUtil.logMsg("Cache not supported, bypassing test");
+			logger.log(Logger.Level.INFO, "Cache not supported, bypassing test");
 			pass1 = pass2 = pass3 = true;
 		}
 		if (!pass1 || !pass2 || !pass3) {
@@ -222,59 +230,64 @@ public class ClientIT extends PMClientBase {
 		if (cachingSupported) {
 			try {
 
-				TestUtil.logTrace("Persist an order");
+				logger.log(Logger.Level.TRACE, "Persist an order");
 				getEntityTransaction().begin();
 				getEntityManager().setProperty("jakarta.persistence.cache.storeMode", CacheStoreMode.USE);
 				Order order = new Order(1, 101);
 				getEntityManager().persist(order);
-				TestUtil.logTrace("persisted order " + order);
+				logger.log(Logger.Level.TRACE, "persisted order " + order);
 
 				getEntityManager().flush();
 				getEntityTransaction().commit();
-				TestUtil.logTrace("Verify the order persisted successfully, and it is in the cache");
+				logger.log(Logger.Level.TRACE, "Verify the order persisted successfully, and it is in the cache");
 				cache = getEntityManagerFactory().getCache();
 
 				if (cache != null) {
 					boolean b = cache.contains(Order.class, 1);
 					if (b) {
-						TestUtil.logTrace("Cache returned: " + b + ", therefore cache does contain order " + order);
+						logger.log(Logger.Level.TRACE,
+								"Cache returned: " + b + ", therefore cache does contain order " + order);
 						pass1 = true;
 					} else {
-						TestUtil.logErr("Cache returned: " + b + ", therefore cache does not contain order " + order);
+						logger.log(Logger.Level.ERROR,
+								"Cache returned: " + b + ", therefore cache does not contain order " + order);
 					}
 				} else {
-					TestUtil.logErr("Cache returned was null");
+					logger.log(Logger.Level.ERROR, "Cache returned was null");
 				}
 
 				int[] result = selectDataVIAJDBC(this.jpaprops, 1);
 				Order order2 = new Order(result[0], result[1]);
 				if (order.equals(order2)) {
-					TestUtil.logTrace("Entity was persisted correctly");
+					logger.log(Logger.Level.TRACE, "Entity was persisted correctly");
 					pass2 = true;
 				} else {
-					TestUtil.logErr("Entity was not persisted correctly - expected:" + order + ", actual:" + order2);
+					logger.log(Logger.Level.ERROR,
+							"Entity was not persisted correctly - expected:" + order + ", actual:" + order2);
 				}
 
-				TestUtil.logTrace("Find the order and verify it is loaded into the cache");
+				logger.log(Logger.Level.TRACE, "Find the order and verify it is loaded into the cache");
 
 				getEntityManager().find(Order.class, 1);
 				cache = getEntityManagerFactory().getCache();
 				if (cache != null) {
 					boolean b = cache.contains(Order.class, 1);
 					if (b) {
-						TestUtil.logTrace("Cache returned: " + b + ", therefore cache does contain order " + order);
+						logger.log(Logger.Level.TRACE,
+								"Cache returned: " + b + ", therefore cache does contain order " + order);
 						pass3 = true;
 					} else {
-						TestUtil.logErr("Cache returned: " + b + ", therefore cache does not contain order " + order);
+						logger.log(Logger.Level.ERROR,
+								"Cache returned: " + b + ", therefore cache does not contain order " + order);
 					}
 				} else {
-					TestUtil.logErr("Cache returned was null");
+					logger.log(Logger.Level.ERROR, "Cache returned was null");
 				}
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 		} else {
-			TestUtil.logMsg("Cache not supported, bypassing test");
+			logger.log(Logger.Level.INFO, "Cache not supported, bypassing test");
 			pass1 = pass2 = pass3 = true;
 		}
 		if (!pass1 || !pass2 || !pass3) {
@@ -300,59 +313,64 @@ public class ClientIT extends PMClientBase {
 		if (cachingSupported) {
 			try {
 
-				TestUtil.logTrace("Persist an order");
+				logger.log(Logger.Level.TRACE, "Persist an order");
 				getEntityTransaction().begin();
 				getEntityManager().setProperty("jakarta.persistence.cache.storeMode", CacheStoreMode.REFRESH);
 				Order order = new Order(1, 101);
 				getEntityManager().persist(order);
-				TestUtil.logTrace("persisted order " + order);
+				logger.log(Logger.Level.TRACE, "persisted order " + order);
 
 				getEntityManager().flush();
 				getEntityTransaction().commit();
-				TestUtil.logTrace("Verify the order persisted successfully, and it is in the cache");
+				logger.log(Logger.Level.TRACE, "Verify the order persisted successfully, and it is in the cache");
 				cache = getEntityManagerFactory().getCache();
 
 				if (cache != null) {
 					boolean b = cache.contains(Order.class, 1);
 					if (b) {
-						TestUtil.logTrace("Cache returned: " + b + ", therefore cache does contain order " + order);
+						logger.log(Logger.Level.TRACE,
+								"Cache returned: " + b + ", therefore cache does contain order " + order);
 						pass1 = true;
 					} else {
-						TestUtil.logErr("Cache returned: " + b + ", therefore cache does not contain order " + order);
+						logger.log(Logger.Level.ERROR,
+								"Cache returned: " + b + ", therefore cache does not contain order " + order);
 					}
 				} else {
-					TestUtil.logErr("Cache returned was null");
+					logger.log(Logger.Level.ERROR, "Cache returned was null");
 				}
 
 				int[] result = selectDataVIAJDBC(this.jpaprops, 1);
 				Order order2 = new Order(result[0], result[1]);
 				if (order.equals(order2)) {
-					TestUtil.logTrace("Entity was persisted correctly");
+					logger.log(Logger.Level.TRACE, "Entity was persisted correctly");
 					pass2 = true;
 				} else {
-					TestUtil.logErr("Entity was not persisted correctly - expected:" + order + ", actual:" + order2);
+					logger.log(Logger.Level.ERROR,
+							"Entity was not persisted correctly - expected:" + order + ", actual:" + order2);
 				}
 
-				TestUtil.logTrace("Find the order and verify it is loaded into the cache");
+				logger.log(Logger.Level.TRACE, "Find the order and verify it is loaded into the cache");
 
 				getEntityManager().find(Order.class, 1);
 				cache = getEntityManagerFactory().getCache();
 				if (cache != null) {
 					boolean b = cache.contains(Order.class, 1);
 					if (b) {
-						TestUtil.logTrace("Cache returned: " + b + ", therefore cache does contain order " + order);
+						logger.log(Logger.Level.TRACE,
+								"Cache returned: " + b + ", therefore cache does contain order " + order);
 						pass3 = true;
 					} else {
-						TestUtil.logErr("Cache returned: " + b + ", therefore cache does not contain order " + order);
+						logger.log(Logger.Level.ERROR,
+								"Cache returned: " + b + ", therefore cache does not contain order " + order);
 					}
 				} else {
-					TestUtil.logErr("Cache returned was null");
+					logger.log(Logger.Level.ERROR, "Cache returned was null");
 				}
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 		} else {
-			TestUtil.logMsg("Cache not supported, bypassing test");
+			logger.log(Logger.Level.INFO, "Cache not supported, bypassing test");
 			pass1 = pass2 = pass3 = true;
 		}
 		if (!pass1 || !pass2 || !pass3) {
@@ -378,24 +396,26 @@ public class ClientIT extends PMClientBase {
 		if (cachingSupported) {
 			try {
 
-				TestUtil.logTrace("Persist an order");
+				logger.log(Logger.Level.TRACE, "Persist an order");
 				createDataVIAJDBC(this.jpaprops);
 
-				TestUtil.logTrace("Verify order is not in Cache before executing find");
+				logger.log(Logger.Level.TRACE, "Verify order is not in Cache before executing find");
 				cache = getEntityManagerFactory().getCache();
 				if (cache != null) {
 					boolean b = cache.contains(Order.class, 1);
 					if (!b) {
-						TestUtil.logTrace("Cache returned: " + b + ", therefore cache does not contain order ");
+						logger.log(Logger.Level.TRACE,
+								"Cache returned: " + b + ", therefore cache does not contain order ");
 						pass1 = true;
 					} else {
-						TestUtil.logErr("Cache returned: " + b + ", therefore cache does contain order ");
+						logger.log(Logger.Level.ERROR,
+								"Cache returned: " + b + ", therefore cache does contain order ");
 					}
 				} else {
-					TestUtil.logErr("Cache returned was null");
+					logger.log(Logger.Level.ERROR, "Cache returned was null");
 				}
 
-				TestUtil.logTrace("Find the order and verify it is not loaded into the cache");
+				logger.log(Logger.Level.TRACE, "Find the order and verify it is not loaded into the cache");
 				getEntityManager().setProperty("jakarta.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
 				getEntityManager().setProperty("jakarta.persistence.cache.storeMode", CacheStoreMode.BYPASS);
 
@@ -405,19 +425,21 @@ public class ClientIT extends PMClientBase {
 				if (cache != null) {
 					boolean b = cache.contains(Order.class, 1);
 					if (!b) {
-						TestUtil.logTrace("Cache returned: " + b + ", therefore cache does not contain order " + order);
+						logger.log(Logger.Level.TRACE,
+								"Cache returned: " + b + ", therefore cache does not contain order " + order);
 						pass2 = true;
 					} else {
-						TestUtil.logErr("Cache returned: " + b + ", therefore cache does contain order " + order);
+						logger.log(Logger.Level.ERROR,
+								"Cache returned: " + b + ", therefore cache does contain order " + order);
 					}
 				} else {
-					TestUtil.logErr("Cache returned was null");
+					logger.log(Logger.Level.ERROR, "Cache returned was null");
 				}
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 		} else {
-			TestUtil.logMsg("Cache not supported, bypassing test");
+			logger.log(Logger.Level.INFO, "Cache not supported, bypassing test");
 			pass1 = pass2 = true;
 		}
 		if (!pass1 || !pass2) {
@@ -443,24 +465,26 @@ public class ClientIT extends PMClientBase {
 		if (cachingSupported) {
 			try {
 
-				TestUtil.logTrace("Persist an order");
+				logger.log(Logger.Level.TRACE, "Persist an order");
 				createDataVIAJDBC(this.jpaprops);
 
-				TestUtil.logTrace("Verify order is not in Cache before executing find");
+				logger.log(Logger.Level.TRACE, "Verify order is not in Cache before executing find");
 				cache = getEntityManagerFactory().getCache();
 				if (cache != null) {
 					boolean b = cache.contains(Order.class, 1);
 					if (!b) {
-						TestUtil.logTrace("Cache returned: " + b + ", therefore cache does not contain order ");
+						logger.log(Logger.Level.TRACE,
+								"Cache returned: " + b + ", therefore cache does not contain order ");
 						pass1 = true;
 					} else {
-						TestUtil.logErr("Cache returned: " + b + ", therefore cache does contain order ");
+						logger.log(Logger.Level.ERROR,
+								"Cache returned: " + b + ", therefore cache does contain order ");
 					}
 				} else {
-					TestUtil.logErr("Cache returned was null");
+					logger.log(Logger.Level.ERROR, "Cache returned was null");
 				}
 
-				TestUtil.logTrace("Find the order and verify it is not loaded into the cache");
+				logger.log(Logger.Level.TRACE, "Find the order and verify it is not loaded into the cache");
 				getEntityManager().setProperty("jakarta.persistence.cache.retrieveMode", CacheRetrieveMode.USE);
 				getEntityManager().setProperty("jakarta.persistence.cache.storeMode", CacheStoreMode.BYPASS);
 				Order order = getEntityManager().find(Order.class, 1);
@@ -469,19 +493,21 @@ public class ClientIT extends PMClientBase {
 				if (cache != null) {
 					boolean b = cache.contains(Order.class, 1);
 					if (!b) {
-						TestUtil.logTrace("Cache returned: " + b + ", therefore cache does not contain order " + order);
+						logger.log(Logger.Level.TRACE,
+								"Cache returned: " + b + ", therefore cache does not contain order " + order);
 						pass2 = true;
 					} else {
-						TestUtil.logErr("Cache returned: " + b + ", therefore cache does contain order " + order);
+						logger.log(Logger.Level.ERROR,
+								"Cache returned: " + b + ", therefore cache does contain order " + order);
 					}
 				} else {
-					TestUtil.logErr("Cache returned was null");
+					logger.log(Logger.Level.ERROR, "Cache returned was null");
 				}
 			} catch (Exception e) {
-				TestUtil.logErr("Unexpected exception occurred", e);
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			}
 		} else {
-			TestUtil.logMsg("Cache not supported, bypassing test");
+			logger.log(Logger.Level.INFO, "Cache not supported, bypassing test");
 			pass1 = pass2 = true;
 		}
 		if (!pass1 || !pass2) {
@@ -499,16 +525,18 @@ public class ClientIT extends PMClientBase {
 	 * public void findOverridesWithBYPASSTest() throws Exception { Cache cache;
 	 * boolean pass1, pass2; pass1 = pass2 = false; if (cachingSupported) { try {
 	 * 
-	 * TestUtil.logTrace("Persist an order"); createDataVIAJDBC(this.props);
+	 * logger.log(Logger.Level.TRACE,"Persist an order");
+	 * createDataVIAJDBC(this.props);
 	 * 
-	 * TestUtil.logTrace("Verify order is not in Cache before executing find");
-	 * cache = getEntityManagerFactory().getCache(); if (cache != null) { boolean b
-	 * = cache.contains(Order.class, 1); if (!b) {
-	 * TestUtil.logTrace("Cache returned: " + b +
+	 * logger.log(Logger.Level.
+	 * TRACE,"Verify order is not in Cache before executing find"); cache =
+	 * getEntityManagerFactory().getCache(); if (cache != null) { boolean b =
+	 * cache.contains(Order.class, 1); if (!b) {
+	 * logger.log(Logger.Level.TRACE,"Cache returned: " + b +
 	 * ", therefore cache does not contain order "); pass1 = true; } else {
-	 * TestUtil.logErr("Cache returned: " + b +
+	 * logger.log(Logger.Level.ERROR,"Cache returned: " + b +
 	 * ", therefore cache does contain order "); } } else {
-	 * TestUtil.logErr("Cache returned was null"); }
+	 * logger.log(Logger.Level.ERROR,"Cache returned was null"); }
 	 * getEntityManager().setProperty("jakarta.persistence.cache.retrieveMode",
 	 * CacheRetrieveMode.USE);
 	 * getEntityManager().setProperty("jakarta.persistence.cache.storeMode",
@@ -518,14 +546,15 @@ public class ClientIT extends PMClientBase {
 	 * getEntityManagerFactory().getCache();
 	 * 
 	 * if (cache != null) { boolean b = cache.contains(Order.class, 1); if (!b) {
-	 * TestUtil.logTrace("Cache returned: " + b +
+	 * logger.log(Logger.Level.TRACE,"Cache returned: " + b +
 	 * ", therefore cache does not contain order " + order); pass2 = true; } else {
-	 * TestUtil.logErr("Cache returned: " + b +
+	 * logger.log(Logger.Level.ERROR,"Cache returned: " + b +
 	 * ", therefore cache does contain order " + order); } } else {
-	 * TestUtil.logErr("Cache returned was null"); } } catch (Exception e) {
-	 * TestUtil.logErr("Unexpected exception occurred", e); } } else {
-	 * TestUtil.logMsg("Cache not supported, bypassing test"); pass1 = pass2 = true;
-	 * } if (!pass1 || !pass2) { throw new
+	 * logger.log(Logger.Level.ERROR,"Cache returned was null"); } } catch
+	 * (Exception e) {
+	 * logger.log(Logger.Level.ERROR,"Unexpected exception occurred", e); } } else {
+	 * logger.log(Logger.Level.INFO,"Cache not supported, bypassing test"); pass1 =
+	 * pass2 = true; } if (!pass1 || !pass2) { throw new
 	 * Fault("findOverridesWithBYPASSTest failed"); }
 	 * 
 	 * }
@@ -539,10 +568,10 @@ public class ClientIT extends PMClientBase {
 			DriverManagerConnection dmCon = new DriverManagerConnection();
 			conn = dmCon.getConnection(p);
 			String selectString = p.getProperty("Select_Jpa_Purchase_Order", "");
-			TestUtil.logTrace("ASDF:" + selectString);
+			logger.log(Logger.Level.TRACE, "ASDF:" + selectString);
 			PreparedStatement pStmt = conn.prepareStatement(selectString);
 			pStmt.setInt(1, id);
-			TestUtil.logTrace("SQL to be executed:" + pStmt.toString());
+			logger.log(Logger.Level.TRACE, "SQL to be executed:" + pStmt.toString());
 			ResultSet rs = pStmt.executeQuery();
 			if (rs.next()) {
 				params[0] = rs.getInt(1);
@@ -551,11 +580,11 @@ public class ClientIT extends PMClientBase {
 				throw new SQLException("Data not found");
 			}
 		} catch (SQLException sqlex) {
-			TestUtil.logErr("Received SQLException", sqlex);
+			logger.log(Logger.Level.ERROR, "Received SQLException", sqlex);
 		} catch (ClassNotFoundException cnfe) {
-			TestUtil.logErr("Received ClassNotFoundException", cnfe);
+			logger.log(Logger.Level.ERROR, "Received ClassNotFoundException", cnfe);
 		} catch (Exception ex) {
-			TestUtil.logErr("Received Exception", ex);
+			logger.log(Logger.Level.ERROR, "Received Exception", ex);
 		} finally {
 			try {
 				conn.close();
@@ -577,15 +606,15 @@ public class ClientIT extends PMClientBase {
 			PreparedStatement pStmt = conn.prepareStatement(insertString);
 			pStmt.setInt(1, 1);
 			pStmt.setInt(2, 101);
-			TestUtil.logTrace("SQL to be executed:" + pStmt.toString());
+			logger.log(Logger.Level.TRACE, "SQL to be executed:" + pStmt.toString());
 			int rows = pStmt.executeUpdate();
-			TestUtil.logTrace("Row inserted:" + rows);
+			logger.log(Logger.Level.TRACE, "Row inserted:" + rows);
 		} catch (SQLException sqlex) {
-			TestUtil.logErr("Received SQLException", sqlex);
+			logger.log(Logger.Level.ERROR, "Received SQLException", sqlex);
 		} catch (ClassNotFoundException cnfe) {
-			TestUtil.logErr("Received ClassNotFoundException", cnfe);
+			logger.log(Logger.Level.ERROR, "Received ClassNotFoundException", cnfe);
 		} catch (Exception ex) {
-			TestUtil.logErr("Received Exception", ex);
+			logger.log(Logger.Level.ERROR, "Received Exception", ex);
 		} finally {
 			try {
 				conn.close();
@@ -596,15 +625,15 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 		removeDeploymentJar();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -613,14 +642,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

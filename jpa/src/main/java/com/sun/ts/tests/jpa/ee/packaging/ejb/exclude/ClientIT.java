@@ -20,17 +20,18 @@
 
 package com.sun.ts.tests.jpa.ee.packaging.ejb.exclude;
 
+import java.lang.System.Logger;
 import java.util.Properties;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.ejb.EJB;
 
 public class ClientIT {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	@EJB(beanName = "Stateful3Bean")
 	private static Stateful3IF bean;
@@ -98,7 +99,7 @@ public class ClientIT {
 			pass = bean.test1();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception :", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
 		}
 
 		if (!pass)
@@ -133,7 +134,7 @@ public class ClientIT {
 			bean.init(props);
 			pass = bean.test2();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception :", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
 		}
 
 		if (!pass)
@@ -145,9 +146,9 @@ public class ClientIT {
 		try {
 			bean.removeTestData();
 		} catch (Exception re) {
-			TestUtil.logErr("Unexpected Exception in entity cleanup:", re);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception in entity cleanup:", re);
 		}
-		TestUtil.logTrace("cleanup complete");
+		logger.log(Logger.Level.TRACE, "cleanup complete");
 	}
 
 }

@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.query.apitests;
 
+import java.lang.System.Logger;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -43,8 +44,8 @@ import jakarta.persistence.TemporalType;
 import jakarta.persistence.TransactionRequiredException;
 import jakarta.persistence.TypedQuery;
 
-
 public class Client1IT extends PMClientBase {
+	private static final Logger logger = (Logger) System.getLogger(Client1IT.class.getName());
 
 	private final Employee empRef[] = new Employee[21];
 
@@ -71,14 +72,14 @@ public class Client1IT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			removeTestData();
 			createTestData();
-			TestUtil.logTrace("Done creating test data");
+			logger.log(Logger.Level.TRACE, "Done creating test data");
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception caught in Setup: ", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception caught in Setup: ", e);
 			throw new Exception("Setup failed:", e);
 
 		}
@@ -121,20 +122,20 @@ public class Client1IT extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 
 			Query query = getEntityManager().createQuery(
 					"select d.id, e.id from Department d join d.employees e where d.id <= 5 " + " order by d.id, e.id");
 			int gfr = query.getFirstResult();
 			if (gfr != 0) {
-				TestUtil.logErr("getFirstResult() - Expecting result=0, actual=" + gfr);
+				logger.log(Logger.Level.ERROR, "getFirstResult() - Expecting result=0, actual=" + gfr);
 			} else {
 				pass1 = true;
 			}
 			query.setFirstResult(13);
 			gfr = query.getFirstResult();
 			if (gfr != 13) {
-				TestUtil.logErr("getFirstResult() - Expecting result=11, actual=" + gfr);
+				logger.log(Logger.Level.ERROR, "getFirstResult() - Expecting result=11, actual=" + gfr);
 			} else {
 				pass2 = true;
 			}
@@ -142,15 +143,15 @@ public class Client1IT extends PMClientBase {
 			q = query.getResultList();
 
 			if (TestUtil.traceflag) {
-				TestUtil.logTrace("query returned " + q.size() + " results.");
+				logger.log(Logger.Level.TRACE, "query returned " + q.size() + " results.");
 				int i = 0;
 				for (Object obj : q) {
-					TestUtil.logTrace((i++) + "=" + Arrays.asList((Object[]) obj));
+					logger.log(Logger.Level.TRACE, (i++) + "=" + Arrays.asList((Object[]) obj));
 				}
 
 			}
 			if (q.size() == 8) {
-				TestUtil.logTrace("Expected size received, verify contents . . . ");
+				logger.log(Logger.Level.TRACE, "Expected size received, verify contents . . . ");
 				// each element of the list q should be a size-2 array,
 				// for instance [4,5]
 				int i = 0;
@@ -160,50 +161,51 @@ public class Client1IT extends PMClientBase {
 					Object[] expected = expectedResultSet[i++];
 					Object[] departmentIdEmpId = null;
 					if (obj instanceof Object[]) {
-						TestUtil.logTrace("The element in the result list is of type Object[], continue . . .");
+						logger.log(Logger.Level.TRACE,
+								"The element in the result list is of type Object[], continue . . .");
 						// good, this element of type Object[]
 						departmentIdEmpId = (Object[]) obj;
 						if (!Arrays.equals(expected, departmentIdEmpId)) {
-							TestUtil.logErr("Expecting element value: " + Arrays.asList(expected)
+							logger.log(Logger.Level.ERROR, "Expecting element value: " + Arrays.asList(expected)
 									+ ", actual element value: " + Arrays.asList(departmentIdEmpId));
 							pass4 = false;
 							break;
 						}
 					} else {
-						TestUtil.logErr("The element in the result list is not of type Object[]:" + obj);
+						logger.log(Logger.Level.ERROR, "The element in the result list is not of type Object[]:" + obj);
 						pass4 = false;
 						break;
 					}
 				}
 			} else {
-				TestUtil.logErr("Did not get expected results.  Expected: 10, " + "got: " + q.size());
-				TestUtil.logErr("Expected results:");
+				logger.log(Logger.Level.ERROR, "Did not get expected results.  Expected: 10, " + "got: " + q.size());
+				logger.log(Logger.Level.ERROR, "Expected results:");
 				int i = 0;
 				for (Object obj[] : expectedResultSet) {
-					TestUtil.logErr((i++) + "=" + Arrays.toString(obj));
+					logger.log(Logger.Level.ERROR, (i++) + "=" + Arrays.toString(obj));
 				}
 
-				TestUtil.logErr("Actual results:");
+				logger.log(Logger.Level.ERROR, "Actual results:");
 				i = 0;
 				for (Object obj : q) {
-					TestUtil.logErr((i++) + "=" + Arrays.asList((Object[]) obj));
+					logger.log(Logger.Level.ERROR, (i++) + "=" + Arrays.asList((Object[]) obj));
 				}
 
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			getEntityTransaction().begin();
@@ -212,14 +214,14 @@ public class Client1IT extends PMClientBase {
 					.createQuery("select e.id from Employee e where e.id <= 10 order by e.id", Integer.class);
 			int gfr = query.getFirstResult();
 			if (gfr != 0) {
-				TestUtil.logErr("getFirstResult() - Expecting result=0, actual=" + gfr);
+				logger.log(Logger.Level.ERROR, "getFirstResult() - Expecting result=0, actual=" + gfr);
 			} else {
 				pass11 = true;
 			}
 			query.setFirstResult(5);
 			gfr = query.getFirstResult();
 			if (gfr != 5) {
-				TestUtil.logErr("getFirstResult() - Expecting result=5, actual=" + gfr);
+				logger.log(Logger.Level.ERROR, "getFirstResult() - Expecting result=5, actual=" + gfr);
 			} else {
 				pass12 = true;
 			}
@@ -233,16 +235,16 @@ public class Client1IT extends PMClientBase {
 			expected[4] = "10";
 
 			if (!checkEntityPK(actual, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass13 = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
 			pass14 = false;
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -250,7 +252,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -277,30 +279,30 @@ public class Client1IT extends PMClientBase {
 		boolean pass2 = false;
 
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 
 			Query query = getEntityManager().createQuery("select e.id from Employee e where e.id <= 10 order by e.id");
 			query.setFirstResult(-5);
-			TestUtil.logErr("IllegalArgumentException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 
 			TypedQuery<Integer> query = getEntityManager()
 					.createQuery("select e.id from Employee e where e.id <= 10 order by e.id", Integer.class);
 			query.setFirstResult(-5);
-			TestUtil.logErr("IllegalArgumentException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass1 || !pass2) {
@@ -323,7 +325,7 @@ public class Client1IT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 
 			Query q = getEntityManager().createQuery("select e from Employee e where e.firstName = :fName")
 					.setParameter("fName", "Stephen");
@@ -331,17 +333,17 @@ public class Client1IT extends PMClientBase {
 			Parameter p = q.getParameter("fName", String.class);
 			String s = p.getName();
 			if (!s.equals("fName")) {
-				TestUtil.logErr("getName() - Expected:fName, actual:" + s);
+				logger.log(Logger.Level.ERROR, "getName() - Expected:fName, actual:" + s);
 			} else {
 				pass1 = true;
 			}
 		} catch (IllegalStateException ise) {
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			TypedQuery<Employee> q = getEntityManager()
@@ -352,14 +354,14 @@ public class Client1IT extends PMClientBase {
 			String s = p.getName();
 			if (!s.equals("fName")) {
 
-				TestUtil.logErr("getName() - Expected:fName, actual:" + s);
+				logger.log(Logger.Level.ERROR, "getName() - Expected:fName, actual:" + s);
 			} else {
 				pass2 = true;
 			}
 		} catch (IllegalStateException ise) {
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 
@@ -384,30 +386,30 @@ public class Client1IT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			Query q = getEntityManager().createQuery("select e from Employee e where e.firstName = :fName");
 
 			q.getParameter("doesnotexist", String.class);
-			TestUtil.logErr("IllegalArgumentException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			TypedQuery<Employee> q = getEntityManager()
 					.createQuery("select e from Employee e where e.firstName = :fName", Employee.class);
 
 			q.getParameter("doesnotexist", String.class);
-			TestUtil.logErr("IllegalArgumentException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass1 || !pass2) {
@@ -430,30 +432,30 @@ public class Client1IT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			Query q = getEntityManager().createQuery("select e from Employee e where e.firstName = :fName");
 
 			q.getParameter("doesnotexist");
-			TestUtil.logErr("IllegalArgumentException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			TypedQuery<Employee> q = getEntityManager()
 					.createQuery("select e from Employee e where e.firstName = :fName", Employee.class);
 
 			q.getParameter("doesnotexist");
-			TestUtil.logErr("IllegalArgumentException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass1 || !pass2) {
 			throw new Exception("getParameterIllegalArgumentException2Test failed");
@@ -478,14 +480,14 @@ public class Client1IT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			Query q = getEntityManager().createQuery("select e from Employee e where e.firstName = ?1").setParameter(1,
 					"Stephen");
 
 			Parameter p = q.getParameter(1, String.class);
 			String s = p.getName();
 			if (s != null) {
-				TestUtil.logErr("getName() - Expected:null, actual:" + s);
+				logger.log(Logger.Level.ERROR, "getName() - Expected:null, actual:" + s);
 			} else {
 				pass1 = true;
 			}
@@ -493,11 +495,11 @@ public class Client1IT extends PMClientBase {
 		} catch (IllegalStateException ise) {
 			// implementation does not support this use
 			pass1 = true;
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			TypedQuery<Employee> q = getEntityManager()
@@ -507,7 +509,7 @@ public class Client1IT extends PMClientBase {
 			Parameter p = q.getParameter(1, String.class);
 			String s = p.getName();
 			if (s != null) {
-				TestUtil.logErr("getName() - Expected:null, actual:" + s);
+				logger.log(Logger.Level.ERROR, "getName() - Expected:null, actual:" + s);
 			} else {
 				pass2 = true;
 			}
@@ -515,9 +517,9 @@ public class Client1IT extends PMClientBase {
 		} catch (IllegalStateException ise) {
 			// implementation does not support this use
 			pass2 = true;
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass1 || !pass2) {
 			throw new Exception("getParameterIntClassTest failed");
@@ -540,32 +542,32 @@ public class Client1IT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		try {
-			TestUtil.logTrace("Creating query for getParameterIntIllegalArgumentExceptionTest");
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.TRACE, "Creating query for getParameterIntIllegalArgumentExceptionTest");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			Query query = getEntityManager().createQuery("select e from Employee e where e.firstName = ?1")
 					.setParameter(1, "foo");
 
 			query.getParameter(99);
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			TypedQuery<Employee> query = getEntityManager()
 					.createQuery("select e from Employee e where e.firstName = ?1", Employee.class)
 					.setParameter(1, "foo");
 			query.getParameter(99);
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass1 || !pass2) {
 			throw new Exception("getParameterIntIllegalArgumentExceptionTest failed");
@@ -592,7 +594,7 @@ public class Client1IT extends PMClientBase {
 		String expectedValue = "Stephen";
 
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			Query query = getEntityManager().createQuery("select e from Employee e where e.firstName = :fName")
 					.setParameter(expectedName, expectedValue);
 
@@ -600,19 +602,19 @@ public class Client1IT extends PMClientBase {
 			if (p != null) {
 				String s = (String) query.getParameterValue(p);
 				if (!s.equals(expectedValue)) {
-					TestUtil.logErr("Expected:" + expectedValue + ",Actual=" + s);
+					logger.log(Logger.Level.ERROR, "Expected:" + expectedValue + ",Actual=" + s);
 				} else {
 					pass1 = true;
 				}
 			} else {
-				TestUtil.logErr("getParameter returned null");
+				logger.log(Logger.Level.ERROR, "getParameter returned null");
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			TypedQuery<Employee> query = getEntityManager()
@@ -624,16 +626,16 @@ public class Client1IT extends PMClientBase {
 				String s = (String) query.getParameterValue(p);
 
 				if (!s.equals(expectedValue)) {
-					TestUtil.logErr("Expected:" + expectedValue + ",Actual=" + s);
+					logger.log(Logger.Level.ERROR, "Expected:" + expectedValue + ",Actual=" + s);
 				} else {
 					pass2 = true;
 				}
 			} else {
-				TestUtil.logErr("getParameter returned null");
+				logger.log(Logger.Level.ERROR, "getParameter returned null");
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass1 || !pass2) {
@@ -658,7 +660,7 @@ public class Client1IT extends PMClientBase {
 		boolean pass2 = false;
 
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			Query query1 = getEntityManager().createQuery("select e from Employee e where e.firstName = :fname1")
 					.setParameter("fname1", "fnameValue1");
 			Query query2 = getEntityManager().createQuery("select e from Employee e where e.firstName = :fname2")
@@ -666,14 +668,14 @@ public class Client1IT extends PMClientBase {
 
 			Parameter p = query2.getParameter("fname2");
 			query1.getParameterValue(p);
-			TestUtil.logErr("IllegalArgumentException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			TypedQuery<Employee> query1 = getEntityManager()
@@ -685,12 +687,12 @@ public class Client1IT extends PMClientBase {
 
 			Parameter p = query2.getParameter("fname2");
 			query1.getParameterValue(p);
-			TestUtil.logErr("IllegalArgumentException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass1 || !pass2) {
 			throw new Exception("getParameterValueParameterIllegalArgumentExceptionTest failed");
@@ -715,14 +717,14 @@ public class Client1IT extends PMClientBase {
 		boolean pass3 = false;
 		boolean pass4 = false;
 
-		TestUtil.logMsg("Testing Query version");
+		logger.log(Logger.Level.INFO, "Testing Query version");
 		Query query1 = getEntityManager().createQuery("select e from Employee e where e.firstName = :fName1");
 
 		Set<Parameter<?>> set = query1.getParameters();
 		if (set.size() != 1) {
-			TestUtil.logErr("Expected one parameter, actual=" + set.size());
+			logger.log(Logger.Level.ERROR, "Expected one parameter, actual=" + set.size());
 			for (Parameter p : set) {
-				TestUtil.logErr("Parameter:" + p.toString());
+				logger.log(Logger.Level.ERROR, "Parameter:" + p.toString());
 			}
 		} else {
 			pass1 = true;
@@ -731,23 +733,23 @@ public class Client1IT extends PMClientBase {
 			for (Parameter p : set) {
 				query1.getParameterValue(p);
 			}
-			TestUtil.logErr("IllegalStateException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException was not thrown");
 		} catch (IllegalStateException iae) {
-			TestUtil.logTrace("Received expected IllegalStateException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
 			pass2 = true;
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		TypedQuery<Employee> tquery1 = getEntityManager()
 				.createQuery("select e from Employee e where e.firstName = :fName1", Employee.class);
 		set = tquery1.getParameters();
 		if (set.size() != 1) {
-			TestUtil.logErr("Expected one parameter, actual=" + set.size());
+			logger.log(Logger.Level.ERROR, "Expected one parameter, actual=" + set.size());
 			for (Parameter p : set) {
-				TestUtil.logErr("Parameter:" + p.toString());
+				logger.log(Logger.Level.ERROR, "Parameter:" + p.toString());
 			}
 		} else {
 			pass3 = true;
@@ -756,12 +758,12 @@ public class Client1IT extends PMClientBase {
 			for (Parameter p : set) {
 				tquery1.getParameterValue(p);
 			}
-			TestUtil.logErr("IllegalStateException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException was not thrown");
 		} catch (IllegalStateException iae) {
-			TestUtil.logTrace("Received expected IllegalStateException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
 			pass4 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass1 || !pass2 || !pass3 || !pass4) {
 			throw new Exception("getParameterValueParameterIllegalStateExceptionTest failed");
@@ -787,15 +789,15 @@ public class Client1IT extends PMClientBase {
 		boolean pass3 = false;
 		boolean pass4 = false;
 
-		TestUtil.logMsg("Testing Query version");
+		logger.log(Logger.Level.INFO, "Testing Query version");
 		Query query1 = getEntityManager().createQuery("select e from Employee e where e.firstName = :fName1");
 		Query query2 = getEntityManager().createQuery("select e from Employee e where e.firstName = :fName2");
 
 		Set<Parameter<?>> set = query2.getParameters();
 		if (set.size() != 1) {
-			TestUtil.logErr("Expected one parameter, actual=" + set.size());
+			logger.log(Logger.Level.ERROR, "Expected one parameter, actual=" + set.size());
 			for (Parameter p : set) {
-				TestUtil.logErr("Parameter:" + p.toString());
+				logger.log(Logger.Level.ERROR, "Parameter:" + p.toString());
 			}
 		} else {
 			pass1 = true;
@@ -804,14 +806,14 @@ public class Client1IT extends PMClientBase {
 			for (Parameter p : set) {
 				query1.setParameter(p, "object1");
 			}
-			TestUtil.logErr("IllegalArgumentException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		TypedQuery<Employee> tquery1 = getEntityManager()
 				.createQuery("select e from Employee e where e.firstName = :fName1", Employee.class);
@@ -820,9 +822,9 @@ public class Client1IT extends PMClientBase {
 				.createQuery("select e from Employee e where e.firstName = :fName2", Employee.class);
 		set = tquery2.getParameters();
 		if (set.size() != 1) {
-			TestUtil.logErr("Expected one parameter, actual=" + set.size());
+			logger.log(Logger.Level.ERROR, "Expected one parameter, actual=" + set.size());
 			for (Parameter p : set) {
-				TestUtil.logErr("Parameter:" + p.toString());
+				logger.log(Logger.Level.ERROR, "Parameter:" + p.toString());
 			}
 		} else {
 			pass3 = true;
@@ -831,12 +833,12 @@ public class Client1IT extends PMClientBase {
 			for (Parameter p : set) {
 				tquery1.setParameter(p, "object1");
 			}
-			TestUtil.logErr("IllegalArgumentException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass4 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass1 || !pass2 || !pass3 || !pass4) {
 			throw new Exception("setParameterParameterObjectIllegalArgumentExceptionTest failed");
@@ -863,15 +865,15 @@ public class Client1IT extends PMClientBase {
 		boolean pass3 = false;
 		boolean pass4 = false;
 
-		TestUtil.logMsg("Testing Query version");
+		logger.log(Logger.Level.INFO, "Testing Query version");
 		Query query1 = getEntityManager().createQuery("select e from Employee e where e.hireDate = :date1");
 		Query query2 = getEntityManager().createQuery("select e from Employee e where e.hireDate = :date2");
 
 		Set<Parameter<?>> set = query2.getParameters();
 		if (set.size() != 1) {
-			TestUtil.logErr("Expected one parameter, actual=" + set.size());
+			logger.log(Logger.Level.ERROR, "Expected one parameter, actual=" + set.size());
 			for (Parameter p : set) {
-				TestUtil.logErr("Parameter:" + p.toString());
+				logger.log(Logger.Level.ERROR, "Parameter:" + p.toString());
 			}
 		} else {
 			pass1 = true;
@@ -880,14 +882,14 @@ public class Client1IT extends PMClientBase {
 			for (Parameter p : set) {
 				query1.setParameter(p, getCalDate(), TemporalType.DATE);
 			}
-			TestUtil.logErr("IllegalArgumentException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		TypedQuery<Employee> tquery1 = getEntityManager()
 				.createQuery("select e from Employee e where e.hireDate = :date1", Employee.class);
@@ -896,9 +898,9 @@ public class Client1IT extends PMClientBase {
 				.createQuery("select e from Employee e where e.hireDate = :date2", Employee.class);
 		set = tquery2.getParameters();
 		if (set.size() != 1) {
-			TestUtil.logErr("Expected one parameter, actual=" + set.size());
+			logger.log(Logger.Level.ERROR, "Expected one parameter, actual=" + set.size());
 			for (Parameter p : set) {
-				TestUtil.logErr("Parameter:" + p.toString());
+				logger.log(Logger.Level.ERROR, "Parameter:" + p.toString());
 			}
 		} else {
 			pass3 = true;
@@ -907,12 +909,12 @@ public class Client1IT extends PMClientBase {
 			for (Parameter p : set) {
 				tquery1.setParameter(p, getCalDate(), TemporalType.DATE);
 			}
-			TestUtil.logErr("IllegalArgumentException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass4 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass1 || !pass2 || !pass3 || !pass4) {
 			throw new Exception("setParameterParameterCalendarTemporalTypeIllegalArgumentExceptionTest failed");
@@ -938,15 +940,15 @@ public class Client1IT extends PMClientBase {
 		boolean pass3 = false;
 		boolean pass4 = false;
 
-		TestUtil.logMsg("Testing Query version");
+		logger.log(Logger.Level.INFO, "Testing Query version");
 		Query query1 = getEntityManager().createQuery("select e from Employee e where e.hireDate = :date1");
 		Query query2 = getEntityManager().createQuery("select e from Employee e where e.hireDate = :date2");
 
 		Set<Parameter<?>> set = query2.getParameters();
 		if (set.size() != 1) {
-			TestUtil.logErr("Expected one parameter, actual=" + set.size());
+			logger.log(Logger.Level.ERROR, "Expected one parameter, actual=" + set.size());
 			for (Parameter p : set) {
-				TestUtil.logErr("Parameter:" + p.toString());
+				logger.log(Logger.Level.ERROR, "Parameter:" + p.toString());
 			}
 		} else {
 			pass1 = true;
@@ -955,14 +957,14 @@ public class Client1IT extends PMClientBase {
 			for (Parameter p : set) {
 				query1.setParameter(p, dateId, TemporalType.DATE);
 			}
-			TestUtil.logErr("IllegalArgumentException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		TypedQuery<Employee> tquery1 = getEntityManager()
 				.createQuery("select e from Employee e where e.hireDate = :date1", Employee.class);
@@ -971,9 +973,9 @@ public class Client1IT extends PMClientBase {
 				.createQuery("select e from Employee e where e.hireDate = :date2", Employee.class);
 		set = tquery2.getParameters();
 		if (set.size() != 1) {
-			TestUtil.logErr("Expected one parameter, actual=" + set.size());
+			logger.log(Logger.Level.ERROR, "Expected one parameter, actual=" + set.size());
 			for (Parameter p : set) {
-				TestUtil.logErr("Parameter:" + p.toString());
+				logger.log(Logger.Level.ERROR, "Parameter:" + p.toString());
 			}
 		} else {
 			pass3 = true;
@@ -982,12 +984,12 @@ public class Client1IT extends PMClientBase {
 			for (Parameter p : set) {
 				tquery1.setParameter(p, dateId, TemporalType.DATE);
 			}
-			TestUtil.logErr("IllegalArgumentException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass4 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass1 || !pass2 || !pass3 || !pass4) {
 			throw new Exception("setParameterParameterDateTemporalTypeIllegalArgumentExceptionTest failed");
@@ -1011,23 +1013,23 @@ public class Client1IT extends PMClientBase {
 		String expectedValue = "Stephen";
 
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			Query query = getEntityManager().createQuery("select e from Employee e where e.firstName = :fName")
 					.setParameter(expectedName, expectedValue);
 
 			String s = (String) query.getParameterValue(expectedName);
 
 			if (!s.equals(expectedValue)) {
-				TestUtil.logErr("Expected:" + expectedValue + ",Actual=" + s);
+				logger.log(Logger.Level.ERROR, "Expected:" + expectedValue + ",Actual=" + s);
 			} else {
 				pass1 = true;
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			TypedQuery<Employee> query = getEntityManager()
@@ -1036,13 +1038,13 @@ public class Client1IT extends PMClientBase {
 			String s = (String) query.getParameterValue(expectedName);
 
 			if (!s.equals(expectedValue)) {
-				TestUtil.logErr("Expected:" + expectedValue + ",Actual=" + s);
+				logger.log(Logger.Level.ERROR, "Expected:" + expectedValue + ",Actual=" + s);
 			} else {
 				pass2 = true;
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass1 || !pass2) {
@@ -1066,19 +1068,19 @@ public class Client1IT extends PMClientBase {
 		boolean pass2 = false;
 
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			Query query = getEntityManager().createQuery("select e from Employee e where e.firstName = :fName1")
 					.setParameter("fName1", "fnameValue");
 
 			query.getParameterValue("fName2");
-			TestUtil.logErr("IllegalArgumentException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			TypedQuery<Employee> query = getEntityManager()
@@ -1086,12 +1088,12 @@ public class Client1IT extends PMClientBase {
 					.setParameter("fName1", "fnameValue");
 
 			query.getParameterValue("fName2");
-			TestUtil.logErr("IllegalArgumentException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass1 || !pass2) {
 			throw new Exception("getParameterValueStringIllegalArgumentExceptionTest failed");
@@ -1113,31 +1115,31 @@ public class Client1IT extends PMClientBase {
 		boolean pass2 = false;
 
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			Query query = getEntityManager().createQuery("select e from Employee e where e.firstName = :fname1");
 
 			query.getParameterValue("fname1");
-			TestUtil.logErr("IllegalStateException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException was not thrown");
 		} catch (IllegalStateException iae) {
-			TestUtil.logTrace("Received expected IllegalStateException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			TypedQuery<Employee> query = getEntityManager()
 					.createQuery("select e from Employee e where e.firstName = :fname1", Employee.class);
 
 			query.getParameterValue("fname1");
-			TestUtil.logErr("IllegalStateException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException was not thrown");
 		} catch (IllegalStateException iae) {
-			TestUtil.logTrace("Received expected IllegalStateException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 		if (!pass1 || !pass2) {
@@ -1161,23 +1163,23 @@ public class Client1IT extends PMClientBase {
 		String expectedValue = "Stephen";
 
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			Query query = getEntityManager().createQuery("select e from Employee e where e.firstName = ?1")
 					.setParameter(1, expectedValue);
 
 			String s = (String) query.getParameterValue(1);
 
 			if (!s.equals(expectedValue)) {
-				TestUtil.logErr("Expected:" + expectedValue + ",Actual=" + s);
+				logger.log(Logger.Level.ERROR, "Expected:" + expectedValue + ",Actual=" + s);
 			} else {
 				pass1 = true;
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			TypedQuery<Employee> query = getEntityManager()
@@ -1186,13 +1188,13 @@ public class Client1IT extends PMClientBase {
 			String s = (String) query.getParameterValue(1);
 
 			if (!s.equals(expectedValue)) {
-				TestUtil.logErr("Expected:" + expectedValue + ",Actual=" + s);
+				logger.log(Logger.Level.ERROR, "Expected:" + expectedValue + ",Actual=" + s);
 			} else {
 				pass2 = true;
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass1 || !pass2) {
@@ -1216,32 +1218,32 @@ public class Client1IT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			Query query = getEntityManager().createQuery("select e from Employee e where e.firstName = ?1")
 					.setParameter(1, "foo");
 
 			query.getParameterValue(99);
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			TypedQuery<Employee> query = getEntityManager()
 					.createQuery("select e from Employee e where e.firstName = ?1", Employee.class)
 					.setParameter(1, "foo");
 			query.getParameterValue(99);
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 		if (!pass1 || !pass2) {
@@ -1265,29 +1267,29 @@ public class Client1IT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			Query query = getEntityManager().createQuery("select e from Employee e where e.firstName = ?1");
 			query.getParameterValue(1);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("Received expected IllegalStateException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			TypedQuery<Employee> query = getEntityManager()
 					.createQuery("select e from Employee e where e.firstName = ?1", Employee.class);
 			query.getParameterValue(1);
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException e) {
-			TestUtil.logTrace("Received expected IllegalStateException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 		if (!pass1 || !pass2) {
@@ -1313,7 +1315,7 @@ public class Client1IT extends PMClientBase {
 		expected[1] = empRef[6].getId();
 
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			getEntityTransaction().begin();
 
 			Query query = getEntityManager().createQuery("select e from Employee e where e.firstName = :fName")
@@ -1322,17 +1324,17 @@ public class Client1IT extends PMClientBase {
 			List<Employee> result = query.getResultList();
 
 			if (!checkEntityPK(result, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ result.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass1 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -1340,11 +1342,11 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			getEntityTransaction().begin();
@@ -1356,17 +1358,17 @@ public class Client1IT extends PMClientBase {
 			List<Employee> result = query.getResultList();
 
 			if (!checkEntityPK(result, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ result.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass2 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -1374,7 +1376,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -1408,17 +1410,17 @@ public class Client1IT extends PMClientBase {
 			List<Employee> result = query.getResultList();
 
 			if (!checkEntityPK(result, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ result.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -1426,7 +1428,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -1450,30 +1452,30 @@ public class Client1IT extends PMClientBase {
 	public void setParameterStringObject1IllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
-		TestUtil.logMsg("Testing Query version");
+		logger.log(Logger.Level.INFO, "Testing Query version");
 		try {
 			getEntityManager().createQuery("select e from Employee e where e.firstName = :fName").setParameter("fName",
 					5.0F);
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			getEntityManager().createQuery("select e from Employee e where e.firstName = :fName", Employee.class)
 					.setParameter("fName", 5.0F);
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 
@@ -1498,30 +1500,30 @@ public class Client1IT extends PMClientBase {
 	public void setParameterStringObject2IllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
-		TestUtil.logMsg("Testing Query version");
+		logger.log(Logger.Level.INFO, "Testing Query version");
 		try {
 			getEntityManager().createQuery("select e from Employee e where e.firstName = :fName")
 					.setParameter("doesnotexist", "foo");
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			getEntityManager().createQuery("select e from Employee e where e.firstName = :fName", Employee.class)
 					.setParameter("doesnotexist", "foo");
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 
@@ -1548,7 +1550,7 @@ public class Client1IT extends PMClientBase {
 		cEmp.add(empRef[0]);
 		cEmp.add(empRef[19]);
 
-		TestUtil.logMsg("Testing Query version");
+		logger.log(Logger.Level.INFO, "Testing Query version");
 
 		try {
 			getEntityTransaction().begin();
@@ -1557,17 +1559,17 @@ public class Client1IT extends PMClientBase {
 			Collection<Employee> q = query.setParameter("hDate", d1, TemporalType.DATE).getResultList();
 
 			if (!checkEntityPK(q, cEmp)) {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Did not get expected results. Expected " + cEmp.size() + " references, got: " + q.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass1 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -1575,11 +1577,11 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 
@@ -1591,17 +1593,17 @@ public class Client1IT extends PMClientBase {
 			Collection<Employee> q = tquery.setParameter("hDate", d1, TemporalType.DATE).getResultList();
 
 			if (!checkEntityPK(q, cEmp)) {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Did not get expected results. Expected " + cEmp.size() + " references, got: " + q.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass2 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -1609,7 +1611,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -1635,30 +1637,30 @@ public class Client1IT extends PMClientBase {
 	public void setParameterStringDateTemporalTypeIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
-		TestUtil.logMsg("Testing Query version");
+		logger.log(Logger.Level.INFO, "Testing Query version");
 		try {
 			getEntityManager().createQuery("select e from Employee e where e.hireDate = :hDate")
 					.setParameter("doesnotexist", d1, TemporalType.DATE);
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("IllegalArgumentException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			getEntityManager().createQuery("select e from Employee e where e.hireDate = :hDate", Employee.class)
 					.setParameter("doesnotexist", d1, TemporalType.DATE);
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("IllegalArgumentException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 
@@ -1686,7 +1688,7 @@ public class Client1IT extends PMClientBase {
 		cEmp.add(empRef[20]);
 
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 
 			getEntityTransaction().begin();
 
@@ -1694,16 +1696,16 @@ public class Client1IT extends PMClientBase {
 			Collection<Employee> q = query.setParameter("hDate", getCalDate(), TemporalType.DATE).getResultList();
 
 			if (!checkEntityPK(q, cEmp)) {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Did not get expected results. Expected " + cEmp.size() + " references, got: " + q.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass1 = true;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -1711,11 +1713,11 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			getEntityTransaction().begin();
@@ -1725,16 +1727,16 @@ public class Client1IT extends PMClientBase {
 			Collection<Employee> q = tquery.setParameter("hDate", getCalDate(), TemporalType.DATE).getResultList();
 
 			if (!checkEntityPK(q, cEmp)) {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Did not get expected results. Expected " + cEmp.size() + " references, got: " + q.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass2 = true;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -1742,7 +1744,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -1771,29 +1773,29 @@ public class Client1IT extends PMClientBase {
 		final java.util.Calendar c = Calendar.getInstance();
 		boolean pass1 = false;
 		boolean pass2 = false;
-		TestUtil.logMsg("Testing Query version");
+		logger.log(Logger.Level.INFO, "Testing Query version");
 		try {
 			getEntityManager().createQuery("select d from Department d where :param > 1").setParameter("badName", c,
 					TemporalType.TIMESTAMP);
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("IllegalArgumentException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			getEntityManager().createQuery("select d from Department d where :param > 1", Department.class)
 					.setParameter("badName", c, TemporalType.TIMESTAMP);
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("IllegalArgumentException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 
@@ -1821,7 +1823,7 @@ public class Client1IT extends PMClientBase {
 		cEmp.add(empRef[6]);
 
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 
 			getEntityTransaction().begin();
 
@@ -1829,17 +1831,17 @@ public class Client1IT extends PMClientBase {
 			Collection<Employee> q = query.setParameter(1, "Stephen").getResultList();
 
 			if (!checkEntityPK(q, cEmp)) {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Did not get expected results. Expected " + cEmp.size() + " references, got: " + q.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass1 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -1847,11 +1849,11 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			getEntityTransaction().begin();
@@ -1861,17 +1863,17 @@ public class Client1IT extends PMClientBase {
 			Collection<Employee> q = tquery.setParameter(1, "Stephen").getResultList();
 
 			if (!checkEntityPK(q, cEmp)) {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Did not get expected results. Expected " + cEmp.size() + " references, got: " + q.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass2 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -1879,7 +1881,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -1909,55 +1911,55 @@ public class Client1IT extends PMClientBase {
 		boolean pass3 = false;
 		boolean pass4 = false;
 
-		TestUtil.logMsg("Testing query version");
+		logger.log(Logger.Level.INFO, "Testing query version");
 		try {
-			TestUtil.logMsg("Testing a parm that does not exist ");
+			logger.log(Logger.Level.INFO, "Testing a parm that does not exist ");
 			getEntityManager().createQuery("select e from Employee e where e.firstName = ?1").setParameter(1, "Kellie")
 					.setParameter(2, "Lee");
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("IllegalArgumentException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 
 		try {
-			TestUtil.logMsg("Testing a parm of incorrect type");
+			logger.log(Logger.Level.INFO, "Testing a parm of incorrect type");
 			getEntityManager().createQuery("select e from Employee e where e.firstName = ?1").setParameter(1, 1);
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("IllegalArgumentException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
-			TestUtil.logMsg("Testing a parm that does not exist");
+			logger.log(Logger.Level.INFO, "Testing a parm that does not exist");
 			getEntityManager().createQuery("select e from Employee e where e.firstName = ?1", Employee.class)
 					.setParameter(1, "Kellie").setParameter(2, "Lee");
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("IllegalArgumentException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected");
 			pass3 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 		try {
-			TestUtil.logMsg("Testing a parm of incorrect type");
+			logger.log(Logger.Level.INFO, "Testing a parm of incorrect type");
 			getEntityManager().createQuery("select e from Employee e where e.firstName = ?1", Employee.class)
 					.setParameter(1, 1);
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("IllegalArgumentException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected");
 			pass4 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 
@@ -1986,24 +1988,24 @@ public class Client1IT extends PMClientBase {
 		cEmp.add(empRef[19]);
 
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			getEntityTransaction().begin();
 
 			Collection<Employee> q = getEntityManager().createQuery("select e from Employee e where e.hireDate = ?1")
 					.setParameter(1, d1, TemporalType.DATE).getResultList();
 
 			if (!checkEntityPK(q, cEmp)) {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Did not get expected results. Expected " + cEmp.size() + " references, got: " + q.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass1 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -2011,11 +2013,11 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			getEntityTransaction().begin();
@@ -2024,17 +2026,17 @@ public class Client1IT extends PMClientBase {
 			Collection<Employee> q = tquery.setParameter(1, d1, TemporalType.DATE).getResultList();
 
 			if (!checkEntityPK(q, cEmp)) {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Did not get expected results. Expected " + cEmp.size() + " references, got: " + q.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass2 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -2042,7 +2044,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -2068,29 +2070,29 @@ public class Client1IT extends PMClientBase {
 	public void setParameterIntDateTemporalTypeIllegalArgumentException1Test() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
-		TestUtil.logMsg("Testing Query version");
+		logger.log(Logger.Level.INFO, "Testing Query version");
 		try {
 			getEntityManager().createQuery("select d from Department d where :hDate > 1").setParameter(5, d1,
 					TemporalType.DATE);
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("IllegalArgumentException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			getEntityManager().createQuery("select d from Department d where :hDate > 1", Department.class)
 					.setParameter(5, d1, TemporalType.DATE);
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("IllegalArgumentException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 
@@ -2120,24 +2122,24 @@ public class Client1IT extends PMClientBase {
 		cEmp.add(empRef[20]);
 
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			getEntityTransaction().begin();
 
 			Collection<Employee> q = getEntityManager().createQuery("select e from Employee e where e.hireDate = ?1")
 					.setParameter(1, getCalDate(), TemporalType.DATE).getResultList();
 
 			if (!checkEntityPK(q, cEmp)) {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Did not get expected results. Expected " + cEmp.size() + " references, got: " + q.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass1 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -2145,11 +2147,11 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			getEntityTransaction().begin();
@@ -2159,17 +2161,17 @@ public class Client1IT extends PMClientBase {
 			Collection<Employee> q = tquery.setParameter(1, getCalDate(), TemporalType.DATE).getResultList();
 
 			if (!checkEntityPK(q, cEmp)) {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Did not get expected results. Expected " + cEmp.size() + " references, got: " + q.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass2 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -2177,7 +2179,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -2205,29 +2207,29 @@ public class Client1IT extends PMClientBase {
 		final java.util.Calendar c = Calendar.getInstance();
 		boolean pass1 = false;
 		boolean pass2 = false;
-		TestUtil.logMsg("Testing Query version");
+		logger.log(Logger.Level.INFO, "Testing Query version");
 		try {
 			getEntityManager().createQuery("select d from Department d where ?1 > 1").setParameter(5, c,
 					TemporalType.TIMESTAMP);
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("IllegalArgumentException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			getEntityManager().createQuery("select d from Department d where ?1 > 1", Department.class).setParameter(5,
 					c, TemporalType.TIMESTAMP);
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("IllegalArgumentException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 
@@ -2258,7 +2260,7 @@ public class Client1IT extends PMClientBase {
 		cEmp.add(empRef[1]);
 
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 
 			getEntityTransaction().begin();
 
@@ -2271,17 +2273,17 @@ public class Client1IT extends PMClientBase {
 			Collection<Employee> q = query.getResultList();
 
 			if (!checkEntityPK(q, cEmp)) {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Did not get expected results. Expected " + cEmp.size() + " references, got: " + q.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass1 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -2289,11 +2291,11 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			getEntityTransaction().begin();
@@ -2308,17 +2310,17 @@ public class Client1IT extends PMClientBase {
 			Collection<Employee> q = query.getResultList();
 
 			if (!checkEntityPK(q, cEmp)) {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Did not get expected results. Expected " + cEmp.size() + " references, got: " + q.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass2 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -2326,7 +2328,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -2357,7 +2359,7 @@ public class Client1IT extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			Query query = getEntityManager().createQuery("select e from Employee e where e.hireDate = ?1");
 
 			Parameter p = query.getParameter(1);
@@ -2365,20 +2367,20 @@ public class Client1IT extends PMClientBase {
 
 			Collection<Employee> q = query.getResultList();
 			if (!checkEntityPK(q, cEmp)) {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Did not get expected results. Expected " + cEmp.size() + " references, got: " + q.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass1 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			getEntityTransaction().begin();
@@ -2391,17 +2393,17 @@ public class Client1IT extends PMClientBase {
 
 			Collection<Employee> q = tquery.getResultList();
 			if (!checkEntityPK(q, cEmp)) {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Did not get expected results. Expected " + cEmp.size() + " references, got: " + q.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass2 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass1 || !pass2) {
 			throw new Exception("setParameterParameterCalendarTemporalTypeTest failed");
@@ -2432,7 +2434,7 @@ public class Client1IT extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			Query query = getEntityManager().createQuery("select e from Employee e where e.hireDate = ?1");
 
 			Parameter p = query.getParameter(1);
@@ -2440,20 +2442,20 @@ public class Client1IT extends PMClientBase {
 
 			Collection<Employee> q = query.getResultList();
 			if (!checkEntityPK(q, cEmp)) {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Did not get expected results. Expected " + cEmp.size() + " references, got: " + q.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass1 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			getEntityTransaction().begin();
@@ -2466,17 +2468,17 @@ public class Client1IT extends PMClientBase {
 
 			Collection<Employee> q = tquery.getResultList();
 			if (!checkEntityPK(q, cEmp)) {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Did not get expected results. Expected " + cEmp.size() + " references, got: " + q.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass2 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass1 || !pass2) {
 			throw new Exception("setParameterParameterDateTemporalTypeTest failed");
@@ -2504,24 +2506,24 @@ public class Client1IT extends PMClientBase {
 		cEmp.add(empRef[5]);
 		cEmp.add(empRef[14]);
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			getEntityTransaction().begin();
 
 			Collection<Employee> q = getEntityManager().createQuery("select e from Employee e where e.hireDate = ?1")
 					.setParameter(1, getUtilDate("2005-02-18"), TemporalType.DATE).getResultList();
 
 			if (!checkEntityPK(q, cEmp)) {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Did not get expected results. Expected " + cEmp.size() + " references, got: " + q.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass1 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -2529,11 +2531,11 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			getEntityTransaction().begin();
@@ -2543,17 +2545,17 @@ public class Client1IT extends PMClientBase {
 					.setParameter(1, getUtilDate("2005-02-18"), TemporalType.DATE).getResultList();
 
 			if (!checkEntityPK(q, cEmp)) {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Did not get expected results. Expected " + cEmp.size() + " references, got: " + q.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass2 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -2561,7 +2563,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -2587,15 +2589,15 @@ public class Client1IT extends PMClientBase {
 		boolean pass2 = false;
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			getEntityManager().createQuery("select d.name from Department d where d.id = 99").getSingleResult();
-			TestUtil.logErr("NoResultException was not thrown");
+			logger.log(Logger.Level.ERROR, "NoResultException was not thrown");
 			getEntityTransaction().commit();
 		} catch (NoResultException nre) {
-			TestUtil.logTrace("Exception Caught as Expected:" + nre);
+			logger.log(Logger.Level.TRACE, "Exception Caught as Expected:" + nre);
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -2603,22 +2605,22 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().createQuery("select d.name from Department d where d.id = 99", String.class)
 					.getSingleResult();
-			TestUtil.logErr("NoResultException was not thrown");
+			logger.log(Logger.Level.ERROR, "NoResultException was not thrown");
 			getEntityTransaction().commit();
 		} catch (NoResultException nre) {
-			TestUtil.logTrace("Exception Caught as Expected:" + nre);
+			logger.log(Logger.Level.TRACE, "Exception Caught as Expected:" + nre);
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -2626,7 +2628,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -2652,18 +2654,18 @@ public class Client1IT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
-		TestUtil.logMsg("Testing Query version");
+		logger.log(Logger.Level.INFO, "Testing Query version");
 
 		try {
 			Query q = getEntityManager().createQuery("select d from  Department d where d.id = 1");
 			q.setLockMode(LockModeType.WRITE);
 			q.getSingleResult();
-			TestUtil.logErr("TransactionRequiredException was not thrown");
+			logger.log(Logger.Level.ERROR, "TransactionRequiredException was not thrown");
 		} catch (TransactionRequiredException ise) {
-			TestUtil.logTrace("Exception Caught as Expected");
+			logger.log(Logger.Level.TRACE, "Exception Caught as Expected");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -2671,10 +2673,10 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			TypedQuery<Department> q = getEntityManager().createQuery("select d from  Department d where d.id = 1",
@@ -2682,12 +2684,12 @@ public class Client1IT extends PMClientBase {
 
 			q.setLockMode(LockModeType.WRITE);
 			q.getSingleResult();
-			TestUtil.logErr("TransactionRequiredException was not thrown");
+			logger.log(Logger.Level.ERROR, "TransactionRequiredException was not thrown");
 		} catch (TransactionRequiredException ise) {
-			TestUtil.logTrace("Exception Caught as Expected");
+			logger.log(Logger.Level.TRACE, "Exception Caught as Expected");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -2695,7 +2697,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -2721,16 +2723,16 @@ public class Client1IT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			getEntityTransaction().begin();
 			getEntityManager().createQuery("select d.name from Department d where d.id > 1").getSingleResult();
-			TestUtil.logErr("NoResultException was not thrown");
+			logger.log(Logger.Level.ERROR, "NoResultException was not thrown");
 			getEntityTransaction().commit();
 		} catch (NonUniqueResultException nure) {
-			TestUtil.logTrace("Exception Caught as Expected:" + nure);
+			logger.log(Logger.Level.TRACE, "Exception Caught as Expected:" + nure);
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -2738,23 +2740,23 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().createQuery("select d.name from Department d where d.id > 1", String.class)
 					.getSingleResult();
-			TestUtil.logErr("NoResultException was not thrown");
+			logger.log(Logger.Level.ERROR, "NoResultException was not thrown");
 			getEntityTransaction().commit();
 		} catch (NonUniqueResultException nure) {
-			TestUtil.logTrace("Exception Caught as Expected:" + nure);
+			logger.log(Logger.Level.TRACE, "Exception Caught as Expected:" + nure);
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -2762,7 +2764,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -2787,8 +2789,8 @@ public class Client1IT extends PMClientBase {
 		String expectedName = "fName";
 		String expectedValue = "Stephen";
 		try {
-			TestUtil.logTrace("Creating query for isBoundTest");
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.TRACE, "Creating query for isBoundTest");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 
 			Query query = getEntityManager().createQuery("select e from Employee e where e.firstName = :fName")
 					.setParameter(expectedName, expectedValue);
@@ -2796,20 +2798,21 @@ public class Client1IT extends PMClientBase {
 			Parameter p = query.getParameter(expectedName);
 			if (p != null) {
 				if (!query.isBound(p)) {
-					TestUtil.logErr("isbound returned false even though a value is bound to the parameter "
-							+ expectedName + "[" + p.getName() + "]");
+					logger.log(Logger.Level.ERROR,
+							"isbound returned false even though a value is bound to the parameter " + expectedName + "["
+									+ p.getName() + "]");
 				} else {
 					pass1 = true;
 				}
 			} else {
-				TestUtil.logErr("getParameter returned null");
+				logger.log(Logger.Level.ERROR, "getParameter returned null");
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			TypedQuery<Employee> query = getEntityManager()
@@ -2819,17 +2822,18 @@ public class Client1IT extends PMClientBase {
 			Parameter p = query.getParameter(expectedName);
 			if (p != null) {
 				if (!query.isBound(p)) {
-					TestUtil.logErr("isbound returned false even though a value is bound to the parameter "
-							+ expectedName + "[" + p.getName() + "]");
+					logger.log(Logger.Level.ERROR,
+							"isbound returned false even though a value is bound to the parameter " + expectedName + "["
+									+ p.getName() + "]");
 				} else {
 					pass2 = true;
 				}
 			} else {
-				TestUtil.logErr("getParameter returned null");
+				logger.log(Logger.Level.ERROR, "getParameter returned null");
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 
@@ -2862,7 +2866,7 @@ public class Client1IT extends PMClientBase {
 
 		Collection<Integer> actual;
 
-		TestUtil.logMsg("Testing query");
+		logger.log(Logger.Level.INFO, "Testing query");
 		try {
 			getEntityTransaction().begin();
 
@@ -2871,38 +2875,38 @@ public class Client1IT extends PMClientBase {
 					.setFirstResult(3);
 			actual = q.getResultList();
 			if (!checkEntityPK(actual, expected, true)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.size() + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.size()
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass1 = true;
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logMsg("Testing TypedQuery");
+			logger.log(Logger.Level.INFO, "Testing TypedQuery");
 			TypedQuery<Integer> tq = getEntityManager()
 					.createQuery("select e.department.id from Employee e where e.id < 10 order by e.department.id",
 							Integer.class)
 					.setFirstResult(3);
 			actual = tq.getResultList();
 			if (!checkEntityPK(actual, expected, true)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.size() + " references, got: "
-						+ actual.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.size()
+						+ " references, got: " + actual.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass2 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass1 || !pass2) {
@@ -2923,7 +2927,7 @@ public class Client1IT extends PMClientBase {
 	public void queryAPITest11() throws Exception {
 		boolean pass = false;
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 
 			getEntityTransaction().begin();
 			Query query = null;
@@ -2932,23 +2936,24 @@ public class Client1IT extends PMClientBase {
 						.createQuery("select e from Employee e where e.firstName = ?1 and e.lastName = ?3")
 						.setParameter(1, "Kellie").setParameter(2, "Lee");
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("IllegalArgumentException Caught as Expected");
+				logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected");
 				pass = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Received unexpected exeception", e);
+				logger.log(Logger.Level.ERROR, "Received unexpected exeception", e);
 			}
 			if (!pass) {
 				try {
 					query.getResultList();
 				} catch (RuntimeException e) {
-					TestUtil.logMsg("Did not get expected IllegalArgumentException when "
-							+ "setting an invalid parameter on a query, but got "
-							+ "expected RuntimeException when executing the query: " + e);
+					logger.log(Logger.Level.INFO,
+							"Did not get expected IllegalArgumentException when "
+									+ "setting an invalid parameter on a query, but got "
+									+ "expected RuntimeException when executing the query: " + e);
 					pass = true;
 				}
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -2956,7 +2961,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -2976,8 +2981,8 @@ public class Client1IT extends PMClientBase {
 	@Test
 	public void queryAPITest12() throws Exception {
 		boolean pass = false;
-		TestUtil.logTrace("invoke query for queryAPITest12 ...");
-		TestUtil.logMsg("Testing Query version");
+		logger.log(Logger.Level.TRACE, "invoke query for queryAPITest12 ...");
+		logger.log(Logger.Level.INFO, "Testing Query version");
 		try {
 			getEntityTransaction().begin();
 			Query query = null;
@@ -2987,23 +2992,24 @@ public class Client1IT extends PMClientBase {
 						.createQuery("select e from Employee e where e.firstName = ?1 and e.lastName = ?2")
 						.setParameter(1, "Kate").setParameter(2, 10);
 			} catch (IllegalArgumentException iae) {
-				TestUtil.logTrace("IllegalArgumentException Caught as Expected");
+				logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected");
 				pass = true;
 			} catch (Exception e) {
-				TestUtil.logErr("Received unexpected exeception", e);
+				logger.log(Logger.Level.ERROR, "Received unexpected exeception", e);
 			}
 			if (!pass) {
 				try {
 					query.getResultList();
 				} catch (RuntimeException e) {
-					TestUtil.logMsg("Did not get expected IllegalArgumentException when "
-							+ "setting an invalid parameter on a query, but got "
-							+ "expected RuntimeException when executing the query: " + e);
+					logger.log(Logger.Level.INFO,
+							"Did not get expected IllegalArgumentException when "
+									+ "setting an invalid parameter on a query, but got "
+									+ "expected RuntimeException when executing the query: " + e);
 					pass = true;
 				}
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3011,7 +3017,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -3034,29 +3040,29 @@ public class Client1IT extends PMClientBase {
 		boolean pass2 = false;
 		getEntityTransaction().begin();
 
-		TestUtil.logMsg("Testing query version");
+		logger.log(Logger.Level.INFO, "Testing query version");
 		try {
 
 			getEntityManager().createQuery("select d from Department d").setFirstResult(-3);
 
-			TestUtil.logErr("IllegalArgumentException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("IllegalArgumentException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 		try {
 
 			getEntityManager().createQuery("select d from Department d", Department.class).setFirstResult(-3);
 
-			TestUtil.logErr("IllegalArgumentException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("IllegalArgumentException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		getEntityTransaction().rollback();
@@ -3087,29 +3093,29 @@ public class Client1IT extends PMClientBase {
 		final Integer expected[] = { 1, 2, 3, 4, 5 };
 
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 
 			getEntityTransaction().begin();
 
 			Query query = getEntityManager().createQuery("select d from Department d order by d.id");
 			int gmr = query.getMaxResults();
 			if (gmr != Integer.MAX_VALUE) {
-				TestUtil.logErr("getMaxResults() called when setMaxResults() not called - Expected:" + Integer.MAX_VALUE
-						+ ", actual:" + gmr);
+				logger.log(Logger.Level.ERROR, "getMaxResults() called when setMaxResults() not called - Expected:"
+						+ Integer.MAX_VALUE + ", actual:" + gmr);
 				pass1 = false;
 			} else {
 				query.setMaxResults(15);
 				gmr = query.getMaxResults();
 				if (gmr != 15) {
-					TestUtil.logErr("getMaxResults() - Expected: 15, Actual:" + gmr);
+					logger.log(Logger.Level.ERROR, "getMaxResults() - Expected: 15, Actual:" + gmr);
 					pass1 = false;
 				} else {
 					q = query.getResultList();
 					if (!checkEntityPK(q, expected)) {
-						TestUtil.logErr("Did not get expected results. Expected " + expected.length
+						logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
 								+ " references, got: " + q.size());
 					} else {
-						TestUtil.logTrace("Expected results received");
+						logger.log(Logger.Level.TRACE, "Expected results received");
 						pass1 = true;
 					}
 				}
@@ -3117,7 +3123,7 @@ public class Client1IT extends PMClientBase {
 			getEntityTransaction().commit();
 		} catch (Exception e) {
 			pass1 = false;
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3125,11 +3131,11 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			getEntityTransaction().begin();
@@ -3139,22 +3145,22 @@ public class Client1IT extends PMClientBase {
 
 			int gmr = query.getMaxResults();
 			if (gmr != Integer.MAX_VALUE) {
-				TestUtil.logErr("getMaxResults() called when setMaxResults() not called - Expected:" + Integer.MAX_VALUE
-						+ ", actual:" + gmr);
+				logger.log(Logger.Level.ERROR, "getMaxResults() called when setMaxResults() not called - Expected:"
+						+ Integer.MAX_VALUE + ", actual:" + gmr);
 				pass2 = false;
 			} else {
 				query.setMaxResults(15);
 				gmr = query.getMaxResults();
 				if (gmr != 15) {
-					TestUtil.logErr("getMaxResults() - Expected: 15, Actual:" + gmr);
+					logger.log(Logger.Level.ERROR, "getMaxResults() - Expected: 15, Actual:" + gmr);
 					pass2 = false;
 				} else {
 					q = query.getResultList();
 					if (!checkEntityPK(q, expected)) {
-						TestUtil.logErr("Did not get expected results. Expected " + expected.length
+						logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
 								+ " references, got: " + q.size());
 					} else {
-						TestUtil.logTrace("Expected results received");
+						logger.log(Logger.Level.TRACE, "Expected results received");
 						pass2 = true;
 					}
 				}
@@ -3162,7 +3168,7 @@ public class Client1IT extends PMClientBase {
 			getEntityTransaction().commit();
 		} catch (Exception e) {
 			pass2 = false;
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3170,7 +3176,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -3194,17 +3200,17 @@ public class Client1IT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 
 			getEntityTransaction().begin();
 
 			getEntityManager().createQuery("select d from Department d order by d.id").setMaxResults(-15);
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3212,22 +3218,22 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			getEntityTransaction().begin();
 
 			getEntityManager().createQuery("select d from Department d order by d.id", Department.class)
 					.setMaxResults(-15);
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3235,7 +3241,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -3260,22 +3266,22 @@ public class Client1IT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 
 			Query query = getEntityManager().createQuery("select d from Department d ");
 			query.setLockMode(LockModeType.READ);
 
 			query.getResultList();
-			TestUtil.logErr("TransactionRequiredException not thrown");
+			logger.log(Logger.Level.ERROR, "TransactionRequiredException not thrown");
 		} catch (TransactionRequiredException tre) {
-			TestUtil.logTrace("Received expected TransactionRequiredException ");
+			logger.log(Logger.Level.TRACE, "Received expected TransactionRequiredException ");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			TypedQuery<Department> query = getEntityManager().createQuery("select d from Department d ",
@@ -3284,10 +3290,10 @@ public class Client1IT extends PMClientBase {
 
 			query.getResultList();
 		} catch (TransactionRequiredException tre) {
-			TestUtil.logTrace("Received expected TransactionRequiredException ");
+			logger.log(Logger.Level.TRACE, "Received expected TransactionRequiredException ");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 
@@ -3314,21 +3320,21 @@ public class Client1IT extends PMClientBase {
 		final Integer expected[] = { 4, 1 };
 
 		try {
-			TestUtil.logTrace("Invoking query");
+			logger.log(Logger.Level.TRACE, "Invoking query");
 			getEntityTransaction().begin();
 			q = getEntityManager().createQuery("select d from Department d order by d.name").setMaxResults(2)
 					.getResultList();
 
 			if (!checkEntityPK(q, expected)) {
-				TestUtil.logErr(
+				logger.log(Logger.Level.ERROR,
 						"Did not get expected results. Expected " + expected.length + " references, got: " + q.size());
 			} else {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3336,7 +3342,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -3357,7 +3363,7 @@ public class Client1IT extends PMClientBase {
 	public void queryAPITest16() throws Exception {
 		boolean pass1 = false;
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			getEntityTransaction().begin();
 			Query q = getEntityManager()
 					.createQuery("UPDATE Employee e SET e.salary = e.salary * 10.0 where e.salary > :minsal")
@@ -3365,12 +3371,12 @@ public class Client1IT extends PMClientBase {
 			q.getResultList();
 
 			getEntityTransaction().commit();
-			TestUtil.logErr("IllegalStateException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
 		} catch (IllegalStateException ise) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3378,7 +3384,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -3401,7 +3407,7 @@ public class Client1IT extends PMClientBase {
 		boolean pass = false;
 
 		try {
-			TestUtil.logTrace("Invoking query");
+			logger.log(Logger.Level.TRACE, "Invoking query");
 			getEntityTransaction().begin();
 			q = getEntityManager().createQuery("DELETE FROM Employee e where e.salary > :minsal").setParameter("minsal",
 					(float) 50000.0);
@@ -3409,10 +3415,10 @@ public class Client1IT extends PMClientBase {
 
 			getEntityTransaction().commit();
 		} catch (IllegalStateException ise) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected");
 			pass = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3420,7 +3426,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -3443,14 +3449,14 @@ public class Client1IT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		try {
-			TestUtil.logMsg("Testing Query version");
+			logger.log(Logger.Level.INFO, "Testing Query version");
 			getEntityTransaction().begin();
 			Query q = getEntityManager().createQuery("select e from Employee e where e.id = 1");
 			Object o = q.getSingleResult();
 			if (o instanceof Employee) {
 				Employee e = (Employee) o;
 				if (e.getId() != 1) {
-					TestUtil.logErr("Expected employee with id:1, actual:" + e.getId());
+					logger.log(Logger.Level.ERROR, "Expected employee with id:1, actual:" + e.getId());
 				} else {
 					pass1 = true;
 				}
@@ -3460,7 +3466,7 @@ public class Client1IT extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3468,10 +3474,10 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			getEntityTransaction().begin();
@@ -3479,7 +3485,7 @@ public class Client1IT extends PMClientBase {
 					Employee.class);
 			Employee e = q.getSingleResult();
 			if (e.getId() != 1) {
-				TestUtil.logErr("Expected employee with id:1, actual:" + e.getId());
+				logger.log(Logger.Level.ERROR, "Expected employee with id:1, actual:" + e.getId());
 			} else {
 				pass2 = true;
 			}
@@ -3487,7 +3493,7 @@ public class Client1IT extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3495,7 +3501,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 		if (!pass1 || !pass2) {
@@ -3518,28 +3524,28 @@ public class Client1IT extends PMClientBase {
 		boolean pass2 = false;
 		getEntityTransaction().begin();
 
-		TestUtil.logMsg("Testing delete query");
+		logger.log(Logger.Level.INFO, "Testing delete query");
 		try {
 			q = getEntityManager().createQuery("DELETE FROM Employee e where e.salary > 50000.0");
 			q.getSingleResult();
-			TestUtil.logErr("IllegalStateException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException was not thrown");
 		} catch (IllegalStateException ise) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
-		TestUtil.logMsg("Testing update query");
+		logger.log(Logger.Level.INFO, "Testing update query");
 		try {
 			q = getEntityManager().createQuery("Update Employee e SET e.salary = e.salary * 10.0");
 			q.getSingleResult();
-			TestUtil.logErr("IllegalStateException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException was not thrown");
 		} catch (IllegalStateException ise) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		try {
@@ -3547,7 +3553,7 @@ public class Client1IT extends PMClientBase {
 				getEntityTransaction().rollback();
 			}
 		} catch (Exception re) {
-			TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 		}
 		if (!pass1 || !pass2) {
 			throw new Exception("getSingleResultIllegalStateException failed");
@@ -3568,21 +3574,21 @@ public class Client1IT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
-		TestUtil.logMsg("Testing Query version");
+		logger.log(Logger.Level.INFO, "Testing Query version");
 
 		try {
 
 			getEntityTransaction().begin();
 			getEntityManager().createQuery("select d.id from Department d").executeUpdate();
-			TestUtil.logErr("IllegalStateException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException was not thrown");
 
 			getEntityTransaction().commit();
 
 		} catch (IllegalStateException ise) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3590,22 +3596,22 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
-		TestUtil.logMsg("Testing TypedQuery version");
+		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
 
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().createQuery("select d.id from Department d", Integer.class).executeUpdate();
-			TestUtil.logErr("IllegalStateException was not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalStateException was not thrown");
 			getEntityTransaction().commit();
 
 		} catch (IllegalStateException ise) {
-			TestUtil.logTrace("IllegalStateException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3613,7 +3619,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -3634,17 +3640,17 @@ public class Client1IT extends PMClientBase {
 	public void executeUpdateTransactionRequiredExceptionTest() throws Exception {
 		boolean pass1 = false;
 
-		TestUtil.logMsg("Testing Query version");
+		logger.log(Logger.Level.INFO, "Testing Query version");
 
 		try {
 			getEntityManager().createQuery("update Department d  set d.name = NULLIF(d.name, 'Engineering')")
 					.executeUpdate();
-			TestUtil.logErr("TransactionRequiredException was not thrown");
+			logger.log(Logger.Level.ERROR, "TransactionRequiredException was not thrown");
 		} catch (TransactionRequiredException ise) {
-			TestUtil.logTrace("TransactionRequiredException Caught as Expected");
+			logger.log(Logger.Level.TRACE, "TransactionRequiredException Caught as Expected");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3652,7 +3658,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -3675,7 +3681,7 @@ public class Client1IT extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("Starting queryAPITest21");
+			logger.log(Logger.Level.TRACE, "Starting queryAPITest21");
 			Department dept1 = getEntityManager().find(Department.class, 1);
 			dept1.setName("Research and Development");
 			getEntityManager().createQuery("SELECT d FROM Department d WHERE d.name = 'Research and Development'")
@@ -3683,22 +3689,23 @@ public class Client1IT extends PMClientBase {
 
 			Department newDepartment = getEntityManager().find(Department.class, 1);
 			if (newDepartment.getName().equals("Research and Development")) {
-				TestUtil.logTrace("Expected results received");
+				logger.log(Logger.Level.TRACE, "Expected results received");
 				pass = true;
 			} else {
-				TestUtil.logErr("Expected result:Research and Development, actual:" + newDepartment.getName());
+				logger.log(Logger.Level.ERROR,
+						"Expected result:Research and Development, actual:" + newDepartment.getName());
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Caught exception:", e);
+			logger.log(Logger.Level.ERROR, "Caught exception:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -3722,12 +3729,12 @@ public class Client1IT extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("Setting department name to IT for id 1");
+			logger.log(Logger.Level.TRACE, "Setting department name to IT for id 1");
 			q = getEntityManager().createQuery("update Department d set d.name='IT' where d.id=1");
 
 			result_size = q.executeUpdate();
 			if (result_size == 1) {
-				TestUtil.logTrace("Updated 1 rows");
+				logger.log(Logger.Level.TRACE, "Updated 1 rows");
 			}
 
 			doFlush();
@@ -3736,24 +3743,25 @@ public class Client1IT extends PMClientBase {
 			if (dept != null) {
 				if (dept.getId() == 1) {
 					if (dept.getName().equals("IT")) {
-						TestUtil.logTrace("Received expected name:" + dept.getName());
+						logger.log(Logger.Level.TRACE, "Received expected name:" + dept.getName());
 						pass = true;
 					} else {
-						TestUtil.logErr("Received unexpected d.name =" + dept.getName());
+						logger.log(Logger.Level.ERROR, "Received unexpected d.name =" + dept.getName());
 					}
 				} else {
-					TestUtil.logErr("Received incorrect Department, expected id=1 and name=IT, actual id="
-							+ dept.getId() + " and name=" + dept.getName());
+					logger.log(Logger.Level.ERROR,
+							"Received incorrect Department, expected id=1 and name=IT, actual id=" + dept.getId()
+									+ " and name=" + dept.getName());
 				}
 
 			} else {
-				TestUtil.logErr("department returned was null");
+				logger.log(Logger.Level.ERROR, "department returned was null");
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 
@@ -3779,28 +3787,28 @@ public class Client1IT extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("Deleting Employee where id 1");
+			logger.log(Logger.Level.TRACE, "Deleting Employee where id 1");
 			q = getEntityManager().createQuery("delete from Employee e where e.id=1");
 
 			result_size = q.executeUpdate();
 			if (result_size == 1) {
-				TestUtil.logTrace("Updated 1 rows");
+				logger.log(Logger.Level.TRACE, "Updated 1 rows");
 			}
 
 			doFlush();
 			clearCache();
 			Employee emp = getEntityManager().find(Employee.class, 1);
 			if (emp == null) {
-				TestUtil.logTrace("Employee returned expected null");
+				logger.log(Logger.Level.TRACE, "Employee returned expected null");
 				pass = true;
 			} else {
-				TestUtil.logErr("Expected null Employee, instead got:" + emp.toString());
+				logger.log(Logger.Level.ERROR, "Expected null Employee, instead got:" + emp.toString());
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 
@@ -3826,60 +3834,62 @@ public class Client1IT extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("Setting department name to IT for ids < 5");
+			logger.log(Logger.Level.TRACE, "Setting department name to IT for ids < 5");
 			q = getEntityManager().createQuery("update Department d set d.name='IT' where d.id<5");
 
 			result_size = q.executeUpdate();
 			if (result_size == 4) {
-				TestUtil.logTrace("Updated 4 rows");
+				logger.log(Logger.Level.TRACE, "Updated 4 rows");
 			}
 
 			doFlush();
 			clearCache();
-			TestUtil.logMsg("Testing ids 1 to 4");
+			logger.log(Logger.Level.INFO, "Testing ids 1 to 4");
 
 			for (int i = 1; i < 5; i++) {
 				Department dept = getEntityManager().find(Department.class, i);
 				if (dept != null) {
 					if (dept.getId() == i) {
 						if (dept.getName().equals("IT")) {
-							TestUtil.logTrace("Received expected name:" + dept.getName());
+							logger.log(Logger.Level.TRACE, "Received expected name:" + dept.getName());
 						} else {
-							TestUtil.logErr("Received unexpected d.name =" + dept.getName());
+							logger.log(Logger.Level.ERROR, "Received unexpected d.name =" + dept.getName());
 							pass = false;
 						}
 					} else {
-						TestUtil.logErr("Received incorrect Department, expected id=1 and name=IT, actual id="
-								+ dept.getId() + " and name=" + dept.getName());
+						logger.log(Logger.Level.ERROR,
+								"Received incorrect Department, expected id=1 and name=IT, actual id=" + dept.getId()
+										+ " and name=" + dept.getName());
 					}
 
 				} else {
-					TestUtil.logErr("department returned was null");
+					logger.log(Logger.Level.ERROR, "department returned was null");
 				}
 			}
-			TestUtil.logMsg("Testing id 5");
+			logger.log(Logger.Level.INFO, "Testing id 5");
 			Department dept = getEntityManager().find(Department.class, 5);
 			if (dept != null) {
 				if (dept.getId() == 5) {
 					if (dept.getName().equals(deptRef[4].getName())) {
-						TestUtil.logTrace("Received expected name:" + dept.getName());
+						logger.log(Logger.Level.TRACE, "Received expected name:" + dept.getName());
 					} else {
-						TestUtil.logErr("Received unexpected name =" + dept.getName());
+						logger.log(Logger.Level.ERROR, "Received unexpected name =" + dept.getName());
 						pass = false;
 					}
 				} else {
-					TestUtil.logErr("Received incorrect Department, expected id=1 and name=IT, actual id="
-							+ dept.getId() + " and name=" + dept.getName());
+					logger.log(Logger.Level.ERROR,
+							"Received incorrect Department, expected id=1 and name=IT, actual id=" + dept.getId()
+									+ " and name=" + dept.getName());
 				}
 
 			} else {
-				TestUtil.logErr("department returned was null");
+				logger.log(Logger.Level.ERROR, "department returned was null");
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 
@@ -3904,12 +3914,12 @@ public class Client1IT extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("Deleting Employee where id < 21");
+			logger.log(Logger.Level.TRACE, "Deleting Employee where id < 21");
 			q = getEntityManager().createQuery("delete from Employee e where e.id<21");
 
 			result_size = q.executeUpdate();
 			if (result_size == 20) {
-				TestUtil.logTrace("Updated 20 rows");
+				logger.log(Logger.Level.TRACE, "Updated 20 rows");
 			}
 
 			doFlush();
@@ -3917,23 +3927,23 @@ public class Client1IT extends PMClientBase {
 			for (int i = 1; i < 21; i++) {
 				Employee emp = getEntityManager().find(Employee.class, i);
 				if (emp == null) {
-					TestUtil.logTrace("Employee " + i + " returned was null");
+					logger.log(Logger.Level.TRACE, "Employee " + i + " returned was null");
 					pass = true;
 				} else {
-					TestUtil.logErr("Expected null Employee, instead got:" + emp.toString());
+					logger.log(Logger.Level.ERROR, "Expected null Employee, instead got:" + emp.toString());
 				}
 			}
 			Employee emp = getEntityManager().find(Employee.class, 21);
 			if (emp != null) {
-				TestUtil.logTrace("Employee 21 returned was expected non-null");
+				logger.log(Logger.Level.TRACE, "Employee 21 returned was expected non-null");
 				pass = true;
 			} else {
-				TestUtil.logErr("Expected non-null Employee for id 21");
+				logger.log(Logger.Level.ERROR, "Expected non-null Employee for id 21");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		}
 
@@ -3958,37 +3968,37 @@ public class Client1IT extends PMClientBase {
 		boolean pass2 = true;
 
 		try {
-			TestUtil.logTrace("Invoking query");
+			logger.log(Logger.Level.TRACE, "Invoking query");
 			getEntityTransaction().begin();
 			q = getEntityManager().createQuery("select e.hireDate from Employee e where e.hireDate = '2000-02-14'");
 
 			result = q.getResultList();
 			result_size = result.size();
-			TestUtil.logTrace("Result Size = " + result_size);
+			logger.log(Logger.Level.TRACE, "Result Size = " + result_size);
 
 			// There are two employees hired on 2000-02-14
 			if (result_size == 2) {
 				Date expectedHireDate = Date.valueOf("2000-02-14");
 				pass1 = true;
-				TestUtil.logTrace("Received expected count 2");
+				logger.log(Logger.Level.TRACE, "Received expected count 2");
 				for (Date d : result) {
-					TestUtil.logTrace("date=" + d);
+					logger.log(Logger.Level.TRACE, "date=" + d);
 					if (d.equals(expectedHireDate)) {
-						TestUtil.logTrace("Received expected HireDate ");
+						logger.log(Logger.Level.TRACE, "Received expected HireDate ");
 					} else {
-						TestUtil.logErr("Received unexpected Employee HireDate = " + d.toString());
+						logger.log(Logger.Level.ERROR, "Received unexpected Employee HireDate = " + d.toString());
 						pass2 = false;
 					}
 				}
 
 			} else {
-				TestUtil.logTrace("Received unexpected count " + result);
+				logger.log(Logger.Level.TRACE, "Received unexpected count " + result);
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -3996,7 +4006,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -4018,30 +4028,30 @@ public class Client1IT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
-		TestUtil.logMsg("Testing Delete");
+		logger.log(Logger.Level.INFO, "Testing Delete");
 		getEntityTransaction().begin();
 		Query query = getEntityManager().createQuery("DELETE FROM Employee e where e.id in (1,2,3)");
 		try {
 			query.getResultList();
-			TestUtil.logTrace("Did not throw IllegalStateException");
+			logger.log(Logger.Level.TRACE, "Did not throw IllegalStateException");
 		} catch (IllegalStateException ise) {
-			TestUtil.logTrace("Received expected IllegalStateException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
 			pass1 = true;
 		} catch (Exception ex) {
-			TestUtil.logErr("Received unexpected exception", ex);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", ex);
 		}
 
-		TestUtil.logMsg("Testing Update");
+		logger.log(Logger.Level.INFO, "Testing Update");
 
 		Query q = getEntityManager().createQuery("Update Employee e SET e.salary=0 where e.id in (1,2,3)");
 		try {
 			q.getResultList();
-			TestUtil.logTrace("Did not throw IllegalStateException");
+			logger.log(Logger.Level.TRACE, "Did not throw IllegalStateException");
 		} catch (IllegalStateException ise) {
-			TestUtil.logTrace("Received expected IllegalStateException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
 			pass2 = true;
 		} catch (Exception ex) {
-			TestUtil.logErr("Received unexpected exception", ex);
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", ex);
 		}
 
 		try {
@@ -4049,7 +4059,7 @@ public class Client1IT extends PMClientBase {
 				getEntityTransaction().rollback();
 			}
 		} catch (Exception re) {
-			TestUtil.logErr("Unexpected Exception while rolling back TX:", re);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception while rolling back TX:", re);
 		}
 		if (!pass1 || !pass2) {
 			throw new Exception("getResultListIllegalStateException failed");
@@ -4073,7 +4083,7 @@ public class Client1IT extends PMClientBase {
 		boolean pass2 = false;
 		boolean pass3 = false;
 		boolean pass4 = false;
-		TestUtil.logMsg("Query getSingleResult test");
+		logger.log(Logger.Level.INFO, "Query getSingleResult test");
 		try {
 			Query q = getEntityManager().createQuery("select e from Employee e where e.id = 1");
 			q.setLockMode(LockModeType.NONE);
@@ -4082,16 +4092,16 @@ public class Client1IT extends PMClientBase {
 				Employee e = (Employee) o;
 				if (e.getId() == 1) {
 					pass1 = true;
-					TestUtil.logTrace("Received expected employee id:" + e.getId());
+					logger.log(Logger.Level.TRACE, "Received expected employee id:" + e.getId());
 				} else {
-					TestUtil.logErr("Expected employee with id:1, actual:" + e.getId());
+					logger.log(Logger.Level.ERROR, "Expected employee with id:1, actual:" + e.getId());
 				}
 			} else {
-				TestUtil.logErr("Received non Employee object:" + o);
+				logger.log(Logger.Level.ERROR, "Received non Employee object:" + o);
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -4099,10 +4109,10 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
-		TestUtil.logMsg("TypedQuery getSingleResult test");
+		logger.log(Logger.Level.INFO, "TypedQuery getSingleResult test");
 		try {
 			TypedQuery<Employee> q = getEntityManager().createQuery("select e from Employee e where e.id = 1",
 					Employee.class);
@@ -4110,22 +4120,22 @@ public class Client1IT extends PMClientBase {
 			Employee e = q.getSingleResult();
 			if (e.getId() == 1) {
 				pass2 = true;
-				TestUtil.logTrace("Received expected employee id:" + e.getId());
+				logger.log(Logger.Level.TRACE, "Received expected employee id:" + e.getId());
 			} else {
-				TestUtil.logErr("Expected employee with id:1, actual:" + e.getId());
+				logger.log(Logger.Level.ERROR, "Expected employee with id:1, actual:" + e.getId());
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
-		TestUtil.logMsg("Query getResultList test");
+		logger.log(Logger.Level.INFO, "Query getResultList test");
 		try {
 			Query q = getEntityManager().createQuery("select e from Employee e where e.id = 1");
 			q.setLockMode(LockModeType.NONE);
@@ -4136,18 +4146,18 @@ public class Client1IT extends PMClientBase {
 					Employee e = (Employee) o;
 					if (e.getId() == 1) {
 						pass3 = true;
-						TestUtil.logTrace("Received expected employee id:" + e.getId());
+						logger.log(Logger.Level.TRACE, "Received expected employee id:" + e.getId());
 					} else {
-						TestUtil.logErr("Expected employee with id:1, actual:" + e.getId());
+						logger.log(Logger.Level.ERROR, "Expected employee with id:1, actual:" + e.getId());
 					}
 				} else {
-					TestUtil.logErr("Received non Employee object:" + o);
+					logger.log(Logger.Level.ERROR, "Received non Employee object:" + o);
 				}
 			} else {
-				TestUtil.logErr("Got more than one result");
+				logger.log(Logger.Level.ERROR, "Got more than one result");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -4155,10 +4165,10 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
-		TestUtil.logMsg("TypedQuery getResultList test");
+		logger.log(Logger.Level.INFO, "TypedQuery getResultList test");
 		try {
 			TypedQuery<Employee> q = getEntityManager().createQuery("select e from Employee e where e.id = 1",
 					Employee.class);
@@ -4168,16 +4178,16 @@ public class Client1IT extends PMClientBase {
 				Employee e = le.get(0);
 				if (e.getId() == 1) {
 					pass4 = true;
-					TestUtil.logTrace("Received expected employee id:" + e.getId());
+					logger.log(Logger.Level.TRACE, "Received expected employee id:" + e.getId());
 				} else {
-					TestUtil.logErr("Expected employee with id:1, actual:" + e.getId());
+					logger.log(Logger.Level.ERROR, "Expected employee with id:1, actual:" + e.getId());
 				}
 			} else {
-				TestUtil.logErr("Got more than one result");
+				logger.log(Logger.Level.ERROR, "Got more than one result");
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -4185,7 +4195,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -4195,7 +4205,7 @@ public class Client1IT extends PMClientBase {
 	}
 
 	private void createTestData() throws Exception {
-		TestUtil.logTrace("createTestData");
+		logger.log(Logger.Level.TRACE, "createTestData");
 
 		final Insurance insRef[] = new Insurance[5];
 		final Date d2 = getSQLDate("2001-06-27");
@@ -4213,35 +4223,35 @@ public class Client1IT extends PMClientBase {
 
 			getEntityTransaction().begin();
 
-			// TestUtil.logTrace("Create 5 Departments");
+			// logger.log(Logger.Level.TRACE,"Create 5 Departments");
 			deptRef[0] = new Department(1, "Engineering");
 			deptRef[1] = new Department(2, "Marketing");
 			deptRef[2] = new Department(3, "Sales");
 			deptRef[3] = new Department(4, "Accounting");
 			deptRef[4] = new Department(5, "Training");
 
-			TestUtil.logTrace("Start to persist departments ");
+			logger.log(Logger.Level.TRACE, "Start to persist departments ");
 			for (Department d : deptRef) {
 				if (d != null) {
 					getEntityManager().persist(d);
-					TestUtil.logTrace("persisted department " + d);
+					logger.log(Logger.Level.TRACE, "persisted department " + d);
 				}
 			}
 
-			// TestUtil.logTrace("Create 3 Insurance Carriers");
+			// logger.log(Logger.Level.TRACE,"Create 3 Insurance Carriers");
 			insRef[0] = new Insurance(1, "Prudential");
 			insRef[1] = new Insurance(2, "Cigna");
 			insRef[2] = new Insurance(3, "Sentry");
 
-			TestUtil.logTrace("Start to persist insurance ");
+			logger.log(Logger.Level.TRACE, "Start to persist insurance ");
 			for (Insurance i : insRef) {
 				if (i != null) {
 					getEntityManager().persist(i);
-					TestUtil.logTrace("persisted insurance " + i);
+					logger.log(Logger.Level.TRACE, "persisted insurance " + i);
 				}
 			}
 
-			// TestUtil.logTrace("Create 20 employees");
+			// logger.log(Logger.Level.TRACE,"Create 20 employees");
 			empRef[0] = new Employee(1, "Alan", "Frechette", d1, (float) 35000.0);
 			empRef[0].setDepartment(deptRef[0]);
 			empRef[0].setInsurance(insRef[0]);
@@ -4326,26 +4336,26 @@ public class Client1IT extends PMClientBase {
 			empRef[20].setDepartment(deptRef[0]);
 			empRef[20].setInsurance(insRef[2]);
 
-			// TestUtil.logTrace("Start to persist employees ");
+			// logger.log(Logger.Level.TRACE,"Start to persist employees ");
 			for (Employee e : empRef) {
 				if (e != null) {
 					getEntityManager().persist(e);
-					TestUtil.logTrace("persisted employee " + e);
+					logger.log(Logger.Level.TRACE, "persisted employee " + e);
 				}
 			}
 
 			getEntityTransaction().commit();
-			TestUtil.logTrace("Created TestData");
+			logger.log(Logger.Level.TRACE, "Created TestData");
 
 		} catch (Exception re) {
-			TestUtil.logErr("Unexpected Exception in createTestData:", re);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception in createTestData:", re);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in createTestData while rolling back TX:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in createTestData while rolling back TX:", re);
 			}
 		}
 
@@ -4353,14 +4363,14 @@ public class Client1IT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -4372,7 +4382,7 @@ public class Client1IT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM DATATYPES2").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 
 		} finally {
 			try {
@@ -4380,7 +4390,7 @@ public class Client1IT extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

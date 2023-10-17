@@ -20,11 +20,11 @@
 
 package com.sun.ts.tests.jpa.ee.packaging.appclient.annotation;
 
+import java.lang.System.Logger;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -32,6 +32,8 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceUnit;
 
 public class ClientIT {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	private static final Coffee cRef[] = new Coffee[5];
 
@@ -52,17 +54,17 @@ public class ClientIT {
 			if (emf != null) {
 				em = emf.createEntityManager();
 			} else {
-				TestUtil.logErr("EMF is null");
+				logger.log(Logger.Level.ERROR, "EMF is null");
 				throw new Exception("Setup Failed!");
 			}
 			if (em != null) {
 				et = em.getTransaction();
 			} else {
-				TestUtil.logErr("EM is null");
+				logger.log(Logger.Level.ERROR, "EM is null");
 				throw new Exception("Setup Failed!");
 			}
 			if (et == null) {
-				TestUtil.logErr("ET is null");
+				logger.log(Logger.Level.ERROR, "ET is null");
 				throw new Exception("Setup Failed!");
 			}
 			removeTestData();
@@ -97,31 +99,31 @@ public class ClientIT {
 	@Test
 	public void test1() throws Exception {
 
-		TestUtil.logTrace("Begin test1");
+		logger.log(Logger.Level.TRACE, "Begin test1");
 		boolean pass = true;
 
 		try {
 
-			TestUtil.logTrace("createTestData");
+			logger.log(Logger.Level.TRACE, "createTestData");
 
 			et.begin();
-			TestUtil.logTrace("Create 5 Coffees");
+			logger.log(Logger.Level.TRACE, "Create 5 Coffees");
 			cRef[0] = new Coffee(1, "hazelnut", 1.0F);
 			cRef[1] = new Coffee(2, "vanilla creme", 2.0F);
 			cRef[2] = new Coffee(3, "decaf", 3.0F);
 			cRef[3] = new Coffee(4, "breakfast blend", 4.0F);
 			cRef[4] = new Coffee(5, "mocha", 5.0F);
 
-			TestUtil.logTrace("Start to persist coffees ");
+			logger.log(Logger.Level.TRACE, "Start to persist coffees ");
 			for (Coffee c : cRef) {
 				if (c != null) {
 					em.persist(c);
-					TestUtil.logTrace("persisted coffee " + c);
+					logger.log(Logger.Level.TRACE, "persisted coffee " + c);
 				}
 			}
 			et.commit();
 
-			TestUtil.logTrace("Clearing the persistence context");
+			logger.log(Logger.Level.TRACE, "Clearing the persistence context");
 			em.clear();
 
 			et.begin();
@@ -130,16 +132,16 @@ public class ClientIT {
 					Coffee newcoffee = em.find(Coffee.class, c.getId());
 					if (newcoffee != null) {
 						em.remove(newcoffee);
-						TestUtil.logTrace("removed coffee " + newcoffee);
+						logger.log(Logger.Level.TRACE, "removed coffee " + newcoffee);
 					} else {
-						TestUtil.logErr("find of coffee[" + c.getId() + "] returned null");
+						logger.log(Logger.Level.ERROR, "find of coffee[" + c.getId() + "] returned null");
 						pass = false;
 					}
 				}
 			}
 			et.commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected while creating test data:", e);
+			logger.log(Logger.Level.ERROR, "Unexpected while creating test data:", e);
 			pass = false;
 		} finally {
 			try {
@@ -147,7 +149,7 @@ public class ClientIT {
 					et.rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 		if (!pass) {
@@ -157,17 +159,17 @@ public class ClientIT {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
 		// clear the cache if the provider supports caching otherwise
 		// the evictAll is ignored.
-		TestUtil.logTrace("Clearing cache");
+		logger.log(Logger.Level.TRACE, "Clearing cache");
 		emf.getCache().evictAll();
 
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (et.isActive()) {
 			et.rollback();
 		}
@@ -176,14 +178,14 @@ public class ClientIT {
 			em.createNativeQuery("DELETE FROM COFFEE").executeUpdate();
 			et.commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (et.isActive()) {
 					et.rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

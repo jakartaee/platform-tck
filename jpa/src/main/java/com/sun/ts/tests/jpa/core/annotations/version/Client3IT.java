@@ -16,14 +16,15 @@
 
 package com.sun.ts.tests.jpa.core.annotations.version;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.core.annotations.tableGenerator.Client;
-
 public class Client3IT extends Client {
+
+	private static final Logger logger = (Logger) System.getLogger(Client3IT.class.getName());
 
 	public Client3IT() {
 	}
@@ -41,7 +42,7 @@ public class Client3IT extends Client {
 
 	@BeforeAll
 	public void setupLongData() throws Exception {
-		TestUtil.logTrace("setupLongData");
+		logger.log(Logger.Level.TRACE, "setupLongData");
 		try {
 			super.setup();
 			createDeployment();
@@ -68,7 +69,7 @@ public class Client3IT extends Client {
 		try {
 			Long_Field a = getEntityManager().find(Long_Field.class, "1");
 			if (a != null) {
-				TestUtil.logTrace("version:" + a.getVersion());
+				logger.log(Logger.Level.TRACE, "version:" + a.getVersion());
 				// if (a.getVersion() == 1) {
 				long version = a.getVersion();
 				a.setName("two");
@@ -79,22 +80,24 @@ public class Client3IT extends Client {
 				Long_Field a1 = getEntityManager().find(Long_Field.class, "1");
 				if (a1 != null) {
 					if (a1.getVersion() > version) {
-						TestUtil.logTrace("version:" + a1.getVersion());
+						logger.log(Logger.Level.TRACE, "version:" + a1.getVersion());
 						pass = true;
 					} else {
-						TestUtil.logErr("Did not get a greater version after a modification:" + a1.getVersion());
+						logger.log(Logger.Level.ERROR,
+								"Did not get a greater version after a modification:" + a1.getVersion());
 					}
 				} else {
-					TestUtil.logErr("Second find returned null result");
+					logger.log(Logger.Level.ERROR, "Second find returned null result");
 				}
 				/*
-				 * } else { TestUtil.logErr("Did not get a version of 1 after find"); }
+				 * } else {
+				 * logger.log(Logger.Level.ERROR,"Did not get a version of 1 after find"); }
 				 */
 			} else {
-				TestUtil.logErr("Find returned null result");
+				logger.log(Logger.Level.ERROR, "Find returned null result");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -116,7 +119,7 @@ public class Client3IT extends Client {
 		try {
 			Long_Property a = getEntityManager().find(Long_Property.class, "2");
 			if (a != null) {
-				TestUtil.logTrace("version:" + a.getBasicLong());
+				logger.log(Logger.Level.TRACE, "version:" + a.getBasicLong());
 				// if (a.getVersion() == 1) {
 				long version = a.getBasicLong();
 				a.setName("two");
@@ -127,22 +130,24 @@ public class Client3IT extends Client {
 				Long_Property a1 = getEntityManager().find(Long_Property.class, "2");
 				if (a1 != null) {
 					if (a1.getBasicLong() > version) {
-						TestUtil.logTrace("version:" + a1.getBasicLong());
+						logger.log(Logger.Level.TRACE, "version:" + a1.getBasicLong());
 						pass = true;
 					} else {
-						TestUtil.logErr("Did not get a greater version after a modification:" + a1.getBasicLong());
+						logger.log(Logger.Level.ERROR,
+								"Did not get a greater version after a modification:" + a1.getBasicLong());
 					}
 				} else {
-					TestUtil.logErr("Second find returned null result");
+					logger.log(Logger.Level.ERROR, "Second find returned null result");
 				}
 				/*
-				 * } else { TestUtil.logErr("Did not get a version of 1 after find"); }
+				 * } else {
+				 * logger.log(Logger.Level.ERROR,"Did not get a version of 1 after find"); }
 				 */
 			} else {
-				TestUtil.logErr("Find returned null result");
+				logger.log(Logger.Level.ERROR, "Find returned null result");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -165,7 +170,7 @@ public class Client3IT extends Client {
 		try {
 			LongClass_Field a = getEntityManager().find(LongClass_Field.class, "3");
 			if (a != null) {
-				TestUtil.logTrace("version:" + a.getVersion());
+				logger.log(Logger.Level.TRACE, "version:" + a.getVersion());
 				// if (a.getVersion() == 1) {
 				Long version = a.getVersion();
 				a.setName("two");
@@ -176,22 +181,24 @@ public class Client3IT extends Client {
 				LongClass_Field a1 = getEntityManager().find(LongClass_Field.class, "3");
 				if (a1 != null) {
 					if (a1.getVersion() > version) {
-						TestUtil.logTrace("version:" + a1.getVersion());
+						logger.log(Logger.Level.TRACE, "version:" + a1.getVersion());
 						pass = true;
 					} else {
-						TestUtil.logErr("Did not get a greater version after a modification:" + a1.getVersion());
+						logger.log(Logger.Level.ERROR,
+								"Did not get a greater version after a modification:" + a1.getVersion());
 					}
 				} else {
-					TestUtil.logErr("Second find returned null result");
+					logger.log(Logger.Level.ERROR, "Second find returned null result");
 				}
 				/*
-				 * } else { TestUtil.logErr("Did not get a version of 1 after find"); }
+				 * } else {
+				 * logger.log(Logger.Level.ERROR,"Did not get a version of 1 after find"); }
 				 */
 			} else {
-				TestUtil.logErr("Find returned null result");
+				logger.log(Logger.Level.ERROR, "Find returned null result");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -213,7 +220,7 @@ public class Client3IT extends Client {
 		try {
 			LongClass_Property a = getEntityManager().find(LongClass_Property.class, "4");
 			if (a != null) {
-				TestUtil.logTrace("version:" + a.getBasicLong());
+				logger.log(Logger.Level.TRACE, "version:" + a.getBasicLong());
 				// if (a.getVersion() == 1) {
 				Long version = a.getBasicLong();
 				a.setName("two");
@@ -224,22 +231,24 @@ public class Client3IT extends Client {
 				LongClass_Property a1 = getEntityManager().find(LongClass_Property.class, "4");
 				if (a1 != null) {
 					if (a1.getBasicLong() > version) {
-						TestUtil.logTrace("version:" + a1.getBasicLong());
+						logger.log(Logger.Level.TRACE, "version:" + a1.getBasicLong());
 						pass = true;
 					} else {
-						TestUtil.logErr("Did not get a greater version after a modification:" + a1.getBasicLong());
+						logger.log(Logger.Level.ERROR,
+								"Did not get a greater version after a modification:" + a1.getBasicLong());
 					}
 				} else {
-					TestUtil.logErr("Second find returned null result");
+					logger.log(Logger.Level.ERROR, "Second find returned null result");
 				}
 				/*
-				 * } else { TestUtil.logErr("Did not get a version of 1 after find"); }
+				 * } else {
+				 * logger.log(Logger.Level.ERROR,"Did not get a version of 1 after find"); }
 				 */
 			} else {
-				TestUtil.logErr("Find returned null result");
+				logger.log(Logger.Level.ERROR, "Find returned null result");
 			}
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -249,7 +258,7 @@ public class Client3IT extends Client {
 	}
 
 	public void createLongTestData() {
-		TestUtil.logTrace("createLongTestData");
+		logger.log(Logger.Level.TRACE, "createLongTestData");
 
 		try {
 			getEntityTransaction().begin();
@@ -259,14 +268,14 @@ public class Client3IT extends Client {
 			getEntityManager().persist(new LongClass_Property("4", new Long(0)));
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception in createLongTestData:", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception in createLongTestData:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception during Rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
 			}
 		}
 

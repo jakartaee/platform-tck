@@ -16,17 +16,19 @@
 
 package com.sun.ts.tests.jpa.core.override.callbacklistener;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 import com.sun.ts.tests.jpa.core.override.util.CallBackCounts;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public ClientIT() {
 	}
@@ -42,13 +44,13 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 
 			super.setup();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -81,12 +83,12 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().refresh(entity);
 		getEntityManager().remove(entity);
 		getEntityTransaction().commit();
-		TestUtil.logTrace("persisted entity" + entity);
+		logger.log(Logger.Level.TRACE, "persisted entity" + entity);
 		try {
 			pass3 = checkLoadCallBacks();
 
 			if (pass3) {
-				TestUtil.logTrace("testOverrideCallBackMethods Passed");
+				logger.log(Logger.Level.TRACE, "testOverrideCallBackMethods Passed");
 			} else {
 				throw new Exception("Test failed while testing postLoad method");
 			}
@@ -122,12 +124,12 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().flush();
 		getEntityManager().remove(entity);
 		getEntityTransaction().commit();
-		TestUtil.logTrace("persisted entity" + entity);
+		logger.log(Logger.Level.TRACE, "persisted entity" + entity);
 		try {
 			pass1 = checkPersistCallBacks();
 
 			if (pass1) {
-				TestUtil.logTrace("testOverrideCallBackMethods Passed");
+				logger.log(Logger.Level.TRACE, "testOverrideCallBackMethods Passed");
 			} else {
 				throw new Exception("Test failed while testing prepersist and " + "postpersist methods");
 			}
@@ -164,12 +166,12 @@ public class ClientIT extends PMClientBase {
 		getEntityManager().remove(entity);
 		getEntityManager().flush();
 		getEntityTransaction().commit();
-		TestUtil.logTrace("persisted entity" + entity);
+		logger.log(Logger.Level.TRACE, "persisted entity" + entity);
 		try {
 			pass2 = checkRemoveCallBacks();
 
 			if (pass2) {
-				TestUtil.logTrace("testOverrideCallBackMethods Passed");
+				logger.log(Logger.Level.TRACE, "testOverrideCallBackMethods Passed");
 			} else {
 				throw new Exception("Test failed while testing preremove and " + "postremove methods");
 			}
@@ -210,14 +212,14 @@ public class ClientIT extends PMClientBase {
 
 		int count = CallBackCounts.getCount(callBackName);
 		if (count == expectedCount) {
-			TestUtil.logTrace("test passed in test method" + thisTestId);
+			logger.log(Logger.Level.TRACE, "test passed in test method" + thisTestId);
 			pass = true;
 
 		} else {
-			TestUtil.logErr("test failed in test method" + thisTestId);
-			TestUtil.logTrace("in CallBackName =" + callBackName);
-			TestUtil.logTrace("in expectedCount =" + expectedCount);
-			TestUtil.logTrace("in ActualCount =" + count);
+			logger.log(Logger.Level.ERROR, "test failed in test method" + thisTestId);
+			logger.log(Logger.Level.TRACE, "in CallBackName =" + callBackName);
+			logger.log(Logger.Level.TRACE, "in expectedCount =" + expectedCount);
+			logger.log(Logger.Level.TRACE, "in ActualCount =" + count);
 		}
 
 		return pass;
@@ -226,14 +228,14 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("Cleanup data");
+		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -242,14 +244,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM NOENTITYLISTENER_TABLE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

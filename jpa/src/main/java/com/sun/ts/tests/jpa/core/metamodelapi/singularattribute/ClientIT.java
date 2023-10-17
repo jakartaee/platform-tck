@@ -16,12 +16,13 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.singularattribute;
 
+import java.lang.System.Logger;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.metamodel.Attribute;
@@ -31,8 +32,9 @@ import jakarta.persistence.metamodel.Metamodel;
 import jakarta.persistence.metamodel.SingularAttribute;
 import jakarta.persistence.metamodel.Type;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public ClientIT() {
 	}
@@ -48,12 +50,12 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -73,19 +75,21 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.Address.class);
 
 				if (!singAttrib.isId()) {
-					TestUtil.logTrace("Received expected result singular attribute isId =" + singAttrib.isId());
+					logger.log(Logger.Level.TRACE,
+							"Received expected result singular attribute isId =" + singAttrib.isId());
 					pass = true;
 				} else {
-					TestUtil.logTrace("Received UnExpected result singular attribute isId =" + singAttrib.isId());
+					logger.log(Logger.Level.TRACE,
+							"Received UnExpected result singular attribute isId =" + singAttrib.isId());
 				}
 			}
 		}
@@ -112,20 +116,20 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.Address.class);
 
 				if (!singAttrib.isVersion()) {
-					TestUtil.logTrace(
+					logger.log(Logger.Level.TRACE,
 							"Received expected result singular attribute isVersion =" + singAttrib.isVersion());
 					pass = true;
 				} else {
-					TestUtil.logTrace(
+					logger.log(Logger.Level.TRACE,
 							"Received UnExpected result singular attribute isVersion =" + singAttrib.isVersion());
 				}
 			}
@@ -153,20 +157,20 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.Address.class);
 
 				if (singAttrib.isOptional()) {
-					TestUtil.logTrace(
+					logger.log(Logger.Level.TRACE,
 							"Received expected result singular attribute isOptional =" + singAttrib.isOptional());
 					pass = true;
 				} else {
-					TestUtil.logTrace(
+					logger.log(Logger.Level.TRACE,
 							"Received UnExpected result singular attribute isOptional =" + singAttrib.isOptional());
 				}
 			}
@@ -194,21 +198,23 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.Address.class);
 
 				Type attributeType = singAttrib.getType();
 				String attributeJavaTypeName = attributeType.getJavaType().getName();
 				if (attributeJavaTypeName.equals("com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.Address")) {
-					TestUtil.logTrace("Received expected result singular attribute JavaType =" + attributeJavaTypeName);
+					logger.log(Logger.Level.TRACE,
+							"Received expected result singular attribute JavaType =" + attributeJavaTypeName);
 					pass = true;
 				} else {
-					TestUtil.logErr("Received Unexpected result singular attribute JavaType =" + attributeJavaTypeName);
+					logger.log(Logger.Level.ERROR,
+							"Received Unexpected result singular attribute JavaType =" + attributeJavaTypeName);
 				}
 			}
 		}
@@ -235,26 +241,26 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.Address.class);
 
 				boolean b = singAttrib.isCollection();
 				if (!b) {
-					TestUtil.logTrace("Received expected result:" + b);
+					logger.log(Logger.Level.TRACE, "Received expected result:" + b);
 					pass = true;
 				} else {
-					TestUtil.logErr("Expected: false, actual: " + b);
+					logger.log(Logger.Level.ERROR, "Expected: false, actual: " + b);
 				}
 			} else {
-				TestUtil.logErr("managedType() returned null");
+				logger.log(Logger.Level.ERROR, "managedType() returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 		getEntityTransaction().commit();
 
@@ -278,26 +284,26 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.Address.class);
 
 				boolean b = singAttrib.isAssociation();
 				if (!b) {
-					TestUtil.logTrace("Received expected result:" + b);
+					logger.log(Logger.Level.TRACE, "Received expected result:" + b);
 					pass = true;
 				} else {
-					TestUtil.logErr("Expected: false, actual: " + b);
+					logger.log(Logger.Level.ERROR, "Expected: false, actual: " + b);
 				}
 			} else {
-				TestUtil.logErr("managedType() returned null");
+				logger.log(Logger.Level.ERROR, "managedType() returned null");
 			}
 		} else {
-			TestUtil.logErr("getMetamodel() returned null");
+			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
 		}
 		getEntityTransaction().commit();
 
@@ -321,22 +327,22 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.Address.class);
 				if (singAttrib != null) {
 					Attribute.PersistentAttributeType pAttribType = singAttrib.getPersistentAttributeType();
 					if (pAttribType == Attribute.PersistentAttributeType.EMBEDDED) {
-						TestUtil.logTrace("Received expected result " + pAttribType);
+						logger.log(Logger.Level.TRACE, "Received expected result " + pAttribType);
 						pass = true;
 
 					} else {
-						TestUtil.logErr("Expected: " + Attribute.PersistentAttributeType.EMBEDDED.toString()
-								+ ", actual:" + pAttribType);
+						logger.log(Logger.Level.ERROR, "Expected: "
+								+ Attribute.PersistentAttributeType.EMBEDDED.toString() + ", actual:" + pAttribType);
 					}
 				}
 			}
@@ -364,21 +370,21 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.Address.class);
 				if (singAttrib != null) {
 					String name = singAttrib.getName();
 					if (name.equals("address")) {
-						TestUtil.logTrace("Received expected result" + name);
+						logger.log(Logger.Level.TRACE, "Received expected result" + name);
 						pass = true;
 
 					} else {
-						TestUtil.logErr("Expected: address, actual:" + name);
+						logger.log(Logger.Level.ERROR, "Expected: address, actual:" + name);
 					}
 				}
 			}
@@ -406,21 +412,21 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.Address.class);
 				if (singAttrib != null) {
 					Class pSingAttribJavaType = singAttrib.getJavaType();
 					if (pSingAttribJavaType.getName()
 							.equals("com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.Address")) {
-						TestUtil.logTrace("Received expected result " + pSingAttribJavaType);
+						logger.log(Logger.Level.TRACE, "Received expected result " + pSingAttribJavaType);
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: address, actual:" + pSingAttribJavaType);
+						logger.log(Logger.Level.ERROR, "Expected: address, actual:" + pSingAttribJavaType);
 					}
 				}
 			}
@@ -448,21 +454,22 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.Address.class);
 				if (singAttrib != null) {
-					TestUtil.logTrace("Singular attribute JavaMember = " + singAttrib.getJavaMember().getName());
+					logger.log(Logger.Level.TRACE,
+							"Singular attribute JavaMember = " + singAttrib.getJavaMember().getName());
 					java.lang.reflect.Member javaMember = singAttrib.getJavaMember();
 					if (javaMember.getName().equals("address")) {
-						TestUtil.logTrace("Received expected result " + javaMember.getName());
+						logger.log(Logger.Level.TRACE, "Received expected result " + javaMember.getName());
 						pass = true;
 					} else {
-						TestUtil.logErr("Expected: address, actual:" + javaMember.getName());
+						logger.log(Logger.Level.ERROR, "Expected: address, actual:" + javaMember.getName());
 					}
 				}
 			}
@@ -490,23 +497,23 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.Address.class);
 				if (singAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + singAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + singAttrib.getName());
 					ManagedType<B> newTypeOrder = singAttrib.getDeclaringType();
 					if (newTypeOrder != null) {
 						Class javaType = newTypeOrder.getJavaType();
 						if (javaType.getName().equals("com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B")) {
-							TestUtil.logTrace("Received expected result:" + javaType.getName());
+							logger.log(Logger.Level.TRACE, "Received expected result:" + javaType.getName());
 							pass = true;
 						} else {
-							TestUtil.logErr(
+							logger.log(Logger.Level.ERROR,
 									"Expected: com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B, actual:"
 											+ javaType.getName());
 						}
@@ -537,24 +544,24 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.Address.class);
 				if (singAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + singAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + singAttrib.getName());
 					Bindable.BindableType bType = singAttrib.getBindableType();
 					if (bType != null) {
 
 						if (bType.name().equals(Bindable.BindableType.SINGULAR_ATTRIBUTE.name())) {
-							TestUtil.logTrace("Received expected result:" + bType.name());
+							logger.log(Logger.Level.TRACE, "Received expected result:" + bType.name());
 							pass = true;
 						} else {
-							TestUtil.logErr("Expected: " + Bindable.BindableType.SINGULAR_ATTRIBUTE.name() + ", actual:"
-									+ bType.name());
+							logger.log(Logger.Level.ERROR, "Expected: "
+									+ Bindable.BindableType.SINGULAR_ATTRIBUTE.name() + ", actual:" + bType.name());
 						}
 					}
 				}
@@ -583,22 +590,22 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				TestUtil.logTrace("Obtained Non-null ManagedType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.Address.class);
 				if (singAttrib != null) {
-					TestUtil.logTrace("attribute Name = " + singAttrib.getName());
+					logger.log(Logger.Level.TRACE, "attribute Name = " + singAttrib.getName());
 					Class cType = singAttrib.getBindableJavaType();
 					if (cType != null) {
 						if (cType.getName().equals(expected)) {
-							TestUtil.logTrace("Received expected result:" + cType.getName());
+							logger.log(Logger.Level.TRACE, "Received expected result:" + cType.getName());
 							pass = true;
 						} else {
-							TestUtil.logErr("Expected: " + expected + ", actual:" + cType.getName());
+							logger.log(Logger.Level.ERROR, "Expected: " + expected + ", actual:" + cType.getName());
 						}
 					}
 				}
@@ -614,14 +621,14 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("Cleanup data");
+		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}

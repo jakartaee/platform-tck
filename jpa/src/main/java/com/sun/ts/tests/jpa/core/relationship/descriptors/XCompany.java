@@ -20,15 +20,16 @@
 
 package com.sun.ts.tests.jpa.core.relationship.descriptors;
 
+import java.lang.System.Logger;
 import java.util.Collection;
-
-import com.sun.ts.lib.util.TestUtil;
 
 /*
  * XCompany
  */
 
 public class XCompany implements java.io.Serializable {
+
+	private static final Logger logger = (Logger) System.getLogger(XCompany.class.getName());
 
 	private long xCompanyId;
 
@@ -39,7 +40,7 @@ public class XCompany implements java.io.Serializable {
 	private Collection<XTeam> xTeams = new java.util.ArrayList<XTeam>();
 
 	public XCompany() {
-		TestUtil.logTrace("Company no arg constructor");
+		logger.log(Logger.Level.TRACE, "Company no arg constructor");
 	}
 
 	public XCompany(long xCompanyId, String xName) {

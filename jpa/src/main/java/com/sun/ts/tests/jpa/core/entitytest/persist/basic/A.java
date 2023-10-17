@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.persist.basic;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.lang.System.Logger;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
@@ -30,6 +30,8 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "AEJB_1XM_BI_BTOB")
 public class A implements java.io.Serializable {
+
+	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
 
 	// ===========================================================
 	// instance variables
@@ -47,7 +49,7 @@ public class A implements java.io.Serializable {
 	// constructors
 
 	public A() {
-		TestUtil.logTrace("Entity A no arg constructor");
+		logger.log(Logger.Level.TRACE, "Entity A no arg constructor");
 	}
 
 	public A(String id, String name, int value) {

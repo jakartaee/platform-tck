@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.annotations.mapkey;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,13 +29,12 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
-
-
 public class Client1IT extends Client {
 
 	public Client1IT() {
 	}
+
+	private static final Logger logger = (Logger) System.getLogger(Client1IT.class.getName());
 
 	public static JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = Client.class.getPackageName();
@@ -47,15 +47,14 @@ public class Client1IT extends Client {
 
 	@BeforeAll
 	public void setupCreateTestData() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
-			removeTestData();
 			createDeployment();
-
+			removeTestData();
 			createTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -90,7 +89,7 @@ public class Client1IT extends Client {
 
 			getEntityTransaction().begin();
 
-			TestUtil.logTrace("find Employees belonging to Department: Marketing");
+			logger.log(Logger.Level.TRACE, "find Employees belonging to Department: Marketing");
 			List l = getEntityManager().createQuery("Select e from Employee e where e.department.name = 'Marketing'")
 					.getResultList();
 
@@ -101,23 +100,23 @@ public class Client1IT extends Client {
 
 			Collections.sort(actual);
 			if (expected.equals(actual)) {
-				TestUtil.logTrace("Received expected employees");
+				logger.log(Logger.Level.TRACE, "Received expected employees");
 			} else {
-				TestUtil.logErr("Expected id values were:");
+				logger.log(Logger.Level.ERROR, "Expected id values were:");
 				for (Integer i : expected) {
-					TestUtil.logErr("id: " + i);
+					logger.log(Logger.Level.ERROR, "id: " + i);
 				}
-				TestUtil.logErr("actual id values were:");
+				logger.log(Logger.Level.ERROR, "actual id values were:");
 				Collections.sort(actual);
 				for (Integer i : actual) {
-					TestUtil.logErr("id: " + i);
+					logger.log(Logger.Level.ERROR, "id: " + i);
 				}
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception ex) {
-			TestUtil.logErr("Unexpected exception occurred", ex);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", ex);
 			pass = false;
 		} finally {
 			try {
@@ -125,7 +124,7 @@ public class Client1IT extends Client {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -161,7 +160,7 @@ public class Client1IT extends Client {
 
 			getEntityTransaction().begin();
 
-			TestUtil.logTrace("find Employees belonging to Department: Marketing");
+			logger.log(Logger.Level.TRACE, "find Employees belonging to Department: Marketing");
 			List l = getEntityManager()
 					.createQuery(
 							"Select e.id from Employee e where e.department.name = 'Administration' ORDER BY e.id DESC")
@@ -174,23 +173,23 @@ public class Client1IT extends Client {
 
 			Collections.sort(actual);
 			if (expected.equals(actual)) {
-				TestUtil.logTrace("Received expected employees");
+				logger.log(Logger.Level.TRACE, "Received expected employees");
 			} else {
-				TestUtil.logErr("Expected id values were:");
+				logger.log(Logger.Level.ERROR, "Expected id values were:");
 				for (Integer i : expected) {
-					TestUtil.logErr("id: " + i);
+					logger.log(Logger.Level.ERROR, "id: " + i);
 				}
-				TestUtil.logErr("actual id values were:");
+				logger.log(Logger.Level.ERROR, "actual id values were:");
 				Collections.sort(actual);
 				for (Integer i : actual) {
-					TestUtil.logErr("id: " + i);
+					logger.log(Logger.Level.ERROR, "id: " + i);
 				}
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception ex) {
-			TestUtil.logErr("Unexpected exception occurred", ex);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", ex);
 			pass = false;
 		} finally {
 			try {
@@ -198,7 +197,7 @@ public class Client1IT extends Client {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 

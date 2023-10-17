@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.bindable;
 
+import java.lang.System.Logger;
 import java.util.Set;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -23,15 +24,15 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.metamodel.Bindable;
 import jakarta.persistence.metamodel.EntityType;
 import jakarta.persistence.metamodel.Metamodel;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public ClientIT() {
 	}
@@ -47,12 +48,12 @@ public class ClientIT extends PMClientBase {
 
 	@BeforeAll
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			removeTestData();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -72,17 +73,17 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			Set<EntityType<?>> aSet = metaModel.getEntities();
 			if (aSet != null) {
-				TestUtil.logTrace("Obtained Non-null Set of EntityType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Set of EntityType");
 				for (EntityType eType : aSet) {
-					TestUtil.logTrace("entity's BindableType is  = " + eType.getBindableType());
+					logger.log(Logger.Level.TRACE, "entity's BindableType is  = " + eType.getBindableType());
 					if (eType.getBindableType().equals(Bindable.BindableType.ENTITY_TYPE)) {
-						TestUtil.logTrace("as Expected BindableType is ENTITY_TYPE");
+						logger.log(Logger.Level.TRACE, "as Expected BindableType is ENTITY_TYPE");
 						pass = true;
 					} else {
-						TestUtil.logTrace("bindableType is non ENTITY_TYPE");
+						logger.log(Logger.Level.TRACE, "bindableType is non ENTITY_TYPE");
 					}
 				}
 			}
@@ -110,20 +111,21 @@ public class ClientIT extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
 			Set<EntityType<?>> aSet = metaModel.getEntities();
 			if (aSet != null) {
-				TestUtil.logTrace("Obtained Non-null Set of EntityType");
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Set of EntityType");
 				for (EntityType eType : aSet) {
-					TestUtil.logTrace("entity's BindableJavaType is  = " + eType.getBindableJavaType().getName());
+					logger.log(Logger.Level.TRACE,
+							"entity's BindableJavaType is  = " + eType.getBindableJavaType().getName());
 					String bindableJavaType = eType.getBindableJavaType().getName();
 
 					if (bindableJavaType != null) {
 						if (bindableJavaType.equals("com.sun.ts.tests.jpa.core.metamodelapi.bindable.A")) {
-							TestUtil.logTrace("as Expected BindableJavaType for A is " + bindableJavaType);
+							logger.log(Logger.Level.TRACE, "as Expected BindableJavaType for A is " + bindableJavaType);
 							pass = true;
 						} else {
-							TestUtil.logTrace("bindableJavaType is incorrect");
+							logger.log(Logger.Level.TRACE, "bindableJavaType is incorrect");
 						}
 					}
 				}
@@ -139,14 +141,14 @@ public class ClientIT extends PMClientBase {
 
 	@AfterAll
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("Cleanup data");
+		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}

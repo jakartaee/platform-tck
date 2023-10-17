@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,14 +16,13 @@
 
 package com.sun.ts.tests.jpa.core.criteriaapi.CriteriaQuery;
 
+import java.lang.System.Logger;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
-
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Cacheable;
@@ -112,10 +111,12 @@ public class A implements java.io.Serializable {
 	@Basic
 	protected Timestamp basicTimestamp;
 
+	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
+
 	// ===========================================================
 	// constructors
 	public A() {
-		TestUtil.logTrace("Entity A no arg constructor");
+		logger.log(Logger.Level.TRACE, "Entity A no arg constructor");
 	}
 
 	public A(String id, String name, int value, Integer basicInteger, short basicShort, Short basicBigShort,

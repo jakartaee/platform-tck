@@ -20,15 +20,16 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.apitests;
 
+import java.lang.System.Logger;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-
 public class ClientIT extends PMClientBase {
+
+	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	private static Coffee cRef[] = new Coffee[5];
 
@@ -39,8 +40,9 @@ public class ClientIT extends PMClientBase {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = ClientIT.class.getPackageName() + ".";
+		String[] xmlFiles = { "myMappingFile.xml", "orm.xml" };
 		String[] classes = { pkgName + "Bar", pkgName + "Coffee", pkgName + "CoffeeMappedSC", pkgName + "Foo" };
-		return createDeploymentJar("jpa_core_entitytest_apitests.jar", pkgNameWithoutSuffix, classes);
+		return createDeploymentJar("jpa_core_entitytest_apitests.jar", pkgNameWithoutSuffix, classes, xmlFiles);
 
 	}
 
@@ -48,14 +50,14 @@ public class ClientIT extends PMClientBase {
 	 * setup() is called before each test
 	 */
 	public void setup() throws Exception {
-		TestUtil.logTrace("setup");
+		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			removeTestData();
 			createTestData();
-			TestUtil.logTrace("Done creating test data");
+			logger.log(Logger.Level.TRACE, "Done creating test data");
 		} catch (Exception e) {
-			TestUtil.logErr("Exception: ", e);
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -81,16 +83,16 @@ public class ClientIT extends PMClientBase {
 
 		} catch (IllegalArgumentException e) {
 			pass = true;
-			TestUtil.logTrace("Exception Caught as Expected: " + e);
+			logger.log(Logger.Level.TRACE, "Exception Caught as Expected: " + e);
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -116,19 +118,19 @@ public class ClientIT extends PMClientBase {
 			Coffee doesNotExist = getEntityManager().find(Coffee.class, 55);
 
 			if (null == doesNotExist) {
-				TestUtil.logTrace("find returned null as expected");
+				logger.log(Logger.Level.TRACE, "find returned null as expected");
 				pass = true;
 			}
 
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -154,16 +156,16 @@ public class ClientIT extends PMClientBase {
 
 		} catch (IllegalArgumentException iae) {
 			pass = true;
-			TestUtil.logTrace("Exception Caught as Expected: " + iae);
+			logger.log(Logger.Level.TRACE, "Exception Caught as Expected: " + iae);
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -191,21 +193,21 @@ public class ClientIT extends PMClientBase {
 			Coffee coffee = getEntityManager().find(Coffee.class, longId);
 
 			if (coffee == null) {
-				TestUtil.logTrace("coffee is null");
+				logger.log(Logger.Level.TRACE, "coffee is null");
 			}
 
 		} catch (IllegalArgumentException iae) {
 			pass = true;
-			TestUtil.logTrace("Exception Caught as Expected: " + iae);
+			logger.log(Logger.Level.TRACE, "Exception Caught as Expected: " + iae);
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -227,38 +229,38 @@ public class ClientIT extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
-		TestUtil.logMsg("Testing getReference invalid entity");
+		logger.log(Logger.Level.INFO, "Testing getReference invalid entity");
 
 		try {
 			getEntityManager().getReference(Foo.class, 1);
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass1 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
-		TestUtil.logMsg("Testing getReference with invalid PK");
+		logger.log(Logger.Level.INFO, "Testing getReference with invalid PK");
 		try {
 			getEntityManager().getReference(Coffee.class, "1");
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass2 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
-		TestUtil.logMsg("Testing getReference with null PK");
+		logger.log(Logger.Level.INFO, "Testing getReference with null PK");
 		try {
 			getEntityManager().getReference(Coffee.class, null);
-			TestUtil.logErr("IllegalArgumentException not thrown");
+			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException iae) {
-			TestUtil.logTrace("Received expected IllegalArgumentException");
+			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
 			pass3 = true;
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 
 		if (!pass1 || !pass2 || !pass3)
@@ -283,20 +285,20 @@ public class ClientIT extends PMClientBase {
 			Coffee thisCoffee = getEntityManager().getReference(Coffee.class, 1);
 			if (thisCoffee != null) {
 				pass = true;
-				TestUtil.logTrace("Got Reference");
+				logger.log(Logger.Level.TRACE, "Got Reference");
 			} else {
-				TestUtil.logErr("getReference(Coffee.class, 1) returned null");
+				logger.log(Logger.Level.ERROR, "getReference(Coffee.class, 1) returned null");
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -327,16 +329,16 @@ public class ClientIT extends PMClientBase {
 
 		} catch (IllegalArgumentException iae) {
 			pass = true;
-			TestUtil.logTrace("Exception Caught as Expected: " + iae);
+			logger.log(Logger.Level.TRACE, "Exception Caught as Expected: " + iae);
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -367,16 +369,16 @@ public class ClientIT extends PMClientBase {
 
 		} catch (IllegalArgumentException iae) {
 			pass = true;
-			TestUtil.logTrace("Exception Caught as Expected: " + iae);
+			logger.log(Logger.Level.TRACE, "Exception Caught as Expected: " + iae);
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -412,8 +414,8 @@ public class ClientIT extends PMClientBase {
 			result = getEntityManager().createNamedQuery("findAllCoffees").getResultList();
 
 			if (!checkEntityPK(result, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ result.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + result.size());
 			} else {
 				if (verifyEntity(result) == cRef.length) {
 					pass = true;
@@ -421,7 +423,7 @@ public class ClientIT extends PMClientBase {
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass)
 			throw new Exception("entityAPITest12 failed");
@@ -452,12 +454,12 @@ public class ClientIT extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logTrace("invoke query method, findallSQLCoffees");
+			logger.log(Logger.Level.TRACE, "invoke query method, findallSQLCoffees");
 			result = getEntityManager().createNamedQuery("findAllSQLCoffees").getResultList();
 
 			if (!checkEntityPK(result, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ result.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + result.size());
 			} else {
 				if (verifyEntity(result) == cRef.length) {
 					pass = true;
@@ -465,7 +467,7 @@ public class ClientIT extends PMClientBase {
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		}
 		if (!pass)
@@ -493,12 +495,12 @@ public class ClientIT extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("invoke query method, findAllNewCoffees");
+			logger.log(Logger.Level.TRACE, "invoke query method, findAllNewCoffees");
 			result = getEntityManager().createNamedQuery("findAllNewCoffees").getResultList();
 
 			if (!checkEntityPK(result, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ result.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + result.size());
 			} else {
 				if (verifyEntity(result) == cRef.length) {
 					pass = true;
@@ -506,7 +508,7 @@ public class ClientIT extends PMClientBase {
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		}
 		if (!pass)
@@ -536,15 +538,15 @@ public class ClientIT extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			TestUtil.logTrace("try same constructor expression query using createQuery");
+			logger.log(Logger.Level.TRACE, "try same constructor expression query using createQuery");
 			result = getEntityManager().createQuery(
 					"Select NEW com.sun.ts.tests.jpa.core.entitytest.apitests.Coffee(c.id, c.brandName, c.price)"
 							+ " from Coffee c where c.price <> 0")
 					.getResultList();
 
 			if (!checkEntityPK(result, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ result.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + result.size());
 			} else {
 				if (verifyEntity(result) == cRef.length) {
 					pass = true;
@@ -552,7 +554,7 @@ public class ClientIT extends PMClientBase {
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -581,31 +583,31 @@ public class ClientIT extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logTrace("Execute query in entityAPITest16");
+			logger.log(Logger.Level.TRACE, "Execute query in entityAPITest16");
 			result = getEntityManager().createQuery(
 					"Select NEW com.sun.ts.tests.jpa.core.entitytest.apitests.Bar(c.id, c.brandName, c.price)"
 							+ " from Coffee c where c.brandName = 'mocha'")
 					.getResultList();
 
 			if (!checkEntityPK(result, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ result.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + result.size());
 			} else {
-				TestUtil.logTrace("Received expected id");
+				logger.log(Logger.Level.TRACE, "Received expected id");
 				if (result.get(0).getBrandName().equals(cRef[4].getBrandName())
 						&& result.get(0).getPrice().equals(cRef[4].getPrice())) {
 					pass = true;
 
 				} else {
-					TestUtil.logErr("Did not get expected results. Expected " + expected[0].toString() + ", got: "
-							+ result.get(0).toString());
+					logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected[0].toString()
+							+ ", got: " + result.get(0).toString());
 
 				}
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -634,16 +636,16 @@ public class ClientIT extends PMClientBase {
 
 		} catch (IllegalArgumentException e) {
 			pass = true;
-			TestUtil.logTrace("Exception Caught as Expected: " + e);
+			logger.log(Logger.Level.TRACE, "Exception Caught as Expected: " + e);
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -674,18 +676,18 @@ public class ClientIT extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 
-			TestUtil.logTrace("invoke query method, findAllSQLCoffees2");
+			logger.log(Logger.Level.TRACE, "invoke query method, findAllSQLCoffees2");
 			result = getEntityManager().createNamedQuery("findAllSQLCoffees2").getResultList();
 
 			if (!checkEntityPK(result, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ result.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + result.size());
 			} else {
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -713,8 +715,8 @@ public class ClientIT extends PMClientBase {
 			result = getEntityManager().createNamedQuery("xmlOverridesNamedNativeQuery").getResultList();
 
 			if (!checkEntityPK(result, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ result.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + result.size());
 			} else {
 				if (verifyEntity(result) == 1) {
 					pass = true;
@@ -722,7 +724,7 @@ public class ClientIT extends PMClientBase {
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -750,8 +752,8 @@ public class ClientIT extends PMClientBase {
 			result = getEntityManager().createNamedQuery("xmlNamedNativeQuery").getResultList();
 
 			if (!checkEntityPK(result, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ result.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + result.size());
 			} else {
 				if (verifyEntity(result) == 1) {
 					pass = true;
@@ -759,7 +761,7 @@ public class ClientIT extends PMClientBase {
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -787,8 +789,8 @@ public class ClientIT extends PMClientBase {
 			result = getEntityManager().createNamedQuery("xmlOverridesNamedQuery").getResultList();
 
 			if (!checkEntityPK(result, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ result.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + result.size());
 			} else {
 				if (verifyEntity(result) == 1) {
 					pass = true;
@@ -796,7 +798,7 @@ public class ClientIT extends PMClientBase {
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -824,8 +826,8 @@ public class ClientIT extends PMClientBase {
 			result = getEntityManager().createNamedQuery("xmlNamedQuery").getResultList();
 
 			if (!checkEntityPK(result, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ result.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + result.size());
 			} else {
 				if (verifyEntity(result) == 1) {
 					pass = true;
@@ -833,7 +835,7 @@ public class ClientIT extends PMClientBase {
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -861,8 +863,8 @@ public class ClientIT extends PMClientBase {
 			result = getEntityManager().createNamedQuery("findDecafSQLCoffees").getResultList();
 
 			if (!checkEntityPK(result, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ result.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + result.size());
 			} else {
 				if (verifyEntity(result) == 1) {
 					pass = true;
@@ -870,7 +872,7 @@ public class ClientIT extends PMClientBase {
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass)
 			throw new Exception("namedNativeQueryInMappedSuperClass failed");
@@ -896,8 +898,8 @@ public class ClientIT extends PMClientBase {
 			result = getEntityManager().createNamedQuery("findDecafCoffees").getResultList();
 
 			if (!checkEntityPK(result, expected)) {
-				TestUtil.logErr("Did not get expected results. Expected " + expected.length + " references, got: "
-						+ result.size());
+				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+						+ " references, got: " + result.size());
 			} else {
 				if (verifyEntity(result) == 1) {
 					pass = true;
@@ -905,7 +907,7 @@ public class ClientIT extends PMClientBase {
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected exception occurred", e);
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 		}
 		if (!pass)
 			throw new Exception("namedQueryInMappedSuperClass failed");
@@ -918,47 +920,48 @@ public class ClientIT extends PMClientBase {
 	private void createTestData() throws Exception {
 		try {
 
-			TestUtil.logTrace("createTestData");
+			logger.log(Logger.Level.TRACE, "createTestData");
 
 			getEntityTransaction().begin();
-			TestUtil.logTrace("Create 5 Coffees");
+			logger.log(Logger.Level.TRACE, "Create 5 Coffees");
 			cRef[0] = new Coffee(1, "hazelnut", 1.0F);
 			cRef[1] = new Coffee(2, "vanilla creme", 2.0F);
 			cRef[2] = new Coffee(3, "decaf", 3.0F);
 			cRef[3] = new Coffee(4, "breakfast blend", 4.0F);
 			cRef[4] = new Coffee(5, "mocha", 5.0F);
 
-			TestUtil.logTrace("Start to persist coffees ");
+			logger.log(Logger.Level.TRACE, "Start to persist coffees ");
 			for (Coffee c : cRef) {
 				if (c != null) {
 					getEntityManager().persist(c);
-					TestUtil.logTrace("persisted coffee " + c);
+					logger.log(Logger.Level.TRACE, "persisted coffee " + c);
 				}
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Unexpected Exception creating test data:", e);
+			logger.log(Logger.Level.ERROR, "Unexpected Exception creating test data:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in rollback:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
 			}
 		}
 	}
 
 	private int verifyEntity(List<Coffee> result) {
-		TestUtil.logTrace("in verifyEntity");
+		logger.log(Logger.Level.TRACE, "in verifyEntity");
 		int passCounter = 0;
 		for (Coffee c : result) {
-			TestUtil.logTrace("Verifying:" + c);
+			logger.log(Logger.Level.TRACE, "Verifying:" + c);
 			if (c.getBrandName().equals(cRef[c.getId() - 1].getBrandName())
 					&& c.getPrice().equals(cRef[c.getId() - 1].getPrice())) {
 				passCounter++;
 			} else {
-				TestUtil.logErr("Did not get expected results. Expected " + cRef[c.getId() - 1] + ", got: " + c);
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results. Expected " + cRef[c.getId() - 1] + ", got: " + c);
 			}
 
 		}
@@ -966,14 +969,14 @@ public class ClientIT extends PMClientBase {
 	}
 
 	public void cleanup() throws Exception {
-		TestUtil.logTrace("Cleanup data");
+		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
-		TestUtil.logTrace("cleanup complete, calling super.cleanup");
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		TestUtil.logTrace("removeTestData");
+		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -982,14 +985,14 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM \"COFFEE\"").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			TestUtil.logErr("Exception encountered while removing entities:", e);
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				TestUtil.logErr("Unexpected Exception in removeTestData:", re);
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}
