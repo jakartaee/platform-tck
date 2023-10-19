@@ -25,6 +25,9 @@
 #
 com/sun/ts/tests/servlet/api/javax_servlet_http/httpupgradehandler/URLClient.java#upgradeTest
 
+#TCK Challenge : https://github.com/jakartaee/platform-tck/issues/1176
+com/sun/ts/tests/servlet/ee/spec/security/runAs/Client.java#web_to_ejb_dd_runAs
+com/sun/ts/tests/servlet/ee/spec/security/runAs/Client.java#web_to_ejb_annotation_runAs
 
 ################
 # JSF
