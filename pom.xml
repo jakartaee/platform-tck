@@ -70,12 +70,10 @@
         <module>runtime</module>
         <module>saaj</module>
         <module>samples</module>
-        <module>servlet</module>
         <module>signaturetest</module>
         <module>webartifacts/jsf</module>
         <module>webartifacts/jsp</module>
         <module>webartifacts/jstl</module>
-        <module>webartifacts/servlet</module>
         <!-- TODO: implement or remove optional webservices12/webservices13 tests -->
         <!--        <module>webservices12</module>-->
         <!--        <module>webservices13</module>-->
