@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,6 +19,8 @@ package com.sun.ts.tests.jpa.core.query.language;
 import java.lang.System.Logger;
 import java.util.List;
 
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.tests.jpa.common.schema30.Util;
 
@@ -26,6 +28,12 @@ public class Client5IT extends Util {
 
 	private static final Logger logger = (Logger) System.getLogger(Client5IT.class.getName());
 
+	public JavaArchive createDeployment() throws Exception {
+		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = getSchema30classes();
+		return createDeploymentJar("jpa_core_query_language5.jar", pkgNameWithoutSuffix, classes);
+	}
 	/* Run test */
 
 	/*

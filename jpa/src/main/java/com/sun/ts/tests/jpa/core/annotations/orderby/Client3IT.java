@@ -21,8 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -50,7 +52,7 @@ public class Client3IT extends PMClientBase {
 	public Client3IT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = Client3IT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "A", pkgName + "A2", pkgName + "Address", pkgName + "Address2",
@@ -59,7 +61,7 @@ public class Client3IT extends PMClientBase {
 		return createDeploymentJar("jpa_core_annotations_orderby3.jar", pkgNameWithoutSuffix, classes);
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setupCust() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
@@ -194,7 +196,7 @@ public class Client3IT extends PMClientBase {
 		}
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanupCust() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeCustTestData();

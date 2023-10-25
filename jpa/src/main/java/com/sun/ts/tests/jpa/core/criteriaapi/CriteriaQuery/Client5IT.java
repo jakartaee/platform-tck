@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,7 +25,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
@@ -41,19 +41,21 @@ public class Client5IT extends Util {
 
 	private static final Logger logger = (Logger) System.getLogger(Client5IT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client5IT.class.getPackageName();
-		String pkgName = Client5IT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "A" };
+		classes = concat(getSchema30classes(), classes) ;
 		return createDeploymentJar("jpa_core_criteriaapi_CriteriaQuery5.jar", pkgNameWithoutSuffix, classes);
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setupAData() throws Exception {
 		logger.log(Logger.Level.TRACE, "setupData");
 		try {
 			super.setup();
+			createDeployment();
 			removeATestData();
 			createATestData();
 		} catch (Exception e) {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2012, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,7 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.sun.ts.tests.jpa.common.schema30.Customer;
 import com.sun.ts.tests.jpa.common.schema30.Customer_;
 import com.sun.ts.tests.jpa.common.schema30.Order;
-import com.sun.ts.tests.jpa.common.schema30.Util;
+import com.sun.ts.tests.jpa.common.schema30.UtilSetup;
 
 import jakarta.persistence.Tuple;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -37,27 +37,16 @@ import jakarta.persistence.criteria.Root;
 import jakarta.persistence.criteria.Selection;
 import jakarta.persistence.metamodel.EntityType;
 
-public class Client1IT extends Util {
+public class Client1IT extends UtilSetup {
 
 	private static final Logger logger = (Logger) System.getLogger(Client1IT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
-		String pkgName = Client1IT.class.getPackageName() + ".";
-		String[] classes = {};
-		return createDeploymentJar("jpa_core_criteriaapi_misc.jar", pkgNameWithoutSuffix, classes);
-	}
-
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
-		try {
-			super.setup();
-			getEntityManager();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
-			throw new Exception("Setup failed:", e);
-		}
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = getSchema30classes();
+		return createDeploymentJar("jpa_core_criteriaapi_misc1.jar", pkgNameWithoutSuffix, classes);
 	}
 
 	/*

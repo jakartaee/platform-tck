@@ -49,10 +49,10 @@ public class ClientIT extends PMClientBase {
 	public ClientIT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "DateTimeEntity", pkgName + "DummyEntity" };
 		return createDeploymentJar("jpa_jpa22_datetime.jar", pkgNameWithoutSuffix, (String[]) classes);
 
@@ -151,7 +151,7 @@ public class ClientIT extends PMClientBase {
 	 * java.time.LocalTime, java.time.LocalDateTime, java.time.OffsetTime and
 	 * java.time.OffsetDateTime
 	 * 
-	 * @throws com.sun.ts.lib.harness.EETest.Fault when test failed
+	 * @throws com.sun.ts.lib.harness.EETest.Exception when test failed
 	 */
 	@Test
 	public void dateTimeTest() throws Exception {

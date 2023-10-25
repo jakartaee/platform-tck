@@ -4,7 +4,8 @@ import java.lang.System.Logger;
 import java.util.Arrays;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.core.types.common.Grade;
@@ -15,7 +16,7 @@ public class Client1IT extends Client {
 
 	private static final Logger logger = (Logger) System.getLogger(Client1IT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client.class.getPackageName();
 		String pkgName = Client.class.getPackageName() + ".";
@@ -25,7 +26,7 @@ public class Client1IT extends Client {
 
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 
 		logger.log(Logger.Level.TRACE, "setup");

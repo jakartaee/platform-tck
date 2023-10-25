@@ -24,6 +24,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
@@ -36,6 +37,13 @@ import jakarta.persistence.Query;
 public class Client1IT extends UtilOrderData {
 
 	private static final Logger logger = (Logger) System.getLogger(Client1IT.class.getName());
+
+	public JavaArchive createDeployment() throws Exception {
+		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = getSchema30classes();
+		return createDeploymentJar("jpa_core_query_language1.jar", pkgNameWithoutSuffix, classes);
+	}
 
 	/* Run test */
 

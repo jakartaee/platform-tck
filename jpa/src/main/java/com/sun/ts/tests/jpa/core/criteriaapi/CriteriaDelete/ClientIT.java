@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,12 +22,11 @@ import java.util.Collection;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.schema30.Product;
 import com.sun.ts.tests.jpa.common.schema30.SoftwareProduct;
-import com.sun.ts.tests.jpa.common.schema30.Util;
+import com.sun.ts.tests.jpa.common.schema30.UtilSetup;
 
 import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -39,31 +38,17 @@ import jakarta.persistence.criteria.Subquery;
 import jakarta.persistence.metamodel.EntityType;
 import jakarta.persistence.metamodel.Metamodel;
 
-public class ClientIT extends Util {
+public class ClientIT extends UtilSetup {
 
 	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
-		String[] classes = {};
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = getSchema30classes();
 		return createDeploymentJar("jpa_core_criteriaapi_CriteriaDelete.jar", pkgNameWithoutSuffix, classes);
 
-	}
-
-	@BeforeAll
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
-		try {
-			super.setup();
-			createDeployment();
-			removeTestData();
-			createProductData();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
-			throw new Exception("setup failed:", e);
-		}
 	}
 
 	/*

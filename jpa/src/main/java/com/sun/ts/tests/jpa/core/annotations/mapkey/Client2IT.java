@@ -23,7 +23,7 @@ package com.sun.ts.tests.jpa.core.annotations.mapkey;
 import java.lang.System.Logger;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class Client2IT extends Client {
@@ -33,7 +33,7 @@ public class Client2IT extends Client {
 
 	private static final Logger logger = (Logger) System.getLogger(Client2IT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = Client.class.getPackageName();
 		String pkgName = Client.class.getPackageName() + ".";
 		String[] classes = { pkgName + "Department", pkgName + "Employee", pkgName + "Employee2", pkgName + "Employee3",
@@ -48,20 +48,20 @@ public class Client2IT extends Client {
 
 	private Employee4 empRef4;
 
-	@BeforeAll
-	public void setupCreateTestData() throws Exception {
+	@BeforeEach
+	public void setupCreateTestData2() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
-			createTestData();
+			createTestData2();
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
-
+	
 	/*
 	 * @testName: joinColumnInsertable
 	 * 

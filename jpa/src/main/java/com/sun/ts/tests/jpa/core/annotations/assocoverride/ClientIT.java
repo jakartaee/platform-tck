@@ -20,8 +20,10 @@ import java.lang.System.Logger;
 import java.sql.Date;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -47,15 +49,15 @@ public class ClientIT extends PMClientBase {
 	public ClientIT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
-		String pkgNameWithSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
+	public JavaArchive createDeployment() throws Exception {
+		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "Address", pkgName + "Employee", pkgName + "PartTimeEmployee" };
-		return createDeploymentJar("jpa_core_annotations_access_property.jar", pkgNameWithSuffix, classes);
+		return createDeploymentJar("jpa_core_annotations_access_property.jar", pkgNameWithoutSuffix, classes);
 
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
@@ -157,7 +159,7 @@ public class ClientIT extends PMClientBase {
 		}
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();

@@ -19,7 +19,7 @@ package com.sun.ts.tests.jpa.core.annotations.version;
 import java.lang.System.Logger;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class Client3IT extends Client {
@@ -29,7 +29,7 @@ public class Client3IT extends Client {
 	public Client3IT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = Client.class.getPackageName();
 		String pkgName = Client.class.getPackageName() + ".";
 		String[] classes = { pkgName + "Int_Field", pkgName + "Int_Property", pkgName + "Integer_Field",
@@ -40,7 +40,7 @@ public class Client3IT extends Client {
 		return createDeploymentJar("jpa_core_annotations_version3.jar", pkgNameWithoutSuffix, classes);
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setupLongData() throws Exception {
 		logger.log(Logger.Level.TRACE, "setupLongData");
 		try {

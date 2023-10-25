@@ -27,7 +27,7 @@ import com.sun.ts.tests.jpa.common.schema30.Address;
 import com.sun.ts.tests.jpa.common.schema30.Customer;
 import com.sun.ts.tests.jpa.common.schema30.Customer_;
 import com.sun.ts.tests.jpa.common.schema30.Order;
-import com.sun.ts.tests.jpa.common.schema30.Util;
+import com.sun.ts.tests.jpa.common.schema30.UtilOrderData;
 
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CollectionJoin;
@@ -41,15 +41,15 @@ import jakarta.persistence.criteria.Root;
 import jakarta.persistence.criteria.SetJoin;
 import jakarta.persistence.criteria.Subquery;
 
-public class Client3IT extends Util {
+public class Client3IT extends UtilOrderData {
 
 	private static final Logger logger = (Logger) System.getLogger(Client3IT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client3IT.class.getPackageName();
-		String pkgName = Client3IT.class.getPackageName() + ".";
-		String[] classes = {};
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = getSchema30classes();
 		return createDeploymentJar("jpa_core_criteriaapi_from3.jar", pkgNameWithoutSuffix, classes);
 	}
 

@@ -21,8 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -43,15 +43,15 @@ public class Client2IT extends PMClientBase {
 	public Client2IT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
-		String pkgName = Client1IT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "Course", pkgName + "Department", pkgName + "Department2", pkgName + "Employee",
 				pkgName + "Employee2", pkgName + "Student" };
 		return createDeploymentJar("jpa_core_annotations_ordercolumn2.jar", pkgNameWithoutSuffix, classes);
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setupEmployee() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
@@ -426,7 +426,7 @@ public class Client2IT extends PMClientBase {
 		}
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanupEmployee() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanupEmployee");
 		// removeEmployeeTestData();

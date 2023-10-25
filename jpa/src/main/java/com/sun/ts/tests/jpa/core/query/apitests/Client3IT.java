@@ -24,8 +24,8 @@ import java.text.DecimalFormat;
 import java.util.Collection;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -49,21 +49,22 @@ public class Client3IT extends PMClientBase {
 	public Client3IT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
-		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
-		String pkgName = Client1IT.class.getPackageName() + ".";
+		String pkgNameWithoutSuffix = Client3IT.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "DataTypes2", pkgName + "Department", pkgName + "Employee",
 				pkgName + "Insurance" };
 		return createDeploymentJar("jpa_core_query_apitests3.jar", pkgNameWithoutSuffix, classes);
 
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setupDataTypes2() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
+			createDeployment();
 			removeTestData();
 			createDataTypes2Data();
 			logger.log(Logger.Level.TRACE, "Done creating test data");
@@ -74,10 +75,11 @@ public class Client3IT extends PMClientBase {
 		}
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanupNoData() throws Exception {
 		logger.log(Logger.Level.TRACE, "in cleanupNoData");
 		super.cleanup();
+		removeDeploymentJar();
 	}
 
 	/*

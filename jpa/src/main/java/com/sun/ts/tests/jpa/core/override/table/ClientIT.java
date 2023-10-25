@@ -19,8 +19,8 @@ package com.sun.ts.tests.jpa.core.override.table;
 import java.lang.System.Logger;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -34,20 +34,22 @@ public class ClientIT extends PMClientBase {
 	public ClientIT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] xmlFiles = { "orm.xml" };
 		String[] classes = { pkgName + "NoTableAnnotation" };
-		return createDeploymentJar("jpa_core_override_table.jar", pkgNameWithoutSuffix, classes);
+		return createDeploymentJar("jpa_core_override_table.jar", pkgNameWithoutSuffix, classes, xmlFiles);
 
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
+			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Exception:test failed ", e);
@@ -80,12 +82,13 @@ public class ClientIT extends PMClientBase {
 		}
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
 		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
+		removeDeploymentJar();
 	}
 
 	private void removeTestData() {

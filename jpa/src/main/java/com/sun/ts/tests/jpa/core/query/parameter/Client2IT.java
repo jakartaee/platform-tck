@@ -20,12 +20,11 @@ import java.lang.System.Logger;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
-import com.sun.ts.tests.jpa.core.relationship.annotations.ClientIT;
 
 import jakarta.persistence.Query;
 
@@ -38,16 +37,16 @@ public class Client2IT extends PMClientBase {
 	public Client2IT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
-		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
+		String pkgNameWithoutSuffix = Client2IT.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "Employee" };
 		return createDeploymentJar("jpa_core_relationship_annotations2.jar", pkgNameWithoutSuffix, classes);
 
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setupEmployee() throws Exception {
 		logger.log(Logger.Level.TRACE, "setupEmployee");
 		try {
@@ -243,7 +242,7 @@ public class Client2IT extends PMClientBase {
 		}
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanupEmployee() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();

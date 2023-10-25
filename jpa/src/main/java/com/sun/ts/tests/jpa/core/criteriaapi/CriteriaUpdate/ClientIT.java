@@ -21,12 +21,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.schema30.Product;
 import com.sun.ts.tests.jpa.common.schema30.SoftwareProduct;
-import com.sun.ts.tests.jpa.common.schema30.Util;
+import com.sun.ts.tests.jpa.common.schema30.UtilProductData;
 
 import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -38,7 +37,7 @@ import jakarta.persistence.criteria.Subquery;
 import jakarta.persistence.metamodel.EntityType;
 import jakarta.persistence.metamodel.Metamodel;
 
-public class ClientIT extends Util {
+public class ClientIT extends UtilProductData {
 
 	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
@@ -46,25 +45,12 @@ public class ClientIT extends Util {
 
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
-		String[] classes = {};
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = getSchema30classes();
 		return createDeploymentJar("jpa_core_criteriaapi_CriteriaUpdate.jar", pkgNameWithoutSuffix, classes);
-	}
-
-	@BeforeAll
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
-		try {
-			super.setup();
-			removeTestData();
-			createProductData();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
-			throw new Exception("Setup failed:", e);
-		}
 	}
 
 	/*

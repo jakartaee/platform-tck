@@ -36,10 +36,10 @@ public class ClientIT extends PMClientBase {
 	public ClientIT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "DataTypes" };
 		return createDeploymentJar("jpa_jpa22_generators_tablegenerators.jar", pkgNameWithoutSuffix,
 				(String[]) classes);

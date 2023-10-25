@@ -23,8 +23,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -52,7 +54,7 @@ public class Client1IT extends PMClientBase {
 	public Client1IT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "A", pkgName + "A2", pkgName + "Address", pkgName + "Address2",
@@ -61,7 +63,7 @@ public class Client1IT extends PMClientBase {
 		return createDeploymentJar("jpa_core_annotations_orderby1.jar", pkgNameWithoutSuffix, classes);
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
@@ -443,7 +445,7 @@ public class Client1IT extends PMClientBase {
 		}
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();

@@ -21,8 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -44,19 +44,20 @@ public class Client1IT extends PMClientBase {
 
 	final java.sql.Date d1 = getSQLDate("2000-02-14");
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
-		String pkgName = Client1IT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "Employee" };
 		return createDeploymentJar("jpa_core_criteriaapi_parameter1.jar", pkgNameWithoutSuffix, classes);
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
+			createDeployment();
 			getEntityManager();
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Exception: ", e);
@@ -417,7 +418,7 @@ public class Client1IT extends PMClientBase {
 
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "calling super.cleanup");
 		removeTestData();

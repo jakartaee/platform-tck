@@ -50,10 +50,10 @@ public class ClientIT extends PMClientBase {
 	public ClientIT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "Address", pkgName + "AnnualReview", pkgName + "Company", pkgName + "Insurance",
 				pkgName + "Person", pkgName + "Project", pkgName + "Team" };
 		return createDeploymentJar("jpa_core_relationship_defaults.jar", pkgNameWithoutSuffix, classes);
@@ -1177,6 +1177,7 @@ public class ClientIT extends PMClientBase {
 		removeTestData();
 		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
+		removeDeploymentJar();
 	}
 
 	private void removeTestData() {

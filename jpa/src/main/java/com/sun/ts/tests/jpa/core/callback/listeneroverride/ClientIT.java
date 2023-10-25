@@ -24,8 +24,8 @@ import java.lang.System.Logger;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.core.callback.common.Constants;
@@ -49,17 +49,17 @@ public class ClientIT extends EntityCallbackClientBase {
 		super();
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "LineItem", pkgName + "LineItemSuper", pkgName + "Order", pkgName + "Product" };
 		String[] xmlFiles = { "orm.xml" };
 		return createDeploymentJar("jpa_core_callback_listeneroverride.jar", pkgNameWithoutSuffix, classes, xmlFiles);
 
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
@@ -559,7 +559,7 @@ public class ClientIT extends EntityCallbackClientBase {
 		return lineItem;
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();

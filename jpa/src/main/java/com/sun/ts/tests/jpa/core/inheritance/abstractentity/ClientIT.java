@@ -26,8 +26,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -63,21 +63,23 @@ public class ClientIT extends PMClientBase {
 	public ClientIT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "AbstractPersonnel", pkgName + "Department", pkgName + "Employee",
 				pkgName + "FullTimeEmployee", pkgName + "PartTimeEmployee", pkgName + "Project" };
 		return createDeploymentJar("jpa_core_inheritance_abstractentity.jar", pkgNameWithoutSuffix, classes);
 
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
+			createDeployment();
+
 			removeTestData();
 			createTestData();
 			logger.log(Logger.Level.TRACE, "Done creating test data");
@@ -278,12 +280,13 @@ public class ClientIT extends PMClientBase {
 
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
 		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
+		removeDeploymentJar();
 	}
 
 	private void removeTestData() {

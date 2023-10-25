@@ -39,9 +39,8 @@ import jakarta.persistence.PersistenceContextType;
 @Stateful(name = "TellerBean")
 @Local({ Teller.class })
 public class TellerBean implements Teller {
-	
-	private static final Logger logger = (Logger) System.getLogger(TellerBean.class.getName());
 
+	private static final Logger logger = (Logger) System.getLogger(TellerBean.class.getName());
 
 	public SessionContext sessionContext;
 

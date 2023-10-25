@@ -23,8 +23,8 @@ import java.util.Collections;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
@@ -46,19 +46,20 @@ public class Client2IT extends PMClientBase {
 
 	final java.sql.Date d1 = getSQLDate("2000-02-14");
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client2IT.class.getPackageName();
-		String pkgName = Client2IT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "Employee" };
 		return createDeploymentJar("jpa_core_criteriaapi_parameter2.jar", pkgNameWithoutSuffix, classes);
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setupEmployee() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
+			createDeployment();
 			removeTestData();
 			createTestData();
 		} catch (Exception e) {
@@ -341,7 +342,7 @@ public class Client2IT extends PMClientBase {
 		}
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "calling super.cleanup");
 		removeTestData();

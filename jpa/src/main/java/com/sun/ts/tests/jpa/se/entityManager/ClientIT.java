@@ -47,7 +47,7 @@ public class ClientIT extends PMClientBase {
 
 	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
-	Properties props = null;
+	Properties props = new Properties();
 
 	Map<String, Object> map = new HashMap<String, Object>();
 
@@ -56,10 +56,10 @@ public class ClientIT extends PMClientBase {
 	public ClientIT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "A", pkgName + "Employee", pkgName + "Order" };
 		return createDeploymentJar("jpa_jpa22_se_entityManager.jar", pkgNameWithoutSuffix, (String[]) classes);
 

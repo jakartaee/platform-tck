@@ -23,8 +23,8 @@ package com.sun.ts.tests.jpa.core.types.primarykey.compound;
 import java.lang.System.Logger;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -48,17 +48,17 @@ public class ClientIT extends PMClientBase {
 	public ClientIT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "CompoundPK", pkgName + "CompoundPK2", pkgName + "CompoundPK3",
 				pkgName + "TestBean", pkgName + "TestBean2", pkgName + "TestBean3" };
 		return createDeploymentJar("jpa_core_types_primarykey_compound.jar", pkgNameWithoutSuffix, (String[]) classes);
 
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 
 		logger.log(Logger.Level.TRACE, "Entering setup");
@@ -338,7 +338,7 @@ public class ClientIT extends PMClientBase {
 		/* testCompoundPK3 pass */
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();

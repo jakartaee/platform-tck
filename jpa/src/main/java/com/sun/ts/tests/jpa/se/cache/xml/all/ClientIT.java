@@ -42,19 +42,19 @@ public class ClientIT extends PMClientBase {
 
 	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
-	Properties jpaprops = null;
+	Properties jpaprops = new Properties();
 
 	public ClientIT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
-		String[] xmlFile = { pkgName + "orm.xml" };
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] xmlFile = { "orm.xml" };
 		String[] classes = { pkgName + "Order" };
-		return createDeploymentJar("jpa_se_cache_xml_disableselective.jar", pkgNameWithoutSuffix, (String[]) classes,
-				pkgName + "persistence.xml", xmlFile);
+		return createDeploymentJar("jpa_se_cache_xml_all.jar", pkgNameWithoutSuffix, (String[]) classes,
+				PERSISTENCE_XML, xmlFile);
 
 	}
 
@@ -65,10 +65,13 @@ public class ClientIT extends PMClientBase {
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
-			// displayMap(p);
 			super.setup();
+			jpaprops.putAll(myProps);
+			jpaprops.put("Insert_Jpa_Purchase_Order", System.getProperty("Insert_Jpa_Purchase_Order"));
+			jpaprops.put("Select_Jpa_Purchase_Order", System.getProperty("Select_Jpa_Purchase_Order"));
+			displayMap(jpaprops);
+			createDeployment();
 			removeTestData();
-			jpaprops = null;
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
@@ -555,7 +558,7 @@ public class ClientIT extends PMClientBase {
 	 * logger.log(Logger.Level.ERROR,"Unexpected exception occurred", e); } } else {
 	 * logger.log(Logger.Level.INFO,"Cache not supported, bypassing test"); pass1 =
 	 * pass2 = true; } if (!pass1 || !pass2) { throw new
-	 * Fault("findOverridesWithBYPASSTest failed"); }
+	 * Exception("findOverridesWithBYPASSTest failed"); }
 	 * 
 	 * }
 	 */

@@ -37,14 +37,14 @@ public class ClientIT extends PMClientBase {
 	public ClientIT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
-		String[] xmlFile = { pkgName + "orm.xml" };
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] xmlFile = { "orm.xml" };
 		String[] classes = { pkgName + "Customer", pkgName + "Department", pkgName + "Order" };
 		return createDeploymentJar("jpa_se_cache_xml_enableselective.jar", pkgNameWithoutSuffix, (String[]) classes,
-				pkgName + "persistence.xml", xmlFile);
+				 PERSISTENCE_XML, xmlFile);
 
 	}
 

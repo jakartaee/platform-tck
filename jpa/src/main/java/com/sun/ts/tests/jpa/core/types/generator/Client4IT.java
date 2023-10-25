@@ -23,7 +23,7 @@ package com.sun.ts.tests.jpa.core.types.generator;
 import java.lang.System.Logger;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class Client4IT extends Client {
@@ -37,10 +37,11 @@ public class Client4IT extends Client {
 	public Client4IT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = Client4IT.class.getPackageName();
-		String pkgName = Client4IT.class.getPackageName() + ".";
-		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2", pkgName + "UUIDType" };
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2", pkgName + "DataTypes3",
+				pkgName + "DataTypes4" };
 		return createDeploymentJar("jpa_core_types_generator4.jar", pkgNameWithoutSuffix, classes);
 
 	}
@@ -48,7 +49,7 @@ public class Client4IT extends Client {
 	/*
 	 * @class.setup_props: db.supports.sequence;
 	 */
-	@BeforeAll
+	@BeforeEach
 	public void setupDataTypes4() throws Exception {
 		logger.log(Logger.Level.TRACE, "setupDataTypes4");
 		try {

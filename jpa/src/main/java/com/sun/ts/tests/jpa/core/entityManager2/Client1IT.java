@@ -22,8 +22,8 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -56,10 +56,10 @@ public class Client1IT extends PMClientBase {
 
 	final static String ORACLE = "oracle";
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
-		String pkgName = Client1IT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "DoesNotExist", pkgName + "Employee", pkgName + "Order" };
 		return createDeploymentJar("jpa_core_entityManager1.jar", pkgNameWithoutSuffix, classes);
 
@@ -73,11 +73,12 @@ public class Client1IT extends PMClientBase {
 	 *
 	 * @class.setup_props: jdbc.db;
 	 */
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
+			createDeployment();
 			map.putAll(getEntityManager().getProperties());
 			map.put("foo", "bar");
 			displayMap(map);
@@ -88,10 +89,11 @@ public class Client1IT extends PMClientBase {
 		}
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
+		removeDeploymentJar();
 	}
 
 	/*

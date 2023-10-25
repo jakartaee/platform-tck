@@ -44,12 +44,12 @@ public class Client2IT extends UtilOrderData {
 
 	private static final Logger logger = (Logger) System.getLogger(Client2IT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client2IT.class.getPackageName();
-		String pkgName = Client2IT.class.getPackageName() + ".";
-		String[] classes = {};
-		return createDeploymentJar("jpa_core_criteriaapi_strquery.jar", pkgNameWithoutSuffix, classes);
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = getSchema30classes();
+		return createDeploymentJar("jpa_core_criteriaapi_strquery2.jar", pkgNameWithoutSuffix, classes);
 	}
 
 	/* Run test */

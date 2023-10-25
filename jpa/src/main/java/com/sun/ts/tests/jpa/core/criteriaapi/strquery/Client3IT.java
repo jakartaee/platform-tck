@@ -45,12 +45,12 @@ public class Client3IT extends UtilCustomerData {
 
 	private static final Logger logger = (Logger) System.getLogger(Client3IT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client3IT.class.getPackageName();
-		String pkgName = Client3IT.class.getPackageName() + ".";
-		String[] classes = {};
-		return createDeploymentJar("jpa_core_criteriaapi_root3.jar", pkgNameWithoutSuffix, classes);
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = getSchema30classes();
+		return createDeploymentJar("jpa_core_criteriaapi_strquery3.jar", pkgNameWithoutSuffix, classes);
 	}
 
 	/* Run test */

@@ -24,7 +24,8 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterEach;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -81,7 +82,7 @@ public class Client extends PMClientBase {
 
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();

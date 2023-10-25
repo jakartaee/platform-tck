@@ -24,6 +24,7 @@ import java.lang.System.Logger;
 import java.util.List;
 import java.util.Vector;
 
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.schema30.CreditCard;
@@ -37,6 +38,13 @@ import jakarta.persistence.FlushModeType;
 public class Client2IT extends UtilOrderData {
 
 	private static final Logger logger = (Logger) System.getLogger(Client2IT.class.getName());
+
+	public JavaArchive createDeployment() throws Exception {
+		String pkgNameWithoutSuffix = Client2IT.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = getSchema30classes();
+		return createDeploymentJar("jpa_core_query_flushmode2.jar", pkgNameWithoutSuffix, classes);
+	}
 
 	public Client2IT() {
 	}

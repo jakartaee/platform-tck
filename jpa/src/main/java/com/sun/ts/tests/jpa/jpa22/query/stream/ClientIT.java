@@ -48,10 +48,10 @@ public class ClientIT extends PMClientBase {
 	public ClientIT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "Department", pkgName + "Employee", pkgName + "Insurance" };
 		return createDeploymentJar("jpa_jpa22_query_stream.jar", pkgNameWithoutSuffix, (String[]) classes);
 

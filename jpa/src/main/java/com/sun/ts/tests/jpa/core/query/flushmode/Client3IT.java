@@ -23,6 +23,7 @@ package com.sun.ts.tests.jpa.core.query.flushmode;
 import java.lang.System.Logger;
 import java.util.List;
 
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.schema30.Product;
@@ -31,6 +32,13 @@ import com.sun.ts.tests.jpa.common.schema30.UtilProductData;
 public class Client3IT extends UtilProductData {
 
 	private static final Logger logger = (Logger) System.getLogger(Client3IT.class.getName());
+
+	public JavaArchive createDeployment() throws Exception {
+		String pkgNameWithoutSuffix = Client3IT.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = getSchema30classes();
+		return createDeploymentJar("jpa_core_query_flushmode3.jar", pkgNameWithoutSuffix, classes);
+	}
 
 	public Client3IT() {
 	}

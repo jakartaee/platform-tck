@@ -26,8 +26,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -42,9 +42,9 @@ public class ClientIT extends PMClientBase {
 	public ClientIT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
-		String pkgName = ClientIT.class.getPackageName() + ".";
+	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "Department", pkgName + "Department2", pkgName + "Department3",
 				pkgName + "Department4", pkgName + "EmbeddedEmployee", pkgName + "Employee", pkgName + "Employee2",
 				pkgName + "Employee3", pkgName + "Employee4", pkgName + "Numbers", pkgName + "Offices" };
@@ -57,7 +57,7 @@ public class ClientIT extends PMClientBase {
 	private static Employee3 empRef3[] = new Employee3[5];
 	private static Employee4 empRef4[] = new Employee4[5];
 
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
@@ -619,7 +619,7 @@ public class ClientIT extends PMClientBase {
 		}
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();

@@ -40,10 +40,10 @@ public class ClientIT extends PMClientBase {
 	public ClientIT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "Member", pkgName + "Member_", pkgName + "Order", pkgName + "Order_" };
 		return createDeploymentJar("jpa_jpa22_se_entityManagerFactory.jar", pkgNameWithoutSuffix, (String[]) classes);
 

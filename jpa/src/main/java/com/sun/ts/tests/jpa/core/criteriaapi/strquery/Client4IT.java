@@ -36,12 +36,12 @@ public class Client4IT extends UtilProductData {
 
 	private static final Logger logger = (Logger) System.getLogger(Client4IT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client4IT.class.getPackageName();
-		String pkgName = Client4IT.class.getPackageName() + ".";
-		String[] classes = {};
-		return createDeploymentJar("jpa_core_criteriaapi_root4.jar", pkgNameWithoutSuffix, classes);
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = getSchema30classes();
+		return createDeploymentJar("jpa_core_criteriaapi_strquery4.jar", pkgNameWithoutSuffix, classes);
 	}
 
 	/*

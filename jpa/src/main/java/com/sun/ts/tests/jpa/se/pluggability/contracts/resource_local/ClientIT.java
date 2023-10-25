@@ -66,15 +66,15 @@ public class ClientIT extends PMClientBase {
 	public ClientIT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
-		String[] xmlFile = { pkgName + "myMappingFile1.xml", pkgName + "myMappingFile2.xml", pkgName + "orm.xml" };
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] xmlFile = { "myMappingFile1.xml", "myMappingFile2.xml", "orm.xml" };
 		String[] classes = { pkgName + "Order", pkgName + "Order2", pkgName + "Order3", pkgName + "Order4",
 				pkgName + "Order5" };
 		return createDeploymentJar("jpa_se_pluggability_contracts_resource_local.jar", pkgNameWithoutSuffix,
-				(String[]) classes, pkgName + "persistence.xml", xmlFile);
+				(String[]) classes, PERSISTENCE_XML, xmlFile);
 
 	}
 

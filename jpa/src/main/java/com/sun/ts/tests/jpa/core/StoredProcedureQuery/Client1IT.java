@@ -24,7 +24,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import jakarta.persistence.FlushModeType;
@@ -48,9 +49,10 @@ public class Client1IT extends Client {
 	public static JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
-		String pkgName = Client1IT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] xmlFiles = { "myMappingFile.xml" };
 		String[] classes = { pkgName + "Employee", pkgName + "Employee2", pkgName + "EmployeeMappedSc" };
-		return createDeploymentJar("jpa_core_types_StoredProcedureQuery1.jar", pkgNameWithoutSuffix, classes);
+		return createDeploymentJar("jpa_core_types_StoredProcedureQuery1.jar", pkgNameWithoutSuffix, classes, xmlFiles);
 
 	}
 
@@ -59,7 +61,7 @@ public class Client1IT extends Client {
 	 *
 	 * @class.setup_props: jdbc.db;
 	 */
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
@@ -73,6 +75,8 @@ public class Client1IT extends Client {
 			throw new Exception("Setup failed:", e);
 		}
 	}
+	
+	
 
 	/*
 	 * @testName: executeTest

@@ -25,7 +25,8 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -67,21 +68,23 @@ public class ClientIT extends PMClientBase {
 	public ClientIT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "Order" };
 		return createDeploymentJar("jpa_core_enums.jar", pkgNameWithoutSuffix, classes);
 
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
 
 			super.setup();
+			createDeployment();
+
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
@@ -3106,6 +3109,39 @@ public class ClientIT extends PMClientBase {
 
 		if (!pass) {
 			throw new Exception("synchronizationTypeValuesTest failed");
+		}
+	}
+
+	@AfterEach
+	public void cleanup() throws Exception {
+		logger.log(Logger.Level.TRACE, "Cleanup data");
+		if (getEntityManager().isOpen()) {
+			removeTestData();
+		}
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+		super.cleanup();
+		removeDeploymentJar();
+	}
+
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM Order").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+			}
 		}
 	}
 

@@ -26,7 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.tests.jpa.common.schema30.Department;
 import com.sun.ts.tests.jpa.common.schema30.Department_;
-import com.sun.ts.tests.jpa.common.schema30.Util;
+import com.sun.ts.tests.jpa.common.schema30.UtilDepartmentEmployeeData;
 
 import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -34,15 +34,17 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Root;
 
-public class Client7IT extends Util {
+public class Client7IT extends UtilDepartmentEmployeeData {
 
 	private static final Logger logger = (Logger) System.getLogger(Client7IT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client7IT.class.getPackageName();
-		String pkgName = Client7IT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "A" };
+		classes = concat(getSchema30classes(), classes) ;
+		
 		return createDeploymentJar("jpa_core_criteriaapi_CriteriaQuery7.jar", pkgNameWithoutSuffix, classes);
 	}
 

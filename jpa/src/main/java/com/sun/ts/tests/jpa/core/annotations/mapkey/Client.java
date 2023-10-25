@@ -24,17 +24,16 @@ import java.lang.System.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
-import com.sun.ts.tests.jpa.core.annotations.convert.ClientIT;
 
 public class Client extends PMClientBase {
 
 	public Client() {
 	}
 
-	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
 	protected Employee empRef[] = new Employee[10];
 
@@ -135,7 +134,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();

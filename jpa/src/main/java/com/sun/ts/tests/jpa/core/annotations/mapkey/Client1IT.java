@@ -26,7 +26,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class Client1IT extends Client {
@@ -36,16 +36,16 @@ public class Client1IT extends Client {
 
 	private static final Logger logger = (Logger) System.getLogger(Client1IT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = Client.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "Department", pkgName + "Employee", pkgName + "Employee2", pkgName + "Employee3",
 				pkgName + "Employee4" };
 		return createDeploymentJar("jpa_core_annotations_mapkey1.jar", pkgNameWithoutSuffix, classes);
 
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setupCreateTestData() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {

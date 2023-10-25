@@ -19,7 +19,7 @@ package com.sun.ts.tests.jpa.core.annotations.tableGenerator;
 import java.lang.System.Logger;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class Client2IT extends Client {
@@ -31,7 +31,7 @@ public class Client2IT extends Client {
 	public Client2IT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = Client.class.getPackageName();
 		String pkgName = Client.class.getPackageName() + ".";
 		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2", pkgName + "DataTypes3",
@@ -39,7 +39,7 @@ public class Client2IT extends Client {
 		return createDeploymentJar("jpa_core_annotations_tableGenerator2.jar", pkgNameWithoutSuffix, classes);
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setup2() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup2");
 		try {

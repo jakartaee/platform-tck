@@ -42,12 +42,12 @@ public class Client5IT extends UtilAliasData {
 
 	private static final Logger logger = (Logger) System.getLogger(Client5IT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client5IT.class.getPackageName();
-		String pkgName = Client5IT.class.getPackageName() + ".";
-		String[] classes = {};
-		return createDeploymentJar("jpa_core_criteriaapi_root5.jar", pkgNameWithoutSuffix, classes);
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = getSchema30classes();
+		return createDeploymentJar("jpa_core_criteriaapi_strquery5.jar", pkgNameWithoutSuffix, classes);
 	}
 
 	/* Run test */

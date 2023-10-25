@@ -38,11 +38,11 @@ public class Client4IT extends UtilAliasOnlyData {
 
 	private static final Logger logger = (Logger) System.getLogger(Client4IT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client4IT.class.getPackageName();
-		String pkgName = Client4IT.class.getPackageName() + ".";
-		String[] classes = {};
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = getSchema30classes();
 		return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder4.jar", pkgNameWithoutSuffix, classes);
 
 	}

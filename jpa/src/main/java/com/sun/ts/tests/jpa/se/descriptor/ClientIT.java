@@ -35,14 +35,15 @@ public class ClientIT extends PMClientBase {
 
 	private static final B bRef[] = new B[5];
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
-		String[] xmlFile = { pkgName + "myMappingFile.xml" };
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] xmlFile = { "myMappingFile.xml" };
 		String[] classes = { pkgName + "A", pkgName + "B" };
 
-		return createDeploymentJar("jpa_se_descriptor.jar", pkgNameWithoutSuffix, classes, pkgName + "persistence.xml",
+		return createDeploymentJar("jpa_se_descriptor.jar", pkgNameWithoutSuffix, classes,
+				PERSISTENCE_XML,
 				xmlFile);
 
 	}

@@ -25,8 +25,8 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -57,10 +57,10 @@ public class Client3IT extends PMClientBase {
 	public Client3IT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
-		String pkgName = Client1IT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "Employee", pkgName + "Order" };
 		return createDeploymentJar("jpa_core_entityManager3.jar", pkgNameWithoutSuffix, classes);
 
@@ -71,11 +71,12 @@ public class Client3IT extends PMClientBase {
 	 *
 	 * @class.setup_props: jdbc.db;
 	 */
-	@BeforeAll
+	@BeforeEach
 	public void setupEmployeeData() throws Exception {
 		logger.log(Logger.Level.TRACE, "setupOrderData");
 		try {
 			super.setup();
+			createDeployment();
 			removeTestData();
 			createEmployeeData();
 			map.putAll(getEntityManager().getProperties());
@@ -88,11 +89,12 @@ public class Client3IT extends PMClientBase {
 		}
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanupData() throws Exception {
 		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
 		cleanup();
+		removeDeploymentJar();
 	}
 
 	public List<List> getResultSetsFromStoredProcedure(StoredProcedureQuery spq) {

@@ -21,8 +21,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -34,11 +36,10 @@ public class Client1IT extends PMClientBase {
 
 	private static final Logger logger = (Logger) System.getLogger(Client1IT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFile = { pkgName + "myMappingFile.xml" };
-
+		String[] xmlFile = { "myMappingFile.xml" };
 		String[] classes = { pkgName + "A", pkgName + "Address", pkgName + "Customer", pkgName + "CustomerXML" };
 
 		return createDeploymentJar("jpa_core_annotations_elementcollection1.jar", pkgNameWithoutSuffix, classes,
@@ -46,7 +47,7 @@ public class Client1IT extends PMClientBase {
 
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setupA() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
@@ -158,7 +159,7 @@ public class Client1IT extends PMClientBase {
 		}
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanupA() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeATestData();
@@ -177,8 +178,6 @@ public class Client1IT extends PMClientBase {
 			getEntityManager().createNativeQuery("Delete from A_ADDRESS").executeUpdate();
 			getEntityManager().createNativeQuery("Delete from AEC").executeUpdate();
 			getEntityTransaction().commit();
-			removeDeploymentJar();
-
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {

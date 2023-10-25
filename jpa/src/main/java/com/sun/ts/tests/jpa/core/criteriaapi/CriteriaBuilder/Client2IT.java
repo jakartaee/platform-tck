@@ -24,7 +24,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
@@ -54,26 +53,15 @@ public class Client2IT extends UtilCustomerData {
 
 	private static final Logger logger = (Logger) System.getLogger(Client2IT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client2IT.class.getPackageName();
-		String pkgName = Client2IT.class.getPackageName() + ".";
-		String[] classes = {};
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = getSchema30classes();
 		return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder2.jar", pkgNameWithoutSuffix, classes);
 
 	}
 
-	@BeforeAll
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
-		try {
-			super.setup();
-			getEntityManager();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
-			throw new Exception("Setup failed:", e);
-		}
-	}
 
 	/*
 	 * @testName: construct

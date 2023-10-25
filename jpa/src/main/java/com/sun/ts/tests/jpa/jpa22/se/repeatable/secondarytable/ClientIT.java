@@ -39,14 +39,14 @@ public class ClientIT extends PMClientBase {
 	public ClientIT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] xmlFile = {};
 		String[] classes = { pkgName + "HardwareProduct", pkgName + "Product", pkgName + "SoftwareProduct" };
 		return createDeploymentJar("jpa_se_repeatable_secondarytable.jar", pkgNameWithoutSuffix, (String[]) classes,
-				pkgName + "persistence.xml", xmlFile);
+				PERSISTENCE_XML, xmlFile);
 
 	}
 

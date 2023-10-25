@@ -39,7 +39,7 @@
     <properties>
         <glassfish-artifact-id>glassfish</glassfish-artifact-id>
 
-        <glassfish.container.version>7.0.0-M10</glassfish.container.version>
+        <glassfish.container.version>7.0.0</glassfish.container.version>
         <glassfish.toplevel.dir>glassfish7</glassfish.toplevel.dir>
         <jakarta.rest.version>3.1.0</jakarta.rest.version>
         <json.tck.version>2.1.0</json.tck.version>

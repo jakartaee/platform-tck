@@ -19,8 +19,9 @@ package com.sun.ts.tests.jpa.core.annotations.discriminatorValue;
 import java.lang.System.Logger;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -29,9 +30,9 @@ public class ClientIT extends PMClientBase {
 
 	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "PartProduct", pkgName + "PartProduct2", pkgName + "PricedPartProduct2",
 				pkgName + "Product", pkgName + "Product2" };
 		return createDeploymentJar("jpa_core_annotations_discrinimatorValue.jar", pkgNameWithoutSuffix, classes);
@@ -42,7 +43,7 @@ public class ClientIT extends PMClientBase {
 		super();
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
@@ -177,7 +178,7 @@ public class ClientIT extends PMClientBase {
 		}
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();
@@ -196,8 +197,6 @@ public class ClientIT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM PRODUCT_TABLE_DISCRIMINATOR").executeUpdate();
 			getEntityManager().createNativeQuery("DELETE FROM PRODUCT_TABLE").executeUpdate();
 			getEntityTransaction().commit();
-			removeDeploymentJar();
-
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {

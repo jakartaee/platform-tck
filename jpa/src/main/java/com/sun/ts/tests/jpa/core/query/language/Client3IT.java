@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,6 +20,8 @@ import java.lang.System.Logger;
 import java.util.Arrays;
 import java.util.List;
 
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.tests.jpa.common.schema30.Util;
 
@@ -29,17 +31,11 @@ public class Client3IT extends Util {
 
 	private static final Logger logger = (Logger) System.getLogger(Client3IT.class.getName());
 
-	/* Test setup */
-
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "Entering Setup");
-		try {
-			super.setup();
-			getEntityManager();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
-			throw new Exception("Setup failed:", e);
-		}
+	public JavaArchive createDeployment() throws Exception {
+		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = getSchema30classes();
+		return createDeploymentJar("jpa_core_query_language3.jar", pkgNameWithoutSuffix, classes);
 	}
 
 	/* Run test */

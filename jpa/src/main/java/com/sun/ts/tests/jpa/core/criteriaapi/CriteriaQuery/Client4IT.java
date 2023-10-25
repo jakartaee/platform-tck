@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,12 +19,11 @@ package com.sun.ts.tests.jpa.core.criteriaapi.CriteriaQuery;
 import java.lang.System.Logger;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.schema30.Customer;
 import com.sun.ts.tests.jpa.common.schema30.Order;
-import com.sun.ts.tests.jpa.common.schema30.Util;
+import com.sun.ts.tests.jpa.common.schema30.UtilSetup;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -32,28 +31,17 @@ import jakarta.persistence.criteria.Path;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.metamodel.Bindable;
 
-public class Client4IT extends Util {
+public class Client4IT extends UtilSetup {
 
 	private static final Logger logger = (Logger) System.getLogger(Client4IT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client4IT.class.getPackageName();
-		String pkgName = Client4IT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "A" };
+		classes = concat(getSchema30classes(), classes) ;
 		return createDeploymentJar("jpa_core_criteriaapi_CriteriaQuery4.jar", pkgNameWithoutSuffix, classes);
-	}
-
-	@BeforeAll
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
-		try {
-			super.setup();
-			getEntityManager();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
-			throw new Exception("Setup failed:", e);
-		}
 	}
 
 	/*

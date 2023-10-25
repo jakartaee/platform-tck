@@ -25,8 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -40,15 +40,15 @@ public class ClientIT extends PMClientBase {
 	public ClientIT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFile = { pkgName + "orm.xml" };
+		String[] xmlFile = { "orm.xml" };
 		String[] classes = { pkgName + "Item", pkgName + "Order1", pkgName + "Order2", pkgName + "PurchaseOrder" };
 		return createDeploymentJar("jpa_core_annotations_nativequery.jar", pkgNameWithoutSuffix, classes, xmlFile);
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
@@ -470,7 +470,6 @@ public class ClientIT extends PMClientBase {
 			throw new Exception("nativeQueryTestConstructorResult failed");
 
 	}
-
 	/*
 	 * @testName: nativeQueryTestConstructorResultWithId
 	 * 
@@ -938,7 +937,7 @@ public class ClientIT extends PMClientBase {
 			throw new Exception("getSingleResultTest failed");
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();

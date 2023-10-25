@@ -19,8 +19,8 @@ package com.sun.ts.tests.jpa.core.query.apitests;
 import java.lang.System.Logger;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -37,21 +37,22 @@ public class Client2IT extends PMClientBase {
 	public Client2IT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
-		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
-		String pkgName = Client1IT.class.getPackageName() + ".";
+		String pkgNameWithoutSuffix = Client2IT.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "DataTypes2", pkgName + "Department", pkgName + "Employee",
 				pkgName + "Insurance" };
 		return createDeploymentJar("jpa_core_query_apitests2.jar", pkgNameWithoutSuffix, classes);
 
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setupNoData() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
+			createDeployment();
 			logger.log(Logger.Level.TRACE, "Done creating test data");
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Unexpected Exception caught in Setup: ", e);
@@ -60,10 +61,11 @@ public class Client2IT extends PMClientBase {
 		}
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanupNoData() throws Exception {
 		logger.log(Logger.Level.TRACE, "in cleanupNoData");
 		super.cleanup();
+		removeDeploymentJar();
 	}
 
 	/*

@@ -3,14 +3,15 @@ package com.sun.ts.tests.jpa.core.annotations.access.field;
 import java.lang.System.Logger;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class Client2IT extends Client {
 
 	private static final Logger logger = (Logger) System.getLogger(Client2IT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client.class.getPackageName();
 		String pkgName = Client.class.getPackageName() + ".";
@@ -20,7 +21,7 @@ public class Client2IT extends Client {
 
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setup2() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup2");
 		try {

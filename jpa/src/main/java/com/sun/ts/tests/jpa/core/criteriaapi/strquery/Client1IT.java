@@ -19,11 +19,11 @@ package com.sun.ts.tests.jpa.core.criteriaapi.strquery;
 import java.lang.System.Logger;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.schema30.Customer;
-import com.sun.ts.tests.jpa.common.schema30.Util;
+import com.sun.ts.tests.jpa.common.schema30.UtilSetup;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -32,29 +32,16 @@ import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.metamodel.Attribute;
 
-public class Client1IT extends Util {
+public class Client1IT extends UtilSetup {
 
 	private static final Logger logger = (Logger) System.getLogger(Client1IT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
-		String pkgName = Client1IT.class.getPackageName() + ".";
-		String[] classes = {};
-		return createDeploymentJar("jpa_core_criteriaapi_strquery.jar", pkgNameWithoutSuffix, classes);
-	}
-
-	/* Test setup */
-	@BeforeAll
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "Entering Setup");
-		try {
-			super.setup();
-			getEntityManager();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
-			throw new Exception("Setup failed:", e);
-		}
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = getSchema30classes();
+		return createDeploymentJar("jpa_core_criteriaapi_strquery1.jar", pkgNameWithoutSuffix, classes);
 	}
 
 	/* Run test */

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,6 +23,7 @@ package com.sun.ts.tests.jpa.core.query.flushmode;
 import java.lang.System.Logger;
 import java.util.List;
 
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.schema30.Customer;
@@ -36,6 +37,13 @@ import jakarta.persistence.TypedQuery;
 public class Client1IT extends UtilCustomerData {
 
 	private static final Logger logger = (Logger) System.getLogger(Client1IT.class.getName());
+
+	public JavaArchive createDeployment() throws Exception {
+		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = getSchema30classes();
+		return createDeploymentJar("jpa_core_query_flushmode1.jar", pkgNameWithoutSuffix, classes);
+	}
 
 	public Client1IT() {
 	}

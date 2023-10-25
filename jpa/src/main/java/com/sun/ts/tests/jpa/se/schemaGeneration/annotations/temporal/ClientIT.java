@@ -41,10 +41,10 @@ public class ClientIT extends PMClientBase {
 
 	String sTestCase = "jpa_se_schemaGeneration_annotations_temporal";
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "Simple" };
 		return createDeploymentJar("jpa_se_schemaGeneration_annotations_temporal.jar", pkgNameWithoutSuffix,
 				(String[]) classes);

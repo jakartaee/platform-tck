@@ -36,11 +36,11 @@ public class Client8IT extends UtilTrimData {
 
 	private static final Logger logger = (Logger) System.getLogger(Client8IT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client8IT.class.getPackageName();
-		String pkgName = Client8IT.class.getPackageName() + ".";
-		String[] classes = {};
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = getSchema30classes();
 		return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder8.jar", pkgNameWithoutSuffix, classes);
 
 	}

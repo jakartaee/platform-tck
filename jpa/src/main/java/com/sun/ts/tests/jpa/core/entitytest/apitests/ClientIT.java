@@ -24,6 +24,7 @@ import java.lang.System.Logger;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -36,10 +37,10 @@ public class ClientIT extends PMClientBase {
 	public ClientIT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] xmlFiles = { "myMappingFile.xml", "orm.xml" };
 		String[] classes = { pkgName + "Bar", pkgName + "Coffee", pkgName + "CoffeeMappedSC", pkgName + "Foo" };
 		return createDeploymentJar("jpa_core_entitytest_apitests.jar", pkgNameWithoutSuffix, classes, xmlFiles);
@@ -53,6 +54,7 @@ public class ClientIT extends PMClientBase {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
+			createDeployment();
 			removeTestData();
 			createTestData();
 			logger.log(Logger.Level.TRACE, "Done creating test data");
@@ -968,11 +970,13 @@ public class ClientIT extends PMClientBase {
 		return passCounter;
 	}
 
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
 		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
+		removeDeploymentJar();
 	}
 
 	private void removeTestData() {

@@ -34,10 +34,10 @@ public class ClientIT extends PMClientBase {
 	public ClientIT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "Address", pkgName + "B", pkgName + "DotConverter", pkgName + "Employee3",
 				pkgName + "NumberToStateConverter" };
 		return createDeploymentJar("jpa_jpa22_repeatable_convert.jar", pkgNameWithoutSuffix, (String[]) classes);

@@ -74,9 +74,8 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceException;
 
-@ExtendWith(ArquillianExtension.class)
-@TestInstance(Lifecycle.PER_CLASS)
-
+//@ExtendWith(ArquillianExtension.class)
+//@TestInstance(Lifecycle.PER_CLASS)
 abstract public class PMClientBase implements UseEntityManager, UseEntityManagerFactory, java.io.Serializable {
 
 	private static final Logger logger = (Logger) System.getLogger(PMClientBase.class.getName());
@@ -1092,9 +1091,10 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 	public static final String STANDALONE_PERSISTENCE_XML = "com/sun/ts/tests/jpa/common/template/standalone/persistence.xml";
 	public static final String PERSISTENCE_ELEMENT_TAG = "persistence-unit";
 	public static final String CLASS_ELEMENT_TAG = "class";
-	public static final String PERSISTENCE_FILE_NAME = "persistence.xml";
 	public static final String TEMP_DIR = System.getProperty("java.io.tmpdir");
 
+    public static final String PERSISTENCE_XML = "persistence.xml";
+    
 	public static JavaArchive createDeploymentJar(String jarName, String packageName, String[] classes,
 			String persistenceFile, String[] xmlFiles) throws Exception {
 
@@ -1123,14 +1123,14 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 			}
 			StringWriter writer = new StringWriter();
 			transformer.transform(new DOMSource(document), new StreamResult(writer));
-			archive.addAsManifestResource(new StringAsset(writer.getBuffer().toString()), PERSISTENCE_FILE_NAME);
+			archive.addAsManifestResource(new StringAsset(writer.getBuffer().toString()), PERSISTENCE_XML);
 		} else {
 			InputStream xmlFileStream = Thread.currentThread().getContextClassLoader()
-					.getResourceAsStream(persistenceFile);
-			archive.addAsManifestResource(new ByteArrayAsset(xmlFileStream), persistenceFile);
+					.getResourceAsStream(packageName.replace('.', '/') + "/" + persistenceFile);
+			archive.addAsManifestResource(new ByteArrayAsset(xmlFileStream), PERSISTENCE_XML);
 		}
 		for (int i = 0; i < xmlFiles.length; i++) {
-			InputStream xmlFileStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(xmlFiles[i]);
+			InputStream xmlFileStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(packageName.replace('.', '/') + "/" + xmlFiles[i]);
 			archive.addAsManifestResource(new ByteArrayAsset(xmlFileStream), xmlFiles[i]);
 		}
 

@@ -22,8 +22,8 @@ import java.util.List;
 import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -44,20 +44,21 @@ public class Client1IT extends PMClientBase {
 	public Client1IT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
-		String pkgName = Client1IT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "Member_", pkgName + "Member", pkgName + "Order_", pkgName + "Order" };
 		return createDeploymentJar("jpa_core_entityManagerFactory1.jar", pkgNameWithoutSuffix, classes);
 
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
+			createDeployment();
 			removeTestData();
 			createOrderTestData();
 		} catch (Exception e) {
@@ -66,11 +67,12 @@ public class Client1IT extends PMClientBase {
 		}
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		removeTestData();
 		logger.log(Logger.Level.TRACE, "done cleanup, calling super.cleanup");
 		super.cleanup();
+		removeDeploymentJar();
 	}
 
 	/*

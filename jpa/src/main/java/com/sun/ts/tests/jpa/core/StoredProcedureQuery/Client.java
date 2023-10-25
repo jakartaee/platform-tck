@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -53,7 +54,7 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();

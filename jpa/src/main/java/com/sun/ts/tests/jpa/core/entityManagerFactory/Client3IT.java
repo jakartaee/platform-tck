@@ -21,7 +21,8 @@ import java.util.List;
 import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -42,26 +43,33 @@ public class Client3IT extends PMClientBase {
 	public Client3IT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client3IT.class.getPackageName();
-		String pkgName = Client3IT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "Member_", pkgName + "Member", pkgName + "Order_", pkgName + "Order" };
 		return createDeploymentJar("jpa_core_entityManagerFactory3.jar", pkgNameWithoutSuffix, classes);
 
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setupMember() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
+			createDeployment();
 			removeTestData();
 			createMemberTestData();
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
+	}
+
+	@AfterEach
+	public void cleanupNoData() throws Exception {
+		super.cleanup();
+		removeDeploymentJar();
 	}
 
 	/*

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,8 +20,10 @@ import java.lang.System.Logger;
 import java.util.Arrays;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -34,18 +36,17 @@ public class ClientIT extends PMClientBase {
 
 	private Byte[] smallByteArray = null;
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "DataTypes" };
 		return createDeploymentJar("jpa_core_annotations_lob.jar", pkgNameWithoutSuffix, classes);
-
 	}
 
 	public ClientIT() {
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
@@ -198,7 +199,7 @@ public class ClientIT extends PMClientBase {
 
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();

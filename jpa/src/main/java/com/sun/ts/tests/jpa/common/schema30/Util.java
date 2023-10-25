@@ -23,11 +23,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.jupiter.api.AfterAll;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-public class Util extends PMClientBase {
+public abstract class Util extends PMClientBase {
 
 	private static final Logger logger = (Logger) System.getLogger(Util.class.getName());
 
@@ -65,10 +66,31 @@ public class Util extends PMClientBase {
 
 	protected final Trim trimRef[] = new Trim[20];
 
+	private final String[] schema30classes = { "Address_", "Address", "Alias_", "Alias", "Country_", "Country",
+			"CreditCard_", "CreditCard", "Customer_", "Customer", "Department_", "Department", "Employee_", "Employee",
+			"HardwareProduct_", "HardwareProduct", "Info_", "Info", "LineItem_", "LineItem", "LineItemException",
+			"Order_", "Order", "Phone_", "Phone", "Product_", "Product", "ShelfLife_", "ShelfLife", "SoftwareProduct_",
+			"SoftwareProduct", "Spouse_", "Spouse", "Trim_", "Trim" };
+
+	protected String[] getSchema30classes() {
+		String[] classes = new String[schema30classes.length];
+		for (int i = 0; i < schema30classes.length; i++) {
+			classes[i] = Util.class.getPackageName() + "." + schema30classes[i];
+		}
+		return classes;
+	}
+	
+	public static String[] concat(String[] first, String[] second) {
+		String[] both = Arrays.copyOf(first, first.length + second.length);
+		System.arraycopy(second, 0, both, first.length, second.length);
+		return both;
+	}
+
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
+			createDeployment();
 			getEntityManager();
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Exception: ", e);
@@ -86,7 +108,7 @@ public class Util extends PMClientBase {
 		return result.toString();
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
@@ -96,7 +118,6 @@ public class Util extends PMClientBase {
 
 	}
 
-	@AfterAll
 	public void cleanupNoData() throws Exception {
 		logger.log(Logger.Level.TRACE, "in cleanupNoData");
 		super.cleanup();
@@ -1850,5 +1871,7 @@ public class Util extends PMClientBase {
 			}
 		}
 	}
+
+	public abstract JavaArchive createDeployment() throws Exception;
 
 }

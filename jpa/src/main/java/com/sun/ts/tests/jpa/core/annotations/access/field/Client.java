@@ -18,7 +18,8 @@ package com.sun.ts.tests.jpa.core.annotations.access.field;
 
 import java.lang.System.Logger;
 
-import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterEach;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -35,7 +36,7 @@ public class Client extends PMClientBase {
 
 	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();

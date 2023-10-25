@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,22 +27,24 @@ import org.junit.jupiter.api.Test;
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.tests.jpa.common.schema30.HardwareProduct;
 import com.sun.ts.tests.jpa.common.schema30.Product;
-import com.sun.ts.tests.jpa.common.schema30.Util;
+import com.sun.ts.tests.jpa.common.schema30.UtilProductData;
 
 import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
-public class Client6IT extends Util {
+public class Client6IT extends UtilProductData {
 
-	private static final Logger logger = (Logger) System.getLogger(Client5IT.class.getName());
+	private static final Logger logger = (Logger) System.getLogger(Client6IT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client6IT.class.getPackageName();
-		String pkgName = Client6IT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "A" };
+		classes = concat(getSchema30classes(), classes) ;
+		
 		return createDeploymentJar("jpa_core_criteriaapi_CriteriaQuery6.jar", pkgNameWithoutSuffix, classes);
 	}
 

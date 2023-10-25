@@ -21,8 +21,8 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -34,9 +34,9 @@ public class ClientIT extends PMClientBase {
 
 	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = ClientIT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "FieldBigDecimalId", pkgName + "FieldBigIntegerId", pkgName + "FieldIntId",
 				pkgName + "FieldIntegerId", pkgName + "FieldSQLDateId", pkgName + "FieldStringId",
 				pkgName + "FieldUtilDateId", pkgName + "PropertyBigDecimalId", pkgName + "PropertyBigIntegerId",
@@ -46,15 +46,13 @@ public class ClientIT extends PMClientBase {
 
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
 			createDeployment();
-
 			removeTestData();
-			createDeployment();
 		} catch (Exception e) {
 			throw new Exception("Setup failed:", e);
 
@@ -720,7 +718,7 @@ public class ClientIT extends PMClientBase {
 			throw new Exception("PropertyUtilDateIdTest failed");
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();

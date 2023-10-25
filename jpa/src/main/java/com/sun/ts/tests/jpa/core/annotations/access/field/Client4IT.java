@@ -4,7 +4,7 @@ import java.lang.System.Logger;
 import java.util.GregorianCalendar;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import jakarta.persistence.TypedQuery;
@@ -13,7 +13,7 @@ public class Client4IT extends Client {
 
 	private static final Logger logger = (Logger) System.getLogger(Client4IT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client.class.getPackageName();
 		String pkgName = Client.class.getPackageName() + ".";
@@ -23,7 +23,7 @@ public class Client4IT extends Client {
 
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setup4() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup3");
 		try {

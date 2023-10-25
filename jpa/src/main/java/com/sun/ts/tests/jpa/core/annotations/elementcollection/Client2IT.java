@@ -21,8 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -34,10 +36,10 @@ public class Client2IT extends PMClientBase {
 
 	private static final Logger logger = (Logger) System.getLogger(Client2IT.class.getName());
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFile = { pkgName + "myMappingFile.xml" };
+		String[] xmlFile = { "myMappingFile.xml" };
 
 		String[] classes = { pkgName + "A", pkgName + "Address", pkgName + "Customer", pkgName + "CustomerXML" };
 
@@ -46,7 +48,7 @@ public class Client2IT extends PMClientBase {
 
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setupCust() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
@@ -188,7 +190,7 @@ public class Client2IT extends PMClientBase {
 	 *
 	 */
 
-	@AfterAll
+	@AfterEach
 	public void cleanupCust() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeCustTestData();
@@ -207,8 +209,6 @@ public class Client2IT extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM CUST_TABLE").executeUpdate();
 			getEntityManager().createNativeQuery("DELETE FROM PHONES").executeUpdate();
 			getEntityTransaction().commit();
-			removeDeploymentJar();
-
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
 		} finally {

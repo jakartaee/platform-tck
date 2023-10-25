@@ -45,10 +45,10 @@ public class Client2IT extends PMClientBase {
 
 	private EntityTransaction entityTransaction;
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client2IT.class.getPackageName();
-		String pkgName = Client2IT.class.getPackageName() + ".";
+		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "A", pkgName + "B" };
 		return createDeploymentJar("jpa_resource_local2.jar", pkgNameWithoutSuffix, (String[]) classes);
 

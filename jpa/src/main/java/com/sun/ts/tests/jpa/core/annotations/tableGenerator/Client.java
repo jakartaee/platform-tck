@@ -18,7 +18,7 @@ package com.sun.ts.tests.jpa.core.annotations.tableGenerator;
 
 import java.lang.System.Logger;
 
-import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -29,7 +29,7 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
