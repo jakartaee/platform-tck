@@ -28,8 +28,8 @@ import java.util.List;
 import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -59,12 +59,12 @@ public class ClientIT extends PMClientBase {
 	}
 
 	@Override
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.INFO, "Setup: JPA 2.2 Java 8 date and time types test");
 		try {
 			super.setup();
-
+			createDeployment();
 			Properties props = getPersistenceUnitProperties();
 			props.put("jakarta.persistence.schema-generation.database.action", "drop-and-create");
 			props.put("jakarta.persistence.schema-generation.create-database-schemas", "true");
@@ -80,7 +80,7 @@ public class ClientIT extends PMClientBase {
 	}
 
 	@Override
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.INFO, "Cleanup: JPA 2.2 Java 8 date and time types test");
 		Properties props = getPersistenceUnitProperties();
@@ -90,6 +90,7 @@ public class ClientIT extends PMClientBase {
 		Persistence.generateSchema(getPersistenceUnitName(), props);
 		closeEMAndEMF();
 		super.cleanup();
+		removeDeploymentJar();
 	}
 
 	/** Default LocalDate constant. */

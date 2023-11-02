@@ -23,12 +23,9 @@ import java.util.Collections;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
-import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -38,13 +35,9 @@ import jakarta.persistence.criteria.ParameterExpression;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
-public class Client2IT extends PMClientBase {
+public class Client2IT extends Client {
 
 	private static final Logger logger = (Logger) System.getLogger(Client2IT.class.getName());
-
-	Employee[] empRef = new Employee[5];
-
-	final java.sql.Date d1 = getSQLDate("2000-02-14");
 
 	public JavaArchive createDeployment() throws Exception {
 
@@ -52,20 +45,6 @@ public class Client2IT extends PMClientBase {
 		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "Employee" };
 		return createDeploymentJar("jpa_core_criteriaapi_parameter2.jar", pkgNameWithoutSuffix, classes);
-	}
-
-	@BeforeEach
-	public void setupEmployee() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
-		try {
-			super.setup();
-			createDeployment();
-			removeTestData();
-			createTestData();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
-			throw new Exception("Setup failed:", e);
-		}
 	}
 
 	/*
@@ -342,69 +321,4 @@ public class Client2IT extends PMClientBase {
 		}
 	}
 
-	@AfterEach
-	public void cleanup() throws Exception {
-		logger.log(Logger.Level.TRACE, "calling super.cleanup");
-		removeTestData();
-		super.cleanup();
-	}
-
-	private void createTestData() {
-
-		try {
-			getEntityTransaction().begin();
-
-			logger.log(Logger.Level.INFO, "Creating Employees");
-
-			final java.sql.Date d2 = getSQLDate("2001-06-27");
-			final java.sql.Date d3 = getSQLDate("2002-07-07");
-			final java.sql.Date d4 = getSQLDate("2003-03-03");
-			final java.sql.Date d5 = getSQLDate();
-
-			empRef[0] = new Employee(1, "Alan", "Frechette", d1, (float) 35000.0);
-			empRef[1] = new Employee(2, "Arthur", "Frechette", d2, (float) 35000.0);
-			empRef[2] = new Employee(3, "Shelly", "McGowan", d3, (float) 50000.0);
-			empRef[3] = new Employee(4, "Robert", "Bissett", d4, (float) 55000.0);
-			empRef[4] = new Employee(5, "Stephen", "DMilla", d5, (float) 25000.0);
-			for (Employee e : empRef) {
-				if (e != null) {
-					getEntityManager().persist(e);
-					logger.log(Logger.Level.TRACE, "persisted employee:" + e);
-				}
-			}
-			getEntityTransaction().commit();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
-		} finally {
-			try {
-				if (getEntityTransaction().isActive()) {
-					getEntityTransaction().rollback();
-				}
-			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
-			}
-		}
-	}
-
-	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
-		if (getEntityTransaction().isActive()) {
-			getEntityTransaction().rollback();
-		}
-		try {
-			getEntityTransaction().begin();
-			getEntityManager().createNativeQuery("DELETE FROM EMPLOYEE").executeUpdate();
-			getEntityTransaction().commit();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
-		} finally {
-			try {
-				if (getEntityTransaction().isActive()) {
-					getEntityTransaction().rollback();
-				}
-			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
-			}
-		}
-	}
 }

@@ -19,7 +19,6 @@ package com.sun.ts.tests.jpa.core.annotations.access.field;
 import java.lang.System.Logger;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterEach;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
 

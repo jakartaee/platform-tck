@@ -20,8 +20,8 @@ import java.lang.System.Logger;
 import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -48,7 +48,7 @@ public class ClientIT extends PMClientBase {
 
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setupNoData() throws Exception {
 		logger.log(Logger.Level.TRACE, "setupNoData");
 		try {
@@ -71,7 +71,7 @@ public class ClientIT extends PMClientBase {
 		}
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanupNoData() throws Exception {
 		super.cleanup();
 	}

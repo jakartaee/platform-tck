@@ -470,6 +470,7 @@ public class ClientIT extends PMClientBase {
 			throw new Exception("nativeQueryTestConstructorResult failed");
 
 	}
+
 	/*
 	 * @testName: nativeQueryTestConstructorResultWithId
 	 * 

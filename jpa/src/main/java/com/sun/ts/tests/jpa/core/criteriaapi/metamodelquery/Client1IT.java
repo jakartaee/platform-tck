@@ -20,7 +20,6 @@ import java.lang.System.Logger;
 import java.sql.Date;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -35,16 +34,12 @@ import com.sun.ts.tests.jpa.common.schema30.Address_;
 import com.sun.ts.tests.jpa.common.schema30.Alias;
 import com.sun.ts.tests.jpa.common.schema30.Alias_;
 import com.sun.ts.tests.jpa.common.schema30.Country_;
-import com.sun.ts.tests.jpa.common.schema30.CreditCard;
-import com.sun.ts.tests.jpa.common.schema30.CreditCard_;
 import com.sun.ts.tests.jpa.common.schema30.Customer;
 import com.sun.ts.tests.jpa.common.schema30.Customer_;
 import com.sun.ts.tests.jpa.common.schema30.LineItem;
 import com.sun.ts.tests.jpa.common.schema30.LineItem_;
 import com.sun.ts.tests.jpa.common.schema30.Order;
 import com.sun.ts.tests.jpa.common.schema30.Order_;
-import com.sun.ts.tests.jpa.common.schema30.Phone;
-import com.sun.ts.tests.jpa.common.schema30.Phone_;
 import com.sun.ts.tests.jpa.common.schema30.Product;
 import com.sun.ts.tests.jpa.common.schema30.Product_;
 import com.sun.ts.tests.jpa.common.schema30.ShelfLife_;
@@ -53,7 +48,6 @@ import com.sun.ts.tests.jpa.common.schema30.Spouse_;
 import com.sun.ts.tests.jpa.common.schema30.UtilCustomerData;
 
 import jakarta.persistence.NoResultException;
-import jakarta.persistence.Tuple;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.AbstractQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -195,7 +189,6 @@ public class Client1IT extends UtilCustomerData {
 		}
 	}
 
-	
 	/*
 	 * @testName: queryTest6
 	 * 

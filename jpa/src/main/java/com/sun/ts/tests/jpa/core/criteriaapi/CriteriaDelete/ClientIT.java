@@ -26,7 +26,7 @@ import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.schema30.Product;
 import com.sun.ts.tests.jpa.common.schema30.SoftwareProduct;
-import com.sun.ts.tests.jpa.common.schema30.UtilSetup;
+import com.sun.ts.tests.jpa.common.schema30.UtilProductData;
 
 import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -38,14 +38,13 @@ import jakarta.persistence.criteria.Subquery;
 import jakarta.persistence.metamodel.EntityType;
 import jakarta.persistence.metamodel.Metamodel;
 
-public class ClientIT extends UtilSetup {
+public class ClientIT extends UtilProductData {
 
 	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
 
 	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = getSchema30classes();
 		return createDeploymentJar("jpa_core_criteriaapi_CriteriaDelete.jar", pkgNameWithoutSuffix, classes);
 

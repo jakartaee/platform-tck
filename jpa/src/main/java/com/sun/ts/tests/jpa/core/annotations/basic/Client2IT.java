@@ -19,14 +19,8 @@ package com.sun.ts.tests.jpa.core.annotations.basic;
 import java.lang.System.Logger;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -709,6 +703,5 @@ public class Client2IT extends Client {
 		if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6)
 			throw new Exception("ShortOperandResultTypeTests failed");
 	}
-
 
 }

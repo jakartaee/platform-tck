@@ -23,8 +23,8 @@ package com.sun.ts.tests.jpa.se.descriptor;
 import java.lang.System.Logger;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -42,22 +42,20 @@ public class ClientIT extends PMClientBase {
 		String[] xmlFile = { "myMappingFile.xml" };
 		String[] classes = { pkgName + "A", pkgName + "B" };
 
-		return createDeploymentJar("jpa_se_descriptor.jar", pkgNameWithoutSuffix, classes,
-				PERSISTENCE_XML,
-				xmlFile);
+		return createDeploymentJar("jpa_se_descriptor.jar", pkgNameWithoutSuffix, classes, PERSISTENCE_XML, xmlFile);
 
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		try {
 
 			super.setup();
-			createDeployment();
-			removeTestData();
-			createTestData();
 		} catch (Exception e) {
 			throw new Exception("Setup Failed!", e);
+		} finally {
+			createDeployment();
+			removeTestData();
 		}
 	}
 
@@ -123,12 +121,15 @@ public class ClientIT extends PMClientBase {
 		}
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
-		logger.log(Logger.Level.TRACE, "cleanup");
-		removeTestData();
-		super.cleanup();
-		removeDeploymentJar();
+		try {
+			logger.log(Logger.Level.TRACE, "cleanup");
+			removeTestData();
+			super.cleanup();
+		} finally {
+			removeDeploymentJar();
+		}
 	}
 
 	private void removeTestData() {

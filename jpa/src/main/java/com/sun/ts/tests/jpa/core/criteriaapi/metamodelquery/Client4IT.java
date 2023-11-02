@@ -18,8 +18,6 @@ package com.sun.ts.tests.jpa.core.criteriaapi.metamodelquery;
 
 import java.lang.System.Logger;
 import java.sql.Date;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -32,15 +30,8 @@ import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.Address;
 import com.sun.ts.tests.jpa.common.schema30.Address_;
-import com.sun.ts.tests.jpa.common.schema30.Alias;
-import com.sun.ts.tests.jpa.common.schema30.Alias_;
-import com.sun.ts.tests.jpa.common.schema30.Country_;
-import com.sun.ts.tests.jpa.common.schema30.CreditCard;
-import com.sun.ts.tests.jpa.common.schema30.CreditCard_;
 import com.sun.ts.tests.jpa.common.schema30.Customer;
 import com.sun.ts.tests.jpa.common.schema30.Customer_;
-import com.sun.ts.tests.jpa.common.schema30.LineItem;
-import com.sun.ts.tests.jpa.common.schema30.LineItem_;
 import com.sun.ts.tests.jpa.common.schema30.Order;
 import com.sun.ts.tests.jpa.common.schema30.Order_;
 import com.sun.ts.tests.jpa.common.schema30.Phone;
@@ -48,30 +39,14 @@ import com.sun.ts.tests.jpa.common.schema30.Phone_;
 import com.sun.ts.tests.jpa.common.schema30.Product;
 import com.sun.ts.tests.jpa.common.schema30.Product_;
 import com.sun.ts.tests.jpa.common.schema30.ShelfLife_;
-import com.sun.ts.tests.jpa.common.schema30.Spouse;
-import com.sun.ts.tests.jpa.common.schema30.Spouse_;
 import com.sun.ts.tests.jpa.common.schema30.UtilProductData;
 
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.Tuple;
 import jakarta.persistence.TypedQuery;
-import jakarta.persistence.criteria.AbstractQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Expression;
-import jakarta.persistence.criteria.Fetch;
-import jakarta.persistence.criteria.FetchParent;
-import jakarta.persistence.criteria.From;
 import jakarta.persistence.criteria.Join;
-import jakarta.persistence.criteria.JoinType;
-import jakarta.persistence.criteria.ListJoin;
-import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
-import jakarta.persistence.criteria.SetJoin;
 import jakarta.persistence.criteria.Subquery;
-import jakarta.persistence.metamodel.Attribute;
-import jakarta.persistence.metamodel.PluralAttribute;
-import jakarta.persistence.metamodel.SetAttribute;
 
 public class Client4IT extends UtilProductData {
 
@@ -86,7 +61,7 @@ public class Client4IT extends UtilProductData {
 	}
 
 	/* Run test */
-	
+
 	/*
 	 * @testName: queryTest7
 	 * 
@@ -96,6 +71,7 @@ public class Client4IT extends UtilProductData {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void queryTest7() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -150,6 +126,7 @@ public class Client4IT extends UtilProductData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
+	@Test
 	public void queryTest8() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -200,6 +177,7 @@ public class Client4IT extends UtilProductData {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void queryTest38() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -248,6 +226,7 @@ public class Client4IT extends UtilProductData {
 	 * two queries are equivalent regardless of the way the expression is composed.
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void queryTest40() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -333,6 +312,7 @@ public class Client4IT extends UtilProductData {
 	 * composed.
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void queryTest41() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -437,6 +417,7 @@ public class Client4IT extends UtilProductData {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void queryTest43() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -487,6 +468,7 @@ public class Client4IT extends UtilProductData {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void queryTest44() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -536,6 +518,7 @@ public class Client4IT extends UtilProductData {
 	 *
 	 */
 	@SetupMethod(name = "setupPhoneData")
+	@Test
 	public void queryTest55() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -589,6 +572,7 @@ public class Client4IT extends UtilProductData {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void queryTest68() throws Exception {
 		boolean pass = false;
 		final Double d1 = 33387.14D;
@@ -632,6 +616,7 @@ public class Client4IT extends UtilProductData {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void queryTest70() throws Exception {
 		boolean pass = false;
 		final Integer expectedValue = Integer.valueOf(3277);
@@ -662,7 +647,6 @@ public class Client4IT extends UtilProductData {
 		}
 	}
 
-
 	/*
 	 * @testName: test_betweenDates
 	 * 
@@ -675,6 +659,7 @@ public class Client4IT extends UtilProductData {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void test_betweenDates() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -731,6 +716,7 @@ public class Client4IT extends UtilProductData {
 	 * BETWEEN. Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
+	@Test
 	public void test_notBetweenArithmetic() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -791,6 +777,7 @@ public class Client4IT extends UtilProductData {
 	 * Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void test_notBetweenDates() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -841,6 +828,7 @@ public class Client4IT extends UtilProductData {
 	 * @test_Strategy: Test getting correlated joins from subquery.
 	 */
 	@CleanupMethod(name = "cleanupNoData")
+	@Test
 	public void getCorrelatedJoinsTest() throws Exception {
 		boolean pass = false;
 

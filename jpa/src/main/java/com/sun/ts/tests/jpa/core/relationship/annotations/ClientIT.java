@@ -58,8 +58,7 @@ public class ClientIT extends PMClientBase {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Address", pkgName + "AnnualReview", 
-				pkgName + "Company", pkgName + "Insurance",
+		String[] classes = { pkgName + "Address", pkgName + "AnnualReview", pkgName + "Company", pkgName + "Insurance",
 				pkgName + "Person", pkgName + "Project", pkgName + "Team" };
 		return createDeploymentJar("jpa_core_relationship_annotations.jar", pkgNameWithoutSuffix, classes);
 

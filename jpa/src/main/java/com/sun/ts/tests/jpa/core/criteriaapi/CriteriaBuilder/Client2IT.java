@@ -32,7 +32,7 @@ import com.sun.ts.tests.jpa.common.schema30.Address;
 import com.sun.ts.tests.jpa.common.schema30.Alias;
 import com.sun.ts.tests.jpa.common.schema30.Customer;
 import com.sun.ts.tests.jpa.common.schema30.Spouse;
-import com.sun.ts.tests.jpa.common.schema30.UtilCustomerData;
+import com.sun.ts.tests.jpa.common.schema30.UtilCustAliasProductData;
 
 import jakarta.persistence.Query;
 import jakarta.persistence.Tuple;
@@ -49,7 +49,7 @@ import jakarta.persistence.criteria.Selection;
 import jakarta.persistence.metamodel.EntityType;
 import jakarta.persistence.metamodel.Metamodel;
 
-public class Client2IT extends UtilCustomerData {
+public class Client2IT extends UtilCustAliasProductData {
 
 	private static final Logger logger = (Logger) System.getLogger(Client2IT.class.getName());
 
@@ -61,7 +61,6 @@ public class Client2IT extends UtilCustomerData {
 		return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder2.jar", pkgNameWithoutSuffix, classes);
 
 	}
-
 
 	/*
 	 * @testName: construct

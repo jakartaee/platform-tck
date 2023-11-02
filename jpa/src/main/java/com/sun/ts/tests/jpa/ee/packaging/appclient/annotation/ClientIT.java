@@ -22,8 +22,8 @@ package com.sun.ts.tests.jpa.ee.packaging.appclient.annotation;
 
 import java.lang.System.Logger;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import jakarta.persistence.EntityManager;
@@ -48,7 +48,7 @@ public class ClientIT {
 	 * @class.setup_props:
 	 */
 
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		try {
 			if (emf != null) {
@@ -157,7 +157,7 @@ public class ClientIT {
 		}
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();

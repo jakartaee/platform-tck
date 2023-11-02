@@ -55,7 +55,7 @@ public class Client1IT extends UtilOrderData {
 		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "A" };
-		classes = concat(getSchema30classes(), classes) ;
+		classes = concat(getSchema30classes(), classes);
 		return createDeploymentJar("jpa_core_criteriaapi_CriteriaQuery1.jar", pkgNameWithoutSuffix, classes);
 	}
 

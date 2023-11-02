@@ -23,8 +23,8 @@ package com.sun.ts.tests.jpa.ee.packaging.ejb.descriptor;
 import java.lang.System.Logger;
 import java.util.Properties;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TSNamingContext;
@@ -47,7 +47,7 @@ public class ClientIT {
 	 * @class.setup_props:
 	 */
 
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		try {
 			TSNamingContext nctx = new TSNamingContext();
@@ -279,7 +279,7 @@ public class ClientIT {
 			throw new Exception("test6 failed");
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		try {
 			bean.removeTestData();

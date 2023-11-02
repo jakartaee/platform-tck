@@ -24,8 +24,8 @@ import java.lang.System.Logger;
 import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -54,13 +54,14 @@ public class Client2IT extends PMClientBase {
 
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void setupOnly() throws Exception {
 		try {
 			super.setup();
-			createDeployment();
 		} catch (Exception e) {
 			throw new Exception("Setup Failed!", e);
+		} finally {
+			createDeployment();
 		}
 	}
 
@@ -108,11 +109,14 @@ public class Client2IT extends PMClientBase {
 		}
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanupOnly() throws Exception {
-		logger.log(Logger.Level.TRACE, "cleanupOnly");
-		super.cleanup();
-		removeDeploymentJar();
+		try {
+			logger.log(Logger.Level.TRACE, "cleanupOnly");
+			super.cleanup();
+		} finally {
+			removeDeploymentJar();
+		}
 	}
 
 }

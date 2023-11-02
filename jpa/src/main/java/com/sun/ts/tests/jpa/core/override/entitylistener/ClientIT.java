@@ -41,8 +41,7 @@ public class ClientIT extends PMClientBase {
 		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] xmlFiles = { "orm.xml" };
 		String[] classes = { pkgName + "ListenerA", pkgName + "ListenerB", pkgName + "ListenerC", pkgName + "ListenerD",
-				pkgName + "NoEntityListener", 
-				pkgName + "NoListener", pkgName + "OverridenListener" };
+				pkgName + "NoEntityListener", pkgName + "NoListener", pkgName + "OverridenListener" };
 		return createDeploymentJar("jpa_core_override_entitylistener.jar", pkgNameWithoutSuffix, classes, xmlFiles);
 
 	}

@@ -23,8 +23,8 @@ import java.util.List;
 import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -60,11 +60,15 @@ public class ClientIT extends PMClientBase {
 	/*
 	 * @class.setup_props: db.supports.sequence;
 	 */
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		} finally {
 
 			createDeployment();
 
@@ -86,9 +90,7 @@ public class ClientIT extends PMClientBase {
 				throw new Exception(msg);
 			}
 			removeTestData();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
-			throw new Exception("Setup failed:", e);
+
 		}
 	}
 
@@ -224,13 +226,16 @@ public class ClientIT extends PMClientBase {
 		}
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
-		logger.log(Logger.Level.TRACE, "cleanup");
-		removeTestData();
-		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
-		super.cleanup();
-		removeDeploymentJar();
+		try {
+			logger.log(Logger.Level.TRACE, "cleanup");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeDeploymentJar();
+		}
 	}
 
 	private void removeTestData() {

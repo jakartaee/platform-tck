@@ -26,7 +26,6 @@ import java.util.Date;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class Client1IT extends Client {
@@ -533,6 +532,5 @@ public class Client1IT extends Client {
 		logger.log(Logger.Level.TRACE, "Entered getInstanceStatus method");
 		return getEntityManager().contains(o);
 	}
-
 
 }

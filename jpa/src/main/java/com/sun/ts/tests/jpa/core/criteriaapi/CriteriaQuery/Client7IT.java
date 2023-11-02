@@ -43,8 +43,8 @@ public class Client7IT extends UtilDepartmentEmployeeData {
 		String pkgNameWithoutSuffix = Client7IT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "A" };
-		classes = concat(getSchema30classes(), classes) ;
-		
+		classes = concat(getSchema30classes(), classes);
+
 		return createDeploymentJar("jpa_core_criteriaapi_CriteriaQuery7.jar", pkgNameWithoutSuffix, classes);
 	}
 

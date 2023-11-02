@@ -44,15 +44,11 @@ public class ClientIT extends PMClientBase {
 	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Address", pkgName + "B", 
-				pkgName + "CharConverter", pkgName + "CommaConverter",
-				pkgName + "Country", pkgName + "Customer", 
-				pkgName + "Department", pkgName + "DisableAutoApplyConverter",
-				pkgName + "DotConverter", pkgName + "DotConverter2",
-				pkgName + "Employee", pkgName + "Employee2",
-				pkgName + "Employee3", pkgName + "FullTimeEmployee",
-				pkgName + "FullTimeEmployee2", pkgName + "IntegerConverter",
-				pkgName + "NumberToStateConverter",
+		String[] classes = { pkgName + "Address", pkgName + "B", pkgName + "CharConverter", pkgName + "CommaConverter",
+				pkgName + "Country", pkgName + "Customer", pkgName + "Department",
+				pkgName + "DisableAutoApplyConverter", pkgName + "DotConverter", pkgName + "DotConverter2",
+				pkgName + "Employee", pkgName + "Employee2", pkgName + "Employee3", pkgName + "FullTimeEmployee",
+				pkgName + "FullTimeEmployee2", pkgName + "IntegerConverter", pkgName + "NumberToStateConverter",
 				pkgName + "SalaryConverter", pkgName + "SpaceConverter" };
 		return createDeploymentJar("jpa_core_annotations_convert.jar", pkgNameWithoutSuffix, classes);
 	}
@@ -84,7 +80,7 @@ public class ClientIT extends PMClientBase {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
-		    Employee expected = new Employee(1, "Alan", "Smith", "3#5#0#0#0.0");
+			Employee expected = new Employee(1, "Alan", "Smith", "3#5#0#0#0.0");
 			logger.log(Logger.Level.TRACE, "Persisting Employee");
 			getEntityManager().persist(expected);
 			getEntityManager().flush();
@@ -406,109 +402,106 @@ public class ClientIT extends PMClientBase {
 	 */
 	@Test
 	public void convert2Test() throws Exception {
-	    boolean pass1 = false;
-	    boolean pass2 = false;
-	    boolean pass3 = false;
-	    try {
-	      getEntityTransaction().begin();
-	      Employee expected = new Employee(1, "Alan", "Smith", "3#5#0#0#0.0");
-	      getEntityManager().persist(expected);
-	      getEntityManager().flush();
-	      getEntityTransaction().commit();
-	      pass1 = true;
-	    } catch (Exception ex) {
-	    	logger.log(Logger.Level.ERROR,"Unexpected exception received:", ex);
-	    } finally {
-	      try {
-	        if (getEntityTransaction().isActive()) {
-	          getEntityTransaction().rollback();
-	        }
-	      } catch (Exception re) {
-	    	  logger.log(Logger.Level.ERROR,"Unexpected Exception while rolling back TX:", re);
-	      }
-	    }
-	    clearCache();
-	    try {
-	      getEntityTransaction().begin();
-	      logger.log(Logger.Level.INFO,"Testing JPQL");
-	      List<Employee> o = getEntityManager()
-	          .createQuery("Select e from Employee e WHERE e.id = 1",
-	              Employee.class)
-	          .getResultList();
+		boolean pass1 = false;
+		boolean pass2 = false;
+		boolean pass3 = false;
+		try {
+			getEntityTransaction().begin();
+			Employee expected = new Employee(1, "Alan", "Smith", "3#5#0#0#0.0");
+			getEntityManager().persist(expected);
+			getEntityManager().flush();
+			getEntityTransaction().commit();
+			pass1 = true;
+		} catch (Exception ex) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception received:", ex);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception while rolling back TX:", re);
+			}
+		}
+		clearCache();
+		try {
+			getEntityTransaction().begin();
+			logger.log(Logger.Level.INFO, "Testing JPQL");
+			List<Employee> o = getEntityManager().createQuery("Select e from Employee e WHERE e.id = 1", Employee.class)
+					.getResultList();
 
-	      if (o.size() == 1) {
-	        Employee emp = o.get(0);
-	        logger.log(Logger.Level.TRACE,"Employee:" + emp.toString());
-	        if (emp.getSalary().equals("35000.0")) {
-	        	logger.log(Logger.Level.TRACE,"Received expected value:" + emp.getSalary());
-	          pass2 = true;
-	        } else {
-	        	logger.log(Logger.Level.ERROR,
-	              "Converter was not properly applied, expected value:35000.0, actual"
-	                  + emp.getSalary());
-	        }
-	      } else {
-	    	  logger.log(Logger.Level.ERROR,"Expected 1 entity to be returned, actual:" + o.size());
-	      }
-	      getEntityTransaction().commit();
+			if (o.size() == 1) {
+				Employee emp = o.get(0);
+				logger.log(Logger.Level.TRACE, "Employee:" + emp.toString());
+				if (emp.getSalary().equals("35000.0")) {
+					logger.log(Logger.Level.TRACE, "Received expected value:" + emp.getSalary());
+					pass2 = true;
+				} else {
+					logger.log(Logger.Level.ERROR,
+							"Converter was not properly applied, expected value:35000.0, actual" + emp.getSalary());
+				}
+			} else {
+				logger.log(Logger.Level.ERROR, "Expected 1 entity to be returned, actual:" + o.size());
+			}
+			getEntityTransaction().commit();
 
-	    } catch (Exception ex) {
-	    	logger.log(Logger.Level.ERROR,"Unexpected exception received:", ex);
-	    } finally {
-	      try {
-	        if (getEntityTransaction().isActive()) {
-	          getEntityTransaction().rollback();
-	        }
-	      } catch (Exception re) {
-	    	  logger.log(Logger.Level.ERROR,"Unexpected Exception while rolling back TX:", re);
-	      }
-	    }
-	    clearCache();
-	    try {
-	      getEntityTransaction().begin();
+		} catch (Exception ex) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception received:", ex);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception while rolling back TX:", re);
+			}
+		}
+		clearCache();
+		try {
+			getEntityTransaction().begin();
 
-	      logger.log(Logger.Level.INFO,"Testing Criteria");
-	      CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-	      CriteriaQuery<Employee> cquery = cbuilder.createQuery(Employee.class);
-	      if (cquery != null) {
-	    	  logger.log(Logger.Level.TRACE,"Obtained Non-null Criteria Query");
-	        Root<Employee> employee = cquery.from(Employee.class);
-	        cquery.select(employee).where(cbuilder.equal(employee.get("id"), 1));
-	        Employee emp = getEntityManager().createQuery(cquery).getSingleResult();
-	        if (emp != null) {
-	        	logger.log(Logger.Level.TRACE,"Employee:" + emp.toString());
-	          if (emp.getSalary().equals("35000.0")) {
-	        	  logger.log(Logger.Level.TRACE,"Received expected value:" + emp.getSalary());
-	            pass3 = true;
-	          } else {
-	        	  logger.log(Logger.Level.ERROR,
-	                "Converter was not properly applied, expected value:35000.0, actual"
-	                    + emp.getSalary());
-	          }
-	        } else {
-	        	logger.log(Logger.Level.ERROR,"Null Employee result was returned");
-	        }
-	      } else {
-	    	  logger.log(Logger.Level.ERROR,"createQuery returned null result");
-	      }
-	      getEntityTransaction().commit();
+			logger.log(Logger.Level.INFO, "Testing Criteria");
+			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+			CriteriaQuery<Employee> cquery = cbuilder.createQuery(Employee.class);
+			if (cquery != null) {
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
+				Root<Employee> employee = cquery.from(Employee.class);
+				cquery.select(employee).where(cbuilder.equal(employee.get("id"), 1));
+				Employee emp = getEntityManager().createQuery(cquery).getSingleResult();
+				if (emp != null) {
+					logger.log(Logger.Level.TRACE, "Employee:" + emp.toString());
+					if (emp.getSalary().equals("35000.0")) {
+						logger.log(Logger.Level.TRACE, "Received expected value:" + emp.getSalary());
+						pass3 = true;
+					} else {
+						logger.log(Logger.Level.ERROR,
+								"Converter was not properly applied, expected value:35000.0, actual" + emp.getSalary());
+					}
+				} else {
+					logger.log(Logger.Level.ERROR, "Null Employee result was returned");
+				}
+			} else {
+				logger.log(Logger.Level.ERROR, "createQuery returned null result");
+			}
+			getEntityTransaction().commit();
 
-	    } catch (Exception ex) {
-	    	logger.log(Logger.Level.ERROR,"Unexpected exception received:", ex);
-	    } finally {
-	      try {
-	        if (getEntityTransaction().isActive()) {
-	          getEntityTransaction().rollback();
-	        }
-	      } catch (Exception re) {
-	    	  logger.log(Logger.Level.ERROR,"Unexpected Exception while rolling back TX:", re);
-	      }
-	    }
+		} catch (Exception ex) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception received:", ex);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception while rolling back TX:", re);
+			}
+		}
 
-	    if (!pass1 || !pass2 || !pass3) {
-	      throw new Exception("converts2Test failed");
-	    }
-	  }
+		if (!pass1 || !pass2 || !pass3) {
+			throw new Exception("converts2Test failed");
+		}
+	}
+
 	/*
 	 * @testName: convert3Test
 	 * 

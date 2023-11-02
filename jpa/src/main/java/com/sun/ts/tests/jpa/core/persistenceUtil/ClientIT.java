@@ -49,6 +49,7 @@ public class ClientIT extends PMClientBase {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
+			removeTestData();
 			createDeployment();
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Exception: ", e);

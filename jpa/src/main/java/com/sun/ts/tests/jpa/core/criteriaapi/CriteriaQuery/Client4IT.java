@@ -40,7 +40,7 @@ public class Client4IT extends UtilSetup {
 		String pkgNameWithoutSuffix = Client4IT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "A" };
-		classes = concat(getSchema30classes(), classes) ;
+		classes = concat(getSchema30classes(), classes);
 		return createDeploymentJar("jpa_core_criteriaapi_CriteriaQuery4.jar", pkgNameWithoutSuffix, classes);
 	}
 

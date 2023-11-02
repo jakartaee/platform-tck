@@ -429,7 +429,7 @@ public class Client2IT extends PMClientBase {
 	@AfterEach
 	public void cleanupEmployee() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanupEmployee");
-		// removeEmployeeTestData();
+		removeEmployeeTestData();
 		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
 		removeDeploymentJar();

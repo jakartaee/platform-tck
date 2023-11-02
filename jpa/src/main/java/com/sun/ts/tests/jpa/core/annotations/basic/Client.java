@@ -25,7 +25,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterEach;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
 

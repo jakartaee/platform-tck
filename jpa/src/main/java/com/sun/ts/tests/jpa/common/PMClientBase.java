@@ -50,15 +50,11 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.ByteArrayAsset;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -1093,8 +1089,8 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 	public static final String CLASS_ELEMENT_TAG = "class";
 	public static final String TEMP_DIR = System.getProperty("java.io.tmpdir");
 
-    public static final String PERSISTENCE_XML = "persistence.xml";
-    
+	public static final String PERSISTENCE_XML = "persistence.xml";
+
 	public static JavaArchive createDeploymentJar(String jarName, String packageName, String[] classes,
 			String persistenceFile, String[] xmlFiles) throws Exception {
 
@@ -1130,7 +1126,8 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 			archive.addAsManifestResource(new ByteArrayAsset(xmlFileStream), PERSISTENCE_XML);
 		}
 		for (int i = 0; i < xmlFiles.length; i++) {
-			InputStream xmlFileStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(packageName.replace('.', '/') + "/" + xmlFiles[i]);
+			InputStream xmlFileStream = Thread.currentThread().getContextClassLoader()
+					.getResourceAsStream(packageName.replace('.', '/') + "/" + xmlFiles[i]);
 			archive.addAsManifestResource(new ByteArrayAsset(xmlFileStream), xmlFiles[i]);
 		}
 

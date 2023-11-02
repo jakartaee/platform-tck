@@ -61,7 +61,7 @@ public class Client2IT extends Client {
 			throw new Exception("Setup failed:", e);
 		}
 	}
-	
+
 	/*
 	 * @testName: joinColumnInsertable
 	 * 

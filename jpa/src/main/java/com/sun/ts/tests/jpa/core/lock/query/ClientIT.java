@@ -766,7 +766,8 @@ public class ClientIT extends PMClientBase {
 		}
 
 	}
-@AfterEach
+
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();

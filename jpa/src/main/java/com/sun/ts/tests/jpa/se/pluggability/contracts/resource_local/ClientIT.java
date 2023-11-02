@@ -24,14 +24,15 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
 import com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation.EntityManagerFactoryImpl;
 import com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation.EntityManagerImpl;
 import com.sun.ts.tests.jpa.common.pluggability.util.LogFileProcessor;
+import com.sun.ts.tests.jpa.common.pluggability.util.LogRecordEntry;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.SharedCacheMode;
@@ -72,7 +73,7 @@ public class ClientIT extends PMClientBase {
 		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] xmlFile = { "myMappingFile1.xml", "myMappingFile2.xml", "orm.xml" };
 		String[] classes = { pkgName + "Order", pkgName + "Order2", pkgName + "Order3", pkgName + "Order4",
-				pkgName + "Order5" };
+				pkgName + "Order5", LogFileProcessor.class.getCanonicalName(), LogRecordEntry.class.getCanonicalName()  };
 		return createDeploymentJar("jpa_se_pluggability_contracts_resource_local.jar", pkgNameWithoutSuffix,
 				(String[]) classes, PERSISTENCE_XML, xmlFile);
 
@@ -82,12 +83,15 @@ public class ClientIT extends PMClientBase {
 	 * @class.setup_props: log.file.location;
 	 *
 	 */
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
-		super.setup();
-		createDeployment();
-		initEntityManager("ALTPROVIDERPU", false);
+		try {
+			super.setup();
+		} finally {
+			createDeployment();
+			initEntityManager("ALTPROVIDERPU", false);
+		}
 	}
 
 	public void getLogProcessor() {
@@ -632,11 +636,14 @@ public class ClientIT extends PMClientBase {
 		puInfo = emfImpl.puInfo;
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
-		logger.log(Logger.Level.TRACE, "cleanup");
-		logger.log(Logger.Level.TRACE, "calling super.cleanup");
-		super.cleanup();
-		removeDeploymentJar();
+		try {
+			logger.log(Logger.Level.TRACE, "cleanup");
+			logger.log(Logger.Level.TRACE, "calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeDeploymentJar();
+		}
 	}
 }

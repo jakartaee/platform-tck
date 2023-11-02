@@ -18,7 +18,7 @@ package com.sun.ts.tests.jpa.ee.packaging.jar;
 
 import java.lang.System.Logger;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -33,7 +33,7 @@ public class ClientIT extends PMClientBase {
 	/*
 	 * @class.setup_props:
 	 */
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
@@ -110,7 +110,7 @@ public class ClientIT extends PMClientBase {
 		}
 	}
 
-	@BeforeAll
+	@BeforeEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();

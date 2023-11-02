@@ -25,8 +25,8 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -68,30 +68,11 @@ public class ClientIT extends PMClientBase {
 	}
 
 	/*
-	 * setup() is called before each test
-	 *
-	 * @class.setup_props: jdbc.db;
-	 */
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
-		try {
-			super.setup();
-			map.putAll(getEntityManager().getProperties());
-			map.put("foo", "bar");
-			displayMap(map);
-			dataBaseName = System.getProperty("jdbc.db");
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
-			throw new Exception("Setup failed:", e);
-		}
-	}
-
-	/*
 	 * setupEmployeeData() is called before each test
 	 *
 	 * @class.setup_props: jdbc.db;
 	 */
-	@BeforeAll
+	@BeforeEach
 	public void setupEmployeeData() throws Exception {
 		logger.log(Logger.Level.TRACE, "setupOrderData");
 		try {
@@ -109,16 +90,12 @@ public class ClientIT extends PMClientBase {
 		}
 	}
 
-	public void cleanup() throws Exception {
-		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
-		super.cleanup();
-	}
-
-	@AfterAll
+	@AfterEach
 	public void cleanupData() throws Exception {
 		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
 		cleanup();
+		removeDeploymentJar();
 	}
 
 	/*

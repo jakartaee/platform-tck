@@ -23,8 +23,8 @@ package com.sun.ts.tests.jpa.ee.propagation.am;
 import java.lang.System.Logger;
 import java.util.Properties;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import jakarta.ejb.EJB;
@@ -48,7 +48,7 @@ public class ClientIT {
 	 * @class.setup_props:
 	 */
 
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 	}
 
@@ -214,7 +214,7 @@ public class ClientIT {
 			throw new Exception("test5 failed");
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup complete");
 	}

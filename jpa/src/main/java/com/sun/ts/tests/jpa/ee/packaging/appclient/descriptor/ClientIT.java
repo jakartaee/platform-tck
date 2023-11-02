@@ -22,7 +22,7 @@ package com.sun.ts.tests.jpa.ee.packaging.appclient.descriptor;
 
 import java.lang.System.Logger;
 
-import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TSNamingContext;
@@ -50,7 +50,7 @@ public class ClientIT {
 	/*
 	 * @class.setup_props:
 	 */
-	@AfterAll
+	@AfterEach
 	public void setup() throws Exception {
 		try {
 			logger.log(Logger.Level.TRACE, "Obtain naming context");
@@ -177,7 +177,7 @@ public class ClientIT {
 			throw new Exception("test1 failed");
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();

@@ -24,8 +24,8 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.DriverManagerConnection;
@@ -61,7 +61,7 @@ public class ClientIT extends PMClientBase {
 	/*
 	 * @class.testArgs: -ap tssql.stmt
 	 */
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
@@ -70,11 +70,12 @@ public class ClientIT extends PMClientBase {
 			jpaprops.put("Insert_Jpa_Purchase_Order", System.getProperty("Insert_Jpa_Purchase_Order"));
 			jpaprops.put("Select_Jpa_Purchase_Order", System.getProperty("Select_Jpa_Purchase_Order"));
 			displayMap(jpaprops);
-			createDeployment();
-			removeTestData();
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
+		} finally {
+			createDeployment();
+			removeTestData();
 		}
 	}
 
@@ -626,13 +627,16 @@ public class ClientIT extends PMClientBase {
 		}
 	}
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
-		logger.log(Logger.Level.TRACE, "cleanup");
-		removeTestData();
-		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
-		super.cleanup();
-		removeDeploymentJar();
+		try {
+			logger.log(Logger.Level.TRACE, "cleanup");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeDeploymentJar();
+		}
 	}
 
 	private void removeTestData() {

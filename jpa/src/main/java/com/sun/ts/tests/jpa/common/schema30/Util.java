@@ -79,23 +79,11 @@ public abstract class Util extends PMClientBase {
 		}
 		return classes;
 	}
-	
+
 	public static String[] concat(String[] first, String[] second) {
 		String[] both = Arrays.copyOf(first, first.length + second.length);
 		System.arraycopy(second, 0, both, first.length, second.length);
 		return both;
-	}
-
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
-		try {
-			super.setup();
-			createDeployment();
-			getEntityManager();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
-			throw new Exception("Setup failed:", e);
-		}
 	}
 
 	public String toString(Collection c) {
@@ -1856,6 +1844,7 @@ public abstract class Util extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM TRIM_TABLE").executeUpdate();
 			getEntityManager().createNativeQuery("DELETE FROM EMPLOYEE").executeUpdate();
 			getEntityManager().createNativeQuery("DELETE FROM DEPARTMENT").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM A_BASIC").executeUpdate();
 			getEntityTransaction().commit();
 			logger.log(Logger.Level.TRACE, "done removeTestData");
 

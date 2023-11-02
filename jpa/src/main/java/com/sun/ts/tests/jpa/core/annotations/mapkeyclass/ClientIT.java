@@ -27,7 +27,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
-import com.sun.ts.tests.jpa.core.annotations.mapkey.Client;
 
 import jakarta.persistence.EntityManager;
 
